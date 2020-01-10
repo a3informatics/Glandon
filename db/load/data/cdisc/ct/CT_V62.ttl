@@ -22,9 +22,10 @@
 	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#31e84951-8d98-419e-82e8-e46037faa6f0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin "Created from files: 'SDTM Terminology 2019-12-20.xlsx', 'CDASH Terminology 2019-12-20.xlsx', 'ADaM Terminology 2019-12-20.xlsx', 'SEND Terminology 2019-12-20.xlsx', 'Protocol Terminology 2019-12-20.xlsx'"^^xsd:string ;
+	isoT:origin "Created from files: 'SDTM Terminology 2019-12-20.xlsx', 'CDASH Terminology 2019-12-20.xlsx', 'ADaM Terminology 2019-12-20.xlsx', 'SEND Terminology 2019-12-20.xlsx', 'Protocol Terminology 2019-12-20.xlsx', 'Define-XML Terminology 2019-12-20.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
@@ -950,6 +951,11 @@
 	th:isTopConceptReference :TH_TCR919 ;
 	th:isTopConceptReference :TH_TCR920 ;
 	th:isTopConceptReference :TH_TCR921 ;
+	th:isTopConceptReference :TH_TCR922 ;
+	th:isTopConceptReference :TH_TCR923 ;
+	th:isTopConceptReference :TH_TCR924 ;
+	th:isTopConceptReference :TH_TCR925 ;
+	th:isTopConceptReference :TH_TCR926 ;
 	th:isTopConcept <http://www.cdisc.org/C141663/V55#C141663> ;
 	th:isTopConcept <http://www.cdisc.org/C141662/V55#C141662> ;
 	th:isTopConcept <http://www.cdisc.org/C115388/V47#C115388> ;
@@ -1871,6 +1877,11 @@
 	th:isTopConcept <http://www.cdisc.org/C160921/V60#C160921> ;
 	th:isTopConcept <http://www.cdisc.org/C132309/V52#C132309> ;
 	th:isTopConcept <http://www.cdisc.org/C147067/V61#C147067> ;
+	th:isTopConcept <http://www.cdisc.org/C165635/V62#C165635> ;
+	th:isTopConcept <http://www.cdisc.org/C165636/V62#C165636> ;
+	th:isTopConcept <http://www.cdisc.org/C117745/V62#C117745> ;
+	th:isTopConcept <http://www.cdisc.org/C117744/V62#C117744> ;
+	th:isTopConcept <http://www.cdisc.org/C103329/V62#C103329> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -10181,6 +10192,51 @@
 	bo:reference <http://www.cdisc.org/C147067/V61#C147067> ;
 	bo:localLabel ""^^xsd:string ;
 .
+:TH_TCR922
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "922"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C165635/V62#C165635> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR923
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "923"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C165636/V62#C165636> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR924
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "924"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C117745/V62#C117745> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR925
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "925"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C117744/V62#C117744> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR926
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "926"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C103329/V62#C103329> ;
+	bo:localLabel ""^^xsd:string ;
+.
 <http://www.cdisc.org/C74456/V62#C74456>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Anatomical Location"^^xsd:string ;
@@ -13874,6 +13930,7 @@
 	rdf:type th:ManagedConcept ;
 	isoC:label "Dictionary Name"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
 	isoT:hasState <http://www.cdisc.org/C66788/V62#C66788_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66788/V62#C66788_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -39829,4 +39886,327 @@
 <http://www.assero.co.uk/SYN#e78bdd0e2a4ecd0e25f4cf30b09a8f24ffe4b4b2>
 	rdf:type th:Synonym ;
 	isoC:label "Study Oversight Entity Attribute Terminology"^^xsd:string ;
+.
+<http://www.cdisc.org/C165635/V62#C165635>
+	rdf:type th:ManagedConcept ;
+	isoC:label "ADaM Basic Data Structure Subclass"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	isoT:hasState <http://www.cdisc.org/C165635/V62#C165635_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C165635/V62#C165635_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C165635"^^xsd:string ;
+	th:notation "BDSSC"^^xsd:string ;
+	th:definition "Terminology relevant to the subclasses of the ADaM basic data structure."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C165635/V62#C165635_C165637> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4dc123e7d0c10683677b924f0b3b22bc482cb644> ;
+	th:synonym <http://www.assero.co.uk/SYN#47f53da4c91e910a7e764d56cce94d5b344a7c4b> ;
+.
+<http://www.cdisc.org/C165635/V62#C165635_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C165635/V62#C165635_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C165635"^^xsd:string ;
+	isoI:versionLabel "2019-12-20 Release"^^xsd:string ;
+	isoI:version "62"^^xsd:positiveInteger ;
+	isoI:semanticVersion "62.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C165635/V62#C165635_C165637>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Time-to-Event Dataset"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C165637"^^xsd:string ;
+	th:notation "TIME-TO-EVENT"^^xsd:string ;
+	th:definition "A dataset containing data that is used for Time-to-Event analyses."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8db5383357503266e5330bab6400b0ecce9562ea> ;
+	th:synonym <http://www.assero.co.uk/SYN#69c905c4658ea5c1afc1c693376334b62d941a34> ;
+.
+<http://www.assero.co.uk/PT#8db5383357503266e5330bab6400b0ecce9562ea>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Time-to-Event Dataset"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#4dc123e7d0c10683677b924f0b3b22bc482cb644>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Define-XML ADaM Basic Data Structure Subclass Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#47f53da4c91e910a7e764d56cce94d5b344a7c4b>
+	rdf:type th:Synonym ;
+	isoC:label "ADaM Basic Data Structure Subclass"^^xsd:string ;
+.
+<http://www.cdisc.org/C165636/V62#C165636>
+	rdf:type th:ManagedConcept ;
+	isoC:label "ADaM Integrated Basic Data Structure Subclass"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	isoT:hasState <http://www.cdisc.org/C165636/V62#C165636_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C165636/V62#C165636_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C165636"^^xsd:string ;
+	th:notation "BDSISC"^^xsd:string ;
+	th:definition "Purpose of a specific analysis result described in ADaM analysis results metadata."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C165636/V62#C165636_C165637> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9e516493827b1de0b0717d9852545b0194d3c225> ;
+	th:synonym <http://www.assero.co.uk/SYN#d53438e3f2b83179410d975abbd3278dbad47629> ;
+.
+<http://www.cdisc.org/C165636/V62#C165636_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C165636/V62#C165636_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C165636"^^xsd:string ;
+	isoI:versionLabel "2019-12-20 Release"^^xsd:string ;
+	isoI:version "62"^^xsd:positiveInteger ;
+	isoI:semanticVersion "62.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C165636/V62#C165636_C165637>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Time-to-Event Dataset"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C165637"^^xsd:string ;
+	th:notation "TIME-TO-EVENT"^^xsd:string ;
+	th:definition "A dataset containing data that is used for Time-to-Event analyses."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8db5383357503266e5330bab6400b0ecce9562ea> ;
+	th:synonym <http://www.assero.co.uk/SYN#69c905c4658ea5c1afc1c693376334b62d941a34> ;
+.
+<http://www.assero.co.uk/PT#9e516493827b1de0b0717d9852545b0194d3c225>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Define-XML ADaM Integrated Basic Data Structure Subclass Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#d53438e3f2b83179410d975abbd3278dbad47629>
+	rdf:type th:Synonym ;
+	isoC:label "ADaM Integrated Basic Data Structure Subclass"^^xsd:string ;
+.
+<http://www.cdisc.org/C117745/V62#C117745>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Analysis Purpose"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	isoT:hasState <http://www.cdisc.org/C117745/V62#C117745_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C117745/V62#C117745_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C117745"^^xsd:string ;
+	th:notation "ANLPURP"^^xsd:string ;
+	th:definition "Purpose of a specific analysis result described in Define-XML analysis results metadata."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C117745/V40#C117745_C98724> ;
+	th:narrower <http://www.cdisc.org/C117745/V40#C117745_C98772> ;
+	th:narrower <http://www.cdisc.org/C117745/V58#C117745_C98781> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f781e44b2b66425bf103a1c32b690279d5f80a22> ;
+	th:synonym <http://www.assero.co.uk/SYN#a5e76b769f38420d6120ef7b1881197ec0d01b3f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.cdisc.org/C117745/V62#C117745_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C117745/V62#C117745_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C117745"^^xsd:string ;
+	isoI:versionLabel "2019-12-20 Release"^^xsd:string ;
+	isoI:version "62"^^xsd:positiveInteger ;
+	isoI:semanticVersion "62.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.assero.co.uk/PT#f781e44b2b66425bf103a1c32b690279d5f80a22>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Define-XML Analysis Purpose Terminology"^^xsd:string ;
+.
+<http://www.cdisc.org/C117744/V62#C117744>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Analysis Reason"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	isoT:hasState <http://www.cdisc.org/C117744/V62#C117744_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C117744/V62#C117744_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C117744"^^xsd:string ;
+	th:notation "ANLREAS"^^xsd:string ;
+	th:definition "Reason for reporting a specific analysis result described in Define-XML analysis results metadata."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C117744/V40#C117744_C117750> ;
+	th:narrower <http://www.cdisc.org/C117744/V40#C117744_C117751> ;
+	th:narrower <http://www.cdisc.org/C117744/V40#C117744_C117752> ;
+	th:narrower <http://www.cdisc.org/C117744/V40#C117744_C117753> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#291ece74d264ceed4c81a9a40abac91fb4b6ef99> ;
+	th:synonym <http://www.assero.co.uk/SYN#258f88079986f0aba9fd254aea8071f0457cb0f6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+.
+<http://www.cdisc.org/C117744/V62#C117744_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C117744/V62#C117744_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C117744"^^xsd:string ;
+	isoI:versionLabel "2019-12-20 Release"^^xsd:string ;
+	isoI:version "62"^^xsd:positiveInteger ;
+	isoI:semanticVersion "62.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.assero.co.uk/PT#291ece74d264ceed4c81a9a40abac91fb4b6ef99>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Define-XML Analysis Reason Terminology"^^xsd:string ;
+.
+<http://www.cdisc.org/C103329/V62#C103329>
+	rdf:type th:ManagedConcept ;
+	isoC:label "General Observation Class"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	isoT:hasState <http://www.cdisc.org/C103329/V62#C103329_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C103329/V62#C103329_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C103329"^^xsd:string ;
+	th:notation "GNRLOBSC"^^xsd:string ;
+	th:definition "Terminology related to the classification of a CDISC domain."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C103329/V44#C103329_C103375> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103371> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103372> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103373> ;
+	th:narrower <http://www.cdisc.org/C103329/V52#C103329_C135396> ;
+	th:narrower <http://www.cdisc.org/C103329/V62#C103329_C132357> ;
+	th:narrower <http://www.cdisc.org/C103329/V62#C103329_C132358> ;
+	th:narrower <http://www.cdisc.org/C103329/V62#C103329_C132359> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103374> ;
+	th:narrower <http://www.cdisc.org/C103329/V45#C103329_C123454> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103376> ;
+	th:narrower <http://www.cdisc.org/C103329/V62#C103329_C103377> ;
+	th:narrower <http://www.cdisc.org/C103329/V55#C103329_C147271> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103378> ;
+	th:narrower <http://www.cdisc.org/C103329/V33#C103329_C103379> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#53e08396e1444423084b6a7db0e9892af0ad6fda> ;
+	th:synonym <http://www.assero.co.uk/SYN#49f87237a4356c9bffab689c894a315a07ae0541> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C103329"^^xsd:string ;
+	isoI:versionLabel "2019-12-20 Release"^^xsd:string ;
+	isoI:version "62"^^xsd:positiveInteger ;
+	isoI:semanticVersion "62.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_C132357>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "CDISC Integrated Basic Data Structure Dataset"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C132357"^^xsd:string ;
+	th:notation "INTEGRATED BASIC DATA STRUCTURE"^^xsd:string ;
+	th:definition "The Integrated Basic Data Structure is the ADaM data structure including POOL as defined in the integrated SAP. If the IBDS class is needed then IADSL is required. See the study-level BDS class for further details."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3b639afb8451feafc2c2af34b26e7d717dc9df1b> ;
+	th:synonym <http://www.assero.co.uk/SYN#7db6fb483bad914daacac37dfb844671afc0a774> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_C132358>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "CDISC Integrated Occurrence Data Structure Dataset"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C132358"^^xsd:string ;
+	th:notation "INTEGRATED OCCURRENCE DATA STRUCTURE"^^xsd:string ;
+	th:definition "The Integrated Occurrence Data Strucutre is the ADaM data structure including POOL as defined in the integrated SAP. If the IOCCDS class is needed then IADSL is required.  See the study-level OCCDS class for further details."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1cbdfa352beef7dc63b298aa59ddd13f9a49db66> ;
+	th:synonym <http://www.assero.co.uk/SYN#aee55790e19571959452a8d7644ee8360770d12c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_C132359>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "CDISC Integrated Subject Level Dataset"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C132359"^^xsd:string ;
+	th:notation "INTEGRATED SUBJECT LEVEL"^^xsd:string ;
+	th:definition "The Integrated Subject-Level Analysis Dataset is one record per subject per pool as defined in the integrated SAP and allows multiple records per subject. The integrated ADSL dataset, similar to the study-level ADSL dataset, contains variables that describe subject demographic characteristics and group the subjects for analysis, and is the primary source for subject-level variables included in other analysis datasets such as population flags and treatment variables."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a9508ee618497c13455bc45d604e7df2f383c8c9> ;
+	th:synonym <http://www.assero.co.uk/SYN#413ea7eee2c2ef487e4a2132c5f421646b1264a3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.cdisc.org/C103329/V62#C103329_C103377>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "CDISC Special Purpose Class"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#70c2a587-c8bd-4330-b90e-0b41eb0b1484> ;
+	th:identifier "C103377"^^xsd:string ;
+	th:notation "SPECIAL PURPOSE"^^xsd:string ;
+	th:definition "This SDTM class contains a set of domains which do not conform to the Findings, Events or Interventions observation classes. The domains included are DM, CO, SE and SV."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5b3278f0edac924e824a2a6fe41d51472032ee13> ;
+	th:synonym <http://www.assero.co.uk/SYN#0e401360e299f6c1d513de609127e98f9e4d1a84> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+.
+<http://www.assero.co.uk/SYN#0e401360e299f6c1d513de609127e98f9e4d1a84>
+	rdf:type th:Synonym ;
+	isoC:label "SPECIAL-PURPOSE"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#53e08396e1444423084b6a7db0e9892af0ad6fda>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Define-XML General Observation Class Terminology"^^xsd:string ;
 .
