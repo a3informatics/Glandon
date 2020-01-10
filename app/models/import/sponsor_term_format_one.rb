@@ -97,10 +97,17 @@ private
         ref = child.to_subset(@th)
         parent.add(ref, index + 1) 
         filtered << ref
-      # Need extension stuff herec
+      elsif child.extension?(@th)
+        ref = child.to_extension(@th)
+        parent.add(ref, index + 1) 
+        filtered << ref
       elsif child.sponsor?
         parent.add(child, index + 1) 
         filtered << child
+      elsif child.hybrid_sponsor?
+        ref = child.to_hybrid_sponsor(@th)
+        parent.add(ref, index + 1) 
+        filtered << ref
       elsif child.referenced?(@th)
         ref = child.reference(@th)
         parent.add(ref, index + 1) 
