@@ -10,24 +10,13 @@
  *
  * @return [void]
  */
-function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable, callback) {
+function ChildrenPanel(url, count, columns, tc_id) {
   var _this = this;
-  this.callback = callback;
-  this.policy_edit = policy_edit;
-  this.edit_enable = edit_enable;
   this.url = url;
   this.tc_id = tc_id;
   this.count = count;
   this.columns = columns;
   this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
-  this.columns.push({"render" : function (data, type, row, meta) {
-    if (row.delete_path === ""){
-      return "&nbsp;"
-    } else {
-      return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
-  });
-
-  var loading_html = generateSpinner("medium");
 
   this.childrenTable = $('#children_table').DataTable( {
     "order": [[ 0, "desc" ]],
@@ -38,15 +27,11 @@ function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable, cal
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": loading_html
+      "processing": generateSpinner("medium")
     }
   });
 
   this.add(0);
-
-  $(document).on('click', '.delete-child', function (event) {
-    _this.deleteExtension([this.value]);
-  });
 }
 
 /**
@@ -66,21 +51,13 @@ ChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       var show_delete = false
       for (i=0; i<result.data.length; i++) {
-        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
         var row = _this.childrenTable.row.add(result.data[i]);
-        if (result.data[i].delete_path !== "" ) {
-          show_delete = true
-        }
       }
       _this.childrenTable.draw();
       if (result.count >= _this.count) {
         _this.add(result.offset + _this.count);
       } else {
         _this.childrenTable.processing(false);
-      }
-      _this.childrenTable.columns( [7] ).visible( false );
-      if (_this.policy_edit && _this.edit_enable && show_delete) {
-        _this.childrenTable.columns( [7] ).visible( true );
       }
     },
     error: function(xhr,status,error){
@@ -100,57 +77,6 @@ ChildrenPanel.prototype.refresh = function() {
   var _this = this;
   _this.childrenTable.clear();
   _this.add(0);
-  _this.callback();
-}
-
-/**
- * Add New item to table
- *
- * @param ids [Array] the array with news id items
- * @return [void]
- */
-ChildrenPanel.prototype.addNew = function(ids) {
-  var _this = this;
-  $.ajax({
-        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
-        type: "POST",
-        data: JSON.stringify({managed_concept:{"extension_ids": ids} }),
-        dataType: 'json',
-        contentType: 'application/json',
-        error: function (xhr, status, error) {
-          displayError("An error has occurred.");
-        },
-        success: function(result) {
-          $.each(result.error, function(i, e){
-            displayError(this);
-          });
-          if (result.error.length == 0)
-            _this.refresh();
-        }
-      });
-}
-
-/**
- * Delete item to table
- *
- * @param id [String] the id item to delete
- * @return [void]
- */
-ChildrenPanel.prototype.deleteExtension = function(id) {
-  var _this = this;
-  $.ajax({
-        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
-        type: "DELETE",
-        data: JSON.stringify({managed_concept:{"extension_ids": id} }),
-        dataType: 'json',
-        contentType: 'application/json',
-        error: function (xhr, status, error) {
-          displayError("An error has occurred.");
-        },
-        success: function(result) {
-          _this.refresh();
-        }
-      });
 }
 
 ChildrenPanel.prototype.synonymList = function(entry) {

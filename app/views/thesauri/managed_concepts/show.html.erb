@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/show_header_panel' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
@@ -8,8 +8,6 @@
 <%= javascript_tag "var is_extended = #{@is_extended};" %>
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
-<%= javascript_tag "var policy_edit = false;" %>
-<%= javascript_tag "var edit_enabled = false;" %>
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>

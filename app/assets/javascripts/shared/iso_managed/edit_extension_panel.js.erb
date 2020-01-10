@@ -1,0 +1,170 @@
+/*
+* Edit Extension Panel
+*
+* Requires:
+* extension_children_table [Table] the managed item table
+*/
+
+/**
+ * Edit Extension Panel Constructor
+ *
+ * @return [void]
+ */
+function EditExtensionPanel(url, count, columns, tc_id, policy_edit, edit_enable, callback) {
+  var _this = this;
+  this.callback = callback;
+  this.policy_edit = policy_edit;
+  this.edit_enable = edit_enable;
+  this.url = url;
+  this.tc_id = tc_id;
+  this.count = count;
+  this.columns = columns;
+  this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
+  this.columns.push({"render" : function (data, type, row, meta) {
+    if (row.delete_path === ""){
+      return "&nbsp;"
+    } else {
+      return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
+  });
+
+  var loading_html = generateSpinner("medium");
+
+  this.childrenTable = $('#extension_children_table').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "columns": _this.columns,
+    "pageLength": pageLength, // Global setting
+    "lengthMenu": pageSettings, // Global setting
+    "processing": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No child items.",
+      "processing": loading_html
+    }
+  });
+
+  this.add(0);
+  
+  $(document).on('click', '.delete-child', function (event) {
+    _this.deleteExtension([this.value]);
+  });
+}
+
+/**
+ * Add item to table
+ *
+ * @param [Integer] the offset to retrieve
+ * @return [void]
+ */
+EditExtensionPanel.prototype.add = function (offset) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      var show_delete = false
+      for (i=0; i<result.data.length; i++) {
+        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
+        var row = _this.childrenTable.row.add(result.data[i]);
+        if (result.data[i].delete_path !== "" ) {
+          show_delete = true
+        }
+      }
+      _this.childrenTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count);
+      } else {
+        _this.childrenTable.processing(false);
+      }
+      _this.childrenTable.columns( [7] ).visible( false );
+      if (_this.policy_edit && _this.edit_enable && show_delete) {
+        _this.childrenTable.columns( [7] ).visible( true );
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
+
+}
+
+/**
+ * Refresh table
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.refresh = function() {
+  var _this = this;
+  _this.childrenTable.clear();
+  _this.add(0);
+  _this.callback();
+}
+
+/**
+ * Add New item to table
+ *
+ * @param ids [Array] the array with news id items
+ * @return [void]
+ */
+EditExtensionPanel.prototype.addNew = function(ids) {
+  var _this = this;
+  $.ajax({
+        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
+        type: "POST",
+        data: JSON.stringify({managed_concept:{"extension_ids": ids} }),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          $.each(result.error, function(i, e){
+            displayError(this);
+          });
+          if (result.error.length == 0)
+            _this.refresh();
+        }
+      });
+}
+
+/**
+ * Delete item to table
+ *
+ * @param id [String] the id item to delete
+ * @return [void]
+ */
+EditExtensionPanel.prototype.deleteExtension = function(id) {
+  var _this = this;
+  $.ajax({
+        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
+        type: "DELETE",
+        data: JSON.stringify({managed_concept:{"extension_ids": id} }),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          _this.refresh();
+        }
+      });
+}
+
+EditExtensionPanel.prototype.synonymList = function(entry) {
+  var items = [];
+  $.each(entry.synonym, function(i, value) {
+    items.push(value.label);
+  });
+  entry.synonym_list = items.join("; ");
+}
+
+EditExtensionPanel.prototype.linkButton = function (path, text) {
+  if (path === "") {
+    return "&nbsp;"
+  } else {
+    return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
+  }
+}
