@@ -54,6 +54,8 @@ ChildrenPanel.prototype.add = function (offset) {
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();
+      _this.childrenTable.columns.adjust();
+
       if (result.count >= _this.count) {
         _this.add(result.offset + _this.count);
       } else {

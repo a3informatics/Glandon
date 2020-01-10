@@ -6,19 +6,19 @@ function ShowHeaderPanel(is_extended, is_extending) {
         $("#extend").hide();
         $("#extension").hide();
         $("#extending").show();
-        $("#add").show();  
+        // $("#add").show();
     } else if (this.is_extended) {
-        $("#extend").show();
+        $("#extend").hide();
         $("#extending").hide();
-        $("#add").hide(); 
+        // $("#add").hide();
     } else {
          $("#extend").show();
         $("#extension").hide();
         $("#extending").hide();
-        $("#add").hide(); 
+        // $("#add").hide();
     }
 
-}  
+}
 
 ShowHeaderPanel.prototype.callback = function(data) {
   $.ajax({
@@ -34,6 +34,7 @@ ShowHeaderPanel.prototype.callback = function(data) {
           $("#extension").attr("href", result.edit_path);
           $('#extend').addClass('disabled').attr("disabled","disabled");
           $("#extension").show();
+          location.href = result.edit_path;
         }
       });
 }

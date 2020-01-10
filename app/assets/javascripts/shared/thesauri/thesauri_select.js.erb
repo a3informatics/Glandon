@@ -16,14 +16,14 @@ function ThesauriSelect(id, callback) {
   //this.reference_ct_id = reference_ct_id;
   this.tsModalTable = null;
   this.columns = [
-    {"data" : "owner", "width" : "10%"},
-    {"data" : "identifier", "width" : "10%"},
-    {"data" : "label", "width" : "10%"}
+    {"data" : "owner"},
+    {"data" : "identifier"},
+    {"data" : "label"}
   ];
   this.initTable();
   var _this = this;
 
-  $('#tableModal').on('shown.bs.modal', function () {
+  $('#th-select-modal').on('shown.bs.modal', function () {
    //helps the columns take their widths in modal
    _this.tsModalTable.columns.adjust();
     var count = _this.tsModalTable.rows( { selected: true } ).count();
@@ -57,7 +57,7 @@ function ThesauriSelect(id, callback) {
 
   // Get selected th callback
   $('#select_th').click(function() {
-    $('#tableModal').modal('hide');
+    $('#th-select-modal').modal('hide');
     var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
     //_this.callback({"reference_ct_id": _this.reference_ct_id ,"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
     _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
@@ -72,9 +72,9 @@ function ThesauriSelect(id, callback) {
 ThesauriSelect.prototype.initTable = function() {
   var _this = this;
 
-  var loading_html = generateSpinner("medium");
-
   this.tsModalTable = $('#thTable').DataTable( {
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "processing": true,
     "ajax": {
       "url": "/thesauri/index_owned",
@@ -84,9 +84,10 @@ ThesauriSelect.prototype.initTable = function() {
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
-      "processing": loading_html
+      "emptyTable": "No Thesauri could be found.",
+      "processing": generateSpinner("medium")
     },
-    "pageLength": 3,
+    "pageLength": 5,
     "columns": this.columns,
     "orderCellsTop": true,
     "select": {
@@ -112,5 +113,4 @@ ThesauriSelect.prototype.setCallback = function(callback){
 ThesauriSelect.prototype.resetUi = function(){
   var _this = this;
   _this.tsModalTable.rows( { selected: true } ).deselect();
-  // $("#tableModal").find("tr").removeClass("selected");
 }
