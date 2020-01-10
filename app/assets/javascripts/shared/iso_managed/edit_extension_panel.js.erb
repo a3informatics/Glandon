@@ -10,7 +10,7 @@
  *
  * @return [void]
  */
-function EditExtensionPanel(url, count, columns, tc_id, policy_edit, edit_enable, callback) {
+function EditExtensionPanel(url, count, tc_id, policy_edit, edit_enable, callback) {
   var _this = this;
   this.callback = callback;
   this.policy_edit = policy_edit;
@@ -18,35 +18,21 @@ function EditExtensionPanel(url, count, columns, tc_id, policy_edit, edit_enable
   this.url = url;
   this.tc_id = tc_id;
   this.count = count;
-  this.columns = columns;
-  this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
-  this.columns.push({"render" : function (data, type, row, meta) {
-    if (row.delete_path === ""){
-      return "&nbsp;"
-    } else {
-      return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
-  });
 
-  var loading_html = generateSpinner("medium");
-
-  this.childrenTable = $('#extension_children_table').DataTable( {
+  this.childrenTable = $('#extension-children-table').DataTable( {
     "order": [[ 0, "desc" ]],
-    "columns": _this.columns,
+    "columns": _this.columns(),
     "pageLength": pageLength, // Global setting
     "lengthMenu": pageSettings, // Global setting
     "processing": true,
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": loading_html
+      "processing": generateSpinner("medium")
     }
   });
 
   this.add(0);
-  
-  $(document).on('click', '.delete-child', function (event) {
-    _this.deleteExtension([this.value]);
-  });
 }
 
 /**
@@ -56,36 +42,40 @@ function EditExtensionPanel(url, count, columns, tc_id, policy_edit, edit_enable
  * @return [void]
  */
 EditExtensionPanel.prototype.add = function (offset) {
-  var _this = this;
-  _this.childrenTable.processing(true);
+  this.childrenTable.processing(true);
+
   $.ajax({
-    url: _this.url,
-    data: {"count": _this.count, "offset": offset},
+    url: this.url,
+    data: {"count": this.count, "offset": offset},
     type: 'GET',
     dataType: 'json',
+    context: this,
     success: function(result) {
       var show_delete = false
       for (i=0; i<result.data.length; i++) {
         result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
-        var row = _this.childrenTable.row.add(result.data[i]);
+        var row = this.childrenTable.row.add(result.data[i]);
         if (result.data[i].delete_path !== "" ) {
-          show_delete = true
+          show_delete = true;
         }
       }
-      _this.childrenTable.draw();
-      if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count);
+      this.childrenTable.draw();
+      this.childrenTable.columns.adjust();
+
+      if (result.count >= this.count) {
+        this.add(result.offset + this.count);
       } else {
-        _this.childrenTable.processing(false);
+        this.childrenTable.processing(false);
+        this.setListeners();
       }
-      _this.childrenTable.columns( [7] ).visible( false );
-      if (_this.policy_edit && _this.edit_enable && show_delete) {
-        _this.childrenTable.columns( [7] ).visible( true );
+      this.childrenTable.columns( [6] ).visible( false );
+      if (this.policy_edit && this.edit_enable && show_delete) {
+        this.childrenTable.columns( [6] ).visible( true );
       }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
+      this.childrenTable.processing(false);
     }
   });
 
@@ -167,4 +157,45 @@ EditExtensionPanel.prototype.linkButton = function (path, text) {
   } else {
     return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
   }
+}
+
+EditExtensionPanel.prototype.setListeners = function () {
+  var _this = this;
+
+  $("#extension-children-table .exclude").on('click', function () {
+    new ConfirmationDialog(_this.deleteExtension.bind(_this, [$(this).attr("data-id")]), {subtitle: ""}).show();
+  });
+}
+
+EditExtensionPanel.prototype.excludeBtnHTML = function (data) {
+	return "<span class='icon-times text-accent-2 clickable text-small exclude ttip' data-id='"+data.id+"'>"+
+            "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
+              "Exclude item"+
+            "</span>"+
+          "</span>";
+}
+
+EditExtensionPanel.prototype.editBtnHTML = function (data) {
+	return "<span class='icon-edit text-link clickable text-small modify-properties ttip' data-id='"+data.id+"'>"+
+            "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
+              "Edit item properties"+
+            "</span>"+
+          "</span>";
+}
+
+EditExtensionPanel.prototype.columns = function () {
+	return [
+    {"data" : "identifier"},
+    {"data" : "notation"},
+    {"data" : "preferred_term"},
+    {"data" : "synonym"},
+    {"data" : "definition"},
+    {"data" : "tags"},
+    {"render" : function (data, type, row, meta) {
+      return "";
+    }.bind(this)},
+    {"render" : function (data, type, row, meta) {
+      return (row.delete_path == "" ? "" : this.excludeBtnHTML(row));
+    }.bind(this)}
+  ];
 }

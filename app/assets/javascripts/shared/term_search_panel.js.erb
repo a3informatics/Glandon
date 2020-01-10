@@ -66,7 +66,6 @@ function TermSearch(context_id, callback) {
         $('#add_terms').removeClass('disabled').removeAttr("disabled","disabled");
       }
     }
-    console.log(_this.selected);
   });
 
   // Deselect item within table event
@@ -185,9 +184,9 @@ function TermSearch(context_id, callback) {
 TermSearch.prototype.initTable = function() {
   var _this = this;
 
-  var loading_html = generateSpinner("medium");
-
   _this.tsSearchTable = $('#searchTable').DataTable( {
+    "pageLength": 5,
+    "lengthMenu": pageSettings, // Global setting
     "processing": true,
     "serverSide": true,
     "ajax": {
@@ -197,15 +196,14 @@ TermSearch.prototype.initTable = function() {
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
-      "emptyTable": "Make a new column or global search to see data",
-      "processing": loading_html
+      "emptyTable": "Type a search string into one of the columns or use global search (top right) to see data",
+      "processing":  generateSpinner("medium")
     },
     "rowCallback": function( row, data ) {
       if ( $.inArray(data["id"], _this.selected) !== -1 ) {
         _this.tsSearchTable.row(row).select();
       }
     },
-    "pageLength": 5,
     "columns": _this.columns,
     "orderCellsTop": true,
     "select": {

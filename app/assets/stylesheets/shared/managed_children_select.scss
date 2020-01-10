@@ -1,5 +1,9 @@
 @import "custom/vars.scss";
 
+.table-row-clickable.no-mark .selected td:first-of-type::before{
+  display: none;
+}
+
 .table-row-clickable tbody tr:hover{
   color: $secondary-color-medium;
   background: $row-highlight-background !important;

@@ -1,23 +1,27 @@
 <%= javascript_include_tag 'shared/iso_managed/edit_extension_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<h3 class="card-header"><%= title %></h3>
-<div class="card-content">
-  <table id="extension_children_table" class="table table-striped table-bordered table-condensed">
+<h3 class="card-header">Edit Extension</h3>
+<div class="card-content table-cardstyle">
+  <div class="btns-wrap">
+    <a href="#searchModal" class="btn medium green" id="add-existing-button" data-toggle="modal"><span class="icon-search"></span> Add an existing CL Item</a>
+    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item</button>
+    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item from synonyms</button>
+  </div>
+  <table id="extension-children-table" class="table">
     <thead>
       <tr>
         <th class="fit">Identifier</th>
         <th class="fit">Submission Value</th>
-        <th>Preferred Term</th>
-        <th>Synonym(s)</th>
+        <th class="th-medium">Preferred Term</th>
+        <th class="th-small">Synonym(s)</th>
         <th>Definition</th>
-        <th>Tag(s)</th>
-        <th class="fit"></th>
-        <th class="fit"></th>
+        <th class="th-small">Tag(s)</th>
+        <th class="ignore fit"></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
-  <%= link_to "Add", "#searchModal", :id => "add", :class => "btn  pull-right", "data-toggle" => "modal" %>
-  <%= render partial: "shared/edit_panel" %>
 </div>
+<%= render partial: "shared/edit_panel" %>

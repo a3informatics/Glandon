@@ -1,19 +1,11 @@
 $(document).ready( function() {
-  var columns = [
-    {"data" : "identifier"},
-    {"data" : "notation"},
-    {"data" : "preferred_term"},
-    {"data" : "synonym"},
-    {"data" : "definition"},
-    {"data" : "tags"}
-  ];
-  var eep = new EditExtensionPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled, editCallback);
+  var eep = new EditExtensionPanel(url_path, 1000, tc_id, policy_edit, edit_enabled, editCallback);
   var searchModal = new TermSearch(context_id, eep.addNew.bind(eep));
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);
 
   function editCallback(){
-    
+
   }
 
   function unloadCallback() {
