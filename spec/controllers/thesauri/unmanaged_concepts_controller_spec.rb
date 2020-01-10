@@ -29,6 +29,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:supporting_edit?).and_return(false)
       get :show, {id: "aaa", unmanaged_concept: {context_id: "bbb"}}
       expect(assigns(:context_id)).to eq("bbb")
       expect(assigns(:has_children)).to eq(false)
@@ -41,7 +42,7 @@ describe Thesauri::UnmanagedConceptsController do
       expected = [
         {id: "1", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb"},
         {id: "2", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
-      ]       
+      ]
       ct = Thesaurus.new
       expect(Thesaurus).to receive(:find_minimum).and_return(ct)
       expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)

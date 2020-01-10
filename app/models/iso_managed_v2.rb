@@ -133,6 +133,13 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.edit? && self.owned?
   end
 
+  # Supporting Edit? Can the item be edited for supporting information, e.g. tags, change notes etc.
+  #
+  # @return [Boolean] true if edit permitted, false otherwise
+  def supporting_edit?
+    self.owned?
+  end
+
   # Determines if the item can be deleted.
   #
   # @return [Boolean] Ture if delete allowed, false otherwise.

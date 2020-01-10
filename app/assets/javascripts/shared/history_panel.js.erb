@@ -55,7 +55,6 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       }},
       {className: "text-right", "render" : function (data, type, row, meta) {
         var id = "con-menu-" + counter;
-
         var menu_items =
         [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show"},
           { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},

@@ -1,0 +1,66 @@
+<%= javascript_tag 'setPageTitle("Edit tags: '+@item.label+'")' %>
+
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+
+<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging' %>
+<%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";
+                    var tagsUrls = {dataUrl: '#{tags_full_iso_concept_path(@iso_concept)}',
+                                    addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',
+                                    removeTagUrl: '#{remove_tag_iso_concept_path(@iso_concept)}'}" %>
+
+<%= render partial: "shared/breadcrumb_by_type", :locals => {item: @item, type: @concept_klass.to_s, close_path: @close_path,
+      parent: @parent, context_id: @context_id}%>
+
+<div class="row">
+    <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
+      <div class="actions-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: iso_concept_systems_path, id: "manage_tags",
+          icon: "icon-tag", btn_text: "Manage all tags", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+    <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-7" style="padding: 0;">
+    <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
+  </div>
+
+  <div class="col-md-5 card narrow">
+      <div class="card-header">
+        Attach / Detach Tags
+      </div>
+      <div id="tag_panel" class="card-content font-light">
+        <div class="font-light text-small">
+          To attach a tag to this item, find and select a tag in the Tag Viewer tree. Then click the 'Add Tag' button. <br/>
+          To detach a tag from this item, click on a tag in the <i><%= @item.label %> tags</i> view below.</div><br/>
+
+        <span class="icon-tag text-link" style="margin-right:6px;"></span> '<%= @item.label %>' tags
+        <div class="tags-container font-light" id="tags_container"><span id="no-tags-msg">No tags found.</span></div>
+
+        <hr>
+
+        <span class="icon-plus text-link" style="margin-right:6px;"></span> Attach selected tag to the item
+
+        <div class="form-wrap" id="selected_container">
+          <table class="table-fit">
+            <tr>
+              <td>Label:</td>
+              <td><input class="bg-label text-normal" id="add_label" placeholder="Label" readonly="readonly" data-id=""/></td>
+            </tr>
+            <tr class="upper">
+              <td>Description:</td>
+              <td><textarea class="tag-input" id="add_description" rows="2" type="text" readonly="readonly" placeholder="Tag description" name=""></textarea></td>
+            </tr>
+          </table>
+
+          <div class="handle-tag-buttons">
+            <button class="btn medium green" id="add_tag" type="">Add Tag</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

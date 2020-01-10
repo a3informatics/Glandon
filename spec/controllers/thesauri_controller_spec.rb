@@ -28,6 +28,11 @@ describe ThesauriController do
     return params
   end
 
+  def map_results(results)
+    results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
+      tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
+  end
+
   def sub_dir
     return "controllers/thesauri"
   end
@@ -36,11 +41,7 @@ describe ThesauriController do
 
     login_curator
 
-    before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_3.ttl"]
-      load_files(schema_files, data_files)
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_cdisc_term_versions(1..2)
+    before :all do
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
       NameValue.destroy_all
@@ -48,7 +49,14 @@ describe ThesauriController do
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
-    after :each do
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_3.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_cdisc_term_versions(1..2)
+    end
+
+    after :all do
       ua_remove_user("lock@example.com")
     end
 
@@ -639,32 +647,21 @@ describe ThesauriController do
     it "edits release, new version"
 
     it "edits release, locked"
-    
+
   end
 
   describe "Community Reader" do
 
     login_community_reader
 
-    before :each do
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
-      ]
+    before :all do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
-      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
-      ua_add_user(email: "lock@example.com")
-      Token.delete_all
+      load_cdisc_term_versions(1..5)
     end
 
     after :each do
-      ua_remove_user("lock@example.com")
     end
 
     it "index" do
@@ -681,11 +678,42 @@ describe ThesauriController do
       expect(response).to redirect_to("/cdisc_terms/history")
     end
 
+    it "adds history paths, status path" do
+      
+      # No current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
+      
+      # With current
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
+      ct.has_state.make_current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_2.yaml", equate_method: :hash_equal)
+
+      # Sponsor
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: "AIRPORTS", scope_id: IsoRegistrationAuthority.repository_scope.id, count: 10, offset: 0}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_3.yaml", equate_method: :hash_equal)
+
+    end
+
   end
 
   describe "Unauthorized User" do
 
     login_reader
+
+    before :all do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+    end
 
     it "prevents access to a reader, edit" do
       get :edit, id: 1 # id required to be there for routing, can be anything
@@ -700,6 +728,30 @@ describe ThesauriController do
     it "prevents access to a reader, destroy" do
       delete :destroy, id: 10 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
+    end
+
+    it "adds history paths, status path" do
+      
+      # No current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
+      
+      # With current
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
+      ct.has_state.make_current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_2.yaml", equate_method: :hash_equal)
+
+      # Sponsor
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: "AIRPORTS", scope_id: IsoRegistrationAuthority.repository_scope.id, count: 10, offset: 0}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_3.yaml", equate_method: :hash_equal)
+
     end
 
   end
@@ -717,19 +769,14 @@ describe ThesauriController do
       load_cdisc_term_versions(1..5)
     end
 
-    def map_results(results)
-      results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
-        tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
-    end
-
     it "adds history paths, status path" do
-      
+
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_1.yaml", equate_method: :hash_equal)
-      
+
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current

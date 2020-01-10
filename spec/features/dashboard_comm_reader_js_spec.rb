@@ -86,8 +86,8 @@ describe "Community Dashboard JS", :type => :feature do
       click_show_latest_version
       wait_for_ajax
       expect(page).to have_content "Controlled Terminology"
-      expect(page).to have_content "61.0.0"
-      ui_check_table_info("children_table", 1, 10, 911)
+      expect(page).to have_content "62.0.0"
+      ui_check_table_info("children_table", 1, 10, 921)
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -96,17 +96,17 @@ describe "Community Dashboard JS", :type => :feature do
       ui_dashboard_slider("2012-08-03", "2013-04-12")
       click_link 'Display'
       wait_for_ajax(10)
-      find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
+      find(:xpath, "//div[@id='created_div']/a", :text => "SCTEST (C103330)")
       find(:xpath, "//div[@id='updated_div']/a", :text => "AGEU (C66781)")
       find(:xpath, "//div[@id='deleted_div']/a", :text => "AGESPAN (C66780)")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
-      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 8)
       #find(:xpath, "//div[@id='created_div']/a[15]").click
-      find(:xpath, "//div[@id='created_div']/a", :text => "EVDRETRT (C102579)").click
+      find(:xpath, "//div[@id='created_div']/a", :text => "CVSLDEXT (C101850)").click
       wait_for_ajax(10)
-      expect(page).to have_content 'C102579'
-      expect(page).to have_content 'CDISC SDTM Supporting Evidence for Re-Treatment Terminology'
+      expect(page).to have_content 'C101850'
+      expect(page).to have_content 'CDISC SDTM Coronary Vessel Disease Extent Terminology'
       expect(page).to have_content 'Differences'
       expect(page).to have_content 'Changes'
       click_link 'Home'
@@ -117,7 +117,7 @@ describe "Community Dashboard JS", :type => :feature do
       ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
       wait_for_ajax(10)
-      expect(page).to have_xpath("//div[@id='created_div']/a", count: 313)
+      expect(page).to have_xpath("//div[@id='created_div']/a", count: 305)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 19)
       ui_dashboard_alpha_filter(:created, "Y")
@@ -133,7 +133,7 @@ describe "Community Dashboard JS", :type => :feature do
       ui_dashboard_slider("2014-06-27", "2014-09-26")
       click_link 'Display'
       wait_for_ajax(10)
-      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 58)
+      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 61)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 3)
       ui_dashboard_alpha_filter(:updated, "Z")

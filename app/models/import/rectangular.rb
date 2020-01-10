@@ -56,7 +56,7 @@ module Import::Rectangular
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
     parent.origin = import_files(params)
-    parent.add_tags(@tags)
+    parent.add_tags_no_save(@tags)
     return {parent: parent, managed_children: []}
   end
 

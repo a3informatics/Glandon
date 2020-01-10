@@ -14,18 +14,14 @@ describe "Thesaurus::Synonyms" do
   end
 
   before :each do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
+    local_schema_files = schema_files + ["test.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
     load_files(schema_files, data_files)
   end
  
   class TSTest < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept",
+    configure rdf_type: "http://www.assero.co.uk/Test#UnmanagedConcept",
               uri_property: :identifier,
               key_property: :identifier
 

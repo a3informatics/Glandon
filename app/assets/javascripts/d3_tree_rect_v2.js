@@ -20,29 +20,28 @@ var rectH = 30;
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select(d3Div).select('svg').remove();
-  var width = d3Div.clientWidth + 30;
+  var width = d3Div.clientWidth - 30;
+  var minWidth = d3CalculateMinWidth(jsonData);
   var height;
   if (d3HeightOverride) {
     height = d3HeightOverrideValue;
   } else {
-    //height = $(window).height() - 200;
     height = d3Div.clientHeight;
   }
-  var tree = d3.layout.tree().nodeSize([70, 40])
-    .size([height-30, width - 160]);
+
+  tree = d3.layout.tree().nodeSize([70, 40])
+    .size([height-30, minWidth - 160]);
+
   var diagonal = d3.svg.diagonal()
      .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
-  // var diagonal = function link(d) {
-  //   return "M" + rectW + "," + (d.source.x + rectH / 2)
-  //       + "C" + (d.source.y + d.target.y) / 2 + "," + (d.source.x + rectH / 2)
-  //       + " " + (d.source.y + d.target.y) / 2 + "," + (d.target.x + rectH / 2)
-  //       + " " + d.target.y + "," + (d.target.x + rectH / 2);
-  // };
+
   var svg = d3.select(d3Div).append("svg")
     .attr("width", width)
+    .attr("style", "min-width: " + minWidth + "px")
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(15,0)");
+
   svg.append("svg:defs").selectAll("marker")
       .data(["end"])      // Different link/path types can be defined here
     .enter().append("svg:marker")    // This section adds in the arrows
@@ -56,6 +55,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
       .attr("orient", "auto")
     .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
+
   var nodes = tree.nodes(jsonData);
   var links = tree.links(nodes);
   var link = svg.selectAll("path.link")
@@ -67,6 +67,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("d", diagonal)
     .style("margin-left", "60px")
     .attr("marker-end", "url(#end)");
+
   var node = svg.selectAll("g.node")
     .data(nodes)
     .enter().append("g")
@@ -74,6 +75,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("transform", function(d) { return "translate(" + (d.y) + "," + (d.x) + ")"; })
     .on("click", clickCallBack)
     .on("dblclick", dblClickCallBack);
+
   node.append("rect")
     .attr("width", rectW)
     .attr("height", rectH)
@@ -81,20 +83,16 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("ry", 15)
     .attr("stroke", function(d) { return d3StrokeColour(d); })
     .attr("stroke-width", 2)
-    //.attr("r", 5)
-    //.attr("fill", function(d) { return d3NodeColour(d); });
     .style("fill", function(d) { return d3NodeColour(d); });
+
   node.append("text")
     .attr("x", rectW / 2)
     .attr("y", rectH / 2)
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
-    //.attr("dx", function(d) { return d.children ? -8 : 8; })
-    //.attr("dy", 3)
-    //.attr("fill", function(d) { return d3TextColour(d); })
     .style("fill", function(d) { return d3TextColour(d); })
-    //.attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
+
   d3.select(self.frameElement).style("height", height + "px");
 }
 
@@ -275,6 +273,12 @@ function d3StrokeColour (node) {
   return getColorByTag(node["data"]["pref_label"]);
 }
 
+/**
+ * Adjusts height of the tree
+ *
+ * @param [Int] new height
+ * @return [void]
+ */
 function d3AdjustHeight(height) {
   var originalHeight = $(window).height() - 400;
   if (height < originalHeight) {
@@ -284,6 +288,35 @@ function d3AdjustHeight(height) {
   d3HeightOverrideValue = height;
   $('#d3').css("height",height + "px");
 }
+
+/**
+ * Calculates the minimum width for the tree view based on data depth
+ *
+ * @param node [Object] The jsonData object
+ * @return [Int] the minimum width of the tree viewer
+ */
+function d3CalculateMinWidth(data) {
+  var depth = treeDepth([data]) + 1;
+  return (120 + 30) * depth;
+}
+
+/**
+ * Calculates the depth of the data tree and all its children
+ *
+ * @param nodes [Array] Array of children to be reduced
+ * @return [Int] the depth of the tree
+ */
+function treeDepth(nodes) {
+  return nodes.reduce(function (maxDepth, node) {
+    if(node.children == null)
+      return Math.max(node.depth, maxDepth);
+    else if(node.depth == null)
+      return maxDepth;
+    return Math.max(node.depth, treeDepth(node.children));
+      // return Math.max(node.depth, treeDepth(node) + 1);
+  }, 0);
+}
+
 
 /*
  * Get Current Height

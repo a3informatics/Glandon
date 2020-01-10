@@ -1355,6 +1355,23 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "edit" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "supporting edit?" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
+      expect(tc.supporting_edit?).to eq(false)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.supporting_edit?).to eq(true)
+    end
+
+  end
+
   describe "sets" do
 
     before :all do

@@ -1,0 +1,46 @@
+function IsoConceptList() {
+  this.isoConceptTableReload = null;
+  this.isoConceptTable = null;
+  this.tagId = null;
+}
+
+IsoConceptList.prototype.refresh = function (id) {
+  var _this = this;
+  _this.tagId = id;
+  if (!_this.isoConceptTableReload) {
+    _this.load();
+  } else {
+    //_this.isoManagedTable.ajax.reload();
+    _this.isoConceptTable.ajax.url("/iso_managed_v2/find_by_tag?[iso_managed]tag_id=" + _this.tagId).load();
+  }
+}
+
+IsoConceptList.prototype.load = function () {
+  var _this = this;
+  _this.isoConceptTable = $('#iso_concept_table').DataTable( {
+    "ajax": {
+      "url": "/iso_managed_v2/find_by_tag?[iso_managed]tag_id=" + _this.tagId,
+      "dataSrc": "data"
+    },
+    "bProcessing": true,
+    "bInfo" : false,
+    "searching": true,
+    "pageLength": 5,
+    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
+    "language": {
+        "processing": generateSpinner("medium"),
+        "emptyTable": "No items with the selected tag were found."
+      },
+    "columns": [
+      {"data" : "identifier"},
+      {"data" : "label"},
+      {"data" : "version"},
+      {"data" : "version_label"},
+      // Following replaces the old way of putting in a button. Use link styled as a button.
+      {"render" : function (data, type, row, meta) {
+        return '<a href="' + getPathStrongV2(row.type, row.id) + '" class="btn btn-xs">Show</a>';
+      }}
+    ]
+  });
+  _this.isoConceptTableReload = true;
+}
