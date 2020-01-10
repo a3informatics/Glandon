@@ -289,12 +289,23 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_8.yaml", equate_method: :hash_equal)
     end
 
-    it "calculates changes_cdu, window 2" do
+    it "calculates changes_cdu, window 8, Versions 2014-06-27 and 2015-12-18" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V39#TH"))
       actual = ct.changes_cdu(8)
       check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_9.yaml", equate_method: :hash_equal)
     end
 
+    it "calculates changes_cdu, window 5, Versions 2018-06-29 and 2019-06-28" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
+      actual = ct.changes_cdu(5)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_10.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_cdu, window 2 , Versions 2015-09-25 and 2015-12-18" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+      actual = ct.changes_cdu(2)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_11.yaml", equate_method: :hash_equal)
+    end
 
   end
 
