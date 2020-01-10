@@ -65,7 +65,7 @@ describe IsoConceptSystem do
     it "migration 1, add define.xml" do
       cs = IsoConceptSystem.root
       cdisc = IsoConceptSystem.path(["CDISC"])
-      define = cdisc.add({label: "DEFINE-XML", description: "Define.xml related information."})
+      define = cdisc.add({label: "Define-XML", description: "Define.xml related information."})
       
       sparql = Sparql::Update.new
       sparql.default_namespace(cs.uri.namespace)
