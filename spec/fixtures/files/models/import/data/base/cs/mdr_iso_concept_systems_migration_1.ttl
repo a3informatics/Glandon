@@ -1,0 +1,19 @@
+@prefix : <http://www.assero.co.uk/CSN#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CSN>
+	rdf:type owl:Ontology ;
+.
+:608ceefb-6d3f-4727-88ac-8ddaf446ed85
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "DEFINE-XML"^^xsd:string ;
+	isoC:description "Define.xml related information."^^xsd:string ;
+.
+:22f1319e-37a9-49ce-9fea-47b1471283a5
+	isoC:narrower :608ceefb-6d3f-4727-88ac-8ddaf446ed85 ;
+.
