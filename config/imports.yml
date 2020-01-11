@@ -48,6 +48,26 @@ defaults: &defaults
         main:
           selection:
             first: true
+          sheet:
+            actions: []
+            header_row:
+              - "Release Date"
+              - "Request Code"
+              - "Change Type"
+              - "NCI Code"
+              - "CDISC Term Type"
+              - "CDISC Codelist (Short Name)"
+              - "CDISC Codelist (Long Name)"
+              - "Change Summary"
+              - "Original"
+              - "New"
+              - "Change Implementation Instructions"
+              - "Use"
+              - "Prev Codelist"
+              - "Prev Term"
+              - "New Codelists"
+              - "New Terms"
+              - "Comment"
           row:
             condition:
               method: column_affirmative?
@@ -183,6 +203,16 @@ defaults: &defaults
             label: ADaM-IG
           sheet:
             actions: []
+            header_row: 
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name" 
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
           columns: 
           - 
             label: "Data Structure Name"
@@ -307,6 +337,16 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Value" 
+              - "NCI Preferred Term"
+              - "CDISC Definition"
+              - "CDISC Synonym(s) (where applicable)"
+              - "Pre-release/ Production"
           columns: 
           - 
             label: "Code"
@@ -518,6 +558,18 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name"
+              - "CDISC Submission Value" 
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
           columns: 
           - 
             label: "Code"
@@ -700,10 +752,10 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
           -
-            label: Pre-release/ Production
+            label: "Pre-release/ Production"
             actions: []
           -
-            label: Notes (Reference for CDISC PT)
+            label: "Notes (Reference for CDISC PT)"
             actions: []
         version_3:
           selection:
@@ -735,6 +787,18 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
           columns: 
           - 
             label: "Code"
@@ -955,6 +1019,16 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
           columns: 
           - 
             label: "Code"
@@ -1171,6 +1245,15 @@ defaults: &defaults
                     - SDTM
                   "Def-XML":
                     - Define-XML
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
           columns: 
           - 
             label: "Code"
@@ -1353,6 +1436,543 @@ defaults: &defaults
                 condition: 
                   method: column_not_blank?
                   column: 2
+    sponsor_term_format_one: 
+      sheets: 
+        version_2:
+          selection:
+            label: Harmonized_Terminology_Listing
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
+              - "INACTIVE_F"
+          columns: 
+          - 
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          - 
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+          - 
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+          - 
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          - 
+            label: "CODE"
+            actions: 
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
+          - 
+            label: "SUBMISSION_VALUE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 
+                    - 8
+                    - 12
+          - 
+            label: "DECODE"
+            actions: 
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          - 
+            label: "SYNONYM"
+            actions: 
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+          - 
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          - 
+            label: "DATA_TYPE"
+            actions: []
+          - 
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
+          - 
+            label: "DISPLAY_ORDER"
+            actions:  []
+          - 
+            label: "RANK"
+            actions: []
+          - 
+            label: "DC_STAGE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "DC Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "DC Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+          - 
+            label: "SDTM_STAGE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "SDTM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "SDTM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage          
+          - 
+            label: "ADAM_STAGE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "ADaM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "ADaM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage       
+          - 
+            label: "INACTIVE_F"
+            actions: []
+        version_3:
+          selection:
+            label: Harmonized_Terminology_Listing
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "CRFGL_USE"
+              - "SDTM_USE"
+              - "ADAM_USE"
+              - "ED_USE"
+              - "STUDY_USE"
+              - "INACTIVE_F"
+          columns: 
+          - 
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          - 
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+          - 
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+          - 
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          - 
+            label: "CODE"
+            actions: 
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
+          - 
+            label: "SUBMISSION_VALUE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 
+                    - 8
+                    - 12
+          - 
+            label: "DECODE"
+            actions: 
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          - 
+            label: "SYNONYM"
+            actions: 
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+          - 
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          - 
+            label: "DATA_TYPE"
+            actions: []
+          - 
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
+          - 
+            label: "DISPLAY_ORDER"
+            actions: []
+          - 
+            label: "RANK"
+            actions: []
+          - 
+            label: "CRFGL_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "CRF GL Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "CRF GL Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+          - 
+            label: "SDTM_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "SDTM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "SDTM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+          - 
+            label: "ADAM_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "ADaM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
+                object: child
+                map:
+                  "Y": "ADaM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+          - 
+            label: "ED_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                can_be_empty: true
+                map:
+                  "Y": "ED Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
+                object: child
+                can_be_empty: true
+                map:
+                  "Y": "ED Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+          - 
+            label: "STUDY_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: parent
+                can_be_empty: true
+                map:
+                  "Y": "Study Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
+                object: child
+                can_be_empty: true
+                map:
+                  "Y": "Study Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+          - 
+            label: "INACTIVE_F"
+            actions: []
 development:
   <<: *defaults
 
@@ -1381,6 +2001,13 @@ test:
         sheet_1:
           selection:
             label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"
@@ -1456,6 +2083,13 @@ test:
         sheet_1:
           selection:
             label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"
@@ -1531,6 +2165,13 @@ test:
         sheet_1:
           selection:
             label: hee # Note short name
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"
@@ -1609,24 +2250,32 @@ test:
         sheet_1:
           selection:
             label: hee # Note short name
+          sheet: 
+            header_row: []
           columns: [] 
     test_5:
       sheets: 
         sheet_1:
           selection:
             date: true
+          sheet: 
+            header_row: []
           columns: [] 
     test_6:
       sheets: 
         sheet_1:
           selection:
             first: true
+          sheet: 
+            header_row: []
           columns: [] 
     test_7:
       sheets: 
         sheet_1:
           selection:
             wrong: method
+          sheet: 
+            header_row: []
           columns: [] 
     test_8:
       sheets: 
@@ -1637,4 +2286,6 @@ test:
             condition:
               method: column_affirmative?
               column: 3 
+          sheet: 
+            header_row: []
           columns: [] 

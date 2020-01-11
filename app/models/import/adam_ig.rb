@@ -2,9 +2,9 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Import::AdamIg < Import::Rectangular
+class Import::AdamIg < Import
 
-  C_CLASS_NAME = self.name
+  include Import::Rectangular
   
   # Configuration. Sets the parameters for the import
   # 
@@ -13,9 +13,9 @@ class Import::AdamIg < Import::Rectangular
     {
       description: "Import of ADaM Implementation Guide",
       parent_klass: ::AdamIg,
-      reader_klass: Excel::AdamIgReader,
+      reader_klass: Excel,
       import_type: :cdisc_adam_ig,
-      sheet_name: :format,
+      format: :format,
       version_label: :semantic_version,
       label: "ADaM Implementation Guide"
     }

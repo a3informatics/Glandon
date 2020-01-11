@@ -20,18 +20,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
   #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
-  # config =
-  # {
-  #   relationships:
-  #   [
-  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref,
-  #     Thesaurus::Synonym.rdf_type.to_ref,
-  #     Thesaurus::PreferredTerm.rdf_type.to_ref,
-  #     Thesaurus::Subset.rdf_type.to_ref
-  #   ]
-  # }
-  # self.class.instance_variable_set(:@configuration, config)
-
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms

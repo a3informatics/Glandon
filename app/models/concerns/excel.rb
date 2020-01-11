@@ -50,15 +50,21 @@ class Excel
   def check_sheet(import, sheet)
     headers = []
     info = select_sheet(import, sheet)
-    @workbook.row(1).each_with_index {|value, i| headers[i] = value}
-    if headers.length != info[:columns].length
+    columns = info.dig(:columns)
+    if columns.nil?
       @errors.add(:base, 
-        "#{info[:selection][:label]} sheet in the excel file, incorrect column count. Expected #{info[:columns].length}, found #{headers.length}.")
+        "#{info[:selection][:label]} sheet in the excel file, no column list found.")
+      return false
+    end
+    @workbook.row(1).each_with_index {|value, i| headers[i] = value}
+    if headers.length != columns.length
+      @errors.add(:base, 
+        "#{info[:selection][:label]} sheet in the excel file, incorrect column count. Expected #{columns.length}, found #{headers.length}.")
       return false
     end
     headers.each_with_index do |header, i|
-      next if header == info[:columns][i]
-      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{info[:columns][i]}', found '#{header}'.")
+      next if header == columns[i]
+      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{columns[i]}', found '#{header}'.")
       return false
     end 
     return true
