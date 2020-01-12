@@ -72,6 +72,7 @@ private
     products.each do |product, details|
       found = false
       dates.each do |date|
+        next if date.to_date > required_date.to_date
         list[date].each do |source|
           next if product_from_title(source[:title]).upcase != details[:label].upcase
           hrefs[product] = source[:href]
