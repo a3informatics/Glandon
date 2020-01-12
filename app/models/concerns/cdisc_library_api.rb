@@ -23,16 +23,20 @@ class CDISCLibraryAPI
     result = result.sort.to_h
   end
 
-  def ct_package(required_date)
+  # CT Packge By Date. Return the sources for a specified date. The date must exist.
+  #
+  # @raise [Errors::ApplicationLogicError] raised if date not found.
+  # @return [Hash] hash keyed by date (as a string) each containg an array of sources.
+  def ct_package_by_date(required_date)
     check_enabled
     list = ct_packages
-    Errors.application_error(self.class.name, __method__.to_s, "No CT release matching requested date '#{date}'.") if !list.key?(date)
-    hrefs_for_date(required_date)
+    Errors.application_error(self.class.name, __method__.to_s, "No CT release found matching requested date '#{required_date}'.") if !list.key?(required_date)
+    hrefs_for_date(list, required_date)
   end
 
   # Enabled? Is the API enabled?
   #
-  # @raise [Errors::ApplicationLogicError] raised if soemthign went wrong determining if the interface is enabled.
+  # @raise [Errors::ApplicationLogicError] raised if something went wrong determining if the interface is enabled.
   # @return [Boolean] true if enabled, false otherwise
   def enabled?
     EnvironmentVariable.read("cdisc_library_api_enabled").to_bool
@@ -40,32 +44,55 @@ class CDISCLibraryAPI
     application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
+  # ---------
+  # Test Only
+  # ---------
+
+  if Rails.env.test?
+    
+    def request(href)
+      href.slice!(0) if href[0,1] == C_HREF_SEPARATOR
+      send_request("#{base_href}#{href}")
+    end
+
+  end
+
 private
   
+  # Check interface is enabled, raise error if not.
   def check_enabled
     Errors.application_error(self.class.name, __method__.to_s, "The CDISC Library API is not enabled.") unless enabled?
   end
 
+  # Find the set of hrefs for the specified date.
   def hrefs_for_date(list, required_date)
     hrefs = {}
     dates = list.keys.reverse
-    sources.each do |source|
+    products = ct_products
+    products.each do |product, details|
+      found = false
       dates.each do |date|
-        next if title_to_key(list[date][:title]).upcase != source.upcase
-        hrefs[source] << list[date][:href]
-        break
+        list[date].each do |source|
+          next if product_from_title(source[:title]).upcase != details[:label].upcase
+          hrefs[product] = source[:href]
+          found = true
+          break
+        end
+        break if found
       end
     end
-    return hrefs if href.keys == sources
-    missing = sources - href.keys
-    application_error(self.class.name, __method__.to_s, "Missing sources when looking for hrefs for release '#{requireddate}'.")
+    return hrefs if hrefs.keys == products.keys
+    missing = products.keys - hrefs.keys
+    Errors.application_error(self.class.name, __method__.to_s, "Missing sources '#{missing}' when looking for hrefs for release '#{required_date}'.")
   end
 
-  def sources
-    api_configuration[:ct][:sources].keys
+  # Find the ct products from the config data
+  def ct_products
+    api_configuration[:ct][:products]
   end
 
-  def title_to_key(title)
+  # Gets a product from a source title
+  def product_from_title(title)
     title.split(" ").first
   end
 

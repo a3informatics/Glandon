@@ -1976,22 +1976,25 @@ defaults: &defaults
     cdisc_library_api:
       base_href: "https://library.cdisc.org/api/"
       ct:
-        sources:
+        products:
           ADaM:
+            label: ADaM
+            tag: ADaM
+          CDASH:
             label: CDASH
             tag: CDASH
           SDTM:
             label: SDTM  
             tag: SDTM
           Protocol:
-            label: 
+            label: Protocol
             tag: Protocol
           SEND:
-            label: 
+            label: SEND
             tag: SEND
-          Define:
-            label: 
-            tag: Define-XML
+          #Define:
+          #  label: Define
+          #  tag: Define-XML
 
 development:
   <<: *defaults
