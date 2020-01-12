@@ -34,6 +34,15 @@ class CDISCLibraryAPI
     hrefs_for_date(list, required_date)
   end
 
+  # CT Packge. Return a single CT package.
+  #
+  # @param [String] href the package href
+  # @return [Hash] hash containing the resulting data
+  def ct_package(href)
+    check_enabled
+    send_request(full_href(href))
+  end
+
   # Enabled? Is the API enabled?
   #
   # @raise [Errors::ApplicationLogicError] raised if something went wrong determining if the interface is enabled.
@@ -51,14 +60,13 @@ class CDISCLibraryAPI
   if Rails.env.test?
     
     def request(href)
-      href.slice!(0) if href[0,1] == C_HREF_SEPARATOR
-      send_request("#{base_href}#{href}")
+      send_request(full_href(href))
     end
 
   end
 
 private
-  
+
   # Check interface is enabled, raise error if not.
   def check_enabled
     Errors.application_error(self.class.name, __method__.to_s, "The CDISC Library API is not enabled.") unless enabled?
@@ -102,6 +110,12 @@ private
     href = api_configuration[:base_href]
     href += C_HREF_SEPARATOR unless href.end_with?(C_HREF_SEPARATOR)
     href
+  end
+
+  # Build full href froma partial
+  def full_href(href)
+    href.slice!(0) if href[0,1] == C_HREF_SEPARATOR
+    "#{base_href}#{href}"
   end
 
   # Send a request to the API and get a response.
