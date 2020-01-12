@@ -23,11 +23,11 @@ class CDISCLibraryAPI
     result = result.sort.to_h
   end
 
-  # CT Packge By Date. Return the sources for a specified date. The date must exist.
+  # CT Packges By Date. Return the sources for a specified date. The date must exist.
   #
   # @raise [Errors::ApplicationLogicError] raised if date not found.
   # @return [Hash] hash keyed by date (as a string) each containg an array of sources.
-  def ct_package_by_date(required_date)
+  def ct_packages_by_date(required_date)
     check_enabled
     list = ct_packages
     Errors.application_error(self.class.name, __method__.to_s, "No CT release found matching requested date '#{required_date}'.") if !list.key?(required_date)
