@@ -53,6 +53,13 @@ class CDISCLibraryAPI
     application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
+  def ct_tag(title)
+    product = product_from_title(title)
+    entry = ct_products.select{|k,v| v[:label].upcase == product.upcase}
+    return nil if entry.blank?
+    entry.values.first[:tag]
+  end
+
   # ---------
   # Test Only
   # ---------
