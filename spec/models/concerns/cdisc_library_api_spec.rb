@@ -59,6 +59,12 @@ describe "CDISC Library API" do
     check_file_actual_expected(result, sub_dir, "ct_package_expected_1.yaml", equate_method: :hash_equal)
   end
 
+  it "ct package tag" do
+    object = CDISCLibraryAPI.new
+    result = object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")
+    expect(object.ct_tag(result[:label])).to eq("Protocol")
+  end
+
   it "ct package, not enabled" do
     expect(EnvironmentVariable).to receive(:read).and_return("false")
     object = CDISCLibraryAPI.new

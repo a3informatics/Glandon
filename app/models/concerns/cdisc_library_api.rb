@@ -53,6 +53,10 @@ class CDISCLibraryAPI
     application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
+  # CT Tag. Return the tag associated with the CT pacakge
+  #
+  # @param [String] title the title for the stream
+  # @return [Symbol] tag associated with the stream
   def ct_tag(title)
     product = product_from_title(title)
     entry = ct_products.select{|k,v| v[:label].upcase == product.upcase}
