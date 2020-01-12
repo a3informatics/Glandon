@@ -1,141 +1,92 @@
-# Excel. Base class for reading and processing excel files
+# CDISC Library API. Handles the CDISC API
 #
 # @author Dave Iberson-Hurst
-# @since 2.20.3
-# @!attribute errors
-#   @return [ActiveModel::Errors] Active Model errors class
-# @!attribute engine
-#   @return [Excel::Engine] the reader engine
-# @!attribute full_path
-#   @return [Pathname] the pathname for the file being read
-class Excel
+# @since 2.27.0
+class CDISCLibraryAPI
 
-  C_CLASS_NAME = self.name
+  C_HREF_SEPARATOR = "/"
+  C_CT_PACKAGES_URL = "mdr/ct/packages"
 
-  require "roo"
-  extend ActiveModel::Naming
-
-  attr_reader :errors
-  attr_reader :engine
-  attr_reader :full_path
-
-  # Initialize. Opens the workbook ready for processing.
+  # CT Packges. Get a list of the packages from the library. Will transform the result
+  #   into something slightly more useful.
   #
-  # @param [Pathname] full_path the Pathname object for the file to be opened.
-  # @return [Void] no return value
-  def initialize(full_path)
-    @errors = ActiveModel::Errors.new(self)
-    @full_path = full_path
-    @workbook = Roo::Spreadsheet.open(@full_path.to_s, extension: :xlsx) 
-    @engine = Excel::Engine.new(self, @workbook) # Needs to be after workbook setup
-  rescue => e
-    msg = "Exception raised opening Excel workbook filename=#{@full_path}. #{e}"
-    ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
-    @errors.add(:base, msg)
-    @workbook = nil
-  end
-
-  # Label
-  #
-  # @return [String] class label based on the inpout file name.
-  def label
-    File.basename(@full_path)
-  end
-
-  # Check Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Boolean] true if sheet check pass, false otherwise with errors added.
-  def check_sheet(import, sheet)
-    headers = []
-    info = select_sheet(import, sheet)
-    columns = info.dig(:columns)
-    if columns.nil?
-      @errors.add(:base, 
-        "#{info[:selection][:label]} sheet in the excel file, no column list found.")
-      return false
+  # @return [Hash] hash keyed by date (as a string) each containg an array of sources.
+  def ct_packages
+    check_enabled
+    result = Hash.new {|h,k| h[k] = [] }
+    response = send_request("#{base_href}#{C_CT_PACKAGES_URL}")
+    response[:_links][:packages].each do |source|
+      date = source[:title].scan(/(\d\d\d\d-\d\d-\d\d)/).last.first
+      package = source[:title].scan(/( \d+ )/).last.first.strip.to_i
+      result[date] << {title: source[:title], date: date, package: package, href: source[:href]}
     end
-    @workbook.row(1).each_with_index {|value, i| headers[i] = value}
-    if headers.length != columns.length
-      @errors.add(:base, 
-        "#{info[:selection][:label]} sheet in the excel file, incorrect column count. Expected #{columns.length}, found #{headers.length}.")
-      return false
-    end
-    headers.each_with_index do |header, i|
-      next if header == columns[i]
-      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{columns[i]}', found '#{header}'.")
-      return false
-    end 
-    return true
-  rescue => e
-    msg = "Exception raised '#{e}' checking worksheet for import '#{:import}' using sheet '#{:sheet}'."
-    ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
-    @errors.add(:base, msg)
-    return false
-  end       
-
-  # Check and Process Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return  
-  def check_and_process_sheet(import, sheet)
-    @engine.process(import, sheet) if check_sheet(import, sheet)
+    result = result.sort.to_h
   end
 
-  # Process Sheet
+  def ct_package(required_date)
+    check_enabled
+    list = ct_packages
+    Errors.application_error(self.class.name, __method__.to_s, "No CT release matching requested date '#{date}'.") if !list.key?(date)
+    hrefs_for_date(required_date)
+  end
+
+  # Enabled? Is the API enabled?
   #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return
-  def process_sheet(import, sheet)
-    @engine.process(import, sheet)
+  # @raise [Errors::ApplicationLogicError] raised if soemthign went wrong determining if the interface is enabled.
+  # @return [Boolean] true if enabled, false otherwise
+  def enabled?
+    EnvironmentVariable.read("cdisc_library_api_enabled").to_bool
+  rescue => e
+    application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
 private
-
-  # Select a sheet and return the sheet info
-  def select_sheet(import, sheet)
-    info = @engine.sheet_info(import, sheet)
-    if info[:selection].key?(:date)
-      return by_date(info)
-    elsif info[:selection].key?(:label)
-      return by_label(info)
-    elsif info[:selection].key?(:first)
-      return by_first_sheet(info)
-    end
-    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid mechanism to find sheet.")
+  
+  def check_enabled
+    Errors.application_error(self.class.name, __method__.to_s, "The CDISC Library API is not enabled.") unless enabled?
   end
 
-  # Find the first sheet
-  def by_first_sheet(info)
-    @workbook.default_sheet = @workbook.sheets.first
-    return info
-  rescue => e
-    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Failed to find the first sheet.")
-  end
-
-  # Find the sheet by name contains string
-  def by_label(info)
-    @workbook.sheets.each do |s| 
-      if s.include?(info[:selection][:label])
-        @workbook.default_sheet = s 
-        return info
+  def hrefs_for_date(list, required_date)
+    hrefs = {}
+    dates = list.keys.reverse
+    sources.each do |source|
+      dates.each do |date|
+        next if title_to_key(list[date][:title]).upcase != source.upcase
+        hrefs[source] << list[date][:href]
+        break
       end
     end
-    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Failed to find sheet with name containing '#{info[:selection][:label]}'.")
+    return hrefs if href.keys == sources
+    missing = sources - href.keys
+    application_error(self.class.name, __method__.to_s, "Missing sources when looking for hrefs for release '#{requireddate}'.")
   end
 
-  # Find the sheet by name contains date
-  def by_date(info)
-    @workbook.sheets.each do |s| 
-      if s =~ /\d\d\d\d-\d\d-\d\d/
-        @workbook.default_sheet = s 
-        return info
-      end
-    end
-    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Failed to find sheet with name including a date.")
+  def sources
+    api_configuration[:ct][:sources].keys
+  end
+
+  def title_to_key(title)
+    title.split(" ").first
+  end
+
+  # Get the API base href
+  def base_href
+    href = api_configuration[:base_href]
+    href += C_HREF_SEPARATOR unless href.end_with?(C_HREF_SEPARATOR)
+    href
+  end
+
+  # Send a request to the API and get a response.
+  def send_request(href)
+    headers = {"Accept" => "application/json"}
+    response = Rest.send_request(href, :get, ENV["cdisc_library_api_username"], 
+      ENV["cdisc_library_api_password"], "", headers)
+    JSON.parse(response.body).deep_symbolize_keys
+  end
+
+  # Get the API configuration
+  def api_configuration
+    Rails.configuration.imports[:processing][:cdisc_library_api]
   end
 
 end    

@@ -1973,6 +1973,26 @@ defaults: &defaults
           - 
             label: "INACTIVE_F"
             actions: []
+    cdisc_library_api:
+      base_href: "https://library.cdisc.org/api/"
+      ct:
+        sources:
+          ADaM:
+            label: CDASH
+            tag: CDASH
+          SDTM:
+            label: SDTM  
+            tag: SDTM
+          Protocol:
+            label: 
+            tag: Protocol
+          SEND:
+            label: 
+            tag: SEND
+          Define:
+            label: 
+            tag: Define-XML
+
 development:
   <<: *defaults
 
