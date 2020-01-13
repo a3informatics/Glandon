@@ -117,6 +117,7 @@ class Thesaurus
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
+    byebug
 
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
@@ -132,7 +133,7 @@ class Thesaurus
         ?s th:definition ?d .
         ?s th:extensible ?e .
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-        BIND(EXISTS {#{self.uri.to_ref} th:narrower ?narr} && NOT EXISTS {#{self.uri.to_ref} th:narrower/^th:narrower ?s. FILTER (?s != #{self.uri.to_ref}) } as ?owned)
+        BIND(EXISTS {#{self.uri.to_ref} th:narrower ?s} && NOT EXISTS {#{self.uri.to_ref} th:narrower/^th:narrower ?r. FILTER (?r != #{self.uri.to_ref}) } as ?owned)
 
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
