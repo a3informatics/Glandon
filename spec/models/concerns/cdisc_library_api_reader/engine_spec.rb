@@ -43,7 +43,7 @@ describe CDISCLibraryAPIReader::Engine do
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/sendct-2019-09-27")
     result = object.parent_set.map{|k,v| v.to_h}
-    check_file_actual_expected(result, sub_dir, "process_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(result, sub_dir, "process_expected_3.yaml", equate_method: :hash_equal)
     check_file_actual_expected(result, sub_dir, "process_check_3.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
