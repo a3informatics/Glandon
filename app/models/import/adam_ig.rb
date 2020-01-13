@@ -4,7 +4,7 @@
 # @since 2.21.0
 class Import::AdamIg < Import
 
-  include Import::Rectangular
+  include Import::Utility
   
   # Configuration. Sets the parameters for the import
   # 

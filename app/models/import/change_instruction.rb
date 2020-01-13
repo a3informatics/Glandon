@@ -36,7 +36,7 @@ class Import::ChangeInstruction < Import
   def import(params)
     @changes = []
     set_ct(params)
-    read_all_excel(params)
+    read_all_sources(params)
     objects = self.errors.empty? ? process_changes : []
     !self.errors.empty? || object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     params[:job].end("Complete")   
@@ -113,7 +113,7 @@ private
   end
 
   # Read all the Excel files
-  def read_all_excel(params)
+  def read_all_sources(params)
     params[:files].each do |file|
       reader = configuration[:reader_klass].new(file)
       merge_errors(reader, self)
