@@ -1,47 +1,53 @@
 defaults: &defaults
   imports: &default_imports
-    cdisc_adam_ig: 
-      title: CDISC ADaM IG Import - Excel
-      background: true
-      description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
-      link_text: "Import CDISC ADaM IG"
-      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    # cdisc_adam_ig: 
+    #   title: CDISC ADaM IG Import - Excel
+    #   background: true
+    #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
+    #   link_text: "Import CDISC ADaM IG"
+    #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
     cdisc_term: 
       title: CDISC Terminology Import - Excel
       background: true
       description: This facilty allows for the CDISC Terminology to be imported from one or more MS Excel files.
-      link_text: "Import CDISC Term"
+      link_text: "Import CDISC Term (Excel)"
       link_path: "/imports/cdisc_terms/new?imports[file_type]=0"
-    cdisc_change_instructions: 
-      title: CDISC Terminology Change Instructions - Excel
+    cdisc_term_api: 
+      title: CDISC Terminology Import - API
       background: true
-      description: This facilty allows for the CDISC Terminology change instructions to be imported from one or more MS Excel files.
-      link_text: "Import Change Instructions"
-      link_path: "/imports/change_instructions/new?imports[file_type]=0"
-    form_als:
-      title: Form Import - ALS
-      background: true
-      description: This facilty allows for a form to be imported from an ALS file.
-      link_text: "Import Form from ALS"
-      link_path: "/imports/crfs/new?imports[file_type]=2"
-    form_odm:
-      title: Form Import - ODM
-      background: true
-      description: This facilty allows for a form to be imported from an ODM XML file.
-      link_text: "Import Form from ODM"
-      link_path: "/imports/crfs/new?imports[file_type]=1"
-    term_excel:
-      title: Import Terminology - EXCEL
-      background: true
-      description: This facilty allows for a form to be imported from an MS Excel file.
-      link_text: "Import Terminology from Excel"
-      link_path: "/imports/terms/new?imports[file_type]=0"
-    term_odm:
-      title: Import Terminology - ODM
-      background: true
-      description: This facilty allows for a form to be imported from an ODM XML file.
-      link_text: "Import Terminology from ODM"
-      link_path: "/imports/terms/new?imports[file_type]=1"
+      description: This facilty allows for the CDISC Terminology to be imported usig the CDISC API.
+      link_text: "Import CDISC Term (API)"
+      link_path: "/imports/cdisc_terms/new?imports[file_type]=3"
+    # cdisc_change_instructions: 
+    #   title: CDISC Terminology Change Instructions - Excel
+    #   background: true
+    #   description: This facilty allows for the CDISC Terminology change instructions to be imported from one or more MS Excel files.
+    #   link_text: "Import Change Instructions"
+    #   link_path: "/imports/change_instructions/new?imports[file_type]=0"
+    # form_als:
+    #   title: Form Import - ALS
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ALS file.
+    #   link_text: "Import Form from ALS"
+    #   link_path: "/imports/crfs/new?imports[file_type]=2"
+    # form_odm:
+    #   title: Form Import - ODM
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ODM XML file.
+    #   link_text: "Import Form from ODM"
+    #   link_path: "/imports/crfs/new?imports[file_type]=1"
+    # term_excel:
+    #   title: Import Terminology - EXCEL
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an MS Excel file.
+    #   link_text: "Import Terminology from Excel"
+    #   link_path: "/imports/terms/new?imports[file_type]=0"
+    # term_odm:
+    #   title: Import Terminology - ODM
+    #   background: true
+    #   description: This facilty allows for a form to be imported from an ODM XML file.
+    #   link_text: "Import Terminology from ODM"
+    #   link_path: "/imports/terms/new?imports[file_type]=1"
   processing: &default_processing
     cdisc_change_instructions: 
       sheets: 

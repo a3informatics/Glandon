@@ -17,6 +17,9 @@ class CdiscTerm < Thesaurus
     @@cdisc_ra.freeze
   end
 
+  # Child Klass. Return the child class
+  #
+  # @return [Class] the child class
   def self.child_klass
     ::CdiscCl
   end
@@ -48,6 +51,13 @@ SELECT DISTINCT ?s ?d WHERE
     results
   end
 
+  # Next Version
+  #
+  # @return [Integer] the next version for the terminology
+  def self.next_version
+    super(C_IDENTIFIER, IsoRegistrationAuthority.cdisc_scope)
+  end
+  
   # ---------
   # Test Only  
   # ---------

@@ -15,7 +15,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <%= label_tag :semantic_version, "Semantic Version:" %><br/>
-            <%= text_field_tag "imports[semantic_version]", "", class: "form-control" %>
+            <%= text_field_tag "imports[semantic_version]", "#{SemanticVersion.new(major: @next_version).to_s}", class: "form-control", readonly: true %>
           </div>
         </div>
         <div class="col-md-2">
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <%= label_tag :date, "Model Release Date:" %><br/>
+            <%= label_tag :date, "Release Date:" %><br/>
             <%= date_field_tag "imports[date]", class: "form-control" %>
           </div>
         </div>
@@ -37,14 +37,17 @@
           <p>&nbsp;</p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <%= label_tag :files, "File:" %><br/>
-            <%= select_tag("imports[files][]", options_for_select(@files), multiple: multiple, class: "form-control", :size => 20) %>
+      <% if @file_type != 3 %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= label_tag :files, "File:" %><br/>
+              <%= select_tag("imports[files][]", options_for_select(@files), multiple: multiple, class: "form-control", :size => 20) %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+      <input value="<%= @file_type %>" type="hidden" name="[imports]file_type" id="[imports]file_type" />
       <%= f.submit "Import", class: "btn  btn-success" %>
       <%= link_to "Close", imports_path, :class => "btn " %>
     <% end %>

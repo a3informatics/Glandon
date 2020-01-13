@@ -1,7 +1,8 @@
 <%= javascript_tag 'setPageTitle("Import CDISC Terminology")' %>
-
+<% first_level_breadcrumb (:imports) %>
+<% type = @file_type == 0 ? "Excel" : "API"%>
 <div class="row">
   <div class="col-md-8">
-    <%= render partial: "shared/import/new_model_panel", locals: {create_path: imports_cdisc_terms_path, title: "Import CDISC Terminology", multiple: true} %>
+    <%= render partial: "shared/import/new_model_panel", locals: {create_path: imports_cdisc_terms_path, title: "Import CDISC Terminology using #{type}", multiple: true} %>
   </div>
 </div>

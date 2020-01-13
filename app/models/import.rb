@@ -30,7 +30,7 @@
 #   @return [Symbol] the file type of the import. Enumerated :excel, :odm: :als
 class Import < ActiveRecord::Base
 
-  enum file_type: [:excel, :odm, :als]
+  enum file_type: [:excel, :odm, :als, :api]
 
   belongs_to :background, required: true
 
@@ -94,7 +94,7 @@ class Import < ActiveRecord::Base
     sparql = Sparql::Update.new()
     sparql.default_namespace(parent.uri.namespace)
     parent.to_sparql(sparql, true)
-    objects[:managed_children].each do |c| 
+    objects[:children].each do |c| 
       c.to_sparql(sparql, true)
     end
     objects[:tags].each do |c| 
@@ -157,7 +157,14 @@ class Import < ActiveRecord::Base
   # @param [integer] the file type as an integer
   # @return [String] file type as a string
   def self.file_type_humanize(value)
-    return %W(Excel ODM ALS)[value]
+    return %W(Excel ODM ALS API)[value]
+  end
+
+  # API? Is the API file type being used?
+  #
+  # @return [Boolean] true if API, false otherwise
+  def self.api?(params)
+    return params[:file_type].to_i == Import.file_types[:api]
   end
 
   # Configuration. Sets the parameters for the import, class version
@@ -174,43 +181,70 @@ class Import < ActiveRecord::Base
     self.class.configuration
   end
 
+  # Raw Params Valid. Check the import parameters.
+  #
+  # @params [Hash] params a hash of parameters
+  # @option params [String] :type the import type
+  # @option params [String] :version the version, integer
+  # @option params [String] :date, a valid date
+  # @option params [String] :files, at least one file
+  # @option params [String] :semantic_version, a valid semantic version
+  # @return [Errors] active record errors class
+  def self.params_valid?(params)
+    object = self.new
+    FieldValidation::valid_version?(:version, params[:version], object)
+    FieldValidation::valid_date?(:date, params[:date], object)
+    FieldValidation::valid_files?(:files, params[:files], object) if !self.api?(params)
+    FieldValidation::valid_semantic_version?(:semantic_version, params[:semantic_version], object)
+    return object
+  end
+
 private
 
+  # Get the owner short name
   def owner_short_name(klass)
     klass.owner.ra_namespace.short_name
   end
 
+  # Return the file list
   def file_list(params)
+    return "Using API" if self.class.api?(params)
     params[:files].map{|x| File.basename(x)}.join(", ")
   end
 
+  # Update the import parameters
   def update_params(params, klass, job)
     params[:job] = job
-    params[:identifier] = klass.configuration[:identifier] if !params.key?(:identifier)
+    params[:identifier] = klass.identifier if !params.key?(:identifier)
     params[:version_label] = params[:semantic_version] if configuration[:version_label] == :semantic_version
     params[:version_label] = params[:date] if configuration[:version_label] == :date
     params[:label] = configuration[:label]
   end
 
+  # Buid the result hash
   def result_hash(object)
     return {parent: object, children: []}
   end
   
+  # Merge all errors
   def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:managed_children].each {|child| merge_errors(child, parent)}
+    objects[:children].each {|child| merge_errors(child, parent)}
     return parent
   end
 
+  # Merge errors
   def merge_errors(from, to)
     return if from.errors.empty?
     from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.label}: #{msg}"}
   end
 
+  # Locked?
   def locked?
     false
   end
 
+  # Get the file type
   def to_file_type(value)
     Import.file_types[value.to_sym].to_i
   end
