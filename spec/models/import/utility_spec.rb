@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Import::Rectangular do
+describe Import::Utility do
 	
 	def sub_dir
     return "models/import/rectangular"
