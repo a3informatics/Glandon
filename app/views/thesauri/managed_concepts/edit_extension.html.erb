@@ -4,12 +4,11 @@
 <%= stylesheet_link_tag 'custom/context_menu', 'homes' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
+<%= javascript_tag "var searchUrl = '#{search_current_thesauri_index_path}';" %>
 <%= javascript_tag "var tc_id = '#{@tc.id}';" %>
 <%= javascript_tag "var is_extended = false;" %>
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
-<%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
-<%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>

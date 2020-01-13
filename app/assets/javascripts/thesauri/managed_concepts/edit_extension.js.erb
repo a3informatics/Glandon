@@ -1,6 +1,6 @@
 $(document).ready( function() {
-  var eep = new EditExtensionPanel(url_path, 1000, tc_id, policy_edit, edit_enabled, editCallback);
-  var searchModal = new TermSearch(context_id, eep.addNew.bind(eep));
+  var eep = new EditExtensionPanel(url_path, 1000, tc_id, editCallback);
+  var searchModal = new TermSearch(context_id, eep.addNew.bind(eep), searchUrl);
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);
 

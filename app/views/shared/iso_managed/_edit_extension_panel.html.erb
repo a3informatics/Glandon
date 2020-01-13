@@ -2,10 +2,10 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <h3 class="card-header">Edit Extension</h3>
 <div class="card-content table-cardstyle">
-  <div class="btns-wrap">
-    <a href="#searchModal" class="btn medium green" id="add-existing-button" data-toggle="modal"><span class="icon-search"></span> Add an existing CL Item</a>
+  <div class="btns-wrap" id="edit-extension-actions">
+    <a href="#searchModal" class="btn medium green" id="add-existing-button" data-toggle="modal"><span class="icon-search"></span> Add existing CL Item(s)</a>
     <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item</button>
-    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item from synonyms</button>
+    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item(s) from synonyms</button>
   </div>
   <table id="extension-children-table" class="table">
     <thead>
@@ -17,7 +17,7 @@
         <th>Definition</th>
         <th class="th-small">Tag(s)</th>
         <th class="ignore fit"></th>
-        <th></th>
+        <th class="ignore fit"></th>
       </tr>
     </thead>
     <tbody>

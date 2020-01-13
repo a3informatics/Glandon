@@ -11,7 +11,12 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-sm-12 table-cardstyle all-columns">
+          <div class="col-sm-12 table-cardstyle rows-selected-hide all-columns">
+            <div class="font-light flex-total-center selection-info">
+              Items selected: <span class="bg-label" id="number-selected">0</span>
+              <button id="clear-selection" class="btn btn-xs grey">Clear</button>
+            </div>
+
             <table style="width: 100%;" id="searchTable" class="table table-row-clickable no-mark table-condensed">
               <thead>
                 <tr>
@@ -48,7 +53,7 @@
       <div class="modal-footer">
         <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Close</button>
         <button type="button" class="btn medium light" id="clear_search">Clear search</button>
-        <button type="button" class="btn medium green" id="add_terms">Add terms</button>
+        <button type="button" class="btn medium green" id="add_terms">Add items</button>
       </div>
     </div>
   </div>

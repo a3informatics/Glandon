@@ -10,18 +10,20 @@
  *
  * @return [void]
  */
-function EditExtensionPanel(url, count, tc_id, policy_edit, edit_enable, callback) {
+function EditExtensionPanel(url, count, tc_id, callback) {
   var _this = this;
   this.callback = callback;
-  this.policy_edit = policy_edit;
-  this.edit_enable = edit_enable;
   this.url = url;
   this.tc_id = tc_id;
   this.count = count;
 
+  this.init();
+}
+
+EditExtensionPanel.prototype.init = function(){
   this.childrenTable = $('#extension-children-table').DataTable( {
     "order": [[ 0, "desc" ]],
-    "columns": _this.columns(),
+    "columns": this.columns(),
     "pageLength": pageLength, // Global setting
     "lengthMenu": pageSettings, // Global setting
     "processing": true,
@@ -31,8 +33,7 @@ function EditExtensionPanel(url, count, tc_id, policy_edit, edit_enable, callbac
       "processing": generateSpinner("medium")
     }
   });
-
-  this.add(0);
+  this.loadData(0);
 }
 
 /**
@@ -41,8 +42,8 @@ function EditExtensionPanel(url, count, tc_id, policy_edit, edit_enable, callbac
  * @param [Integer] the offset to retrieve
  * @return [void]
  */
-EditExtensionPanel.prototype.add = function (offset) {
-  this.childrenTable.processing(true);
+EditExtensionPanel.prototype.loadData = function (offset) {
+  this.processing(true);
 
   $.ajax({
     url: this.url,
@@ -51,35 +52,48 @@ EditExtensionPanel.prototype.add = function (offset) {
     dataType: 'json',
     context: this,
     success: function(result) {
-      var show_delete = false
       for (i=0; i<result.data.length; i++) {
-        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
         var row = this.childrenTable.row.add(result.data[i]);
-        if (result.data[i].delete_path !== "" ) {
-          show_delete = true;
-        }
       }
       this.childrenTable.draw();
-      this.childrenTable.columns.adjust();
 
-      if (result.count >= this.count) {
-        this.add(result.offset + this.count);
-      } else {
-        this.childrenTable.processing(false);
+      if (result.count >= this.count)
+        this.loadData(result.offset + this.count);
+      else {
+        this.processing(false);
+        this.updateUI();
         this.setListeners();
-      }
-      this.childrenTable.columns( [6] ).visible( false );
-      if (this.policy_edit && this.edit_enable && show_delete) {
-        this.childrenTable.columns( [6] ).visible( true );
       }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      this.childrenTable.processing(false);
+      this.processing(false);
     }
   });
 
 }
+
+EditExtensionPanel.prototype.processing = function(enable){
+  if(enable){
+    this.childrenTable.processing(true);
+    $("#edit-extension-actions").children().addClass("disabled");
+  }
+  else{
+    this.childrenTable.processing(false);
+    $("#edit-extension-actions").children().removeClass("disabled");
+  }
+}
+
+/**
+ * Refresh table
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.updateUI = function() {
+  this.childrenTable.columns.adjust();
+
+}
+
 
 /**
  * Refresh table
@@ -89,7 +103,7 @@ EditExtensionPanel.prototype.add = function (offset) {
 EditExtensionPanel.prototype.refresh = function() {
   var _this = this;
   _this.childrenTable.clear();
-  _this.add(0);
+  _this.loadData(0);
   _this.callback();
 }
 
@@ -163,7 +177,9 @@ EditExtensionPanel.prototype.setListeners = function () {
   var _this = this;
 
   $("#extension-children-table .exclude").on('click', function () {
-    new ConfirmationDialog(_this.deleteExtension.bind(_this, [$(this).attr("data-id")]), {subtitle: ""}).show();
+    new ConfirmationDialog(_this.deleteExtension.bind(_this, [$(this).attr("data-id")]),
+      {subtitle: "", dangerous: true})
+    .show();
   });
 }
 
@@ -190,7 +206,9 @@ EditExtensionPanel.prototype.columns = function () {
     {"data" : "preferred_term"},
     {"data" : "synonym"},
     {"data" : "definition"},
-    {"data" : "tags"},
+    {"data" : "tags", "render" : function (data, type, row, meta) {
+      return (data == null ? data : colorCodeTagsBadge(data));
+    }},
     {"render" : function (data, type, row, meta) {
       return "";
     }.bind(this)},

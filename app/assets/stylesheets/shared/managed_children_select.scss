@@ -25,6 +25,10 @@
   content: "\e944";
 }
 
+.rows-selected-hide .select-info{
+  display: none !important;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   .table-row-clickable .selected td:first-of-type::before{
