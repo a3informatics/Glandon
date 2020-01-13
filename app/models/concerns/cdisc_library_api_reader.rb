@@ -21,10 +21,11 @@ class CDISCLibraryAPIReader
     @engine = CDISCLibraryAPIReader::Engine.new(self)
   end
 
-  # Execute
+  # Execute. Execure the import
   #
+  # @params [Hash] params ignored. Set to preserve commonality of interface
   # @return [Void] no return  
-  def execute
+  def execute(params)
     @engine.process(@href)    
   end
 
