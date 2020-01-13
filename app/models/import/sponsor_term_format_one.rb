@@ -4,7 +4,7 @@
 # @since 2.25.0
 class Import::SponsorTermFormatOne < Import
 
-  include Import::Rectangular
+  include Import::Utility
   include Import::STFOClasses
 
   C_V2 = "01/01/1900".to_datetime 
@@ -30,7 +30,7 @@ class Import::SponsorTermFormatOne < Import
     @tags = []
     @parent_set = {}
     @th = Thesaurus.find_minimum(params[:uri])
-    readers = read_all_excel(params)
+    readers = read_all_sources(params)
     merge_reader_data(readers)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
@@ -48,7 +48,7 @@ class Import::SponsorTermFormatOne < Import
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
       description: "Import of Sponsor Terminology",
       parent_klass: Import::STFOClasses::STFOThesaurus,

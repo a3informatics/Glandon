@@ -35,7 +35,17 @@ class Excel
     @workbook = nil
   end
 
-  # Label
+  # Execute. Execute the excel processing.
+  #
+  # @param [Hash] params the parameter set
+  # @option [Symbol] :import_type the type of the import
+  # @param [Symbol] :format the format key used in the configuration file to set the processign rules
+  # @return [Void] no return  
+  def execute(params)
+    @engine.process(params[:import_type], params[:format]) if check_sheet(params[:import_type], params[:format])
+  end
+
+  # Label. Short name for the file being processed.
   #
   # @return [String] class label based on the inpout file name.
   def label
@@ -75,23 +85,14 @@ class Excel
     return false
   end       
 
-  # Check and Process Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return  
-  def check_and_process_sheet(import, sheet)
-    @engine.process(import, sheet) if check_sheet(import, sheet)
-  end
-
-  # Process Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return
-  def process_sheet(import, sheet)
-    @engine.process(import, sheet)
-  end
+  # # Process Sheet
+  # #
+  # # @param [Symbol] import the import
+  # # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
+  # # @return [Void] no return
+  # def process_sheet(import, sheet)
+  #   @engine.process(import, sheet)
+  # end
 
 private
 

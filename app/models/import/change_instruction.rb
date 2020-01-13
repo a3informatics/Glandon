@@ -50,7 +50,7 @@ class Import::ChangeInstruction < Import
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
       description: "Import of CDISC Change Instructions",
       parent_klass: Import::ChangeInstruction::Instruction,
@@ -61,13 +61,6 @@ class Import::ChangeInstruction < Import
     }
   end
   
-  # Configuration. Sets the parameters for the import
-  # 
-  # @return [Hash] the configuration hash
-  def configuration
-    self.class.configuration
-  end
-
   # Save the error file
   def save_error_file(objects)
     objects.each {|c| merge_errors(c, self) if c.errors.any?}

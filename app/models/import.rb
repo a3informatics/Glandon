@@ -94,7 +94,7 @@ class Import < ActiveRecord::Base
     sparql = Sparql::Update.new()
     sparql.default_namespace(parent.uri.namespace)
     parent.to_sparql(sparql, true)
-    objects[:children].each do |c| 
+    objects[:managed_children].each do |c| 
       c.to_sparql(sparql, true)
     end
     objects[:tags].each do |c| 
@@ -174,12 +174,12 @@ class Import < ActiveRecord::Base
     {}
   end
 
-  # Configuration. Sets the parameters for the import, instance version
-  # 
-  # @return [Hash] the configuration hash
-  def configuration
-    self.class.configuration
-  end
+  # # Configuration. Sets the parameters for the import, instance version
+  # # 
+  # # @return [Hash] the configuration hash
+  # def configuration
+  #   self.class.configuration
+  # end
 
   # Raw Params Valid. Check the import parameters.
   #
@@ -229,7 +229,7 @@ private
   # Merge all errors
   def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:children].each {|child| merge_errors(child, parent)}
+    objects[:managed_children].each {|child| merge_errors(child, parent)}
     return parent
   end
 

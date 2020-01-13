@@ -151,7 +151,6 @@ describe Import do
   end
 
   it "returns configuration" do
-    expect(Import.configuration).to eq({})
     expect(Import.new.configuration).to eq({})
   end
   

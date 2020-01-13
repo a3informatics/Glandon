@@ -33,7 +33,7 @@ describe "Import::CdiscTerm" do
     delete_all_public_test_files
   end
 
-  it "returns the configuration" do
+  it "returns the configuration, excel" do
     expected =
     {
       description: "Import of CDISC Terminology",
@@ -42,28 +42,49 @@ describe "Import::CdiscTerm" do
       import_type: :cdisc_term,
       version_label: :date,
       label: "Controlled Terminology",
-      format: :format
+      format: :excel_format
     }
-    expect(Import::CdiscTerm.configuration).to eq(expected)
     expect(Import::CdiscTerm.new.configuration).to eq(expected)
   end
 
-  it "sets the correct format" do
-    object = Import::CdiscTerm.new
-    expect(object.format({date: "01/01/2000"})).to eq(:version_1)
-    expect(object.format({date: "30/04/2007"})).to eq(:version_1)
-    expect(object.format({date: "01/05/2007"})).to eq(:version_2)
-    expect(object.format({date: "31/08/2008"})).to eq(:version_2)
-    expect(object.format({date: "01/09/2008"})).to eq(:version_3)
-    expect(object.format({date: "30/04/2009"})).to eq(:version_3)
-    expect(object.format({date: "01/05/2009"})).to eq(:version_4)
-    expect(object.format({date: "31/03/2010"})).to eq(:version_4)
-    expect(object.format({date: "01/04/2010"})).to eq(:version_5)
-    expect(object.format({date: DateTime.now.to_date})).to eq(:version_5)
-    expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_5) # Future date
+  it "returns the configuration, api" do
+    object = Import.new(:type => "Import::CdiscTerm")
+    object.file_type = 3
+    object.save
+    expected =
+    {
+      description: "Import of CDISC Terminology",
+      parent_klass: ::CdiscTerm,
+      reader_klass: CDISCLibraryAPIReader,
+      import_type: :cdisc_term,
+      version_label: :date,
+      label: "Controlled Terminology",
+      format: :api_format
+    }
+    expect(object.configuration).to eq(expected)
   end
 
-  it "import, no errors" do
+  it "sets the correct excel format" do
+    object = Import::CdiscTerm.new
+    expect(object.excel_format({date: "01/01/2000"})).to eq(:version_1)
+    expect(object.excel_format({date: "30/04/2007"})).to eq(:version_1)
+    expect(object.excel_format({date: "01/05/2007"})).to eq(:version_2)
+    expect(object.excel_format({date: "31/08/2008"})).to eq(:version_2)
+    expect(object.excel_format({date: "01/09/2008"})).to eq(:version_3)
+    expect(object.excel_format({date: "30/04/2009"})).to eq(:version_3)
+    expect(object.excel_format({date: "01/05/2009"})).to eq(:version_4)
+    expect(object.excel_format({date: "31/03/2010"})).to eq(:version_4)
+    expect(object.excel_format({date: "01/04/2010"})).to eq(:version_5)
+    expect(object.excel_format({date: DateTime.now.to_date})).to eq(:version_5)
+    expect(object.excel_format({date: DateTime.now.to_date+100})).to eq(:version_5) # Future date
+  end
+
+  it "sets the correct api format" do
+    object = Import::CdiscTerm.new
+    expect(object.api_format({date: "01/01/2000"})).to eq(nil)
+  end
+
+  it "excel import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1a.xlsx")
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job}
     result = @object.import(params)
@@ -79,7 +100,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
 	end
 
-  it "import, no errors, second version" do
+  it "excel import, no errors, second version" do
     load_local_file_into_triple_store(sub_dir, "import_load_1b.ttl")
     full_path = test_file_path(sub_dir, "import_input_1b.xlsx")
     params = 
@@ -98,7 +119,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, errors" do
+  it "excel import, errors" do
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = 
     {
@@ -122,8 +143,8 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, exception" do
-    expect_any_instance_of(Excel).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
+  it "excel import, exception" do
+    expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = 
     {
@@ -137,7 +158,7 @@ describe "Import::CdiscTerm" do
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end
 
-  it "import, CDISC Version 1 Format, errors detected" do
+  it "excel import, CDISC Version 1 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2007-03-06.xlsx")
     params = 
     {
@@ -155,7 +176,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 2 Format, errors detected" do
+  it "excel import, CDISC Version 2 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2007-05-31.xlsx")
     params = 
     {
@@ -173,7 +194,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 3 Format, errors detected" do
+  it "excel import, CDISC Version 3 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2008-09-22.xlsx")
     params = 
     {
@@ -191,7 +212,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 4 Format, errors detected" do
+  it "excel import, CDISC Version 4 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2010-04-08.xlsx")
     params = 
     {
@@ -209,7 +230,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 4 Format, no errors" do
+  it "excel import, CDISC Version 4 Format, no errors" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2012-06-29.xlsx")
     params = 
     {
@@ -227,7 +248,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, Multiple Version 4 Format, errors" do
+  it "excel import, Multiple Version 4 Format, errors" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2011-06-10.xlsx")
     full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2011-04-08.xlsx")
     full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2011-01-07.xlsx")
@@ -249,7 +270,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, Duplicates I" do
+  it "excel import, Duplicates I" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology Duplicate 1.xlsx")
     full_path_2 = test_file_path(sub_dir, "SDTM Terminology Duplicate 2.xlsx")
     params = 
@@ -269,7 +290,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, quotes" do
+  it "excel import, quotes" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology Quotes 1.xlsx")
     params = 
     {
@@ -288,7 +309,7 @@ describe "Import::CdiscTerm" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import dupplicate synonyms and PTs" do
+  it "excel import dupplicate synonyms and PTs" do
     load_local_file_into_triple_store(sub_dir, "characters_1.ttl")
     full_path_1 = test_file_path(sub_dir, "characters_1.xlsx")
     params = 

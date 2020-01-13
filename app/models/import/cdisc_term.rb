@@ -4,7 +4,7 @@
 # @since 2.21.0
 class Import::CdiscTerm < Import
 
-  include Import::Rectangular
+  include Import::Utility
 
   C_V1 = "01/01/1900".to_datetime 
   C_V2 = "01/05/2007".to_datetime 
@@ -33,11 +33,9 @@ class Import::CdiscTerm < Import
     @tags = []
     @parent_set = {}
     params[:identifier] = ::CdiscTerm.identifier
-    readers = read_all_excel(params)
-    merge_reader_data(readers)
-    results = add_parent(params)
-    add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
-    objects = self.errors.empty? ? process_results(results) : {parent: self, children: []}
+    check_date_and_sources(params)
+    results = read_and_process(params) if self.errors.empty?
+    objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
     object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     # @todo we need to unlock the import.
     params[:job].end("Complete")   
@@ -46,35 +44,63 @@ class Import::CdiscTerm < Import
     save_exception(e, msg)
     params[:job].exception(msg, e)
   end 
-  handle_asynchronously :import unless Rails.env.test?
+  #handle_asynchronously :import unless Rails.env.test?
 
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
       description: "Import of CDISC Terminology",
       parent_klass: ::CdiscTerm,
-      reader_klass: Excel,
+      reader_klass: self.api? ? CDISCLibraryAPIReader : Excel,
       import_type: :cdisc_term,
-      format: :format,
+      format: self.api? ? :api_format : :excel_format,
       version_label: :date,
       label: "Controlled Terminology"
     }
   end
 
-  # Get the format
+  # API Format. Get the API format
+  #
+  # @param [Hash] params empty, ignored
+  # @return [Object] nil
+  def api_format(params)
+    nil
+  end
+
+  # Excel Format. Get the excel format
   #
   # @param [Hash] params a set of parameters
   # @option [String] :date a day date as a string
   # @return [Symbol] the sheet as a symbol. Default to C_DEFAULT if non found.
-  def format(params)
+  def excel_format(params)
     result = C_FORMAT_MAP.select{|x| x[:range].cover?(params[:date].to_datetime)}
     return C_DEFAULT if result.empty?
     return result.first[:sheet]
   end
 
 private
+
+  def check_date_and_sources(params)
+    return if !self.api? 
+    api_sources(params)
+  end
+
+  def api_sources(params)
+    params[:files] = CDISCLibraryAPI.new.ct_packages_by_date(params[:date]).values
+  rescue => e
+    self.errors.add(:base, e.message)    
+  end
+
+  # 
+  def read_and_process(params)
+    readers = read_all_sources(params)
+    merge_reader_data(readers)
+    results = add_parent(params)
+    add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
+    results
+  end
 
   # Merge the parent sets. Error if they dont match!
   def merge_reader_data(readers)
