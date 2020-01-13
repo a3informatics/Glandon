@@ -10,11 +10,10 @@
  *
  * @return [void]
  */
-function EditExtensionPanel(url, count, tc_id, callback) {
+function EditExtensionPanel(urls, count, callback) {
   var _this = this;
   this.callback = callback;
-  this.url = url;
-  this.tc_id = tc_id;
+  this.urls = urls;
   this.count = count;
 
   this.init();
@@ -46,14 +45,14 @@ EditExtensionPanel.prototype.loadData = function (offset) {
   this.processing(true);
 
   $.ajax({
-    url: this.url,
+    url: this.urls.loadUrl,
     data: {"count": this.count, "offset": offset},
     type: 'GET',
     dataType: 'json',
     context: this,
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
-        var row = this.childrenTable.row.add(result.data[i]);
+        this.childrenTable.row.add(result.data[i]);
       }
       this.childrenTable.draw();
 
@@ -70,7 +69,6 @@ EditExtensionPanel.prototype.loadData = function (offset) {
       this.processing(false);
     }
   });
-
 }
 
 EditExtensionPanel.prototype.processing = function(enable){
@@ -94,7 +92,6 @@ EditExtensionPanel.prototype.updateUI = function() {
 
 }
 
-
 /**
  * Refresh table
  *
@@ -108,30 +105,50 @@ EditExtensionPanel.prototype.refresh = function() {
 }
 
 /**
+ * Update extension ajax call
+ * @param params [Object] params containing: url, type, data
+ * @param callback [Function] success callback
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.updateExtension = function(params, callback) {
+  this.processing(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    data: params.data,
+    dataType: 'json',
+    contentType: 'application/json',
+    context: this,
+    success: function(result) {
+      this.processing(false);
+      if(callback != null)
+        callback(result);
+      else
+        this.refresh();
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.processing(false);
+    }
+  });
+}
+
+/**
  * Add New item to table
  *
  * @param ids [Array] the array with news id items
  * @return [void]
  */
-EditExtensionPanel.prototype.addNew = function(ids) {
-  var _this = this;
-  $.ajax({
-        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
-        type: "POST",
-        data: JSON.stringify({managed_concept:{"extension_ids": ids} }),
-        dataType: 'json',
-        contentType: 'application/json',
-        error: function (xhr, status, error) {
-          displayError("An error has occurred.");
-        },
-        success: function(result) {
-          $.each(result.error, function(i, e){
-            displayError(this);
-          });
-          if (result.error.length == 0)
-            _this.refresh();
-        }
-      });
+EditExtensionPanel.prototype.addToExtension = function(ids) {
+  var params = {
+    url: this.urls.updateUrl,
+    type: "POST",
+    data: JSON.stringify({managed_concept: {"extension_ids": ids}})
+  }
+
+  this.updateExtension(params, null);
 }
 
 /**
@@ -140,44 +157,22 @@ EditExtensionPanel.prototype.addNew = function(ids) {
  * @param id [String] the id item to delete
  * @return [void]
  */
-EditExtensionPanel.prototype.deleteExtension = function(id) {
-  var _this = this;
-  $.ajax({
-        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
-        type: "DELETE",
-        data: JSON.stringify({managed_concept:{"extension_ids": id} }),
-        dataType: 'json',
-        contentType: 'application/json',
-        error: function (xhr, status, error) {
-          displayError("An error has occurred.");
-        },
-        success: function(result) {
-          _this.refresh();
-        }
-      });
-}
-
-EditExtensionPanel.prototype.synonymList = function(entry) {
-  var items = [];
-  $.each(entry.synonym, function(i, value) {
-    items.push(value.label);
-  });
-  entry.synonym_list = items.join("; ");
-}
-
-EditExtensionPanel.prototype.linkButton = function (path, text) {
-  if (path === "") {
-    return "&nbsp;"
-  } else {
-    return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
+EditExtensionPanel.prototype.removeFromExtension = function(id) {
+  var params = {
+    url: this.urls.updateUrl,
+    type: "DELETE",
+    data: JSON.stringify({managed_concept: {"extension_ids": id}})
   }
+
+  this.updateExtension(params, null);
 }
 
 EditExtensionPanel.prototype.setListeners = function () {
   var _this = this;
 
   $("#extension-children-table .exclude").on('click', function () {
-    new ConfirmationDialog(_this.deleteExtension.bind(_this, [$(this).attr("data-id")]),
+    new ConfirmationDialog(
+      _this.removeFromExtension.bind(_this, [$(this).attr("data-id")]),
       {subtitle: "", dangerous: true})
     .show();
   });
@@ -210,10 +205,10 @@ EditExtensionPanel.prototype.columns = function () {
       return (data == null ? data : colorCodeTagsBadge(data));
     }},
     {"render" : function (data, type, row, meta) {
-      return "";
+      return (row.delete ? this.editBtnHTML(row) : "");
     }.bind(this)},
     {"render" : function (data, type, row, meta) {
-      return (row.delete_path == "" ? "" : this.excludeBtnHTML(row));
+      return (row.delete ? this.excludeBtnHTML(row) : "");
     }.bind(this)}
   ];
 }

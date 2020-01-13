@@ -47,7 +47,7 @@ function TermSearch(context_id, callback, url) {
 TermSearch.prototype.initTable = function() {
   this.tsSearchTable = $('#searchTable').DataTable({
     "pageLength": 5,
-    "lengthMenu": pageSettings, // Global setting
+    "lengthMenu": [5, 10, 15, 25, 50, 100],
     "columns": this.columns(),
     "processing": true,
     "serverSide": true,
