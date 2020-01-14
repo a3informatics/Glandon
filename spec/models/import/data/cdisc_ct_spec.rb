@@ -1660,7 +1660,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-12-20", :speed => 'slow' do
       release_date = "2019-12-20"
-      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, true)
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file)
       expected = [
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :no_change},     # TSPARMCD
