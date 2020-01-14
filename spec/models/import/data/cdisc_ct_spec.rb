@@ -33,6 +33,14 @@ describe "Import::CdiscTerm CT Data" do
     delete_all_public_test_files
   end
 
+  def excel_filename(version)
+    "CT_V#{version}.ttl"
+  end
+
+  def api_filename(version)
+    "CT_V#{version}_API.ttl"
+  end
+  
   def setup
     #@object = Import::CdiscTerm.new
     @object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
@@ -94,7 +102,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
   def set_write_file
-    false
+    true
   end
 
   def use_api
@@ -148,11 +156,12 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
+    target_filename = @object.api? ? api_filename(version) : excel_filename(version)
     if copy_file
-      puts colourize("***** Warning! Copying result file. *****", "red")
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V#{version}.ttl") 
+      puts colourize("***** Warning! Copying result file to '#{target_filename}'. *****", "red")
+      copy_file_from_public_files_rename("test", filename, sub_dir, target_filename) 
     end
-    check_ttl_fix_v2(filename, "CT_V#{version}.ttl", {last_change_date: true})
+    check_ttl_fix(filename, target_filename, {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -1698,6 +1707,18 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       check_cl_results(results, expected) 
       check_count(release_date)
       check_tags(release_date)
+    end
+
+  end
+
+  describe "Compare Excel and API" do
+
+    it "checks files" do
+      [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61].each do |version|
+        excel_file = excel_filename(version)
+        api_file = api_filename(version)
+        check_ttl_fix_v2(excel_file, api_file, {last_change_date: true})
+      end
     end
 
   end
