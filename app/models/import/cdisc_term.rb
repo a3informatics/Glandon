@@ -82,18 +82,20 @@ class Import::CdiscTerm < Import
 
 private
 
+  # Check date (not implemented) and sources. If API need to fins the hrefs
   def check_date_and_sources(params)
     return if !self.api? 
     api_sources(params)
   end
 
+  # Find the href sources for the API read.
   def api_sources(params)
     params[:files] = CDISCLibraryAPI.new.ct_packages_by_date(params[:date]).values
   rescue => e
     self.errors.add(:base, e.message)    
   end
 
-  # 
+  # Read and process the sources
   def read_and_process(params)
     readers = read_all_sources(params)
     merge_reader_data(readers)
