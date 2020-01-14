@@ -1,11 +1,16 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
+<%= stylesheet_link_tag 'shared/thesauri/edit_properties' %>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-modal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="tableModalLabel">Properties of <%= mc.identifier %></h4>
+        <span class="modal-title text-normal" id="tableModalLabel">
+          <span class="icon-edit text-link" style="margin-right:10px;"></span>
+          Edit properties of <span id="title-identifier"><%= mc.nil? ? "%%identifier%%" : mc.identifier %></span>
+        </span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
@@ -14,8 +19,8 @@
             <center>
               <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
             </center>
-            <%= form_for(mc, as: :edit, url: update_properties_thesauri_managed_concept_path(), html: { method: :PATCH }) do |f| %>
-              <%= f.hidden_field :context_id, :value => @context_id %>
+            <%= form_for((mc.nil? ? "id" : mc), as: :edit, url: update_properties_thesauri_managed_concept_path(), html: { method: :PATCH }) do |f| %>
+              <%= f.hidden_field :context_id, :value => (local_assigns.fetch :context_id, "") %>
             <div class="form-wrap">
               <div class="form-row">
                 <div class="form-group">
@@ -24,11 +29,11 @@
                 </div>
                 <div class="form-group">
                   <%= f.label :preferred_term, "Preferred term: "%><br/>
-                  <%= f.text_field :preferred_term,  autocomplete: "off", value: mc.preferred_term.label %>
+                  <%= f.text_field :preferred_term,  autocomplete: "off", value: (mc.nil? ? "%%pt%%" : mc.preferred_term.label) %>
                 </div>
                 <div class="form-group">
                   <%= f.label :synonym, "Synonym(s): "%><br/>
-                  <%= f.text_field :synonym, autocomplete: "off", value: mc.synonyms_to_s %>
+                  <%= f.text_field :synonym, autocomplete: "off", value: (mc.nil? ? "%%synonyms%%" : mc.synonyms_to_s) %>
                 </div>
               </div>
               <div class="form-row">

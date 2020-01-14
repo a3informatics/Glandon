@@ -8,17 +8,28 @@
 /**
  * Edit Extension Panel Constructor
  *
+ * @param urls [Object] contains loadUrl, updateUrl, childUpdateUrl
+ * @param extensionId [String] id of the currently edited extension (managed concept)
+ * @param count [Integer] Number of items fetched in one request
+ * @param callback [Function] Function to be called on extension edit
  * @return [void]
  */
-function EditExtensionPanel(urls, count, callback) {
+function EditExtensionPanel(urls, extensionId, count, callback) {
   var _this = this;
-  this.callback = callback;
   this.urls = urls;
+  this.extensionId = extensionId;
   this.count = count;
+  this.callback = callback;
 
   this.init();
+  this.loadData(0);
 }
 
+/**
+ * Initializes the children DataTable
+ *
+ * @return [void]
+ */
 EditExtensionPanel.prototype.init = function(){
   this.childrenTable = $('#extension-children-table').DataTable( {
     "order": [[ 0, "desc" ]],
@@ -32,13 +43,12 @@ EditExtensionPanel.prototype.init = function(){
       "processing": generateSpinner("medium")
     }
   });
-  this.loadData(0);
 }
 
 /**
- * Add item to table
+ * Loads data into children table and handles UI update
  *
- * @param [Integer] the offset to retrieve
+ * @param offset [Integer] the offset to retrieve
  * @return [void]
  */
 EditExtensionPanel.prototype.loadData = function (offset) {
@@ -71,44 +81,11 @@ EditExtensionPanel.prototype.loadData = function (offset) {
   });
 }
 
-EditExtensionPanel.prototype.processing = function(enable){
-  if(enable){
-    this.childrenTable.processing(true);
-    $("#edit-extension-actions").children().addClass("disabled");
-  }
-  else{
-    this.childrenTable.processing(false);
-    $("#edit-extension-actions").children().removeClass("disabled");
-  }
-}
-
 /**
- * Refresh table
+ * Update extension ajax call, refreshes table if callback not set
  *
- * @return [void]
- */
-EditExtensionPanel.prototype.updateUI = function() {
-  this.childrenTable.columns.adjust();
-
-}
-
-/**
- * Refresh table
- *
- * @return [void]
- */
-EditExtensionPanel.prototype.refresh = function() {
-  var _this = this;
-  _this.childrenTable.clear();
-  _this.loadData(0);
-  _this.callback();
-}
-
-/**
- * Update extension ajax call
  * @param params [Object] params containing: url, type, data
- * @param callback [Function] success callback
- *
+ * @param callback [Function] success callback (optional)
  * @return [void]
  */
 EditExtensionPanel.prototype.updateExtension = function(params, callback) {
@@ -136,7 +113,7 @@ EditExtensionPanel.prototype.updateExtension = function(params, callback) {
 }
 
 /**
- * Add New item to table
+ * Adds children items to the extension
  *
  * @param ids [Array] the array with news id items
  * @return [void]
@@ -152,9 +129,9 @@ EditExtensionPanel.prototype.addToExtension = function(ids) {
 }
 
 /**
- * Delete item to table
+ * Delete child item from the extension
  *
- * @param id [String] the id item to delete
+ * @param id [String] the id of the item to remove
  * @return [void]
  */
 EditExtensionPanel.prototype.removeFromExtension = function(id) {
@@ -167,17 +144,123 @@ EditExtensionPanel.prototype.removeFromExtension = function(id) {
   this.updateExtension(params, null);
 }
 
+/**
+ * Creates a new item as a child of the extension
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.newExtensionChild = function() {
+  var params = {
+    url: this.urls.newChildUrl,
+    type: "POST",
+    data: JSON.stringify({managed_concept: {identifier: "SERVERIDENTIFER"}})
+  }
+
+  this.updateExtension(params, null);
+}
+
+/**
+ * Sets the event listeners and handlers in the panel
+ *
+ * @return [void]
+ */
 EditExtensionPanel.prototype.setListeners = function () {
   var _this = this;
 
-  $("#extension-children-table .exclude").on('click', function () {
+  // Remove item from extension event
+  $("#extension-children-table .exclude").off('click').on('click', function() {
     new ConfirmationDialog(
       _this.removeFromExtension.bind(_this, [$(this).attr("data-id")]),
       {subtitle: "", dangerous: true})
     .show();
   });
+
+  $("#new-item-button").off('click').on('click', this.newExtensionChild.bind(this));
+
+  // Update item properties event
+  // $("#extension-children-table .update-properties").off('click').on('click', function() {
+  //   $("#edit-properties-modal").modal('show');
+  //   var data = _this.findRowByParam("id", {id: $(this).attr("data-id")}).data();
+  //   $("#edit-properties-modal #title-identifier").text(data.identifier);
+  //   $("#edit_notation").val(data.notation);
+  //   $("#edit_preferred_term").val(data.preferred_term);
+  //   $("#edit_synonym").val(data.synonym);
+  //   $("#edit_definition").val(data.definition);
+  //   $("#edit_parent_id").val(_this.extensionId);
+  //   $("#edit-properties-modal form").attr("action", _this.updatePropertiesUrl(data.id));
+  // });
+
+  $(window).resize(function(){ _this.childrenTable.columns.adjust() });
 }
 
+/**
+ * Enables / Disables processing on the panel
+ *
+ * @param enable [Boolean] processing enable/disable ~ true/false
+ * @return [void]
+ */
+EditExtensionPanel.prototype.processing = function(enable){
+  if(enable){
+    this.childrenTable.processing(true);
+    $("#edit-extension-actions").children().addClass("disabled");
+  }
+  else{
+    this.childrenTable.processing(false);
+    $("#edit-extension-actions").children().removeClass("disabled");
+  }
+}
+
+/**
+ * Updates panel UI
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.updateUI = function() {
+  this.childrenTable.columns.adjust();
+
+}
+
+/**
+ * Refresh table
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.refresh = function() {
+  var _this = this;
+  _this.childrenTable.clear();
+  _this.loadData(0);
+  _this.callback();
+}
+
+/**
+ * Finds a row in a DataTable based on data
+ *
+ * @param dataType [String] DataType by which to search, e.g. id
+ * @param data [Object] Data value object which to compare
+ * @return [DatatTable Row] DataTable Row result api instance (can be empty)
+ */
+EditExtensionPanel.prototype.findRowByParam = function (dataType, data) {
+	return this.childrenTable.row(function (idx, dt, node) {
+		return dt[dataType] == data[dataType] ? true : false;
+	});
+}
+
+/**
+ * Returns the url to update properties of an item
+ *
+ * @param id [String] id of the item to update
+ * @return [String] correct url
+ */
+EditExtensionPanel.prototype.updatePropertiesUrl = function (id) {
+	return this.urls.childUpdateUrl.replace("id", id);
+}
+
+/**
+ * Generates the HTML for exlude button of a child item
+ *
+ * @param data [Object] item data object
+ * @return [String] Formatted HTML with id as data-id attribute
+ */
 EditExtensionPanel.prototype.excludeBtnHTML = function (data) {
 	return "<span class='icon-times text-accent-2 clickable text-small exclude ttip' data-id='"+data.id+"'>"+
             "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
@@ -186,14 +269,25 @@ EditExtensionPanel.prototype.excludeBtnHTML = function (data) {
           "</span>";
 }
 
+/**
+ * Generates the HTML for edit button of a child item
+ *
+ * @param data [Object] item data object
+ * @return [String] Formatted HTML with id as data-id attribute
+ */
 EditExtensionPanel.prototype.editBtnHTML = function (data) {
-	return "<span class='icon-edit text-link clickable text-small modify-properties ttip' data-id='"+data.id+"'>"+
+	return "<span class='icon-edit text-link clickable text-small update-properties ttip' data-id='"+data.id+"'>"+
             "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
               "Edit item properties"+
             "</span>"+
           "</span>";
 }
 
+/**
+ * Table columns
+ *
+ * @return [Array] Object of column definitions
+ */
 EditExtensionPanel.prototype.columns = function () {
 	return [
     {"data" : "identifier"},

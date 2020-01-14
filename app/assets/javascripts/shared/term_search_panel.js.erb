@@ -151,14 +151,18 @@ TermSearch.prototype.setListeners = function() {
 
   // Select item within table event
   this.tsSearchTable.on('select', function (e, dt, type, indexes) {
-    if(type == "row")
-      _this.selectOrDeselectItem(_this.tsSearchTable.row(indexes[0]).data()['id'], true);
+    if(type == "row"){
+      var rowData = _this.tsSearchTable.row(indexes[0]).data();
+      _this.selectOrDeselectItem(rowData.id, true);
+    }
   });
 
   // Deselect item within table event
   this.tsSearchTable.on('deselect', function (e, dt, type, indexes) {
-    if(type == "row")
-      _this.selectOrDeselectItem(_this.tsSearchTable.row(indexes[0]).data()['id'], false);
+    if(type == "row"){
+      var rowData = _this.tsSearchTable.row(indexes[0]).data();
+      _this.selectOrDeselectItem(rowData.id, false);
+    }
   });
 
   // Get selected rows callback

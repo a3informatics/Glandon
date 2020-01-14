@@ -117,7 +117,6 @@ class Thesaurus
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
-    byebug
 
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
@@ -137,7 +136,7 @@ class Thesaurus
 
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
-        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
+        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
       }
     } ORDER BY ?i ?sy ?t
   } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?owned ORDER BY ?i
