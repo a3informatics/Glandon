@@ -80,20 +80,23 @@ class Thesaurus
     end
 
     # Add a child concept based on
-    #
-    # @params params [Hash] the params hash containing the concept data {:notation. :preferredTerm, :synonym, :definition, :identifier}
+    
+    # @params params [Hash] the 
     # @return [Thesaurus::UnmanagedConcept] the object created. Errors set if create failed.
-    # def add_child_based_on(object)
-    #   child = Thesaurus::UnmanagedConcept.empty_concept
-    #   child.merge!(params)
-    #   child[:identifier] = Thesaurus::UnmanagedConcept.generated_identifier? ? Thesaurus::UnmanagedConcept.new_identifier : params[:identifier]
-    #   child[:transaction] = transaction_begin
-    #   child = Thesaurus::UnmanagedConcept.create(child, self)
-    #   return child if child.errors.any?
-    #   self.add_link(:narrower, child.uri)
-    #   transaction_execute
-    #   child
-    # end
+    def add_child_based_on(object)
+      child = Thesaurus::UnmanagedConcept.empty_concept
+      child[:identifier] = Thesaurus::UnmanagedConcept.new_identifier
+      child[:label] = object.label
+      child[:preferred_term] = object.preferred_term_objects
+      child[:synonym] = object.synonym_objects
+      child[:definition] = object.definition
+      child[:transaction] = transaction_begin
+      child = Thesaurus::UnmanagedConcept.create(child, self)
+      return child if child.errors.any?
+      self.add_link(:narrower, child.uri)
+      transaction_execute
+      child
+    end
 
     # Children Pagination. Get the children in pagination manner
     #
@@ -121,9 +124,9 @@ class Thesaurus
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
         {
-          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned ?s ?sy ?t WHERE
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t WHERE
           {
             VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             {
@@ -132,17 +135,17 @@ class Thesaurus
               ?s th:definition ?d .
               ?s th:extensible ?e .
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?owned)
+              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
-        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?owned ORDER BY ?i
+        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ORDER BY ?i
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :owned, :gt]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, owned: x[:owned].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
     end
