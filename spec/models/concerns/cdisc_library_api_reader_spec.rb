@@ -20,4 +20,9 @@ describe CDISCLibraryAPIReader do
     object.execute({})
   end
 
+  it "returns full path" do
+    object = CDISCLibraryAPIReader.new("xxxxx")
+    expect(object.full_path).to eq("CDISC API: xxxxx")
+  end
+
 end

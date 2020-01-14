@@ -29,4 +29,11 @@ class CDISCLibraryAPIReader
     @engine.process(@href)    
   end
 
+  # Full Path. Return the full path to the source. In this case the API href.
+  #
+  # @return [String] the path
+  def full_path
+    "CDISC API: #{@href}" 
+  end
+
 end    
