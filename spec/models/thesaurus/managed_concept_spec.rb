@@ -229,6 +229,16 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
+    it "allows a new child TC to be added, add_child_based_on" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child_based_on
+      expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml", write_file: true)
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml", write_file: true)
+    end
+
     it "prevents a duplicate TC being added" do
       local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).twice.and_return(local_configuration)
@@ -813,7 +823,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml")
     end
 
-    it "normal, owned flag " do
+    it "normal, single_parent flag " do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
@@ -826,18 +836,18 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml")
     end
 
-    it "normal, owned flag 2 " do
+    it "normal, single_parent flag 2 " do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml")
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
       ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
       item.add_extensions([ext.uri, ext2.uri])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml")
     end
 
   end
