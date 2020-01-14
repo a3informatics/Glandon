@@ -110,12 +110,14 @@ private
     response
   end 
 
-  # Set the tag. Only one at the curren time.
+  # Set the tags.
   def set_tags(title)
     @tags = []
-    tag = @api.ct_tag(title)
-    return if tag.nil?
-    @tags << IsoConceptSystem.path(["CDISC"] + [tag])
+    tags = @api.ct_tags(title)
+    return if tags.empty?
+    tags.each do |tag|
+      @tags << IsoConceptSystem.path(["CDISC"] + [tag])
+    end
   end
 
 end    

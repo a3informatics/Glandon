@@ -1985,22 +1985,60 @@ defaults: &defaults
         products:
           ADaM:
             label: ADaM
-            tag: ADaM
+            tags: 
+              - ADaM
+            from: 2010-05-03
+            to: 2100-01-01
           CDASH:
             label: CDASH
-            tag: CDASH
+            tags: 
+              - CDASH
+            from: 2010-05-03
+            to: 2100-01-01
           SDTM:
             label: SDTM  
-            tag: SDTM
+            tags: 
+              - SDTM
+            from: 2007-03-06
+            to: 2100-01-01
           Protocol:
             label: Protocol
-            tag: Protocol
+            tags: 
+              - Protocol
+            from: 2017-06-30
+            to: 2100-01-01
           SEND:
             label: SEND
-            tag: SEND
-          #Define:
-          #  label: Define
-          #  tag: Define-XML
+            tags: 
+              - SEND
+            from: 2011-06-10
+            to: 2100-01-01
+          "QS-FT":
+            label: QS-FT
+            tags:                     
+              - QS-FT
+              - SDTM
+            from: 2011-06-10
+            to: 2014-10-06
+          QRS:
+            label: QRS
+            tags:                     
+              - QRS
+              - SDTM
+            from: 2015-06-26
+            to: 2015-09-25
+          COA:
+            label: COA
+            tags:                     
+              - COA
+              - SDTM
+            from: 2014-12-19
+            to: 2015-03-27
+          Define:
+            label: Define
+            tag: Define-XML
+            from: 2019-12-20
+            to: 2100-01-01
 
 development:
   <<: *defaults

@@ -53,15 +53,15 @@ class CDISCLibraryAPI
     application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
-  # CT Tag. Return the tag associated with the CT pacakge
+  # CT Tags. Return the tag associated with the CT pacakge
   #
   # @param [String] title the title for the stream
-  # @return [Symbol] tag associated with the stream
-  def ct_tag(title)
+  # @return [Array] Array of tags associated with the stream
+  def ct_tags(title)
     product = product_from_title(title)
     entry = ct_products.select{|k,v| v[:label].upcase == product.upcase}
     return nil if entry.blank?
-    entry.values.first[:tag]
+    entry.values.first[:tags]
   end
 
   # ---------
@@ -87,7 +87,7 @@ private
   def hrefs_for_date(list, required_date)
     hrefs = {}
     dates = list.keys.reverse
-    products = ct_products
+    products = ct_products_by_date(required_date)
     products.each do |product, details|
       found = false
       dates.each do |date|
@@ -104,6 +104,11 @@ private
     return hrefs if hrefs.keys == products.keys
     missing = products.keys - hrefs.keys
     Errors.application_error(self.class.name, __method__.to_s, "Missing sources '#{missing}' when looking for hrefs for release '#{required_date}'.")
+  end
+
+  # Find the ct products from the config data filtered by date
+  def ct_products_by_date(required_date)
+    ct_products.select{|k,v| required_date.to_date.between?(v[:from].to_date, v[:to].to_date) }
   end
 
   # Find the ct products from the config data

@@ -20,6 +20,13 @@ describe "CDISC Library API" do
     check_file_actual_expected(result_1, sub_dir, "products_expected_1.yaml", equate_method: :hash_equal)
   end
 
+  it "list CT" do
+    object = CDISCLibraryAPI.new
+    result = object.request(CDISCLibraryAPI::C_CT_PACKAGES_URL)
+    puts colourize("+++++ CT List +++++\n#{result}\n+++++", "blue")
+    check_file_actual_expected(result, sub_dir, "ct_list_expected_1.yaml", equate_method: :hash_equal)
+  end
+
   it "ct packages" do
     object = CDISCLibraryAPI.new
     result = object.ct_packages
@@ -40,6 +47,12 @@ describe "CDISC Library API" do
     check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_2.yaml", equate_method: :hash_equal)
     result = object.ct_packages_by_date('2019-09-27')
     check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_3.yaml", equate_method: :hash_equal)
+    result = object.ct_packages_by_date('2014-09-26')
+    check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_4.yaml", equate_method: :hash_equal)
+    result = object.ct_packages_by_date('2015-09-25')
+    check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_5.yaml", equate_method: :hash_equal)
+    result = object.ct_packages_by_date('2015-12-18')
+    check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_6.yaml", equate_method: :hash_equal)
   end
 
   it "ct packages by date, no date found" do
@@ -59,10 +72,10 @@ describe "CDISC Library API" do
     check_file_actual_expected(result, sub_dir, "ct_package_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "ct package tag" do
+  it "ct package tags" do
     object = CDISCLibraryAPI.new
     result = object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")
-    expect(object.ct_tag(result[:label])).to eq("Protocol")
+    expect(object.ct_tags(result[:label])).to eq(["Protocol"])
   end
 
   it "ct package, not enabled" do
