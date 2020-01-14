@@ -63,7 +63,6 @@ describe "Import::SponsorTermFormatOne" do
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
-byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
