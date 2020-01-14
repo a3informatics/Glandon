@@ -109,38 +109,37 @@ class Thesaurus
       tags = params.key?(:tags) ? params[:tags] : []
 
       # Get the URIs for each child
-      query_string = %Q{SELECT ?e WHERE
-  {
-    #{self.uri.to_ref} th:narrower ?e .
-    ?e th:identifier ?v
-  } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
-  }
+      query_string = %Q{
+        SELECT ?e WHERE
+        {
+          #{self.uri.to_ref} th:narrower ?e .
+          ?e th:identifier ?v
+        } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
+      }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
-    byebug
-
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
-  {
-    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned ?s ?sy ?t WHERE
-    {
-      VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
-      {
-        ?s th:identifier ?i .
-        ?s th:notation ?n .
-        ?s th:definition ?d .
-        ?s th:extensible ?e .
-        BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-        BIND(NOT EXISTS {#{self.uri.to_ref} th:narrower/^th:narrower ?r. FILTER (?r != #{self.uri.to_ref}) } as ?owned)
-        OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
-        OPTIONAL {?s th:synonym/isoC:label ?sy .}
-        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        {
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?owned ?s ?sy ?t WHERE
+          {
+            VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+            {
+              ?s th:identifier ?i .
+              ?s th:notation ?n .
+              ?s th:definition ?d .
+              ?s th:extensible ?e .
+              BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
+              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?owned)
+              OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+              OPTIONAL {?s th:synonym/isoC:label ?sy .}
+              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
+            }
+          } ORDER BY ?i ?sy ?t
+        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?owned ORDER BY ?i
       }
-    } ORDER BY ?i ?sy ?t
-  } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?owned ORDER BY ?i
-  }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
       query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :owned, :gt]).each do |x|
         results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, owned: x[:owned].to_bool, uri: x[:s].to_s, id: x[:s].to_id}

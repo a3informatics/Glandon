@@ -818,6 +818,7 @@ describe "Thesaurus::ManagedConcept" do
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
+byebug
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", write_file: true)
     
