@@ -56,7 +56,7 @@ class Import::ChangeInstruction < Import
       parent_klass: Import::ChangeInstruction::Instruction,
       import_type: :cdisc_change_instructions,
       reader_klass: Excel,
-      sheet_name: :format,
+      format: :format,
       #version_label: :date,
     }
   end
@@ -107,11 +107,13 @@ private
 
   # Read all the Excel files
   def read_all_sources(params)
+    params[:import_type] = configuration[:import_type]
+    params[:format] = self.send(configuration[:format], params)
     params[:files].each do |file|
       reader = configuration[:reader_klass].new(file)
       merge_errors(reader, self)
       next if !reader.errors.empty?
-      reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
+      reader.execute(params)
       merge_errors(reader, self)
       next if !reader.errors.empty?
       @changes += reader.engine.parent_set.map {|k,v| v}
