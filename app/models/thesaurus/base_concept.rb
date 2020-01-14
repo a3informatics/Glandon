@@ -133,8 +133,7 @@ class Thesaurus
         ?s th:definition ?d .
         ?s th:extensible ?e .
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-        BIND(EXISTS {#{self.uri.to_ref} th:narrower ?s} && NOT EXISTS {#{self.uri.to_ref} th:narrower/^th:narrower ?r. FILTER (?r != #{self.uri.to_ref}) } as ?owned)
-
+        BIND(NOT EXISTS {#{self.uri.to_ref} th:narrower/^th:narrower ?r. FILTER (?r != #{self.uri.to_ref}) } as ?owned)
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
         OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
