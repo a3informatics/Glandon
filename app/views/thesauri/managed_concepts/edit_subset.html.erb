@@ -16,7 +16,7 @@
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %> </div>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#edit-properties-modal", id: "edit-properties",
         icon: "icon-edit", btn_text: "Edit properties", dt_toggle: "modal", disabled: false } %>
-      <%= render partial: "shared/iso_managed/edit_item_properties", :locals => {mc: @subset_mc} %>
+      <%= render partial: "shared/thesauri/managed_concept_edit_properties", :locals => {mc: @subset_mc, context_id: @context_id} %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>

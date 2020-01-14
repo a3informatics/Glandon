@@ -135,7 +135,7 @@ class Thesaurus
               BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?owned)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
-              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
+              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
         } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?owned ORDER BY ?i

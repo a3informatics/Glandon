@@ -3,9 +3,15 @@
 <h3 class="card-header">Edit Extension</h3>
 <div class="card-content table-cardstyle">
   <div class="btns-wrap" id="edit-extension-actions">
-    <a href="#searchModal" class="btn medium green" id="add-existing-button" data-toggle="modal"><span class="icon-search"></span> Add existing CL Item(s)</a>
-    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item</button>
-    <button class="btn medium green" id="add-existing-button"><span class="icon-plus text-tiny"></span>  New CL Item(s) from synonyms</button>
+    <a href="#searchModal" class="btn medium green ttip" id="add-existing-button" data-toggle="modal">
+      <span class="ttip-text ttip-left shadow-small text-medium">Find and select 1 or more existing items</span>
+      <span class="icon-search"></span> Add existing CL Item(s)</a>
+    <button class="btn medium green ttip" id="new-item-button">
+      <span class="ttip-text ttip-left shadow-small text-medium">Creates a blank child item</span>
+      <span class="icon-plus text-tiny"></span>  New CL Item</button>
+    <button class="btn medium green ttip" id="new-from-synonyms-button">
+      <span class="ttip-text ttip-left shadow-small text-medium">Click the row with the synonyms <br/> you wish to create children based on.</span>
+      <span class="icon-plus text-tiny"></span>  New CL Item(s) from synonyms</button>
   </div>
   <table id="extension-children-table" class="table">
     <thead>
