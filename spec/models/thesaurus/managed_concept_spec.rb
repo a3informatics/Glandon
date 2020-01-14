@@ -813,20 +813,31 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml")
     end
 
-    it "normal, " do
+    it "normal, owned flag " do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
-byebug
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", write_file: true)
-    
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml")
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
       item.add_extensions([ext.uri])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml")
+    end
 
+    it "normal, owned flag 2 " do
+      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml", write_file: true)
+      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
+      ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
+      item.add_extensions([ext.uri, ext2.uri])
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", write_file: true)
     end
 
   end
