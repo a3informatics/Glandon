@@ -1,5 +1,5 @@
 $(document).ready( function() {
-  var extUrls = {loadUrl: showDataUrl, updateUrl: extensionUrl, childUpdateUrl: childUpdatePropertiesUrl, newChildUrl: newChildUrl}
+  var extUrls = {loadUrl: showDataUrl, updateUrl: extensionUrl, newChildUrl: newChildUrl}
   var eep = new EditExtensionPanel(extUrls, extensionId, 1000, editCallback);
   var searchModal = new TermSearch(contextId, eep.addToExtension.bind(eep), searchUrl);
 

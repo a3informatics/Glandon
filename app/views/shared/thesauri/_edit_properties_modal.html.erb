@@ -2,43 +2,44 @@
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 <%= stylesheet_link_tag 'shared/thesauri/edit_properties' %>
+<%= javascript_include_tag 'shared/thesauri/edit_properties' %>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-modal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <span class="modal-title text-normal" id="tableModalLabel">
           <span class="icon-edit text-link" style="margin-right:10px;"></span>
-          Edit properties of <span id="title-identifier"><%= umc.nil? ? "identifier" : umc.identifier %></span>
+          Edit properties of <span class="title-identifier"></span>
         </span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
+            <div class="errors"></div>
             <center>
               <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
             </center>
-            <%= form_for(:edit, url: thesauri_unmanaged_concept_path((umc.nil? ? "id" : umc)), html: { method: :PATCH }) do |f| %>
-              <%= f.hidden_field :parent_id, :value => (local_assigns.fetch :context_id, "") %>
             <div class="form-wrap">
               <div class="form-row">
                 <div class="form-group">
-                  <%= f.label :notation, "Submission value: "%><br/>
-                  <%= f.text_field :notation, autocomplete: "off", autofocus: true %>
+                  <label for="notation"> Submission value: </label><br/>
+                  <input type="text" autocomplete="false" autofocus="true" name="notation" value=""></input>
                 </div>
                 <div class="form-group">
-                  <%= f.label :preferred_term, "Preferred term: "%><br/>
-                  <%= f.text_field :preferred_term,  autocomplete: "off", value: (umc.nil? ? "%%pt%%" : umc.preferred_term.label) %>
+                  <label for="preferred_term"> Preferred term: </label><br/>
+                  <input type="text" autocomplete="false" name="preferred_term" value=""></input>
                 </div>
                 <div class="form-group">
-                  <%= f.label :synonym, "Synonym(s): "%><br/>
-                  <%= f.text_field :synonym, autocomplete: "off", value: (umc.nil? ? "%%synonyms%%" : umc.synonyms_to_s) %>
+                  <label for="synonym"> Synonyms: </label><br/>
+                  <input type="text" autocomplete="false" name="synonym" value=""></input>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <%= f.label :definition, "Definition: "%><br/>
-                  <%= f.text_area :definition, autocomplete: "off" %>
+                  <label for="definition"> Definition: </label><br/>
+                  <textarea name="definition" value=""></textarea>
                 </div>
               </div>
             </div>
@@ -46,10 +47,10 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn medium" id="close_modal_button" data-dismiss="modal" aria-label="Close">Close</button>
-        <%= f.submit "Submit", id: "submit_button", class: "btn green medium submit-btn" %>
-        <% end %>
+        <button type="button" class="btn medium" id="close-modal-button" data-dismiss="modal" aria-label="Close">Close</button>
+        <button class="btn medium green submit-btn" id="submit-button">Save changes</button>
       </div>
     </div>
   </div>
+  <%= javascript_tag "var baseUMCUrl = '#{update_properties_thesauri_unmanaged_concept_path("id")}'" %>
 </div>

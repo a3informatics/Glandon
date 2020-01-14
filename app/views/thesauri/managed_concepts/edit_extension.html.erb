@@ -6,7 +6,6 @@
 <%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
                         extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
                         searchUrl = '#{search_current_thesauri_index_path}',
-                        childUpdatePropertiesUrl = '#{thesauri_unmanaged_concept_path("id")}',
                         newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
                         extensionId = '#{@tc.id}',
                         is_extended = false,
@@ -17,7 +16,7 @@
 
 <% if policy(Thesaurus).edit? %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
-  <%= render partial: "shared/thesauri/unmanaged_concept_edit_properties", :locals => { umc: nil } %>
+  <%= render partial: "shared/thesauri/edit_properties_modal" %>
 <% end %>
 
 <div class="row">

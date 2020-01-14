@@ -210,6 +210,7 @@ Rails.application.routes.draw do
         get :synonym_links
         get :preferred_term_links
         get :change_instruction_links
+        patch :update_properties
       end
     end
     resources :subsets, only: [] do

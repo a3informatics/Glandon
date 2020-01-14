@@ -160,6 +160,18 @@ EditExtensionPanel.prototype.newExtensionChild = function() {
 }
 
 /**
+ * Edit item properties handler
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.editItemProperties = function(tableRow) {
+  tableRow.data()["parent_id"] = extensionId;
+  var callback = function(item) { tableRow.data(item); this.childrenTable.draw(); }.bind(this);
+
+  new EditProperties(tableRow.data(), "UnmanagedConcept", callback).show();
+}
+
+/**
  * Sets the event listeners and handlers in the panel
  *
  * @return [void]
@@ -175,21 +187,15 @@ EditExtensionPanel.prototype.setListeners = function () {
     .show();
   });
 
+  // New child item in extension event
   $("#new-item-button").off('click').on('click', this.newExtensionChild.bind(this));
 
-  // Update item properties event
-  // $("#extension-children-table .update-properties").off('click').on('click', function() {
-  //   $("#edit-properties-modal").modal('show');
-  //   var data = _this.findRowByParam("id", {id: $(this).attr("data-id")}).data();
-  //   $("#edit-properties-modal #title-identifier").text(data.identifier);
-  //   $("#edit_notation").val(data.notation);
-  //   $("#edit_preferred_term").val(data.preferred_term);
-  //   $("#edit_synonym").val(data.synonym);
-  //   $("#edit_definition").val(data.definition);
-  //   $("#edit_parent_id").val(_this.extensionId);
-  //   $("#edit-properties-modal form").attr("action", _this.updatePropertiesUrl(data.id));
-  // });
+  // Edit item properties event
+  $("#extension-children-table .update-properties").off('click').on('click', function(){
+    _this.editItemProperties(_this.findRowByParam("id", {id: $(this).attr("data-id")}));
+  });
 
+  // Resize event
   $(window).resize(function(){ _this.childrenTable.columns.adjust() });
 }
 
@@ -217,7 +223,6 @@ EditExtensionPanel.prototype.processing = function(enable){
  */
 EditExtensionPanel.prototype.updateUI = function() {
   this.childrenTable.columns.adjust();
-
 }
 
 /**
@@ -243,16 +248,6 @@ EditExtensionPanel.prototype.findRowByParam = function (dataType, data) {
 	return this.childrenTable.row(function (idx, dt, node) {
 		return dt[dataType] == data[dataType] ? true : false;
 	});
-}
-
-/**
- * Returns the url to update properties of an item
- *
- * @param id [String] id of the item to update
- * @return [String] correct url
- */
-EditExtensionPanel.prototype.updatePropertiesUrl = function (id) {
-	return this.urls.childUpdateUrl.replace("id", id);
 }
 
 /**
