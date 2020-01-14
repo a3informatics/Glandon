@@ -146,8 +146,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      redirect_to thesauri_managed_concept_path(id: tc.subsets_links.to_id, managed_concept: {context_id: params[:context_id]})
-      flash[:error] = "The edit lock has timed out."
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
     end
   end
 
