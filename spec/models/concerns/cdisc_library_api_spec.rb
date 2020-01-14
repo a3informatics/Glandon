@@ -72,6 +72,19 @@ describe "CDISC Library API" do
     check_file_actual_expected(result, sub_dir, "ct_package_expected_1.yaml", equate_method: :hash_equal)
   end
 
+  it "ct package, mismatched definitions, 2017-03-31" do
+    object = CDISCLibraryAPI.new
+    result_1 = object.ct_package("/mdr/ct/packages/sdtmct-2017-03-31")
+    result_2 = object.ct_package("/mdr/ct/packages/sendct-2017-03-31")
+    check_file_actual_expected(result_1, sub_dir, "ct_package_expected_2_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(result_2, sub_dir, "ct_package_expected_2_2.yaml", equate_method: :hash_equal)
+    def_1 = result_1.dig(:codelists).select{|x| x[:conceptId] == "C65047"}.first[:terms].select{|x| x[:conceptId] == "C132367"}.first[:definition]
+    def_2 = result_2.dig(:codelists).select{|x| x[:conceptId] == "C65047"}.first[:terms].select{|x| x[:conceptId] == "C132367"}.first[:definition]
+    expect(def_1).to_not eq(def_2)
+    puts colourize("+++++ SDTM Def: #{def_1} +++++", "blue")
+    puts colourize("+++++ SEND Def: #{def_2} +++++", "blue")
+  end
+
   it "ct package tags" do
     object = CDISCLibraryAPI.new
     result = object.ct_package("/mdr/ct/packages/protocolct-2019-03-29")
