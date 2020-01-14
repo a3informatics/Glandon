@@ -146,8 +146,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      redirect_to thesauri_managed_concept_path(id: tc.subsets_links.to_id, managed_concept: {context_id: params[:context_id]})
-      flash[:error] = "The edit lock has timed out."
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
     end
   end
 
@@ -355,8 +354,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     subset_tcs = []
     if !subsets.nil?
       subsets.map{|x| x[:s].to_id}.each{|s|
-        mc = Thesaurus::ManagedConcept.find_full(s)
-        subset_item = mc.to_h
+        mc = Thesaurus::ManagedConcept.find_with_properties(s)
+        subset_item = mc.simple_to_h
         subset_item[:edit_path] = edit_subset_thesauri_managed_concept_path(mc, source_mc: tc.id, context_id: params[:context_id])
         subset_tcs << subset_item
       }

@@ -320,8 +320,20 @@ describe Thesauri::ManagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @user)
       put :update_properties, {id: mc.id, edit: {synonym: "syn1; syn2"}}
-      expect(response).to redirect_to("path")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data][0]
+      expect(actual[:synonym]).to eq("syn1; syn2")
       expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
+    it "update properties, error" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: mc.id, edit: {definition: "\#€=/*-/"}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("Definition contains invalid characters")
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it 'adds a child thesaurus concept' do
@@ -534,7 +546,7 @@ describe Thesauri::ManagedConceptsController do
     it "prevents access to a reader, destroy" do
       delete :destroy, id: 10 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
-    end      
+    end
 
   end
 

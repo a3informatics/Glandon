@@ -80,8 +80,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      flash[:error] = "The edit lock has timed out."
-      render :json => {:data => {}, :link => history_thesauri_managed_concepts_path(parent, managed_concept: {identifier: parent.identifier, scope_id: parent.scope.id})}, :status => 422
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
     end
   end
 
