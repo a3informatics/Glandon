@@ -157,8 +157,8 @@ describe Thesauri::ManagedConceptsController do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/json"
       expected = [
-        {id: "1", delete: false, delete_path: "", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"},
-        {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"}
+        {id: "1", delete: false, delete_path: "", owned: false, edit_path:"", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"},
+        {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", owned: true, edit_path: "/thesauri/unmanaged_concepts/2/edit?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"}
       ]
       tc = Thesaurus::ManagedConcept.new
       ct = Thesaurus.new
@@ -167,7 +167,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus).to receive(:find_minimum).and_return(ct)
       expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)
       expect(ct).to receive(:tag_labels).and_return([])
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false}, {id: "2", delete: true}])
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false, owned: false}, {id: "2", delete: true, owned: true}])
       get :show_data, {id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

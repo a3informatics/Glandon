@@ -245,6 +245,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     children = tc.children_pagination(params)
     children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id, context_id: context_id}})})}
     results = children.map{|x| x.reverse_merge!({delete_path: x[:delete] ? thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}
+    results = children.map{|x| x.reverse_merge!({edit_path: x[:owned] ? edit_thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}
     render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
   end
 
