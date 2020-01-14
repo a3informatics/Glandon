@@ -4,6 +4,11 @@ $(document).ready( function() {
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new Unload(false);
 
+  $("#edit-properties").on("click", function(){
+    // currentItem is declared in the edit_properties_modal
+    new EditProperties(currentItem, "ManagedConcept", null).show();
+  });
+
   function loadCallback(obj){
     obj.isLoaded = true;
     if(subsetEditPanel.isLoaded && sourceChildrenPanel.isLoaded){

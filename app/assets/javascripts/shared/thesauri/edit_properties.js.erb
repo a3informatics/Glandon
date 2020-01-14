@@ -73,7 +73,7 @@ EditProperties.prototype.save = function() {
       data: params.data,
       context: this,
       success: function(result){
-        this.item = this.mergeResultItem(this.item, result.data);
+        this.item = this.mergeResultItem(this.item, result.data[0]);
         this.loading(false);
 
         if (this.callback != null) {
@@ -104,6 +104,11 @@ EditProperties.prototype.requestParams = function() {
       changedData["parent_id"] = this.item.parent_id;
       params["type"] = "PATCH";
       params["url"] = baseUMCUrl.replace("id", this.item.id);
+      params["data"] = {edit: changedData};
+      break;
+    case "ManagedConcept":
+      params["type"] = "PATCH";
+      params["url"] = baseMCUrl.replace("id", this.item.id);
       params["data"] = {edit: changedData};
       break;
   }

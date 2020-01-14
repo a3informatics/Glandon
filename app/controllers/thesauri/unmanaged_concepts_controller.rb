@@ -75,12 +75,8 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
         result = tc.simple_to_h
-        render :json => {:data => result}, :status => 200
+        render :json => {:data => [result]}, :status => 200
       else
-        errors = []
-        tc.errors.each do |name, msg|
-          errors << {name: name, status: msg}
-        end
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else

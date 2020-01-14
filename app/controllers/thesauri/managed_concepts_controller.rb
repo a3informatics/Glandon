@@ -140,13 +140,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
       tc = tc.update(edit_params)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Managed Concept updated.") if token.refresh == 1
-        redirect_to request.referrer
+        result = tc.simple_to_h
+        render :json => {:data => [result]}, :status => 200
       else
-        redirect_to request.referrer
-        errors = []
-        tc.errors.each do |name, msg|
-          flash[:error] = msg
-        end
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       redirect_to thesauri_managed_concept_path(id: tc.subsets_links.to_id, managed_concept: {context_id: params[:context_id]})
