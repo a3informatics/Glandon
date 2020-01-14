@@ -89,6 +89,8 @@ describe "CDISC Library API" do
     expect(object.enabled?).to eq(true)
     expect(EnvironmentVariable).to receive(:read).and_return("false")
     expect(object.enabled?).to eq(false)
+    expect(EnvironmentVariable).to receive(:read).and_return(StandardError.new("Error"))
+    expect{object.enabled?}.to raise_error(Errors::ApplicationLogicError, "Error detected determining if CDISC Library API enabled.")
   end
 
 end

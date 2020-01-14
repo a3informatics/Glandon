@@ -50,7 +50,7 @@ class CDISCLibraryAPI
   def enabled?
     EnvironmentVariable.read("cdisc_library_api_enabled").to_bool
   rescue => e
-    application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
+    Errors.application_error(self.class.name, __method__.to_s, "Error detected determining if CDISC Library API enabled.")
   end
 
   # CT Tags. Return the tag associated with the CT pacakge
