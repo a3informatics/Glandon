@@ -213,7 +213,7 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 	});
 
 	// Exclude item button click event handler
-	$(_this.mcs.tableId).find(".exclude").off("click").on("click", function ()  {
+	$(_this.mcs.tableId + " tbody").off("click", ".exclude").on("click", ".exclude", function ()  {
 		var item = _this.table.rows($(this).parents("tr:first")).data();
 		var origin = item[0].sourceInfo;
 

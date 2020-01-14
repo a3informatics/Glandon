@@ -527,6 +527,17 @@ describe Thesauri::ManagedConceptsController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
+    it "add child to extension" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
+      child_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      token = Token.obtain(tc, @user)
+      post :add_extensions, {id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+    end
+
   end
 
   describe "Unauthorized User" do

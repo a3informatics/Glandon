@@ -23,6 +23,9 @@ function EditExtensionPanel(urls, extensionId, count, callback) {
 
   this.init();
   this.loadData(0);
+
+  // Resize event
+  $(window).resize(function(){ _this.childrenTable.columns.adjust() });
 }
 
 /**
@@ -36,6 +39,7 @@ EditExtensionPanel.prototype.init = function(){
     "columns": this.columns(),
     "pageLength": pageLength, // Global setting
     "lengthMenu": pageSettings, // Global setting
+    "paging": true,
     "processing": true,
     "language": {
       "infoFiltered": "",
@@ -71,7 +75,6 @@ EditExtensionPanel.prototype.loadData = function (offset) {
       else {
         this.processing(false);
         this.updateUI();
-        this.setListeners();
       }
     },
     error: function(xhr,status,error){
@@ -166,7 +169,7 @@ EditExtensionPanel.prototype.newExtensionChild = function() {
  */
 EditExtensionPanel.prototype.editItemProperties = function(tableRow) {
   tableRow.data()["parent_id"] = extensionId;
-  var callback = function(item) { tableRow.data(item); this.childrenTable.draw(); }.bind(this);
+  var callback = function(item) { tableRow.data(item); this.updateUI(); }.bind(this);
 
   new EditProperties(tableRow.data(), "UnmanagedConcept", callback).show();
 }
@@ -180,7 +183,7 @@ EditExtensionPanel.prototype.setListeners = function () {
   var _this = this;
 
   // Remove item from extension event
-  $("#extension-children-table .exclude").off('click').on('click', function() {
+  $("#extension-children-table tbody").off('click', '.exclude').on('click', '.exclude', function() {
     new ConfirmationDialog(
       _this.removeFromExtension.bind(_this, [$(this).attr("data-id")]),
       {subtitle: "", dangerous: true})
@@ -191,12 +194,9 @@ EditExtensionPanel.prototype.setListeners = function () {
   $("#new-item-button").off('click').on('click', this.newExtensionChild.bind(this));
 
   // Edit item properties event
-  $("#extension-children-table .update-properties").off('click').on('click', function(){
+  $("#extension-children-table tbody").off('click', '.update-properties').on('click', ".update-properties", function(){
     _this.editItemProperties(_this.findRowByParam("id", {id: $(this).attr("data-id")}));
   });
-
-  // Resize event
-  $(window).resize(function(){ _this.childrenTable.columns.adjust() });
 }
 
 /**
@@ -223,6 +223,8 @@ EditExtensionPanel.prototype.processing = function(enable){
  */
 EditExtensionPanel.prototype.updateUI = function() {
   this.childrenTable.columns.adjust();
+  this.childrenTable.draw();
+  this.setListeners();
 }
 
 /**

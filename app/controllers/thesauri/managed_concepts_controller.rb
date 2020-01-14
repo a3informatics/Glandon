@@ -331,19 +331,29 @@ class Thesauri::ManagedConceptsController < ApplicationController
     uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
     if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-      tc.add_extensions(uris)
+      token = Token.find_token(tc, current_user)
+      if !token.nil?
+        tc.add_extensions(uris)
+        render json: {data: {}, error: errors}
+      else
+        render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+      end
     else
-      errors = ["Not all of the items were code list items."]
+      render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
     end
-    render json: {data: {}, error: errors}
   end
 
   def destroy_extensions
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-    tc.delete_extensions(uris)
-    render json: {data: {}, error: []}
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+      tc.delete_extensions(uris)
+      render json: {data: {}, error: []}, :status => 200
+    else
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+    end
   end
 
   #Subsets
