@@ -798,11 +798,11 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml", write_file: true)
       ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
       item.add_extensions([ext.uri])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml", write_file: true)
     end
 
     it "normal with tags filter" do
@@ -813,17 +813,20 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml")
     end
 
-    it "normal, extended" do
+    it "normal, " do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
+byebug
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", write_file: true)
+    
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
       item.add_extensions([ext.uri])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", write_file: true)
+
     end
 
   end
