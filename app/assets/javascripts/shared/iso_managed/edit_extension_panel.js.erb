@@ -9,7 +9,7 @@
  * Edit Extension Panel Constructor
  *
  * @param urls [Object] contains loadUrl, updateUrl, childUpdateUrl
- * @param extensionId [String] id of the currently edited extension (managed concept)
+ * @param extensionId [String] id of the extension being edited
  * @param count [Integer] Number of items fetched in one request
  * @param callback [Function] Function to be called on extension edit
  * @return [void]
@@ -20,12 +20,12 @@ function EditExtensionPanel(urls, extensionId, count, callback) {
   this.extensionId = extensionId;
   this.count = count;
   this.callback = callback;
+  this.tableId = '#extension-children-table';
 
   this.init();
   this.loadData(0);
 
-  // Resize event
-  $(window).resize(function(){ _this.childrenTable.columns.adjust() });
+  $(window).resize(function(){ _this.table.columns.adjust() });
 }
 
 /**
@@ -34,18 +34,19 @@ function EditExtensionPanel(urls, extensionId, count, callback) {
  * @return [void]
  */
 EditExtensionPanel.prototype.init = function(){
-  this.childrenTable = $('#extension-children-table').DataTable( {
+  this.table = $(this.tableId).DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": this.columns(),
     "pageLength": pageLength, // Global setting
     "lengthMenu": pageSettings, // Global setting
     "paging": true,
     "processing": true,
+    "select": "api",
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
       "processing": generateSpinner("medium")
-    }
+    },
   });
 }
 
@@ -66,9 +67,9 @@ EditExtensionPanel.prototype.loadData = function (offset) {
     context: this,
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
-        this.childrenTable.row.add(result.data[i]);
+        this.table.row.add(result.data[i]);
       }
-      this.childrenTable.draw();
+      this.table.draw();
 
       if (result.count >= this.count)
         this.loadData(result.offset + this.count);
@@ -163,15 +164,52 @@ EditExtensionPanel.prototype.newExtensionChild = function() {
 }
 
 /**
- * Edit item properties handler
+ * Creates new item(s) as a child of the extension based on synonyms
  *
+ * @param id [String] the id of the reference item
+ * @param count [Int] number of synonyms that the item has
  * @return [void]
  */
-EditExtensionPanel.prototype.editItemProperties = function(tableRow) {
-  tableRow.data()["parent_id"] = extensionId;
-  var callback = function(item) { tableRow.data(item); this.updateUI(); }.bind(this);
+EditExtensionPanel.prototype.newExtensionSynChildren = function(id, count) {
+  this.itemSelectUI(false);
 
-  new EditProperties(tableRow.data(), "UnmanagedConcept", callback).show();
+  if(count < 1)
+    return;
+
+  var params = {
+    url: this.urls.newChildUrl,
+    type: "POST",
+    data: JSON.stringify({unmanaged_concept: {id: id}})
+  }
+
+  this.updateExtension(params, null);
+}
+
+/**
+ * Edit item properties handler; finds row, appends parent id, calls the EditProperties modal
+ *
+ * @param id [String] id of the item to edit properties of
+ * @return [void]
+ */
+EditExtensionPanel.prototype.editItemProperties = function(id) {
+  var row = this.findRowByParam("id", id);
+  row.data()["parent_id"] = extensionId;
+  var callback = function(item) { row.data(item); this.updateUI(); }.bind(this);
+
+  new EditProperties(row.data(), "UnmanagedConcept", callback).show();
+}
+
+/**
+ * Handles click on exlude button in a table row, opens ConfirmationDialog
+ *
+ * @param id [String] id of the item to edit properties of
+ * @return [void]
+ */
+EditExtensionPanel.prototype.excludeItemHandler = function(id) {
+  new ConfirmationDialog (
+    this.removeFromExtension.bind(this, [id]),
+    { subtitle: "This action will remove the item from the extension.",
+      dangerous: true }).show();
 }
 
 /**
@@ -182,21 +220,78 @@ EditExtensionPanel.prototype.editItemProperties = function(tableRow) {
 EditExtensionPanel.prototype.setListeners = function () {
   var _this = this;
 
-  // Remove item from extension event
-  $("#extension-children-table tbody").off('click', '.exclude').on('click', '.exclude', function() {
-    new ConfirmationDialog(
-      _this.removeFromExtension.bind(_this, [$(this).attr("data-id")]),
-      {subtitle: "", dangerous: true})
-    .show();
-  });
-
   // New child item in extension event
-  $("#new-item-button").off('click').on('click', this.newExtensionChild.bind(this));
+  $("#new-item-button")
+    .off('click')
+    .on('click', this.newExtensionChild.bind(this));
+
+  // New child item fron synonym in extension event
+  $("#new-from-synonyms-button")
+    .off('click')
+    .on('click', this.newFromSynonymHandler.bind(this));
+
+  // Remove item from extension event
+  $(this.tableId)
+    .off('click', '.exclude')
+    .on('click', '.exclude', function(){ _this.excludeItemHandler.bind(_this, $(this).attr("data-id"))() });
 
   // Edit item properties event
-  $("#extension-children-table tbody").off('click', '.update-properties').on('click', ".update-properties", function(){
-    _this.editItemProperties(_this.findRowByParam("id", {id: $(this).attr("data-id")}));
+  $(this.tableId)
+    .off('click', '.update-properties')
+    .on('click', ".update-properties", function() { _this.editItemProperties.bind(_this, $(this).attr("data-id"))() });
+}
+
+/**
+ * Handles click on new item from synonym button
+ *
+ * @return [void]
+ */
+EditExtensionPanel.prototype.newFromSynonymHandler = function() {
+  this.itemSelectUI(true);
+
+  var _this = this;
+
+  // Select row event
+  this.table.one('select', function (e, dt, type, indexes) {
+    var row = _this.table.row(indexes[0]);
+    var synonyms = row.data().synonym.split(';');
+    var synonymsCount = (synonyms.length == 1 ? (synonyms[0].length > 0 ? 1 : 0) : synonyms.length);
+    var confirmText = "This action will create " + synonymsCount + " new Code List Item(s) in this extension based on this item's synonyms.";
+
+    new ConfirmationDialog(
+      _this.newExtensionSynChildren.bind(_this, row.data().id, synonymsCount),
+      { subtitle: confirmText },
+      _this.itemSelectUI.bind(_this, false)).show();
   });
+
+  // Cancel selection event
+  $("#item-from-synonyms-cancel")
+    .off("click")
+    .on("click", _this.itemSelectUI.bind(_this, false));
+}
+
+/**
+ * Enables / Disables selection of a table row for creating an item from synonyms
+ *
+ * @param enable [Boolean] selecting enable/disable ~ true/false
+ * @return [void]
+ */
+EditExtensionPanel.prototype.itemSelectUI = function(enable){
+  if(enable){
+    this.table.select.style('single');
+    $("#extension-children-table").addClass('table-row-clickable no-mark');
+    $("#edit-extension-actions").children().addClass("disabled");
+    $('.table-row-clickable tbody tr, html, body').attr('style', 'cursor: crosshair');
+    $("#item-from-synonyms-help").show();
+  }
+  else{
+    this.table.row({selected: true}).deselect();
+    this.table.select.style('api');
+    $('.table-row-clickable tbody tr, html, body').removeAttr('style');
+    $("#extension-children-table").removeClass('table-row-clickable no-mark');
+    $("#edit-extension-actions").children().removeClass("disabled");
+    $("#item-from-synonyms-help").hide();
+  }
 }
 
 /**
@@ -207,11 +302,11 @@ EditExtensionPanel.prototype.setListeners = function () {
  */
 EditExtensionPanel.prototype.processing = function(enable){
   if(enable){
-    this.childrenTable.processing(true);
+    this.table.processing(true);
     $("#edit-extension-actions").children().addClass("disabled");
   }
   else{
-    this.childrenTable.processing(false);
+    this.table.processing(false);
     $("#edit-extension-actions").children().removeClass("disabled");
   }
 }
@@ -222,8 +317,9 @@ EditExtensionPanel.prototype.processing = function(enable){
  * @return [void]
  */
 EditExtensionPanel.prototype.updateUI = function() {
-  this.childrenTable.columns.adjust();
-  this.childrenTable.draw();
+  this.table.columns.adjust();
+  this.table.draw();
+  this.callback();
   this.setListeners();
 }
 
@@ -233,10 +329,9 @@ EditExtensionPanel.prototype.updateUI = function() {
  * @return [void]
  */
 EditExtensionPanel.prototype.refresh = function() {
-  var _this = this;
-  _this.childrenTable.clear();
-  _this.loadData(0);
-  _this.callback();
+  this.table.clear();
+  this.loadData(0);
+  this.callback();
 }
 
 /**
@@ -247,8 +342,8 @@ EditExtensionPanel.prototype.refresh = function() {
  * @return [DatatTable Row] DataTable Row result api instance (can be empty)
  */
 EditExtensionPanel.prototype.findRowByParam = function (dataType, data) {
-	return this.childrenTable.row(function (idx, dt, node) {
-		return dt[dataType] == data[dataType] ? true : false;
+	return this.table.row(function (idx, dt, node) {
+		return dt[dataType] == data ? true : false;
 	});
 }
 
@@ -296,7 +391,7 @@ EditExtensionPanel.prototype.columns = function () {
       return (data == null ? data : colorCodeTagsBadge(data));
     }},
     {"render" : function (data, type, row, meta) {
-      return (row.delete ? this.editBtnHTML(row) : "");
+      return (row.single_parent ? this.editBtnHTML(row) : "");
     }.bind(this)},
     {"render" : function (data, type, row, meta) {
       return (row.delete ? this.excludeBtnHTML(row) : "");
