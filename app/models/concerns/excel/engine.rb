@@ -246,7 +246,7 @@ class Excel::Engine
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
     return if tag.nil?
-    params[:object].add_tag(tag)
+    params[:object].add_tag_no_save(tag)
   end
 
   # Set Property
