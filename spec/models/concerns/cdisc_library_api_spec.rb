@@ -72,7 +72,7 @@ describe "CDISC Library API" do
     check_file_actual_expected(result, sub_dir, "ct_package_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "ct package, mismatched definitions, 2017-03-31" do
+  it "ct package, mismatched definitions, 2017-03-31, code list C65047, item C132367" do
     object = CDISCLibraryAPI.new
     result_1 = object.ct_package("/mdr/ct/packages/sdtmct-2017-03-31")
     result_2 = object.ct_package("/mdr/ct/packages/sendct-2017-03-31")
@@ -83,6 +83,7 @@ describe "CDISC Library API" do
     expect(def_1).to_not eq(def_2)
     puts colourize("+++++ SDTM Def: #{def_1} +++++", "blue")
     puts colourize("+++++ SEND Def: #{def_2} +++++", "blue")
+    #expect(result_1).to hash_equal(result_2)
   end
 
   it "ct package tags" do
