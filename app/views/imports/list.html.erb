@@ -3,7 +3,7 @@
 
 <div class="row">
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
-		main_text: "Import Centre", sub_texts: "Import data into the MDR." } do %>
+		main_text: "Import Centre", sub_texts: "Load data into the MDR." } do %>
 
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: imports_path, id: "imports_button",
@@ -21,9 +21,11 @@
         Import Options
       </div>
       <div class="card-content">
-        <div class="sub-card-wrap">
+        <div class="sub-card-wrap eq">
           <% @items.each_with_index do |item, index| %>
               <%= render partial: "shared/import/list_panel", locals: {item: item} %>
+							<%= render partial: "shared/import/list_panel", locals: {item: item} %>
+
           <% end %>
         </div>
   </div>

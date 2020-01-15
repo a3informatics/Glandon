@@ -71,7 +71,6 @@ div.info{
 .sub-card{
   display: inline-flex;
   flex-direction: column;
-  max-width: calc(50% - 20px);
   min-width: 300px;
   border-radius: 20px;
   -webkit-box-shadow: 3px 3px 8px -3px rgba(0,0,0,0.15);
@@ -101,7 +100,7 @@ div.info{
   flex-direction: row;
 }
 
-.sub-card-wrap .sub-card{
+.sub-card-wrap.eq .sub-card{
   width: calc(33% - 20px);
 }
 
@@ -332,14 +331,12 @@ table th.th-xsmall{
 
 @media (max-width: 1140px){
   .sub-card-wrap .sub-card{
-    max-width: initial;
     width: calc(100% - 20px) !important;
   }
 }
 
 @media (max-width: 1475px){
-  .sub-card-wrap .sub-card{
-    max-width: initial;
+  .sub-card-wrap.eq .sub-card{
     width: calc(50% - 20px);
   }
 }

@@ -6,9 +6,9 @@
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
 		main_text: "Current Imports", sub_texts: "Showing all running imports." } do %>
 
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",
   			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-				
+
 	<% end %>
 </div>
 

@@ -1,8 +1,17 @@
 <%= javascript_tag 'setPageTitle("Import CDISC Terminology")' %>
 <% first_level_breadcrumb (:imports) %>
-<% type = @file_type == 0 ? "Excel" : "API"%>
+<% type = @file_type == 0 ? "Excel" : "API" %>
+
 <div class="row">
-  <div class="col-md-8">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
+		main_text: "Import Centre", sub_texts: "CDISC Terminology Import" } do %>
+
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",
+  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+	<% end %>
+</div>
+
+<div class="row centered">
     <%= render partial: "shared/import/new_model_panel", locals: {create_path: imports_cdisc_terms_path, title: "Import CDISC Terminology using #{type}", multiple: true} %>
-  </div>
 </div>

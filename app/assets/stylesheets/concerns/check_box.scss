@@ -1,12 +1,14 @@
+@import "custom/vars";
+
 .material-switch > input[type="checkbox"] {
-    display: none;   
+    display: none;
 }
 
 .material-switch > label {
     cursor: pointer;
     height: 0px;
-    position: relative; 
-    width: 40px;  
+    position: relative;
+    width: 40px;
 }
 
 .material-switch > label::before {
@@ -22,7 +24,7 @@
     width: 40px;
 }
 .material-switch > label::after {
-    background: rgb(255, 255, 255);
+    background: rgb(240,240,240);
     border-radius: 16px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     content: '';
@@ -41,4 +43,12 @@
 .material-switch > input[type="checkbox"]:checked + label::after {
     background: inherit;
     left: 20px;
+}
+
+.material-switch.small{
+  transform: scale(0.7);
+}
+
+.material-switch .label-success{
+  background: $secondary-color-light;
 }
