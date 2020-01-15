@@ -330,6 +330,15 @@
   padding-left: 5px;
 }
 
+.form-wrap input[type="file"] {
+  border: none;
+}
+
+.form-wrap input[type="file"].cen{
+  width: 250px;
+  padding-left: 50px;
+}
+
 .form-wrap.hor{
   display: flex;
   flex-direction: row;
