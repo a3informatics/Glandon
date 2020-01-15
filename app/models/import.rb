@@ -223,7 +223,7 @@ private
 
   # Buid the result hash
   def result_hash(object)
-    return {parent: object, children: []}
+    return {parent: object, managed_children: []}
   end
   
   # Merge all errors
