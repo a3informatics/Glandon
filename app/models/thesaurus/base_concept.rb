@@ -80,22 +80,31 @@ class Thesaurus
     end
 
     # Add a child concept based on
-    
-    # @params params [Hash] the 
-    # @return [Thesaurus::UnmanagedConcept] the object created. Errors set if create failed.
-    def add_child_based_on(object)
-      child = Thesaurus::UnmanagedConcept.empty_concept
-      child[:identifier] = Thesaurus::UnmanagedConcept.new_identifier
-      child[:label] = object.label
-      child[:preferred_term] = object.preferred_term_objects
-      child[:synonym] = object.synonym_objects
-      child[:definition] = object.definition
-      child[:transaction] = transaction_begin
-      child = Thesaurus::UnmanagedConcept.create(child, self)
-      return child if child.errors.any?
-      self.add_link(:narrower, child.uri)
-      transaction_execute
-      child
+    #
+    # @params params [Object] the object on which the children are based 
+    # @return [Thesaurus::UnmanagedConcept] the children created
+    def add_children_based_on(object)
+      pt = object.preferred_term_objects
+      synonyms = object.synonym_objects
+      sparql = Sparql::Update.new
+      sparql.default_namespace(self.uri.namespace)
+      # @todo only supports generated identifiers currently
+      synonyms.each do |syn|
+        child = Thesaurus::UnmanagedConcept.from_h({
+          # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
+          identifier: Thesaurus::UnmanagedConcept.new_identifier,
+          label: syn.label,
+          preferred_term: pt,
+          synonym: synonyms,
+          definition: object.definition
+        })
+        child.generate_uri(self.uri)
+        child.to_sparql(sparql)
+        sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: child.uri})
+      end
+      filename = sparql.to_file
+      sparql.create
+      self.narrower_objects
     end
 
     # Children Pagination. Get the children in pagination manner

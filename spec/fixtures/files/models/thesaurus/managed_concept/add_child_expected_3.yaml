@@ -1,0 +1,273 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
+:uri: http://www.acme-pharma.com/A00001/V1#A00001
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: London Heathrow
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9SUw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAyL1YxI0EwMDAwMl9TSQ==
+    :uri: http://www.acme-pharma.com/A00002/V1#A00002_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: "<Not Set>"
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace: 
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9TSQ==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: A00001
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.0.1
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAyL1YxI0EwMDAwMl9TSQ==
+    :uri: http://www.acme-pharma.com/A00002/V1#A00002_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ''
+    :name: ''
+    :authority: ''
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-04-15T15:43:51+01:00'
+:explanatory_comment: ''
+:identifier: A00001
+:notation: LHR
+:definition: A definition
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDEy
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_A000012
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal 1
+  :tagged: []
+  :identifier: A000012
+  :notation: T1
+  :definition: The oldest LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYzAzMTNhMjYtNjNkNS00Y2E5LThlNTgtMmU1ZTYwNGM3YzAy
+    :uri: http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 1
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDEx
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_A000011
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal 5
+  :tagged: []
+  :identifier: A000011
+  :notation: T5
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
+    :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q5NjkwOWQxLTM1MDItNDJlMi04YzNlLWIwOWQyZGY5YmYxMg==
+    :uri: http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzRlOTMwNmQ4LTU0YjktNDUzMC1iYzg3LWY0YzIxMzE3OGIyMQ==
+    :uri: http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzMyZTFmYTlkLWZiYWQtNGQ4MS05NGRjLTYwNDI1ZWI2OGVhYQ==
+    :uri: http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I0YTI3NWViLTVhYWEtNDJiYy05ZjI5LTA0ZjY2ZTUwYjNkZQ==
+    :uri: http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU2Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: British Airways Terminal
+  :tagged: []
+  :identifier: NC00000456C
+  :notation: ''
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
+    :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q5NjkwOWQxLTM1MDItNDJlMi04YzNlLWIwOWQyZGY5YmYxMg==
+    :uri: http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzRlOTMwNmQ4LTU0YjktNDUzMC1iYzg3LWY0YzIxMzE3OGIyMQ==
+    :uri: http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzMyZTFmYTlkLWZiYWQtNGQ4MS05NGRjLTYwNDI1ZWI2OGVhYQ==
+    :uri: http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I0YTI3NWViLTVhYWEtNDJiYy05ZjI5LTA0ZjY2ZTUwYjNkZQ==
+    :uri: http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU3Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000457C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: T5
+  :tagged: []
+  :identifier: NC00000457C
+  :notation: ''
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
+    :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q5NjkwOWQxLTM1MDItNDJlMi04YzNlLWIwOWQyZGY5YmYxMg==
+    :uri: http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzRlOTMwNmQ4LTU0YjktNDUzMC1iYzg3LWY0YzIxMzE3OGIyMQ==
+    :uri: http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzMyZTFmYTlkLWZiYWQtNGQ4MS05NGRjLTYwNDI1ZWI2OGVhYQ==
+    :uri: http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I0YTI3NWViLTVhYWEtNDJiYy05ZjI5LTA0ZjY2ZTUwYjNkZQ==
+    :uri: http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU4Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000458C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal Five
+  :tagged: []
+  :identifier: NC00000458C
+  :notation: ''
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
+    :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q5NjkwOWQxLTM1MDItNDJlMi04YzNlLWIwOWQyZGY5YmYxMg==
+    :uri: http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzRlOTMwNmQ4LTU0YjktNDUzMC1iYzg3LWY0YzIxMzE3OGIyMQ==
+    :uri: http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzMyZTFmYTlkLWZiYWQtNGQ4MS05NGRjLTYwNDI1ZWI2OGVhYQ==
+    :uri: http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I0YTI3NWViLTVhYWEtNDJiYy05ZjI5LTA0ZjY2ZTUwYjNkZQ==
+    :uri: http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU5Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000459C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: BA Terminal
+  :tagged: []
+  :identifier: NC00000459C
+  :notation: ''
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
+    :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q5NjkwOWQxLTM1MDItNDJlMi04YzNlLWIwOWQyZGY5YmYxMg==
+    :uri: http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzRlOTMwNmQ4LTU0YjktNDUzMC1iYzg3LWY0YzIxMzE3OGIyMQ==
+    :uri: http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzMyZTFmYTlkLWZiYWQtNGQ4MS05NGRjLTYwNDI1ZWI2OGVhYQ==
+    :uri: http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I0YTI3NWViLTVhYWEtNDJiYy05ZjI5LTA0ZjY2ZTUwYjNkZQ==
+    :uri: http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+:extends: 
+:subsets: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZjcwZGY3N2EtZjcwMy00YzAxLTgxOTAtNWJhNzk2Njk5ODJh
+  :uri: http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: London Heathrow
+  :tagged: []
+:synonym:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzVlOGNlODcyLWEzMjQtNGNkNS05ODQ4LThiMWU3Yzc5MjM1Ng==
+  :uri: http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: LHR
+  :tagged: []
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2FmYWYxOTE3LTJkZWUtNDBjNi05YWJiLTc4ZGU3MmFjNWU4Nw==
+  :uri: http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: Heathrow
+  :tagged: []
+:is_ordered: 
