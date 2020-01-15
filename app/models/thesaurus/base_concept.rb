@@ -93,7 +93,7 @@ class Thesaurus
         child = Thesaurus::UnmanagedConcept.from_h({
           # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
           identifier: Thesaurus::UnmanagedConcept.new_identifier,
-          label: syn.label,
+          notation: syn.label,
           preferred_term: pt,
           synonym: synonyms,
           definition: object.definition
