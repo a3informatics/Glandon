@@ -233,7 +233,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      childre = tc.add_children_based_on(uc)
+      children = tc.add_children_based_on(uc)
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(6)
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml", write_file: true)

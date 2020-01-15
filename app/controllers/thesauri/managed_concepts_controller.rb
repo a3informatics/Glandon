@@ -184,6 +184,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
+  def add_children_synonyms
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
+    children = tc.add_children_based_on(uc)
+    render :json => {data: "" }, :status => 200
+  end
+
   def destroy
     authorize Thesaurus
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
@@ -457,7 +465,7 @@ private
   end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :extension_ids => [])
+    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
   end
 
   def set_params

@@ -266,6 +266,13 @@ describe Thesauri::ManagedConceptsController do
 
     login_curator
 
+    before :all do
+     
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
@@ -355,6 +362,17 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds childrens synonyms to managed concept' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'adds a child thesaurus concept, no audit' do
