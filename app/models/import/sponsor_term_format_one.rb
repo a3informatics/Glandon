@@ -34,7 +34,7 @@ class Import::SponsorTermFormatOne < Import
     merge_reader_data(readers)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
-    objects = self.errors.empty? ? process_results(results) : {parent: self, children: []}
+    objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
     object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     # @todo we need to unlock the import.
     params[:job].end("Complete")   
