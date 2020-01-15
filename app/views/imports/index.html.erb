@@ -1,44 +1,65 @@
 <%= javascript_tag 'setPageTitle("Imports")' %>
-<%= javascript_include_tag 'background_index'%>
-<%= javascript_include_tag 'standard_datatable' %>
 <% first_level_breadcrumb (:imports) %>
-<h3>Index: Imports</h3>
-<div class="col-md-12">
-	<table id="main" class="table table-striped table-bordered table-condensed">
-		<thead>
-	  	<tr>
-	    	<th class="fit"></th>
-        <th class="col-sm-1">Owner</th>
-	    	<th class="col-sm-2">Identifier</th>
-        <th class="col-sm-3">Input File</th>
-        <th class="fit">Complete</th>
-	    	<th class="fit">Succesful</th>
-        <th class="fit">Auto Load</th>
-        <th class="fit"></th>
-        <th class="fit"></th>
-	  	</tr>
-		</thead>
-		<tbody>
-			<% @items.each do |item| %>
-	    	<tr>
-					<td><%= item.id %></td>
-          <td><%= item.owner %></td>
-          <td><%= item.identifier %></td>
-          <td><%= item.input_file %></td>
-	    		<%= true_false_glyphicon(item.complete) %>
-          <%= true_false_glyphicon(item.success) %>
-	    		<%= true_false_glyphicon(item.auto_load) %>
-          <td>
-            <%= link_to "Show", import_path(item), :class => "btn btn-xs " %>
-          </td>
-          <td>
-            <%= render partial: "shared/buttons/delete", locals: {link_path: import_path(item), small: true,
-              id: "delete_button_#{item.id}", label: "Delete"} %>
-          </td>
-	    	</tr>
-			<% end %>
-	  </tbody>
-	</table>
-  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_imports_path({imports: {items: "all"}}), small: false,
-    id: "clear_button", label: "Delete All"} %>
+<%= javascript_include_tag 'background_index', 'standard_datatable' %>
+
+<div class="row">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
+		main_text: "Current Imports", sub_texts: "Showing all running imports." } do %>
+
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
+  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+				
+	<% end %>
+</div>
+
+<div class="row centered">
+	<div class="col-md-10 card wide">
+	<div class="card-header">
+		Index: Imports
+	</div>
+	<div class="card-content table-cardstyle">
+		<table id="main" class="table table-striped table-bordered table-condensed">
+			<thead>
+		  	<tr>
+		    	<th class="fit"></th>
+	        <th>Owner</th>
+		    	<th>Identifier</th>
+	        <th>Input File</th>
+	        <th class="fit">Complete</th>
+		    	<th class="fit">Succesful</th>
+	        <th class="fit">Auto Load</th>
+	        <th class="fit ignore"></th>
+	        <th class="fit ignore"></th>
+		  	</tr>
+			</thead>
+			<tbody>
+				<% @items.each do |item| %>
+		    	<tr>
+						<td><%= item.id %></td>
+	          <td><%= item.owner %></td>
+	          <td><%= item.identifier %></td>
+	          <td><%= item.input_file %></td>
+		    		<%= true_false_glyphicon(item.complete) %>
+	          <%= true_false_glyphicon(item.success) %>
+		    		<%= true_false_glyphicon(item.auto_load) %>
+	          <td>
+							<a href="<%= import_path(item) %>" class="btn btn-xs">Show</a>
+	          </td>
+	          <td>
+							<button class="btn red btn-xs" id="delete_button_<%=item.id%>"
+									onclick="new ConfirmationDialog(function(){$('#delete_link_<%=item.id%>').click()}, {dangerous: true}).show();">
+								Delete
+							</button>
+							<%= link_to "", import_path(item), method: :delete, id: "delete_link_#{item.id}" %>
+	          </td>
+		    	</tr>
+				<% end %>
+		  </tbody>
+		</table>
+
+		<button id="clear_button" class="btn medium red" onclick="new ConfirmationDialog(function(){$('#clear_link').click()}, {dangerous: true}).show();">
+			<span class="icon-trash"></span> Delete all
+		</button>
+		<%= link_to "", destroy_multiple_imports_path({imports: {items: "all"}}), method: :delete, id: "clear_link" %>
+	</div>
 </div>
