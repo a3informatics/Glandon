@@ -5,8 +5,12 @@
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
 		main_text: "Import Centre", sub_texts: "Import data into the MDR." } do %>
 
-		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
-			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: imports_path, id: "imports_button",
+        icon: "icon-list-ul", btn_text: "Current Imports", dt_toggle: "", disabled: false } %>
+  		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
+  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
 
 	<% end %>
 </div>
@@ -17,12 +21,6 @@
         Import Menu
       </div>
       <div class="card-content">
-        <div class="btns-wrap left">
-          <a href="<%= imports_path %>" class="btn medium light" id="imports_button">
-            <span class="icon-list-ul text-small"></span> Current Imports
-          </a>
-        </div>
-
         <div class="sub-card-wrap">
           <% @items.each_with_index do |item, index| %>
               <%= render partial: "shared/import/list_panel", locals: {item: item} %>
