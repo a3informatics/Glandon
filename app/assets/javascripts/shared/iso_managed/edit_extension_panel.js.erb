@@ -177,9 +177,9 @@ EditExtensionPanel.prototype.newExtensionSynChildren = function(id, count) {
     return;
 
   var params = {
-    url: this.urls.newChildUrl,
+    url: this.urls.newSynChildUrl,
     type: "POST",
-    data: JSON.stringify({unmanaged_concept: {id: id}})
+    data: JSON.stringify({managed_concept: {reference_id: id}})
   }
 
   this.updateExtension(params, null);
