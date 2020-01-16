@@ -373,6 +373,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if !subsets.nil?
       subsets.map{|x| x[:s].to_id}.each{|s|
         mc = Thesaurus::ManagedConcept.find_with_properties(s)
+        next if !mc.latest?
         subset_item = mc.simple_to_h
         subset_item[:edit_path] = edit_subset_thesauri_managed_concept_path(mc, source_mc: tc.id, context_id: params[:context_id])
         subset_tcs << subset_item
