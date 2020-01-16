@@ -186,7 +186,7 @@ EditExtensionPanel.prototype.newExtensionSynChildren = function(id, count) {
 }
 
 /**
- * Edit item properties handler; finds row, appends parent id, calls the EditProperties modal
+ * Edit item properties handler; finds row, appends parent, context id, calls the EditProperties modal
  *
  * @param id [String] id of the item to edit properties of
  * @return [void]
@@ -194,6 +194,7 @@ EditExtensionPanel.prototype.newExtensionSynChildren = function(id, count) {
 EditExtensionPanel.prototype.editItemProperties = function(id) {
   var row = this.findRowByParam("id", id);
   row.data()["parent_id"] = extensionId;
+  row.data()["context_id"] = contextId;
   var callback = function(item) { row.data(item); this.updateUI(); }.bind(this);
 
   new EditProperties(row.data(), "UnmanagedConcept", callback).show();

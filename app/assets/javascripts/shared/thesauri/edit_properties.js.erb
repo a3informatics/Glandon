@@ -7,7 +7,7 @@
 * Edit Properties Constructor
 *
 * @param item [Object] Must contain fields:
-          identifier, notation. preferred_term, synonym, definition, id, (parent_id in relevant type)
+          identifier, notation. preferred_term, synonym, definition, id, (parent_id, context_id in relevant type)
 * @param type [String] item type. Can be: ManagedConcept, UnmanagedConcept
 * @param callback [Function] is called on item update success, optional
 * @return [Object Instance] this instance, for chaining purposes
@@ -18,7 +18,8 @@ function EditProperties(item, type, callback) {
   this.callback = callback;
   this.els = {
     modal: '#edit-properties-modal',
-    save: '.submit-btn',
+    save: '#submit-button',
+    tags: '#edit-tags-button',
     title: '.title-identifier',
     notation: 'input[name="notation"]',
     preferred_term: 'input[name="preferred_term"]',
@@ -52,6 +53,7 @@ EditProperties.prototype.initModal = function() {
   $(this.els.modal).find(this.els.definition).val(this.item.definition);
 
   $(this.els.modal).find(this.els.save).off("click").on("click", this.save.bind(this));
+  $(this.els.modal).find(this.els.tags).off("click").on("click", this.editTagsHandler.bind(this));
 };
 
 /**
@@ -131,6 +133,26 @@ EditProperties.prototype.getChangedData = function() {
   });
 
   return data;
+};
+
+/**
+ * Handles click on Edit tags button
+ *
+ * @return [void]
+ */
+EditProperties.prototype.editTagsHandler = function() {
+  switch (this.type) {
+    case "ManagedConcept":
+      window.open(baseMCTagsUrl
+        .replace('itemid', this.item.id), '_blank');
+      break;
+    case "UnmanagedConcept":
+      window.open(baseUMCTagsUrl
+        .replace('itemid', this.item.id)
+        .replace('prnt', this.item.parent_id)
+        .replace('ctxt', this.item.context_id), '_blank');
+      break;
+  }
 };
 
 /**
