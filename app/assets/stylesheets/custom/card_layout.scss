@@ -104,6 +104,14 @@ div.info{
   width: calc(33% - 20px);
 }
 
+.sub-card.green{
+  border-color: $secondary-color-light;
+}
+
+.sub-card.red{
+  border-color: $accent-color-2-light;
+}
+
 // CARD-STYLE ITEMS
 
 .card-item{
