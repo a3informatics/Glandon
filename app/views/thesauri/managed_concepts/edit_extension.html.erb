@@ -3,7 +3,7 @@
 <%= javascript_include_tag 'shared/timer', 'unload_v2' %>
 <%= stylesheet_link_tag 'custom/context_menu', 'homes' %>
 <%= javascript_include_tag 'shared/context_menu' %>
-<%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
+<%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
                         extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
                         searchUrl = '#{search_current_thesauri_index_path}',
                         newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
