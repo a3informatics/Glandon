@@ -208,7 +208,7 @@ EditExtensionPanel.prototype.editItemProperties = function(id) {
 EditExtensionPanel.prototype.excludeItemHandler = function(id) {
   new ConfirmationDialog (
     this.removeFromExtension.bind(this, [id]),
-    { subtitle: "This action will remove the item from the extension.",
+    { subtitle: "This action will remove the item from the extension. If this is its only parent, it will be deleted altogether.",
       dangerous: true }).show();
 }
 
