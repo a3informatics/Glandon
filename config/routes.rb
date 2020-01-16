@@ -183,6 +183,8 @@ Rails.application.routes.draw do
         get :children
         post :add_child
         post :add_children_synonyms
+        post :create_extension
+        post :create_subset
         get :show_data
         get :changes
         get :changes_data

@@ -523,6 +523,16 @@ describe Thesauri::ManagedConceptsController do
       ua_remove_user("lock@example.com")
     end
 
+    it "create extension" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      post :create_extension, {id: tc.id, managed_concept: {context_id: tc.id }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "create_extension_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "edit extension" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))

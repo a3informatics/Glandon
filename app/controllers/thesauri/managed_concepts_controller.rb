@@ -333,6 +333,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: tc.extension?}
   end
 
+  def create_extension
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    new_object = tc.create_extension
+    show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: tc.id}})
+    edit_path = edit_extension_thesauri_managed_concept_path(new_object)
+    render json: {show_path: show_path, edit_path: edit_path}, :status => 200
+  end
+
   def add_extensions
     authorize Thesaurus, :edit?
     errors = []
@@ -365,6 +374,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   #Subsets
+
+  def create_subset
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    new_mc = tc.create_subset
+    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: params[:ctxt_id])
+    render json: { redirect_path: path, }, :status => 200
+  end
+
   def find_subsets
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
