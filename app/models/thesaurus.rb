@@ -545,16 +545,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @return [Object] the created object. Will contain errors if unsuccesful
   def add_extension(id)
     transaction = transaction_begin
-    source = Thesaurus::ManagedConcept.find_full(id)
-    source.narrower_links
-    object = source.clone
-    object.identifier = "#{source.scoped_identifier}E"
-    object.extensible = false # Make sure we cannot extend the extension
-    object.set_initial(object.identifier)
-    object.transaction_set(transaction)
-    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-    object.add_link(:extends, source.uri)
-    return object if object.errors.any?
+    tc = Thesaurus::ManagedConcept.find_full(id)
+    object = tc.create_extension
     ordinal = next_ordinal(:is_top_concept_reference)
     ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
     self.add_link(:is_top_concept, object.uri)
