@@ -49,7 +49,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def extended_by
     query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
     query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).last[:s]
   end
 
   # Extension? Is this item extending another managed concept
@@ -481,10 +481,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       # No parent specified and no parents linked to this item, delete
       delete_with
     elsif parent_object.nil?
-      # No parent specified and parents, do nothing, as we cannot 
+      # No parent specified and parents, do nothing, as we cannot
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
       0
-    elsif multiple_parents? 
+    elsif multiple_parents?
       # Deselect from quoted parent
       parent_object.deselect_children({id_set: [self.uri.to_id]})
       1
@@ -501,12 +501,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Set With Indicators Paginated
   #
   # @params [Hash] params the params hash
-  # @option params [String] :type the type, either :all, :normal, :subsets, :extensions. 
+  # @option params [String] :type the type, either :all, :normal, :subsets, :extensions.
   #   note that :all does not filter on owner while the others filter on the repository owner.
   # @option params [String] :offset the offset to be obtained
   # @option params [String] :count the count to be obtained
   # @return [Array] array of hashes containing the child data
-  def self.set_with_indicators_paginated(params) 
+  def self.set_with_indicators_paginated(params)
     owner = ::IsoRegistrationAuthority.repository_scope.uri.to_ref
     filter_clause = "FILTER (?so = false && ?eo = false)"
     owner_clause = "?x isoT:hasIdentifier/isoI:hasScope #{owner} . BIND (#{owner} as ?ns)"
@@ -526,7 +526,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     results =[]
     query_string = %Q{
       SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count
-        (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) 
+        (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys)
         (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count WHERE
@@ -534,15 +534,15 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           ?s rdf:type th:ManagedConcept .
           ?s isoT:hasIdentifier/isoI:version ?v .
           ?s isoT:hasIdentifier/isoI:identifier ?sci .
-          {               
-            SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE              
-            {               
-              ?x rdf:type th:ManagedConcept .           
-              ?x isoT:hasIdentifier/isoI:version ?lv . 
-              ?x isoT:hasIdentifier/isoI:identifier ?sci . 
+          {
+            SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE
+            {
+              ?x rdf:type th:ManagedConcept .
+              ?x isoT:hasIdentifier/isoI:version ?lv .
+              ?x isoT:hasIdentifier/isoI:identifier ?sci .
               #{owner_clause}
-            } group by ?sci ?ns    
-          }           
+            } group by ?sci ?ns
+          }
           BIND (EXISTS {?s th:extends ?xe1} as ?eo)
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
@@ -563,7 +563,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
   begin
       indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
   rescue => e
     #byebug
@@ -629,20 +629,20 @@ private
   def delete_with(parent_object=nil)
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
     if !parent_object.nil?
-      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }" 
-      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} . 
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} .
         BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
-      parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }" 
+      parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }"
     end
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
   puts "*****\n#{query_string}\n*****"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th, :bo])
-    1  
+    1
   end
 
   # Are children are the same
