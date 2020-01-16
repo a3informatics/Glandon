@@ -1731,4 +1731,48 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
   end
 
+  describe "Simple Statistics" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_cdisc_term_versions(CdiscCtHelpers.version_range)
+    end
+
+    it "code list by version" do
+      query_string = %Q{
+        SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
+        {
+          ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+          ?s isoT:creationDate ?d .
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?s th:isTopConceptReference/bo:reference ?item .
+        } GROUP BY ?s ?d ?v ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      result = query_results.by_object_set([:d, :v, :count])
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "code list items by version" do
+      query_string = %Q{
+        SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
+        {
+          ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+          ?s isoT:creationDate ?d .
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?s th:isTopConceptReference/bo:reference/th:narrower ?item .
+        } GROUP BY ?s ?d ?v ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      result = query_results.by_object_set([:d, :v, :count])
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
