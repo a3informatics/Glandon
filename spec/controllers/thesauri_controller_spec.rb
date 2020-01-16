@@ -638,8 +638,10 @@ describe ThesauriController do
         thesauri: {concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==", identifier:"AIRPORTS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ=="}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      redirect_path = JSON.parse(response.body)["redirect_path"]
-      expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "subset_expected_1.yaml", equate_method: :hash_equal)
+      # redirect_path = JSON.parse(response.body)["redirect_path"]
+      # expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
     it "edits release"

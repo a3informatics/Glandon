@@ -505,6 +505,16 @@ describe Thesauri::ManagedConceptsController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
+    it "create subset" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66726/V19#C66726"))
+      post :create_subset, {id: tc.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "create_subset_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "extensions" do
@@ -526,7 +536,7 @@ describe Thesauri::ManagedConceptsController do
     it "create extension" do
       request.env['HTTP_ACCEPT'] = "application/json"
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      post :create_extension, {id: tc.id, managed_concept: {context_id: tc.id }}
+      post :create_extension, {id: tc.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
