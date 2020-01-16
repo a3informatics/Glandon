@@ -4,7 +4,7 @@
 <%= stylesheet_link_tag 'shared/thesauri/edit_properties' %>
 <%= javascript_include_tag 'shared/thesauri/edit_properties' %>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-modal">
+<div class="modal fade bd-example-modal-lg edit-properties" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-<%= modal_id %>">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,7 +63,7 @@
 
   <% if !(local_assigns.fetch :item, nil).nil? %>
     <% item = item.simple_to_h %>
-    <%= javascript_tag "var currentItem = {id: '#{item[:id]}', identifier: '#{item[:identifier]}',
+    <%= javascript_tag "var epItem#{modal_id} = {id: '#{item[:id]}', identifier: '#{item[:identifier]}',
             definition: '#{item[:definition]}', notation: '#{item[:notation]}',
             synonym: '#{item[:synonym]}', preferred_term: '#{item[:preferred_term]}',
             parent_id: '#{local_assigns.fetch :parent_id, nil}', context_id: '#{local_assigns.fetch :context_id, nil}'};" %>

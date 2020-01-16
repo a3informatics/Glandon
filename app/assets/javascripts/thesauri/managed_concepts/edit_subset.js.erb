@@ -5,8 +5,8 @@ $(document).ready( function() {
   var unload = new Unload(false);
 
   $("#edit-properties").on("click", function(){
-    // currentItem is declared in the edit_properties_modal
-    new EditProperties(currentItem, "ManagedConcept", null).show();
+    // epItemsubset is declared in the edit_properties_modal
+    new EditProperties(epItemsubset, "subset", "ManagedConcept", null).show();
   });
 
   function loadCallback(obj){

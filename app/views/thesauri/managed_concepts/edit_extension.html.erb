@@ -17,7 +17,8 @@
 
 <% if policy(Thesaurus).edit? %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
-  <%= render partial: "shared/thesauri/edit_properties_modal" %>
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child'} %>
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
 <% end %>
 
 <div class="row">
@@ -30,6 +31,8 @@
 
       <% if policy(Thesaurus).edit? %>
         <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+            <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "edit-properties-button",
+              icon: "icon-edit", text: "Edit properties", dt_toggle: "", disabled: false } %>
             <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
               icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
         <% end %>

@@ -197,7 +197,7 @@ EditExtensionPanel.prototype.editItemProperties = function(id) {
   row.data()["context_id"] = contextId;
   var callback = function(item) { row.data(item); this.updateUI(); }.bind(this);
 
-  new EditProperties(row.data(), "UnmanagedConcept", callback).show();
+  new EditProperties(row.data(), "child", "UnmanagedConcept", callback).show();
 }
 
 /**

@@ -6,6 +6,10 @@ $(document).ready( function() {
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);
 
+  $("#edit-properties-button").on("click", function(){
+    new EditProperties(epItemextension, "extension", "ManagedConcept", null).show();
+  });
+
   function unloadCallback() {
     timer.unload();
   }

@@ -12,12 +12,12 @@
 * @param callback [Function] is called on item update success, optional
 * @return [Object Instance] this instance, for chaining purposes
 */
-function EditProperties(item, type, callback) {
+function EditProperties(item, modalId, type, callback) {
   this.item = item;
   this.type = type;
   this.callback = callback;
   this.els = {
-    modal: '#edit-properties-modal',
+    modal: '#edit-properties-'+modalId,
     save: '#submit-button',
     tags: '#edit-tags-button',
     title: '.title-identifier',
