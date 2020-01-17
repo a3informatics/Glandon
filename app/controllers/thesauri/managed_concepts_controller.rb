@@ -367,18 +367,18 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
-  def destroy_extensions
-    authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    token = Token.find_token(tc, current_user)
-    if !token.nil?
-      uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-      tc.delete_extensions(uris)
-      render json: {data: {}, error: []}, :status => 200
-    else
-      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
-    end
-  end
+  # def destroy_extensions
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+  #     tc.delete_extensions(uris)
+  #     render json: {data: {}, error: []}, :status => 200
+  #   else
+  #     render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+  #   end
+  # end
 
   #Subsets
 

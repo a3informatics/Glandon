@@ -438,11 +438,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @param uris [Array] set of uris of the items to be deleted
   # @return [Void] no return
-  def delete_extensions(uris)
-    transaction = transaction_begin
-    uris.each {|x| delete_link(:narrower, x)}
-    transaction_execute
-  end
+  # def delete_extensions(uris)
+  #   transaction = transaction_begin
+  #   uris.each {|x| delete_link(:narrower, x)}
+  #   transaction_execute
+  # end
 
   # Create. Create a managed concept
   #
