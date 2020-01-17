@@ -71,9 +71,10 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C96783')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
-      wait_for_ajax(10)
+      sleep 1
+      expect(page).to have_content("Pick a Terminology")
       click_button 'Close'
-      wait_for_ajax(10)
+      sleep 1
     end
 
     it "if a CDISC code list is not extensible, extend button disabled (REQ-MDR-EXT-040)", js:true do
