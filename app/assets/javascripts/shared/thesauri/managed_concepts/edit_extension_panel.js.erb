@@ -140,9 +140,9 @@ EditExtensionPanel.prototype.addToExtension = function(ids) {
  */
 EditExtensionPanel.prototype.removeFromExtension = function(id) {
   var params = {
-    url: this.urls.updateUrl,
+    url: this.urls.destroyChildUrl.replace("umcid", id),
     type: "DELETE",
-    data: JSON.stringify({managed_concept: {"extension_ids": id}})
+    data: JSON.stringify({unmanaged_concept: {"parent_id": this.extensionId}})
   }
 
   this.updateExtension(params, null);
