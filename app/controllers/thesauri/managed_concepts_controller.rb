@@ -189,9 +189,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def add_children_synonyms
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
-    children = tc.add_children_based_on(uc)
-    render :json => {data: "" }, :status => 200
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
+      children = tc.add_children_based_on(uc)
+      render :json => {data: "" }, :status => 200
+    else
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+    end
   end
 
   def destroy
