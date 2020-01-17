@@ -97,7 +97,8 @@ class Thesaurus
           label: pt.label ,
           preferred_term: pt,
           synonym: synonyms,
-          definition: object.definition
+          definition: object.definition,
+          tagged: object.tagged 
         })
         child.generate_uri(self.uri)
         child.to_sparql(sparql)
