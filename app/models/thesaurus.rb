@@ -560,14 +560,15 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @param mc_id [String] the identifier of the code list to be subsetted
   # @return [Object] the created ManagedConcept
   def add_subset(mc_id)
-    source_mc = Thesaurus::ManagedConcept.find_minimum(mc_id)
-    new_mc = self.add_child({})
-    transaction_begin
-    subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
-    new_mc.add_link(:is_ordered, subset.uri)
-    new_mc.add_link(:subsets, source_mc.uri)
+    transaction = transaction_begin
+    tc = Thesaurus::ManagedConcept.find_full(id)
+    object = tc.create_subset
+    ordinal = next_ordinal(:is_top_concept_reference)
+    ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
+    self.add_link(:is_top_concept, object.uri)
+    self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
-    new_mc
+    object
   end
 
   # Clone. Clone the thesaurus taking care over the reference objects

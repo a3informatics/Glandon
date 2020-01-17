@@ -1332,14 +1332,9 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "creates subset" do
-      # thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      # subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
-    byebug
-      # expect(thesaurus.is_top_concept_links.count).to eq(2)
-      new_mc = tc.create_subset
-      # expect(thesaurus.is_top_concept_links.count).to eq(3)
-      actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
+      new_subset = tc.create_subset
+      actual = Thesaurus::ManagedConcept.find_minimum(new_subset.id)
       expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66726/V19#C66726")
       expect(actual.is_ordered_objects).not_to be(nil)
       expect(actual.is_ordered_objects.members).to be(nil)

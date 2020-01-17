@@ -607,25 +607,21 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
   end
 
   def create_extension
-    # transaction = transaction_begin
     source = Thesaurus::ManagedConcept.find_full(self.id)
     source.narrower_links
     object = source.clone
     object.identifier = "#{source.scoped_identifier}E"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
-    # object.transaction_set(transaction)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
-    # return object if object.errors.any?
-    # transaction_execute
     object
   end
 
   def create_subset
     source_mc = Thesaurus::ManagedConcept.find_minimum(self.id)
-    new_mc = self.add_child({})
     transaction_begin
+    new_mc = Thesaurus::ManagedConcept.create
     subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
     new_mc.add_link(:is_ordered, subset.uri)
     new_mc.add_link(:subsets, source_mc.uri)
