@@ -94,6 +94,7 @@ class Thesaurus
           # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
           identifier: Thesaurus::UnmanagedConcept.new_identifier,
           notation: syn.label,
+          label: pt.label ,
           preferred_term: pt,
           synonym: synonyms,
           definition: object.definition
@@ -246,7 +247,7 @@ class Thesaurus
       result
     end
 
-    # Simple To Hash. Output the concept as a sinple hash.
+    # Simple To Hash. Output the concept as a simple hash.
     #
     # @return [Hash] the hash for the object
     def simple_to_h
