@@ -86,6 +86,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       @is_extending = !extension_of_uri.nil?
       @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
       @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+      @edit_tags_path = path_for(:edit_tags, @tc)
     else
       redirect_to request.referrer
     end
