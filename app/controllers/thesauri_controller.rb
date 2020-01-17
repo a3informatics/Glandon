@@ -333,7 +333,7 @@ class ThesauriController < ApplicationController
     thesaurus = edit_item(thesaurus)
     new_mc = thesaurus.add_subset(the_params[:concept_id])
     # AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
-    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: thesaurus.id)
+    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: the_params[:concept_id], context_id: thesaurus.id)
     render json: { edit_path: path, }, :status => 200
   end
 

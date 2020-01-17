@@ -561,7 +561,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @return [Object] the created ManagedConcept
   def add_subset(mc_id)
     transaction = transaction_begin
-    tc = Thesaurus::ManagedConcept.find_full(id)
+    tc = Thesaurus::ManagedConcept.find_full(mc_id)
     object = tc.create_subset
     ordinal = next_ordinal(:is_top_concept_reference)
     ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
