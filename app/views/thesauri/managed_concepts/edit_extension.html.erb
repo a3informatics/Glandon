@@ -8,6 +8,7 @@
                         searchUrl = '#{search_current_thesauri_index_path}',
                         newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
                         newChildFromSynUrl ='#{add_children_synonyms_thesauri_managed_concept_path(@tc)}',
+                        destroyChildUrl ='#{thesauri_unmanaged_concept_path("umcid")}',
                         extensionId = '#{@tc.id}',
                         is_extended = false,
                         is_extending = #{@is_extending},

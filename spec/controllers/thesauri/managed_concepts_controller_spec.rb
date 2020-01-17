@@ -267,7 +267,7 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :all do
-     
+
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
@@ -368,6 +368,7 @@ describe Thesauri::ManagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      token = Token.obtain(mc, @user)
       post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
