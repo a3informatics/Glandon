@@ -379,8 +379,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_mc = tc.create_subset
-    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: "")
-    render json: { redirect_path: path, }, :status => 200
+    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: params[:context_id] )
+    render json: { edit_path: path, }, :status => 200
   end
 
   def find_subsets
