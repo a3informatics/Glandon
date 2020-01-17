@@ -96,7 +96,7 @@ describe "Thesauri Extensions", :type => :feature do
       expect(context_menu_element_header_present?(:extend, "disabled")).to eq(true)
     end
 
-    it "Select Terminology Container (REQ-MDR-EXT-010)", js:true do
+    it "Create Extension, Terminology container (REQ-MDR-EXT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       expect(page).to have_content 'History'
@@ -110,69 +110,55 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66770')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      wait_for_ajax(10)
+      sleep 1.5
+      page.find("#select_th")[:class].include?("disabled")
+      find(:xpath, "//*[@id='thTable']/tbody/tr[contains(.,'TEST')]").click
+      find(:xpath, "//*[@id='thTable']/tbody/tr[contains(.,'TEST')]")[:class].include?("selected")
+      expect(page.find("#select_th")[:class]).not_to include("disabled")
       click_button 'Select'
       wait_for_ajax(10)
-      expect(context_menu_element_header_present?(:extension)).to eq(true)
-      #expect(page).to have_content 'Extension'
+      expect(page).to have_content("Edit Extension")
     end
 
-    it "Select Extension (REQ-MDR-EXT-010)", js:true do
+    it "Show Extension, Extending (REQ-MDR-EXT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       expect(page).to have_content 'History'
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
+      context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
-      expect(page).to have_content '2014-09-26 Release'
+      expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 446)
-      ui_child_search("C96783")
-      wait_for_ajax(10)
-      find(:xpath, "//tr[contains(.,'C96783')]/td/a", :text => 'Show').click
-      wait_for_ajax(10)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]").click
-      wait_for_ajax(10)
-      click_button 'Select'
-      wait_for_ajax(10)
-      #expect(page).to have_content 'Extension'
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C96783E'
-      expect(context_menu_element_header_present?(:extending)).to eq(true)
-      #expect(page).to have_content 'Extending'
-    end
-
-    it "Select Extending (REQ-MDR-EXT-010)", js:true do
-      click_navbar_cdisc_terminology
-      expect(page).to have_content 'History'
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2015-06-26 Release", :show)
-      wait_for_ajax(10)
-      expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 504)
-      expect(page).to have_content 'Extensible'
-      ui_child_search("C99079")
+      ui_child_search("C66770")
       wait_for_ajax(10)
       ui_check_table_cell_extensible('children_table', 1, 5, true)
-      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
-      wait_for_ajax(10)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]").click
-      wait_for_ajax(10)
-      click_button 'Select'
+      find(:xpath, "//tr[contains(.,'C66770')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:extension)
-      wait_for_ajax(120)
-      expect(page).to have_content 'C99079E'
+      wait_for_ajax(10)
+      expect(page).to have_content 'C66770E'
+      expect(context_menu_element_header_present?(:extending)).to eq(true)
       context_menu_element_header(:extending)
-      wait_for_ajax(120)
-      expect(page).to have_content 'C99079'
+      wait_for_ajax(10)
+      expect(page).to have_content 'C66770'
       expect(context_menu_element_header_present?(:extension)).to eq(true)
-      #expect(page).to have_content 'Extension'
+    end
+
+    it "Create Extension, no Terminology container (REQ-MDR-EXT-???)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'History'
+      context_menu_element("history", 5, "2014-10-06 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2014-10-06 Release'
+      ui_check_table_info("children_table", 1, 10, 446)
+      ui_check_table_cell_extensible('children_table', 8, 5, true)
+      find(:xpath, "//tr[contains(.,'C96785')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      context_menu_element_header(:extend)
+      sleep 1.5
+      click_button 'Do not select'
+      wait_for_ajax(10)
+      expect(page).to have_content("Edit Extension")
     end
 
     it "Add Code List Item to Extension (REQ-MDR-EXT-010)", js:true do
