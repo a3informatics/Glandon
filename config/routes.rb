@@ -194,7 +194,7 @@ Rails.application.routes.draw do
         get :preferred_term_links
         get :change_instruction_links
         post :extensions, action: :add_extensions
-        delete :extensions, action: :destroy_extensions
+        # delete :extensions, action: :destroy_extensions
         get :is_extended
         get :is_extension
         get :export_csv
