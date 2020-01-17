@@ -63,6 +63,12 @@ function ThesauriSelect(id, callback) {
     _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
   });
 
+  // Skip Th select callback
+  $('#skip_th_select').click(function() {
+    $('#th-select-modal').modal('hide');
+    _this.callback(null);
+  });
+
 }
 
 /**

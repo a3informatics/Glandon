@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/show_header_panel' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
@@ -11,10 +11,15 @@
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>
+  <%= javascript_tag "var createExtensionUrl = '#{create_extension_thesauri_managed_concept_path(@tc)}';" %>
+  <%= javascript_tag "var createExtensionInThUrl = '#{extension_thesauri_index_path}';" %>
+  <%= javascript_tag "var createSubsetUrl = '#{create_subset_thesauri_managed_concept_path(@tc)}';" %>
+  <%= javascript_tag "var createSubsetInThUrl = '#{add_subset_thesauri_path}';" %>
+
   <%= render partial: "shared/thesauri/thesauri_select" %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+  <%= render partial: "shared/thesauri/subsets_index" %>
 <% end %>
-<%= render partial: "shared/thesauri/subsets_index" %>
 
 <div class="row">
   <!-- RENDER CARD CONTENTS -->

@@ -21,7 +21,7 @@
             <center>
               <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
             </center>
-            <div class="form-wrap">
+            <div class="form-wrap wide">
               <div class="form-row">
                 <div class="form-group">
                   <label for="notation"> Submission value: </label><br/>
@@ -50,10 +50,12 @@
         <button type="button" class="btn medium" id="close-modal-button" data-dismiss="modal" aria-label="Close">
           Close
         </button>
-        <button type="button" class="btn medium light ttip" id="edit-tags-button">
-          <span class="ttip-text ttip-left text-medium shadow-small">To see the tag changes, refresh this page.</span>
-          <span class="icon-tag text-tiny"></span> Edit tags
-        </button>
+        <% if local_assigns.fetch :with_edit_tags, false %>
+          <button type="button" class="btn medium light ttip" id="edit-tags-button">
+            <span class="ttip-text ttip-left text-medium shadow-small">To see the tag changes, refresh this page.</span>
+            <span class="icon-tag text-tiny"></span> Edit tags
+          </button>
+        <% end %>
         <button class="btn medium green submit-btn" id="submit-button">
           <span class="icon-ok text-tiny"></span> Save changes
         </button>

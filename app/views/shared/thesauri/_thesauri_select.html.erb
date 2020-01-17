@@ -11,7 +11,8 @@
       </div>
       <div class="modal-body">
         <div class="row" style="padding: 10px 40px;">
-          <div class="font-light"> Choose a terminology where the new item should be created from the list below and click Select. To make the item parent-less, click Skip this step.</div><br/>
+          <div class="font-light"> Choose a Terminology where the new item should be created from the list below and click 'Select'. <br/>
+            To create the item without placing it in a Terminology, click 'Do not select'.</div><br/>
 
           <div class="table-cardstyle all-columns">
             <table style="width: 100%;" id="thTable" class="table table-row-clickable table-condensed">
@@ -30,8 +31,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Close</button>
-        <button type="button" class="btn medium light" id="skip_th_select">Skip this step</button>
-        <button type="button" class="btn medium green" id="select_th">Select</button>
+        <button type="button" class="btn medium light ttip" id="skip_th_select">
+          <span class="ttip-text ttip-left shadow-small text-medium">Item won't become a child of a Terminology</span>
+          Do not select</button>
+        <button type="button" class="btn medium green ttip" id="select_th">
+          <span class="ttip-text ttip-left shadow-small text-medium">Item will become a child of the selected Terminology</span>
+          Select</button>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@
 
 <% if policy(Thesaurus).edit? %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
-  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child'} %>
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child', with_edit_tags: true} %>
   <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
 <% end %>
 
