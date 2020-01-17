@@ -53,13 +53,13 @@ describe "Thesauri Subsets", :type => :feature do
       expect(page).to have_content("CDISC SDTM Pharmaceutical Dosage Form Terminology")
       context_menu_element_header(:subsets)
       sleep 1
-      ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
-      ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
+      ui_check_table_cell("subsets-index-table", 1, 1, "S000001")
+      ui_check_table_cell("subsets-index-table", 2, 1, "S000002")
       click_button "Close"
       sleep 1
     end
 
-    it "adds a new subset (REQ-MDR-?????)", js:true do
+    it "adds a new subset, terminology selected (REQ-MDR-?????)", js:true do
       audit_count = AuditTrail.count
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
@@ -71,9 +71,30 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_header(:subsets)
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
-      expect(page).to have_content("Select Terminology")
+      expect(page).to have_content("Pick a Terminology")
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button "Select"
+      wait_for_ajax(10)
+      expect(page).to have_content("Edit Subset")
+      expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
+    it "adds a new subset, Do not select terminology (REQ-MDR-?????)", js:true do
+      audit_count = AuditTrail.count
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      expect(page).to have_content '2010-03-05 Release'
+      find(:xpath, "//tr[contains(.,'C85495')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      expect(page).to have_content("MSRESCAT")
+      context_menu_element_header(:subsets)
+      sleep 1
+      click_button "+ New subset"
+      wait_for_ajax(120)
+      expect(page).to have_content("Pick a Terminology")
+      wait_for_ajax(120)
+      click_button "Do not select"
       wait_for_ajax(10)
       expect(page).to have_content("Edit Subset")
       expect(AuditTrail.count).to eq(audit_count+1)
@@ -90,7 +111,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(10)
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#imh_header")[:class].include?("warning")
@@ -128,7 +149,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax(120)
@@ -156,7 +177,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       expect(page).to have_content("The edit lock has timed out.")
@@ -173,7 +194,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       expect(page).to have_content 'Edit Subset'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
       token = tokens[0]
@@ -195,17 +216,37 @@ describe "Thesauri Subsets", :type => :feature do
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       wait_for_ajax(10)
-      expect(page).to have_content("Select Terminology")
+      expect(page).to have_content("Pick a Terminology")
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button "Select"
       wait_for_ajax(10)
       expect(page).to have_content("Preferred term: Not Set")
-      click_link "Edit properties"
-      fill_in "edit_preferred_term", with: "Term 1"
-      click_button "Submit"
+      context_menu_element_header(:edit_properties)
+      fill_in "preferred_term", with: "Term 1"
+      wait_for_ajax(10)
+      click_button "Save changes"
       wait_for_ajax(120)
       expect(page).to have_content("Preferred term: Term 1")
       expect(AuditTrail.count).to eq(audit_count+2)
+    end
+
+    it "edits tags of a subset MC in edit subset", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2009-10-06 Release", :show)
+      wait_for_ajax(120)
+      find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
+      wait_for_ajax(120)
+      context_menu_element_header(:subsets)
+      wait_for_ajax(10)
+      click_button "+ New subset"
+      wait_for_ajax(10)
+      expect(page).to have_content("Pick a Terminology")
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button "Select"
+      wait_for_ajax(10)
+      context_menu_element_header(:edit_tags)
+      expect(page).to have_content("Tag Viewer")
     end
 
   end
@@ -248,7 +289,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
 
       wait_for_ajax(10)
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
@@ -274,7 +315,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
 
       wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -304,7 +345,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       
       sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -322,8 +363,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
-
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       expect(page).to have_content 'Edit Subset'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
       token = tokens[0]
