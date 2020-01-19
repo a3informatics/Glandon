@@ -29,6 +29,11 @@
   display: none !important;
 }
 
+.table-row-clickable tr.disabled{
+  pointer-events: none !important;
+  opacity: .5 !important;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   .table-row-clickable .selected td:first-of-type::before{

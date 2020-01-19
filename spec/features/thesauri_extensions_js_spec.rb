@@ -39,6 +39,20 @@ describe "Thesauri Extensions", :type => :feature do
       ua_destroy
     end
 
+    # Goes to the edit page of the extension - extension must exist beforehand
+    def go_to_edit_extension(identifier)
+      click_navbar_code_lists
+      wait_for_ajax(120)
+      ui_table_search("index", identifier)
+      ui_check_table_row_indicators("index", 1, 4, ["extension"])
+      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+      wait_for_ajax(10)
+      context_menu_element("history", 8, identifier, :edit)
+      wait_for_ajax(20)
+      expect(page).to have_content("Edit Extension")
+      expect(page).to have_content(identifier)
+    end
+
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
@@ -118,9 +132,10 @@ describe "Thesauri Extensions", :type => :feature do
       click_button 'Select'
       wait_for_ajax(10)
       expect(page).to have_content("Edit Extension")
+      expect(page).to have_content("C66770E")
     end
 
-    it "Show Extension, Extending (REQ-MDR-EXT-010)", js:true do
+    it "Show Extension, Extending buttons and links (REQ-MDR-EXT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       expect(page).to have_content 'History'
@@ -159,161 +174,105 @@ describe "Thesauri Extensions", :type => :feature do
       click_button 'Do not select'
       wait_for_ajax(10)
       expect(page).to have_content("Edit Extension")
+      expect(page).to have_content("C96785E")
     end
 
-    it "Add Code List Item to Extension (REQ-MDR-EXT-010)", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
-      wait_for_ajax(10)
-      ui_child_search("C99075")
-      wait_for_ajax(120)
-      find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
-      wait_for_ajax(120)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      click_button 'Select'
-      wait_for_ajax(10)
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C99075E'
-      ui_check_table_info("children_table", 1, 6, 6)
-      click_link 'Add'
-      wait_for_ajax(120)
+    it "Add one or more existing Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
+      go_to_edit_extension "C66770E"
+      expect(page).to have_content("CDISC SDTM Unit for Vital Sign Result Terminology")
+      ui_check_table_info("extension-children-table", 1, 10, 15)
+      click_link 'Add items'
+      sleep 1
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
       input.set("C100129")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      click_button 'Add terms'
+      click_button 'Add items'
       wait_for_ajax(10)
-      ui_check_table_info("children_table", 1, 7, 7)
-    end
-
-    it "Add two Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
-      ui_child_search("C116110")
-      wait_for_ajax(120)
-      find(:xpath, "//tr[contains(.,'C116110')]/td/a", :text => 'Show').click
-      wait_for_ajax(120)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      click_button 'Select'
-      wait_for_ajax(10)
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C116110E'
-      ui_check_table_info("children_table", 1, 9, 9)
-      click_link 'Add'
-      wait_for_ajax(120)
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C100129")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
-      click_button 'Add terms'
-      ui_check_table_info("children_table", 1, 10, 11)
-    end
-
-    it "Add 3 Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
-      ui_child_search("C99073")
-      wait_for_ajax(120)
-      find(:xpath, "//tr[contains(.,'C99073')]/td/a", :text => 'Show').click
-      wait_for_ajax(120)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      click_button 'Select'
-      wait_for_ajax(10)
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C99073E'
-      ui_check_table_info("children_table", 1, 7, 7)
-      click_link 'Add'
-      wait_for_ajax(120)
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C100129")
+      sleep 1
+      ui_check_table_info("extension-children-table", 1, 10, 16)
+      find(:xpath, "//*[@id='extension-children-table_paginate']/ul/li[3]/a").click
+      ui_check_table_cell("extension-children-table", 6, 3, "Abnormal Involuntary Movement Scale Questionnaire")
+      ui_check_table_button_class("extension-children-table", 6, 8, "exclude")
+      click_link 'Add items'
+      sleep 1
+      input.set("")
+      input = find(:xpath, '//*[@id="searchTable_csearch_cl name"]')
+      input.set("Country")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
       find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]").click
-      click_button 'Add terms'
-      ui_check_table_info("children_table", 1, 10, 10)
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
+      expect(find("#number-selected").text).to eq("3")
+      click_button 'Add items'
+      wait_for_ajax(20)
+      sleep 1
+      ui_check_table_info("extension-children-table", 1, 10, 19)
     end
 
-    it "not allows to add a Code List to Extension (REQ-MDR-EXT-010)", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
-      ui_child_search("C96785")
-      wait_for_ajax(120)
-      find(:xpath, "//tr[contains(.,'C96785')]/td/a", :text => 'Show').click
-      wait_for_ajax(120)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      click_button 'Select'
-      wait_for_ajax(10)
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C96785E'
-      ui_check_table_info("children_table", 1, 10, 11)
-      click_link 'Add'
-      wait_for_ajax(120)
+    it "does not allow to add a Code List to Extension (REQ-MDR-EXT-010)", js:true do
+      go_to_edit_extension "C66770E"
+      click_link 'Add items'
+      sleep 1
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
       input.set("C1")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]").click
-      click_button 'Add terms'
-      ui_check_table_info("children_table", 1, 10, 11)
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]")[:class].include?("disabled")
+      expect(find("#number-selected").text).to eq("1")
+      click_button 'Close'
+      sleep 1
+    end
+
+    it "Create a blank new child item to Extension", js:true do
+      go_to_edit_extension "C66770E"
+      ui_check_table_info("extension-children-table", 1, 10, 19)
+      find("#new-item-button").click
+      wait_for_ajax(10)
+      ui_check_table_info("extension-children-table", 1, 10, 20)
+      ui_check_table_cell("extension-children-table", 1, 3, "Not Set")
+      ui_check_table_button_class("extension-children-table", 1, 7, "update-properties")
+      ui_check_table_button_class("extension-children-table", 1, 8, "exclude")
+    end
+
+    it "Create new children from Synonyms in Extension", js:true do
+      go_to_edit_extension "C66770E"
+      ui_check_table_info("extension-children-table", 1, 10, 20)
+      find(:xpath, "//*[@id='extension-children-table_paginate']/ul/li[3]/a").click
+      find("#new-from-synonyms-button").click
+      click_button "Cancel"
+      find("#new-from-synonyms-button").click
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[8]").click
+      sleep 0.5
+      expect(page).to have_content("This action will create 2 new Code List Item(s)")
+      find("#cd-positive-button").click
+      wait_for_ajax(20)
+      sleep 0.5
+      ui_check_table_info("extension-children-table", 1, 10, 22)
+      ui_check_table_cell("extension-children-table", 1, 2, "CONGO, THE DEMOCRATIC REPUBLIC OF")
+      ui_check_table_cell("extension-children-table", 2, 2, "DEMOCRATIC REPUBLIC OF THE CONGO")
+      ui_check_table_button_class("extension-children-table", 1, 7, "update-properties")
+      ui_check_table_button_class("extension-children-table", 1, 8, "exclude")
+      ui_check_table_button_class("extension-children-table", 2, 7, "update-properties")
+      ui_check_table_button_class("extension-children-table", 2, 8, "exclude")
     end
 
     it "allows the user to delete a code list item from extension", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2014-09-26 Release", :show)
-      wait_for_ajax(120)
-      ui_child_search("C99076")
-      wait_for_ajax(10)
-      find(:xpath, "//tr[contains(.,'C99076')]/td/a", :text => 'Show').click
-      wait_for_ajax(120)
-      context_menu_element_header(:extend)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
-      click_button 'Select'
-      wait_for_ajax(10)
-      context_menu_element_header(:extension)
-      wait_for_ajax(10)
-      expect(page).to have_content 'C99076E'
-      ui_check_table_info("children_table", 1, 4, 4)
-      click_link 'Add'
-      wait_for_ajax(120)
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C1")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
-      click_button 'Add terms'
-      wait_for_ajax(10)
-      ui_check_table_info("children_table", 1, 6, 6)
+      go_to_edit_extension "C66770E"
+      ui_check_table_info("extension-children-table", 1, 10, 19)
       find(:xpath, "//*[@id='children_table']/tbody/tr[6]/td[8]/button", :text => 'Delete').click
       wait_for_ajax(10)
       ui_check_table_info("children_table", 1, 5, 5)
     end
+
+    it "allows the user to edit properties of a child item in an extension"
+    it "allows the user to edit properties of an extension"
+
 
   end
 

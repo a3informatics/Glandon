@@ -24,6 +24,7 @@ function TermSearch(context_id, callback, url) {
   this.tsSearchTable = null;
   this.tsCurrentRef = null;
   this.tsCurrentRow = null;
+  this.codeListAllowed = false;
 
   this.initTable();
   this.appendSearchBoxes();
@@ -37,6 +38,9 @@ function TermSearch(context_id, callback, url) {
   });
 
   $("#searchTable input").css("width", "100%");
+
+  if(!this.codeListAllowed)
+    $(".modal-info").append("<i>Code Lists cannot be included and appear grey in the table. Only Code List Items are allowed.</i>")
 }
 
 /**
@@ -67,6 +71,8 @@ TermSearch.prototype.initTable = function() {
     "rowCallback": function(row, data) {
       if (this.selectionContains(data["id"]))
         this.tsSearchTable.row(row).select();
+      if(!this.codeListAllowed && data.identifier == data.parent_identifier)
+        $(row).addClass("disabled");
     }.bind(this),
   });
 };
