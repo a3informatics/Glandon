@@ -532,6 +532,7 @@ module UiHelpers
 			extending: "Extending",
 			change_notes: "Change notes",
 			edit_tags: "Edit tags",
+      edit_properties: "Edit properties"
     }
 	end
 

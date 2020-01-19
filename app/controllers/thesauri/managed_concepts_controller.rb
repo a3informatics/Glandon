@@ -344,6 +344,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_object = tc.create_extension
+    AuditTrail.create_item_event(current_user, new_mc, "Extension created.")
     show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: ""}})
     edit_path = edit_extension_thesauri_managed_concept_path(new_object)
     render json: {show_path: show_path, edit_path: edit_path}, :status => 200
@@ -386,6 +387,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_mc = tc.create_subset
+    AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
     path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: "" )
     render json: { edit_path: path, }, :status => 200
   end
