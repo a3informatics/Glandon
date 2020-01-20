@@ -238,15 +238,20 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      wait_for_ajax(10)
+      sleep 1
       click_button "+ New subset"
-      wait_for_ajax(10)
+      sleep 1
       expect(page).to have_content("Pick a Terminology")
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button "Select"
       wait_for_ajax(10)
-      context_menu_element_header(:edit_tags)
-      expect(page).to have_content("Tag Viewer")
+      expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
+      w = window_opened_by { context_menu_element_header(:edit_tags) }
+      within_window w do
+        wait_for_ajax(10)
+        expect(page).to have_content "Attach / Detach Tags"
+      end
+      w.close
     end
 
   end
@@ -346,7 +351,7 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
-      
+
       sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       expect(page).to have_content("The edit lock has timed out.")
