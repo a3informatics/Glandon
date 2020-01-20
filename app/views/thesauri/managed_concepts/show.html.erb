@@ -8,6 +8,8 @@
 <%= javascript_tag "var is_extended = #{@is_extended};" %>
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
+<%= javascript_tag "var can_edit = #{policy(Thesaurus).edit?};" %>
+
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>

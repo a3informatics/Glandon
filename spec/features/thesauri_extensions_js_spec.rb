@@ -37,6 +37,8 @@ describe "Thesauri Extensions", :type => :feature do
 
     after :all do
       ua_destroy
+      Token.delete_all
+      Token.restore_timeout
     end
 
     # Goes to the edit page of the extension - extension must exist beforehand
@@ -229,7 +231,7 @@ describe "Thesauri Extensions", :type => :feature do
       sleep 1
     end
 
-    it "Create a blank new child item to Extension", js:true do
+    it "Create a blank new child item in Extension", js:true do
       go_to_edit_extension "C66770E"
       ui_check_table_info("extension-children-table", 1, 10, 19)
       find("#new-item-button").click
@@ -249,7 +251,7 @@ describe "Thesauri Extensions", :type => :feature do
       find("#new-from-synonyms-button").click
       find(:xpath, "//*[@id='extension-children-table']/tbody/tr[8]").click
       sleep 0.5
-      expect(page).to have_content("This action will create 2 new Code List Item(s)")
+      expect(page).to have_content "This action will create 2 new Code List Item(s)"
       find("#cd-positive-button").click
       wait_for_ajax(20)
       sleep 0.5
@@ -262,17 +264,77 @@ describe "Thesauri Extensions", :type => :feature do
       ui_check_table_button_class("extension-children-table", 2, 8, "exclude")
     end
 
-    it "allows the user to delete a code list item from extension", js:true do
+    it "Remove a Code List Item from an Extension", js:true do
       go_to_edit_extension "C66770E"
-      ui_check_table_info("extension-children-table", 1, 10, 19)
-      find(:xpath, "//*[@id='children_table']/tbody/tr[6]/td[8]/button", :text => 'Delete').click
-      wait_for_ajax(10)
-      ui_check_table_info("children_table", 1, 5, 5)
+      ui_check_table_info("extension-children-table", 1, 10, 22)
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[8]/span").click
+      ui_confirmation_dialog true
+      wait_for_ajax(20)
+      ui_check_table_info("extension-children-table", 1, 10, 21)
+      find(:xpath, "//*[@id='extension-children-table_paginate']/ul/li[3]/a").click
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[10]/td[8]/span").click
+      ui_confirmation_dialog true
+      wait_for_ajax(20)
+      ui_check_table_info("extension-children-table", 1, 10, 20)
     end
 
-    it "allows the user to edit properties of a child item in an extension"
-    it "allows the user to edit properties of an extension"
+    it "allows the user to edit properties of a child item in an extension", js:true do
+      go_to_edit_extension "C66770E"
+      ui_check_table_button_class("extension-children-table", 1, 7, "update-properties")
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[7]/span").click
+      sleep 0.5
+      expect(page).to have_content "Edit properties"
+      fill_in "ep_input_notation", with: "NOTATION"
+      fill_in "ep_input_synonym", with: "Syn1; Syn2"
+      find("#submit-button").click
+      wait_for_ajax(20)
+      ui_check_table_cell("extension-children-table", 1, 2, "NOTATION")
+      ui_check_table_cell("extension-children-table", 1, 4, "Syn1; Syn2")
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[2]/td[7]/span").click
+      sleep 0.5
+      expect(page).to have_content "Edit properties"
+      fill_in "ep_input_definition", with: "=/*€%#"
+      find("#submit-button").click
+      wait_for_ajax(20)
+      expect(page).to have_content "Definition contains invalid characters"
+      find("#close-modal-button").click
+      sleep 0.5
+    end
 
+    it "allows the user to edit properties of an extension", js:true do
+      go_to_edit_extension "C66770E"
+      expect(context_menu_element_header_present?(:edit_properties)).to eq(true)
+      context_menu_element_header(:edit_properties)
+      expect(page).to have_content "Edit properties"
+      fill_in "ep_input_notation", with: "EXTENSION"
+      fill_in "ep_input_definition", with: "Extension definition here"
+      find("#submit-button").click
+      wait_for_ajax(20)
+      expect(find("#imh_header")).to have_content "EXTENSION"
+      expect(find("#imh_header")).to have_content "Extension definition here"
+    end
+
+    it "links to Edit Tags page for an extension", js:true do
+      go_to_edit_extension "C66770E"
+      expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
+      context_menu_element_header(:edit_tags)
+      wait_for_ajax(10)
+      expect(page).to have_content "C66770E"
+      expect(page).to have_content "Attach / Detach Tags"
+    end
+
+    it "does not allow edits when edit lock expires", js:true do
+      Token.set_timeout(10)
+      go_to_edit_extension "C66770E"
+      sleep 13
+      find("#new-item-button").click
+      wait_for_ajax(10)
+      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
+      find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[8]/span").click
+      ui_confirmation_dialog true
+      wait_for_ajax(10)
+      expect(page).to have_content("The changes were not saved as the edit lock timed out")
+    end
 
   end
 

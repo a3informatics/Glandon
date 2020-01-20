@@ -195,7 +195,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       children = tc.add_children_based_on(uc)
       render :json => {data: "" }, :status => 200
     else
-      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
     end
   end
 
@@ -344,7 +344,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_object = tc.create_extension
-    AuditTrail.create_item_event(current_user, new_mc, "Extension created.")
+    AuditTrail.create_item_event(current_user, new_object, "Extension created.")
     show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: ""}})
     edit_path = edit_extension_thesauri_managed_concept_path(new_object)
     render json: {show_path: show_path, edit_path: edit_path}, :status => 200
@@ -361,7 +361,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         tc.add_extensions(uris)
         render json: {data: {}, error: errors}
       else
-        render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+        render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
       end
     else
       render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
