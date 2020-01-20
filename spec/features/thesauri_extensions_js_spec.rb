@@ -305,8 +305,10 @@ describe "Thesauri Extensions", :type => :feature do
       go_to_edit_extension "C66770E"
       expect(context_menu_element_header_present?(:edit_properties)).to eq(true)
       context_menu_element_header(:edit_properties)
+      sleep 0.5
       expect(page).to have_content "Edit properties"
       fill_in "ep_input_notation", with: "EXTENSION"
+      sleep 0.5
       fill_in "ep_input_definition", with: "Extension definition here"
       find("#submit-button").click
       wait_for_ajax(20)
@@ -317,10 +319,13 @@ describe "Thesauri Extensions", :type => :feature do
     it "links to Edit Tags page for an extension", js:true do
       go_to_edit_extension "C66770E"
       expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
-      context_menu_element_header(:edit_tags)
-      wait_for_ajax(10)
-      expect(page).to have_content "C66770E"
-      expect(page).to have_content "Attach / Detach Tags"
+      w = window_opened_by { context_menu_element_header(:edit_tags) }
+      within_window w do
+        wait_for_ajax(10)
+        expect(page).to have_content "C66770E"
+        expect(page).to have_content "Attach / Detach Tags"
+      end
+      w.close
     end
 
     it "does not allow edits when edit lock expires", js:true do
