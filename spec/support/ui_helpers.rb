@@ -546,7 +546,7 @@ module UiHelpers
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
 		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null) { el.click(); } else { console.log('No match found'); } "
+    js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
 		page.execute_script(js_code)
 	end
 
