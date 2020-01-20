@@ -238,14 +238,14 @@ class IsoManagedV2 < IsoConceptV2
         when :major
           sv.increment_major
         when :minor
-          #sv.increment_minor  
+          sv.increment_minor  
         when :patch
           sv.increment_patch
         else
           self.errors.add(:base, "The release request type was invalid")
           return false
       end
-      if uris[:uris].length == 1
+      if uris[:uris].length <= 1
         si = self.has_identifier
         si.update(semantic_version: sv.to_s)
         si.save
