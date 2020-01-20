@@ -465,7 +465,7 @@ private
       when :destroy
         return thesauri_managed_concept_path(object)
       when :edit_tags
-        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
+        return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
       else
         return ""
     end
