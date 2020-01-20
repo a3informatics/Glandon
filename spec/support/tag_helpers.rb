@@ -20,6 +20,7 @@ module TagHelper
       fill_in 'add_label', with: "#{label}"
       fill_in 'add_description', with: "#{description}"
       click_on 'Create tag'
+      wait_for_ajax(10)
       expect(page).to have_content("#{label}")
       #click_link 'Close'
   end
@@ -32,6 +33,7 @@ module TagHelper
       fill_in 'add_label', with: "#{label}"
       fill_in 'add_description', with: "#{description}"
       click_on 'Create tag'
+      wait_for_ajax(10)
       expect(page).to have_content "#{label}"
   end
 
