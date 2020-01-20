@@ -115,6 +115,7 @@ class ThesauriController < ApplicationController
       @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
       ref_thesaurus = @thesaurus.get_referenced_thesaurus
       @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+      @edit_tags_path = path_for(:edit_tags, @thesaurus)
     else
       redirect_to request.referrer
     end

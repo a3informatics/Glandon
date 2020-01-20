@@ -25,8 +25,17 @@
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+      <% end %>
     </div>
   <% end %>
+
+  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @thesaurus.has_identifier.identifier, item_id: @thesaurus.id, item_notes_url: change_notes_iso_concept_path(@thesaurus.id)} %>
 </div>
 
 <div class="row">
