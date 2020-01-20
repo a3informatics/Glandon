@@ -851,7 +851,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "normal, single_parent flag " do
-      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.create({identifier: "AAA", label: "BBB"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
@@ -864,7 +864,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "normal, single_parent flag 2 " do
-      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
