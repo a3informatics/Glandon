@@ -125,6 +125,7 @@ describe "ISO Managed JS", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a").click
+      wait_for_ajax(20)
       find(:xpath, "//table[@id='comments_table']/tbody/tr[contains(.,'2015-03-27')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Comments:'
       fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
