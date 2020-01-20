@@ -79,6 +79,36 @@ class Thesaurus
       child
     end
 
+    # Add a child concept based on
+    #
+    # @params params [Object] the object on which the children are based 
+    # @return [Thesaurus::UnmanagedConcept] the children created
+    def add_children_based_on(object)
+      pt = object.preferred_term_objects
+      synonyms = object.synonym_objects
+      sparql = Sparql::Update.new
+      sparql.default_namespace(self.uri.namespace)
+      # @todo only supports generated identifiers currently
+      synonyms.each do |syn|
+        child = Thesaurus::UnmanagedConcept.from_h({
+          # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
+          identifier: Thesaurus::UnmanagedConcept.new_identifier,
+          notation: syn.label,
+          label: pt.label ,
+          preferred_term: pt,
+          synonym: synonyms,
+          definition: object.definition,
+          tagged: object.tagged 
+        })
+        child.generate_uri(self.uri)
+        child.to_sparql(sparql)
+        sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: child.uri})
+      end
+      filename = sparql.to_file
+      sparql.create
+      self.narrower_objects
+    end
+
     # Children Pagination. Get the children in pagination manner
     #
     # @params [Hash] params the params hash
@@ -93,39 +123,40 @@ class Thesaurus
       tags = params.key?(:tags) ? params[:tags] : []
 
       # Get the URIs for each child
-      query_string = %Q{SELECT ?e WHERE
-  {
-    #{self.uri.to_ref} th:narrower ?e .
-    ?e th:identifier ?v
-  } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
-  }
+      query_string = %Q{
+        SELECT ?e WHERE
+        {
+          #{self.uri.to_ref} th:narrower ?e .
+          ?e th:identifier ?v
+        } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
+      }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
-
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
-  {
-    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
-    {
-      VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
-      {
-        ?s th:identifier ?i .
-        ?s th:notation ?n .
-        ?s th:definition ?d .
-        ?s th:extensible ?e .
-        BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-        OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
-        OPTIONAL {?s th:synonym/isoC:label ?sy .}
-        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        {
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t WHERE
+          {
+            VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+            {
+              ?s th:identifier ?i .
+              ?s th:notation ?n .
+              ?s th:definition ?d .
+              ?s th:extensible ?e .
+              BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
+              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
+              OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+              OPTIONAL {?s th:synonym/isoC:label ?sy .}
+              OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+            }
+          } ORDER BY ?i ?sy ?t
+        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ORDER BY ?i
       }
-    } ORDER BY ?i ?sy ?t
-  } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
-  }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :gt]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
     end
@@ -217,7 +248,7 @@ class Thesaurus
       result
     end
 
-    # Simple To Hash. Output the concept as a sinple hash.
+    # Simple To Hash. Output the concept as a simple hash.
     #
     # @return [Hash] the hash for the object
     def simple_to_h

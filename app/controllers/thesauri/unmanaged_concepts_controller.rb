@@ -65,6 +65,25 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     end
   end
 
+  def update_properties
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
+    token = Token.find_token(parent, current_user)
+    if !token.nil?
+      tc = tc.update_with_clone(edit_params, parent)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
+        result = tc.simple_to_h
+        render :json => {:data => [result]}, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
+      end
+    else
+      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+    end
+  end
+
   # Will be required for Hierarchical terminologies
   # def children
   #   authorize Thesaurus, :edit?

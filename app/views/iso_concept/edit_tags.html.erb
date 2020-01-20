@@ -38,7 +38,7 @@
           To attach a tag to this item, find and select a tag in the Tag Viewer tree. Then click the 'Add Tag' button. <br/>
           To detach a tag from this item, click on a tag in the <i><%= @item.label %> tags</i> view below.</div><br/>
 
-        <span class="icon-tag text-link" style="margin-right:6px;"></span> '<%= @item.label %>' tags
+        <span class="icon-tag text-link" style="margin-right:6px;"></span> <%= @item.label.empty? ? 'Item' : '\''+@item.label+'\'' %> tags
         <div class="tags-container font-light" id="tags_container"><span id="no-tags-msg">No tags found.</span></div>
 
         <hr>
