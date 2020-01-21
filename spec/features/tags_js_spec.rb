@@ -77,18 +77,18 @@ describe "Tags", :type => :feature do
 
     it "create child tags with identical labels in different entities of the hierarchy (REQ-MDR-TAG-040)", js: true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
-      wait_for_ajax
+      wait_for_ajax(20)
       create_tag_first_level("Tag2", "Tag 2 level 1")
-      wait_for_ajax
+      wait_for_ajax(20)
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
       ui_click_node_name ("Tag2")
       fill_in 'add_label', with: 'Tag1_1'
       fill_in 'add_description', with: 'similar child tag'
       click_on 'Create tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       key1 = ui_get_key_by_path('["Tags", "Tag2", "Tag1_1"]')
       ui_click_node_key(key1)
-      wait_for_ajax
+      wait_for_ajax(20)
       ui_check_input('edit_label', "Tag1_1")
       ui_check_input('edit_description', "similar child tag")
     end
@@ -143,19 +143,19 @@ describe "Tags", :type => :feature do
       ui_click_node_name ("TAG4-1-1")
       ui_check_input('edit_label','TAG4-1-1')
       click_on 'Delete tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).not_to have_content 'TAG4-1-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4-1")
       ui_check_input('edit_label','TAG4-1')
       click_on 'Delete tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).not_to have_content 'TAG4-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4")
       ui_check_input('edit_label','TAG4')
       click_on 'Delete tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).not_to have_content 'TAG4'
     end
 
@@ -178,13 +178,13 @@ describe "Tags", :type => :feature do
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("TAG1")
-      wait_for_ajax
+      wait_for_ajax(20)
       ui_check_input("edit_label", 'TAG1')
       ui_check_input("edit_description", 'Tag number 1')
       fill_in 'edit_label', with: 'UPDTAG1'
       fill_in 'edit_description', with: 'Tag 1 updated'
       click_on 'Update tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       ui_click_node_name ("UPDTAG1")
       ui_check_input("edit_label", 'UPDTAG1')
       ui_check_input("edit_description", 'Tag 1 updated')
@@ -277,10 +277,10 @@ describe "Tags", :type => :feature do
       fill_in 'add_label', with: 'Very long tag label'
       fill_in 'add_description', with: 'Description'
       click_on 'Create tag'
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).to have_content('Very long ta...')
       ui_click_node_name ('Very long tag label')
-      wait_for_ajax
+      wait_for_ajax(20)
       ui_check_input("edit_label", 'Very long tag label')
     end
 
@@ -293,7 +293,7 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       fill_in 'Search for a tag', with: 'TAG1-3'
       ui_hit_return("d3Search_input")
-      wait_for_ajax
+      wait_for_ajax(20)
       result = ui_get_search_results
       expect(result.count).to eq(1)
       expect(result[0]).to eq("TAG1-3")
@@ -318,7 +318,7 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       fill_in 'Search for a tag', with: 'TAG1-3'
       ui_hit_return("d3Search_input")
-      wait_for_ajax
+      wait_for_ajax(20)
       result = ui_get_search_results
       expect(result.count).to eq(1)
       expect(result[0]).to eq("TAG1-3")
@@ -350,7 +350,7 @@ describe "Tags", :type => :feature do
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ('SDTM')
-      wait_for_ajax
+      wait_for_ajax(20)
       ui_check_table_cell("iso_concept_table", 2, 3, "1")
       ui_check_table_cell("iso_concept_table", 5, 1, "C25681")
       click_link '15'
@@ -358,7 +358,7 @@ describe "Tags", :type => :feature do
       ui_check_table_cell("iso_concept_table", 4, 3, "3")
       ui_check_table_cell("iso_concept_table", 4, 4, "2007-04-26 Release")
       ui_click_node_name ('Protocol')
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).to have_content('No items with the selected tag were found.')
     end
 
