@@ -307,6 +307,7 @@ describe "CDISC Term", :type => :feature do
     it "allows the changes summary to be viewed, changes summary", js: true do
       ui_dashboard_slider("2017-12-22", "2018-03-30")
       click_link 'Display'
+      wait_for_ajax(20)
       find(:xpath, "//div[@id='updated_div']/a", :text => "DTHDX (C116107)").click
       wait_for_ajax(10)
       expect(page).to have_content("Differences Summary")

@@ -1,4 +1,15 @@
 ---
+- :identifier: A00021
+  :notation: NOTATION1
+  :preferred_term: ''
+  :synonym: ''
+  :tags: ''
+  :extensible: false
+  :definition: The definition.
+  :delete: true
+  :single_parent: true
+  :uri: http://www.cdisc.org/C99079/V31#C99079_A00021
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQTAwMDIx
 - :identifier: C102255
   :notation: BLINDED TREATMENT
   :preferred_term: Blinded Treatment Epoch
@@ -23,6 +34,19 @@
   :single_parent: false
   :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
+- :identifier: C307
+  :notation: BIOLOGIC
+  :preferred_term: Biological Agent
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: 'A substance made from living organisms or things they produce, for
+    example: virus, therapeutic serum, toxin, antitoxin, vaccine, blood, blood component
+    or derivative, allergenic product, or analogous product.'
+  :delete: true
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99078/V28#C99078_C307
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc4L1YyOCNDOTkwNzhfQzMwNw==
 - :identifier: C42872
   :notation: WASHOUT
   :preferred_term: Washout Period
