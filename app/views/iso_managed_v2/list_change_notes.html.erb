@@ -1,4 +1,4 @@
-<%= javascript_tag 'setPageTitle("List change notes: '+@managed_item.label+'")' %>
+<%= javascript_tag 'setPageTitle("List Change notes: '+@managed_item.label+'")' %>
 <% third_level_breadcrumb(:code_lists, @managed_item, @close_path) %>
 
 <%= stylesheet_link_tag 'shared/change_notes' %>
@@ -17,7 +17,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12 card wide table-cardstyle all-columns">
-		<div class="card-header">	List of Change Notes </div>
+		<div class="card-header">	Change Notes of <%= @managed_item.has_identifier.identifier %> and Children</div>
 	  <div class="card-content">
       <table id="main" class="table table-striped table-bordered table-condensed">
         <thead>

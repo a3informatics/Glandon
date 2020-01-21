@@ -149,7 +149,7 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
     { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
 
   if(row.list_cn_path != "")
-    menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List change notes"});
+    menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List Change notes"});
   if(row.current_path != "")
     menu_items.splice(menu_items.length -2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
 
