@@ -430,6 +430,20 @@ function getStringInitials(str) {
   return initials;
 };
 
+/**
+ * Generates styled HTML for datetime
+ * @param date [Date] Javascript date
+ *
+ * @return [String] formatted html
+ */
+function dateTimeHTML(date) {
+  return '<span class="icon-date text-link"></span> ' +
+          $.format.date(date, 'yyyy-MM-dd') +
+          '<br/>' +
+          '<span class="icon-time text-link"></span> ' +
+          '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
+}
+
 function toggleTableActive(tableId, enable) {
   if(enable)
     $(tableId).DataTable().rows().nodes().to$().removeClass("tr-disabled");
