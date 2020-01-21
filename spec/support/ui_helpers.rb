@@ -232,6 +232,11 @@ module UiHelpers
 		Capybara.ignore_hidden_elements = true
   end
 
+	def ui_check_table_button_class(table_id, row, col, classname)
+    find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span")[:class].include?(classname)
+  end
+
+
   # Flash
   def ui_check_no_flash_message_present
     expect(page).not_to have_selector(:css, ".alert")
@@ -527,6 +532,7 @@ module UiHelpers
 			extending: "Extending",
 			change_notes: "Change notes",
 			edit_tags: "Edit tags",
+      edit_properties: "Edit properties"
     }
 	end
 

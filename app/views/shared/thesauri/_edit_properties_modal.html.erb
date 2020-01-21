@@ -1,0 +1,78 @@
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+<%= stylesheet_link_tag 'shared/thesauri/edit_properties' %>
+<%= javascript_include_tag 'shared/thesauri/edit_properties' %>
+
+<div class="modal fade bd-example-modal-lg edit-properties" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-<%= modal_id %>">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal" id="tableModalLabel">
+          <span class="icon-edit text-link" style="margin-right:10px;"></span>
+          Edit properties of <span class="title-identifier"></span>
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="errors"></div>
+            <center>
+              <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
+            </center>
+            <div class="form-wrap wide">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notation"> Submission value: </label><br/>
+                  <input type="text" autocomplete="false" autofocus="true" name="notation" id="ep_input_notation" value=""></input>
+                </div>
+                <div class="form-group">
+                  <label for="preferred_term"> Preferred term: </label><br/>
+                  <input type="text" autocomplete="false" name="preferred_term" id="ep_input_pt" value=""></input>
+                </div>
+                <div class="form-group">
+                  <label for="synonym"> Synonyms: </label><br/>
+                  <input type="text" autocomplete="false" name="synonym" id="ep_input_synonym" value=""></input>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="definition"> Definition: </label><br/>
+                  <textarea name="definition" id="ep_input_definition" value=""></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" id="close-modal-button" data-dismiss="modal" aria-label="Close">
+          Close
+        </button>
+        <% if local_assigns.fetch :with_edit_tags, false %>
+          <button type="button" class="btn medium light ttip" id="edit-tags-button">
+            <span class="ttip-text ttip-left text-medium shadow-small">To see the tag changes, refresh this page.</span>
+            <span class="icon-tag text-tiny"></span> Edit tags
+          </button>
+        <% end %>
+        <button class="btn medium green submit-btn" id="submit-button">
+          <span class="icon-ok text-tiny"></span> Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <% if !(local_assigns.fetch :item, nil).nil? %>
+    <% item = item.simple_to_h %>
+    <%= javascript_tag "var epItem#{modal_id} = {id: '#{item[:id]}', identifier: '#{item[:identifier]}',
+            definition: '#{item[:definition]}', notation: '#{item[:notation]}',
+            synonym: '#{item[:synonym]}', preferred_term: '#{item[:preferred_term]}',
+            parent_id: '#{local_assigns.fetch :parent_id, nil}', context_id: '#{local_assigns.fetch :context_id, nil}'};" %>
+  <% end %>
+
+  <%= javascript_tag "var baseUMCUrl = '#{update_properties_thesauri_unmanaged_concept_path("id")}'" %>
+  <%= javascript_tag "var baseMCUrl = '#{update_properties_thesauri_managed_concept_path("id")}'" %>
+  <%= javascript_tag "var baseMCTagsUrl = '#{edit_tags_iso_concept_path("itemid")}'" %>
+  <%= javascript_tag "var baseUMCTagsUrl = '#{edit_tags_iso_concept_path("itemid", iso_concept: {context_id: "ctxt", parent_id: "prnt"})}'" %>
+</div>

@@ -6,21 +6,23 @@
 /**
  * Confirmation Dialog Constructor
  *
- * @param [Function] confirmCallback: called when user clicks positive button
- * @param [Object] options: options for the confirm dialog. Format:
+ * @param confirmCallback [Function] called when user clicks positive button
+ * @param options [Object] options for the confirm dialog. Format:
  *  title [String] (optional): Title of the dialog
  *  subtitle [String] (optional): Subtitle of the dialog
  *  positiveButton [String] (optional): Text on the positive button
  *  negativeButton [String] (optional): Text on the negative button
  *  dangerous [Boolean] (optional): If true, will add a red border around the dialog
  *  withLoading [Boolean] (optional): If true, will append loading animation in the dialog
-
+ * @param negativeCallback [Function] called when user clicks negative button (optional)
+ *
  * @return [void]
  */
-function ConfirmationDialog(confirmCallback, options) {
+function ConfirmationDialog(confirmCallback, options, negativeCallback) {
   var _this = this;
   this.options = options == null ? this.defaultOptions({}) : this.defaultOptions(options);
   this.callback = confirmCallback;
+  this.negativeCallback = negativeCallback;
 }
 
 /**
@@ -66,6 +68,8 @@ ConfirmationDialog.prototype.setButtonCallbacks = function() {
 
   $("#cd-negative-button").on('click', function(){
     _this.dismiss();
+    if(_this.negativeCallback != null)
+      _this.negativeCallback();
   });
 }
 
