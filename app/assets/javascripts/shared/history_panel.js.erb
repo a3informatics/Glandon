@@ -61,6 +61,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
           { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
           { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
           { link_path: row.current_path, disabled: (row.current_path == "" || row.indicators.current == true) ? "true":"false", icon: "icon-current", text: "Make current"},
+          { link_path: row.list_change_notes_path, disabled: row.list_change_notes_path == "" ? "true":"false", icon: "icon-note", text: "List change notes"},
           { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
         counter ++;
 
@@ -227,22 +228,3 @@ HistoryPanel.prototype.dateTimeHTML = function (date) {
           '<span class="icon-time text-link"></span> ' +
           '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
 }
-
-
-
-// HistoryPanel.prototype.linkButton = function (path, text) {
-//   _this = this;
-//   if (path === "") {
-//     return "&nbsp;"
-//   } else {
-//     return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
-//   }
-// }
-//
-// HistoryPanel.prototype.deleteButton = function (path, text) {
-//   if (path === "") {
-//     return "&nbsp;"
-//   } else {
-//     return '<a href="' + path + '" class="btn btn-danger btn-xs" data-confirm="Are you sure?" data-method="delete">' + text + '</a>';
-//   }
-// }
