@@ -295,4 +295,69 @@ describe "Change Notes", :type => :feature do
 
   end
 
+  describe "Curator user (Extension)", :type => :feature do
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows viewing change notes modal", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(20)
+      context_menu_element("history", 5, "2007-04-20 Release", :show)
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      context_menu_element_header(:extend)
+      sleep 0.5
+      click_button "Do not select"
+      wait_for_ajax(20)
+      expect(page).to have_content("Edit Extension")
+      expect(context_menu_element_header_present?(:change_notes)).to eq(true)
+      context_menu_element_header(:change_notes)
+      sleep 0.5
+      wait_for_ajax(20)
+      expect(page).to have_content("Change notes for C66790E")
+      expect(page).to have_content("No change notes found")
+      click_button "Close"
+      sleep 0.5
+    end
+
+    it "allows to create, edit and delete a change note", js:true do
+      click_navbar_code_lists
+      wait_for_ajax(50)
+      ui_table_search("index", "C66790E")
+      find(:xpath, "//tr[contains(.,'C66790E')]/td/a").click
+      wait_for_ajax(10)
+      context_menu_element("history", 8, 'C66790E', :edit)
+      wait_for_ajax(20)
+      expect(page).to have_content("Edit Extension")
+      expect(page).to have_content("C66790E")
+      context_menu_element_header(:change_notes)
+      sleep 0.5
+      expect(page).to have_content("Change notes for C66790E")
+      # Add CN
+      add_change_note("Some reference name", "String of text for the newly created change note.")
+      check_change_note("#cn-0", "Some reference name", "String of text for the newly created change note.", "curator@example.com")
+      # Edit CN
+      fill_in_change_note("#cn-0", "Edited reference", "Edited change note text")
+      page.find("#save-cn-0-button").click
+      wait_for_ajax(20)
+      check_change_note("#cn-0", "Edited reference", "Edited change note text", "curator@example.com")
+      # Delete CN
+      page.find("#del-cn-0-button").click
+      expect(page).to have_content("You cannot undo this operation.")
+      click_button "Yes"
+      wait_for_ajax(20)
+      expect(page).to have_css(".note", count: 0)
+      click_button "Close"
+      sleep 0.5
+    end
+
+  end
+
 end

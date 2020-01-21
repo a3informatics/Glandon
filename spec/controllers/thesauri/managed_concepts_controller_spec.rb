@@ -157,8 +157,8 @@ describe Thesauri::ManagedConceptsController do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/json"
       expected = [
-        {id: "1", delete: false, delete_path: "", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"},
-        {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"}
+        {id: "1", delete: false, delete_path: "", single_parent: false, show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"},
+        {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", single_parent: true, show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY"}
       ]
       tc = Thesaurus::ManagedConcept.new
       ct = Thesaurus.new
@@ -167,7 +167,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus).to receive(:find_minimum).and_return(ct)
       expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)
       expect(ct).to receive(:tag_labels).and_return([])
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false}, {id: "2", delete: true}])
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false, single_parent: false}, {id: "2", delete: true, single_parent: true}])
       get :show_data, {id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -266,6 +266,13 @@ describe Thesauri::ManagedConceptsController do
 
     login_curator
 
+    before :all do
+
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
@@ -320,8 +327,20 @@ describe Thesauri::ManagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @user)
       put :update_properties, {id: mc.id, edit: {synonym: "syn1; syn2"}}
-      expect(response).to redirect_to("path")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data][0]
+      expect(actual[:synonym]).to eq("syn1; syn2")
       expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
+    it "update properties, error" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: mc.id, edit: {definition: "\#€=/*-/"}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("Definition contains invalid characters")
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it 'adds a child thesaurus concept' do
@@ -343,6 +362,18 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds childrens synonyms to managed concept' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      token = Token.obtain(mc, @user)
+      post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'adds a child thesaurus concept, no audit' do
@@ -475,6 +506,16 @@ describe Thesauri::ManagedConceptsController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
+    it "create subset" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66726/V19#C66726"))
+      post :create_subset, {id: tc.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "create_subset_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "extensions" do
@@ -491,6 +532,16 @@ describe Thesauri::ManagedConceptsController do
 
     after :all do
       ua_remove_user("lock@example.com")
+    end
+
+    it "create extension" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      post :create_extension, {id: tc.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "create_extension_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "edit extension" do
@@ -515,6 +566,17 @@ describe Thesauri::ManagedConceptsController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
+    it "add child to extension" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
+      child_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      token = Token.obtain(tc, @user)
+      post :add_extensions, {id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -534,7 +596,7 @@ describe Thesauri::ManagedConceptsController do
     it "prevents access to a reader, destroy" do
       delete :destroy, id: 10 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
-    end      
+    end
 
   end
 

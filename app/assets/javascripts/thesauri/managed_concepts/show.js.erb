@@ -1,29 +1,28 @@
 $(document).ready( function() {
-  var shp = new ShowHeaderPanel(is_extended, is_extending);
-  var modalTS = new ThesauriSelect(tc_id, shp.callback);
-  var modalSubsets = new IndexSubsets(tc_id);
+  if(can_edit){
+    var extensionCreate = new ExtensionCreate(is_extended, is_extending);
+    var thesauriSelect = new ThesauriSelect(tc_id, extensionCreate.createExtensionCallback.bind(extensionCreate));
+    var subsetsIndex = new IndexSubsets(tc_id);
+
+    $("#extend").click(function(){
+      thesauriSelect.setCallback(extensionCreate.createExtensionCallback.bind(extensionCreate));
+      thesauriSelect.resetUi();
+    });
+
+    $("#new_subset").click(function(){
+      thesauriSelect.setCallback(subsetsIndex.createSubsetCallback.bind(subsetsIndex));
+      thesauriSelect.resetUi();
+    });
+  }
+
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
     {"data" : "preferred_term"},
     {"data" : "synonym"},
     {"data" : "definition"},
-    {"data" : "tags"}
+    {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}}
   ];
-  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled, editCallback);
-  var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
+  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id);
 
-  function editCallback() {
-  }
-
-  $("#extend").click(function(){
-    modalTS.setCallback(shp.callback);
-    modalTS.resetUi();
-  });
-
-  $("#new_subset").click(function(){
-    modalTS.setCallback(modalSubsets.tsCallback);
-    modalTS.resetUi();
-  });
-  
 });
