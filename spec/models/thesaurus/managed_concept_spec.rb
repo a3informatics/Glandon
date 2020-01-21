@@ -484,7 +484,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
   end
-  
+
   describe "extensions" do
 
     before :all  do
@@ -1098,7 +1098,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "delete extension" do
-      uri_check_set_1 = 
+      uri_check_set_1 =
       [
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
@@ -1112,8 +1112,8 @@ describe "Thesaurus::ManagedConcept" do
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: false}
-      ]      
-      uri_check_set_2 = 
+      ]
+      uri_check_set_2 =
       [
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
@@ -1127,7 +1127,7 @@ describe "Thesaurus::ManagedConcept" do
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: true}
-      ]      
+      ]
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
@@ -1145,7 +1145,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.extended?).to eq(false)
       expect(extension.extended?).to eq(false)
       expect(tc.extension?).to eq(false)
-      expect(extension.extension?).to eq(false) 
+      expect(extension.extension?).to eq(false)
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       expect{Thesaurus::ManagedConcept.find(extension.uri)}.to raise_error(Errors::NotFoundError,
         "Failed to find http://www.acme-pharma.com/C50399E/V1#C50399E in Thesaurus::ManagedConcept.")
@@ -1154,7 +1154,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "delete subset with members" do
-      uri_check_set_1 = 
+      uri_check_set_1 =
       [
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
@@ -1168,7 +1168,7 @@ describe "Thesaurus::ManagedConcept" do
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
-      ]      
+      ]
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
@@ -1195,9 +1195,9 @@ describe "Thesaurus::ManagedConcept" do
       uri_check_set_1[14][:present] = false
       expect(triple_store.check_uris(uri_check_set_1)).to be(true)
     end
-    
+
     it "delete subset" do
-      uri_check_set_1 = 
+      uri_check_set_1 =
       [
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
@@ -1211,7 +1211,7 @@ describe "Thesaurus::ManagedConcept" do
         { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
-      ]      
+      ]
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
@@ -1254,7 +1254,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "allows a TC to be destroyed, keeps other" do
       th = Thesaurus.create({identifier: "AAA", notation: "A"})
-      tc_1 = th.add_child 
+      tc_1 = th.add_child
       tc_2 = th.add_child
       result = tc_1.delete_or_unlink(th)
       expect(result).to eq(1)
@@ -1273,7 +1273,7 @@ describe "Thesaurus::ManagedConcept" do
     it "allows a TC to be unlinked, multiple parents" do
       th_1 = Thesaurus.create({identifier: "AAA1", notation: "A1"})
       th_2 = Thesaurus.create({identifier: "AAA2", notation: "A2"})
-      tc_1 = th_1.add_child 
+      tc_1 = th_1.add_child
       tc_2 = th_1.add_child
       th_2.select_children({id_set: [tc_1.uri.to_id, tc_2.uri.to_id]})
       th_1 = Thesaurus.find_minimum(th_1.uri)
@@ -1306,6 +1306,9 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
     it "determines if an item is subsetted" do
