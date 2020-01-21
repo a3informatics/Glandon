@@ -850,6 +850,7 @@ describe "IsoManagedV2" do
       params[:previous_state] = "Recorded"
       params[:administrative_note] = "New note"
       params[:unresolved_issue] = "Unresolved issues"
+      params[:multiple_edit] = true
       item.update_status(params)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
