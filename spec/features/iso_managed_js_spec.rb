@@ -214,6 +214,7 @@ describe "ISO Managed JS", :type => :feature do
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
+      wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax(10)
       # context_menu_element('history', 4, 'Test Terminology', :edit)
