@@ -49,7 +49,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
-      sleep 1 
+      sleep 1
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
@@ -131,7 +131,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='select-release']/option[2]").click #Minor release
       find(:xpath, "//*[@id='version-edit-submit']").click
       wait_for_ajax(120)
-      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '0.1.0')
+      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '0.2.0')
       click_link 'Return'
       wait_for_ajax(120)
       ui_check_table_info("history", 1, 3, 3)

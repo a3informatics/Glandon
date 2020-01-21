@@ -211,9 +211,11 @@ describe "ISO Managed JS", :type => :feature do
       ua_curator_login
       click_navbar_terminology
       click_link 'New Terminology'
+      sleep 1
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
+      sleep 1
       wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax(10)
