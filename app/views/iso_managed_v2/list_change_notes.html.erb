@@ -1,19 +1,57 @@
 <%= javascript_tag 'setPageTitle("List change notes: '+@managed_item.label+'")' %>
+<% third_level_breadcrumb(:code_lists, @managed_item, @close_path) %>
+
+<%= stylesheet_link_tag 'shared/change_notes' %>
+<%= javascript_include_tag 'standard_datatable' %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
     :header_title => "List Change notes" } do %>
     <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "export-csv",
+        icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
 </div>
 <div class="row">
-	<div class="col-md-10 card wide">
-		<div class="card-header">	Change notes </div>
+	<div class="col-md-12 card wide table-cardstyle all-columns">
+		<div class="card-header">	List of Change Notes </div>
 	  <div class="card-content">
-
+      <table id="main" class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th class="fit">Identifier</th>
+            <th>Submission Value</th>
+            <th>Preferred Term</th>
+            <th><span class="icon-note text-link"></span> Date</th>
+            <th><span class="icon-note text-link"></span> User</th>
+            <th><span class="icon-note text-link"></span> Reference</th>
+            <th><span class="icon-note text-link"></span> Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>C123456</td>
+            <td>SUBVAL</td>
+            <td>Label here</td>
+            <td class="note-cell">2020-01-20 15:35</td>
+            <td class="note-cell">sab@s-cubed.dk</td>
+            <td class="note-cell">REF12345</td>
+            <td class="note-cell">Change note text, text of the change note, can be longer.</td>
+          </tr>
+          <tr>
+            <td>C586311</td>
+            <td>SOMEVAL</td>
+            <td>Another label here</td>
+            <td class="note-cell">2020-01-20 18:05</td>
+            <td class="note-cell">sab@s-cubed.dk</td>
+            <td class="note-cell">DIFFREF</td>
+            <td class="note-cell">Text of another Change note here.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 	</div>
 </div>
