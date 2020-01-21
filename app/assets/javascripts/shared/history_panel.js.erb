@@ -54,18 +54,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
         else return formatIndicatorsString(data);
       }},
       {className: "text-right", "render" : function (data, type, row, meta) {
-        var id = "con-menu-" + counter;
-        var menu_items =
-        [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show"},
-          { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},
-          { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
-          { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
-          { link_path: row.current_path, disabled: (row.current_path == "" || row.indicators.current == true) ? "true":"false", icon: "icon-current", text: "Make current"},
-          { link_path: row.list_cn_path, disabled: row.list_cn_path == "" ? "true":"false", icon: "icon-note", text: "List change notes"},
-          { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
-        counter ++;
-
-        return generateContextMenu(id, menu_items);
+        return _this.contextMenuHTML(row, counter++);
         }
       },
     ],
@@ -108,7 +97,6 @@ HistoryPanel.prototype.add = function (offset) {
     type: 'GET',
     dataType: 'json',
     success: function(result) {
-      console.log(result);
     	for (i=0; i<result.data.length; i++) {
         var row = _this.historyTable.row.add(result.data[i]);
       }
@@ -143,6 +131,29 @@ HistoryPanel.prototype.registrationStatesHTML = function (data) {
       return "<span class='clickable registration-state ttip'><span class='ttip-text ttip-left text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
   }
   else return data.has_state.registration_status;
+}
+
+/**
+ * Generates HTML for context menu
+ * @param [Object] row item data
+ *
+ * @return [String] HTML of the item to be displayed in the table
+ */
+HistoryPanel.prototype.contextMenuHTML = function (row, c) {
+  var id = "con-menu-" + c;
+  var menu_items =
+  [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show"},
+    { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},
+    { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
+    { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
+    { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
+
+  if(row.list_cn_path != "")
+    menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List change notes"});
+  if(row.current_path != "")
+    menu_items.splice(menu_items.length -2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
+
+  return generateContextMenu(id, menu_items);
 }
 
 /**
