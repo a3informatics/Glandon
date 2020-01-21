@@ -35,7 +35,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       {"render" : function (data, type, row, meta) {
         var date = new Date(row.last_change_date);
         if (type == 'display') {
-          return _this.dateTimeHTML(date);
+          return dateTimeHTML(date);
         } else {
           return date.getTime();
         }}
@@ -224,19 +224,4 @@ HistoryPanel.prototype.removeItem = function (data) {
       },
     })
   }, {dangerous: true}).show();
-}
-
-
-/**
- * Generates HTML for datetime
- * @param [Date] Javascript date
- *
- * @return [String] formatted html
- */
-HistoryPanel.prototype.dateTimeHTML = function (date) {
-  return '<span class="icon-date text-link"></span> ' +
-          $.format.date(date, 'yyyy-MM-dd') +
-          '<br/>' +
-          '<span class="icon-time text-link"></span> ' +
-          '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
 }

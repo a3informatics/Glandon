@@ -1,0 +1,113 @@
+/*
+* List Change Notes Panel (paginated)
+*
+* Requires:
+* list-change-notes-table [Table] the changes notes table
+*/
+
+/**
+ * List Change Notes Panel Constructor
+ *
+ * @param url [String] Url for data fetching
+ * @param count [Int] Amount of items fetched in one call
+ * @return [void]
+ */
+function ListChangeNotesPanel(url, count) {
+  this.url = url;
+  this.count = count;
+
+  this.initTable();
+  this.loadData(0);
+}
+
+/**
+ * Load data from server to the table
+ *
+ * @return [void]
+ */
+ListChangeNotesPanel.prototype.initTable = function () {
+  this.table = $("#list-change-notes-table").DataTable({
+    "order": [[0, "desc"]],
+    "columns": this.columns(),
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "processing": true,
+    "paging": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No Change notes were found.",
+      "processing": generateSpinner("medium")
+    }
+  });
+}
+
+
+/**
+ * Load data from server to the table
+ *
+ * @param offset [Integer] item count offset
+ * @return [void]
+ */
+ListChangeNotesPanel.prototype.loadData = function (offset) {
+  if (offset == 0)
+    this.table.processing(true);
+
+  $.ajax({
+    url: this.url,
+    type: 'GET',
+    // dataType: 'json',
+    context: this,
+    success: function(result) {
+      result = {data: [{
+          identifier: "C123456",
+          notation: "CODELIST",
+          label: "Some CL Label",
+          description: "Change note description, this is a description of the change note",
+          id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ04jNTlhODdjMmYtMWFiMC00MTM4LWI1Y2ItNjFiMWI0MGI2ZjBi",
+          reference: "Enter reference",
+          timestamp: "2020-01-21 10:01:40 +0100",
+          user_reference: "sab@s-cubed.dk"
+        }]};
+    	for (i=0; i<result.data.length; i++) {
+        var row = this.table.row.add(result.data[i]);
+      }
+      this.table.draw();
+      this.table.columns.adjust();
+
+      if (result.count >= this.count) {
+        this.table.processing(false);
+        this.loadData(result.offset + this.count)
+      }
+      else
+        this.table.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.table.processing(false);
+    }
+  });
+}
+
+
+/**
+ * Get columns for table
+ *
+ * @return [void]
+ */
+ListChangeNotesPanel.prototype.columns = function () {
+  return [
+    {"data" : "identifier"},
+    {"data" : "notation"},
+    {"data" : "label"},
+    {"data" : "timestamp", "class": "note-cell",
+      "render": function (data, type, row, meta){
+        var date = new Date(row.timestamp);
+        if (type == "display")
+          return dateTimeHTML(date);
+        else return data;
+      }},
+    {"data" : "user_reference", "class": "note-cell"},
+    {"data" : "reference", "class": "note-cell"},
+    {"data" : "description", "class": "note-cell"}
+  ]
+}
