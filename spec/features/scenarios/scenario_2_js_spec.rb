@@ -272,6 +272,68 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
 
     end
 
+    it "allows an item to move through the lifecyle 2", scenario: true, js: true do
+      click_navbar_terminology
+      expect_page 'Index: Terminology'
+      click_link 'New Terminology'
+      fill_in 'thesauri_identifier', with: 'TEST2 test2'
+      fill_in 'thesauri_label', with: 'Test2 Terminology2'
+      click_button 'Submit'
+
+      find(:xpath, "//tr[contains(.,'Test2 Terminology2')]/td/a").click
+      wait_for_ajax(10)
+      context_menu_element('history', 4, 'Test2 Terminology2', :document_control)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Incomplete")
+
+      click_button "state_submit"
+      expect(page).to have_content("Candidate")
+
+      click_button "state_submit"
+      expect(page).to have_content("Recorded")
+
+      click_link 'Return'
+      wait_for_ajax(120)
+
+      expect(page).to have_css ('.icon-lock')
+
+      context_menu_element('history', 4, 'Test2 Terminology2', :edit)
+      wait_for_ajax(120)
+      click_link 'Return'
+
+      ui_check_table_info("history", 1, 2, 2)
+
+      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click #Click padlock
+      wait_for_ajax(120)
+      expect(page).to have_css ('.icon-lock-open')
+
+      context_menu_element('history', 4, 'Test2 Terminology2', :edit, 1)
+      wait_for_ajax(120)
+      click_link 'Return'
+      ui_check_table_info("history", 1, 2, 2)
+
+      context_menu_element('history', 4, 'Test2 Terminology2', :document_control, 1)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Recorded")
+
+      click_button "state_submit"
+      expect(page).to have_content("Qualified")
+
+      click_link 'Return'
+      wait_for_ajax(120)
+
+      expect(page).to have_css ('.icon-lock')
+
+      context_menu_element('history', 4, 'Test2 Terminology2', :edit, 1)
+      wait_for_ajax(120)
+      click_link 'Return'
+      ui_check_table_info("history", 1, 3, 3)
+    end
+
   end
 
 end
