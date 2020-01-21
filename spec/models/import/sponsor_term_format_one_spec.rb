@@ -73,22 +73,24 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
 	end
 
-  # it "import, no errors, version 2" do
-  #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
-  #   full_path = test_file_path(sub_dir, "import_input_1.xlsx")
-  #   params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
-  #   result = @object.import(params)
-  #   filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
-  #   expect(public_file_does_not_exist?("test", filename)).to eq(true)
-  #   filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
-  #   expect(public_file_exists?("test", filename)).to eq(true)
-  #   copy_file_from_public_files("test", filename, sub_dir)
-  # #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.ttl")
-  # #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1.ttl")
-  #   check_ttl_fix(filename, "import_expected_1.ttl", {last_change_date: true})
-  #   expect(@job.status).to eq("Complete")
-  #   delete_data_file(sub_dir, filename)
-  # end
+  it "import, no errors, version 2" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
+    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_1.yaml")
+    copy_file_from_public_files("test", filename, sub_dir)
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    #expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1.ttl")
+    check_ttl_fix(filename, "import_expected_1.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
 
   # it "import, no errors, version 3" do
   #   full_path = test_file_path(sub_dir, "import_input_2.xlsx")
@@ -107,16 +109,11 @@ describe "Import::SponsorTermFormatOne" do
   # end
 
   it "import, exception" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
-    params = 
-    {
-      version: "1", version_label: "1.1.1", date: "2018-11-22", 
-      files: [full_path], 
-      label: "ADAM IG",
-      semantic_version: "1.2.4",
-      job: @job
-    }
+    params = { version: "1", version_label: "1.1.1", date: "2018-11-22", files: [full_path], label: "ADAM IG", 
+      semantic_version: "1.2.4", job: @job, uri: ct.uri}
     @object.import(params)
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end

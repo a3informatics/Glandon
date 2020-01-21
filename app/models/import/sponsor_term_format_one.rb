@@ -34,8 +34,12 @@ class Import::SponsorTermFormatOne < Import
     merge_reader_data(readers)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
-    objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
-    object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
+  # objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
+  # object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
+    objects = process_results(results)
+    save_error_file(objects)
+    save_load_file(objects) 
+    
     # @todo we need to unlock the import.
     params[:job].end("Complete")   
   rescue => e
@@ -95,10 +99,12 @@ private
       # Order of the checks is important
       if child.subset?
         ref = child.to_subset(@th)
+        next if ref.nil?
         parent.add(ref, index + 1) 
         filtered << ref
       elsif child.extension?(@th)
         ref = child.to_extension(@th)
+        next if ref.nil?
         parent.add(ref, index + 1) 
         filtered << ref
       elsif child.sponsor?

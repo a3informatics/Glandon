@@ -53,10 +53,14 @@ module Import::STFOClasses
     def extension?(ct)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct)
-      ref_ct.narrower_objects
-      others = self.child_identifiers - ref_ct.child_identifiers
-      return self if STFOCodeListItem.sponsor_identifier_set?(others)
-      nil
+      if !ref_ct.nil?
+        ref_ct.narrower_objects
+        others = self.child_identifiers - ref_ct.child_identifiers
+        return self if STFOCodeListItem.sponsor_identifier_set?(others)
+        nil
+      else
+        nil
+      end
     end
 
     # Subset? Is the entry a subset code list?
@@ -84,6 +88,9 @@ module Import::STFOClasses
         self.errors.add(:base, "Subset for a non-CDISC code list detected, identifier '#{self.identifier}'.")
       end
       self
+    rescue => e
+      self.errors.add(:base, "Exception in to_subset, identifier '#{self.identifier}'.")
+      nil
     end
 
     def to_extension(ct)
@@ -101,6 +108,9 @@ module Import::STFOClasses
       end
       self.narrower = new_narrower
       self
+    rescue => e
+      self.errors.add(:base, "Exception in to_extension, identifier '#{self.identifier}'.")
+      nil
     end
 
     def to_hybrid_sponsor(ct)
