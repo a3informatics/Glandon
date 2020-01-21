@@ -114,6 +114,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :edit, 1)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(120)
       ui_check_table_info("history", 1, 3, 3)
 
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
