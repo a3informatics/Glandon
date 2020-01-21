@@ -989,7 +989,11 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(actual.definition).to eq("The termination of life as a result of an adverse event. (NCI)")
       expect(actual.extensible).to eq(false)
       expect(actual.synonym).to match_array(tc.synonym)
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
+      expect(actual.to_h[:synonym].include? "http://www.assero.co.uk/SYN#75fd665a6b14cf456ed8b6945d715c3332cacea7").to eq(true)
+      expect(actual.to_h[:synonym].include? "http://www.assero.co.uk/SYN#00dd99b4b6963d59439d6d788928ced64c17a639").to eq(true)
+      expect(actual.to_h[:synonym].include? "http://www.assero.co.uk/SYN#ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4").to eq(true)
+      expect(actual.to_h[:preferred_term]).to eq("http://www.assero.co.uk/PT#dca37f7575330a3fc8ecfc946c70ce045baeeb8f")
+      # check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
     end
 
   end
