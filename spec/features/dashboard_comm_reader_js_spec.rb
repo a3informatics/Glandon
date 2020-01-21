@@ -84,7 +84,7 @@ describe "Community Dashboard JS", :type => :feature do
 
     it "allows access to CDISC show (latest)", js: true do
       click_show_latest_version
-      wait_for_ajax
+      wait_for_ajax(20)
       expect(page).to have_content "Controlled Terminology"
       expect(page).to have_content "62.0.0"
       ui_check_table_info("children_table", 1, 10, 921)
@@ -154,6 +154,7 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2016-06-24", "2016-09-30")
       click_link 'Display'
+      wait_for_ajax(20)
       expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 11)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item C']", count: 2)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item F']", count: 2)
@@ -161,6 +162,7 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 0)
       find(:xpath, "//div[@id='deleted_div']/a[6]").click
+      wait_for_ajax(20)
       expect(page).to have_content 'Differences'
       expect(page).to have_content 'C101854'
       expect(page).to have_content 'Cardiac Valvular Stenosis Severity'
