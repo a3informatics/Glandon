@@ -49,6 +49,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
+      sleep 1 
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
