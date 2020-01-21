@@ -49,6 +49,12 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200
   end
 
+  def list_change_notes
+    authorize IsoManaged, :show?
+    @managed_item = get_item(params)
+    @close_path = request.referer
+  end
+
 private
 
   def get_item(params)
