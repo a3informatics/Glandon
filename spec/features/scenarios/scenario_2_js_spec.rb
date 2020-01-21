@@ -52,7 +52,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
-
+      wait_for_ajax(20)
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax(10)
       context_menu_element('history', 4, 'Test Terminology', :document_control)
@@ -64,6 +64,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       fill_in '[iso_managed]administrative_note', with: 'First step in the lifecyle.'
       fill_in '[iso_managed]unresolved_issue', with: 'None that we know of.'
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Candidate")
 
       find(:xpath, "//*[@id='version-label-edit']").click
@@ -73,9 +74,11 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       fill_in '[iso_managed]administrative_note', with: 'Next step in the lifecyle.'
       fill_in '[iso_managed]unresolved_issue', with: 'Still none that we know of.'
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Recorded")
 
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax(120)
@@ -89,13 +92,16 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       wait_for_ajax(120)
       click_link 'Return'
 
+      wait_for_ajax(20)
       ui_check_table_info("history", 1, 1, 1)
       find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click
+      wait_for_ajax(20)
       expect(page).to have_css ('.icon-lock')
 
       context_menu_element('history', 4, 'Test Terminology', :edit)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(20)
       ui_check_table_info("history", 1, 2, 2)
 
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
@@ -132,6 +138,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
       wait_for_ajax(120)
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Standard")
       click_link 'Return'
       wait_for_ajax(120)
@@ -139,6 +146,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :edit, 1)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(20)
       ui_check_table_info("history", 1, 4, 4)
 
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
@@ -151,9 +159,11 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='version-label-submit']").click
 
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Recorded")
 
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax(120)
@@ -173,6 +183,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
       wait_for_ajax(120)
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Standard")
       click_link 'Return'
       wait_for_ajax(120)
