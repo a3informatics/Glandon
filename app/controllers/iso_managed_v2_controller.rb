@@ -59,7 +59,7 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     result = tc.change_notes_paginated({offset: the_params[:offset], count: the_params[:count]})
-    render :json => {data: result}, :status => 200
+    render :json => {data: result, offset: the_params[:offset], count: result.count}, :status => 200
   end
 
   def export_change_notes_csv
