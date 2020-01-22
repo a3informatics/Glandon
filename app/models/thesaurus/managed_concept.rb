@@ -663,7 +663,7 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
 
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :ba])
     query_results.by_object_set([:s, :e, :d, :r, :txt, :i, :n, :l]).each do |x|
-      results << { cl_identifier: x[:i], cl_notation: x[:n], cl_label: x[:l], user_reference: x[:e], timestamp: x[:d], reference: x[:r], description: x[:txt] }
+      results << { cl_identifier: x[:i], cl_notation: x[:n], cl_label: x[:l], user_reference: x[:e], timestamp: x[:d].to_time_with_default.iso8601, reference: x[:r], description: x[:txt] }
     end
     results
   end
