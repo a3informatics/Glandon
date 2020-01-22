@@ -101,7 +101,7 @@ private
         ref = child.to_cdisc_subset(@th)
         ref = child.to_sponsor_subset(filtered) if ref.nil? # Note using previously processed sponsor CLs.
         if ref.nil?
-          child.errors.add(:base, "Code list subset cannot be aligned, identifier '#{child.identifier}'.")
+          add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.")
         else
           parent.add(ref, index + 1) 
           filtered << ref
@@ -124,11 +124,25 @@ private
         parent.add(ref, index + 1)
         filtered << ref
       else
-        child.errors.add(:base, "Code list type not detected, identifier '#{child.identifier}'.")
+        add_error(child, "Code list type not detected, identifier '#{child.identifier}'.")
         filtered << child
       end
     end
     return {parent: parent, managed_children: filtered, tags: []}
+  end
+
+private
+
+  # Add error
+  def add_error(object, msg)
+    puts colourize("#{msg}", "red")
+    object.errors.add(:base, msg)
+  end
+
+  # Add error
+  def add_log(msg)
+    puts colourize("#{msg}", "blue")
+    ConsoleLogger.info(self.class.name, "add_log", msg)
   end
 
 end

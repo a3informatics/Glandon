@@ -44,7 +44,7 @@ module Import::STFOClasses
       return nil if ref_ct.nil?
       return ref_ct if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
       set = self.child_identifiers - ref_ct.child_identifiers
-      ConsoleLogger.info(self.class.name, __method__.to_s, "Referenced check failed, identifiers for #{self.identifier} not matching: #{set.join(", ")}") 
+      add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{set.join(", ")}") 
       return nil
     end
 
@@ -81,7 +81,7 @@ module Import::STFOClasses
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
-          self.errors.add(:base, "Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -90,7 +90,7 @@ module Import::STFOClasses
       # @todo set up ordering
       self
     rescue => e
-      self.errors.add(:base, "Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -103,7 +103,7 @@ module Import::STFOClasses
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
-          self.errors.add(:base, "Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -112,7 +112,7 @@ module Import::STFOClasses
       # @todo set up ordering
       self
     rescue => e
-      self.errors.add(:base, "Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -132,7 +132,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self
     rescue => e
-      self.errors.add(:base, "Exception in to_extension, identifier '#{self.identifier}'.")
+      add_error("Exception in to_extension, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -193,6 +193,20 @@ module Import::STFOClasses
       cl = self.class.find_with_properties(ref_ct[self.identifier])
       cl.narrower_objects
       cl
+    end
+
+  private
+
+    # Add error
+    def add_error(msg)
+      puts colourize("#{msg}", "red")
+      self.errors.add(:base, msg)
+    end
+
+    # Add error
+    def add_log(msg)
+      puts colourize("#{msg}", "blue")
+      ConsoleLogger.info(self.class.name, "add_log", msg)
     end
 
   end
