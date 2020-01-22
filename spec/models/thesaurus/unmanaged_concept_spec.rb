@@ -990,7 +990,7 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(actual.extensible).to eq(false)
       expect(actual.synonym).to match_array(tc.synonym)
       actual_h = actual.to_h
-      actual_h[:synonym].sort
+      actual_h[:synonym] = actual_h[:synonym].sort
       check_file_actual_expected(actual_h, sub_dir, "clone_expected_1.yaml")
     end
 

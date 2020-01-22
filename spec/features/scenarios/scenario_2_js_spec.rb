@@ -276,10 +276,11 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
+      sleep 1
       fill_in 'thesauri_identifier', with: 'TEST2 test2'
       fill_in 'thesauri_label', with: 'Test2 Terminology2'
       click_button 'Submit'
-
+      wait_for_ajax(20)
       find(:xpath, "//tr[contains(.,'Test2 Terminology2')]/td/a").click
       wait_for_ajax(10)
       context_menu_element('history', 4, 'Test2 Terminology2', :document_control)
@@ -289,9 +290,11 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       expect(page).to have_content("Incomplete")
 
       click_button "state_submit"
+      wait_for_ajax(10)
       expect(page).to have_content("Candidate")
 
       click_button "state_submit"
+      wait_for_ajax(10)
       expect(page).to have_content("Recorded")
 
       click_link 'Return'
@@ -302,6 +305,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test2 Terminology2', :edit)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(20)
 
       ui_check_table_info("history", 1, 2, 2)
 
@@ -312,6 +316,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test2 Terminology2', :edit, 1)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(20)
       ui_check_table_info("history", 1, 2, 2)
 
       context_menu_element('history', 4, 'Test2 Terminology2', :document_control, 1)
@@ -321,6 +326,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       expect(page).to have_content("Recorded")
 
       click_button "state_submit"
+      wait_for_ajax(20)
       expect(page).to have_content("Qualified")
 
       click_link 'Return'
@@ -331,6 +337,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       context_menu_element('history', 4, 'Test2 Terminology2', :edit, 1)
       wait_for_ajax(120)
       click_link 'Return'
+      wait_for_ajax(20)
       ui_check_table_info("history", 1, 3, 3)
     end
 
