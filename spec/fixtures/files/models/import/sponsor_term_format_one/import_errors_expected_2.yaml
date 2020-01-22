@@ -1,823 +1,537 @@
 ---
 - 'Action Taken with Study Treatment: Code list type not detected, identifier ''C66767''.'
-- 'Administration Technique Response: Code list type not detected, identifier ''C132311''.'
-- 'Relationship to Study Treatment Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000012''.'
-- 'Subcategory for Adverse Event Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000107''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 01: Subset for a non-CDISC
-  code list detected, identifier ''SN000612''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 02: Subset for a non-CDISC
-  code list detected, identifier ''SN000612''.'
-- 'Proposed Adverse Event Term Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000016''.'
-- 'Proposed Adverse Event Term Subset 02: Subset for a non-CDISC code list detected,
-  identifier ''SN000016''.'
-- 'AJCC Tumor Grade Response: Code list type not detected, identifier ''C135012''.'
-- 'Arizona Sexual Experiences Scale - Female Questionnaire Test Code: Code list type
-  not detected, identifier ''C125741''.'
-- 'Arizona Sexual Experiences Scale - Female Questionnaire Test Name: Code list type
-  not detected, identifier ''C125740''.'
-- 'Arizona Sexual Experiences Scale - Male Questionnaire Test Code: Code list type
-  not detected, identifier ''C125743''.'
-- 'Arizona Sexual Experiences Scale - Male Questionnaire Test Name: Code list type
-  not detected, identifier ''C125742''.'
-- 'Asthma Findings About Test Name: Code list type not detected, identifier ''C132312''.'
-- 'Asthma Findings About Test Code: Code list type not detected, identifier ''C132313''.'
-- 'Baby Eating Behaviour Questionnaire Concurrent Version Questionnaire Test Code:
-  Code list type not detected, identifier ''C135680''.'
-- 'Baby Eating Behaviour Questionnaire Concurrent Version Questionnaire Test Name:
-  Code list type not detected, identifier ''C135679''.'
-- 'Baby Eating Behaviour Questionnaire Retrospective Version Questionnaire Test Code:
-  Code list type not detected, identifier ''C135682''.'
-- 'Baby Eating Behaviour Questionnaire Retrospective Version Questionnaire Test Name:
-  Code list type not detected, identifier ''C135681''.'
-- 'Biospecimen Events Dictionary Derived Term: Code list type not detected, identifier
-  ''C124297''.'
-- 'Biospecimen Characteristics Test Name: Code list type not detected, identifier
-  ''C124299''.'
-- 'Biospecimen Characteristics Test Code: Code list type not detected, identifier
-  ''C124300''.'
-- 'Brooke Upper Extremity Rating Scale Clinical Classification Test Code: Code list
-  type not detected, identifier ''C130239''.'
-- 'Brooke Upper Extremity Rating Scale Clinical Classification Test Name: Code list
-  type not detected, identifier ''C130238''.'
-- 'Case Finding: Code list type not detected, identifier ''C127263''.'
+- 'Anatomical Location: Code list type not detected, identifier ''C74456''.'
+- 'Anatomical Location Subset 01: Cannot find a code list item, identifier ''S001153'',
+  for a subset ''NP000155P''.'
+- 'Anatomical Location Subset 02: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000156P''.'
+- 'Anatomical Location Subset 02: Cannot find a code list item, identifier ''S001156'',
+  for a subset ''NP000156P''.'
+- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''S001140'',
+  for a subset ''NP000157P''.'
+- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000157P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''S001125'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''S001126'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''S001127'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''S001137'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''S001140'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''SC17998'',
+  for a subset ''NP000158P''.'
+- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''S001126'',
+  for a subset ''NP000159P''.'
+- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''S001127'',
+  for a subset ''NP000159P''.'
+- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000159P''.'
+- 'Anatomical Location Subset 06: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000160P''.'
+- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''S006406'',
+  for a subset ''NP000162P''.'
+- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''S001140'',
+  for a subset ''NP000162P''.'
+- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000162P''.'
+- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''S000062'',
+  for a subset ''NP000162P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001131'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001135'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001136'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001146'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001154'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S006408'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S001155'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 09: Cannot find a code list item, identifier ''S006409'',
+  for a subset ''NP000163P''.'
+- 'Anatomical Location Subset 10: Cannot find a code list item, identifier ''SC142369'',
+  for a subset ''NP000164P''.'
+- 'Cardiovascular Test Code: Code list type not detected, identifier ''C101847''.'
+- 'Cardiovascular Test Name: Code list type not detected, identifier ''C101846''.'
+- 'Category for Disposition Event: Code list type not detected, identifier ''C74558''.'
 - 'Category of Clinical Classification: Code list type not detected, identifier ''C118971''.'
-- 'Subcategory of External Data Type: Code list type not detected, identifier ''SN000631''.'
-- 'Derivation Type: Code list type not detected, identifier ''C81224''.'
-- 'Duration of Symptoms Subset 01: Subset for a non-CDISC code list detected, identifier
-  ''SN000067''.'
-- 'Duration of Symptoms Subset 02: Subset for a non-CDISC code list detected, identifier
-  ''SN000067''.'
-- 'Duration of Symptoms Subset 03: Subset for a non-CDISC code list detected, identifier
-  ''SN000067''.'
-- 'Diagnosis of Cardiac Ischemic Event: Code list type not detected, identifier ''SN000637''.'
-- 'Combat Exposure Scale Questionnaire Test Code: Code list type not detected, identifier
-  ''C132519''.'
-- 'Combat Exposure Scale Questionnaire Test Name: Code list type not detected, identifier
-  ''C132518''.'
-- 'Subcategory of Clinical Event: Code list type not detected, identifier ''SN000697''.'
+- 'Category of Oncology Response Assessment: Code list type not detected, identifier
+  ''C124298''.'
+- 'Category of Questionnaire: Code list type not detected, identifier ''C100129''.'
 - 'Clinical Global Impression Questionnaire Test Code: Code list type not detected,
   identifier ''C135684''.'
 - 'Clinical Global Impression Questionnaire Test Name: Code list type not detected,
   identifier ''C135683''.'
-- 'Clinical Global Impression Generic Modification Version Questionnaire Test Code:
-  Code list type not detected, identifier ''C135686''.'
-- 'Clinical Global Impression Generic Modification Version Questionnaire Test Name:
-  Code list type not detected, identifier ''C135685''.'
-- 'Child Health Assessment Questionnaire Abilities to Function in Daily Life Subset
-  01: Subset for a non-CDISC code list detected, identifier ''SN001918''.'
-- 'Specimen Collection Method: Code list type not detected, identifier ''C132314''.'
-- 'Culture Medium Type: Code list type not detected, identifier ''C127264''.'
-- 'Category for Medication Subset 02: Subset for a non-CDISC code list detected, identifier
-  ''SN000760''.'
-- 'Subcategory for Medication Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN002031''.'
-- 'Subcategory for Medication Subset 02: Subset for a non-CDISC code list detected,
-  identifier ''SN002031''.'
-- 'Contact Role for Clinical Study: Code list type not detected, identifier ''C127257''.'
-- 'Cardiovascular Test Name: Code list type not detected, identifier ''C101846''.'
-- 'Cardiovascular Test Code: Code list type not detected, identifier ''C101847''.'
-- 'Vital Signs Test Code: Code list type not detected, identifier ''C66741''.'
-- 'Vital Signs Test Name: Code list type not detected, identifier ''C67153''.'
-- 'Device Identifier Long Name: Code list type not detected, identifier ''C106480''.'
-- 'Device Identifier Short Name: Code list type not detected, identifier ''C106481''.'
-- 'Directionality: Code list type not detected, identifier ''C99074''.'
-- 'Discharge Disposition: Code list type not detected, identifier ''C101863''.'
-- 'Diabetic Kidney Disease Findings About Test Name: Code list type not detected,
-  identifier ''C129939''.'
-- 'Diabetic Kidney Disease Findings About Test Code: Code list type not detected,
-  identifier ''C129940''.'
-- 'Duchenne Muscular Dystrophy Findings About Test Name: Code list type not detected,
-  identifier ''C139019''.'
-- 'Duchenne Muscular Dystrophy Findings About Test Code: Code list type not detected,
-  identifier ''C139018''.'
-- 'SDTM Domain Abbreviation: Code list type not detected, identifier ''C66734''.'
-- 'Code Breaker Subset 01: Subset for a non-CDISC code list detected, identifier ''SN000710''.'
-- 'Contact Method Subset 01: Subset for a non-CDISC code list detected, identifier
-  ''SN000185''.'
-- 'Disease Presentation Type: Code list type not detected, identifier ''C127268''.'
-- 'SDTM Death Diagnosis Test Name: Code list type not detected, identifier ''C116107''.'
-- 'SDTM Death Diagnosis Test Code: Code list type not detected, identifier ''C116108''.'
-- 'Reproductive System Findings Test Code: Code list type not detected, identifier
-  ''C106479''.'
-- 'Reproductive System Findings Test Name: Code list type not detected, identifier
-  ''C106478''.'
-- 'Device-In-Use Response: Code list type not detected, identifier ''C129938''.'
-- 'Device-In-Use Test Name: Code list type not detected, identifier ''C106482''.'
-- 'Device-In-Use Test Code: Code list type not detected, identifier ''C106483''.'
-- 'Ebola Virus Findings About Test Name: Code list type not detected, identifier ''C132315''.'
-- 'Ebola Virus Findings About Test Code: Code list type not detected, identifier ''C132316''.'
-- 'Eastern Cooperative Oncology Group Performance Status Questionnaire Results Subset
-  01: Subset for a non-CDISC code list detected, identifier ''SN000193''.'
-- 'ECG Lead: Code list type not detected, identifier ''C90013''.'
-- 'Reporting ECG Parameter Label: Code list type not detected, identifier ''SN001023''.'
-- 'ECG Test Method: Code list type not detected, identifier ''C71151''.'
-- 'ECG Result: Code list type not detected, identifier ''C71150''.'
-- 'Edinburgh Postnatal Depression Scale Questionnaire Test Code: Code list type not
-  detected, identifier ''C132521''.'
-- 'Edinburgh Postnatal Depression Scale Questionnaire Test Name: Code list type not
-  detected, identifier ''C132520''.'
-- 'The Expanded Prostate Cancer Index Composite Short Form Questionnaire Test Code:
-  Code list type not detected, identifier ''C127350''.'
-- 'The Expanded Prostate Cancer Index Composite Short Form Questionnaire Test Name:
-  Code list type not detected, identifier ''C127349''.'
-- 'The Expanded Prostate Cancer Index Composite for Clinical Practice Questionnaire
-  Test Code: Code list type not detected, identifier ''C127352''.'
-- 'The Expanded Prostate Cancer Index Composite for Clinical Practice Questionnaire
-  Test Name: Code list type not detected, identifier ''C127351''.'
+- 'Completion/Reason for Non-Completion: Code list type not detected, identifier ''C66727''.'
+- 'Completion/Reason for Non-Completion Subset 04: Cannot find a code list item, identifier
+  ''C48251'', for a subset ''NP000265P''.'
+- 'Completion/Reason for Non-Completion Subset 05: Cannot find a code list item, identifier
+  ''S001277'', for a subset ''NP000266P''.'
+- 'Completion/Reason for Non-Completion Subset 06: Cannot find a code list item, identifier
+  ''S001277'', for a subset ''NP000267P''.'
+- 'Completion/Reason for Non-Completion Subset 07: Cannot find a code list item, identifier
+  ''S001275'', for a subset ''NP000268P''.'
+- 'Completion/Reason for Non-Completion Subset 08: Cannot find a code list item, identifier
+  ''S001276'', for a subset ''NP000269P''.'
+- 'Completion/Reason for Non-Completion Subset 10: Cannot find a code list item, identifier
+  ''S001277'', for a subset ''NP000271P''.'
+- 'Completion/Reason for Non-Completion Subset 11: Cannot find a code list item, identifier
+  ''S001277'', for a subset ''NP000272P''.'
+- 'Diagnosis Group Response: Code list type not detected, identifier ''C66787''.'
+- 'Diagnosis of Cardiac Ischemic Event: Code list type not detected, identifier ''SN000637''.'
 - 'Evaluator: Code list type not detected, identifier ''C78735''.'
-- 'The Functional Assessment of Cancer Therapy-General Version 4 Questionnaire Test
-  Code: Code list type not detected, identifier ''C127354''.'
-- 'The Functional Assessment of Cancer Therapy-General Version 4 Questionnaire Test
-  Name: Code list type not detected, identifier ''C127353''.'
-- 'Functional Assessment of Cancer Therapy-Breast Version 4 Questionnaire Test Code:
-  Code list type not detected, identifier ''C129094''.'
-- 'Functional Assessment of Cancer Therapy-Breast Version 4 Questionnaire Test Name:
-  Code list type not detected, identifier ''C129093''.'
-- 'Functional Assessment of Cancer Therapy-Hepatobiliary Version 4 Questionnaire Test
-  Code: Code list type not detected, identifier ''C130255''.'
-- 'Functional Assessment of Cancer Therapy-Hepatobiliary Version 4 Questionnaire Test
-  Name: Code list type not detected, identifier ''C130254''.'
-- 'Functional Assessment of Cancer Therapy-Leukemia Version 4 Questionnaire Test Code:
-  Code list type not detected, identifier ''C130253''.'
-- 'Functional Assessment of Cancer Therapy-Leukemia Version 4 Questionnaire Test Name:
-  Code list type not detected, identifier ''C130252''.'
-- 'Functional Assessment of Cancer Therapy-Lymphoma Version 4 Questionnaire Test Code:
-  Code list type not detected, identifier ''C130257''.'
-- 'Functional Assessment of Cancer Therapy-Lymphoma Version 4 Questionnaire Test Name:
-  Code list type not detected, identifier ''C130256''.'
-- 'The Functional Assessment of Cancer Therapy-Prostate Version 4 Questionnaire Test
-  Code: Code list type not detected, identifier ''C127358''.'
-- 'The Functional Assessment of Cancer Therapy-Prostate Version 4 Questionnaire Test
-  Name: Code list type not detected, identifier ''C127357''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Bladder
-  Symptom Index-18 Version 2 Questionnaire Test Code: Code list type not detected,
-  identifier ''C129092''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Bladder
-  Symptom Index-18 Version 2 Questionnaire Test Name: Code list type not detected,
-  identifier ''C129091''.'
-- 'Functional Assessment of Cancer Therapy-Brain Symptom Index Questionnaire Test
-  Code: Code list type not detected, identifier ''C138221''.'
-- 'Functional Assessment of Cancer Therapy-Brain Symptom Index Questionnaire Test
-  Name: Code list type not detected, identifier ''C138220''.'
-- 'Functional Assessment of Cancer Therapy-Kidney Symptom Index-15 Questionnaire Test
-  Code: Code list type not detected, identifier ''C138223''.'
-- 'Functional Assessment of Cancer Therapy-Kidney Symptom Index-15 Questionnaire Test
-  Name: Code list type not detected, identifier ''C138222''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Kidney
-  Symptom Index-19 Version 2 Questionnaire Test Code: Code list type not detected,
-  identifier ''C129090''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Kidney
-  Symptom Index-19 Version 2 Questionnaire Test Name: Code list type not detected,
-  identifier ''C129089''.'
-- 'Functional Assessment of Cancer Therapy-Lung Symptom Index Questionnaire Test Code:
-  Code list type not detected, identifier ''C138225''.'
-- 'Functional Assessment of Cancer Therapy-Lung Symptom Index Questionnaire Test Name:
-  Code list type not detected, identifier ''C138224''.'
-- 'Functional Assessment of Cancer Therapy-Ovarian Symptom Index Questionnaire Test
-  Code: Code list type not detected, identifier ''C129096''.'
-- 'Functional Assessment of Cancer Therapy-Ovarian Symptom Index Questionnaire Test
-  Name: Code list type not detected, identifier ''C129095''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Ovarian
-  Symptom Index-18 Version 2 Questionnaire Test Code: Code list type not detected,
-  identifier ''C129098''.'
-- 'National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Ovarian
-  Symptom Index-18 Version 2 Questionnaire Test Name: Code list type not detected,
-  identifier ''C129097''.'
-- 'The National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Prostate
-  Symptom Index 17 Version 2 Questionnaire Test Code: Code list type not detected,
-  identifier ''C127356''.'
-- 'The National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Prostate
-  Symptom Index 17 Version 2 Questionnaire Test Name: Code list type not detected,
-  identifier ''C127355''.'
-- 'Functional Assessment of Chronic Illness Therapy-Fatigue Version 4 Questionnaire
-  Test Code: Code list type not detected, identifier ''C129088''.'
-- 'Functional Assessment of Chronic Illness Therapy-Fatigue Version 4 Questionnaire
-  Test Name: Code list type not detected, identifier ''C129087''.'
 - 'Frequency: Code list type not detected, identifier ''C71113''.'
-- 'Frequency Subset 01: Cannot find a code list item for a subset, identifier ''S001886''.'
-- 'Frequency Subset 01: Cannot find a code list item for a subset, identifier ''S001887''.'
-- 'Frequency Subset 01: Cannot find a code list item for a subset, identifier ''S001888''.'
-- 'Frequency Subset 01: Cannot find a code list item for a subset, identifier ''C70543''.'
-- 'Category of Functional Test: Code list type not detected, identifier ''C115304''.'
-- 'Gastrointestinal Test Name: Code list type not detected, identifier ''C128681''.'
-- 'Gastrointestinal Test Code: Code list type not detected, identifier ''C128682''.'
-- 'Genetic Region of Interest Type: Code list type not detected, identifier ''C132317''.'
-- 'General Observation Class: Code list type not detected, identifier ''C103329''.'
-- 'Group Subset 01: Subset for a non-CDISC code list detected, identifier ''SN000280''.'
-- 'Hamilton Depression Rating Scale - 24 Item Clinical Classification Test Code: Code
-  list type not detected, identifier ''C130245''.'
-- 'Hamilton Depression Rating Scale - 24 Item Clinical Classification Test Name: Code
-  list type not detected, identifier ''C130244''.'
-- 'Hamilton Depression Rating Scale - 6 Clinician Version Clinical Classification
-  Test Code: Code list type not detected, identifier ''C130243''.'
-- 'Hamilton Depression Rating Scale - 6 Clinician Version Clinical Classification
-  Test Name: Code list type not detected, identifier ''C130242''.'
-- 'Hamilton Depression Rating Scale - 6 Self-Report Questionnaire Test Code: Code
-  list type not detected, identifier ''C130259''.'
-- 'Hamilton Depression Rating Scale - 6 Self-Report Questionnaire Test Name: Code
-  list type not detected, identifier ''C130258''.'
-- 'Health Assessment Questionnaire Disability Index Without Pain Visual Analog Scale
-  Questionnaire Test Code: Code list type not detected, identifier ''C132523''.'
-- 'Health Assessment Questionnaire Disability Index Without Pain Visual Analog Scale
-  Questionnaire Test Name: Code list type not detected, identifier ''C132522''.'
-- 'Type of Hearing Damage Subset 01: Subset for a non-CDISC code list detected, identifier
-  ''SN000311''.'
-- 'Setting Hospitalization Subset 01: Subset for a non-CDISC code list detected, identifier
-  ''SN000636''.'
-- 'Setting Hospitalization Subset 02: Subset for a non-CDISC code list detected, identifier
-  ''SN000636''.'
-- 'HAS-BLED Bleeding Risk Score Clinical Classification Test Code: Code list type
-  not detected, identifier ''C138213''.'
-- 'HAS-BLED Bleeding Risk Score Clinical Classification Test Name: Code list type
-  not detected, identifier ''C138212''.'
-- 'Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification
-  Test Code: Code list type not detected, identifier ''C130247''.'
-- 'Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification
-  Test Name: Code list type not detected, identifier ''C130246''.'
-- 'Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Code:
-  Code list type not detected, identifier ''C130261''.'
-- 'Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Name:
-  Code list type not detected, identifier ''C130260''.'
-- 'Immunogenicity Specimen Assessments Test Name: Code list type not detected, identifier
-  ''C120526''.'
-- 'Immunogenicity Specimen Assessments Test Code: Code list type not detected, identifier
-  ''C120525''.'
-- 'Kidney Donor Profile Index Clinical Classification Test Code: Code list type not
-  detected, identifier ''C130251''.'
-- 'Kidney Donor Profile Index Clinical Classification Test Name: Code list type not
-  detected, identifier ''C130250''.'
-- 'Karnofsky Performance Status Scale Questionnaire Results Subset 01: Subset for
-  a non-CDISC code list detected, identifier ''SN000897''.'
-- 'Reporting Laboratory Paremeter Label: Code list type not detected, identifier ''SN001923''.'
+- 'Frequency Subset 01: Cannot find a code list item, identifier ''S001886'', for
+  a subset ''NP000374P''.'
+- 'Frequency Subset 01: Cannot find a code list item, identifier ''S001887'', for
+  a subset ''NP000374P''.'
+- 'Frequency Subset 01: Cannot find a code list item, identifier ''S001888'', for
+  a subset ''NP000374P''.'
+- 'Frequency Subset 01: Cannot find a code list item, identifier ''C70543'', for a
+  subset ''NP000374P''.'
+- 'Laboratory Test Code: Code list type not detected, identifier ''C65047''.'
+- 'Laboratory Test Name: Code list type not detected, identifier ''C67154''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C98797'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C98796'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C98795'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117867'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C81991'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117858'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117856'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103440'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74629'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74716'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117849'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117848'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117839'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117845'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96618'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96617'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100452'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92298'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92279'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117843'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C112413'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C112412'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100453'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92241'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92278'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92277'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92276'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92275'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C112326'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117838'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103409'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103408'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96667'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96698'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96697'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96666'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92266'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74715'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74714'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92265'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92264'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92263'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74713'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C106527'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C81984'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C112292'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C98739'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C98738'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96665'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C106526'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C119283'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C119282'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C119281'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96664'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C116196'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92535'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96663'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96662'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96661'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C119280'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96660'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92271'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92534'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103403'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C64850'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117834'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''SC163437'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''SC163435'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C106518'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96604'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96603'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96602'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96601'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96600'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C106519'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103388'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96597'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C96596'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117833'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C111160'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103382'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C103381'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C116194'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117832'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100465'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100466'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100464'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92433'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92432'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117831'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C100426'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C92282'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C81976'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74711'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C117829'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C111125'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''C74912'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000291'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000294'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000296'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000311'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000313'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000314'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000316'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000350'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000351'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000352'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000353'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000354'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000355'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000320'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000357'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000474'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000392'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000362'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000363'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000365'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000370'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000372'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000373'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000374'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000375'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000376'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000379'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000381'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000382'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000385'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000386'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000387'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000388'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000389'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000400'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000402'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000401'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000433'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000435'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000436'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000437'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000438'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000439'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000440'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000443'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000450'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000451'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000452'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000453'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000454'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000456'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000457'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000458'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000459'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000460'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000461'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000462'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000463'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000464'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000465'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000468'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000470'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000473'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000502'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000500'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000501'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000513'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000504'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000505'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000506'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000508'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000507'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S002662'',
+  for a subset ''NP000465P''.'
+- 'Laboratory Test Name Subset 03: Cannot find a code list item, identifier ''S000394'',
+  for a subset ''NP000466P''.'
+- 'Laboratory Test Name Subset 03: Cannot find a code list item, identifier ''S000395'',
+  for a subset ''NP000466P''.'
 - 'Laboratory Test Standard Character Result: Code list type not detected, identifier
   ''C102580''.'
-- 'Laboratory Test Standard Character Result Subset 02: Cannot find a code list item
-  for a subset, identifier ''SC17998''.'
-- 'Laboratory Test Name: Code list type not detected, identifier ''C67154''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''SC163437''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''SC163435''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''C135441''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000291''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000294''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000296''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000311''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000313''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000314''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000316''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000350''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000351''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000352''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000353''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000354''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000355''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000320''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000357''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000474''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000392''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000362''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000363''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000365''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000370''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000372''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000373''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000374''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000375''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000376''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000379''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000381''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000382''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000385''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000386''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000387''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000388''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000389''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000400''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000402''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000401''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000433''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000435''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000436''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000437''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000438''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000439''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000440''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000443''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000450''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000451''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000452''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000453''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000454''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000456''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000457''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000458''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000459''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000460''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000461''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000462''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000463''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000464''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000465''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000468''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000470''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000473''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000502''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000500''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000501''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000513''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000504''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000505''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000506''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000508''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S000507''.'
-- 'Laboratory Test Name Subset 01: Cannot find a code list item for a subset, identifier
-  ''S002662''.'
-- 'Laboratory Test Code: Code list type not detected, identifier ''C65047''.'
-- 'Laboratory Test Name Subset 03: Cannot find a code list item for a subset, identifier
-  ''S000394''.'
-- 'Laboratory Test Name Subset 03: Cannot find a code list item for a subset, identifier
-  ''S000395''.'
-- 'Life Events Checklist for DSM-5 Standard Version Questionnaire Test Code: Code
-  list type not detected, identifier ''C135690''.'
-- 'Life Events Checklist for DSM-5 Standard Version Questionnaire Test Name: Code
-  list type not detected, identifier ''C135689''.'
-- 'Anatomical Location: Code list type not detected, identifier ''C74456''.'
-- 'Anatomical Location Subset 01: Cannot find a code list item for a subset, identifier
-  ''S001153''.'
-- 'Anatomical Location Subset 02: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 02: Cannot find a code list item for a subset, identifier
-  ''S001156''.'
-- 'Anatomical Location Subset 03: Cannot find a code list item for a subset, identifier
-  ''S001140''.'
-- 'Anatomical Location Subset 03: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''S001125''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''S001126''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''S001127''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''S001137''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''S001140''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item for a subset, identifier
-  ''SC17998''.'
-- 'Anatomical Location Subset 05: Cannot find a code list item for a subset, identifier
-  ''S001126''.'
-- 'Anatomical Location Subset 05: Cannot find a code list item for a subset, identifier
-  ''S001127''.'
-- 'Anatomical Location Subset 05: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 06: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 08: Cannot find a code list item for a subset, identifier
-  ''S006406''.'
-- 'Anatomical Location Subset 08: Cannot find a code list item for a subset, identifier
-  ''S001140''.'
-- 'Anatomical Location Subset 08: Cannot find a code list item for a subset, identifier
-  ''C17649''.'
-- 'Anatomical Location Subset 08: Cannot find a code list item for a subset, identifier
-  ''S000062''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001131''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001135''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001136''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001146''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001154''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S006408''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S001155''.'
-- 'Anatomical Location Subset 09: Cannot find a code list item for a subset, identifier
-  ''S006409''.'
-- 'Anatomical Location Subset 10: Cannot find a code list item for a subset, identifier
-  ''SC142369''.'
-- 'Lansky Play-Performance Status Scale Clinical Classification Test Code: Code list
-  type not detected, identifier ''C138215''.'
-- 'Lansky Play-Performance Status Scale Clinical Classification Test Name: Code list
-  type not detected, identifier ''C138214''.'
-- 'Marital Status Response Subset 01: Cannot find a code list item for a subset, identifier
-  ''S003102''.'
-- 'Microbiology Test Name: Code list type not detected, identifier ''C120528''.'
-- 'Microbiology Test Code: Code list type not detected, identifier ''C120527''.'
-- 'Medical Evaluator: Code list type not detected, identifier ''C96777''.'
+- 'Laboratory Test Standard Character Result Subset 02: Cannot find a code list item,
+  identifier ''SC17998'', for a subset ''NP000468P''.'
+- 'Laterality: Code list type not detected, identifier ''C99073''.'
+- 'Laterality Subset 03: Cannot find a code list item, identifier ''C68598'', for
+  a subset ''NP000472P''.'
+- 'Marital Status Response Subset 01: Cannot find a code list item, identifier ''S003102'',
+  for a subset ''NP000483P''.'
 - 'Method: Code list type not detected, identifier ''C85492''.'
-- 'Method Subset 02: Cannot find a code list item for a subset, identifier ''SC15361''.'
-- 'Method Subset 03: Cannot find a code list item for a subset, identifier ''C17649''.'
-- 'Medical History Event Date Type: Code list type not detected, identifier ''C124301''.'
-- 'Proposed Medical History Term Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000367''.'
+- 'Method Subset 02: Cannot find a code list item, identifier ''SC15361'', for a subset
+  ''NP000490P''.'
+- 'Method Subset 03: Cannot find a code list item, identifier ''C17649'', for a subset
+  ''NP000491P''.'
+- 'Microbiology Test Code: Code list type not detected, identifier ''C120527''.'
+- 'Microbiology Test Name: Code list type not detected, identifier ''C120528''.'
 - 'Microorganism: Code list type not detected, identifier ''C85491''.'
-- 'Microorganism Subset 01: Cannot find a code list item for a subset, identifier
-  ''C17998''.'
-- 'Microscopic Findings Test Details: Code list type not detected, identifier ''C125922''.'
-- 'SDTM Microscopic Findings Test Name: Code list type not detected, identifier ''C132262''.'
-- 'SDTM Microscopic Findings Test Code: Code list type not detected, identifier ''C132263''.'
-- 'Mini-Mental State Examination Questionnaire Test Code: Code list type not detected,
-  identifier ''C100142''.'
-- 'Mini-Mental State Examination Questionnaire Test Name: Code list type not detected,
-  identifier ''C100141''.'
-- 'Mode of Disease Transmission: Code list type not detected, identifier ''C127265''.'
-- 'Subcategory for Morphological Tests: Code list type not detected, identifier ''SN000951''.'
-- 'Morphology Test Name: Code list type not detected, identifier ''SN001097''.'
+- 'Microorganism Subset 01: Cannot find a code list item, identifier ''C17998'', for
+  a subset ''NP000498P''.'
 - 'Morphology Test Code: Code list type not detected, identifier ''SN001098''.'
-- 'Malaria Findings About Test Name: Code list type not detected, identifier ''C132319''.'
-- 'Malaria Findings About Test Code: Code list type not detected, identifier ''C132320''.'
-- 'Microbiology Susceptibility Test Name: Code list type not detected, identifier
-  ''C128687''.'
-- 'Microbiology Susceptibility Test Code: Code list type not detected, identifier
-  ''C128688''.'
-- 'Musculoskeletal System Finding Test Name: Code list type not detected, identifier
-  ''C127270''.'
-- 'Musculoskeletal System Finding Test Code: Code list type not detected, identifier
-  ''C127269''.'
-- 'Completion/Reason for Non-Completion: Code list type not detected, identifier ''C66727''.'
-- 'Completion/Reason for Non-Completion Subset 05: Cannot find a code list item for
-  a subset, identifier ''S001277''.'
-- 'Completion/Reason for Non-Completion Subset 06: Cannot find a code list item for
-  a subset, identifier ''S001277''.'
-- 'Completion/Reason for Non-Completion Subset 07: Cannot find a code list item for
-  a subset, identifier ''S001275''.'
-- 'Completion/Reason for Non-Completion Subset 08: Cannot find a code list item for
-  a subset, identifier ''S001276''.'
-- 'Completion/Reason for Non-Completion Subset 10: Cannot find a code list item for
-  a subset, identifier ''S001277''.'
-- 'Completion/Reason for Non-Completion Subset 11: Cannot find a code list item for
-  a subset, identifier ''S001277''.'
-- 'North Star Ambulatory Assessment Clinical Classification Test Code: Code list type
-  not detected, identifier ''C132517''.'
-- 'North Star Ambulatory Assessment Clinical Classification Test Name: Code list type
-  not detected, identifier ''C132516''.'
-- 'Nervous System Physiology Test Name: Code list type not detected, identifier ''C116103''.'
-- 'Nervous System Physiology Test Code: Code list type not detected, identifier ''C116104''.'
-- 'Observational Study Biospecimen Retention: Code list type not detected, identifier
-  ''C127258''.'
-- 'Observational Study Model: Code list type not detected, identifier ''C127259''.'
-- 'Observational Study Sampling Method: Code list type not detected, identifier ''C127260''.'
-- 'Observational Study Time Perspective: Code list type not detected, identifier ''C127261''.'
-- 'Ophthalmic Exam Test Name: Code list type not detected, identifier ''C117742''.'
-- 'Ophthalmic Exam Test Code: Code list type not detected, identifier ''C117743''.'
-- 'Category of Oncology Response Assessment: Code list type not detected, identifier
-  ''C124298''.'
+- 'Morphology Test Name: Code list type not detected, identifier ''SN001097''.'
 - 'Oncology Response Assessment Result: Code list type not detected, identifier ''C96785''.'
-- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item for
-  a subset, identifier ''SC142361''.'
-- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item for
-  a subset, identifier ''SC142356''.'
-- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item for
-  a subset, identifier ''SC142357''.'
-- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item for
-  a subset, identifier ''SC142360''.'
-- 'Oncology Response Assessment Test Name: Code list type not detected, identifier
-  ''C96781''.'
-- 'Oncology Response Assessment Test Code: Code list type not detected, identifier
-  ''C96782''.'
-- 'Psoriasis Area and Severity Index Clinical Classification Test Code: Code list
-  type not detected, identifier ''C135678''.'
-- 'Psoriasis Area and Severity Index Clinical Classification Test Name: Code list
-  type not detected, identifier ''C135677''.'
-- 'The PTSD Checklist for DSM-5 Questionnaire Test Code: Code list type not detected,
-  identifier ''C135692''.'
-- 'The PTSD Checklist for DSM-5 Questionnaire Test Name: Code list type not detected,
-  identifier ''C135691''.'
-- 'Pharmacokinetic Test Name: Code list type not detected, identifier ''SN000414''.'
+- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item, identifier
+  ''SC142361'', for a subset ''NP000559P''.'
+- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item, identifier
+  ''SC142356'', for a subset ''NP000559P''.'
+- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item, identifier
+  ''SC142357'', for a subset ''NP000559P''.'
+- 'Oncology Response Assessment Result Subset 02: Cannot find a code list item, identifier
+  ''SC142360'', for a subset ''NP000559P''.'
+- 'Ophthalmic Exam Test Code: Code list type not detected, identifier ''C117743''.'
+- 'Ophthalmic Exam Test Name: Code list type not detected, identifier ''C117742''.'
 - 'Pharmacokinetic Test Code: Code list type not detected, identifier ''SN000415''.'
-- 'Pharmacogenomics Findings Test Name: Code list type not detected, identifier ''C116105''.'
-- 'Pharmacogenomics Findings Test Code: Code list type not detected, identifier ''C116106''.'
-- 'Patient Global Impression Generic Modification Version Questionnaire Test Code:
-  Code list type not detected, identifier ''C135688''.'
-- 'Patient Global Impression Generic Modification Version Questionnaire Test Name:
-  Code list type not detected, identifier ''C135687''.'
-- 'Pharmacogenomics/Genetics Methods and Supporting Information Test Name: Code list
-  type not detected, identifier ''C135011''.'
-- 'Pharmacogenomics/Genetics Methods and Supporting Information Test Code: Code list
-  type not detected, identifier ''C135010''.'
-- 'PK Parameters: Code list type not detected, identifier ''C85493''.'
-- 'PK Parameters Code: Code list type not detected, identifier ''C85839''.'
-- 'PK Units of Measure - Dose mg: Code list type not detected, identifier ''C128685''.'
-- 'PK Units of Measure - Dose ug: Code list type not detected, identifier ''C128686''.'
-- 'PK Units of Measure: Code list type not detected, identifier ''C85494''.'
-- 'PK Units of Measure - Weight g: Code list type not detected, identifier ''C128684''.'
-- 'PK Units of Measure - Weight kg: Code list type not detected, identifier ''C128683''.'
-- 'Pediatric Outcomes Data Collection Instrument, Pediatric Parent-Reported Version
-  Questionnaire Test Code: Code list type not detected, identifier ''C135694''.'
-- 'Pediatric Outcomes Data Collection Instrument, Pediatric Parent-Reported Version
-  Questionnaire Test Name: Code list type not detected, identifier ''C135693''.'
-- 'Pediatric Outcomes Data Collection Instrument, Adolescent Parent-Reported Version
-  Questionnaire Test Code: Code list type not detected, identifier ''C135696''.'
-- 'Pediatric Outcomes Data Collection Instrument, Adolescent Parent-Reported Version
-  Questionnaire Test Name: Code list type not detected, identifier ''C135695''.'
-- 'Pediatric Outcomes Data Collection Instrument, Adolescent Self-Reported Version
-  Questionnaire Test Code: Code list type not detected, identifier ''C135698''.'
-- 'Pediatric Outcomes Data Collection Instrument, Adolescent Self-Reported Version
-  Questionnaire Test Name: Code list type not detected, identifier ''C135697''.'
+- 'Pharmacokinetic Test Name: Code list type not detected, identifier ''SN000414''.'
+- 'Portion/Totality: Code list type not detected, identifier ''C99075''.'
 - 'Position: Code list type not detected, identifier ''C71148''.'
-- 'Position Subset 01: Cannot find a code list item for a subset, identifier ''C17649''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Questionnaire
-  Test Code: Code list type not detected, identifier ''C138259''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Questionnaire
-  Test Name: Code list type not detected, identifier ''C138258''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138253''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138252''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Teen Questionnaire Test
-  Code: Code list type not detected, identifier ''C138257''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Teen Questionnaire Test
-  Name: Code list type not detected, identifier ''C138256''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Teen Parent Report Questionnaire
-  Test Code: Code list type not detected, identifier ''C138251''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Teen Parent Report Questionnaire
-  Test Name: Code list type not detected, identifier ''C138250''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Child Questionnaire Test
-  Code: Code list type not detected, identifier ''C138245''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Child Questionnaire Test
-  Name: Code list type not detected, identifier ''C138244''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Child Parent Report Questionnaire
-  Test Code: Code list type not detected, identifier ''C138249''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Child Parent Report Questionnaire
-  Test Name: Code list type not detected, identifier ''C138248''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Questionnaire
-  Test Code: Code list type not detected, identifier ''C138261''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Questionnaire
-  Test Name: Code list type not detected, identifier ''C138260''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138255''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138254''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Toddler Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138247''.'
-- 'Pediatric Quality of Life Neuromuscular Module Version 3 Toddler Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138246''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Questionnaire
-  Test Code: Code list type not detected, identifier ''C138241''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Questionnaire
-  Test Name: Code list type not detected, identifier ''C138240''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Parent
-  Report Questionnaire Test Code: Code list type not detected, identifier ''C138235''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Parent
-  Report Questionnaire Test Name: Code list type not detected, identifier ''C138234''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Questionnaire
-  Test Code: Code list type not detected, identifier ''C138239''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Questionnaire
-  Test Name: Code list type not detected, identifier ''C138238''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138233''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138232''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Questionnaire
-  Test Code: Code list type not detected, identifier ''C138227''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Questionnaire
-  Test Name: Code list type not detected, identifier ''C138226''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138231''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138230''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Questionnaire
-  Test Code: Code list type not detected, identifier ''C138243''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Questionnaire
-  Test Name: Code list type not detected, identifier ''C138242''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Parent
-  Report Questionnaire Test Code: Code list type not detected, identifier ''C138237''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Parent
-  Report Questionnaire Test Name: Code list type not detected, identifier ''C138236''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Toddler Parent Report
-  Questionnaire Test Code: Code list type not detected, identifier ''C138229''.'
-- 'Pediatric Quality of Life Neuromuscular Module Acute Version 3 Toddler Parent Report
-  Questionnaire Test Name: Code list type not detected, identifier ''C138228''.'
+- 'Position Subset 01: Cannot find a code list item, identifier ''C17649'', for a
+  subset ''NP000643P''.'
 - 'Procedure: Code list type not detected, identifier ''C101858''.'
-- 'Procedure Subset 01: Cannot find a code list item for a subset, identifier ''S005202''.'
-- 'Procedure Subset 01: Cannot find a code list item for a subset, identifier ''SC17649''.'
-- 'Procedure Subset 02: Cannot find a code list item for a subset, identifier ''S005204''.'
-- 'Overall Stage Grouping Subset 01: Subset for a non-CDISC code list detected, identifier
-  ''SN000469''.'
-- 'The Prostate Cancer Specific Quality of Life Instrument Questionnaire Test Code:
-  Code list type not detected, identifier ''C127360''.'
-- 'The Prostate Cancer Specific Quality of Life Instrument Questionnaire Test Name:
-  Code list type not detected, identifier ''C127359''.'
-- 'Protocol Milestone: Code list type not detected, identifier ''C114118''.'
-- 'Subcategory for Procedures Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000121''.'
-- 'Performance of the Upper Limb Module for DMD Version 1.2 Functional Test Test Code:
-  Code list type not detected, identifier ''C138217''.'
-- 'Performance of the Upper Limb Module for DMD Version 1.2 Functional Test Test Name:
-  Code list type not detected, identifier ''C138216''.'
-- 'Performance of the Upper Limb Module for DMD Version 2.0 Functional Test Test Code:
-  Code list type not detected, identifier ''C138219''.'
-- 'Performance of the Upper Limb Module for DMD Version 2.0 Functional Test Test Name:
-  Code list type not detected, identifier ''C138218''.'
-- 'Quick Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification
-  Test Code: Code list type not detected, identifier ''C130249''.'
-- 'Quick Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification
-  Test Name: Code list type not detected, identifier ''C130248''.'
-- 'Quick Inventory of Depressive Symptomatology Self-Report Version Questionnaire
-  Test Code: Code list type not detected, identifier ''C130263''.'
-- 'Quick Inventory of Depressive Symptomatology Self-Report Version Questionnaire
-  Test Name: Code list type not detected, identifier ''C130262''.'
-- 'Quality Of Life Enjoyment And Satisfaction Questionnaire Test Code: Code list type
-  not detected, identifier ''C130265''.'
-- 'Quality Of Life Enjoyment And Satisfaction Questionnaire Test Name: Code list type
-  not detected, identifier ''C130264''.'
-- 'Quality Of Life Enjoyment And Satisfaction Questionnaire - Short Form Test Code:
-  Code list type not detected, identifier ''C130267''.'
-- 'Quality Of Life Enjoyment And Satisfaction Questionnaire - Short Form Test Name:
-  Code list type not detected, identifier ''C130266''.'
-- 'Category of Questionnaire: Code list type not detected, identifier ''C100129''.'
+- 'Procedure Subset 01: Cannot find a code list item, identifier ''S005202'', for
+  a subset ''NP000648P''.'
+- 'Procedure Subset 01: Cannot find a code list item, identifier ''SC17649'', for
+  a subset ''NP000648P''.'
+- 'Procedure Subset 02: Cannot find a code list item, identifier ''S005204'', for
+  a subset ''NP000649P''.'
 - 'Race: Code list type not detected, identifier ''C74457''.'
 - 'Race As Collected: Code list type not detected, identifier ''C128689''.'
 - 'Randomization: Code list type not detected, identifier ''SN000523''.'
+- 'Reason for Treatment Use: Code list type not detected, identifier ''SN000583''.'
 - 'Relationship to Subject: Code list type not detected, identifier ''C100130''.'
-- 'Respiratory Test Name: Code list type not detected, identifier ''C111107''.'
-- 'Respiratory Test Code: Code list type not detected, identifier ''C111106''.'
+- 'Reporting ECG Parameter Label: Code list type not detected, identifier ''SN001023''.'
+- 'Reporting Laboratory Paremeter Label: Code list type not detected, identifier ''SN001923''.'
 - 'Route of Administration Response: Code list type not detected, identifier ''C66729''.'
-- 'Route of Administration Response Subset 02: Cannot find a code list item for a
-  subset, identifier ''C17649''.'
-- 'Route of Administration Response Subset 03: Cannot find a code list item for a
-  subset, identifier ''S003258''.'
-- 'Risk Assessment: Code list type not detected, identifier ''C101848''.'
-- 'RAND Social Support Survey Instrument Questionnaire Test Code: Code list type not
-  detected, identifier ''C135700''.'
-- 'RAND Social Support Survey Instrument Questionnaire Test Name: Code list type not
-  detected, identifier ''C135699''.'
-- 'Subject Characteristic Test Name: Code list type not detected, identifier ''C103330''.'
-- 'Subject Characteristic Test Code: Code list type not detected, identifier ''C74559''.'
-- 'Environmental Setting: Code list type not detected, identifier ''C127262''.'
-- 'Self-Measured Plasma Glucose Time Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000554''.'
-- 'Self-Measured Plasma Glucose Time Subset 02: Subset for a non-CDISC code list detected,
-  identifier ''SN000554''.'
-- 'SDTM Species: Code list type not detected, identifier ''C116111''.'
+- 'Route of Administration Response Subset 02: Cannot find a code list item, identifier
+  ''C17649'', for a subset ''NP000697P''.'
+- 'Route of Administration Response Subset 03: Cannot find a code list item, identifier
+  ''S003258'', for a subset ''NP000698P''.'
+- 'SDTM Domain Abbreviation: Code list type not detected, identifier ''C66734''.'
+- 'Specimen Collection Method: Code list type not detected, identifier ''C132314''.'
 - 'Specimen Condition: Code list type not detected, identifier ''C78733''.'
 - 'Specimen Type: Code list type not detected, identifier ''C78734''.'
-- 'Skin Response Test Name: Code list type not detected, identifier ''C112023''.'
-- 'Skin Response Test Code: Code list type not detected, identifier ''C112024''.'
-- 'Study Type Response: Code list type not detected, identifier ''C99077''.'
-- 'Schizophrenia Findings About Test Name: Code list type not detected, identifier
-  ''C124303''.'
-- 'Schizophrenia Findings About Test Code: Code list type not detected, identifier
-  ''C124302''.'
-- 'Tuberculosis Findings About Test Name: Code list type not detected, identifier
-  ''C127267''.'
-- 'Tuberculosis Findings About Test Code: Code list type not detected, identifier
-  ''C127266''.'
 - 'Subcategory for Lab Test: Code list type not detected, identifier ''SN001099''.'
-- 'Trial Intent Type Response: Code list type not detected, identifier ''C66736''.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Subset for a non-CDISC
-  code list detected, identifier ''SN001030''.'
-- 'Trial Phase Response: Code list type not detected, identifier ''C66737''.'
-- 'Tumor or Lesion Properties Test Name: Code list type not detected, identifier ''C96778''.'
-- 'Tumor or Lesion Properties Test Code: Code list type not detected, identifier ''C96779''.'
-- 'Reason for Treatment Use: Code list type not detected, identifier ''SN000583''.'
-- 'Reason for Treatment Use Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000583''.'
-- 'Reason for Treatment Use Subset 02: Subset for a non-CDISC code list detected,
-  identifier ''SN000583''.'
-- 'Reason for Treatment Use Subset 03: Subset for a non-CDISC code list detected,
-  identifier ''SN000583''.'
-- 'Reason for Treatment Use Subset 04: Subset for a non-CDISC code list detected,
-  identifier ''SN000583''.'
-- 'Trial Summary Parameter Test Name: Code list type not detected, identifier ''C67152''.'
+- 'Subcategory for Morphological Tests: Code list type not detected, identifier ''SN000951''.'
+- 'Subcategory of Clinical Event: Code list type not detected, identifier ''SN000697''.'
+- 'Subcategory of External Data Type: Code list type not detected, identifier ''SN000631''.'
+- 'Tanner Scale Boy Clinical Classification Test Code: Code list type not detected,
+  identifier ''C124662''.'
+- 'Tanner Scale Boy Clinical Classification Test Name: Code list type not detected,
+  identifier ''C124661''.'
+- 'Tanner Scale Girl Clinical Classification Test Code: Code list type not detected,
+  identifier ''C124664''.'
+- 'Tanner Scale Girl Clinical Classification Test Name: Code list type not detected,
+  identifier ''C124663''.'
 - 'Trial Summary Parameter Test Code: Code list type not detected, identifier ''C66738''.'
-- 'Treatment Satisfaction Questionnaire for Medication Version 1.4 Questionnaire Test
-  Code: Code list type not detected, identifier ''C132525''.'
-- 'Treatment Satisfaction Questionnaire for Medication Version 1.4 Questionnaire Test
-  Name: Code list type not detected, identifier ''C132524''.'
-- 'Trial Type Response: Code list type not detected, identifier ''C66739''.'
+- 'Trial Summary Parameter Test Name: Code list type not detected, identifier ''C67152''.'
 - 'Tumor or Lesion Identification Test Results: Code list type not detected, identifier
   ''C123650''.'
-- 'Assistance to Administer Treatment Subset 01: Subset for a non-CDISC code list
-  detected, identifier ''SN000738''.'
-- 'Unit: Code list type not detected, identifier ''C71620''.'
-- 'Unit Subset 05: Cannot find a code list item for a subset, identifier ''S010223''.'
-- 'Unit Subset 05: Cannot find a code list item for a subset, identifier ''S001211''.'
-- 'Unit Subset 05: Cannot find a code list item for a subset, identifier ''S004595''.'
-- 'Urinary System Test Name: Code list type not detected, identifier ''C129941''.'
-- 'Urinary System Test Code: Code list type not detected, identifier ''C129942''.'
-- 'Vignos Lower Extremity Rating Scale Clinical Classification Test Code: Code list
-  type not detected, identifier ''C130241''.'
-- 'Vignos Lower Extremity Rating Scale Clinical Classification Test Name: Code list
-  type not detected, identifier ''C130240''.'
-- 'Units for Vital Signs Results: Code list type not detected, identifier ''C66770''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Interviewer
-  Questionnaire Test Code: Code list type not detected, identifier ''C130275''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Interviewer
-  Questionnaire Test Name: Code list type not detected, identifier ''C130274''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Proxy Questionnaire
-  Test Code: Code list type not detected, identifier ''C130277''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Proxy Questionnaire
-  Test Name: Code list type not detected, identifier ''C130276''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Self Questionnaire
-  Test Code: Code list type not detected, identifier ''C130279''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12-Item Self Questionnaire
-  Test Name: Code list type not detected, identifier ''C130278''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12 + 24-Item Interviewer
-  Questionnaire Test Code: Code list type not detected, identifier ''C130281''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 12 + 24-Item Interviewer
-  Questionnaire Test Name: Code list type not detected, identifier ''C130280''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Interviewer
-  Questionnaire Test Code: Code list type not detected, identifier ''C130269''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Interviewer
-  Questionnaire Test Name: Code list type not detected, identifier ''C130268''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Proxy Questionnaire
-  Test Code: Code list type not detected, identifier ''C130271''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Proxy Questionnaire
-  Test Name: Code list type not detected, identifier ''C130270''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Self Questionnaire
-  Test Code: Code list type not detected, identifier ''C130273''.'
-- 'World Health Organization Disability Assessment Schedule 2.0 - 36-Item Self Questionnaire
-  Test Name: Code list type not detected, identifier ''C130272''.'
-- 'Subcategory of Clinical Event Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN000697''.'
-- 'Subcategory of Vital Signs Subset 01: Subset for a non-CDISC code list detected,
-  identifier ''SN002054''.'
-- 'Type 1 Diabetes Findings About Test Name: Code list type not detected, identifier
-  ''SC163028''.'
+- 'Tumor or Lesion Properties Test Code: Code list type not detected, identifier ''C96779''.'
+- 'Tumor or Lesion Properties Test Name: Code list type not detected, identifier ''C96778''.'
+- 'Tumor or Lesion Properties Test Result: Code list type not detected, identifier
+  ''C124309''.'
 - 'Type 1 Diabetes Findings About Test Code: Code list type not detected, identifier
   ''SC163027''.'
-- 'Anatomical Location Subset 07: Cannot find a code list item for a subset, identifier
-  ''C139186''.'
+- 'Type 1 Diabetes Findings About Test Name: Code list type not detected, identifier
+  ''SC163028''.'
+- 'Unit: Code list type not detected, identifier ''C71620''.'
+- 'Unit Subset 05: Cannot find a code list item, identifier ''S010223'', for a subset
+  ''NP000814P''.'
+- 'Unit Subset 05: Cannot find a code list item, identifier ''S001211'', for a subset
+  ''NP000814P''.'
+- 'Unit Subset 05: Cannot find a code list item, identifier ''S004595'', for a subset
+  ''NP000814P''.'

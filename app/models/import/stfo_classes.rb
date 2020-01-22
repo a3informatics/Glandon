@@ -43,6 +43,8 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       return nil if ref_ct.nil?
       return ref_ct if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
+      set = self.child_identifiers - ref_ct.child_identifiers
+      ConsoleLogger.info(self.class.name, __method__.to_s, "Referenced check failed, identifiers for #{self.identifier} not matching: #{set.join(", ")}") 
       return nil
     end
 
@@ -70,26 +72,47 @@ module Import::STFOClasses
       self.preferred_term.label.upcase.split(/[^[[:word:]]]+/).include? "SUBSET"
     end
 
-    def to_subset(ct)
+    def to_cdisc_subset(ct)
       new_narrower = []
-      if NciThesaurusUtility.c_code?(self.identifier)
-        ref_ct = reference(ct)
-        self.identifier = Thesaurus::ManagedConcept.new_identifier
-        self.has_identifier.identifier = self.identifier
-        self.narrower.each do |child|
-          new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
-          if new_child.nil?
-            self.errors.add(:base, "Cannot find a code list item for a subset, identifier '#{child.identifier}'.")
-          else
-            new_narrower << new_child
-          end
+      return nil if !NciThesaurusUtility.c_code?(self.identifier)
+      ref_ct = reference(ct)
+      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.has_identifier.identifier = self.identifier
+      self.narrower.each do |child|
+        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        if new_child.nil?
+          self.errors.add(:base, "Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+        else
+          new_narrower << new_child
         end
-      else
-        self.errors.add(:base, "Subset for a non-CDISC code list detected, identifier '#{self.identifier}'.")
       end
+      self.narrower = new_narrower
+      # @todo set up ordering
       self
     rescue => e
-      self.errors.add(:base, "Exception in to_subset, identifier '#{self.identifier}'.")
+      self.errors.add(:base, "Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def to_sponsor_subset(sponsor_ct)
+      new_narrower = []
+      ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
+      return nil if ref_ct.nil?
+      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.has_identifier.identifier = self.identifier
+      self.narrower.each do |child|
+        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        if new_child.nil?
+          self.errors.add(:base, "Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+        else
+          new_narrower << new_child
+        end
+      end
+      self.narrower = new_narrower
+      # @todo set up ordering
+      self
+    rescue => e
+      self.errors.add(:base, "Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -98,8 +121,8 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       self.identifier = Thesaurus::ManagedConcept.new_identifier
       self.has_identifier.identifier = self.identifier
-
       self.narrower.each do |child|
+        # @todo CDISC code from another 
         next if NciThesaurusUtility.c_code?(self.identifier)
         new_narrower << child
       end

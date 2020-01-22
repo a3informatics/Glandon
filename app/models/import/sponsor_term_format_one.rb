@@ -98,10 +98,14 @@ private
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       if child.subset?
-        ref = child.to_subset(@th)
-        next if ref.nil?
-        parent.add(ref, index + 1) 
-        filtered << ref
+        ref = child.to_cdisc_subset(@th)
+        ref = child.to_sponsor_subset(filtered) if ref.nil? # Note using previously processed sponsor CLs.
+        if ref.nil?
+          child.errors.add(:base, "Code list subset cannot be aligned, identifier '#{child.identifier}'.")
+        else
+          parent.add(ref, index + 1) 
+          filtered << ref
+        end
       elsif child.extension?(@th)
         ref = child.to_extension(@th)
         next if ref.nil?
@@ -116,7 +120,9 @@ private
         filtered << ref
       elsif child.referenced?(@th)
         ref = child.reference(@th)
-        parent.add(ref, index + 1) 
+        next if ref.nil?
+        parent.add(ref, index + 1)
+        filtered << ref
       else
         child.errors.add(:base, "Code list type not detected, identifier '#{child.identifier}'.")
         filtered << child
