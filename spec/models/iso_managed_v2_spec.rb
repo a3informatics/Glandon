@@ -812,15 +812,14 @@ describe "IsoManagedV2" do
 		end
 
 		it "list change notes as csv" do
+			allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
 			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       change_note = tc.add_change_note(user_reference: "user1", reference: "ref 1", description: "description cl")
       tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       change_note2 = tc2.add_change_note(user_reference: "user2", reference: "ref 2", description: "description cli")
-			change_note3 = tc2.add_change_note(user_reference: "user2", reference: "ref 3", description: "another description cli")
-			change_note4 = tc2.add_change_note(user_reference: "user3", reference: "ref 4", description: "yet another description cli")
 			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
 			result = tc.change_notes_csv
-			check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml", equate_method: :hash_equal)
+			check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml")
     end
 
 	end
