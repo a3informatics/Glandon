@@ -11,7 +11,7 @@
     :header_title => "List Change notes" } do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_change_notes_csv_iso_managed_v2_path(@managed_item), id: "export-csv",
-        icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
+        icon: "icon-file", btn_text: "Export List (CSV)", dt_toggle: "", disabled: false } %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
@@ -26,11 +26,11 @@
           <tr>
             <th class="fit">Identifier</th>
             <th class="fit">Submission Value</th>
-            <th>Preferred Term</th>
-            <th><span class="icon-note text-link"></span> Date</th>
-            <th><span class="icon-note text-link"></span> User</th>
+            <th>Label</th>
+            <th><span class="icon-note text-link"></span> Timestamp</th>
+            <th><span class="icon-note text-link"></span> User Reference</th>
             <th><span class="icon-note text-link"></span> Reference</th>
-            <th><span class="icon-note text-link"></span> Text</th>
+            <th><span class="icon-note text-link"></span> Description</th>
           </tr>
         </thead>
         <tbody>
