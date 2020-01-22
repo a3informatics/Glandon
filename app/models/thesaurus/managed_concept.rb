@@ -668,8 +668,6 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     results
   end
 
-  end
-
 private
 
   # Class for a difference result
