@@ -113,6 +113,7 @@ Rails.application.routes.draw do
       post :update_status
       put :update_semantic_version
       get :list_change_notes
+      get :list_change_notes_data
     end
     collection do
       get :find_by_tag
@@ -198,7 +199,6 @@ Rails.application.routes.draw do
         get :export_csv
         get :changes_summary
         get :changes_summary_data
-        get :change_notes
         get :differences_summary
         patch :update_properties
       end
