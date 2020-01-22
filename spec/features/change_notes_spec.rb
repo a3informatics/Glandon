@@ -200,6 +200,56 @@ describe "Change Notes", :type => :feature do
 
   end
 
+  describe "List change notes", :type => :feature do
+
+   before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end 
+
+    before :all do
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    it "allows to list change notes", js:true do
+      click_navbar_code_lists
+      wait_for_ajax(20)
+      click_link 'New Code List'
+      wait_for_ajax(20)
+      context_menu_element('history', 4, 'NP000123P', :show)
+      sleep 1
+      wait_for_ajax(20)
+      context_menu_element_header(:change_notes)
+      wait_for_ajax(20)
+      click_button "+ Add new"
+      sleep 0.2
+      wait_for_ajax(20)   
+      fill_in_change_note("#cn-new", "Some reference name", "String of text for the newly created change note.")
+      page.find("#save-cn-new-button").click
+      wait_for_ajax(20)
+      click_button "+ Add new"
+      wait_for_ajax(20)
+      fill_in_change_note("#cn-new", "Another reference name", "And another string of text for the newly created change note.")
+      page.find("#save-cn-new-button").click
+      wait_for_ajax(20)
+      click_button "Close"
+      wait_for_ajax(20)
+      click_link "Return"
+      wait_for_ajax(20)
+      context_menu_element('history', 4, 'NP000123P', :list_change_notes)
+      wait_for_ajax(20)
+      expect(page).to have_content("Change Notes of NP000123P and Children")
+      ui_check_table_info("list-change-notes-table", 1, 2, 2)
+      expect(page).to have_link('', href: "/iso_managed_v2/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUA==/export_change_notes_csv")    
+    end
+
+  end
+
   describe "Community reader user", :type => :feature do
 
     before :each do

@@ -527,6 +527,7 @@ module UiHelpers
 			extending: "Extending",
 			change_notes: "Change notes",
 			edit_tags: "Edit tags",
+      list_change_notes: "List Change notes"
     }
 	end
 
