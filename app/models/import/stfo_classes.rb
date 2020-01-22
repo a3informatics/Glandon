@@ -58,7 +58,7 @@ module Import::STFOClasses
       if !ref_ct.nil?
         ref_ct.narrower_objects
         others = self.child_identifiers - ref_ct.child_identifiers
-        return self if STFOCodeListItem.sponsor_identifier_set?(others)
+        return self if STFOCodeListItem.sponsor_identifier_or_referenced_set?(others)
         nil
       else
         nil
@@ -248,8 +248,9 @@ module Import::STFOClasses
     #
     # @return [Boolean] true if the identifier matches the referenced format, otherwise false.
     def self.sponsor_referenced_format?(ident)
-      result = ident =~ /\ASC[0-9]{5}\z/
-      !result.nil?
+      ident.start_with?("S") && NciThesaurusUtility.c_code?(ident[1..-1])
+      #result = ident =~ /\ASC[0-9]{3..6}\z/
+      #!result.nil?
     end
 
   end

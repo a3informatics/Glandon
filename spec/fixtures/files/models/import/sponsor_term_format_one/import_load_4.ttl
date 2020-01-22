@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -23,6 +24,8 @@
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConcept <http://www.acme-pharma.com/SN000631/V1#SN000631> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -43,6 +46,15 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.acme-pharma.com/SN000631/V1#SN000631> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.acme-pharma.com/C118971/V1#C118971>
 	rdf:type th:ManagedConcept ;
@@ -700,4 +712,78 @@
 <http://www.assero.co.uk/PT#67de85417e7d6d9660f1e62d6173e5d9489d5603>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Category of Clinical Classification"^^xsd:string ;
+.
+<http://www.acme-pharma.com/SN000631/V1#SN000631>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Subcategory of External Data Type"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoT:hasState <http://www.acme-pharma.com/SN000631/V1#SN000631_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/SN000631/V1#SN000631_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SN000631"^^xsd:string ;
+	th:notation "CDSTYP"^^xsd:string ;
+	th:definition "Used to collect a sub-category of the type of external data that is collected in the central data form."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/SN000631/V1#SN000631_SC449> ;
+	th:narrower <http://www.acme-pharma.com/SN000631/V1#SN000631_S003970> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b5164b4b3fc066edd11912ddcb569d8118a6e634> ;
+.
+<http://www.acme-pharma.com/SN000631/V1#SN000631_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/SN000631/V1#SN000631_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SN000631"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.acme-pharma.com/SN000631/V1#SN000631_SC449>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	th:identifier "SC449"^^xsd:string ;
+	th:notation "DNA"^^xsd:string ;
+	th:definition "A long linear double-stranded polymer formed from nucleotides attached to a deoxyribose backbone; associated with the transmission of genetic information."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4aeaeba84ead31459774bb74ead5f105ab816c58> ;
+	th:synonym <http://www.assero.co.uk/SYN#4aeaeba84ead31459774bb74ead5f105ab816c58> ;
+	th:synonym <http://www.assero.co.uk/SYN#7baa926b0a583d9dc4336948959633660863c61b> ;
+	th:synonym <http://www.assero.co.uk/SYN#05b52d4366fd0c7aae1cf4b7b767a6b7d4af3e21> ;
+.
+<http://www.assero.co.uk/PT#4aeaeba84ead31459774bb74ead5f105ab816c58>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Deoxyribonucleic Acid"^^xsd:string ;
+.
+<http://www.acme-pharma.com/SN000631/V1#SN000631_S003970>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	th:identifier "S003970"^^xsd:string ;
+	th:notation "IMMUNOPHENOTYPING"^^xsd:string ;
+	th:definition "(Synonym 1 NCI) The characterization of a set of cells according to the antigens expressed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b90bc79c43b7d0cce81e1fd81b0b967c214c3d86> ;
+.
+<http://www.assero.co.uk/PT#b90bc79c43b7d0cce81e1fd81b0b967c214c3d86>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Immunophenotyping"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#b5164b4b3fc066edd11912ddcb569d8118a6e634>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Subcategory of External Data Type"^^xsd:string ;
 .
