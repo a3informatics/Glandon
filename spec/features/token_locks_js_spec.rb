@@ -40,6 +40,7 @@ describe "Token Locks", :type => :feature do
         expect(page).to have_content 'Version History of \'AIRPORTS\''
         wait_for_ajax
         context_menu_element('history', 4, '0.1.0', :edit)
+        wait_for_ajax(10)
         expect(page).to have_content 'Find & Select Code Lists'
       end
 
@@ -50,6 +51,7 @@ describe "Token Locks", :type => :feature do
         expect(page).to have_content 'Version History of \'AIRPORTS\''
         wait_for_ajax
         context_menu_element('history', 4, '0.1.0', :edit)
+        wait_for_ajax(10)
         expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
       end
 
