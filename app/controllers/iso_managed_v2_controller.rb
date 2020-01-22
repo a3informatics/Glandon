@@ -55,6 +55,13 @@ class IsoManagedV2Controller < ApplicationController
     @close_path = request.referer
   end
 
+  def list_change_notes_data
+    authorize IsoManaged, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    result = tc.change_notes_paginated({offset: the_params[:offset], count: the_params[:count]})
+    render :json => {data: result}, :status => 200
+  end
+
 private
 
   def get_item(params)
@@ -66,7 +73,7 @@ private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type)
+    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type, :offset, :count)
   end
 
 end

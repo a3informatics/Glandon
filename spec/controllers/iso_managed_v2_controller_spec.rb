@@ -114,6 +114,15 @@ describe IsoManagedV2Controller do
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The release cannot be updated in the current state"])
     end
 
+    it 'lists change notes data' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
+      mi = Thesaurus::ManagedConcept.find_minimum(uri_1)
+      get :list_change_notes_data, { id: mi.id, iso_managed: { offset: "0", count: "200" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
   end
 
   describe "Unauthorized User" do
