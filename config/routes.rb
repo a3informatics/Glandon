@@ -185,6 +185,9 @@ Rails.application.routes.draw do
         get :find_subsets
         get :children
         post :add_child
+        post :add_children_synonyms
+        post :create_extension
+        post :create_subset
         get :show_data
         get :changes
         get :changes_data
@@ -194,7 +197,7 @@ Rails.application.routes.draw do
         get :preferred_term_links
         get :change_instruction_links
         post :extensions, action: :add_extensions
-        delete :extensions, action: :destroy_extensions
+        # delete :extensions, action: :destroy_extensions
         get :is_extended
         get :is_extension
         get :export_csv
@@ -213,6 +216,7 @@ Rails.application.routes.draw do
         get :synonym_links
         get :preferred_term_links
         get :change_instruction_links
+        patch :update_properties
       end
     end
     resources :subsets, only: [] do

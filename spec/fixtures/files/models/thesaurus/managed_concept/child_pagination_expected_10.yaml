@@ -1,0 +1,135 @@
+---
+- :identifier: A00021
+  :notation: NOTATION1
+  :preferred_term: ''
+  :synonym: ''
+  :tags: ''
+  :extensible: false
+  :definition: The definition.
+  :delete: true
+  :single_parent: true
+  :uri: http://www.acme-pharma.com/C99079E/V1#C99079E_A00021
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk5MDc5RS9WMSNDOTkwNzlFX0EwMDAyMQ==
+- :identifier: A00021
+  :notation: NOTATION1
+  :preferred_term: ''
+  :synonym: ''
+  :tags: ''
+  :extensible: false
+  :definition: The definition.
+  :delete: true
+  :single_parent: true
+  :uri: http://www.cdisc.org/C99079/V31#C99079_A00021
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQTAwMDIx
+- :identifier: A00022
+  :notation: NOTATION2
+  :preferred_term: ''
+  :synonym: ''
+  :tags: ''
+  :extensible: false
+  :definition: The definition2.
+  :delete: true
+  :single_parent: true
+  :uri: http://www.acme-pharma.com/C99079E/V1#C99079E_A00022
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk5MDc5RS9WMSNDOTkwNzlFX0EwMDAyMg==
+- :identifier: C102255
+  :notation: BLINDED TREATMENT
+  :preferred_term: Blinded Treatment Epoch
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study during which subjects receive blinded
+    therapeutic treatment.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
+- :identifier: C102256
+  :notation: OPEN LABEL TREATMENT
+  :preferred_term: Open Label Treatment Epoch
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study during which subjects receive open label
+    therapeutic treatment.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
+- :identifier: C307
+  :notation: BIOLOGIC
+  :preferred_term: Biological Agent
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: 'A substance made from living organisms or things they produce, for
+    example: virus, therapeutic serum, toxin, antitoxin, vaccine, blood, blood component
+    or derivative, allergenic product, or analogous product.'
+  :delete: true
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99078/V28#C99078_C307
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc4L1YyOCNDOTkwNzhfQzMwNw==
+- :identifier: C42872
+  :notation: WASHOUT
+  :preferred_term: Washout Period
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period of time during a clinical study when a participant is taken
+    off of a study drug or other medication in order to eliminate the effects of the
+    treatment.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C42872
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQyODcy
+- :identifier: C48262
+  :notation: SCREENING
+  :preferred_term: Trial Screening
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study during which subjects are evaluated for
+    participation in the study.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C48262
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQ4MjYy
+- :identifier: C49236
+  :notation: TREATMENT
+  :preferred_term: Therapeutic Procedure
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study during which subjects receive therapeutic
+    treatment.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C49236
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQ5MjM2
+- :identifier: C98779
+  :notation: RUN-IN
+  :preferred_term: Run-in Period
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study that occurs before the commencement of
+    the primary clinical study investigation, during which subjects may be assessed
+    for suitability in the clinical study, withdrawn from existing therapy, trained
+    in study methodology or evaluated for any other protocol-specified reason.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C98779
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzk4Nzc5
+- :identifier: C99158
+  :notation: FOLLOW-UP
+  :preferred_term: Clinical Study Follow-up
+  :synonym: ''
+  :tags: SDTM
+  :extensible: false
+  :definition: A period in a clinical study during which information about the health
+    status of an individual is obtained after study procedures and treatments have
+    concluded.
+  :delete: false
+  :single_parent: false
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C99158
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzk5MTU4

@@ -13,7 +13,7 @@ describe Thesauri::UnmanagedConceptsController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
     end
 
@@ -302,6 +302,30 @@ describe Thesauri::UnmanagedConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "update properties" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      umc = mc.add_child({managed_concept: {identifier: "SERVERIDENTIFER"}})
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, synonym: "syn1; syn2"}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data][0]
+      expect(actual[:synonym]).to eq("syn1; syn2")
+      expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
+    it "update properties, error" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      umc = mc.add_child({managed_concept: {identifier: "SERVERIDENTIFER"}})
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, definition: "\#€=/*-/"}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("Definition contains invalid characters")
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
   end

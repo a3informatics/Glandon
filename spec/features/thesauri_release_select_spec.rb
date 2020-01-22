@@ -35,9 +35,25 @@ describe "Thesauri Release Select", :type => :feature do
     end
 
     def navigate_to_release_sel
-      visit '/thesauri/aHR0cDovL3d3dy5zLWN1YmVkLmRrL1RTVC9WMSNUSA==/release_select'
-      expect(page).to have_content 'Find & Select Code Lists'
+      click_navbar_terminology
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'TST')]",).click
+      wait_for_ajax 10
+      context_menu_element("history", 5, "TST", :edit)
       wait_for_ajax 50
+      expect(page).to have_content 'Find & Select Code Lists'
+    end
+
+    it "link to Edit Tags page", js:true do
+      navigate_to_release_sel
+      expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
+      w = window_opened_by { context_menu_element_header(:edit_tags) }
+      within_window w do
+        wait_for_ajax(10)
+        expect(page).to have_content "TST"
+        expect(page).to have_content "Attach / Detach Tags"
+      end
+      w.close
     end
 
     it "select a CDISC version", :type => :feature do

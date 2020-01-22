@@ -115,6 +115,7 @@ class ThesauriController < ApplicationController
       @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
       ref_thesaurus = @thesaurus.get_referenced_thesaurus
       @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+      @edit_tags_path = path_for(:edit_tags, @thesaurus)
     else
       redirect_to request.referrer
     end
@@ -286,6 +287,7 @@ class ThesauriController < ApplicationController
     th = edit_item(th)
     if !th.nil?
       new_object = th.add_extension(the_params[:concept_id])
+      AuditTrail.create_item_event(current_user, new_object, "Terminology updated.")
       show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})
       edit_path = edit_extension_thesauri_managed_concept_path(new_object)
       render json: {show_path: show_path, edit_path: edit_path}, :status => 200
@@ -332,9 +334,9 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_mc = thesaurus.add_subset(the_params[:concept_id])
-    AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
-    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: params[:ctxt_id])
-    render json: { redirect_path: path, }, :status => 200
+    AuditTrail.create_item_event(current_user, new_mc, "Terminology updated.")
+    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: the_params[:concept_id], context_id: thesaurus.id)
+    render json: { edit_path: path, }, :status => 200
   end
 
   def set_reference

@@ -24,8 +24,6 @@ describe 'user_settings/index.html.erb', :type => :view do
 
     render
 
-    puts response.body
-
     expect(rendered).to have_content("Preferences")
     expect(rendered).to have_content("User Fred")
     expect(rendered).to have_content("Email: user@assero.co.uk")

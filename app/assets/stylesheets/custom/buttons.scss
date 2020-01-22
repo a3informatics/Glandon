@@ -109,6 +109,7 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 5px 5px;
+  margin-top: -6px;
 }
 
 .actions-wrap{
@@ -122,7 +123,7 @@
   flex-wrap: wrap;
 }
 
-.actions-wrap .btn{
+.actions-wrap .btn, .btns-wrap .btn{
   margin-top: 6px;
 }
 

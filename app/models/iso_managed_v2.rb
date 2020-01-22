@@ -657,6 +657,7 @@ class IsoManagedV2 < IsoConceptV2
   # @option params [String] Registration Status, the new state
   # @return [Null] errors are in the error object, if any
   def update_status(params)
+    params[:multiple_edit] = false  
     self.has_state.update(params)
     return if merge_errors(self.has_state, "Registration Status")
     sv = SemanticVersion.from_s(self.semantic_version)

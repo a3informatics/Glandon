@@ -125,6 +125,7 @@ describe "ISO Managed JS", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a").click
+      wait_for_ajax(20)
       find(:xpath, "//table[@id='comments_table']/tbody/tr[contains(.,'2015-03-27')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Comments:'
       fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
@@ -210,9 +211,12 @@ describe "ISO Managed JS", :type => :feature do
       ua_curator_login
       click_navbar_terminology
       click_link 'New Terminology'
+      sleep 1
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
+      sleep 1
+      wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax(10)
       # context_menu_element('history', 4, 'Test Terminology', :edit)

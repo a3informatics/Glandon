@@ -1,4 +1,4 @@
-<a href="<%= link_path %>" id="<%= local_assigns.fetch :id, "" %>" class="option <%= "disabled" if disabled %>" data-toggle="<%=dt_toggle%>">
+<a href="<%= link_path %>" id="<%= local_assigns.fetch :id, "" %>" class="option <%= "disabled" if disabled %>" data-toggle="<%=dt_toggle%>" target="<%= local_assigns.fetch :target, "_self" %>">
   <span class="<%= icon %> text-small"></span>
   <span class="text-small"><%= text %></span>
 </a>
