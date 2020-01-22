@@ -493,6 +493,7 @@ describe "Thesaurus::ManagedConcept" do
         offset: "0",
         count: "10"
       }
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       change_note = tc.add_change_note(user_reference: "xxx", reference: "ref 1", description: "description cl")
       expect(change_note.errors.count).to eq(0)
