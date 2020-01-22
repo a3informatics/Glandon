@@ -64,7 +64,7 @@ class IsoManagedV2Controller < ApplicationController
 
   def export_change_notes_csv
     authorize IsoManaged, :show?
-    item = IsoManagedV2.find(params[:id])
+    item = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     send_data item.change_notes_csv, filename: "CL_CHANGE_NOTES_#{item.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
   end
 

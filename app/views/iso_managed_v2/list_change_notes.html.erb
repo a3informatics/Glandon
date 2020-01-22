@@ -4,13 +4,13 @@
 <%= stylesheet_link_tag 'shared/change_notes', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'iso_managed/list_change_notes', 'shared/list_change_notes_panel' %>
 
-<%= javascript_tag "var dataUrl = '#{list_change_notes_iso_managed_v2_path(@managed_item)}'" %>
+<%= javascript_tag "var dataUrl = '#{list_change_notes_data_iso_managed_v2_path(@managed_item)}'" %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
     :header_title => "List Change notes" } do %>
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "export-csv",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_change_notes_csv_iso_managed_v2_path(@managed_item), id: "export-csv",
         icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>

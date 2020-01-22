@@ -54,20 +54,11 @@ ListChangeNotesPanel.prototype.loadData = function (offset) {
 
   $.ajax({
     url: this.url,
+    data: {iso_managed: {offset: offset, count: this.count}},
     type: 'GET',
-    // dataType: 'json',
+    dataType: 'json',
     context: this,
     success: function(result) {
-      result = {data: [{
-          identifier: "C123456",
-          notation: "CODELIST",
-          label: "Some CL Label",
-          description: "Change note description, this is a description of the change note",
-          id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ04jNTlhODdjMmYtMWFiMC00MTM4LWI1Y2ItNjFiMWI0MGI2ZjBi",
-          reference: "Enter reference",
-          timestamp: "2020-01-21 10:01:40 +0100",
-          user_reference: "sab@s-cubed.dk"
-        }]};
     	for (i=0; i<result.data.length; i++) {
         var row = this.table.row.add(result.data[i]);
       }
@@ -96,9 +87,9 @@ ListChangeNotesPanel.prototype.loadData = function (offset) {
  */
 ListChangeNotesPanel.prototype.columns = function () {
   return [
-    {"data" : "identifier"},
-    {"data" : "notation"},
-    {"data" : "label"},
+    {"data" : "cl_identifier"},
+    {"data" : "cl_notation"},
+    {"data" : "cl_label"},
     {"data" : "timestamp", "class": "note-cell",
       "render": function (data, type, row, meta){
         var date = new Date(row.timestamp);
