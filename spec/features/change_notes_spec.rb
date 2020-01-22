@@ -225,46 +225,6 @@ describe "Change Notes", :type => :feature do
 
   end
 
-  describe "List change notes", :type => :feature do
-
-   before :each do
-      ua_curator_login
-    end
-
-    after :each do
-      ua_logoff
-    end
-
-    it "allows to list change notes", js:true do
-      click_navbar_code_lists
-      wait_for_ajax(20)
-      identifier = ui_new_code_list
-      wait_for_ajax(20)
-      context_menu_element('history', 4, identifier, :show)
-      wait_for_ajax(20)
-      context_menu_element_header(:change_notes)
-      sleep 1
-      click_button "+ Add new" 
-      fill_in_change_note("#cn-new", "Some reference name", "String of text for the newly created change note.")
-      page.find("#save-cn-new-button").click
-      wait_for_ajax(20)
-      click_button "+ Add new"
-      fill_in_change_note("#cn-new", "Another reference name", "And another string of text for the newly created change note.")
-      page.find("#save-cn-new-button").click
-      wait_for_ajax(20)
-      click_button "Close"
-      sleep 1
-      click_link "Return"
-      wait_for_ajax(20)
-      context_menu_element('history', 4, identifier, :list_change_notes)
-      wait_for_ajax(20)
-      expect(page).to have_content("Change Notes of #{identifier} and Children")
-      ui_check_table_info("list-change-notes-table", 1, 2, 2)
-      page.find("#export-csv")[:href].include?("export_change_notes_csv")   
-    end
-
-  end
-
   describe "Community reader user", :type => :feature do
 
     before :each do
@@ -573,6 +533,46 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_css(".note", count: 0)
       click_button "Close"
       sleep 0.5
+    end
+
+  end
+
+  describe "List change notes", :type => :feature do
+
+   before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows to list change notes", js:true do
+      click_navbar_code_lists
+      wait_for_ajax(20)
+      identifier = ui_new_code_list
+      wait_for_ajax(20)
+      context_menu_element('history', 4, identifier, :show)
+      wait_for_ajax(20)
+      context_menu_element_header(:change_notes)
+      sleep 1
+      click_button "+ Add new"
+      fill_in_change_note("#cn-new", "Some reference name", "String of text for the newly created change note.")
+      page.find("#save-cn-new-button").click
+      wait_for_ajax(20)
+      click_button "+ Add new"
+      fill_in_change_note("#cn-new", "Another reference name", "And another string of text for the newly created change note.")
+      page.find("#save-cn-new-button").click
+      wait_for_ajax(20)
+      click_button "Close"
+      sleep 1
+      click_link "Return"
+      wait_for_ajax(20)
+      context_menu_element('history', 4, identifier, :list_change_notes)
+      wait_for_ajax(20)
+      expect(page).to have_content("Change Notes of #{identifier} and Children")
+      ui_check_table_info("list-change-notes-table", 1, 2, 2)
+      page.find("#export-csv")[:href].include?("export_change_notes_csv")
     end
 
   end
