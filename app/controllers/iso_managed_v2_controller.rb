@@ -62,6 +62,12 @@ class IsoManagedV2Controller < ApplicationController
     render :json => {data: result}, :status => 200
   end
 
+  def export_change_notes_csv
+    authorize IsoManaged, :show?
+    item = IsoManagedV2.find(params[:id])
+    send_data item.change_notes_csv, filename: "CL_CHANGE_NOTES_#{item.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
 private
 
   def get_item(params)
