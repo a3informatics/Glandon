@@ -43,9 +43,9 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       return nil if ref_ct.nil?
       return ref_ct if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
-      set = self.child_identifiers - ref_ct.child_identifiers
-      add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{set.join(", ")}") 
-      return nil
+      others = self.child_identifiers - ref_ct.child_identifiers
+      add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
+      nil
     end
 
     # Extension?. Is the Code List an extension code list?
@@ -58,11 +58,10 @@ module Import::STFOClasses
       if !ref_ct.nil?
         ref_ct.narrower_objects
         others = self.child_identifiers - ref_ct.child_identifiers
-        return self if STFOCodeListItem.sponsor_identifier_or_referenced_set?(others)
-        nil
-      else
-        nil
+        return self if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others)
+        add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       end
+      nil
     end
 
     # Subset? Is the entry a subset code list?
@@ -229,6 +228,14 @@ module Import::STFOClasses
       true
     end
 
+    # Sponsor Identifier, Referenced or NCIt Set? Check set of identifiers match the sponsor or referenced format
+    #
+    # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
+    def self.sponsor_identifier_referenced_or_ncit_set?(set)
+      set.each {|x| return false if !sponsor_identifier_format?(x) && !sponsor_referenced_format?(x) && !ncit_format?(x)}
+      true
+    end
+
     # Sponsor Identifier? Does the identifier match the sponsor format?
     #
     # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
@@ -251,6 +258,13 @@ module Import::STFOClasses
       ident.start_with?("S") && NciThesaurusUtility.c_code?(ident[1..-1])
       #result = ident =~ /\ASC[0-9]{3..6}\z/
       #!result.nil?
+    end
+
+    # NCI Format? Does a string match the NCI format?
+    #
+    # @return [Boolean] true if the identifier matches the NCI format, otherwise false.
+    def self.ncit_format?(ident)
+      NciThesaurusUtility.c_code?(ident)
     end
 
   end
