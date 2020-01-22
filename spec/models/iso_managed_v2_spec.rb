@@ -13,7 +13,7 @@ describe "IsoManagedV2" do
   def sub_dir
     return "models/iso_managed_v2"
   end
-  
+
   describe "General" do
 
   	before :all  do
@@ -77,8 +77,8 @@ describe "IsoManagedV2" do
     end
 
     it "allows a blank item to be created" do
-  		result =     
-  			{ 
+  		result =
+  			{
         	:uri => {},
           :has_identifier => nil,
           :has_state => nil,
@@ -89,7 +89,7 @@ describe "IsoManagedV2" do
         	:creation_date => "2016-01-01T00:00:00+00:00",
         	:last_change_date => "2016-01-01T00:00:00+00:00",
         	:explanatory_comment => "",
-          :id => nil, 
+          :id => nil,
           tagged: []
       	}
   		item = IsoManagedV2.new
@@ -99,63 +99,63 @@ describe "IsoManagedV2" do
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.version).to eq(1)   
-      expect(item.semantic_version.to_s).to eq("1.2.3")   
-      expect(item.version_label).to eq("0.1")   
-      expect(item.scoped_identifier).to eq("TEST")   
+      expect(item.version).to eq(1)
+      expect(item.semantic_version.to_s).to eq("1.2.3")
+      expect(item.version_label).to eq("0.1")
+      expect(item.scoped_identifier).to eq("TEST")
     end
 
     it "allows the latest, later, earlier and same version to be assessed" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.latest?).to eq(false)   
-      expect(item.later_version?(0)).to eq(true)   
-      expect(item.later_version?(1)).to eq(false)   
-      expect(item.earlier_version?(1)).to eq(false)   
-      expect(item.earlier_version?(2)).to eq(true)   
-      expect(item.same_version?(1)).to eq(true)   
-      expect(item.same_version?(2)).to eq(false)   
+      expect(item.latest?).to eq(false)
+      expect(item.later_version?(0)).to eq(true)
+      expect(item.later_version?(1)).to eq(false)
+      expect(item.earlier_version?(1)).to eq(false)
+      expect(item.earlier_version?(2)).to eq(true)
+      expect(item.same_version?(1)).to eq(true)
+      expect(item.same_version?(2)).to eq(false)
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.latest?).to eq(true)   
+      expect(item.latest?).to eq(true)
     end
 
     it "allows owner and owned? to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.owner.organization_identifier).to eq("123456789")   
+      expect(item.owner.organization_identifier).to eq("123456789")
       expect(item.owned?).to eq(true)
     end
 
     it "allows registration status and registered to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.registration_status).to eq("Standard")   
-      expect(item.registered?).to eq(true)   
+      expect(item.registration_status).to eq("Standard")
+      expect(item.registered?).to eq(true)
     end
 
     it "allows edit, state on edit and delete status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.edit?).to eq(true)   
+      expect(item.edit?).to eq(true)
       expect(item.state_on_edit).to eq("Incomplete")
-      expect(item.delete?).to eq(true)   
+      expect(item.delete?).to eq(true)
     end
 
     it "allows current and can be current status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
       item = IsoManagedV2.find_full(uri)
-      expect(item.current?).to eq(false)   
-      expect(item.can_be_current?).to eq(false)   
+      expect(item.current?).to eq(false)
+      expect(item.can_be_current?).to eq(false)
     end
 
     it "allows new_version, next_version, next_semantic_version, and first_version to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.new_version?).to eq(false)   
-      expect(item.next_version).to eq(4)   
-      expect(item.next_semantic_version.to_s).to eq("1.5.0")   
-      expect(item.first_version).to eq(1)   
+      expect(item.new_version?).to eq(false)
+      expect(item.next_version).to eq(4)
+      expect(item.next_semantic_version.to_s).to eq("1.5.0")
+      expect(item.first_version).to eq(1)
     end
 
     it "allows next version for an indentifier to be determned" do
@@ -292,15 +292,15 @@ describe "IsoManagedV2" do
     end
 
     it "sets up the import version" do
-    
+
       class IMV2Klass < IsoManagedV2
-        
+
         def self.owner
           IsoRegistrationAuthority.find_by_short_name("BBB")
         end
 
       end
-    
+
       item = IMV2Klass.new
       params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", version: 5, date: "1989-07-07", ordinal: 1}
       item.set_import(params)
@@ -501,10 +501,10 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
-      end 
+      end
       index = CdiscTerm.unique.map{|x| {label: x[:label], identifier: x[:identifier]}}
       check_file_actual_expected(index, sub_dir, "unique_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -515,10 +515,10 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
         item.label = "Item"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
-      end 
+      end
       index = CdiscTerm.unique
       expect(index.count).to eq(1)
       expect(index.first[:label]).to eq("Item")
@@ -531,10 +531,10 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/ITEM#{index}/V1")
         item.label = "Item"
         item.set_import(identifier: "ITEM #{index}", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
-      end 
+      end
       timer_start
       index = CdiscTerm.unique
       timer_stop("Unique")
@@ -594,7 +594,7 @@ describe "IsoManagedV2" do
       file = "create_next_version_1.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
-      
+
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V1#TH"))
       object.has_state.registration_status = IsoRegistrationStateV2.released_state
       object.explanatory_comment = "A comment"
@@ -605,7 +605,7 @@ describe "IsoManagedV2" do
       file = "create_next_version_2.yaml"
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
-      
+
       object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V2#TH"))
       object.has_state.registration_status = "Qualified"
       object.explanatory_comment = "Another comment"
@@ -759,10 +759,10 @@ describe "IsoManagedV2" do
         #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
-      end 
+      end
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
       item.has_state.make_current
       expect(CdiscTerm.current_set.count).to eq(2)
@@ -778,11 +778,11 @@ describe "IsoManagedV2" do
       uri_v7 = Uri.new(uri: "http://www.cdisc.org/CT/V7#TH")
       uri_v10 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
       tc = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789"))
-      results = tc.current_and_latest_parent 
+      results = tc.current_and_latest_parent
       check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_1.yaml", equate_method: :hash_equal)
       item = CdiscTerm.find_minimum(uri_v7)
       item.has_state.make_current
-      results = tc.current_and_latest_parent 
+      results = tc.current_and_latest_parent
       check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -796,6 +796,34 @@ describe "IsoManagedV2" do
     end
 
   end
+
+	describe "change notes csv" do
+		before :all  do
+			IsoHelpers.clear_cache
+		end
+
+		before :each do
+			schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+			data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+			load_files(schema_files, data_files)
+			NameValue.destroy_all
+			NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+			NameValue.create(name: "thesaurus_child_identifier", value: "456")
+		end
+
+		it "list change notes as csv" do
+			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      change_note = tc.add_change_note(user_reference: "user1", reference: "ref 1", description: "description cl")
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      change_note2 = tc2.add_change_note(user_reference: "user2", reference: "ref 2", description: "description cli")
+			change_note3 = tc2.add_change_note(user_reference: "user2", reference: "ref 3", description: "another description cli")
+			change_note4 = tc2.add_change_note(user_reference: "user3", reference: "ref 4", description: "yet another description cli")
+			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+			result = tc.change_notes_csv
+			check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+	end
 
   describe "Delete" do
 
@@ -921,13 +949,13 @@ describe "IsoManagedV2" do
     #     item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
     #     item.label = "Item #{index}"
     #     item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-    #     sparql = Sparql::Update.new  
+    #     sparql = Sparql::Update.new
     #     item.to_sparql(sparql, true)
     #     sparql.upload
     #     uris[index-1] = item.uri
-    #   end 
+    #   end
     #   last_item = Thesaurus.find_minimum(uris[9])
-    #   uris.each_with_index do |x, index| 
+    #   uris.each_with_index do |x, index|
     #     item = Thesaurus.find_minimum(x)
     #     set_state(item, "Qualified" )
     #     set_semantic_version(item, "#{index + 1}.0.0" )
@@ -953,30 +981,30 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
+      end
       last_item = Thesaurus.find_minimum(uris[9])
-      uris.each_with_index do |x, index| 
+      uris.each_with_index do |x, index|
         item = Thesaurus.find_minimum(x)
         set_state(item, "Qualified" )
         set_semantic_version(item, "#{index + 1}.0.0" )
       end
       result = last_item.previous_release
       expect(result).to eq("1.0.0")
-   
+
       item = Thesaurus.find_minimum(uris[0])
       set_semantic_version_and_state(item, "0.1.0", "Incomplete")
       result = item.previous_release
       expect(result).to eq("0.1.0")
-     
+
       item = Thesaurus.find_minimum(uris[4])
       set_semantic_version_and_state(item, "5.1.0", "Standard")
       result = item.previous_release
       expect(result).to eq("5.1.0")
-  
+
       item = Thesaurus.find_minimum(uris[9])
       result = item.previous_release
       expect(result).to eq("5.1.0")
@@ -989,11 +1017,11 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
+      end
       item = Thesaurus.find_minimum(uris[0])
       set_state(item,"Incomplete")
       result = item.previous_release
@@ -1007,11 +1035,11 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
+      end
       item1 = Thesaurus.find_minimum(uris[0])
       set_semantic_version_and_state(item1, "0.1.0", "Standard")
       item2 = Thesaurus.find_minimum(uris[1])
@@ -1099,11 +1127,11 @@ describe "IsoManagedV2" do
         item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
+      end
       item = Thesaurus.find_minimum(uris[0])
       set_semantic_version_and_state(item, "0.1.0", "Standard")
       item2 = Thesaurus.find_minimum(uris[1])
@@ -1148,12 +1176,12 @@ describe "IsoManagedV2" do
         #item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
-      uris.each_with_index do |x, index| 
+      end
+      uris.each_with_index do |x, index|
         item = Thesaurus.find_minimum(x)
         set_state(item, "Qualified" )
         set_semantic_version(item, "#{index + 1}.0.0" )
@@ -1179,12 +1207,12 @@ describe "IsoManagedV2" do
         #item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
         item.label = "Item #{index}"
         item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
+        sparql = Sparql::Update.new
         item.to_sparql(sparql, true)
         sparql.upload
         uris[index-1] = item.uri
-      end 
-      uris.each_with_index do |x, index| 
+      end
+      uris.each_with_index do |x, index|
         item = Thesaurus.find_minimum(x)
         set_state(item, "Qualified" )
         set_semantic_version(item, "#{index + 1}.0.0" )
@@ -1234,7 +1262,7 @@ describe "IsoManagedV2" do
       actual = Thesaurus.find_minimum(uri)
       expect(actual.semantic_version).to eq("1.0.1")
     end
-    
+
   end
 
   describe "Tag Methods" do
@@ -1298,7 +1326,7 @@ describe "IsoManagedV2" do
     puts colourize("Current: #{current_uri}\n+++++", "blue")
       expect(current_uri).to eq(item.uri)
     end
-      
+
     it "allows the current item to be found and to be made current" do
       current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       expect(current_uri).to eq(nil)
