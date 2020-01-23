@@ -22,6 +22,16 @@ class Thesauri::SubsetsController < ApplicationController
     end
   end
 
+  def remove_all
+    authorize Thesaurus, :edit?
+    subset = Thesaurus::Subset.find(params[:id])
+    if check_token_valid? (subset)
+      sm = subset.remove_all
+      render json: {data: " "}, status: 200
+    end
+  end
+
+
   def move_after
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(params[:id])

@@ -220,6 +220,7 @@ Rails.application.routes.draw do
       member do
         post :add
         delete :remove
+        delete :remove_all
         put :move_after
         get :list_children
       end

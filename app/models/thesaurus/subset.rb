@@ -213,43 +213,82 @@ class Thesaurus::Subset < IsoConceptV2
   # @option params [String] :count the count to be obtained
   # @return [Array] array of hashes containing the child data
   def add_multiple(arr)
-    uris = arr.map{|x| x.to_ref}.join(" ")
-    subset_members = arr.map{|x| Thesaurus::SubsetMember.create({item: Uri.new(id: x.to_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})}.join(" ")
-    update_string = %Q{
-      INSERT DATA
-      {
-        #{last?} th:memberNext #{subset_members.map{|x| x.to_ref}.join(" ")} .
-        #{subset_members.map{|x| x.to_ref}.join(" ")} th: item #{uris}
+      # sm = []
+      mc = self.find_mc
+      last_sm = self.last
+      # arr.each |x| do
+      #   sm << Thesaurus::SubsetMember.create({item: Uri.new(id: x.id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+      # end
+      subset_members = arr.map{|x| Thesaurus::SubsetMember.create({item: Uri.new(id: x.to_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})}
+
+      subset_members[0].member_next = subset_members[1]
+
+      subset_members.each do |sm|
+        last_sm = self.last
+        if last_sm.nil? #Add the first member
+          self.add_link(:members, sm.uri)
+        else #Add the new member to the last position 
+          last_sm.add_link(:member_next, sm.uri)
+        end
+      end
+
+      subset_members.each do |sm|
+        mc.add_link(:narrower, sm.item) 
+      end
+
+      # uris = []
+      # (1..arr.length).each do |index|
+      #   item = Thesaurus::SubsetMember.create({item: Uri.new(id: x.id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+      #   item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+      #   item.label = "Item #{index}"
+      #   item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+      #   sparql = Sparql::Update.new  
+      #   item.to_sparql(sparql, true)
+      #   sparql.upload
+      #   uris[index-1] = item.uri
+      # end 
 
 
-        ?s th:narrower #{uris}
-
-      }
-      WHERE
-      {
-        VALUES ?cli { #{uris} } 
-        {
-
-          SELECT DISTINCT ?s 
-          WHERE 
-          {
-            #{self.uri.to_ref} (th:members/th:memberNext*) ?s .
-            FILTER NOT EXISTS { ?s th:memberNext ?c } .
-          }
+    # transaction_begin
+    # sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+    # mc = self.find_mc
+    # last_sm = self.last
+    # if last_sm.nil? #Add the first member
+    #  self.add_link(:members, sm.uri)
+    # else #Add the new member to the last position 
+    #  last_sm.add_link(:member_next, sm.uri)
+    # end
+    # mc.add_link(:narrower, sm.item) 
+    # transaction_execute
+    # sm
 
 
-          #{self.uri.to_ref} (^th:isOrdered) ?s .
-          
-    
-        }
-      }
-    }
-    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
+    #   sparql = Sparql::Update.new
+    #   sparql.default_namespace(self.uri.namespace)
+    #   # @todo only supports generated identifiers currently
+    #   synonyms.each do |syn|
+    #     child = Thesaurus::UnmanagedConcept.from_h({
+    #       # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
+    #       identifier: Thesaurus::UnmanagedConcept.new_identifier,
+    #       notation: syn.label,
+    #       label: pt.label ,
+    #       preferred_term: pt,
+    #       synonym: synonyms,
+    #       definition: object.definition,
+    #       tagged: object.tagged 
+    #     })
+    #     child.generate_uri(self.uri)
+    #     child.to_sparql(sparql)
+    #     sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: child.uri})
+    #   end
+    #   filename = sparql.to_file
+    #   sparql.create
+    #   self.narrower_objects
   end
 
-  # Deselect all. 
+  # Remove all. Removes all the subset members and narrower from Subset
   #
-  def deselect_all
+  def remove_all
     query_string = %Q{
         DELETE 
         {

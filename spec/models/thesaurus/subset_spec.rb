@@ -304,14 +304,14 @@ describe "Thesaurus Subset General" do
     result = subset.add_multiple([tc_2.uri, tc_4.uri])
   end
 
-  it "allows deselect all" do
+  it "allows remove all" do
     subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
     subset_member1 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab"))
     subset_member2 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a"))
     subset_member3 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
     mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
     expect(mc.narrower.count).to eq(3)
-    result = subset.deselect_all
+    result = subset.remove_all
     mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
     expect{Thesaurus::SubsetMember.find(subset_member1.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab in Thesaurus::SubsetMember.")
     expect{Thesaurus::SubsetMember.find(subset_member2.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a in Thesaurus::SubsetMember.")
