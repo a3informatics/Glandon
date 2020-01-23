@@ -206,6 +206,72 @@ class Thesaurus::Subset < IsoConceptV2
     objects
   end
 
+  # Add multiple. 
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @return [Array] array of hashes containing the child data
+  def add_multiple(arr)
+    uris = arr.map{|x| x.to_ref}.join(" ")
+    subset_members = arr.map{|x| Thesaurus::SubsetMember.create({item: Uri.new(id: x.to_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})}.join(" ")
+    update_string = %Q{
+      INSERT DATA
+      {
+        #{last?} th:memberNext #{subset_members.map{|x| x.to_ref}.join(" ")} .
+        #{subset_members.map{|x| x.to_ref}.join(" ")} th: item #{uris}
+
+
+        ?s th:narrower #{uris}
+
+      }
+      WHERE
+      {
+        VALUES ?cli { #{uris} } 
+        {
+
+          SELECT DISTINCT ?s 
+          WHERE 
+          {
+            #{self.uri.to_ref} (th:members/th:memberNext*) ?s .
+            FILTER NOT EXISTS { ?s th:memberNext ?c } .
+          }
+
+
+          #{self.uri.to_ref} (^th:isOrdered) ?s .
+          
+    
+        }
+      }
+    }
+    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
+  end
+
+  # Deselect all. 
+  #
+  def deselect_all
+    query_string = %Q{
+        DELETE 
+        {
+          ?s ?p ?o
+        } 
+        WHERE 
+        {
+          {
+            #{self.uri.to_ref} (th:members/th:memberNext*) ?s .
+            ?s ?p ?o .
+          }     
+          UNION
+          { 
+            #{self.uri.to_ref} (^th:isOrdered) ?s .
+            ?s th:narrower ?o
+            BIND ( th:narrower as ?p ) .
+          } 
+        }
+      }
+      partial_update(query_string, [:th])
+  end
+
   # Move After. Move an subset member after another subset member given
   #
   # @param this_member_id [String] the identifier of the subset member to be moved after

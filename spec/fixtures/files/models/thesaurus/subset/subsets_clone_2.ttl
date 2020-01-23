@@ -1,0 +1,82 @@
+@prefix : <http://www.acme-pharma.com/C66781S/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/C66781S/V1>
+	rdf:type owl:Ontology ;
+.
+:C66781S
+	rdf:type th:ManagedConcept ;
+	isoC:label "A subset"^^xsd:string ;
+	isoT:hasState :C66781S_RS ;
+	isoT:hasIdentifier :C66781S_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-22T14:53:06+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66781S"^^xsd:string ;
+	th:notation "SUB"^^xsd:string ;
+	th:definition "A definition"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66781/V2#C66781_C25301> ;
+	th:narrower <http://www.cdisc.org/C66781/V2#C66781_C29846> ;
+	th:narrower <http://www.cdisc.org/C66781/V2#C66781_C29848> ;
+	th:subsets <http://www.cdisc.org/C66781/V2#C66781> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#14981c40b07c1cce4ac4c80ec98aaa388cf711cf> ;
+	th:isOrdered <http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834> ;
+.
+:C66781S_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:C66781S_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66781S"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.assero.co.uk/PT#14981c40b07c1cce4ac4c80ec98aaa388cf711cf>
+	rdf:type th:PreferredTerm ;
+	isoC:label "A subset"^^xsd:string ;
+.
+<http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834>
+	rdf:type th:Subset ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab> ;
+.
+<http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.cdisc.org/C66781/V2#C66781_C25301> ;
+	th:memberNext <http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a> ;
+.
+<http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.cdisc.org/C66781/V2#C66781_C29846> ;
+	th:memberNext <http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087> ;
+.
+<http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.cdisc.org/C66781/V2#C66781_C29848> ;
+.
