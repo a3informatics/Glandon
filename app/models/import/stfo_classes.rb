@@ -40,6 +40,7 @@ module Import::STFOClasses
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def referenced?(ct)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
+      return nil if subset?
       ref_ct = reference(ct)
       return nil if ref_ct.nil?
       return ref_ct if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
@@ -54,6 +55,7 @@ module Import::STFOClasses
     # @return [Thesaurus::ManagedConcept] either nil if not an extension or the extension item.
     def extension?(ct)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
+      return nil if subset?
       ref_ct = reference(ct)
       if !ref_ct.nil?
         ref_ct.narrower_objects
@@ -69,11 +71,11 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       if ref_ct.nil?
         add_error("Failed to find referenced code list for an extension, identifier '#{self.identifier}'.")
-      elsif !ref_ct.extensible
-        add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
+      #elsif !ref_ct.extensible
+      #  add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
       else
         self.extends = ref_ct
-        new_marrower = ref_ct.narrower
+        new_narrower = ref_ct.narrower
         self.narrower.each do |child|
           if NciThesaurusUtility.c_code?(child.identifier)
             new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
@@ -95,7 +97,6 @@ module Import::STFOClasses
       end
       self
     rescue => e
-byebug
       add_error("Exception in to_extension, identifier '#{self.identifier}'.")
       self
     end
@@ -114,6 +115,45 @@ byebug
       subset? && extensions.key?(self.identifier)
     end
 
+    def to_subset_of_extension(extensions)
+      new_narrower = []
+      ext = extensions[self.identifier]
+      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.narrower.each do |child|
+        new_child = ext.narrower.find{|x| x.identifier == child.identifier}
+        if new_child.nil?
+          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+        else
+          new_narrower << new_child
+        end
+      end
+      self.narrower = new_narrower
+      self.update_identifier(self.identifier)
+      self.add_ordering
+      self
+    rescue => e
+      add_error("Exception in to_subset_of_extension, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def add_ordering
+      subset = Thesaurus::Subset.new
+      subset.uri = subset.create_uri(self.uri)
+      previous = nil
+      self.narrower.each do |child| 
+        sm = Thesaurus::SubsetMember.new
+        sm.item = child
+        sm.uri = sm.create_uri(subset.uri)
+        previous.nil? ? subset.members = sm : previous.member_next = sm
+        previous = sm
+      end
+      self.is_ordered = subset
+      nil
+    rescue => e
+      add_error("Exception in add_ordering, identifier '#{self.identifier}'.")
+      nil
+    end
+
     def to_cdisc_subset(ct)
       new_narrower = []
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
@@ -129,7 +169,8 @@ byebug
         end
       end
       self.narrower = new_narrower
-      # @todo set up ordering
+      self.update_identifier(self.identifier)
+      self.add_ordering
       self
     rescue => e
       add_error("Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
@@ -151,7 +192,8 @@ byebug
         end
       end
       self.narrower = new_narrower
-      # @todo set up ordering
+      self.update_identifier(self.identifier)
+      self.add_ordering
       self
     rescue => e
       add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
@@ -166,6 +208,7 @@ byebug
     #
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def sponsor?
+      return nil if subset?
       sponsor_identifier? && sponsor_child_identifiers?
     end
 
@@ -173,6 +216,7 @@ byebug
     #
     # @return [Boolean] true if a hybrid sponsor code list, false otherwise.
     def hybrid_sponsor?
+      return nil if subset?
       sponsor_identifier? && sponsor_child_or_referenced_identifiers?
     end
 

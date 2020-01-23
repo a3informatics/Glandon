@@ -106,7 +106,10 @@ private
         filtered << ref
       elsif child.subset_of_extension?(extensions)
         add_log("Subset of extension detected: #{child.identifier}")
-        filtered << child
+        ref = child.to_subset_of_extension(extensions)
+        next if ref.nil?
+        parent.add(ref, index + 1) 
+        filtered << ref
       elsif child.subset?
         add_log("Subset detected: #{child.identifier}")
         ref = child.to_cdisc_subset(@th)

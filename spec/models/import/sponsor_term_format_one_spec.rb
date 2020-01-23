@@ -20,8 +20,10 @@ describe "Import::SponsorTermFormatOne" do
   end
 
 	before :each do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl", "iso_concept_systems_process.ttl"]
-    load_files(schema_files, data_files)
+    load_files(schema_files, [])
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_cdisc_term_versions(1..62)
     Import.destroy_all
     delete_all_public_test_files
@@ -59,7 +61,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short I" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path = test_file_path(sub_dir, "import_input_3.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -77,7 +79,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short II" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path = test_file_path(sub_dir, "import_input_4.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "V2 II", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -95,7 +97,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short III" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path = test_file_path(sub_dir, "import_input_6.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "V2 III", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -113,7 +115,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2.1" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_1_v2-1_CDISC_v43.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-1 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "Q3 2019", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-1 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -132,7 +134,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2.6" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_5_v2-6_CDISC_v43.xlsx")
-    params = {version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-6 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "Q1 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-6 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -151,7 +153,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 3.0" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
-    params = {version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 3-0 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "Q2 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 3-0 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
