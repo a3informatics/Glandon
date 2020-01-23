@@ -159,7 +159,6 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct)
       self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.has_identifier.identifier = self.identifier
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
@@ -182,7 +181,6 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.has_identifier.identifier = self.identifier
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
@@ -200,10 +198,6 @@ module Import::STFOClasses
       nil
     end
 
-    def to_hybrid_sponsor(ct)
-      self
-    end
-
     # Sponsor? Is this a sponsor code list
     #
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
@@ -218,6 +212,29 @@ module Import::STFOClasses
     def hybrid_sponsor?
       return nil if subset?
       sponsor_identifier? && sponsor_child_or_referenced_identifiers?
+    end
+
+    def to_hybrid_sponsor(ct)
+      new_narrower = []
+      self.narrower.each do |child|
+        if NciThesaurusUtility.c_code?(child.identifier)
+          options = ct.find_identifier(child.identifier)
+          if options.empty?
+            add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
+          elsif options.count == 1
+            new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
+          else
+            add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
+          end
+        else
+          new_narrower << child
+        end
+      end
+      self.narrower = new_narrower
+      self
+    rescue => e
+      add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")
+      self
     end
 
     # Sponsor Identifier? Does the identifier match the sponsor format?

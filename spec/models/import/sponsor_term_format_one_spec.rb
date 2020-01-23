@@ -24,6 +24,7 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
     load_cdisc_term_versions(1..62)
     Import.destroy_all
     delete_all_public_test_files
