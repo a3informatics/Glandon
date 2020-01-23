@@ -1,0 +1,40 @@
+<%= javascript_include_tag 'shared/thesauri/managed_concepts/edit_extension_panel' %>
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+
+<div class="card-header">Edit Extension</div>
+<div class="card-content table-cardstyle">
+  <div class="btns-wrap" id="edit-extension-actions">
+    <a href="#searchModal" class="btn medium light ttip" id="add-existing-button" data-toggle="modal">
+      <span class="ttip-text shadow-small text-medium">Find and select one or more <br/> Code List Items</span>
+      <span class="icon-search"></span> Add items</a>
+    <button class="btn medium green ttip" id="new-item-button">
+      <span class="ttip-text shadow-small text-medium">Create a blank Code List Item</span>
+      <span class="icon-plus text-tiny"></span>  New item</button>
+    <button class="btn medium green ttip" id="new-from-synonyms-button">
+      <span class="ttip-text shadow-small text-medium">Create new Code List Items <br/> from item synonyms</span>
+      <span class="icon-plus text-tiny"></span>  New item(s) from synonyms</button>
+  </div>
+
+  <div id="item-from-synonyms-help" class="text-centered font-light" style="margin: 10px 0px;" hidden>
+    Click on a row in the table below to select the item whose synonyms will be created as new Code List Items.<br/>
+    <button id="item-from-synonyms-cancel" class="btn grey btn-xs">Cancel</button>
+  </div>
+
+  <table id="extension-children-table" class="table">
+    <thead>
+      <tr>
+        <th class="fit">Identifier</th>
+        <th class="fit">Submission Value</th>
+        <th class="th-medium">Preferred Term</th>
+        <th class="th-small">Synonym(s)</th>
+        <th>Definition</th>
+        <th class="th-small">Tag(s)</th>
+        <th class="ignore fit"></th>
+        <th class="ignore fit"></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+<%= render partial: "shared/edit_panel" %>

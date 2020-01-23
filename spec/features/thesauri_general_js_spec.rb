@@ -169,7 +169,7 @@ describe "Thesaurus", :type => :feature do
       cl_identifier = ui_new_code_list
       #click_link 'New Code List'
       #wait_for_ajax_long
-      #expect(page).to have_content 'NP000010P' 
+      #expect(page).to have_content 'NP000010P'
       #wait_for_ajax_long
       context_menu_element('history', 4, cl_identifier, :edit)
       wait_for_ajax_long
@@ -202,6 +202,47 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'NC00000999C'
       expect(page).not_to have_content 'NC00001000C'
       click_link 'Return'
+    end
+
+    it "allows a code list to be edited, edit properties (REQ-MDR-ST-015)", js: true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      cl_identifier = ui_new_code_list
+      context_menu_element('history', 4, cl_identifier, :edit)
+      wait_for_ajax_long
+      expect(context_menu_element_header_present?(:edit_properties)).to eq(true)
+      context_menu_element_header(:edit_properties)
+      sleep 0.5
+      expect(page).to have_content "Edit properties of #{cl_identifier}"
+      fill_in "ep_input_notation", with: "CODELIST"
+      sleep 0.5
+      fill_in "ep_input_definition", with: "Code List definition here"
+      sleep 0.5
+      fill_in "ep_input_synonym", with: "Syn1; Syn2"
+      sleep 0.5
+      find("#submit-button").click
+      wait_for_ajax(20)
+      expect(find("#imh_header")).to have_content "CODELIST"
+      expect(find("#imh_header")).to have_content "Code List definition here"
+      expect(find("#imh_header")).to have_content "Syn1"
+      expect(find("#imh_header")).to have_content "Syn2"
+      click_link 'Return'
+    end
+
+    it "links to Edit Tags page, from Code List edit page", js:true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      cl_identifier = ui_new_code_list
+      context_menu_element('history', 4, cl_identifier, :edit)
+      wait_for_ajax_long
+      expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
+      w = window_opened_by { context_menu_element_header(:edit_tags) }
+      within_window w do
+        wait_for_ajax(10)
+        expect(page).to have_content cl_identifier
+        expect(page).to have_content "Attach / Detach Tags"
+      end
+      w.close
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)

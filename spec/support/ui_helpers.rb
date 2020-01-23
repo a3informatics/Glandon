@@ -232,6 +232,11 @@ module UiHelpers
 		Capybara.ignore_hidden_elements = true
   end
 
+	def ui_check_table_button_class(table_id, row, col, classname)
+    find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span")[:class].include?(classname)
+  end
+
+
   # Flash
   def ui_check_no_flash_message_present
     expect(page).not_to have_selector(:css, ".alert")
@@ -527,6 +532,7 @@ module UiHelpers
 			extending: "Extending",
 			change_notes: "Change notes",
 			edit_tags: "Edit tags",
+      edit_properties: "Edit properties"
     }
 	end
 
@@ -540,7 +546,7 @@ module UiHelpers
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]
 		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null) { el.click(); } else { console.log('No match found'); } "
+    js_code += "if (el != null && !$(el).hasClass('disabled')) { el.click(); } else { console.log('No match found'); } "
 		page.execute_script(js_code)
 	end
 

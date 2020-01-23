@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
@@ -8,15 +8,20 @@
 <%= javascript_tag "var is_extended = #{@is_extended};" %>
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
-<%= javascript_tag "var policy_edit = false;" %>
-<%= javascript_tag "var edit_enabled = false;" %>
+<%= javascript_tag "var can_edit = #{policy(Thesaurus).edit?};" %>
+
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>
+  <%= javascript_tag "var createExtensionUrl = '#{create_extension_thesauri_managed_concept_path(@tc)}';" %>
+  <%= javascript_tag "var createExtensionInThUrl = '#{extension_thesauri_index_path}';" %>
+  <%= javascript_tag "var createSubsetUrl = '#{create_subset_thesauri_managed_concept_path(@tc)}';" %>
+  <%= javascript_tag "var createSubsetInThUrl = '#{add_subset_thesauri_path}';" %>
+
   <%= render partial: "shared/thesauri/thesauri_select" %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+  <%= render partial: "shared/thesauri/subsets_index" %>
 <% end %>
-<%= render partial: "shared/thesauri/subsets_index" %>
 
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
@@ -32,9 +37,9 @@
         <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc), icon: "icon-file",
            id: "export-csv", text: "Export CSV", dt_toggle: "", disabled: false } %>
         <% if policy(Thesaurus).edit? %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#subsetsModal", icon: "icon-subset",
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#subsets-index-modal", icon: "icon-subset",
             id: "btn-subsets", text: "Subsets", dt_toggle: "modal", disabled: false} %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#tableModal", icon: !@can_be_extended ? "icon-extend-disabled ":"icon-extend",
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#th-select-modal", icon: !@can_be_extended ? "icon-extend-disabled ":"icon-extend",
             id: "extend", text: "Extend", dt_toggle: "modal", disabled:  !@can_be_extended} %>
           <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extended_path, icon: "icon-extend",
             id: "extension", text: "Extension", dt_toggle: "", disabled: false} %>
@@ -43,7 +48,7 @@
           <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
             icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
           <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !@tc.supporting_edit? } %>
         <% end %>
       <% end %>
     </div>

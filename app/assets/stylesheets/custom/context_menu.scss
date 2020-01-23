@@ -67,16 +67,16 @@
 }
 // FIXES
 
-table .row{
+#history_wrapper .row{
   margin: 0;
   padding: 0;
 }
 
-.col-sm-12{
+#history_wrapper .col-sm-12{
   position: static;
 }
 
-div.dataTables_wrapper div.dataTables_processing{
+#history_wrapper div.dataTables_processing{
   margin-top: 60px !important;
   margin-bottom: 0 !important;
 }

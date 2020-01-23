@@ -1,48 +1,43 @@
 <%= javascript_tag 'setPageTitle("Edit: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
-<%= javascript_include_tag 'thesauri/managed_concepts/edit_extension', 'shared/thesauri/thesauri_select', 'shared/term_search_panel' %>
-<%= javascript_include_tag 'shared/thesauri/managed_concepts/show_header_panel', 'shared/timer', 'unload_v2' %>
-<%= stylesheet_link_tag 'custom/context_menu' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/edit_extension', 'shared/term_search_panel' %>
+<%= javascript_include_tag 'shared/timer', 'unload_v2' %>
+<%= stylesheet_link_tag 'custom/context_menu', 'homes' %>
 <%= javascript_include_tag 'shared/context_menu' %>
-<%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
-<%= javascript_tag "var tc_id = '#{@tc.id}';" %>
-<%= javascript_tag "var is_extended = false;" %>
-<%= javascript_tag "var is_extending = #{@is_extending};" %>
-<%= javascript_tag "var context_id = '#{@context_id}';" %>
-<%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
-<%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
+<%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
+                        extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
+                        searchUrl = '#{search_current_thesauri_index_path}',
+                        newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
+                        newChildFromSynUrl ='#{add_children_synonyms_thesauri_managed_concept_path(@tc)}',
+                        destroyChildUrl ='#{thesauri_unmanaged_concept_path("umcid")}',
+                        extensionId = '#{@tc.id}',
+                        is_extended = false,
+                        is_extending = #{@is_extending},
+                        contextId = '#{@context_id}';" %>
+
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>
-  <%= render partial: "shared/thesauri/thesauri_select" %>
   <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child', with_edit_tags: true} %>
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
 <% end %>
-<%= render partial: "shared/thesauri/subsets_index" %>
 
 <div class="row">
-  <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
-    <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-      <!-- TIMER BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-      <!-- CHANGES BUTTON -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
-        id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
-      <!-- RETURN BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
 
-      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc), icon: "icon-file",
-           id: "export-csv", text: "Export CSV", dt_toggle: "", disabled: false } %>
-        <% if policy(Thesaurus).edit? %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#subsetsModal", icon: "icon-subset",
-            id: "btn-subsets", text: "Subsets", dt_toggle: "modal", disabled: false} %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extending_path, icon: "icon-extend",
-            id: "extending", text: "Extending", dt_toggle: "", disabled: false} %>
-          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
-            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+      <% if policy(Thesaurus).edit? %>
+        <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+            <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "edit-properties-button",
+              icon: "icon-edit", text: "Edit properties", dt_toggle: "", disabled: false } %>
+            <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
+              icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: false, target: "_blank" } %>
+            <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+              icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
         <% end %>
       <% end %>
     </div>
@@ -50,7 +45,7 @@
 </div>
 <div class="row">
   <div class="col-md-12 card wide">
-    <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
+    <%= render partial: "shared/iso_managed/edit_extension_panel" %>
   </div>
 </div>
 <input type="hidden" id="edit_lock_token" value="<%= @token.id %>">

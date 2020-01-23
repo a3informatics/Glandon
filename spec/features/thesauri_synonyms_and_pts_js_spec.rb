@@ -390,6 +390,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
 
     it "allows to delete a preferred term on a code list item (REQ-MDR-PT-030)", js:true do
       click_navbar_code_lists
+      wait_for_ajax(20)
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
@@ -458,16 +459,19 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2016-03-25 Release', :show)
+      wait_for_ajax(20)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '47.0.0'
       expect(page).to have_content 'Standard'
       ui_check_table_info("children_table", 1, 10, 572)
       ui_child_search("unit")
       find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
       expect(page).to have_content 'Definition: Units of measure for pharmacokinetic data and parameters.'
       expect(page).to have_content 'C85494'
       ui_check_table_info("children_table", 1, 10, 671)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
     end

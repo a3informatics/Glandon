@@ -14,13 +14,22 @@
         <span class="ttip-text shadow-small text-small"> Extend lock </span>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %> </div>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#edit-properties-modal", id: "edit-properties",
-        icon: "icon-edit", btn_text: "Edit properties", dt_toggle: "modal", disabled: false } %>
-      <%= render partial: "shared/iso_managed/edit_item_properties", :locals => {mc: @subset_mc} %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "edit-properties",
+          icon: "icon-edit", text: "Edit properties", dt_toggle: "modal", disabled: false } %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags",
+          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: false, target: "_blank" } %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+      <% end %>
     </div>
   <% end %>
+
+  <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: "subset", item: @subset_mc} %>
+  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @subset_mc.identifier, item_id: @subset_mc.id, item_notes_url: change_notes_iso_concept_path(@subset_mc.id)} %>
+
 </div>
 <div class="row">
   <div class="col-md-12 card">
