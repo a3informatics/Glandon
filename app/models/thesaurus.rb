@@ -21,7 +21,7 @@ class Thesaurus <  IsoManagedV2
     self.is_top_concept << item.uri
   end
 
-  # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
+  # Current Set Where. Full where search of the managed items. Will find within children via paths that are not excluded.
   #
   # @return [Array] Array of URIs
   def current_set_where(params)
@@ -67,6 +67,23 @@ class Thesaurus <  IsoManagedV2
       results[entry[:i]] = entry[:s]
     end
     results
+  end
+
+  # Find Identifier
+  #
+  # @param [String] identifier the identifier to be found
+  # @result [Array] an array of hash structures each containing the identifier and the uri
+  def find_identifier(identifier)
+    query_string = %Q{
+      SELECT ?uri WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?b .
+        ?b th:narrower* ?uri .
+        ?uri th:identifier "#{identifier}" .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    query_results.by_object_set([:uri])
   end
 
   # Changes
