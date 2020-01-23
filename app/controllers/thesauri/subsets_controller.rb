@@ -45,7 +45,7 @@ class Thesauri::SubsetsController < ApplicationController
     authorize Thesaurus, :show?
     subset = Thesaurus::Subset.find(params[:id])
     lp = subset.list_pagination(params)
-    render json: {data: lp}, status: 200
+    render json: {data: lp, offset: params[:offset] , count: lp.count }, status: 200
   end
 
   private

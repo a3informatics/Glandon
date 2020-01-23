@@ -37,6 +37,7 @@ describe "Thesaurus Subset General" do
     load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_5.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_clone_2.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_clone_3.ttl")
   end
 
   after :all do
@@ -267,6 +268,15 @@ describe "Thesaurus Subset General" do
     check_file_actual_expected(actual, sub_dir, "list_pagination_expected_2.yaml")
     actual = subset.list_pagination(offset: "1", count: "2")
     check_file_actual_expected(actual, sub_dir, "list_pagination_expected_3.yaml")
+  end
+
+  it "return the list of items, paginated, new test" do
+    subset1 = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    subset2 = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#ad3dbf31-7c53-4a96-ad49-bbdc6ebdc026"))
+    actual = subset1.list_pagination(offset: "0", count: "10")
+    check_file_actual_expected(actual, sub_dir, "list_pagination_s1_expected_1.yaml")
+    actual = subset2.list_pagination(offset: "0", count: "10")
+    check_file_actual_expected(actual, sub_dir, "list_pagination_s2_expected_2.yaml")
   end
 
   it "find_mc"  do

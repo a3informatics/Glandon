@@ -179,10 +179,10 @@ class Thesaurus::Subset < IsoConceptV2
   # @return [Array] array of hashes containing the child data
   def list_pagination(params)
     objects = []
-    if !self.members.nil?
       query_string = %Q{
         SELECT ?m ?s ?ordinal
         {
+          FILTER (?ordinal > 0)
           ?m th:item ?s
           {
             SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
@@ -202,7 +202,6 @@ class Thesaurus::Subset < IsoConceptV2
         object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
         object[:member_id] = uri_map[object[:uri]][:m].to_id
       end
-    end
     objects
   end
 
