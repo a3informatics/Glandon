@@ -9,315 +9,280 @@
 /**
  * Subset Edit Children Panel Constructor
  *
- * @param [String] url of the data source
- * @param [Integer] count - amount of items fetched in one call
- * @param [Function] loadCallback - callback for when the table loads all the data from the ajax
- * @param [Function] lockCallback - callback to extend the edit lock timer
+ * @param urls [Object] Various urls for panel functionality
+ * @param count [Integer] amount of items fetched in one call
+ * @param lockCallback [Function] callback to extend the edit lock timer
  * @return [void]
  */
-function SubsetEditChildrenPanel(url, count, loadCallback, lockCallback) {
-  var _this = this;
-  this.url = url;
+function SubsetEditChildrenPanel(urls, count, lockCallback) {
+  this.urls = urls;
   this.count = count;
-  this.columns = [{"data" : "index"},{"data" : "html"}];
-  this.prepComplete = false;
-  this.loadCallback = loadCallback;
   this.extendLock = lockCallback;
+
+  this.init();
+  this.loadData(0);
+}
+
+/**
+ * Initializes DataTable
+ *
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.init = function() {
   this.childrenTable = $('#subset_children_table').DataTable( {
-    "columns": _this.columns,
-    "pageLength": pageLength, // Gloabl setting
-    "lengthMenu": pageSettings, // Gloabl setting
+    "columns": this.columns(),
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "processing": true,
     "searching": false,
-    "scrollY": 510,
+    "scrollY": 600,
     "scrollCollapse": true,
     "paging": true,
     "rowReorder": {
-      "dataSrc": "index",
+      "dataSrc": "ordinal",
       "selector": 'tr',
     },
     "language": {
       "infoFiltered": "",
-      "emptyTable": "No child items.",
-      "processing": generateSpinner("medium")
+      "emptyTable": "There are no child items in this Subset.",
+      "processing": generateSpinner("small")
     },
   });
-  this.add(0);
-  this.childrenTable.columns.adjust();
-  this.childrenTable.on('row-reordered', function(e, details, changes){ if(details.length > 0) _this.reorderChild(changes); });
 }
 
 /**
- * Add item to table
+* User updates item (add/remove a child from the subset)
  *
- * @param [String] uri the uri of the item being added
- * @param [Integer] key a unique reference
+ * @param offset [Integer] item count offset
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.add = function (offset) {
-  var _this = this;
-  _this.childrenTable.processing(true);
+SubsetEditChildrenPanel.prototype.loadData = function (offset) {
+  this.processing(true);
+
   $.ajax({
-    url: _this.url,
-    data: {"count": _this.count, "offset": offset},
+    url: this.urls.childrenUrl,
+    data: {"count": this.count, "offset": offset},
     type: 'GET',
     dataType: 'json',
+    context: this,
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
-        var rowHTML =  _this.childItemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": result.data[i]["ordinal"], "item": result.data[i], "html": rowHTML});
+        this.childrenTable.row.add(result.data[i]);
       }
-      _this.childrenTable.draw();
-      if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count)
+      this.childrenTable.draw();
+
+      if (result.count >= this.count) {
+        this.loadData(result.offset + this.count)
       } else {
-        _this.childrenTable.processing(false);
-        _this.loadCallback(_this);
+        this.updateUI();
+        this.processing(false);
       }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
+      this.processing(false);
     }
   });
 }
 
 /**
- * Handler for adding a child to the subset
+ * Update the Thesaurus selection, extends edit lock
+ * @param action [String] (add/remove),
+ * @param data [Array] ids of items
+ * @param callback [Function] callback executed on request success
  *
- * @param [JSON Object] item data of format {"index", "item"}
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.addChild = function (data, bulkSize) {
-  var _this = this;
-  var updateData = {"subset": {"member_id": data["item"]["id"]}};
-  var actionParams = _this.generateActionParams("add", bulkSize);
+ SubsetEditChildrenPanel.prototype.updateSubset = function (action, data, callback) {
+	this.extendLock();
+	this.processing(true);
 
-  _this.update(actionParams, updateData, data, _this.addChildCallback);
+	setTimeout(function(){ this.executeRequest(this.buildRequestParams(action, data), callback) }.bind(this), 0);
 }
 
 /**
- * Callback after adding a child to the subset
+ * Posts data to server, runs callbacks
+ * @param requestParams [Object] parameters, must contain:
+ 		url [String],
+		data [Object] formatted for the request,
+		request type [String]
+ * @param callback [Function] callback executed on request success
  *
- * @param [JSON Object] item data of format {"index", "item", "html"}
- * @param [JSON Object] Response from the server
- * @param [Context] Correct context reference
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.addChildCallback = function (data, response, context) {
-  data["item"]["member_id"] = response["sm_id"];
-  data["index"] = context.childrenTable.rows().count() + 1;
-  context.childrenTable.row.add(data).draw();
+SubsetEditChildrenPanel.prototype.executeRequest = function (requestParams, callback) {
+	$.ajax({
+		url: requestParams.url,
+		data: requestParams.data,
+		type: requestParams.type,
+		dataType: 'json',
+		context: this,
+		success: function(result){
+			try { callback() } catch(exc) {};
+      this.refresh();
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			this.refresh();
+		}
+	})
 }
 
-/**
- * Handler for removing a child from the subset
- *
- * @param [JSON Object] item data of format {"index", "item", "html"}
- * @return [void]
- */
-SubsetEditChildrenPanel.prototype.removeChild = function (data, bulkSize){
-  var _this = this;
-  var thisItem = _this.findRowByItemParam(_this.childrenTable, "id", data["item"]["id"]).data();
-  var actionParams = _this.generateActionParams("remove", bulkSize);
-  var updateData = {"subset": {"member_id": thisItem["item"]["member_id"]}};
-
-  _this.update(actionParams, updateData, data, _this.removeChildCallback);
-}
 
 /**
- * Callback after removing a child from the subset
+ * Sets Listeners
  *
- * @param [JSON Object] item data of format {"index", "item", "html"}
- * @param [JSON Object] Response from the server
- * @param [Context] Correct context reference
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.removeChildCallback = function (data, response, context) {
-  context.findRowByItemParam(context.childrenTable, "id", data["item"]["id"]).remove().draw();
-  context.updateOrdinals();
+SubsetEditChildrenPanel.prototype.setListeners = function() {
+  this.childrenTable.off('row-reordered').on('row-reordered', function(e, details, changes){
+    if(details.length > 0)
+      this.reorderChild(details, changes);
+  }.bind(this));
 }
 
 /**
  * Handler for changing the order of the subset children
  *
- * @param [Array] changeEvent from DataTable callback
+ * @param details [Object] original details object from rowReorder
+ * @param changes [Object] original changes object from rowReorder
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
-  var _this = this;
-  _this.extendLock();
+SubsetEditChildrenPanel.prototype.reorderChild = function(details, changes) {
 
-  var oldOrdinal = _this.findRowByItemParam(_this.childrenTable, "id", changeEvent.triggerRow.data()["item"]["id"]).data()["index"];
-  var targetChild = changeEvent.triggerRow.data()["item"];
-  var newOrdinal = changeEvent.triggerRow.data()["index"];
-  var previousChild = _this.findRowByParam(_this.childrenTable, "index", newOrdinal-1);
-  previousChild = previousChild[0].length == 0 ? null : previousChild.data()["item"];
+  $.each(details, function(i,e){
+    if(e.newData == changes.triggerRow.data().ordinal){
+      var newOrdinal = e.newData;
+      var targetId = changes.triggerRow.data().member_id;
+      var previous = this.findRowByParam("ordinal", newOrdinal - 1);
+      var previousId = previous[0].length == 0 ? null : previous.data().member_id;
 
-  var actionParams = _this.generateActionParams("move_after", 1);
-  var updateData = {"subset": {"member_id": targetChild["member_id"]}};
-  if(previousChild != null)
-    updateData["subset"]["after_id"] = previousChild["member_id"];
+      var data = {member_id: targetId};
+      if(previousId != null)
+       data.after_id = previousId;
 
-  toggleTableActive("#source_children_table", false);
-  _this.update(actionParams, updateData, targetChild, _this.reorderChildCallback);
-}
-
-/**
- * Callback after reordering a child in the subset
- *
- * @param [JSON Object] reordered item data of format {"index", "item", "html"}
- * @param [JSON Object] Response from the server
- * @param [Context] Correct context reference
- * @return [void]
- */
-SubsetEditChildrenPanel.prototype.reorderChildCallback = function (data, response, context) {
-}
-
-SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, item, callback) {
-  var _this = this;
-  if(actionParams["bulkSize"]==1)
-    _this.childrenTable.processing(true);
-  $.ajax({
-    url: actionParams["path"],
-    data: updateData,
-    type: actionParams["type"],
-    dataType: 'json',
-    success: function(result) {
-      callback(item, result, _this);
-      if(actionParams["bulkSize"]==1){
-        _this.childrenTable.processing(false);
-        toggleTableActive("#source_children_table", true);
-      }
-    },
-    error: function(xhr,status,error){
-      handleAjaxError(xhr, status, error);
-      if(actionParams["bulkSize"]==1)
-        _this.childrenTable.processing(false);
-      _this.prepComplete = false;
-      _this.requestFailCallback(actionParams, item, _this);
+      this.updateSubset("move_after", data, null);
     }
-  });
+  }.bind(this));
+}
+
+
+/**
+ * Refreshes data in table
+ *
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.refresh = function () {
+  this.childrenTable.clear();
+  this.loadData(0);
+  this.extendLock();
 }
 
 /**
- * Callback when ajax request fails. Updates UI to previous state.
+ * Enables / Disables processing on the panel
  *
- * @param [JSON Object] Parameters of the failed request
- * @param [JSON Object] child data of format {"index", "item", "html"}
- * @param [Context] Correct context reference
+ * @param enable [Boolean] processing enable/disable ~ true/false
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.requestFailCallback = function (actionParams, item, context) {
-  var otherTable = $("#source_children_table").DataTable();
-  toggleTableActive("#source_children_table", true);
-
-  switch (actionParams["type"]) {
-    case "POST":
-      context.findRowByItemParam(otherTable, "id", item["item"]["id"]).deselect();
-      context.prepComplete = true;
-      break;
-    case "DELETE":
-      context.findRowByItemParam(otherTable, "id", item["item"]["id"]).select();
-      context.prepComplete = true;
-      break;
-    case "PUT":
-      context.childrenTable.clear().draw();
-      context.add(0);
-      break;
+SubsetEditChildrenPanel.prototype.processing = function(enable){
+  if(enable){
+    this.loading = true;
+    this.childrenTable.processing(true);
+    toggleTableActive("#source_children_table", false);
+    $("#subset-edit-btns").children().addClass("disabled");
+  }
+  else{
+    this.loading = false;
+    this.childrenTable.processing(false);
+    toggleTableActive("#source_children_table", true);
+    $("#subset-edit-btns").children().removeClass("disabled");
   }
 }
 
 /**
- * Callback for when both tables are loaded. The items that are existing in the subset table should be selected in the source codelist table on initial load.
+ * Updates panel UI, draws table, sets listeners
  *
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.markExistingItems = function (){
-  var _this = this;
-  var otherTable = $("#source_children_table").DataTable();
-  if(_this.childrenTable.rows().any() && otherTable.rows().any()){
-    _this.childrenTable.rows().every(function () {
-      _this.findRowByItemParam(otherTable, "id", this.data()["item"]["id"]).select();
-    });
-  }
-  _this.prepComplete = true;
+SubsetEditChildrenPanel.prototype.updateUI = function() {
+  this.childrenTable.columns.adjust();
+  this.childrenTable.draw();
+  this.setListeners();
 }
 
 /**
  * Finds a row in a DataTable
  *
- * @param [DataTable] Table in which to search
- * @param [String] DataType by which to search ("index", or "html")
- * @param [Anything] Value which to compare
- * @return [String] Row from a DataTable
+ * @param dataType [String] DataType by which to search ("index", or "html")
+ * @param value [Anything] Value which to compare
+ * @return [DataTable Row] Row from a DataTable
  */
-SubsetEditChildrenPanel.prototype.findRowByParam = function(table, dataType, value){
-  var row = table.row(function (idx, data, node){ return data[dataType] == value ? true : false; });
-  return row;
+SubsetEditChildrenPanel.prototype.findRowByParam = function(dataType, value){
+  return this.childrenTable.row(function (idx, data, node){ return data[dataType] == value ? true : false; });
 }
 
 /**
- * Finds a row in a DataTable inside of its item object
+ * Generates a params object for ajax request
  *
- * @param [DataTable] Table in which to search
- * @param [String] DataType by which to search (a field from the "item" object)
- * @param [Anything] Value which to compare
- * @return [String] Row from a DataTable
+ * @param action [String] name of the action (can be "add", "remove", "remove_all", "move_after")
+ * @param ids [Array] ids of affected items
+ * @return [Object] params containing url, data and type
  */
-SubsetEditChildrenPanel.prototype.findRowByItemParam = function(table, dataType, value){
-  var row = table.row(function (idx, data, node){ return data["item"][dataType] == value ? true : false; });
-  return row;
-}
+SubsetEditChildrenPanel.prototype.buildRequestParams = function(action, ids){
+  var params = {url: "", data: {}, type: ""};
 
-/**
- * Updates ordinals to follow the order of the rows in the table
- *
- * @return [void]
- */
-SubsetEditChildrenPanel.prototype.updateOrdinals = function(){
-  var _this = this;
-  var ordinal = 1;
-  _this.childrenTable.rows().every(function(){
-    this.data()["index"] = ordinal ++;
-    this.invalidate();
-  });
-}
-
-/**
- * Generates an actionParams object with fields "path" and "type" for an ajax request
- *
- * @param [String] name of the action (can be "add", "remove", "move_after")
- * @return [void]
- */
-SubsetEditChildrenPanel.prototype.generateActionParams = function(actionName, bulkSize){
-  var _this = this;
-  var actionParams = {"path": "", "type": "", "bulkSize": bulkSize};
-  switch (actionName) {
+  switch (action) {
     case "add":
-      actionParams["path"] = subset_url + "/add";
-      actionParams["type"] = "POST";
+      params.url = this.urls.addUrl;
+      params.type = "POST";
+      params.data = {subset: {member_id: ids[0]}}
       break;
     case "remove":
-      actionParams["path"] = subset_url + "/remove";
-      actionParams["type"] = "DELETE";
+      params.url = this.urls.removeUrl;
+      params.type = "DELETE";
+      params.data = {subset: {member_id: this.findRowByParam("id", ids[0]).data().member_id}}
+      break;
+    case "remove_all":
+      params.url = this.urls.removeAllUrl;
+      params.type = "DELETE";
+      params.data = {};
       break;
     case "move_after":
-      actionParams["path"] = subset_url + "/move_after";
-      actionParams["type"] = "PUT";
+      params.url = this.urls.moveAfterUrl;
+      params.type = "PUT";
+      params.data = {subset: ids}
       break;
   }
-  return actionParams;
+  return params;
+}
+
+/**
+ * Column definitions for DataTable
+ *
+ * @return [Array] of objects, column defs
+ */
+SubsetEditChildrenPanel.prototype.columns = function() {
+  var _this = this;
+
+  return [
+    {"data" : "ordinal"},
+    {"data" : "preferred_term",
+     "render": function (data, type, row, meta) {
+        if (type == "display")
+          return _this.childItemHTML(row);
+        else return data;
+    }}
+  ];
 }
 
 /**
  * Generates HTML for a child item in the table
  *
- * @param [JSON Object] Child item JSON
+ * @param data [JSON Object] Child item JSON
  * @return [String] Formatted HTML
  */
 SubsetEditChildrenPanel.prototype.childItemHTML = function(data) {
-  var html = '<div class="font-regular text-small">'+data["preferred_term"]+'</div>';
-  html += '<div class="font-light text-small">'+data["notation"]+' ('+data["identifier"]+')</div>';
+  var html = '<div class="font-regular text-small">'+data.preferred_term+'</div>';
+  html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
   return html;
 }
