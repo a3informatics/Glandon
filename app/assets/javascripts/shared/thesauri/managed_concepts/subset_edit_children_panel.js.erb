@@ -232,7 +232,7 @@ SubsetEditChildrenPanel.prototype.buildRequestParams = function(action, ids){
     case "add":
       params.url = this.urls.addUrl;
       params.type = "POST";
-      params.data = {subset: {member_id: ids[0]}}
+      params.data = {subset: {cli_ids: ids}}
       break;
     case "remove":
       params.url = this.urls.removeUrl;
