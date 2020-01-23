@@ -9,7 +9,7 @@
                         subsetChildrenUrl = '#{list_children_thesauri_subset_path(@subset)}',
                         addToSubsetUrl = '#{add_thesauri_subset_path(@subset)}',
                         removeFromSubsetUrl = '#{remove_thesauri_subset_path(@subset)}',
-                        removeAllFromSubsetUrl = '#{remove_thesauri_subset_path(@subset)}',
+                        removeAllFromSubsetUrl = '#{remove_all_thesauri_subset_path(@subset)}',
                         moveAfterSubsetUrl = '#{move_after_thesauri_subset_path(@subset)}'; "%>
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
