@@ -90,6 +90,7 @@ private
 
   # Process the results
   def process_results(results)
+    extensions = {}
     filtered = []
     klass = configuration[:parent_klass]
     child_klass = klass.child_klass
@@ -97,7 +98,11 @@ private
     parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
-      if child.subset?
+      if child.subset_of_extension?(extensions)
+        add_log("Subset of extension detected: #{child.identifier}")
+        filtered << child
+      elsif child.subset?
+        add_log("Subset detected: #{child.identifier}")
         ref = child.to_cdisc_subset(@th)
         ref = child.to_sponsor_subset(filtered) if ref.nil? # Note using previously processed sponsor CLs.
         if ref.nil?
@@ -107,18 +112,23 @@ private
           filtered << ref
         end
       elsif child.extension?(@th)
+        add_log("Extension detected: #{child.identifier}")
         ref = child.to_extension(@th)
         next if ref.nil?
         parent.add(ref, index + 1) 
         filtered << ref
+        extensions[ref.identifier] = ref
       elsif child.sponsor?
+        add_log("Sponsor detected: #{child.identifier}")
         parent.add(child, index + 1) 
         filtered << child
       elsif child.hybrid_sponsor?
+        add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th)
         parent.add(ref, index + 1) 
         filtered << ref
       elsif child.referenced?(@th)
+        add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
         next if ref.nil?
         parent.add(ref, index + 1)

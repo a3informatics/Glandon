@@ -71,6 +71,10 @@ module Import::STFOClasses
       self.preferred_term.label.upcase.split(/[^[[:word:]]]+/).include? "SUBSET"
     end
 
+    def subset_of_extension?(extensions)
+      subset? && extensions.key?(self.identifier)
+    end
+
     def to_cdisc_subset(ct)
       new_narrower = []
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
@@ -118,8 +122,8 @@ module Import::STFOClasses
     def to_extension(ct)
       new_narrower = []
       ref_ct = reference(ct)
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.has_identifier.identifier = self.identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.has_identifier.identifier = self.identifier
       self.narrower.each do |child|
         # @todo CDISC code from another 
         next if NciThesaurusUtility.c_code?(self.identifier)
