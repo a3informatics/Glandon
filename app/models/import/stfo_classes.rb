@@ -58,29 +58,46 @@ module Import::STFOClasses
       if !ref_ct.nil?
         ref_ct.narrower_objects
         others = self.child_identifiers - ref_ct.child_identifiers
-        return self if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others)
+        return self if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
         add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       end
       nil
     end
 
     def to_extension(ct)
-      # @todo Extending unextensible
       new_narrower = []
       ref_ct = reference(ct)
-      self.narrower.each do |child|
-        # @todo CDISC code from another 
-        next if NciThesaurusUtility.c_code?(self.identifier)
-        new_narrower << child
+      if ref_ct.nil?
+        add_error("Failed to find referenced code list for an extension, identifier '#{self.identifier}'.")
+      elsif !ref_ct.extensible
+        add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
+      else
+        self.extends = ref_ct
+        new_marrower = ref_ct.narrower
+        self.narrower.each do |child|
+          if NciThesaurusUtility.c_code?(child.identifier)
+            new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+            if new_child.nil?
+              options = ct.find_identifier(child.identifier)
+              if options.empty?
+                add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
+              elsif options.count == 1
+                new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
+              else
+                add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
+              end
+            end
+          else
+            new_narrower << child
+          end
+        end
+        self.narrower = new_narrower
       end
-      ref_ct.narrower.each do |child|
-        new_narrower << child
-      end
-      self.narrower = new_narrower
       self
     rescue => e
+byebug
       add_error("Exception in to_extension, identifier '#{self.identifier}'.")
-      nil
+      self
     end
 
     # Subset? Is the entry a subset code list?
