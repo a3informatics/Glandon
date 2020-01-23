@@ -137,7 +137,7 @@ SubsetEditChildrenPanel.prototype.executeRequest = function (requestParams, call
 SubsetEditChildrenPanel.prototype.setListeners = function() {
   this.childrenTable.off('row-reordered').on('row-reordered', function(e, details, changes){
     if(details.length > 0)
-      this.reorderChild(details, changes);
+      this.reorderChild(details, changes.triggerRow.data());
   }.bind(this));
 }
 
@@ -145,25 +145,22 @@ SubsetEditChildrenPanel.prototype.setListeners = function() {
  * Handler for changing the order of the subset children
  *
  * @param details [Object] original details object from rowReorder
- * @param changes [Object] original changes object from rowReorder
+ * @param rowData [Object] data of the trigger row
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.reorderChild = function(details, changes) {
+SubsetEditChildrenPanel.prototype.reorderChild = function(details, rowData) {
+  var t = $.grep(details, function(e){ return e.newData == rowData.ordinal})[0];
 
-  $.each(details, function(i,e){
-    if(e.newData == changes.triggerRow.data().ordinal){
-      var newOrdinal = e.newData;
-      var targetId = changes.triggerRow.data().member_id;
-      var previous = this.findRowByParam("ordinal", newOrdinal - 1);
-      var previousId = previous[0].length == 0 ? null : previous.data().member_id;
+  var newOrdinal = t.newData;
+  var targetId = rowData.member_id;
+  var previous = this.findRowByParam("ordinal", newOrdinal - 1);
+  var previousId = previous[0].length == 0 ? null : previous.data().member_id;
 
-      var data = {member_id: targetId};
-      if(previousId != null)
-       data.after_id = previousId;
+  var data = {member_id: targetId};
+  if(previousId != null)
+   data.after_id = previousId;
 
-      this.updateSubset("move_after", data, null);
-    }
-  }.bind(this));
+  this.updateSubset("move_after", data, null);
 }
 
 
