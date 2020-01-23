@@ -120,14 +120,29 @@ SubsetSourceChildrenPanel.prototype.autoSelect = function() {
 }
 
 /**
- * Updates UI
+ * User updates item (add/remove a child from the subset)
  *
+ * @param indexes [Array] Indexes of the selected children in the Source Code List Table
+ * @param action [String] Action of item handler (can be "add" or "remove")
  * @return [void]
  */
-SubsetSourceChildrenPanel.prototype.updateUI = function () {
-  this.childrenTable.draw();
-  this.autoSelect();
-  this.setListeners();
+SubsetSourceChildrenPanel.prototype.addOrRemoveItems = function(indexes, action) {
+  if(this.autoSelectMode)
+    return;
+
+  var itemIds = this.childrenTable.rows(indexes).data().toArray().map(e => e.id);
+  var callback = this.autoSelect.bind(this);
+
+  switch (action) {
+    case "add":
+      this.subsetEditPanel.updateSubset(action, itemIds, callback);
+      break;
+    case "remove":
+      if (itemIds.length > 1)
+        this.subsetEditPanel.updateSubset("remove_all", null, callback);
+      else
+        this.subsetEditPanel.updateSubset(action, itemIds, callback);
+  }
 }
 
 /**
@@ -156,6 +171,17 @@ SubsetSourceChildrenPanel.prototype.setListeners = function () {
 }
 
 /**
+ * Updates UI
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.updateUI = function () {
+  this.childrenTable.draw();
+  this.autoSelect();
+  this.setListeners();
+}
+
+/**
  * Enables / Disables processing on the panel
  *
  * @param enable [Boolean] processing enable/disable ~ true/false
@@ -169,32 +195,6 @@ SubsetSourceChildrenPanel.prototype.processing = function(enable){
   else{
     this.childrenTable.processing(false);
     $("#subset-edit-btns").children().removeClass("disabled");
-  }
-}
-
-/**
- * User updates item (add/remove a child from the subset)
- *
- * @param indexes [Array] Indexes of the selected children in the Source Code List Table
- * @param action [String] Action of item handler (can be "add" or "remove")
- * @return [void]
- */
-SubsetSourceChildrenPanel.prototype.addOrRemoveItems = function(indexes, action) {
-  if(this.autoSelectMode)
-    return;
-
-  var itemIds = this.childrenTable.rows(indexes).data().toArray().map(e => e.id);
-  var callback = this.autoSelect.bind(this);
-
-  switch (action) {
-    case "add":
-      this.subsetEditPanel.updateSubset(action, itemIds, callback);
-      break;
-    case "remove":
-      if (itemIds.length > 1)
-        this.subsetEditPanel.updateSubset("remove_all", null, callback);
-      else
-        this.subsetEditPanel.updateSubset(action, itemIds, callback);
   }
 }
 
