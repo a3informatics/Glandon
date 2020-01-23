@@ -432,7 +432,7 @@ function getStringInitials(str) {
 
 function toggleTableActive(tableId, enable) {
   if(enable)
-    $(tableId).DataTable().rows().nodes().to$().removeClass("tr-disabled");
+    $(tableId).removeClass("table-disabled");
   else
-    $(tableId).DataTable().rows().nodes().to$().addClass("tr-disabled");
+    $(tableId).addClass("table-disabled");
 }

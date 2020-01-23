@@ -9,125 +9,222 @@
 /**
  * Subset Source Children Panel Constructor
  *
- * @param [String] url of the data source
- * @param [Integer] count - amount of items fetched in one call
- * @param [Object Instance] subsetEditPanel - reference to the instance of the SubsetEditPanel object
- * @param [Function] loadCallback - callback for when the table loads all the data from the ajax
- * @param [Function] lockCallback - callback to extend the edit lock timer
+ * @param url [String] url of the data source
+ * @param count [Integer] count - amount of items fetched in one call
+ * @param subsetEditPanel [Object Instance] subsetEditPanel - reference to the instance of the SubsetEditPanel object
+ * @param lockCallback [Function] lockCallback - callback to extend the edit lock timer
  * @return [void]
  */
-function SubsetSourceChildrenPanel(url, count, subsetEditPanel, loadCallback, lockCallback) {
-  var _this = this;
+function SubsetSourceChildrenPanel(url, count, subsetEditPanel, lockCallback) {
   this.url = url;
   this.count = count;
-  this.columns = [{"data" : "index"},{"data" : "html"}];
-  this.loadCallback = loadCallback;
   this.extendLock = lockCallback;
-  this.subsetEditPanelRef = subsetEditPanel;
+  this.subsetEditPanel = subsetEditPanel;
+  this.autoSelectMode = false;
+
+  this.init();
+  this.loadData(0);
+}
+
+/**
+ * Initializes DataTable
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.init = function () {
   this.childrenTable = $('#source_children_table').DataTable( {
-    "order": [[ 1, "asc" ]],
-    "columns": _this.columns,
-    "pageLength": pageLength, // Gloabl setting
-    "lengthMenu": pageSettings, // Gloabl setting
+    "order": [[ 0, "asc" ]],
+    "columns": this.columns(),
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "processing": true,
-    "scrollY": 510,
+    "scrollY": 600,
     "scrollCollapse": true,
     "paging": true,
     "language": {
       "infoFiltered": "",
-      "emptyTable": "No child items.",
-      "processing": generateSpinner("medium")
+      "emptyTable": "No children items found.",
+      "processing": generateSpinner("small")
     },
-    "columnDefs": [{
-      "targets": [0],
-      "visible": false
-    }],
-    "select": 'multi',
-  });
-  this.add(0);
-
-  this.childrenTable.on('select', function(e, dt, type, indexes){ _this.updateItem(indexes, "add"); });
-  this.childrenTable.on('deselect', function(e, dt, type, indexes){ _this.updateItem(indexes, "remove"); });
-
-  $("#select-all-btn").click(function(){
-    _this.toggleSelectAll(_this.childrenTable);
+    "select": 'multi'
   });
 }
 
+
 /**
- * Add item to table
+ * Fetches the children items from the server
  *
- * @param [String] uri the uri of the item being added
- * @param [Integer] key a unique reference
+ * @param offset [Integer] item count offset
  * @return [void]
  */
-SubsetSourceChildrenPanel.prototype.add = function (offset) {
-  var _this = this;
-  _this.childrenTable.processing(true);
+SubsetSourceChildrenPanel.prototype.loadData = function (offset) {
+  this.processing(true);
+
   $.ajax({
-    url: _this.url,
-    data: {"count": _this.count, "offset": offset},
+    url: this.url,
+    data: {"count": this.count, "offset": offset},
     type: 'GET',
     dataType: 'json',
+    context: this,
     success: function(result) {
-      var ordinal = 1;
       for (i=0; i<result.data.length; i++) {
-        var rowHTML = _this.subsetEditPanelRef.childItemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": ordinal, "item": result.data[i], "html": rowHTML});
-        ordinal++;
+        this.childrenTable.row.add(result.data[i]);
       }
-      _this.childrenTable.draw();
-      if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count)
-      } else {
-        _this.childrenTable.processing(false);
-        _this.loadCallback(_this);
+      this.childrenTable.draw();
+
+      if (result.count >= this.count)
+        this.loadData(result.offset + this.count)
+      else {
+        this.processing(false);
+        this.updateUI();
       }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
+      this.processing(false);
     }
   });
+}
+
+/**
+ * Marks items present in the other panel green
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.autoSelect = function() {
+  toggleTableActive("#source_children_table", false);
+
+	// Checks if overview table is loading, retries in 200 ms
+	if(this.subsetEditPanel.loading)
+		setTimeout(this.autoSelect.bind(this), 200);
+
+	// Overview table done loading
+	else {
+		var _this = this;
+		this.autoSelectMode = true;
+
+		setTimeout(function () {
+      this.childrenTable.rows().deselect();
+			var indexes = [];
+			this.subsetEditPanel.childrenTable.rows().every(function (rowIdx, tl, rl) {
+				var rowResult = _this.findRowByParam("id", this.data());
+				if(rowResult.length != 0)
+					indexes.push(rowResult.index());
+			});
+			this.childrenTable.rows(indexes).select();
+
+			this.autoSelectMode = false;
+      toggleTableActive("#source_children_table", true);
+		}.bind(this), 0)
+	}
+}
+
+/**
+ * Updates UI
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.updateUI = function () {
+  this.childrenTable.draw();
+  this.autoSelect();
+  this.setListeners();
+}
+
+/**
+ * Sets event listeners
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.setListeners = function () {
+  var _this = this;
+
+  this.childrenTable.off('select').on('select', function(e, dt, type, indexes){
+    _this.addOrRemoveItems(indexes, "add");
+  });
+
+  this.childrenTable.off('deselect').on('deselect', function(e, dt, type, indexes){
+    _this.addOrRemoveItems(indexes, "remove");
+  });
+
+  $("#select-all-button").off("click").on("click", function(){
+    _this.childrenTable.rows({selected: false}).select();
+  });
+
+  $("#deselect-all-button").off("click").on("click", function(){
+    _this.childrenTable.rows({selected: true}).deselect();
+  });
+}
+
+/**
+ * Enables / Disables processing on the panel
+ *
+ * @param enable [Boolean] processing enable/disable ~ true/false
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.processing = function(enable){
+  if(enable){
+    this.childrenTable.processing(true);
+    $("#subset-edit-btns").children().addClass("disabled");
+  }
+  else{
+    this.childrenTable.processing(false);
+    $("#subset-edit-btns").children().removeClass("disabled");
+  }
 }
 
 /**
  * User updates item (add/remove a child from the subset)
  *
- * @param [Array] Indexes of the selected children in the Source Code List Table
- * @param [String] Action of item handler (can be "add" or "remove")
+ * @param indexes [Array] Indexes of the selected children in the Source Code List Table
+ * @param action [String] Action of item handler (can be "add" or "remove")
  * @return [void]
  */
-SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
-  var _this = this;
-  _this.extendLock();
-  if(!_this.subsetEditPanelRef.prepComplete) return;
-  toggleTableActive("#source_children_table", false);
+SubsetSourceChildrenPanel.prototype.addOrRemoveItems = function(indexes, action) {
+  if(this.autoSelectMode)
+    return;
 
-  var bulkSize = indexes.length;
-  if(bulkSize > 1)
-    _this.subsetEditPanelRef.childrenTable.processing(true);
+  var itemIds = this.childrenTable.rows(indexes).data().toArray().map(e => e.id);
+  var callback = this.autoSelect.bind(this);
 
-  $.each(indexes, function(i, e){
-    var item = _this.childrenTable.row(e).data();
-    switch (action) {
-      case "add": _this.subsetEditPanelRef.addChild(item, bulkSize--);
-        break;
-      case "remove": _this.subsetEditPanelRef.removeChild(item, bulkSize--);
-        break;
-    }
-  });
+  switch (action) {
+    case "add":
+      this.subsetEditPanel.updateSubset(action, itemIds, callback);
+      break;
+    case "remove":
+      if (itemIds.length > 1)
+        this.subsetEditPanel.updateSubset("remove_all", null, callback);
+      else
+        this.subsetEditPanel.updateSubset(action, itemIds, callback);
+  }
 }
 
 /**
- * Toggles select/deselect all items in the table
+ * Finds a row in a DataTable based on data
+ * @param dataType [String] DataType by which to search, e.g. id
+ * @param data [Object] Data value object which to compare
  *
- * @return [void]
+ * @return [DatatTable Row] DataTable Row result api instance (can be empty)
  */
-SubsetSourceChildrenPanel.prototype.toggleSelectAll = function(table){
+SubsetSourceChildrenPanel.prototype.findRowByParam = function (dataType, data) {
+	return this.childrenTable.row(function (idx, dt, node) {
+		return dt[dataType] == data[dataType] ? true : false;
+	});
+}
+
+/**
+ * Column definitions for DataTable
+ *
+ * @return [Array] of objects, column defs
+ */
+SubsetSourceChildrenPanel.prototype.columns = function(){
   var _this = this;
-  if(table.rows({ selected: true }).any())
-    table.rows({ selected: true }).deselect();
-  else
-    table.rows({ selected: false }).select();
+
+  return [{
+    "data" : "identifier",
+    "render": function (data, type, row, meta) {
+        if (type == "display")
+          return _this.subsetEditPanel.childItemHTML(row);
+        else return data;
+      }
+    }];
 }
