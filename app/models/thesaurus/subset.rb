@@ -208,82 +208,25 @@ class Thesaurus::Subset < IsoConceptV2
 
   # Add multiple. 
   #
-  # @params [Hash] params the params hash
-  # @option params [String] :offset the offset to be obtained
-  # @option params [String] :count the count to be obtained
-  # @return [Array] array of hashes containing the child data
+  # @params [Array] array of ids
   def add_multiple(arr)
-      # sm = []
-      mc = self.find_mc
-      last_sm = self.last
-      # arr.each |x| do
-      #   sm << Thesaurus::SubsetMember.create({item: Uri.new(id: x.id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-      # end
-      subset_members = arr.map{|x| Thesaurus::SubsetMember.create({item: Uri.new(id: x.to_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})}
-
-      subset_members[0].member_next = subset_members[1]
-
-      subset_members.each do |sm|
-        last_sm = self.last
-        if last_sm.nil? #Add the first member
-          self.add_link(:members, sm.uri)
-        else #Add the new member to the last position 
-          last_sm.add_link(:member_next, sm.uri)
-        end
-      end
-
-      subset_members.each do |sm|
-        mc.add_link(:narrower, sm.item) 
-      end
-
-      # uris = []
-      # (1..arr.length).each do |index|
-      #   item = Thesaurus::SubsetMember.create({item: Uri.new(id: x.id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-      #   item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
-      #   item.label = "Item #{index}"
-      #   item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-      #   sparql = Sparql::Update.new  
-      #   item.to_sparql(sparql, true)
-      #   sparql.upload
-      #   uris[index-1] = item.uri
-      # end 
-
-
-    # transaction_begin
-    # sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-    # mc = self.find_mc
-    # last_sm = self.last
-    # if last_sm.nil? #Add the first member
-    #  self.add_link(:members, sm.uri)
-    # else #Add the new member to the last position 
-    #  last_sm.add_link(:member_next, sm.uri)
-    # end
-    # mc.add_link(:narrower, sm.item) 
-    # transaction_execute
-    # sm
-
-
-    #   sparql = Sparql::Update.new
-    #   sparql.default_namespace(self.uri.namespace)
-    #   # @todo only supports generated identifiers currently
-    #   synonyms.each do |syn|
-    #     child = Thesaurus::UnmanagedConcept.from_h({
-    #       # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
-    #       identifier: Thesaurus::UnmanagedConcept.new_identifier,
-    #       notation: syn.label,
-    #       label: pt.label ,
-    #       preferred_term: pt,
-    #       synonym: synonyms,
-    #       definition: object.definition,
-    #       tagged: object.tagged 
-    #     })
-    #     child.generate_uri(self.uri)
-    #     child.to_sparql(sparql)
-    #     sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: child.uri})
-    #   end
-    #   filename = sparql.to_file
-    #   sparql.create
-    #   self.narrower_objects
+    subset_members = []
+    sparql = Sparql::Update.new
+    sparql.default_namespace(self.uri.namespace)
+    mc = self.find_mc
+    arr.each do |x|
+      member = Thesaurus::SubsetMember.create({item: Uri.new(id: x), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+      subset_members << member
+      member.to_sparql(sparql)
+      sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})
+    end
+    last_sm = self.last
+    subset_members[0..-2].each_with_index do |sm, index|
+      sparql.add({uri: subset_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members[index+1].uri})
+    end
+    last_sm.nil? ? sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members.first.uri})
+    filename = sparql.to_file
+    sparql.create
   end
 
   # Remove all. Removes all the subset members and narrower from Subset

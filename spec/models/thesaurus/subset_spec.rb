@@ -300,8 +300,19 @@ describe "Thesaurus Subset General" do
     mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
     tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
     tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
-  byebug
-    result = subset.add_multiple([tc_2.uri, tc_4.uri])
+    expect(mc.narrower.count).to eq(3)
+    result = subset.add_multiple([tc_2.id, tc_4.id])
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    expect(mc.narrower.count).to eq(5)
+    last_sm = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
+    expect(last_sm.member_next).not_to be(nil)  
+    last_sm_member_next = Thesaurus::SubsetMember.find(last_sm.member_next)
+    expect(last_sm_member_next.item).to eq(tc_2.uri)  
+    expect(last_sm_member_next.member_next).not_to be(nil)
+    last_sm_member_next_next = Thesaurus::SubsetMember.find(last_sm_member_next.member_next)
+    expect(last_sm_member_next_next.item).to eq(tc_4.uri)  
+    expect(last_sm_member_next_next.member_next).to eq(nil) 
   end
 
   it "allows remove all" do
