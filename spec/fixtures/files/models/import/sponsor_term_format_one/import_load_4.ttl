@@ -24,7 +24,9 @@
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConcept <http://www.acme-pharma.com/C118971/V1#C118971> ;
 	th:isTopConcept <http://www.acme-pharma.com/SN000631/V1#SN000631> ;
 .
 :TH_RS
@@ -46,6 +48,15 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.acme-pharma.com/C118971/V1#C118971> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR2
 	rdf:type bo:TcReference ;
@@ -73,43 +84,56 @@
 	th:notation "CCCAT"^^xsd:string ;
 	th:definition "A grouping of observations within the Disease Response and Clin Classification domain."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C125755> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C121005> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C119107> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124705> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124706> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C121006> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130304> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124715> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C121007> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124711> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C117997> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124707> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124710> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C102118> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C100767> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C102119> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130307> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130306> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C138332> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130308> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130310> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C138333> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C121008> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C119105> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C121009> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C132531> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124712> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C135734> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130309> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124708> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124703> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124704> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C119104> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C130305> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124709> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124713> ;
-	th:narrower <http://www.acme-pharma.com/C118971/V1#C118971_C124714> ;
+	th:narrower <http://www.cdisc.org/C118971/V43#C118971_C121009> ;
+	th:narrower <http://www.cdisc.org/C118971/V43#C118971_C121007> ;
+	th:narrower <http://www.cdisc.org/C118971/V43#C118971_C121005> ;
+	th:narrower <http://www.cdisc.org/C118971/V43#C118971_C121008> ;
+	th:narrower <http://www.cdisc.org/C118971/V43#C118971_C121006> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124709> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124711> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C119104> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124707> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C102119> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124713> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C119105> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124706> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124708> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C117997> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124712> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124715> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124705> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C119107> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124710> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C102118> ;
+	th:narrower <http://www.cdisc.org/C118971/V46#C118971_C124714> ;
+	th:narrower <http://www.cdisc.org/C118971/V47#C118971_C125755> ;
+	th:narrower <http://www.cdisc.org/C118971/V48#C118971_C100767> ;
+	th:narrower <http://www.cdisc.org/C118971/V50#C118971_C130304> ;
+	th:narrower <http://www.cdisc.org/C118971/V50#C118971_C130307> ;
+	th:narrower <http://www.cdisc.org/C118971/V50#C118971_C130305> ;
+	th:narrower <http://www.cdisc.org/C118971/V50#C118971_C130306> ;
+	th:narrower <http://www.cdisc.org/C118971/V50#C118971_C130310> ;
+	th:narrower <http://www.cdisc.org/C118971/V51#C118971_C132531> ;
+	th:narrower <http://www.cdisc.org/C118971/V52#C118971_C135734> ;
+	th:narrower <http://www.cdisc.org/C118971/V53#C118971_C138333> ;
+	th:narrower <http://www.cdisc.org/C118971/V53#C118971_C138332> ;
+	th:narrower <http://www.cdisc.org/C118971/V54#C118971_C141685> ;
+	th:narrower <http://www.cdisc.org/C118971/V55#C118971_C147589> ;
+	th:narrower <http://www.cdisc.org/C118971/V55#C118971_C130309> ;
+	th:narrower <http://www.cdisc.org/C118971/V55#C118971_C130308> ;
+	th:narrower <http://www.cdisc.org/C118971/V57#C118971_C155324> ;
+	th:narrower <http://www.cdisc.org/C118971/V58#C118971_C156675> ;
+	th:narrower <http://www.cdisc.org/C118971/V58#C118971_C155323> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C112519> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C106693> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C161658> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C161656> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C106694> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C102111> ;
+	th:narrower <http://www.cdisc.org/C118971/V60#C118971_C102116> ;
+	th:narrower <http://www.cdisc.org/C118971/V62#C118971_C100761> ;
+	th:narrower <http://www.cdisc.org/C118971/V62#C118971_C112520> ;
+	th:narrower <http://www.cdisc.org/C118971/V62#C118971_C161657> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#67de85417e7d6d9660f1e62d6173e5d9489d5603> ;
 .
 <http://www.acme-pharma.com/C118971/V1#C118971_RS>
@@ -131,583 +155,6 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C125755>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C125755"^^xsd:string ;
-	th:notation "AJCC V7"^^xsd:string ;
-	th:definition "AJCC TNM Staging System 7th Edition (AJCC V7) (Edge SB, Byrd DR, Compton CC, Fritz AG, Greene FL, Trotti A, editors. AJCC cancer staging manual (7th ed). New York, NY: Springer; 2010)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#7d075b771f8961f362afefab9d6f30ecbfb15269> ;
-	th:synonym <http://www.assero.co.uk/SYN#f59975f56f48ef83a1a6edfdc046475773c6cd41> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C121005>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C121005"^^xsd:string ;
-	th:notation "APACHE II"^^xsd:string ;
-	th:definition "Acute Physiology and Chronic Health Evaluation II (APACHE II) (Knaus WA, Draper EA, Wagner DP, Zimmerman JE. APACHE II: a severity of disease classification system. Critical Care Medicine 1985; 13(10):818-29)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ceae04ac90482e9ee425bc1ea2481e54011202e7> ;
-	th:synonym <http://www.assero.co.uk/SYN#66fab38a5a16531872b2d7debb142763e8372a35> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C119107>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C119107"^^xsd:string ;
-	th:notation "ARC STC GRADE"^^xsd:string ;
-	th:definition "Stent Thrombosis Coronary ARC Grade (Cutlip DE, Windecker S, Mehran R, et al. Clinical End Points in Coronary Stent Trials : A Case for Standardized Definitions. Circulation. 2007;115:2344-2351)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9cc5c6188e21ec720d6ebcdbc3c0d07ce1fedca7> ;
-	th:synonym <http://www.assero.co.uk/SYN#04cdac56dd739f62c55f7beac2ea2c3b6f53919d> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124705>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124705"^^xsd:string ;
-	th:notation "ASCVD 10-YEAR RISK"^^xsd:string ;
-	th:definition "Atherosclerotic Cardiovascular Disease 10-Year Risk Estimator (Goff Jr DC et al. 2013 ACC/AHA Guideline on the Assessment of Cardiovascular Risk: A Report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. Circulation 2014; 129: S49-S73)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#7d31f7bcccd92432ddcaa5fb122286197ba220a1> ;
-	th:synonym <http://www.assero.co.uk/SYN#5550006915762a7b673d620a15d70c2127b3027e> ;
-.
-<http://www.assero.co.uk/PT#7d31f7bcccd92432ddcaa5fb122286197ba220a1>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Atherosclerotic Cardiovascular Disease 10-Year Risk Estimator"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124706>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124706"^^xsd:string ;
-	th:notation "ASSIGN CVD 10-YEAR RISK"^^xsd:string ;
-	th:definition "ASSIGN Cardiovascular Disease 10-Year Risk Score (Woodward M, Brindle P, Tunstall-Pedoe H, for the SIGN group on risk estimation. Adding social deprivation and family history to cardiovascular risk assessment: the ASSIGN score from the Scottish Heart Health Extended Cohort (SHHEC). Heart 2007; 93: 172-176)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#43a8051f14fc8bed60737f9c1851515196adfaf2> ;
-	th:synonym <http://www.assero.co.uk/SYN#a11377ac3972c24479360febf4c84a88b2833393> ;
-.
-<http://www.assero.co.uk/PT#43a8051f14fc8bed60737f9c1851515196adfaf2>
-	rdf:type th:PreferredTerm ;
-	isoC:label "ASSIGN Cardiovascular Disease 10-Year Risk Score"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C121006>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C121006"^^xsd:string ;
-	th:notation "BODE INDEX"^^xsd:string ;
-	th:definition "The Body-Mass Index, Airflow Obstruction, Dyspnea, and Exercise Capacity Index (BODE Index) (Bartolome R. Celli, M.D., Claudia G. Cote, M.D., Jose M. Marin, M.D., Ciro Casanova, M.D., Maria Montes de Oca, M.D., Reina A. Mendez, M.D., Victor Pinto Plata, M.D., and Howard J. Cabral, Ph.D.; N Engl J Med 2004;350:1005-12)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#f8097ae0011919fd8dd57d0fae65cb9e35b31df5> ;
-	th:synonym <http://www.assero.co.uk/SYN#8d939752bd5f83162d0298ec29ebb2e578608890> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130304>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130304"^^xsd:string ;
-	th:notation "BUERS"^^xsd:string ;
-	th:definition "Brooke Upper Extremity Rating Scale (BUERS)(Brooke MG, Griggs RC, Mendell JR, Fenichel, GM, Shumate JB and Peggegrino RJ (1981). Clinical trial in duchenne dystrophy. I The Design of the Protocol. Muscle and Nerve: 4:186-197)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#430b84c2441cbccf0b46196ebc1a8c42dc3014b0> ;
-	th:synonym <http://www.assero.co.uk/SYN#1630424bc58162e591f225eba7542d0821e21af1> ;
-.
-<http://www.assero.co.uk/PT#430b84c2441cbccf0b46196ebc1a8c42dc3014b0>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Brooke Upper Extremity Rating Scale"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124715>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124715"^^xsd:string ;
-	th:notation "CDC HIV CLASSIFICATION FOR ADULTS AND ADOLESCENTS"^^xsd:string ;
-	th:definition "CDC Classification System for HIV-Infected Adults and Adolescents (Centers for Disease Control and Prevention. 1993 Revised Classification System for HIV Infection and Expanded Surveillance Case Definition for AIDS Among Adolescents and Adults. MMWR Recomm Rep. 1992 Dec 18;41(RR-17):1-19)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#4063fadab556271f7de499d75361caadedd86940> ;
-	th:synonym <http://www.assero.co.uk/SYN#3cecb5a4f27decabab095dbdd76ff9a79f4f188b> ;
-.
-<http://www.assero.co.uk/PT#4063fadab556271f7de499d75361caadedd86940>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Center for Disease Control and Prevention Classification System for HIV-Infected Adults and Adolescents"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C121007>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C121007"^^xsd:string ;
-	th:notation "CHILD-PUGH CLASSIFICATION"^^xsd:string ;
-	th:definition "Child-Pugh Classification (Guidance for Industry Pharmacokinetics in Patients with Impaired Hepatic Function: Study Design, Data Analysis, and Impact on Dosing and Labeling. U.S. Department of Health and Human Services; Food and Drug Administration; Center for Drug Evaluation and Research (CDER); Center for Biologics Evaluation and Research (CBER). May 2003, Clinical Pharmacology. http://www.fda.gov/downloads/Drugs/GuidanceComplianceRegulatoryInformation/Guidances/UCM072123.pdf; http://www.halaven.com/sites/default/files/ChildPugh_FlashCard.pdf)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#50cea304522085f7027784eb39e7ad4e59f1fb80> ;
-	th:synonym <http://www.assero.co.uk/SYN#791151eea273035daa4aee3f89396ebf710abdf2> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124711>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124711"^^xsd:string ;
-	th:notation "CRS-R"^^xsd:string ;
-	th:definition "JFK Coma Recovery Scale-Revised (CRS-R) (Joseph T. Giacino, Kathleen Kalmar, John Whyte. The JFK Coma Recovery Scale-Revised: Measurement Characteristics and Diagnostic Utility. Arch Phys Med Rehabil Vol 85, December 2004)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#541a488ff3573fc6807cd7cc4b0813771516e669> ;
-	th:synonym <http://www.assero.co.uk/SYN#6b2c6eb8b5a4aa693f99e6fd0ee27362f2f477b6> ;
-.
-<http://www.assero.co.uk/PT#541a488ff3573fc6807cd7cc4b0813771516e669>
-	rdf:type th:PreferredTerm ;
-	isoC:label "JFK Coma Recovery Scale-Revised"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C117997>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C117997"^^xsd:string ;
-	th:notation "ESRSA"^^xsd:string ;
-	th:definition "Extrapyramidal Symptom Rating Scale-Abbreviated (ESRS-A) (Copyright 2006 Larry Alphs, MD, PhD, Guy Chouinard, MD, All Rights Reserved)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#6a18ae963537a3356c0a7212de0fb8ca56c3bc38> ;
-	th:synonym <http://www.assero.co.uk/SYN#b35b20fd5e32e354dca2ddc153d19c0e5a2aa9cb> ;
-.
-<http://www.assero.co.uk/PT#6a18ae963537a3356c0a7212de0fb8ca56c3bc38>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Extrapyramidal Symptom Rating Scale-Abbreviated"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124707>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124707"^^xsd:string ;
-	th:notation "FHS CVD 10-YEAR RISK"^^xsd:string ;
-	th:definition "Framingham Heart Study Cardiovascular Disease 10-Year Risk Score (D'Agostino Sr RB, Vasan RS, Pencina MJ, Wolf PA, Cobain M, Massaro JM, and Kannel WB. General Cardiovascular Risk Profile for Use in Primary Care: The Framingham Heart Study. Circulation 2008; 117: 743-753)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#6f640c753df468aad1568ba835132c0012f11e39> ;
-	th:synonym <http://www.assero.co.uk/SYN#1c59fb88e9b7c45e2e6881ee17d085af1dc9f0cb> ;
-.
-<http://www.assero.co.uk/PT#6f640c753df468aad1568ba835132c0012f11e39>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Framingham Heart Study Cardiovascular Disease 10-Year Risk Score"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124710>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124710"^^xsd:string ;
-	th:notation "GCS NINDS VERSION"^^xsd:string ;
-	th:definition "Glasgow Coma Scale (GCS) The National Institute of Neurological Disorders and Stroke (NINDS) Version (Graham Teasdale and Bryan Jennett. Assessment of coma and impaired consciousness. A practical scale. Lancet. 1974 Jul 13; 2(7872):81-4)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e97cc7d9b3123ca1147f93a10fca39b5be4a6869> ;
-	th:synonym <http://www.assero.co.uk/SYN#d53584a90feebc11eea5fad2b8bda073b2fbcaef> ;
-.
-<http://www.assero.co.uk/PT#e97cc7d9b3123ca1147f93a10fca39b5be4a6869>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Glasgow Coma Scale-NINDS Version"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C102118>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C102118"^^xsd:string ;
-	th:notation "HAM-A"^^xsd:string ;
-	th:definition "The Hamilton Anxiety Rating Scale (HAM-A) (Hamilton M. The assessment of anxiety states by rating. Br J Med Psychol 1959; 32:50-55)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#80f658a1e1a37dcbdfd4506625a42e0083241b95> ;
-	th:synonym <http://www.assero.co.uk/SYN#3efe9a67f1e9a44330b6c44423d942ad891761f6> ;
-.
-<http://www.assero.co.uk/PT#80f658a1e1a37dcbdfd4506625a42e0083241b95>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hamilton Anxiety Rating Scale"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C100767>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C100767"^^xsd:string ;
-	th:notation "HAMD 17"^^xsd:string ;
-	th:definition "The Hamilton Depression Rating Scale 17-Item (HAMD 17) (Hamilton M. Development of a rating scale for primary depressive illness. Br J Soc Clin Psychol 1967; 6(4):278-96)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#eb5a0491fccc28818ff17f4be3028c544e6451e9> ;
-	th:synonym <http://www.assero.co.uk/SYN#39912faf853d4cb340e3a47d04502d7ae650bfe5> ;
-.
-<http://www.assero.co.uk/PT#eb5a0491fccc28818ff17f4be3028c544e6451e9>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hamilton Depression Rating Scale 17 Item"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C102119>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C102119"^^xsd:string ;
-	th:notation "HAMD 21"^^xsd:string ;
-	th:definition "The Hamilton Depression Rating Scale 21-Item (HAMD 21) (Hedlund and Vieweg, The Hamilton rating scale for depression. Journal of Operational Psychiatry, 1979;10(2):149-165)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#36febc5398d59ca14b926d7d527a82ce1349ee91> ;
-	th:synonym <http://www.assero.co.uk/SYN#1bff00941793a2d0cd72b0ffbf926b5ffe6329f6> ;
-.
-<http://www.assero.co.uk/PT#36febc5398d59ca14b926d7d527a82ce1349ee91>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hamilton Depression Rating Scale 21-Item"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130307>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130307"^^xsd:string ;
-	th:notation "HAMD 24"^^xsd:string ;
-	th:definition "The Hamilton Depression Rating Scale 24-Item (HAM-D24) (Clinical Psychometrics: Per Bech, MD; John Wiley & Sons, Ltd. 2012)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ee3c9f1ecd33a55e5f6dcfd9f14b89bca657d3ba> ;
-	th:synonym <http://www.assero.co.uk/SYN#c07b401cd333de56356dcce0441da78d0c939f14> ;
-.
-<http://www.assero.co.uk/PT#ee3c9f1ecd33a55e5f6dcfd9f14b89bca657d3ba>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hamilton Depression Rating Scale-24 Item"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130306>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130306"^^xsd:string ;
-	th:notation "HAMD 6 CLINICIAN VERSION"^^xsd:string ;
-	th:definition "The Hamilton Depression Rating Scale 6 - Clinician Version (HAM-D6 - Clinician Version) (Clinical Research: Rating scales in depression: limitations and pitfalls; Per Bech, MD; Copyright 2006 LLS SAS. All rights reserved)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#6a7b5edd869672bbf64da6370d7bd05d6ab00033> ;
-	th:synonym <http://www.assero.co.uk/SYN#ed99a3c6d2c1966da04072a022f9a838dd4a037f> ;
-.
-<http://www.assero.co.uk/PT#6a7b5edd869672bbf64da6370d7bd05d6ab00033>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hamilton Depression Rating Scale 6 Clinician Version"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C138332>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C138332"^^xsd:string ;
-	th:notation "HAS-BLED"^^xsd:string ;
-	th:definition "HAS-BLED Bleeding Risk Score (HAS-BLED) (This image was published in Chest, 138 (5), Pisters R, Lane DA, Nieuwlaat R, de Vos CB, Crijns HJ, Lip GY, A Novel User-Friendly Score (HAS-BLED) To Assess 1-Year Risk of Major Bleeding in Patients With Atrial Fibrillation: The Euro Heart Survey, Copyright Elsevier (2010). http://www.sciencedirect.com/science/journal/00123692)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#067868b6968f670604b782dce727423184751d06> ;
-	th:synonym <http://www.assero.co.uk/SYN#cd8d09fb0760a6e22b8458fe7dc046b219ce8ce5> ;
-.
-<http://www.assero.co.uk/PT#067868b6968f670604b782dce727423184751d06>
-	rdf:type th:PreferredTerm ;
-	isoC:label "HAS-BLED Bleeding Risk Score"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130308>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130308"^^xsd:string ;
-	th:notation "IDS-C"^^xsd:string ;
-	th:definition "Inventory of Depressive Symptomatology - Clinician-Rated (IDS-C) (Rush, A.J., Giles, D.E., Schlesser, M.A., Fulton, C.L.,Weissenburger, J.E. and Burns, C.T. The Inventory of Depressive Symptomatology (IDS): Preliminary findings. Psychiatry Research, 18:65-87, 1986)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c21a95557b2cf0eaa8a589bc80873696826accd8> ;
-	th:synonym <http://www.assero.co.uk/SYN#3e6c21343814dc9f5df5f9367e8c7f25dc258494> ;
-.
-<http://www.assero.co.uk/PT#c21a95557b2cf0eaa8a589bc80873696826accd8>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Inventory of Depressive Symptomatology Clinician-Rated Version"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130310>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130310"^^xsd:string ;
-	th:notation "KDPI"^^xsd:string ;
-	th:definition "Kidney Donor Profile Index (KDPI) (OPTN/UNOS. A guide to calculating and interpreting the Kidney Donor Profile Index (KDPI). [Accessed April 18, 2016]. Available at: https://optn.transplant.hrsa.gov/media/1512/guide_to_calculating_interpreting_kdpi.pdf. Rao PS, Schaubel DE, Guidinger MK, et al. A comprehensive risk quantification score for deceased donor kidneys: the kidney donor risk index. Transplantation 2009 Jul 27;88(2):231-6)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#296a0cee134c600ffde5c650894840f4cdca4311> ;
-	th:synonym <http://www.assero.co.uk/SYN#23198c4dee33452ea0b72fd0aebb75ccbe53950a> ;
-.
-<http://www.assero.co.uk/PT#296a0cee134c600ffde5c650894840f4cdca4311>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Kidney Donor Profile Index"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C138333>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C138333"^^xsd:string ;
-	th:notation "LPPS SCALE"^^xsd:string ;
-	th:definition "The Lansky Play-Performance Status Scale (LPSS) (Lansky SB, List MA, Lansky LL, Ritter-Sterr C, Miller DR. The measurement of performance in childhood cancer patients. Cancer. 1987 Oct 1;60(7):1651-6)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5d4487bc58f35fc56c269d19e92244af4bf10231> ;
-	th:synonym <http://www.assero.co.uk/SYN#d5554dc9cc607f43b2bd06a32abd84ef25fa0747> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C121008>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C121008"^^xsd:string ;
-	th:notation "MELD"^^xsd:string ;
-	th:definition "Model for End Stage Liver Disease (MELD) (Malinchoc M, Kamath PS, Gordon FD, Peine CJ, Rank J, ter Borg PC (April 2000). A model to predict poor survival in patients undergoing transjugular intrahepatic portosystemic shunts. Hepatology 31 (4): 864-71)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c96370b9fcf1d955b1e20c07c3c42c91f09507d1> ;
-	th:synonym <http://www.assero.co.uk/SYN#0e99320c31007df21785ae447d3ba128c7f912b2> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C119105>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C119105"^^xsd:string ;
-	th:notation "NHLBI CAD GRADE"^^xsd:string ;
-	th:definition "Coronary Artery Dissection NHLBI Grade (Coronary Artery angiographic changes after PTCA: Manual of Operations NHBLI PTCA Registry 1985-6:9)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c2fce8ab741c870db812a362d6d74a291a1a6677> ;
-	th:synonym <http://www.assero.co.uk/SYN#a82c74eb57f34714e2a0af07aef7aa8c612b92de> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C121009>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C121009"^^xsd:string ;
-	th:notation "NSA-16"^^xsd:string ;
-	th:definition "Negative Symptom Assessment-16 (NSA-16) (Version 2.0, Copyright 2006, Larry Alphs, MD, PhD, All Right Reserved)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e6e75a2dfb368841ccaaa036a0159d4283ba7bbf> ;
-	th:synonym <http://www.assero.co.uk/SYN#0bfc89bb6910a803542a0d24740e59a78331ee71> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C132531>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C132531"^^xsd:string ;
-	th:notation "NSAA"^^xsd:string ;
-	th:definition "North Star Ambulatory Assessment (NSAA) (Copyright the North Star Clinical Network UK. Scott E, Eagle M, Mayhew A, Freeman J, Main M, Sheehan J, Manzur A, Muntoni F; North Star Clinical Network for Paediatric Neuromuscular Disease. Development of a functional assessment scale for ambulatory boys with Duchenne muscular dystrophy. Physiother Res Int. 2012 Jun;17(2):101-9. The support of Muscular Dystrophy United Kingdom in developing the North Star Ambulatory Assessment is gratefully acknowledged)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d389933a48101520035e77ec9189cc1ba02f618c> ;
-	th:synonym <http://www.assero.co.uk/SYN#9d193e7c839d89c651fb0def5eff727919784aad> ;
-.
-<http://www.assero.co.uk/PT#d389933a48101520035e77ec9189cc1ba02f618c>
-	rdf:type th:PreferredTerm ;
-	isoC:label "North Star Ambulatory Assessment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124712>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124712"^^xsd:string ;
-	th:notation "PANSS"^^xsd:string ;
-	th:definition "Positive and Negative Syndrome Scale (PANSS) (Copyright 1992 Multi-Health Systems Inc. All rights reserved)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c463765f870dfd8c662299817784b8019a9e1fb7> ;
-	th:synonym <http://www.assero.co.uk/SYN#e8742e078ef57fa7a4ba4378f1996d9afba3090c> ;
-.
-<http://www.assero.co.uk/PT#c463765f870dfd8c662299817784b8019a9e1fb7>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Positive and Negative Syndrome Scale"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C135734>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C135734"^^xsd:string ;
-	th:notation "PASI"^^xsd:string ;
-	th:definition "Psoriasis Area and Severity Index (PASI) (Fredriksson T, Pettersson U. Severe psoriasis--Oral Therapy with a New Retinoid. Dermatologica. 1978;157(4):238-244)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#06fd285a9e88c5a91b643bec52c0cdcd5c6a9ac7> ;
-	th:synonym <http://www.assero.co.uk/SYN#4435a2c7a08cadac8bb4a76f7c685735f94fd117> ;
-.
-<http://www.assero.co.uk/PT#06fd285a9e88c5a91b643bec52c0cdcd5c6a9ac7>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Psoriasis Area and Severity Index"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130309>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130309"^^xsd:string ;
-	th:notation "QIDS-C"^^xsd:string ;
-	th:definition "Quick Inventory of Depressive Symptomatology - Clinician-Rated (QIDS-C) (Rush AJ, Trivedi MH, Ibrahim HM, Carmody TJ, Arnow B, Klein DN, Markowitz JC, Ninan PT, Kornstein S, Manber R, Thase ME, Kocsis JH, Keller MB. The 16-item Quick Inventory of Depressive Symptomatology (QIDS) Clinician Rating (QIDS-C) and Self-Report (QIDS-SR): A psychometric evaluation in patients with chronic major depression. Biological Psychiatry, 54:573-583, 2003)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2f5272f9e955cb626ac0cb356c828cc0aef187f1> ;
-	th:synonym <http://www.assero.co.uk/SYN#6dc0d9364a0d11450cc1b6e117efaec818a4d5dd> ;
-.
-<http://www.assero.co.uk/PT#2f5272f9e955cb626ac0cb356c828cc0aef187f1>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Quick Inventory of Depressive Symptomatology Clinician-Rated Version"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124708>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124708"^^xsd:string ;
-	th:notation "REYNOLDS CVD 10-YEAR RISK"^^xsd:string ;
-	th:definition "Reynolds Cardiovascular Disease 10-Year Risk Score (Ridker PM, Buring JE, Rifai N, Cook NR. Development and Validation of Improved Algorithms for the Assessment of Global Cardiovascular Risk in Women: The Reynolds Risk Score. Jama 2007; 297: 611-619), (Ridker PM, Paynter NP, Rifai N, Gaziano JM, Cook NR. C-Reactive Protein and Parental History Improve Global Cardiovascular Risk Prediction: The Reynolds Risk Score for Men. Circulation2008; 118(22): 2243-2251)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#40f50900a7c7c1974d7c1a0d1b834b8710af859e> ;
-	th:synonym <http://www.assero.co.uk/SYN#84c04decc73abacc9d72cf35ce257800352e5c04> ;
-.
-<http://www.assero.co.uk/PT#40f50900a7c7c1974d7c1a0d1b834b8710af859e>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Reynolds Cardiovascular Disease 10-Year Risk Score"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124703>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124703"^^xsd:string ;
-	th:notation "TANNER SCALE BOY"^^xsd:string ;
-	th:definition "Tanner Scale Boy (Marshall WA, Tanner JM. Variations in pattern of pubertal changes in boys. Arch Dis Child 1970 Feb;45(239):13-23)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#83d82d6b25368405057550a89dcd2b3126956a11> ;
-	th:synonym <http://www.assero.co.uk/SYN#818204e3dced90b022cc73228f7867e36827267b> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124704>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124704"^^xsd:string ;
-	th:notation "TANNER SCALE GIRL"^^xsd:string ;
-	th:definition "Tanner Scale Girl (Marshall WA, Tanner JM. Variations in pattern of pubertal changes in girls. Arch Dis Child 1969 Jun; 44(235): 291-303)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#1d29baa7bf3ba7c5ddb09499bf2a18759e77d85f> ;
-	th:synonym <http://www.assero.co.uk/SYN#c5bfcb1a733c536dac477fcc3656bc2761c1dba0> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C119104>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C119104"^^xsd:string ;
-	th:notation "TIMI THROMBUS GRADE"^^xsd:string ;
-	th:definition "Coronary Thrombus TIMI Grade (TIMI Definitions for Commonly Used Terms in Clinical Trials. Available at http://www.timi.org/wp-content/uploads/2010/10/TIMI-Definitions.pdf. Accessed November 30, 2013)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#22d1b27644a78887e2379fe3211e75c3d2ddfe41> ;
-	th:synonym <http://www.assero.co.uk/SYN#7dd279c35f29cbbb8f843b245df6a7ab47a64052> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C130305>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C130305"^^xsd:string ;
-	th:notation "VLERS"^^xsd:string ;
-	th:definition "Vignos Lower Extremity Rating Scale (VLERS) (Vignos PJ, Spencer CE, Archibald KC. (1963) Management of progressive muscular dystrophy in childhood.JAMA 184:389-96. Brooke MG, Griggs RC, Mendell JR, Fenichel, GM, Shumate JB and Peggegrino RJ (1981). Clinical trial in duchenne dystrophy. I The Design of the Protocol. Muscle and Nerve: 4:186-197)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#14f20a7a8e2d493bf0fb6ea29ec9717491c33284> ;
-	th:synonym <http://www.assero.co.uk/SYN#691306e9abf76feabbfcb6cb8be7070760858021> ;
-.
-<http://www.assero.co.uk/PT#14f20a7a8e2d493bf0fb6ea29ec9717491c33284>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Vignos Lower Extremity Rating Scale"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124709>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124709"^^xsd:string ;
-	th:notation "WEST HAVEN HEPATIC ENCEPHALOPATHY GRADE"^^xsd:string ;
-	th:definition "West Haven Hepatic Encephalopathy Grade (Blei AT, Cordoba J. Hepatic Encephalopathy. Am J Gastroenterol. 2001 Jul. 96(7):1968-76)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ffd9675874a53b0dbf42b43f7ef14a3d9d1acb88> ;
-	th:synonym <http://www.assero.co.uk/SYN#b4c9035a6ac90acaa11ce20a9c978e6c661d3603> ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124713>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124713"^^xsd:string ;
-	th:notation "WHO HIV STAGING FOR ADULTS AND ADOLESCENTS"^^xsd:string ;
-	th:definition "WHO Clinical Staging of HIV/AIDS for Adults and Adolescents (Copyright World Health Organization 2007, World Health Organization. WHO case definitions of HIV for surveillance and revised clinical staging and immunological classification of HIV-related disease in adults and children; 2007. Retrieved from http://www.who.int/hiv/pub/vct/hivstaging/en/)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3102bc4dc6e2fecbe6090ae2236307b24872c950> ;
-	th:synonym <http://www.assero.co.uk/SYN#faad7ef5be841bb149d8257c60a418d99b9566fa> ;
-.
-<http://www.assero.co.uk/PT#3102bc4dc6e2fecbe6090ae2236307b24872c950>
-	rdf:type th:PreferredTerm ;
-	isoC:label "World Health Organization Clinical Staging of HIV/AIDS for Adults and Adolescents"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C118971/V1#C118971_C124714>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C124714"^^xsd:string ;
-	th:notation "WHO HIV STAGING FOR CHILDREN"^^xsd:string ;
-	th:definition "WHO Clinical Staging of HIV/AIDS for Children (Copyright World Health Organization 2007, World Health Organization. WHO case definitions of HIV for surveillance and revised clinical staging and immunological classification of HIV-related disease in adults and children; 2007. Retrieved from http://www.who.int/hiv/pub/vct/hivstaging/en/)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0af1c9112fcc27d6cb636f6f80117324b460f1fa> ;
-	th:synonym <http://www.assero.co.uk/SYN#e17df09b81d9459bac7bc009b98b40abcf75fc81> ;
-.
-<http://www.assero.co.uk/PT#0af1c9112fcc27d6cb636f6f80117324b460f1fa>
-	rdf:type th:PreferredTerm ;
-	isoC:label "World Health Organization Clinical Staging of HIV/AIDS for Children"^^xsd:string ;
 .
 <http://www.assero.co.uk/PT#67de85417e7d6d9660f1e62d6173e5d9489d5603>
 	rdf:type th:PreferredTerm ;

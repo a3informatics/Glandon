@@ -26,11 +26,8 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
-	th:isTopConceptReference :TH_TCR3 ;
-	th:isTopConceptReference :TH_TCR4 ;
-	th:isTopConceptReference :TH_TCR5 ;
 	th:isTopConceptReference :TH_TCR6 ;
-	th:isTopConceptReference :TH_TCR8 ;
+	th:isTopConceptReference :TH_TCR7 ;
 	th:isTopConceptReference :TH_TCR9 ;
 	th:isTopConcept <http://www.acme-pharma.com/SN000001/V1#SN000001> ;
 	th:isTopConcept <http://www.acme-pharma.com/C66767/V1#C66767> ;
@@ -76,33 +73,6 @@
 	bo:reference <http://www.acme-pharma.com/C66767/V1#C66767> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR3
-	rdf:type bo:TcReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/C66767/V1#C66767> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:TH_TCR4
-	rdf:type bo:TcReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/C66767/V1#C66767> ;
-	bo:localLabel ""^^xsd:string ;
-.
-:TH_TCR5
-	rdf:type bo:TcReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "5"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/C66767/V1#C66767> ;
-	bo:localLabel ""^^xsd:string ;
-.
 :TH_TCR6
 	rdf:type bo:TcReference ;
 	isoC:label ""^^xsd:string ;
@@ -112,12 +82,12 @@
 	bo:reference <http://www.acme-pharma.com/SN000005/V1#SN000005> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR8
+:TH_TCR7
 	rdf:type bo:TcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "8"^^xsd:positiveInteger ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
 	bo:reference <http://www.acme-pharma.com/C71113/V1#C71113> ;
 	bo:localLabel ""^^xsd:string ;
 .
@@ -289,15 +259,10 @@
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "NP000123P"^^xsd:string ;
+	th:identifier "C66767"^^xsd:string ;
 	th:notation "ACN"^^xsd:string ;
 	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49504> ;
-	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49505> ;
-	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49501> ;
-	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49502> ;
-	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49503> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
@@ -308,15 +273,17 @@
 	th:narrower <http://www.cdisc.org/C66767/V56#C66767_C150826> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;
 	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
-	th:identifier "NP000124P"^^xsd:string ;
 	th:notation "ACN_01"^^xsd:string ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49503> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49504> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49505> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49501> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49502> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f> ;
 	isoC:label "Action Taken with Study Treatment Subset 02"^^xsd:string ;
-	th:identifier "NP000125P"^^xsd:string ;
 	th:notation "ACN_02"^^xsd:string ;
 	th:preferredTerm <http://www.assero.co.uk/PT#baea87d85ad624c31b53ab9e877686667742088f> ;
 	isoC:label "Action Taken with Study Treatment Subset 03"^^xsd:string ;
-	th:identifier "NP000126P"^^xsd:string ;
 	th:notation "ACN_03"^^xsd:string ;
 	th:preferredTerm <http://www.assero.co.uk/PT#1f9e38372c5992bf3fe241a09f78726c3864181e> ;
 .
@@ -334,21 +301,26 @@
 .
 <http://www.acme-pharma.com/C66767/V1#C66767_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "NP000123P"^^xsd:string ;
+	isoI:identifier "C66767"^^xsd:string ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
-	isoI:identifier "NP000124P"^^xsd:string ;
-	isoI:identifier "NP000125P"^^xsd:string ;
-	isoI:identifier "NP000126P"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49503>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	th:identifier "C49503"^^xsd:string ;
+	th:notation "DOSE INCREASED"^^xsd:string ;
+	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cdb61a440dff1686bc210a2eaabbee71b93aff35> ;
 .
 <http://www.acme-pharma.com/C66767/V1#C66767_C49504>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49504"^^xsd:string ;
 	th:notation "DOSE NOT CHANGED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was maintained. (NCI)"^^xsd:string ;
@@ -359,8 +331,6 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49505"^^xsd:string ;
 	th:notation "DOSE REDUCED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
@@ -371,8 +341,6 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49501"^^xsd:string ;
 	th:notation "DRUG INTERRUPTED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
@@ -383,25 +351,11 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49502"^^xsd:string ;
 	th:notation "DRUG WITHDRAWN"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified through termination of a prescribed regimen of medication. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1> ;
-.
-<http://www.acme-pharma.com/C66767/V1#C66767_C49503>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C49503"^^xsd:string ;
-	th:notation "DOSE INCREASED"^^xsd:string ;
-	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#cdb61a440dff1686bc210a2eaabbee71b93aff35> ;
 .
 <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f>
 	rdf:type th:PreferredTerm ;
@@ -591,14 +545,106 @@
 	th:notation "FREQ"^^xsd:string ;
 	th:definition "The terminology that includes terms pertaining to frequency within CDISC."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64508> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64503> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64516> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64511> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64524> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64537> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64507> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64502> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64515> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C71129> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64510> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64523> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64536> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C71124> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64506> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64519> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64501> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64514> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64527> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64530> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64505> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64518> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64500> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64513> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64521> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64534> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64509> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64504> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64517> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64512> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64525> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64538> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64520> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C64533> ;
+	th:narrower <http://www.cdisc.org/C71113/V6#C71113_C53279> ;
+	th:narrower <http://www.cdisc.org/C71113/V17#C71113_C71325> ;
+	th:narrower <http://www.cdisc.org/C71113/V22#C71113_C64954> ;
+	th:narrower <http://www.cdisc.org/C71113/V26#C71113_C64636> ;
+	th:narrower <http://www.cdisc.org/C71113/V27#C71113_C64496> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98857> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98852> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98855> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98850> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98858> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98853> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98849> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98860> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98856> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98851> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C64526> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98859> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98854> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C85552> ;
+	th:narrower <http://www.cdisc.org/C71113/V28#C71113_C98861> ;
+	th:narrower <http://www.cdisc.org/C71113/V31#C71113_C64498> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C64531> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C67069> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C103390> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C64528> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C103389> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C64535> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C64529> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C89788> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C64497> ;
+	th:narrower <http://www.cdisc.org/C71113/V33#C71113_C71127> ;
+	th:narrower <http://www.cdisc.org/C71113/V34#C71113_C89789> ;
+	th:narrower <http://www.cdisc.org/C71113/V39#C71113_C116149> ;
+	th:narrower <http://www.cdisc.org/C71113/V39#C71113_C74924> ;
+	th:narrower <http://www.cdisc.org/C71113/V49#C71113_C25473> ;
+	th:narrower <http://www.cdisc.org/C71113/V52#C71113_C65134> ;
+	th:narrower <http://www.cdisc.org/C71113/V52#C71113_C64576> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139180> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139183> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C89791> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139179> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139181> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139177> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C89790> ;
+	th:narrower <http://www.cdisc.org/C71113/V53#C71113_C139182> ;
+	th:narrower <http://www.cdisc.org/C71113/V56#C71113_C17998> ;
+	th:narrower <http://www.cdisc.org/C71113/V58#C71113_C156502> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C64593> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161333> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C64499> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161336> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C160957> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161332> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C64596> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161335> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C154484> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C64595> ;
+	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161334> ;
+	th:narrower <http://www.cdisc.org/C71113/V61#C71113_C139178> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1> ;
+	isoC:label "Frequency Subset 01"^^xsd:string ;
+	th:notation "FREQ_01"^^xsd:string ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_S001888> ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_S001887> ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_S001886> ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_C70543> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1> ;
-	isoC:label "Frequency Subset 01"^^xsd:string ;
-	th:identifier "NP000127P"^^xsd:string ;
-	th:notation "FREQ_01"^^xsd:string ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
 .
 <http://www.acme-pharma.com/C71113/V1#C71113_RS>
@@ -620,14 +666,15 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
-	isoI:identifier "NP000127P"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Frequency"^^xsd:string ;
 .
 <http://www.acme-pharma.com/C71113/V1#C71113_S001888>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "S001888"^^xsd:string ;
 	th:notation "AT LEAST WEEKLY"^^xsd:string ;
 	th:definition "At least weekly."^^xsd:string ;
@@ -642,8 +689,6 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "S001887"^^xsd:string ;
 	th:notation "AT LEAST MONTHLY"^^xsd:string ;
 	th:definition "At least monthly."^^xsd:string ;
@@ -658,8 +703,6 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "S001886"^^xsd:string ;
 	th:notation "AT LEAST DAILY"^^xsd:string ;
 	th:definition "At least daily."^^xsd:string ;
@@ -674,17 +717,11 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C70543"^^xsd:string ;
 	th:notation "NEVER"^^xsd:string ;
 	th:definition "Not ever; at no time in the past."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#80c3052d33ccdee15ffaaa110c5c39072495fe63> ;
-.
-<http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Frequency"^^xsd:string ;
 .
 <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0>
 	rdf:type th:PreferredTerm ;
@@ -703,36 +740,10 @@
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "NP000128P"^^xsd:string ;
+	th:identifier "C99079"^^xsd:string ;
 	th:notation "EPOCH"^^xsd:string ;
 	th:definition "The name of the EPOCH."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C102255> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C99158> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C16032> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C102256> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C98779> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C48262> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C101526> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_C42872> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001310> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001309> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001306> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001305> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001304> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001301> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001300> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001298> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001297> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001296> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001293> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001292> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001291> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001289> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S001288> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S000161> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S000157> ;
-	th:narrower <http://www.acme-pharma.com/C99079/V1#C99079_S000153> ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C98779> ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C42872> ;
 	th:narrower <http://www.cdisc.org/C99079/V28#C99079_C48262> ;
@@ -761,419 +772,11 @@
 .
 <http://www.acme-pharma.com/C99079/V1#C99079_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "NP000128P"^^xsd:string ;
+	isoI:identifier "C99079"^^xsd:string ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C102255>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C102255"^^xsd:string ;
-	th:notation "BLINDED TREATMENT"^^xsd:string ;
-	th:definition "A period in a clinical study during which subjects receive blinded therapeutic treatment."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#45bb595d8de04d20f080b1879d86568b236f6a40> ;
-.
-<http://www.assero.co.uk/PT#45bb595d8de04d20f080b1879d86568b236f6a40>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Blinded Treatment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C99158>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C99158"^^xsd:string ;
-	th:notation "FOLLOW-UP"^^xsd:string ;
-	th:definition "A period in a clinical study during which information about the health status of an individual is obtained after study procedures and treatments have concluded."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a931af11034dd650890d56975970f881b201f504> ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C16032>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C16032"^^xsd:string ;
-	th:notation "LONG-TERM FOLLOW-UP"^^xsd:string ;
-	th:definition "A period in a clinical study during which information about the health status of an individual is obtained long after study procedures and treatments have concluded."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#aad16a255d1e42538cc83e7d8ba002768e31f86a> ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C102256>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C102256"^^xsd:string ;
-	th:notation "OPEN LABEL TREATMENT"^^xsd:string ;
-	th:definition "A period in a clinical study during which subjects receive open label therapeutic treatment."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a224bfc060fdc949d58ac0a49faccb09899345cb> ;
-.
-<http://www.assero.co.uk/PT#a224bfc060fdc949d58ac0a49faccb09899345cb>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Open Label Treatment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C98779>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C98779"^^xsd:string ;
-	th:notation "RUN-IN"^^xsd:string ;
-	th:definition "A period in a clinical study that occurs before the commencement of the primary clinical study investigation, during which subjects may be assessed for suitability in the clinical study, withdrawn from existing therapy, trained in study methodology or evaluated for any other protocol-specified reason."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9cd30de0c0fd6b4e17d2af944c2806786263ce64> ;
-.
-<http://www.assero.co.uk/PT#9cd30de0c0fd6b4e17d2af944c2806786263ce64>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Run-In"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C48262>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C48262"^^xsd:string ;
-	th:notation "SCREENING"^^xsd:string ;
-	th:definition "A period in a clinical study during which subjects are evaluated for participation in the study."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#50783a7176132d9652b0dc8ce197ed67a97a896b> ;
-.
-<http://www.assero.co.uk/PT#50783a7176132d9652b0dc8ce197ed67a97a896b>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Screening"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C101526>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C101526"^^xsd:string ;
-	th:notation "TREATMENT"^^xsd:string ;
-	th:definition "A period in a clinical study during which subjects receive therapeutic treatment."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
-.
-<http://www.assero.co.uk/PT#23c859f4f777dc72aa029df6686fccf5faec11cf>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Treatment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_C42872>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "C42872"^^xsd:string ;
-	th:notation "WASHOUT"^^xsd:string ;
-	th:definition "A period of time during a clinical study when a participant is taken off of a study drug or other medication in order to eliminate the effects of the treatment."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#401cd30bfca3c71167624522c5563e075f731d57> ;
-.
-<http://www.assero.co.uk/PT#401cd30bfca3c71167624522c5563e075f731d57>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Washout"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001310>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001310"^^xsd:string ;
-	th:notation "SECOND WASH-OUT"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a5d282c0ede685987fa6bbe460dd51f8dd7067eb> ;
-.
-<http://www.assero.co.uk/PT#a5d282c0ede685987fa6bbe460dd51f8dd7067eb>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second Wash-Out"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001309>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001309"^^xsd:string ;
-	th:notation "SECOND TREATMENT"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e3961233192a57eb7a1275462c544a8770684f6f> ;
-.
-<http://www.assero.co.uk/PT#e3961233192a57eb7a1275462c544a8770684f6f>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second Treatment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001306>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001306"^^xsd:string ;
-	th:notation "SECOND SCREENING"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#09de8d8e9ea11083fffa7371ddcedef4719504c4> ;
-.
-<http://www.assero.co.uk/PT#09de8d8e9ea11083fffa7371ddcedef4719504c4>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second Screening"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001305>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001305"^^xsd:string ;
-	th:notation "SECOND RUN-IN"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8e6387b4433c45df9c1ee56ad70c926094f5de22> ;
-.
-<http://www.assero.co.uk/PT#8e6387b4433c45df9c1ee56ad70c926094f5de22>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second Run-In"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001304>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001304"^^xsd:string ;
-	th:notation "SECOND FOLLOW-UP"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ff2ecb415274d02e5cf8f9f26dd8d7b7c9b3b538> ;
-.
-<http://www.assero.co.uk/PT#ff2ecb415274d02e5cf8f9f26dd8d7b7c9b3b538>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second Follow-Up"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001301>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001301"^^xsd:string ;
-	th:notation "SAFETY FOLLOW-UP"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c70691534dcd95d066878d3699b6bd7b3a68c122> ;
-.
-<http://www.assero.co.uk/PT#c70691534dcd95d066878d3699b6bd7b3a68c122>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Safety Follow-up"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001300>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001300"^^xsd:string ;
-	th:notation "PRIMARY SERIES"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c507a19785aed491555f40c83e4c46375e23f377> ;
-.
-<http://www.assero.co.uk/PT#c507a19785aed491555f40c83e4c46375e23f377>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Primary Series"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001298>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001298"^^xsd:string ;
-	th:notation "IMMUNOGENICITY FOLLOW-UP"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fd57dbe84aa45694f67058b13142e181f58cebae> ;
-.
-<http://www.assero.co.uk/PT#fd57dbe84aa45694f67058b13142e181f58cebae>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Immunogenicity Follow-up"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001297>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001297"^^xsd:string ;
-	th:notation "FIRST WASH-OUT"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#740add4f4cb5ab63a292b12773f1be501e1b2643> ;
-.
-<http://www.assero.co.uk/PT#740add4f4cb5ab63a292b12773f1be501e1b2643>
-	rdf:type th:PreferredTerm ;
-	isoC:label "First Wash-Out"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001296>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001296"^^xsd:string ;
-	th:notation "FIRST TREATMENT"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#4c42f45e801f0f87da9b6b8d2903c9b951491222> ;
-.
-<http://www.assero.co.uk/PT#4c42f45e801f0f87da9b6b8d2903c9b951491222>
-	rdf:type th:PreferredTerm ;
-	isoC:label "First Treatment"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001293>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001293"^^xsd:string ;
-	th:notation "FIRST SCREENING"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e9bfc401a9d6ade422fcb2f91963399fc2b6682d> ;
-.
-<http://www.assero.co.uk/PT#e9bfc401a9d6ade422fcb2f91963399fc2b6682d>
-	rdf:type th:PreferredTerm ;
-	isoC:label "First Screening"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001292>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001292"^^xsd:string ;
-	th:notation "FIRST RUN-IN"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#760e29bab8384d2b163cf97e6b763fb6a9dc9fac> ;
-.
-<http://www.assero.co.uk/PT#760e29bab8384d2b163cf97e6b763fb6a9dc9fac>
-	rdf:type th:PreferredTerm ;
-	isoC:label "First Run-In"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001291>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001291"^^xsd:string ;
-	th:notation "FIRST FOLLOW-UP"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#dcf7740affdd9bb3c34835ea415b252c2dbd7c98> ;
-.
-<http://www.assero.co.uk/PT#dcf7740affdd9bb3c34835ea415b252c2dbd7c98>
-	rdf:type th:PreferredTerm ;
-	isoC:label "First Follow-Up"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001289>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001289"^^xsd:string ;
-	th:notation "COMPLETION"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2ff255684a2277f806fcebf3fe338ed27857f350> ;
-.
-<http://www.assero.co.uk/PT#2ff255684a2277f806fcebf3fe338ed27857f350>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Completion"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S001288>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S001288"^^xsd:string ;
-	th:notation "BOOSTER PHASE"^^xsd:string ;
-	th:definition "A distinguishable part, a stage in a series of events or in a process of development, e.g. any of the varying aspects or stages in course of a disease; a fraction of a cycle that maintain, extend or increase the immune response."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#16cefab436289313490094423c3d72ece1575beb> ;
-.
-<http://www.assero.co.uk/PT#16cefab436289313490094423c3d72ece1575beb>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Booster Phase"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S000161>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S000161"^^xsd:string ;
-	th:notation "SINGLE BLIND"^^xsd:string ;
-	th:definition "Not defined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#18d7296824baae26b7c0c7dc8ea9a4473142c5ea> ;
-.
-<http://www.assero.co.uk/PT#18d7296824baae26b7c0c7dc8ea9a4473142c5ea>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Single Blind"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S000157>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S000157"^^xsd:string ;
-	th:notation "EXTENSION PHASE"^^xsd:string ;
-	th:definition "The extension of a distinguishable part, a stage in a series of events or in a process of development, e.g. any of the varying aspects or stages in course of a disease; a fraction of a cycle."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#41c4f47ab135f18df80785c0881f157fa315e2db> ;
-.
-<http://www.assero.co.uk/PT#41c4f47ab135f18df80785c0881f157fa315e2db>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Extension Phase"^^xsd:string ;
-.
-<http://www.acme-pharma.com/C99079/V1#C99079_S000153>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "S000153"^^xsd:string ;
-	th:notation "DOUBLE BLIND"^^xsd:string ;
-	th:definition "The baseline for the double blind period."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#09eea406ca29abdf79cfd81f35845141bc0f9e0a> ;
-.
-<http://www.assero.co.uk/PT#09eea406ca29abdf79cfd81f35845141bc0f9e0a>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Double Blind"^^xsd:string ;
 .
 <http://www.assero.co.uk/PT#2c5dd77c7fad36918bfc17bd58ac4f9cc27c04d1>
 	rdf:type th:PreferredTerm ;
