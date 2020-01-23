@@ -70,6 +70,17 @@ describe Import::STFOClasses do
     expect(object.subset?).to eq(false)    
   end
 
+  it "subset_of_extension?" do
+    extensions = {"XXX" => "XXX", "YYY" => "YYY"} # Keys should be stirngs not symbols
+    object = Import::STFOClasses::STFOCodeList.new
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something subset 01")
+    object.identifier = "XXX"
+    expect(object.subset_of_extension?(extensions)).to eq(true)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something subset 01")
+    object.identifier = "XXX1"
+    expect(object.subset_of_extension?(extensions)).to eq(false)    
+  end
+
   it "extension? I" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"

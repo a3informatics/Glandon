@@ -64,6 +64,25 @@ module Import::STFOClasses
       nil
     end
 
+    def to_extension(ct)
+      # @todo Extending unextensible
+      new_narrower = []
+      ref_ct = reference(ct)
+      self.narrower.each do |child|
+        # @todo CDISC code from another 
+        next if NciThesaurusUtility.c_code?(self.identifier)
+        new_narrower << child
+      end
+      ref_ct.narrower.each do |child|
+        new_narrower << child
+      end
+      self.narrower = new_narrower
+      self
+    rescue => e
+      add_error("Exception in to_extension, identifier '#{self.identifier}'.")
+      nil
+    end
+
     # Subset? Is the entry a subset code list?
     #
     # @return [Boolean] true if a subset, false otherwise
@@ -71,6 +90,9 @@ module Import::STFOClasses
       self.preferred_term.label.upcase.split(/[^[[:word:]]]+/).include? "SUBSET"
     end
 
+    # Subset of Extension? Is the entry a subset of an extension code list?
+    #
+    # @return [Boolean] true if a subset, false otherwise
     def subset_of_extension?(extensions)
       subset? && extensions.key?(self.identifier)
     end
@@ -116,26 +138,6 @@ module Import::STFOClasses
       self
     rescue => e
       add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
-      nil
-    end
-
-    def to_extension(ct)
-      new_narrower = []
-      ref_ct = reference(ct)
-      #self.identifier = Thesaurus::ManagedConcept.new_identifier
-      #self.has_identifier.identifier = self.identifier
-      self.narrower.each do |child|
-        # @todo CDISC code from another 
-        next if NciThesaurusUtility.c_code?(self.identifier)
-        new_narrower << child
-      end
-      ref_ct.narrower.each do |child|
-        new_narrower << child
-      end
-      self.narrower = new_narrower
-      self
-    rescue => e
-      add_error("Exception in to_extension, identifier '#{self.identifier}'.")
       nil
     end
 
