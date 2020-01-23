@@ -73,23 +73,17 @@
 	th:notation "ACN"^^xsd:string ;
 	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
-	th:narrower <http://www.cdisc.org/C66767/V56#C66767_C17998> ;
-	th:narrower <http://www.cdisc.org/C66767/V56#C66767_C150826> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;
-	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
-	th:notation "ACN_01"^^xsd:string ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49503> ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49504> ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49505> ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49501> ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49502> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_SC78728> ;
 	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C48660> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C17998> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;
+	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
+	th:notation "ACN_01"^^xsd:string ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f> ;
 	isoC:label "Action Taken with Study Treatment Subset 03"^^xsd:string ;
 	th:notation "ACN_03"^^xsd:string ;
@@ -119,6 +113,8 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49503"^^xsd:string ;
 	th:notation "DOSE INCREASED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
@@ -129,6 +125,8 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49504"^^xsd:string ;
 	th:notation "DOSE NOT CHANGED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was maintained. (NCI)"^^xsd:string ;
@@ -139,6 +137,8 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49505"^^xsd:string ;
 	th:notation "DOSE REDUCED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
@@ -149,6 +149,8 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49501"^^xsd:string ;
 	th:notation "DRUG INTERRUPTED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
@@ -159,16 +161,37 @@
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C49502"^^xsd:string ;
 	th:notation "DRUG WITHDRAWN"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified through termination of a prescribed regimen of medication. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1> ;
 .
+<http://www.acme-pharma.com/C66767/V1#C66767_SC78728>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
+	th:identifier "SC78728"^^xsd:string ;
+	th:notation "MULTIPLE"^^xsd:string ;
+	th:definition "More than one. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bfd82eb21826f62d7a9bbbd3fd0311e6a273a1d8> ;
+	th:synonym <http://www.assero.co.uk/SYN#4e1c7aa595218e4d840b37a9abe463bcd6c67a2c> ;
+	th:synonym <http://www.assero.co.uk/SYN#d4fc02e91a9c17cb1726db59c5832414c4d188ac> ;
+.
+<http://www.assero.co.uk/PT#bfd82eb21826f62d7a9bbbd3fd0311e6a273a1d8>
+	rdf:type th:PreferredTerm ;
+	isoC:label "MULTIPLE"^^xsd:string ;
+.
 <http://www.acme-pharma.com/C66767/V1#C66767_C48660>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
 	th:identifier "C48660"^^xsd:string ;
 	th:notation "NOT APPLICABLE"^^xsd:string ;
 	th:definition "Determination of a value is not relevant in the current context. (NCI)"^^xsd:string ;
@@ -176,6 +199,20 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e> ;
 	th:synonym <http://www.assero.co.uk/SYN#3feda0153eee1380b496298450dc5a74324eb8c1> ;
 	th:synonym <http://www.assero.co.uk/SYN#6672b815dc387b62d9d5ec8feba537d77cb2b20e> ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C17998>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
+	th:identifier "C17998"^^xsd:string ;
+	th:notation "UNKNOWN"^^xsd:string ;
+	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
+	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
 .
 <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f>
 	rdf:type th:PreferredTerm ;

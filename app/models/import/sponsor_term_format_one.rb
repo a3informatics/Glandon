@@ -98,7 +98,13 @@ private
     parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
-      if child.subset_of_extension?(extensions)
+      if child.referenced?(@th)
+        add_log("Reference Sponsor detected: #{child.identifier}")
+        ref = child.reference(@th)
+        next if ref.nil?
+        parent.add(ref, index + 1)
+        filtered << ref
+      elsif child.subset_of_extension?(extensions)
         add_log("Subset of extension detected: #{child.identifier}")
         filtered << child
       elsif child.subset?
@@ -126,12 +132,6 @@ private
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th)
         parent.add(ref, index + 1) 
-        filtered << ref
-      elsif child.referenced?(@th)
-        add_log("Reference Sponsor detected: #{child.identifier}")
-        ref = child.reference(@th)
-        next if ref.nil?
-        parent.add(ref, index + 1)
         filtered << ref
       else
         add_error(child, "Code list type not detected, identifier '#{child.identifier}'.")
