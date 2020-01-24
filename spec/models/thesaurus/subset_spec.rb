@@ -86,6 +86,17 @@ describe "Thesaurus Subset General" do
   end
 
   it "allows add a new item to the list" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
+    subset = init_subset(Thesaurus::Subset.find(uri_1))
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    result = subset.add([tc_2.uri.to_id])
+    expect(subset.last.item).to eq(tc_2.uri)
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    result = subset.add([tc_4.uri.to_id])
+    expect(subset.last.item).to eq(tc_4.uri)
+  end
+
+  it "allows add a new item to the list" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = init_subset(Thesaurus::Subset.find(uri_1))
     tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
