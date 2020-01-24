@@ -43,17 +43,6 @@ describe Thesauri::SubsetsController do
       Token.delete_all
     end
 
-    # it "add" do
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
-    #   uc_uri = Uri.new(uri:"http://www.cdisc.org/C66768/V2#C66768_C48275")
-    #   post :add, {id: subset.uri.to_id, subset:{member_id: uc_uri.to_id}}
-    #   expect(response.content_type).to eq("application/json")
-    #   expect(response.code).to eq("200")
-    #   subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
-    #   expect(subset.last.item.to_id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDgyNzU=")
-    # end
-
     it "add" do
       request.env['HTTP_ACCEPT'] = "application/json"
       subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
@@ -65,6 +54,19 @@ describe Thesauri::SubsetsController do
       expect(subset.last.item.to_id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDgyNzU=")
     end
 
+    it "add multiple" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
+      uc_uri = Uri.new(uri:"http://www.cdisc.org/C66768/V2#C66768_C48275")
+      uc_uri_2 = Uri.new(uri:"http://www.cdisc.org/C66790/V2#C66790_C43234")
+      uc_uri_3 = Uri.new(uri:"http://www.cdisc.org/C66790/V2#C66790_C17459")
+      post :add, {id: subset.uri.to_id, subset:{cli_ids: [uc_uri.to_id, uc_uri_2.to_id, uc_uri_3.to_id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
+      expect(subset.last.item.to_id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1YyI0M2Njc5MF9DMTc0NTk=")
+    end
+    
     it "remove" do
       request.env['HTTP_ACCEPT'] = "application/json"
       subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
@@ -72,7 +74,6 @@ describe Thesauri::SubsetsController do
       delete :remove, {id: subset.uri.to_id, subset:{member_id: sm_uri.to_id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFMjNTQxNzZjNTktYjgwMC00M2Y1LTk5YzMtZDEyOWNiNTYzYzc5")
       subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
       expect(subset.members.to_id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNIzY3ODcxZGUzLTVlMTMtNDJkYS05ODE0LWU5ZmMzY2U3YmNjYw==")
     end
