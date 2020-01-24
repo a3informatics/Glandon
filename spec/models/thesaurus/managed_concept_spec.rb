@@ -1212,12 +1212,12 @@ describe "extensions" do
       item = thesaurus.add_subset(tc.id)
       item.is_ordered_objects
       subset = item.is_ordered
-      sm_1 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id)
-      sm_2 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id)
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
       uri_check_set_1[11][:present] = true
       uri_check_set_1 << { uri: subset.uri, present: true}
-      uri_check_set_1 << { uri: sm_1.uri, present: true}
-      uri_check_set_1 << { uri: sm_2.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.member_next, present: true}
       expect(triple_store.check_uris(uri_check_set_1)).to be(true)
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
       result = item.delete_or_unlink(thesaurus)
