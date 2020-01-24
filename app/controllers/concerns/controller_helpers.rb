@@ -33,13 +33,14 @@ module ControllerHelpers
 
 private
 
-  # Build a set of paths for a single object. Note expects controllers to provide 
+  # Build a set of paths for a single object. Note expects controllers to provide
   def add_history_path(object, edit, delete, current, status)
     latest = object.latest?
     indicators = {current: object.current?, extended: false, extends: false, version_count: 0, subset: false, subsetted: false}
-    result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "", indicators: indicators}
+    result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "", list_cn_path: "", indicators: indicators}
     result[:show_path] = path_for(:show, object)
     result[:search_path] = path_for(:search, object)
+    result[:list_cn_path] = path_for(:list_change_notes, object)
     if edit && object.edit? && latest
       result[:edit_path] = path_for(:edit, object)
       # result[:tags_path] = path_for(:edit_tags, object)

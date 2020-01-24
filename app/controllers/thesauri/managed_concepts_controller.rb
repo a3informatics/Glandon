@@ -466,6 +466,8 @@ private
         return thesauri_managed_concept_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(id: object.id) : ""
+      when :list_change_notes
+        return object.supporting_edit? ? list_change_notes_iso_managed_v2_path(:id => object.id) : ""
       else
         return ""
     end

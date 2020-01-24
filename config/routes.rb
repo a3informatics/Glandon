@@ -112,6 +112,9 @@ Rails.application.routes.draw do
       get :make_current
       post :update_status
       put :update_semantic_version
+      get :list_change_notes
+      get :list_change_notes_data
+      get :export_change_notes_csv
     end
     collection do
       get :find_by_tag

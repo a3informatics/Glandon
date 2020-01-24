@@ -7,7 +7,7 @@ describe IsoManagedV2Controller do
   include DownloadHelpers
 
   describe "Curator User" do
-  	
+
     login_curator
 
     def sub_dir
@@ -41,20 +41,20 @@ describe IsoManagedV2Controller do
     end
 
     it "make current" do
-      current_status 
+      current_status
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       uri_2 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       get :make_current, {id: uri_1.to_id}
-      current_status 
+      current_status
       mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
-      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)    
+      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)
       expect(mi_1.current?).to eq(true)
       expect(mi_2.current?).to eq(false)
       get :make_current, {id: uri_2.to_id}
-      current_status 
+      current_status
       mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
-      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)      
+      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)
       expect(mi_1.current?).to eq(false)
       expect(mi_2.current?).to eq(true)
     end
@@ -63,7 +63,7 @@ describe IsoManagedV2Controller do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
-      post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard", 
+      post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
         administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(uri_1)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
@@ -74,7 +74,7 @@ describe IsoManagedV2Controller do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
-      post :update_status, { id: mi.id, iso_managed: { registration_status: "X", previous_state: "Standard", 
+      post :update_status, { id: mi.id, iso_managed: { registration_status: "X", previous_state: "Standard",
         administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(uri_1)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
@@ -91,7 +91,7 @@ describe IsoManagedV2Controller do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
-    
+
     it 'updates the semantic version, error, has to be latest' do
       request.env['HTTP_ACCEPT'] = "application/json"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
@@ -103,7 +103,7 @@ describe IsoManagedV2Controller do
       expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Can only modify the latest release"])
     end
-    
+
     it 'updates the semantic version, error, release cannot be updated in the current state' do
       request.env['HTTP_ACCEPT'] = "application/json"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
@@ -114,10 +114,28 @@ describe IsoManagedV2Controller do
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The release cannot be updated in the current state"])
     end
 
+    it 'lists change notes data' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
+      mi = Thesaurus::ManagedConcept.find_minimum(uri_1)
+      get :list_change_notes_data, { id: mi.id, iso_managed: { offset: "0", count: "200" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it 'change notes export csv' do
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:identifier).and_return("C12345")
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:change_notes_csv).and_return(["XXX", "YYY"])
+      expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "CL_CHANGE_NOTES_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(@controller).to receive(:render)
+      get :export_change_notes_csv, id: "aaa"
+    end
+
   end
 
   describe "Unauthorized User" do
-    
+
     it "status" do
       get :status, { id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")

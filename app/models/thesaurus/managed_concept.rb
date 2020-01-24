@@ -629,6 +629,45 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     new_mc
   end
 
+  # Change notes paginated query
+  def change_notes_paginated(params)
+    results = []
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    query_string = %Q{
+      SELECT ?s ?e ?d ?r ?txt ?i ?n ?l WHERE {
+        {
+        #{self.uri.to_ref} th:identifier ?i .
+        #{self.uri.to_ref} th:notation ?n .
+        #{self.uri.to_ref} isoC:label ?l .
+        #{self.uri.to_ref} ^(ba:current/bo:reference) ?s .
+        ?s ba:userReference ?e .
+        ?s ba:timestamp ?d .
+        ?s ba:reference ?r .
+        ?s ba:description ?txt .
+        }
+        UNION
+        {
+        #{self.uri.to_ref} th:narrower ?c .
+        ?c ^(ba:current/bo:reference) ?s .
+        ?s ba:userReference ?e .
+        ?s ba:timestamp ?d .
+        ?s ba:reference ?r .
+        ?s ba:description ?txt .
+        ?c th:identifier ?i .
+        ?c th:notation ?n .
+        ?c isoC:label ?l .
+        }
+    } ORDER BY (?i) LIMIT #{count} OFFSET #{offset}
+  }
+
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :ba])
+    query_results.by_object_set([:s, :e, :d, :r, :txt, :i, :n, :l]).each do |x|
+      results << { cl_identifier: x[:i], cl_notation: x[:n], cl_label: x[:l], user_reference: x[:e], timestamp: x[:d].to_time_with_default.iso8601, reference: x[:r], description: x[:txt] }
+    end
+    results
+  end
+
 private
 
   # Class for a difference result
