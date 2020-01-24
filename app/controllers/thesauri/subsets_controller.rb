@@ -8,8 +8,8 @@ class Thesauri::SubsetsController < ApplicationController
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
-      sm = subset.add_multiple(the_params[:cli_ids])
-      render json: {sm_id: sm.uri.to_id}, status: 200 and return
+      subset.add_multiple(the_params[:cli_ids])
+      render json: { }, status: 200
     end
   end
 
@@ -18,7 +18,7 @@ class Thesauri::SubsetsController < ApplicationController
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
       sm = subset.remove(the_params[:member_id])
-      render json: {data: subset.uri.to_id}, status: 200 and return
+      render json: { }, status: 200
     end
   end
 
@@ -27,7 +27,7 @@ class Thesauri::SubsetsController < ApplicationController
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
       sm = subset.remove_all
-      render json: {data: " "}, status: 200
+      render json: { }, status: 200
     end
   end
 
@@ -37,7 +37,7 @@ class Thesauri::SubsetsController < ApplicationController
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
       sm = subset.move_after(the_params[:member_id], the_params[:after_id])
-      render json: { }, status: 200 and return
+      render json: { }, status: 200
     end
   end
 
