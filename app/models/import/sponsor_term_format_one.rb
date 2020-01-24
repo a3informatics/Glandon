@@ -34,8 +34,11 @@ class Import::SponsorTermFormatOne < Import
     merge_reader_data(readers)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
-  # objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
-  # object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
+    # Correct code
+    # objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
+    # object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
+    
+    # Temp code for getting it working
     objects = process_results(results)
     save_error_file(objects)
     save_load_file(objects) 
@@ -90,61 +93,63 @@ private
 
   # Process the results
   def process_results(results)
-    extensions = {}
-    filtered = []
-    klass = configuration[:parent_klass]
-    child_klass = klass.child_klass
-    return results if !managed?(child_klass)
-    parent = results[:parent]
+    setup(results)
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
-        next if ref.nil?
-        parent.add(ref, index + 1)
-        filtered << ref
-      elsif child.subset_of_extension?(extensions)
+      elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
-        ref = child.to_subset_of_extension(extensions)
-        next if ref.nil?
-        parent.add(ref, index + 1) 
-        filtered << ref
+        ref = child.to_subset_of_extension(@extensions)
       elsif child.subset?
         add_log("Subset detected: #{child.identifier}")
         ref = child.to_cdisc_subset(@th)
         ref = child.to_sponsor_subset(filtered) if ref.nil? # Note using previously processed sponsor CLs.
-        if ref.nil?
-          add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.")
-        else
-          parent.add(ref, index + 1) 
-          filtered << ref
-        end
+        add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.") if ref.nil?
       elsif child.extension?(@th)
         add_log("Extension detected: #{child.identifier}")
         ref = child.to_extension(@th)
-        next if ref.nil?
-        parent.add(ref, index + 1) 
-        filtered << ref
-        extensions[ref.identifier] = ref
+        @extensions[ref.identifier] = ref if !ref.nil?
       elsif child.sponsor?
         add_log("Sponsor detected: #{child.identifier}")
-        parent.add(child, index + 1) 
-        filtered << child
+        ref = child
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th)
-        parent.add(ref, index + 1) 
-        filtered << ref
       else
         add_error(child, "Code list type not detected, identifier '#{child.identifier}'.")
-        filtered << child
+        ref = nil
       end
+      next if ref.nil?
+      ref = check_for_change(ref)
+      add_child(ref, index)
     end
-    return {parent: parent, managed_children: filtered, tags: []}
+    return {parent: @parent, managed_children: @filtered, tags: []}
   end
 
-private
+  # Setup data for processing of results
+  def setup(results)
+    klass = configuration[:parent_klass]
+    @child_klass = klass.child_klass
+    @parent = results[:parent]
+    @scope = klass.owner.ra_namespace
+    @filtered = []
+    @extensions = {}
+  end
+
+  # Check for a change in an item
+  def check_for_change(ref)
+    previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
+    previous = previous_info.nil? ? nil : @child_klass.find_full(previous_info.id) 
+    ref.replace_if_no_change(previous)
+  end
+
+  # Add child to the results
+  def add_child(ref, index)  
+    @parent.add(ref, index + 1) 
+    @filtered << ref 
+  end
 
   # Add error
   def add_error(object, msg)
