@@ -8,8 +8,8 @@ class Thesauri::SubsetsController < ApplicationController
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
-      sm = subset.add_multiple(the_params[:cli_ids])
-      render json: {sm_id: sm.uri.to_id}, status: 200 and return
+      sm = subset.add(the_params[:cli_ids])
+      render json: {data: " "}, status: 200 and return
     end
   end
 

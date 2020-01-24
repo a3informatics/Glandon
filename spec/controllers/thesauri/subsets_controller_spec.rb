@@ -54,11 +54,11 @@ describe Thesauri::SubsetsController do
     #   expect(subset.last.item.to_id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDgyNzU=")
     # end
 
-    it "add multiple" do
+    it "add" do
       request.env['HTTP_ACCEPT'] = "application/json"
       subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
       uc_uri = Uri.new(uri:"http://www.cdisc.org/C66768/V2#C66768_C48275")
-      post :add_multiple, {id: subset.uri.to_id, subset:{member_id: uc_uri.to_id}}
+      post :add, {id: subset.uri.to_id, subset:{cli_ids: [uc_uri.to_id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
