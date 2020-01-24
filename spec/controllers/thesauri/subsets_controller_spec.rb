@@ -60,7 +60,6 @@ describe Thesauri::SubsetsController do
       uc_uri = Uri.new(uri:"http://www.cdisc.org/C66768/V2#C66768_C48275")
       uc_uri_2 = Uri.new(uri:"http://www.cdisc.org/C66790/V2#C66790_C43234")
       uc_uri_3 = Uri.new(uri:"http://www.cdisc.org/C66790/V2#C66790_C17459")
-
       post :add, {id: subset.uri.to_id, subset:{cli_ids: [uc_uri.to_id, uc_uri_2.to_id, uc_uri_3.to_id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

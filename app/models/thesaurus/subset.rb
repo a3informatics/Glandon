@@ -51,20 +51,20 @@ class Thesaurus::Subset < IsoConceptV2
   #
   # @param uc_id [String] the identifier of the unmanaged concept to be linked to the new subset member
   # @return [Object] the created Subset Member
-  def add(uc_id)
-    transaction_begin
-    sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-    mc = self.find_mc
-    last_sm = self.last
-    if last_sm.nil? #Add the first member
-     self.add_link(:members, sm.uri)
-    else #Add the new member to the last position 
-     last_sm.add_link(:member_next, sm.uri)
-    end
-    mc.add_link(:narrower, sm.item) 
-    transaction_execute
-    sm
-  end
+  # def add(uc_id)
+  #   transaction_begin
+  #   sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+  #   mc = self.find_mc
+  #   last_sm = self.last
+  #   if last_sm.nil? #Add the first member
+  #    self.add_link(:members, sm.uri)
+  #   else #Add the new member to the last position 
+  #    last_sm.add_link(:member_next, sm.uri)
+  #   end
+  #   mc.add_link(:narrower, sm.item) 
+  #   transaction_execute
+  #   sm
+  # end
 
   # Remove. Remove a subset member of the Subset
   #
@@ -205,10 +205,11 @@ class Thesaurus::Subset < IsoConceptV2
     objects
   end
 
-  # Add multiple. 
+  # Add. Add new subset members to the Subset
   #
-  # @params [Array] array of ids
-  def add_multiple(arr)
+  # @param arr [Array] Array of the ids of the unmanaged concept to be added to the Subset
+  # @return [Object] the created Subset Member
+  def add(arr)
     subset_members = []
     sparql = Sparql::Update.new
     sparql.default_namespace(self.uri.namespace)
