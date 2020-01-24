@@ -2,21 +2,27 @@
   <div class="card-header editor-child-header">
     <%= panel_title %>
     <span class="icon-info-circle ttip text-small text-light" style="margin-left: 4px;">
-      <span class="ttip-text shadow-small text-dark"><%= if info.empty? then "" else info end %></span>
+      <span class="ttip-text shadow-small text-dark"><%= local_assigns.fetch :info, "" %></span>
     </span>
   </div>
-  <table id="<%= table_id %>" class="table table-striped table-bordered table-condensed">
+  <table id="<%= table_id %>" class="table table-striped table-bordered table-condensed table-row-clickable no-mark">
     <thead>
       <tr>
-        <th class="fit no-sort"></th>
-        <th class="<%= "no-sort" if is_editing_panel %>">Code List Item</th>
+        <% if is_editing_panel %>
+          <th class="fit no-sort"></th>
+          <th class="no-sort">Code List Item</th>
+        <% else %>
+          <th>Code List Item</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
-  <% if false # !is_editing_panel - DISABLED BTN %> 
-    <center><%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "select-all-btn",
-      icon: "icon-list-ul", btn_text: "Select / deselect all", dt_toggle: "", disabled: false} %></center>
+  <% if !is_editing_panel %>
+    <div class="btns-wrap" id="subset-edit-btns">
+      <button class="btn medium light" id="select-all-button"><span class="icon-ok text-small"></span> Select all </button>
+      <button class="btn medium light" id="deselect-all-button"><span class="icon-times text-small"></span> Deselect all </button>
+    </div>
   <% end %>
 </div>

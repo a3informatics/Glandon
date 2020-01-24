@@ -36,6 +36,8 @@ describe "Thesaurus Subset General" do
     load_local_file_into_triple_store(sub_dir, "subsets_input_3.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_5.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_clone_2.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_clone_3.ttl")
   end
 
   after :all do
@@ -86,23 +88,43 @@ describe "Thesaurus Subset General" do
   it "allows add a new item to the list" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
     subset = init_subset(Thesaurus::Subset.find(uri_1))
-    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
-    result = subset.add(uri_2.to_id)
-    expect(subset.last.to_h).to eq(result.to_h)
-    uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
-    result = subset.add(uri_3.to_id)
-    expect(subset.last.to_h).to eq(result.to_h)
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    result = subset.add([tc_2.uri.to_id])
+    expect(subset.last.item).to eq(tc_2.uri)
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    result = subset.add([tc_4.uri.to_id])
+    expect(subset.last.item).to eq(tc_4.uri)
   end
 
   it "allows add a new item to the list" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = init_subset(Thesaurus::Subset.find(uri_1))
-    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
-    result = subset.add(uri_2.to_id)
-    expect(subset.last.to_h).to eq(result.to_h)
-    uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
-    result = subset.add(uri_3.to_id)
-    expect(subset.last.to_h).to eq(result.to_h)
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    result = subset.add([tc_2.uri.to_id])
+    expect(subset.last.item).to eq(tc_2.uri)
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    result = subset.add([tc_4.uri.to_id])
+    expect(subset.last.item).to eq(tc_4.uri)
+  end
+
+  it "allows add a new item/items to the list" do
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    expect(mc.narrower.count).to eq(3)
+    result = subset.add([tc_2.id, tc_4.id])
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    expect(mc.narrower.count).to eq(5)
+    last_sm = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
+    expect(last_sm.member_next).not_to be(nil)  
+    last_sm_member_next = Thesaurus::SubsetMember.find(last_sm.member_next)
+    expect(last_sm_member_next.item).to eq(tc_2.uri)  
+    expect(last_sm_member_next.member_next).not_to be(nil)
+    last_sm_member_next_next = Thesaurus::SubsetMember.find(last_sm_member_next.member_next)
+    expect(last_sm_member_next_next.item).to eq(tc_4.uri)  
+    expect(last_sm_member_next_next.member_next).to eq(nil) 
   end
 
   it "allows remove an item from the list" do
@@ -281,7 +303,7 @@ describe "Thesaurus Subset General" do
     expect(mc.uri).to eq(expected_mc.uri)
   end
 
-    it "allows delete the subset list" do
+  it "allows delete the subset list" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(subset_uri_1)
     ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
@@ -292,6 +314,41 @@ describe "Thesaurus Subset General" do
     subset
     result = subset.delete_subset
     expect{Thesaurus::Subset.find(subset.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+  end
+
+  it "allows add a new item/items to the list" do
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    expect(mc.narrower.count).to eq(3)
+    result = subset.add([tc_2.id, tc_4.id])
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    expect(mc.narrower.count).to eq(5)
+    last_sm = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
+    expect(last_sm.member_next).not_to be(nil)  
+    last_sm_member_next = Thesaurus::SubsetMember.find(last_sm.member_next)
+    expect(last_sm_member_next.item).to eq(tc_2.uri)  
+    expect(last_sm_member_next.member_next).not_to be(nil)
+    last_sm_member_next_next = Thesaurus::SubsetMember.find(last_sm_member_next.member_next)
+    expect(last_sm_member_next_next.item).to eq(tc_4.uri)  
+    expect(last_sm_member_next_next.member_next).to eq(nil) 
+  end
+
+  it "allows remove all" do
+    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    subset_member1 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab"))
+    subset_member2 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a"))
+    subset_member3 = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    expect(mc.narrower.count).to eq(3)
+    result = subset.remove_all
+    mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+    expect{Thesaurus::SubsetMember.find(subset_member1.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#45d17b77-4920-46e2-94c4-d801ca2251ab in Thesaurus::SubsetMember.")
+    expect{Thesaurus::SubsetMember.find(subset_member2.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#9f34acbe-2d66-416c-9572-cf03bb77d81a in Thesaurus::SubsetMember.")
+    expect{Thesaurus::SubsetMember.find(subset_member3.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087 in Thesaurus::SubsetMember.")
+    expect(mc.narrower.count).to eq(0)   
   end
 
   it "delete_subset"  do

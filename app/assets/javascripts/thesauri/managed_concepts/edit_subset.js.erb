@@ -1,6 +1,10 @@
 $(document).ready( function() {
-  var subsetEditPanel = new SubsetEditChildrenPanel(subset_children_url, 1000, loadCallback, lockCallback);
-  var sourceChildrenPanel = new SubsetSourceChildrenPanel(source_children_url, 1000, subsetEditPanel, loadCallback, lockCallback);
+  var urls = {childrenUrl: subsetChildrenUrl, addUrl: addToSubsetUrl, removeUrl: removeFromSubsetUrl,
+    removeAllUrl: removeAllFromSubsetUrl, moveAfterUrl: moveAfterSubsetUrl }
+
+  var subsetEditPanel = new SubsetEditChildrenPanel(urls, 1000, lockCallback);
+  var sourceChildrenPanel = new SubsetSourceChildrenPanel(clChildrenUrl, 1000, subsetEditPanel, lockCallback);
+  
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new Unload(false);
 
@@ -8,13 +12,6 @@ $(document).ready( function() {
     // epItemsubset is declared in the edit_properties_modal
     new EditProperties(epItemsubset, "subset", "ManagedConcept", null).show();
   });
-
-  function loadCallback(obj){
-    obj.isLoaded = true;
-    if(subsetEditPanel.isLoaded && sourceChildrenPanel.isLoaded){
-      subsetEditPanel.markExistingItems();
-    }
-  }
 
   function lockCallback() {
     if(!timer.expired)
