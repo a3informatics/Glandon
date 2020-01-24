@@ -69,7 +69,7 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content("MSRESCAT")
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       sleep 1
@@ -77,7 +77,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button "Select"
       wait_for_ajax(10)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("Edit Subset")
       expect(AuditTrail.count).to eq(audit_count+1)
     end
@@ -92,40 +92,15 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content("MSRESCAT")
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       click_button "+ New subset"
       sleep 1
       expect(page).to have_content("Pick a Terminology")
       click_button "Do not select"
       wait_for_ajax(10)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("Edit Subset")
       expect(AuditTrail.count).to eq(audit_count+1)
-    end
-
-    it "edit timeout warnings and extend", js:true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2010-03-05 Release", :show)
-      wait_for_ajax(10)
-      expect(page).to have_content '2010-03-05 Release'
-      ui_child_search("C85494")
-      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
-      wait_for_ajax(10)
-      context_menu_element_header(:subsets)
-      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
-      wait_for_ajax(10)
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      page.find("#timeout").click
-      wait_for_ajax(120)
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-      page.find("#imh_header")[:class].include?("danger")
-      sleep 28
-      page.find("#timeout")[:class].include?("disabled")
-      page.find("#imh_header")[:class].include?("danger")
     end
 
     it "allows to access the edit subset page", js:true do
@@ -152,7 +127,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -168,6 +143,52 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax(10)
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
+    end
+
+    it "selects and deselects all items", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      expect(page).to have_content '2010-03-05 Release'
+      find(:xpath, "//tr[contains(.,'C85495')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      expect(page).to have_content("MSRESCAT")
+      context_menu_element_header(:subsets)
+      sleep 1
+      context_menu_element("subsets-index-table", 3, "NP", :edit)
+      wait_for_ajax(120)
+      page.find("#deselect-all-button").click
+      wait_for_ajax(120)
+      expect(page).to have_content("This subset is empty.")
+      ui_check_table_info("subset_children_table", 0, 0, 0)
+      page.find("#select-all-button").click
+      wait_for_ajax(120)
+      ui_check_table_info("subset_children_table", 1, 7, 7)
+    end
+
+    it "edit timeout warnings and extend", js:true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2010-03-05 Release'
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      context_menu_element_header(:subsets)
+      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
+      wait_for_ajax(10)
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#imh_header")[:class].include?("warning")
+      page.find("#timeout").click
+      wait_for_ajax(120)
+      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      page.find("#imh_header")[:class].include?("danger")
+      sleep 28
+      page.find("#timeout")[:class].include?("disabled")
+      page.find("#imh_header")[:class].include?("danger")
     end
 
     it "prevents add, remove and move item in subset, when token expires", js:true do
@@ -198,7 +219,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       expect(page).to have_content 'Edit Subset'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
@@ -217,7 +238,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       sleep 1
@@ -227,11 +248,11 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content("Preferred term: Not Set")
       context_menu_element_header(:edit_properties)
-      sleep 0.5
+      sleep 1
       fill_in "preferred_term", with: "Term 1"
       click_button "Save changes"
       wait_for_ajax(120)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("Preferred term: Term 1")
       expect(AuditTrail.count).to eq(audit_count+2)
     end
@@ -289,32 +310,6 @@ describe "Thesauri Subsets", :type => :feature do
       ua_logoff
     end
 
-    it "edit timeout warnings and extend", js:true do
-      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      click_navbar_cdisc_terminology
-      wait_for_ajax(10)
-      context_menu_element("history", 5, "2010-03-05 Release", :show)
-      wait_for_ajax(10)
-      expect(page).to have_content '2010-03-05 Release'
-      ui_child_search("C85494")
-      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
-      wait_for_ajax(10)
-      context_menu_element_header(:subsets)
-      sleep 0.5
-      context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
-      wait_for_ajax(10)
-      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      page.find("#imh_header")[:class].include?("warning")
-      page.find("#timeout").click
-      wait_for_ajax(120)
-      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-      page.find("#imh_header")[:class].include?("danger")
-      sleep 28
-      page.find("#timeout")[:class].include?("disabled")
-      page.find("#imh_header")[:class].include?("danger")
-    end
-
     it "allows to edit a subset, add, remove and move_after item", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(7)
@@ -326,7 +321,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -356,7 +351,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
 
       sleep 13
@@ -375,7 +370,7 @@ describe "Thesauri Subsets", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       context_menu_element_header(:subsets)
-      sleep 0.5
+      sleep 1
       context_menu_element("subsets-index-table", 3, "PK Parameter Units of Measure", :edit)
       expect(page).to have_content 'Edit Subset'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
