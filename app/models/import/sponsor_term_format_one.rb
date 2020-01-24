@@ -105,7 +105,7 @@ private
       elsif child.subset?
         add_log("Subset detected: #{child.identifier}")
         ref = child.to_cdisc_subset(@th)
-        ref = child.to_sponsor_subset(filtered) if ref.nil? # Note using previously processed sponsor CLs.
+        ref = child.to_sponsor_subset(@filtered) if ref.nil? # Note using previously processed sponsor CLs.
         add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.") if ref.nil?
       elsif child.extension?(@th)
         add_log("Extension detected: #{child.identifier}")
