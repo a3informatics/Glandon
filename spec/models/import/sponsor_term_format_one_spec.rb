@@ -207,7 +207,7 @@ puts colourize("Load 3.0 excel ...", "blue")
   it "import, exception" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
-    full_path = test_file_path(sub_dir, "import_input_2.xlsx")
+    full_path = test_file_path(sub_dir, "import_input_3.xlsx")
     params = { version: "1", version_label: "1.1.1", date: "2018-11-22", files: [full_path], label: "ADAM IG", 
       semantic_version: "1.2.4", job: @job, uri: ct.uri}
     @object.import(params)
