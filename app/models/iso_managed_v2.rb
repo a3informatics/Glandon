@@ -699,11 +699,19 @@ class IsoManagedV2 < IsoConceptV2
     set_uris(ra)
   end 
 
+  # Update Identifier. Updates the identifier. Resets the URIs but no save.
+  #
+  # @param [String] identifier the new identifier
+  # @return [Void] no return
   def update_identifier(identifier)
     self.has_identifier.identifier = identifier
     set_uris(self.has_state.by_authority)
   end
 
+  # Update Version. Updates the version including the semantic version. Resets the URIs but no save.
+  #
+  # @param [Integer] version the new version
+  # @return [Void] no return
   def update_version(version)
     self.has_identifier.version = version
     self.has_identifier.semantic_version = SemanticVersion.from_s("#{version}.0.0").to_s
