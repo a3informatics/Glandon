@@ -704,6 +704,12 @@ class IsoManagedV2 < IsoConceptV2
     set_uris(self.has_state.by_authority)
   end
 
+  def update_version(version)
+    self.has_identifier.version = version
+    self.has_identifier.semantic_version = SemanticVersion.from_s("#{version}.0.0").to_s
+    set_uris(self.has_state.by_authority)
+  end
+
   # Next Ordinal. Get the next ordinal for a managed item collection
   #
   # @param [String] name the name of the property holding the collection

@@ -189,7 +189,7 @@ puts colourize("Load 2.6 triples ...", "blue")
     load_local_file_into_triple_store(sub_dir, "import_load_7_2-6.ttl")
 puts colourize("Load 3.0 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_7_v3-0_CDISC_v53.xlsx")
-    params = {identifier: "Q1 2020", version: "2", date: "2019-11-22", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = {identifier: "Q2 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)

@@ -100,9 +100,9 @@ private
   # Process the results
   def process_results(results)
     setup(results)
-    existing_ref = false
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
+      existing_ref = false
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
@@ -150,6 +150,8 @@ private
   def check_for_change(ref)
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     previous = previous_info.nil? ? nil : @child_klass.find_full(previous_info.id) 
+    return ref if previous.nil?
+    ref.update_version(previous.version + 1)
     ref.replace_if_no_change(previous)
   end
 
