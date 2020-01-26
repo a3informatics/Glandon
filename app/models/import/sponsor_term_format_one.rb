@@ -32,8 +32,14 @@ class Import::SponsorTermFormatOne < Import
     @th = Thesaurus.find_minimum(params[:uri])
     readers = read_all_sources(params)
     merge_reader_data(readers)
+    
+    # Temp code
+    puts colourize("Errors on read: #{self.errors.full_messages}", "red") if self.errors.any?
+
+    # Correct code
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
+    
     # Correct code
     # objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
     # object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
@@ -94,11 +100,13 @@ private
   # Process the results
   def process_results(results)
     setup(results)
+    existing_ref = false
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
+        existing_ref = true
       elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
         ref = child.to_subset_of_extension(@extensions)
@@ -122,8 +130,8 @@ private
         ref = nil
       end
       next if ref.nil?
-      ref = check_for_change(ref)
-      add_child(ref, index)
+      ref = check_for_change(ref) if !existing_ref
+      add_child(ref, index, existing_ref)
     end
     return {parent: @parent, managed_children: @filtered, tags: []}
   end
@@ -146,8 +154,9 @@ private
   end
 
   # Add child to the results
-  def add_child(ref, index)  
+  def add_child(ref, index, existing_ref)  
     @parent.add(ref, index + 1) 
+    return if existing_ref
     @filtered << ref 
   end
 
