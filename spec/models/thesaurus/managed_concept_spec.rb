@@ -152,7 +152,6 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
@@ -492,7 +491,6 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
@@ -527,7 +525,6 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..33)
@@ -552,8 +549,7 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..60)
       delete_all_public_test_files
@@ -676,6 +672,14 @@ describe "extensions" do
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
     end
 
+    it "finds changes non-CDISC" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      results = tc.changes(2)
+      check_file_actual_expected(results, sub_dir, "changes_expected_7.yaml", equate_method: :hash_equal)
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_7.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "updates" do
@@ -685,7 +689,6 @@ describe "extensions" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
     end

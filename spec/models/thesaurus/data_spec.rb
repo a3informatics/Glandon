@@ -139,4 +139,75 @@ describe Thesaurus::ManagedConcept do
 
   end
 
+  describe "another version" do
+
+    def second_version
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      @tc_1.definition = "London Heathrow the UK's busiest airport."
+      @tc_1.synonym_objects
+      @tc_1.preferred_term_objects
+      @tc_1a_old = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "Terminal 5, the newest terminal at Heathrow.",
+          notation: "T5"
+        })
+      @tc_1a.synonym = @tc_1a_old.synonym
+      @tc_1a.preferred_term = @tc_1a_old.preferred_term
+      @tc_1b = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
+      @tc_1c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 2",
+          identifier: "A000030",
+          definition: "The old Queens Terminal",
+          notation: "T2"
+        })
+      @tc_1c.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 2")
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_1.narrower << @tc_1c
+      @tc_1.set_initial("A00001")
+      @tc_1.update_version(2)
+      @tc_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"))
+      @tc_3 = Thesaurus::ManagedConcept.new
+      @tc_3.identifier = "A00003"
+      @tc_3.definition = "Basel"
+      @tc_3.extensible = false
+      @tc_3.notation = "BSL"
+      @tc_3.set_initial("A00003")
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.is_top_concept << @tc_2.uri
+      @th_1.is_top_concept << @tc_2.uri
+      @th_1.set_initial("AIRPORTS")
+      @th_1.update_version(2)
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_local_file_into_triple_store(sub_dir, "thesaurus_airport.ttl")
+    end
+
+    it "file" do
+      second_version
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      @tc_3.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_v2.ttl")
+    end 
+
+  end
+
 end

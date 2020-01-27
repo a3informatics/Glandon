@@ -233,6 +233,7 @@ private
   end
 
   def deleted_from_ct_version(last_item)
+    return {deleted: false, ct: nil} if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
@@ -243,6 +244,7 @@ private
   end
 
   def deleted_from_ct?(last_item)
+    return false if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
