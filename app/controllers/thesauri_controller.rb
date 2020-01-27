@@ -53,6 +53,7 @@ class ThesauriController < ApplicationController
           @ref_thesaurus = @thesaurus.get_referenced_thesaurus
           @versions = CdiscTerm.version_dates
           @versions_n = normalize_versions(@versions)
+          @versions_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
         end
       end
       format.json do
