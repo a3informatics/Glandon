@@ -20,6 +20,12 @@ class IsoManagedV2Controller < ApplicationController
     @close_path = TypePathManagement.history_url_v2(@managed_item, true)
   end
 
+  def impact
+    authorize IsoManaged, :show?
+    # @managed_item = get_item(params)
+    @close_path = request.referer
+  end
+
   def make_current
     authorize IsoManaged, :status?
     managed_item = get_item(params)

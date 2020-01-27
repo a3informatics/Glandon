@@ -8,11 +8,9 @@ $(document).ready(function(){
     var selectedDate = Date.parse($("#cdisc-select-modal .timeline-point.point-highlight span").text());
     var selectedId = $("#cdisc-select-modal .timeline-point.point-highlight span").attr("data-index");
     var refDate = Date.parse(referenceCDISCVer.split(' ')[0])
-    if(selectedDate <= refDate){
+    if(selectedDate <= refDate)
       displayAlertsInElement(alertError("Selected version must be later than current (" + referenceCDISCVer + ")"), $("#cdisc-select-modal .errors"));
-    }
-    else {
-      console.log("ok");
-    }
+    else
+      location.href = impact_path;
   });
 });

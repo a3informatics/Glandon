@@ -109,6 +109,7 @@ Rails.application.routes.draw do
   resources :iso_managed_v2, only: [] do
     member do
       get :status
+      get :impact
       get :make_current
       post :update_status
       put :update_semantic_version
