@@ -1,4 +1,4 @@
-# ISO Managed (V2) 
+# ISO Managed (V2)
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
@@ -19,7 +19,7 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Field, attribute: :explanatory_comment, method: :valid_markdown?
   validates_with Validator::Klass, property: :has_identifier
   validates_with Validator::Klass, property: :has_state
-  
+
   # Version
   #
   # @return [string] The version
@@ -62,7 +62,7 @@ class IsoManagedV2 < IsoConceptV2
   def later_version?(version)
     return self.has_identifier.later_version?(version)
   end
-  
+
   # Earlier Version
   #
   # @param version [Integer] the version being compared against
@@ -70,14 +70,14 @@ class IsoManagedV2 < IsoConceptV2
   def earlier_version?(version)
     return self.has_identifier.earlier_version?(version)
   end
-  
+
   # Same Version
   #
   # @return [Boolean] Returns true if the item has the same version as that specified
   def same_version?(version)
     return self.has_identifier.same_version?(version)
   end
-  
+
   def scope
     return self.has_identifier.has_scope
   end
@@ -166,7 +166,7 @@ class IsoManagedV2 < IsoConceptV2
 
   # Checks if item can be the current item.
   #
-  # @return [Boolean] True if can be current, false otherwise. 
+  # @return [Boolean] True if can be current, false otherwise.
   def can_be_current?
     return false if self.has_state.nil?
     return self.has_state.can_be_current?
@@ -212,7 +212,7 @@ class IsoManagedV2 < IsoConceptV2
 
   # Previous Release
   #
-  # @return 
+  # @return
   def previous_release
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
@@ -231,14 +231,14 @@ class IsoManagedV2 < IsoConceptV2
       return false
     elsif !self.latest?
       self.errors.add(:base, "Can only modify the latest release")
-      return false  
+      return false
     else
       sv = SemanticVersion.from_s(previous_release)
       case release
         when :major
           sv.increment_major
         when :minor
-          sv.increment_minor  
+          sv.increment_minor
         when :patch
           sv.increment_patch
         else
@@ -260,13 +260,13 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
-  def self.find_with_properties(id)  
+  def self.find_with_properties(id)
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
-    parts << "  { #{uri.to_ref} isoT:hasState ?o . BIND (<isoT:hasState> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
-    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"  
-    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }" 
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }"
+    parts << "  { #{uri.to_ref} isoT:hasState ?o . BIND (<isoT:hasState> as ?p) . BIND (#{uri.to_ref} as ?s) }"
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
+    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     property_relationships.map.each do |relationship|
       parts << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?o . BIND ( #{relationship[:predicate].to_ref} as ?p) . BIND (#{uri.to_ref} as ?s)}"
     end
@@ -287,12 +287,12 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [IsoManagedV2] The managed item object.
-  def self.find_full(id)  
+  def self.find_full(id)
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
     exclude = excluded_read_relationships
     exclude_clause = exclude.blank? ? "" : " MINUS { ?s (#{exclude.join("|")}) ?o }"
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}"
     read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
@@ -304,12 +304,12 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
-  def self.find_minimum(id)  
+  def self.find_minimum(id)
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }" 
-    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"  
-    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }" 
+    parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }"
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
+    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if query_results.empty?
@@ -325,7 +325,7 @@ class IsoManagedV2 < IsoConceptV2
 
   # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
   #
-  # @return [Array] Array of URIs 
+  # @return [Array] Array of URIs
   def where_full(params)
     where_parts = []
     params.each do |predicate, value|
@@ -333,7 +333,7 @@ class IsoManagedV2 < IsoConceptV2
     end
     where_clause = where_parts.join(" .\n")
     parts = []
-    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }" 
+    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }"
     self.class.read_paths.each {|p| parts << "{ #{self.uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . #{where_clause} }" }
     query_string = "SELECT DISTINCT ?s WHERE {{ #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, uri.namespace, [])
@@ -358,20 +358,20 @@ class IsoManagedV2 < IsoConceptV2
   # @params params [String] :identifier the identifier
   # @params params [IsoNamespace] :scope the scope namespace
   # @return [Array] An array of objects.
-  def self.history(params)    
+  def self.history(params)
     parts = []
     results = []
     base =  "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:version ?v . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
-    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
-    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . "
+    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }"
+    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"
+    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }"
     query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
-    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
       item = from_results_recurse(uri, by_subject)
       set_cached_scopes(item, params[:scope])
       results << item
@@ -379,20 +379,20 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
-  # History URIs. Find the history for a given identifier within a scope return just the URIs. 
+  # History URIs. Find the history for a given identifier within a scope return just the URIs.
   #  Written for speed
   #
   # @params [Hash] params
   # @params params [String] :identifier the identifier
   # @params params [IsoNamespace] :scope the scope namespace
   # @return [Array] An array of objects.
-  def self.history_uris(params)    
+  def self.history_uris(params)
     results = []
     base =  "?e rdf:type #{rdf_type.to_ref} . " +
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:version ?v . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . "
     query_string = "SELECT ?e WHERE { #{base} } ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
     query_results.by_object_set([:e]).each{|x| results << x[:e]}
@@ -429,20 +429,20 @@ class IsoManagedV2 < IsoConceptV2
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
     query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE { 
-        VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} } 
+      SELECT ?s ?p ?o ?e ?v WHERE {
+        VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
         {
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
           { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) } UNION
           { ?si ?p ?o . BIND (?si as ?s) } UNION
-          { ?e isoT:hasState ?s . ?s ?p ?o } 
+          { ?e isoT:hasState ?s . ?s ?p ?o }
         }
-      } ORDER BY DESC (?v) 
+      } ORDER BY DESC (?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
-    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
       item = from_results_recurse(uri, by_subject)
       set_cached_scopes(item, params[:scope])
       results << item
@@ -471,7 +471,7 @@ class IsoManagedV2 < IsoConceptV2
             "?e isoT:lastChangeDate ?lcd . \n"
     query_string = "SELECT ?e ?sv ?ec ?cdesc ?o ?cd ?lcd ?v WHERE { #{base} } ORDER BY (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
-    query_results.by_object_set([:e, :sv, :ec, :cdesc, :o, :cd, :lcd]).each do |x| 
+    query_results.by_object_set([:e, :sv, :ec, :cdesc, :o, :cd, :lcd]).each do |x|
       results << {uri: x[:e], version: x[:v], semantic_version: x[:sv], explanatory_comment: x[:ec], change_description: x[:cdesc],
                   origin: x[:o], last_change_date: x[:lcd].format_as_date, creation_date: x[:cd].format_as_date}
     end
@@ -489,7 +489,7 @@ class IsoManagedV2 < IsoConceptV2
     query_string = block_given? ? yield(params) : managed_children_pagination_query(params)
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :th])
     by_subject = query_results.by_subject
-    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
       item = self.class.children_klass.referenced_klass.from_results_recurse(uri, by_subject)
       results << item
     end
@@ -507,7 +507,7 @@ class IsoManagedV2 < IsoConceptV2
     query_string = block_given? ? yield(params) : children_pagination_query(params)
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo])
     by_subject = query_results.by_subject
-    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
       item = self.class.children_klass.from_results_recurse(uri, by_subject)
       results << item
     end
@@ -550,7 +550,16 @@ class IsoManagedV2 < IsoConceptV2
       results << {identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
       check[key] = true
     end
-    results    
+    results
+  end
+
+  # Outputs change notes (also direct childrens') as CSV
+  #
+  # @return [CSV] the resulting csv data. Fail is there are errors.
+  def change_notes_csv
+    headers = ["Identifier", "Submission Value", "Label", "User Reference", "Timestamp", "Note Reference", "Note Description"]
+    data = self.change_notes_paginated(offset: 0, count: 10000).map{|x| x.values}
+    CSVHelpers.format(headers, data)
   end
 
   # Create Next Version. Creates the next version of the managed object if necessary
@@ -575,7 +584,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
       parts = []
-      parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }" 
+      parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
       self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
       query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
       results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
@@ -588,7 +597,7 @@ class IsoManagedV2 < IsoConceptV2
   def delete_minimum
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT])
@@ -629,7 +638,7 @@ class IsoManagedV2 < IsoConceptV2
       self.errors.add(:base, "The item cannot be created. The identifier is already in use.")
     else
       self.errors.add(:base, "The item cannot be created. Identifier does not exist but version [#{self.version}] error.")
-    end 
+    end
     false
   end
 
@@ -638,7 +647,7 @@ class IsoManagedV2 < IsoConceptV2
   # @params [Hash] The parameters {:explanatoryComment, :changeDescription, :origin}
   # @raise [Exceptions::UpdateError] if an error occurs during the update
   # @return null
-  def update_comments(params)  
+  def update_comments(params)
     partial_update(update_query(params), [:isoT])
   end
 
@@ -646,7 +655,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @params [Hash] params the parameters
   # @option params [String] Registration Status, the new state
-  # @return [Null] errors are in the error object, if any 
+  # @return [Null] errors are in the error object, if any
   def update_status(params)
     params[:multiple_edit] = false  
     self.has_state.update(params)
@@ -690,14 +699,14 @@ class IsoManagedV2 < IsoConceptV2
   def set_import(params)
     ra = self.class.owner
     self.label = params[:label] if self.label.blank?
-    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: params[:identifier], version: params[:version], version_label: params[:version_label], 
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: params[:identifier], version: params[:version], version_label: params[:version_label],
       semantic_version: params[:semantic_version], has_scope: ra.ra_namespace)
-    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: IsoRegistrationStateV2.released_state, 
+    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: IsoRegistrationStateV2.released_state,
       previous_state: IsoRegistrationStateV2.released_state)
     self.creation_date = params[:date].to_time_with_default
     self.last_change_date = params[:date].to_time_with_default
     set_uris(ra)
-  end 
+  end
 
   # Update Identifier. Updates the identifier. Resets the URIs but no save.
   #
@@ -767,7 +776,7 @@ class IsoManagedV2 < IsoConceptV2
       {
         {
           SELECT DISTINCT ?s ?key ?v WHERE
-          { 
+          {
             ?s rdf:type #{rdf_type.to_ref} .
             ?s isoT:hasIdentifier ?si .
             ?s isoT:hasState ?st .
@@ -783,11 +792,11 @@ class IsoManagedV2 < IsoConceptV2
           }
         } UNION {
           SELECT DISTINCT ?s ?key ?v WHERE
-          { 
+          {
             ?s rdf:type #{rdf_type.to_ref} .
             ?s isoT:hasIdentifier ?si .
-            {  
-              SELECT (max(?lv) AS ?v) WHERE 
+            {
+              SELECT (max(?lv) AS ?v) WHERE
               {
                 ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
                 ?s isoT:hasIdentifier/isoI:version ?lv .
@@ -800,8 +809,8 @@ class IsoManagedV2 < IsoConceptV2
             BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
           }
         }
-      } ORDER BY ?key DESC(?v)  
-    } 
+      } ORDER BY ?key DESC(?v)
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
     query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
     results
@@ -810,11 +819,11 @@ class IsoManagedV2 < IsoConceptV2
   # Current And Latest Parent. Find the latest or the current parent
   #
   # @return [Array] An array of objects.
-  def current_and_latest_parent    
+  def current_and_latest_parent
     date_time = Time.now.iso8601
     query_string = %Q{
-      SELECT ?s ?v WHERE 
-      { 
+      SELECT ?s ?v WHERE
+      {
         {
           #{self.uri.to_ref} ^bo:reference ?or .
           ?s ?p ?or .
@@ -830,8 +839,8 @@ class IsoManagedV2 < IsoConceptV2
           ?s ?p ?or .
           ?s isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          {  
-            SELECT (max(?lv) AS ?v) WHERE 
+          {
+            SELECT (max(?lv) AS ?v) WHERE
             {
               #{self.uri.to_ref} ^bo:reference ?or .
               ?x ?p ?or .
@@ -839,7 +848,7 @@ class IsoManagedV2 < IsoConceptV2
             } GROUP BY ?s
           }
         }
-      } ORDER BY DESC (?v) 
+      } ORDER BY DESC (?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR, :bo])
     results = query_results.by_object_set([:s, :v])
@@ -862,7 +871,7 @@ class IsoManagedV2 < IsoConceptV2
         ?s rdf:type #{rdf_type.to_ref} .
         ?s isoT:hasIdentifier ?si .
         ?s isoT:hasState ?rs .
-        ?si isoI:identifier '#{params[:identifier]}' . 
+        ?si isoI:identifier '#{params[:identifier]}' .
         ?si isoI:hasScope #{params[:scope].uri.to_ref} .
         ?rs isoR:effectiveDate ?d .
         ?rs isoR:untilDate ?e .
@@ -878,23 +887,23 @@ class IsoManagedV2 < IsoConceptV2
   end
 
   # Find By Tag. Find all managed items based on a tag.
-  # 
+  #
   # @param id [String] the id of the tag
   # @return [Array] Array of hash
   def self.find_by_tag(id)
     results = []
     uri = Uri.new(id: id)
     query_string = %Q{
-SELECT ?s ?l ?v ?i ?vl WHERE { 
+SELECT ?s ?l ?v ?i ?vl WHERE {
   #{uri.to_ref} ^isoC:tagged ?s .
   ?s isoC:label ?l .
-  ?s isoT:hasIdentifier/isoI:version ?v . 
-  ?s isoT:hasIdentifier/isoI:semanticVersion ?sv . 
-  ?s isoT:hasIdentifier/isoI:identifier ?i . 
-  ?s isoT:hasIdentifier/isoI:versionLabel ?vl 
+  ?s isoT:hasIdentifier/isoI:version ?v .
+  ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .
+  ?s isoT:hasIdentifier/isoI:identifier ?i .
+  ?s isoT:hasIdentifier/isoI:versionLabel ?vl
 } ORDER BY DESC(?v) OFFSET 0 LIMIT 1000}
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT])
-    query_results.by_object_set([:s, :i, :v, :sv, :l, :vl]).each do |x| 
+    query_results.by_object_set([:s, :i, :v, :sv, :l, :vl]).each do |x|
       results << {uri: x[:s].to_s, id: x[:s].to_id, identifier: x[:i], version: x[:v], semantic_version: x[:sv], label: x[:l], version_label: x[:vl]}
     end
     results
@@ -934,7 +943,7 @@ private
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{self.scoped_identifier}' . " +
             "?si isoI:version  #{self.version + step}. " +
-            "?si isoI:hasScope #{self.scope.uri.to_ref} . " 
+            "?si isoI:hasScope #{self.scope.uri.to_ref} . "
     query_string = "SELECT ?e WHERE { #{base} }"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
     return nil if query_results.empty?
@@ -951,11 +960,11 @@ private
   # Standard managed children pagination query
   def managed_children_pagination_query(params)
     triple_count = 28
-    count = params[:count].to_i * triple_count 
-    offset = params[:offset].to_i * triple_count 
+    count = params[:count].to_i * triple_count
+    offset = params[:offset].to_i * triple_count
     %Q{SELECT ?s ?p ?o ?e ?v WHERE
 {
-  #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r . 
+  #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r .
   ?r bo:reference ?e .
   ?r bo:ordinal ?v .
   ?e isoT:hasIdentifier ?si .
@@ -967,7 +976,7 @@ private
     { ?ra ?p ?o . BIND (?ra as ?s) } UNION
     { ?rs ?p ?o . BIND (?rs as ?s) }
   }
-} ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
 }
   end
 
@@ -979,9 +988,9 @@ private
     %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
 {
   VALUES ?e { #{uris} }
-  ?e ?p ?o . 
+  ?e ?p ?o .
   BIND (?e as ?s)
-} 
+}
 }
   end
 
@@ -989,7 +998,7 @@ private
   def state_and_semantic_version(params)
     results = []
     query_string = %Q{
-      SELECT ?s ?sv ?st WHERE 
+      SELECT ?s ?sv ?st WHERE
         {
           ?s rdf:type #{self.rdf_type.to_ref} .
           ?s isoT:hasIdentifier ?si .
@@ -1001,7 +1010,7 @@ private
         } ORDER BY DESC (?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR])
-    query_results.by_object_set([:s, :sv, :st]).each do |x| 
+    query_results.by_object_set([:s, :sv, :st]).each do |x|
       results << {uri: x[:s], semantic_version: x[:sv], state: x[:st]}
     end
     results
@@ -1020,8 +1029,8 @@ private
        ?s ?p \"#{params[:semantic_version]}\"^^xsd:string .
       }
       WHERE
-      { 
-        VALUES ?x {#{uris}} 
+      {
+        VALUES ?x {#{uris}}
         ?x isoT:hasIdentifier ?s .
         ?s isoI:semanticVersion ?o .
         BIND (isoI:semanticVersion as ?p)

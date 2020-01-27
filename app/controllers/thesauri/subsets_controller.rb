@@ -8,8 +8,8 @@ class Thesauri::SubsetsController < ApplicationController
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
-      sm = subset.add(the_params[:member_id])
-      render json: {sm_id: sm.uri.to_id}, status: 200 and return
+      subset.add(the_params[:cli_ids])
+      render json: { }, status: 200
     end
   end
 
@@ -18,16 +18,26 @@ class Thesauri::SubsetsController < ApplicationController
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
       sm = subset.remove(the_params[:member_id])
-      render json: {data: subset.uri.to_id}, status: 200 and return
+      render json: { }, status: 200
     end
   end
+
+  def remove_all
+    authorize Thesaurus, :edit?
+    subset = Thesaurus::Subset.find(params[:id])
+    if check_token_valid? (subset)
+      sm = subset.remove_all
+      render json: { }, status: 200
+    end
+  end
+
 
   def move_after
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find(params[:id])
     if check_token_valid? (subset)
       sm = subset.move_after(the_params[:member_id], the_params[:after_id])
-      render json: { }, status: 200 and return
+      render json: { }, status: 200
     end
   end
 
@@ -35,12 +45,12 @@ class Thesauri::SubsetsController < ApplicationController
     authorize Thesaurus, :show?
     subset = Thesaurus::Subset.find(params[:id])
     lp = subset.list_pagination(params)
-    render json: {data: lp}, status: 200
+    render json: {data: lp, offset: params[:offset] , count: lp.count }, status: 200
   end
 
   private
     def the_params
-      params.require(:subset).permit(:member_id, :after_id)
+      params.require(:subset).permit(:member_id, :after_id, :cli_ids => [])
     end
 
     def check_token_valid?(subset)

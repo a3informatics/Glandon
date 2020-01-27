@@ -485,7 +485,42 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
-  describe "extensions" do
+  describe "change notes" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    it "change notes managed and unmanaged concepts" do
+      params =
+      {
+        offset: "0",
+        count: "10"
+      }
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      change_note = tc.add_change_note(user_reference: "xxx", reference: "ref 1", description: "description cl")
+      expect(change_note.errors.count).to eq(0)
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      change_note2 = tc2.add_change_note(user_reference: "yyy", reference: "ref 2", description: "description cli")
+      expect(change_note2.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.change_notes_paginated(params)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_change_note_mc_expected_1.yaml")
+    end
+    
+  end
+
+describe "extensions" do
 
     before :all  do
       IsoHelpers.clear_cache
@@ -1177,12 +1212,12 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_subset(tc.id)
       item.is_ordered_objects
       subset = item.is_ordered
-      sm_1 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id)
-      sm_2 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id)
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
       uri_check_set_1[11][:present] = true
       uri_check_set_1 << { uri: subset.uri, present: true}
-      uri_check_set_1 << { uri: sm_1.uri, present: true}
-      uri_check_set_1 << { uri: sm_2.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.member_next, present: true}
       expect(triple_store.check_uris(uri_check_set_1)).to be(true)
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
       result = item.delete_or_unlink(thesaurus)

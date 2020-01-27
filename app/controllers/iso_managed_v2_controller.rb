@@ -49,6 +49,25 @@ class IsoManagedV2Controller < ApplicationController
     render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200
   end
 
+  def list_change_notes
+    authorize IsoManaged, :show?
+    @managed_item = get_item(params)
+    @close_path = request.referer
+  end
+
+  def list_change_notes_data
+    authorize IsoManaged, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    result = tc.change_notes_paginated({offset: the_params[:offset], count: the_params[:count]})
+    render :json => {data: result, offset: the_params[:offset], count: result.count}, :status => 200
+  end
+
+  def export_change_notes_csv
+    authorize IsoManaged, :show?
+    item = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    send_data item.change_notes_csv, filename: "CL_CHANGE_NOTES_#{item.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
 private
 
   def get_item(params)
@@ -60,7 +79,7 @@ private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type)
+    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type, :offset, :count)
   end
 
 end

@@ -51,20 +51,20 @@ class Thesaurus::Subset < IsoConceptV2
   #
   # @param uc_id [String] the identifier of the unmanaged concept to be linked to the new subset member
   # @return [Object] the created Subset Member
-  def add(uc_id)
-    transaction_begin
-    sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-    mc = self.find_mc
-    last_sm = self.last
-    if last_sm.nil? #Add the first member
-     self.add_link(:members, sm.uri)
-    else #Add the new member to the last position 
-     last_sm.add_link(:member_next, sm.uri)
-    end
-    mc.add_link(:narrower, sm.item) 
-    transaction_execute
-    sm
-  end
+  # def add(uc_id)
+  #   transaction_begin
+  #   sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+  #   mc = self.find_mc
+  #   last_sm = self.last
+  #   if last_sm.nil? #Add the first member
+  #    self.add_link(:members, sm.uri)
+  #   else #Add the new member to the last position 
+  #    last_sm.add_link(:member_next, sm.uri)
+  #   end
+  #   mc.add_link(:narrower, sm.item) 
+  #   transaction_execute
+  #   sm
+  # end
 
   # Remove. Remove a subset member of the Subset
   #
@@ -179,10 +179,10 @@ class Thesaurus::Subset < IsoConceptV2
   # @return [Array] array of hashes containing the child data
   def list_pagination(params)
     objects = []
-    if !self.members.nil?
       query_string = %Q{
         SELECT ?m ?s ?ordinal
         {
+          FILTER (?ordinal > 0)
           ?m th:item ?s
           {
             SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
@@ -202,8 +202,56 @@ class Thesaurus::Subset < IsoConceptV2
         object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
         object[:member_id] = uri_map[object[:uri]][:m].to_id
       end
-    end
     objects
+  end
+
+  # Add. Add new subset members to the Subset
+  #
+  # @param arr [Array] Array of the ids of the unmanaged concept to be added to the Subset
+  # @return [Object] the created Subset Member
+  def add(arr)
+    subset_members = []
+    sparql = Sparql::Update.new
+    sparql.default_namespace(self.uri.namespace)
+    mc = self.find_mc
+    arr.each do |x|
+      member = Thesaurus::SubsetMember.create({item: Uri.new(id: x), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+      subset_members << member
+      member.to_sparql(sparql)
+      sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})
+    end
+    last_sm = self.last
+    subset_members[0..-2].each_with_index do |sm, index|
+      sparql.add({uri: subset_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members[index+1].uri})
+    end
+    last_sm.nil? ? sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members.first.uri})
+    filename = sparql.to_file
+    sparql.create
+  end
+
+  # Remove all. Removes all the subset members and narrower from Subset
+  #
+  def remove_all
+    query_string = %Q{
+        DELETE 
+        {
+          ?s ?p ?o
+        } 
+        WHERE 
+        {
+          {
+            #{self.uri.to_ref} (th:members/th:memberNext*) ?s .
+            ?s ?p ?o .
+          }     
+          UNION
+          { 
+            #{self.uri.to_ref} (^th:isOrdered) ?s .
+            ?s th:narrower ?o
+            BIND ( th:narrower as ?p ) .
+          } 
+        }
+      }
+      partial_update(query_string, [:th])
   end
 
   # Move After. Move an subset member after another subset member given

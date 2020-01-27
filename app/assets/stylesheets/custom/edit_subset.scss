@@ -36,12 +36,6 @@
   font-size: $font-tiny !important ;
 }
 
-.editor-wrap table tbody tr:hover{
-  color: $secondary-color-medium;
-  background: $row-highlight-background !important;
-  cursor: pointer;
-}
-
 .editor-wrap .col-sm-6, .editor-wrap .col-sm-5, .editor-wrap .col-sm-7,{
   width: unset !important;
 }
@@ -51,23 +45,12 @@
   padding: 5px 10px;
 }
 
-.card-content{
-  overflow: visible;
-}
-
-.no-sort{
+.no-sort, .no-sort::after{
   pointer-events: none !important;
-}
-
-.no-sort::after{
   content: "" !important;
 }
 
-.editor-wrap table tbody tr.slctd{
-  background: $primary-color-bright !important;
-}
-
-.editor-wrap table tr.tr-disabled{
+.editor-wrap table.table-disabled{
   pointer-events: none !important;
   opacity: .5 !important;
 }
