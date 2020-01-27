@@ -11,10 +11,17 @@
 <div class="row">
 	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
     <div class="actions-wrap">
+			<% if @thesaurus.edit? && !@ref_thesaurus.nil? %>
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#cdisc-select-modal", id: "impact-button",
+					icon: "icon-impact", no_badge: true, btn_text: "Impact Analysis", dt_toggle: "modal", disabled: @ref_thesaurus.nil? } %>
+				<%= render partial: "shared/cdisc_terms/cdisc_ver_select_modal", :locals => { start_year: @versions_span[0], end_year: @versions_span[1],
+					versions_norm: @versions_n, versions: @versions, ref_thesaurus: @ref_thesaurus } %>
+				<% end %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
+
 </div>
 <div class="row centered">
 	<div class="col-md-10 card table-cardstyle">

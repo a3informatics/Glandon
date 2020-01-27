@@ -1,0 +1,18 @@
+$(document).ready(function(){
+  var ts = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+  $("#cdisc-select-modal").on('shown.bs.modal', function () {
+    ts.moveToDate(ts.l_slider, latestCDISCVer);
+  });
+
+  $("#select-cdisc-ter-btn").on("click", function() {
+    var selectedDate = Date.parse($("#cdisc-select-modal .timeline-point.point-highlight span").text());
+    var selectedId = $("#cdisc-select-modal .timeline-point.point-highlight span").attr("data-index");
+    var refDate = Date.parse(referenceCDISCVer.split(' ')[0])
+    if(selectedDate <= refDate){
+      displayAlertsInElement(alertError("Selected version must be later than current (" + referenceCDISCVer + ")"), $("#cdisc-select-modal .errors"));
+    }
+    else {
+      console.log("ok");
+    }
+  });
+});

@@ -50,6 +50,9 @@ class ThesauriController < ApplicationController
           @thesaurus = Thesaurus.find_minimum(@thesauri_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
+          @ref_thesaurus = @thesaurus.get_referenced_thesaurus
+          @versions = CdiscTerm.version_dates
+          @versions_n = normalize_versions(@versions)
         end
       end
       format.json do
