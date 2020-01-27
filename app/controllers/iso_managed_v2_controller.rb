@@ -22,7 +22,7 @@ class IsoManagedV2Controller < ApplicationController
 
   def impact
     authorize IsoManaged, :show?
-    # @managed_item = get_item(params)
+    @managed_item = get_item(params)
     @close_path = request.referer
   end
 
