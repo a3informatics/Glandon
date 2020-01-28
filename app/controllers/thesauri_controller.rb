@@ -50,10 +50,6 @@ class ThesauriController < ApplicationController
           @thesaurus = Thesaurus.find_minimum(@thesauri_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
-          @ref_thesaurus = @thesaurus.get_referenced_thesaurus
-          @versions = CdiscTerm.version_dates
-          @versions_n = normalize_versions(@versions)
-          @versions_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
         end
       end
       format.json do
@@ -369,6 +365,8 @@ class ThesauriController < ApplicationController
         return thesauri_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
+      when :impact
+        return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
       else
         return ""
     end
