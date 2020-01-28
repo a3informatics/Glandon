@@ -151,6 +151,7 @@ private
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     previous = previous_info.nil? ? nil : @child_klass.find_full(previous_info.id) 
     return ref if previous.nil?
+    previous.is_ordered = ref.is_ordered # Temporary
     ref.update_version(previous.version + 1)
     ref.replace_if_no_change(previous)
   end

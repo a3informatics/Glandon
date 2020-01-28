@@ -158,7 +158,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2.6" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_5_v2-6_CDISC_v43.xlsx")
-    params = {identifier: "Q1 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-6 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "Q4 2019", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -177,7 +177,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 3.0" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
-    params = {identifier: "Q2 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.1.1", label: "Version 3-0 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    params = {identifier: "Q1 2020", version: "1", date: "2019-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -197,7 +197,7 @@ describe "Import::SponsorTermFormatOne" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
 puts colourize("Load 2.6 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_7_v2-6_CDISC_v43.xlsx")
-    params = {identifier: "Q1 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = {identifier: "Q4 2019", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -212,7 +212,7 @@ puts colourize("Load 2.6 triples ...", "blue")
     load_local_file_into_triple_store(sub_dir, "import_load_7_2-6.ttl")
 puts colourize("Load 3.0 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_7_v3-0_CDISC_v53.xlsx")
-    params = {identifier: "Q2 2020", version: "1", date: "2019-11-22", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -223,6 +223,27 @@ puts colourize("Load 3.0 excel ...", "blue")
     copy_file_from_public_files("test", filename, sub_dir)
   copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_7_3-0.ttl")
     check_ttl_fix(filename, "import_load_7_3-0.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, full version 3.0 with base" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
+puts colourize("Load 2.6 triples ...", "blue")
+    load_local_file_into_triple_store(sub_dir, "import_load_5_2-6.ttl")
+puts colourize("Load 3.0 excel ...", "blue")
+    full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
+    params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_9_3-0.yaml")
+    #copy_file_from_public_files("test", filename, sub_dir)
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    #expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_9_3-0.ttl")
+    check_ttl_fix(filename, "import_load_9_3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
