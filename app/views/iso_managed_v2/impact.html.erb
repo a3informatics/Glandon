@@ -1,8 +1,28 @@
-<%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
-  main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
-  sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
+    main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
+    sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+  <% end %>
+</div>
 
-  <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+<div class="row">
+  <div class="col-md-4 card narrow">
+    <div class="card-header">
+      Changed items
+    </div>
+    <div class="card-content">
 
-<% end %>
+    </div>
+  </div>
+
+  <div class="col-md-8 card wide">
+    <div class="card-header">
+      Impact
+    </div>
+    <div class="card-content">
+
+    </div>
+  </div>
+</div>
