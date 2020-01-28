@@ -237,40 +237,4 @@ puts colourize("Load 3.0 excel ...", "blue")
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end
 
-  # it "import, CDISC Version 2 Format, errors detected" do
-  #   full_path = test_file_path(sub_dir, "SDTM Terminology 2007-03-06.xlsx")
-  #   params = 
-  #   {
-  #     version: "1", date: "2007-03-06", files: [full_path], version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
-  #   }
-  #   result = @object.import(params)
-  #   filename = "sponsor_term#{@object.id}_load.ttl"
-  #   expect(public_file_does_not_exist?("test", filename)).to eq(true)
-  #   filename = "sponsor_term#{@object.id}_errors.yml"
-  #   expect(public_file_exists?("test", filename)).to eq(true)
-  #   copy_file_from_public_files("test", filename, sub_dir)
-  #   actual = read_yaml_file(sub_dir, filename)
-  #   check_file_actual_expected(actual, sub_dir, "import_version_2007-03-06.yaml", equate_method: :hash_equal)
-  #   expect(@job.status).to eq("Complete")
-  #   delete_data_file(sub_dir, filename)
-  # end
-
-  # it "import, CDISC Version 3 Format, errors detected" do
-  #   full_path = test_file_path(sub_dir, "SDTM Terminology 2007-05-31.xlsx")
-  #   params = 
-  #   {
-  #     version: "1", date: "2007-05-31", files: [full_path], version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
-  #   }
-  #   result = @object.import(params)
-  #   filename = "sponsor_term#{@object.id}_load.ttl"
-  #   expect(public_file_does_not_exist?("test", filename)).to eq(true)
-  #   filename = "sponsor_term#{@object.id}_errors.yml"
-  #   expect(public_file_exists?("test", filename)).to eq(true)
-  #   copy_file_from_public_files("test", filename, sub_dir)
-  #   actual = read_yaml_file(sub_dir, filename)
-  #   check_file_actual_expected(actual, sub_dir, "import_version_2007-05-31.yaml", equate_method: :hash_equal)
-  #   expect(@job.status).to eq("Complete")
-  #   delete_data_file(sub_dir, filename)
-  # end
-
 end
