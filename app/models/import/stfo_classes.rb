@@ -75,7 +75,7 @@ module Import::STFOClasses
       #  add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
       else
         self.extends = ref_ct
-        new_narrower = ref_ct.narrower
+        new_narrower = ref_ct.narrower.dup
         self.narrower.each do |child|
           if NciThesaurusUtility.c_code?(child.identifier)
             new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
@@ -84,10 +84,10 @@ module Import::STFOClasses
               if options.empty?
                 add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
               elsif options.count == 1
-                begin
-                  new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
-                rescue => e
-                  add_error("Cannot find options first #{options.first} in code list extension, identifier '#{self.identifier}'.")
+                if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
+                  new_narrower << Thesaurus::UnmanagedConcept.find(options.first[:uri])
+                else
+                  add_error("Cannot find code list item #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
                 end
               else
                 add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
@@ -123,8 +123,10 @@ module Import::STFOClasses
       new_narrower = []
       ext = extensions[self.identifier]
       self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.subsets = ext
-      self.narrower.each do |child|
+      old_narrower = self.narrower.dup
+      self.narrower = []
+      self.update_identifier(self.identifier) # Do early
+      old_narrower.each do |child|
         new_child = ext.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
           add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
@@ -133,7 +135,7 @@ module Import::STFOClasses
         end
       end
       self.narrower = new_narrower
-      self.update_identifier(self.identifier)
+      self.subsets = ext
       self.add_ordering
       self
     rescue => e
@@ -160,12 +162,14 @@ module Import::STFOClasses
     end
 
     def to_cdisc_subset(ct)
-      new_narrower = []
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
-      ref_ct = reference(ct)
+      new_narrower = []
       self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.subsets = ref_ct
-      self.narrower.each do |child|
+      old_narrower = self.narrower.dup
+      self.narrower = []
+      self.update_identifier(self.identifier)
+      ref_ct = reference(ct)
+      old_narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
           add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
@@ -174,7 +178,7 @@ module Import::STFOClasses
         end
       end
       self.narrower = new_narrower
-      self.update_identifier(self.identifier)
+      self.subsets = ref_ct
       self.add_ordering
       self
     rescue => e
@@ -183,12 +187,14 @@ module Import::STFOClasses
     end
 
     def to_sponsor_subset(sponsor_ct)
-      new_narrower = []
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
+      new_narrower = []
       self.identifier = Thesaurus::ManagedConcept.new_identifier
-      self.subsets = ref_ct
-      self.narrower.each do |child|
+      old_narrower = self.narrower.dup
+      self.narrower = []
+      self.update_identifier(self.identifier)
+      old_narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
           add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
@@ -197,7 +203,7 @@ module Import::STFOClasses
         end
       end
       self.narrower = new_narrower
-      self.update_identifier(self.identifier)
+      self.subsets = ref_ct
       self.add_ordering
       self
     rescue => e
