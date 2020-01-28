@@ -171,17 +171,15 @@ HistoryPanel.prototype.setListeners = function () {
     _this.updateRegistrationState(data);
   })
 
-  $(".context-menu").find("a:contains('Delete')").each(function(){
+  $(".context-menu").find("a:contains('Delete')").off("click").on("click", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
-    $(this).off("click").on("click", function() { _this.removeItem(data) });
+    _this.removeItem(data);
   });
 
-  $(".context-menu").find("a:contains('Impact Analysis')").each(function() {
+  $(".context-menu").find("a:contains('Impact Analysis')").off("click").on("click", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
-    $(this).off("click").on("click", function() {
-      var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
-      new CdiscVersionSelect(callback, "impact").open();
-    });
+    var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
+    new CdiscVersionSelect(callback, "impact").open();
   });
 }
 

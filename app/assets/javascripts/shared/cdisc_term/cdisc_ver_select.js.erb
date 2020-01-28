@@ -25,7 +25,7 @@ function CdiscVersionSelect(callback, description) {
 
 
 /**
- * Load data from server to the table
+ * Initalizes Slider, and sets listeners
  *
  * @return [void]
  */
@@ -46,11 +46,21 @@ CdiscVersionSelect.prototype.init = function () {
   }.bind(this));
 }
 
+/**
+ * Opens Modal
+ *
+ * @return [void]
+ */
 CdiscVersionSelect.prototype.open = function () {
   $(this.id).modal('show');
 }
 
-
+/**
+ * Add custom modal descriptions here
+ *
+ * @param name [String] key to map
+ * @return [String] description from map by key
+ */
 CdiscVersionSelect.prototype.descriptions = function (name) {
   var descriptionsMap = {
     impact: "To continue, choose version of the CDISC Terminology for Impact Analysis and click Select. <br/> The selected version must be newer than the one this terminology is currently using."
