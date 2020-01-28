@@ -8,13 +8,17 @@
 /**
  * CDISC Version Select Modal Constructor
  *
- * @param count [Int] Amount of items fetched in one call
+ * @param callback [Function] Version selected callback
+ * @param description [String] Type of text description in the modal, if null, will remain default
  * @return [void]
  */
-function CdiscVersionSelect(callback) {
+function CdiscVersionSelect(callback, description) {
   this.callback = callback;
   this.id = "#cdisc-select-modal";
   this.init();
+
+  if(description != null)
+    $(this.id + " #tl-slider-title").html(this.descriptions(description));
 
   return this;
 }
@@ -44,4 +48,13 @@ CdiscVersionSelect.prototype.init = function () {
 
 CdiscVersionSelect.prototype.open = function () {
   $(this.id).modal('show');
+}
+
+
+CdiscVersionSelect.prototype.descriptions = function (name) {
+  var descriptionsMap = {
+    impact: "To continue, choose a CDISC Terminology version to perform Impact Analysis on and click Select. <br/> The version must be newer than the one this Thesaurus is using."
+  }
+
+  return descriptionsMap[name];
 }

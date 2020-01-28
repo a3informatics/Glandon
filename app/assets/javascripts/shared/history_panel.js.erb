@@ -180,7 +180,7 @@ HistoryPanel.prototype.setListeners = function () {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     $(this).off("click").on("click", function() {
       var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
-      new CdiscVersionSelect(callback).open();
+      new CdiscVersionSelect(callback, "impact").open();
     });
   });
 }
