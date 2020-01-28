@@ -67,14 +67,14 @@
 	bo:reference <http://www.s-cubed.dk/NP000123P/V1#NP000123P> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113>
+<http://www.s-cubed.dk/C71113/V1#C71113>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Frequency"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	isoT:hasState <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_SI> ;
+	isoT:hasState <http://www.s-cubed.dk/C71113/V1#C71113_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C71113/V1#C71113_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -177,13 +177,13 @@
 	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C64595> ;
 	th:narrower <http://www.cdisc.org/C71113/V60#C71113_C161334> ;
 	th:narrower <http://www.cdisc.org/C71113/V61#C71113_C139178> ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001888> ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001887> ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001886> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
 	th:extends <http://www.cdisc.org/C71113/V61#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1> ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_RS>
+<http://www.s-cubed.dk/C71113/V1#C71113_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -195,7 +195,7 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_SI>
+<http://www.s-cubed.dk/C71113/V1#C71113_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C71113"^^xsd:string ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
@@ -203,7 +203,7 @@
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001888>
+<http://www.s-cubed.dk/C71113/V1#C71113_S001888>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
@@ -219,7 +219,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "At least weekly"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001887>
+<http://www.s-cubed.dk/C71113/V1#C71113_S001887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
@@ -235,7 +235,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "At least monthly"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001886>
+<http://www.s-cubed.dk/C71113/V1#C71113_S001886>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
@@ -270,12 +270,12 @@
 	th:notation "FREQ_01"^^xsd:string ;
 	th:definition "The terminology that includes terms pertaining to frequency within CDISC."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001888> ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001887> ;
-	th:narrower <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001886> ;
-	th:subsets <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
+	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
+	th:subsets <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
-	th:isOrdered <http://www.assero.co.uk/TS#d3aa44fa-646b-4075-83c2-a77fafdcd927> ;
+	th:isOrdered <http://www.assero.co.uk/TS#13b133b1-6710-48e1-b663-6c9e3f877d12> ;
 .
 <http://www.s-cubed.dk/NP000123P/V1#NP000123P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -301,25 +301,25 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#d3aa44fa-646b-4075-83c2-a77fafdcd927>
+<http://www.assero.co.uk/TS#13b133b1-6710-48e1-b663-6c9e3f877d12>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#e5d71949-a1bf-4590-8672-cad877a55019> ;
+	th:members <http://www.assero.co.uk/TSM#f384c73a-5f27-4e7c-9fb9-7494308d8393> ;
 .
-<http://www.assero.co.uk/TSM#e5d71949-a1bf-4590-8672-cad877a55019>
+<http://www.assero.co.uk/TSM#f384c73a-5f27-4e7c-9fb9-7494308d8393>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001888> ;
-	th:memberNext <http://www.assero.co.uk/TSM#cabdc35c-b865-4de8-96c6-a8f0c20e988c> ;
+	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
+	th:memberNext <http://www.assero.co.uk/TSM#b04eb00e-1501-4393-9563-c04094e23a75> ;
 .
-<http://www.assero.co.uk/TSM#cabdc35c-b865-4de8-96c6-a8f0c20e988c>
+<http://www.assero.co.uk/TSM#b04eb00e-1501-4393-9563-c04094e23a75>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001887> ;
-	th:memberNext <http://www.assero.co.uk/TSM#85ead7d2-338e-49a5-bc9b-982c6dec430d> ;
+	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
+	th:memberNext <http://www.assero.co.uk/TSM#9ee4cc43-0993-478d-838b-aa21465d4d56> ;
 .
-<http://www.assero.co.uk/TSM#85ead7d2-338e-49a5-bc9b-982c6dec430d>
+<http://www.assero.co.uk/TSM#9ee4cc43-0993-478d-838b-aa21465d4d56>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.s-cubed.dk/NP000123P/V1#NP000123P_C71113_S001886> ;
+	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
 .
