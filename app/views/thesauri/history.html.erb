@@ -3,25 +3,21 @@
 <%= javascript_tag "var url_path = '#{history_thesauri_index_path}';" %>
 <%= javascript_tag "var url_rs_path = '#{iso_registration_states_v2_path("rs_id")}';" %>
 <%= javascript_tag "var comments_url_path = '#{comments_iso_managed_index_path({iso_managed: {identifier: @identifier, scope_id: @scope_id}})}';" %>
-<%= javascript_tag "var impact_path = '#{impact_iso_managed_v2_path(@thesaurus)}';" %>
 <%= javascript_tag "var strict_params = 'thesauri';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 <% @close_path = thesauri_index_path %>
+
 <div class="row">
 	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
     <div class="actions-wrap">
-			<% if @thesaurus.edit? && !@ref_thesaurus.nil? %>
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#cdisc-select-modal", id: "impact-button",
-					icon: "icon-impact", no_badge: true, btn_text: "Impact Analysis", dt_toggle: "modal", disabled: @ref_thesaurus.nil? } %>
-				<%= render partial: "shared/cdisc_terms/cdisc_ver_select_modal", :locals => { start_year: @versions_span[0], end_year: @versions_span[1],
-					versions_norm: @versions_n, versions: @versions, ref_thesaurus: @ref_thesaurus } %>
-				<% end %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
+
+	<%= render partial: "shared/cdisc_terms/cdisc_ver_select_modal" %>
 
 </div>
 <div class="row centered">

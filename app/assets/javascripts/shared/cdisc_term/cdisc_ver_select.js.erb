@@ -1,16 +1,47 @@
-$(document).ready(function(){
-  var ts = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
-  $("#cdisc-select-modal").on('shown.bs.modal', function () {
-    ts.moveToDate(ts.l_slider, latestCDISCVer);
-  });
+/*
+* CDISC Version Select Modal
+*
+* Requires:
+* #cdisc-select-modal [Partial]
+*/
 
-  $("#select-cdisc-ter-btn").on("click", function() {
-    var selectedDate = Date.parse($("#cdisc-select-modal .timeline-point.point-highlight span").text());
-    var selectedId = $("#cdisc-select-modal .timeline-point.point-highlight span").attr("data-index");
-    var refDate = Date.parse(referenceCDISCVer.split(' ')[0])
-    if(selectedDate <= refDate)
-      displayAlertsInElement(alertError("Selected version must be later than current (" + referenceCDISCVer + ")"), $("#cdisc-select-modal .errors"));
-    else
-      location.href = impact_path;
-  });
-});
+/**
+ * CDISC Version Select Modal Constructor
+ *
+ * @param count [Int] Amount of items fetched in one call
+ * @return [void]
+ */
+function CdiscVersionSelect(callback) {
+  this.callback = callback;
+  this.id = "#cdisc-select-modal";
+  this.init();
+
+  return this;
+}
+
+
+/**
+ * Load data from server to the table
+ *
+ * @return [void]
+ */
+CdiscVersionSelect.prototype.init = function () {
+  this.ts = new TimelineSlider($(this.id + " .timeline-container"), $(this.id + " #timeline-start-btn"), null, $(this.id + " .timeline-point"));
+
+  $(this.id).off('shown.bs.modal').on('shown.bs.modal', function () {
+    this.ts.moveToDate(this.ts.l_slider, latestCDISCVer);
+  }.bind(this));
+
+
+  $("#select-cdisc-ter-btn").off("click").on("click", function() {
+    var selectedPoint = $(this.id + " .timeline-point.point-highlight span");
+    var selectedDate = Date.parse(selectedPoint.text());
+    var selectedId = selectedPoint.attr("data-index");
+
+    this.callback(selectedDate, selectedId);
+  }.bind(this));
+}
+
+CdiscVersionSelect.prototype.open = function () {
+  $(this.id).modal('show');
+}
