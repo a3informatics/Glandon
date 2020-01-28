@@ -38,7 +38,10 @@ class Thesaurus <  IsoManagedV2
     query_results.by_object(:s)
   end
 
-  # Find By Identifier
+  # Find By Identifier. Finds items with the quoted identifier path.
+  #
+  # @param [Array] identifiers array of the required identifiers as a path
+  # @return [Hash] a hash keyed by identifier containing the URI of the items found matching the path
   def find_by_identifiers(identifiers)
     results = {}
     parts = []
@@ -69,21 +72,22 @@ class Thesaurus <  IsoManagedV2
     results
   end
 
-  # Find Identifier
+  # Find Identifier. Finds any children with the specified identifier.
   #
   # @param [String] identifier the identifier to be found
-  # @result [Array] an array of hash structures each containing the identifier and the uri
+  # @result [Array] an array of hash containing the uri and rdf_type for the item
   def find_identifier(identifier)
     query_string = %Q{
-      SELECT ?uri WHERE
+      SELECT ?uri ?rdf_type WHERE
       {
         #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?b .
         ?b th:narrower* ?uri .
         ?uri th:identifier "#{identifier}" .
+        ?uri rdf:type ?rdf_type
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
-    query_results.by_object_set([:uri])
+    query_results.by_object_set([:uri, :rdf_type])
   end
 
   # Changes

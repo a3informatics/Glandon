@@ -604,11 +604,11 @@ describe Thesaurus do
 
     it "find_identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
-      actual = ct.find_identifier("C17998").map{|x| x[:uri].to_s}
+      actual = ct.find_identifier("C17998").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
       check_file_actual_expected(actual, sub_dir, "find_identifier_expected_1.yaml")
-      actual = ct.find_identifier("C25308").map{|x| x[:uri].to_s}
+      actual = ct.find_identifier("C25308").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
       check_file_actual_expected(actual, sub_dir, "find_identifier_expected_2.yaml")
-      actual = ct.find_identifier("C25308X").map{|x| x[:uri].to_s}
+      actual = ct.find_identifier("C25308X").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
       check_file_actual_expected(actual, sub_dir, "find_identifier_expected_3.yaml")
     end
 
