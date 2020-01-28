@@ -23,6 +23,12 @@ class IsoManagedV2Controller < ApplicationController
   def impact
     authorize IsoManaged, :show?
     @managed_item = get_item(params)
+    @new_cdisc_th = Thesaurus.find_minimum(the_params[:new_th_id])
+    @ref_cdisc_th = Thesaurus.find_minimum(params[:id]).get_referenced_thesaurus
+    if Date.parse(@new_cdisc_th.version_label) <= Date.parse(@ref_cdisc_th.version_label)
+      flash[:error] = "You must choose a newer CDISC release than #{@new_cdisc_th.version_label} to perform Impact Analysis."
+      redirect_to request.referer
+    end
     @close_path = request.referer
   end
 
@@ -85,7 +91,7 @@ private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type, :offset, :count)
+    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type, :offset, :count, :new_th_id)
   end
 
 end

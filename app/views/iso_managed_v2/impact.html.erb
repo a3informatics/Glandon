@@ -1,7 +1,8 @@
-<%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact", main_text: "Impact Analysis",
-  sub_text: "#{@managed_item.label}. CDISC CT update from: VERNR to: VERNR. "} do %>
-  <div class="actions-wrap">
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-  </div>
+<%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
+  main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
+  sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+
+  <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
 <% end %>
