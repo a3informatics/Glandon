@@ -163,12 +163,12 @@ module Import::STFOClasses
 
     def to_cdisc_subset(ct)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
+      ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
       self.identifier = Thesaurus::ManagedConcept.new_identifier
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
-      ref_ct = reference(ct)
       old_narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
