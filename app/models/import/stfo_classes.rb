@@ -84,7 +84,11 @@ module Import::STFOClasses
               if options.empty?
                 add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
               elsif options.count == 1
-                new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
+                begin
+                  new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
+                rescue => e
+                  add_error("Cannot find options first #{options.first} in code list extension, identifier '#{self.identifier}'.")
+                end
               else
                 add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
               end
@@ -119,6 +123,7 @@ module Import::STFOClasses
       new_narrower = []
       ext = extensions[self.identifier]
       self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.subsets = ext
       self.narrower.each do |child|
         new_child = ext.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
@@ -159,6 +164,7 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct)
       self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.subsets = ref_ct
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?
@@ -181,6 +187,7 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.subsets = ref_ct
       self.narrower.each do |child|
         new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
         if new_child.nil?

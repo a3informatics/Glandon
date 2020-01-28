@@ -23,6 +23,7 @@ describe Import::STFOClasses do
   it "sponsor?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SN000123"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124")
     expect(object.sponsor?).to eq(true)
@@ -31,6 +32,7 @@ describe Import::STFOClasses do
   it "not sponsor?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SN000123"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C12345")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124")
     expect(object.sponsor?).to eq(false)
@@ -39,6 +41,7 @@ describe Import::STFOClasses do
   it "sponsor_or_hybrid?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SN000123"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC00012")
     expect(object.hybrid_sponsor?).to eq(true)
@@ -47,6 +50,7 @@ describe Import::STFOClasses do
   it "not sponsor_or_hybrid?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "SN000123"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C12345")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC00012")
     expect(object.hybrid_sponsor?).to eq(false)
@@ -84,6 +88,7 @@ describe Import::STFOClasses do
   it "extension? I" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124")
@@ -96,6 +101,7 @@ describe Import::STFOClasses do
   it "extension? II" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C777")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC74571")
@@ -110,6 +116,7 @@ describe Import::STFOClasses do
   it "not extension?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124X")
@@ -122,6 +129,7 @@ describe Import::STFOClasses do
   it "referenced?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573")
     expected = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/C76351/V10#C76351"))
@@ -134,6 +142,7 @@ describe Import::STFOClasses do
   it "not referenced?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573X")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
@@ -144,6 +153,7 @@ describe Import::STFOClasses do
   it "obtains reference" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
     actual = object.reference(ct)
     check_file_actual_expected(actual.to_h, sub_dir, "reference_expected_1.yaml", equate_method: :hash_equal)
@@ -152,6 +162,7 @@ describe Import::STFOClasses do
   it "child identifiers" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573X")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SN1234")
@@ -163,16 +174,19 @@ describe Import::STFOClasses do
   it "sponsor child identifiers?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573")
     expect(object.sponsor_child_identifiers?).to eq(false)
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S174571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S274573")
     expect(object.sponsor_child_identifiers?).to eq(true)
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S174571XX")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S274573")
     expect(object.sponsor_child_identifiers?).to eq(false)
@@ -181,6 +195,7 @@ describe Import::STFOClasses do
   it "sponsor code list identifiers" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
     expect(object.sponsor_identifier?).to eq(false)
     object.identifier = "SN12345"
     expect(object.sponsor_identifier?).to eq(false)

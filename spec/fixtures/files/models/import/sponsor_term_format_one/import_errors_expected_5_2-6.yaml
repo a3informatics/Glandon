@@ -13,7 +13,12 @@
   for a subset ''NP000131P''.'
 - 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000132P''.'
-- 'Completion/Reason for Non-Completion: Exception in to_extension, identifier ''C66727''.'
+- 'Completion/Reason for Non-Completion: Cannot find options first {:uri=>#<Uri:0x00007fb3cd6eb210
+  @scheme="http", @authority="www.cdisc.org", @path="C114118/V38", @fragment="C114118_C16735">}
+  in code list extension, identifier ''C66727''.'
+- 'Completion/Reason for Non-Completion: Cannot find options first {:uri=>#<Uri:0x00007fb3cd690d60
+  @scheme="http", @authority="www.cdisc.org", @path="C114118/V38", @fragment="C114118_C114209">}
+  in code list extension, identifier ''C66727''.'
 - 'Findings About Test Code: Cannot find unique C25365 in code list extension, identifier
   ''C101832''.'
 - 'Findings About Test Name: Cannot find unique C25365 in code list extension, identifier
@@ -178,7 +183,12 @@
   for a subset ''NP000162P''.'
 - 'Laboratory Test Name Subset 03: Cannot find a code list item, identifier ''S000395'',
   for a subset ''NP000162P''.'
-- 'Method: Exception in to_extension, identifier ''C85492''.'
+- 'Method: Cannot find options first {:uri=>#<Uri:0x00007fb3d65e3d00 @scheme="http",
+  @authority="www.cdisc.org", @path="C66726/V4", @fragment="C66726_C45415">} in code
+  list extension, identifier ''C85492''.'
+- 'Method: Cannot find unique C17649 in code list extension, identifier ''C85492''.'
+- 'Method Subset 03: Cannot find a code list item, identifier ''C17649'', for a subset
+  ''NP000169P''.'
 - 'Microbiology Test Code: Cannot find unique C82021 in code list extension, identifier
   ''C120527''.'
 - 'Microbiology Test Name: Cannot find unique C82021 in code list extension, identifier
@@ -194,8 +204,14 @@
   ''C66729''.'
 - 'Route of Administration Subset 02: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000191P''.'
-- 'Specimen Condition: Exception in to_extension, identifier ''C78733''.'
-- 'Specimen Type: Exception in to_extension, identifier ''C78734''.'
+- 'Specimen Condition: Cannot find options first {:uri=>#<Uri:0x00007fb3d757b3d0 @scheme="http",
+  @authority="www.cdisc.org", @path="C66789/V4", @fragment="C66789_C49484">} in code
+  list extension, identifier ''C78733''.'
+- 'Specimen Condition: Cannot find unique C48658 in code list extension, identifier
+  ''C78733''.'
+- 'Specimen Type: Cannot find options first {:uri=>#<Uri:0x00007fb3cb5287e0 @scheme="http",
+  @authority="www.cdisc.org", @path="C99074/V40", @fragment="C99074_C27958">} in code
+  list extension, identifier ''C78734''.'
 - 'Tumor Response Result: Cannot find unique C48660 in code list extension, identifier
   ''C96785''.'
 - 'Unit Subset 05: Cannot find a code list item, identifier ''S010223'', for a subset
