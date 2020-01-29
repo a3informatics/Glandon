@@ -205,6 +205,27 @@ describe Thesaurus do
       load_versions(CdiscCtHelpers.version_range)
     end
 
+    it "calculates changes_impact, no deleted items" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+      actual = th.changes_impact(other_th)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact, 1 deleted and 133 updated" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      actual = th.changes_impact(other_th)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact, 6 deleted and 64 updated" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
+      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      actual = th.changes_impact(other_th)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_3.yaml", equate_method: :hash_equal)
+    end
+
     it "calculates changes, window full width" do
       th = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = th.changes(61)
