@@ -315,6 +315,16 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: clis}
   end
 
+  def changes_summary_data_impact
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
+    versions = params[:ver_span]
+    clis = tc.changes_summary_impact(last, versions)
+    clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
+    render json: {data: clis}
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
