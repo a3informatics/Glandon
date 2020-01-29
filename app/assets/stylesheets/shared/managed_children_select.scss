@@ -89,9 +89,22 @@ table.table-disabled {
   font-size: $font-small;
 }
 
+// IEFIX
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   .table-row-clickable .selected td:first-of-type::before{
     top: 75% !important;
+  }
+
+  .table-row-clickable tr.selected td:first-of-type{
+    overflow: hidden !important;
+  }
+
+  .table-row-clickable tr.selected.r td:first-of-type::before,
+    .table-row-clickable tr.selected.y td:first-of-type::before{
+      top: 0 !important;
+      bottom: -100% !important;
+      height: 300px;
   }
 }
