@@ -564,12 +564,14 @@ module UiHelpers
     slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
     slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
     page.execute_script(slider)
+		sleep 0.6
   end
 
 	def ui_dashboard_single_slider (date)
 		slider = "var tl_slider = $('.timeline-container').data(); "
 		slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{date}'); "
 		page.execute_script(slider)
+		sleep 0.6
 	end
 
   def ui_dashboard_alpha_filter (filter, filter_text)

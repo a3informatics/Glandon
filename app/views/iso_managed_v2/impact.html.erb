@@ -34,18 +34,19 @@
       <div class="tabs-layout" id="impact-tabs">
 
         <div class="tabs-sel">
-          <div class="tab-option active" id="tab-changes"><div>Changes</div></div>
-          <div class="tab-option" id="tab-affected"><div>Affected Items</div></div>
+          <div class="tab-option active" id="tab-affected"><div>Affected Items</div></div>
+          <div class="tab-option" id="tab-changes"><div>Change Details</div></div>
           <div class="tab-option" id="tab-graph"><div>Impact Graph</div></div>
         </div>
 
-        <div class="tab-wrap" data-tab="tab-changes">
+        <div class="tab-wrap scroll-styled" data-tab="tab-affected">
         </div>
 
-        <div class="tab-wrap closed" data-tab="tab-affected">
+        <div class="tab-wrap closed scroll-styled" data-tab="tab-changes">
+          <%= render partial: "shared/impact/changes_differences_panel" %>
         </div>
 
-        <div class="tab-wrap closed" data-tab="tab-graph">
+        <div class="tab-wrap closed scroll-styled" data-tab="tab-graph">
         </div>
 
       </div>

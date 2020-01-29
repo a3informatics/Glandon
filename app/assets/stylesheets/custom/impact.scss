@@ -1,1 +1,21 @@
 @import "custom/vars.scss";
+
+.tab-wrap{
+  max-height: 640px;
+  overflow: auto;
+}
+
+.tab-wrap .row{
+  margin: 0;
+}
+
+#differences_table_wrapper .row:nth-of-type(odd) {
+  display: none !important;
+}
+
+@media(max-width: 1400px){
+  .col-md-4.card, .col-md-8.card{
+    max-width: calc(100% - 40px);
+    width: calc(100% - 40px);
+  }
+}

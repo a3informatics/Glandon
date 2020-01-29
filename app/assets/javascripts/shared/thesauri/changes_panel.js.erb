@@ -32,21 +32,30 @@ function ChangesPanel(url, column_count) {
     return '<a href="' + row.changesPath + '" class="btn  btn-xs">Changes</a>';
   }});
 
-  var loading_html = generateSpinner("medium");
+  this.columns = columns;
 
+  this.init();
+  this.hideButtons();
+  this.add();
+}
+
+/**
+ * Initializes table
+ *
+ * @return [void]
+ */
+ChangesPanel.prototype.init = function () {
   this.changesTable = $('#changes').DataTable( {
-    "columns": columns,
+    "columns": this.columns,
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": loading_html
+      "processing": generateSpinner("medium")
     }
   });
-  this.hideButtons();
-  this.add();
 }
 
 /**
@@ -55,6 +64,9 @@ function ChangesPanel(url, column_count) {
  * @return [void]
  */
 ChangesPanel.prototype.add = function () {
+  if(this.url == null)
+    return;
+
   var _this = this;
   _this.changesTable.processing(true);
   $.ajax({
@@ -87,6 +99,18 @@ ChangesPanel.prototype.add = function () {
 }
 
 /**
+ * Resets datatable, reloads data
+ *
+ * @param newUrl [String] new data url
+ * @return [void]
+ */
+ChangesPanel.prototype.reload = function (newUrl) {
+  this.changesTable.clear();
+  this.url = newUrl;
+  this.add();
+}
+
+/**
  * Hide Buttons. Hide the button bar with the scroll buttons
  *
  * @return [void]
@@ -111,13 +135,13 @@ ChangesPanel.prototype.showButtons = function () {
  */
 ChangesPanel.prototype.status = function (status) {
   if (status == "created") {
-    return '<span class="icon-plus-circle text-secondary-clr text-xnormal ttip"><span class="ttip-text text-medium text-small">Created</span></span>';
+    return '<span class="icon-plus-circle text-secondary-clr text-xnormal ttip"><span class="ttip-text ttip-left text-medium text-small shadow-small">Created</span></span>';
   } else if (status == "no_change") {
-    return '<span class="icon-arrow-circle-r text-light text-xnormal ttip"><span class="ttip-text text-medium text-small">No change</span></span>';
+    return '<span class="icon-arrow-circle-r text-light text-xnormal ttip"><span class="ttip-text ttip-left text-medium text-small shadow-small">No change</span></span>';
   } else if (status == "updated") {
-    return '<span class="icon-edit-circle text-link text-xnormal ttip"><span class="ttip-text text-medium text-small">Updated</span></span>';
+    return '<span class="icon-edit-circle text-link text-xnormal ttip"><span class="ttip-text ttip-left text-medium text-small shadow-small">Updated</span></span>';
   } else if (status == "deleted") {
-    return '<span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text text-medium text-small">Deleted</span></span>';
+    return '<span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text ttip-left text-medium text-small shadow-small">Deleted</span></span>';
   } else if (status == "not_present") {
     return '&nbsp;';
   } else {

@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
-  var ccp = new ChangesCdiscPanel(null, null, {url: "", data: ""});
+  var ccp = new ChangesCdiscPanel({url: "", data: ""});
+  var dp = new DifferencesPanel(null);
+  var cp = new ChangesPanel(null, 2);
 
+  var selectCallback = function(r){
+    dp.reload(clDifferencesURL);
+    cp.reload(clChangesURL);
+  }
+
+  ccp.sCallback = selectCallback;
 });

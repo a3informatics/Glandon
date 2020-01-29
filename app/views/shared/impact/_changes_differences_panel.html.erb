@@ -1,0 +1,39 @@
+<%= javascript_tag "var clDifferencesURL = '#{differences_summary_thesauri_managed_concept_path(id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==", last_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA==", ver_span: ['2018-03-30', '2019-12-20'])}';" %>
+<%= javascript_tag "var clChangesURL = '#{changes_summary_data_thesauri_managed_concept_path(id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==", last_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA==", ver_span: ['2018-03-30', '2019-12-20'])}';" %>
+
+<%= javascript_include_tag 'shared/thesauri/differences_panel', 'shared/thesauri/changes_panel' %>
+<style>
+  <%= Diffy::CSS %>
+</style>
+<div class="text-xnormal text-link ci-card-title">
+  Differences
+</div>
+<table id="differences_table" class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th class="fit">Identifier</th>
+      <th class="fit">Submission Value</th>
+      <th>Preferred Term</th>
+      <th>Synonym</th>
+      <th>Definition</th>
+    </tr>
+  <thead>
+</table>
+<div class="text-xnormal text-link ci-card-title">
+  Changes
+</div>
+<table id="changes" class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Identifier</th>
+      <th>Label</th>
+      <th>Submission Value</th>
+      <th class="text-center">&nbsp;</th>
+      <th class="text-center">&nbsp;</th>
+      <th class="fit"></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
