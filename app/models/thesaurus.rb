@@ -231,6 +231,37 @@ class Thesaurus <  IsoManagedV2
     {items: final_results}
   end
 
+    def changes_impact_v2(new_version, sponsor_version)
+      final_results = {}
+      # Get the raw results
+      query_string = %Q{
+        SELECT DISTINCT ?cl ?v ?l ?n ?i ?cl_new WHERE      
+        {        
+          { #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?cl  } MINUS { #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl }
+          BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl} 
+            && NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl} AS ?cilink)
+          FILTER(?cilink=false)
+          ?cl isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?cl isoC:label ?l .
+          ?cl th:notation ?n .
+          ?si isoI:identifier ?i .
+          OPTIONAL
+          {
+            #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl_new .
+            ?cl_new isoT:hasIdentifier/isoI:identifier ?i .
+          }
+        }  
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :cl_new])
+      triples.each do |entry|
+        uri = entry[:cl].to_s
+        final_results[uri] = {key: entry[:i], uri: entry[:cl].to_s, label: entry[:l], notation: entry[:n], version: entry[:v], cl_new: entry[:cl_new].to_s}
+      end
+      final_results
+    end
+
   # Changes_CDU
   #
   # @param [Integer] window_size the required window size for changes
