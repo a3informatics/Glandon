@@ -22,7 +22,7 @@ function ChangesCdiscPanel(sCallback, dCallback, params) {
         {
           type: "d",
           identifier: "C123156",
-          notation: "Some notation",
+          notation: "Some nogdoigjdo figjdofigjdfkgjdlkjfglkdgj lkdtation",
           label: "Some label",
         },
         {
@@ -98,7 +98,7 @@ ChangesCdiscPanel.prototype.init = function() {
     "lengthMenu": pageSettings,
     "processing": true,
     "data": this.fakeData,
-    "scrollY": 550,
+    "scrollY": 500,
     "scrollCollapse": true,
     // "ajax": {
     //   "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
@@ -128,14 +128,14 @@ ChangesCdiscPanel.prototype.setListeners = function() {
 
   // Row selected event
   this.table.off("select").on("select", function(e, dt, type, indexes){
-    var rowSelected = this.table.row(indexes[0]);
-    try { this.sCallback(rowSelected) } catch(e) { };
+    var r = this.table.row(indexes[0]);
+    try { this.sCallback(r.data()) } catch(e) { };
   }.bind(this));
 
   // Row deselected event
   this.table.off("deselect").on("deselect", function(e, dt, type, indexes){
-    var rowDeselected = this.table.row(indexes[0]);
-    try { this.dCallback(rowDeselected) } catch(e) { };
+    var r = this.table.row(indexes[0]);
+    try { this.dCallback(r.data()) } catch(e) { };
   }.bind(this));
 }
 
