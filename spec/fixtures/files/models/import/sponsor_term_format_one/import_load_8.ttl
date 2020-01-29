@@ -275,7 +275,7 @@
 	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
 	th:subsets <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
-	th:isOrdered <http://www.assero.co.uk/TS#22e21b4a-499e-43b1-8289-9ed27728f315> ;
+	th:isOrdered <http://www.assero.co.uk/TS#afffdc2f-9fe9-4f43-a780-b8682406a145> ;
 .
 <http://www.s-cubed.dk/NP000123P/V1#NP000123P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -301,24 +301,24 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#22e21b4a-499e-43b1-8289-9ed27728f315>
+<http://www.assero.co.uk/TS#afffdc2f-9fe9-4f43-a780-b8682406a145>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#d73c00e6-25f7-4dca-9791-fe2cedb97cee> ;
+	th:members <http://www.assero.co.uk/TSM#5a0fd4b4-82a3-4f5e-a975-c1fe5d4fcf96> ;
 .
-<http://www.assero.co.uk/TSM#d73c00e6-25f7-4dca-9791-fe2cedb97cee>
+<http://www.assero.co.uk/TSM#5a0fd4b4-82a3-4f5e-a975-c1fe5d4fcf96>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
-	th:memberNext <http://www.assero.co.uk/TSM#835c203c-71ca-4d21-a5fb-f695c4f3f7af> ;
+	th:memberNext <http://www.assero.co.uk/TSM#0f86b820-1fee-4e63-8704-80f378abb667> ;
 .
-<http://www.assero.co.uk/TSM#835c203c-71ca-4d21-a5fb-f695c4f3f7af>
+<http://www.assero.co.uk/TSM#0f86b820-1fee-4e63-8704-80f378abb667>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
-	th:memberNext <http://www.assero.co.uk/TSM#89111b2c-5c24-42fc-9452-263ab913f6b5> ;
+	th:memberNext <http://www.assero.co.uk/TSM#9cc5062a-ebb7-4961-a872-54855f91faf4> ;
 .
-<http://www.assero.co.uk/TSM#89111b2c-5c24-42fc-9452-263ab913f6b5>
+<http://www.assero.co.uk/TSM#9cc5062a-ebb7-4961-a872-54855f91faf4>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
