@@ -166,6 +166,71 @@ class Thesaurus <  IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  def changes_impact(other_version)
+    uris = [self.uri, other_version.uri]
+    raw_results = {}
+    final_results = {}
+    # Get the raw results
+    query_string = %Q{
+      SELECT ?e ?v ?d ?i ?cl ?l ?n 
+      WHERE
+      {
+        #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . 
+                                 #{x.to_ref} isoT:creationDate ?d . 
+                                 #{x.to_ref} isoT:hasIdentifier ?si1 . 
+                                 ?si1 isoI:version ?v . 
+                                 BIND (#{x.to_ref} as ?e)}" }.join(" UNION\n")}
+        ?r bo:reference ?cl .
+        ?cl isoT:hasIdentifier ?si2 .
+        ?cl isoC:label ?l .
+        ?cl th:notation ?n .
+        ?si2 isoI:identifier ?i .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+    triples.each do |entry|
+      uri = entry[:e].to_s
+      raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
+    end
+
+    # Build the skeleton final results with a default value.
+    raw_results.each do |uri, version|
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if final_results.key?(key)
+        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: :not_present}
+      end
+    end
+
+    # Process the changes 
+    # raw_results.each_with_index do |(uri, version), index|
+        common_items = raw_results.values.first[:children] & raw_results.values.last[:children]
+        deleted_items = raw_results.values.first[:children] - raw_results.values.last[:children]
+
+      if !common_items.empty?
+        common_items.each do |entry|
+          prev = raw_results.values.first[:children].find{|x| x[:key] == entry[:key]}
+          curr = raw_results.values.last[:children].find{|x| x[:key] == entry[:key]}
+          final_results[entry[:key].to_sym][:status] = curr.no_change?(prev) ? :no_change : :updated
+        end
+      end
+
+      if !deleted_items.empty?
+        deleted_items.each do |entry|
+          final_results[entry[:key].to_sym][:status] = :deleted
+        end
+      end
+    # end
+    # Remove blank entries (those with no changes)
+    no_change_entry = :no_change
+    not_present_entry = :not_present
+    final_results.delete_if {|k,v| v[:status] == no_change_entry || v[:status] == not_present_entry}
+    # And return
+    {items: final_results}
+  end
+
   # Changes_CDU
   #
   # @param [Integer] window_size the required window size for changes

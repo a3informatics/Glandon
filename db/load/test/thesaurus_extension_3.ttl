@@ -1,0 +1,77 @@
+@prefix : <http://www.acme-pharma.com/E00001/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/E00001/V1>
+	rdf:type owl:Ontology ;
+.
+:E00001
+	rdf:type th:ManagedConcept ;
+	isoC:label "Epoch Extension"^^xsd:string ;
+	isoT:hasState :E00001_RS ;
+	isoT:hasIdentifier :E00001_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-12-26T20:47:40+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "E00001"^^xsd:string ;
+	th:notation "EPOCH"^^xsd:string ;
+	th:definition "Extends Epoch"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C49494> ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C48275> ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C49498> ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C17998> ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C49496> ;
+	th:narrower <http://www.cdisc.org/C66768/V2#C66768_C49495> ;
+  th:narrower <http://www.cdisc.org/C66781/V2#C66781_C25529> ;
+	th:narrower :E00001_A00002 ;
+	th:extends <http://www.cdisc.org/C66768/V2#C66768> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3073075702df6d006eef5e103a65985cf3a42176> ;
+.
+:E00001_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:E00001_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "E00001"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:E00001_A00002
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "So late after anything else"^^xsd:string ;
+	th:identifier "A00002"^^xsd:string ;
+	th:notation "SO SO LATE"^^xsd:string ;
+	th:definition "So so late"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#452441f84d39bc3df6901d67156fe4d6d76d1de7> ;
+.
+<http://www.assero.co.uk/PT#452441f84d39bc3df6901d67156fe4d6d76d1de7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Very very late"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#3073075702df6d006eef5e103a65985cf3a42176>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Epoch Extension"^^xsd:string ;
+.
