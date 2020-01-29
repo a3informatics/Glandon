@@ -5,8 +5,8 @@ $(document).ready(function(){
   var cp = new ChangesPanel(null, 2);
 
   var selectCallback = function(r){
-    dp.reload(clDifferencesURL);
-    cp.reload(clChangesURL);
+    dp.reload(r.differences_url);
+    cp.reload(r.changes_url);
   }
 
   ccp.sCallback = selectCallback;
