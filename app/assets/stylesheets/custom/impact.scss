@@ -9,6 +9,10 @@
   margin: 0;
 }
 
+.col-md-4.card, .col-md-8.card{
+  height: 800px;
+}
+
 #differences_table_wrapper .row:nth-of-type(odd) {
   display: none !important;
 }

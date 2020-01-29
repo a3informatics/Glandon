@@ -12,6 +12,7 @@
  */
 function DifferencesPanel(url) {
   this.url = url;
+  this.cache = {};
   var _this = this;
   var columns = [
     {"data" : "date"},
@@ -39,6 +40,7 @@ function DifferencesPanel(url) {
   this.columns = columns;
 
   this.init();
+  this.add();
 }
 
 /**
@@ -47,10 +49,9 @@ function DifferencesPanel(url) {
  * @return [void]
  */
 DifferencesPanel.prototype.init = function () {
+  var _this = this;
+
   this.differencesTable = $('#differences_table').DataTable( {
-    // "ajax": {
-    //   "dataSrc": "data"
-    // },
     "columns": this.columns,
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
@@ -61,10 +62,39 @@ DifferencesPanel.prototype.init = function () {
       "processing": generateSpinner("medium")
     }
   });
-
-  if(this.url != null)
-    this.differencesTable.ajax.url(this.url).load();
 }
+
+/**
+ * Add items to table
+ *
+ * @return [void]
+ */
+DifferencesPanel.prototype.add = function () {
+  if(this.url == null)
+    return;
+
+  var _this = this;
+  this.differencesTable.processing(true);
+
+  $.ajax({
+    url: this.url,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      $.each(result.data, function(key, item){
+        _this.differencesTable.row.add(item);
+      });
+      _this.differencesTable.draw();
+      _this.saveCache(_this.url, _this.differencesTable.rows().data());
+      _this.differencesTable.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.differencesTable.processing(false);
+    }
+  });
+}
+
 
 /**
  * Resets table
@@ -73,9 +103,43 @@ DifferencesPanel.prototype.init = function () {
  * @return [void]
  */
 DifferencesPanel.prototype.reload = function (newUrl) {
-  this.url = newUrl;
   this.differencesTable.clear();
-  this.differencesTable.ajax.url(this.url).load();
+  this.url = newUrl;
+
+  if(this.cache[newUrl] != null)
+    this.loadFromCache(newUrl);
+  else
+    this.add();
+}
+
+/**
+ * Saves DataTable Rows.Data() to cache, if not existing
+ *
+ * @param id [String] url of the item that will be the key in the cache, is unique
+ * @param data [DataTables Rows Data] datatables api instance of all rows
+ * @return [void]
+ */
+DifferencesPanel.prototype.saveCache = function(id, data) {
+  if(this.cache[id] == null)
+    this.cache[id] = data.toArray();
+}
+
+/**
+ * Clears table and reloads data from cache
+ *
+ * @param id [String] url of the item that is the key in the cache, is unique
+ * @return [void]
+ */
+DifferencesPanel.prototype.loadFromCache = function(id) {
+  this.differencesTable.rows().remove();
+  this.differencesTable.processing(true);
+
+  $.each(this.cache[id], function(i, data) {
+    this.differencesTable.row.add(data);
+  }.bind(this));
+
+  this.differencesTable.draw();
+  this.differencesTable.processing(false);
 }
 
 DifferencesPanel.prototype.status = function (data) {

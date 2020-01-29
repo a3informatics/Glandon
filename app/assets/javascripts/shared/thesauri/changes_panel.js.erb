@@ -13,6 +13,8 @@
 function ChangesPanel(url, column_count) {
   this.url = url;
   this.column_count = column_count;
+  this.cache = {};
+
   var _this = this;
   var columns = [
     {"data" : "identifier", className: "fit"},
@@ -88,6 +90,7 @@ ChangesPanel.prototype.add = function () {
         _this.changesTable.row.add(row);
       });
       _this.changesTable.draw();
+      _this.saveCache(_this.url, _this.changesTable.rows().data());
       _this.showButtons();
       _this.changesTable.processing(false);
     },
@@ -99,6 +102,37 @@ ChangesPanel.prototype.add = function () {
 }
 
 /**
+ * Saves DataTable Rows.Data() to cache, if not existing
+ *
+ * @param id [String] url of the item that will be the key in the cache, is unique
+ * @param data [DataTables Rows Data] datatables api instance of all rows
+ * @return [void]
+ */
+ChangesPanel.prototype.saveCache = function(id, data) {
+  if(this.cache[id] == null)
+    this.cache[id] = data.toArray();
+}
+
+/**
+ * Clears table and reloads data from cache
+ *
+ * @param id [String] url of the item that is the key in the cache, is unique
+ * @return [void]
+ */
+ChangesPanel.prototype.loadFromCache = function(id) {
+  this.changesTable.rows().remove();
+  this.changesTable.processing(true);
+
+  $.each(this.cache[id], function(i, data) {
+    this.changesTable.row.add(data);
+  }.bind(this));
+
+  this.changesTable.draw();
+  this.changesTable.processing(false);
+}
+
+
+/**
  * Resets datatable, reloads data
  *
  * @param newUrl [String] new data url
@@ -107,7 +141,11 @@ ChangesPanel.prototype.add = function () {
 ChangesPanel.prototype.reload = function (newUrl) {
   this.changesTable.clear();
   this.url = newUrl;
-  this.add();
+
+  if(this.cache[newUrl] != null)
+    this.loadFromCache(newUrl);
+  else
+    this.add();
 }
 
 /**
