@@ -555,7 +555,7 @@ describe "extensions" do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..60)
+      load_cdisc_term_versions(1..62)
       delete_all_public_test_files
     end
 
@@ -674,6 +674,14 @@ describe "extensions" do
       versions = ["2007-04-20","2011-07-22"]
       results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "changes_summary_impact I" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V61#C74456"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V62#C74456"))
+      versions = ["2019-09-27","2019-12-20"]
+      results = tc.changes_summary_impact(last, versions)
+      check_file_actual_expected(results, sub_dir, "changes_summary_impact_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

@@ -341,6 +341,16 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: actual_versions, items: final_results}
   end
 
+  # Changes_summary_impact. Based on changes_summary. Deletes items that have not changed
+  #
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
+  # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_summary_impact(last, actual_versions)
+    csi = changes_summary(last, actual_versions)
+    csi[:items].delete_if {|k,v| v[:status][-1] == {status: :no_change} }
+  end
+
   # Differences_summary
   #
   # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
