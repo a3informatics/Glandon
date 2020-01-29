@@ -203,6 +203,11 @@ describe Thesaurus do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_versions(CdiscCtHelpers.version_range)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("import_load_7_2-6.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor2_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor3_impact.ttl")
     end
 
     it "calculates changes_impact, no deleted items" do
@@ -224,6 +229,38 @@ describe Thesaurus do
       other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       actual = th.changes_impact(other_th)
       check_file_actual_expected(actual, sub_dir, "changes_impact_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact v2, no deleted items" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH"))
+      actual = th.changes_impact_v2(new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact v2 II" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      actual = th.changes_impact_v2(new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact v2 III" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      actual = th.changes_impact_v2(new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_impact v2 IV" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR2/V1#TH"))
+      actual = th.changes_impact_v2(new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window full width" do
@@ -856,6 +893,80 @@ describe Thesaurus do
       tc = Thesaurus::ManagedConcept.find_minimum(uri_2)
       tc = Thesaurus::ManagedConcept.find_minimum(uri_3)
     end
+
+  end
+
+  describe "impact data test" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "The 5th LHR Terminal",
+          notation: "T5"
+        })
+      # @tc_1b = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C161617/V60#C161617_C161666"))
+      @tc_1.narrower << @tc_1a
+      # @tc_1.narrower << @tc_1b
+      @tc_1.set_initial("A00001")
+      
+      @tc_2 = Thesaurus::ManagedConcept.new
+      @tc_2.identifier = "A00002"
+      @tc_2.definition = "Copenhagen"
+      @tc_2.extensible = false
+      @tc_2.notation = "CPH"
+      @tc_2.set_initial("A00002")
+      @cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66787/V50#C66787"))
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @cl_1.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.is_top_concept << @tc_2.uri
+      @th_1.is_top_concept << @cl_1.uri
+      @th_1.set_initial("SPONSOR2")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_versions(CdiscCtHelpers.version_range)
+      # @cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781"))
+      # @tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
+      # @tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+      # @tc_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29846"))
+      # @tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+      # @tc_5 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29848"))
+      @cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66787/V50#C66787"))
+      # @tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C161617/V60#C161617_C161666"))
+    end
+
+    it "file" do
+      simple_thesaurus_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      @tc_2.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor3_impact.ttl")
+    end 
 
   end
 
