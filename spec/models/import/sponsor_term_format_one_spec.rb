@@ -65,8 +65,10 @@ describe "Import::SponsorTermFormatOne" do
     params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?("test", filename)).to eq(false) # (true)
+  #public_file_does_not_exist?("test", filename)
+    public_file_exists?("test", filename)
   copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_actual_3.yaml")
+    actual = read_yaml_file(sub_dir, "import_errors_actual_3.yaml")
   check_file_actual_expected(actual, sub_dir, "import_errors_expected_3.yaml")
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)

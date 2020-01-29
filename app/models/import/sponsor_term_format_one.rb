@@ -100,6 +100,9 @@ private
   # Process the results
   def process_results(results)
     setup(results)
+    ref = OperationalReferenceV3.new(reference: @th)
+    ref.uri = ref.create_uri(@th.uri)
+    @parent.reference = ref
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
       existing_ref = false
