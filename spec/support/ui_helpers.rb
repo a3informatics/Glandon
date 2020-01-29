@@ -571,6 +571,7 @@ module UiHelpers
 		slider = "var tl_slider = $('.timeline-container').data(); "
 		slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{date}'); "
 		page.execute_script(slider)
+		sleep 0.6
 	end
 
   def ui_dashboard_alpha_filter (filter, filter_text)
