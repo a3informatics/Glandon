@@ -36,30 +36,53 @@ function DifferencesPanel(url) {
       return _this.status(row.differences.definition);
     }}];
 
-  var loading_html = generateSpinner("medium");
+  this.columns = columns;
 
+  this.init();
+}
+
+/**
+ * Initializes table
+ *
+ * @return [void]
+ */
+DifferencesPanel.prototype.init = function () {
   this.differencesTable = $('#differences_table').DataTable( {
-    "ajax": {
-      "url": _this.url,
-      "dataSrc": "data"
-    },
-    "columns": columns,
+    // "ajax": {
+    //   "dataSrc": "data"
+    // },
+    "columns": this.columns,
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": loading_html
+      "processing": generateSpinner("medium")
     }
   });
+
+  if(this.url != null)
+    this.differencesTable.ajax.url(this.url).load();
+}
+
+/**
+ * Resets table
+ *
+ * @param newUrl [String] new data url
+ * @return [void]
+ */
+DifferencesPanel.prototype.reload = function (newUrl) {
+  this.url = newUrl;
+  this.differencesTable.clear();
+  this.differencesTable.ajax.url(this.url).load();
 }
 
 DifferencesPanel.prototype.status = function (data) {
   if (data.status === "deleted") {
-    return '<div class="text-centered"><span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text text-medium text-small shadow-small">Deleted</span></span></div>';
+    return '<div class="text-centered"><span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text ttip-center text-medium text-small shadow-small">Deleted</span></span></div>';
   } else if (data.status === "no_change") {
-    return '<div class="text-centered"><span class="icon-arrow-circle-d text-light text-xnormal ttip"><span class="ttip-text text-medium text-small">No change</span></span></div>';
+    return '<div class="text-centered"><span class="icon-arrow-circle-d text-light text-xnormal ttip"><span class="ttip-text ttip-left text-medium text-small shadow-small">No change</span></span></div>';
   } else if (data.status === "created") {
     return '<div class="diff">' + data.current + '</div>';
   } else if(data.status === "updated") {
