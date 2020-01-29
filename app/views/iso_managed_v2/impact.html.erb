@@ -1,19 +1,28 @@
+<%= javascript_tag 'setPageTitle("Impact Analysis: '+@managed_item.scoped_identifier+' ('+@managed_item.semantic_version+')")' %>
+<% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
+<%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'shared/datatables_loading' %>
+<%= javascript_include_tag 'iso_managed/impact', 'shared/tabs_layout' %>
+
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
     main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
+             icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
   <% end %>
 </div>
 
 <div class="row">
   <div class="col-md-4 card narrow">
     <div class="card-header">
-      Changed items
+      Changed CDISC Terms
     </div>
     <div class="card-content">
-
+      <%= render partial: 'shared/impact/changes_cdisc_panel' %>
     </div>
   </div>
 
@@ -22,7 +31,24 @@
       Impact
     </div>
     <div class="card-content">
+      <div class="tabs-layout" id="impact-tabs">
 
+        <div class="tabs-sel">
+          <div class="tab-option active" id="tab-changes"><div>Changes</div></div>
+          <div class="tab-option" id="tab-affected"><div>Affected Items</div></div>
+          <div class="tab-option" id="tab-graph"><div>Impact Graph</div></div>
+        </div>
+
+        <div class="tab-wrap" data-tab="tab-changes">
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-affected">
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-graph">
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
