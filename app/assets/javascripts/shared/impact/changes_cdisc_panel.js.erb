@@ -1,0 +1,187 @@
+/*
+* CDISC Changes Panel
+*
+*/
+
+/**
+ * CDISC Changes Panel Constructor
+ * Changes are filtered by relation to a specific Sponsor Thesaurus
+ *
+ * @param sCallback [Function] called when user clicks item
+ * @param dCallback [Function] called when user unclicks item
+ * @param params [Object] data and url for the ajax request
+ * @return [void]
+ */
+function ChangesCdiscPanel(sCallback, dCallback, params) {
+  this.sCallback = sCallback;
+  this.dCallback = dCallback;
+  this.id = "#changes-cdisc-table";
+  this.params = params;
+
+  this.fakeData =  [
+        {
+          type: "d",
+          identifier: "C123156",
+          notation: "Some notation",
+          label: "Some label",
+        },
+        {
+          type: "d",
+          identifier: "C123156",
+          notation: "Some notation",
+          label: "Some label",
+        },
+        {
+          type: "d",
+          identifier: "C123156",
+          notation: "Some notation",
+          label: "Some label",
+        },
+        {
+          type: "d",
+          identifier: "C123156",
+          notation: "Some notation",
+          label: "Some label",
+        },
+        {
+          type: "d",
+          identifier: "C123156",
+          notation: "Some notation",
+          label: "Some label",
+        },
+        {
+          type: "u",
+          identifier: "C654898",
+          notation: "Some other notation",
+          label: "Some other label"
+        },
+        {
+          type: "u",
+          identifier: "C654898",
+          notation: "Some other notation",
+          label: "Some other label"
+        },
+        {
+          type: "u",
+          identifier: "C654898",
+          notation: "Some other notation",
+          label: "Some other label"
+        },
+        {
+          type: "u",
+          identifier: "C654898",
+          notation: "Some other notation",
+          label: "Some other label"
+        },
+        {
+          type: "u",
+          identifier: "C654898",
+          notation: "Some other notation",
+          label: "Some other label"
+        }
+      ]
+
+  this.init();
+  this.setListeners();
+}
+
+/**
+ * Initializes Table
+ *
+ * @return [void]
+ */
+ChangesCdiscPanel.prototype.init = function() {
+  this.table = $(this.id).DataTable({
+    "columns": this.columns(),
+    "order": [[0, "desc"]],
+    "pageLength": 50,
+    "lengthMenu": pageSettings,
+    "processing": true,
+    "data": this.fakeData,
+    "scrollY": 550,
+    "scrollCollapse": true,
+    // "ajax": {
+    //   "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
+    //   "data": {"context_id": context_id},
+    // },
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No changes were found.",
+      "processing": generateSpinner("small"),
+    },
+    "select": {
+      "style": "single",
+      "info": false
+    },
+    "createdRow": function( row, data, dataIndex ) {
+      $(row).addClass(data.type == "d" ? "r" : "y");
+    }
+  });
+}
+
+/**
+ * Sets event listeners
+ *
+ * @return [void]
+ */
+ChangesCdiscPanel.prototype.setListeners = function() {
+
+  // Row selected event
+  this.table.off("select").on("select", function(e, dt, type, indexes){
+    var rowSelected = this.table.row(indexes[0]);
+    try { this.sCallback(rowSelected) } catch(e) { };
+  }.bind(this));
+
+  // Row deselected event
+  this.table.off("deselect").on("deselect", function(e, dt, type, indexes){
+    var rowDeselected = this.table.row(indexes[0]);
+    try { this.dCallback(rowDeselected) } catch(e) { };
+  }.bind(this));
+}
+
+/**
+ * Column definitions
+ *
+ * @return [void]
+ */
+ChangesCdiscPanel.prototype.columns = function() {
+  return [
+    {"data": "type", "render": function (data, type, row, meta) {
+        if (type == "display")
+          return this.typeHTML(data);
+        return data;
+      }.bind(this)
+    },
+    {"data": "notation", "render": function (data, type, row, meta) {
+        return this.itemHTML(row);
+      }.bind(this)
+    }
+  ];
+}
+
+/**
+ * HTML for the deleted / updated icons and tooltips
+ *
+ * @param type [String] "d" deleted, or "u" updated
+ * @return [String] formatted HTML
+ */
+ChangesCdiscPanel.prototype.typeHTML = function(type) {
+  var icon = (type == "d" ? "icon-times-circle text-accent-2" : "icon-update text-accent-1");
+  var name = (type == "d" ? "Deleted" : "Updated");
+
+  return "<span class='" + icon + " text-xlarge i-centered ttip'>" +
+    "<span class='ttip-text ttip-table shadow-small text-small text-medium'>" + name + "</span>" +
+  "</span>";
+}
+
+/**
+ * Generates HTML for a child item in the table
+ *
+ * @param data [JSON Object] Child item JSON
+ * @return [String] Formatted HTML
+ */
+ChangesCdiscPanel.prototype.itemHTML = function(data) {
+  var html = '<div class="font-regular text-small">'+data.label+'</div>';
+  html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
+  return html;
+}
