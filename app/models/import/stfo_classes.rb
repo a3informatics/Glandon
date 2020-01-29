@@ -291,6 +291,18 @@ module Import::STFOClasses
       cl
     end
 
+    def subset_list
+      results = []
+      save_next(results, self.is_ordered.members)
+      results
+    end
+
+    def subset_list_equal?(subset)
+      other = subset.list_uris.map {|x| x[:uri].to_s}
+      this = subset_list.map {|x| x.to_s}
+      return other - this == [] && this - other == []
+    end
+
   private
 
     # Add error
@@ -303,6 +315,12 @@ module Import::STFOClasses
     def add_log(msg)
       puts colourize("#{msg}", "blue")
       ConsoleLogger.info(self.class.name, "add_log", msg)
+    end
+
+    def save_next(results, member)
+      return if member.nil?
+      results << member.item
+      save_next(results, member.member_next)
     end
 
   end

@@ -262,4 +262,87 @@ describe Import::STFOClasses do
     expect(Import::STFOClasses::STFOCodeListItem.ncit_format?("S12345X")).to eq(false)
   end
 
+  it "finds subset list" do
+    uri_1 = Uri.new(uri: "http://www.cdisc.org/item1")
+    uri_2 = Uri.new(uri: "http://www.cdisc.org/item2")
+    uri_3 = Uri.new(uri: "http://www.cdisc.org/item3")
+    object = Import::STFOClasses::STFOCodeList.new
+    subset = Thesaurus::Subset.new()
+    object.is_ordered = subset
+    expect(object.subset_list).to eq([])
+    first = Thesaurus::SubsetMember.new(item: uri_1)
+    subset.members = first
+    expect(object.subset_list).to eq([uri_1])
+    second = Thesaurus::SubsetMember.new(item: uri_2)
+    first.member_next = second
+    expect(object.subset_list).to eq([uri_1, uri_2])
+    third = Thesaurus::SubsetMember.new(item: uri_3)
+    second.member_next = third
+    expect(object.subset_list).to eq([uri_1, uri_2, uri_3])
+  end
+
+  it "Subsets equal" do
+
+    # Setup
+    base_uri = Uri.new(uri: "http://www.cdisc.org/base")
+    uri_1 = Uri.new(uri: "http://www.cdisc.org/item1")
+    uri_2 = Uri.new(uri: "http://www.cdisc.org/item2")
+    uri_3 = Uri.new(uri: "http://www.cdisc.org/item3")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    
+    object = Import::STFOClasses::STFOCodeList.new
+    subset_im = Thesaurus::Subset.new()
+    object.is_ordered = subset_im
+    expect(object.subset_list).to eq([])
+
+    # Empty    
+    expect(object.subset_list_equal?(subset)).to eq(true)
+    
+    # 1 item
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = uri_1
+    sm_1.uri = sm_1.create_uri(base_uri)
+    sm_1.save
+    subset.members = sm_1
+    subset.save
+    expect(object.subset_list_equal?(subset)).to eq(false)
+
+    item_1 = Thesaurus::SubsetMember.new(item: uri_1)
+    item_2 = Thesaurus::SubsetMember.new(item: uri_2)
+    item_3 = Thesaurus::SubsetMember.new(item: uri_3)
+    subset_im.members = item_1
+    expect(object.subset_list_equal?(subset)).to eq(true)
+    
+    # 2 items
+    sm_2 = Thesaurus::SubsetMember.new
+    sm_2.item = uri_2
+    sm_2.uri = sm_2.create_uri(base_uri)
+    sm_2.save
+    sm_1.member_next = sm_2
+    sm_1.save
+
+    expect(object.subset_list_equal?(subset)).to eq(false)
+    item_1.member_next = item_3
+    expect(object.subset_list_equal?(subset)).to eq(false)
+    item_1.member_next = item_2
+    expect(object.subset_list_equal?(subset)).to eq(true)
+    
+    # 3 items
+    sm_3 = Thesaurus::SubsetMember.new
+    sm_3.item = uri_3
+    sm_3.uri = sm_3.create_uri(base_uri)
+    sm_3.save
+    sm_2.member_next = sm_3
+    sm_2.save
+
+    expect(object.subset_list_equal?(subset)).to eq(false)
+    item_2.member_next = item_3
+    expect(object.subset_list_equal?(subset)).to eq(true)
+    
+  end
+
+
+
 end
