@@ -7,14 +7,12 @@
  * CDISC Changes Panel Constructor
  * Changes are filtered by relation to a specific Sponsor Thesaurus
  *
- * @param sCallback [Function] called when user clicks item
- * @param dCallback [Function] called when user unclicks item
  * @param params [Object] data and url for the ajax request
  * @return [void]
  */
-function ChangesCdiscPanel(sCallback, dCallback, params) {
-  this.sCallback = sCallback;
-  this.dCallback = dCallback;
+function ChangesCdiscPanel(params) {
+  this.sCallback = null;
+  this.dCallback = null;
   this.id = "#changes-cdisc-table";
   this.params = params;
 
