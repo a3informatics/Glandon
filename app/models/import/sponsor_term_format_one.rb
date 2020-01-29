@@ -126,7 +126,7 @@ private
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th)
       else
-        add_error(child, "Code list type not detected, identifier '#{child.identifier}'.")
+        add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil
       end
       next if ref.nil?

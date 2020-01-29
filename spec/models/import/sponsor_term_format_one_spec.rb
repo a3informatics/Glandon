@@ -193,7 +193,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 3.0 with base" do
+  it "import, no errors, partial version 3.0 with base" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
 puts colourize("Load 2.6 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_7_v2-6_CDISC_v43.xlsx")
