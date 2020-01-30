@@ -558,6 +558,7 @@ describe "extensions" do
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("import_load_7_2-6.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       delete_all_public_test_files
     end
 
@@ -691,6 +692,20 @@ describe "extensions" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH"))
       results = tc.impact(th)
       check_file_actual_expected(results, sub_dir, "impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact II" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact III" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V49#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
