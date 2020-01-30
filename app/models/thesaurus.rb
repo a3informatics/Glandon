@@ -172,13 +172,13 @@ class Thesaurus <  IsoManagedV2
     final_results = {}
     # Get the raw results
     query_string = %Q{
-      SELECT ?e ?v ?d ?i ?cl ?l ?n 
+      SELECT ?e ?v ?d ?i ?cl ?l ?n
       WHERE
       {
-        #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . 
-                                 #{x.to_ref} isoT:creationDate ?d . 
-                                 #{x.to_ref} isoT:hasIdentifier ?si1 . 
-                                 ?si1 isoI:version ?v . 
+        #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r .
+                                 #{x.to_ref} isoT:creationDate ?d .
+                                 #{x.to_ref} isoT:hasIdentifier ?si1 .
+                                 ?si1 isoI:version ?v .
                                  BIND (#{x.to_ref} as ?e)}" }.join(" UNION\n")}
         ?r bo:reference ?cl .
         ?cl isoT:hasIdentifier ?si2 .
@@ -204,7 +204,7 @@ class Thesaurus <  IsoManagedV2
       end
     end
 
-    # Process the changes 
+    # Process the changes
     # raw_results.each_with_index do |(uri, version), index|
         common_items = raw_results.values.first[:children] & raw_results.values.last[:children]
         deleted_items = raw_results.values.first[:children] - raw_results.values.last[:children]
@@ -237,13 +237,13 @@ class Thesaurus <  IsoManagedV2
   # @param [Integer] sponsor_version the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes_impact_v2(new_version, sponsor_version)
-      final_results = {}
+      final_results = []
       # Get the raw results
       query_string = %Q{
-        SELECT DISTINCT ?cl ?v ?l ?n ?i ?cl_new WHERE      
-        {        
+        SELECT DISTINCT ?cl ?v ?l ?n ?i ?cl_new WHERE
+        {
           { #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?cl  } MINUS { #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl }
-          BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl} 
+          BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl}
             && NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl} AS ?cilink)
           FILTER(?cilink=false)
           ?cl isoT:hasIdentifier ?si .
@@ -256,13 +256,13 @@ class Thesaurus <  IsoManagedV2
             #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl_new .
             ?cl_new isoT:hasIdentifier/isoI:identifier ?i .
           }
-        }  
+        }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :cl_new])
       triples.each do |entry|
-        uri = entry[:cl].to_s
-        final_results[uri] = {key: entry[:i], uri: entry[:cl].to_s, label: entry[:l], notation: entry[:n], version: entry[:v], cl_new: entry[:cl_new].to_s}
+        final_results.push({identifier: entry[:i], id: Uri.new(uri: entry[:cl].to_s).to_id, label: entry[:l],
+          notation: entry[:n], version: entry[:v], cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
       end
       final_results
     end
@@ -499,8 +499,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
       ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
       OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
-      BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )         
-      BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )   
+      BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )
+      BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )
     }
   } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?ext ?sub ORDER BY ?i
@@ -508,7 +508,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
     query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :ext, :sub]).each do |x|
       indicators = {current: false, extended: x[:ext].to_bool, extends: false, version_count: 0, subset: false, subsetted: x[:sub].to_bool}
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
     end
     results
@@ -521,7 +521,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   def set_referenced_thesaurus(object)
     tx = transaction_begin
     self.reference_objects
-    if self.reference.nil? 
+    if self.reference.nil?
       self.reference = OperationalReferenceV3.create({reference: object, transaction: tx}, self)
       self.save
     else
@@ -539,8 +539,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     ref = self.reference_objects
     return nil if ref.nil?
     return Thesaurus.find_minimum(ref.reference)
-  end    
-  
+  end
+
   # Add Child. Adds a child item that is itself managed
   #
   # @params [Hash] params the parameters, can be empty for auto-generated identifier
@@ -586,25 +586,25 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @return [Void] no return
   def deselect_children(params)
     query_string = %Q{
-      DELETE 
-      { 
-        ?s ?p ?o 
-      } 
-      WHERE 
+      DELETE
+      {
+        ?s ?p ?o
+      }
+      WHERE
       {
         VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
-        { 
+        {
           #{self.uri.to_ref} th:isTopConceptReference ?s .
           ?s bo:reference ?x .
           ?s ?p ?o
         } UNION
-        { 
+        {
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConceptReference as ?p ) .
           #{self.uri.to_ref} th:isTopConceptReference ?o .
           ?o bo:reference ?x .
         } UNION
-        { 
+        {
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConcept as ?p ) .
           BIND ( ?x as ?o)
@@ -619,22 +619,22 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @return [Void] no return
   def deselect_all_children
     query_string = %Q{
-      DELETE 
-      { 
-        ?s ?p ?o 
-      } 
-      WHERE 
+      DELETE
       {
-        { 
+        ?s ?p ?o
+      }
+      WHERE
+      {
+        {
           #{self.uri.to_ref} th:isTopConceptReference ?s .
           ?s ?p ?o
         } UNION
-        { 
+        {
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConceptReference as ?p ) .
           #{self.uri.to_ref} th:isTopConceptReference ?o .
         } UNION
-        { 
+        {
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConcept as ?p ) .
           #{self.uri.to_ref} th:isTopConcept ?o .

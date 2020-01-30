@@ -255,12 +255,19 @@ class ThesauriController < ApplicationController
     ct_new_ver = ct_new.version_label.split(' ')
     sponsor = Thesaurus.find_minimum(the_params[:sponsor_th_id])
     cls = ct.changes_impact_v2(ct_new, sponsor)
-    cls.each do |k,v|
-      v[:cl_new].empty? ? v[:type] = "deleted" : v[:type] = "updated"
-      v[:changes_url] = changes_summary_data_impact_thesauri_managed_concept_path(v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
-      v[:differences_url] = differences_summary_thesauri_managed_concept_path(v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
-      #v[:graph_data] = 
+    cls.each do |v|
+      if v[:cl_new].nil?
+        v[:type] = "deleted"
+        v[:changes_url] = changes_data_thesauri_managed_concept_path(v[:id])
+        v[:differences_url] = differences_thesauri_managed_concept_path(v[:id])
+      else
+        v[:type] = "updated"
+        v[:changes_url] = changes_summary_data_impact_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+        v[:differences_url] = differences_summary_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+      end
+      #v[:graph_data] =
     end
+    byebug
     render json: {data: cls}
   end
 
