@@ -267,7 +267,6 @@ class ThesauriController < ApplicationController
       end
       #v[:graph_data] =
     end
-    byebug
     render json: {data: cls}
   end
 
