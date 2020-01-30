@@ -349,6 +349,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def changes_summary_impact(last, actual_versions)
     csi = changes_summary(last, actual_versions)
     csi[:items].delete_if {|k,v| v[:status][-1] == {status: :no_change} }
+    csi
   end
 
   # Differences_summary
