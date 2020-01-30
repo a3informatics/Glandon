@@ -565,6 +565,16 @@ describe ThesauriController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
+    it "changes impact" do
+      ct_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :changes_impact, id: ct_1.id, thesauri: {thesaurus_id: ct_2.id, sponsor_th_id: sponsor.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
     it "changes_report" do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/pdf"
