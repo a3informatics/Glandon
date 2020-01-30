@@ -301,6 +301,8 @@ module Import::STFOClasses
       other = subset.list_uris.map {|x| x[:uri].to_s}
       this = subset_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
+    rescue => e
+      byebug
     end
 
   private

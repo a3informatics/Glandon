@@ -1,6 +1,41 @@
 ---
-- |-
-  An exception was detected during the import processes.
-  undefined method `list_uris' for #<Import::STFOClasses::STFOCodeList:0x00007f9f8b979fc8>
-  Did you mean?  set_uris
-  ["/Users/daveih/.rvm/gems/ruby-2.4.4/gems/activemodel-4.2.10/lib/active_model/attribute_methods.rb:433:in `method_missing'", "/Users/daveih/Documents/rails/Glandon/app/models/import/stfo_classes.rb:301:in `subset_list_equal?'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:184:in `subset_match?'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:158:in `check_for_change'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:136:in `block in process_results'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:106:in `each'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:106:in `each_with_index'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:106:in `process_results'", "/Users/daveih/Documents/rails/Glandon/app/models/import/sponsor_term_format_one.rb:48:in `import'", "/Users/daveih/Documents/rails/Glandon/spec/models/import/sponsor_term_format_one_spec.rb:239:in `block (2 levels) in <top (required)>'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:254:in `instance_exec'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:254:in `block in run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:500:in `block in with_around_and_singleton_context_hooks'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:457:in `block in with_around_example_hooks'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:464:in `block in run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:604:in `block in run_around_example_hooks_for'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:342:in `call'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-rails-3.8.2/lib/rspec/rails/adapters.rb:127:in `block (2 levels) in <module:MinitestLifecycleAdapter>'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:447:in `instance_exec'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:447:in `instance_exec'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:373:in `execute_with'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:606:in `block (2 levels) in run_around_example_hooks_for'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:342:in `call'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:607:in `run_around_example_hooks_for'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/hooks.rb:464:in `run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:457:in `with_around_example_hooks'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:500:in `with_around_and_singleton_context_hooks'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example.rb:251:in `run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example_group.rb:629:in `block in run_examples'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example_group.rb:625:in `map'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example_group.rb:625:in `run_examples'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/example_group.rb:591:in `run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:116:in `block (3 levels) in run_specs'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:116:in `map'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:116:in `block (2 levels) in run_specs'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/configuration.rb:1989:in `with_suite_hooks'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:111:in `block in run_specs'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/reporter.rb:74:in `report'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:110:in `run_specs'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:87:in `run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:71:in `run'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/lib/rspec/core/runner.rb:45:in `invoke'", "/Users/daveih/.rvm/gems/ruby-2.4.4/gems/rspec-core-3.8.0/exe/rspec:4:in `<top (required)>'", "/Users/daveih/.rvm/gems/ruby-2.4.4/bin/rspec:23:in `load'", "/Users/daveih/.rvm/gems/ruby-2.4.4/bin/rspec:23:in `<main>'", "/Users/daveih/.rvm/gems/ruby-2.4.4/bin/ruby_executable_hooks:24:in `eval'", "/Users/daveih/.rvm/gems/ruby-2.4.4/bin/ruby_executable_hooks:24:in `<main>'"]
+- Code list type not detected, identifier 'SC163027'.
+- Code list type not detected, identifier 'SC163028'.
+- 'Anatomical Location: Cannot find unique C17649 in code list extension, identifier
+  ''C74456''.'
+- 'Anatomical Location Subset 02: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000126P''.'
+- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000127P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000128P''.'
+- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000129P''.'
+- 'Anatomical Location Subset 06: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000130P''.'
+- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000132P''.'
+- 'Frequency: Cannot find unique C70543 in code list extension, identifier ''C71113''.'
+- 'Frequency: Cannot find unique C17649 in code list extension, identifier ''C71113''.'
+- 'Frequency Subset 01: Cannot find a code list item, identifier ''C70543'', for a
+  subset ''NP000158P''.'
+- 'Method: Cannot find unique C17649 in code list extension, identifier ''C85492''.'
+- 'Method Subset 03: Cannot find a code list item, identifier ''C17649'', for a subset
+  ''NP000170P''.'
+- 'Microbiology Test Code: Cannot find unique C82021 in code list extension, identifier
+  ''C120527''.'
+- 'Microbiology Test Name: Cannot find unique C82021 in code list extension, identifier
+  ''C120528''.'
+- 'Microorganism: Cannot find unique C17998 in code list extension, identifier ''C85491''.'
+- 'Microorganism Subset 01: Cannot find a code list item, identifier ''C17998'', for
+  a subset ''NP000171P''.'
+- 'Position: Cannot find unique C17649 in code list extension, identifier ''C71148''.'
+- 'Position Subset 01: Cannot find a code list item, identifier ''C17649'', for a
+  subset ''NP000180P''.'
+- 'Route of Administration Response: Cannot find unique C17649 in code list extension,
+  identifier ''C66729''.'
+- 'Route of Administration Response Subset 02: Cannot find a code list item, identifier
+  ''C17649'', for a subset ''NP000194P''.'
+- 'Specimen Condition: Cannot find unique C48658 in code list extension, identifier
+  ''C78733''.'
+- 'Unit: Cannot find unique C17649 in code list extension, identifier ''C71620''.'

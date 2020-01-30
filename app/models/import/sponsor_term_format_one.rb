@@ -156,7 +156,9 @@ private
     return ref if previous.nil?
     ref.update_version(previous.version + 1)
     return ref if !subset_match?(ref, previous)
-    ref.replace_if_no_change(previous)
+    item = ref.replace_if_no_change(previous)
+    add_log("Change item: #{item.uri}, previous: #{previous.uri}")
+    item
   end
 
   # Add child to the results
@@ -181,7 +183,8 @@ private
   # Check subset item sets match.
   def subset_match?(ref, previous)
     return true if !ref.subset?
-    ref.subset_list_equal?(previous)
+    add_log("Checking subset detected: #{ref.identifier}, #{previous.identifier}")
+    ref.subset_list_equal?(previous.is_ordered)
   end
 
 end
