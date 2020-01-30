@@ -566,7 +566,7 @@ describe "extensions" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V30#C65047"))
-      expect(tc.changes_count(40)).to eq(29)
+      expect(tc.changes_count(40)).to eq(31)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(40)).to eq(40)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
