@@ -1,0 +1,105 @@
+/*
+ * Managed Item Icon Table
+ *
+ * Requires:
+ * managed-item-icon-table [Table]
+ */
+
+/**
+ * Managed Item Icon Table Constructor
+ *
+ * @return [void]
+ */
+function ManagedItemIconList() {
+	this.tableId = "#managed-item-icon-table";
+  this.table = this.initTable();
+  return this;
+}
+
+/**
+ * Initializes the DataTable
+ *
+ * @return [void]
+ */
+ManagedItemIconList.prototype.initTable = function () {
+	return $(this.tableId).DataTable({
+		"order": [[0, "desc"]],
+		"columns": this.columns(),
+		"pageLength": pageLength,
+		"lengthMenu": pageSettings,
+		"processing": true,
+		"paging": true,
+		"language": {
+			"infoFiltered": "",
+			"emptyTable": "No items were found.",
+			"processing": generateSpinnerWText("small")
+		}
+	});
+}
+
+/**
+ * Loads data from server
+ *
+ * @param dataUrl [String] data source url, optional
+ * @return [void]
+ */
+ManagedItemIconList.prototype.loadData = function (dataUrl) {
+  //TODO
+}
+
+/**
+ * Clears table and adds new rows to table
+ *
+ * @param items [Array] Array of data objects, must contain values identifier, label, notation, owner and rdf_type
+ * @return [void]
+ */
+ManagedItemIconList.prototype.addItems = function (items) {
+  this.table.clear();
+  this.table.processing(true)
+
+  $.each(items, function(i, e){
+    this.table.row.add(e);
+  )};
+
+  this.table.draw();
+  this.table.processing(false);
+}
+
+/**
+ * Column definitions
+ *
+ * @return [Array] Columns definition objects
+ */
+ManagedItemIconList.prototype.columns = function () {
+  var _this = this;
+
+	return [
+    {
+      "data": "rdf_type",
+      "render": function (data, type, row, meta) {
+        if (type == "display") return typeToColorIcon(data, {size: "med", owner: row.owner});
+        else return typeToString[data]; }
+    },
+    {
+      "data": "identifier",
+      "render": function (data, type, row, meta) {
+          return _this.itemHTML(data);
+      }
+    },
+  ];
+}
+
+/**
+ * Generates HTML for a child item in the table
+ *
+ * @param data [JSON Object] Child item JSON
+ * @return [String] Formatted HTML
+ */
+ManagedItemIconList.prototype.itemHTML = function(data) {
+  data.notation == null ? "" : data.notation;
+  data.label == null ? "Empty label" : data.label;
+
+  var html = '<div class="font-regular text-small">'+data.label+'<span class="font-light">('+typeToString[data.rdf_type]+')</span></div>';
+  html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
+  return html;
+}

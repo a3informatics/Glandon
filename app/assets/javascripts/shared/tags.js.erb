@@ -73,3 +73,38 @@ function formatIndicatorsString(data){
 
   return output;
 }
+
+function typeToColorIcon(type, params){
+  var size = params.size == null ? "small" : params.size;
+
+  return
+    '<span class="circular-badge '+ size +' text-white" style="background: '+ typeToBgColor(type, params) +'">' +
+      '<span class="'+typeIconMap(type)+'"></span>" ' +
+    '</span>';
+}
+
+function typeIconMap(type){
+  var map = {
+    C_TH_NEW: 'icon-terminology',
+    C_TH_CL: 'icon-codelist',
+    C_TH_SUBSET: 'icon-subset',
+    C_TH_EXT: 'icon-extension',
+  }
+
+  return map[type];
+}
+
+
+function typeToBgColor(type, params){
+  if(params.owner != null && params.owner.toLowerCase() == "cdisc")
+    return '#f5d684';
+
+  var map = {
+    C_TH_NEW: '#6d91a1',
+    C_TH_CL: '#9dc0cf',
+    C_TH_SUBSET: '#9dc0cf',
+    C_TH_EXT: '#9dc0cf',
+  }
+
+  return map[type];
+}
