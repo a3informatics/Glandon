@@ -246,6 +246,7 @@ Rails.application.routes.draw do
       get :changes
       get :changes_data
       get :changes_report
+      get :changes_impact
       get :submission
       get :submission_data
       get :submission_report

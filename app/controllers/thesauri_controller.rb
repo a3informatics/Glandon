@@ -247,6 +247,23 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def changes_impact
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_ver = ct.version_label.split(' ')
+    ct_new = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    ct_new_ver = ct_new.version_label.split(' ')
+    sponsor = Thesaurus.find_minimum(the_params[:sponsor_th_id])
+    cls = ct.changes_impact_v2(ct_new, sponsor)
+    cls.each do |k,v|
+      v[:cl_new].empty? ? v[:type] = "deleted" : v[:type] = "updated"
+      v[:changes_url] = changes_summary_data_impact_thesauri_managed_concept_path(v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+      v[:differences_url] = differences_summary_thesauri_managed_concept_path(v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+      #v[:graph_data] = 
+    end
+    render json: {data: cls}
+  end
+
   def submission
     authorize Thesaurus, :show?
     @version_count = current_user.max_term_display.to_i
@@ -495,7 +512,7 @@ private
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set => [])
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :id_set => [])
   end
 
 end

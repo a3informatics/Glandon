@@ -231,7 +231,12 @@ class Thesaurus <  IsoManagedV2
     {items: final_results}
   end
 
-    def changes_impact_v2(new_version, sponsor_version)
+  # Changes_impact_v2. It finds the changes between two CDISC thesauruses, filtered by items with existing links to the specific sponsor thesaurus
+  #
+  # @param [Integer] new_version the required window size for changes
+  # @param [Integer] sponsor_version the required window size for changes
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_impact_v2(new_version, sponsor_version)
       final_results = {}
       # Get the raw results
       query_string = %Q{
