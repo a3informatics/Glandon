@@ -233,14 +233,14 @@ class Thesaurus <  IsoManagedV2
 
   # Changes_impact_v2. It finds the changes between two CDISC thesauruses, filtered by items with existing links to the specific sponsor thesaurus
   #
-  # @param [Integer] new_version the required window size for changes
-  # @param [Integer] sponsor_version the required window size for changes
-  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  # @param [Object] new_version the required window size for changes
+  # @param [Object] sponsor_version the required window size for changes
+  # @return [Array] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes_impact_v2(new_version, sponsor_version)
       final_results = []
       # Get the raw results
       query_string = %Q{
-        SELECT DISTINCT ?cl ?v ?l ?n ?i ?cl_new WHERE
+        SELECT DISTINCT ?cl ?v ?l ?n ?i ?o ?t ?cl_new WHERE
         {
           { #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?cl  } MINUS { #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl }
           BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl}
@@ -251,6 +251,8 @@ class Thesaurus <  IsoManagedV2
           ?cl isoC:label ?l .
           ?cl th:notation ?n .
           ?si isoI:identifier ?i .
+          ?cl isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+          ?cl rdf:type ?t
           OPTIONAL
           {
             #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl_new .
@@ -259,10 +261,10 @@ class Thesaurus <  IsoManagedV2
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-      triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :cl_new])
+      triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :o, :t, :cl_new])
       triples.each do |entry|
         final_results.push({identifier: entry[:i], id: Uri.new(uri: entry[:cl].to_s).to_id, label: entry[:l],
-          notation: entry[:n], version: entry[:v], cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
+          notation: entry[:n], version: entry[:v], owner: entry[:o], type: entry[:t].to_s, cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
       end
       final_results
     end

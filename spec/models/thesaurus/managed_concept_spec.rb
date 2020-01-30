@@ -556,6 +556,9 @@ describe "extensions" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("import_load_7_2-6.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       delete_all_public_test_files
     end
 
@@ -563,7 +566,7 @@ describe "extensions" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V30#C65047"))
-      expect(tc.changes_count(40)).to eq(29)
+      expect(tc.changes_count(40)).to eq(31)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(40)).to eq(40)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
@@ -682,6 +685,27 @@ describe "extensions" do
       versions = ["2019-09-27","2019-12-20"]
       results = tc.changes_summary_impact(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact I" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V61#C74456"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact II" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact III" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V49#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end

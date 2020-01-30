@@ -679,6 +679,48 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     results
   end
 
+  # Impact. It finds the impact of a specific changed CDISC Code List on a specific sponsor Thesaurus 
+  def impact(sponsor)
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension
+      WHERE      
+      {   
+        BIND (#{self.uri.to_ref} as ?source)
+          {
+            BIND (#{sponsor.uri.to_ref} as ?s) .
+            ?s th:isTopConceptReference/bo:reference ?source  .
+            ?s rdf:type ?t
+          } 
+          UNION
+          {
+            ?source th:narrower/^th:narrower ?s  .
+            FILTER (STR(?source) != STR(?s)) .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t
+          }
+        ?s isoC:label ?l .
+        ?s th:identifier ?i .
+        ?s th:notation ?n .
+        ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
+        BIND (EXISTS {?s th:extends ?y} as ?extension ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo, :isoC])
+    query_results.by_object_set([:s, :t, :l, :i, :n, :o, :subset, :extension]).each do |x|
+      if x[:subset].to_bool
+         type = x[:t].to_s + "#Subset"
+      elsif x[:extension].to_bool
+        type = x[:t].to_s + "#Extension"
+      else 
+        type = x[:t].to_s
+      end
+      results << {uri: x[:s].to_s, id: x[:s].to_id, type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], real_type: type}
+    end
+    results
+  end
+
 private
 
   # Class for a difference result

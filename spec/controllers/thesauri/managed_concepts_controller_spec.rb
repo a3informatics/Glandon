@@ -85,6 +85,18 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "impact" do
+      expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
+      get :impact, id: "tc_1.id", impact: {sponsor_th_id: "sponsor.id"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
     it "differences summary" do
       expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
       request.env['HTTP_ACCEPT'] = "application/json"

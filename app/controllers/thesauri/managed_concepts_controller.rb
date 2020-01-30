@@ -325,6 +325,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: clis}
   end
 
+  def impact
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
+    results = tc.impact(ct)
+    render json: {data: results}
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
@@ -516,6 +524,10 @@ private
 
   def edit_params
     params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
+  end
+
+  def impact_params
+    params.require(:impact).permit(:sponsor_th_id)
   end
 
   # Not required currently, will be for user-defined identifiers

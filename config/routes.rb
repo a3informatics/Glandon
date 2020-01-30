@@ -205,6 +205,7 @@ Rails.application.routes.draw do
         get :changes_summary
         get :changes_summary_data
         get :changes_summary_data_impact
+        get :impact
         get :differences_summary
         patch :update_properties
       end
