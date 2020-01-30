@@ -7,97 +7,14 @@
  * CDISC Changes Panel Constructor
  * Changes are filtered by relation to a specific Sponsor Thesaurus
  *
- * @param params [Object] data and url for the ajax request
+ * @param url [String] url for the data ajax request
  * @return [void]
  */
-function ChangesCdiscPanel(params) {
+function ChangesCdiscPanel(url) {
   this.sCallback = null;
   this.dCallback = null;
   this.id = "#changes-cdisc-table";
-  this.params = params;
-
-  this.fakeData =  [
-        {
-          type: "d",
-          identifier: "C123156",
-          notation: "Some nogdoigjdo figjdofigjdfkgjdlkjfglkdgj lkdtation",
-          label: "Some label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-        },
-        {
-          type: "d",
-          identifier: "C123156",
-          notation: "Some notation",
-          label: "Some label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20"
-        },
-        {
-          type: "d",
-          identifier: "C123156",
-          notation: "Some notation",
-          label: "Some label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-        },
-        {
-          type: "d",
-          identifier: "C123156",
-          notation: "Some notation",
-          label: "Some label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20"
-        },
-        {
-          type: "d",
-          identifier: "C123156",
-          notation: "Some notation",
-          label: "Some label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-        },
-        {
-          type: "u",
-          identifier: "C654898",
-          notation: "Some other notation",
-          label: "Some other label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20"
-        },
-        {
-          type: "u",
-          identifier: "C654898",
-          notation: "Some other notation",
-          label: "Some other label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-        },
-        {
-          type: "u",
-          identifier: "C654898",
-          notation: "Some other notation",
-          label: "Some other label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20"
-        },
-        {
-          type: "u",
-          identifier: "C654898",
-          notation: "Some other notation",
-          label: "Some other label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyOCNDNjY3ODg=/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y2MiNDNjY3ODg%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-        },
-        {
-          type: "u",
-          identifier: "C654898",
-          notation: "Some other notation",
-          label: "Some other label",
-          changes_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/changes_summary_data?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20",
-          differences_url: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNDcjQzEwMDEzNA==/differences_summary?last_id=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEzNC9WNjIjQzEwMDEzNA%3D%3D&ver_span%5B%5D=2018-03-30&ver_span%5B%5D=2019-12-20"
-        }
-      ]
+  this.url = url;
 
   this.init();
   this.setListeners();
@@ -115,13 +32,11 @@ ChangesCdiscPanel.prototype.init = function() {
     "pageLength": 50,
     "lengthMenu": pageSettings,
     "processing": true,
-    "data": this.fakeData,
     "scrollY": 500,
     "scrollCollapse": true,
-    // "ajax": {
-    //   "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
-    //   "data": {"context_id": context_id},
-    // },
+    "ajax": {
+      "url": this.url
+    },
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes were found.",
@@ -132,7 +47,7 @@ ChangesCdiscPanel.prototype.init = function() {
       "info": false
     },
     "createdRow": function( row, data, dataIndex ) {
-      $(row).addClass(data.type == "d" ? "r" : "y");
+      $(row).addClass(data.type == "deleted" ? "r" : "y");
     }
   });
 }
@@ -184,8 +99,8 @@ ChangesCdiscPanel.prototype.columns = function() {
  * @return [String] formatted HTML
  */
 ChangesCdiscPanel.prototype.typeHTML = function(type) {
-  var icon = (type == "d" ? "icon-times-circle text-accent-2" : "icon-update text-accent-1");
-  var name = (type == "d" ? "Deleted" : "Updated");
+  var icon = (type == "deleted" ? "icon-times-circle text-accent-2" : "icon-update text-accent-1");
+  var name = (type == "deleted" ? "Deleted" : "Updated");
 
   return "<span class='" + icon + " text-xlarge i-centered ttip'>" +
     "<span class='ttip-text ttip-table shadow-small text-small text-medium'>" + name + "</span>" +
