@@ -1,0 +1,157 @@
+/*
+* Impact Analysis Graph
+*
+*/
+
+/**
+ * Impact Analysis Graph Constructor
+ * Gets data, builds and renders impact graph, handles events
+ *
+ * @param dataUrl [String] url to fetch the data
+ * @return [void]
+ */
+function ImpactGraph(dataUrl) {
+  this.cache = {};
+  this.graphBaseUrl = graphBaseUrl;
+  this.tabName = "tab-graph";
+  this.data = null;
+
+  // d3gInit(colours, 25);
+  // this.graph = new D3GraphV2();
+}
+
+/**
+ * Loads data
+ *
+ * @return [void]
+ */
+ImpactGraph.prototype.loadData = function(item) {
+  if (this.isCached(item.id)) {
+    this.loading(true);
+    this.data = this.cache[item.id];
+    this.drawImpactGraph(this.data);
+    this.loading(false);
+  }
+  else {
+    this.data = [item];
+    this.fetch(0, item.id, item);
+  }
+}
+
+/**
+ * Fetches data
+ *
+ * @return [void]
+ */
+ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
+  var dataUrl = this.makeDataUrl(currentItem.id);
+  this.loading(true);
+
+  $.ajax({
+    url: dataUrl,
+    type: 'GET',
+    dataType: 'json',
+    context: this,
+    success: function(result) {
+      if (result.data.length != 0) {
+        $.each(result.data, function(i, n){
+          n.link = currentItem.id;
+        });
+        this.data = this.data.concat(result.data);
+
+        $.each(result.data, function(i, el){
+          this.fetch(step + 1, rootId, el);
+        }.bind(this));
+      }
+      else {
+        this.loading(false);
+        this.saveToCache(rootId, this.data);
+        // this.drawImpactGraph(this.data);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
+ * Prepares nodes, links, draws graph
+ *
+ * @return [void]
+ */
+ImpactGraph.prototype.drawImpactGraph = function(data) {
+  var nodes = data;
+  var links = [];
+
+  $.each(data, function(i, n){
+    if(n.link != null){
+      var indexSource = nodes.map(function(e) { return e.id; }).indexOf(n.id);
+      var indexTarget = nodes.map(function(e) { return e.id; }).indexOf(n.link);
+
+      links.push({source: indexSource, target: indexTarget});
+    }
+  });
+  // d3gDraw({links: links, nodes: nodes}, $.noop, $.noop);
+  // this.graph.draw(nodes, links);
+}
+
+/**
+ * Loads data
+ *
+ * @param item [Object] item to start the IA on
+ * @return [void]
+ */
+ImpactGraph.prototype.reload = function(item) {
+  // clear graph
+
+  this.loadData(item);
+}
+
+/**
+ * Saves data to cache
+ *
+ * @param id [String] id of the data root (key value in the cache)
+ * @param data [Array] array of node objects
+ * @return [void]
+ */
+ImpactGraph.prototype.saveToCache = function(id, data) {
+  if(this.cache[id] == null)
+    this.cache[id] = data;
+}
+
+/**
+ * Checks if data is cached
+ *
+ * @param id [String] id of the data root (key value in the cache)
+ * @return [Boolean] data presence in cache
+ */
+ImpactGraph.prototype.isCached = function(id) {
+  return this.cache[id] != null;
+}
+
+/**
+ * Checks if data is cached
+ *
+ * @param url [String] url of the data source (key value in the cache)
+ * @return [Boolean] data presence in cache
+ */
+ImpactGraph.prototype.makeDataUrl = function(id) {
+  return this.graphBaseUrl.replace("clId", id);
+}
+
+/**
+ * Enable / disable loading
+ *
+ * @param enable [Boolean] true/false ~ show / hide loading
+ * @return [void]
+ */
+ImpactGraph.prototype.loading = function(enable) {
+  if (typeof tabLoading != "undefined"){
+    if (enable)
+      tabLoading(this.tabName, true);
+    else
+      tabLoading(this.tabName, false);
+  }
+}

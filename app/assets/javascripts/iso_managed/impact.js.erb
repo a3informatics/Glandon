@@ -3,10 +3,12 @@ $(document).ready(function(){
   var ccp = new ChangesCdiscPanel(cdiscChangesUrl);
   var dp = new DifferencesPanel(null);
   var cp = new ChangesPanel(null, 2);
+  var ig = new ImpactGraph();
 
   var selectCallback = function(r){
     dp.reload(r.differences_url);
     cp.reload(r.changes_url);
+    ig.reload(r);
   }
 
   ccp.sCallback = selectCallback;
