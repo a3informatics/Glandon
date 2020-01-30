@@ -28,6 +28,7 @@
 	th:isTopConceptReference :TH_TCR2 ;
 	th:isTopConcept <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:isTopConcept <http://www.s-cubed.dk/NP000123P/V1#NP000123P> ;
+	th:reference <http://www.cdisc.org/CT/V62#TH_R1> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -66,6 +67,14 @@
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/NP000123P/V1#NP000123P> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V62#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V62#TH> ;
 .
 <http://www.s-cubed.dk/C71113/V1#C71113>
 	rdf:type th:ManagedConcept ;
@@ -275,7 +284,7 @@
 	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
 	th:subsets <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
-	th:isOrdered <http://www.assero.co.uk/TS#afffdc2f-9fe9-4f43-a780-b8682406a145> ;
+	th:isOrdered <http://www.assero.co.uk/TS#769bec45-102c-433b-93fd-a8c48e35627a> ;
 .
 <http://www.s-cubed.dk/NP000123P/V1#NP000123P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -301,24 +310,24 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#afffdc2f-9fe9-4f43-a780-b8682406a145>
+<http://www.assero.co.uk/TS#769bec45-102c-433b-93fd-a8c48e35627a>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#5a0fd4b4-82a3-4f5e-a975-c1fe5d4fcf96> ;
+	th:members <http://www.assero.co.uk/TSM#4f8dd932-40c3-4e4f-b374-568f5dad12d5> ;
 .
-<http://www.assero.co.uk/TSM#5a0fd4b4-82a3-4f5e-a975-c1fe5d4fcf96>
+<http://www.assero.co.uk/TSM#4f8dd932-40c3-4e4f-b374-568f5dad12d5>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
-	th:memberNext <http://www.assero.co.uk/TSM#0f86b820-1fee-4e63-8704-80f378abb667> ;
+	th:memberNext <http://www.assero.co.uk/TSM#794e38e8-7026-4428-b221-bbd17eb5537c> ;
 .
-<http://www.assero.co.uk/TSM#0f86b820-1fee-4e63-8704-80f378abb667>
+<http://www.assero.co.uk/TSM#794e38e8-7026-4428-b221-bbd17eb5537c>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
-	th:memberNext <http://www.assero.co.uk/TSM#9cc5062a-ebb7-4961-a872-54855f91faf4> ;
+	th:memberNext <http://www.assero.co.uk/TSM#f6af4d85-1afe-4517-a66f-c83c38d5fdb2> ;
 .
-<http://www.assero.co.uk/TSM#9cc5062a-ebb7-4961-a872-54855f91faf4>
+<http://www.assero.co.uk/TSM#f6af4d85-1afe-4517-a66f-c83c38d5fdb2>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;

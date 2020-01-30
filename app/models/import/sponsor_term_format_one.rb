@@ -154,8 +154,8 @@ private
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     previous = previous_info.nil? ? nil : @child_klass.find_full(previous_info.id) 
     return ref if previous.nil?
-    previous.is_ordered = ref.is_ordered # Temporary
     ref.update_version(previous.version + 1)
+    return ref if !subset_match?(ref, previous)
     ref.replace_if_no_change(previous)
   end
 
@@ -176,6 +176,12 @@ private
   def add_log(msg)
     puts colourize("#{msg}", "blue")
     ConsoleLogger.info(self.class.name, "add_log", msg)
+  end
+
+  # Check subset item sets match.
+  def subset_match?(ref, previous)
+    return true if !ref.subset?
+    ref.subset_list_equal?(previous)
   end
 
 end

@@ -28,6 +28,7 @@
 	th:isTopConceptReference :TH_TCR2 ;
 	th:isTopConcept <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	th:isTopConcept <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
+	th:reference <http://www.cdisc.org/CT/V62#TH_R1> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -66,6 +67,14 @@
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V62#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V62#TH> ;
 .
 <http://www.s-cubed.dk/C118971/V1#C118971>
 	rdf:type th:ManagedConcept ;
