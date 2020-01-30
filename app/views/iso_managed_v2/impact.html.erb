@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Impact Analysis: '+@managed_item.scoped_identifier+' ('+@managed_item.semantic_version+')")' %>
 <% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
 <%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'shared/datatables_loading' %>
-<%= javascript_include_tag 'iso_managed/impact', 'shared/tabs_layout' %>
+<%= javascript_include_tag  'shared/tags', 'iso_managed/impact', 'shared/tabs_layout' %>
 
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
 

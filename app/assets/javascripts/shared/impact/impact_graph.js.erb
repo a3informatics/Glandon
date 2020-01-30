@@ -16,6 +16,8 @@ function ImpactGraph(dataUrl) {
   this.tabName = "tab-graph";
   this.data = null;
 
+  this.itemsAffectedPanel = new ManagedItemIconList();
+
   // d3gInit(colours, 25);
   // this.graph = new D3GraphV2();
 }
@@ -29,10 +31,12 @@ ImpactGraph.prototype.loadData = function(item) {
   if (this.isCached(item.id)) {
     this.loading(true);
     this.data = this.cache[item.id];
-    this.drawImpactGraph(this.data);
+    this.renderData(this.data);
     this.loading(false);
   }
   else {
+            item.rdf_type = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
+            item.owner = "CDISC";
     this.data = [item];
     this.fetch(0, item.id, item);
   }
@@ -55,6 +59,7 @@ ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
     success: function(result) {
       if (result.data.length != 0) {
         $.each(result.data, function(i, n){
+                                n.rdf_type = n.real_type; // REMOVE
           n.link = currentItem.id;
         });
         this.data = this.data.concat(result.data);
@@ -66,7 +71,7 @@ ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
       else {
         this.loading(false);
         this.saveToCache(rootId, this.data);
-        // this.drawImpactGraph(this.data);
+        this.renderData(this.data);
       }
     },
     error: function(xhr,status,error){
@@ -77,22 +82,24 @@ ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
 }
 
 /**
- * Prepares nodes, links, draws graph
+ * Prepares nodes, links, draws graph, draws table
  *
  * @return [void]
  */
-ImpactGraph.prototype.drawImpactGraph = function(data) {
-  var nodes = data;
-  var links = [];
+ImpactGraph.prototype.renderData = function(data) {
+  this.itemsAffectedPanel.addItems(data);
 
-  $.each(data, function(i, n){
-    if(n.link != null){
-      var indexSource = nodes.map(function(e) { return e.id; }).indexOf(n.id);
-      var indexTarget = nodes.map(function(e) { return e.id; }).indexOf(n.link);
-
-      links.push({source: indexSource, target: indexTarget});
-    }
-  });
+  // var nodes = data;
+  // var links = [];
+  //
+  // $.each(data, function(i, n){
+  //   if(n.link != null){
+  //     var indexSource = nodes.map(function(e) { return e.id; }).indexOf(n.id);
+  //     var indexTarget = nodes.map(function(e) { return e.id; }).indexOf(n.link);
+  //
+  //     links.push({source: indexSource, target: indexTarget});
+  //   }
+  // });
   // d3gDraw({links: links, nodes: nodes}, $.noop, $.noop);
   // this.graph.draw(nodes, links);
 }

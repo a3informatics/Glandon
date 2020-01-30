@@ -3,6 +3,7 @@
  *
  * Requires:
  * managed-item-icon-table [Table]
+ * include JS file 'shared/tags'
  */
 
 /**
@@ -32,7 +33,7 @@ ManagedItemIconList.prototype.initTable = function () {
 		"language": {
 			"infoFiltered": "",
 			"emptyTable": "No items were found.",
-			"processing": generateSpinnerWText("small")
+			"processing": generateSpinner("small")
 		}
 	});
 }
@@ -59,7 +60,7 @@ ManagedItemIconList.prototype.addItems = function (items) {
 
   $.each(items, function(i, e){
     this.table.row.add(e);
-  )};
+  }.bind(this));
 
   this.table.draw();
   this.table.processing(false);
@@ -77,13 +78,16 @@ ManagedItemIconList.prototype.columns = function () {
     {
       "data": "rdf_type",
       "render": function (data, type, row, meta) {
-        if (type == "display") return typeToColorIcon(data, {size: "med", owner: row.owner});
-        else return typeToString[data]; }
+        if (type == "display")
+					return typeToColorIcon(data, {size: "med", owner: row.owner});
+        else
+					return typeToString[data];
+			}
     },
     {
       "data": "identifier",
       "render": function (data, type, row, meta) {
-          return _this.itemHTML(data);
+          return _this.itemHTML(row);
       }
     },
   ];
@@ -99,7 +103,7 @@ ManagedItemIconList.prototype.itemHTML = function(data) {
   data.notation == null ? "" : data.notation;
   data.label == null ? "Empty label" : data.label;
 
-  var html = '<div class="font-regular text-small">'+data.label+'<span class="font-light">('+typeToString[data.rdf_type]+')</span></div>';
+  var html = '<div class="font-regular text-normal">'+data.label+'<span class="font-light"> ('+typeToString[data.rdf_type]+')</span></div>';
   html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
   return html;
 }
