@@ -265,7 +265,7 @@ class ThesauriController < ApplicationController
         v[:changes_url] = changes_summary_data_impact_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
         v[:differences_url] = differences_summary_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
       end
-      #v[:graph_data] =
+      v[:graph_data_url] = impact_thesauri_managed_concept_path (v[:id], the_params[:sponsor_th_id])
     end
     render json: {data: cls}
   end
