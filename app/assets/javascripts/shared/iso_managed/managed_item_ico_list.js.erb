@@ -11,8 +11,9 @@
  *
  * @return [void]
  */
-function ManagedItemIconList() {
+function ManagedItemIconList(emptyTableText) {
 	this.tableId = "#managed-item-icon-table";
+	this.emptyTable = emptyTableText || "No items were found.";
   this.table = this.initTable();
   return this;
 }
@@ -32,7 +33,7 @@ ManagedItemIconList.prototype.initTable = function () {
 		"paging": true,
 		"language": {
 			"infoFiltered": "",
-			"emptyTable": "No items were found.",
+			"emptyTable": this.emptyTable,
 			"processing": generateSpinner("small")
 		}
 	});

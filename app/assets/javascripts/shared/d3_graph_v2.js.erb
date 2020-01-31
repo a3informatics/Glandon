@@ -9,8 +9,11 @@
  *
  * @return [void]
  */
-function D3GraphV2(width) {
-  this.width = width;
+function D3GraphV2(height) {
+  this.height = height || 500;
+  this.linkDist = 200;
+  this.d3Div = document.getElementById("d3");
+  this.emptyTextDiv = $("#d3_empty_text");
   this.svg = null;
 
 }
@@ -18,41 +21,104 @@ function D3GraphV2(width) {
 /**
  * Draws graph
  *
- * @param nodes [Array] node objects
- * @param links [Array] link relationships
+ * @param graph [Object] the json object containing the nodes and links
+ * @param click [Function] the click call back function
+ * @param dblclick [Function] the click call back function
  * @return [void]
  */
-D3GraphV2.prototype.draw = function(nodes, links){
-  // d3.select("svg").remove();
-  // d3.select("#d3_graph").selectAll('svg').remove();
+D3GraphV2.prototype.draw = function(graph){
+  var _this = this;
+  this.emptyTextDiv.hide();
+  d3.select('svg').remove();
 
-  // force.nodes(nodes)
-  //   .links(links)
-  //   .start();
+  var radius = 20;
+  this.width = this.d3Div.clientWidth;
 
-  // force.on("tick", function() {
-  //    links.attr("x1", function(d) { return d.source.x; })
-  //        .attr("y1", function(d) { return d.source.y; })
-  //        .attr("x2", function(d) { return d.target.x; })
-  //        .attr("y2", function(d) { return d.target.y; });
-  //
-  //    nodes.attr("cx", function(d) { return d.x; })
-  //        .attr("cy", function(d) { return d.y; });
-  //  });
-  //
-  // this.svg = d3.select("#d3_graph")
-  //   .append("svg")
-  //     .attr("width", "100%")
-  //     .attr("height", 500)
-  //     .call(d3.zoom().on("zoom", function() {
-  //       this.svg.attr("transform", d3.event.transform);
-  //     }.bind(this)))
-  //   .append("g");
-  //
-  // this.svg
-  // .append("circle")
-  //   .attr("cx", 300)
-  //   .attr("cy", 300)
-  //   .attr("r", 40)
-  //   .style("fill", "#68b2a1");
+  var force = d3.layout.force()
+    .gravity(0.1)
+    .charge(-1000)
+    .linkDistance(this.linkDist)
+    .linkStrength(0.05)
+    .size([this.width, this.height]);
+
+  var svg = d3.select(this.d3Div).append("svg")
+    .attr("width", "100%")
+    .attr("height", this.height);
+
+  var link = svg.selectAll("line")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link");
+
+  var node = svg.selectAll("text")
+    .data(graph.nodes)
+    .enter()
+    .append('g')
+    .classed('node', true)
+    .on('mouseover', mouseOver)
+    .on('mouseout', mouseOut);
+
+  node.append("circle")
+    .attr("class", "node")
+    .attr("r", function(d) { return (d.link == null ? 4 : d.link.length * 4 ) + radius })
+    .style("fill", function(d) { return this.nodeColour(d); }.bind(this));
+
+  node.append('text')
+    .attr('class', 'icon-')
+    .attr('font-size', "16pt")
+    .attr('fill', 'white')
+    .attr('x', -10)
+    .attr('y', 8)
+    .text(function(d) { return typeIconCharMap(d.rdf_type) });
+
+  force
+    .nodes(graph.nodes)
+    .links(graph.links)
+    .on("tick", tick)
+    .start();
+
+  function tick() {
+    node.attr("transform", function(d) {
+      return 'translate(' + [ Math.max(radius, Math.min(_this.width - radius, d.x)), Math.max(radius, Math.min(_this.height - radius, d.y))] + ')'
+    });
+
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    }
+
+    function mouseOver(d) {
+  		d3.select("#d3_tooltip")
+    		.style("left", (d.x + 25) + "px")
+    		.style("top", (d.y - 15) + "px")
+    		.html("<div class='font-regular text-small'>" + typeToString[d.rdf_type] + "</div><div class='font-light text-small'>" + d.label + " ("+d.identifier+")</div>");
+  		//Show the tooltip
+  		d3.select("#d3_tooltip").classed("hidden", false);
+    }
+
+    function mouseOut() {
+  		//Hide the tooltip
+  		d3.select("#d3_tooltip").classed("hidden", true);
+    }
+
+    d3.select(window).on("resize", function(){
+      _this.width = _this.d3Div.clientWidth;
+      svg.attr("width", _this.width).attr("height", _this.height);
+      force.size([_this.width, _this.height]).resume();
+    })
+}
+
+/**
+ * Node Colour
+ *
+ * @param [Object] node the node object
+ * @return [void]
+ */
+D3GraphV2.prototype.nodeColour = function (node) {
+  var color = typeToBgColor(node.rdf_type, {owner: node.owner});
+  if (typeof color == "undefined")
+    return "black";
+  else
+    return color;
 }

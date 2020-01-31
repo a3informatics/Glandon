@@ -6,6 +6,8 @@ $(document).ready(function(){
   var ig = new ImpactGraph();
 
   var selectCallback = function(r){
+    $("#impact-item-identifier").text(" of " + r.identifier);
+    $("#tab-affected").click();
     dp.reload(r.differences_url);
     cp.reload(r.changes_url);
     ig.reload(r);
