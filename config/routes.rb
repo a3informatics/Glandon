@@ -248,6 +248,7 @@ Rails.application.routes.draw do
       get :changes_data
       get :changes_report
       get :changes_impact
+      get :export_csv
       get :submission
       get :submission_data
       get :submission_report

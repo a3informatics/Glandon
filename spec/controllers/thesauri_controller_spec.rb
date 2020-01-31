@@ -575,6 +575,17 @@ describe ThesauriController do
       expect(response.code).to eq("200")
     end
 
+    it "export csv" do
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:scoped_identifier).and_return("C12345")
+      expect(Thesaurus).to receive(:impact_to_csv).and_return(["XXX", "YYY"])
+      expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Impact_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(@controller).to receive(:render)
+      get :export_csv, id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}
+    end
+
     it "changes_report" do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/pdf"
