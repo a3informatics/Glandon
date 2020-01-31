@@ -86,9 +86,18 @@ function typeIconMap(type){
   return icoMap[type];
 }
 
+function typeIconCharMap(type){
+  var icoMap = {};
+  icoMap[C_TH_NEW] = '\ue909';
+  icoMap[C_TH_CL] = '\ue952';
+  icoMap[C_TH_SUBSET] = '\ue941';
+  icoMap[C_TH_EXT] = '\ue945';
+
+  return icoMap[type];
+}
 
 function typeToBgColor(type, params){
-  if(params.owner != null && params.owner.toLowerCase() == "cdisc")
+  if(params != null && params.owner != null && params.owner.toLowerCase() == "cdisc")
     return '#f5d684';
 
   var clrMap = {}

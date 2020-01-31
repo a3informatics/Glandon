@@ -30,7 +30,7 @@
 
   <div class="col-md-8 card wide">
     <div class="card-header">
-      Impact
+      Impact <span id="impact-item-identifier"></span>
     </div>
     <div class="card-content">
       <div class="tabs-layout" id="impact-tabs">
@@ -45,6 +45,10 @@
           <div class="text-xnormal text-link ci-card-title">
             Items affected by the CDISC Code List change
           </div>
+          <div class="text-small font-light">
+            The list's scope is limited to items included in this Terminology.
+          </div>
+          <br/>
           <%= render partial: "shared/iso_managed/managed_item_ico_list" %>
         </div>
 
@@ -53,6 +57,10 @@
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-graph">
+          <div class="text-small font-light">
+            The graph's scope is limited to items included in this Terminology.
+          </div>
+          <br/>
           <%= render partial: "shared/impact/impact_graph", locals: { th_id: @managed_item.id } %>
         </div>
 
