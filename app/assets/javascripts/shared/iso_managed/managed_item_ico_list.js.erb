@@ -56,14 +56,24 @@ ManagedItemIconList.prototype.loadData = function (dataUrl) {
  */
 ManagedItemIconList.prototype.addItems = function (items) {
   this.table.clear();
-  this.table.processing(true)
+  this.loading(true)
 
   $.each(items, function(i, e){
     this.table.row.add(e);
   }.bind(this));
 
   this.table.draw();
-  this.table.processing(false);
+  this.loading(false);
+}
+
+/**
+* Enable / disable loading
+ *
+ * @param enable [Boolean] true/false ~ show / hide loading
+ * @return [void]
+ */
+ManagedItemIconList.prototype.loading = function (enable) {
+  this.table.processing(enable);
 }
 
 /**
