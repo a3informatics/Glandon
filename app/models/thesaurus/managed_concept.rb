@@ -701,6 +701,13 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
             ?s rdf:type ?t .
             ?s th:notation ?n .
           }
+          UNION
+          {
+            ?source ^th:subsets ?s  .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
         ?s isoC:label ?l .
         ?s isoT:hasIdentifier/isoI:identifier ?i .
         ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .

@@ -560,6 +560,7 @@ describe "extensions" do
       load_data_file_into_triple_store("import_load_7_2-6.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor4_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
       delete_all_public_test_files
     end
 
@@ -707,6 +708,20 @@ describe "extensions" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST/V1#TH"))
       results = tc.impact(th)
       check_file_actual_expected(results, sub_dir, "impact_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact IV" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact V, subsetting an extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_5.yaml", equate_method: :hash_equal)
     end
 
   end
