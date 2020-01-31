@@ -1,0 +1,58 @@
+/*
+* D3 Graph V2 with rdf_type icons
+*
+*/
+
+/**
+ * D3 Graph V2 Constructor
+ *
+ *
+ * @return [void]
+ */
+function D3GraphV2(width) {
+  this.width = width;
+  this.svg = null;
+
+}
+
+/**
+ * Draws graph
+ *
+ * @param nodes [Array] node objects
+ * @param links [Array] link relationships
+ * @return [void]
+ */
+D3GraphV2.prototype.draw = function(nodes, links){
+  // d3.select("svg").remove();
+  // d3.select("#d3_graph").selectAll('svg').remove();
+
+  // force.nodes(nodes)
+  //   .links(links)
+  //   .start();
+
+  // force.on("tick", function() {
+  //    links.attr("x1", function(d) { return d.source.x; })
+  //        .attr("y1", function(d) { return d.source.y; })
+  //        .attr("x2", function(d) { return d.target.x; })
+  //        .attr("y2", function(d) { return d.target.y; });
+  //
+  //    nodes.attr("cx", function(d) { return d.x; })
+  //        .attr("cy", function(d) { return d.y; });
+  //  });
+  //
+  // this.svg = d3.select("#d3_graph")
+  //   .append("svg")
+  //     .attr("width", "100%")
+  //     .attr("height", 500)
+  //     .call(d3.zoom().on("zoom", function() {
+  //       this.svg.attr("transform", d3.event.transform);
+  //     }.bind(this)))
+  //   .append("g");
+  //
+  // this.svg
+  // .append("circle")
+  //   .attr("cx", 300)
+  //   .attr("cy", 300)
+  //   .attr("r", 40)
+  //   .style("fill", "#68b2a1");
+}

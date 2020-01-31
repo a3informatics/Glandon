@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Impact Analysis: '+@managed_item.scoped_identifier+' ('+@managed_item.semantic_version+')")' %>
 <% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
 <%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'shared/datatables_loading' %>
-<%= javascript_include_tag 'iso_managed/impact', 'shared/tabs_layout' %>
+<%= javascript_include_tag  'shared/tags', 'iso_managed/impact', 'shared/tabs_layout' %>
 
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
 
@@ -42,6 +42,10 @@
         </div>
 
         <div class="tab-wrap scroll-styled" data-tab="tab-affected">
+          <div class="text-xnormal text-link ci-card-title">
+            Items affected by the CDISC Code List change
+          </div>
+          <%= render partial: "shared/iso_managed/managed_item_ico_list" %>
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-changes">
@@ -49,6 +53,7 @@
         </div>
 
         <div class="tab-wrap closed scroll-styled" data-tab="tab-graph">
+          <%= render partial: "shared/impact/impact_graph", locals: { th_id: @managed_item.id } %>
         </div>
 
       </div>
