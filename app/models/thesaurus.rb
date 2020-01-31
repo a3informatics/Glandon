@@ -264,7 +264,7 @@ class Thesaurus <  IsoManagedV2
       triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :o, :t, :cl_new])
       triples.each do |entry|
         final_results.push({identifier: entry[:i], id: Uri.new(uri: entry[:cl].to_s).to_id, label: entry[:l],
-          notation: entry[:n], version: entry[:v], owner: entry[:o], type: entry[:t].to_s, cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
+          notation: entry[:n], version: entry[:v], owner: entry[:o], rdf_type: entry[:t].to_s, cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
       end
       final_results
     end
@@ -694,7 +694,35 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     object
   end
 
+  def self.impact_to_csv(first_version, new_version, sponsor_version)
+    results = []
+    have_i_seen = []
+    items = first_version.changes_impact_v2(new_version, sponsor_version)
+    items.each do |item|
+        recursion(item[:id], results, sponsor_version, have_i_seen)
+    end
+    headers = ["Code", "Codelist Extensible (Yes/No)", "Codelist Name",
+      "CDISC Submission Value", "CDISC Definition"]
+    CSVHelpers.format(headers, results) 
+  end
+
 private
+  
+  def self.recursion(item_id, results, sponsor_version, have_i_seen)
+    tc = Thesaurus::ManagedConcept.find_with_properties(item_id)
+    #tc.synonyms_and_preferred_terms
+    if !have_i_seen.include? item_id
+      results.push(tc.to_a_by_key(:identifier, :extensible, :label, :notation, :definition))
+      have_i_seen.push(item_id)
+      arr = tc.impact(sponsor_version)
+    else
+      arr = []
+    end
+    return 0 if arr.empty?
+    arr.each do |item|
+      recursion(item[:id], results, sponsor_version, have_i_seen)
+    end
+  end
 
   # Get the set of URIs for each child
   def child_uri_set(params)
