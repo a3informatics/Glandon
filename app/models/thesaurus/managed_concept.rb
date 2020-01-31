@@ -717,7 +717,7 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
       else 
         type = x[:t].to_s
       end
-      results << {uri: x[:s].to_s, id: x[:s].to_id, rdf_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], real_type: type}
+      results << {uri: x[:s].to_s, id: x[:s].to_id, real_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], rdf_type: type}
     end
     results
   end
