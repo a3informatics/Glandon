@@ -1,0 +1,218 @@
+---
+:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YxOCNDNjY3Njc=
+:uri: http://www.cdisc.org/C66767/V18#C66767
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Action Taken with Study Treatment
+:tagged:
+- http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+:has_state:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YxOCNDNjY3NjdfUlM=
+  :uri: http://www.cdisc.org/C66767/V18#C66767_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YxOCNDNjY3NjdfU0k=
+  :uri: http://www.cdisc.org/C66767/V18#C66767_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: C66767
+  :version_label: 2009-10-06 Release
+  :version: 18
+  :semantic_version: 18.0.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:origin: ''
+:change_description: ''
+:creation_date: '2009-10-06T00:00:00+00:00'
+:last_change_date: '2009-10-06T00:00:00+00:00'
+:explanatory_comment: ''
+:identifier: C66767
+:notation: ACN
+:definition: Action Taken with Study Treatment
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDg2NjA=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C48660
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Not Applicable
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C48660
+  :notation: NOT APPLICABLE
+  :definition: Determination of a value is not relevant in the current context. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNjY3MmI4MTVkYzM4N2I2MmQ5ZDVlYzhmZWJhNTM3ZDc3Y2IyYjIwZQ==
+    :uri: http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Not Applicable
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzNmZWRhMDE1M2VlZTEzODBiNDk2Mjk4NDUwZGM1YTc0MzI0ZWI4YzE=
+    :uri: http://www.assero.co.uk/SYN#3feda0153eee1380b496298450dc5a74324eb8c1
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: NA
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDI=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49502
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Drug Withdrawn
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49502
+  :notation: DRUG WITHDRAWN
+  :definition: An indication that a medication schedule was modified through termination
+    of a prescribed regimen of medication. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjM2MzMDFkMjQ3MTgxMGFjOTI0ZDBhYmFjOGE3YzJkMTQ0NmY4M2VhMQ==
+    :uri: http://www.assero.co.uk/PT#3c301d2471810ac924d0abac8a7c2d1446f83ea1
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Drug Withdrawn
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDQ=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49504
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Dose Not Changed
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49504
+  :notation: DOSE NOT CHANGED
+  :definition: An indication that a medication schedule was maintained. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYmY4Mjg0MDQ0NGE2ZDYwMWVhYjY2MjQ3MjQwNDljNWMwMzIwNmFhNw==
+    :uri: http://www.assero.co.uk/PT#bf82840444a6d601eab6624724049c5c03206aa7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Dose Not Changed
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DMTc5OTg=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C17998
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Unknown
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C17998
+  :notation: UNKNOWN
+  :definition: Not known, not observed, not recorded, or refused. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYmM3ODE5YjM0ZmY4NzU3MDc0NWZiZTQ2MWUzNmExNmY4MGU1NjJjZQ==
+    :uri: http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Unknown
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2IyYzdjMGNhYTEwYTBjY2E1ZWE3ZDY5ZTU0MDE4YWUwYzAzODlkZDY=
+    :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: U
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2JjNzgxOWIzNGZmODc1NzA3NDVmYmU0NjFlMzZhMTZmODBlNTYyY2U=
+    :uri: http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Unknown
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDE=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49501
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Drug Interrupted
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49501
+  :notation: DRUG INTERRUPTED
+  :definition: An indication that a medication schedule was modified by temporarily
+    terminating a prescribed regimen of medication. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzI0N2Q3YjhjMjMyMjZkMTcwY2IwZTRlNTFlZGNiY2IzYWVhNThkZg==
+    :uri: http://www.assero.co.uk/PT#3247d7b8c23226d170cb0e4e51edcbcb3aea58df
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Drug Interrupted
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDM=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49503
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Dose Increased
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49503
+  :notation: DOSE INCREASED
+  :definition: An indication that a medication schedule was modified by addition;
+    either by changing the frequency, strength or amount. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjY2RiNjFhNDQwZGZmMTY4NmJjMjEwYTJlYWFiYmVlNzFiOTNhZmYzNQ==
+    :uri: http://www.assero.co.uk/PT#cdb61a440dff1686bc210a2eaabbee71b93aff35
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Dose Increased
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19DNDk1MDU=
+  :uri: http://www.cdisc.org/C66767/V4#C66767_C49505
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Dose Reduced
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49505
+  :notation: DOSE REDUCED
+  :definition: An indication that a medication schedule was modified by subtraction,
+    either by changing the frequency, strength or amount. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMmNjOTU0MDBhMzVhNTU5OGFiMWZkODljMTQ0MzM2MTFmMTVmZTVmZA==
+    :uri: http://www.assero.co.uk/PT#2cc95400a35a5598ab1fd89c14433611f15fe5fd
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Dose Reduced
+    :tagged: []
+  :synonym: []
+:extends: 
+:subsets: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNjQzZjg2ZTU0YzRkMjdlZTE1YmMxMDQ4OTY2ZDQ1MjQwNjhmMjA4YQ==
+  :uri: http://www.assero.co.uk/PT#643f86e54c4d27ee15bc1048966d4524068f208a
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: CDISC SDTM Action Taken with Study Treatment Terminology
+  :tagged: []
+:synonym:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2M2MDllN2Y5ODhkMWQzMDQzNTcwMmM4NWJkMWY1Yzg1MmMzYzkxZjM=
+  :uri: http://www.assero.co.uk/SYN#c609e7f988d1d30435702c85bd1f5c852c3c91f3
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: Action Taken with Study Treatment
+  :tagged: []
+:is_ordered: 
