@@ -168,11 +168,11 @@
 	th:notation "AACN"^^xsd:string ;
 	th:definition "Analysis - Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_SC49505> ;
-	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_SC49504> ;
-	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_SC49503> ;
-	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_SC49502> ;
-	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_SC49501> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
 	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_S000011> ;
 	th:narrower <http://www.s-cubed.dk/SN000001/V1#SN000001_S000010> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#86f56ece67ad6dc25743b615cd10ee672436aa12> ;
@@ -196,76 +196,6 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
-.
-<http://www.s-cubed.dk/SN000001/V1#SN000001_SC49505>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "SC49505"^^xsd:string ;
-	th:notation "DOSE REDUCED"^^xsd:string ;
-	th:definition "An indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#cbbde68001f71e0acf9efcdccb0b2965697a2690> ;
-.
-<http://www.assero.co.uk/PT#cbbde68001f71e0acf9efcdccb0b2965697a2690>
-	rdf:type th:PreferredTerm ;
-	isoC:label "DOSE REDUCED"^^xsd:string ;
-.
-<http://www.s-cubed.dk/SN000001/V1#SN000001_SC49504>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "SC49504"^^xsd:string ;
-	th:notation "DOSE NOT CHANGED"^^xsd:string ;
-	th:definition "An indication that a medication schedule was maintained. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#63a01061874b93b1452b3ce4e5ad6e5dd06037b1> ;
-.
-<http://www.assero.co.uk/PT#63a01061874b93b1452b3ce4e5ad6e5dd06037b1>
-	rdf:type th:PreferredTerm ;
-	isoC:label "DOSE NOT CHANGED"^^xsd:string ;
-.
-<http://www.s-cubed.dk/SN000001/V1#SN000001_SC49503>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "SC49503"^^xsd:string ;
-	th:notation "DOSE INCREASED"^^xsd:string ;
-	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#62de0b7a069cf2f65989704ff44007b00fd4062e> ;
-.
-<http://www.assero.co.uk/PT#62de0b7a069cf2f65989704ff44007b00fd4062e>
-	rdf:type th:PreferredTerm ;
-	isoC:label "DOSE INCREASED"^^xsd:string ;
-.
-<http://www.s-cubed.dk/SN000001/V1#SN000001_SC49502>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "SC49502"^^xsd:string ;
-	th:notation "DRUG WITHDRAWN"^^xsd:string ;
-	th:definition "An indication that a medication schedule was modified through termination of a prescribed regimen of medication. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5a934a1239be95ebba9f1c16941135c7d198c9ee> ;
-.
-<http://www.assero.co.uk/PT#5a934a1239be95ebba9f1c16941135c7d198c9ee>
-	rdf:type th:PreferredTerm ;
-	isoC:label "DRUG WITHDRAWN"^^xsd:string ;
-.
-<http://www.s-cubed.dk/SN000001/V1#SN000001_SC49501>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
-	th:identifier "SC49501"^^xsd:string ;
-	th:notation "DRUG INTERRUPTED"^^xsd:string ;
-	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#516c1d7aace048976d32583298d8f45d15ce9126> ;
-.
-<http://www.assero.co.uk/PT#516c1d7aace048976d32583298d8f45d15ce9126>
-	rdf:type th:PreferredTerm ;
-	isoC:label "DRUG INTERRUPTED"^^xsd:string ;
 .
 <http://www.s-cubed.dk/SN000001/V1#SN000001_S000011>
 	rdf:type th:UnmanagedConcept ;
@@ -321,7 +251,7 @@
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
 	th:subsets <http://www.cdisc.org/C66767/V56#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2b0b8c89e6a04cba5ba5c450d9b8ee964270379f> ;
-	th:isOrdered <http://www.assero.co.uk/TS#32d7d307-86bd-4d33-9acc-dc6905bca0a2> ;
+	th:isOrdered <http://www.assero.co.uk/TS#853063fe-7661-454e-8d39-ae8598cd615a> ;
 .
 <http://www.s-cubed.dk/NP000123P/V1#NP000123P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -347,36 +277,36 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#32d7d307-86bd-4d33-9acc-dc6905bca0a2>
+<http://www.assero.co.uk/TS#853063fe-7661-454e-8d39-ae8598cd615a>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#db1eb4e4-8af5-481a-8913-95c374384e51> ;
+	th:members <http://www.assero.co.uk/TSM#49637cb8-24a5-450c-a9db-23f40c06c55c> ;
 .
-<http://www.assero.co.uk/TSM#db1eb4e4-8af5-481a-8913-95c374384e51>
+<http://www.assero.co.uk/TSM#49637cb8-24a5-450c-a9db-23f40c06c55c>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:memberNext <http://www.assero.co.uk/TSM#cfe5bdce-e458-4f6c-ac7b-08f62ecb9369> ;
+	th:memberNext <http://www.assero.co.uk/TSM#5957557a-6711-419e-ad03-dfe0662cc4e9> ;
 .
-<http://www.assero.co.uk/TSM#cfe5bdce-e458-4f6c-ac7b-08f62ecb9369>
+<http://www.assero.co.uk/TSM#5957557a-6711-419e-ad03-dfe0662cc4e9>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:memberNext <http://www.assero.co.uk/TSM#c053fc22-5725-49d5-9707-993d9eef9e90> ;
+	th:memberNext <http://www.assero.co.uk/TSM#d883270e-98ab-4451-b102-4ae9d00f11c8> ;
 .
-<http://www.assero.co.uk/TSM#c053fc22-5725-49d5-9707-993d9eef9e90>
+<http://www.assero.co.uk/TSM#d883270e-98ab-4451-b102-4ae9d00f11c8>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:memberNext <http://www.assero.co.uk/TSM#abfad880-dde3-4260-8eb5-716ea409bdda> ;
+	th:memberNext <http://www.assero.co.uk/TSM#af03bda6-33c0-49d2-9191-d7fdae7234ff> ;
 .
-<http://www.assero.co.uk/TSM#abfad880-dde3-4260-8eb5-716ea409bdda>
+<http://www.assero.co.uk/TSM#af03bda6-33c0-49d2-9191-d7fdae7234ff>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:memberNext <http://www.assero.co.uk/TSM#819535ae-92dc-4731-a8ab-937b41383407> ;
+	th:memberNext <http://www.assero.co.uk/TSM#d815d55d-2596-49e1-bd98-a16227f028a7> ;
 .
-<http://www.assero.co.uk/TSM#819535ae-92dc-4731-a8ab-937b41383407>
+<http://www.assero.co.uk/TSM#d815d55d-2596-49e1-bd98-a16227f028a7>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
@@ -403,7 +333,7 @@
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
 	th:subsets <http://www.cdisc.org/C66767/V56#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#baea87d85ad624c31b53ab9e877686667742088f> ;
-	th:isOrdered <http://www.assero.co.uk/TS#a4196b87-6ddf-40dc-9d9a-f7f7af3c1ed2> ;
+	th:isOrdered <http://www.assero.co.uk/TS#0886649a-2e19-4bbc-9e2d-60f8b3a8791e> ;
 .
 <http://www.s-cubed.dk/NP000124P/V1#NP000124P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -429,36 +359,36 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Subset 02"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#a4196b87-6ddf-40dc-9d9a-f7f7af3c1ed2>
+<http://www.assero.co.uk/TS#0886649a-2e19-4bbc-9e2d-60f8b3a8791e>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#8d00438f-fe16-4a85-acb6-45887177b731> ;
+	th:members <http://www.assero.co.uk/TSM#1c3e7864-cd2e-4a6b-90c2-2eeb2c2cd260> ;
 .
-<http://www.assero.co.uk/TSM#8d00438f-fe16-4a85-acb6-45887177b731>
+<http://www.assero.co.uk/TSM#1c3e7864-cd2e-4a6b-90c2-2eeb2c2cd260>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:memberNext <http://www.assero.co.uk/TSM#d936c558-cd90-424f-b319-f94866da5636> ;
+	th:memberNext <http://www.assero.co.uk/TSM#746f0c5d-6870-491e-a779-4abf0718bd3d> ;
 .
-<http://www.assero.co.uk/TSM#d936c558-cd90-424f-b319-f94866da5636>
+<http://www.assero.co.uk/TSM#746f0c5d-6870-491e-a779-4abf0718bd3d>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:memberNext <http://www.assero.co.uk/TSM#234cc341-371e-4a76-8440-07ada5d31288> ;
+	th:memberNext <http://www.assero.co.uk/TSM#ac634291-111b-400d-916a-324f30a05536> ;
 .
-<http://www.assero.co.uk/TSM#234cc341-371e-4a76-8440-07ada5d31288>
+<http://www.assero.co.uk/TSM#ac634291-111b-400d-916a-324f30a05536>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:memberNext <http://www.assero.co.uk/TSM#03ac9cfc-1c55-4ed8-98fc-0ec660957374> ;
+	th:memberNext <http://www.assero.co.uk/TSM#53cc04b5-e9ae-4c3a-b314-2685573ed3ce> ;
 .
-<http://www.assero.co.uk/TSM#03ac9cfc-1c55-4ed8-98fc-0ec660957374>
+<http://www.assero.co.uk/TSM#53cc04b5-e9ae-4c3a-b314-2685573ed3ce>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:memberNext <http://www.assero.co.uk/TSM#a4bacfb2-c14f-4f89-ac5d-0661a5bb385d> ;
+	th:memberNext <http://www.assero.co.uk/TSM#8a0e3cb0-cc90-406f-ba3b-2fc1ee2c1971> ;
 .
-<http://www.assero.co.uk/TSM#a4bacfb2-c14f-4f89-ac5d-0661a5bb385d>
+<http://www.assero.co.uk/TSM#8a0e3cb0-cc90-406f-ba3b-2fc1ee2c1971>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
@@ -481,7 +411,7 @@
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
 	th:subsets <http://www.cdisc.org/C66767/V56#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#1f9e38372c5992bf3fe241a09f78726c3864181e> ;
-	th:isOrdered <http://www.assero.co.uk/TS#8286782f-0a43-4610-87b2-afb2b629431a> ;
+	th:isOrdered <http://www.assero.co.uk/TS#9460d4b4-7d6b-4b6e-9957-a13421278231> ;
 .
 <http://www.s-cubed.dk/NP000125P/V1#NP000125P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -507,12 +437,12 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Action Taken with Study Treatment Subset 03"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#8286782f-0a43-4610-87b2-afb2b629431a>
+<http://www.assero.co.uk/TS#9460d4b4-7d6b-4b6e-9957-a13421278231>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#fa2180ac-d415-4884-be52-4d2692d7ca4f> ;
+	th:members <http://www.assero.co.uk/TSM#c67f6fc4-ebd3-45ad-8161-8702c843e5cb> ;
 .
-<http://www.assero.co.uk/TSM#fa2180ac-d415-4884-be52-4d2692d7ca4f>
+<http://www.assero.co.uk/TSM#c67f6fc4-ebd3-45ad-8161-8702c843e5cb>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
@@ -884,7 +814,7 @@
 	th:narrower <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
 	th:subsets <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
-	th:isOrdered <http://www.assero.co.uk/TS#0570d779-2dfa-4587-9fca-ae3e86c7c497> ;
+	th:isOrdered <http://www.assero.co.uk/TS#596ec146-4209-4389-abc3-6d2e8a6b9fd6> ;
 .
 <http://www.s-cubed.dk/NP000126P/V1#NP000126P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -910,24 +840,24 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#0570d779-2dfa-4587-9fca-ae3e86c7c497>
+<http://www.assero.co.uk/TS#596ec146-4209-4389-abc3-6d2e8a6b9fd6>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#bec35879-5522-4c0d-bb4f-358090c7acf4> ;
+	th:members <http://www.assero.co.uk/TSM#05bce342-ec7c-4f5e-b9d6-ce782106db2e> ;
 .
-<http://www.assero.co.uk/TSM#bec35879-5522-4c0d-bb4f-358090c7acf4>
+<http://www.assero.co.uk/TSM#05bce342-ec7c-4f5e-b9d6-ce782106db2e>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
-	th:memberNext <http://www.assero.co.uk/TSM#0b76d47a-65f8-4658-acd8-07371ea95047> ;
+	th:memberNext <http://www.assero.co.uk/TSM#78270f84-d569-4bb8-b715-3a22c01f1e9d> ;
 .
-<http://www.assero.co.uk/TSM#0b76d47a-65f8-4658-acd8-07371ea95047>
+<http://www.assero.co.uk/TSM#78270f84-d569-4bb8-b715-3a22c01f1e9d>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
-	th:memberNext <http://www.assero.co.uk/TSM#154674fb-c4b8-47c4-b76b-47cdfb64a627> ;
+	th:memberNext <http://www.assero.co.uk/TSM#36b80c35-ca61-4192-a9b9-216d35ba74b7> ;
 .
-<http://www.assero.co.uk/TSM#154674fb-c4b8-47c4-b76b-47cdfb64a627>
+<http://www.assero.co.uk/TSM#36b80c35-ca61-4192-a9b9-216d35ba74b7>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;

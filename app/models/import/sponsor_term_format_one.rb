@@ -156,8 +156,8 @@ private
   def check_against_previous(ref, index)
     previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
     if previous_info.nil?
-      add_to_data(item, index, true)
-      add_log("No previous, new item: #{item.uri}")
+      add_to_data(ref, index, true)
+      add_log("No previous, new item: #{ref.uri}")
     else
       previous = @child_klass.find_full(previous_info.id) 
       ref.update_version(previous.version + 1)
