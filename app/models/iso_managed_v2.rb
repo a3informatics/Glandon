@@ -290,10 +290,8 @@ class IsoManagedV2 < IsoConceptV2
   def self.find_full(id)
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    exclude = excluded_read_relationships
-    exclude_clause = exclude.blank? ? "" : " MINUS { ?s (#{exclude.join("|")}) ?o }"
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}"
-    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
