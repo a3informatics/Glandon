@@ -9,8 +9,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   data_property :definition
   data_property :extensible, default: false
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
-  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
-  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
+  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
@@ -85,7 +85,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
-      :creation_date, :last_change_date, :explanatory_comment, :tagged]})
+      :creation_date, :last_change_date, :explanatory_comment, :tagged, :extends, :subsets]})
     replace_children_if_no_change(previous)
     return self
   end
