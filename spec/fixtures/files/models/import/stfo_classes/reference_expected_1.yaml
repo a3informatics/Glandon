@@ -3,7 +3,8 @@
 :uri: http://www.cdisc.org/C76351/V10#C76351
 :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
 :label: Skin Classification
-:tagged: []
+:tagged:
+- http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
 :has_state:
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfUlM=
   :uri: http://www.cdisc.org/C76351/V10#C76351_RS
@@ -70,7 +71,12 @@
     types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTdlNTc5M2E2ODA0NmEyZjdiMTAxMTMwMjA4NTc5MWQ2NjBkMTM2Yg==
+    :uri: http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type I
+    :tagged: []
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcw
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74570
@@ -85,7 +91,12 @@
     of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#0500b308f138d762bf885f63b393775daa5078c5
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMDUwMGIzMDhmMTM4ZDc2MmJmODg1ZjYzYjM5Mzc3NWRhYTUwNzhjNQ==
+    :uri: http://www.assero.co.uk/PT#0500b308f138d762bf885f63b393775daa5078c5
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type II
+    :tagged: []
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTc0
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74574
@@ -100,7 +111,12 @@
     of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#b3216592d9c7d566ecc2852dd79c5cdd6f46191e
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjMyMTY1OTJkOWM3ZDU2NmVjYzI4NTJkZDc5YzVjZGQ2ZjQ2MTkxZQ==
+    :uri: http://www.assero.co.uk/PT#b3216592d9c7d566ecc2852dd79c5cdd6f46191e
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type VI
+    :tagged: []
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcz
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74573
@@ -116,7 +132,12 @@
     sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#61ab941b6336cedc77a813e19c35f9c0a24108a0
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNjFhYjk0MWI2MzM2Y2VkYzc3YTgxM2UxOWMzNWY5YzBhMjQxMDhhMA==
+    :uri: http://www.assero.co.uk/PT#61ab941b6336cedc77a813e19c35f9c0a24108a0
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type V
+    :tagged: []
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcx
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74571
@@ -131,7 +152,12 @@
     Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#6f2c22646afc7901b6bba34350b332c41a565052
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNmYyYzIyNjQ2YWZjNzkwMWI2YmJhMzQzNTBiMzMyYzQxYTU2NTA1Mg==
+    :uri: http://www.assero.co.uk/PT#6f2c22646afc7901b6bba34350b332c41a565052
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type III
+    :tagged: []
   :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcy
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74572
@@ -147,10 +173,25 @@
     skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
   :extensible: false
   :narrower: []
-  :preferred_term: http://www.assero.co.uk/PT#54d856230e7a778fbfc28d23c2fb7200182b608d
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNTRkODU2MjMwZTdhNzc4ZmJmYzI4ZDIzYzJmYjcyMDAxODJiNjA4ZA==
+    :uri: http://www.assero.co.uk/PT#54d856230e7a778fbfc28d23c2fb7200182b608d
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type IV
+    :tagged: []
   :synonym: []
 :extends: 
 :subsets: 
-:preferred_term: 
-:synonym: []
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNGY0NDZjZGIwNmMzZTM3ZWI4MDI3Y2E3ZDAxNjVmYTE2MmQ1YjFjOA==
+  :uri: http://www.assero.co.uk/PT#4f446cdb06c3e37eb8027ca7d0165fa162d5b1c8
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: CDISC SDTM Fitzpatrick Skin Classification Terminology
+  :tagged: []
+:synonym:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2M5MGIzYzBjZDI4N2RiNDlhMzVmYzJkMTQ1MTk0N2MyZWIyY2M5OTA=
+  :uri: http://www.assero.co.uk/SYN#c90b3c0cd287db49a35fc2d1451947c2eb2cc990
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: Skin Classification
+  :tagged: []
 :is_ordered: 

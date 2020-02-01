@@ -75,7 +75,7 @@ module Import::STFOClasses
       #  add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
       else
         self.extends = ref_ct
-        new_narrower = ref_ct.narrower.dup
+        new_narrower = ref_ct.narrower
         self.narrower.each do |child|
           if NciThesaurusUtility.c_code?(child.identifier)
             new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
@@ -85,7 +85,7 @@ module Import::STFOClasses
                 add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
               elsif options.count == 1
                 if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-                  new_narrower << Thesaurus::UnmanagedConcept.find(options.first[:uri])
+                  new_narrower << Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
                 else
                   add_error("Cannot find code list item #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
                 end
@@ -94,7 +94,7 @@ module Import::STFOClasses
               end
             end
           else
-            new_narrower << child
+            new_narrower << Thesaurus::UnmanagedConcept.find_children(child.uri)
           end
         end
         self.narrower = new_narrower
@@ -286,9 +286,7 @@ module Import::STFOClasses
     def reference(ct)
       ref_ct = ct.find_by_identifiers([self.identifier])
       return nil if !ref_ct.key?(self.identifier)
-      cl = self.class.find_with_properties(ref_ct[self.identifier])
-      cl.narrower_objects
-      cl
+      self.class.find_full(ref_ct[self.identifier])
     end
 
     def subset_list
