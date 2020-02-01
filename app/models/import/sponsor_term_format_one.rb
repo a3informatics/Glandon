@@ -133,8 +133,7 @@ private
         ref = nil
       end
       next if ref.nil?
-      ref = check_for_change(ref) if !existing_ref
-      add_child(ref, index, existing_ref)
+      check_and_add(ref, index, existing_ref)
     end
     return {parent: @parent, managed_children: @filtered, tags: []}
   end
@@ -150,22 +149,33 @@ private
   end
 
   # Check for a change in an item
-  def check_for_change(ref)
-    previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
-    previous = previous_info.nil? ? nil : @child_klass.find_full(previous_info.id) 
-    return ref if previous.nil?
-    ref.update_version(previous.version + 1)
-    return ref if !subset_match?(ref, previous)
-    item = ref.replace_if_no_change(previous)
-    add_log("Change item: #{item.uri}, previous: #{previous.uri}")
-    item
+  def check_and_add(ref, index, existing_ref)
+    existing_ref ? @parent.add(ref, index + 1) : check_against_previous(ref, index)
   end
 
-  # Add child to the results
-  def add_child(ref, index, existing_ref)  
-    @parent.add(ref, index + 1) 
-    return if existing_ref
-    @filtered << ref 
+  def check_against_previous(ref, index)
+    previous_info = @child_klass.latest({scope: @scope, identifier: ref.identifier})
+    if previous_info.nil?
+      add_to_data(item, index, true)
+      add_log("No previous, new item: #{item.uri}")
+    else
+      previous = @child_klass.find_full(previous_info.id) 
+      ref.update_version(previous.version + 1)
+      item = check_for_change(ref, previous) 
+      add_log("New item: #{item.uri}, previous item: #{previous.uri}")
+      add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
+    end
+  end
+
+  def check_for_change(current, previous)
+    return current if !subset_match?(current, previous)
+    current.replace_if_no_change(previous)
+  end
+
+  def add_to_data(item, index, new_item)
+    @parent.add(item, index + 1) 
+    return if !new_item
+    @filtered << item 
   end
 
   # Add error
