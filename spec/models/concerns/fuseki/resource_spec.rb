@@ -217,21 +217,6 @@ describe Fuseki::Resource do
 
   describe "read metadata" do
 
-    #
-    # This is naughty but ok-ish. Loads schema ready for the tests and the elaboration of class TestR10 which happens 
-    # before the "before :all" block. Schema is required.
-    # sparql_query = "CLEAR DEFAULT"
-    # CRUD.update(sparql_query)
-    # schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-    # schema_files.each do |f|
-    #   full_path = Rails.root.join "db/load/schema/#{f}"
-    #   response = CRUD.file(full_path)
-    #   raise if !response.success?
-    # end
-    
-    # FusekiBaseHelpers.clear
-    # FusekiBaseHelpers.read_schema # Makes sure we have the schema loaded. It is all about the timing!! :)
-
     before :all do
     end
 
