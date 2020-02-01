@@ -185,7 +185,7 @@
 	th:notation "CDSTYP"^^xsd:string ;
 	th:definition "Used to collect a sub-category of the type of external data that is collected in the central data form."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/SN000631/V1#SN000631_SC449> ;
+	th:narrower <http://www.cdisc.org/C111114/V36#C111114_C449> ;
 	th:narrower <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b5164b4b3fc066edd11912ddcb569d8118a6e634> ;
 .
@@ -208,23 +208,6 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
-.
-<http://www.s-cubed.dk/SN000631/V1#SN000631_SC449>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	th:identifier "SC449"^^xsd:string ;
-	th:notation "DNA"^^xsd:string ;
-	th:definition "A long linear double-stranded polymer formed from nucleotides attached to a deoxyribose backbone; associated with the transmission of genetic information."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#4aeaeba84ead31459774bb74ead5f105ab816c58> ;
-	th:synonym <http://www.assero.co.uk/SYN#4aeaeba84ead31459774bb74ead5f105ab816c58> ;
-	th:synonym <http://www.assero.co.uk/SYN#7baa926b0a583d9dc4336948959633660863c61b> ;
-	th:synonym <http://www.assero.co.uk/SYN#05b52d4366fd0c7aae1cf4b7b767a6b7d4af3e21> ;
-.
-<http://www.assero.co.uk/PT#4aeaeba84ead31459774bb74ead5f105ab816c58>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Deoxyribonucleic Acid"^^xsd:string ;
 .
 <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970>
 	rdf:type th:UnmanagedConcept ;
