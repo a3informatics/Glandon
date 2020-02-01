@@ -204,6 +204,26 @@ describe AuditTrail do
     expect(AuditTrail.users_by_domain).to eq({"example.com"=>1, "s-cubed.com"=>1, "sanofi.com"=>1, "total"=>3})
   end
 
+  it "counts user by domain II" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName2@sanofi.com"
+    AuditTrail.user_event(user, "User logged in.")
+    AuditTrail.user_event(user, "User logged in.")
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName3@s-cubed.com"
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName3@merck.com"
+    AuditTrail.user_event(user, "User logged out.")
+    AuditTrail.user_event(user, "User logged in.")
+    AuditTrail.user_event(user, "User logged in.")
+    expect(AuditTrail.users_by_domain).to eq({"example.com"=>1, "merck.com"=>2, "s-cubed.com"=>1, "sanofi.com"=>3, "total"=>7})
+  end
+
   it "counts user by domain, have logged in nil" do
     user = User.new
     user.email = "UserName1@example.com"

@@ -147,4 +147,11 @@ describe "User" do
     expect(user.logged_in?).to eq(true)
   end
 
+  it "users by domain" do
+    user = User.create :email => "tst_user1@clarisa.com", :password => "Changeme1#"
+    user = User.create :email => "tst_user2@clarisa.com", :password => "Changeme1#"
+    user = User.create :email => "tst_user3@romero.com", :password => "Changeme1#"
+    expect(User.users_by_domain).to eq({"clarisa.com"=>2, "example.com"=>1, "romero.com"=>1, "total"=>4})
+  end
+
 end

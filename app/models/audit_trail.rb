@@ -180,10 +180,12 @@ class AuditTrail < ActiveRecord::Base
     raw = self.have_logged_in.all.select('id', 'user').as_json
     raw = raw.map{ |k, v| k['user'] }.map{ |user| user.sub /^.*@/, '' }
     result = {}
-    raw.each do |value|
-      result[value].nil? ? result[value] = 1 : result[value] + 1
-    end
-    result["total"] = result.count
+    result = raw.group_by{|e| e}.map{|k, v| [k, v.length]}.to_h
+    #raw.each do |value|
+     # result[value].nil? ? result[value] = 1 : result[value] + 1
+    #end
+    #result["total"] = result.count
+    result["total"] = self.have_logged_in.all.count
     return result
   end
 
