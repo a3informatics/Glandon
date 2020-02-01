@@ -196,15 +196,15 @@ describe Import::STFOClasses do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"
     object.preferred_term = Thesaurus::PreferredTerm.new(label: "Not a sub set")
-    expect(object.sponsor_identifier?).to eq(false)
+    expect(object.sponsor_parent_identifier?).to eq(false)
     object.identifier = "SN12345"
-    expect(object.sponsor_identifier?).to eq(false)
+    expect(object.sponsor_parent_identifier?).to eq(false)
     object.identifier = "SN123456"
-    expect(object.sponsor_identifier?).to eq(true)
+    expect(object.sponsor_parent_identifier?).to eq(true)
     object.identifier = "SN1234567"
-    expect(object.sponsor_identifier?).to eq(false)
+    expect(object.sponsor_parent_identifier?).to eq(false)
     object.identifier = "SN12345X"
-    expect(object.sponsor_identifier?).to eq(false)
+    expect(object.sponsor_parent_identifier?).to eq(false)
   end
 
   it "sponsor code list item identifiers set" do
@@ -232,28 +232,27 @@ describe Import::STFOClasses do
   end
 
   it "sponsor code list item identifiers" do
-    object = Import::STFOClasses::STFOCodeListItem.new
-    object.identifier = "C76351"
-    expect(object.sponsor_identifier?).to eq(false)
-    object.identifier = "S12345"
-    expect(object.sponsor_identifier?).to eq(false)
-    object.identifier = "S123456"
-    expect(object.sponsor_identifier?).to eq(true)
-    object.identifier = "S1234567"
-    expect(object.sponsor_identifier?).to eq(false)
-    object.identifier = "S12345X"
-    expect(object.sponsor_identifier?).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_parent_identifier_format?("C76351")).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_parent_identifier_format?("S12345")).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_parent_identifier_format?("SN123456")).to eq(true)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_parent_identifier_format?("SN1234567")).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_parent_identifier_format?("S12345X")).to eq(false)
   end
 
-  it "sponsor and referenced format" do
-    expect(Import::STFOClasses::STFOCodeListItem.sponsor_identifier_format?("S123456")).to eq(true)
-    expect(Import::STFOClasses::STFOCodeListItem.sponsor_identifier_format?("S12345")).to eq(false)
-    expect(Import::STFOClasses::STFOCodeListItem.sponsor_identifier_format?("S1234567")).to eq(false)
-    expect(Import::STFOClasses::STFOCodeListItem.sponsor_identifier_format?("S12345X")).to eq(false)
+  it "sponsor code list item and referenced item format" do
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_child_identifier_format?("S123456")).to eq(true)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_child_identifier_format?("S12345")).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_child_identifier_format?("S1234567")).to eq(false)
+    expect(Import::STFOClasses::STFOCodeListItem.sponsor_child_identifier_format?("S12345X")).to eq(false)
     expect(Import::STFOClasses::STFOCodeListItem.sponsor_referenced_format?("SC12345")).to eq(true)
     expect(Import::STFOClasses::STFOCodeListItem.sponsor_referenced_format?("SC1234")).to eq(true)
     expect(Import::STFOClasses::STFOCodeListItem.sponsor_referenced_format?("SC123456")).to eq(true)
     expect(Import::STFOClasses::STFOCodeListItem.sponsor_referenced_format?("SC1234X")).to eq(false)
+  end
+
+  it "To reference format" do
+    expect(Import::STFOClasses::STFOCodeListItem.to_referenced("SC123456")).to eq("C123456")
+    expect(Import::STFOClasses::STFOCodeListItem.to_referenced("SC123")).to eq("C123")
   end
 
   it "NCI format" do

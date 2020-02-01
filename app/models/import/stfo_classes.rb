@@ -94,13 +94,14 @@ module Import::STFOClasses
               end
             end
           else
-            new_narrower << Thesaurus::UnmanagedConcept.find_children(child.uri)
+            new_narrower << child
           end
         end
         self.narrower = new_narrower
       end
       self
     rescue => e
+byebug
       add_error("Exception in to_extension, identifier '#{self.identifier}'.")
       self
     end
@@ -216,7 +217,7 @@ module Import::STFOClasses
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def sponsor?
       return nil if subset?
-      sponsor_identifier? && sponsor_child_identifiers?
+      sponsor_parent_identifier? && sponsor_child_identifiers?
     end
 
     # Hybrid Sponsor? Is this a hybrid sponsor code list
@@ -224,18 +225,24 @@ module Import::STFOClasses
     # @return [Boolean] true if a hybrid sponsor code list, false otherwise.
     def hybrid_sponsor?
       return nil if subset?
-      sponsor_identifier? && sponsor_child_or_referenced_identifiers?
+      sponsor_parent_identifier? && sponsor_child_or_referenced_identifiers?
     end
 
     def to_hybrid_sponsor(ct)
       new_narrower = []
       self.narrower.each do |child|
-        if NciThesaurusUtility.c_code?(child.identifier)
-          options = ct.find_identifier(child.identifier)
+        if STFOCodeListItem.sponsor_referenced_format?(child.identifier)
+          identifier = STFOCodeListItem.to_referenced(child.identifier)
+          add_log("********** Checking for code list item #{identifier}")
+          options = ct.find_identifier(identifier)
           if options.empty?
             add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
           elsif options.count == 1
-            new_narrower << Thesaurus::UnmanagedConcept.find(options.first)
+            if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
+              new_narrower << Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+            else
+              add_error("Cannot find code list item #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
+            end
           else
             add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
           end
@@ -246,6 +253,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self
     rescue => e
+byebug
       add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")
       self
     end
@@ -253,9 +261,8 @@ module Import::STFOClasses
     # Sponsor Identifier? Does the identifier match the sponsor format?
     #
     # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
-    def sponsor_identifier?
-      result = self.identifier =~ /\ASN[0-9]{6}\z/
-      !result.nil?
+    def sponsor_parent_identifier?
+      STFOCodeListItem.sponsor_parent_identifier_format?(self.identifier)
     end
 
     # Sponsor Child Identifiers? Are the child identifiers all sponsor identifiers?
@@ -331,7 +338,7 @@ module Import::STFOClasses
     #
     # @return [Boolean] true if the set of identifier matches the sponsor format, otherwise false.
     def self.sponsor_identifier_set?(set)
-      set.each {|x| return false if !sponsor_identifier_format?(x)}
+      set.each {|x| return false if !sponsor_child_identifier_format?(x)}
       true
     end
 
@@ -339,7 +346,7 @@ module Import::STFOClasses
     #
     # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
     def self.sponsor_identifier_or_referenced_set?(set)
-      set.each {|x| return false if !sponsor_identifier_format?(x) && !sponsor_referenced_format?(x)}
+      set.each {|x| return false if !sponsor_child_identifier_format?(x) && !sponsor_referenced_format?(x)}
       true
     end
 
@@ -347,21 +354,22 @@ module Import::STFOClasses
     #
     # @return [Boolean] true if the set of identifier matches the sponsor or referenced format, otherwise false.
     def self.sponsor_identifier_referenced_or_ncit_set?(set)
-      set.each {|x| return false if !sponsor_identifier_format?(x) && !sponsor_referenced_format?(x) && !ncit_format?(x)}
+      set.each {|x| return false if !sponsor_child_identifier_format?(x) && !sponsor_referenced_format?(x) && !ncit_format?(x)}
       true
-    end
-
-    # Sponsor Identifier? Does the identifier match the sponsor format?
-    #
-    # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
-    def sponsor_identifier?
-      self.class.sponsor_identifier_format?(self.identifier)
     end
 
     # Sponsor Identifier Format? Does a string match the sponsor format?
     #
     # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
-    def self.sponsor_identifier_format?(ident)
+    def self.sponsor_parent_identifier_format?(ident)
+      result = ident =~ /\ASN[0-9]{6}\z/
+      !result.nil?
+    end
+
+    # Sponsor Identifier Format? Does a string match the sponsor format?
+    #
+    # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
+    def self.sponsor_child_identifier_format?(ident)
       result = ident =~ /\AS[0-9]{6}\z/
       !result.nil?
     end
@@ -371,8 +379,13 @@ module Import::STFOClasses
     # @return [Boolean] true if the identifier matches the referenced format, otherwise false.
     def self.sponsor_referenced_format?(ident)
       ident.start_with?("S") && NciThesaurusUtility.c_code?(ident[1..-1])
-      #result = ident =~ /\ASC[0-9]{3..6}\z/
-      #!result.nil?
+    end
+
+    # To Referenced. Takes a Sponsor reference format and converts to the referenced format
+    #
+    # @return [Boolean] true if the identifier matches the referenced format, otherwise false.
+    def self.to_referenced(ident)
+      ident.dup[1..-1]
     end
 
     # NCI Format? Does a string match the NCI format?
