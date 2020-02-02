@@ -2,21 +2,31 @@
 <%= stylesheet_link_tag    'spinner' %>
 <%= javascript_include_tag 'ad_hoc_report_results', 'spinner' %>
 <% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "Results"}]) %>
-<h3>Ad-Hoc Report Results: <%= @report.label %></h3>
+
 <div class="row">
-	<div class="col-md-12 card wide">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
+		main_text: "Ad-Hoc Reports", sub_texts: "Report: <span class='font-regular'> #{@report.label} </span>".html_safe } do %>
+
+		<div class="actions-wrap" role="group" aria-label="First group">
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "running",
+				icon: "glyphicon glyphicon-refresh", btn_text: "", dt_toggle: "", disabled: true } %>
+
+			<% if policy(AdHocReport).export_csv? %>
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_ad_hoc_report_path(@report), id: "export_csv",
+					icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
+			<% end %>
+
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+		</div>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+	<div class="col-md-11 card wide">
 		<div class="card-header">Ad-Hoc Report Results</div>
 		<div class="card-content table-cardstyle all-columns">
-			<div class="actions-wrap" role="group" aria-label="First group">
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "running",
-					icon: "glyphicon glyphicon-refresh", btn_text: "", dt_toggle: "", disabled: true } %>
-				<% if policy(AdHocReport).export_csv? %>
-					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_ad_hoc_report_path(@report), id: "export_csv",
-		        icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
-				<% end %>
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
-	        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-	    </div>
 			<h4><span class="icon-forms text-prim-light"></span> Results of <span class="text-prim-light"><%= @report.label %></span></h4>
 			<br/>
 				<table id="results" class="table table-striped table-bordered table-condensed">

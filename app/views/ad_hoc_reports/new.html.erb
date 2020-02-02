@@ -1,16 +1,22 @@
 <%= javascript_tag 'setPageTitle("New Ad-Hoc Report")' %>
 <% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "New"}]) %>
+
+<div class="row">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
+		main_text: "Ad-Hoc Reports", sub_texts: "Add a new Ad-Hoc Report." } do %>
+
+		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
+			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+	<% end %>
+</div>
 <div class="row centered">
 	<div class="col-md-6 card wide">
 		<div class="card-header">New Ad-Hoc Report</div>
 		<div class="card-content">
-			<div class="actions-wrap" role="group" aria-label="First group">
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
-					icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-			</div>
 			<%= form_for @item do |f| %>
 		  	<div class="form-group form-wrap">
-		      <%= label_tag :files, "File:", class: "font-light" %><br/>
+		      <%= label_tag :files, "Select File:", class: "font-light" %><br/>
 		      <%= select_tag("ad_hoc_report[files][]", options_for_select(@files), class: "form-control", :multiple => false) %>
 		    </div>
 				<%= f.submit "Create report", class: "btn medium green" %>
