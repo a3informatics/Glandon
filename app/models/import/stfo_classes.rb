@@ -231,7 +231,7 @@ byebug
     def to_hybrid_sponsor(ct)
       new_narrower = []
       self.narrower.each do |child|
-        new_narrower << child_or_sponsor_referenced(ct, child)
+        new_narrower << sponsor_or_referenced(ct, child)
       end
       self.narrower = new_narrower
       self
@@ -240,17 +240,23 @@ byebug
       self
     end
 
-    def child_or_sponsor_referenced(ct, child)
+    def sponsor_or_referenced(ct, child)
       if STFOCodeListItem.sponsor_referenced_format?(child.identifier)
-        item = sponsor_referenced(ct, child)
+        item = find_sponsor_referenced(ct, child)
+        return item.nil? ? child : item
+      elsif NciThesaurusUtility.c_code?(child.identifier)
+        item = find_referenced(ct, child.identifier)
         return item.nil? ? child : item
       else
         return child
       end
     end
 
-    def sponsor_referenced(ct, child)
-      identifier = STFOCodeListItem.to_referenced(child.identifier)
+    def find_sponsor_referenced(ct, child)
+      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier))
+    end
+
+    def find_referenced(ct, identifier)
       options = ct.find_identifier(identifier)
       if options.empty?
         add_error("Cannot find referenced item #{child.identifier}, none found, identifier '#{self.identifier}'.")
