@@ -29,6 +29,10 @@ function removeSpinnerInElement(element){
   $(element).find(".spinner-container").remove();
 }
 
+function generateSpinnerWTextSide(size, text){
+  return generateSpinnerWText(size, text).replace("spinner-container", "spinner-container txt-right");
+}
+
 function generateNoResultsMsg(message){
   return '<div style="width: 100%; text-align: center;">'+
             '<img src="<%= asset_path("no-results.svg") %>" width="120"/>'+

@@ -3,8 +3,9 @@ $(document).ready(function() {
 	var resultsLoaded = false;
 	var reportId = document.getElementById("report_id").value;
   var resultsTable;
-  
-  spAddSpinner("#running");
+
+	$(".actions-wrap").prepend(generateSpinnerWTextSide("tiny", "Report is running")); // Add loading
+  // spAddSpinner("#running");
   getStatus();
 
   function statusTimeout() {
@@ -12,7 +13,7 @@ $(document).ready(function() {
       getStatus();
     }, 10000);
  	}
- 
+
   function getResults() {
   	if (resultsLoaded) {
   		resultsTable.ajax.reload();
@@ -20,7 +21,7 @@ $(document).ready(function() {
 	  	resultsTable = $('#results').DataTable( {
 	      "ajax": {
 	        "url": "/ad_hoc_reports/" + reportId + "/run_results",
-	        "dataSrc": "data"  
+	        "dataSrc": "data"
 	      },
     		"pageLength": pageLength,
     		"lengthMenu": pageSettings
@@ -40,7 +41,7 @@ $(document).ready(function() {
 	    success: function(result){
 	      if (!result.running) {
 	      	getResults();
-	      	spRemoveSpinner("#running");
+					removeSpinnerInElement(".actions-wrap"); // Remove loading
 	      } else {
 	      	statusTimeout();
 	      	// Just load the table once to set up page nicely.

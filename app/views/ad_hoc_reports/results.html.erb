@@ -8,8 +8,6 @@
 		main_text: "Ad-Hoc Reports", sub_texts: "Report: <span class='font-regular'> #{@report.label} </span>".html_safe } do %>
 
 		<div class="actions-wrap" role="group" aria-label="First group">
-			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "running",
-				icon: "glyphicon glyphicon-refresh", btn_text: "", dt_toggle: "", disabled: true } %>
 
 			<% if policy(AdHocReport).export_csv? %>
 				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_ad_hoc_report_path(@report), id: "export_csv",
