@@ -1,0 +1,19 @@
+---
+:columns:
+  "?s":
+    :label: Subject URI
+    :type: uri
+  "?p":
+    :label: Predicate
+    :type: uri
+  "?o":
+    :label: Object
+    :type: literal
+:label: All Sponsor Code Lists
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+  SELECT DISTINCT ?s ?p ?o WHERE { ?s rdf:type th:ManagedConcept . ?s isoT:hasIdentifier
+  ?si . ?si isoI:hasScope/isoI:shortName "S-cubed" . ?s ?p ?o }'
+:type: Ad Hoc Report Definition
