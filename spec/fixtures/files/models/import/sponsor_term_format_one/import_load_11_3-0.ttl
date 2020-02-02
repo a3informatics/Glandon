@@ -76,13 +76,13 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/CT/V53#TH> ;
 .
-<http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710>
+<http://www.s-cubed.dk/SN000710/V2#SN000710>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Code Breaker"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#fa6e9a48-c6cd-4f67-8501-bc88929c1c7e> ;
-	isoT:hasState <http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710_RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710_SI> ;
+	isoT:hasState <http://www.s-cubed.dk/SN000710/V2#SN000710_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SN000710/V2#SN000710_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -95,10 +95,10 @@
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
 	th:narrower <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:narrower <http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df_S001999> ;
+	th:narrower <http://www.s-cubed.dk/NP000123P/V2#NP000123P_S001999> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9071ffa4c86f3803eb1a941d2619da1855ad1310> ;
 .
-<http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710_RS>
+<http://www.s-cubed.dk/SN000710/V2#SN000710_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -110,7 +110,7 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710_SI>
+<http://www.s-cubed.dk/SN000710/V2#SN000710_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "SN000710"^^xsd:string ;
 	isoI:versionLabel "1.0.0"^^xsd:string ;
@@ -118,7 +118,7 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df_S001999>
+<http://www.s-cubed.dk/NP000123P/V2#NP000123P_S001999>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992> ;
@@ -145,10 +145,10 @@
 	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:narrower <http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df_S001999> ;
-	th:subsets <http://www.s-cubed.dk/NP000123P/V2#NP000123P_SN000710> ;
+	th:narrower <http://www.s-cubed.dk/NP000123P/V2#NP000123P_S001999> ;
+	th:subsets <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#da4a09f60b8be877afdf06c17c8ae6fdf0acf821> ;
-	th:isOrdered <http://www.assero.co.uk/TS#d3bdbc7a-32a1-4631-886d-6a0ed650d0b2> ;
+	th:isOrdered <http://www.assero.co.uk/TS#08fb0220-7a6c-4cbd-ba66-82e48267a1f7> ;
 .
 <http://www.s-cubed.dk/NP000123P/V2#NP000123P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -170,19 +170,19 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.assero.co.uk/TS#d3bdbc7a-32a1-4631-886d-6a0ed650d0b2>
+<http://www.assero.co.uk/TS#08fb0220-7a6c-4cbd-ba66-82e48267a1f7>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#02f32737-9f18-4893-8336-832ad47eaea7> ;
+	th:members <http://www.assero.co.uk/TSM#415e53ee-3a2d-492b-aa6d-e7d5b404b364> ;
 .
-<http://www.assero.co.uk/TSM#02f32737-9f18-4893-8336-832ad47eaea7>
+<http://www.assero.co.uk/TSM#415e53ee-3a2d-492b-aa6d-e7d5b404b364>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:memberNext <http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df> ;
+	th:memberNext <http://www.assero.co.uk/TSM#284e94ba-0d36-4111-be69-0aba96418a39> ;
 .
-<http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df>
+<http://www.assero.co.uk/TSM#284e94ba-0d36-4111-be69-0aba96418a39>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.assero.co.uk/TSM#38a2179c-1e2a-4d54-879a-4871cbc2e7df_S001999> ;
+	th:item <http://www.s-cubed.dk/NP000123P/V2#NP000123P_S001999> ;
 .

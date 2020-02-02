@@ -160,11 +160,24 @@ private
       add_log("No previous, new item: #{ref.uri}")
     else
       previous = @child_klass.find_full(previous_info.id) 
-      ref.update_version(previous.version + 1)
+      update_version(ref, previous.version + 1)
       item = check_for_change(ref, previous) 
       add_log("New item: #{item.uri}, previous item: #{previous.uri}")
       add_to_data(item, index, item.uri != previous.uri) # No changes if item = previous
     end
+  end
+
+  def update_version(ref, new_version)
+    add_log("Pre narrower: #{ref.narrower.map{|x| x.uri.to_s}}")
+    stack = Stack.new
+    ref.extends = stack.push(ref.extends)
+    ref.subsets = stack.push(ref.subsets)
+    ref.is_ordered = stack.push(ref.is_ordered)
+    ref.update_version(new_version)
+    ref.is_ordered = stack.pop
+    ref.subsets = stack.pop
+    ref.extends = stack.pop
+    add_log("Post narrower: #{ref.narrower.map{|x| x.uri.to_s}}")
   end
 
   def check_for_change(current, previous)
@@ -195,6 +208,24 @@ private
     return true if !ref.subset?
     add_log("Checking subset detected: #{ref.identifier}, #{previous.identifier}")
     ref.subset_list_equal?(previous.is_ordered)
+  end
+
+  # Simple stack class
+  class Stack
+
+    def initialize
+      @stack = []
+    end
+
+    def push(item)
+      @stack << item
+      nil
+    end
+
+    def pop
+      @stack.pop
+    end
+
   end
 
 end

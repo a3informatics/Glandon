@@ -145,11 +145,13 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
   private
 
-    def subset_list(uri)
+    def subset_list(uri, depth=0)
+    puts colourize("Subset List: #{uri}, Depth: #{depth}", "blue") 
+    byebug if depth > 100
       subject = @subjects[uri]
       object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
       return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?
-      [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] + subset_list(object)  
+      [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] + subset_list(object, depth + 1)  
     end
 
   end
