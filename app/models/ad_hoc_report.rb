@@ -58,7 +58,9 @@ class AdHocReport < ActiveRecord::Base
     self.background_id = job.id
     self.active = true
     self.save
-    job.ad_hoc_report(self)
+    #job.ad_hoc_report(self)
+    definition = read_definition
+    job.start("Run ad-hoc report: #{definition[:label]}", "Starting...") {self.execute}
   end
 
   # Report Running
@@ -80,7 +82,7 @@ class AdHocReport < ActiveRecord::Base
   #
   # @return [Hash] the column hash
   def columns
-    definition = AdHocReportFiles.read(self.sparql_file)
+    definition = read_definition
     return definition[:columns] if self.class.check_definition(definition)
     return {}
   end
@@ -89,7 +91,7 @@ class AdHocReport < ActiveRecord::Base
   #
   # @return [Object] the CSV serialization
   def to_csv
-    dt_result = AdHocReportFiles.read(self.results_file)
+    dt_result = read_results
     if dt_result.blank?
       dt_result = { columns: [["No Results Error"]], data: [["No Results Error"]] }
     end
@@ -104,6 +106,34 @@ class AdHocReport < ActiveRecord::Base
     return csv_data
   end
 
+  # Execute an ad-hoc report
+  #
+  # @return [Void] no return
+  def execute
+    results = []
+    job = Background.find(self.background_id)
+    definition = read_definition
+    query_results = Sparql::Query.new.query(definition[:query], "", [:th, :bo])
+    triples = query_results.by_object_set(definition[:columns].keys)
+    triples.each do |triple|
+      entry = []
+      definition[:columns].each do |key, column_def|
+        entry << "#{triple[key.to_sym]}"
+      end
+      results << entry
+    end
+    column_labels = []
+    definition[:columns].each do |key, entry|
+      column_labels << [entry[:label]]
+    end
+    dt_hash = { columns: column_labels, data: results }
+    AdHocReportFiles.save(self.results_file, dt_hash)
+    job.end("Complete. Successful ad-hoc report.")
+  rescue => e
+    job.exception("Complete. Unsuccessful ad-hoc report. Exception detected.", e)
+  end
+  handle_asynchronously :execute unless Rails.env.test?
+
 private
 
   # Check the file structure
@@ -117,6 +147,14 @@ private
     return result
   rescue => e
     return false
+  end
+
+  def read_definition
+    AdHocReportFiles.read(self.sparql_file).deep_symbolize_keys
+  end
+
+  def read_results
+    AdHocReportFiles.read(self.results_file)
   end
 
 end

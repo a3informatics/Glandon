@@ -350,41 +350,41 @@ class Background < ActiveRecord::Base
   end
   handle_asynchronously :submission_changes_impact unless Rails.env.test?
 
-  # Run an ad-hoc report
-  #
-  # @return [Null] no return, kicks off the background job
-  def ad_hoc_report(report)
-    results = []
-    self.update(
-      description: "Run ad-hoc report: #{report.label}", 
-      status: "Starting.",
-      started: Time.now())
-    definition = AdHocReportFiles.read(report.sparql_file)
-    response = CRUD.query(definition[:query])
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      entry = []
-      definition[:columns].each do |key, column_def|
-        variable = key.sub('?', '')
-        is_uri = column_def[:type].upcase == "URI" ? true : false
-        entry << ModelUtility.getValue(variable, is_uri, node)
-      end
-      results << entry
-    end
-    column_labels = []
-    definition[:columns].each do |key, entry|
-      value = []
-      value << entry[:label]
-      column_labels << value
-    end
-    dt_hash = { columns: column_labels, data: results }
-    AdHocReportFiles.save(report.results_file, dt_hash)
-    self.update(status: "Complete. Successful ad-hoc report.", percentage: 100, complete: true, completed: Time.now())
-  rescue => e
-    self.update(status: "Complete. Unsuccessful ad-hoc report. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
-  end
-  handle_asynchronously :ad_hoc_report unless Rails.env.test?
+  # # Run an ad-hoc report
+  # #
+  # # @return [Null] no return, kicks off the background job
+  # def ad_hoc_report(report)
+  #   results = []
+  #   self.update(
+  #     description: "Run ad-hoc report: #{report.label}", 
+  #     status: "Starting.",
+  #     started: Time.now())
+  #   definition = AdHocReportFiles.read(report.sparql_file)
+  #   response = CRUD.query(definition[:query])
+  #   xmlDoc = Nokogiri::XML(response.body)
+  #   xmlDoc.remove_namespaces!
+  #   xmlDoc.xpath("//result").each do |node|
+  #     entry = []
+  #     definition[:columns].each do |key, column_def|
+  #       variable = key.sub('?', '')
+  #       is_uri = column_def[:type].upcase == "URI" ? true : false
+  #       entry << ModelUtility.getValue(variable, is_uri, node)
+  #     end
+  #     results << entry
+  #   end
+  #   column_labels = []
+  #   definition[:columns].each do |key, entry|
+  #     value = []
+  #     value << entry[:label]
+  #     column_labels << value
+  #   end
+  #   dt_hash = { columns: column_labels, data: results }
+  #   AdHocReportFiles.save(report.results_file, dt_hash)
+  #   self.update(status: "Complete. Successful ad-hoc report.", percentage: 100, complete: true, completed: Time.now())
+  # rescue => e
+  #   self.update(status: "Complete. Unsuccessful ad-hoc report. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+  # end
+  # handle_asynchronously :ad_hoc_report unless Rails.env.test?
 
 private
 
