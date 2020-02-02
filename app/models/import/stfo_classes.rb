@@ -231,31 +231,41 @@ byebug
     def to_hybrid_sponsor(ct)
       new_narrower = []
       self.narrower.each do |child|
-        if STFOCodeListItem.sponsor_referenced_format?(child.identifier)
-          identifier = STFOCodeListItem.to_referenced(child.identifier)
-          add_log("********** Checking for code list item #{identifier}")
-          options = ct.find_identifier(identifier)
-          if options.empty?
-            add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-          elsif options.count == 1
-            if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-              new_narrower << Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
-            else
-              add_error("Cannot find code list item #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-            end
-          else
-            add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-          end
-        else
-          new_narrower << child
-        end
+        new_narrower << child_or_sponsor_referenced(ct, child)
       end
       self.narrower = new_narrower
       self
     rescue => e
-byebug
       add_error("Exception in to_hybrid_sponsor, identifier '#{self.identifier}'.")
       self
+    end
+
+    def child_or_sponsor_referenced(ct, child)
+      if STFOCodeListItem.sponsor_referenced_format?(child.identifier)
+        item = sponsor_referenced(ct, child)
+        return item.nil? ? child : item
+      else
+        return child
+      end
+    end
+
+    def sponsor_referenced(ct, child)
+      identifier = STFOCodeListItem.to_referenced(child.identifier)
+      options = ct.find_identifier(identifier)
+      if options.empty?
+        add_error("Cannot find referenced item #{child.identifier}, none found, identifier '#{self.identifier}'.")
+        return nil
+      elsif options.count == 1
+        if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
+          return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+        else
+          add_error("Cannot find referenced item #{child.identifier}, incorrect type, identifier '#{self.identifier}'.")
+          return nil
+        end
+      else
+        add_error("Cannot find referenced item #{child.identifier}, none found, identifier '#{self.identifier}'.")
+        return nil
+      end
     end
 
     # Sponsor Identifier? Does the identifier match the sponsor format?
