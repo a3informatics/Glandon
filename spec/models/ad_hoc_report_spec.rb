@@ -122,7 +122,7 @@ RSpec.describe AdHocReport, type: :model do
     expect(report.background_id).not_to eq(-1)
     expect(report.active).to be(true)
     results = AdHocReportFiles.read(report.results_file)
-    check_file_actual_expected(results, sub_dir, "run_expected_1.yaml", write_file: true)
+    check_file_actual_expected(results, sub_dir, "run_expected_1.yaml")
     delete_public_file("reports", "ad_hoc_report_1_results.yaml")
   end
 

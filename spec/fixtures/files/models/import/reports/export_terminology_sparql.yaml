@@ -1,39 +1,39 @@
 ---
 :columns:
-  "?clidentifier":
+  :clidentifier:
     :label: Code List Identifier
     :type: literal
-  "?clpt":
+  :clpt:
     :label: Code List Preferred Term
     :type: literal
-  "?cllabel":
+  :cllabel:
     :label: Code List Name
     :type: literal
-  "?clsub":
+  :clsub:
     :label: Code List Submission Value
     :type: literal
-  "?scl":
+  :scl:
     :label: Code List Synonyms
     :type: literal
-  "?tcl":
+  :tcl:
     :label: Code List Tags 
     :type: literal
-  "?cliidentifier":
+  :cliidentifier:
     :label: Code List Item Identifier
     :type: literal
-  "?clipt":
+  :clipt:
     :label: Code List Item Preferred Term
     :type: literal
-  "?clilabel":
+  :clilabel:
     :label: Code List Item Name
     :type: literal
-  "?clisub":
+  :clisub:
     :label: Code List Item Submission Value
     :type: literal
-  "?scli":
+  :scli:
     :label: Code List Item Synonyms
     :type: literal
-  "?tcli":
+  :tcli:
     :label: Code List Item Tags
     :type: literal
 :label: Sponsor CT Export
@@ -54,7 +54,6 @@
     ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .         
     ?s isoT:hasIdentifier ?si .         
     ?s isoT:hasState ?rs .         
-    ?si isoI:identifier "Q2 2020" . 
     ?si isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> .
     ?s th:isTopConceptReference/bo:reference ?cl .
     ?cl th:identifier ?clidentifier .  
@@ -70,5 +69,5 @@
     ?cli th:preferredTerm/isoC:label ?clipt .
     ?cli th:synonym/isoC:label ?clisyn .
     ?cli isoC:tagged/isoC:prefLabel ?clit .
-  } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ?cliidentifier ?clipt ?clilabel ?clisub ?p ?o ORDER BY ?clidentifier OFFSET 0 LIMIT 1000'
+  } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ?cliidentifier ?clipt ?clilabel ?clisub ?p ?o ORDER BY ?clidentifier'
 :type: Ad Hoc Report Definition
