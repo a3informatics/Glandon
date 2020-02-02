@@ -10,7 +10,7 @@
     main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@ref_cdisc_th, thesauri: {sponsor_th_id: @managed_item.id, thesaurus_id: @new_cdisc_th.id}), id: "report",
              icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
              icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
