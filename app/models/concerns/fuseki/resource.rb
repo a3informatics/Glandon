@@ -249,8 +249,9 @@ module Fuseki
     # 
     # @param type [Symbol] the path type
     # @param stack [Array] the stack of klasses processed. Used to prevent circular paths
+    # @param parent_predicate [String] the set of predicates from the parent. Will be prepended to this predicate
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def managed_paths(type, stack=[])
+    def managed_paths(type, stack=[], parent_predicate="")
       top = true if stack.empty?
       result = []
       predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[type]}}
@@ -260,8 +261,9 @@ module Fuseki
         klass = predicate[:model_class]
         next if stack.include?(klass)
         stack.push(klass)
-        children = klass.managed_paths(type, stack)
-        children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
+        predicate_ref = "#{predicate[:predicate].to_ref}"
+        top ? result << "#{predicate_ref}" : result << "#{parent_predicate}/#{predicate_ref}"
+        result += klass.managed_paths(type, stack, top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}")
       end
       result
     end

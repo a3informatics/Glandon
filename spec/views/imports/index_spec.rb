@@ -24,8 +24,8 @@ describe 'imports/index.html.erb', :type => :view do
       return Owner.new
     end
 
-    def self.configuration
-      {identifier: "XXX"}
+    def self.identifier
+     "XXX"
     end
 
   end
@@ -39,7 +39,7 @@ describe 'imports/index.html.erb', :type => :view do
       {
         description: "Import of Something",
         parent_klass: Other,
-        reader_klass: Excel::AdamIgReader,
+        reader_klass: Excel,
         import_type: :TYPE,
         sheet_name: :main,
         version_label: :semantic_version,

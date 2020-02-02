@@ -8,7 +8,7 @@ class Thesaurus::SubsetMember < IsoConceptV2
             base_uri: "http://#{ENV["url_authority"]}/TSM",
             uri_unique: true
 
-  object_property :item, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept"
+  object_property :item, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", read_exclude: true
   object_property :member_next, cardinality: :one, model_class: "Thesaurus::SubsetMember"
 
   #Previous. Find previous item

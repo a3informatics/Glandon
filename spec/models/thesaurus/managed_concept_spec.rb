@@ -152,7 +152,6 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
@@ -492,7 +491,6 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
@@ -527,7 +525,6 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..33)
@@ -540,7 +537,7 @@ describe "extensions" do
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001E/V1#A00001E"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(result.narrower.count).to eq(source.narrower.count)
-      expect(result.extends.uri.to_s).to eq(source.uri.to_s)
+      expect(result.extends.to_s).to eq(source.uri.to_s)
     end
 
   end
@@ -552,8 +549,7 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..60)
       delete_all_public_test_files
@@ -676,6 +672,14 @@ describe "extensions" do
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
     end
 
+    it "finds changes non-CDISC" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      results = tc.changes(2)
+      check_file_actual_expected(results, sub_dir, "changes_expected_7.yaml", equate_method: :hash_equal)
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_7.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "updates" do
@@ -685,7 +689,6 @@ describe "extensions" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
     end
@@ -1542,6 +1545,27 @@ describe "extensions" do
     it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_4.yaml")
+    end
+
+  end
+
+  describe "metadata tests" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "read paths" do
+      check_file_actual_expected(Thesaurus::ManagedConcept.read_paths, sub_dir, "read_paths_expected_1.yaml", equate_method: :hash_equal)
+      item = Thesaurus::ManagedConcept.new
+      check_file_actual_expected(item.class.read_paths, sub_dir, "read_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "finds full based on read paths" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V18#C66767"))
+      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

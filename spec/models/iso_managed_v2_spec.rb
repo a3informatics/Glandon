@@ -314,6 +314,26 @@ describe "IsoManagedV2" do
       expect(item.registration_status).to eq("Standard")
     end
 
+    it "update the identifier" do
+      item = IsoManagedV2.new
+      item.set_initial("AAA")
+      expect(item.scoped_identifier).to eq("AAA")
+      expect(item.has_identifier.identifier).to eq("AAA")
+      item.update_identifier("BBB")
+      expect(item.scoped_identifier).to eq("BBB")
+      expect(item.has_identifier.identifier).to eq("BBB")
+    end
+
+    it "update the version" do
+      item = IsoManagedV2.new
+      item.set_initial("AAA")
+      expect(item.version).to eq(1)
+      expect(item.has_identifier.semantic_version).to eq("0.1.0")
+      item.update_version(5)
+      expect(item.version).to eq(5)
+      expect(item.has_identifier.semantic_version).to eq("5.0.0")
+    end
+
   end
 
   describe "Find Tests" do

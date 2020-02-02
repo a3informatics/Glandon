@@ -9,8 +9,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   data_property :definition
   data_property :extensible, default: false
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
-  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
-  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
+  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
@@ -19,18 +19,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
   #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
-
-  # config =
-  # {
-  #   relationships:
-  #   [
-  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref,
-  #     Thesaurus::Synonym.rdf_type.to_ref,
-  #     Thesaurus::PreferredTerm.rdf_type.to_ref,
-  #     Thesaurus::Subset.rdf_type.to_ref
-  #   ]
-  # }
-  # self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
@@ -97,7 +85,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
-      :creation_date, :last_change_date, :explanatory_comment, :tagged]})
+      :creation_date, :last_change_date, :explanatory_comment, :tagged, :extends, :subsets]})
     replace_children_if_no_change(previous)
     return self
   end
@@ -715,8 +703,9 @@ private
     return true
   end
 
-  # Was the item deleted from CT version
+  # Was the item deleted from CT version. Only used for CDISC CT
   def deleted_from_ct_version(last_item)
+    return {deleted: false, ct: nil} if self.owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
@@ -726,8 +715,9 @@ private
     {deleted: item_was_deleted, ct: ct}
   end
 
-  # Deleted from CT
+  # Deleted from CT. Only used for CDISC CT
   def deleted_from_ct?(last_item)
+    return false if self.owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first

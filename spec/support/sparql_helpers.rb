@@ -37,13 +37,12 @@ module SparqlHelpers
     expect(actual).to sparql_results_equal(expected)
   end
 
-=begin
-  def check_ttl_versus_triples(results_filename, expected_filename)
+  def check_ttl_fix_v2(results_filename, expected_filename, options)
     actual = read_ttl_file(results_filename)
-    expected = read_triple_file(expected_filename)
-    expect(actual).to sparql_results_equal(expected)
+    expected = read_ttl_file(expected_filename)
+    fixes(actual, expected, options)
+    expect(actual).to sparql_results_equal_v2(expected)
   end
-=end
 
   def check_triples(results_filename, expected_filename)
     actual = read_triple_file(results_filename)

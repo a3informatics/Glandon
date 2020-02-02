@@ -48,7 +48,6 @@ describe Import::Crf do
       parent_klass: ::Form,
       import_type: :form
     }
-    expect(Import::Crf.configuration).to eq(expected)
     object = Import::Crf.new
     expect(object.configuration).to eq(expected)
   end

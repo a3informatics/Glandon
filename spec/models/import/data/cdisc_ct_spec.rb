@@ -33,6 +33,14 @@ describe "Import::CdiscTerm CT Data" do
     delete_all_public_test_files
   end
 
+  def excel_filename(version)
+    "CT_V#{version}.ttl"
+  end
+
+  def api_filename(version)
+    "CT_V#{version}_API.ttl"
+  end
+  
   def setup
     #@object = Import::CdiscTerm.new
     @object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
@@ -94,7 +102,11 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
   def set_write_file
-    false
+    true
+  end
+
+  def use_api
+    true
   end
 
   def check_term_differences(results, expected)
@@ -112,7 +124,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
   def set_params(version, date, files)
-    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", semantic_version: "#{version}.0.0", job: @job}
+    file_type = !files.empty? ? "0" : "3"
+    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
+      semantic_version: "#{version}.0.0", job: @job, file_type: file_type}
   end
 
 	def check_cl_result(results, cl, status)
@@ -142,11 +156,12 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
+    target_filename = @object.api? ? api_filename(version) : excel_filename(version)
     if copy_file
-      puts colourize("***** Warning! Copying result file. *****", "red")
-      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V#{version}.ttl") 
+      puts colourize("***** Warning! Copying result file to '#{target_filename}'. *****", "red")
+      copy_file_from_public_files_rename("test", filename, sub_dir, target_filename) 
     end
-    check_ttl_fix(filename, "CT_V#{version}.ttl", {last_change_date: true})
+    check_ttl_fix(filename, target_filename, {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -159,20 +174,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     range.each {|n| load_version(n)}
   end
 
-  def process_load_and_compare(filenames, date, version, create_file=false)
-    files = []
-    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct", filenames[index])}
-    process_term(version, date, files, create_file)
-    load_version(version)
-    th = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
-    results = th.changes(2)
-  end
-
-  def execute_import(issue_date, reqd_files, create_file=false)
-    current_version = @date_to_version_map.index(issue_date) + 1
-    puts colourize("Version: #{current_version}", "green")
-    files = []
-    file_pattern = 
+  def file_pattern
     {
       adam: "adam/ADaM Terminology",
       cdash: "cdash/CDASH Terminology", 
@@ -185,44 +187,57 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       protocol: "protocol/Protocol Terminology",
       define: "define-xml/Define-XML Terminology"
     }
+  end
+
+  def process_load_and_compare(filenames, date, version, create_file=false)
+    files = []
+    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct", filenames[index])}
+    puts colourize("File count: #{files.count}", "green")
+    process_term(version, date, files, create_file)
+    load_version(version)
+    th = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
+    results = th.changes(2)
+  end
+
+  def execute_import(issue_date, reqd_files, create_file=false, use_api=false)
+    files = []
+    version_index = @date_to_version_map.index(issue_date)
+    current_version = version_index + 1
+    puts colourize("Version: #{current_version}, Date: #{issue_date}", "green")
     load_versions(1..(current_version-1))
-    reqd_files.each {|k,v| files << "#{file_pattern[k]} #{v}.xlsx" if reqd_files.key?(k)}
+    # Use API only if it is set for the version. Set files for non-api source
+    if use_api && @version_to_info_map[version_index][:api]
+      files = []
+      @object.file_type = 3
+      puts colourize("Loading from API", "green")
+    else
+      reqd_files.each {|k,v| files << "#{file_pattern[k]} #{v}.xlsx" if reqd_files.key?(k)}
+      @object.file_type = 0
+      puts colourize("Loading from Excel", "green")
+    end
+    @object.save
     results = process_load_and_compare(files, issue_date, current_version, create_file)
   end
 
   def create_maps
-    @date_to_version_map = 
-    [
-      "2007-03-06", "2007-04-20", "2007-04-26", "2007-05-31", "2007-06-05", # 1
-      "2008-01-15", "2008-01-25", "2008-08-26", "2008-09-22", "2008-09-24", "2008-09-30", "2008-10-09", "2008-10-15", 
-      "2009-02-17", "2009-02-18", "2009-05-01", "2009-07-06", "2009-10-06", # 14
-      "2010-03-05", "2010-04-08", "2010-07-02", "2010-10-06", "2010-10-22", # 19
-      "2011-01-07", "2011-04-08", "2011-06-10", "2011-07-22", "2011-12-09", # 24
-      "2012-01-02", "2012-03-23", "2012-06-29", "2012-08-03", "2012-12-21", # 29
-      "2013-04-12", "2013-06-28", "2013-10-04", "2013-12-20",               # 34  
-      "2014-03-28", "2014-06-27", "2014-09-26", "2014-10-06", "2014-12-19", # 38
-      "2015-03-27", "2015-06-26", "2015-09-25", "2015-12-18",               # 43
-      "2016-03-25", "2016-06-24", "2016-09-30", "2016-12-16",               # 47
-      "2017-03-31", "2017-06-30", "2017-09-29", "2017-12-22",               # 51
-      "2018-03-30", "2018-06-29", "2018-09-28", "2018-12-21",               # 55
-      "2019-03-29", "2019-06-28", "2019-09-27", "2019-12-20"                # 59
-    ]
-
+    @date_to_version_map = CdiscCtHelpers.date_version_map
+    
     @version_to_info_map =
     [
-      { size:  881}, { size: 1003 }, { size: 1003 }, { size: -1 }, { size: -1 },                                        # 2007
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 2301 }, { size: -1 }, { size: -1 }, # 2008
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2009
-      { size: -1 }, { size: -1 }, { size: 4190+134+26 }, { size: -1 }, { size: -1 },                                    # 2010
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2011
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: 10142}, { size: -1 },                                           # 2012
-      { size: -1 }, { size: -1 }, { size: 12963 }, { size: -1 },                                                        # 2013
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 16593 },                                          # 2014
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: 19065 },                                                        # 2015
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2016
-      { size: -1 }, { size: 24291 }, { size: -1 }, { size: -1 },                                                        # 2017
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2018
-      { size: 31267 }, { size: 31934 }, { size: -1 }, { size: 33397 }                                                   # 2019
+      { api: false, size:  881}, { api: false, size: 1003 }, { api: false, size: 1003 }, { api: false, size: -1 }, { api: false, size: -1 },          # 2007
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, 
+        { api: false, size: 2301 }, { api: false, size: -1 }, { api: false, size: -1 },                                                               # 2008
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 },               # 2009
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: 4190+134+26 }, { api: false, size: -1 }, { api: false, size: -1 },      # 2010
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 },               # 2011
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: 10142}, { api: false, size: -1 },             # 2012
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: false, size: 12963 }, { api: false, size: -1 },                                      # 2013
+      { api: false, size: -1 }, { api: false, size: -1 }, { api: true, size: -1 }, { api: false, size: -1 }, { api: true, size: 16593 },              # 2014
+      { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: 19065 },                                          # 2015
+      { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2016
+      { api: true, size: -1 }, { api: true, size: 24291 }, { api: true, size: -1 }, { api: true, size: -1 },                                          # 2017
+      { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2018
+      { api: true, size: 31267 }, { api: true, size: 31934 }, { api: true, size: -1 }, { api: true, size: 33397 }                                     # 2019
     ]
   
     @version_to_tags_map =
@@ -297,7 +312,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Base create, 2007-03-06", :speed => 'slow' do
       release_date = "2007-03-06"
-      results = execute_import(release_date, {sdtm: "2007-03-06"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-03-06"}, set_write_file, use_api)
       expected = [
         {cl: :C16564, status: :created},
         {cl: :C20587, status: :created},
@@ -312,7 +327,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2007-04-20", :speed => 'slow' do
       release_date = "2007-04-20"
-      results = execute_import(release_date, {sdtm: "2007-04-20"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-04-20"}, set_write_file, use_api)
       expected = [
         {cl: :C16564, status: :deleted},
         {cl: :C20587, status: :deleted},
@@ -331,7 +346,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2007-04-26", :speed => 'slow' do
       release_date = "2007-04-26"
-      results = execute_import(release_date, {sdtm: "2007-04-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-04-26"}, set_write_file, use_api)
       expected = [
         {cl: :C66785, status: :created},
         {cl: :C66787, status: :no_change},
@@ -347,7 +362,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     it "Create 2007-05-31", :speed => 'slow' do
       release_date = "2007-05-31"
       version = 4
-      results = execute_import(release_date, {sdtm: "2007-05-31"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-05-31"}, set_write_file, use_api)
       expected = [
         {cl: :C66785, status: :updated},
         {cl: :C66787, status: :updated},
@@ -363,7 +378,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2007-06-05", :speed => 'slow' do
       release_date = "2007-06-05"
-      results = execute_import(release_date, {sdtm: "2007-06-05"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-06-05"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -384,7 +399,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-01-15", :speed => 'slow' do
       release_date = "2008-01-15"
-      results = execute_import(release_date, {sdtm: "2008-01-15"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-01-15"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -403,7 +418,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-01-25", :speed => 'slow' do
       release_date = "2008-01-25"
-      results = execute_import(release_date, {sdtm: "2008-01-25"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-01-25"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -422,7 +437,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-08-26", :speed => 'slow' do
       release_date = "2008-08-26"
-      results = execute_import(release_date, {sdtm: "2008-08-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-08-26"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :no_change},
@@ -442,7 +457,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-09-22", :speed => 'slow' do
       release_date = "2008-09-22"
-      results = execute_import(release_date, {sdtm: "2008-09-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-09-22"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :no_change},
@@ -462,7 +477,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-09-24", :speed => 'slow' do
       release_date = "2008-09-24"
-      results = execute_import(release_date, {sdtm: "2008-09-24"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-09-24"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -485,7 +500,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-09-30", :speed => 'slow' do
       release_date = "2008-09-30"
-      results = execute_import(release_date, {sdtm: "2008-09-30"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-09-30"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -506,7 +521,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-10-09", :speed => 'slow' do
       release_date = "2008-10-09"
-      results = execute_import(release_date, {sdtm: "2008-10-09"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-10-09"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -527,7 +542,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2008-10-15", :speed => 'slow' do
       release_date = "2008-10-15"
-      results = execute_import(release_date, {sdtm: "2008-10-15"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2008-10-15"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -552,7 +567,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2009-02-17", :speed => 'slow' do
       release_date = "2009-02-17"
-      results = execute_import(release_date, {sdtm: "2009-02-17"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2009-02-17"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -573,7 +588,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2009-02-18", :speed => 'slow' do
       release_date = "2009-02-18"
-      results = execute_import(release_date, {sdtm: "2009-02-18"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2009-02-18"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -594,7 +609,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2009-05-01", :speed => 'slow' do
       release_date = "2009-05-01"
-      results = execute_import(release_date, {sdtm: "2009-05-01"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2009-05-01"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -615,7 +630,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2009-07-06", :speed => 'slow' do
       release_date = "2009-07-06"
-      results = execute_import(release_date, {sdtm: "2009-07-06"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2009-07-06"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -636,7 +651,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2009-10-06", :speed => 'slow' do
       release_date = "2009-10-06"
-      results = execute_import(release_date, {sdtm: "2009-10-06"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2009-10-06"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -661,7 +676,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2010-03-05", :speed => 'slow' do
       release_date = "2010-03-05"
-      results = execute_import(release_date, {sdtm: "2010-03-05", cdash: "2010-03-05", adam: "2010-03-05"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2010-03-05", cdash: "2010-03-05", adam: "2010-03-05"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -683,7 +698,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2010-04-08", :speed => 'slow' do
       release_date = "2010-04-08"
-      results = execute_import(release_date, {sdtm: "2010-04-08", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2010-04-08", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -705,7 +720,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2010-07-02", :speed => 'slow' do
       release_date = "2010-07-02"
-      results = execute_import(release_date, {sdtm: "2010-07-02", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2010-07-02", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -727,7 +742,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2010-10-06", :speed => 'slow' do
       release_date = "2010-10-06"
-      results = execute_import(release_date, {sdtm: "2010-10-06", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2010-10-06", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -749,7 +764,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2010-10-22", :speed => 'slow' do
       release_date = "2010-10-22"
-      results = execute_import(release_date, {sdtm: "2010-10-22", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2010-10-22", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -775,7 +790,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2011-01-07", :speed => 'slow' do
       release_date = "2011-01-07"
-      results = execute_import(release_date, {sdtm: "2011-01-07", adam: "2011-01-07", cdash: "2011-01-07"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-01-07", adam: "2011-01-07", cdash: "2011-01-07"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -797,7 +812,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2011-04-08", :speed => 'slow' do
       release_date = "2011-04-08"
-      results = execute_import(release_date, {sdtm: "2011-04-08", adam: "2011-01-07", cdash: "2011-04-08"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-04-08", adam: "2011-01-07", cdash: "2011-04-08"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -819,7 +834,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2011-06-10", :speed => 'slow' do
       release_date = "2011-06-10"
-      results = execute_import(release_date, {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -844,7 +859,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2011-07-22", :speed => 'slow' do
       release_date = "2011-07-22"
-      results = execute_import(release_date, {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22", send: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22", send: "2011-07-22"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -866,7 +881,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2011-12-09", :speed => 'slow' do
       release_date = "2011-12-09"
-      results = execute_import(release_date, {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09", send: "2011-12-09"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09", send: "2011-12-09"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -893,7 +908,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2012-01-02", :speed => 'slow' do
       release_date = "2012-01-02"
-      results = execute_import(release_date, {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09", send: release_date}, set_write_file, use_api)
       expected = [] # No logical changes, release removed spaces from some entries. 
       check_cl_results(results, expected)
       check_count(release_date)
@@ -902,7 +917,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2012-03-23", :speed => 'slow' do
       release_date = "2012-03-23"
-      results = execute_import(release_date, {sdtm: "2012-03-23", adam: "2011-07-22", cdash: "2011-12-09", qs: "2012-03-23", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2012-03-23", adam: "2011-07-22", cdash: "2011-12-09", qs: "2012-03-23", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -926,7 +941,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     it "Create 2012-06-29", :speed => 'slow' do
       release_date = "2012-06-29"
       # Note the SEND file used for this release has been hand crafted. If not there would have been serious misalignment.
-      results = execute_import(release_date, {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -949,7 +964,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2012-08-03", :speed => 'slow' do
       release_date = "2012-08-03"
-      results = execute_import(release_date, {sdtm: "2012-08-03", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-08-03", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2012-08-03", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-08-03", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -972,7 +987,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2012-12-21", :speed => 'slow' do
       release_date = "2012-12-21"
-      results = execute_import(release_date, {sdtm: "2012-12-21", qs: "2012-12-21", cdash: "2012-12-21", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2012-12-21", qs: "2012-12-21", cdash: "2012-12-21", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -999,7 +1014,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2013-04-12", :speed => 'slow' do
       release_date = "2013-04-12"
-      results = execute_import(release_date, {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -1022,7 +1037,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2013-06-28", :speed => 'slow' do
       release_date = "2013-06-28"
-      results = execute_import(release_date, {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -1045,7 +1060,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2013-10-04", :speed => 'slow' do
       release_date = "2013-10-04"
-      results = execute_import(release_date, {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1068,7 +1083,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2013-12-20", :speed => 'slow' do
       release_date = "2013-12-20"
-      results = execute_import(release_date, {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1095,7 +1110,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2014-03-28", :speed => 'slow' do
       release_date = "2014-03-28"
-      results = execute_import(release_date, {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1118,7 +1133,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2014-06-27", :speed => 'slow' do
       release_date = "2014-06-27"
-      results = execute_import(release_date, {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1141,7 +1156,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2014-09-26", :speed => 'slow' do
       release_date = "2014-09-26"
-      results = execute_import(release_date, {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1164,7 +1179,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2014-10-06", :speed => 'slow' do
       release_date = "2014-10-06"
-      results = execute_import(release_date, {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: "2014-09-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: "2014-09-26"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1187,7 +1202,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2014-12-19", :speed => 'slow' do
       release_date = "2014-12-19"
-      results = execute_import(release_date, {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1214,7 +1229,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2015-03-27", :speed => 'slow' do
       release_date = "2015-03-27"
-      results = execute_import(release_date, {sdtm: "2015-03-27", coa: "2015-03-27", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2015-03-27", coa: "2015-03-27", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1237,7 +1252,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2015-06-26", :speed => 'slow' do
       release_date = "2015-06-26"
-      results = execute_import(release_date, {sdtm: "2015-06-26", qrs: "2015-06-26", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2015-06-26", qrs: "2015-06-26", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1260,7 +1275,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2015-09-25", :speed => 'slow' do
       release_date = "2015-09-25"
-      results = execute_import(release_date, {sdtm: "2015-09-25", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2015-09-25", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1283,7 +1298,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2015-12-18", :speed => 'slow' do
       release_date = "2015-12-18"
-      results = execute_import(release_date, {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1310,7 +1325,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2016-03-25", :speed => 'slow' do
       release_date = "2016-03-25"
-      results = execute_import(release_date, {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1333,7 +1348,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2016-06-24", :speed => 'slow' do
       release_date = "2016-06-24"
-      results = execute_import(release_date, {sdtm: "2016-06-24", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2016-06-24", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1356,7 +1371,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2016-09-30", :speed => 'slow' do
       release_date = "2016-09-30"
-      results = execute_import(release_date, {sdtm: "2016-09-30", cdash: "2016-09-30", adam: "2016-09-30", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2016-09-30", cdash: "2016-09-30", adam: "2016-09-30", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1379,7 +1394,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2016-12-16", :speed => 'slow' do
       release_date = "2016-12-16"
-      results = execute_import(release_date, {sdtm: "2016-12-16", cdash: "2016-12-16", adam: "2016-12-16", send: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2016-12-16", cdash: "2016-12-16", adam: "2016-12-16", send: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1405,7 +1420,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2017-03-31", :speed => 'slow' do
       release_date = "2017-03-31"
-      results = execute_import(release_date, {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -1427,7 +1442,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2017-06-30", :speed => 'slow' do
       release_date = "2017-06-30"
-      results = execute_import(release_date, {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1449,7 +1464,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2017-09-29", :speed => 'slow' do
       release_date = "2017-09-29"
-      results = execute_import(release_date, {sdtm: "2017-09-29", cdash: "2017-09-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2017-09-29", cdash: "2017-09-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1471,7 +1486,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2017-12-22", :speed => 'slow' do
       release_date = "2017-12-22"
-      results = execute_import(release_date, {sdtm: "2017-12-22", cdash: "2017-09-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2017-12-22", cdash: "2017-09-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1497,7 +1512,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2018-03-30", :speed => 'slow' do
       release_date = "2018-03-30"
-      results = execute_import(release_date, {sdtm: "2018-03-30", cdash: "2018-03-30", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2018-03-30", cdash: "2018-03-30", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1519,7 +1534,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2018-06-29", :speed => 'slow' do
       release_date = "2018-06-29"
-      results = execute_import(release_date, {sdtm: "2018-06-29", cdash: "2018-06-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2018-06-29", cdash: "2018-06-29", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1541,7 +1556,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2018-09-28", :speed => 'slow' do
       release_date = "2018-09-28"
-      results = execute_import(release_date, {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2017-09-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1563,7 +1578,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2018-12-21", :speed => 'slow' do
       release_date = "2018-12-21"
-      results = execute_import(release_date, {sdtm: "2018-12-21", cdash: "2018-12-21", adam: "2018-12-21", send: release_date, protocol: "2018-09-28"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2018-12-21", cdash: "2018-12-21", adam: "2018-12-21", send: release_date, protocol: "2018-09-28"}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1589,7 +1604,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-03-29", :speed => 'slow' do
       release_date = "2019-03-29"
-      results = execute_import(release_date, {sdtm: "2019-03-29", cdash: "2019-03-29", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2019-03-29", cdash: "2019-03-29", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1611,7 +1626,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-06-28", :speed => 'slow' do
       release_date = "2019-06-28"
-      results = execute_import(release_date, {sdtm: "2019-06-28", cdash: "2019-06-28", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2019-06-28", cdash: "2019-06-28", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1633,7 +1648,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-09-27", :speed => 'slow' do
       release_date = "2019-09-27"
-      results = execute_import(release_date, {sdtm: release_date, cdash: "2019-06-28", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: release_date, cdash: "2019-06-28", adam: "2019-03-29", send: release_date, protocol: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1660,7 +1675,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-12-20", :speed => 'slow' do
       release_date = "2019-12-20"
-      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :no_change},     # TSPARMCD
@@ -1692,6 +1707,70 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       check_cl_results(results, expected) 
       check_count(release_date)
       check_tags(release_date)
+    end
+
+  end
+
+  describe "Compare Excel and API" do
+
+    it "checks files" do
+      [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 57, 59, 60, 61].each do |version|
+        excel_file = excel_filename(version)
+        api_file = api_filename(version)
+        check_ttl_fix_v2(excel_file, api_file, {last_change_date: true})
+      end
+    end
+
+    it "checks v55 files, WILL CURRENTLY FAIL" do
+      [55].each do |version|
+        excel_file = excel_filename(version)
+        api_file = api_filename(version)
+        check_ttl_fix_v2(excel_file, api_file, {last_change_date: true})
+      end
+    end
+
+  end
+
+  describe "Simple Statistics" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_cdisc_term_versions(CdiscCtHelpers.version_range)
+    end
+
+    it "code list by version" do
+      query_string = %Q{
+        SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
+        {
+          ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+          ?s isoT:creationDate ?d .
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?s th:isTopConceptReference/bo:reference ?item .
+        } GROUP BY ?s ?d ?v ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      result = query_results.by_object_set([:d, :v, :count])
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "code list items by version" do
+      query_string = %Q{
+        SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
+        {
+          ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+          ?s isoT:creationDate ?d .
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?s th:isTopConceptReference/bo:reference/th:narrower ?item .
+        } GROUP BY ?s ?d ?v ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+      result = query_results.by_object_set([:d, :v, :count])
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal)
     end
 
   end

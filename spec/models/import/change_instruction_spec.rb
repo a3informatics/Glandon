@@ -51,9 +51,8 @@ describe Import::ChangeInstruction do
       parent_klass: Import::ChangeInstruction::Instruction,
       import_type: :cdisc_change_instructions,
       reader_klass: Excel,
-      sheet_name: :format
+      format: :format
     }
-    expect(Import::ChangeInstruction.configuration).to eq(expected)
     object = Import::ChangeInstruction.new
     expect(object.configuration).to eq(expected)
   end

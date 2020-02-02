@@ -55,6 +55,7 @@ private
   end
 
   def check_params
+    return if Import.api?(the_params)
     the_params[:files].reject!(&:blank?)
   end
 

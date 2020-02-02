@@ -9,38 +9,13 @@ describe "CdiscTerm" do
     return "models/cdisc_term"
   end
 
-  def check_term_differences(results, expected)
-    expect(results[:status]).to eq(expected[:status])
-    expect(results[:result]).to eq(expected[:result])
-    expect(results[:children].count).to eq(expected[:children].count)
-    results[:children].each do |key, result|
-      found = expected[:children][key]
-      expect(result).to eq(found)
-    end
-  end
-
-  def load_versions(range)
-    range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
-  end
-
   describe "CDISC Terminology General" do
 
     before :all do
       data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-        "CT_V1.ttl",
-        "CT_V2.ttl",
-        "CT_V3.ttl",
-        "CT_V4.ttl",
-        "CT_V5.ttl",
-        "CT_V6.ttl",
-        "CT_V7.ttl",
-        "CT_V8.ttl",
-        "CT_V9.ttl",
-        "CT_V10.ttl"
-      ]
+      ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..10)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
@@ -73,11 +48,13 @@ describe "CdiscTerm" do
       check_file_actual_expected(actual, sub_dir, "version_dates_expected_1.yaml")
     end
 
-    it "add item"
+    it "returns child class" do
+      expect(CdiscTerm.child_klass).to eq(::CdiscCl)
+    end
 
-    it "configuration"
-
-    it "child class"
+    it "returns the next version" do
+      expect(CdiscTerm.next_version).to eq(11)
+    end
 
   end
 

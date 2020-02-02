@@ -17,7 +17,7 @@ class Import::ChangeInstruction < Import
     job = Background.create
     klass = self.configuration[:parent_klass]
     params[:job] = job
-    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: ::CdiscTerm.configuration[:identifier], 
+    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: ::CdiscTerm.identifier, 
       owner: owner_short_name(klass), background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
     job.start(self.description(params), "Starting ...") {self.import(params)} 
@@ -36,7 +36,7 @@ class Import::ChangeInstruction < Import
   def import(params)
     @changes = []
     set_ct(params)
-    read_all_excel(params)
+    read_all_sources(params)
     objects = self.errors.empty? ? process_changes : []
     !self.errors.empty? || object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     params[:job].end("Complete")   
@@ -50,24 +50,17 @@ class Import::ChangeInstruction < Import
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
       description: "Import of CDISC Change Instructions",
       parent_klass: Import::ChangeInstruction::Instruction,
       import_type: :cdisc_change_instructions,
       reader_klass: Excel,
-      sheet_name: :format,
+      format: :format,
       #version_label: :date,
     }
   end
   
-  # Configuration. Sets the parameters for the import
-  # 
-  # @return [Hash] the configuration hash
-  def configuration
-    self.class.configuration
-  end
-
   # Save the error file
   def save_error_file(objects)
     objects.each {|c| merge_errors(c, self) if c.errors.any?}
@@ -113,12 +106,14 @@ private
   end
 
   # Read all the Excel files
-  def read_all_excel(params)
+  def read_all_sources(params)
+    params[:import_type] = configuration[:import_type]
+    params[:format] = self.send(configuration[:format], params)
     params[:files].each do |file|
       reader = configuration[:reader_klass].new(file)
       merge_errors(reader, self)
       next if !reader.errors.empty?
-      reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
+      reader.execute(params)
       merge_errors(reader, self)
       next if !reader.errors.empty?
       @changes += reader.engine.parent_set.map {|k,v| v}

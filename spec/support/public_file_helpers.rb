@@ -12,6 +12,11 @@ module PublicFileHelpers
     expect(File.exists?(Rails.root.join("public","#{sub_dir}","#{filename}"))).to be(false)
   end
 
+  def read_public_yaml_file(sub_dir, filename)
+    file = Rails.root.join("public","#{sub_dir}","#{filename}")
+    return YAML.load_file(file)
+  end
+
   # Deprecated
   def delete_all_public_files
     delete_all_public_test_files
