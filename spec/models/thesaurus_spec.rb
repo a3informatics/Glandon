@@ -208,6 +208,7 @@ describe Thesaurus do
       load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor2_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor3_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")    
     end
 
     it "calculates changes_impact, no deleted items" do
@@ -261,6 +262,22 @@ describe Thesaurus do
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR2/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
       check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "report Impact" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      actual = Thesaurus.impact_to_csv(th, new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "impact_to_csv_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "report Impact II" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      actual = Thesaurus.impact_to_csv(th, new_th, sponsor)
+      check_file_actual_expected(actual, sub_dir, "impact_to_csv_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window full width" do

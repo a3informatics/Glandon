@@ -270,6 +270,14 @@ class ThesauriController < ApplicationController
     render json: {data: cls}
   end
 
+  def export_csv
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_new = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    sponsor = Thesaurus.find_minimum(the_params[:sponsor_th_id])
+    send_data Thesaurus.impact_to_csv(ct, ct_new, sponsor), filename: "Impact_report_#{sponsor.scoped_identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
   def submission
     authorize Thesaurus, :show?
     @version_count = current_user.max_term_display.to_i
