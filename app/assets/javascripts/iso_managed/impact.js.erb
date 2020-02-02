@@ -5,13 +5,17 @@ $(document).ready(function(){
   var cp = new ChangesPanel(null, 2);
   var ig = new ImpactGraph();
 
-  var selectCallback = function(r){
-    $("#impact-item-identifier").text(" of " + r.identifier);
+  var selectCallback = function(dataRow){
+    $("#impact-item-identifier").text(" of " + dataRow.identifier);
     $("#tab-affected").click();
-    dp.reload(r.differences_url);
-    cp.reload(r.changes_url);
-    ig.reload(r);
+    dp.reload(dataRow.differences_url);
+    cp.reload(dataRow.changes_url);
+    ig.loadData(dataRow);
   }
+
+  $("#sidebar-arrow").on("click", function(){
+    setTimeout(ig.graph.onRescale.bind(ig.graph), 500);
+  });
 
   ccp.sCallback = selectCallback;
 });

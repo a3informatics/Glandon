@@ -10,11 +10,12 @@
  * @return [void]
  */
 function D3GraphV2(height) {
+  this.d3Div = document.getElementById("d3");
+  this.width = this.d3Div.clientWidth;
   this.height = height || 500;
   this.linkDist = 200;
-  this.d3Div = document.getElementById("d3");
   this.emptyTextDiv = $("#d3_empty_text");
-  this.svg = null;
+  this.radius = 20;
 
 }
 
@@ -22,48 +23,48 @@ function D3GraphV2(height) {
  * Draws graph
  *
  * @param graph [Object] the json object containing the nodes and links
- * @param click [Function] the click call back function
- * @param dblclick [Function] the click call back function
  * @return [void]
  */
-D3GraphV2.prototype.draw = function(graph){
+D3GraphV2.prototype.draw = function(graph) {
   var _this = this;
+  this.clear();
   this.emptyTextDiv.hide();
-  d3.select('svg').remove();
 
-  var radius = 20;
-  this.width = this.d3Div.clientWidth;
-
-  var force = d3.layout.force()
+  // Make Force Layout
+  this.force = d3.layout.force()
     .gravity(0.1)
     .charge(-1000)
     .linkDistance(this.linkDist)
     .linkStrength(0.05)
     .size([this.width, this.height]);
 
-  var svg = d3.select(this.d3Div).append("svg")
-    .attr("width", "100%")
+  // Make main SVG
+  this.svg = d3.select(this.d3Div).append("svg")
+    .attr("width", this.width)
     .attr("height", this.height);
 
-  var link = svg.selectAll("line")
-      .data(graph.links)
+  // Make graph links
+  this.links = this.svg.selectAll("line")
+    .data(graph.links)
     .enter().append("line")
-      .attr("class", "link");
+    .attr("class", "link");
 
-  var node = svg.selectAll("text")
+  // Make graph nodes
+  this.nodes = this.svg.selectAll("node")
     .data(graph.nodes)
     .enter()
     .append('g')
     .classed('node', true)
-    .on('mouseover', mouseOver)
-    .on('mouseout', mouseOut);
+    .on('mouseover', this.onMouseOver)
+    .on('mouseout', this.onMouseOut);
 
-  node.append("circle")
+  // Node background + icons
+  this.nodes.append("circle")
     .attr("class", "node")
-    .attr("r", function(d) { return (d.link == null ? 4 : d.link.length * 4 ) + radius })
-    .style("fill", function(d) { return this.nodeColour(d); }.bind(this));
+    .attr("r", function(d) { return _this.nodeRadius(d); })
+    .style("fill", function(d) { return _this.nodeColour(d); });
 
-  node.append('text')
+  this.nodes.append('text')
     .attr('class', 'icon-')
     .attr('font-size', "16pt")
     .attr('fill', 'white')
@@ -71,49 +72,99 @@ D3GraphV2.prototype.draw = function(graph){
     .attr('y', 8)
     .text(function(d) { return typeIconCharMap(d.rdf_type) });
 
-  force
+  // Start force simulation
+  this.force
     .nodes(graph.nodes)
     .links(graph.links)
-    .on("tick", tick)
+    .on("tick", this.onTick.bind(this))
     .start();
 
-  function tick() {
-    node.attr("transform", function(d) {
-      return 'translate(' + [ Math.max(radius, Math.min(_this.width - radius, d.x)), Math.max(radius, Math.min(_this.height - radius, d.y))] + ')'
-    });
+  d3.select(window).on("resize", this.onRescale.bind(this));
+}
 
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-    }
+/**
+ * Called on simulation tick, calculates positions of nodes and links
+ *
+ * @return [void]
+ */
+D3GraphV2.prototype.onTick = function() {
+  var _this = this;
 
-    function mouseOver(d) {
-  		d3.select("#d3_tooltip")
-    		.style("left", (d.x + 25) + "px")
-    		.style("top", (d.y - 15) + "px")
-    		.html("<div class='font-regular text-small'>" + typeToString[d.rdf_type] + "</div><div class='font-light text-small'>" + d.label + " ("+d.identifier+")</div>");
-  		//Show the tooltip
-  		d3.select("#d3_tooltip").classed("hidden", false);
-    }
+  // Calculate nodes positions
+  this.nodes.attr("transform", function(d) {
+    return 'translate(' + [ Math.max(_this.radius, Math.min(_this.width - _this.radius, d.x)),
+                            Math.max(_this.radius, Math.min(_this.height - _this.radius, d.y))] + ')';
+  });
 
-    function mouseOut() {
-  		//Hide the tooltip
-  		d3.select("#d3_tooltip").classed("hidden", true);
-    }
+  // Calculate links positions
+  this.links
+    .attr("x1", function(d) { return d.source.x; })
+    .attr("y1", function(d) { return d.source.y; })
+    .attr("x2", function(d) { return d.target.x; })
+    .attr("y2", function(d) { return d.target.y; });
+}
 
-    d3.select(window).on("resize", function(){
-      _this.width = _this.d3Div.clientWidth;
-      svg.attr("width", _this.width).attr("height", _this.height);
-      force.size([_this.width, _this.height]).resume();
-    })
+/**
+ * Called on window resize, recalculates size of graph
+ *
+ * @return [void]
+ */
+D3GraphV2.prototype.onRescale = function() {
+  this.width = this.d3Div.clientWidth;
+  this.svg.attr("width", this.width).attr("height", this.height);
+  this.force.size([this.width, this.height]).resume();
+}
+
+/**
+ * Called on mouse out over node, hides tooltip with text
+ *
+ * @return [void]
+ */
+D3GraphV2.prototype.onMouseOut = function() {
+  d3.select("#d3_tooltip").classed("hidden", true);
+}
+
+/**
+ * Called on mouse over node, shows tooltip with text
+ *
+ * @return [void]
+ */
+D3GraphV2.prototype.onMouseOver = function(d) {
+  var tooltipHTML = "<div class='font-regular text-small'>" + typeToString[d.rdf_type] + "</div>" +
+                    "<div class='font-light text-small'>" + d.label + " ("+d.identifier+")</div>";
+
+  d3.select("#d3_tooltip")
+    .style("left", (d.x + 25) + "px")
+    .style("top", (d.y - 15) + "px")
+    .html(tooltipHTML);
+
+  d3.select("#d3_tooltip").classed("hidden", false);
+}
+
+/**
+ * Clears graph
+ *
+ * @return [void]
+ */
+D3GraphV2.prototype.clear = function() {
+  d3.select('svg').remove();
+}
+
+/**
+ * Node Radius
+ *
+ * @param [Object] node the node object
+ * @return [Integer] node radius calculated depending on the amount of links to the node
+ */
+D3GraphV2.prototype.nodeRadius = function (node) {
+  return (node.impactLinks == null ? 4 : node.impactLinks.length * 4 ) + this.radius;
 }
 
 /**
  * Node Colour
  *
  * @param [Object] node the node object
- * @return [void]
+ * @return [String] Node color based on its rdf_type and / or owner
  */
 D3GraphV2.prototype.nodeColour = function (node) {
   var color = typeToBgColor(node.rdf_type, {owner: node.owner});
