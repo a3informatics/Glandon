@@ -123,6 +123,13 @@ describe UsersController do
       expect(response).to redirect_to("/users")
     end
 
+    it "stats_by_domain" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_domain
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
     it "prevents removing last sys admin user role" do
       current_user = User.find_by(:email => "base@example.com")
       put :update, {id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
