@@ -26,42 +26,84 @@
 - Code list type not detected, identifier 'SC124664'.
 - Code list type not detected, identifier 'SC124663'.
 - Code list type not detected, identifier 'SC124307'.
-- 'Action Taken with Study Treatment Collected: Cannot find unique SC48660 in code
-  list extension, identifier ''SN000730''.'
-- 'Action Taken with Study Treatment Collected: Cannot find unique SC49501 in code
-  list extension, identifier ''SN000730''.'
-- 'Anatomical Location: Cannot find unique C17649 in code list extension, identifier
+- 'Action Taken with Study Treatment: Cannot find referenced item C78728, multiple
+  found, identifier ''C66767''.'
+- 'Action Taken with Study Treatment Collected: Cannot find referenced item C48660,
+  multiple found, identifier ''SN000730''.'
+- 'Action Taken with Study Treatment Collected: Cannot find referenced item C49501,
+  multiple found, identifier ''SN000730''.'
+- 'Anatomical Location: Cannot find referenced item C12754, none found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C34320, none found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C12686, none found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C17649, multiple found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C17998, multiple found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C69313, none found, identifier
+  ''C74456''.'
+- 'Anatomical Location: Cannot find referenced item C142369, none found, identifier
   ''C74456''.'
 - 'Anatomical Location Subset 02: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000127P''.'
+- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''SC12348'',
+  for a subset ''NP000128P''.'
 - 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000128P''.'
+- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''SC12348'',
+  for a subset ''NP000129P''.'
 - 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000129P''.'
 - 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''C17649'',
+  for a subset ''NP000130P''.'
+- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''SC12348'',
   for a subset ''NP000130P''.'
 - 'Anatomical Location Subset 06: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000131P''.'
 - 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000132P''.'
-- 'Assistance to Administer Treatment: Cannot find unique SC48660 in code list extension,
-  identifier ''SN000738''.'
-- 'Cancer Diagnosis Extent: Cannot find unique SC14174 in code list extension, identifier
+- 'Assistance to Administer Treatment: Cannot find referenced item C48660, multiple
+  found, identifier ''SN000738''.'
+- 'Cancer Diagnosis Extent: Cannot find referenced item C14174, multiple found, identifier
   ''SN000229''.'
-- 'Category for Adverse Event: Cannot find unique SC17649 in code list extension,
+- 'Cardiovascular Test Code: Cannot find referenced item C120943, multiple found,
+  identifier ''C101847''.'
+- 'Cardiovascular Test Code: Cannot find referenced item C127564, none found, identifier
+  ''C101847''.'
+- 'Cardiovascular Test Code: Cannot find referenced item C127571, none found, identifier
+  ''C101847''.'
+- 'Cardiovascular Test Code: Cannot find referenced item C127572, none found, identifier
+  ''C101847''.'
+- 'Cardiovascular Test Name: Cannot find referenced item C120943, multiple found,
+  identifier ''C101846''.'
+- 'Cardiovascular Test Name: Cannot find referenced item C127564, none found, identifier
+  ''C101846''.'
+- 'Cardiovascular Test Name: Cannot find referenced item C127571, none found, identifier
+  ''C101846''.'
+- 'Cardiovascular Test Name: Cannot find referenced item C127572, none found, identifier
+  ''C101846''.'
+- 'Category for Adverse Event: Cannot find referenced item C17649, multiple found,
   identifier ''SN000753''.'
-- 'Category for Medical History: Cannot find unique SC17649 in code list extension,
+- 'Category for Medical History: Cannot find referenced item C17649, multiple found,
   identifier ''SN000804''.'
-- 'Category for Medication: Cannot find unique SC17649 in code list extension, identifier
+- 'Category for Medication: Cannot find referenced item C17649, multiple found, identifier
   ''SN000760''.'
-- 'Category for Procedures: Cannot find unique SC17649 in code list extension, identifier
+- 'Category for Procedures: Cannot find referenced item C17649, multiple found, identifier
   ''SN000465''.'
+- 'Category of Clinical Classification: Cannot find referenced item C138333, none
+  found, identifier ''C118971''.'
+- 'Category of Clinical Classification: Cannot find referenced item C124704, none
+  found, identifier ''C118971''.'
+- 'Category of Clinical Classification: Cannot find referenced item C124703, none
+  found, identifier ''C118971''.'
 - 'Code Breaker Subset 01: Cannot find a code list item, identifier ''SC25936'', for
   a subset ''NP000139P''.'
-- 'Common Terminology Criteria for Adverse Events: Cannot find unique SC48275 in code
-  list extension, identifier ''SN001030''.'
-- 'Common Terminology Criteria for Adverse Events Numeric: Cannot find unique SC48275
-  in code list extension, identifier ''SN001072''.'
+- 'Common Terminology Criteria for Adverse Events: Cannot find referenced item C48275,
+  multiple found, identifier ''SN001030''.'
+- 'Common Terminology Criteria for Adverse Events Numeric: Cannot find referenced
+  item C48275, multiple found, identifier ''SN001072''.'
 - 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
   item, identifier ''SC84263'', for a subset ''NP000140P''.'
 - 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
@@ -70,67 +112,94 @@
   item, identifier ''SC84265'', for a subset ''NP000140P''.'
 - 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
   item, identifier ''SC84266'', for a subset ''NP000140P''.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC48275'', for a subset ''NP000140P''.'
-- 'Contact Method: Cannot find SC18002 in code list extension, identifier ''SN000185''.'
-- 'Contact Method: Cannot find unique SC17649 in code list extension, identifier ''SN000185''.'
-- 'Contact Method Subset 01: Cannot find a code list item, identifier ''SC17649'',
-  for a subset ''NP000152P''.'
-- 'Deviation Classification: Cannot find unique SC17649 in code list extension, identifier
+- 'Completion/Reason for Non-Completion: Cannot find referenced item C132447, none
+  found, identifier ''C66727''.'
+- 'Completion/Reason for Non-Completion: Cannot find referenced item C142742, none
+  found, identifier ''C66727''.'
+- 'Contact Method: Cannot find referenced item C18002, none found, identifier ''SN000185''.'
+- 'Contact Method: Cannot find referenced item C17649, multiple found, identifier
+  ''SN000185''.'
+- 'Death Details Test Code: Cannot find referenced item C135384, none found, identifier
+  ''C116108''.'
+- 'Death Details Test Name: Cannot find referenced item C135384, none found, identifier
+  ''C116107''.'
+- 'Deviation Classification: Cannot find referenced item C17649, multiple found, identifier
   ''SN000699''.'
-- 'Diagnosis of Cardiac Ischemic Event: Cannot find unique SC101589 in code list extension,
-  identifier ''SN000637''.'
-- 'Diagnosis of Cardiac Ischemic Event: Cannot find unique SC66914 in code list extension,
-  identifier ''SN000637''.'
-- 'Diagnosis of Cardiac Ischemic Event: Cannot find unique SC66911 in code list extension,
-  identifier ''SN000637''.'
-- 'Disease Status: Cannot find unique SC62222 in code list extension, identifier ''SN000705''.'
-- 'Disease Status: Cannot find unique SC17998 in code list extension, identifier ''SN000705''.'
-- 'Duration of Symptoms: Cannot find unique SC17998 in code list extension, identifier
+- 'Diagnosis of Cardiac Ischemic Event: Cannot find referenced item C101589, multiple
+  found, identifier ''SN000637''.'
+- 'Diagnosis of Cardiac Ischemic Event: Cannot find referenced item C66914, multiple
+  found, identifier ''SN000637''.'
+- 'Diagnosis of Cardiac Ischemic Event: Cannot find referenced item C66911, multiple
+  found, identifier ''SN000637''.'
+- 'Disease Status: Cannot find referenced item C62222, multiple found, identifier
+  ''SN000705''.'
+- 'Disease Status: Cannot find referenced item C17998, multiple found, identifier
+  ''SN000705''.'
+- 'Duration of Symptoms: Cannot find referenced item C17998, multiple found, identifier
   ''SN000067''.'
-- 'Duration of Symptoms Subset 01: Cannot find a code list item, identifier ''SC17998'',
-  for a subset ''NP000154P''.'
-- 'Duration of Symptoms Subset 02: Cannot find a code list item, identifier ''SC17998'',
-  for a subset ''NP000155P''.'
-- 'Duration of Symptoms Subset 03: Cannot find a code list item, identifier ''SC17998'',
-  for a subset ''NP000156P''.'
-- 'Duration of Time Unit: Cannot find unique SC25301 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C25301, multiple found, identifier
   ''SN000701''.'
-- 'Duration of Time Unit: Cannot find unique SC25529 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C25529, multiple found, identifier
   ''SN000701''.'
-- 'Duration of Time Unit: Cannot find unique SC48154 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C48154, multiple found, identifier
   ''SN000701''.'
-- 'Duration of Time Unit: Cannot find unique SC29846 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C29846, multiple found, identifier
   ''SN000701''.'
-- 'Duration of Time Unit: Cannot find unique SC29844 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C29844, multiple found, identifier
   ''SN000701''.'
-- 'Duration of Time Unit: Cannot find unique SC29848 in code list extension, identifier
+- 'Duration of Time Unit: Cannot find referenced item C29848, multiple found, identifier
   ''SN000701''.'
-- 'Findings About Test Code: Cannot find unique C25365 in code list extension, identifier
+- 'Findings About Test Code: Cannot find referenced item C25365, multiple found, identifier
   ''C101832''.'
-- 'Findings About Test Name: Cannot find unique C25365 in code list extension, identifier
+- 'Findings About Test Code: Cannot find referenced item C96684, multiple found, identifier
+  ''C101832''.'
+- 'Findings About Test Code: Cannot find referenced item C127786, none found, identifier
+  ''C101832''.'
+- 'Findings About Test Code: Cannot find referenced item C101230, multiple found,
+  identifier ''C101832''.'
+- 'Findings About Test Code: Cannot find referenced item C25676, none found, identifier
+  ''C101832''.'
+- 'Findings About Test Code: Cannot find referenced item C25206, multiple found, identifier
+  ''C101832''.'
+- 'Findings About Test Code: Cannot find referenced item C25285, multiple found, identifier
+  ''C101832''.'
+- 'Findings About Test Name: Cannot find referenced item C25365, multiple found, identifier
   ''C101833''.'
-- 'Frequency: Cannot find unique C70543 in code list extension, identifier ''C71113''.'
-- 'Frequency: Cannot find unique C17649 in code list extension, identifier ''C71113''.'
+- 'Findings About Test Name: Cannot find referenced item C96684, multiple found, identifier
+  ''C101833''.'
+- 'Findings About Test Name: Cannot find referenced item C127786, none found, identifier
+  ''C101833''.'
+- 'Findings About Test Name: Cannot find referenced item C101230, multiple found,
+  identifier ''C101833''.'
+- 'Findings About Test Name: Cannot find referenced item C25676, none found, identifier
+  ''C101833''.'
+- 'Findings About Test Name: Cannot find referenced item C25206, multiple found, identifier
+  ''C101833''.'
+- 'Findings About Test Name: Cannot find referenced item C25285, multiple found, identifier
+  ''C101833''.'
+- 'Frequency: Cannot find referenced item C70543, multiple found, identifier ''C71113''.'
+- 'Frequency: Cannot find referenced item C17649, multiple found, identifier ''C71113''.'
 - 'Frequency Subset 01: Cannot find a code list item, identifier ''C70543'', for a
   subset ''NP000158P''.'
-- 'Glasgow Scale Total Score: Cannot find unique SC17998 in code list extension, identifier
-  ''SN000646''.'
-- 'Grading: Cannot find unique SC17998 in code list extension, identifier ''SN000279''.'
-- 'Healthcare Type: Cannot find SC16696 in code list extension, identifier ''SN000288''.'
-- 'Healthcare Type: Cannot find unique SC17649 in code list extension, identifier
+- 'Glasgow Scale Total Score: Cannot find referenced item C17998, multiple found,
+  identifier ''SN000646''.'
+- 'Grading: Cannot find referenced item C17998, multiple found, identifier ''SN000279''.'
+- 'Healthcare Type: Cannot find referenced item C16696, none found, identifier ''SN000288''.'
+- 'Healthcare Type: Cannot find referenced item C17649, multiple found, identifier
   ''SN000288''.'
-- 'Histopathology: Cannot find unique SC17649 in code list extension, identifier ''SN000293''.'
-- 'Histopathology: Cannot find unique SC17998 in code list extension, identifier ''SN000293''.'
-- 'Independent Data Monitoring Committee Severity Assessment: Cannot find unique SC17649
-  in code list extension, identifier ''SN000644''.'
-- 'Initial Prolonged: Cannot find unique SC48660 in code list extension, identifier
+- 'Histopathology: Cannot find referenced item C17649, multiple found, identifier
+  ''SN000293''.'
+- 'Histopathology: Cannot find referenced item C17998, multiple found, identifier
+  ''SN000293''.'
+- 'Independent Data Monitoring Committee Severity Assessment: Cannot find referenced
+  item C17649, multiple found, identifier ''SN000644''.'
+- 'Initial Prolonged: Cannot find referenced item C48660, multiple found, identifier
   ''SN000332''.'
-- 'Investigator Assessment Reason Not Done of Blood Measurement: Cannot find unique
-  SC17649 in code list extension, identifier ''SN000737''.'
-- 'Laboratory Test Method: Cannot find SC122168 in code list extension, identifier
+- 'Investigator Assessment Reason Not Done of Blood Measurement: Cannot find referenced
+  item C17649, multiple found, identifier ''SN000737''.'
+- 'Laboratory Test Method: Cannot find referenced item C122168, none found, identifier
   ''SN000339''.'
-- 'Laboratory Test Method: Cannot find unique SC17649 in code list extension, identifier
+- 'Laboratory Test Method: Cannot find referenced item C17649, multiple found, identifier
   ''SN000339''.'
 - 'Laboratory Test Name Subset 01: Cannot find a code list item, identifier ''S000291'',
   for a subset ''NP000161P''.'
@@ -288,247 +357,275 @@
   for a subset ''NP000162P''.'
 - 'Laboratory Test Name Subset 03: Cannot find a code list item, identifier ''S000395'',
   for a subset ''NP000162P''.'
-- 'Market Authorization Holder: Cannot find unique SC17649 in code list extension,
+- 'Laboratory Test Standard Character Result: Cannot find referenced item C48190,
+  none found, identifier ''C102580''.'
+- 'Laboratory Test Standard Character Result: Cannot find referenced item C17998,
+  multiple found, identifier ''C102580''.'
+- 'Market Authorization Holder: Cannot find referenced item C17649, multiple found,
   identifier ''SN000105''.'
-- 'Medication Time Classification: Cannot find unique SC48660 in code list extension,
+- 'Medication Time Classification: Cannot find referenced item C48660, multiple found,
   identifier ''SN000387''.'
-- 'Method: Cannot find unique C17649 in code list extension, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C15361, none found, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C142340, none found, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C122168, none found, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C123467, none found, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C147468, none found, identifier ''C85492''.'
+- 'Method: Cannot find referenced item C17649, multiple found, identifier ''C85492''.'
 - 'Method Subset 03: Cannot find a code list item, identifier ''C17649'', for a subset
   ''NP000169P''.'
-- 'Microbiology Test Code: Cannot find unique C82021 in code list extension, identifier
+- 'Microbiology Test Code: Cannot find referenced item C82021, multiple found, identifier
   ''C120527''.'
-- 'Microbiology Test Name: Cannot find unique C82021 in code list extension, identifier
+- 'Microbiology Test Name: Cannot find referenced item C82021, multiple found, identifier
   ''C120528''.'
-- 'Microorganism: Cannot find unique C17998 in code list extension, identifier ''C85491''.'
+- 'Microorganism: Cannot find referenced item C17998, multiple found, identifier ''C85491''.'
 - 'Microorganism Subset 01: Cannot find a code list item, identifier ''C17998'', for
   a subset ''NP000171P''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC81969 in code
-  list extension, identifier ''SN000377''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC98745 in code
-  list extension, identifier ''SN000377''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC81970 in code
-  list extension, identifier ''SN000377''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC81971 in code
-  list extension, identifier ''SN000377''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC81972 in code
-  list extension, identifier ''SN000377''.'
-- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find unique SC17649 in code
-  list extension, identifier ''SN000377''.'
-- 'Neoplasm Type: Cannot find unique C17649 in code list extension, identifier ''C88025''.'
-- 'Not Applicable/Normal/Abnormal Status: Cannot find unique SC48660 in code list
-  extension, identifier ''SN000388''.'
-- 'Overall Stage Grouping: Cannot find unique SC17998 in code list extension, identifier
+- 'Morphology Test Code: Cannot find referenced item C25244, multiple found, identifier
+  ''C114117''.'
+- 'Morphology Test Code: Cannot find referenced item C87143, multiple found, identifier
+  ''C114117''.'
+- 'Morphology Test Name: Cannot find referenced item C25244, multiple found, identifier
+  ''C114116''.'
+- 'Morphology Test Name: Cannot find referenced item C87143, multiple found, identifier
+  ''C114116''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C81969,
+  multiple found, identifier ''SN000377''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C98745,
+  multiple found, identifier ''SN000377''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C81970,
+  multiple found, identifier ''SN000377''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C81971,
+  multiple found, identifier ''SN000377''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C81972,
+  multiple found, identifier ''SN000377''.'
+- 'Multiple Myeloma Hematologic Cancer Subtype: Cannot find referenced item C17649,
+  multiple found, identifier ''SN000377''.'
+- 'Neoplasm Type: Cannot find referenced item C17649, multiple found, identifier ''C88025''.'
+- 'Not Applicable/Normal/Abnormal Status: Cannot find referenced item C48660, multiple
+  found, identifier ''SN000388''.'
+- 'Ophthalmic Exam Test Code: Cannot find referenced item C41255, multiple found,
+  identifier ''C117743''.'
+- 'Ophthalmic Exam Test Code: Cannot find referenced item C41145, multiple found,
+  identifier ''C117743''.'
+- 'Ophthalmic Exam Test Name: Cannot find referenced item C41255, multiple found,
+  identifier ''C117742''.'
+- 'Ophthalmic Exam Test Name: Cannot find referenced item C41145, multiple found,
+  identifier ''C117742''.'
+- 'Overall Stage Grouping: Cannot find referenced item C17998, multiple found, identifier
   ''SN000469''.'
-- 'Pharmacokinetic Test Code: Cannot find unique SC120647 in code list extension,
+- 'Pharmacokinetic Test Code: Cannot find referenced item C120647, multiple found,
   identifier ''SN000415''.'
-- 'Pharmacokinetic Test Name: Cannot find unique SC120647 in code list extension,
+- 'Pharmacokinetic Test Name: Cannot find referenced item C120647, multiple found,
   identifier ''SN000414''.'
-- 'Physical Examination Test Code: Cannot find unique SC41255 in code list extension,
+- 'Physical Examination Test Code: Cannot find referenced item C41255, multiple found,
   identifier ''SN000601''.'
-- 'Physical Examination Test Name: Cannot find unique SC41255 in code list extension,
+- 'Physical Examination Test Name: Cannot find referenced item C41255, multiple found,
   identifier ''SN000600''.'
-- 'Position: Cannot find unique C17649 in code list extension, identifier ''C71148''.'
+- 'Position: Cannot find referenced item C17649, multiple found, identifier ''C71148''.'
 - 'Position Subset 01: Cannot find a code list item, identifier ''C17649'', for a
   subset ''NP000177P''.'
-- 'Pregnancy Outcome: Cannot find unique SC48275 in code list extension, identifier
+- 'Pregnancy Outcome: Cannot find referenced item C48275, multiple found, identifier
   ''SN000408''.'
-- 'Pregnancy Outcome: Cannot find unique SC53279 in code list extension, identifier
+- 'Pregnancy Outcome: Cannot find referenced item C53279, multiple found, identifier
   ''SN000408''.'
-- 'Present Absent Response: Cannot find SC48190 in code list extension, identifier
+- 'Present Absent Response: Cannot find referenced item C48190, none found, identifier
   ''SN000467''.'
-- 'Present Absent Response: Cannot find SC25626 in code list extension, identifier
+- 'Present Absent Response: Cannot find referenced item C25626, none found, identifier
   ''SN000467''.'
-- 'Present Absent Response: Cannot find unique SC17998 in code list extension, identifier
+- 'Present Absent Response: Cannot find referenced item C17998, multiple found, identifier
   ''SN000467''.'
+- 'Procedure: Cannot find referenced item C38044, none found, identifier ''C101858''.'
+- 'Procedure: Cannot find referenced item C17649, multiple found, identifier ''C101858''.'
 - 'Proposed Adverse Event Term Subset 01: Cannot find a code list item, identifier
   ''SC25742'', for a subset ''NP000181P''.'
-- 'Reason Disease Response Assessment Discontinued: Cannot find unique SC17649 in
-  code list extension, identifier ''SN000722''.'
-- 'Reason for Code Breaking: Cannot find unique SC17649 in code list extension, identifier
+- 'Race: Cannot find referenced item C78728, multiple found, identifier ''C74457''.'
+- 'Reason Disease Response Assessment Discontinued: Cannot find referenced item C17649,
+  multiple found, identifier ''SN000722''.'
+- 'Reason for Code Breaking: Cannot find referenced item C17649, multiple found, identifier
   ''SN000712''.'
-- 'Reason for Treatment Use: Cannot find SC62220 in code list extension, identifier
+- 'Reason for Treatment Use: Cannot find referenced item C62220, none found, identifier
   ''SN000583''.'
-- 'Reason for Treatment Use: Cannot find SC101516 in code list extension, identifier
+- 'Reason for Treatment Use: Cannot find referenced item C101516, none found, identifier
   ''SN000583''.'
-- 'Reason for Treatment Use: Cannot find unique SC17649 in code list extension, identifier
+- 'Reason for Treatment Use: Cannot find referenced item C17649, multiple found, identifier
   ''SN000583''.'
-- 'Reason for Treatment Use: Cannot find unique SC17998 in code list extension, identifier
+- 'Reason for Treatment Use: Cannot find referenced item C17998, multiple found, identifier
   ''SN000583''.'
 - 'Reason for Treatment Use Subset 01: Cannot find a code list item, identifier ''SC41331'',
   for a subset ''NP000184P''.'
-- 'Reason for Treatment Use Subset 01: Cannot find a code list item, identifier ''SC17649'',
-  for a subset ''NP000184P''.'
 - 'Reason for Treatment Use Subset 02: Cannot find a code list item, identifier ''SC41331'',
   for a subset ''NP000185P''.'
-- 'Reason for Treatment Use Subset 02: Cannot find a code list item, identifier ''SC62220'',
-  for a subset ''NP000185P''.'
-- 'Reason for Treatment Use Subset 02: Cannot find a code list item, identifier ''SC101516'',
-  for a subset ''NP000185P''.'
-- 'Reason for Treatment Use Subset 02: Cannot find a code list item, identifier ''SC17649'',
-  for a subset ''NP000185P''.'
-- 'Reason for Treatment Use Subset 02: Cannot find a code list item, identifier ''SC17998'',
-  for a subset ''NP000185P''.'
-- 'Reason for Treatment Use Subset 03: Cannot find a code list item, identifier ''SC62220'',
-  for a subset ''NP000186P''.'
-- 'Reason for Treatment Use Subset 03: Cannot find a code list item, identifier ''SC101516'',
-  for a subset ''NP000186P''.'
-- 'Reason for Treatment Use Subset 04: Cannot find a code list item, identifier ''SC62220'',
-  for a subset ''NP000187P''.'
-- 'Reason Functional Test Assessment Not Performed: Cannot find unique SC17649 in
-  code list extension, identifier ''SN000240''.'
-- 'Relationship to Study Treatment: Cannot find unique SC78728 in code list extension,
+- 'Reason Functional Test Assessment Not Performed: Cannot find referenced item C17649,
+  multiple found, identifier ''SN000240''.'
+- 'Relationship to Study Treatment: Cannot find referenced item C78728, multiple found,
   identifier ''SN000012''.'
-- 'Reporting ECG Parameter Label: Cannot find unique SC117773 in code list extension,
+- 'Relationship to Subject: Cannot find referenced item C71384, none found, identifier
+  ''C100130''.'
+- 'Reporting ECG Parameter Label: Cannot find referenced item C117773, multiple found,
   identifier ''SN001023''.'
-- 'Reporting ECG Parameter Label: Cannot find unique SC117779 in code list extension,
+- 'Reporting ECG Parameter Label: Cannot find referenced item C117779, multiple found,
   identifier ''SN001023''.'
-- 'Reporting ECG Parameter Label: Cannot find unique SC117783 in code list extension,
+- 'Reporting ECG Parameter Label: Cannot find referenced item C117783, multiple found,
   identifier ''SN001023''.'
-- 'Reporting ECG Parameter Label: Cannot find unique SC62112 in code list extension,
+- 'Reporting ECG Parameter Label: Cannot find referenced item C62112, multiple found,
   identifier ''SN001023''.'
-- 'Reporting ECG Parameter Label: Cannot find unique SC62113 in code list extension,
+- 'Reporting ECG Parameter Label: Cannot find referenced item C62113, multiple found,
   identifier ''SN001023''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC81948 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC105586 in code list
-  extension, identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC105585 in code list
-  extension, identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC105587 in code list
-  extension, identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC105588 in code list
-  extension, identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC117748 in code list
-  extension, identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC38462 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64431 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64432 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64434 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64470 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC74667 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC74611 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64548 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64488 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64495 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64547 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64481 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64550 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64797 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64798 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64799 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64796 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64848 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64849 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64857 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64855 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC51949 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64840 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64823 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC63321 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC45997 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC51951 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64853 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64858 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64809 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Laboratory Paremeter Label: Cannot find unique SC64815 in code list extension,
-  identifier ''SN001923''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC25299 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC49677 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC60832 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC49678 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC25298 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC25206 in code list
-  extension, identifier ''SN001929''.'
-- 'Reporting Vital Signs Parameter Label: Cannot find unique SC25208 in code list
-  extension, identifier ''SN001929''.'
-- 'Rhythm and Conduction Test Code: Cannot find unique SC41255 in code list extension,
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C81948, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C105586, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C105585, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C105587, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C105588, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C117748, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C38462, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64431, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64432, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64434, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64470, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C74667, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C74611, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64548, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64488, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64495, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64547, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64481, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64550, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64797, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64798, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64799, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64796, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64848, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64849, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64857, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64855, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C51949, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64840, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64823, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C63321, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C45997, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C51951, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64853, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64858, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64809, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Laboratory Paremeter Label: Cannot find referenced item C64815, multiple
+  found, identifier ''SN001923''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C25299, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C49677, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C60832, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C49678, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C25298, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C25206, multiple
+  found, identifier ''SN001929''.'
+- 'Reporting Vital Signs Parameter Label: Cannot find referenced item C25208, multiple
+  found, identifier ''SN001929''.'
+- 'Respiratory Test Code: Cannot find referenced item C135494, none found, identifier
+  ''C111106''.'
+- 'Respiratory Test Code: Cannot find referenced item C135496, none found, identifier
+  ''C111106''.'
+- 'Respiratory Test Name: Cannot find referenced item C135494, none found, identifier
+  ''C111107''.'
+- 'Respiratory Test Name: Cannot find referenced item C135496, none found, identifier
+  ''C111107''.'
+- 'Rhythm and Conduction Test Code: Cannot find referenced item C41255, multiple found,
   identifier ''SN000522''.'
-- 'Rhythm and Conduction Test Name: Cannot find unique SC41255 in code list extension,
+- 'Rhythm and Conduction Test Name: Cannot find referenced item C41255, multiple found,
   identifier ''SN000521''.'
-- 'Route of Administration: Cannot find unique C17649 in code list extension, identifier
+- 'Route of Administration: Cannot find referenced item C79141, none found, identifier
+  ''C66729''.'
+- 'Route of Administration: Cannot find referenced item C17649, multiple found, identifier
   ''C66729''.'
 - 'Route of Administration Subset 02: Cannot find a code list item, identifier ''C17649'',
   for a subset ''NP000191P''.'
 - 'Setting Hospitalization Subset 02: Cannot find a code list item, identifier ''SC41132'',
   for a subset ''NP000197P''.'
-- 'Severity and Intensity Scale for Adverse Events: Cannot find unique SC41338 in
-  code list extension, identifier ''SN000612''.'
-- 'Severity and Intensity Scale for Adverse Events: Cannot find unique SC41339 in
-  code list extension, identifier ''SN000612''.'
-- 'Severity and Intensity Scale for Adverse Events: Cannot find unique SC41340 in
-  code list extension, identifier ''SN000612''.'
-- 'Severity and Intensity Scale for Adverse Events: Cannot find unique SC17998 in
-  code list extension, identifier ''SN000612''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC41338'', for a subset ''NP000198P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC41339'', for a subset ''NP000198P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC41340'', for a subset ''NP000198P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC17998'', for a subset ''NP000198P''.'
+- 'Severity and Intensity Scale for Adverse Events: Cannot find referenced item C41338,
+  multiple found, identifier ''SN000612''.'
+- 'Severity and Intensity Scale for Adverse Events: Cannot find referenced item C41339,
+  multiple found, identifier ''SN000612''.'
+- 'Severity and Intensity Scale for Adverse Events: Cannot find referenced item C41340,
+  multiple found, identifier ''SN000612''.'
+- 'Severity and Intensity Scale for Adverse Events: Cannot find referenced item C17998,
+  multiple found, identifier ''SN000612''.'
 - 'Severity and Intensity Scale for Adverse Events Subset 02: Cannot find a code list
   item, identifier ''SC41132'', for a subset ''NP000199P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 02: Cannot find a code list
-  item, identifier ''SC41338'', for a subset ''NP000199P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 02: Cannot find a code list
-  item, identifier ''SC41339'', for a subset ''NP000199P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 02: Cannot find a code list
-  item, identifier ''SC41340'', for a subset ''NP000199P''.'
-- 'Severity and Intensity Scale for Adverse Events Subset 02: Cannot find a code list
-  item, identifier ''SC17998'', for a subset ''NP000199P''.'
-- 'Specimen Condition: Cannot find unique C48658 in code list extension, identifier
+- 'Specimen Condition: Cannot find referenced item C48658, multiple found, identifier
   ''C78733''.'
-- 'Subcategory for Medical History: Cannot find unique SC97156 in code list extension,
+- 'Specimen Type: Cannot find referenced item C12435, none found, identifier ''C78734''.'
+- 'Specimen Type: Cannot find referenced item C17649, multiple found, identifier ''C78734''.'
+- 'Subcategory for Medical History: Cannot find referenced item C97156, multiple found,
   identifier ''SN000797''.'
-- 'Subcategory for Morphological Tests: Cannot find SC125938 in code list extension,
-  identifier ''SN000951''.'
-- 'Subcategory for Procedures: Cannot find SC125938 in code list extension, identifier
+- 'Subcategory for Morphological Tests: Cannot find referenced item C125938, none
+  found, identifier ''SN000951''.'
+- 'Subcategory for Procedures: Cannot find referenced item C125938, none found, identifier
   ''SN000121''.'
-- 'Subject or Representant Withdrawal Reason: Cannot find unique SC17649 in code list
-  extension, identifier ''SN000688''.'
-- 'Tumor Response Result: Cannot find unique C48660 in code list extension, identifier
+- 'Subject or Representant Withdrawal Reason: Cannot find referenced item C17649,
+  multiple found, identifier ''SN000688''.'
+- 'Tumor or Lesion Properties Test Code: Cannot find referenced item C132463, none
+  found, identifier ''C96779''.'
+- 'Tumor or Lesion Properties Test Name: Cannot find referenced item C132463, none
+  found, identifier ''C96778''.'
+- 'Tumor Response Result: Cannot find referenced item C48660, multiple found, identifier
   ''C96785''.'
-- 'Type of Hearing Damage: Cannot find unique SC48660 in code list extension, identifier
+- 'Tumor Response Result: Cannot find referenced item C17998, multiple found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142360, none found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142356, none found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142361, none found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142357, none found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142359, none found, identifier
+  ''C96785''.'
+- 'Tumor Response Result: Cannot find referenced item C142358, none found, identifier
+  ''C96785''.'
+- 'Type of Hearing Damage: Cannot find referenced item C48660, multiple found, identifier
   ''SN000311''.'
-- 'Type of Hearing Damage: Cannot find unique SC17998 in code list extension, identifier
+- 'Type of Hearing Damage: Cannot find referenced item C17998, multiple found, identifier
   ''SN000311''.'
-- 'Type of Procedure: Cannot find unique SC17649 in code list extension, identifier
+- 'Type of Procedure: Cannot find referenced item C17649, multiple found, identifier
   ''SN000477''.'
 - 'Unit Subset 05: Cannot find a code list item, identifier ''S010223'', for a subset
   ''NP000213P''.'
@@ -536,5 +633,5 @@
   ''NP000213P''.'
 - 'Unit Subset 05: Cannot find a code list item, identifier ''S001211'', for a subset
   ''NP000213P''.'
-- 'Vital Signs Parameter Code: Cannot find unique SC25208 in code list extension,
+- 'Vital Signs Parameter Code: Cannot find referenced item C25208, multiple found,
   identifier ''SN001926''.'
