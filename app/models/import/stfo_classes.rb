@@ -71,31 +71,16 @@ module Import::STFOClasses
       ref_ct = reference(ct)
       if ref_ct.nil?
         add_error("Failed to find referenced code list for an extension, identifier '#{self.identifier}'.")
-      #elsif !ref_ct.extensible
-      #  add_error("Extending non-extensible code list, identifier '#{self.identifier}'.")
       else
         self.extends = ref_ct
         new_narrower = ref_ct.narrower
         self.narrower.each do |child|
-          if NciThesaurusUtility.c_code?(child.identifier)
-            new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
-            if new_child.nil?
-              options = ct.find_identifier(child.identifier)
-              if options.empty?
-                add_error("Cannot find #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-              elsif options.count == 1
-                if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-                  new_narrower << Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
-                else
-                  add_error("Cannot find code list item #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-                end
-              else
-                add_error("Cannot find unique #{child.identifier} in code list extension, identifier '#{self.identifier}'.")
-              end
-            end
-          else
-            new_narrower << child
-          end
+          new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+          # If new_child is NOT nil then already in the CL being extended, nothing else to do.
+          # Otherwise try and find it.
+          new_child = sponsor_or_referenced(ct, child) if new_child.nil?
+          next if new_child.nil?
+          new_narrower << new_child 
         end
         self.narrower = new_narrower
       end
@@ -231,7 +216,9 @@ byebug
     def to_hybrid_sponsor(ct)
       new_narrower = []
       self.narrower.each do |child|
-        new_narrower << sponsor_or_referenced(ct, child)
+        new_child = sponsor_or_referenced(ct, child)
+        next if new_child.nil?
+        new_narrower << new_child 
       end
       self.narrower = new_narrower
       self
@@ -246,7 +233,7 @@ byebug
         return item.nil? ? child : item
       elsif NciThesaurusUtility.c_code?(child.identifier)
         item = find_referenced(ct, child.identifier)
-        return item.nil? ? child : item
+        return item.nil? ? nil : item
       else
         return child
       end
@@ -259,17 +246,17 @@ byebug
     def find_referenced(ct, identifier)
       options = ct.find_identifier(identifier)
       if options.empty?
-        add_error("Cannot find referenced item #{child.identifier}, none found, identifier '#{self.identifier}'.")
+        add_error("Cannot find referenced item #{identifier}, none found, identifier '#{self.identifier}'.")
         return nil
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
           return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
         else
-          add_error("Cannot find referenced item #{child.identifier}, incorrect type, identifier '#{self.identifier}'.")
+          add_error("Cannot find referenced item #{identifier}, incorrect type, identifier '#{self.identifier}'.")
           return nil
         end
       else
-        add_error("Cannot find referenced item #{child.identifier}, none found, identifier '#{self.identifier}'.")
+        add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'.")
         return nil
       end
     end
