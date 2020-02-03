@@ -137,7 +137,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 2.1" do
+  it "import, no errors, version 2.1", :speed => 'slow' do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_1_v2-1_CDISC_v43.xlsx")
     params = {identifier: "Q3 2019", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-1 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
@@ -158,7 +158,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 2.6" do
+  it "import, no errors, version 2.6", :speed => 'slow' do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_5_v2-6_CDISC_v43.xlsx")
     params = {identifier: "Q4 2019", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
@@ -179,7 +179,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
  
-  it "import, no errors, version 3.0" do
+  it "import, no errors, version 3.0", :speed => 'slow' do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
     params = {identifier: "Q1 2020", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
@@ -238,7 +238,7 @@ puts colourize("Load 3.0 excel ...", "blue")
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, full version 3.0 with base" do
+  it "import, no errors, full version 3.0 with base", :speed => 'slow' do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
 puts colourize("Load 2.6 triples ...", "blue")
     load_local_file_into_triple_store(sub_dir, "import_load_5_2-6.ttl")
