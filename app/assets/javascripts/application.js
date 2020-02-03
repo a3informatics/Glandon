@@ -43,6 +43,11 @@ var C_BC = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInst
 var C_BCT = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptTemplate";
 var C_TH = "http://www.assero.co.uk/ISO25964#Thesaurus";
 
+var C_TH_NEW = "http://www.assero.co.uk/Thesaurus#Thesaurus";
+var C_TH_CL = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
+var C_TH_SUBSET = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset";
+var C_TH_EXT = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension";
+
 var C_SI = "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier";
 var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
 
@@ -99,6 +104,10 @@ typeToString[C_MODEL] = "SDTM Model";
 typeToString[C_BC] = "Biomedical Concept";
 typeToString[C_BCT] = "Biomedical Concept Template";
 typeToString[C_TH] = "Terminology";
+typeToString[C_TH_NEW] = "Terminology";
+typeToString[C_TH_CL] = "Code List";
+typeToString[C_TH_SUBSET] = "Subset";
+typeToString[C_TH_EXT] = "Extension";
 typeToString[C_SI] = "Scoped Identifier";
 typeToString[C_RS] = "Registration State";
 typeToString[C_TC_REF] = "Terminology Reference";

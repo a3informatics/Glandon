@@ -1,8 +1,6 @@
 @import "custom/vars.scss";
 
-.table-row-clickable.no-mark .selected td:first-of-type::before{
-  display: none;
-}
+// Row Clickable Styles
 
 .table-row-clickable tbody tr:hover{
   color: $secondary-color-medium;
@@ -10,9 +8,15 @@
   cursor: pointer;
 }
 
+.table-row-clickable tbody tr.r:hover, .table-row-clickable tbody tr.y:hover {
+  color: $grey-medium;
+}
+
 .table-row-clickable .selected td:first-of-type{
   position: relative;
 }
+
+// Selected checkmark
 
 .table-row-clickable .selected td:first-of-type::before{
   font-family: 'icomoon';
@@ -23,6 +27,12 @@
   font-size: $font-tiny;
   top: calc(50% - 5pt);
   content: "\e944";
+}
+
+// Hidden and disabled
+
+.table-row-clickable.no-mark .selected td:first-of-type::before{
+  display: none;
 }
 
 .rows-selected-hide .select-info{
@@ -39,9 +49,62 @@ table.table-disabled {
   opacity: .5 !important;
 }
 
+// Colored TR selects
+
+.table-row-clickable tr.selected.r td:first-of-type::before,
+  .table-row-clickable tr.selected.y td:first-of-type::before{
+  display: block;
+  position: absolute;
+  content: " ";
+  width: 5px;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.table-row-clickable tr.selected.r td:first-of-type::before{
+  background: $accent-color-2;
+}
+
+.table-row-clickable tr.selected.y td:first-of-type::before{
+  background: $accent-color-1;
+}
+
+.table-row-clickable tr.selected.r{
+  color: $accent-color-2 !important;
+}
+
+.table-row-clickable tr.selected.y{
+  color: $accent-color-1-dark !important;
+}
+
+// No borders
+
+.table-row-clickable.no-borders tr td, .table-row-clickable.no-borders thead th{
+  border: none !important;
+}
+
+.table-row-clickable.no-borders thead th{
+  font-family: $font-light;
+  font-size: $font-tiny;
+}
+
+// IEFIX
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   .table-row-clickable .selected td:first-of-type::before{
     top: 75% !important;
+  }
+
+  .table-row-clickable tr.selected td:first-of-type{
+    overflow: hidden !important;
+  }
+
+  .table-row-clickable tr.selected.r td:first-of-type::before,
+    .table-row-clickable tr.selected.y td:first-of-type::before{
+      top: 0 !important;
+      bottom: -100% !important;
+      height: 300px;
   }
 }

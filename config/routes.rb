@@ -109,6 +109,7 @@ Rails.application.routes.draw do
   resources :iso_managed_v2, only: [] do
     member do
       get :status
+      get :impact
       get :make_current
       post :update_status
       put :update_semantic_version
@@ -203,6 +204,8 @@ Rails.application.routes.draw do
         get :export_csv
         get :changes_summary
         get :changes_summary_data
+        get :changes_summary_data_impact
+        get :impact
         get :differences_summary
         patch :update_properties
       end
@@ -244,6 +247,8 @@ Rails.application.routes.draw do
       get :changes
       get :changes_data
       get :changes_report
+      get :changes_impact
+      get :export_csv
       get :submission
       get :submission_data
       get :submission_report

@@ -73,6 +73,30 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "changes summary data impact" do
+      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1", :status=>"a"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2", :status=>"a"}}}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary_impact).and_return({items: {:"1" => {id: "1", status: "a"}, :"2" => {id: "2", status: "a"}}})
+      get :changes_summary_data_impact, {id: "aaa", last_id: "bbb", ver_span: "x"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "impact" do
+      expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
+      get :impact, id: "tc_1.id", impact: {sponsor_th_id: "sponsor.id"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
     it "differences summary" do
       expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
       request.env['HTTP_ACCEPT'] = "application/json"

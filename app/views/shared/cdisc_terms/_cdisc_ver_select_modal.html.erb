@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag 'custom/dates_selector' %>
+<%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'shared/timeline_slider', 'shared/cdisc_term/cdisc_ver_select' %>
+
+<% versions = CdiscTerm.version_dates %>
+<% versions_n = normalize_versions(versions) %>
+<% versions_span = [ versions[0][:date].split('-')[0], versions[-1][:date].split('-')[0] ] %>
+
+<%= javascript_tag "var latestCDISCVer = '#{versions.last[:date]}';" %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="cdisc-select-modal">
+  <div class="modal-dialog modal-lg" role="document" style="width: 80%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal" id="tableModalLabel">
+          <span class="icon-terminology text-xnormal text-link" style="margin-right:10px;"></span> Pick a version of the CDISC CT
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" style="min-width: 600px;">
+        <div class="row" style="padding: 10px 40px;">
+          <div class="errors"></div>
+          <center>
+            <img src="<%= asset_path 'icons/select_th' %>" class="modal-img"/>
+          </center>
+
+          <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
+            title_text: "To continue, choose a CDISC Terminology version and click Select.".html_safe,
+            start_year: versions_span[0], end_year: versions_span[1], versions_normalized: versions_n, versions: versions, slider_pretexts: ["ver.", ""],
+            button: "" }%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn medium green" id="select-cdisc-ter-btn">Select</button>
+      </div>
+    </div>
+  </div>
+</div>

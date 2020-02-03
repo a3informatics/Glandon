@@ -565,6 +565,27 @@ describe ThesauriController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
+    it "changes impact" do
+      ct_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :changes_impact, id: ct_1.id, thesauri: {thesaurus_id: ct_2.id, sponsor_th_id: sponsor.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it "export csv" do
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:scoped_identifier).and_return("C12345")
+      expect(Thesaurus).to receive(:impact_to_csv).and_return(["XXX", "YYY"])
+      expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Impact_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(@controller).to receive(:render)
+      get :export_csv, id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}
+    end
+
     it "changes_report" do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/pdf"
@@ -681,13 +702,13 @@ describe ThesauriController do
     end
 
     it "adds history paths, status path" do
-      
+
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
-      
+
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
@@ -733,13 +754,13 @@ describe ThesauriController do
     end
 
     it "adds history paths, status path" do
-      
+
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
-      
+
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current

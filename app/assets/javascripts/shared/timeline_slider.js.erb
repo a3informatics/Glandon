@@ -200,9 +200,14 @@ TimelineSlider.prototype.moveToDate = function(slider, date){
     }
   });
 
+  slider.css("transition", "all .3s");
   _this.moveSliderTo(slider, target_point);
-  _this.updateContainmentCoords(_this.l_slider);
-  _this.updateContainmentCoords(_this.r_slider);
 
-  _this.updateTimeline(slider);
+  setTimeout(function () {
+    _this.updateContainmentCoords(_this.l_slider);
+    _this.updateContainmentCoords(_this.r_slider);
+
+    _this.updateTimeline(slider);
+    slider.css("transition", "initial");
+  }, 320)
 }

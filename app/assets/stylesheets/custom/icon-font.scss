@@ -26,10 +26,19 @@
 
 .i-centered{
   width: 100%;
-  display: flex;
+  display: flex !important;
   justify-content: center;
 }
 
+.icon-codelist:before {
+  content: "\e952";
+}
+.icon-update:before {
+  content: "\e951";
+}
+.icon-impact:before {
+  content: "\e950";
+}
 .icon-import:before {
   content: "\e94f";
 }

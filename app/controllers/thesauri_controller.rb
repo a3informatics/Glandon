@@ -247,6 +247,37 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def changes_impact
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_ver = ct.version_label.split(' ')
+    ct_new = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    ct_new_ver = ct_new.version_label.split(' ')
+    sponsor = Thesaurus.find_minimum(the_params[:sponsor_th_id])
+    cls = ct.changes_impact_v2(ct_new, sponsor)
+    cls.each do |v|
+      if v[:cl_new].nil?
+        v[:type] = "deleted"
+        v[:changes_url] = changes_data_thesauri_managed_concept_path(v[:id])
+        v[:differences_url] = differences_thesauri_managed_concept_path(v[:id])
+      else
+        v[:type] = "updated"
+        v[:changes_url] = changes_summary_data_impact_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+        v[:differences_url] = differences_summary_thesauri_managed_concept_path(v[:id], last_id: v[:cl_new], ver_span: [ct_ver[0], ct_new_ver[0]])
+      end
+      v[:graph_data_url] = impact_thesauri_managed_concept_path(v[:id], the_params[:sponsor_th_id])
+    end
+    render json: {data: cls}
+  end
+
+  def export_csv
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_new = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    sponsor = Thesaurus.find_minimum(the_params[:sponsor_th_id])
+    send_data Thesaurus.impact_to_csv(ct, ct_new, sponsor), filename: "Impact_report_#{sponsor.scoped_identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
   def submission
     authorize Thesaurus, :show?
     @version_count = current_user.max_term_display.to_i
@@ -365,6 +396,8 @@ class ThesauriController < ApplicationController
         return thesauri_path(object)
       when :edit_tags
         return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
+      when :impact
+        return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
       else
         return ""
     end
@@ -493,7 +526,7 @@ private
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set => [])
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :id_set => [])
   end
 
 end

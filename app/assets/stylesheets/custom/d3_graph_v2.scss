@@ -1,0 +1,28 @@
+@import 'custom/vars.scss';
+
+.link {
+  stroke: $grey-light;
+  stroke-width: 2px;
+}
+
+.node:hover {
+  cursor: default;
+}
+
+#d3_tooltip {
+  position: absolute;
+  pointer-events: none;
+  min-width: 130px;
+  max-width: 250px;
+  background: $grey-bright;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#d3_tooltip.hidden {
+  display: none;
+}
+
+#d3{
+  width: 90%;
+}

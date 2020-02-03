@@ -73,3 +73,46 @@ function formatIndicatorsString(data){
 
   return output;
 }
+
+// Colors and Icons
+
+function typeIconMap(type){
+  var icoMap = {};
+  icoMap[C_TH_NEW] = 'icon-terminology';
+  icoMap[C_TH_CL] = 'icon-codelist';
+  icoMap[C_TH_SUBSET] = 'icon-subset';
+  icoMap[C_TH_EXT] = 'icon-extension';
+
+  return icoMap[type];
+}
+
+function typeIconCharMap(type){
+  var icoMap = {};
+  icoMap[C_TH_NEW] = '\ue909';
+  icoMap[C_TH_CL] = '\ue952';
+  icoMap[C_TH_SUBSET] = '\ue941';
+  icoMap[C_TH_EXT] = '\ue945';
+
+  return icoMap[type];
+}
+
+function typeToBgColor(type, params){
+  if(params != null && params.owner != null && params.owner.toLowerCase() == "cdisc")
+    return '#f5d684';
+
+  var clrMap = {}
+  clrMap[C_TH_NEW] = '#6d91a1';
+  clrMap[C_TH_CL] = '#9dc0cf';
+  clrMap[C_TH_SUBSET] = '#9dc0cf';
+  clrMap[C_TH_EXT] = '#9dc0cf';
+
+  return clrMap[type];
+}
+
+function typeToColorIcon(type, params){
+  var size = params.size == null ? "small" : params.size;
+
+  return '<span class="circular-badge '+ size +' text-white" style="background: '+ typeToBgColor(type, params) +';">' +
+            '<span class="'+typeIconMap(type)+' text-xnormal"></span>' +
+         '</span>';
+}

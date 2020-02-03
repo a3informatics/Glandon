@@ -300,4 +300,12 @@ module ApplicationHelper
     end
   end
 
+  def thesaurus_accent_text_color (owner_name)
+    if owner_name.upcase.include? "CDISC"
+      return "text-accent-1"
+    else
+      return "text-link"
+    end
+  end
+
 end

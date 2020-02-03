@@ -8,6 +8,7 @@
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 <% @close_path = thesauri_index_path %>
+
 <div class="row">
 	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
     <div class="actions-wrap">
@@ -15,6 +16,10 @@
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
+	<% if(@thesaurus.get_referenced_thesaurus != nil) %>
+		<%= render partial: "shared/cdisc_terms/cdisc_ver_select_modal" %>
+	<% end %>
+
 </div>
 <div class="row centered">
 	<div class="col-md-10 card table-cardstyle">

@@ -1,0 +1,204 @@
+/*
+* Impact Analysis Graph
+*
+*/
+
+/**
+ * Impact Analysis Graph Constructor
+ * Gets data, builds and renders impact graph, handles events
+ *
+ * @param dataUrl [String] url to fetch the data
+ * @return [void]
+ */
+function ImpactGraph(dataUrl) {
+  this.cache = {};
+  this.graphBaseUrl = graphBaseUrl;
+  this.tabName = "tab-graph";
+  this.data = null;
+
+  this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
+  this.graph = new D3GraphV2();
+}
+
+/**
+ * Loads data from server or cache, if present
+ *
+ * @return [void]
+ */
+ImpactGraph.prototype.loadData = function(item) {
+  if (this.isCached(item.id)) {
+    this.loading(true);
+    this.data = this.cache[item.id];
+    this.renderData(this.data);
+    this.loading(false);
+  }
+  else {
+    item.rdf_type = C_TH_CL;
+    this.data = [item];
+    this.fetch(item.id, item);
+  }
+}
+
+/**
+ * Fetches data from server, recursively, filters and merges with other data, renders on page
+ *
+ * @param roodId [String] ID of the root note the impact is performed on (used for caching)
+ * @param currentItem [Object] Item that is being currently evaluated
+ * @return [void]
+ */
+ImpactGraph.prototype.fetch = function(rootId, currentItem) {
+  this.loading(true);
+  var dataUrl = this.makeDataUrl(currentItem.id);
+
+  $.ajax({
+    url: dataUrl,
+    type: 'GET',
+    dataType: 'json',
+    context: this,
+    success: function(result) {
+      if (result.data.length != 0) {
+        // Filter data
+        var filteredData = this.filterData(result.data, currentItem);
+        // Merge filtered with instance data
+        this.data = this.data.concat(filteredData);
+
+        // Recursive call on new items
+        $.each(filteredData, function(i, item){
+          this.fetch(rootId, item);
+        }.bind(this));
+
+        // Finish and render
+        if(filteredData.length == 0){
+          this.saveToCache(rootId, this.data);
+          this.renderData(this.data);
+          this.loading(false);
+        }
+      }
+      else {
+        // Finish and render
+        this.saveToCache(rootId, this.data);
+        this.renderData(this.data);
+        this.loading(false);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
+ * Filters data, if new data object, adds to data array, if already present,
+ * only adds a link to the current item
+ *
+ * @param newData [Object Array] array of data objects from server impacted by currentItem
+ * @param currentItem [Object] item currently being evaluated
+ * @return [Object Array] filtered array of newData, and impactLinks added to data
+ */
+ImpactGraph.prototype.filterData = function(newData, currentItem) {
+  var filtered = [];
+  $.each(newData, function(idx, item){
+    var idxInInstanceData = this.data.map(function(e) { return e.id; }).indexOf(item.id);
+
+    // Item not seen before
+    if (idxInInstanceData == -1) {
+      item.impactLinks = [currentItem.id];
+      filtered.push(item);
+    }
+    // Item seen before, add link to current
+    else {
+      if(this.data[idxInInstanceData].impactLinks != null)
+        this.data[idxInInstanceData].impactLinks.push(currentItem.id);
+      else
+        this.data[idxInInstanceData].impactLinks = [currentItem.id];
+    }
+  }.bind(this));
+
+  return filtered;
+}
+
+/**
+ * Builds graph data, draws in graph and itemsAffectedPanel
+ *
+ * @param data [Object Array] This instance's data to be rendered
+ * @return [void]
+ */
+ImpactGraph.prototype.renderData = function(data) {
+  // Render in itemsAffectedPanel (without the root node)
+  this.itemsAffectedPanel.addItems(data.slice(1));
+
+  // Build graph data - nodes, links and draw
+  setTimeout(function(){
+    var nodes = JSON.parse(JSON.stringify(data));
+    var links = [];
+
+    // Build links
+    $.each(nodes, function(i, n){
+      if(n.impactLinks != null && n.impactLinks.length != 0){
+        $.each(n.impactLinks, function(i, l){
+          // Find source and target indexes for links
+          var indexSource = nodes.map(function(e) { return e.id; }).indexOf(n.id);
+          var indexTarget = nodes.map(function(e) { return e.id; }).indexOf(l);
+
+          // Avoid duplicates
+          var linksContainLink = false;
+          $.each(links, function(i, link){
+            if((link.source == indexSource && link.target == indexTarget) || (link.source == indexTarget && link.target == indexSource) )
+              linksContainLink = true;
+          });
+
+          if (!linksContainLink)
+            links.push({source: indexSource, target: indexTarget});
+        });
+      }
+    });
+
+    this.graph.draw({links: links, nodes: nodes});
+  }.bind(this), 100);
+}
+
+/**
+ * Saves data to cache
+ *
+ * @param id [String] id of the data root (key value in the cache)
+ * @param data [Array] array of node objects
+ * @return [void]
+ */
+ImpactGraph.prototype.saveToCache = function(id, data) {
+  // if(this.cache[id] == null)
+    this.cache[id] = data;
+}
+
+/**
+ * Checks if data is cached
+ *
+ * @param id [String] id of the data root (key value in the cache)
+ * @return [Boolean] data presence in cache
+ */
+ImpactGraph.prototype.isCached = function(id) {
+  return this.cache[id] != null;
+}
+
+/**
+ * Generates URL for impact data
+ *
+ * @param id [String] id of the current item
+ * @return [String] formatted URL
+ */
+ImpactGraph.prototype.makeDataUrl = function(id) {
+  return this.graphBaseUrl.replace("clId", id);
+}
+
+/**
+ * Enable / disable loading
+ *
+ * @param enable [Boolean] true/false ~ show / hide loading
+ * @return [void]
+ */
+ImpactGraph.prototype.loading = function(enable) {
+  if (typeof tabLoading != "undefined"){
+      this.itemsAffectedPanel.loading(enable);
+      tabLoading(this.tabName, enable);
+  }
+}

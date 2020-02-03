@@ -1,0 +1,21 @@
+$(document).ready(function(){
+
+  var ccp = new ChangesCdiscPanel(cdiscChangesUrl);
+  var dp = new DifferencesPanel(null);
+  var cp = new ChangesPanel(null, 2);
+  var ig = new ImpactGraph();
+
+  var selectCallback = function(dataRow){
+    $("#impact-item-identifier").text(" of " + dataRow.identifier);
+    $("#tab-affected").click();
+    dp.reload(dataRow.differences_url);
+    cp.reload(dataRow.changes_url);
+    ig.loadData(dataRow);
+  }
+
+  $("#sidebar-arrow").on("click", function(){
+    setTimeout(ig.graph.onRescale.bind(ig.graph), 500);
+  });
+
+  ccp.sCallback = selectCallback;
+});

@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
   # Get Token. Get the token for a Managed Item.
   #
   # @param [Object] mi the managed item object
-  # @return [Token] the token or nil if not found. Flash error set to standard error in not found. 
+  # @return [Token] the token or nil if not found. Flash error set to standard error in not found.
   def get_token(mi)
     token = Token.obtain(mi, current_user)
     return token if !token.nil?
@@ -138,4 +138,6 @@ class ApplicationController < ActionController::Base
     return Date.parse(d.to_s).strftime('%Q').to_f
   end
 
+  helper_method :normalize_versions
+  
 end

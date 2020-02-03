@@ -329,6 +329,17 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: actual_versions, items: final_results}
   end
 
+  # Changes_summary_impact. Based on changes_summary. Deletes items that have not changed
+  #
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
+  # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_summary_impact(last, actual_versions)
+    csi = changes_summary(last, actual_versions)
+    csi[:items].delete_if {|k,v| v[:status][-1] == {status: :no_change} }
+    csi
+  end
+
   # Differences_summary
   #
   # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
@@ -652,6 +663,56 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :ba])
     query_results.by_object_set([:s, :e, :d, :r, :txt, :i, :n, :l]).each do |x|
       results << { cl_identifier: x[:i], cl_notation: x[:n], cl_label: x[:l], user_reference: x[:e], timestamp: x[:d].to_time_with_default.iso8601, reference: x[:r], description: x[:txt] }
+    end
+    results
+  end
+
+  # Impact. It finds the impact of a specific changed CDISC Code List on a specific sponsor Thesaurus 
+  def impact(sponsor)
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension
+      WHERE      
+      {   
+        BIND (#{self.uri.to_ref} as ?source)
+          {
+            BIND (#{sponsor.uri.to_ref} as ?s) .
+            ?s th:isTopConceptReference/bo:reference ?source  .
+            ?s rdf:type ?t .
+            BIND (" " as ?n) .
+          } 
+          UNION
+          {
+            ?source th:narrower/^th:narrower ?s  .
+            FILTER (STR(?source) != STR(?s)) .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+          UNION
+          {
+            ?source ^th:subsets ?s  .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+        ?s isoC:label ?l .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
+        BIND (EXISTS {?s th:extends ?y} as ?extension ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo, :isoC])
+    query_results.by_object_set([:s, :t, :l, :i, :n, :o, :subset, :extension]).each do |x|
+      if x[:subset].to_bool
+         type = x[:t].to_s + "#Subset"
+      elsif x[:extension].to_bool
+        type = x[:t].to_s + "#Extension"
+      else 
+        type = x[:t].to_s
+      end
+      results << {uri: x[:s].to_s, id: x[:s].to_id, real_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], rdf_type: type}
     end
     results
   end
