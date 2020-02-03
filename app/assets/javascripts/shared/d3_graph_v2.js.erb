@@ -110,6 +110,8 @@ D3GraphV2.prototype.onTick = function() {
  * @return [void]
  */
 D3GraphV2.prototype.onRescale = function() {
+  if(this.svg == null)
+    return;
   this.width = this.d3Div.clientWidth;
   this.svg.attr("width", this.width).attr("height", this.height);
   this.force.size([this.width, this.height]).resume();
