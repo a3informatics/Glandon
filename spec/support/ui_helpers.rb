@@ -533,7 +533,8 @@ module UiHelpers
 			change_notes: "Change notes",
 			edit_tags: "Edit tags",
       list_change_notes: "List Change notes",
-      edit_properties: "Edit properties"
+      edit_properties: "Edit properties",
+      impact_analysis: "Impact Analysis"
     }
 	end
 

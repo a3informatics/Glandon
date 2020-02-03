@@ -44,6 +44,7 @@ CdiscVersionSelect.prototype.init = function () {
 
     this.callback(selectedDate, selectedId);
   }.bind(this));
+  $('.timeline-container').data(this.ts)
 }
 
 /**
