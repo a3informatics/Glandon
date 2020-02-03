@@ -67,6 +67,19 @@ describe "Impact Analysis", :type => :feature do
       expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
       expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
       expect(page).to have_content 'CDISC CT update from: 2018-03-30 Release - to: 2019-12-20 Release.'
+      find(:xpath, "//*[@id='changes-cdisc-table']/tbody/tr/td[2]/div[1]").click
+      wait_for_ajax 20
+      expect(page).to have_content 'Items affected by the CDISC Code List change'
+      expect(page).to have_content '(SPONSORTHTEST2)'
+      expect(page).to have_content 'ACN_01 (NP000123P)'
+      expect(page).to have_content 'ACN_03 (NP000124C)'
+      expect(page).to have_content 'ACN (C66767)'
+      find(:xpath, "//*[@id='tab-changes']/div").click
+      expect(page).to have_content 'Differences summary'
+      expect(page).to have_content 'Changes summary'
+      ui_check_table_info("changes",1,2,2)
+      find(:xpath, "//*[@id='tab-graph']/div").click
+      expect(page).to have_content "The graph's scope is limited to items included in this Terminology."
     end
 
   end

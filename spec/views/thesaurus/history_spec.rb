@@ -30,6 +30,8 @@ describe 'thesauri/history.html.erb', :type => :view do
     assign(:identifier, ct.has_identifier.identifier)
     assign(:scope_id, ct.scope.id)
 
+    ApplicationController.any_instance.stub(:normalize_versions){[50]}
+
     render
 
   	#puts response.body
