@@ -6,11 +6,20 @@ $(document).ready(function(){
   var ig = new ImpactGraph();
 
   var selectCallback = function(dataRow){
+    toggleTableActive(ccp.id, false);
     $("#impact-item-identifier").text(" of " + dataRow.identifier);
     $("#tab-affected").click();
     dp.reload(dataRow.differences_url);
     cp.reload(dataRow.changes_url);
     ig.loadData(dataRow);
+    enableChangesPanel();
+  }
+
+  var enableChangesPanel = function(){
+    if(!dp.processing && !cp.processing && !ig.processing)
+      toggleTableActive(ccp.id, true);
+    else
+      setTimeout(enableChangesPanel, 500);
   }
 
   $("#sidebar-arrow").on("click", function(){

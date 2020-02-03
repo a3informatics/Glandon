@@ -41,7 +41,15 @@ D3GraphV2.prototype.draw = function(graph) {
   // Make main SVG
   this.svg = d3.select(this.d3Div).append("svg")
     .attr("width", this.width)
-    .attr("height", this.height);
+    .attr("height", this.height)
+    .call(d3.behavior.zoom()
+            .translate([0, 0])
+            .scale(1)
+            .scaleExtent([0.3, 2])
+            .on("zoom", function () {
+              this.svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
+              }.bind(this)))
+    .append("g");
 
   // Make graph links
   this.links = this.svg.selectAll("line")
@@ -55,7 +63,7 @@ D3GraphV2.prototype.draw = function(graph) {
     .enter()
     .append('g')
     .classed('node', true)
-    .on('mouseover', this.onMouseOver)
+    .on('mouseover', function(d){_this.onMouseOver.bind(_this)(d);})
     .on('mouseout', this.onMouseOut);
 
   // Node background + icons
@@ -92,8 +100,7 @@ D3GraphV2.prototype.onTick = function() {
 
   // Calculate nodes positions
   this.nodes.attr("transform", function(d) {
-    return 'translate(' + [ Math.max(_this.radius, Math.min(_this.width - _this.radius, d.x)),
-                            Math.max(_this.radius, Math.min(_this.height - _this.radius, d.y))] + ')';
+    return 'translate(' + d.x + ", " + d.y + ')';
   });
 
   // Calculate links positions
@@ -135,9 +142,10 @@ D3GraphV2.prototype.onMouseOver = function(d) {
   var tooltipHTML = "<div class='font-regular text-small'>" + typeToString[d.rdf_type] + "</div>" +
                     "<div class='font-light text-small'>" + d.label + " ("+d.identifier+")</div>";
 
+  var t = d3.transform(this.svg.attr("transform"));
+
   d3.select("#d3_tooltip")
-    .style("left", (d.x + 25) + "px")
-    .style("top", (d.y - 15) + "px")
+    .style("transform", "translate(" + (t.translate[0] + (d.x*t.scale[0]) + 70 ) + "px, " + (t.translate[1] + (d.y*t.scale[1]) - 70) + "px)")
     .html(tooltipHTML);
 
   d3.select("#d3_tooltip").classed("hidden", false);
@@ -159,7 +167,11 @@ D3GraphV2.prototype.clear = function() {
  * @return [Integer] node radius calculated depending on the amount of links to the node
  */
 D3GraphV2.prototype.nodeRadius = function (node) {
-  return (node.impactLinks == null ? 4 : node.impactLinks.length * 4 ) + this.radius;
+  if (node.impactLinks == null)
+    return this.radius + 4;
+  else{
+    return (node.impactLinks.length > 4 ? 4 : node.impactLinks.length) * 4 + this.radius;
+  }
 }
 
 /**

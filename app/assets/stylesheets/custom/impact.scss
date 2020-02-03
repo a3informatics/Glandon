@@ -5,6 +5,10 @@
   overflow: auto;
 }
 
+.tab-wrap[data-tab="tab-graph"]{
+  overflow: hidden;
+}
+
 .tab-wrap .row{
   margin: 0;
 }

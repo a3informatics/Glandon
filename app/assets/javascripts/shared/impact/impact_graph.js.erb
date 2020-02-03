@@ -15,6 +15,7 @@ function ImpactGraph(dataUrl) {
   this.graphBaseUrl = graphBaseUrl;
   this.tabName = "tab-graph";
   this.data = null;
+  this.processing = false;
 
   this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
   this.graph = new D3GraphV2();
@@ -26,6 +27,9 @@ function ImpactGraph(dataUrl) {
  * @return [void]
  */
 ImpactGraph.prototype.loadData = function(item) {
+  if(this.processing)
+    return;
+    
   if (this.isCached(item.id)) {
     this.loading(true);
     this.data = this.cache[item.id];
@@ -200,5 +204,6 @@ ImpactGraph.prototype.loading = function(enable) {
   if (typeof tabLoading != "undefined"){
       this.itemsAffectedPanel.loading(enable);
       tabLoading(this.tabName, enable);
+      this.processing = enable;
   }
 }
