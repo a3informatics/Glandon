@@ -2,10 +2,19 @@ $(document).ready(function() {
 
 	var resultsLoaded = false;
 	var reportId = document.getElementById("report_id").value;
-  var resultsTable;
 
-	$(".actions-wrap").prepend(generateSpinnerWTextSide("tiny", "Report is running")); // Add loading
-  // spAddSpinner("#running");
+  var resultsTable = $('#results').DataTable( {
+		"processing": true,
+		"pageLength": pageLength,
+		"lengthMenu": pageSettings,
+		"language": {
+			"infoFiltered": "",
+			"emptyTable": "No data.",
+			"processing": generateSpinner("small")
+		},
+	});
+
+	processing(true);
   getStatus();
 
   function statusTimeout() {
@@ -15,17 +24,9 @@ $(document).ready(function() {
  	}
 
   function getResults() {
-  	if (resultsLoaded) {
-  		resultsTable.ajax.reload();
-  	} else {
-	  	resultsTable = $('#results').DataTable( {
-	      "ajax": {
-	        "url": "/ad_hoc_reports/" + reportId + "/run_results",
-	        "dataSrc": "data"
-	      },
-    		"pageLength": pageLength,
-    		"lengthMenu": pageSettings
-	    });
+		if (!resultsLoaded) {
+			resultsTable.ajax.url("/ad_hoc_reports/" + reportId + "/run_results").load();
+			processing(true, "Loading results");
 	    resultsLoaded = true;
     }
   }
@@ -40,17 +41,20 @@ $(document).ready(function() {
 	    },
 	    success: function(result){
 	      if (!result.running) {
+					processing(false);
 	      	getResults();
-					removeSpinnerInElement(".actions-wrap"); // Remove loading
 	      } else {
 	      	statusTimeout();
-	      	// Just load the table once to set up page nicely.
-	      	if (!resultsLoaded) {
-	      		getResults();
-	      	}
+					processing(true, "Database query running");
 	      }
 	    }
 	  });
+	}
+
+	function processing(enable, text){
+		if (text != null)
+			$("#results_processing").html(generateSpinnerWText("small", text));
+		resultsTable.processing(enable);
 	}
 
 });
