@@ -683,7 +683,8 @@ describe "extensions" do
       check_file_actual_expected(results, sub_dir, "changes_expected_7.yaml", equate_method: :hash_equal)
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_7.yaml", equate_method: :hash_equal)
-
+    end
+    
     it "changes_summary_impact I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V61#C74456"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V62#C74456"))
