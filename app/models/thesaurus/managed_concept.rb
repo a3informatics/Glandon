@@ -159,7 +159,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes(window_size)
-  byebug
     raw_results = {}
     final_results = {}
     versions = []
