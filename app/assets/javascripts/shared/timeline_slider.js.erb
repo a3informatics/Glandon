@@ -211,3 +211,30 @@ TimelineSlider.prototype.moveToDate = function(slider, date){
     slider.css("transition", "initial");
   }, 320)
 }
+
+
+<% if Rails.env.test? %>
+
+  // Moves the specified slider to a date string and updates the UI, for test only
+
+  TimelineSlider.prototype.moveToDate = function(slider, date) {
+    var _this = this;
+    var target_point, target_point_i;
+
+    _this.tl_points.each(function(i, e){
+      if($(this).children().first().html() == date){
+        target_point = $(this);
+        target_point_i = i;
+        return;
+      }
+    });
+
+    _this.moveSliderTo(slider, target_point);
+
+    _this.updateContainmentCoords(_this.l_slider);
+    _this.updateContainmentCoords(_this.r_slider);
+
+    _this.updateTimeline(slider);
+  }
+
+<% end %>
