@@ -12,6 +12,10 @@ describe 'imports/index.html.erb', :type => :view do
 
   class Owner
 
+    def ra_namespace
+      return self
+    end
+
     def short_name
       return "OWNER"
     end
@@ -77,7 +81,7 @@ describe 'imports/index.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(2)", text: 'OWNER')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(3)", text: 'BBB')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(4)", text: 'BBB.txt')
-    expect(rendered).to have_link "Delete All"
+    expect(rendered).to have_button "Delete all"
   end
 
 end
