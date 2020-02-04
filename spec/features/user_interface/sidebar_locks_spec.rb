@@ -29,11 +29,8 @@ describe "Sidebar Locks", :type => :feature do
 
     it "prevents access to specific menu items", js:true do
       ui_check_item_locked("main_nav_im")
-      ui_check_item_locked("main_nav_u")
-      ui_check_item_locked("main_nav_i")
       ui_check_item_locked("main_nav_e")
       ui_check_item_locked("main_nav_bj")
-      ui_check_item_locked("main_nav_ahr")
       ui_check_item_locked("main_nav_aig")
       ui_check_item_locked("main_nav_sd")
       ui_check_item_locked("main_nav_sig")
