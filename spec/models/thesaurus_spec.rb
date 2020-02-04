@@ -637,7 +637,7 @@ describe Thesaurus do
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779"))
       expect(result.narrower.count).to eq(source.narrower.count)
-      expect(result.extends.uri.to_s).to eq(source.uri.to_s)
+      expect(result.extends).to eq(source.uri.to_s)
       check_file_actual_expected(result.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       check_file_actual_expected(source.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       item = Thesaurus.find_full(uri1)
