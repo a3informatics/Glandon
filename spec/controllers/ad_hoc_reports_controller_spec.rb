@@ -7,9 +7,9 @@ describe AdHocReportsController do
   include PublicFileHelpers
 
   describe "ad hoc reports as content admin" do
-  
+
     login_content_admin
-  
+
     def sub_dir
       return "controllers"
     end
@@ -23,10 +23,10 @@ describe AdHocReportsController do
       @ahr2 = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
       @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
-    
+
     it "lists all the reports" do
       get :index
-      expect(assigns(:items).count).to eq(3) 
+      expect(assigns(:items).count).to eq(3)
       expect(response).to render_template("index")
     end
 
@@ -107,8 +107,8 @@ describe AdHocReportsController do
       found_report = assigns(:report)
       columns = assigns(:columns)
       expect(found_report.id).to eq(report.id)
-      expect(columns).to eq({"?a"=>{:label=>"URI", :type=>"uri"}, "?b" => {:label=>"Identifier", :type=>"literal"}, "?c" => {:label=>"Label", :type=>"literal"}})
-      expect(response).to render_template("results")   
+      expect(columns).to eq({:"?a"=>{:label=>"URI", :type=>"uri"}, :"?b" => {:label=>"Identifier", :type=>"literal"}, :"?c" => {:label=>"Label", :type=>"literal"}})
+      expect(response).to render_template("results")
     end
 
     it "allows a report to be deleted" do
@@ -122,11 +122,11 @@ describe AdHocReportsController do
     end
 
   end
-  
+
   describe "ad hoc reports as curator" do
-  	
+
     login_curator
-   
+
     before :all do
       clear_triple_store
       delete_all_public_files
@@ -135,10 +135,10 @@ describe AdHocReportsController do
       @ahr2 = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
       @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
-    
+
     it "lists all the reports" do
       get :index
-      expect(assigns(:items).count).to eq(3) 
+      expect(assigns(:items).count).to eq(3)
       expect(response).to render_template("index")
     end
 
@@ -203,8 +203,8 @@ describe AdHocReportsController do
       found_report = assigns(:report)
       columns = assigns(:columns)
       expect(found_report.id).to eq(report.id)
-      expect(columns).to eq({"?a"=>{:label=>"URI", :type=>"uri"}, "?b" => {:label=>"Identifier", :type=>"literal"}, "?c" => {:label=>"Label", :type=>"literal"}})
-      expect(response).to render_template("results")    
+      expect(columns).to eq({:"?a"=>{:label=>"URI", :type=>"uri"}, :"?b" => {:label=>"Identifier", :type=>"literal"}, :"?c" => {:label=>"Label", :type=>"literal"}})
+      expect(response).to render_template("results")
     end
 
      it "prevents a report to be deleted" do
@@ -215,9 +215,9 @@ describe AdHocReportsController do
   end
 
   describe "Reader Role" do
-    
+
     login_reader
-   
+
     before :all do
       clear_triple_store
       delete_all_public_files
@@ -226,7 +226,7 @@ describe AdHocReportsController do
       ahr = AdHocReport.create(label: "Report No. 2", sparql_file: "report_2_sparql.txt", results_file: "report_2_results.yaml", last_run: Time.now, active: false, background_id: 0)
       ahr = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
-    
+
     it "prevents a reader listing all the reports" do
       get :index
       expect(response).to redirect_to("/")
@@ -260,7 +260,7 @@ describe AdHocReportsController do
   end
 
   describe "Unauthorized User" do
-    
+
     it "prevents unauthorized access to listing all the reports" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
