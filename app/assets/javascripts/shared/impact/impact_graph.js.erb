@@ -16,6 +16,7 @@ function ImpactGraph(dataUrl) {
   this.tabName = "tab-graph";
   this.data = null;
   this.processing = false;
+  this.activeAjaxes = 0;
 
   this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
   this.graph = new D3GraphV2();
@@ -29,7 +30,7 @@ function ImpactGraph(dataUrl) {
 ImpactGraph.prototype.loadData = function(item) {
   if(this.processing)
     return;
-    
+
   if (this.isCached(item.id)) {
     this.loading(true);
     this.data = this.cache[item.id];
@@ -52,6 +53,7 @@ ImpactGraph.prototype.loadData = function(item) {
  */
 ImpactGraph.prototype.fetch = function(rootId, currentItem) {
   this.loading(true);
+  this.activeAjaxes++;
   var dataUrl = this.makeDataUrl(currentItem.id);
 
   $.ajax({
@@ -71,21 +73,22 @@ ImpactGraph.prototype.fetch = function(rootId, currentItem) {
           this.fetch(rootId, item);
         }.bind(this));
 
+        this.activeAjaxes--;
         // Finish and render
         if(filteredData.length == 0){
           this.saveToCache(rootId, this.data);
           this.renderData(this.data);
-          this.loading(false);
         }
       }
       else {
         // Finish and render
+        this.activeAjaxes--;
         this.saveToCache(rootId, this.data);
         this.renderData(this.data);
-        this.loading(false);
       }
     },
     error: function(xhr,status,error){
+      this.activeAjaxes--;
       handleAjaxError(xhr, status, error);
       this.loading(false);
     }
@@ -129,6 +132,9 @@ ImpactGraph.prototype.filterData = function(newData, currentItem) {
  * @return [void]
  */
 ImpactGraph.prototype.renderData = function(data) {
+  if(this.activeAjaxes > 0)
+    return;
+
   // Render in itemsAffectedPanel (without the root node)
   this.itemsAffectedPanel.addItems(data.slice(1));
 
@@ -159,6 +165,7 @@ ImpactGraph.prototype.renderData = function(data) {
     });
 
     this.graph.draw({links: links, nodes: nodes});
+    this.loading(false);
   }.bind(this), 100);
 }
 

@@ -40,8 +40,8 @@ D3GraphV2.prototype.draw = function(graph) {
 
   // Make main SVG
   this.svg = d3.select(this.d3Div).append("svg")
-    .attr("width", this.width)
-    .attr("height", this.height)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 " + this.width + " " + this.height)
     .call(d3.behavior.zoom()
             .translate([0, 0])
             .scale(1)
@@ -120,7 +120,7 @@ D3GraphV2.prototype.onRescale = function() {
   if(this.svg == null)
     return;
   this.width = this.d3Div.clientWidth;
-  this.svg.attr("width", this.width).attr("height", this.height);
+  this.svg.attr("viewBox", "0 0 " + this.width + " " + this.height)
   this.force.size([this.width, this.height]).resume();
 }
 
@@ -145,7 +145,7 @@ D3GraphV2.prototype.onMouseOver = function(d) {
   var t = d3.transform(this.svg.attr("transform"));
 
   d3.select("#d3_tooltip")
-    .style("transform", "translate(" + (t.translate[0] + (d.x*t.scale[0]) + 70 ) + "px, " + (t.translate[1] + (d.y*t.scale[1]) - 70) + "px)")
+    .style("transform", "translate(" + (t.translate[0] + (d.x*t.scale[0]) + 50 ) + "px, " + (t.translate[1] + (d.y*t.scale[1]) - 80) + "px)")
     .html(tooltipHTML);
 
   d3.select("#d3_tooltip").classed("hidden", false);
