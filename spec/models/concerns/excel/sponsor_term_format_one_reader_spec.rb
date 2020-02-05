@@ -22,7 +22,7 @@ describe "Sponsor Term Format One Reader" do
   it "process engine, version 2 no errors" do
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_2)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_2)
     expect(object.errors.count).to eq(0)
     result = object.engine.parent_set.map{|k,v| v.to_h}
     check_file_actual_expected(result, sub_dir, "check_and_process_sheet_expected_1.yaml", equate_method: :hash_equal)
@@ -31,7 +31,7 @@ describe "Sponsor Term Format One Reader" do
   it "process engine, version 3 no errors" do
     full_path = test_file_path(sub_dir, "read_input_5.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_3)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_3)
     result = object.engine.parent_set
     expect(object.errors.count).to eq(0)
     result = object.engine.parent_set.map{|k,v| v.to_h}
@@ -41,25 +41,25 @@ describe "Sponsor Term Format One Reader" do
   it "process engine, various errors, version 2" do
     full_path = test_file_path(sub_dir, "read_input_2.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_2)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_2)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(30)
+    expect(object.errors.count).to eq(32)
     check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_1.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, various errors, version 3" do
     full_path = test_file_path(sub_dir, "read_input_4.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_3)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_3)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(38)
+    expect(object.errors.count).to eq(40)
     check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_2.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, format check for version 2" do
     full_path = test_file_path(sub_dir, "read_input_2.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_3)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_3)
     result = object.engine.parent_set
     expect(object.errors.count).to eq(1)
     expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 20, found 18.")
@@ -68,7 +68,7 @@ describe "Sponsor Term Format One Reader" do
   it "process engine, format check for version 3" do
     full_path = test_file_path(sub_dir, "read_input_3.xlsx")
     object = Excel.new(full_path) 
-    object.check_and_process_sheet(:sponsor_term_format_one, :version_2)
+    object.execute(import_type: :sponsor_term_format_one, format: :version_2)
     result = object.engine.parent_set
     expect(object.errors.count).to eq(1)
     expect(object.errors.full_messages.to_sentence).to eq("Harmonized_Terminology_Listing sheet in the excel file, incorrect column count. Expected 18, found 20.")

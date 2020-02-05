@@ -66,7 +66,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S003908
     :notation: ANTI-DRUG ANTIBODIES
     :definition: Category used to retrieve information regarding antibodies that binds
       to an administered drug.
@@ -102,7 +102,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S003909
     :notation: CROSS-REACTIVITY
     :definition: Measurement of Cross-Reactivity of Anti-Drug Antibodies interacting
       with other drug or biological target.
@@ -138,7 +138,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006884
     :notation: NEUTRALIZING ANTI-DRUG ANTIBODIES
     :definition: Category used to retrieve information regarding antibodies that binds
       to an administered drug and inhibits the biological activity of that drug.
@@ -153,7 +153,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Subcategory of Antibodies
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -210,7 +215,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000016
     :notation: ANGAA Activity Inhibition Endpoint Titer
     :definition: The measurement of Anti-neoGAA activity Inhibition Titer Endpoint
       in a biological specimen.
@@ -240,7 +245,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000119
     :notation: AVE0010 Anti-Drug Antibodies
     :definition: A measurement of the AVE0010 /Lixisenatide Anti-Drug Antibody in
       a biological specimen.
@@ -264,7 +269,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007074
     :notation: AVE0010 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the AVE0010 /Lixisenatide Anti-Drug
       Antibodies in a biological specimen.
@@ -294,7 +299,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000121
     :notation: AVE0010 Cross-Reactivity
     :definition: A measurement of the AVE0010/Lixisenatide Cross-Reactivity in a biological
       specimen.
@@ -324,7 +329,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005230
     :notation: AVE0010 Cross-Reactivity to GLP-1
     :definition: The measurement of Cross-reactivity of Lixisenatide antibodies to
       GLP-1 in a biological specimen.
@@ -354,7 +359,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005231
     :notation: AVE0010 Cross-Reactivity to Glucagon
     :definition: The measurement of Cross-reactivity of Lixisenatide antibodies to
       GLucagon in a biological specimen.
@@ -384,7 +389,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004101
     :notation: AVE0010 Neutraliz Anti-Drug Antibodies
     :definition: The measurement of AVE0010/Lixisenatide neutralizing antibody in
       a biological specimen.
@@ -414,7 +419,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000027
     :notation: Anti-AGlcsidase Inhibition IgE AB Status
     :definition: The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody
       Status in a biological specimen.
@@ -444,7 +449,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000024
     :notation: Anti-AGlcsidase Uptake Inhibition Titer
     :definition: The measurement of Anti-alglucosidase alfa Uptake Inhibition Titer
       in a biological specimen.
@@ -474,7 +479,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000021
     :notation: Anti-AGlucosidase Activity Inhibition
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Status in a
       biological specimen.
@@ -504,7 +509,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000019
     :notation: Anti-AGlucosidase IgG Antibody Status
     :definition: The measurement of Anti-alglucosidase alfa IgG Antibody Status in
       a biological specimen.
@@ -534,7 +539,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000020
     :notation: Anti-AGlucosidase IgG Antibody Titer
     :definition: The measurement of Anti-alglucosidase alfa IgG Antibody Titer in
       a biological specimen.
@@ -564,7 +569,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000028
     :notation: Anti-AGlucosidase Inhibition IgE AB
     :definition: The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody
       in a biological specimen.
@@ -594,7 +599,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000022
     :notation: Anti-Alpha Glucosidase Inhibition Titer
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Titer in a
       biological specimen.
@@ -624,7 +629,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000023
     :notation: Anti-Alpha Glucosidase Inhibition Uptake
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Uptake in a
       biological specimen.
@@ -654,7 +659,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000015
     :notation: Anti-NeoGAA Activity Inhibition
     :definition: The measurement of Anti-neoGAA activity Inhibition Status in a biological
       specimen.
@@ -684,7 +689,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000017
     :notation: Anti-NeoGAA Activity Uptake Inhibition
     :definition: The measurement of Anti-neoGAA activity Uptake Inhibition Status
       in a biological specimen.
@@ -714,7 +719,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000013
     :notation: Anti-NeoGAA Antibody
     :definition: The measurement of anti-neoGAA antibody status in a biological specimen.
     :extensible: false
@@ -743,7 +748,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000014
     :notation: Anti-NeoGAA Antibody Titer
     :definition: The measurement of Anti-neoGAA antibody titer in a biological specimen.
     :extensible: false
@@ -772,7 +777,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000026
     :notation: Anti-NeoGAA IgE Antibody
     :definition: The measurement of Anti-neoGAA IgE Antibody in a biological specimen.
     :extensible: false
@@ -801,7 +806,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000025
     :notation: Anti-NeoGAA IgE Antibody Status
     :definition: The measurement of Anti-neoGAA IgE Antibody Status in a biological
       specimen.
@@ -831,7 +836,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000018
     :notation: Anti-NeoGAA Uptake Inhibition Titer
     :definition: The measurement of Anti-neoGAA activity Uptake Inhibition Titer in
       a biological specimen.
@@ -861,7 +866,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006895
     :notation: GLP-1 Neutraliz Anti-Drug Antibodies
     :definition: The measurement of GLP-1 neutralizing anti-drug antibodies in a biological
       specimen.
@@ -891,7 +896,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005234
     :notation: Glucagon Cross Reactivity
     :definition: A measurement of the Glucagon Cross-Reactivity in a biological specimen.
     :extensible: false
@@ -920,7 +925,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006893
     :notation: Glucagon Neutraliz Anti-Drug Antibodies
     :definition: The measurement of Glucagon neutralizing antibodies in a biological
       specimen.
@@ -950,7 +955,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007075
     :notation: HOE901 Anti-Drug Antibodies
     :definition: A measurement of the HOE901/insulin glargine anti-drug antibodies
       in a biological specimen.
@@ -974,7 +979,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S006896
     :notation: HOE901 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the HOE901/insulin glargine anti-drug
       antibody in a biological specimen.
@@ -1004,7 +1009,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007083
     :notation: HOE901 Cross-Reactivity
     :definition: The measurement of the cross-reactivity of HOE901/insulin glargine
       in a biological specimen.
@@ -1034,7 +1039,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007199
     :notation: SAR156597 Anti-Drug Antibodies
     :definition: A measurement of the SAR156597 anti-drug antibody in a biological
       specimen.
@@ -1058,7 +1063,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007196
     :notation: SAR156597 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR156597 anti-drug antibody in
       a biological specimen.
@@ -1088,7 +1093,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007197
     :notation: SAR156597 Neutraliz Anti-Drug Antibodies
     :definition: A measurement of the SAR156597 neutralizing Anti-Drug Antibody in
       a biological specimen.
@@ -1112,7 +1117,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007081
     :notation: SAR231893 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR231893 Anti-Drug Antibody in
       a biological specimen.
@@ -1142,7 +1147,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004335
     :notation: SAR231893 Presence of Nabs
     :definition: A measurement of the SAR231893 neutralizing Anti-Drug Antibodies
       in a biological specimen.
@@ -1172,7 +1177,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004098
     :notation: SAR236553 Anti-Drug Antibodies
     :definition: A measurement of the SAR236553 Anti-Drug Antibody in a biological
       specimen.
@@ -1202,7 +1207,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007085
     :notation: SAR236553 Neutraliz Anti-Drug Antibodies
     :definition: A measurement of the SAR236553 neutralizing Anti-Drug Antibody in
       a biological specimen.
@@ -1226,7 +1231,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007084
     :notation: SAR341402 Anti-Drug Antibodies (Qual)
     :definition: The qualitative measurement of Aspart antibody in a biological specimen.
     :extensible: false
@@ -1255,7 +1260,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005228
     :notation: SAR341402 Antibodies Titer
     :definition: The measurement of Aspart antibodies as a titer in a biological specimen.
     :extensible: false
@@ -1284,7 +1289,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005229
     :notation: SAR341402 Cross-Reactivity
     :definition: The cross reactivity measurement of Aspart antibodies to human insulin
       in a biological specimen.
@@ -1308,7 +1313,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S010167
     :notation: SAR425899 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR425899 Anti-Drug Antibody in
       a biological specimen.
@@ -1338,7 +1343,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004223
     :notation: SAR425899 Anti-Drug Antibodies Titer
     :definition: A titration of the SAR425899 Anti-Drug Antibodies Titer in a biological
       specimen.
@@ -1368,7 +1373,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004224
     :notation: SAR425899 Cross-Reactivity
     :definition: A measurement of the SAR425899 Cross-Reactivity in a biological specimen.
     :extensible: false
@@ -1397,7 +1402,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006892
     :notation: SAR425899 Neutraliz Anti-Drug Antibodies
     :definition: A measurement of the SAR425899 Neutralizing Antibodies in a biological
       specimen.
@@ -1427,7 +1432,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007076
     :notation: SAR428926 Anti-Drug Antibodies
     :definition: A measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug
       Antibodies in a biological specimen.
@@ -1451,7 +1456,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S009274
     :notation: SAR428926 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR428926/Maytansin Loaded Anti-Lamp1
       Anti-Drug Antibodies in a biological specimen.
@@ -1475,7 +1480,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S004324
     :notation: SAR439459 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR439459 Anti-Drug Antibodies in
       a biological specimen.
@@ -1505,7 +1510,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004325
     :notation: SAR439459 Anti-Drug Antibodies Titer
     :definition: A titration of the SAR439459 Anti-Drug Antibodies Titer in a biological
       specimen.
@@ -1535,7 +1540,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007077
     :notation: SAR650984 Anti-Drug Antibodies
     :definition: A measurement of the SAR650984 Anti-Drug Antibodies in a biological
       specimen.
@@ -1559,7 +1564,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007079
     :notation: SAR650984 Anti-Drug Antibodies (Qual)
     :definition: A qualitative measurement of the SAR650984 Anti-Drug Antibody in
       a biological specimen.
@@ -1574,7 +1579,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Antibody Test Name
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -1631,7 +1641,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000119
     :notation: A0010AB
     :definition: A measurement of the AVE0010 /Lixisenatide Anti-Drug Antibody in
       a biological specimen.
@@ -1655,7 +1665,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007074
     :notation: A0010ABQ
     :definition: A qualitative measurement of the AVE0010 /Lixisenatide Anti-Drug
       Antibodies in a biological specimen.
@@ -1685,7 +1695,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000121
     :notation: A0010C
     :definition: A measurement of the AVE0010/Lixisenatide Cross-Reactivity in a biological
       specimen.
@@ -1715,7 +1725,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004101
     :notation: A0010NAB
     :definition: The measurement of AVE0010/Lixisenatide neutralizing antibody in
       a biological specimen.
@@ -1745,7 +1755,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005231
     :notation: A010GCGC
     :definition: The measurement of Cross-reactivity of Lixisenatide antibodies to
       GLucagon in a biological specimen.
@@ -1775,7 +1785,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005230
     :notation: A010GP1C
     :definition: The measurement of Cross-reactivity of Lixisenatide antibodies to
       GLP-1 in a biological specimen.
@@ -1805,7 +1815,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000024
     :notation: AAGAUIT
     :definition: The measurement of Anti-alglucosidase alfa Uptake Inhibition Titer
       in a biological specimen.
@@ -1835,7 +1845,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000027
     :notation: AAGIEABS
     :definition: The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody
       Status in a biological specimen.
@@ -1865,7 +1875,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000028
     :notation: AAGIGEAB
     :definition: The measurement of Anti-alglucosidase alfa Inhibition IgE Antibody
       in a biological specimen.
@@ -1895,7 +1905,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000019
     :notation: AAGIGGAS
     :definition: The measurement of Anti-alglucosidase alfa IgG Antibody Status in
       a biological specimen.
@@ -1925,7 +1935,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000020
     :notation: AAGIGGAT
     :definition: The measurement of Anti-alglucosidase alfa IgG Antibody Titer in
       a biological specimen.
@@ -1955,7 +1965,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000021
     :notation: AAGLCAI
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Status in a
       biological specimen.
@@ -1985,7 +1995,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000022
     :notation: AAGLCIT
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Titer in a
       biological specimen.
@@ -2015,7 +2025,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000023
     :notation: AAGLCUI
     :definition: The measurement of Anti-alglucosidase alfa Inhibition Uptake in a
       biological specimen.
@@ -2045,7 +2055,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000013
     :notation: ANGAAAB
     :definition: The measurement of anti-neoGAA antibody status in a biological specimen.
     :extensible: false
@@ -2074,7 +2084,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000014
     :notation: ANGAAABT
     :definition: The measurement of Anti-neoGAA antibody titer in a biological specimen.
     :extensible: false
@@ -2103,7 +2113,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000015
     :notation: ANGAAAI
     :definition: The measurement of Anti-neoGAA activity Inhibition Status in a biological
       specimen.
@@ -2133,7 +2143,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000017
     :notation: ANGAAAUI
     :definition: The measurement of Anti-neoGAA activity Uptake Inhibition Status
       in a biological specimen.
@@ -2163,7 +2173,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000026
     :notation: ANGAAEAB
     :definition: The measurement of Anti-neoGAA IgE Antibody in a biological specimen.
     :extensible: false
@@ -2192,7 +2202,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000025
     :notation: ANGAAEAS
     :definition: The measurement of Anti-neoGAA IgE Antibody Status in a biological
       specimen.
@@ -2222,7 +2232,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000016
     :notation: ANGAAIET
     :definition: The measurement of Anti-neoGAA activity Inhibition Titer Endpoint
       in a biological specimen.
@@ -2252,7 +2262,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000018
     :notation: ANGAAUIT
     :definition: The measurement of Anti-neoGAA activity Uptake Inhibition Titer in
       a biological specimen.
@@ -2282,7 +2292,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005234
     :notation: GCGC
     :definition: A measurement of the Glucagon Cross-Reactivity in a biological specimen.
     :extensible: false
@@ -2311,7 +2321,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006893
     :notation: GCGNAB
     :definition: The measurement of Glucagon neutralizing antibodies in a biological
       specimen.
@@ -2341,7 +2351,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006895
     :notation: GLP1NAB
     :definition: The measurement of GLP-1 neutralizing anti-drug antibodies in a biological
       specimen.
@@ -2371,7 +2381,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007075
     :notation: HE901AB
     :definition: A measurement of the HOE901/insulin glargine anti-drug antibodies
       in a biological specimen.
@@ -2395,7 +2405,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S006896
     :notation: HE901ABQ
     :definition: A qualitative measurement of the HOE901/insulin glargine anti-drug
       antibody in a biological specimen.
@@ -2425,7 +2435,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007083
     :notation: HE901C
     :definition: The measurement of the cross-reactivity of HOE901/insulin glargine
       in a biological specimen.
@@ -2455,7 +2465,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007077
     :notation: S0984AB
     :definition: A measurement of the SAR650984 Anti-Drug Antibodies in a biological
       specimen.
@@ -2479,7 +2489,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007079
     :notation: S0984ABQ
     :definition: A qualitative measurement of the SAR650984 Anti-Drug Antibody in
       a biological specimen.
@@ -2503,7 +2513,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007084
     :notation: S1402ABQ
     :definition: The qualitative measurement of Aspart antibody in a biological specimen.
     :extensible: false
@@ -2532,7 +2542,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005228
     :notation: S1402ABT
     :definition: The measurement of Aspart antibodies as a titer in a biological specimen.
     :extensible: false
@@ -2561,7 +2571,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S005229
     :notation: S1402C
     :definition: The cross reactivity measurement of Aspart antibodies to human insulin
       in a biological specimen.
@@ -2585,7 +2595,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007081
     :notation: S1893ABQ
     :definition: A qualitative measurement of the SAR231893 Anti-Drug Antibody in
       a biological specimen.
@@ -2609,7 +2619,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S010167
     :notation: S5899ABQ
     :definition: A qualitative measurement of the SAR425899 Anti-Drug Antibody in
       a biological specimen.
@@ -2639,7 +2649,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004223
     :notation: S5899ABT
     :definition: A titration of the SAR425899 Anti-Drug Antibodies Titer in a biological
       specimen.
@@ -2669,7 +2679,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004224
     :notation: S5899C
     :definition: A measurement of the SAR425899 Cross-Reactivity in a biological specimen.
     :extensible: false
@@ -2698,7 +2708,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S006892
     :notation: S5899NAB
     :definition: A measurement of the SAR425899 Neutralizing Antibodies in a biological
       specimen.
@@ -2728,7 +2738,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004098
     :notation: S6553AB
     :definition: A measurement of the SAR236553 Anti-Drug Antibody in a biological
       specimen.
@@ -2758,7 +2768,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007085
     :notation: S6553NAB
     :definition: A measurement of the SAR236553 neutralizing Anti-Drug Antibody in
       a biological specimen.
@@ -2788,7 +2798,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007199
     :notation: S6597AB
     :definition: A measurement of the SAR156597 anti-drug antibody in a biological
       specimen.
@@ -2812,7 +2822,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S007196
     :notation: S6597ABQ
     :definition: A qualitative measurement of the SAR156597 anti-drug antibody in
       a biological specimen.
@@ -2842,7 +2852,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007197
     :notation: S6597NAB
     :definition: A measurement of the SAR156597 neutralizing Anti-Drug Antibody in
       a biological specimen.
@@ -2872,7 +2882,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S007076
     :notation: S8926AB
     :definition: A measurement of the SAR428926/Maytansin Loaded Anti-Lamp1 Anti-Drug
       Antibodies in a biological specimen.
@@ -2896,7 +2906,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S009274
     :notation: S8926ABQ
     :definition: A qualitative measurement of the SAR428926/Maytansin Loaded Anti-Lamp1
       Anti-Drug Antibodies in a biological specimen.
@@ -2926,7 +2936,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004335
     :notation: S893NABS
     :definition: A measurement of the SAR231893 neutralizing Anti-Drug Antibodies
       in a biological specimen.
@@ -2950,7 +2960,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: S004324
     :notation: S9459ABQ
     :definition: A qualitative measurement of the SAR439459 Anti-Drug Antibodies in
       a biological specimen.
@@ -2980,7 +2990,7 @@
       :pref_label: SDTM Use
       :description: SDTM use
       :narrower: []
-    :identifier: ''
+    :identifier: S004325
     :notation: S9459ABT
     :definition: A titration of the SAR439459 Anti-Drug Antibodies Titer in a biological
       specimen.
@@ -2995,7 +3005,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Antibody Test Code
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3066,7 +3081,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C103531
     :notation: ACGC0101
     :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression
       of Change - Clinical impression of change from baseline.
@@ -3086,7 +3101,13 @@
       :tagged: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+      Questionnaire Test Code
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3157,7 +3178,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C103531
     :notation: ACGC01-Clinical Impression of Change
     :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression
       of Change - Clinical impression of change from baseline.
@@ -3177,7 +3198,13 @@
       :tagged: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change
+      Questionnaire Test Name
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3247,7 +3274,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -3283,7 +3310,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -3318,7 +3345,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -3354,7 +3381,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -3390,7 +3417,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -3420,7 +3447,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC78728
     :notation: MULTIPLE
     :definition: More than one. (NCI)
     :extensible: false
@@ -3465,7 +3492,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C48660
     :notation: NOT APPLICABLE
     :definition: Determination of a value is not relevant in the current context.
       (NCI)
@@ -3511,7 +3538,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: C17998
     :notation: UNKNOWN
     :definition: Not known, not observed, not recorded, or refused. (NCI)
     :extensible: false
@@ -3535,7 +3562,12 @@
       :tagged: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3581,7 +3613,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -3605,7 +3637,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -3628,7 +3660,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -3652,7 +3684,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -3676,7 +3708,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -3700,7 +3732,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C48660
     :notation: NOT APPLICABLE
     :definition: Determination of a value is not relevant in the current context.
       (NCI)
@@ -3725,7 +3757,12 @@
       :tagged: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 01
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3771,7 +3808,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -3795,7 +3832,7 @@
       :pref_label: CRF GL Use
       :description: CRF GL use
       :narrower: []
-    :identifier: ''
+    :identifier: C48660
     :notation: NOT APPLICABLE
     :definition: Determination of a value is not relevant in the current context.
       (NCI)
@@ -3820,7 +3857,12 @@
       :tagged: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 03
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -3890,7 +3932,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000010
     :notation: DOSE DELAYED
     :definition: An indication that a medication schedule was postponed.
     :extensible: false
@@ -3925,7 +3967,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000011
     :notation: DOSE DELAYED AND REDUCED
     :definition: An indication that a medication schedule was postponed and modified
       by subtraction by strength or amount.
@@ -3961,7 +4003,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -3997,7 +4039,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -4032,7 +4074,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -4068,7 +4110,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -4104,7 +4146,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC48660
     :notation: NOT APPLICABLE
     :definition: Determination of a value is not relevant in the current context.
       (NCI)
@@ -4150,7 +4192,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: SC49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -4165,7 +4207,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Collected
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -4211,7 +4258,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000029
     :notation: '1'
     :definition: A numeric, one, indication that a medication schedule was maintained.
     :extensible: false
@@ -4234,7 +4281,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000012
     :notation: '10'
     :definition: A numeric value, ten, that indicate determination of a value is not
       relevant in the current context.
@@ -4258,7 +4305,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000030
     :notation: '2'
     :definition: A numeric, two, indication that a medication schedule was modified
       by subtraction, either by changing the frequency, strength or amount.
@@ -4282,7 +4329,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000031
     :notation: '3'
     :definition: A numeric,three, indication that a medication schedule was modified
       by temporarily terminating a prescribed regimen of medication.
@@ -4306,7 +4353,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000032
     :notation: '4'
     :definition: A numeric, four, indication that a medication schedule was modified
       through termination of a prescribed regimen of medication.
@@ -4330,7 +4377,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000033
     :notation: '5'
     :definition: A numeric, five, indication that a medication schedule was modified
       by addition; either by changing the frequency, strength or amount.
@@ -4354,7 +4401,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000034
     :notation: '6'
     :definition: A numeric indication, six, that a medication schedule was postponed.
     :extensible: false
@@ -4377,7 +4424,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000035
     :notation: '7'
     :definition: A numeric value, seven, that gives an indication that a medication
       schedule was postponed and modified by subtraction by strength or amount.
@@ -4401,7 +4448,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S000036
     :notation: '8'
     :definition: A numeric, eight, that indicate more than one. (NCI)
     :extensible: false
@@ -4424,7 +4471,7 @@
       :pref_label: ADaM Use
       :description: ADaM use
       :narrower: []
-    :identifier: ''
+    :identifier: S003958
     :notation: '9'
     :definition: A numeric value, nine, that indicate not known, not observed, not
       recorded, or refused. (NCI)
@@ -4439,6 +4486,11 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Numeric
+    :tagged: []
   :synonym: []
   :is_ordered: 

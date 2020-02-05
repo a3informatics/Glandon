@@ -42,7 +42,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -66,7 +66,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -89,7 +89,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -113,7 +113,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -137,7 +137,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -161,7 +161,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000011
     :notation: DOSE DELAYED AND REDUCED
     :definition: An indication that a medication schedule was postponed and modified
       by subtraction by strength or amount.
@@ -185,7 +185,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000010
     :notation: DOSE DELAYED
     :definition: Not defined.
     :extensible: false
@@ -199,7 +199,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Analysis Action Taken with Study Treatment
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -269,7 +274,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -304,7 +309,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -340,7 +345,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -376,7 +381,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -412,7 +417,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -427,7 +432,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -473,7 +483,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -497,7 +507,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -520,7 +530,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -544,7 +554,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -568,7 +578,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -583,7 +593,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 01
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -629,7 +644,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49503
     :notation: DOSE INCREASED
     :definition: An indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -653,7 +668,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49504
     :notation: DOSE NOT CHANGED
     :definition: An indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -676,7 +691,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49505
     :notation: DOSE REDUCED
     :definition: An indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -700,7 +715,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49501
     :notation: DRUG INTERRUPTED
     :definition: An indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -724,7 +739,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -739,7 +754,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 02
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -785,7 +805,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: C49502
     :notation: DRUG WITHDRAWN
     :definition: An indication that a medication schedule was modified through termination
       of a prescribed regimen of medication. (NCI)
@@ -800,7 +820,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 03
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -846,7 +871,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S003958
     :notation: '9'
     :definition: A numeric value, nine, that indicate not known, not observed, not
       recorded, or refused. (NCI)
@@ -870,7 +895,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000036
     :notation: '8'
     :definition: A numeric that indicate more than one. (NCI)
     :extensible: false
@@ -893,7 +918,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000035
     :notation: '7'
     :definition: A numeric value of 7 indicating a dose delayed and reduced.
     :extensible: false
@@ -916,7 +941,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000034
     :notation: '6'
     :definition: A numeric value of 6 indicating a dose delayed.
     :extensible: false
@@ -939,7 +964,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000033
     :notation: '5'
     :definition: A numeric indication that a medication schedule was modified by addition;
       either by changing the frequency, strength or amount. (NCI)
@@ -963,7 +988,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000032
     :notation: '4'
     :definition: A numeric indication that a medication schedule was modified through
       termination of a prescribed regimen of medication. (NCI)
@@ -987,7 +1012,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000031
     :notation: '3'
     :definition: A numeric indication that a medication schedule was modified by temporarily
       terminating a prescribed regimen of medication. (NCI)
@@ -1011,7 +1036,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000030
     :notation: '2'
     :definition: A numeric indication that a medication schedule was modified by subtraction,
       either by changing the frequency, strength or amount. (NCI)
@@ -1035,7 +1060,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000029
     :notation: '1'
     :definition: A numeric indication that a medication schedule was maintained. (NCI)
     :extensible: false
@@ -1058,7 +1083,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000012
     :notation: '10'
     :definition: A numeric value, ten, that indicate determination of a value is not
       relevant in the current context. (NCI)
@@ -1073,7 +1098,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Numeric
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -1142,7 +1172,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C66911
     :notation: UNSTABLE ANGINA
     :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
       has recently changed in frequency, duration, intensity, or occurs at rest.
@@ -1178,7 +1208,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C66914
     :notation: STABLE ANGINA
     :definition: Angina pectoris which has not recently changed in frequency, duration
       or intensity. Stable angina pectoris is relieved by rest or administration of
@@ -1194,7 +1224,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Acute Coronary Syndrome Presentation Category
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -1263,7 +1298,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC66911
     :notation: UNSTABLE ANGINA
     :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
       has recently changed in frequency, duration, intensity, or occurs at rest.
@@ -1299,7 +1334,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC50577
     :notation: HEART FAILURE
     :definition: 'Inability of the heart to pump blood at an adequate rate to meet
       tissue metabolic requirements. Clinical symptoms of heart failure include: unusual
@@ -1338,7 +1373,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC41331
     :notation: ADVERSE EVENT
     :definition: 'Any untoward medical occurrence in a patient or clinical investigation
       subject administered a pharmaceutical product and which does not necessarily
@@ -1382,7 +1417,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: SC25742
     :notation: PREGNANCY
     :definition: Pregnancy is the state or condition of having a developing embryo
       or fetus in the body (uterus), after union of an ovum and spermatozoon, during
@@ -1419,7 +1454,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000062
     :notation: SYSTEMIC
     :definition: Affecting an entire system.
     :extensible: false
@@ -1454,7 +1489,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000055
     :notation: SEVERE INFECTION / PARASITIC INFECTION / OPPORTUNISTIC INFECTION
     :definition: Not defined.
     :extensible: false
@@ -1489,7 +1524,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000052
     :notation: OVERDOSE
     :definition: Exposure to, or intake of, an excessive amount of a substance. (NCI)
     :extensible: false
@@ -1524,7 +1559,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000048
     :notation: INJECTION SITE REACTION
     :definition: A disorder characterized by an intense adverse reaction (usually
       immunologic) developing at the site of an injection.
@@ -1560,7 +1595,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000046
     :notation: INCREASED LIPASE/AMYLASE
     :definition: Category indicating an increased concentration of lipase/amylase
       in the blood serum.
@@ -1596,7 +1631,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000044
     :notation: HYPOGLYCEMIA
     :definition: A disorder characterized by laboratory test results that indicate
       a low concentration of glucose in the blood.
@@ -1632,7 +1667,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000042
     :notation: CEREBROVASCULAR EVENT
     :definition: Not defined.
     :extensible: false
@@ -1667,7 +1702,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000041
     :notation: BLEEDING EVENT
     :definition: Not defined.
     :extensible: false
@@ -1702,7 +1737,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000040
     :notation: ALT INCREASE
     :definition: Alanine Aminotransferase increased in blood.
     :extensible: false
@@ -1737,7 +1772,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000039
     :notation: ALLERGY
     :definition: Not defined.
     :extensible: false
@@ -1772,7 +1807,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000038
     :notation: ADMINISTRATION SITE
     :definition: Not defined.
     :extensible: false
@@ -1786,7 +1821,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Category of Adverse Event
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -1843,7 +1883,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000089
     :notation: MEDDRA 10.1
     :definition: Version 10.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -1872,7 +1912,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000088
     :notation: MEDDRA 10.0
     :definition: Version 10.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -1901,7 +1941,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000087
     :notation: MEDDRA 9.1
     :definition: Version 9.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -1930,7 +1970,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000086
     :notation: MEDDRA 9.0
     :definition: Version 9.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -1959,7 +1999,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000085
     :notation: MEDDRA 16.0
     :definition: Version 16.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -1988,7 +2028,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000084
     :notation: MEDDRA 15.1
     :definition: Version 15.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2017,7 +2057,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000083
     :notation: MEDDRA 15.0
     :definition: Version 15.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2046,7 +2086,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000082
     :notation: MEDDRA 14.1
     :definition: Version 14.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2075,7 +2115,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000081
     :notation: MEDDRA 14.0
     :definition: Version 14.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2104,7 +2144,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000080
     :notation: MEDDRA 13.1
     :definition: Version 13.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2133,7 +2173,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000079
     :notation: MEDDRA 13.0
     :definition: Version 13.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2162,7 +2202,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000078
     :notation: MEDDRA 12.1
     :definition: Version 12.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2191,7 +2231,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000077
     :notation: MEDDRA 12.0
     :definition: Version 12.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2220,7 +2260,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000076
     :notation: MEDDRA 11.1
     :definition: Version 11.1 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2249,7 +2289,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000075
     :notation: MEDDRA 11.0
     :definition: Version 11.0 of MedDRA.  Code_value is for define.xml purposes.
     :extensible: false
@@ -2263,7 +2303,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Event Dictionary Version
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -2332,7 +2377,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000094
     :notation: UNLIKELY RELATED
     :definition: Not defined.
     :extensible: false
@@ -2367,7 +2412,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000093
     :notation: RELATED
     :definition: Not defined.
     :extensible: false
@@ -2402,7 +2447,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000092
     :notation: POSSIBLY RELATED
     :definition: Not defined.
     :extensible: false
@@ -2437,7 +2482,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000090
     :notation: NOT RELATED
     :definition: Not defined.
     :extensible: false
@@ -2451,7 +2496,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Relationship to Study Treatment
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -2496,7 +2546,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000093
     :notation: RELATED
     :definition: Not defined.
     :extensible: false
@@ -2519,7 +2569,7 @@
       :pref_label: DC Stage
       :description: Data capture stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000090
     :notation: NOT RELATED
     :definition: Not defined.
     :extensible: false
@@ -2533,7 +2583,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Relationship to Study Treatment Subset 01
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -2603,7 +2658,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C81210
     :notation: Y
     :definition: 'Year Imputed: Entire date (year, month and day) is imputed.'
     :extensible: false
@@ -2638,7 +2693,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C81211
     :notation: M
     :definition: 'Month Imputed: Month and day are imputed.'
     :extensible: false
@@ -2673,7 +2728,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C81212
     :notation: D
     :definition: 'Day Imputed: Day is imputed.'
     :extensible: false
@@ -2687,7 +2742,12 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Date Imputation Flag
+    :tagged: []
   :synonym: []
   :is_ordered: 
 - :id: 
@@ -2756,7 +2816,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C102255
     :notation: BLINDED TREATMENT
     :definition: A period in a clinical study during which subjects receive blinded
       therapeutic treatment.
@@ -2792,7 +2852,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C99158
     :notation: FOLLOW-UP
     :definition: A period in a clinical study during which information about the health
       status of an individual is obtained after study procedures and treatments have
@@ -2829,7 +2889,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C16032
     :notation: LONG-TERM FOLLOW-UP
     :definition: A period in a clinical study during which information about the health
       status of an individual is obtained long after study procedures and treatments
@@ -2866,7 +2926,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C102256
     :notation: OPEN LABEL TREATMENT
     :definition: A period in a clinical study during which subjects receive open label
       therapeutic treatment.
@@ -2902,7 +2962,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C98779
     :notation: RUN-IN
     :definition: A period in a clinical study that occurs before the commencement
       of the primary clinical study investigation, during which subjects may be assessed
@@ -2940,7 +3000,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C48262
     :notation: SCREENING
     :definition: A period in a clinical study during which subjects are evaluated
       for participation in the study.
@@ -2976,7 +3036,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C101526
     :notation: TREATMENT
     :definition: A period in a clinical study during which subjects receive therapeutic
       treatment.
@@ -3012,7 +3072,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: C42872
     :notation: WASHOUT
     :definition: A period of time during a clinical study when a participant is taken
       off of a study drug or other medication in order to eliminate the effects of
@@ -3049,7 +3109,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001310
     :notation: SECOND WASH-OUT
     :definition: Not defined.
     :extensible: false
@@ -3084,7 +3144,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001309
     :notation: SECOND TREATMENT
     :definition: Not defined.
     :extensible: false
@@ -3119,7 +3179,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001306
     :notation: SECOND SCREENING
     :definition: Not defined.
     :extensible: false
@@ -3154,7 +3214,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001305
     :notation: SECOND RUN-IN
     :definition: Not defined.
     :extensible: false
@@ -3189,7 +3249,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001304
     :notation: SECOND FOLLOW-UP
     :definition: Not defined.
     :extensible: false
@@ -3224,7 +3284,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001301
     :notation: SAFETY FOLLOW-UP
     :definition: Not defined.
     :extensible: false
@@ -3259,7 +3319,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001300
     :notation: PRIMARY SERIES
     :definition: Not defined.
     :extensible: false
@@ -3294,7 +3354,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001298
     :notation: IMMUNOGENICITY FOLLOW-UP
     :definition: Not defined.
     :extensible: false
@@ -3329,7 +3389,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001297
     :notation: FIRST WASH-OUT
     :definition: Not defined.
     :extensible: false
@@ -3364,7 +3424,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001296
     :notation: FIRST TREATMENT
     :definition: Not defined.
     :extensible: false
@@ -3399,7 +3459,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001293
     :notation: FIRST SCREENING
     :definition: Not defined.
     :extensible: false
@@ -3434,7 +3494,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001292
     :notation: FIRST RUN-IN
     :definition: Not defined.
     :extensible: false
@@ -3469,7 +3529,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001291
     :notation: FIRST FOLLOW-UP
     :definition: Not defined.
     :extensible: false
@@ -3504,7 +3564,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001289
     :notation: COMPLETION
     :definition: Not defined.
     :extensible: false
@@ -3539,7 +3599,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S001288
     :notation: BOOSTER PHASE
     :definition: A distinguishable part, a stage in a series of events or in a process
       of development, e.g. any of the varying aspects or stages in course of a disease;
@@ -3576,7 +3636,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000161
     :notation: SINGLE BLIND
     :definition: Not defined.
     :extensible: false
@@ -3611,7 +3671,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000157
     :notation: EXTENSION PHASE
     :definition: The extension of a distinguishable part, a stage in a series of events
       or in a process of development, e.g. any of the varying aspects or stages in
@@ -3648,7 +3708,7 @@
       :pref_label: ADaM Stage
       :description: ADaM stage
       :narrower: []
-    :identifier: ''
+    :identifier: S000153
     :notation: DOUBLE BLIND
     :definition: The baseline for the double blind period.
     :extensible: false
@@ -3662,6 +3722,11 @@
     :synonym: []
   :extends: 
   :subsets: 
-  :preferred_term: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Epoch
+    :tagged: []
   :synonym: []
   :is_ordered: 
