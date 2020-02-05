@@ -359,14 +359,16 @@ class IsoManagedV2 < IsoConceptV2
   def self.history(params)
     parts = []
     results = []
-    base =  "?e isoT:hasIdentifier ?si . " +
-            "?si isoI:identifier '#{params[:identifier]}' . " +
-            "?si isoI:version ?v . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . "
-    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }"
-    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"
-    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }"
-    query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
+    base = %Q{ 
+      ?e isoT:hasIdentifier ?si .
+      ?si isoI:identifier '#{params[:identifier]}' .
+      ?si isoI:version ?v .
+      ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+    }
+    parts << "  { #{base} ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }"
+    parts << "  { #{base} ?si ?p ?o . BIND (?si as ?s) }"
+    parts << "  { #{base} ?e isoT:hasState ?s . ?s ?p ?o }"
+    query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
@@ -427,14 +429,31 @@ class IsoManagedV2 < IsoConceptV2
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
     query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE {
-        VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-        {
+      SELECT ?s ?p ?o ?e ?v WHERE 
+      {
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) } UNION
-          { ?si ?p ?o . BIND (?si as ?s) } UNION
-          { ?e isoT:hasState ?s . ?s ?p ?o }
+          ?e ?p ?o . 
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) 
+          BIND (?e as ?s) 
+        } 
+        UNION
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?si ?p ?o . 
+          BIND (?si as ?s) 
+        } 
+        UNION
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e isoT:hasState ?s . 
+          ?s ?p ?o 
         }
       } ORDER BY DESC (?v)
     }

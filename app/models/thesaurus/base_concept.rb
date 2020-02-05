@@ -309,17 +309,17 @@ class Thesaurus
       BIND ("previous" as ?t)
     }
     ?ci ba:description ?desc .
-    {
+    OPTIONAL {
       ?th th:isTopConceptReference/bo:reference ?p .
       ?p rdf:type th:ManagedConcept .
-      ?p th:narrower+ ?c .
+      ?p th:narrower ?c .
       ?p th:notation ?p_n .
       ?p th:identifier ?p_id .
       ?p isoT:lastChangeDate ?p_d .
       ?c th:notation ?c_n .
       ?c th:identifier ?c_id
-    } UNION
-    {
+    }
+    OPTIONAL {
       ?c rdf:type th:ManagedConcept .
       ?c th:identifier ?p_id .
       ?c th:notation ?p_n .

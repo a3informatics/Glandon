@@ -591,13 +591,13 @@ describe "Thesaurus::UnmanagedConcept" do
     it "cross reference links I" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154_C61019"))
       results = tc.linked_change_instructions
-      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "cross reference links II" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C88025/V44#C88025_C27477"))
       results = tc.linked_change_instructions
-      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
