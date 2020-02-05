@@ -301,7 +301,7 @@ class Thesaurus
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoC, :isoT])
       query_results.by_object_set([:c, :p, :desc, :p_id, :c_id, :p_n, :c_n, :t]).each do |x|
         results[:description] = x[:desc] if results[:description].nil?
-        results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
+        results[x[:t].to_sym] << {parent: {id: x[:p].to_id ,identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
       end
       results
     end
@@ -356,7 +356,7 @@ class Thesaurus
         results[self.preferred_term.label] = {description: self.preferred_term.label, references: []}
       end
       query_results.by_object_set([:c, :p, :syn, :p_id, :c_id]).each do |x|
-        results[x[:syn]][:references] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
+        results[x[:syn]][:references] << {parent: {id: x[:p].to_id, identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
       end
       results
     end

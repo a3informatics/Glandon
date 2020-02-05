@@ -116,6 +116,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     @tc.preferred_term_objects
     @has_children = @tc.children?
     @edit_tags_path = @tc.supporting_edit? ? edit_tags_iso_concept_path(@tc, iso_concept: {context_id: the_params[:context_id], parent_id: the_params[:parent_id]}) : ""
+    @close_path = thesauri_managed_concept_path({id: the_params[:parent_id], managed_concept: {context_id: the_params[:context_id]}})
   end
 
   def show_data
@@ -191,7 +192,9 @@ private
         if ref[:child][:identifier].empty?
           ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params})
         else
-          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: link_params})
+          uc_params = link_params
+          uc_params[:parent_id] = ref[:parent][:id]
+          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: uc_params})
         end
       end
     end
@@ -204,7 +207,9 @@ private
         if ref[:child][:identifier].empty?
           ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params})
         else
-          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: link_params})
+          uc_params = link_params
+          uc_params[:parent_id] = ref[:parent][:id]
+          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: uc_params})
         end
       end
     end
