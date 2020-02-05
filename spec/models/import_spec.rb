@@ -151,7 +151,7 @@ describe Import do
   end
 
   it "returns configuration" do
-    expect(Import.new.configuration).to eq({})
+    expect(Import.configuration).to eq({})
   end
   
   it "generates the import list" do
@@ -213,7 +213,7 @@ describe Import do
     worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
     item = simple_import
-    item.save_error_file({parent: worker, children: []})
+    item.save_error_file({parent: worker, managed_children: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_1.yaml")
@@ -224,7 +224,7 @@ describe Import do
     worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
     item = simple_import
-    item.save_error_file({parent: worker, children:[]})
+    item.save_error_file({parent: worker, managed_children:[]})
     result = item.load_error_file
   #Xwrite_yaml_file(result, sub_dir, "load_error_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "load_error_file_expected_1.yaml")
@@ -233,45 +233,47 @@ describe Import do
 
   it "saves the load file, auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
     object = Thesaurus.new
-    #object.rdf_type = "XXX"
     object.has_identifier = IsoScopedIdentifierV2.new
     object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
     object.has_identifier.identifier = "YYY"
+    object.uri = Uri.new(uri: "http://www.example.com/A#A")
     item = simple_import
     item.auto_load = true
     item.save
     expect(TypePathManagement).to receive(:history_url_v2).with(object)
     expect(object).to receive(:to_sparql).and_return([])
     expect(CRUD).to receive(:file)
-    item.save_load_file({parent: object, children: []})
+    item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
   #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
     compare_import_hash(result, expected, output_file: true)
   end
 
-  it "saves the load file, no auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
+  it "saves the load file, no auto load" do
     object = Thesaurus.new
-    object.rdf_type = "XXX"
-    object.scopedIdentifier.identifier = "YYY"
-    #object.scopedIdentifier.namespace.id = 111
+    object.has_identifier = IsoScopedIdentifierV2.new
+    object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
+    object.has_identifier.identifier = "YYY"
+    object.uri = Uri.new(uri: "http://www.example.com/A#A")
     item = simple_import
-    expect(TypePathManagement).to receive(:history_url).with(object)
-    expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
-    item.save_load_file({parent: object, children: []})
+    expect(TypePathManagement).to receive(:history_url_v2).with(object)
+    expect(object).to receive(:to_sparql).and_return(SparqlUpdateV2.new)
+    item.save_load_file({parent: object, managed_children: [], tags: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_2.yaml")
     compare_import_hash(result, expected, output_file: true)
   end
 
-  it "saves the result - WILL CURRENTLY FAIL, NEEDS UPDATING" do
+  it "saves the result" do
     object = Thesaurus.new
-    object.rdf_type = "XXX"
-    object.scopedIdentifier.identifier = "YYY"
-    #object.scopedIdentifier.namespace.id = 111
+    object.has_identifier = IsoScopedIdentifierV2.new
+    object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
+    object.has_identifier.identifier = "YYY"
+    object.uri = Uri.new(uri: "http://www.example.com/A#A")
     item = simple_import
-    expect(TypePathManagement).to receive(:history_url).with(object)
+    expect(TypePathManagement).to receive(:history_url_v2).with(object)
     item.save_result(object)
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_result_expected_1.yaml")

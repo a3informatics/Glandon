@@ -57,7 +57,7 @@ class Import < ActiveRecord::Base
     # @todo We need to lock the import somehow.
     job.start(self.description(params), "Starting ...") {self.import(params)} 
   rescue => e
-    save_error_file({parent: self, children:[]})
+    save_error_file({parent: self, managed_children:[]})
     job.exception("An exception was detected during the import processes.", e)
   end  
   
@@ -111,7 +111,7 @@ class Import < ActiveRecord::Base
   # @param [Object] object to be loaded. Should be error free.
   # @return [Void] no return
   def save_result(object)
-    path = TypePathManagement.history_url(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
+    path = TypePathManagement.history_url_v2(object)
     self.update(output_file: "", error_file: "", success: true, success_path: path)
   end
 
