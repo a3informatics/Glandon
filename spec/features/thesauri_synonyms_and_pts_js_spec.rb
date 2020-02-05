@@ -37,10 +37,11 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "change_instructions_v47.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..47)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -419,8 +420,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_link "Return"
     end
 
-    # Preferred Terms
-    it "allows Preferred Term to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
+    
+    it "allows Synonyms to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
@@ -436,6 +437,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       ui_check_table_cell("children_table", 4, 4, "ECG Result")
     end
 
+    # Preferred Terms
     it "allows Preferred Term to be displayed for CDISC code list items (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax_long
@@ -448,8 +450,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("C7115")
       ui_check_table_info("children_table", 1, 4, 4)
-      ui_check_table_cell("children_table", 1, 4, "ECG Test Code")
-      ui_check_table_cell("children_table", 4, 4, "ECG Result")
+      ui_check_table_cell("children_table", 1, 3, "CDISC SDTM ECG Test Code Terminology")
+      ui_check_table_cell("children_table", 4, 3, "CDISC SDTM ECG Finding Terminology")
     end
 
     it "allows to display code lists and code list items with the same preferred term (REQ-MDR-PT-020)", js:true do
@@ -466,10 +468,71 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Definition: Units of measure for pharmacokinetic data and parameters.'
       expect(page).to have_content 'C85494'
+      wait_for_ajax_long
       ui_check_table_info("children_table", 1, 10, 671)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Preferred Terms'
+      find(:xpath, "//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Preferred Terms'
+      find(:xpath, "//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'PKUNIT (C85494)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
+    end
+
+    it "allows to display code lists and code list items with the same synonym (REQ-MDR-PT-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '47.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children_table", 1, 10, 572)
+      ui_child_search("C67154")
+      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Definition: Terminology used for laboratory test names of the CDISC Study Data Tabulation Model.'
+      expect(page).to have_content 'C67154'
+      wait_for_ajax_long
+      ui_child_search("C125949")
+      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Shared Synonyms'
+      find(:xpath, "//*[@id='linkspanel']/div/div/div/a/div/div[2]", :text => 'LBTESTCD (C65047)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Synonyms'
+      find(:xpath, "//*[@id='linkspanel']/div/div/div/a/div/div[2]", :text => 'LBTEST (C67154)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Synonyms'
+      expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'LBTESTCD (C65047)')
+    end
+
+    it "allows to display code lists and code list items, change instruction  (REQ-MDR-PT-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax_long
+      expect(page).to have_content 'History'
+      expect(page).to have_content 'Controlled Terminology'
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '47.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children_table", 1, 10, 572)
+      ui_child_search("C67154")
+      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Definition: Terminology used for laboratory test names of the CDISC Study Data Tabulation Model.'
+      expect(page).to have_content 'C67154'
+      wait_for_ajax_long
+      ui_child_search("C125949")
+      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'Change Instruction'
+      find(:xpath, " //*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Change Instruction'
+      find(:xpath, "//*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)').click
+      wait_for_ajax_long
+      expect(page).to have_content 'Shared Synonyms'
+      expect(page).to have_xpath("//*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)')
     end
 
     #tags
