@@ -158,8 +158,7 @@ RSpec.describe AdHocReport, type: :model do
     report = AdHocReport.new
     report.sparql_file = "ad_hoc_report_test_1_sparql_xxx.yaml"
     expected = {}
-    result = report.columns
-    expect(result).to eq(expected)
+    expect{report.columns}.to raise_error(Errors::ApplicationLogicError, "Error reading ad hoc report definition file.")
   end
 
   it "will output the report results in CSV format" do
