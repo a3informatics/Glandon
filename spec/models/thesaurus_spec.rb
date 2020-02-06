@@ -751,6 +751,45 @@ describe Thesaurus do
 
   end
 
+  describe "states" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_5_state.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    before :each do
+    end
+
+    it "states" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = thesaurus.managed_children_states
+      check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "move to next state" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc.update_status(registration_status: "Candidate")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      tc.update_status(registration_status: "Recorded")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Recorded")
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc.update_status(registration_status: "Qualified")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Qualified")
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc.update_status(registration_status: "Standard")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Standard")
+      expect(thesaurus.move_to_next_state?).to eq(false)
+    end
+
+  end
+
   describe "Further Delete" do
 
     before :each do
@@ -991,7 +1030,45 @@ describe Thesaurus do
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor3_impact.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_3_impact.ttl")
+    end 
+
+  end
+
+  describe "next state data test" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1.set_initial("A00001")
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.set_initial("STATE")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "file" do
+      simple_thesaurus_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_5_state.ttl")
     end 
 
   end

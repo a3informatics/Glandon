@@ -193,11 +193,18 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return results
   end
   
-  # def to_h
-  #   new_hash = super
-  #   new_hash.delete(:multiple_edit)
-  #   new_hash
-  # end
+  # States. In order
+  #
+  # @return [Array] Array of state values
+  def self.states
+    Rails.configuration.iso_registration_state.keys
+  end
+  
+  def self.previous_states(state)
+    the_states = states
+    index = the_states.index{|x| x == state.to_sym}
+    the_states[0..index]
+  end
 
 private
 
