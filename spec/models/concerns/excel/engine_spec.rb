@@ -89,7 +89,7 @@ describe Excel::Engine do
       return result
     end
 
-    def add_tag(tag)
+    def add_tag_no_save(tag)
       @tagged << tag
     end
 
