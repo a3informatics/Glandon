@@ -220,23 +220,23 @@ class ThesauriController < ApplicationController
     filter = the_params[:filter]
     if filter == "current"
       uris = Thesaurus.current_and_latest_set.map{|k,v| v.last[:uri]}
-    elsif filter = "latest"
+    elsif filter == "latest"
       uris = Thesaurus.current_and_latest_set.map{|k,v| v.first[:uri]}
     else
       uris = the_params[:id_set].map {|x| Uri.new(id: x)}
     end
-    respond_to do |format|
-      format.html
-        @close_path = thesauri_index_path
-      format.json do
+    # respond_to do |format|
+    #   format.html
+    #     @close_path = thesauri_index_path
+    #   format.json do
         if Thesaurus.empty_search?(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
         else
           results = Thesaurus.search_multiple(params, uris)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
         end
-      end
-    end
+      # end
+    # end
   end
 
   def changes
