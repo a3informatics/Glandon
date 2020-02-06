@@ -459,3 +459,22 @@ function toggleTableActive(tableId, enable) {
   else
     $(tableId).addClass("table-disabled");
 }
+
+function redirectPost(url, param, object){
+  var form = "<form action='"+url+"' method='POST'>";
+
+  $.each(object, function(k, v) {
+    if(v instanceof Array){
+      $.each(v, function(i, e){
+        form += "<input type='text' name='"+param+"["+k+"][]' value='"+ e +"' />";
+      })
+    }
+    else
+      form += "<input type='text' name='"+param+"["+k+"]' value='"+ v +"' />";
+  })
+
+  form += "</form>";
+  form = $(form);
+  $(document.body).append(form);
+  $(form).submit();
+}

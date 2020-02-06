@@ -12,7 +12,7 @@
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-terminology",
-    main_text: "Search #{@search_type}",
+    main_text: "Search in #{@search_type}",
     sub_text: "Searching in the pre-selected set of Terminologies." } do %>
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
