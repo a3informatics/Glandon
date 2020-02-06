@@ -220,13 +220,16 @@ class ThesauriController < ApplicationController
     filter = the_params[:filter]
     if filter == "current"
       uris = Thesaurus.current_and_latest_set.map{|k,v| v.last[:uri]}
-    elsif filter = "latest"
+    elsif filter == "latest"
       uris = Thesaurus.current_and_latest_set.map{|k,v| v.first[:uri]}
     else
       uris = the_params[:id_set].map {|x| Uri.new(id: x)}
     end
     respond_to do |format|
       format.html
+        @search_type = filter.nil? ? "Multiple" : filter.capitalize
+        @search_filter = filter.nil? ? the_params[:id_set] : filter
+        @search_url = search_multiple_thesauri_index_path(thesauri: the_params)
         @close_path = thesauri_index_path
       format.json do
         if Thesaurus.empty_search?(params)

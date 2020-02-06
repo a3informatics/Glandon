@@ -1,0 +1,33 @@
+<%= javascript_tag 'setPageTitle("Search Terminologies")' %>
+<% breadcrumb ([id_to_type(:thesauri), {link: "#", text: "Search #{@search_type}"}]) %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+	<%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+
+<%= javascript_include_tag 'shared/tags', 'thesauri/search_multiple' %>
+<%= javascript_tag "var url_path = '#{@search_url}';" %>
+
+<%= javascript_tag "var idSet = '#{local_assigns.fetch :id_set, []}',
+												filter = '#{local_assigns.fetch :filter, ""}';" %>
+
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-terminology",
+    main_text: "Search #{@search_type}",
+    sub_text: "Searching in the pre-selected set of Terminologies." } do %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+  <% end %>
+</div>
+
+<div class="row">
+	<div class="col-md-12 card">
+	  <div class="card-header">
+	    Search
+	  </div>
+	  <div class="card-content">
+      <%= render partial: "shared/thesauri/search" %>
+	  </div>
+	</div>
+</div>
