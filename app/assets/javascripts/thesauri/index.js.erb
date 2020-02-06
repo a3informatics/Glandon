@@ -1,6 +1,13 @@
 $(document).ready(function(){
   var cb = function(value){
-    console.log(value);
+    var data = {thesauri: {}};
+    if(value instanceof Array)
+      data.thesauri["id_set"] = value;
+
+    else
+      data.thesauri["filter"] = value;
+
+    location.href = searchPageUrl + "?" + $.param(data);
   }
   var mis = new ManagedItemsSelect("thesaurus", cb);
 });

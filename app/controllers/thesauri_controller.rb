@@ -225,18 +225,21 @@ class ThesauriController < ApplicationController
     else
       uris = the_params[:id_set].map {|x| Uri.new(id: x)}
     end
-    # respond_to do |format|
-    #   format.html
-    #     @close_path = thesauri_index_path
-    #   format.json do
+    respond_to do |format|
+      format.html
+        @search_type = filter.nil? ? "Multiple" : filter.capitalize
+        @search_filter = filter.nil? ? the_params[:id_set] : filter
+        @search_url = search_multiple_thesauri_index_path(thesauri: the_params)
+        @close_path = thesauri_index_path
+      format.json do
         if Thesaurus.empty_search?(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
         else
           results = Thesaurus.search_multiple(params, uris)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
         end
-      # end
-    # end
+      end
+    end
   end
 
   def changes
