@@ -797,8 +797,13 @@ class IsoManagedV2 < IsoConceptV2
               SELECT (max(?lv) AS ?v) WHERE
               {
                 ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
+                ?s isoT:hasIdentifier ?si .
+                 ?si isoI:identifier ?i .
+                 ?si isoI:hasScope ?ns .
+                 ?ns isoI:shortName ?sn .
                 ?s isoT:hasIdentifier/isoI:version ?lv .
-              }
+                 BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
+              } group by ?key
             }
             ?si isoI:version ?v .
             ?si isoI:identifier ?i .
