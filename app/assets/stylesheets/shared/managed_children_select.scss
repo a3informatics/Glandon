@@ -126,6 +126,13 @@ table.table-row-clickable tbody tr:first-of-type td{
 
 // IEFIX
 
+@media (max-width: 1250px){
+  #im-select-modal .card{
+    max-width: calc(100% - 40px);
+    width: calc(100% - 40px);
+  }
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   .table-row-clickable .selected td:first-of-type::before{
