@@ -19,6 +19,12 @@
   min-width: 300px !important;
 }
 
+.card .card{
+  -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
+  -moz-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
+  box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
+}
+
 .card-header, a.card-header{
   background: $primary-color-light;
   color: $grey-white;

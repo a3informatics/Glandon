@@ -8,7 +8,8 @@
   cursor: pointer;
 }
 
-.table-row-clickable tbody tr.r:hover, .table-row-clickable tbody tr.y:hover {
+.table-row-clickable tbody tr.b:hover, .table-row-clickable tbody tr.r:hover,
+  .table-row-clickable tbody tr.y:hover {
   color: $grey-medium;
 }
 
@@ -52,7 +53,8 @@ table.table-disabled {
 // Colored TR selects
 
 .table-row-clickable tr.selected.r td:first-of-type::before,
-  .table-row-clickable tr.selected.y td:first-of-type::before{
+  .table-row-clickable tr.selected.y td:first-of-type::before,
+  .table-row-clickable tr.selected.b td:first-of-type::before {
   display: block;
   position: absolute;
   content: " ";
@@ -60,6 +62,11 @@ table.table-disabled {
   left: 0;
   top: 0;
   height: 100%;
+  border-radius: 0px;
+}
+
+.table-row-clickable tr.selected.b td:first-of-type::before{
+  background: $primary-color-light;
 }
 
 .table-row-clickable tr.selected.r td:first-of-type::before{
@@ -68,6 +75,10 @@ table.table-disabled {
 
 .table-row-clickable tr.selected.y td:first-of-type::before{
   background: $accent-color-1;
+}
+
+.table-row-clickable tr.selected.b{
+  color: $primary-color-medium !important;
 }
 
 .table-row-clickable tr.selected.r{
@@ -87,6 +98,16 @@ table.table-disabled {
 .table-row-clickable.no-borders thead th{
   font-family: $font-light;
   font-size: $font-tiny;
+}
+
+// Managed Items Select Modal
+
+#im-select-modal .modal-lg{
+  width: 80%;
+}
+
+#im-select-modal table th:first-of-type, #im-select-modal table tr td:first-of-type {
+  padding-left: 30px;
 }
 
 // IEFIX

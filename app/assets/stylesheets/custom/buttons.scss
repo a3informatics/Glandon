@@ -297,6 +297,10 @@
   color: $accent-color-2;
 }
 
+.checkbox-opt input[type=checkbox]{
+  margin-right: 8px;
+}
+
 // FIXES: #ignore, do not change
 .paginate_button.active a{
   background: $primary-color-medium !important;

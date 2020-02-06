@@ -117,6 +117,15 @@
   text-align: right;
 }
 
+.bg-label{
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: $grey-bright;
+  color: $grey-medium;
+  margin: 0px 4px;
+  display: inline-block;
+}
+
 // ICO HEADERS used in the community version dashboard
 .ico-header{
   width: 55%;
