@@ -89,9 +89,18 @@ table.table-disabled {
   color: $accent-color-1-dark !important;
 }
 
+.table-row-clickable thead th{
+  border: none !important;
+}
+
+table.table-row-clickable tbody tr:first-of-type td{
+  border-top: 1px solid $grey-light !important;
+}
+
 // No borders
 
-.table-row-clickable.no-borders tr td, .table-row-clickable.no-borders thead th{
+.table-row-clickable.no-borders tr td, .table-row-clickable.no-borders tr,
+  .table-row-clickable.no-borders thead th{
   border: none !important;
 }
 
@@ -103,11 +112,16 @@ table.table-disabled {
 // Managed Items Select Modal
 
 #im-select-modal .modal-lg{
-  width: 80%;
+  width: 85%;
 }
 
-#im-select-modal table th:first-of-type, #im-select-modal table tr td:first-of-type {
-  padding-left: 30px;
+#im-select-modal .modal-body{
+  padding: 20px 40px;
+}
+
+#im-select-modal .card{
+  min-height: 400px;
+  max-height: 80%;
 }
 
 // IEFIX
