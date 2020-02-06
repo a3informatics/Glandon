@@ -239,6 +239,7 @@ Rails.application.routes.draw do
       get :history
       post :extension
       get :search_current
+      get :search_multiple
     end
     member do
       get :children

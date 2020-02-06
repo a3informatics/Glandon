@@ -215,6 +215,30 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def search_multiple
+    authorize Thesaurus, :show?
+    filter = the_params[:filter]
+    if filter == "current"
+      uris = Thesaurus.current_and_latest_set.map{|k,v| v.last[:uri]}
+    elsif filter = "latest"
+      uris = Thesaurus.current_and_latest_set.map{|k,v| v.first[:uri]}
+    else
+      uris = the_params[:id_set].map {|x| Uri.new(id: x)}
+    end
+    respond_to do |format|
+      format.html
+        @close_path = thesauri_index_path
+      format.json do
+        if Thesaurus.empty_search?(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+        else
+          results = Thesaurus.search_multiple(params, uris)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+        end
+      end
+    end
+  end
+
   def changes
     authorize Thesaurus, :show?
     @version_count = current_user.max_term_display.to_i
@@ -526,7 +550,7 @@ private
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :id_set => [])
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :filter, :id_set => [])
   end
 
 end
