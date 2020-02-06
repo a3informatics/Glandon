@@ -350,6 +350,29 @@ class IsoManagedV2 < IsoConceptV2
     object
   end
 
+  # Creation Date Exists? Does the creation date already exist in the history?
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @params params [String] :date the date to be checked as a string
+  # @return [Boolean] true if the date exists in the history
+  def self.creation_date_exists?(params)
+    date = Time.parse(params[:date]).strftime("%Y-%m-%d")
+    query_string = %Q{
+      SELECT ?d WHERE { 
+        ?s rdf:type #{rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:identifier '#{params[:identifier]}' .
+        ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+        ?s isoT:creationDate ?d .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    results = query_results.by_object_set([:d]).select{|x| Time.parse(x[:d]).strftime("%Y-%m-%d") == date}
+    results.any?
+  end
+
   # History. Find the history for a given identifier within a scope
   #
   # @params [Hash] params

@@ -438,6 +438,14 @@ describe "IsoManagedV2" do
       check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "creation_date" do
+      results = []
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "30/09/2008")).to be(true)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2008-09-29")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "31/09/2008")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2015-12-18")).to be(true)
+    end
+
     it "history, pagination" do
       results = []
       actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 10)
