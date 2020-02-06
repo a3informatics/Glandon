@@ -28,6 +28,30 @@ describe ThesauriController do
     return params
   end
 
+  def multiple_params(filter, id_set)
+    params =
+      {
+        :draw => "1",
+        :columns =>
+        {
+          "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "1" => {:data  => "parentLabel", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "2" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "3" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "4" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "5" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+          "6" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}},
+          "7" => {:data  => "tags", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+        },
+        :order => { "0" => { :column => "0", :dir => "asc" }},
+        :start => "0",
+        :length => "15",
+        :search => { :value => "", :regex => "false" },
+        :thesauri => { :filter => filter, :id_set => [id_set] }
+      }
+    return params
+  end
+
   def map_results(results)
     results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
       tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
@@ -462,6 +486,13 @@ describe ThesauriController do
       expect(response).to render_template("search_current")
     end
 
+    it "initiates a search of multiple terminologies" do
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
+      params = multiple_params("",th.id)
+      get :search_multiple, params
+      expect(response).to render_template("search_multiple")
+    end
+
     it "obtains the search results" do
       request.env['HTTP_ACCEPT'] = "application/json"
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
@@ -506,6 +537,41 @@ describe ThesauriController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
       check_file_actual_expected(actual, sub_dir, "search_current_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "obtains the multiple search results" do
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = multiple_params("current", th.id)
+      params[:columns]["6"][:search][:value] = "cerebral"
+      get :search_multiple, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "obtains the multiple search results II" do
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = multiple_params("latest",th.id)
+      params[:columns]["6"][:search][:value] = "cerebral"
+      get :search_multiple, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "obtains the multiple search results, empty search" do
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = multiple_params("latest",th.id)
+      get :search_multiple, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_3.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "export as TTL" #do
