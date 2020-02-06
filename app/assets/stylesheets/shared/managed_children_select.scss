@@ -144,6 +144,7 @@ table.table-row-clickable tbody tr:first-of-type td{
   }
 
   .table-row-clickable tr.selected.r td:first-of-type::before,
+    .table-row-clickable tr.selected.b td:first-of-type::before,
     .table-row-clickable tr.selected.y td:first-of-type::before{
       top: 0 !important;
       bottom: -100% !important;

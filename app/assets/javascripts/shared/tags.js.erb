@@ -53,9 +53,9 @@ function formatIndicators(data){
   var indicatorsHtml = "";
   $.each(data, function(k, v){
     if(k != "version_count" && v == true)
-      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-left shadow-small'>"+indicatorMap[k].ttip+"</span></span>"
+      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-table left shadow-small'>"+indicatorMap[k].ttip+"</span></span>"
     else if (v > 1){
-      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-left shadow-small'>"+indicatorMap[k].ttip.replace("%n%", v)+"</span></span>"
+      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-table left shadow-small'>"+indicatorMap[k].ttip.replace("%n%", v)+"</span></span>"
     }
   });
   return indicatorsHtml;
