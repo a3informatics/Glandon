@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Terminology")' %>
-<%= javascript_include_tag 'standard_datatable' %>
+<%= javascript_include_tag 'standard_datatable', 'thesauri/index', 'shared/iso_managed/managed_items_select_modal' %>
 <% first_level_breadcrumb (:thesauri) %>
 <div class="row">
 	<div class="col-md-12 card wide">
@@ -12,9 +12,9 @@
 					To see Terminology's respective History page, click on it.
 				</div>
 				<div class="actions-wrap half-block">
-					<a href="<%= search_current_thesauri_index_path %>" class="btn medium light" id="search_current">
+					<a href="#im-select-modal" class="btn medium light" id="search" data-toggle="modal">
 						<span class="icon-search text-small"></span>&nbsp;
-						Search across all current versions
+						Search Terminologies
 					</a>
 					<% if policy(Thesaurus).new? %>
 						<a href="#newTerminologyModal" class="btn medium green" id="new_terminology" data-toggle="modal">
@@ -24,6 +24,10 @@
 						<%= render partial: "shared/thesauri/new_terminology" %>
 					<% end %>
 				</div>
+				<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri, index_url: thesauri_index_path,
+					history_url: history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"}),
+					description: "Select one or more Terminology version in which to search, or choose all Current / Latest versions."} %>
+
 			</div>
 			<hr>
 			<div class="table-width-wrapper narrow">
