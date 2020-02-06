@@ -292,7 +292,7 @@ class IsoManagedV2 < IsoConceptV2
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
     read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-    query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
     from_results_recurse(uri, results.by_subject)
@@ -303,8 +303,9 @@ class IsoManagedV2 < IsoConceptV2
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
   def self.find_minimum(id)
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
+    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    parts << "  { #{uri.to_ref} rdf:type ?o . BIND (#{C_RDF_TYPE.to_ref} as ?p) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
     parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"

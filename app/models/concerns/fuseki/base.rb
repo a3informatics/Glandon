@@ -11,6 +11,8 @@ module Fuseki
 
   class Base
     
+    C_RDF_TYPE = Uri.new(namespace: Uri.namespaces.namespace_from_prefix(:rdf), fragment: "type")
+
     include ActiveModel::Naming
     include ActiveModel::Conversion
     include ActiveModel::Validations

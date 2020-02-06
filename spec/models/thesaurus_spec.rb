@@ -762,6 +762,18 @@ describe Thesaurus do
     before :each do
     end
 
+    it "rejects state change" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      thesaurus.update_status(registration_status: "Standard")
+      expect(thesaurus.errors.count).to eq(1)
+      expect(thesaurus.errors.full_messages.to_sentence).to eq("Child items are not in the appropriate state.")
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc.update_status(registration_status: "Candidate")
+      thesaurus.update_status(registration_status: "Candidate")
+      expect(thesaurus.errors.count).to eq(0)
+    end
+
     it "states" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = thesaurus.managed_children_states

@@ -14,6 +14,10 @@ class Thesaurus <  IsoManagedV2
   include Thesaurus::Search
   include Thesaurus::Where
 
+  def update_status(params)
+    move_to_next_state? ? super : self.errors.add(:base, "Child items are not in the appropriate state.")
+  end
+
   def add(item, ordinal)
     ref = OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
     ref.uri = ref.create_uri(self.uri)
