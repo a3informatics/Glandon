@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "CDISC Term Search", :type => :feature do
-  
+
   include DataHelpers
   include PauseHelpers
   include UiHelpers
@@ -25,7 +25,7 @@ describe "CDISC Term Search", :type => :feature do
   end
 
   describe "CDISC Terminology. Curator Search", :type => :feature do
-  
+
     before :all do
       ua_create
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -52,10 +52,14 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2014-12-19 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V42.0.0, 42, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("42.0.0")
+      expect(page).to have_content("Standard")
+      wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Return'
-      expect(page).to have_content 'History: CT'
+      expect(page).to have_content "Version History of 'CT'"
     end
 
     it "allows a search to be performed, searches (REQ-MDR-CT-060)", js: true do
@@ -63,53 +67,56 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
 
       ui_term_column_search(:code_list, 'C100129')
       ui_check_table_info("searchTable", 1, 10, 142)
-      
+
       ui_term_column_search(:definition, 'Hamilton')
       ui_check_table_info("searchTable", 1, 3, 3)
-      
+
       ui_term_column_search(:notation, 'ADMINISTRATION')
       ui_check_table_info("searchTable", 1, 2, 2)
-      
+
       fill_in 'searchTable_csearch_submission_value', with: 'A' # In effect delete all bar one character
       ui_hit_backspace('searchTable_csearch_submission_value') # Delete last character so now empty
       wait_for_ajax_long
       ui_check_table_info("searchTable", 1, 3, 3)
-      
+
       fill_in 'searchTable_csearch_definition', with: 'H'
       ui_hit_backspace('searchTable_csearch_definition')
       wait_for_ajax_long
       ui_check_table_info("searchTable", 1, 10, 142)
-      
+
       ui_term_overall_search('Hamilton')
       ui_check_table_info("searchTable", 1, 3, 3)
-      
+
       input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
       input.set('H')
       input.native.send_keys(:backspace)
       wait_for_ajax_long
       ui_check_table_info("searchTable", 1, 10, 142)
-      
+
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[3]/a')
       link.click
       wait_for_ajax_long
       ui_check_table_info("searchTable", 11, 20, 142)
-      
+
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[4]/a')
       link.click
       wait_for_ajax_long
       ui_check_table_info("searchTable", 21, 30, 142)
-      
+
       link = find(:xpath, '//*[@id="searchTable_previous"]/a')
       link.click
       wait_for_ajax_long
       ui_check_table_info("searchTable", 11, 20, 142)
-      
+
       link = find(:xpath, '//*[@id="searchTable_next"]/a')
       link.click
       wait_for_ajax_long
@@ -121,7 +128,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
 
@@ -137,7 +147,7 @@ describe "CDISC Term Search", :type => :feature do
 
 			ui_term_column_search(:definition, 'the')
       ui_check_table_info("searchTable", 1, 5, 5)
-      
+
 			ui_term_column_search(:notation, 'RACE')
 			expect(page).to have_content 'Showing 1 to 1 of 1 entries'
 
@@ -151,7 +161,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_overall_search('race')
@@ -166,7 +179,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_column_search(:notation, 'NOT DONE')
@@ -181,7 +197,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_overall_search('inches')
@@ -205,8 +224,11 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-09-25 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
-      wait_for_ajax_long 
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("45.0.0")
+      expect(page).to have_content("Standard")
+      wait_for_ajax_long
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_overall_search('inches')
       ui_check_table_info("searchTable", 1, 10, 12)
@@ -230,7 +252,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_column_search(:notation, 'bpi')
@@ -249,7 +274,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_overall_search('inches')
@@ -267,7 +295,10 @@ describe "CDISC Term Search", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :search)
-      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Controlled Terminology")
+      expect(page).to have_content("46.0.0")
+      expect(page).to have_content("Standard")
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_column_search(:code_list_name, 'vital signs')

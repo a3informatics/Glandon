@@ -76,7 +76,8 @@ describe "Community Dashboard JS", :type => :feature do
 
     it "allows access to CDISC search (REQ-MDR-CT-060)", js: true do
       click_search_the_latest_version
-      expect(page).to have_content 'Search: Controlled Terminology CT '
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'Controlled Terminology'
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Home'
       check_on_commumity_dashboard

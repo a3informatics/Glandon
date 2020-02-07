@@ -13,15 +13,6 @@ describe "Thesaurus", :type => :feature do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl"]
       load_files(schema_files, data_files)
-      # clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_schema_file_into_triple_store("ISO25964.ttl")
-      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      # load_test_file_into_triple_store("iso_namespace_real.ttl")
-      # load_test_file_into_triple_store("thesaurus_concept.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -111,7 +102,10 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element('history', 4, 'CDISC Extensions', :search)
       wait_for_ajax(10)
-      expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'Standard'
+
     #save_and_open_page
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -125,7 +119,9 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :search)
       wait_for_ajax(10)
-      expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'Standard'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -140,7 +136,9 @@ describe "Thesaurus", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :search)
-      expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'Standard'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -158,7 +156,9 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :search)
       wait_for_ajax(10)
-      expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'Standard'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -185,29 +185,6 @@ describe "Thesaurus", :type => :feature do
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
-
-    it "allows a search to be performed on all current versions (REQ-MDR-ST-030)", js: true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      click_link 'Search across all current versions'
-      expect(page).to have_content 'Search: All Current Terminology'
-      wait_for_ajax(5) # Big load
-      ui_check_table_info("searchTable", 0, 0, 0)
-      click_link 'Return'
-      expect(page).to have_content 'Index: Terminology'
-    end
-
-    #View option removed
-    # it "history allows the view page to be viewed (REQ-MDR-ST-015)", js: true do
-    #   click_navbar_terminology
-    #   expect(page).to have_content 'Index: Terminology'
-    #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
-    #   expect(page).to have_content 'Version History of \'CDISC EXT\''
-    #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'View').click
-    #   expect(page).to have_content 'View: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
-    #   click_link 'Close'
-    #   expect(page).to have_content 'Version History of \'CDISC EXT\''
-    # end
 
   end
 
