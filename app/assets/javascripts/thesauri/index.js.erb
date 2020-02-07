@@ -1,13 +1,15 @@
 $(document).ready(function(){
-  var cb = function(value){
+
+  // Thesauri selected callback
+  var callback = function(value) {
     var data = {thesauri: {}};
-    if(value instanceof Array)
-      data.thesauri["id_set"] = value;
+    data.thesauri[(value instanceof Array ? "id_set" : "filter")] = value;
 
+    if (value instanceof Array && value.length == 1)
+      location.href = searchUrl.replace("thId", value[0]);
     else
-      data.thesauri["filter"] = value;
-
-    location.href = searchPageUrl + "?" + $.param(data);
+      location.href = searchMultiUrl + "?" + $.param(data);
   }
-  var mis = new ManagedItemsSelect("thesaurus", cb);
+
+  var mis = new ManagedItemsSelect("thesaurus", callback);
 });

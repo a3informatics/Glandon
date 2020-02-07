@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Search Terminologies")' %>
-<% breadcrumb ([id_to_type(:thesauri), {link: "#", text: "Search #{@search_type}"}]) %>
+<% breadcrumb ([id_to_type(:thesauri), {link: "#", text: "Search"}]) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -12,7 +12,7 @@
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-terminology",
-    main_text: "Search in #{@search_type}",
+    main_text: "<span class='text-medium font-light'>Search</span> #{@search_type}".html_safe,
     sub_text: "Searching in the pre-selected set of Terminologies." } do %>
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
