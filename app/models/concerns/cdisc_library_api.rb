@@ -140,9 +140,19 @@ private
     response = Rest.send_request(href, :get, ENV["cdisc_library_api_username"], 
       ENV["cdisc_library_api_password"], "", headers)
     return JSON.parse(response.body).deep_symbolize_keys if response.success?
-    
-    # Error, raise exception
-    msg = "Request to CDISC API #{href} failed, code: #{response.code}."
+    process_error(response, href)
+  end
+
+  # Handle the error
+  def process_error(response, href)
+byebug
+    if response.timed_out?
+      msg = "Request to CDISC API #{href} failed, timed out."
+    elsif response.code == 0
+      msg = "Request to CDISC API #{href} failed, 0 error: #{response.return_message}."
+    else
+      msg = "Request to CDISC API #{href} failed, HTTP error: #{response.code}."
+    end
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     raise Errors::NotFoundError.new(msg)
   end

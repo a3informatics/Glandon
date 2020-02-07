@@ -81,7 +81,7 @@ describe "CDISC Library API" do
 
     it "ct package, error" do
       object = CDISCLibraryAPI.new
-      expect{object.ct_package("/mdr/ct/packages/protocolct-2019-03-XX")}.to raise_error(Errors::NotFoundError, "Request to CDISC API https://library.cdisc.org/api/mdr/ct/packages/protocolct-2019-03-XX failed, code: 404.")
+      expect{object.ct_package("/mdr/ct/packages/protocolct-2019-03-XX")}.to raise_error(Errors::NotFoundError, "Request to CDISC API https://library.cdisc.org/api/mdr/ct/packages/protocolct-2019-03-XX failed, HTTP error: 404.")
     end
 
     it "ct package tags" do
