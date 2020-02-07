@@ -37,7 +37,8 @@ function IndexSubsets(id) {
   // Get selected th callback
   $('#new_subset').click(function() {
     $('#subsets-index-modal').modal('hide');
-    $('#th-select-modal').modal('show');
+    setTimeout(function(){ $('#th-select-modal').modal('show'); }, 600);
+
   });
 
   $('#subsets-index-modal').on('shown.bs.modal', function () {
