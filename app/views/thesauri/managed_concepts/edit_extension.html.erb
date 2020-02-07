@@ -5,6 +5,7 @@
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
                         extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
+                        searchUrl = '#{search_multiple_thesauri_index_path(thesauri: {filter: "current"})}',
                         newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
                         newChildFromSynUrl ='#{add_children_synonyms_thesauri_managed_concept_path(@tc)}',
                         destroyChildUrl ='#{thesauri_unmanaged_concept_path("umcid")}',

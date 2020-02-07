@@ -70,7 +70,7 @@ TermSearch.prototype.initAndShow = function(selection) {
 */
 TermSearch.prototype.initTable = function() {
   this.tsSearchTable = $('#searchModal #searchTable').DataTable({
-    "pageLength": 5,
+    "pageLength": pageLength,
     "lengthMenu": [5, 10, 15, 25, 50, 100],
     "columns": this.columns(),
     "processing": true,

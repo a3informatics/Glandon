@@ -226,6 +226,10 @@ a.card-item:hover, a.card-item:focus{
   font-family: $font-light;
 }
 
+.table-cardstyle .dataTables_empty{
+  pointer-events: none;
+}
+
 .table-invisible .dataTables_info, .table-invisible .dataTables_paginate{
   padding-top: 20px !important;
 }
