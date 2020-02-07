@@ -548,7 +548,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "obtains the multiple search results II" do
@@ -560,7 +560,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "obtains the multiple search results, empty search" do
@@ -571,7 +571,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "search_multiple_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "export as TTL" #do
