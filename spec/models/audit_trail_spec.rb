@@ -163,7 +163,7 @@ describe AuditTrail do
     AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
     AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
     AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    expect(AuditTrail.users_by_year_by_week).to eq({"2010"=>{"43"=>1}, "2012"=>{"39"=>2}, "2019"=>{"04"=>1, "43"=>1}})
+    expect(AuditTrail.users_by_year_by_week).to eq({"2010"=>{"43"=>1}, "2012"=>{"39"=>2}, "2019"=>{"05"=>1, "44"=>1}})
   end
 
   it "counts users by year by month" do

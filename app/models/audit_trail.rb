@@ -130,7 +130,8 @@ class AuditTrail < ActiveRecord::Base
     logins = self.have_logged_in
     if !logins.nil? 
       raw_results = logins.group("date_trunc('year', date_time)").group("date_trunc('week',date_time)").count
-      raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%W")] , v] }.to_h
+      raw_results = raw_results.sort_by {|v| v}
+      raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%V")] , v] }.to_h
       result = {}
       raw_results.each do |arr, value|
         if result[arr[0]].nil?
@@ -151,6 +152,7 @@ class AuditTrail < ActiveRecord::Base
     logins = self.have_logged_in
     if !logins.nil? 
       raw_results = logins.group("date_trunc('year', date_time)").group("date_trunc('month',date_time)").count
+      raw_results = raw_results.sort_by {|v| v}
       raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%B")] , v] }.to_h
       result = {}
       raw_results.each do |arr, value|
