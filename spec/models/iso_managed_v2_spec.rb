@@ -815,6 +815,11 @@ describe "IsoManagedV2" do
       check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "sets latest set" do
+      results = Thesaurus.current_and_latest_set
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
 	describe "change notes csv" do

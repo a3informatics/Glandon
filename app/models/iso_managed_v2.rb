@@ -791,6 +791,42 @@ class IsoManagedV2 < IsoConceptV2
         } UNION {
           SELECT DISTINCT ?s ?key ?v WHERE
           {
+            ?x rdf:type #{rdf_type.to_ref} .
+            ?x isoT:hasIdentifier/isoI:identifier ?id .
+            ?x isoT:hasIdentifier/isoI:version ?v .
+            BIND(?x as ?s)
+            {
+              SELECT DISTINCT ?key ?id ?scope (MAX(?lv) as ?v) 
+              {
+                ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
+                ?s isoT:hasIdentifier ?si .
+                ?si isoI:version ?lv .
+                ?si isoI:identifier ?id .
+                ?si isoI:hasScope ?scope .
+                ?scope isoI:shortName ?sn .
+                BIND(CONCAT(STR(?sn),".",STR(?id)) AS ?key)
+              } GROUP BY ?key ?id ?scope
+            }
+          }
+        }
+      } ORDER BY ?key DESC(?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
+    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
+    results
+  end
+
+  # Latest Set. Find the latest versions for all identifiers for a given type.
+  #
+  # @return [Array] Each hash contains {uri}
+  def self.latest_set
+    results = Hash.new {|h,k| h[k] = []}
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT DISTINCT ?s ?key ?v WHERE
+      {
+          SELECT DISTINCT ?s ?key ?v WHERE
+          {
             ?s rdf:type #{rdf_type.to_ref} .
             ?s isoT:hasIdentifier ?si .
             {
@@ -811,11 +847,11 @@ class IsoManagedV2 < IsoConceptV2
             ?ns isoI:shortName ?sn .
             BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
           }
-        }
       } ORDER BY ?key DESC(?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
     query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
+  byebug
     results
   end
 
