@@ -185,6 +185,10 @@ describe "Thesauri Extensions", :type => :feature do
       ui_check_table_info("extension-children-table", 1, 10, 15)
       click_link 'Add items'
       sleep 1
+      wait_for_ajax(10)
+      page.find("#select-all-current").click
+      click_button "Submit and proceed"
+      sleep 2
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
       input.set("C100129")
       input.native.send_keys(:return)
@@ -199,6 +203,9 @@ describe "Thesauri Extensions", :type => :feature do
       ui_check_table_button_class("extension-children-table", 6, 8, "exclude")
       click_link 'Add items'
       sleep 1
+      wait_for_ajax(10)
+      click_button "Submit and proceed"
+      sleep 2
       input.set("")
       input = find(:xpath, '//*[@id="searchTable_csearch_cl name"]')
       input.set("Country")
@@ -206,10 +213,13 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
+      input.set("")
+      input = find(:xpath, '//*[@id="searchTable_csearch_preferred term"]')
+      input.set("Congo")
+      input.native.send_keys(:return)
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      expect(find("#number-selected").text).to eq("3")
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
+      expect(find("#searchModal #number-selected").text).to eq("3")
       click_button 'Add items'
       wait_for_ajax(20)
       sleep 1
@@ -220,13 +230,17 @@ describe "Thesauri Extensions", :type => :feature do
       go_to_edit_extension "C66770E"
       click_link 'Add items'
       sleep 1
+      wait_for_ajax(10)
+      page.find("#select-all-latest").click
+      click_button "Submit and proceed"
+      sleep 2
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
       input.set("C1")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[2]")[:class].include?("disabled")
-      expect(find("#number-selected").text).to eq("1")
+      expect(find("#searchModal #number-selected").text).to eq("1")
       click_button 'Close'
       sleep 1
     end
