@@ -145,7 +145,6 @@ private
 
   # Handle the error
   def process_error(response, href)
-byebug
     if response.timed_out?
       msg = "Request to CDISC API #{href} failed, timed out."
     elsif response.code == 0
