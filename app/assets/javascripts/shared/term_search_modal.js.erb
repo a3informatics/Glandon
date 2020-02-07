@@ -37,10 +37,30 @@ function TermSearch(context_id, callback, url) {
     _this.updateUI();
   });
 
-  $("#searchTable input").css("width", "100%");
+  $("#searchModal .dataTables_scrollHead input").css("width", "100%");
 
   if(!this.codeListAllowed)
-    $(".modal-info").append("<i>Code Lists cannot be included and appear grey in the table. Only Code List Items are allowed.</i>")
+    $("#searchModal .modal-info").text("Code Lists cannot be included and appear grey in the table. Only Code List Items are allowed.")
+}
+
+/**
+* Initializes with url and shows self
+*
+* @param selection [Array / String] Search Filter  with either Term IDs or filter current/latest
+* @return [void]
+*/
+TermSearch.prototype.initAndShow = function(selection) {
+  // Clear
+  $('#searchModal #clear_search').click();
+
+  // Make URL
+  var data = {thesauri: {}};
+  data.thesauri[(selection instanceof Array ? "id_set" : "filter")] = selection;
+  this.searchUrl = searchMultiUrl + "?" + $.param(data);
+  this.tsSearchTable.ajax.url(this.searchUrl);
+
+  // Show self
+  $('#searchModal').modal("show");
 }
 
 /**
@@ -49,12 +69,14 @@ function TermSearch(context_id, callback, url) {
 * @return [void]
 */
 TermSearch.prototype.initTable = function() {
-  this.tsSearchTable = $('#searchTable').DataTable({
+  this.tsSearchTable = $('#searchModal #searchTable').DataTable({
     "pageLength": 5,
     "lengthMenu": [5, 10, 15, 25, 50, 100],
     "columns": this.columns(),
     "processing": true,
     "serverSide": true,
+    "scrollY": 500,
+    "scrollCollapse": true,
     "ajax": {
       "url": this.searchUrl,
     },
@@ -66,7 +88,8 @@ TermSearch.prototype.initTable = function() {
     },
     "orderCellsTop": true,
     "select": {
-        style: 'multi'
+        style: 'multi',
+        info: false,
     },
     "rowCallback": function(row, data) {
       if (this.selectionContains(data["id"]))
@@ -104,12 +127,12 @@ TermSearch.prototype.selectOrDeselectItem = function(id, select) {
 */
 TermSearch.prototype.updateUI = function() {
   var itemCount = this.selected.length;
-  $(".selection-info #number-selected").text(itemCount);
+  $("#searchModal .selection-info #number-selected").text(itemCount);
 
   if (itemCount > 0)
-    $('#add_terms').removeClass('disabled');
+    $('#searchModal #add_terms').removeClass('disabled');
   if (itemCount == 0)
-    $('#add_terms').addClass('disabled');
+    $('#searchModal #add_terms').addClass('disabled');
 }
 
 /**
@@ -118,9 +141,9 @@ TermSearch.prototype.updateUI = function() {
 * @return [void]
 */
 TermSearch.prototype.resetSearchUI = function() {
-  $("#searchTable_filter input").val("");
+  $("#searchModal #searchTable_filter input").val("");
   this.tsSearchTable.columns().every( function () {
-    $('#searchTable thead input').val("");
+    $('#searchModal #searchTable thead input').val("");
   });
   this.tsSearchTable.search('');
   this.tsSearchTable.columns().search('');
@@ -134,7 +157,7 @@ TermSearch.prototype.resetSearchUI = function() {
 */
 TermSearch.prototype.appendSearchBoxes = function() {
   // Setup - add a text input to each header cell
-  $('#searchTable thead tr:eq(1) th').each( function () {
+  $('#searchModal .dataTables_scrollHead thead tr:eq(1) th').each( function () {
     var title = $(this).text();
     var id = "searchTable_csearch_" + title.toLowerCase();
     if (title == "Extensible") {
@@ -172,7 +195,7 @@ TermSearch.prototype.setListeners = function() {
   });
 
   // Get selected rows callback
-  $('#add_terms').off('click').on('click', function() {
+  $('#searchModal #add_terms').off('click').on('click', function() {
     if (_this.selected.length > 0)
       _this.callback(_this.selected);
 
@@ -182,12 +205,12 @@ TermSearch.prototype.setListeners = function() {
   });
 
   //Clear search
-  $('#clear_search').off('click').on('click', function(){
+  $('#searchModal #clear_search').off('click').on('click', function(){
     _this.resetSearchUI();
   });
 
   //Clear selection
-  $('#clear-selection').off('click').on('click', function(){
+  $('#searchModal #clear-selection').off('click').on('click', function(){
     _this.tsSearchTable.rows({selected: true}).deselect();
     _this.selected = [];
     _this.updateUI();
@@ -196,7 +219,7 @@ TermSearch.prototype.setListeners = function() {
   // Add search functionality to search inputs.
   this.tsSearchTable.columns().every(function (index) {
     var that = this;
-      $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
+      $('#searchModal .dataTables_scrollHead thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
       if (e.which == 13 || this.value == "") {
         if (that.search() !== this.value) {
           that.search(this.value).draw();
@@ -207,7 +230,7 @@ TermSearch.prototype.setListeners = function() {
 
   // Apply the overall search. Fires on return or field empty assuming not the
   // current search value (i.e. something has changed).
-  $("#searchTable_filter input")
+  $("#searchModal #searchTable_filter input")
     .unbind() // Unbind previous default bindings
     .bind("keyup", function(e) { // Bind our desired behavior
     if(this.value == "" || e.keyCode == 13) {
@@ -218,7 +241,7 @@ TermSearch.prototype.setListeners = function() {
   });
 
   // handle double click on terminology table
-  $('#searchTable tbody').on('dblclick', 'tr', function () {
+  $('#searchModal #searchTable tbody').on('dblclick', 'tr', function () {
     if (_this.tsSearchTable.data().any() ) {
       if (_this.tsCurrentRef != null) {
       }
@@ -227,18 +250,18 @@ TermSearch.prototype.setListeners = function() {
       _this.tsCurrentRow = row;
       var data = _this.tsSearchTable.row(row).data();
       // Clear search fields in UI and within datatables.
-      $("#searchTable_filter input").val("");
+      $("#searchModal #searchTable_filter input").val("");
       _this.tsSearchTable.columns().every( function () {
-        $('#searchTable thead input').val("");
+        $('#searchModal #searchTable thead input').val("");
       });
       _this.tsSearchTable.search('');
       _this.tsSearchTable.columns().search('');
       // Set our parent identifier search and trigger.
-      $('#searchTable_csearch_cl').val(data.parent_identifier);
+      $('#searchModal #searchTable_csearch_cl').val(data.parent_identifier);
       var e = jQuery.Event("keyup");
       e.which = 13;
       e.keyCode = 13;
-      $('#searchTable_csearch_cl').trigger(e);
+      $('#searchModal #searchTable_csearch_cl').trigger(e);
     }
   });
 }

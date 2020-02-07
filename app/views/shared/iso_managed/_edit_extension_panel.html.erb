@@ -1,10 +1,11 @@
 <%= javascript_include_tag 'shared/thesauri/managed_concepts/edit_extension_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_tag "var searchMultiUrl = '#{search_multiple_thesauri_index_path}'" %>
 
 <div class="card-header">Edit Extension</div>
 <div class="card-content table-cardstyle">
   <div class="btns-wrap" id="edit-extension-actions">
-    <a href="#searchModal" class="btn medium light ttip" id="add-existing-button" data-toggle="modal">
+    <a href="#im-select-modal" class="btn medium light ttip" id="add-existing-button" data-toggle="modal">
       <span class="ttip-text shadow-small text-medium">Find and select one or more <br/> Code List Items</span>
       <span class="icon-search"></span> Add items</a>
     <button class="btn medium green ttip" id="new-item-button">
@@ -37,4 +38,9 @@
     </tbody>
   </table>
 </div>
-<%= render partial: "shared/edit_panel" %>
+
+<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri, index_url: thesauri_index_path,
+  history_url: history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"}),
+  description: "Select one or more Terminologies to search for Code List Items in, or choose all Current / Latest versions."} %>
+
+<%= render partial: "shared/term_search_modal" %>

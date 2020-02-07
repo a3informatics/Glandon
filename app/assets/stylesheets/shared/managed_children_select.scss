@@ -36,10 +36,6 @@
   display: none;
 }
 
-.rows-selected-hide .select-info{
-  display: none !important;
-}
-
 .table-row-clickable tr.disabled{
   pointer-events: none !important;
   opacity: .5 !important;
@@ -111,11 +107,11 @@ table.table-row-clickable tbody tr:first-of-type td{
 
 // Managed Items Select Modal
 
-#im-select-modal .modal-lg{
+#im-select-modal .modal-lg, #searchModal .modal-lg{
   width: 85%;
 }
 
-#im-select-modal .modal-body{
+#im-select-modal .modal-body, #searchModal .modal-body{
   padding: 20px 40px;
 }
 

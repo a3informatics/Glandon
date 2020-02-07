@@ -1,7 +1,10 @@
 $(document).ready( function() {
+
   var extUrls = {loadUrl: showDataUrl, updateUrl: extensionUrl, newChildUrl: newChildUrl, newSynChildUrl: newChildFromSynUrl, destroyChildUrl: destroyChildUrl};
   var eep = new EditExtensionPanel(extUrls, extensionId, 1000, editCallback);
-  var searchModal = new TermSearch(contextId, eep.addToExtension.bind(eep), searchUrl);
+
+  var searchModal = new TermSearch(contextId, eep.addToExtension.bind(eep), null);
+  var mis = new ManagedItemsSelect("thesaurus", function(val){ searchModal.initAndShow(val) });
 
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);

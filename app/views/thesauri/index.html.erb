@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Terminology")' %>
-<%= javascript_include_tag 'standard_datatable', 'thesauri/index', 'shared/iso_managed/managed_items_select_modal' %>
+<%= javascript_include_tag 'standard_datatable', 'thesauri/index' %>
 <%= javascript_tag "var searchMultiUrl = '#{search_multiple_thesauri_index_path}',
-												searchUrl = '#{search_thesauri_path(id: "thId")}'" %> 
+												searchUrl = '#{search_thesauri_path(id: "thId")}'" %>
 <% first_level_breadcrumb (:thesauri) %>
 <div class="row">
 	<div class="col-md-12 card wide">
