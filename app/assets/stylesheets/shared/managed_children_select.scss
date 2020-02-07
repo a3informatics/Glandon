@@ -38,7 +38,8 @@
 
 .table-row-clickable tr.disabled{
   pointer-events: none !important;
-  opacity: .5 !important;
+  color: $grey-light;
+  background: $grey-bright !important;
 }
 
 table.table-disabled {
