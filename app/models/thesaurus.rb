@@ -645,19 +645,21 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
       }
       WHERE
       {
-        VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
         {
+          VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
           #{self.uri.to_ref} th:isTopConceptReference ?s .
           ?s bo:reference ?x .
           ?s ?p ?o
         } UNION
         {
+          VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConceptReference as ?p ) .
           #{self.uri.to_ref} th:isTopConceptReference ?o .
           ?o bo:reference ?x .
         } UNION
         {
+          VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
           BIND ( #{self.uri.to_ref} as ?s )
           BIND ( th:isTopConcept as ?p ) .
           BIND ( ?x as ?o)
