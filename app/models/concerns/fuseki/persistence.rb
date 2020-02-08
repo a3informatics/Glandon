@@ -195,7 +195,9 @@ module Fuseki
         item = triples.detect{|x| x[:predicate].to_s == Fuseki::Base::C_RDF_TYPE.to_s}
         return self.new if item.nil?
         return self.new if rdf_type_to_klass(item[:object].to_s).nil?
-        rdf_type_to_klass(item[:object].to_s).new
+        klass = rdf_type_to_klass(item[:object].to_s)
+        return self.new if self.class.ancestors.include?(klass)
+        klass.new
       end
 
     end

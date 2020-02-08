@@ -2,12 +2,12 @@
 - :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: raNamespace
   :model_class: !ruby/class 'IsoNamespace'
 - :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: byAuthority
   :model_class: !ruby/class 'IsoRegistrationAuthority'
