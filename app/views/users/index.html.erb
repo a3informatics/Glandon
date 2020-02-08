@@ -9,7 +9,9 @@
 				<tr>
 		    	<th>User email</th>
 		    	<th>Roles</th>
-		    	<th></th>
+		    	<th>Login Count</th>
+          <th>Last Login</th>
+          <th></th>
 		    	<th></th>
           <th></th>
           <th></th>
@@ -17,9 +19,12 @@
 			</thead>
 			<tbody>
 				<% @users.each do |user| %>
-					<tr>
+				  <% last_si = user.last_sign_in_at %>
+        	<tr>
 				    	<td><%= "#{user.email}" %></td>
 				    	<td><%= "#{user.role_list_stripped}" %></td>
+              <td><%= "#{user.sign_in_count}" %></td>
+              <td><%= last_si.nil? ? "Not logged in yet!" : "#{last_si.strftime("%F")}, #{time_ago_in_words(last_si.strftime("%F"))}" %></td>
 				    	<td style="text-align: center;"><%= link_to "Edit", edit_user_path(user), :class => "btn medium" %></td>
 				    	<td style="text-align: center;">
 				    		<% if @current_user.id != user.id %>
