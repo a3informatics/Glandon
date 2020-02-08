@@ -4,6 +4,7 @@ describe "Users", :type => :feature do
 
   include PauseHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   before :all do
     ua_create
@@ -11,12 +12,12 @@ describe "Users", :type => :feature do
     ua_add_user email: 'lock@example.com', password: 'Changeme1#', role: :curator
     # ua_add_user email: 'tst_user2@example.com', password: 'Changeme1#', current_sign_in_at: '2019-11-21 07:45:59.141587'
     User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
-
-
   end
 
   after :all do
     ua_destroy
+    ua_remove_user('tst_user2@example.com')
+    ua_remove_user('lock@example.com')
     # No need to destroy "delete@exampe.com as the test does it"
   end
 
@@ -67,8 +68,21 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
-      find(:xpath, "//*[@id='main']/tbody/tr[1]/td[3]/a", :text => 'Edit').click
+      ui_check_table_info("main", 1, 10, User.all.count)
+      find(:xpath, "//*[@id='main']/tbody/tr[1]/td[5]/a", :text => 'Edit').click
       expect(page).to have_content 'Login Count: 0  |  Last login: Not logged in yet!  |  Days ago: Not logged in yet!'
+    end
+
+    it "allows to show user login information (REQ-??????)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      ui_check_table_info("main", 1, 10, User.all.count)
+      expect(page).to have_content 'Login Count'
+      expect(page).to have_content 'Last Login'
+      expect(page).to have_content 'Last Login'
+      ui_check_table_cell("main", 1, 3, "0")
+      ui_check_table_cell("main", 1, 4, "Not logged in yet!")
     end
 
   end

@@ -30,7 +30,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:supporting_edit?).and_return(false)
-      get :show, {id: "aaa", unmanaged_concept: {context_id: "bbb"}}
+      get :show, {id: "aaa", unmanaged_concept: {context_id: "bbb", parent_id: "ppp"}}
       expect(assigns(:context_id)).to eq("bbb")
       expect(assigns(:has_children)).to eq(false)
       expect(response).to render_template("show")
@@ -171,16 +171,16 @@ describe Thesauri::UnmanagedConceptsController do
     it "returns the synonym links, context" do
       expected =
       {
-        :"Hair Cover" =>
+        :"Hair Cover"=>
         {
-          :description => "Hair Cover",
-          :references =>
+          :description=>"Hair Cover", 
+          :references=>
           [
             {
-              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
-              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" },
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
-              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjI2I1RI"
+              :parent=> { :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE=", :identifier=>"C95121", :notation=>"PHSPRPCD", :date=>"2011-06-10T00:00:00+00:00"}, 
+              :child=> {:identifier=>"C95109", :notation=>"HAIRCOV"}, 
+              :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjI2I1RI&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE%3D"
             }
           ]
         }
@@ -198,16 +198,16 @@ describe Thesauri::UnmanagedConceptsController do
     it "returns the synonym links, no context" do
       expected =
       {
-        :"Hair Cover" =>
+        :"Hair Cover"=>
         {
-          :description => "Hair Cover",
-          :references =>
+          :description=>"Hair Cover", 
+          :references=>
           [
             {
-              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
-              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" },
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
-              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+              :parent=> {:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE=", :identifier=>"C95121", :notation=>"PHSPRPCD", :date=>"2011-06-10T00:00:00+00:00"}, 
+              :child=>{:identifier=>"C95109", :notation=>"HAIRCOV"}, 
+              :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE%3D"
             }
           ]
         }
@@ -226,16 +226,15 @@ describe Thesauri::UnmanagedConceptsController do
     it "returns the synonym links, no context" do
       expected =
       {
-        :"Hair Cover" =>
+        :"Hair Cover"=>
         {
-          :description => "Hair Cover",
-          :references =>
+          :description=>"Hair Cover", 
+          :references=>
           [
             {
-              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
-              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" },
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
-              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+              :parent=> {:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE=", :identifier=>"C95121", :notation=>"PHSPRPCD", :date=>"2011-06-10T00:00:00+00:00"}, 
+              :child=>{:identifier=>"C95109", :notation=>"HAIRCOV"}, :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE%3D"
             }
           ]
         }
@@ -253,16 +252,15 @@ describe Thesauri::UnmanagedConceptsController do
     it "returns the preferred term links, context" do
       expected =
       {
-        :"Hair or Fur Cover" =>
+        :"Hair or Fur Cover"=>
         {
-          :description => "Hair or Fur Cover",
-          :references =>
+          :description=>"Hair or Fur Cover", 
+          :references=>
           [
             {
-              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
-              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" },
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
-              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjI2I1RI"
+              :parent=>{:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE=", :identifier=>"C95121", :notation=>"PHSPRPCD", :date=>"2011-06-10T00:00:00+00:00"}, 
+              :child=>{:identifier=>"C95109", :notation=>"HAIRCOV"}, :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjI2I1RI&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE%3D"
             }
           ]
         }
@@ -280,16 +278,15 @@ describe Thesauri::UnmanagedConceptsController do
     it "returns the preferred term links, no context" do
       expected =
       {
-        :"Hair or Fur Cover" =>
+        :"Hair or Fur Cover"=>
         {
-          :description => "Hair or Fur Cover",
-          :references =>
+          :description=>"Hair or Fur Cover", 
+          :references=>
           [
             {
-              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
-              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" },
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
-              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+              :parent=>{:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE=", :identifier=>"C95121", :notation=>"PHSPRPCD", :date=>"2011-06-10T00:00:00+00:00"}, 
+              :child=>{:identifier=>"C95109", :notation=>"HAIRCOV"}, :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjE%3D"
             }
           ]
         }
@@ -351,23 +348,20 @@ describe Thesauri::UnmanagedConceptsController do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
       expected =
       {
-        description: "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.",
-        current: [],
-        previous:
+        :description=>"This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.", 
+        :previous=>
         [
           {
-            child: { identifier: "C116248", notation: "IC50 Reference Control Result" },
-            id: uri_1.to_id,
-            parent: { date: "2017-06-30T00:00:00+00:00", identifier: "C128687", notation: "MSTEST" },
-            show_path: "/thesauri/unmanaged_concepts/#{uri_1.to_id}?unmanaged_concept%5Bcontext_id%5D=#{th.id}"
-          },
-          {
-            child: { identifier: "C116252", notation: "IC95 Reference Control Result" },
-            id: uri_2.to_id,
-            parent: { date: "2017-06-30T00:00:00+00:00", identifier: "C128687", notation: "MSTEST" },
-            show_path: "/thesauri/unmanaged_concepts/#{uri_2.to_id}?unmanaged_concept%5Bcontext_id%5D=#{th.id}"
-          }
-        ]
+            :parent=>{:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNTIjQzEyODY4Nw==", :identifier=>"C128687", :notation=>"MSTEST", :date=>"2017-06-30T00:00:00+00:00"}, 
+            :child=>{:identifier=>"C116252", :notation=>"IC95 Reference Control Result"}, :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDkjQzEyODY4N19DMTE2MjUy", 
+            :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDkjQzEyODY4N19DMTE2MjUy?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjUzI1RI&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNTIjQzEyODY4Nw%3D%3D"}, 
+            {
+              :parent=>{:id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNTIjQzEyODY4Nw==", :identifier=>"C128687", :notation=>"MSTEST", :date=>"2017-06-30T00:00:00+00:00"}, 
+              :child=>{:identifier=>"C116248", :notation=>"IC50 Reference Control Result"}, :id=>"aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDkjQzEyODY4N19DMTE2MjQ4", 
+              :show_path=>"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDkjQzEyODY4N19DMTE2MjQ4?unmanaged_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjUzI1RI&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNTIjQzEyODY4Nw%3D%3D"
+            }
+          ], 
+          :current=>[]
       }
       request.env['HTTP_ACCEPT'] = "application/json"
       get :change_instruction_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
