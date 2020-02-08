@@ -580,4 +580,56 @@ describe "Thesaurus", :type => :feature do
 
   end
 
+  describe "Child Status Curator User", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_5_state.ttl"]
+      load_files(schema_files, data_files)
+      ua_create
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+      nv_destroy
+    end
+
+    it "allows terminology to be created (REQ-MDR-ST-015)", js: true do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'STATE\''
+      context_menu_element('history', 4, 'STATE', :document_control)
+      wait_for_ajax_long
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content 'Incomplete'
+      expect(page).to have_content 'Candidate'
+      expect(page).to have_content 'State Test Terminology'
+      expect(page).to have_content 'STATE'
+      expect(page).to have_content '0.1.0'
+      click_button "state_submit"
+      wait_for_ajax
+      expect(page).to have_content 'Child items are not in the appropriate state.'
+      click_link 'Return'
+      expect(page).to have_content 'Version History of \'STATE\''
+
+      # Update code list status
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+  pause
+    end
+
+
+  end
+
 end
