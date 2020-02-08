@@ -1050,6 +1050,7 @@ describe Thesaurus do
           definition: "A definition",
           notation: "LHR"
         })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
       @tc_1.set_initial("A00001")
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept << @tc_1.uri

@@ -603,7 +603,7 @@ describe "Thesaurus", :type => :feature do
       nv_destroy
     end
 
-    it "allows terminology to be created (REQ-MDR-ST-015)", js: true do
+    def th_state_update(old_state, new_state)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
@@ -611,24 +611,63 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'STATE\''
       context_menu_element('history', 4, 'STATE', :document_control)
       wait_for_ajax_long
-      expect(page).to have_content 'Manage Status'
-      expect(page).to have_content 'Incomplete'
-      expect(page).to have_content 'Candidate'
-      expect(page).to have_content 'State Test Terminology'
-      expect(page).to have_content 'STATE'
-      expect(page).to have_content '0.1.0'
+      ui_manage_status_page(old_state, new_state, "ACME", "STATE", "0.1.0")
       click_button "state_submit"
       wait_for_ajax
+    end
+
+    def unsuccesful_th_state_update(old_state, new_state)
+      th_state_update(old_state, new_state)
+      ui_check_flash_message_present
       expect(page).to have_content 'Child items are not in the appropriate state.'
       click_link 'Return'
       expect(page).to have_content 'Version History of \'STATE\''
-
-      # Update code list status
-      click_navbar_code_lists
-      expect(page).to have_content 'Index: Code Lists'
-  pause
+      ui_check_table_cell("history", 1, 7, "#{old_state}")
     end
 
+    def succesful_th_state_update(old_state, new_state)
+      th_state_update(old_state, new_state)
+      ui_check_no_flash_message_present
+      click_link 'Return'
+      expect(page).to have_content 'Version History of \'STATE\''
+      ui_check_table_cell("history", 1, 7, "#{new_state}")
+    end
+
+    def succesful_cl_state_update(old_state, new_state, identifier)
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      wait_for_ajax_long
+      find(:xpath, "//tr[contains(.,'London Heathrow')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Item History'
+      context_menu_element('history', 4, "#{identifier}", :document_control)
+      wait_for_ajax_long
+      ui_manage_status_page(old_state, new_state, "ACME", "#{identifier}", "0.1.0")
+      click_button "state_submit"
+      wait_for_ajax
+      ui_check_no_flash_message_present
+      click_link 'Return'
+      expect(page).to have_content 'Item History'
+      ui_check_table_cell("history", 1, 7, "#{new_state}")
+    end
+
+    it "allows terminology to be created (REQ-MDR-ST-015)", js: true do
+      unsuccesful_th_state_update(:Incomplete, :Candidate)
+      succesful_cl_state_update(:Incomplete, :Candidate, "A00001")
+      succesful_th_state_update(:Incomplete, :Candidate)
+
+      unsuccesful_th_state_update(:Candidate, :Recorded)
+      succesful_cl_state_update(:Candidate, :Recorded, "A00001")
+      succesful_th_state_update(:Candidate, :Recorded)
+      
+      unsuccesful_th_state_update(:Recorded, :Qualified)
+      succesful_cl_state_update(:Recorded, :Qualified, "A00001")
+      succesful_th_state_update(:Recorded, :Qualified)
+      
+      unsuccesful_th_state_update(:Qualified, :Standard)
+      succesful_cl_state_update(:Qualified, :Standard, "A00001")
+      succesful_th_state_update(:Qualified, :Standard)
+    end
 
   end
 

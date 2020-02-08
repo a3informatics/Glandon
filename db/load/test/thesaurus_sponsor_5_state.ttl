@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-02-06T19:03:04+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-02-08T11:40:45+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConcept <http://www.acme-pharma.com/A00001/V1#A00001> ;
@@ -64,12 +64,13 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-02-06T19:03:04+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-02-08T11:40:45+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00001"^^xsd:string ;
 	th:notation "LHR"^^xsd:string ;
 	th:definition "A definition"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -90,4 +91,8 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "London Heathrow"^^xsd:string ;
 .
