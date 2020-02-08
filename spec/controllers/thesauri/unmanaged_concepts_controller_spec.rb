@@ -142,7 +142,7 @@ describe Thesauri::UnmanagedConceptsController do
       token = Token.obtain(mtc, @user)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
-      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete_or_un_change).and_return(1)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete_or_unlink).and_return(1)
       put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
       expected = []
       expect(response.content_type).to eq("application/json")
