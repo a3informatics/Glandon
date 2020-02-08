@@ -16,7 +16,7 @@ describe Fuseki::Persistence do
   end
 
   before :each do
-    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_6.ttl"]
     load_files(schema_files, data_files)
   end
 

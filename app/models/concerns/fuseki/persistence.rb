@@ -196,7 +196,7 @@ module Fuseki
         return self.new if item.nil?
         return self.new if rdf_type_to_klass(item[:object].to_s).nil?
         klass = rdf_type_to_klass(item[:object].to_s)
-        return self.new if self.class.ancestors.include?(klass)
+        return self.new if self.ancestors.include?(klass)
         klass.new
       end
 
