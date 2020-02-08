@@ -2,11 +2,15 @@
 <%= stylesheet_link_tag    'custom/d3_graph_v2'  %>
 <%= javascript_tag "var graphBaseUrl = '#{impact_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: th_id})}'" %>
 <br/>
-<div id="d3_empty_text" class="font-light text-centered">To see the Impact Graph, first select a Changed Item in the left panel.</div>
+<div id="d3_wrap">
+  <div id="d3_empty_text" class="font-light text-centered">To see the Impact Graph, first select a Changed Item in the left panel.</div>
 
-<div id="d3_tooltip" class="hidden">
-  <!-- D3 Tootip Area -->
-</div>
-<div class="d3-tree" id="d3">
-  <!-- D3 Area -->
+  <div id="d3_tooltip" class="hidden">
+    <!-- D3 Tootip Area -->
+  </div>
+  <center>
+    <div class="d3-tree" id="d3">
+    <!-- D3 Area -->
+    </div>
+  </center>
 </div>

@@ -35,7 +35,17 @@ class Excel
     @workbook = nil
   end
 
-  # Label
+  # Execute. Execute the excel processing.
+  #
+  # @param [Hash] params the parameter set
+  # @option [Symbol] :import_type the type of the import
+  # @param [Symbol] :format the format key used in the configuration file to set the processign rules
+  # @return [Void] no return  
+  def execute(params)
+    @engine.process(params[:import_type], params[:format]) if check_sheet(params[:import_type], params[:format])
+  end
+
+  # Label. Short name for the file being processed.
   #
   # @return [String] class label based on the inpout file name.
   def label
@@ -50,15 +60,21 @@ class Excel
   def check_sheet(import, sheet)
     headers = []
     info = select_sheet(import, sheet)
-    @workbook.row(1).each_with_index {|value, i| headers[i] = value}
-    if headers.length != info[:columns].length
+    columns = info.dig(:columns)
+    if columns.nil?
       @errors.add(:base, 
-        "#{info[:selection][:label]} sheet in the excel file, incorrect column count. Expected #{info[:columns].length}, found #{headers.length}.")
+        "#{info[:selection][:label]} sheet in the excel file, no column list found.")
+      return false
+    end
+    @workbook.row(1).each_with_index {|value, i| headers[i] = value}
+    if headers.length != columns.length
+      @errors.add(:base, 
+        "#{info[:selection][:label]} sheet in the excel file, incorrect column count. Expected #{columns.length}, found #{headers.length}.")
       return false
     end
     headers.each_with_index do |header, i|
-      next if header == info[:columns][i]
-      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{info[:columns][i]}', found '#{header}'.")
+      next if header == columns[i]
+      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{columns[i]}', found '#{header}'.")
       return false
     end 
     return true
@@ -69,23 +85,14 @@ class Excel
     return false
   end       
 
-  # Check and Process Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return  
-  def check_and_process_sheet(import, sheet)
-    @engine.process(import, sheet) if check_sheet(import, sheet)
-  end
-
-  # Process Sheet
-  #
-  # @param [Symbol] import the import
-  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
-  # @return [Void] no return
-  def process_sheet(import, sheet)
-    @engine.process(import, sheet)
-  end
+  # # Process Sheet
+  # #
+  # # @param [Symbol] import the import
+  # # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
+  # # @return [Void] no return
+  # def process_sheet(import, sheet)
+  #   @engine.process(import, sheet)
+  # end
 
 private
 

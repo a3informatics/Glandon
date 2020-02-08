@@ -4,7 +4,9 @@
   <div class="card-content">
     <div class="h-outside-wrap">
       <div class="h-inner-wrap mid">
-        <div class="h-inner-wrap text-small header-title"><%= header_title %></div>
+        <% if !header_title.empty? %>
+          <div class="h-inner-wrap text-small header-title"><%= header_title %></div>
+        <% end %>
         <div class="h-inner-wrap rb" style="flex-direction: row;">
           <div class="h-inner-wrap">
             <span class="circular-badge big bg-accent-1 text-white">

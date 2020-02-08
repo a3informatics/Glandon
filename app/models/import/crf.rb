@@ -43,7 +43,7 @@ class Import::Crf < Import
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
       description: "Import of CRF",
       parent_klass: ::Form,
@@ -51,13 +51,6 @@ class Import::Crf < Import
     }
   end
   
-  # Configuration. Sets the parameters for the import
-  # 
-  # @return [Hash] the configuration hash
-  def configuration
-    self.class.configuration
-  end
-
 private
   
   # ODM import?

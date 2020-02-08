@@ -1,9 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title"><%= item[:title] %></h3></div>
-  <div class="panel-body">
-    <p><%= item[:description] %></p>
-    <%= link_to item[:link_path], :class => "btn btn-success btn-block" do %>
-      <span class="icon-upload text-normal"></span><%= " #{item[:link_text]}" %>          
-    <% end %>
+<div class="sub-card">
+  <div class="sub-card-header"><%= item[:title] %></div>
+  <div class="sub-card-content">
+    <div style="margin-bottom: 10px;">
+      <%= item[:description] %>
+    </div>
+    <a href="<%= item[:link_path] %>" class="btn medium light">
+      
+      <%= item[:link_text] %>
+    </a>
   </div>
 </div>

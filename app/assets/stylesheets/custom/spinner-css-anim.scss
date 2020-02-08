@@ -48,6 +48,27 @@
   margin: -10px;
 }
 
+.spinner-container.txt-right{
+  max-width: 150px;
+  max-height: 20px;
+}
+
+.spinner-container.txt-right .ng-scope{
+  flex-direction: row;
+}
+
+.spinner-container.txt-right .spinner-el{
+  transform: scale(.17) translateY(5px);
+}
+
+.spinner-container.txt-right .spinner-txt{
+  display: inline-block;
+  text-align: left;
+  font-family: $font-light;
+  padding-top: 5px;
+  margin-left: 15px;
+}
+
 @keyframes lds-double-ring {
   0% {
     -webkit-transform: rotate(0);

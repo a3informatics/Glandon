@@ -14,6 +14,7 @@ function ChangesPanel(url, column_count) {
   this.url = url;
   this.column_count = column_count;
   this.cache = {};
+  this.processing = false;
 
   var _this = this;
   var columns = [
@@ -71,6 +72,7 @@ ChangesPanel.prototype.add = function () {
 
   var _this = this;
   _this.changesTable.processing(true);
+  _this.processing = true;
   $.ajax({
     url: _this.url,
     type: 'GET',
@@ -93,10 +95,12 @@ ChangesPanel.prototype.add = function () {
       _this.saveCache(_this.url, _this.changesTable.rows().data());
       _this.showButtons();
       _this.changesTable.processing(false);
+      _this.processing = false;
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
       _this.changesTable.processing(false);
+      _this.processing = false;
     }
   });
 }

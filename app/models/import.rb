@@ -30,7 +30,7 @@
 #   @return [Symbol] the file type of the import. Enumerated :excel, :odm: :als
 class Import < ActiveRecord::Base
 
-  enum file_type: [:excel, :odm, :als]
+  enum file_type: [:excel, :odm, :als, :api]
 
   belongs_to :background, required: true
 
@@ -57,7 +57,7 @@ class Import < ActiveRecord::Base
     # @todo We need to lock the import somehow.
     job.start(self.description(params), "Starting ...") {self.import(params)} 
   rescue => e
-    save_error_file({parent: self, children:[]})
+    save_error_file({parent: self, managed_children:[]})
     job.exception("An exception was detected during the import processes.", e)
   end  
   
@@ -111,7 +111,7 @@ class Import < ActiveRecord::Base
   # @param [Object] object to be loaded. Should be error free.
   # @return [Void] no return
   def save_result(object)
-    path = TypePathManagement.history_url(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
+    path = TypePathManagement.history_url_v2(object)
     self.update(output_file: "", error_file: "", success: true, success_path: path)
   end
 
@@ -123,7 +123,7 @@ class Import < ActiveRecord::Base
   def save_exception(e, msg)
     text = "#{msg}\n#{e}\n#{e.backtrace}"
     self.update(output_file: "", error_file: ImportFileHelpers.save_errors([text], "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
-    ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
+    ConsoleLogger::log(self.class.name, __method__.to_s, text)
   end
 
   # Description. Formatted description of the import
@@ -157,46 +157,94 @@ class Import < ActiveRecord::Base
   # @param [integer] the file type as an integer
   # @return [String] file type as a string
   def self.file_type_humanize(value)
-    return %W(Excel ODM ALS)[value]
+    return %W(Excel ODM ALS API)[value]
+  end
+
+  # API? Is the API file type being used?
+  #
+  # @return [Boolean] true if API, false otherwise
+  def self.api?(params)
+    return params[:file_type].to_i == Import.file_types[:api]
+  end
+
+  # Configuration. Sets the parameters for the import, class version
+  # 
+  # @return [Hash] the configuration hash
+  def self.configuration
+    {}
+  end
+
+  # # Configuration. Sets the parameters for the import, instance version
+  # # 
+  # # @return [Hash] the configuration hash
+  # def configuration
+  #   self.class.configuration
+  # end
+
+  # Raw Params Valid. Check the import parameters.
+  #
+  # @params [Hash] params a hash of parameters
+  # @option params [String] :type the import type
+  # @option params [String] :version the version, integer
+  # @option params [String] :date, a valid date
+  # @option params [String] :files, at least one file
+  # @option params [String] :semantic_version, a valid semantic version
+  # @return [Errors] active record errors class
+  def self.params_valid?(params)
+    object = self.new
+    FieldValidation::valid_version?(:version, params[:version], object)
+    FieldValidation::valid_date?(:date, params[:date], object)
+    FieldValidation::valid_files?(:files, params[:files], object) if !self.api?(params)
+    FieldValidation::valid_semantic_version?(:semantic_version, params[:semantic_version], object)
+    return object
   end
 
 private
 
+  # Get the owner short name
   def owner_short_name(klass)
     klass.owner.ra_namespace.short_name
   end
 
+  # Return the file list
   def file_list(params)
+    return "Using API" if self.class.api?(params)
     params[:files].map{|x| File.basename(x)}.join(", ")
   end
 
+  # Update the import parameters
   def update_params(params, klass, job)
     params[:job] = job
-    params[:identifier] = klass.configuration[:identifier] if !params.key?(:identifier)
+    params[:identifier] = klass.identifier if !params.key?(:identifier)
     params[:version_label] = params[:semantic_version] if configuration[:version_label] == :semantic_version
     params[:version_label] = params[:date] if configuration[:version_label] == :date
     params[:label] = configuration[:label]
   end
 
+  # Buid the result hash
   def result_hash(object)
-    return {parent: object, children: []}
+    return {parent: object, managed_children: []}
   end
   
+  # Merge all errors
   def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:children].each {|child| merge_errors(child, parent)}
+    objects[:managed_children].each {|child| merge_errors(child, parent)}
     return parent
   end
 
+  # Merge errors
   def merge_errors(from, to)
     return if from.errors.empty?
     from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.label}: #{msg}"}
   end
 
+  # Locked?
   def locked?
     false
   end
 
+  # Get the file type
   def to_file_type(value)
     Import.file_types[value.to_sym].to_i
   end

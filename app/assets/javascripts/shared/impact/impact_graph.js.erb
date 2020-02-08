@@ -15,18 +15,22 @@ function ImpactGraph(dataUrl) {
   this.graphBaseUrl = graphBaseUrl;
   this.tabName = "tab-graph";
   this.data = null;
+  this.processing = false;
+  this.activeAjaxes = 0;
 
   this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
-
   this.graph = new D3GraphV2();
 }
 
 /**
- * Loads data
+ * Loads data from server or cache, if present
  *
  * @return [void]
  */
 ImpactGraph.prototype.loadData = function(item) {
+  if(this.processing)
+    return;
+
   if (this.isCached(item.id)) {
     this.loading(true);
     this.data = this.cache[item.id];
@@ -34,20 +38,23 @@ ImpactGraph.prototype.loadData = function(item) {
     this.loading(false);
   }
   else {
-    item.rdf_type = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
+    item.rdf_type = C_TH_CL;
     this.data = [item];
-    this.fetch(0, item.id, item);
+    this.fetch(item.id, item);
   }
 }
 
 /**
- * Fetches data
+ * Fetches data from server, recursively, filters and merges with other data, renders on page
  *
+ * @param roodId [String] ID of the root note the impact is performed on (used for caching)
+ * @param currentItem [Object] Item that is being currently evaluated
  * @return [void]
  */
-ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
-  var dataUrl = this.makeDataUrl(currentItem.id);
+ImpactGraph.prototype.fetch = function(rootId, currentItem) {
   this.loading(true);
+  this.activeAjaxes++;
+  var dataUrl = this.makeDataUrl(currentItem.id);
 
   $.ajax({
     url: dataUrl,
@@ -55,28 +62,33 @@ ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
     dataType: 'json',
     context: this,
     success: function(result) {
-      console.log(result);
       if (result.data.length != 0) {
-        var filteredData = this.mergeData(result.data, currentItem);
+        // Filter data
+        var filteredData = this.filterData(result.data, currentItem);
+        // Merge filtered with instance data
         this.data = this.data.concat(filteredData);
 
+        // Recursive call on new items
         $.each(filteredData, function(i, item){
-          this.fetch(step + 1, rootId, item);
+          this.fetch(rootId, item);
         }.bind(this));
 
+        this.activeAjaxes--;
+        // Finish and render
         if(filteredData.length == 0){
           this.saveToCache(rootId, this.data);
           this.renderData(this.data);
-          this.loading(false);
         }
       }
       else {
+        // Finish and render
+        this.activeAjaxes--;
         this.saveToCache(rootId, this.data);
         this.renderData(this.data);
-        this.loading(false);
       }
     },
     error: function(xhr,status,error){
+      this.activeAjaxes--;
       handleAjaxError(xhr, status, error);
       this.loading(false);
     }
@@ -84,47 +96,62 @@ ImpactGraph.prototype.fetch = function(step, rootId, currentItem) {
 }
 
 /**
- * Prepares nodes, links, draws graph, draws table
+ * Filters data, if new data object, adds to data array, if already present,
+ * only adds a link to the current item
  *
- * @return [void]
+ * @param newData [Object Array] array of data objects from server impacted by currentItem
+ * @param currentItem [Object] item currently being evaluated
+ * @return [Object Array] filtered array of newData, and impactLinks added to data
  */
-ImpactGraph.prototype.mergeData = function(newData, currentItem) {
+ImpactGraph.prototype.filterData = function(newData, currentItem) {
   var filtered = [];
-  $.each(newData, function(i, item){
-    var indexInArray = this.data.map(function(e) { return e.id; }).indexOf(item.id);
+  $.each(newData, function(idx, item){
+    var idxInInstanceData = this.data.map(function(e) { return e.id; }).indexOf(item.id);
 
-    if (indexInArray == -1) {
-      item.link = [currentItem.id];
+    // Item not seen before
+    if (idxInInstanceData == -1) {
+      item.impactLinks = [currentItem.id];
       filtered.push(item);
     }
+    // Item seen before, add link to current
     else {
-      if(this.data[indexInArray].link != null)
-        this.data[indexInArray].link.push(currentItem.id);
+      if(this.data[idxInInstanceData].impactLinks != null)
+        this.data[idxInInstanceData].impactLinks.push(currentItem.id);
       else
-        this.data[indexInArray].link = [currentItem.id];
+        this.data[idxInInstanceData].impactLinks = [currentItem.id];
     }
   }.bind(this));
 
   return filtered;
 }
+
 /**
- * Prepares nodes, links, draws graph, draws table
+ * Builds graph data, draws in graph and itemsAffectedPanel
  *
+ * @param data [Object Array] This instance's data to be rendered
  * @return [void]
  */
 ImpactGraph.prototype.renderData = function(data) {
+  if(this.activeAjaxes > 0)
+    return;
+
+  // Render in itemsAffectedPanel (without the root node)
   this.itemsAffectedPanel.addItems(data.slice(1));
 
+  // Build graph data - nodes, links and draw
   setTimeout(function(){
     var nodes = JSON.parse(JSON.stringify(data));
     var links = [];
 
+    // Build links
     $.each(nodes, function(i, n){
-      if(n.link != null && n.link.length != 0){
-        $.each(n.link, function(i, l){
+      if(n.impactLinks != null && n.impactLinks.length != 0){
+        $.each(n.impactLinks, function(i, l){
+          // Find source and target indexes for links
           var indexSource = nodes.map(function(e) { return e.id; }).indexOf(n.id);
           var indexTarget = nodes.map(function(e) { return e.id; }).indexOf(l);
 
+          // Avoid duplicates
           var linksContainLink = false;
           $.each(links, function(i, link){
             if((link.source == indexSource && link.target == indexTarget) || (link.source == indexTarget && link.target == indexSource) )
@@ -136,22 +163,10 @@ ImpactGraph.prototype.renderData = function(data) {
         });
       }
     });
-    var graphData = {links: links, nodes: nodes};
-    this.graph.draw(graphData);
 
+    this.graph.draw({links: links, nodes: nodes});
+    this.loading(false);
   }.bind(this), 100);
-}
-
-/**
- * Loads data
- *
- * @param item [Object] item to start the IA on
- * @return [void]
- */
-ImpactGraph.prototype.reload = function(item) {
-  // clear graph
-
-  this.loadData(item);
 }
 
 /**
@@ -177,10 +192,10 @@ ImpactGraph.prototype.isCached = function(id) {
 }
 
 /**
- * Checks if data is cached
+ * Generates URL for impact data
  *
- * @param url [String] url of the data source (key value in the cache)
- * @return [Boolean] data presence in cache
+ * @param id [String] id of the current item
+ * @return [String] formatted URL
  */
 ImpactGraph.prototype.makeDataUrl = function(id) {
   return this.graphBaseUrl.replace("clId", id);
@@ -196,5 +211,6 @@ ImpactGraph.prototype.loading = function(enable) {
   if (typeof tabLoading != "undefined"){
       this.itemsAffectedPanel.loading(enable);
       tabLoading(this.tabName, enable);
+      this.processing = enable;
   }
 }

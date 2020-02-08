@@ -5,12 +5,17 @@
   overflow: auto;
 }
 
+.tab-wrap[data-tab="tab-graph"]{
+  overflow: hidden;
+}
+
 .tab-wrap .row{
   margin: 0;
 }
 
 .col-md-4.card, .col-md-8.card{
-  height: 800px;
+  min-height: 700px;
+  max-height: 100%;
 }
 
 #differences_table_wrapper .row:nth-of-type(odd) {
@@ -22,7 +27,7 @@ div.dataTables_wrapper div.dataTables_processing{
   height: 100% !important;
 }
 
-@media(max-width: 1400px){
+@media(max-width: 1300px){
   .col-md-4.card, .col-md-8.card{
     max-width: calc(100% - 40px);
     width: calc(100% - 40px);

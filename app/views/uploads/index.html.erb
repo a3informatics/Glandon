@@ -1,15 +1,35 @@
 <%= javascript_tag 'setPageTitle("Upload")' %>
 <% first_level_breadcrumb (:uploads) %>
-<h3>File Upload</h3>
-<div class="col-md-3">
-	<%= form_for @upload do |f| %>
-	  	<div class="form-group">
-			<%= form_tag 'create', :multipart => true , class: "form-control" %>
-			 	<p>
-			 		<%= f.file_field 'datafile' %>
-			 	</p>
-			<%= form_tag %>
-	  	</div>
-		<%= f.submit "Upload", class: "btn  " %>
+
+<div class="row">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-upload", header_title: "",
+		main_text: "File Upload", sub_texts: "Find and transfer files to the server." } do %>
+
+		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
+			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
 	<% end %>
+</div>
+<div class="row centered">
+	<div class="col-md-9 card wide">
+		<div class="card-header">
+			Upload from your computer
+		</div>
+		<div class="card-content">
+			<center>
+				<img src="<%= asset_path 'icons/upload_graphic' %>" width="150px" />
+
+				<%= form_for @upload do |f| %>
+				  	<div class="form-wrap">
+						<%= form_tag 'create', :multipart => true , class: "form-control" %>
+						 	<p>
+						 		<%= f.file_field 'datafile', class: "cen" %>
+						 	</p>
+						<%= form_tag %>
+				  	</div>
+					<%= f.submit "Start upload", class: "btn medium green" %>
+				<% end %>
+			</center>
+		</div>
+	</div>
 </div>

@@ -637,7 +637,7 @@ describe Thesaurus do
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779"))
       expect(result.narrower.count).to eq(source.narrower.count)
-      expect(result.extends.uri.to_s).to eq(source.uri.to_s)
+      expect(result.extends).to eq(source.uri.to_s)
       check_file_actual_expected(result.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       check_file_actual_expected(source.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       item = Thesaurus.find_full(uri1)
@@ -668,13 +668,23 @@ describe Thesaurus do
     it "find by identifiers" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.find_by_identifiers(["C106655", "C161764"])
-      check_file_actual_expected(actual, sub_dir, "find_by_identifier_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "find_by_identifiers_expected_1.yaml")
     end
 
     it "find by identifiers" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.find_by_identifiers(["C106655"])
-      check_file_actual_expected(actual, sub_dir, "find_by_identifier_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "find_by_identifiers_expected_2.yaml")
+    end
+
+    it "find_identifier" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      actual = ct.find_identifier("C17998").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_1.yaml")
+      actual = ct.find_identifier("C25308").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_2.yaml")
+      actual = ct.find_identifier("C25308X").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_3.yaml")
     end
 
   end
@@ -722,13 +732,13 @@ describe Thesaurus do
     it "clone thesaurus I" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       actual = thesaurus.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "clone thesaurus II" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = thesaurus.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "create next thesaurus" do
@@ -736,7 +746,7 @@ describe Thesaurus do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       actual = thesaurus.create_next_version
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, file)
+      check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
     end
 
   end
@@ -809,7 +819,6 @@ describe Thesaurus do
       check_dates(item, sub_dir, "delete_checks_expected_2d.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(item.to_h, sub_dir, "delete_checks_expected_2d.yaml")
       expect(triple_store.check_uris(uri_check_set)).to be(true)
-
     end
 
   end

@@ -13,6 +13,7 @@
 function DifferencesPanel(url) {
   this.url = url;
   this.cache = {};
+  this.processing = false;
   var _this = this;
   var columns = [
     {"data" : "date"},
@@ -74,6 +75,7 @@ DifferencesPanel.prototype.add = function () {
     return;
 
   var _this = this;
+  this.processing = true;
   this.differencesTable.processing(true);
 
   $.ajax({
@@ -87,10 +89,12 @@ DifferencesPanel.prototype.add = function () {
       _this.differencesTable.draw();
       _this.saveCache(_this.url, _this.differencesTable.rows().data());
       _this.differencesTable.processing(false);
+      _this.processing = false;
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
       _this.differencesTable.processing(false);
+      _this.processing = false;
     }
   });
 }

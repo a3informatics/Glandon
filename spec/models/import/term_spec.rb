@@ -47,7 +47,6 @@ describe Import::Term do
       parent_klass: ::Thesaurus,
       import_type: :term
     }
-    expect(Import::Term.configuration).to eq(expected)
     object = Import::Term.new
     expect(object.configuration).to eq(expected)
   end

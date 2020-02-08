@@ -8,6 +8,30 @@ describe Excel do
     return "models/concerns/excel"
   end
 
+  def sheet_definition_1
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}
+  end
+
+  def sheet_definition_2
+    {selection: {label: "irs"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}
+  end
+
+  def sheet_definition_error_1
+    {selection: {label: "First"}}
+  end
+
+  def sheet_definition_error_2
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]}
+  end
+
+  def sheet_definition_error_3
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY"]}
+  end
+
+  def sheet_definition_error_4
+    {selection: {label: "First"}, columns: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]}
+  end
+
   before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
@@ -36,8 +60,18 @@ describe Excel do
     expect(object.label).to eq(File.basename(full_path))
   end
 
+  it "checks a sheet, error, no header row definition" do
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_1)
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test, :something)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, no column list found.")
+  end
+
   it "checks a sheet, success" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_1)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -46,7 +80,7 @@ describe Excel do
   end
 
   it "checks a sheet, error length, more" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_2)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -56,7 +90,7 @@ describe Excel do
   end
 
   it "checks a sheet, error length, less" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_3)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -66,7 +100,7 @@ describe Excel do
   end
 
   it "checks a sheet, error mismatch" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_4)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -76,7 +110,7 @@ describe Excel do
   end
 
   it "checks a sheet, include the name check" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "irs"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_2)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -85,7 +119,7 @@ describe Excel do
   end
 
   it "checks a sheet, first" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {first: true}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_1)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -140,7 +174,7 @@ describe Excel do
     expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'StandardError' checking worksheet for import 'import' using sheet 'sheet'.")
   end
 
-  it "process engine - WILL CURRENTLY FAIL" do
+  it "process engine - WILL CURRENTLY FAIL - only new scoped identifier logic supported." do
     full_path = test_file_path(sub_dir, "process_input_2.xlsx")
     object = Excel.new(full_path)
     object.process_sheet(:cdisc_adam_ig, :main)

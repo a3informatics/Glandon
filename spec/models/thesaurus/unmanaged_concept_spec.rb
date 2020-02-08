@@ -436,7 +436,7 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all  do
       IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..60)
     end
@@ -500,6 +500,14 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V30#C100129_C100763"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
+    end
+
+    it "finds changes non-CDISC" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      results = tc.changes(4)
+      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml", equate_method: :hash_equal)
     end
 
   end

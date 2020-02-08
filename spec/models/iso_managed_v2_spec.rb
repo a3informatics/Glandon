@@ -314,6 +314,26 @@ describe "IsoManagedV2" do
       expect(item.registration_status).to eq("Standard")
     end
 
+    it "update the identifier" do
+      item = IsoManagedV2.new
+      item.set_initial("AAA")
+      expect(item.scoped_identifier).to eq("AAA")
+      expect(item.has_identifier.identifier).to eq("AAA")
+      item.update_identifier("BBB")
+      expect(item.scoped_identifier).to eq("BBB")
+      expect(item.has_identifier.identifier).to eq("BBB")
+    end
+
+    it "update the version" do
+      item = IsoManagedV2.new
+      item.set_initial("AAA")
+      expect(item.version).to eq(1)
+      expect(item.has_identifier.semantic_version).to eq("0.1.0")
+      item.update_version(5)
+      expect(item.version).to eq(5)
+      expect(item.has_identifier.semantic_version).to eq("5.0.0")
+    end
+
   end
 
   describe "Find Tests" do
@@ -416,6 +436,14 @@ describe "IsoManagedV2" do
       actual = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       actual.each {|x| results << x.to_h}
       check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "creation_date" do
+      results = []
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "30/09/2008")).to be(true)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2008-09-29")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "31/09/2008")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2015-12-18")).to be(true)
     end
 
     it "history, pagination" do

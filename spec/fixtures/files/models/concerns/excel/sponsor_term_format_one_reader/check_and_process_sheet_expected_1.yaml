@@ -1,0 +1,3732 @@
+---
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Analysis Action Taken with Study Treatment
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AACN
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000001
+  :notation: AACN
+  :definition: Analysis - Terminology specifying changes to the study treatment as
+    a result of an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC49505
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DOSE REDUCED
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC49504
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DOSE NOT CHANGED
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC49503
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DOSE INCREASED
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC49502
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DRUG WITHDRAWN
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC49501
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DRUG INTERRUPTED
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000011
+    :notation: DOSE DELAYED AND REDUCED
+    :definition: An indication that a medication schedule was postponed and modified
+      by subtraction by strength or amount.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DOSE DELAYED AND REDUCED
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000010
+    :notation: DOSE DELAYED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: DOSE DELAYED
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Analysis Action Taken with Study Treatment
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Not Changed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C49505
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Reduced
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Interrupted
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Withdrawn
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C49503
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Increased
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 01
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_01
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_01
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49503
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Increased
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Not Changed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49505
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Reduced
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Interrupted
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Withdrawn
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 01
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 02
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_02
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_02
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49503
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Increased
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Not Changed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49505
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Reduced
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Interrupted
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Withdrawn
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 02
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 03
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_03
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_03
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Withdrawn
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Subset 03
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Numeric
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACNN
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000005
+  :notation: ACNN
+  :definition: Numeric - Terminology specifying changes to the study treatment as
+    a result of an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S003958
+    :notation: '9'
+    :definition: A numeric value, nine, that indicate not known, not observed, not
+      recorded, or refused. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Unknown
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000036
+    :notation: '8'
+    :definition: A numeric that indicate more than one. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Multiple
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000035
+    :notation: '7'
+    :definition: A numeric value of 7 indicating a dose delayed and reduced.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Delayed and Reduced
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000034
+    :notation: '6'
+    :definition: A numeric value of 6 indicating a dose delayed.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Delayed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000033
+    :notation: '5'
+    :definition: A numeric indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Increased
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000032
+    :notation: '4'
+    :definition: A numeric indication that a medication schedule was modified through
+      termination of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Withdrawn
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000031
+    :notation: '3'
+    :definition: A numeric indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Drug Interrupted
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000030
+    :notation: '2'
+    :definition: A numeric indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Reduced
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000029
+    :notation: '1'
+    :definition: A numeric indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Dose Not Changed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000012
+    :notation: '10'
+    :definition: A numeric value, ten, that indicate determination of a value is not
+      relevant in the current context. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Not Applicable
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Action Taken with Study Treatment Numeric
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Acute Coronary Syndrome Presentation Category
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACSPCAT
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C101865
+  :notation: ACSPCAT
+  :definition: A classification of the presentation of acute coronary syndrome.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C66911
+    :notation: UNSTABLE ANGINA
+    :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
+      has recently changed in frequency, duration, intensity, or occurs at rest.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Unstable Angina
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C66914
+    :notation: STABLE ANGINA
+    :definition: Angina pectoris which has not recently changed in frequency, duration
+      or intensity. Stable angina pectoris is relieved by rest or administration of
+      oral, sublingual or transdermal antianginal medications.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Stable Angina
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Acute Coronary Syndrome Presentation Category
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Category of Adverse Event
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AECATEG
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000008
+  :notation: AECATEG
+  :definition: Used to determine the category of adverse event.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC66911
+    :notation: UNSTABLE ANGINA
+    :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
+      has recently changed in frequency, duration, intensity, or occurs at rest.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Unstable Angina
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC50577
+    :notation: HEART FAILURE
+    :definition: 'Inability of the heart to pump blood at an adequate rate to meet
+      tissue metabolic requirements. Clinical symptoms of heart failure include: unusual
+      dyspnea on light exertion, recurrent dyspnea occurring in the supine position,
+      fluid retention; or rales, jugular venous distension, pulmonary edema on physical
+      exam, or pulmonary edema on chest x-ray presumed to be cardiac dysfunction.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Heart Failure
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC41331
+    :notation: ADVERSE EVENT
+    :definition: 'Any untoward medical occurrence in a patient or clinical investigation
+      subject administered a pharmaceutical product and which does not necessarily
+      have a causal relationship with this treatment. An adverse event (AE) can therefore
+      be any unintended sign (including an abnormal laboratory finding), symptom,
+      or disease temporally associated with the use of a medicinal (investigational)
+      product, whether or not related to the medicinal (investigational) product.
+      NOTE: For further information, see the ICH Guideline for Clinical Safety Data
+      Management: Definitions and Standards for Expedited Reporting. [Modified from
+      ICH E2A] Synonyms: side effect, adverse experience. See also serious adverse
+      event, serious adverse experience. (CDISC glossary)'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Adverse Event
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: SC25742
+    :notation: PREGNANCY
+    :definition: Pregnancy is the state or condition of having a developing embryo
+      or fetus in the body (uterus), after union of an ovum and spermatozoon, during
+      the period from conception to birth. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Pregnancy
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000062
+    :notation: SYSTEMIC
+    :definition: Affecting an entire system.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Systemic
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000055
+    :notation: SEVERE INFECTION / PARASITIC INFECTION / OPPORTUNISTIC INFECTION
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Severe Infection / Parasitic Infection / Opportunistic Infection
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000052
+    :notation: OVERDOSE
+    :definition: Exposure to, or intake of, an excessive amount of a substance. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Overdose
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000048
+    :notation: INJECTION SITE REACTION
+    :definition: A disorder characterized by an intense adverse reaction (usually
+      immunologic) developing at the site of an injection.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Injection Site Reaction
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000046
+    :notation: INCREASED LIPASE/AMYLASE
+    :definition: Category indicating an increased concentration of lipase/amylase
+      in the blood serum.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Increased Lipase/Amylase
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000044
+    :notation: HYPOGLYCEMIA
+    :definition: A disorder characterized by laboratory test results that indicate
+      a low concentration of glucose in the blood.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Hypoglycemia
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000042
+    :notation: CEREBROVASCULAR EVENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Cerebrovascular Event
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000041
+    :notation: BLEEDING EVENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Bleeding Event
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000040
+    :notation: ALT INCREASE
+    :definition: Alanine Aminotransferase increased in blood.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: ALT Increase
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000039
+    :notation: ALLERGY
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Allergy
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000038
+    :notation: ADMINISTRATION SITE
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Administration Site
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Category of Adverse Event
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Event Dictionary Version
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AEDICTV
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000011
+  :notation: AEDICTV
+  :definition: MedDRA dictionary version used for coding events.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000089
+    :notation: MEDDRA 10.1
+    :definition: Version 10.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '10.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000088
+    :notation: MEDDRA 10.0
+    :definition: Version 10.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '10.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000087
+    :notation: MEDDRA 9.1
+    :definition: Version 9.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '9.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000086
+    :notation: MEDDRA 9.0
+    :definition: Version 9.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '9.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000085
+    :notation: MEDDRA 16.0
+    :definition: Version 16.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '14.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000084
+    :notation: MEDDRA 15.1
+    :definition: Version 15.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '15.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000083
+    :notation: MEDDRA 15.0
+    :definition: Version 15.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '15.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000082
+    :notation: MEDDRA 14.1
+    :definition: Version 14.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '14.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000081
+    :notation: MEDDRA 14.0
+    :definition: Version 14.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '14.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000080
+    :notation: MEDDRA 13.1
+    :definition: Version 13.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '13.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000079
+    :notation: MEDDRA 13.0
+    :definition: Version 13.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '13.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000078
+    :notation: MEDDRA 12.1
+    :definition: Version 12.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '12.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000077
+    :notation: MEDDRA 12.0
+    :definition: Version 12.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '12.0'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000076
+    :notation: MEDDRA 11.1
+    :definition: Version 11.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '11.1'
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000075
+    :notation: MEDDRA 11.0
+    :definition: Version 11.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: '11.0'
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Event Dictionary Version
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Relationship to Study Treatment
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AERELA
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000012
+  :notation: AERELA
+  :definition: Used to determine the relationship of Adverse Event to study treatment.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000094
+    :notation: UNLIKELY RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Unlikely Related
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000093
+    :notation: RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Related
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000092
+    :notation: POSSIBLY RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Possibly Related
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000090
+    :notation: NOT RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Not Related
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Relationship to Study Treatment
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Relationship to Study Treatment Subset 01
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AERELA_01
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000012
+  :notation: AERELA_01
+  :definition: Used to determine the relationship of Adverse Event to study treatment.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: S000093
+    :notation: RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Related
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    :identifier: S000090
+    :notation: NOT RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Not Related
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Relationship to Study Treatment Subset 01
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Date Imputation Flag
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: DATEFL
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81223
+  :notation: DATEFL
+  :definition: 'Date Imputation Flag: Indicates the level of imputation reflected
+    in a date value.'
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C81210
+    :notation: Y
+    :definition: 'Year Imputed: Entire date (year, month and day) is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Y
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C81211
+    :notation: M
+    :definition: 'Month Imputed: Month and day are imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: M
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C81212
+    :notation: D
+    :definition: 'Day Imputed: Day is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: D
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Date Imputation Flag
+    :tagged: []
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Epoch
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+    :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: SDTM Stage
+    :description: SDTM stage
+    :narrower: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+    :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM Stage
+    :description: ADaM stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: EPOCH
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C99079
+  :notation: EPOCH
+  :definition: The name of the EPOCH.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C102255
+    :notation: BLINDED TREATMENT
+    :definition: A period in a clinical study during which subjects receive blinded
+      therapeutic treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Blinded Treatment
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C99158
+    :notation: FOLLOW-UP
+    :definition: A period in a clinical study during which information about the health
+      status of an individual is obtained after study procedures and treatments have
+      concluded.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Follow-up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C16032
+    :notation: LONG-TERM FOLLOW-UP
+    :definition: A period in a clinical study during which information about the health
+      status of an individual is obtained long after study procedures and treatments
+      have concluded.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Long-term Follow-up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C102256
+    :notation: OPEN LABEL TREATMENT
+    :definition: A period in a clinical study during which subjects receive open label
+      therapeutic treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Open Label Treatment
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C98779
+    :notation: RUN-IN
+    :definition: A period in a clinical study that occurs before the commencement
+      of the primary clinical study investigation, during which subjects may be assessed
+      for suitability in the clinical study, withdrawn from existing therapy, trained
+      in study methodology or evaluated for any other protocol-specified reason.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Run-In
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C48262
+    :notation: SCREENING
+    :definition: A period in a clinical study during which subjects are evaluated
+      for participation in the study.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Screening
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C101526
+    :notation: TREATMENT
+    :definition: A period in a clinical study during which subjects receive therapeutic
+      treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Treatment
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: C42872
+    :notation: WASHOUT
+    :definition: A period of time during a clinical study when a participant is taken
+      off of a study drug or other medication in order to eliminate the effects of
+      the treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Washout
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001310
+    :notation: SECOND WASH-OUT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Second Wash-Out
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001309
+    :notation: SECOND TREATMENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Second Treatment
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001306
+    :notation: SECOND SCREENING
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Second Screening
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001305
+    :notation: SECOND RUN-IN
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Second Run-In
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001304
+    :notation: SECOND FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Second Follow-Up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001301
+    :notation: SAFETY FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Safety Follow-up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001300
+    :notation: PRIMARY SERIES
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Primary Series
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001298
+    :notation: IMMUNOGENICITY FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Immunogenicity Follow-up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001297
+    :notation: FIRST WASH-OUT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: First Wash-Out
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001296
+    :notation: FIRST TREATMENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: First Treatment
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001293
+    :notation: FIRST SCREENING
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: First Screening
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001292
+    :notation: FIRST RUN-IN
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: First Run-In
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001291
+    :notation: FIRST FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: First Follow-Up
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001289
+    :notation: COMPLETION
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Completion
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S001288
+    :notation: BOOSTER PHASE
+    :definition: A distinguishable part, a stage in a series of events or in a process
+      of development, e.g. any of the varying aspects or stages in course of a disease;
+      a fraction of a cycle that maintain, extend or increase the immune response.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Booster Phase
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000161
+    :notation: SINGLE BLIND
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Single Blind
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000157
+    :notation: EXTENSION PHASE
+    :definition: The extension of a distinguishable part, a stage in a series of events
+      or in a process of development, e.g. any of the varying aspects or stages in
+      course of a disease; a fraction of a cycle.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Extension Phase
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+      :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: DC Stage
+      :description: Data capture stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U5ODAyOGQ2LTQzZDYtNGQ3Ni1hZmNmLTJmNGFjODMxYzU5Yw==
+      :uri: http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: SDTM Stage
+      :description: SDTM stage
+      :narrower: []
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2U2OTQ3MDk1LTJkOWMtNDgzZC1hZTE5LTMwMzFlYTA2NmUwMA==
+      :uri: http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM Stage
+      :description: ADaM stage
+      :narrower: []
+    :identifier: S000153
+    :notation: DOUBLE BLIND
+    :definition: The baseline for the double blind period.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Double Blind
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Epoch
+    :tagged: []
+  :synonym: []
+  :is_ordered: 

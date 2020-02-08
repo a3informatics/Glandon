@@ -31,7 +31,7 @@ class Import::Term < Import
   end 
   handle_asynchronously :import unless Rails.env.test?
 
-  def self.configuration
+  def configuration
     {
       description: "Import of Terminology",
       parent_klass: ::Thesaurus,
@@ -39,10 +39,6 @@ class Import::Term < Import
     }
   end
 
-  def configuration
-    self.class.configuration
-  end
-  
 private
 
   def add_cl(parent, results)

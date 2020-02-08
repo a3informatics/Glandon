@@ -4,15 +4,19 @@ defaults: &defaults
   EMAIL_SMTP: smtp.gmail.com
   EMAIL_PORT: '587'
   EMAIL_USERNAME: glandon.development@gmail.com
-  EMAIL_PASSWORD: Swiss74$Zermatt11%
+  EMAIL_PASSWORD: xxxxxxxx
   EMAIL_AUTHENTICATION: plain # Set to either 'plain' or 'login'
   # Host Name
   HOST_NAME: localhost
   HOST_PORT: "3000"
   HOST_PROTOCOL: "https"
   # API details
-  api_username: "mdr_api_base_45edfwedhn"
-  api_password: "a12password"
+  api_username: "xxxxxx"
+  api_password: "xxxxxx"
+  # CDISC Library API details
+  cdisc_library_api_enabled: 'false' # true or false as a string
+  cdisc_library_api_username: "xxxxx"
+  cdisc_library_api_password: "xxxxx"
   # Other installation parameters
   organization_navbar: 'Dev ' # Installation navbar title. Note should have space at the end.
   organization_title: A3 Informatics # Installation organisation title
@@ -42,8 +46,8 @@ development:
   organization_navbar: 'Demo ' # Installation navbar title
   token_timeout: '300' # Edit lock timeout in seconds. Note must be a string
   # API details
-  api_username: "mdr_api_dev_34efgdwsde"
-  api_password: "a12passwordIsSetItIs3456tg"
+  api_username: "xxxxxxx"
+  api_password: "xxxxxxxx"
   # Host Name
   HOST_PROTOCOL: 'http'
 
@@ -62,8 +66,8 @@ test:
   organization_navbar: 'TEST ' # Installation navbar title
   token_timeout: '300' # Edit lock timeout in seconds. Note must be a string
   # API details
-  api_username: "mdr_api_test_12e54rtscf"
-  api_password: "a12passwordIsSetItIs45tghy"
+  api_username: "xxxxxxx"
+  api_password: "xxxxxxx"
   # Triple Store
   SEMANTIC_DB_DATASET: "test"
   # Base URL authority

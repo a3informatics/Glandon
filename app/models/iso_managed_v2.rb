@@ -290,10 +290,8 @@ class IsoManagedV2 < IsoConceptV2
   def self.find_full(id)
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    exclude = excluded_read_relationships
-    exclude_clause = exclude.blank? ? "" : " MINUS { ?s (#{exclude.join("|")}) ?o }"
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}"
-    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
@@ -350,6 +348,29 @@ class IsoManagedV2 < IsoConceptV2
     object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
+  end
+
+  # Creation Date Exists? Does the creation date already exist in the history?
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @params params [String] :date the date to be checked as a string
+  # @return [Boolean] true if the date exists in the history
+  def self.creation_date_exists?(params)
+    date = Time.parse(params[:date]).strftime("%Y-%m-%d")
+    query_string = %Q{
+      SELECT ?d WHERE { 
+        ?s rdf:type #{rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:identifier '#{params[:identifier]}' .
+        ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+        ?s isoT:creationDate ?d .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    results = query_results.by_object_set([:d]).select{|x| Time.parse(x[:d]).strftime("%Y-%m-%d") == date}
+    results.any?
   end
 
   # History. Find the history for a given identifier within a scope
@@ -706,6 +727,25 @@ class IsoManagedV2 < IsoConceptV2
     self.creation_date = params[:date].to_time_with_default
     self.last_change_date = params[:date].to_time_with_default
     set_uris(ra)
+  end
+
+  # Update Identifier. Updates the identifier. Resets the URIs but no save.
+  #
+  # @param [String] identifier the new identifier
+  # @return [Void] no return
+  def update_identifier(identifier)
+    self.has_identifier.identifier = identifier
+    set_uris(self.has_state.by_authority)
+  end
+
+  # Update Version. Updates the version including the semantic version. Resets the URIs but no save.
+  #
+  # @param [Integer] version the new version
+  # @return [Void] no return
+  def update_version(version)
+    self.has_identifier.version = version
+    self.has_identifier.semantic_version = SemanticVersion.from_s("#{version}.0.0").to_s
+    set_uris(self.has_state.by_authority)
   end
 
   # Next Ordinal. Get the next ordinal for a managed item collection

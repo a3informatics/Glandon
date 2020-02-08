@@ -37,7 +37,7 @@ describe "Upload Files", :type => :feature do
 
   end
 
-    describe "not valid user", :type => :feature do
+  describe "not valid user", :type => :feature do
 
     it "do not allows file upload (REQ-MDR-UPL-020)", js: true do
       ua_sys_admin_login
