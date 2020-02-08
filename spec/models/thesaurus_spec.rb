@@ -1039,43 +1039,4 @@ describe Thesaurus do
 
   end
 
-  describe "next state data test" do
-
-    def simple_thesaurus_1
-      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-      @th_1 = Thesaurus.new
-      @tc_1 = Thesaurus::ManagedConcept.from_h({
-          label: "London Heathrow",
-          identifier: "A00001",
-          definition: "A definition",
-          notation: "LHR"
-        })
-      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
-      @tc_1.set_initial("A00001")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept << @tc_1.uri
-      @th_1.set_initial("STATE")
-    end
-
-    before :all  do
-      IsoHelpers.clear_cache
-    end
-
-    before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-    end
-
-    it "file" do
-      simple_thesaurus_1
-      sparql = Sparql::Update.new
-      sparql.default_namespace(@th_1.uri.namespace)
-      @th_1.to_sparql(sparql, true)
-      @tc_1.to_sparql(sparql, true)
-      full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_5_state.ttl")
-    end 
-
-  end
-
 end
