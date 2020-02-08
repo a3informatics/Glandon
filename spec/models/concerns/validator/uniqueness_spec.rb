@@ -3,35 +3,23 @@ require 'rails_helper'
 describe Validator::Uniqueness do
 	
   include DataHelpers
+  include FusekiBaseHelpers
+  include ValidationHelpers
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_files(schema_files, ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"])
   end
 
-  class TestVU < Fuseki::Base
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
-    data_property :identifier
-    validates_with Validator::Uniqueness, attribute: :identifier
-  end
-
-	it "validates a field" do
-    x = TestVU.new
-    x.uri = "something"
-    x.identifier = "SSS1"
-    expect(TestVU).to receive(:where).with({:identifier=>"SSS1"}).and_return([])
+  it "validates a field" do
+    x = si(Uri.new(uri: "http://www.assero.co.uk/A#A"), "SSS1")
+    expect(FusekiBaseHelpers::TestScopedIdentifier).to receive(:where).with({:identifier=>"SSS1"}).and_return([])
     x.valid?
     expect(x.errors.count).to eq(0)
   end
 
   it "validates a field, error" do
-    x = TestVU.new
-    x.uri = "something"
-    x.identifier = "SSS2"
-    expect(TestVU).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])
+    x = si(Uri.new(uri: "http://www.assero.co.uk/A#A"), "SSS2")
+    expect(FusekiBaseHelpers::TestScopedIdentifier).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])
     x.valid?
     expect(x.errors.count).to eq(1)
     expect(x.errors.full_messages.to_sentence).to eq("an existing record (identifier: SSS2) exisits in the database")

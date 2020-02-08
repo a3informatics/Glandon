@@ -3,27 +3,18 @@ require 'rails_helper'
 describe Validator::Klass do
 	
   include DataHelpers
+  include FusekiBaseHelpers
+  include ValidationHelpers
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
-  end
-
-  class TestVK < Fuseki::Base
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
-    object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
-    validates_with Validator::Klass, property: :by_authority
+    load_files(schema_files, ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"])
   end
 
 	it "validates a klass" do
-    x = TestVK.new
+    x = FusekiBaseHelpers::TestScopedIdentifier.new
     x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
     x.by_authority = IsoRegistrationAuthority.new
+    x.identifier = "A"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(3)
     expect(x.errors.full_messages.to_sentence).to eq("By authority: Uri can't be blank, By authority: Organization identifier is invalid, and By authority: Ra namespace: Empty object")

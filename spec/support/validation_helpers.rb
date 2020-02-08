@@ -21,4 +21,16 @@ module ValidationHelpers
     return "Please enter valid question text. Upper and lower case case alphanumerics, space and .!?,'\"_-/\\()[]~#*+@=:;&|<> special characters only."
   end
   
+  def si(uri, identifier)
+    x = FusekiBaseHelpers::TestScopedIdentifier.new
+    x.uri = uri
+    x.identifier = identifier
+    x.by_authority = IsoRegistrationAuthority.new
+    x.by_authority.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.by_authority.organization_identifier = "123456777"
+    x.by_authority.ra_namespace = IsoNamespace.find_by_short_name("BBB")
+    x.save
+    x
+  end
+
 end
