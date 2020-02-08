@@ -226,7 +226,7 @@ describe Fuseki::Resource do
 
     class TestR11 < FusekiBaseHelpers::TestRegistrationAuthorities
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoConceptV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake1"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
@@ -234,7 +234,7 @@ describe Fuseki::Resource do
 
     class TestR12 < TestR11
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoManagedV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake2"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
@@ -279,8 +279,8 @@ describe Fuseki::Resource do
     end
 
     it "rdf type to klass" do
-      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoConceptV2")).to eq(TestR11)
-      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoManagedV2")).to eq(TestR12)
+      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/Fake1")).to eq(TestR11)
+      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/Fake2")).to eq(TestR12)
     end
 
   end
