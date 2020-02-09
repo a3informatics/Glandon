@@ -25,15 +25,15 @@
 	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
-	th:isTopConceptReference :TH_TCR3 ;
-	th:isTopConceptReference :TH_TCR4 ;
-	th:isTopConceptReference :TH_TCR5 ;
-	th:isTopConceptReference :TH_TCR6 ;
-	th:isTopConceptReference :TH_TCR7 ;
-	th:isTopConceptReference :TH_TCR8 ;
-	th:isTopConceptReference :TH_TCR9 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConceptReference :TH_TMC3 ;
+	th:isTopConceptReference :TH_TMC4 ;
+	th:isTopConceptReference :TH_TMC5 ;
+	th:isTopConceptReference :TH_TMC6 ;
+	th:isTopConceptReference :TH_TMC7 ;
+	th:isTopConceptReference :TH_TMC8 ;
+	th:isTopConceptReference :TH_TMC9 ;
 	th:isTopConcept <http://www.cdisc.org/C141663/V1#C141663> ;
 	th:isTopConcept <http://www.cdisc.org/C141662/V1#C141662> ;
 	th:isTopConcept <http://www.cdisc.org/C115388/V1#C115388> ;
@@ -64,86 +64,77 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C141663/V1#C141663> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C141662/V1#C141662> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR3
-	rdf:type bo:TcReference ;
+:TH_TMC3
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C115388/V1#C115388> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR4
-	rdf:type bo:TcReference ;
+:TH_TMC4
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C115387/V1#C115387> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR5
-	rdf:type bo:TcReference ;
+:TH_TMC5
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C101805/V1#C101805> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR6
-	rdf:type bo:TcReference ;
+:TH_TMC6
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C101806/V1#C101806> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR7
-	rdf:type bo:TcReference ;
+:TH_TMC7
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66767/V1#C66767> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR8
-	rdf:type bo:TcReference ;
+:TH_TMC8
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C103459/V1#C103459> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR9
-	rdf:type bo:TcReference ;
+:TH_TMC9
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C103458/V1#C103458> ;
-	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/C141663/V1#C141663>
 	rdf:type th:ManagedConcept ;
