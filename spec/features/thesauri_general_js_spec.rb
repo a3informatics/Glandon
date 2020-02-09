@@ -651,7 +651,7 @@ describe "Thesaurus", :type => :feature do
       ui_check_table_cell("history", 1, 7, "#{new_state}")
     end
 
-    it "allows terminology to be created (REQ-MDR-ST-015)", js: true do
+    it "Child status", js: true do
       unsuccesful_th_state_update(:Incomplete, :Candidate)
       succesful_cl_state_update(:Incomplete, :Candidate, "A00001")
       succesful_th_state_update(:Incomplete, :Candidate)
@@ -667,6 +667,43 @@ describe "Thesaurus", :type => :feature do
       unsuccesful_th_state_update(:Qualified, :Standard)
       succesful_cl_state_update(:Qualified, :Standard, "A00001")
       succesful_th_state_update(:Qualified, :Standard)
+    end
+
+  end
+
+  describe "Reference CT", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_6_referenced.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      ua_create
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+      nv_destroy
+    end
+
+    it "Child status", js: true do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'STATE\''
+      context_menu_element('history', 4, 'STATE', :edit)
+      wait_for_ajax_long
+      expect(page).to have_content '2007-04-20'
     end
 
   end
