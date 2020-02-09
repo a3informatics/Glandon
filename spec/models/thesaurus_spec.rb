@@ -745,13 +745,10 @@ describe Thesaurus do
 
   describe "states" do
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_5_state.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
-    end
-
-    before :each do
     end
 
     it "rejects state change" do
@@ -769,7 +766,7 @@ describe Thesaurus do
     it "states" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = thesaurus.managed_children_states
-      check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "move to next state" do

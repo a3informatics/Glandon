@@ -436,8 +436,16 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc_1.parents).to eq([tc.uri])
     end
 
-    it "returns the parent concept, none" do
+    it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.parents.empty?).to eq(false)
+    end
+
+    it "returns the parent concept, none" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA777")
+      object = Thesaurus::ManagedConcept.create
+      tc = Thesaurus::ManagedConcept.find(object.uri)
       expect(tc.parents.empty?).to eq(true)
     end
 
