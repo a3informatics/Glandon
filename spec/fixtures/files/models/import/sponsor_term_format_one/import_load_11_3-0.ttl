@@ -24,10 +24,10 @@
 	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
 	th:isTopConcept <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
-	th:isTopConcept <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
+	th:isTopConcept <http://www.s-cubed.dk/NP001000P/V2#NP001000P> ;
 	th:reference <http://www.cdisc.org/CT/V53#TH_R1> ;
 .
 :TH_RS
@@ -50,23 +50,21 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.s-cubed.dk/NP001000P/V1#NP001000P> ;
-	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.s-cubed.dk/NP001000P/V2#NP001000P> ;
 .
 <http://www.cdisc.org/CT/V53#TH_R1>
 	rdf:type bo:Reference ;
@@ -95,7 +93,7 @@
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
 	th:narrower <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:narrower <http://www.s-cubed.dk/SN000710/V2#SN000710_S001999> ;
+	th:narrower <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9071ffa4c86f3803eb1a941d2619da1855ad1310> ;
 .
 <http://www.s-cubed.dk/SN000710/V2#SN000710_RS>
@@ -118,7 +116,7 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/SN000710/V2#SN000710_S001999>
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992> ;
@@ -129,12 +127,12 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#455ac8d77ff2d75756fe783f4ca2ce141e980a1e> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NP001000P>
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Code Breaker Subset 01"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992> ;
-	isoT:hasState <http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V1#NP001000P_SI> ;
+	isoT:hasState <http://www.s-cubed.dk/NP001000P/V2#NP001000P_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V2#NP001000P_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -145,12 +143,12 @@
 	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
 	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:narrower <http://www.s-cubed.dk/SN000710/V2#SN000710_S001999> ;
+	th:narrower <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
 	th:subsets <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#da4a09f60b8be877afdf06c17c8ae6fdf0acf821> ;
-	th:isOrdered <http://www.assero.co.uk/TS#31768f24-d08c-4305-99da-2abf266aefa0> ;
+	th:isOrdered <http://www.assero.co.uk/TS#6f05b085-3051-4eed-9b68-975d2771dcc2> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS>
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -162,27 +160,27 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NP001000P_SI>
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "NP001000P"^^xsd:string ;
 	isoI:versionLabel "1.0.0"^^xsd:string ;
-	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.assero.co.uk/TS#31768f24-d08c-4305-99da-2abf266aefa0>
+<http://www.assero.co.uk/TS#6f05b085-3051-4eed-9b68-975d2771dcc2>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#7110202c-ead1-4408-841b-84af5169a13c> ;
+	th:members <http://www.assero.co.uk/TSM#769e21fe-904f-4cf0-ab7e-f5e8e1c62ba6> ;
 .
-<http://www.assero.co.uk/TSM#7110202c-ead1-4408-841b-84af5169a13c>
+<http://www.assero.co.uk/TSM#769e21fe-904f-4cf0-ab7e-f5e8e1c62ba6>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
-	th:memberNext <http://www.assero.co.uk/TSM#0a9df509-de63-43a2-8286-97a111335712> ;
+	th:memberNext <http://www.assero.co.uk/TSM#78244585-dafd-46f8-a655-d04188b5b1f7> ;
 .
-<http://www.assero.co.uk/TSM#0a9df509-de63-43a2-8286-97a111335712>
+<http://www.assero.co.uk/TSM#78244585-dafd-46f8-a655-d04188b5b1f7>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
-	th:item <http://www.s-cubed.dk/SN000710/V2#SN000710_S001999> ;
+	th:item <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
 .
