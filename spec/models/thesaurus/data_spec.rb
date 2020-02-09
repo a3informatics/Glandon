@@ -53,8 +53,8 @@ describe Thesaurus::ManagedConcept do
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
       @tc_2.set_initial("A00002")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
       @th_1.set_initial("AIRPORTS")
@@ -177,9 +177,9 @@ describe Thesaurus::ManagedConcept do
       @tc_3.extensible = false
       @tc_3.notation = "BSL"
       @tc_3.set_initial("A00003")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
       @th_1.is_top_concept << @tc_2.uri
@@ -224,7 +224,7 @@ describe Thesaurus::ManagedConcept do
         })
       @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
       @tc_1.set_initial("A00001")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.set_initial("STATE")
     end

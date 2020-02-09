@@ -53,8 +53,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_2.definition = "Copenhagen"
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_2
@@ -95,8 +95,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_4.definition = "Copenhagen"
       @tc_4.extensible = false
       @tc_4.notation = "CPH"
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_3
@@ -143,8 +143,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_6.definition = "Copenhagen"
       @tc_6.extensible = false
       @tc_6.notation = "CPH"
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     before :all  do

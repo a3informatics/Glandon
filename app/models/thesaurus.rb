@@ -14,12 +14,22 @@ class Thesaurus <  IsoManagedV2
   include Thesaurus::Search
   include Thesaurus::Where
 
+  # Update Status. Update the status.
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :registration_tatus, the new state
+  # @return [Void] errors are in the error object, if any
   def update_status(params)
     move_to_next_state? ? super : self.errors.add(:base, "Child items are not in the appropriate state.")
   end
 
+  # Add. Add an item to the thesaurus. Note there is no save!
+  #
+  # @param item [Object] the item being added
+  # @param ordinal [Integer] the ordinal of the item in the collection
+  # @return [Void] no return
   def add(item, ordinal)
-    ref = OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
+    ref = OperationalReferenceV3::TmcReference.new(ordinal: ordinal, reference: item.uri)
     ref.uri = ref.create_uri(self.uri)
     self.is_top_concept_reference << ref
     self.is_top_concept << item.uri
@@ -575,7 +585,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     tx = transaction_begin
     self.reference_objects
     if self.reference.nil?
-      self.reference = OperationalReferenceV3.create({reference: object, transaction: tx}, self)
+      self.reference = OperationalReferenceV3.create({reference: object.uri, transaction: tx}, self)
       self.save
     else
       ref = self.reference
@@ -708,7 +718,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     tc = Thesaurus::ManagedConcept.find_full(id)
     object = tc.create_extension
     ordinal = next_ordinal(:is_top_concept_reference)
-    ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
+    ref = OperationalReferenceV3::TmcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
     self.add_link(:is_top_concept, object.uri)
     self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
@@ -724,7 +734,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     tc = Thesaurus::ManagedConcept.find_full(mc_id)
     object = tc.create_subset
     ordinal = next_ordinal(:is_top_concept_reference)
-    ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
+    ref = OperationalReferenceV3::TmcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
     self.add_link(:is_top_concept, object.uri)
     self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
@@ -744,6 +754,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     self.is_top_concept_reference.each do |ref|
       object.is_top_concept_reference << ref.clone
     end
+    object.reference = self.reference.clone
     object
   end
 
