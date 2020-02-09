@@ -403,7 +403,7 @@ describe "Thesaurus::ManagedConcept" do
       @tc_1.set_initial(@tc_1.identifier)
       sparql.default_namespace(@tc_1.uri.namespace)
       @tc_1.to_sparql(sparql, true)
-    write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt", last_change_date: true)
     end
 
