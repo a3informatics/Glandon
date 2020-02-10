@@ -74,8 +74,8 @@ describe "Thesauri Release Select", :type => :feature do
       wait_for_ajax 50
       ui_check_table_info("table-cdisc-cls", 1, 10, 911)
       ui_check_table_cell("table-cdisc-cls", 2, 1, "C99078")
-      ui_check_table_row_indicators("table-cdisc-cls", 1, 7, ["subsetted"])
-      ui_check_table_row_indicators("table-cdisc-cls", 4, 7, ["extended"])
+      ui_check_table_row_indicators("table-cdisc-cls", 1, 7, ["9 versions", "subsetted"])
+      ui_check_table_row_indicators("table-cdisc-cls", 4, 7, ["3 versions", "extended"])
     end
 
     it "checks sponsor CLs, Subsets and Extensions and indicators", :type => :feature do
@@ -96,7 +96,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_info("table-sponsor-extensions", 1, 2, 2)
       ui_check_table_cell("table-sponsor-extensions", 1, 1, "C99076E")
       ui_check_table_cell("table-sponsor-extensions", 2, 2, "TUTEST")
-      ui_check_table_row_indicators("table-sponsor-extensions", 1, 7, ["extension"])
+      ui_check_table_row_indicators("table-sponsor-extensions", 2, 7, ["4 versions", "extension"])
     end
 
     it "select CLs for the thesaurus, single or bulk", :type => :feature do
@@ -117,7 +117,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_click_tab "Test Terminology"
       ui_check_table_info("table-selection-overview", 1, 10, 911)
       ui_check_table_cell("table-selection-overview", 10, 1, "C96783")
-      ui_check_table_row_indicators("table-selection-overview", 1, 7, ["subsetted"])
+      ui_check_table_row_indicators("table-selection-overview", 1, 7, ["9 versions", "subsetted"])
       ui_click_tab "Sponsor CLs"
       wait_for_ajax 10
       find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"Test CL 2")]').click
@@ -125,7 +125,7 @@ describe "Thesauri Release Select", :type => :feature do
       find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"Test CL 2")]')[:class].include? "selected"
       ui_click_tab "Sponsor Extensions"
       wait_for_ajax 10
-      ui_check_table_row_indicators("table-sponsor-extensions", 1, 7, ["extension"])
+      ui_check_table_row_indicators("table-sponsor-extensions", 2, 7, ["4 versions", "extension"])
       page.find("#table-sponsor-extensions-bulk-select").click
       wait_for_ajax 20
       ui_click_tab "Test Terminology"
