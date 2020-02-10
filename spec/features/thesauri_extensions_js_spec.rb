@@ -186,7 +186,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_link 'Add items'
       sleep 1
       wait_for_ajax(10)
-      page.find("#select-all-current").click
+      page.find("#select-all-latest").click
       click_button "Submit and proceed"
       sleep 2
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')

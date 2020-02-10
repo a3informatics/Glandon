@@ -157,6 +157,18 @@ describe ThesauriController do
       expect(response).to redirect_to("/thesauri")
     end
 
+    it 'clones thesaurus' do
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      audit_count = AuditTrail.count
+      count = Thesaurus.all.count
+      expect(count).to eq(4)
+      post :clone, {id: ct.id, thesauri: {:identifier => "NEW TH", :label => "New Thesaurus"}}
+      expect(Thesaurus.all.count).to eq(count + 1)
+      expect(flash[:success]).to be_present
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(response).to redirect_to("/thesauri")
+    end
+
     it 'creates thesaurus, fails bad identifier' do
       count = Thesaurus.all.count
       expect(count).to eq(4)
@@ -165,6 +177,18 @@ describe ThesauriController do
       expect(count).to eq(4)
       expect(assigns(:thesaurus).errors.count).to eq(1)
       expect(Thesaurus.all.count).to eq(count)
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to("/thesauri")
+    end
+
+    it 'clones thesaurus, error' do
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      audit_count = AuditTrail.count
+      count = Thesaurus.all.count
+      expect(count).to eq(4)
+      post :clone, {id: ct.id, thesauri: {:identifier => "NEW TH!@£$%^&*", :label => "New Thesaurus"}}
+      count = Thesaurus.all.count
+      expect(count).to eq(4)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/thesauri")
     end
@@ -491,11 +515,11 @@ describe ThesauriController do
       expect(response).to render_template("search")
     end
 
-    it "initiates a search of the current terminologies" do
-      params = standard_params
-      get :search_current, params
-      expect(response).to render_template("search_current")
-    end
+    # it "initiates a search of the current terminologies" do
+    #   params = standard_params
+    #   get :search_current, params
+    #   expect(response).to render_template("search_current")
+    # end
 
     it "initiates a search of multiple terminologies" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
@@ -529,31 +553,31 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "obtains the current search results" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      params = standard_params
-      params[:columns]["6"][:search][:value] = "cerebral"
-      get :search_current, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal)
-    end
+    # it "obtains the current search results" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   params = standard_params
+    #   params[:columns]["6"][:search][:value] = "cerebral"
+    #   get :search_current, params
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   actual = JSON.parse(response.body).deep_symbolize_keys
+    #   check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal)
+    # end
 
-    it "obtains the current search results, empty search" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      params = standard_params
-      get :search_current, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_current_expected_2.yaml", equate_method: :hash_equal)
-    end
+    # it "obtains the current search results, empty search" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   params = standard_params
+    #   get :search_current, params
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   actual = JSON.parse(response.body).deep_symbolize_keys
+    #   check_file_actual_expected(actual, sub_dir, "search_current_expected_2.yaml", equate_method: :hash_equal)
+    # end
 
     it "obtains the multiple search results" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      params = multiple_params("current", th.id)
+      params = multiple_params("latest", th.id)
       params[:columns]["6"][:search][:value] = "cerebral"
       get :search_multiple, params
       expect(response.content_type).to eq("application/json")

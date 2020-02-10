@@ -351,6 +351,20 @@ class IsoManagedV2 < IsoConceptV2
     object
   end
 
+  # Reset Cloned. Takes a cloned item and resets the identifer and version info.
+  #
+  # @params [Hash] params a set of initial vaues for any attributes
+  # @option params [String] :identifier the identifier
+  # @option params [String] :label the label
+  # @return [Object] the created object. May contain errors if unsuccesful.
+  def reset_cloned(params)
+    self.label = params[:label]
+    self.set_initial(params[:identifier])
+    self.creation_date = self.last_change_date # Will have been set by set_initial, ensures the same one used.
+    self.create_or_update(:create, true) if self.valid?(:create) && self.create_permitted?
+    self
+  end
+  
   # Creation Date Exists? Does the creation date already exist in the history?
   #
   # @params [Hash] params
@@ -813,10 +827,10 @@ class IsoManagedV2 < IsoConceptV2
     results = Hash.new {|h,k| h[k] = []}
     date_time = Time.now.iso8601
     query_string = %Q{
-      SELECT DISTINCT ?s ?key ?v WHERE
+      SELECT DISTINCT ?s ?key ?v ?status WHERE
       {
         {
-          SELECT DISTINCT ?s ?key ?v WHERE
+          SELECT DISTINCT ?s ?key ?v ?status WHERE
           {
             ?s rdf:type #{rdf_type.to_ref} .
             ?s isoT:hasIdentifier ?si .
@@ -830,14 +844,16 @@ class IsoManagedV2 < IsoConceptV2
             ?si isoI:hasScope ?ns .
             ?ns isoI:shortName ?sn .
             BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
+            BIND("current" as ?status)
           }
         } UNION {
-          SELECT DISTINCT ?s ?key ?v WHERE
+          SELECT DISTINCT ?s ?key ?v ?status WHERE
           {
             ?x rdf:type #{rdf_type.to_ref} .
             ?x isoT:hasIdentifier/isoI:identifier ?id .
             ?x isoT:hasIdentifier/isoI:version ?v .
             BIND(?x as ?s)
+            BIND("latest" as ?status)
             {
               SELECT DISTINCT ?key ?id ?scope (MAX(?lv) as ?v) 
               {
@@ -855,46 +871,11 @@ class IsoManagedV2 < IsoConceptV2
       } ORDER BY ?key DESC(?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
-    results
-  end
-
-  # Latest Set. Find the latest versions for all identifiers for a given type.
-  #
-  # @return [Array] Each hash contains {uri}
-  def self.latest_set
-    results = Hash.new {|h,k| h[k] = []}
-    date_time = Time.now.iso8601
-    query_string = %Q{
-      SELECT DISTINCT ?s ?key ?v WHERE
-      {
-          SELECT DISTINCT ?s ?key ?v WHERE
-          {
-            ?s rdf:type #{rdf_type.to_ref} .
-            ?s isoT:hasIdentifier ?si .
-            {
-              SELECT (max(?lv) AS ?v) WHERE
-              {
-                ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
-                ?s isoT:hasIdentifier ?si .
-                 ?si isoI:identifier ?i .
-                 ?si isoI:hasScope ?ns .
-                 ?ns isoI:shortName ?sn .
-                ?s isoT:hasIdentifier/isoI:version ?lv .
-                 BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
-              } group by ?key
-            }
-            ?si isoI:version ?v .
-            ?si isoI:identifier ?i .
-            ?si isoI:hasScope ?ns .
-            ?ns isoI:shortName ?sn .
-            BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
-          }
-      } ORDER BY ?key DESC(?v)
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
-  byebug
+    triples = query_results.by_object_set([:s, :key, :v, :status])
+    triples.each do |x|
+      status = x[:status].to_sym
+      results[x[:key]] << {status => {uri: x[:s], version: x[:v].to_i}}
+    end
     results
   end
 

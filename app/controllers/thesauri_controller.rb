@@ -92,6 +92,20 @@ class ThesauriController < ApplicationController
     redirect_to thesauri_index_path
   end
 
+  def clone
+    authorize Thesaurus
+    ct = Thesaurus.find_minimum(protect_from_bad_id(params))
+    th = ct.clone
+    th.reset_cloned(the_params)
+    if th.errors.empty?
+      AuditTrail.create_item_event(current_user, th, "Terminology cloned.")
+      flash[:success] = 'Terminology was successfully cloned.'
+    else
+      flash[:error] = th.errors.full_messages.to_sentence
+    end
+    redirect_to thesauri_index_path
+  end
+
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find_minimum(params[:id])
@@ -199,21 +213,21 @@ class ThesauriController < ApplicationController
     end
   end
 
-  def search_current
-    authorize Thesaurus, :show?
-    respond_to do |format|
-      format.html
-        @close_path = thesauri_index_path
-      format.json do
-        if Thesaurus.empty_search?(params)
-          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
-        else
-          results = Thesaurus.search_current(params)
-          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
-        end
-      end
-    end
-  end
+  # def search_current
+  #   authorize Thesaurus, :show?
+  #   respond_to do |format|
+  #     format.html
+  #       @close_path = thesauri_index_path
+  #     format.json do
+  #       if Thesaurus.empty_search?(params)
+  #         render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+  #       else
+  #         results = Thesaurus.search_current(params)
+  #         render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+  #       end
+  #     end
+  #   end
+  # end
 
   def search_multiple
     authorize Thesaurus, :show?
@@ -225,10 +239,19 @@ class ThesauriController < ApplicationController
         @search_url = search_multiple_thesauri_index_path(thesauri: the_params)
         @close_path = thesauri_index_path
       format.json do
+        uris = []
         if filter == "current"
-          uris = Thesaurus.current_and_latest_set.map{|k,v| v.last[:uri]}
+          Thesaurus.current_and_latest_set.each do |key,value|
+            value.each do |status|
+              uris << status[:current][:uri] if !status[:current].nil?
+            end
+          end
         elsif filter == "latest"
-          uris = Thesaurus.current_and_latest_set.map{|k,v| v.first[:uri]}
+          Thesaurus.current_and_latest_set.each do |key,value|
+            value.each do |status|
+              uris << status[:latest][:uri] if !status[:latest].nil?
+            end
+          end
         else
           uris = the_params[:id_set].map {|x| Uri.new(id: x)}
         end
@@ -410,51 +433,53 @@ class ThesauriController < ApplicationController
     end
   end
 
-	 def path_for(action, object)
-    case action
-      when :show
-        return thesauri_path(object)
-      when :search
-        return search_thesauri_path(object)
-      when :edit
-        #return edit_thesauri_path(object)          # Edit view
-        return release_select_thesauri_path(object) # Select view
-      when :destroy
-        return thesauri_path(object)
-      when :edit_tags
-        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
-      when :impact
-        return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
-      else
-        return ""
-    end
-  end
+  # These should be in private!!!!!
+  #
+	# def path_for(action, object)
+  #   case action
+  #     when :show
+  #       return thesauri_path(object)
+  #     when :search
+  #       return search_thesauri_path(object)
+  #     when :edit
+  #       #return edit_thesauri_path(object)          # Edit view
+  #       return release_select_thesauri_path(object) # Select view
+  #     when :destroy
+  #       return thesauri_path(object)
+  #     when :edit_tags
+  #       return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
+  #     when :impact
+  #       return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
+  #     else
+  #       return ""
+  #   end
+  # end
 
-  def impact_report_start(thesaurus)
-		initial_results = []
-		results = {}
-		thesaurus.impact.each do |x|
-  		uri = UriV2.new({uri: x})
-	  	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
-  			item = ThesaurusConcept.find(a, b)
-  			item.set_parent
-  			item
-  		}
-  	end
-  	initial_results.each do |result|
-  		if results.has_key?(result[:root].uri)
-  			results[result[:root].uri.to_s][:children] += result[:children]
-  		else
-  			results[result[:root].uri.to_s] = { root: result[:root].to_json, children: result[:children] }
-  		end
-  	end
-  	results.each do |k,v|
-  		v[:children] = v[:children].inject([]) do |new_children, item|
-  			new_children << { uri: item[:uri].to_s }
-  		end
-  	end
-  	return results
-  end
+  # def impact_report_start(thesaurus)
+		# initial_results = []
+		# results = {}
+		# thesaurus.impact.each do |x|
+  # 		uri = UriV2.new({uri: x})
+	 #  	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
+  # 			item = ThesaurusConcept.find(a, b)
+  # 			item.set_parent
+  # 			item
+  # 		}
+  # 	end
+  # 	initial_results.each do |result|
+  # 		if results.has_key?(result[:root].uri)
+  # 			results[result[:root].uri.to_s][:children] += result[:children]
+  # 		else
+  # 			results[result[:root].uri.to_s] = { root: result[:root].to_json, children: result[:children] }
+  # 		end
+  # 	end
+  # 	results.each do |k,v|
+  # 		v[:children] = v[:children].inject([]) do |new_children, item|
+  # 			new_children << { uri: item[:uri].to_s }
+  # 		end
+  # 	end
+  # 	return results
+  # end
 
   def get_reference
     authorize Thesaurus, :edit?
@@ -520,51 +545,28 @@ class ThesauriController < ApplicationController
 
 private
 
-	# def impact_report_start(thesaurus)
-	# 	initial_results = []
-	# 	results = {}
-	# 	thesaurus.impact.each do |x|
- #  		uri = UriV2.new({uri: x})
-	#   	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
- #  			item = ThesaurusConcept.find(a, b)
- #  			item.set_parent
- #  			item
- #  		}
- #  	end
- #  	initial_results.each do |result|
- #  		if results.has_key?(result[:root].uri)
- #  			results[result[:root].uri.to_s][:children] += result[:children]
- #  		else
- #  			results[result[:root].uri.to_s] = { root: result[:root].to_json, children: result[:children] }
- #  		end
- #  	end
- #  	results.each do |k,v|
- #  		v[:children] = v[:children].inject([]) do |new_children, item|
- #  			new_children << { uri: item[:uri].to_s }
- #  		end
- #  	end
- #  	return results
- #  end
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return thesauri_path(object)
+      when :search
+        return search_thesauri_path(object)
+      when :edit
+        #return edit_thesauri_path(object)          # Edit view
+        return release_select_thesauri_path(object) # Select view
+      when :destroy
+        return thesauri_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
+      when :impact
+        return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
+      else
+        return ""
+    end
+  end
 
-	# def impact_report_node(id, namespace)
-	#   results = []
-	#   result = {}
-	#   item = yield(id, namespace)
-	#   result[:root] = item
-	#   result[:children] = []
-	#   results << result
- #    concepts = IsoConcept.links_to(id, namespace)
- #    concepts.each do |concept|
- #      managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
-	# 	  result[:children] << managed_item
-	# 	  uri_s = managed_item[:uri].to_s
- #      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b|
- #      	item = IsoManaged.find(a, b, false)
- #      }
- #    end
- #    return results
-	# end
-
+  # Strong params
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
     params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :filter, :id_set => [])
