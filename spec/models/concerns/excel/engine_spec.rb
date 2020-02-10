@@ -14,12 +14,16 @@ describe Excel::Engine do
     @child_object = ChildClass.new
   end
 
+  # Local Classes
+  #
+  # Care needs to be taken when doing this. DO NOT USE production rdf_types from the schemas
+  # Declare new types in the test.ttl file if necessary 
   class DefinitionClass < Fuseki::Base
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
+    configure rdf_type: "http://www.assero.co.uk/Fake" # This is OK. Not declared in schema .ttl files
     data_property :label
 
-    # Need to fake this as we are no loading any schema triples for this test
+    # Need to fake this as we are not loading any schema triples for this test
     full_path = Rails.root.join "spec/fixtures/files/models/concerns/excel/engine/schema.yaml"
     schema = YAML.load_file(full_path)
     Fuseki::Base.class_variable_set(:@@schema, Fuseki::Schema::SchemaMap.new(schema))
@@ -34,9 +38,8 @@ describe Excel::Engine do
 
   end
 
-  class EET1Class < Fuseki::Base
+  class EET1Class < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
     object_property :tagged, cardinality: :many, model_class: "DefinitionClass"
 
@@ -50,9 +53,8 @@ describe Excel::Engine do
 
   end
 
-  class EET2Class < Fuseki::Base
+  class EET2Class < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
 
     def to_hash
@@ -61,9 +63,8 @@ describe Excel::Engine do
 
   end
 
-  class ChildClass < Fuseki::Base
+  class ChildClass < IsoConceptV2
     
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :compliance, cardinality: :one, model_class: "DefinitionClass"
     object_property :datatype, cardinality: :one, model_class: "DefinitionClass"
     attr_accessor :ct
@@ -89,7 +90,7 @@ describe Excel::Engine do
       return result
     end
 
-    def add_tag(tag)
+    def add_tag_no_save(tag)
       @tagged << tag
     end
 

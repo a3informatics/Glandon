@@ -48,11 +48,6 @@ describe "Thesaurus Convert" do
   describe "triple files" do
 
     before :all do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions((1..59))
@@ -106,11 +101,6 @@ describe "Thesaurus Convert" do
   describe "turtle files" do
 
     def load_definitions
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions((1..59))
@@ -209,20 +199,15 @@ describe "Thesaurus Convert" do
       @tc_1.set_initial(@tc_1.identifier)
       @tc_2.set_initial(@tc_2.identifier)
       @tc_3.set_initial(@tc_3.identifier)
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
       @th_1.set_initial("CDISC EXT")
       @th_1.has_identifier.semantic_version = "1.0.0"
       @th_1.has_state.registration_status = "Standard"
     end
 
     before :all do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end

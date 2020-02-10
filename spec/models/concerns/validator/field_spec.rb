@@ -3,25 +3,16 @@ require 'rails_helper'
 describe Validator::Field do
 	
   include DataHelpers
+  include FusekiBaseHelpers
+  include ValidationHelpers
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-  end
-
-  class TestVF < Fuseki::Base
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
-    data_property :identifier
-    validates_with Validator::Field, attribute: :identifier, method: :valid_identifier?
+    load_files(schema_files, ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"])
   end
 
 	it "validates a field" do
-    x = TestVF.new
-    x.identifier = "SSS"
-    expect(FieldValidation).to receive(:valid_identifier?).with(:identifier, "SSS", an_instance_of(TestVF))
+    x = si(Uri.new(uri: "http://www.assero.co.uk/A#A"), "SSS")
+    expect(FieldValidation).to receive(:valid_identifier?).with(:identifier, "SSS", an_instance_of(FusekiBaseHelpers::TestScopedIdentifier))
     x.valid?
   end
 

@@ -292,7 +292,7 @@ class IsoManagedV2 < IsoConceptV2
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
     read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-    query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
     from_results_recurse(uri, results.by_subject)
@@ -303,8 +303,9 @@ class IsoManagedV2 < IsoConceptV2
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
   def self.find_minimum(id)
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
+    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    parts << "  { #{uri.to_ref} rdf:type ?o . BIND (#{C_RDF_TYPE.to_ref} as ?p) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
     parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
@@ -350,6 +351,29 @@ class IsoManagedV2 < IsoConceptV2
     object
   end
 
+  # Creation Date Exists? Does the creation date already exist in the history?
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @params params [String] :date the date to be checked as a string
+  # @return [Boolean] true if the date exists in the history
+  def self.creation_date_exists?(params)
+    date = Time.parse(params[:date]).strftime("%Y-%m-%d")
+    query_string = %Q{
+      SELECT ?d WHERE { 
+        ?s rdf:type #{rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:identifier '#{params[:identifier]}' .
+        ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+        ?s isoT:creationDate ?d .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    results = query_results.by_object_set([:d]).select{|x| Time.parse(x[:d]).strftime("%Y-%m-%d") == date}
+    results.any?
+  end
+
   # History. Find the history for a given identifier within a scope
   #
   # @params [Hash] params
@@ -359,14 +383,16 @@ class IsoManagedV2 < IsoConceptV2
   def self.history(params)
     parts = []
     results = []
-    base =  "?e isoT:hasIdentifier ?si . " +
-            "?si isoI:identifier '#{params[:identifier]}' . " +
-            "?si isoI:version ?v . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . "
-    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }"
-    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"
-    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }"
-    query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
+    base = %Q{ 
+      ?e isoT:hasIdentifier ?si .
+      ?si isoI:identifier '#{params[:identifier]}' .
+      ?si isoI:version ?v .
+      ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+    }
+    parts << "  { #{base} ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }"
+    parts << "  { #{base} ?si ?p ?o . BIND (?si as ?s) }"
+    parts << "  { #{base} ?e isoT:hasState ?s . ?s ?p ?o }"
+    query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
@@ -427,14 +453,31 @@ class IsoManagedV2 < IsoConceptV2
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
     query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE {
-        VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-        {
+      SELECT ?s ?p ?o ?e ?v WHERE 
+      {
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) } UNION
-          { ?si ?p ?o . BIND (?si as ?s) } UNION
-          { ?e isoT:hasState ?s . ?s ?p ?o }
+          ?e ?p ?o . 
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) 
+          BIND (?e as ?s) 
+        } 
+        UNION
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?si ?p ?o . 
+          BIND (?si as ?s) 
+        } 
+        UNION
+        { 
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e isoT:hasState ?s . 
+          ?s ?p ?o 
         }
       } ORDER BY DESC (?v)
     }

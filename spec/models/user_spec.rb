@@ -12,6 +12,16 @@ describe "User" do
     AuditTrail.delete_all
   end
 
+  after :all do
+  end
+
+  before :each do
+  end
+  
+  after :each do
+    User.destroy_all
+  end
+
   it "determines if user is only a system admin" do
   	user = ua_add_user(email: C_EMAIL)
   	user.add_role :sys_admin
@@ -71,7 +81,6 @@ describe "User" do
   end
 
   it "detects if removing the last administrator role in the system, one admin" do
-    User.destroy_all
     user = ua_add_user(email: C_EMAIL, role: :sys_admin)
     expect(user.role_list_stripped).to eq("Reader, System Admin")
     expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
@@ -79,26 +88,20 @@ describe "User" do
   end
 
   it "detects if removing the last administrator role in the system, two admins" do
-    User.destroy_all
     user = ua_add_user(email: "admin1@example.com", role: :sys_admin)
     user2 = ua_add_user(email: "admin2@example.com", role: :sys_admin)
     user3 = ua_add_user(email: "reader@example.com")
-
     expect(user.role_list_stripped).to eq("Reader, System Admin")
     expect(user2.role_list_stripped).to eq("Reader, System Admin")
-
     expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
     expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(false)
   end
 
   it "does not prohibit removing last user role, if not sys administrator" do
-    User.destroy_all
     user = ua_add_user(email: C_EMAIL, role: :sys_admin)
     user2 = ua_add_user(email: "user@example.com")
-
     expect(user.role_list_stripped).to eq("Reader, System Admin")
     expect(user2.role_list_stripped).to eq("Reader")
-
     expect(user2.removing_last_admin?({:role_ids => [Role.to_id(:curator)]})).to eq(false)
   end
 
@@ -111,29 +114,28 @@ describe "User" do
     user = ua_add_user(email: C_EMAIL)
     user.name = ""
     user.save
-
     user = User.find_by(email: C_EMAIL)
     expect(user.name).to eq("Anonymous")
   end
 
   it "validates that password reset is forced when a new user is created (display name included && display name blank)" do
-    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    user = User.create(:email => "tst_user1@example.com", :password => "Changeme1#")
     expect(user.name).to eq("Anonymous")
     expect(user.need_change_password?).to eq(true)
-    user2 = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :name => "Test User"
+    user2 = User.create(email: "tst_user2@example.com", :password => "Changeme1#", :name => "Test User")
     expect(user2.name).to eq("Test User")
     expect(user2.need_change_password?).to eq(true)
   end
 
   it "allows lock user" do
-    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    user = ua_add_user(email: "tst_user1@example.com")
     expect(user.is_active?).to eq(true)
     user.lock
     expect(user.is_active?).to eq(false)
   end
 
   it "allows unlock user" do
-    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    user = ua_add_user(email: "tst_user1@example.com")
     user.lock
     expect(user.is_active?).to eq(false)
     user.unlock
@@ -141,10 +143,17 @@ describe "User" do
   end
 
   it "logged in?" do
-    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    user = ua_add_user(email: "tst_user1@example.com")
     expect(user.logged_in?).to eq(false)
-    user = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+    user = User.create(email: "tst_user2@example.com", :password => "Changeme1%", :current_sign_in_at => "2019-11-21 07:45:59.141587")
     expect(user.logged_in?).to eq(true)
+  end
+
+  it "users by domain" do
+    user = ua_add_user(email: "tst_user1@clarisa.com")
+    user = ua_add_user(email: "tst_user2@clarisa.com")
+    user = ua_add_user(email: "tst_user3@romero.com")
+    expect(User.users_by_domain).to eq({"clarisa.com"=>2, "romero.com"=>1, "total"=>3})
   end
 
 end

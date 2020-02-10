@@ -1,7 +1,13 @@
 ---
 :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSQ29uY2VwdHMjR1NDLUMy
 :uri: http://www.assero.co.uk/MDRConcepts#GSC-C2
-:rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystem
+:rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
 :pref_label: Node 2
 :description: Description 2
-:is_top_concept: []
+:narrower:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2ExZWNlNWNmLWNiNmMtNGRhMy05OTllLWRlODhkZDk1ZDRkYQ==
+  :uri: http://www.assero.co.uk/CSN#a1ece5cf-cb6c-4da3-999e-de88dd95d4da
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+  :pref_label: New Node Label
+  :description: New Node Description
+  :narrower: []

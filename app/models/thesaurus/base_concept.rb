@@ -309,17 +309,17 @@ class Thesaurus
       BIND ("previous" as ?t)
     }
     ?ci ba:description ?desc .
-    {
+    OPTIONAL {
       ?th th:isTopConceptReference/bo:reference ?p .
       ?p rdf:type th:ManagedConcept .
-      ?p th:narrower+ ?c .
+      ?p th:narrower ?c .
       ?p th:notation ?p_n .
       ?p th:identifier ?p_id .
       ?p isoT:lastChangeDate ?p_d .
       ?c th:notation ?c_n .
       ?c th:identifier ?c_id
-    } UNION
-    {
+    }
+    OPTIONAL {
       ?c rdf:type th:ManagedConcept .
       ?c th:identifier ?p_id .
       ?c th:notation ?p_n .
@@ -332,7 +332,7 @@ class Thesaurus
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoC, :isoT])
       query_results.by_object_set([:c, :p, :desc, :p_id, :c_id, :p_n, :c_n, :t]).each do |x|
         results[:description] = x[:desc] if results[:description].nil?
-        results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
+        results[x[:t].to_sym] << {parent: {id: x[:p].to_id ,identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
       end
       results
     end
@@ -387,7 +387,7 @@ class Thesaurus
         results[self.preferred_term.label] = {description: self.preferred_term.label, references: []}
       end
       query_results.by_object_set([:c, :p, :syn, :p_id, :c_id]).each do |x|
-        results[x[:syn]][:references] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
+        results[x[:syn]][:references] << {parent: {id: x[:p].to_id, identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
       end
       results
     end

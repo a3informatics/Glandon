@@ -22,6 +22,10 @@ module PublicFileHelpers
     delete_all_public_test_files
   end
 
+  def delete_all_public_upload_files
+    delete_all_files("upload")
+  end
+
   def delete_all_public_test_files
     delete_all_files("test")
   end

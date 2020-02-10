@@ -1,13 +1,13 @@
 ---
-:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEg=
-:uri: http://www.cdisc.org/CT/V1#TH
-:rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
-:label: Controlled Terminology
+:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OQ==
+:uri: http://www.cdisc.org/C49499/V1#C49499
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Action Taken with Study Treatment
 :tagged:
 - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
 :has_state:
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfUlM=
-  :uri: http://www.cdisc.org/CT/V1#TH_RS
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OV9SUw==
+  :uri: http://www.cdisc.org/C49499/V1#C49499_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Retired
   :administrative_note: X1
@@ -32,10 +32,10 @@
       :name: Clinical Data Interchange Standards Consortium
       :authority: www.cdisc.org
 :has_identifier:
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfU0k=
-  :uri: http://www.cdisc.org/CT/V1#TH_SI
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OV9TSQ==
+  :uri: http://www.cdisc.org/C49499/V1#C49499_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: CT
+  :identifier: C49499
   :version_label: 2007-03-06 Release
   :version: 1
   :semantic_version: 1.0.0
@@ -46,8 +46,18 @@
     :short_name: CDISC
     :name: Clinical Data Interchange Standards Consortium
     :authority: www.cdisc.org
-:origin: 'Created from files: ''SDTM Terminology 2007-03-06.xlsx'''
+:origin: ''
 :change_description: ''
 :creation_date: '2007-03-06T00:00:00+00:00'
 :last_change_date: '2007-03-06T00:00:00+00:00'
 :explanatory_comment: ''
+:identifier: ''
+:notation: ''
+:definition: ''
+:extensible: false
+:narrower: []
+:extends: 
+:subsets: 
+:preferred_term: 
+:synonym: []
+:is_ordered: 

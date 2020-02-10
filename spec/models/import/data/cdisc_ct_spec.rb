@@ -33,6 +33,18 @@ describe "Import::CdiscTerm CT Data" do
     delete_all_public_test_files
   end
 
+  # ---------- IMPORTANT SWITCHES ----------
+  
+  def set_write_file
+    true
+  end
+
+  def use_api
+    false
+  end
+
+  # ----------------------------------------
+
   def excel_filename(version)
     "CT_V#{version}.ttl"
   end
@@ -99,14 +111,6 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     puts "***** Error checking tags: #{missing} are not present but expected *****" if missing.any?
     expect(extra.empty?).to be(true)
     expect(missing.empty?).to be(true)
-  end
-
-  def set_write_file
-    true
-  end
-
-  def use_api
-    true
   end
 
   def check_term_differences(results, expected)

@@ -53,8 +53,8 @@ describe Thesaurus::ManagedConcept do
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
       @tc_2.set_initial("A00002")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
       @th_1.set_initial("AIRPORTS")
@@ -177,9 +177,9 @@ describe Thesaurus::ManagedConcept do
       @tc_3.extensible = false
       @tc_3.notation = "BSL"
       @tc_3.set_initial("A00003")
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
       @th_1.is_top_concept << @tc_2.uri
@@ -206,6 +206,90 @@ describe Thesaurus::ManagedConcept do
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_v2.ttl")
+    end 
+
+  end
+
+  describe "next state data test" do
+
+    def simple_thesaurus_1
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @th_1.label = "State Test Terminology"
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
+      @tc_1.set_initial("A00001")
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.set_initial("STATE")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "file" do
+      simple_thesaurus_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_5_state.ttl")
+    end 
+
+  end
+
+  describe "referenced CT data test" do
+
+    def simple_thesaurus_1
+      ct = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @th_1.label = "State Test Terminology"
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
+      @tc_1.set_initial("A00001")
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.reference = OperationalReferenceV3.new(reference: ct)
+      @th_1.set_initial("STATE")
+      @th_1.has_state.registration_status = "Standard"
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "file" do
+      simple_thesaurus_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_6_referenced.ttl")
     end 
 
   end

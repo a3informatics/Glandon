@@ -24,8 +24,8 @@
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
 	th:isTopConcept <http://www.s-cubed.dk/C118971/V1#C118971> ;
 	th:isTopConcept <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
 	th:reference <http://www.cdisc.org/CT/V62#TH_R1> ;
@@ -50,23 +50,21 @@
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/C118971/V1#C118971> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/SN000631/V1#SN000631> ;
-	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/CT/V62#TH_R1>
 	rdf:type bo:Reference ;

@@ -13,25 +13,20 @@ describe IsoConceptSystems::NodesController do
     end
 
     before :all do
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"
-      ]
+      data_files =["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
       load_files(schema_files, data_files)
     end
 
     it "allows a node to be added" do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
-      concept_system = IsoConceptSystem.find_children(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
-    #Xwrite_yaml_file(concept_system.to_h, sub_dir, "concept_system_2.yaml")
+      result = IsoConceptSystem::Node.find_children(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
+      actual = result.to_h
       expected = read_yaml_file(sub_dir, "concept_system_2.yaml")
-      expect(concept_system.to_h).to eq(expected)
+      actual[:narrower][0][:id] = expected[:narrower][0][:id]
+      actual[:narrower][0][:uri] = expected[:narrower][0][:uri]
+    #Xwrite_yaml_file(actual.to_h, sub_dir, "concept_system_2.yaml")
+      expect(actual).to hash_equal(expected)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end

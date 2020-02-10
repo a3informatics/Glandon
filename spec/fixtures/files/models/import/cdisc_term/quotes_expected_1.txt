@@ -25,8 +25,8 @@
 	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
 	th:isTopConcept <http://www.cdisc.org/C141663/V1#C141663> ;
 	th:isTopConcept <http://www.cdisc.org/C141662/V1#C141662> ;
 .
@@ -50,23 +50,21 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C141663/V1#C141663> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C141662/V1#C141662> ;
-	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/C141663/V1#C141663>
 	rdf:type th:ManagedConcept ;

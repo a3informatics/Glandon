@@ -6,7 +6,8 @@ describe "Import::SponsorTermFormatOne" do
   include ImportHelpers
   include PublicFileHelpers
   include SparqlHelpers
-
+  include ThesauriHelpers
+  
 	def sub_dir
     return "models/import/sponsor_term_format_one"
   end
@@ -26,6 +27,9 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
     load_cdisc_term_versions(1..62)
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "1000")
+    NameValue.create(name: "thesaurus_child_identifier", value: "10000")
     Import.destroy_all
     delete_all_public_test_files
     setup

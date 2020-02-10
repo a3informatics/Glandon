@@ -24,8 +24,8 @@
 	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
 	th:isTopConcept <http://www.s-cubed.dk/C66767/V2#C66767> ;
 	th:isTopConcept <http://www.s-cubed.dk/SN000730/V2#SN000730> ;
 	th:reference <http://www.cdisc.org/CT/V53#TH_R1> ;
@@ -50,23 +50,21 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/C66767/V2#C66767> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.s-cubed.dk/SN000730/V2#SN000730> ;
-	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/CT/V53#TH_R1>
 	rdf:type bo:Reference ;
@@ -93,13 +91,13 @@
 	th:notation "ACN"^^xsd:string ;
 	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
 	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
+	th:narrower <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
+	th:narrower <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 	th:narrower <http://www.s-cubed.dk/C66767/V1#C66767_SC78728> ;
 	th:extends <http://www.cdisc.org/C66767/V35#C66767> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c609e7f988d1d30435702c85bd1f5c852c3c91f3> ;

@@ -157,12 +157,12 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Statistics'
       find(:xpath, "//*[@id='tab_by_domain']").click
       wait_for_ajax(120)
-      expect(page).to have_content 'example.com: 1'
+      expect(page).to have_content 'User logins by domain'
       find(:xpath, "//*[@id='tab_by_time']").click
-      expect(page).to have_content 'Users by year, by month'
-      expect(page).to have_content 'Users by day, this week'
-      expect(page).to have_content 'Users by year, by week'
-      expect(page).to have_content 'Users by year'
+      expect(page).to have_content 'User logins by year, by month'
+      expect(page).to have_content 'User logins by day, this week'
+      expect(page).to have_content 'User logins by year, by week'
+      expect(page).to have_content 'User logins by year'
     end
 
     # it "allows the history to be accessed (REQ-MDR-UD-NONE)", js: true do

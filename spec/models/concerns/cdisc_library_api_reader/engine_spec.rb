@@ -29,7 +29,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, sub_dir, "process_check_1.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process sdtm" do
+  it "process sdtm", :speed => 'slow' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/sdtmct-2019-09-27")
@@ -38,7 +38,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, sub_dir, "process_check_2.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process send" do
+  it "process send", :speed => 'slow' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/sendct-2019-09-27")
@@ -47,7 +47,7 @@ describe CDISCLibraryAPIReader::Engine do
     check_file_actual_expected(result, sub_dir, "process_check_3.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
-  it "process adam" do
+  it "process adam", :speed => 'slow' do
     parent = IsoConceptV2.new
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/adamct-2019-03-29")

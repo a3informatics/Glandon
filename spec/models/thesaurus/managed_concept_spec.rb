@@ -53,8 +53,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_2.definition = "Copenhagen"
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_2
@@ -95,8 +95,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_4.definition = "Copenhagen"
       @tc_4.extensible = false
       @tc_4.notation = "CPH"
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_3
@@ -143,8 +143,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_6.definition = "Copenhagen"
       @tc_6.extensible = false
       @tc_6.notation = "CPH"
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     before :all  do
@@ -152,7 +152,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
@@ -436,8 +436,16 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc_1.parents).to eq([tc.uri])
     end
 
-    it "returns the parent concept, none" do
+    it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.parents.empty?).to eq(false)
+    end
+
+    it "returns the parent concept, none" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA777")
+      object = Thesaurus::ManagedConcept.create
+      tc = Thesaurus::ManagedConcept.find(object.uri)
       expect(tc.parents.empty?).to eq(true)
     end
 
@@ -491,7 +499,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
@@ -518,14 +526,14 @@ describe "Thesaurus::ManagedConcept" do
     
   end
 
-describe "extensions" do
+  describe "extensions" do
 
     before :all  do
       IsoHelpers.clear_cache
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..33)
       delete_all_public_test_files
@@ -737,7 +745,7 @@ describe "extensions" do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
     end
 
@@ -760,8 +768,8 @@ describe "extensions" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("A definition")
       expect(tc.synonym.count).to eq(2)
-      expect(tc.synonym.first.label).to eq("LHR")
-      expect(tc.synonym.last.label).to eq("Heathrow")
+      expect(tc.synonym.first.label).to eq("Heathrow")
+      expect(tc.synonym.last.label).to eq("LHR")
       tc.update({definition: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("Updated")
@@ -778,8 +786,8 @@ describe "extensions" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("London Heathrow")
       expect(tc.synonym.count).to eq(2)
-      expect(tc.synonym.first.label).to eq("LHR")
-      expect(tc.synonym.last.label).to eq("Heathrow")
+      expect(tc.synonym.first.label).to eq("Heathrow")
+      expect(tc.synonym.last.label).to eq("LHR")
       tc.update({synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("Woah!")
@@ -838,8 +846,7 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
     end
@@ -875,8 +882,7 @@ describe "extensions" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -969,7 +975,6 @@ describe "extensions" do
 
     before :all  do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
@@ -1152,7 +1157,7 @@ describe "extensions" do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..47)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -1389,7 +1394,7 @@ describe "extensions" do
   describe "subsets" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
       NameValue.destroy_all

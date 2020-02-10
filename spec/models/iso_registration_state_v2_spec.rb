@@ -594,5 +594,18 @@ describe "IsoRegistrationStateV2" do
     expect(rs.uri.to_s).to eq("http://www.assero.co.uk/ID/1#RS")
   end
 
+  it "returns the set of states" do
+    actual = IsoRegistrationStateV2.states
+    check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :match_array)
+  end
+
+  it "returns the previous states" do
+    actual = IsoRegistrationStateV2.previous_states("Incomplete")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array)
+    actual = IsoRegistrationStateV2.previous_states("Standard")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array)
+  end
+      
+      
 end
   

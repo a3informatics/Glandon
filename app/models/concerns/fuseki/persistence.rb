@@ -100,7 +100,8 @@ module Fuseki
       end
 
       def from_results(uri, triples)
-        object = new
+        #object = new
+        object = rdf_type_klass(triples)
         object.instance_variable_set("@uri", uri)
         triples.each {|triple| property = object.properties.property_from_triple(triple)}
         object.set_persisted
@@ -108,7 +109,8 @@ module Fuseki
       end
 
       def from_results_recurse(uri, triples)
-        object = new
+        #object = new
+        object = rdf_type_klass(triples[uri.to_s])
         object.instance_variable_set("@uri", uri)
         triples[uri.to_s].each do |triple|
           property = object.properties.property_from_triple(triple)
@@ -184,6 +186,18 @@ module Fuseki
           Fuseki::Base.class_variable_get(:@@subjects).key?(uri.to_s)
         end
 
+      end
+
+    private
+
+      # Get object based on RDF class
+      def rdf_type_klass(triples)
+        item = triples.detect{|x| x[:predicate].to_s == Fuseki::Base::C_RDF_TYPE.to_s}
+        return self.new if item.nil?
+        return self.new if rdf_type_to_klass(item[:object].to_s).nil?
+        klass = rdf_type_to_klass(item[:object].to_s)
+        return self.new if self.ancestors.include?(klass)
+        klass.new
       end
 
     end
@@ -523,6 +537,12 @@ module Fuseki
 
   private
 
+    # Get object based on RDF class
+    def self.rdf_type_klass(triples)
+      item = triples.detect{|x| x[:predicate].to_s == ""}
+      item.nil? ? self.new : rdf_type_to_klass(item[:predicate].to_s)
+    end
+
     # Get status of a property
     def property_status(property)
       value = property.get
@@ -537,23 +557,23 @@ module Fuseki
       end
     end
 
-    # Set a simple typed value
-    def self.to_typed(base_type, value)
-      if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-        "#{value}"
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-        value.to_bool
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-        value.to_time_with_default
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-        value.to_i
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-        value.to_i
-      else
-        "#{value}"
-      end
-    rescue => e
-    end
+    # # Set a simple typed value
+    # def self.to_typed(base_type, value)
+    #   if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
+    #     "#{value}"
+    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
+    #     value.to_bool
+    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
+    #     value.to_time_with_default
+    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
+    #     value.to_i
+    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
+    #     value.to_i
+    #   else
+    #     "#{value}"
+    #   end
+    # rescue => e
+    # end
 
     def clear_cache
       return if !self.class.cache?

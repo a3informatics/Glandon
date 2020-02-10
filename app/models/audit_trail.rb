@@ -130,7 +130,8 @@ class AuditTrail < ActiveRecord::Base
     logins = self.have_logged_in
     if !logins.nil? 
       raw_results = logins.group("date_trunc('year', date_time)").group("date_trunc('week',date_time)").count
-      raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%W")] , v] }.to_h
+      raw_results = raw_results.sort_by {|v| v}
+      raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%V")] , v] }.to_h
       result = {}
       raw_results.each do |arr, value|
         if result[arr[0]].nil?
@@ -151,6 +152,7 @@ class AuditTrail < ActiveRecord::Base
     logins = self.have_logged_in
     if !logins.nil? 
       raw_results = logins.group("date_trunc('year', date_time)").group("date_trunc('month',date_time)").count
+      raw_results = raw_results.sort_by {|v| v}
       raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%B")] , v] }.to_h
       result = {}
       raw_results.each do |arr, value|
@@ -180,10 +182,12 @@ class AuditTrail < ActiveRecord::Base
     raw = self.have_logged_in.all.select('id', 'user').as_json
     raw = raw.map{ |k, v| k['user'] }.map{ |user| user.sub /^.*@/, '' }
     result = {}
-    raw.each do |value|
-      result[value].nil? ? result[value] = 1 : result[value] + 1
-    end
-    result["total"] = result.count
+    result = raw.group_by{|e| e}.map{|k, v| [k, v.length]}.to_h
+    #raw.each do |value|
+     # result[value].nil? ? result[value] = 1 : result[value] + 1
+    #end
+    #result["total"] = result.count
+    result["total"] = self.have_logged_in.all.count
     return result
   end
 

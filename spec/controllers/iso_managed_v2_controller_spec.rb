@@ -61,7 +61,7 @@ describe IsoManagedV2Controller do
 
     it 'updates the status' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
       mi = IsoManagedV2.find_minimum(uri_1)
       post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
         administrative_note: "X1", unresolved_issue: "X2" }}

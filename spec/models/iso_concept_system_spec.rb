@@ -56,11 +56,11 @@ describe IsoConceptSystem do
     end
 
     it "allows a child object to be added" do
-      concept = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+      concept = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
       params = { :label => "Node 3_3", :description => "Node 3_3"}
       actual = concept.add(params)
       expect(actual.errors.count).to eq(0)
-      actual = IsoConceptSystem.find(actual.uri)
+      actual = IsoConceptSystem::Node.find(actual.uri)
       check_file_actual_expected(actual.to_h, sub_dir, "add_expected_1.yaml", equate_method: :iso_concept_system_equal)
     end
 
