@@ -13,6 +13,7 @@ class Thesaurus <  IsoManagedV2
 
   include Thesaurus::Search
   include Thesaurus::Where
+  include Thesaurus::Difference
 
   # Update Status. Update the status.
   #
