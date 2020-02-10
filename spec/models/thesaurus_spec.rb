@@ -446,7 +446,7 @@ describe Thesaurus do
 
     it "get children with indicators extend and subset, V1 all items II" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C66786/V2#66786"), "1")
+      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C66787/V2#C66787"), "1")
       uri2 = Uri.new(uri: "http://www.cdisc.org/C67154/V2#C67154")
       item = ct.add_extension(uri2.to_id)
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
