@@ -117,7 +117,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, audit_message(:updated)) if token.refresh == 1
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
         result = tc.simple_to_h
         result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
         render :json => {:data => [result]}, :status => 200
@@ -142,7 +142,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, audit_message(:updated)) if token.refresh == 1
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
         result = tc.simple_to_h
         render :json => {:data => [result]}, :status => 200
       else
@@ -173,7 +173,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if !token.nil?
       new_tc = tc.add_child(the_params)
       if new_tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, audit_message(:updated)) if token.refresh == 1
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
         result = new_tc.simple_to_h
         edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
         delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
@@ -206,7 +206,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     token = get_token(tc)
     if !token.nil?
       if tc.delete_or_unlink == 1
-        AuditTrail.update_item_event(current_user, tc, audit_message(:updated))
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
         render :json => {}, :status => 200
       else
         render :json => {:errors => tc.errors.full_messages}, :status => 422
@@ -363,7 +363,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_object = tc.create_extension
-    AuditTrail.create_item_event(current_user, new_object, audit_message(:updated, "extension"))
+    AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:updated, "extension"))
     show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: ""}})
     edit_path = edit_extension_thesauri_managed_concept_path(new_object)
     render json: {show_path: show_path, edit_path: edit_path}, :status => 200
@@ -378,7 +378,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       token = Token.find_token(tc, current_user)
       if !token.nil?
         tc.add_extensions(uris)
-        AuditTrail.create_item_event(current_user, tc, audit_message(:updated))
+        AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
         render json: {data: {}, error: errors}
       else
         render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
@@ -407,7 +407,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_mc = tc.create_subset
-    AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
+    AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:created, "subset"))
     path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: "" )
     render json: { edit_path: path, }, :status => 200
   end
@@ -506,7 +506,7 @@ private
   # Audit and respond
   def audit_and_respond(thesaurus, thesaurus_concept, token)
     if thesaurus_concept.errors.empty?
-      AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+      AuditTrail.update_item_event(current_user, thesaurus, audit_message(:updated)) if token.refresh == 1
       results = []
       results << thesaurus_concept.to_json
       render :json => {:data => results}, :status => 200

@@ -84,7 +84,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @thesaurus = Thesaurus.create(the_params)
     if @thesaurus.errors.empty?
-      AuditTrail.create_item_event(current_user, @thesaurus, audit_message(:created))
+      AuditTrail.create_item_event(current_user, @thesaurus, @thesaurus.audit_message(:created))
       flash[:success] = 'Terminology was successfully created.'
     else
       flash[:error] = @thesaurus.errors.full_messages.to_sentence
@@ -98,7 +98,7 @@ class ThesauriController < ApplicationController
     th = ct.clone
     th.reset_cloned(the_params)
     if th.errors.empty?
-      AuditTrail.create_item_event(current_user, @thesaurus, audit_message(:cloned))
+      AuditTrail.create_item_event(current_user, th, th.audit_message(:cloned))
       flash[:success] = 'Terminology was successfully cloned.'
     else
       flash[:error] = th.errors.full_messages.to_sentence
@@ -162,7 +162,7 @@ class ThesauriController < ApplicationController
     if !token.nil?
       tc = ct.add_child(the_params)
       if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, ct, audit_message(:updated)) if token.refresh == 1
+        AuditTrail.update_item_event(current_user, ct, ct.audit_message(:updated)) if token.refresh == 1
         result = tc.simple_to_h
         result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}),
           delete_path: thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}})})
@@ -181,7 +181,7 @@ class ThesauriController < ApplicationController
     token = Token.obtain(thesaurus, current_user)
     if !token.nil?
       thesaurus.delete
-      AuditTrail.delete_item_event(current_user, thesaurus, audit_message(:deleted))
+      AuditTrail.delete_item_event(current_user, thesaurus, thesaurus.audit_message(:deleted))
       token.release
     else
       render :json => {errors: "The item is locked for editing by another user."}, :status => 422 and return
@@ -368,8 +368,8 @@ class ThesauriController < ApplicationController
     th = edit_item(th)
     if !th.nil?
       new_object = th.add_extension(the_params[:concept_id])
-      AuditTrail.create_item_event(current_user, th, audit_message(:updated))
-      AuditTrail.create_item_event(current_user, new_object, audit_message(:created, "extension"))
+      AuditTrail.create_item_event(current_user, th, th.audit_message(:updated))
+      AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:created, "extension"))
       show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})
       edit_path = edit_extension_thesauri_managed_concept_path(new_object)
       render json: {show_path: show_path, edit_path: edit_path}, :status => 200
@@ -416,7 +416,7 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_mc = thesaurus.add_subset(the_params[:concept_id])
-    AuditTrail.create_item_event(current_user, new_mc, audit_message(:updated, "subset"))
+    AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:updated, "subset"))
     path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: the_params[:concept_id], context_id: thesaurus.id)
     render json: { edit_path: path, }, :status => 200
   end
