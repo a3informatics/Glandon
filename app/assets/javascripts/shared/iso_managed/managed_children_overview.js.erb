@@ -22,6 +22,7 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
 	this.urls = urls;
 	this.table = this.mcs.table;
 	this.context = context;
+	this.versionPicker = new ManagedItemVersionPicker("codelist", function(){});
 
 	this.table.select.style('api'); // Disable row selection
 	this.mcs.loadData(0, this.setListeners.bind(this) );
@@ -90,7 +91,7 @@ ManagedChildrenSelectOverview.prototype.executeRequest = function (requestParams
  */
 ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, data) {
 	var requestData = {
-		"data": this.encodeRequestData(data),
+		"data": this.encodeRequestData(data, params),
 		"context": params.context,
 	};
 
@@ -109,6 +110,10 @@ ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, d
 			else
 				requestData["url"] = this.urls.deselectChildrenUrl;
 			break;
+		case "change_version":
+			requestData["type"] = "PUT";
+			requestData["url"] = this.urls.changeChildVersionURL;
+			break;
 	}
 
 	return requestData;
@@ -119,13 +124,21 @@ ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, d
  *
  * @return [Object] formatted data structure (array of item ids)
  */
-ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data) {
+ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data, params) {
+	var _this = this;
 	var idArray = [];
 
-	$.each(data, function(i, item){
-		idArray.push(item.id);
-	});
-
+	if(params.action == "remove") {
+		$.each(data, function(i, item){
+			var thisItem = _this.mcs.findRowByScopeAndIdentifier(item).data();
+			idArray.push(thisItem.id);
+		});
+	}
+	else {
+		$.each(data, function(i, item){
+			idArray.push(item.id);
+		});
+	}
 	return {thesauri: {id_set: idArray}};
 }
 
@@ -139,7 +152,8 @@ ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data) {
 ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data, params) {
 	switch(params.action){
 		case "add":
-			this.addItems(data, params);
+			// this.addItems(data, params);
+			this.refresh();
 			break;
 		case "remove":
 			this.removeItems(data, params);
@@ -156,8 +170,6 @@ ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data
  */
 ManagedChildrenSelectOverview.prototype.addItems = function (data, params) {
 	$.each(data, function (i, e) {
-		e["version"] = "Ver 1.2.3.";
-		// Attach origin information for performance
 		e["sourceInfo"] = {index: params.context.findRowByParam("id", e).index(), tableId: params.context.tableId};
 	});
 
@@ -176,12 +188,26 @@ ManagedChildrenSelectOverview.prototype.removeItems = function (data, params) {
 	if (params.thisTable)
 		params.rows.remove();
 	else
-		this.mcs.findRowsByData("id", data).remove();
+		this.mcs.findRowsByData("scopeAndIdentifier", data).remove();
 
 	if (params.autoDeselect)
 		this.context.autoDeselectAllTabs(data);
 
 	this.table.draw();
+}
+
+/**
+ * Update the version of a Code List in the thesaurus
+ *
+ * @return [void]
+ */
+ ManagedChildrenSelectOverview.prototype.updateVersion = function (data) {
+	this.extendLock();
+	this.mcs.processing(true, "Updating item version...");
+
+	var params = {action: "change_version", context: this, thisTable: true}
+
+	setTimeout(function(){ this.executeRequest(this.buildRequestParams(params, data), this.refresh.bind(this)) }.bind(this), 0);
 }
 
 /**
@@ -229,7 +255,36 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 			_this.updateSelection(params, item, callback);
 		}
 	});
+
+	$(_this.mcs.tableId + " .pick-version").off("click").on("click", function() {
+		var currentItem = _this.table.row($(this).parents("tr:first")).data();
+		var item = {
+			scoped_identifier: $(this).attr("data-identifier"),
+			scope_id: $(this).attr("data-scope"),
+		}
+
+		var selectCallback = function(itemSelected) {
+			var updateData = [currentItem, itemSelected];
+			_this.updateVersion(updateData);
+		}
+		_this.versionPicker.show(item, selectCallback);
+	});
 }
+
+/**
+ * Re-loads the table data
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.refresh = function (callback) {
+	this.mcs.table.rows().remove().draw();
+	this.mcs.loadData(0, function() {
+		if(callback != null)
+			callback();
+		this.setListeners();
+	}.bind(this));
+}
+
 
 /**
  * Redraws the table, re-sets the listeners

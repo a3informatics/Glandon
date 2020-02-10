@@ -47,7 +47,11 @@ ManagedChildrenSelect.prototype.init = function () {
 			"infoFiltered": "",
 			"emptyTable": "No items were found.",
 			"processing": generateSpinnerWText("medium")
-		}
+		},
+		"createdRow": function(row, data, dataIndex) {
+			if(this.type == "thOverview")
+		 		$(row).addClass(data.owner.toLowerCase() == "cdisc" ? 'row-cdisc' : 'row-sponsor');
+	 }.bind(this)
 	});
 
 	return this;
@@ -73,7 +77,6 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 			var _this = this;
 
 			$.each(result.data, function(index, item){
-				item["version"] = "12345";
 				_this.table.row.add(item);
 			});
 
@@ -168,7 +171,8 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
 		setTimeout(function () {
 			var indexes = [];
 			this.target.table.rows().every(function (rowIdx, tl, rl) {
-				var rowResult = _this.findRowByParam("id", this.data());
+				var rowResult = _this.findRowByScopeAndIdentifier(this.data());
+				// var rowResult = _this.findRowByParam("id", this.data());
 				if(rowResult.length != 0)
 					indexes.push(rowResult.index());
 			});
@@ -198,7 +202,9 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 			var _this = this;
 			this.processing(true, "Updating selection...");
 			this.autoSelectMode = true;
-			this.findRowsByData("id", data).deselect();
+			$.each(data, function(i, item){
+				this.findRowByScopeAndIdentifier(item).deselect();
+			}.bind(this));
 			this.autoSelectMode = false;
 			this.processing(false);
 		}.bind(this), 0)
@@ -292,6 +298,18 @@ ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 }
 
 /**
+ * Finds a row in a DataTable based on the pair of scope_id and scoped_identifier
+ * @param [Object] Data value object which to compare
+ *
+ * @return [DatatTable Row] DataTable Row result api instance (can be empty)
+ */
+ManagedChildrenSelect.prototype.findRowByScopeAndIdentifier = function (data) {
+	return this.table.row(function (idx, dt, node) {
+		return (dt.scope_id == data.scope_id && dt.scoped_identifier == data.scoped_identifier) ? true : false;
+	});
+}
+
+/**
  * Finds rows in a DataTable based on multiple data
  * @param [String] DataType by which to search, e.g. id
  * @param [Data Array] Multiple Data which to find based on dataType
@@ -303,7 +321,12 @@ ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
 	var indexes = [];
 
 	$.each(data, function (i, e) {
-		var rowIndexes = _this.table.rows(function (idx, dt, node) { return dt[dataType] == e[dataType] ? true : false; }).indexes().toArray();
+		var rowIndexes;
+		if(dataType == "scopeAndIdentifier")
+			rowIndexes = _this.table.rows(function (idx, dt, node) { return (dt.scope_id == e.scope_id && dt.scoped_identifier == e.scoped_identifier) ? true : false; }).indexes().toArray();
+		else
+			rowIndexes = _this.table.rows(function (idx, dt, node) { return dt[dataType] == e[dataType] ? true : false; }).indexes().toArray();
+
 		indexes = indexes.concat(rowIndexes);
 	});
 
@@ -318,10 +341,29 @@ ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
  */
 ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
 	return "<span class='icon-times text-accent-2 clickable text-tiny exclude ttip' data-id='"+data.id+"'>"+
-            "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
+            "<span class='ttip-text ttip-table left shadow-small text-small text-medium'>"+
               "Exclude item"+
             "</span>"+
           "</span>";
+}
+
+/**
+ * Generates HTML for version display and update button
+ * @param [Object] data object which contains the owner, scope_id and scoped_identifier propertie
+ *
+ * @return [String] styled version column HTML
+ */
+ManagedChildrenSelect.prototype.versionHTML = function (data) {
+	if (data.owner != null && data.owner.toLowerCase() == "cdisc")
+		return data.semantic_version;
+
+	var html = data.semantic_version;
+	html += "<span class='icon-edit text-link clickable pick-version text-tiny ttip' data-scope='"+data.scope_id+"' data-identifier='"+data.scoped_identifier+"' style='margin-left: 10px;'>"+
+							"<span class='ttip-text ttip-table left shadow-small text-small text-medium'>"+
+								"Change version"+
+							"</span>"+
+					"</span> ";
+	return html;
 }
 
 /**
@@ -367,15 +409,15 @@ ManagedChildrenSelect.prototype.columns = function () {
   				"render": function (data, type, row, meta) {
   					return colorCodeTagsBadge(data);
   				}},
-  			{"data": "version"},
+  			{"data": "semantic_version", "render": function (data, type, row, meta) {
+					return type == "display" ? _this.versionHTML(row) : data;
+				}},
 				{"data": "indicators", "width": "80px",
 					"render": function (data, type, row, meta) {
-						if (type == "display") return formatIndicators(data);
-						else return formatIndicatorsString(data);
+						return type == "display" ? formatIndicators(data) : formatIndicatorsString(data);
 					}},
   			{"render": function (data, type, row, meta) {
-  					if (type == "display") return _this.excludeBtnHTML(row);
-  					else return "";
+					return type == "display" ? _this.excludeBtnHTML(row) : "";
 				}}
   		];
   		break;

@@ -468,6 +468,20 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def change_child_version
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ids = the_params[:id_set]
+      ct.deselect_children({id_set: [ids[0]]})
+      ct.select_children({id_set: [ids[1]]})
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
   def select_children
     authorize Thesaurus, :edit?
     ct = Thesaurus.find_minimum(params[:id])

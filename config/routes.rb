@@ -262,6 +262,7 @@ Rails.application.routes.draw do
       post :select_children
       put :deselect_children
       put :deselect_all_children
+      put :change_child_version
     end
   end
 

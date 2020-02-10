@@ -10,6 +10,7 @@
                     var overviewUrls = {
                       dataUrl: '#{children_with_indicators_thesauri_path(@thesaurus)}',
                       selectChildrenURL: '#{select_children_thesauri_path(@thesaurus)}',
+                      changeChildVersionURL: '#{change_child_version_thesauri_path(@thesaurus)}',
                       deselectChildrenUrl: '#{deselect_children_thesauri_path(@thesaurus)}',
                       deselectAllChildrenUrl: '#{deselect_all_children_thesauri_path(@thesaurus)}' };" %>
 
@@ -91,8 +92,8 @@
         <div class="tab-wrap closed" data-tab="tab-selection-overview">
           <%= render layout: "shared/thesauri/release_select_overview_tab", :locals => {id: "table-selection-overview"} do %>
             <div class="font-light">This is the overview of the selection of code lists you have made so far. <br/>
-            To exclude an item from your Thesaurus, click on <span class="icon-times text-accent-2 text-tiny"></span>.<br/>
-            To manually pick a version, click on <span class="icon-edit text-link text-tiny"></span>.</div>
+            To exclude an item from your Thesaurus, click on <span class="icon-times text-accent-2 text-tiny"></span>.
+            To manually pick a version of a sponsor code list, click on <span class="icon-edit text-link text-tiny"></span>.</div>
           <% end %>
         </div>
 
