@@ -35,10 +35,10 @@ class Thesaurus
       # @param params [Hash] the hash sent by datatables for a search.
       # @return [Hash] a hash containing :count with the number of records that could be returned and
       #    :items which is an array of results.
-      def search_current(params)
-        #search_multiple(params, self.current_set)
-        search_multiple(params, self.current_and_latest_set.map{|k,v| v.last[:uri]}) # Note, current will the second (last) entry, latest first.
-      end
+      # def search_current(params)
+      #   #search_multiple(params, self.current_set)
+      #   search_multiple(params, self.current_and_latest_set.map{|k,v| v.last[:uri]}) # Note, current will the second (last) entry, latest first.
+      # end
 
       # Empty Search? No search parameters
       # 

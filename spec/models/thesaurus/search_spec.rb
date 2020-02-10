@@ -276,42 +276,42 @@ describe "Thesaurus::Search" do
 
   end
 
-  describe "Current Search" do
+  # describe "Current Search" do
 
-    before :each do
-      IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..50)
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
-    end
+  #   before :each do
+  #     IsoHelpers.clear_cache
+  #     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+  #     load_files(schema_files, data_files)
+  #     load_cdisc_term_versions(1..50)
+  #     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+  #     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+  #   end
 
-    after :all do
-    end
+  #   after :all do
+  #   end
 
-    it "allows the current terminologies to be searched, initial search, no parameters" do
-      @ct.has_state.make_current
-      params = standard_params
-      results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
-    end
+  #   it "allows the current terminologies to be searched, initial search, no parameters" do
+  #     @ct.has_state.make_current
+  #     params = standard_params
+  #     results = Thesaurus.search_current(params)
+  #     check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
+  #   end
 
-    it "allows the current terminologies to be searched, several terminologies returning results" do
-      @ct.has_state.make_current
-      params = standard_params
-      params[:columns][C_TS_PI][:search][:value] = "C66770"
-      results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
-    end
+  #   it "allows the current terminologies to be searched, several terminologies returning results" do
+  #     @ct.has_state.make_current
+  #     params = standard_params
+  #     params[:columns][C_TS_PI][:search][:value] = "C66770"
+  #     results = Thesaurus.search_current(params)
+  #     check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
+  #   end
 
-    it "allows the current terminologies to be searched, several terminologies returning results" do
-      params = standard_params
-      params[:columns][C_TS_PI][:search][:value] = "C66770"
-      results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
-    end
+  #   it "allows the current terminologies to be searched, several terminologies returning results" do
+  #     params = standard_params
+  #     params[:columns][C_TS_PI][:search][:value] = "C66770"
+  #     results = Thesaurus.search_current(params)
+  #     check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
+  #   end
 
-  end
+  # end
 
 end

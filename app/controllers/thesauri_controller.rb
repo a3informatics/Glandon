@@ -199,21 +199,21 @@ class ThesauriController < ApplicationController
     end
   end
 
-  def search_current
-    authorize Thesaurus, :show?
-    respond_to do |format|
-      format.html
-        @close_path = thesauri_index_path
-      format.json do
-        if Thesaurus.empty_search?(params)
-          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
-        else
-          results = Thesaurus.search_current(params)
-          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
-        end
-      end
-    end
-  end
+  # def search_current
+  #   authorize Thesaurus, :show?
+  #   respond_to do |format|
+  #     format.html
+  #       @close_path = thesauri_index_path
+  #     format.json do
+  #       if Thesaurus.empty_search?(params)
+  #         render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+  #       else
+  #         results = Thesaurus.search_current(params)
+  #         render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+  #       end
+  #     end
+  #   end
+  # end
 
   def search_multiple
     authorize Thesaurus, :show?
