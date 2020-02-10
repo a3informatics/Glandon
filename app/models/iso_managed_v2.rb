@@ -770,10 +770,10 @@ class IsoManagedV2 < IsoConceptV2
     results = Hash.new {|h,k| h[k] = []}
     date_time = Time.now.iso8601
     query_string = %Q{
-      SELECT DISTINCT ?s ?key ?v WHERE
+      SELECT DISTINCT ?s ?key ?v ?status WHERE
       {
         {
-          SELECT DISTINCT ?s ?key ?v WHERE
+          SELECT DISTINCT ?s ?key ?v ?status WHERE
           {
             ?s rdf:type #{rdf_type.to_ref} .
             ?s isoT:hasIdentifier ?si .
@@ -787,14 +787,16 @@ class IsoManagedV2 < IsoConceptV2
             ?si isoI:hasScope ?ns .
             ?ns isoI:shortName ?sn .
             BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
+            BIND("current" as ?status)
           }
         } UNION {
-          SELECT DISTINCT ?s ?key ?v WHERE
+          SELECT DISTINCT ?s ?key ?v ?status WHERE
           {
             ?x rdf:type #{rdf_type.to_ref} .
             ?x isoT:hasIdentifier/isoI:identifier ?id .
             ?x isoT:hasIdentifier/isoI:version ?v .
             BIND(?x as ?s)
+            BIND("latest" as ?status)
             {
               SELECT DISTINCT ?key ?id ?scope (MAX(?lv) as ?v) 
               {
@@ -812,46 +814,11 @@ class IsoManagedV2 < IsoConceptV2
       } ORDER BY ?key DESC(?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
-    results
-  end
-
-  # Latest Set. Find the latest versions for all identifiers for a given type.
-  #
-  # @return [Array] Each hash contains {uri}
-  def self.latest_set
-    results = Hash.new {|h,k| h[k] = []}
-    date_time = Time.now.iso8601
-    query_string = %Q{
-      SELECT DISTINCT ?s ?key ?v WHERE
-      {
-          SELECT DISTINCT ?s ?key ?v WHERE
-          {
-            ?s rdf:type #{rdf_type.to_ref} .
-            ?s isoT:hasIdentifier ?si .
-            {
-              SELECT (max(?lv) AS ?v) WHERE
-              {
-                ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
-                ?s isoT:hasIdentifier ?si .
-                 ?si isoI:identifier ?i .
-                 ?si isoI:hasScope ?ns .
-                 ?ns isoI:shortName ?sn .
-                ?s isoT:hasIdentifier/isoI:version ?lv .
-                 BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
-              } group by ?key
-            }
-            ?si isoI:version ?v .
-            ?si isoI:identifier ?i .
-            ?si isoI:hasScope ?ns .
-            ?ns isoI:shortName ?sn .
-            BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
-          }
-      } ORDER BY ?key DESC(?v)
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
-  byebug
+    triples = query_results.by_object_set([:s, :key, :v, :status])
+    triples.each do |x|
+      status = x[:status].to_sym
+      results[x[:key]] << {status => {uri: x[:s], version: x[:v].to_i}}
+    end
     results
   end
 
