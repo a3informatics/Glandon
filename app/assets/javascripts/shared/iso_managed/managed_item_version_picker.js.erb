@@ -20,18 +20,12 @@ function ManagedItemVersionPicker(type, callback) {
   this.historyTable = this.init();
   this.count = 20;
   this.type = type;
-  this.cache = {};
   this.callback = callback;
 
   // Load data when modal shown
   $(this.modalId).off('shown.bs.modal').on('shown.bs.modal', function (e) {
     this.loadData(this.makeHistoryUrl(this.item.scoped_identifier, this.item.scope_id), 0);
   }.bind(this));
-
-  // Load data when modal shown
-  // $(this.modalId).off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
-  //   this.clear();
-  // }.bind(this));
 
   this.setListeners();
   return this;
@@ -174,14 +168,14 @@ ManagedItemVersionPicker.prototype.makeHistoryUrl = function (identifier, scopeI
 }
 
 /**
- * Enables or disables processing within the modal tables
+ * Enables or disables processing within the modal table
  *
  * @param enable [Boolean] Processing enable / disable == true / false
  * @return [void]
  */
 ManagedItemVersionPicker.prototype.processing = function (enable) {
   this.historyTable.processing(enable);
-  toggleTableActive("#history", !enable);
+  toggleTableActive(this.modalId + " #history", !enable);
 }
 
 /**

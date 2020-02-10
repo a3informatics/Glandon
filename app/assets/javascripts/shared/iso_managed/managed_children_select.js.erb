@@ -8,12 +8,12 @@
 
 /**
  * Managed Children Select Table
- * @param [String] url of the data source, must match columns format on the bottom
- * @param [String] id of the table
- * @param [Integer] Number of items fetched in one request
- * @param [Object Instance] reference to the table object instance
- * @param [String] type of the data and columns format, can be: "thCodeList", "thOverview" ...
- * @param [String] kind of tab data, optional ("normal", "subsets", "extensions")
+ * @param dataUrl [String] url of the data source, must match columns format on the bottom
+ * @param tableId [String] id of the table
+ * @param count [Integer] Number of items fetched in one request
+ * @param target [Object Instance] reference to the table object instance
+ * @param type [String] type of the data and columns format, can be: "thCodeList", "thOverview" ...
+ * @param kind [String] kind of tab data, optional ("normal", "subsets", "extensions")
  *
  * @return [void]
  */
@@ -30,7 +30,7 @@ function ManagedChildrenSelect(dataUrl, tableId, count, target, type, kind) {
 }
 
 /**
- * Initializes the DataTable
+ * Initializes the DataTable, enables multiple selection
  *
  * @return [Object Instance] this instance
  */
@@ -49,6 +49,7 @@ ManagedChildrenSelect.prototype.init = function () {
 			"processing": generateSpinnerWText("medium")
 		},
 		"createdRow": function(row, data, dataIndex) {
+			// Add color-owner badges to the overview table
 			if(this.type == "thOverview")
 		 		$(row).addClass(data.owner.toLowerCase() == "cdisc" ? 'row-cdisc' : 'row-sponsor');
 	 }.bind(this)
@@ -59,8 +60,8 @@ ManagedChildrenSelect.prototype.init = function () {
 
 /**
  * Loads data into table based on offset, executes callback when finished
- * @param [Integer] offset of data index
- * @param [Function] callback on success
+ * @param offset [Integer] offset of data index
+ * @param callback [Function] called on load completed
  *
  * @return [void]
  */
@@ -74,11 +75,10 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 		dataType: 'json',
 		context: this,
 		success: function (result) {
-			var _this = this;
 
 			$.each(result.data, function(index, item){
-				_this.table.row.add(item);
-			});
+				this.table.row.add(item);
+			}.bind(this));
 
 			this.redraw();
 
@@ -134,8 +134,8 @@ ManagedChildrenSelect.prototype.setListeners = function () {
 
 /**
  * Add or remove items. Passes the selected item(s) to the target
- * @param [Array Int] Indexes of rows that were selected/deselected
- * @param [String] action, can be "add" or "remove"
+ * @param indexes [Array Int] Indexes of rows that were selected/deselected
+ * @param action [String] Can be "add" or "remove"
  *
  * @return [void]
  */
@@ -171,8 +171,7 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
 		setTimeout(function () {
 			var indexes = [];
 			this.target.table.rows().every(function (rowIdx, tl, rl) {
-				var rowResult = _this.findRowByScopeAndIdentifier(this.data());
-				// var rowResult = _this.findRowByParam("id", this.data());
+				var rowResult = _this.findRowByParam("scopeAndIdentifier", this.data());
 				if(rowResult.length != 0)
 					indexes.push(rowResult.index());
 			});
@@ -186,7 +185,7 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
 
 /**
  * Auto - Deselects items by argument data based on ids
- * @param [DataTable Row Data] data from another table to be found and deselected in this one
+ * @param data [DataTable Row Data] data from another table to be found and deselected in this one
  *
  * @return [void]
  */
@@ -202,9 +201,11 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 			var _this = this;
 			this.processing(true, "Updating selection...");
 			this.autoSelectMode = true;
+
 			$.each(data, function(i, item){
-				this.findRowByScopeAndIdentifier(item).deselect();
+				this.findRowByParam("scopeAndIdentifier", item).deselect();
 			}.bind(this));
+
 			this.autoSelectMode = false;
 			this.processing(false);
 		}.bind(this), 0)
@@ -213,7 +214,7 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 
 /**
  * Refreshes the table and reloads data
- * @param [String] newUrl (optional) only if source url changes
+ * @param newUrl [String] newUrl (optional) only if source url changes
  *
  * @return [void]
  */
@@ -237,7 +238,8 @@ ManagedChildrenSelect.prototype.redraw = function () {
 
 /**
  * Toggles the processing state of the table on/off
- * @param [Boolean] true if should start processing, false if should stop processing
+ * @param enable [Boolean] true if should start processing, false if should stop processing
+ * @param text [String] Message displayed white processing
  *
  * @return [void]
  */
@@ -253,8 +255,8 @@ ManagedChildrenSelect.prototype.processing = function (enable, text) {
 
 /**
  * Generates parameters for request for fetching data
- * @param [Int] Data Count
- * @param [Int] Data Offset
+ * @param c [Int] Data Count
+ * @param o [Int] Data Offset
  *
  * @return [Object] formatted data object
  */
@@ -263,6 +265,7 @@ ManagedChildrenSelect.prototype.loadDataParams = function(c, o){
 
 	var param = this.dataUrl.indexOf("managed_concept") != -1 ? "managed_concept" : "thesauri";
 	data[param] = { count: c, offset: o }
+
 	if(this.kind != null)
 		data[param].type = this.kind;
 
@@ -270,22 +273,23 @@ ManagedChildrenSelect.prototype.loadDataParams = function(c, o){
 }
 
 /**
- * Finds a row in a DataTable based on data
- * @param [String] DataType by which to search, e.g. id
- * @param [Object] Data value object which to compare
+ * Finds a row in a DataTable based on data and type
+ * @param dataType [String] DataType by which to search, e.g. id, scopeAndIdentifier
+ * @param data [Object] Data object which to compare
  *
  * @return [DatatTable Row] DataTable Row result api instance (can be empty)
  */
 ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
-	return this.table.row(function (idx, dt, node) {
-		return dt[dataType] == data[dataType] ? true : false;
-	});
+	if(dataType == "scopeAndIdentifier")
+		return this.table.row(function (idx, dt, node) {	return (dt.scope_id == data.scope_id && dt.scoped_identifier == data.scoped_identifier) ? true : false;  });
+	else
+		return this.table.row(function (idx, dt, node) {	return dt[dataType] == data[dataType] ? true : false;  });
 }
 
 /**
  * Finds rows in a DataTable based on a single data parameter
- * @param [String] DataType by which to search, e.g. id
- * @param [Object] Single data object
+ * @param dataType [String] DataType by which to search, e.g. id, rows_filter
+ * @param data [Object] Single data object
  *
  * @return [DataTable Rows] DataTable Row result api instance of 1 or more rows (can be empty)
  */
@@ -298,21 +302,9 @@ ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 }
 
 /**
- * Finds a row in a DataTable based on the pair of scope_id and scoped_identifier
- * @param [Object] Data value object which to compare
- *
- * @return [DatatTable Row] DataTable Row result api instance (can be empty)
- */
-ManagedChildrenSelect.prototype.findRowByScopeAndIdentifier = function (data) {
-	return this.table.row(function (idx, dt, node) {
-		return (dt.scope_id == data.scope_id && dt.scoped_identifier == data.scoped_identifier) ? true : false;
-	});
-}
-
-/**
- * Finds rows in a DataTable based on multiple data
- * @param [String] DataType by which to search, e.g. id
- * @param [Data Array] Multiple Data which to find based on dataType
+ * Finds rows in a DataTable based on multiple data objects and type
+ * @param dataType [String] DataType by which to search, e.g. id, scopeAndIdentifier
+ * @param data [Object Array] Multiple Data objects which to find based on dataType
  *
  * @return [DataTable Rows] DataTable Row result api instance of 1 or more rows (can be empty)
  */
@@ -335,9 +327,9 @@ ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
 
 /**
  * Generates exclude button HTML
- * @param [Object] data object which contains the id property
+ * @param data [Object] Data object which contains the id property
  *
- * @return [String] styled button HTML
+ * @return [String] Styled button HTML
  */
 ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
 	return "<span class='icon-times text-accent-2 clickable text-tiny exclude ttip' data-id='"+data.id+"'>"+
@@ -349,9 +341,9 @@ ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
 
 /**
  * Generates HTML for version display and update button
- * @param [Object] data object which contains the owner, scope_id and scoped_identifier propertie
+ * @param data [Object] Contains the owner, scope_id and scoped_identifier propertie
  *
- * @return [String] styled version column HTML
+ * @return [String] Styled version column HTML
  */
 ManagedChildrenSelect.prototype.versionHTML = function (data) {
 	if (data.owner != null && data.owner.toLowerCase() == "cdisc")
@@ -388,14 +380,12 @@ ManagedChildrenSelect.prototype.columns = function () {
   			{"data": "definition"},
   			{"data": "tags",
   				"render": function (data, type, row, meta) {
-  					if (type == "display") return colorCodeTagsBadge(data);
-  					else return data
-  				}},
+  					return type == "display" ? colorCodeTagsBadge(data) : data;
+				}},
   			{"data": "indicators", "width": "80px",
 					"render": function (data, type, row, meta) {
-  					if (type == "display") return formatIndicators(data);
-  					else return formatIndicatorsString(data);
-  				}}
+  					return type == "display" ? formatIndicators(data) : formatIndicatorsString(data);
+				}}
   		];
   		break;
 
@@ -408,7 +398,7 @@ ManagedChildrenSelect.prototype.columns = function () {
   			{"data": "tags",
   				"render": function (data, type, row, meta) {
   					return colorCodeTagsBadge(data);
-  				}},
+				}},
   			{"data": "semantic_version", "render": function (data, type, row, meta) {
 					return type == "display" ? _this.versionHTML(row) : data;
 				}},
@@ -422,6 +412,5 @@ ManagedChildrenSelect.prototype.columns = function () {
   		];
   		break;
 	}
-
 	return columns;
 }
