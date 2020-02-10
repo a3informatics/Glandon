@@ -242,6 +242,7 @@ Rails.application.routes.draw do
       get :search_multiple
     end
     member do
+      post :clone
       get :children
       get :children_with_indicators
       post :add_child

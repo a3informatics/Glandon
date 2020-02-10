@@ -659,6 +659,59 @@ describe "IsoManagedV2" do
 
   end
 
+  describe "Reset Clone" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "reset clone" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      object = ct.clone
+      expect(object.errors.count).to eq(0)
+      object.reset_cloned(identifier: "CLONED AIRPORTS", label: "We have changed it")
+      check_dates(object, sub_dir, "reset_clone_expected_1a.yaml", :last_change_date, :creation_date)
+      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1a.yaml", equate_method: :hash_equal)
+      object = Thesaurus.find_full(object.uri)
+      check_dates(object, sub_dir, "reset_clone_expected_1b.yaml", :last_change_date, :creation_date)
+      check_file_actual_expected(object.to_h, sub_dir, "reset_clone_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "reset clone, not valid, label" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      object = ct.clone
+      object.reset_cloned(identifier: "CLONED AIRPORTS", label: "We have changed it±±±")
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+    end
+
+    it "reset clone, not valid, identifier" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      object = ct.clone
+      object.reset_cloned(identifier: "CLONED @£$", label: "We have changed it")
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters")
+    end
+
+    it "reset clone, not permitted" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      object = ct.clone
+      object.reset_cloned(identifier: "AIRPORTS", label: "We have changed it")
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("http://www.acme-pharma.com/AIRPORTS/V1#TH already exists in the database")
+    end
+
+  end
+
   describe "Create Permitted" do
 
     before :all  do
