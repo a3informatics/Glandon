@@ -480,11 +480,11 @@ describe ThesauriController do
       expect(response).to render_template("search")
     end
 
-    it "initiates a search of the current terminologies" do
-      params = standard_params
-      get :search_current, params
-      expect(response).to render_template("search_current")
-    end
+    # it "initiates a search of the current terminologies" do
+    #   params = standard_params
+    #   get :search_current, params
+    #   expect(response).to render_template("search_current")
+    # end
 
     it "initiates a search of multiple terminologies" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
