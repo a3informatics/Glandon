@@ -159,6 +159,11 @@ describe "Thesaurus::ManagedConcept" do
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
+    it "returns audit type" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.audit_type).to eq("Code list")
+    end
+    
     it "allows validity of the object to be checked - error" do
       tc = Thesaurus::ManagedConcept.new
       expect(tc.valid?).to eq(false)
