@@ -518,16 +518,16 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "obtains the current search results" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      params = standard_params
-      params[:columns]["6"][:search][:value] = "cerebral"
-      get :search_current, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys
-      check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal)
-    end
+    # it "obtains the current search results" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   params = standard_params
+    #   params[:columns]["6"][:search][:value] = "cerebral"
+    #   get :search_current, params
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   actual = JSON.parse(response.body).deep_symbolize_keys
+    #   check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal)
+    # end
 
     it "obtains the current search results, empty search" do
       request.env['HTTP_ACCEPT'] = "application/json"
@@ -542,7 +542,7 @@ describe ThesauriController do
     it "obtains the multiple search results" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      params = multiple_params("current", th.id)
+      params = multiple_params("latest", th.id)
       params[:columns]["6"][:search][:value] = "cerebral"
       get :search_multiple, params
       expect(response.content_type).to eq("application/json")
