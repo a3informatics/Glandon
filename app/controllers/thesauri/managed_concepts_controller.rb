@@ -47,6 +47,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     object = Thesaurus::ManagedConcept.create
     if object.errors.empty?
+      AuditTrail.update_item_event(current_user, object, object.audit_message(:created))
       result = object.to_h
       result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
       render :json => { data: result}, :status => 200
@@ -192,6 +193,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     token = Token.find_token(tc, current_user)
     if !token.nil?
+      AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
       uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
       children = tc.add_children_based_on(uc)
       render :json => {data: "" }, :status => 200
@@ -206,7 +208,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     token = get_token(tc)
     if !token.nil?
       if tc.delete_or_unlink == 1
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:deleted))
         render :json => {}, :status => 200
       else
         render :json => {:errors => tc.errors.full_messages}, :status => 422
@@ -363,7 +365,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     new_object = tc.create_extension
-    AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:updated, "extension"))
+    AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:created, "extension"))
     show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: ""}})
     edit_path = edit_extension_thesauri_managed_concept_path(new_object)
     render json: {show_path: show_path, edit_path: edit_path}, :status => 200
