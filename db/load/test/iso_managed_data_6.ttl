@@ -1,0 +1,77 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 									<http://www.assero.co.uk/Test#AdministeredItem> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Concepts#label> 										"Iso Concept Test Form" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Types#creationDate> 								"2016-06-15T21:06:10 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 							"2016-06-16T13:14:24 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Types#changeDescription> 					"Creation" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 					"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/ISO11179Types#origin> 											"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/Test#hasIdentifier> 			                  <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> 	<http://www.assero.co.uk/Test#hasState> 						                <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 									<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 					<http://www.assero.co.uk/NS#BBB> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 				"TEST" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 						"1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1>       <http://www.assero.co.uk/ISO11179Identification#semanticVersion>    "1.2.3" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"0.1" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 									<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 					<http://www.assero.co.uk/RA#DUNS123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 	"Standard" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 				"2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 						"2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 	"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus>	"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 				"Incomplete" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Types#AdministeredItem> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Concepts#label>                    "Iso Concept Test Form" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#creationDate>                "2016-06-15T21:06:10 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#lastChangeDate>              "2016-06-16T13:14:24 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#changeDescription>           "Creation" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#explanatoryComment>          "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#origin>                      "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#hasIdentifier>               <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#hasState>                    <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Identification#hasScope>           <http://www.assero.co.uk/NS#BBB> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Identification#identifier>         "TEST" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Identification#version>            "2"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Identification#semanticVersion>    "1.3.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Identification#versionLabel>       "0.1" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#byAuthority>          <http://www.assero.co.uk/RA#DUNS123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#registrationStatus>   "Standard" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#effectiveDate>        "2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#untilDate>            "2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#administrativeNote>   "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#unresolvedIssue>      "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#administrativeStatus> "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-2>       <http://www.assero.co.uk/ISO11179Registration#previousState>        "Incomplete" . 
+
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Types#AdministeredItem> . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Concepts#label>                    "Iso Concept Test Form" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#creationDate>                "2016-06-15T21:06:10 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#lastChangeDate>              "2016-06-16T13:14:24 01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#changeDescription>           "Creation" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#explanatoryComment>          "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#origin>                      "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#hasIdentifier>               <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST>  <http://www.assero.co.uk/ISO11179Types#hasState>                    <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Identification#hasScope>           <http://www.assero.co.uk/NS#BBB> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Identification#identifier>         "TEST" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Identification#version>            "3"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Identification#semanticVersion>    "1.4.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Identification#versionLabel>       "0.1" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>                   <http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#byAuthority>          <http://www.assero.co.uk/RA#DUNS123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#registrationStatus>   "Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#effectiveDate>        "2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#untilDate>            "2016-01-01T00:00:00 00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#administrativeNote>   "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#unresolvedIssue>      "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#administrativeStatus> "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-3>       <http://www.assero.co.uk/ISO11179Registration#previousState>        "Incomplete" . 

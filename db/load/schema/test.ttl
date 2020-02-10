@@ -15,6 +15,10 @@
   owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
 .
+
+# Terminology Copy
+#
+#
 :ManagedConcept
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
@@ -90,4 +94,189 @@
     ] ;
   rdfs:range :Synonym ;
   skos:definition "Relationship to a synonym."^^xsd:string ;
+.
+
+# Namespace Copy
+#
+#
+:Namespace
+  rdf:type owl:Class ;
+  rdfs:label "Namespace"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "A unique framework of authority within which individuals act, or are designated to act, towards some purpose. A scope."^^xsd:string ;
+.
+:authority
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Namespace ;
+  rdfs:label "Name"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The authority element of the uri forming the unique string that identifies the namespace."^^xsd:string ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Namespace ;
+  rdfs:label "Name"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The full name of the organization (Note: ISO11179 defines this as a 'sign' type, not string)"^^xsd:string ;
+.
+:shortName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Namespace ;
+  rdfs:label "Name"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The short name of the organization."^^xsd:string ;
+.
+
+# RA Copy
+#
+#
+:RegistrationAuthority
+  rdf:type owl:Class ;
+  rdfs:label "Registration authority"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
+.
+:internationalCodeDesignator
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:label "International Code Designator"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The scheme used to identify this authorty."^^xsd:string ;
+.
+:organizationIdentifier
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:label "Organization Identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The identifier under the scheme used to identify the authority."^^xsd:string ;
+.
+:owner
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Repository owner."^^xsd:string ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Defines the RA that is owner of the repository."^^xsd:string ;
+.
+:raNamespace
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+  skos:definition "The namespace used by the authrity to uniquely identifier items within the authorities scope."^^xsd:string ;
+.
+
+# RA Copy
+#
+#
+:RegistrationAuthority2
+  rdf:type owl:Class ;
+  rdfs:label "Registration authority"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
+.
+:internationalCodeDesignator2
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationAuthority2 ;
+  rdfs:label "International Code Designator"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The scheme used to identify this authorty."^^xsd:string ;
+.
+:organizationIdentifier2
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationAuthority2 ;
+  rdfs:label "Organization Identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The identifier under the scheme used to identify the authority."^^xsd:string ;
+.
+:owner2
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Repository owner."^^xsd:string ;
+  rdfs:domain :RegistrationAuthority2 ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Defines the RA that is owner of the repository."^^xsd:string ;
+.
+:raNamespace2
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :RegistrationAuthority2 ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+  skos:definition "The namespace used by the authrity to uniquely identifier items within the authorities scope."^^xsd:string ;
+.
+
+# Administered Item Copy
+#
+#
+:AdministeredItem
+  rdf:type owl:Class ;
+  rdfs:label "Administered item"^^xsd:string ;
+  rdfs:subClassOf :RegisteredItem ;
+  skos:definition "An item that is administered within the registry."^^xsd:string ;
+.
+:changeDescription
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :AdministeredItem ;
+  rdfs:label "Change Description"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "A description of what has changed since the last version of the Administered Item."^^xsd:string ;
+.
+:hasIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :IdentifiedItem ;
+  rdfs:label "Identifer Relationship"^^xsd:string ;
+  rdfs:range :ScopedIdentifier ;
+  skos:definition "Identifies the set of Scope_Identifiers for the Identified_Item that defines an identifier within a specific namespace."^^xsd:string ;
+.
+:hasState
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :AdministeredItem ;
+  rdfs:label "Item Registration Relationship"^^xsd:string ;
+  rdfs:range :RegistrationState ;
+  skos:definition "Identifies the state of the registered item."^^xsd:string ;
+.
+
+# Scoped Identifier Copy
+#
+#
+:ScopedIdentifier
+  rdf:type owl:Class ;
+  rdfs:label "Scoped identifier"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "An identifier within a particular scope."^^xsd:string ;
+.
+:identifier
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "String used to unambiguously denote an IdentifiedItem within the scope of a specified Namespace."^^xsd:string ;
+.
+:version
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Version"^^xsd:string ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "Unique version identifier of the ScopedIdentifier which identifies an IdentifiedItem. Used by the repository to manage versions"^^xsd:string ;
+.
+:semanticVersion
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Semantic Version"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Semantic version for the item. Used by the repository to display to users."^^xsd:string ;
+.
+:versionLabel
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Version Label"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "Human readable version label usually set by external organizations."^^xsd:string ;
+.
+:hasScope
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain :ScopedIdentifier ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range :Namespace ;
+  skos:definition "The namespce by which this identifier is scoped, i.e. is unique."^^xsd:string ;
 .

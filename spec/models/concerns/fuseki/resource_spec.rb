@@ -4,6 +4,7 @@ describe Fuseki::Resource do
   
   include DataHelpers
   include PublicFileHelpers
+  include FusekiBaseHelpers
 
   def sub_dir
     return "models/concerns/fuseki/resource"
@@ -223,22 +224,9 @@ describe Fuseki::Resource do
     after :all do
     end
 
-    class TestR10 < Fuseki::Base
+    class TestR11 < FusekiBaseHelpers::TestRegistrationAuthorities
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
-                base_uri: "http://www.assero.co.uk/RA" 
-
-      data_property :organization_identifier, default: "<Not Set>" 
-      data_property :international_code_designator, default: "XXX"
-      data_property :owner, default: false
-      object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
-      object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
-
-    end 
-
-    class TestR11 < TestR10
-
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoConceptV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake1"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
@@ -246,41 +234,41 @@ describe Fuseki::Resource do
 
     class TestR12 < TestR11
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoManagedV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake2"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
     end 
 
     it "get properties, class and instance" do
-      result = TestR10.resources
+      result = FusekiBaseHelpers::TestRegistrationAuthorities.resources
       check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
-      item = TestR10.new
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       result = item.class.resources
       check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "object relationships" do
-      check_file_actual_expected(TestR10.object_relationships, sub_dir, "relationships_expected_1.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.object_relationships, sub_dir, "relationships_expected_1.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.object_relationships, sub_dir, "relationships_expected_1.yaml")
     end
 
     it "property relationships" do
-      check_file_actual_expected(TestR10.property_relationships, sub_dir, "relationships_expected_2.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.property_relationships, sub_dir, "relationships_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.property_relationships, sub_dir, "relationships_expected_2.yaml")
     end
 
     it "read paths" do
-      check_file_actual_expected(TestR10.read_paths, sub_dir, "managed_paths_expected_1.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.read_paths, sub_dir, "managed_paths_expected_1.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.read_paths, sub_dir, "managed_paths_expected_1.yaml")
     end
 
     it "delete paths" do
-      check_file_actual_expected(TestR10.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
     end
 
@@ -291,8 +279,8 @@ describe Fuseki::Resource do
     end
 
     it "rdf type to klass" do
-      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoConceptV2")).to eq(TestR11)
-      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoManagedV2")).to eq(TestR12)
+      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/Fake1")).to eq(TestR11)
+      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/Fake2")).to eq(TestR12)
     end
 
   end

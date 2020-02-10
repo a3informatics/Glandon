@@ -151,6 +151,8 @@ private
 
   def read_definition
     AdHocReportFiles.read(self.sparql_file).deep_symbolize_keys
+  rescue => e
+    Errors.application_error(self.class.name, __method__.to_s, "Error reading ad hoc report definition file.")
   end
 
   def read_results

@@ -39,9 +39,9 @@ class IsoRegistrationAuthority < Fuseki::Base
       "  ?s1 rdf:type #{IsoNamespace.rdf_type.to_ref} ." +
       "  ?s1 isoI:shortName \"#{name}\"^^xsd:string ." +
       "  {"+
-      "    BIND (?s1 as ?s) ." +
       "    BIND ('IsoNamespace' as ?e) ." +
-      "    ?s ?p ?o . " +
+      "    ?s1 ?p ?o . " +
+      "    BIND (?s1 as ?s) ." +
       "  } UNION {" +
       "    ?s :raNamespace ?s1 ." +
       "    BIND ('IsoRegistrationAuthority' as ?e) ." +

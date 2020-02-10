@@ -14,7 +14,7 @@ describe "Users", :type => :feature do
 
   def edit_user(email)
   	tr = page.find(:xpath, "//tr[td='#{email}']")
-    tr.find(:xpath, "td[3]/a").click
+    tr.find(:xpath, "td[5]/a").click
   end
 
   describe "Login and Logout", :type => :feature do
@@ -196,7 +196,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created. Email has already been taken.'
     end
 
-    it "allows a user's role to be modified (REQ-GENERIC-UM-025, REQ-GENERIC-UM-110)" do
+    it "allows a user's role to be modified (REQ-GENERIC-UM-025, REQ-GENERIC-UM-110)", js:true do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'

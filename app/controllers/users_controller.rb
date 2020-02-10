@@ -97,6 +97,11 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def stats_by_domain
+    authorize User, :show?
+    render json: {data: User.all.users_by_domain}
+  end
+
 private
 
   def set_user

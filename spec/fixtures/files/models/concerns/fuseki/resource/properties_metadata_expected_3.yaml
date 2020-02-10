@@ -11,7 +11,7 @@
   :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: organizationIdentifier
 :international_code_designator:
   :cardinality: :one
@@ -25,7 +25,7 @@
   :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: internationalCodeDesignator
 :owner:
   :cardinality: :one
@@ -39,7 +39,7 @@
   :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: owner
 :ra_namespace:
   :cardinality: :many
@@ -53,7 +53,7 @@
   :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Fake1
     fragment: raNamespace
 :by_authority:
   :cardinality: :one
@@ -67,5 +67,5 @@
   :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
-    path: ISO11179Registration
+    path: Test
     fragment: byAuthority

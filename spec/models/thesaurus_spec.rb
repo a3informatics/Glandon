@@ -89,56 +89,6 @@ describe Thesaurus do
       expect{Thesaurus.find(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#X"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRThesaurus/ACME/V1#X in Thesaurus.")
     end
 
-    # it "allows the thesaurus to be found from a concept" do
-    #   th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   check_file_actual_expected(th.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal, write_method: true)
-    # end
-
-    # it "finds by properties, single" do
-    #   th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   expected = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   results = th.find_by_property({identifier: "A00002"})
-    #   expect(results[0].to_json).to eq(expected.to_json)
-    # end
-
-    # it "finds by properties, multiple" do
-    #   th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   expected = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   results = th.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
-    #   expect(results[0].to_json).to eq(expected.to_json)
-    # end
-
-    # it "allows all records to be retrieved" do
-    #   results = Thesaurus.all
-    #   expect(results.count).to eq(5) # Another added for new test
-    # #Xwrite_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
-    #   expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
-    #   results.each do |result|
-    #     found = expected.find { |x| x.id == result.id }
-    #     expect(result.id).to eq(found.id)
-    #   end
-    # end
-
-    # it "allows the list to be retrieved" do
-    #   result = Thesaurus.list
-    #   expect(result.count).to eq(5) # Another added for new test
-    #   expect(result[4].identifier).to eq("CDISC EXT")
-    #   expect(result[4].id).to eq("TH-SPONSOR_CT-1")
-    #   expect(result[4].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   expect(result[3].identifier).to eq("CDISC Terminology")
-    #   expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
-    #   expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    #   expect(result[2].identifier).to eq("CDISC Terminology")
-    #   expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
-    #   expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
-    #   expect(result[1].identifier).to eq("CDISC Terminology")
-    #   expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
-    #   expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
-    #   expect(result[0].identifier).to eq("CDISC Terminology")
-    #   expect(result[0].id).to eq("TH-CDISC_CDISCTerminology")
-    #   expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
-    # end
-
     it "allows the unique item to be retrived" do
       result = Thesaurus.unique
       check_file_actual_expected(result, sub_dir, "unique_expected_1.yaml", equate_method: :hash_equal)
@@ -180,14 +130,6 @@ describe Thesaurus do
       th.to_sparql(sparql, true)
     #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
-    end
-
-    it "allows the impact to be assessed - WILL CURRENTLY FAIL" do
-    	th = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
-    	result = th.impact
-    #Xwrite_yaml_file(result, sub_dir, "thesaurus_impact.yaml")
-      expected = read_yaml_file(sub_dir, "thesaurus_impact.yaml")
-      expect(result).to eq(expected)
     end
 
   end
@@ -680,11 +622,11 @@ describe Thesaurus do
     it "find_identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.find_identifier("C17998").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
-      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_1.yaml", equate_method: :hash_equal)
       actual = ct.find_identifier("C25308").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
-      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_2.yaml", equate_method: :hash_equal)
       actual = ct.find_identifier("C25308X").map{|x| {uri: x[:uri].to_s, rdf_type: x[:rdf_type].to_s}}
-      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "find_identifier_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -719,7 +661,7 @@ describe Thesaurus do
 
   describe "Clone and New Version" do
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
@@ -747,6 +689,62 @@ describe Thesaurus do
       actual = thesaurus.create_next_version
       check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, file, equate_method: :hash_equal)
+    end
+
+    it "clone thesaurus, reference" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      ref = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      thesaurus.set_referenced_thesaurus(ref)
+      actual = thesaurus.clone
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "states" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_5_state.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "rejects state change" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      thesaurus.update_status(registration_status: "Standard")
+      expect(thesaurus.errors.count).to eq(1)
+      expect(thesaurus.errors.full_messages.to_sentence).to eq("Child items are not in the appropriate state.")
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc.update_status(registration_status: "Candidate")
+      thesaurus.update_status(registration_status: "Candidate")
+      expect(thesaurus.errors.count).to eq(0)
+    end
+
+    it "states" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = thesaurus.managed_children_states
+      check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "move to next state" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/STATE/V1#TH"))
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc.update_status(registration_status: "Candidate")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      tc.update_status(registration_status: "Recorded")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Recorded")
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc.update_status(registration_status: "Qualified")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Qualified")
+      expect(thesaurus.move_to_next_state?).to eq(false)
+      tc.update_status(registration_status: "Standard")
+      expect(thesaurus.move_to_next_state?).to eq(true)
+      thesaurus.update_status(registration_status: "Standard")
+      expect(thesaurus.move_to_next_state?).to eq(false)
     end
 
   end
@@ -955,9 +953,9 @@ describe Thesaurus do
       @tc_2.notation = "CPH"
       @tc_2.set_initial("A00002")
       @cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66787/V50#C66787"))
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @cl_1.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @cl_1.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
 
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
@@ -991,7 +989,7 @@ describe Thesaurus do
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor3_impact.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_3_impact.ttl")
     end 
 
   end

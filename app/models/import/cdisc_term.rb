@@ -84,10 +84,17 @@ private
 
   # Check date (not implemented) and sources. If API need to fins the hrefs
   def check_date_and_sources(params)
+    check_date(params)
     return if !self.api? 
     api_sources(params)
   end
 
+  # Check the date to see if we already have a version
+  def check_date(params)
+    return if !::CdiscTerm.creation_date_exists?(identifier: ::CdiscTerm.identifier, scope: IsoRegistrationAuthority.cdisc_scope, date: params[:date])
+    self.errors.add(:base, "There is already a version of #{::CdiscTerm.identifier} dated #{params[:date]} in the system.")
+  end
+    
   # Find the href sources for the API read.
   def api_sources(params)
     params[:files] = CDISCLibraryAPI.new.ct_packages_by_date(params[:date]).values

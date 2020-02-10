@@ -21,18 +21,19 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
     end
 
   	it "validates a valid object, general" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       expect(item.valid?).to eq(true)
     end
 
     it "validates a valid object, markdown" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       item.origin = vh_all_chars
       item.explanatory_comment  = vh_all_chars
@@ -41,7 +42,7 @@ describe "IsoManagedV2" do
     end
 
     it "does not validate an invalid object" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       item.origin = "£"
       result = item.valid?
@@ -50,7 +51,7 @@ describe "IsoManagedV2" do
     end
 
     it "does not validate an invalid object" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       item.explanatory_comment  = "£"
       result = item.valid?
@@ -59,7 +60,7 @@ describe "IsoManagedV2" do
     end
 
     it "does not validate an invalid object" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       item.change_description = "£"
       result = item.valid?
@@ -68,7 +69,7 @@ describe "IsoManagedV2" do
     end
 
     it "does not validate an invalid object" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       item.label = "£"
       result = item.valid?
@@ -97,16 +98,16 @@ describe "IsoManagedV2" do
   	end
 
     it "allows the version, semantic_version, version_label and indentifier to be found" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.version).to eq(1)
-      expect(item.semantic_version.to_s).to eq("1.2.3")
-      expect(item.version_label).to eq("0.1")
-      expect(item.scoped_identifier).to eq("TEST")
+      expect(item.semantic_version.to_s).to eq("1.0.0")
+      expect(item.version_label).to eq("2007-03-06 Release")
+      expect(item.scoped_identifier).to eq("CT")
     end
 
     it "allows the latest, later, earlier and same version to be assessed" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.latest?).to eq(false)
       expect(item.later_version?(0)).to eq(true)
@@ -115,27 +116,27 @@ describe "IsoManagedV2" do
       expect(item.earlier_version?(2)).to eq(true)
       expect(item.same_version?(1)).to eq(true)
       expect(item.same_version?(2)).to eq(false)
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.latest?).to eq(true)
     end
 
     it "allows owner and owned? to be determined" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.owner.organization_identifier).to eq("123456789")
       expect(item.owned?).to eq(true)
     end
 
     it "allows registration status and registered to be determined" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
-      expect(item.registration_status).to eq("Standard")
+      expect(item.registration_status).to eq("Incomplete")
       expect(item.registered?).to eq(true)
     end
 
     it "allows edit, state on edit and delete status to be determined" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.edit?).to eq(true)
       expect(item.state_on_edit).to eq("Incomplete")
@@ -143,27 +144,27 @@ describe "IsoManagedV2" do
     end
 
     it "allows current and can be current status to be determined" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_full(uri)
       expect(item.current?).to eq(false)
       expect(item.can_be_current?).to eq(false)
     end
 
     it "allows new_version, next_version, next_semantic_version, and first_version to be determined" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.new_version?).to eq(false)
-      expect(item.next_version).to eq(4)
-      expect(item.next_semantic_version.to_s).to eq("1.5.0")
+      expect(item.next_version).to eq(2)
+      expect(item.next_semantic_version.to_s).to eq("0.2.0")
       expect(item.first_version).to eq(1)
     end
 
-    it "allows next version for an indentifier to be determned" do
-    	next_version = IsoManagedV2.next_version("TEST", IsoRegistrationAuthority.owner.ra_namespace)
-    	expect(next_version).to eq(4)
-    	next_version = IsoManagedV2.next_version("TEST", IsoRegistrationAuthority.find_by_short_name("AAA"))
+    it "allows next version for an identifier to be determned" do
+    	next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.owner.ra_namespace)
+    	expect(next_version).to eq(2)
+    	next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.find_by_short_name("ACME"))
     	expect(next_version).to eq(1)
-    	next_version = IsoManagedV2.next_version("TESTxxxxx", IsoRegistrationAuthority.owner)
+    	next_version = IsoManagedV2.next_version("AIRPORTSxxxxx", IsoRegistrationAuthority.owner)
     	expect(next_version).to eq(1)
     end
 
@@ -172,31 +173,27 @@ describe "IsoManagedV2" do
     end
 
     it "allows the item to be updated" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_full(uri)
-      result = item.to_h
-      result[:explanatory_comment] = "New comment"
-      result[:change_description] = "Description"
-      result[:origin] = "Origin"
       item.update({:explanatory_comment => "New comment", :change_description => "Description", :origin => "Origin"})
       item = IsoManagedV2.find_with_properties(uri)
+      result = item.to_h
       result[:last_change_date] = item.last_change_date.iso8601
-      expect(item.to_h).to eq(result)
+      check_file_actual_expected(result, sub_dir, "find_with_properties_expected_1.yaml")
     end
 
     it "finds latest" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      result = IsoManagedV2.latest({:identifier => "TEST", :scope => IsoRegistrationAuthority.owner.ra_namespace})
-      expect(result.version).to eq(3)
-      result = IsoManagedV2.latest({:identifier => "TESTx", :scope => IsoRegistrationAuthority.owner.ra_namespace}) # Invalid identifier
+      result = Thesaurus.latest({:identifier => "AIRPORTS", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+      expect(result.version).to eq(1)
+      result = Thesaurus.latest({:identifier => "AIRPORTSx", :scope => IsoRegistrationAuthority.owner.ra_namespace}) # Invalid identifier
       expect(result).to be_nil
     end
 
     it "check is latest" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.latest?).to eq(true)
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.latest?).to eq(false)
     end
@@ -265,20 +262,20 @@ describe "IsoManagedV2" do
     end
 
     it "allows an item to be created from JSON" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       new_item = IsoManagedV2.from_h(item.to_h)
-      expect(item.to_h).to eq(new_item.to_h)
+      check_file_actual_expected(new_item.to_h, sub_dir, "from_h_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "permits the item to be exported as JSON" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal)
     end
 
     it "gets all" do
-      all = IsoManagedV2.all # Empty search will find all items
+      all = Thesaurus.all # Empty search will find all items
       expect(all.count).to eq(3)
     end
 
@@ -287,8 +284,8 @@ describe "IsoManagedV2" do
       item.set_initial("AAA")
       expect(item.version).to eq(1)
       expect(item.scoped_identifier).to eq("AAA")
-      expect(item.owner_short_name).to eq("BBB")
-      expect(item.uri.to_s).to eq("http://www.bbb.com/AAA/V1")
+      expect(item.owner_short_name).to eq("ACME")
+      expect(item.uri.to_s).to eq("http://www.acme-pharma.com/AAA/V1")
     end
 
     it "sets up the import version" do
@@ -296,7 +293,7 @@ describe "IsoManagedV2" do
       class IMV2Klass < IsoManagedV2
 
         def self.owner
-          IsoRegistrationAuthority.find_by_short_name("BBB")
+          IsoRegistrationAuthority.find_by_short_name("ACME")
         end
 
       end
@@ -307,10 +304,10 @@ describe "IsoManagedV2" do
       expected_date = "1989-07-07".to_time_with_default
       expect(item.version).to eq(5)
       expect(item.scoped_identifier).to eq("XXX")
-      expect(item.owner_short_name).to eq("BBB")
+      expect(item.owner_short_name).to eq("ACME")
       expect(item.creation_date.iso8601).to eq("#{expected_date.iso8601}")
       expect(item.last_change_date.iso8601).to eq("#{expected_date.iso8601}")
-      expect(item.uri.to_s).to eq("http://www.bbb.com/XXX/V5")
+      expect(item.uri.to_s).to eq("http://www.acme-pharma.com/XXX/V5")
       expect(item.registration_status).to eq("Standard")
     end
 
@@ -436,6 +433,14 @@ describe "IsoManagedV2" do
       actual = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       actual.each {|x| results << x.to_h}
       check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "creation_date" do
+      results = []
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "30/09/2008")).to be(true)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2008-09-29")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "31/09/2008")).to be(false)
+      expect(CdiscTerm.creation_date_exists?(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, date: "2015-12-18")).to be(true)
     end
 
     it "history, pagination" do
@@ -769,8 +774,8 @@ describe "IsoManagedV2" do
     it "next ordinal" do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
       expect(ct.next_ordinal(:is_top_concept_reference)).to eq(35)
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      expect(ct.next_ordinal(:is_top_concept_reference)).to eq(1)
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      expect(ct.next_ordinal(:is_top_concept_reference)).to eq(33)
     end
 
     it "allows the current set to be found" do
@@ -865,7 +870,7 @@ describe "IsoManagedV2" do
     it "delete" do
       results = Thesaurus.all
       expect(results.count).to eq(4)
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       expect(ct.delete).to eq(1)
       results = Thesaurus.all
       expect(results.count).to eq(3)
@@ -874,7 +879,7 @@ describe "IsoManagedV2" do
     it "delete minimum" do
       results = Thesaurus.all
       expect(results.count).to eq(4)
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       expect(ct.delete_minimum).to eq(1)
       results = Thesaurus.all
       expect(results.count).to eq(3)
@@ -894,7 +899,23 @@ describe "IsoManagedV2" do
       load_files(schema_files, data_files)
     end
 
+    def update_children
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
+      params = {}
+      item = IsoManagedV2.find_minimum(uri)
+      params[:registration_status] = "Qualified"
+      params[:previous_state] = "Recorded"
+      item.update_status(params)
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002")
+      params = {}
+      item = IsoManagedV2.find_minimum(uri)
+      params[:registration_status] = "Qualified"
+      params[:previous_state] = "Recorded"
+      item.update_status(params)
+    end  
+
     it "allows the item status to be updated, not standard" do
+      update_children
       uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       params = {}
@@ -911,6 +932,7 @@ describe "IsoManagedV2" do
     end
 
     it "allows the item status to be updated, error" do
+      update_children
       uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       params = {}
@@ -966,38 +988,6 @@ describe "IsoManagedV2" do
       set_semantic_version(object, semantic_version)
       set_state(object, state)
     end
-
-    # it "find the previous release at standard" do
-    #   uris = []
-    #   (1..10).each do |index|
-    #     item = CdiscTerm.new
-    #     item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
-    #     item.label = "Item #{index}"
-    #     item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
-    #     sparql = Sparql::Update.new
-    #     item.to_sparql(sparql, true)
-    #     sparql.upload
-    #     uris[index-1] = item.uri
-    #   end
-    #   last_item = Thesaurus.find_minimum(uris[9])
-    #   uris.each_with_index do |x, index|
-    #     item = Thesaurus.find_minimum(x)
-    #     set_state(item, "Qualified" )
-    #     set_semantic_version(item, "#{index + 1}.0.0" )
-    #   end
-    #   result = last_item.previous_release
-    #   expect(result).to eq("1.0.0")
-
-    #   item = Thesaurus.find_minimum(uris[0])
-    #   set_semantic_version_and_state(item, "0.1.0", "Incomplete")
-    #   result = item.previous_release
-    #   expect(result).to eq("0.1.0")
-
-    #   item = Thesaurus.find_minimum(uris[4])
-    #   set_semantic_version_and_state(item, "5.1.0", "Standard")
-    #   result = item.previous_release
-    #   expect(result).to eq("5.1.0")
-    # end
 
     it "find the previous release at standard" do
       uris = []

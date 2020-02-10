@@ -128,8 +128,8 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 1")
       tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 2")
       tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Preferred Term 1")
-      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      th.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      th.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
       th.set_initial("NEW_TH")
       sparql.default_namespace(th.uri.namespace)
       th.to_sparql(sparql, true)
@@ -591,13 +591,13 @@ describe "Thesaurus::UnmanagedConcept" do
     it "cross reference links I" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154_C61019"))
       results = tc.linked_change_instructions
-      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "cross reference links II" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C88025/V44#C88025_C27477"))
       results = tc.linked_change_instructions
-      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

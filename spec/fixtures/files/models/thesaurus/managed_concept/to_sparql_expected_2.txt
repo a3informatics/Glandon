@@ -17,7 +17,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:origin ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:changeDescription ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
-<http://www.acme-pharma.com/A00001/V1#A00001> isoT:lastChangeDate "2019-12-12T15:36:52+01:00"^^xsd:dateTime . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:lastChangeDate "2020-02-09T07:34:41+01:00"^^xsd:dateTime . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:identifier "A00001"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:notation "LHR"^^xsd:string . 
@@ -25,9 +25,9 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001> th:extensible "false"^^xsd:boolean . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> . 
-<http://www.acme-pharma.com/A00001/V1#A00001> th:preferredTerm <http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a> . 
-<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87> . 
-<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:preferredTerm <http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3> . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> rdf:type isoR:RegistrationState . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:registrationStatus "Incomplete"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:administrativeNote ""^^xsd:string . 
@@ -50,16 +50,16 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:notation "T5"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:definition "The 5th LHR Terminal"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:extensible "false"^^xsd:boolean . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166> . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> rdf:type th:UnmanagedConcept . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> isoC:label "Terminal 1"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:identifier "A000012"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:notation "T1"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:definition "The oldest LHR Terminal"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:extensible "false"^^xsd:boolean . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:preferredTerm <http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000012> th:preferredTerm <http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004> . 
 }

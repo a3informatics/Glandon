@@ -16,6 +16,7 @@ describe AdHocReportsController do
 
     before :all do
       clear_triple_store
+      delete_all_public_upload_files
       delete_all_public_test_files
       delete_all_public_report_files
       AdHocReport.delete_all
@@ -24,6 +25,12 @@ describe AdHocReportsController do
       @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
 
+    after :all do
+      delete_all_public_upload_files
+      delete_all_public_test_files
+      delete_all_public_report_files
+    end
+    
     it "lists all the reports" do
       get :index
       expect(assigns(:items).count).to eq(3)
@@ -136,6 +143,12 @@ describe AdHocReportsController do
       @ahr3 = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
 
+    after :all do
+      delete_all_public_upload_files
+      delete_all_public_test_files
+      delete_all_public_report_files
+    end
+    
     it "lists all the reports" do
       get :index
       expect(assigns(:items).count).to eq(3)
@@ -227,6 +240,12 @@ describe AdHocReportsController do
       ahr = AdHocReport.create(label: "Report No. 3", sparql_file: "report_3_sparql.txt", results_file: "report_3_results.yaml", last_run: Time.now, active: false, background_id: 0)
     end
 
+    after :all do
+      delete_all_public_upload_files
+      delete_all_public_test_files
+      delete_all_public_report_files
+    end
+    
     it "prevents a reader listing all the reports" do
       get :index
       expect(response).to redirect_to("/")

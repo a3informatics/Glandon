@@ -1,0 +1,26 @@
+@prefix : <http://www.assero.co.uk/NS#> .
+@prefix tst: <http://www.assero.co.uk/Test#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:AAA
+  rdf:type tst:Namespace ;
+  tst:name "AAA Long"^^xsd:string ;
+  tst:shortName "AAA"^^xsd:string ; 
+  tst:authority "www.aaa.com"^^xsd:string ;
+.
+:BBB
+  rdf:type tst:Namespace ;
+  tst:name "BBB Pharma"^^xsd:string ; 
+  tst:shortName "BBB"^^xsd:string ; 
+  tst:authority "www.bbb.com"^^xsd:string ;
+.
+:CCC
+  rdf:type tst:Namespace ;
+  tst:name "CCC Pharma"^^xsd:string ; 
+  tst:shortName "CCC"^^xsd:string ; 
+  tst:authority "www.ccc.com"^^xsd:string ;
+.
