@@ -351,6 +351,20 @@ class IsoManagedV2 < IsoConceptV2
     object
   end
 
+  # Reset Cloned. Takes a cloned item and resets the identifer and version info.
+  #
+  # @params [Hash] params a set of initial vaues for any attributes
+  # @option params [String] :identifier the identifier
+  # @option params [String] :label the label
+  # @return [Object] the created object. May contain errors if unsuccesful.
+  def reset_cloned(params)
+    self.label = params[:label]
+    self.set_initial(params[:identifier])
+    self.creation_date = self.last_change_date # Will have been set by set_initial, ensures the same one used.
+    self.create_or_update(:create, true) if self.valid?(:create) && self.create_permitted?
+    self
+  end
+  
   # Creation Date Exists? Does the creation date already exist in the history?
   #
   # @params [Hash] params
