@@ -39,7 +39,7 @@ class Thesaurus
         this[:last_id] = other[:id]
         this.delete(:key)
         this.delete(:uri)
-        results[:updated] << this #.delete(:key)
+        results[:updated] << this.to_h
       end
       results
     end
@@ -47,8 +47,13 @@ class Thesaurus
   private
 
     def finalize(data)
-      data.each{|x| x.delete(:key)}
-      data.each{|x| x.delete(:uri)}
+      results = []
+      data.each do |x| 
+        x.delete(:key)
+        x.delete(:uri)
+        results << x.to_h
+      end
+      results
     end
 
   end
