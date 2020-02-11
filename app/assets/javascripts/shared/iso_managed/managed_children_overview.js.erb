@@ -24,6 +24,10 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
 
 	this.table.select.style('api'); // Disable row selection
 	this.mcs.loadData(0, this.setListeners.bind(this) );
+
+	$(window).on("resize", function(){
+		_this.mcs.table.columns.adjust();
+	});
 }
 
 /**
