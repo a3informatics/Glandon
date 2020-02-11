@@ -717,6 +717,13 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     results
   end
 
+  # Audit Type. Text for the type to be used in an audit message
+  #
+  # @return [String] the type for the audit message
+  def audit_type
+    "Code list"
+  end
+
 private
 
   # Class for a difference result

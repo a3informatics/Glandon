@@ -373,6 +373,17 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "deselects_all_children_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "changes selected child version, lock" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C67152/V2#C67152")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C67152/V1#C67152")
+      @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      token = Token.obtain(ct, @lock_user)
+      put :change_child_version, {id: ct.id, thesauri: {id_set: [uri_2.to_id, uri_1.to_id]}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "change_selected_child_version_1.yaml", equate_method: :hash_equal)
+    end
+
     it "children, subsets" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/SUBSETPK#TH123"))
       request.env['HTTP_ACCEPT'] = "application/json"
@@ -393,7 +404,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)
       expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)
-      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology updated.")
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology owner: ACME, identifier: TEST, was updated.")
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

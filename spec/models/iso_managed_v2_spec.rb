@@ -26,6 +26,16 @@ describe "IsoManagedV2" do
       load_cdisc_term_versions(1..2)
     end
 
+    it "generates the audit message" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      item = IsoManagedV2.find_with_properties(uri)
+      expect(item.audit_message(:updated)).to eq("Unknown audit type owner: CDISC, identifier: CT, was updated.")
+      item = Thesaurus.find_with_properties(uri)
+      expect(item.audit_message(:updated)).to eq("Terminology owner: CDISC, identifier: CT, was updated.")
+      expect(item.audit_message(:created)).to eq("Terminology owner: CDISC, identifier: CT, was created.")
+      expect(item.audit_message(:created, "extra")).to eq("Terminology owner: CDISC, identifier: CT, (extra) was created.")
+    end
+
   	it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)

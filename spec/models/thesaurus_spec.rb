@@ -27,6 +27,11 @@ describe Thesaurus do
       delete_all_public_test_files
     end
 
+    it "returns audit type" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(th.audit_type).to eq("Terminology")
+    end
+    
     it "returns the owner" do
       expected = IsoRegistrationAuthority.owner
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
@@ -448,6 +453,16 @@ describe Thesaurus do
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(32)
       check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_2.yaml")
+    end
+
+    it "get children with indicators extend and subset, V1 all items II" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C66787/V2#C66787"), "1")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C67154/V2#C67154")
+      item = ct.add_extension(uri2.to_id)
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(35)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml")
     end
 
     it "get children with indicators, speed" do

@@ -29,7 +29,7 @@ describe "Thesauri Search", :type => :feature do
     ua_destroy
   end
 
-  describe "Search Terminologies", :type => :feature do
+  describe "Search Terminologies (REQ-MDR-TR-040)", :type => :feature do
 
     it "Terminology Selector", js: true do
       click_navbar_terminology
@@ -81,7 +81,7 @@ describe "Thesauri Search", :type => :feature do
       expect(page).to have_content("Search Terminology")
     end
 
-    it "Search multiple Terminologies", js:true do
+    it "Search multiple Terminologies (REQ-MDR-TR-040)", js:true do
       click_navbar_terminology
       click_link 'Search Terminologies'
       sleep 0.6
@@ -130,7 +130,7 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 4, 4)
     end
 
-    it "Search current Terminologies", js:true do
+    it "Search current Terminologies (REQ-MDR-ST-030)", js:true do
       click_navbar_terminology
       wait_for_ajax(10)
       find(:xpath, "//*[@id='main']/tbody/tr[contains(.,'Airports')]").click
