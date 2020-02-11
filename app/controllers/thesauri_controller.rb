@@ -391,6 +391,13 @@ class ThesauriController < ApplicationController
     render json: {data: results}
   end
 
+  def compare_csv
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_to = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    send_data Thesaurus.compare_to_csv(ct, ct_to), filename: "Compare_#{ct.scoped_identifier}v#{ct.semantic_version}_and_#{ct_to.scoped_identifier}v#{ct_to.semantic_version}", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
   def extension
     authorize Thesaurus, :edit?
     results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
