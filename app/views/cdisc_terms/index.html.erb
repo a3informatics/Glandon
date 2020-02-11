@@ -1,8 +1,9 @@
 <%= javascript_tag 'setPageTitle("CDISC Terminology Changes")' %>
-<%= javascript_tag "var changes_path = '#{compare_data_thesauri_path(id: "compareThIdFirst", thesauri: {thesaurus_id: "compareThIdSecond"})}';" %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
 <%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+
+<%= javascript_tag "var changes_path = '#{compare_data_thesauri_path(id: "compareThIdFirst", thesauri: {thesaurus_id: "compareThIdSecond"})}';" %>
 
 <style>
   .rowpad {

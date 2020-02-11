@@ -1,13 +1,16 @@
 <%= javascript_tag 'setPageTitle("Terminology Compare")' %>
-<%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
-<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alph_slider', 'thesauri/compare'%>
 <%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+
+<%= javascript_tag "var compare_path = '#{compare_data_thesauri_path(id: @thesaurus, thesauri: {thesaurus_id: @other_thesaurus})}';" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-compare",
-    main_text: "Compare Terminology",
-    sub_text: "Terminologies: #{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version} and #{@other_thesaurus.scoped_identifier} v#{@other_thesaurus.semantic_version}." } do %>
+    main_text: "Compare Terminologies",
+    sub_text: "Changes from
+    <span class='font-regular text-link'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span> to
+    <span class='font-regular text-link'>#{@other_thesaurus.scoped_identifier} v#{@other_thesaurus.semantic_version}</span>.".html_safe } do %>
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
              icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
@@ -19,7 +22,7 @@
 
 <div class="row">
   <div class="col-md-12 card">
-    <div class="card-header">Comparing two Terminology versions</div>
+    <div class="card-header">Changes Between Terminologies</div>
       <div class="card-content">
         <%= render partial: "shared/thesauri/terminologies_compare_panel" %>
       </div>

@@ -370,9 +370,6 @@ class ThesauriController < ApplicationController
     end
     @thesaurus = Thesaurus.find_minimum(params[:id])
     @other_thesaurus = Thesaurus.find_minimum(the_params[:thesaurus_id])
-    @versions = CdiscTerm.version_dates
-    @versions_normalized = normalize_versions(@versions)
-    @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
   end
 
   def compare_data
