@@ -252,6 +252,10 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 
 		_this.versionPicker.show(item, callback);
 	});
+
+	$(window).on("resize", function(){
+		_this.mcs.table.columns.adjust();
+	});
 }
 
 /**
