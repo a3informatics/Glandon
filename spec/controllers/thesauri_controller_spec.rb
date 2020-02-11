@@ -779,6 +779,16 @@ describe ThesauriController do
       expect(response).to render_template("compare")
     end
 
+    it "compare, error" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
+      uri1 = Uri.new(uri: "http://www.example.com/a#1")
+      x = Thesaurus.new
+      x.uri = uri1
+      get :compare, {thesauri: {thesaurus_id: uri1.to_id}, id: uri1.to_id}
+      expect(response).to redirect_to('http://test.host/thesauri')
+      expect(flash[:error]).to be_present
+    end
+
     it "compare data" do
       uri1 = Uri.new(uri: "http://www.example.com/a#1")
       uri2 = Uri.new(uri: "http://www.example.com/a#2")
@@ -791,15 +801,15 @@ describe ThesauriController do
       expect_any_instance_of(Thesaurus).to receive(:differences).with(y).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
                                                                                                 {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
-                                                                                                ], 
+                                                                                                ],
                                                                                       deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
-                                                                                                ], 
+                                                                                                ],
                                                                                       updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
                                                                                                 ],
                                                                                       versions: ["XXX","YYY"]
                                                                                     })
-      request.env['HTTP_ACCEPT'] = "application/json" 
+      request.env['HTTP_ACCEPT'] = "application/json"
       get :compare_data, {thesauri: {thesaurus_id: uri2.to_id}, id: uri1.to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
