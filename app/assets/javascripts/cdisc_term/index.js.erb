@@ -10,19 +10,14 @@ $(document).ready( function() {
 
   $(".timeline-container").data(tl_slider);
 
-  var filters = Array();
-
   $(".filter-wrap").each(function(i, e) {
-    // Init each filter handler
-    filters[i] = new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap"));
+    filters.push(new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap")));
   });
 
   $(".filter-btn").each(function (i, e){
     $(this).click(function (){
       if($(this).parent().next().find(".item").length != 0){ // Filter possible to enable only when the query results are nonempty
-
-        // Reset no-results message
-        $(this).parent().parent().find(".no-results-msg").hide();
+        $(this).parent().parent().find(".no-results-msg").hide(); // Reset no-results message
 
         // Filter div update
         $(this).next().toggleClass("collapsed");

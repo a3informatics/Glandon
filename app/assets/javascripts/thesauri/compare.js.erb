@@ -1,4 +1,28 @@
 $(document).ready(function(){
   var ip = new IndexPanel();
   ip.loadData(compare_path);
+
+  var filters = [];
+
+  $(".filter-wrap").each(function(i, e) {
+    filters.push(new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap")));
+  });
+
+  $(".filter-btn").each(function (i, e){
+    $(this).click(function (){
+      if($(this).parent().next().find(".item").length != 0){ // Filter possible to enable only when the query results are nonempty
+        $(this).parent().parent().find(".no-results-msg").hide(); // Reset no-results message
+
+        // Filter div update
+        $(this).next().toggleClass("collapsed");
+        $(this).toggleClass("highlight");
+
+        // Results update
+        if($(this).hasClass("highlight"))
+          filters[i].filter();
+        else
+          filters[i].resetFilter();
+      }
+    })
+  });
 });
