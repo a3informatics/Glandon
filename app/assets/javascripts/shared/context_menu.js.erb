@@ -8,7 +8,7 @@ function generateContextMenu(id, items, color, side){
   side = side != null ? side : "";
   color = color != null ? color : "";
   html += '<span id="' + id + '" class="icon-context-menu text-normal" tabindex="1">';
-  html +=   '<div class="context-menu ' + color + ' ' + side + ' shadow-small collapsed">';
+  html +=   '<div class="context-menu ' + color + ' ' + side + ' shadow-small collapsed scroll-styled">';
   $.each(items, function(i, e){
     html += generateContextItem(e.link_path, e.disabled, e.icon, e.text, e.dt_toggle);
   });
