@@ -63,16 +63,11 @@ class CdiscTermsController < ApplicationController
   end
 
   def changes
-#    results = {}
-#    versions = CdiscTerm.version_dates
     ct_from = Thesaurus.find_minimum(params[:id])
-#    from_index = versions.find_index {|x| x[:id] == ct_from.id}
     ct_to = Thesaurus.find_minimum(change_params[:other_id])
-#    to_index = versions.find_index {|x| x[:id] == ct_to.id}
-#    window_size = to_index - from_index + 1
-    results = ct_from.changes_cdu(window_size)
+    results = ct_from.differences(ct_to)
     results.each do |k,v|
-#      next if k == :versions
+      next if k == :versions
       if k == :updated
        v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path({id: x[:id], last_id: x[:last_id], ver_span: results[:versions]})}
       else
