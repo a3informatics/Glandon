@@ -535,7 +535,8 @@ module UiHelpers
       list_change_notes: "List Change notes",
       edit_properties: "Edit properties",
       impact_analysis: "Impact Analysis",
-			make_current: "Make current"
+			make_current: "Make current",
+			clone: "Clone"
     }
 	end
 
