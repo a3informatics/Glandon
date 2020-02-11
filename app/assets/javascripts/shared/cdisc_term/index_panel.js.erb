@@ -17,9 +17,8 @@ IndexPanel.prototype.get = function (url) {
 
   _this.processing(true);
   $.ajax({
-    url: pathInsertId(_this.url, $(".point-highlight").eq(0).find(".ttip-text").attr("data-index")),
+    url: _this.makeUrl(),
     type: 'GET',
-    data: {cdisc_term: {other_id: $(".point-highlight").eq(1).find(".ttip-text").attr("data-index")}},
     dataType: 'json',
     success: function(result) {
       _this.processing(false);
@@ -35,6 +34,12 @@ IndexPanel.prototype.get = function (url) {
       handleAjaxError(xhr, status, error);
     }
   });
+}
+
+IndexPanel.prototype.makeUrl = function () {
+  return this.url
+    .replace("compareThIdFirst", $(".point-highlight").eq(0).find(".ttip-text").attr("data-index"))
+    .replace("compareThIdSecond", $(".point-highlight").eq(1).find(".ttip-text").attr("data-index"));
 }
 
 IndexPanel.prototype.processing = function (state) {
