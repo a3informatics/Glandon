@@ -1,0 +1,27 @@
+<%= javascript_tag 'setPageTitle("Terminology Compare")' %>
+<%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
+<%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
+<%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-compare",
+    main_text: "Compare Terminology",
+    sub_text: "Terminologies: #{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version} and #{@other_thesaurus.scoped_identifier} v#{@other_thesaurus.semantic_version}." } do %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
+             icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 card">
+    <div class="card-header">Comparing two Terminology versions</div>
+      <div class="card-content">
+        <%= render partial: "shared/thesauri/terminologies_compare_panel" %>
+      </div>
+    </div>
+  </div>

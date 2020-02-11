@@ -10,7 +10,7 @@
  *
  * @return [void]
  */
-function HistoryPanel(url, strict_params, identifier, scope_id, count) {
+function HistoryPanel(url, strict_params, identifier, scope_id, count, itemSelector) {
   var _this = this;
 
   var counter = 0;
@@ -22,6 +22,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
   this.identifier = identifier;
   this.scope_id = scope_id;
   this.count = count;
+  this.itemSelector = itemSelector;
 	this.historyTable = $('#history').DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": [
@@ -153,9 +154,11 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
   if(row.list_cn_path != null && row.list_cn_path != "")
     menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List Change notes"});
   if(row.current_path != null && row.current_path != "")
-    menu_items.splice(menu_items.length -2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
+    menu_items.splice(menu_items.length - 2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
   if(row.clone_path != null && row.clone_path != "")
-    menu_items.splice(menu_items.length -2, 0, { link_path: "#newTerminologyModal", disabled: "false", icon: "icon-copy", text: "Clone", dt_toggle: "modal"});
+    menu_items.splice(menu_items.length - 2, 0, { link_path: "#newTerminologyModal", disabled: "false", icon: "icon-copy", text: "Clone", dt_toggle: "modal"});
+  if(row.compare_path != null && row.compare_path != "")
+    menu_items.splice(menu_items.length - 2, 0, { link_path: "#im-version-picker-modal", disabled: "false", icon: "icon-compare", text: "Compare", dt_toggle: "modal"});
   return generateContextMenu(id, menu_items);
 }
 
@@ -186,6 +189,14 @@ HistoryPanel.prototype.setListeners = function () {
   $(".context-menu a:contains('Clone')").off("click").on("click", function() {
     var item = _this.historyTable.row($(this).parents("tr:first")).data();
     $("#newTerminologyModal form#new_thesaurus").attr("action", item.clone_path);
+  });
+
+  $(".context-menu a:contains('Compare')").off("click").on("click", function() {
+    var item = _this.historyTable.row($(this).parents("tr:first")).data();
+    _this.itemSelector.callback = function(selected){
+      location.href = item.compare_path + '?' + $.param({thesauri: {thesaurus_id: selected[0]}});
+    };
+    $(_this.itemSelector.modalId).modal("show");
   });
 }
 
