@@ -211,6 +211,13 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal)
     end
 
+    it "report Compare" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
+      th_to = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      actual = Thesaurus.compare_to_csv(th, th_to)
+      check_file_actual_expected(actual, sub_dir, "compare_to_csv_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "report Impact" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))

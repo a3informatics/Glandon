@@ -792,6 +792,28 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     CSVHelpers.format(headers, results) 
   end
 
+  # Compare_to_csv. Get the differences between two versions in csv format
+  #
+  # @params [] first version
+  # @params [] second_version
+  # @return 
+  def self.compare_to_csv(first_version, second_version)
+    results = first_version.differences(second_version)
+    headers = ["Status","Code", "Codelist Name","CDISC Submission Value"]
+    new_results = []
+      results.each do |key, value|
+        next if key == :versions
+         value.each do |x|
+          x.delete(:last_id)
+          x.delete(:id)
+          item = x.map{|k,v| v.to_s}.to_a
+          new_results <<  item.insert(0,key.to_s)
+         end 
+        results.delete(:versions)
+      end
+       CSVHelpers.format(headers, new_results)
+  end
+
   # Audit Type. Text for the type to be used in an audit message
   #
   # @return [String] the type for the audit message

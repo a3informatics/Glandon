@@ -814,12 +814,10 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "compare_data_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "compare_data_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "compare_csv" do
-      # expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
-      # expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       uri1 = Uri.new(uri: "http://www.example.com/a#1")
       uri2 = Uri.new(uri: "http://www.example.com/a#2")
       x = Thesaurus.new
@@ -828,14 +826,14 @@ describe ThesauriController do
       y.uri = uri2
       expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
       expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:scoped_identifier).and_return("C12345")
-      expect_any_instance_of(Thesaurus).to receive(:scoped_identifier).and_return("C54321")
-      expect_any_instance_of(Thesaurus).to receive(:semantic_version).and_return("2.0.0")
-      expect_any_instance_of(Thesaurus).to receive(:semantic_version).and_return("4.0.0")
-      expect(Thesaurus).to receive(:compare_to_csv).and_return(["XXX", "YYY"])
-      expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Compare_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(x).to receive(:scoped_identifier).and_return("C12345")
+      expect(y).to receive(:scoped_identifier).and_return("C54321")
+      expect(x).to receive(:semantic_version).and_return("2.0.0")
+      expect(y).to receive(:semantic_version).and_return("4.0.0")
+      expect(Thesaurus).to receive(:compare_to_csv).and_return("abcd")
+      expect(@controller).to receive(:send_data).with("abcd", {filename: "Compare_C12345v2.0.0_and_C54321v4.0.0", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
       expect(@controller).to receive(:render)
-      get :compare_csv, id: "aaa", thesauri: {thesaurus_id: "ct_2.id"}
+      get :compare_csv, id: x.uri.to_id, thesauri: {thesaurus_id: y.uri.to_id}
     end
 
     it "edits release"
