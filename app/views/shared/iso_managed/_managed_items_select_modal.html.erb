@@ -2,6 +2,7 @@
 <%= javascript_include_tag 'shared/tags', 'shared/iso_managed/managed_items_select_modal' %>
 <%= javascript_tag "var miIndexTableUrl = '#{index_url}';" %>
 <%= javascript_tag "var miHistoryTableUrl = '#{history_url}';" %>
+<%= javascript_tag "var selectMultiple = '#{(local_assigns.fetch :select_multiple, true)}'" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="im-select-modal">
   <div class="modal-dialog modal-lg" role="document">
@@ -22,13 +23,11 @@
 
           <div class="text-centered" id="im-select-modal-description"><%= local_assigns.fetch :description, "To proceed, select one or more items." %></div>
 
-          <% if (local_assigns.fetch :select_multiple, true) %>
-            <hr>
-            <div class="font-light flex-total-center selection-info">
-              Selected: <span class="bg-label" id="number-selected">0</span>
-              <button id="clear-selection" class="btn btn-xs grey">Clear</button>
-            </div>
-          <% end %>
+          <hr>
+          <div class="font-light flex-total-center selection-info">
+            Selected: <span class="bg-label" id="number-selected">0</span>
+            <button id="clear-selection" class="btn btn-xs grey">Clear</button>
+          </div>
 
           <div class="row">
 
@@ -37,15 +36,17 @@
                 <div class="text-xnormal text-link ci-card-title">
                   Browse
                 </div>
-                <div class="flex-total-center">
-                  <div class="checkbox-opt" style="margin-right: 10px;">
-                    <label><input type="checkbox" id="select-all-current"><span>Select all current</span></label>
+                <% if (local_assigns.fetch :select_multiple, true) %>
+                  <div class="flex-total-center">
+                    <div class="checkbox-opt" style="margin-right: 10px;">
+                      <label><input type="checkbox" id="select-all-current"><span>Select all current</span></label>
+                    </div>
+                    <div class="checkbox-opt">
+                      <label><input type="checkbox" id="select-all-latest"><span>Select all latest</span></label>
+                    </div>
                   </div>
-                  <div class="checkbox-opt">
-                    <label><input type="checkbox" id="select-all-latest"><span>Select all latest</span></label>
-                  </div>
-                </div>
-                <br/>
+                  <br/>
+                <% end %>
 
                 <table id="index" class="table table-invisible table-row-clickable">
                   <thead>
