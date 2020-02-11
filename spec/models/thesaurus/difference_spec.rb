@@ -136,6 +136,14 @@ describe "Thesaurus::Difference" do
       file_compare(11)
     end
 
+    it "difference XII" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V28#TH"))
+      other = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V40#TH"))
+      result = th.differences(other)
+      check_file_actual_expected(result, sub_dir, "differences_expected_12.yaml", equate_method: :hash_equal)
+      file_compare(12)
+    end
+
   end
 
 end
