@@ -266,6 +266,7 @@ Rails.application.routes.draw do
       put :change_child_version
       get :compare
       get :compare_data
+      get :compare_csv
     end
   end
 
