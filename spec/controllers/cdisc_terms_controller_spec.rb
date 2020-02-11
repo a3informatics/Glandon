@@ -106,33 +106,33 @@ describe CdiscTermsController do
     
     login_community_reader
 
-    it "changes I" do
-      uri1 = Uri.new(uri: "http://www.example.com/a#1")
-      uri2 = Uri.new(uri: "http://www.example.com/a#2")
-      x = Thesaurus.new
-      y = Thesaurus.new
-      x.uri = uri1
-      y.uri = uri2
-      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
-      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:differences).with(y).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
-                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
-                                                                                                ], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
-                                                                                                ], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ],
-                                                                                      versions: ["XXX","YYY"]
-                                                                                    })
-      request.env['HTTP_ACCEPT'] = "application/json" 
-      get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
-    end
+    # it "changes I" do
+    #   uri1 = Uri.new(uri: "http://www.example.com/a#1")
+    #   uri2 = Uri.new(uri: "http://www.example.com/a#2")
+    #   x = Thesaurus.new
+    #   y = Thesaurus.new
+    #   x.uri = uri1
+    #   y.uri = uri2
+    #   expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
+    #   expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
+    #   expect_any_instance_of(Thesaurus).to receive(:differences).with(y).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
+    #                                                                                             {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
+    #                                                                                             {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
+    #                                                                                             ], 
+    #                                                                                   deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
+    #                                                                                             ], 
+    #                                                                                   updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
+    #                                                                                             {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
+    #                                                                                             ],
+    #                                                                                   versions: ["XXX","YYY"]
+    #                                                                                 })
+    #   request.env['HTTP_ACCEPT'] = "application/json" 
+    #   get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+    #   check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
+    # end
 
   end
 
