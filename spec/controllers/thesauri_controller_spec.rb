@@ -766,6 +766,76 @@ describe ThesauriController do
       # expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
+    it "compare" do
+      uri1 = Uri.new(uri: "http://www.example.com/a#1")
+      uri2 = Uri.new(uri: "http://www.example.com/a#2")
+      x = Thesaurus.new
+      y = Thesaurus.new
+      x.uri = uri1
+      y.uri = uri2
+      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
+      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
+      get :compare, {thesauri: {thesaurus_id: uri2.to_id}, id: uri1.to_id}
+      expect(response).to render_template("compare")
+    end
+
+    it "compare, error" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
+      uri1 = Uri.new(uri: "http://www.example.com/a#1")
+      x = Thesaurus.new
+      x.uri = uri1
+      get :compare, {thesauri: {thesaurus_id: uri1.to_id}, id: uri1.to_id}
+      expect(response).to redirect_to('http://test.host/thesauri')
+      expect(flash[:error]).to be_present
+    end
+
+    it "compare data" do
+      uri1 = Uri.new(uri: "http://www.example.com/a#1")
+      uri2 = Uri.new(uri: "http://www.example.com/a#2")
+      x = Thesaurus.new
+      y = Thesaurus.new
+      x.uri = uri1
+      y.uri = uri2
+      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
+      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
+      expect_any_instance_of(Thesaurus).to receive(:differences).with(y).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
+                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
+                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
+                                                                                                ],
+                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
+                                                                                                ],
+                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
+                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
+                                                                                                ],
+                                                                                      versions: ["XXX","YYY"]
+                                                                                    })
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :compare_data, {thesauri: {thesaurus_id: uri2.to_id}, id: uri1.to_id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "compare_data_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "compare_csv" do
+      uri1 = Uri.new(uri: "http://www.example.com/a#1")
+      uri2 = Uri.new(uri: "http://www.example.com/a#2")
+      x = Thesaurus.new
+      y = Thesaurus.new
+      x.uri = uri1
+      y.uri = uri2
+      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
+      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
+      expect(x).to receive(:scoped_identifier).and_return("C12345")
+      expect(y).to receive(:scoped_identifier).and_return("C54321")
+      expect(x).to receive(:semantic_version).and_return("2.0.0")
+      expect(y).to receive(:semantic_version).and_return("4.0.0")
+      expect(Thesaurus).to receive(:compare_to_csv).and_return("abcd")
+      expect(@controller).to receive(:send_data).with("abcd", {filename: "Compare_C12345v2.0.0_and_C54321v4.0.0", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(@controller).to receive(:render)
+      get :compare_csv, id: x.uri.to_id, thesauri: {thesaurus_id: y.uri.to_id}
+    end
+
     it "edits release"
 
     it "edits release, new version"

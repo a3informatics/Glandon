@@ -10,7 +10,7 @@
  *
  * @return [void]
  */
-function HistoryPanel(url, strict_params, identifier, scope_id, count) {
+function HistoryPanel(url, strict_params, identifier, scope_id, count, itemSelector) {
   var _this = this;
 
   var counter = 0;
@@ -22,6 +22,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
   this.identifier = identifier;
   this.scope_id = scope_id;
   this.count = count;
+  this.itemSelector = itemSelector;
 	this.historyTable = $('#history').DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": [
@@ -153,9 +154,11 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
   if(row.list_cn_path != null && row.list_cn_path != "")
     menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List Change notes"});
   if(row.current_path != null && row.current_path != "")
-    menu_items.splice(menu_items.length -2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
+    menu_items.splice(menu_items.length - 2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
   if(row.clone_path != null && row.clone_path != "")
-    menu_items.splice(menu_items.length -2, 0, { link_path: "#newTerminologyModal", disabled: "false", icon: "icon-copy", text: "Clone", dt_toggle: "modal"});
+    menu_items.splice(menu_items.length - 2, 0, { link_path: "#newTerminologyModal", disabled: "false", icon: "icon-copy", text: "Clone", dt_toggle: "modal"});
+  if(row.compare_path != null && row.compare_path != "")
+    menu_items.splice(menu_items.length - 2, 0, { link_path: "#im-version-picker-modal", disabled: "false", icon: "icon-compare", text: "Compare", dt_toggle: "modal"});
   return generateContextMenu(id, menu_items);
 }
 
@@ -167,25 +170,33 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
 HistoryPanel.prototype.setListeners = function () {
   var _this = this;
 
-  $(".registration-state").off("click").on("click", function(){
+  $("#history tbody").off("click", ".registration-state").on("click", ".registation-state", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.updateRegistrationState(data);
   })
 
-  $(".context-menu").find("a:contains('Delete')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Delete')").on("click", ".context-menu a:contains('Delete')", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.removeItem(data);
   });
 
-  $(".context-menu").find("a:contains('Impact Analysis')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Impact Analysis')").on("click", ".context-menu a:contains('Impact Analysis')", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
     new CdiscVersionSelect(callback, "impact").open();
   });
 
-  $(".context-menu a:contains('Clone')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Clone')").on("click", ".context-menu a:contains('Clone')", function() {
     var item = _this.historyTable.row($(this).parents("tr:first")).data();
     $("#newTerminologyModal form#new_thesaurus").attr("action", item.clone_path);
+  });
+
+  $("#history tbody").off("click", ".context-menu a:contains('Compare')").on("click", ".context-menu a:contains('Compare')", function() {
+    var item = _this.historyTable.row($(this).parents("tr:first")).data();
+    _this.itemSelector.callback = function(selected){
+      location.href = item.compare_path + '?' + $.param({thesauri: {thesaurus_id: selected[0]}});
+    };
+    $(_this.itemSelector.modalId).modal("show");
   });
 }
 

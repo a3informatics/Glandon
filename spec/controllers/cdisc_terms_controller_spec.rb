@@ -5,33 +5,33 @@ describe CdiscTermsController do
   include DataHelpers
   include PauseHelpers
   include PublicFileHelpers
-  
+
   def sub_dir
     return "controllers/cdisc_terms"
   end
-    
+
   describe "Curator User" do
-  	
+
     login_curator
 
     # def standard_params
-    #   params = 
+    #   params =
     #   {
-    #     :draw => "1", 
+    #     :draw => "1",
     #     :columns =>
     #     {
-    #       "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
     #       "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-    #     }, 
-    #     :order => { "0" => { :column => "0", :dir => "asc" }}, 
-    #     :start => "0", 
-    #     :length => "15", 
-    #     :search => { :value => "", :regex => "false" }, 
-    #     :id => "TH-CDISC_CDISCTerminology", 
+    #     },
+    #     :order => { "0" => { :column => "0", :dir => "asc" }},
+    #     :start => "0",
+    #     :length => "15",
+    #     :search => { :value => "", :regex => "false" },
+    #     :id => "TH-CDISC_CDISCTerminology",
     #     :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
     #   }
     #   return params
@@ -73,7 +73,7 @@ describe CdiscTermsController do
       ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])        
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
       get :history, {cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -84,7 +84,7 @@ describe CdiscTermsController do
   end
 
   describe "Content Admin User" do
-    
+
     login_content_admin
 
     it "shows the history, initial view" do
@@ -103,98 +103,32 @@ describe CdiscTermsController do
   end
 
   describe "Community Reader" do
-    
+
     login_community_reader
 
-    it "changes, window size 2" do
-      uri1 = Uri.new(uri: "http://www.example.com/a#1")
-      uri2 = Uri.new(uri: "http://www.example.com/a#2")
-      x = Thesaurus.new
-      y = Thesaurus.new
-      x.uri = uri1
-      y.uri = uri2
-      expect(CdiscTerm).to receive(:version_dates).and_return([{id:uri1.to_id},{id:uri2.to_id}])
-      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
-      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:changes_cdu).with(2).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
-                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
-                                                                                                ], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
-                                                                                                ], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ],
-                                                                                      versions: ["XXX","YYY"]
-                                                                                    })
-      request.env['HTTP_ACCEPT'] = "application/json" 
-      get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
     end
 
-    it "changes, window size 6" do
-      uri1 = Uri.new(uri: "http://www.example.com/a#1")
-      uri2 = Uri.new(uri: "http://www.example.com/a#2")
-      x = Thesaurus.new
-      y = Thesaurus.new
-      x.uri = uri1
-      y.uri = uri2
-      expect(CdiscTerm).to receive(:version_dates).and_return([{id:uri1.to_id},{id: "eee"},{id: "iii"},{id: "ooo"},{id: "uuu"},{id:uri2.to_id}])
-      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
-      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:changes_cdu).with(6).and_return({created: [{identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa"}], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "bbb"}], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "ccc"}],
-                                                                                      versions: ["AAA","BBB"]
-                                                                                    })
-      request.env['HTTP_ACCEPT'] = "application/json" 
-      get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
+    it "shows the history, page, no compare path" do
+      ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
+      get :history, {cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml", equate_method: :hash_equal)
-    end
-
-    it "changes, window size 10" do
-      uri1 = Uri.new(uri: "http://www.example.com/a#1")
-      uri2 = Uri.new(uri: "http://www.example.com/a#2")
-      x = Thesaurus.new
-      y = Thesaurus.new
-      x.uri = uri1
-      y.uri = uri2
-      expect(CdiscTerm).to receive(:version_dates).and_return([{id: "eee"},{id:uri1.to_id},{id: "mmm"},{id: "nnn"},{id: "ppp"},
-                                                              {id: "iii"},{id: "ooo"},{id: "uuu"},{id: "qqq"},{id: "www"},{id:uri2.to_id},{id: "ttt"},{id: "rrr"}])
-      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
-      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:changes_cdu).with(10).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
-                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"},
-                                                                                                {identifier: "123457", label: "Severity", notation: "AESEV", id: "aaa4"},
-                                                                                                {identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"}
-                                                                                                ], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"},
-                                                                                                {identifier: "123457", label: "Severity", notation: "AESEV", id: "aaa4"}
-                                                                                                ], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ],
-                                                                                      versions: ["CCC","DDD"]
-                                                                                    })
-      request.env['HTTP_ACCEPT'] = "application/json" 
-      get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
 
   describe "Reader User" do
-    
+
     login_reader
 
     it "shows the history, initial view" do
@@ -211,5 +145,5 @@ describe CdiscTermsController do
     end
 
   end
-  
+
 end

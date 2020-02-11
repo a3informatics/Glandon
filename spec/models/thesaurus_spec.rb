@@ -158,26 +158,26 @@ describe Thesaurus do
       load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")    
     end
 
-    it "calculates changes_impact, no deleted items" do
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
-      actual = th.changes_impact(other_th)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_1.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_impact, no deleted items" do
+    #   th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    #   other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+    #   actual = th.changes_impact(other_th)
+    #   check_file_actual_expected(actual, sub_dir, "changes_impact_expected_1.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_impact, 1 deleted and 133 updated" do
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
-      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      actual = th.changes_impact(other_th)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_2.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_impact, 1 deleted and 133 updated" do
+    #   th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+    #   other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    #   actual = th.changes_impact(other_th)
+    #   check_file_actual_expected(actual, sub_dir, "changes_impact_expected_2.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_impact, 6 deleted and 64 updated" do
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
-      other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
-      actual = th.changes_impact(other_th)
-      check_file_actual_expected(actual, sub_dir, "changes_impact_expected_3.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_impact, 6 deleted and 64 updated" do
+    #   th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
+    #   other_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+    #   actual = th.changes_impact(other_th)
+    #   check_file_actual_expected(actual, sub_dir, "changes_impact_expected_3.yaml", equate_method: :hash_equal)
+    # end
 
     it "calculates changes_impact v2, no deleted items" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
@@ -209,6 +209,13 @@ describe Thesaurus do
       sponsor = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR2/V1#TH"))
       actual = th.changes_impact_v2(new_th, sponsor)
       check_file_actual_expected(actual, sub_dir, "changes_impact_v2_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "report Compare" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
+      th_to = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      actual = Thesaurus.compare_to_csv(th, th_to)
+      check_file_actual_expected(actual, sub_dir, "compare_to_csv_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "report Impact" do
@@ -263,71 +270,77 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
     end
 
-    it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-      actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_1.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 3 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+    #   actual = ct.changes_cdu(3)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_1.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
-      actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_2.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 3 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
+    #   actual = ct.changes_cdu(3)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_2.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 4 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
-      actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_3.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 4 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+    #   actual = ct.changes_cdu(4)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_3.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 4 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
-      actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_4.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 4 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
+    #   actual = ct.changes_cdu(4)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_4.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
-      actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_5.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 3 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
+    #   actual = ct.changes_cdu(3)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_5.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
-      actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_6.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 3 " do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
+    #   actual = ct.changes_cdu(4)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_6.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 2" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
-      actual = ct.changes_cdu(2)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_7.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 2" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+    #   actual = ct.changes_cdu(2)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_7.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 2" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
-      actual = ct.changes_cdu(2)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_8.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 2" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
+    #   actual = ct.changes_cdu(2)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_8.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 8, Versions 2014-06-27 and 2015-12-18" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V39#TH"))
-      actual = ct.changes_cdu(8)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_9.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 8, Versions 2014-06-27 and 2015-12-18" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V39#TH"))
+    #   actual = ct.changes_cdu(8)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_9.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 5, Versions 2018-06-29 and 2019-06-28" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
-      actual = ct.changes_cdu(5)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_10.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 5, Versions 2018-06-29 and 2019-06-28" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
+    #   actual = ct.changes_cdu(5)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_10.yaml", equate_method: :hash_equal)
+    # end
 
-    it "calculates changes_cdu, window 2 , Versions 2015-09-25 and 2015-12-18" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
-      actual = ct.changes_cdu(2)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_11.yaml", equate_method: :hash_equal)
-    end
+    # it "calculates changes_cdu, window 2 , Versions 2015-09-25 and 2015-12-18" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    #   actual = ct.changes_cdu(2)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_11.yaml", equate_method: :hash_equal)
+    # end
+
+    # it "calculates changes_cdu, Versions 2011-12-09 and 2014-09-26" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V28#TH"))
+    #   actual = ct.changes_cdu(13)
+    #   check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_12.yaml", equate_method: :hash_equal, write_file: true)
+    # end
 
   end
 

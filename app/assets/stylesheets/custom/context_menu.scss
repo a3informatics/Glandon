@@ -32,6 +32,8 @@
   z-index: 20;
   border: 1px solid $grey-bright;
   display: none;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 .context-menu.left{

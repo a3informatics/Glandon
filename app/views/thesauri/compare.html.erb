@@ -1,0 +1,30 @@
+<%= javascript_tag 'setPageTitle("Terminology Compare")' %>
+<%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alph_slider', 'thesauri/compare'%>
+<%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+
+<%= javascript_tag "var compare_path = '#{compare_data_thesauri_path(id: @thesaurus, thesauri: {thesaurus_id: @other_thesaurus})}';" %>
+
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-compare",
+    main_text: "Compare Terminologies",
+    sub_text: "Changes between
+    <span class='font-regular text-link'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span> and
+    <span class='font-regular text-link'>#{@other_thesaurus.scoped_identifier} v#{@other_thesaurus.semantic_version}</span>.".html_safe } do %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: compare_csv_thesauri_path(id: @thesaurus, thesauri: {thesaurus_id: @other_thesaurus}), id: "report",
+             icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 card">
+    <div class="card-header">Changes Between Terminologies</div>
+      <div class="card-content">
+        <%= render partial: "shared/thesauri/terminologies_compare_panel" %>
+      </div>
+    </div>
+  </div>

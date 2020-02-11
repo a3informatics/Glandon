@@ -1,8 +1,9 @@
 <%= javascript_tag 'setPageTitle("CDISC Terminology Changes")' %>
-<%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
 <%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+
+<%= javascript_tag "var changes_path = '#{compare_data_thesauri_path(id: "compareThIdFirst", thesauri: {thesaurus_id: "compareThIdSecond"})}';" %>
 
 <style>
   .rowpad {
@@ -54,35 +55,7 @@
             start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["from", "to"],
             button: (render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button", icon: "icon-browse-all", btn_text: "Display", btn_class: "highlight"}).html_safe }%>
         </div>
-        <div class="row rowpad">
-          <div class="col-md-12">
-              <div class="panel-body">
-                <div id="results_div">
-                  <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Created Code List", img_path: "cdisc_terms/ct_badge_plus"} %>
-                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_created"} %>
-                      <div class="list-wrap" id="created_div">
-                        <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Updated Code List", img_path: "cdisc_terms/ct_badge_update"} %>
-                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_updated"} %>
-                    <div class="list-wrap" id="updated_div">
-                      <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Deleted Code List", img_path: "cdisc_terms/ct_badge_minus"} %>
-                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_deleted"} %>
-                    <div class="list-wrap" id="deleted_div">
-                      <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
+        <%= render partial: "shared/thesauri/terminologies_compare_panel" %>
       </div>
     </div>
   </div>

@@ -361,6 +361,40 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def compare
+    authorize Thesaurus, :show?
+    @close_path = request.referer
+    if (params[:id] == the_params[:thesaurus_id])
+      flash[:error] = "You cannot compare a Terminology with itself"
+      redirect_to @close_path and return
+    end
+    @thesaurus = Thesaurus.find_minimum(params[:id])
+    @other_thesaurus = Thesaurus.find_minimum(the_params[:thesaurus_id])
+  end
+
+  def compare_data
+    authorize Thesaurus, :show?
+    ct_from = Thesaurus.find_minimum(params[:id])
+    ct_to = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    results = ct_from.differences(ct_to)
+    results.each do |k,v|
+      next if k == :versions
+      if k == :updated
+       v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path({id: x[:id], last_id: x[:last_id], ver_span: results[:versions]})}
+      else
+       v.each {|x| x[:changes_path] = changes_thesauri_managed_concept_path(x[:id])}
+      end
+    end
+    render json: {data: results}
+  end
+
+  def compare_csv
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ct_to = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    send_data Thesaurus.compare_to_csv(ct, ct_to), filename: "Compare_#{ct.scoped_identifier}v#{ct.semantic_version}_and_#{ct_to.scoped_identifier}v#{ct_to.semantic_version}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
   def extension
     authorize Thesaurus, :edit?
     results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
@@ -564,6 +598,8 @@ private
         return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
       when :clone
         return clone_thesauri_path(object)
+      when :compare
+        return compare_thesauri_path(object)
       else
         return ""
     end

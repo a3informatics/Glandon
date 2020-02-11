@@ -264,6 +264,9 @@ Rails.application.routes.draw do
       put :deselect_children
       put :deselect_all_children
       put :change_child_version
+      get :compare
+      get :compare_data
+      get :compare_csv
     end
   end
 
@@ -321,7 +324,6 @@ Rails.application.routes.draw do
       get :history
     end
     member do
-      get :changes
     end
   end
 

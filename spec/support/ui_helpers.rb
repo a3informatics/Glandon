@@ -535,7 +535,9 @@ module UiHelpers
       list_change_notes: "List Change notes",
       edit_properties: "Edit properties",
       impact_analysis: "Impact Analysis",
-			make_current: "Make current"
+			make_current: "Make current",
+			clone: "Clone",
+			compare: "Compare"
     }
 	end
 
@@ -707,9 +709,9 @@ module UiHelpers
   def ui_new_code_list
     identifier = ui_next_parent_identifier
     click_link 'New Code List'
-    wait_for_ajax_long
+		wait_for_ajax 30
     expect(page).to have_content identifier
-    wait_for_ajax_long
+    wait_for_ajax 30
     identifier
   end
 
