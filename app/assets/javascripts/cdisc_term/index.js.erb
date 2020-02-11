@@ -10,6 +10,8 @@ $(document).ready( function() {
 
   $(".timeline-container").data(tl_slider);
 
+  var filters = [];
+
   $(".filter-wrap").each(function(i, e) {
     filters.push(new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap")));
   });
