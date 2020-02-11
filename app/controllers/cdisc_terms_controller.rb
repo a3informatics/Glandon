@@ -74,6 +74,8 @@ private
         return ""
       when :destroy
         return ""
+      when :compare
+        return compare_thesauri_path(object)
       else
         return ""
     end

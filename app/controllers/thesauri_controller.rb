@@ -363,12 +363,22 @@ class ThesauriController < ApplicationController
 
   def compare
     authorize Thesaurus, :show?
+    @close_path = request.referer
+    if (params[:id] == the_params[:thesaurus_id])
+      flash[:error] = "You cannot compare a Terminology with itself"
+      redirect_to @close_path and return
+    end
+    @thesaurus = Thesaurus.find_minimum(params[:id])
+    @other_thesaurus = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    @versions = CdiscTerm.version_dates
+    @versions_normalized = normalize_versions(@versions)
+    @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
   end
 
   def compare_data
     authorize Thesaurus, :show?
     ct_from = Thesaurus.find_minimum(params[:id])
-    ct_to = Thesaurus.find_minimum(change_params[:other_id])
+    ct_to = Thesaurus.find_minimum(the_params[:thesaurus_id])
     results = ct_from.differences(ct_to)
     results.each do |k,v|
       next if k == :versions
@@ -584,6 +594,8 @@ private
         return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
       when :clone
         return clone_thesauri_path(object)
+      when :compare
+        return compare_thesauri_path(object)
       else
         return ""
     end
