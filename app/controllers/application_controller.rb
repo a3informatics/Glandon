@@ -119,6 +119,23 @@ class ApplicationController < ActionController::Base
    new_user_session_path
   end
 
+  # Token Timeout Message.
+  #
+  # @return [String] the timeout message
+  def token_timeout_message
+    return "The changes were not saved as the edit lock has timed out."
+  end
+
+  # Token Destroy Message.
+  #
+  # @param [Object] mi the managed item object
+  # @return [String] the timeout message
+  def token_destroy_message(mi)
+    token = Token.find_token_for_item(mi)
+    user = token.nil? ? "<unknown>" : User.find(token.user_id).email
+    return "The #{mi.audit_type} cannot be deleted as it is locked for editing by user: #{user}."
+  end
+
   # Normalizes array of versions of CDISC ct
   def normalize_versions(versions)
     @normalized = Array.new
