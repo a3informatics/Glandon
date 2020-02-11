@@ -12,7 +12,7 @@
     <span class='font-regular text-link'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span> and
     <span class='font-regular text-link'>#{@other_thesaurus.scoped_identifier} v#{@other_thesaurus.semantic_version}</span>.".html_safe } do %>
       <div class="btns-wrap">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: compare_csv_thesauri_path(id: @thesaurus, thesauri: {thesaurus_id: @other_thesaurus}), id: "report",
              icon: "icon-file", btn_text: "CSV Report", dt_toggle: "", disabled: false } %>
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
              icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
