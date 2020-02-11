@@ -41,6 +41,7 @@ class Thesaurus
         this.delete(:uri)
         results[:updated] << this.to_h
       end
+      results[:versions] = [this_version[:date], other_version[:date]]
       results
     end
 

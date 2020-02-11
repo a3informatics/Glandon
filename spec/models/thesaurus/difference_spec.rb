@@ -19,10 +19,14 @@ describe "Thesaurus::Difference" do
       new_result[type].each do |new_entry|
         old_entry = old_result[type].select{|x| x[:identifier] == new_entry[:identifier]}
         if old_entry.empty?
-          puts colourize("old: Cannot find!!\nnew: #{new_entry}", "blue")
+          puts colourize("\n\nold: Cannot find!!\nnew: #{new_entry}", "blue")
         else
+          puts colourize("\n\nKey mismatch:\nold: #{old_entry.first.keys}\nnew: #{new_entry.keys}", "blue") if old_entry.first.keys.sort != new_entry.keys.sort
           [:identifier, :label, :notation, :id, :last_id].each do |x|
-            puts colourize("identififer: #{new_entry[:identifier]}\nold: #{old_entry.first[x]}\nnew: #{new_entry[x]}", "blue") if old_entry.first[x] != new_entry[x]
+            if old_entry.first[x] != new_entry[x]
+              puts colourize("\n\nidentififer: #{new_entry[:identifier]}, field: #{x}\nold: #{old_entry.first[x]}\nnew: #{new_entry[x]}", "blue") 
+              puts colourize("old: #{Uri.new(id: old_entry.first[x]).to_s}\nnew: #{Uri.new(id: new_entry[x]).to_s}", "blue") if x == :id || x == :last_id
+            end
           end
         end
       end
