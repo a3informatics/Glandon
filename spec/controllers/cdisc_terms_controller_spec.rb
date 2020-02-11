@@ -5,33 +5,33 @@ describe CdiscTermsController do
   include DataHelpers
   include PauseHelpers
   include PublicFileHelpers
-  
+
   def sub_dir
     return "controllers/cdisc_terms"
   end
-    
+
   describe "Curator User" do
-  	
+
     login_curator
 
     # def standard_params
-    #   params = 
+    #   params =
     #   {
-    #     :draw => "1", 
+    #     :draw => "1",
     #     :columns =>
     #     {
-    #       "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-    #       "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+    #       "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
     #       "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-    #     }, 
-    #     :order => { "0" => { :column => "0", :dir => "asc" }}, 
-    #     :start => "0", 
-    #     :length => "15", 
-    #     :search => { :value => "", :regex => "false" }, 
-    #     :id => "TH-CDISC_CDISCTerminology", 
+    #     },
+    #     :order => { "0" => { :column => "0", :dir => "asc" }},
+    #     :start => "0",
+    #     :length => "15",
+    #     :search => { :value => "", :regex => "false" },
+    #     :id => "TH-CDISC_CDISCTerminology",
     #     :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
     #   }
     #   return params
@@ -73,7 +73,7 @@ describe CdiscTermsController do
       ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])        
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
       get :history, {cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -84,7 +84,7 @@ describe CdiscTermsController do
   end
 
   describe "Content Admin User" do
-    
+
     login_content_admin
 
     it "shows the history, initial view" do
@@ -103,41 +103,32 @@ describe CdiscTermsController do
   end
 
   describe "Community Reader" do
-    
+
     login_community_reader
 
-    it "changes I" do
-      uri1 = Uri.new(uri: "http://www.example.com/a#1")
-      uri2 = Uri.new(uri: "http://www.example.com/a#2")
-      x = Thesaurus.new
-      y = Thesaurus.new
-      x.uri = uri1
-      y.uri = uri2
-      expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
-      expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
-      expect_any_instance_of(Thesaurus).to receive(:differences).with(y).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
-                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
-                                                                                                ], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
-                                                                                                ], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
-                                                                                                {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ],
-                                                                                      versions: ["XXX","YYY"]
-                                                                                    })
-      request.env['HTTP_ACCEPT'] = "application/json" 
-      get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+    end
+
+    it "shows the history, page, no compare path" do
+      ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
+      get :history, {cdisc_term: {count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
 
   describe "Reader User" do
-    
+
     login_reader
 
     it "shows the history, initial view" do
@@ -154,5 +145,5 @@ describe CdiscTermsController do
     end
 
   end
-  
+
 end
