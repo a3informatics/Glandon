@@ -392,7 +392,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :show?
     ct = Thesaurus.find_minimum(params[:id])
     ct_to = Thesaurus.find_minimum(the_params[:thesaurus_id])
-    send_data Thesaurus.compare_to_csv(ct, ct_to), filename: "Compare_#{ct.scoped_identifier}v#{ct.semantic_version}_and_#{ct_to.scoped_identifier}v#{ct_to.semantic_version}", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+    send_data Thesaurus.compare_to_csv(ct, ct_to), filename: "Compare_#{ct.scoped_identifier}v#{ct.semantic_version}_and_#{ct_to.scoped_identifier}v#{ct_to.semantic_version}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
   end
 
   def extension
