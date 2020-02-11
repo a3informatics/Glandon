@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-sm-12">
             <center>
-              <img src="<%= asset_path 'icons/new_thesaurus' %>" class="modal-img"/>
+              <img src="<%= asset_path (local_assigns.fetch :img_path, 'icons/new_thesaurus') %>" class="modal-img"/>
               <div class="font-light"> Choose an identifier and a label for the terminology: </div> <br/>
     					<%= form_for Thesaurus.new, :url => thesauri_index_path do |f| %>
     						<div class="form-wrap wide">
