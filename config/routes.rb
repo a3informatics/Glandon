@@ -208,6 +208,8 @@ Rails.application.routes.draw do
         get :impact
         get :differences_summary
         patch :update_properties
+        get :compare
+        get :compare_data
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -321,7 +323,6 @@ Rails.application.routes.draw do
       get :history
     end
     member do
-      get :changes
     end
   end
 
