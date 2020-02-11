@@ -250,7 +250,7 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 	});
 
 	// Change version icon click event handler
-	$(_this.mcs.tableId + " .pick-version").off("click").on("click", function() {
+	$(_this.mcs.tableId + " tbody").off("click", ".pick-version").on("click", ".pick-version", function() {
 		var item = _this.table.row($(this).parents("tr:first")).data();
 		var callback = function (itemSelected) { _this.updateVersion([item, itemSelected]); }
 

@@ -1,0 +1,37 @@
+---
+:created:
+- :identifier: '1234'
+  :label: Severity
+  :notation: AESEV
+  :id: aaa
+  :changes_path: "/thesauri/managed_concepts/aaa/changes"
+- :identifier: '12345'
+  :label: Severity
+  :notation: AESEV
+  :id: aaa2
+  :changes_path: "/thesauri/managed_concepts/aaa2/changes"
+- :identifier: '123456'
+  :label: Severity
+  :notation: AESEV
+  :id: aaa3
+  :changes_path: "/thesauri/managed_concepts/aaa3/changes"
+:deleted:
+- :identifier: '123'
+  :label: Patient
+  :notation: PTient
+  :id: aaa3
+  :changes_path: "/thesauri/managed_concepts/aaa3/changes"
+:updated:
+- :identifier: '15635'
+  :label: Country
+  :notation: COUNTRY
+  :id: bbb2
+  :changes_path: "/thesauri/managed_concepts/bbb2/changes_summary?ver_span%5B%5D=XXX&ver_span%5B%5D=YYY"
+- :identifier: '12345'
+  :label: Severity
+  :notation: AESEV
+  :id: aaa2
+  :changes_path: "/thesauri/managed_concepts/aaa2/changes_summary?ver_span%5B%5D=XXX&ver_span%5B%5D=YYY"
+:versions:
+- XXX
+- YYY

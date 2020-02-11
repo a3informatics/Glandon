@@ -62,27 +62,6 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def changes
-    results = {}
-    versions = CdiscTerm.version_dates
-    ct_from = Thesaurus.find_minimum(params[:id])
-    from_index = versions.find_index {|x| x[:id] == ct_from.id}
-    ct_to = Thesaurus.find_minimum(change_params[:other_id])
-    to_index = versions.find_index {|x| x[:id] == ct_to.id}
-    window_size = to_index - from_index + 1
-    results = ct_from.changes_cdu(window_size)
-    results.each do |k,v|
-      next if k == :versions
-      if k == :updated
-       version_span = [results[:versions][0], results[:versions][-1]]
-       v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path({id: x[:id], last_id: x[:last_id], ver_span: version_span})}
-      else
-       v.each {|x| x[:changes_path] = changes_thesauri_managed_concept_path(x[:id])}
-      end
-    end
-    render json: {data: results}
-  end
-
 private
 
   def path_for(action, object)
@@ -95,6 +74,8 @@ private
         return ""
       when :destroy
         return ""
+      when :compare
+        return compare_thesauri_path(object)
       else
         return ""
     end

@@ -49,6 +49,9 @@ private
       result[:edit_path] = path_for(:edit, object)
       # result[:tags_path] = path_for(:edit_tags, object)
     end
+    if !current_user.is_only_community?
+      result[:compare_path] = path_for(:compare, object)
+    end
     if object.owned?
       result[:clone_path] = path_for(:clone, object)
     end

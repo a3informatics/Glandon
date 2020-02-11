@@ -13,6 +13,7 @@ class Thesaurus <  IsoManagedV2
 
   include Thesaurus::Search
   include Thesaurus::Where
+  include Thesaurus::Difference
 
   # Update Status. Update the status.
   #
@@ -208,70 +209,70 @@ class Thesaurus <  IsoManagedV2
     {versions: versions, items: final_results}
   end
 
-  def changes_impact(other_version)
-    uris = [self.uri, other_version.uri]
-    raw_results = {}
-    final_results = {}
-    # Get the raw results
-    query_string = %Q{
-      SELECT ?e ?v ?d ?i ?cl ?l ?n
-      WHERE
-      {
-        #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r .
-                                 #{x.to_ref} isoT:creationDate ?d .
-                                 #{x.to_ref} isoT:hasIdentifier ?si1 .
-                                 ?si1 isoI:version ?v .
-                                 BIND (#{x.to_ref} as ?e)}" }.join(" UNION\n")}
-        ?r bo:reference ?cl .
-        ?cl isoT:hasIdentifier ?si2 .
-        ?cl isoC:label ?l .
-        ?cl th:notation ?n .
-        ?si2 isoI:identifier ?i .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-    triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-    triples.each do |entry|
-      uri = entry[:e].to_s
-      raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
-      raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
-    end
+  # def changes_impact(other_version)
+  #   uris = [self.uri, other_version.uri]
+  #   raw_results = {}
+  #   final_results = {}
+  #   # Get the raw results
+  #   query_string = %Q{
+  #     SELECT ?e ?v ?d ?i ?cl ?l ?n
+  #     WHERE
+  #     {
+  #       #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r .
+  #                                #{x.to_ref} isoT:creationDate ?d .
+  #                                #{x.to_ref} isoT:hasIdentifier ?si1 .
+  #                                ?si1 isoI:version ?v .
+  #                                BIND (#{x.to_ref} as ?e)}" }.join(" UNION\n")}
+  #       ?r bo:reference ?cl .
+  #       ?cl isoT:hasIdentifier ?si2 .
+  #       ?cl isoC:label ?l .
+  #       ?cl th:notation ?n .
+  #       ?si2 isoI:identifier ?i .
+  #     }
+  #   }
+  #   query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+  #   triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+  #   triples.each do |entry|
+  #     uri = entry[:e].to_s
+  #     raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+  #     raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
+  #   end
 
-    # Build the skeleton final results with a default value.
-    raw_results.each do |uri, version|
-      version[:children].each do |entry|
-        key = entry[:key].to_sym
-        next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: :not_present}
-      end
-    end
+  #   # Build the skeleton final results with a default value.
+  #   raw_results.each do |uri, version|
+  #     version[:children].each do |entry|
+  #       key = entry[:key].to_sym
+  #       next if final_results.key?(key)
+  #       final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: :not_present}
+  #     end
+  #   end
 
-    # Process the changes
-    # raw_results.each_with_index do |(uri, version), index|
-        common_items = raw_results.values.first[:children] & raw_results.values.last[:children]
-        deleted_items = raw_results.values.first[:children] - raw_results.values.last[:children]
+  #   # Process the changes
+  #   # raw_results.each_with_index do |(uri, version), index|
+  #       common_items = raw_results.values.first[:children] & raw_results.values.last[:children]
+  #       deleted_items = raw_results.values.first[:children] - raw_results.values.last[:children]
 
-      if !common_items.empty?
-        common_items.each do |entry|
-          prev = raw_results.values.first[:children].find{|x| x[:key] == entry[:key]}
-          curr = raw_results.values.last[:children].find{|x| x[:key] == entry[:key]}
-          final_results[entry[:key].to_sym][:status] = curr.no_change?(prev) ? :no_change : :updated
-        end
-      end
+  #     if !common_items.empty?
+  #       common_items.each do |entry|
+  #         prev = raw_results.values.first[:children].find{|x| x[:key] == entry[:key]}
+  #         curr = raw_results.values.last[:children].find{|x| x[:key] == entry[:key]}
+  #         final_results[entry[:key].to_sym][:status] = curr.no_change?(prev) ? :no_change : :updated
+  #       end
+  #     end
 
-      if !deleted_items.empty?
-        deleted_items.each do |entry|
-          final_results[entry[:key].to_sym][:status] = :deleted
-        end
-      end
-    # end
-    # Remove blank entries (those with no changes)
-    no_change_entry = :no_change
-    not_present_entry = :not_present
-    final_results.delete_if {|k,v| v[:status] == no_change_entry || v[:status] == not_present_entry}
-    # And return
-    {items: final_results}
-  end
+  #     if !deleted_items.empty?
+  #       deleted_items.each do |entry|
+  #         final_results[entry[:key].to_sym][:status] = :deleted
+  #       end
+  #     end
+  #   # end
+  #   # Remove blank entries (those with no changes)
+  #   no_change_entry = :no_change
+  #   not_present_entry = :not_present
+  #   final_results.delete_if {|k,v| v[:status] == no_change_entry || v[:status] == not_present_entry}
+  #   # And return
+  #   {items: final_results}
+  # end
 
   # Changes_impact_v2. It finds the changes between two CDISC thesauruses, filtered by items with existing links to the specific sponsor thesaurus
   #
@@ -316,47 +317,47 @@ class Thesaurus <  IsoManagedV2
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions,
   # and an array of the versions selected by the user (first and last)
-  def changes_cdu (window_size)
-    cls = changes(window_size)
-    # Remove any entries with :deleted followed by :not_present • n
-    first_delete_entry = [{status: :deleted}] + [{status: :not_present}] * (window_size - 1)
-    cls[:items].delete_if {|k,v| v[:status] == first_delete_entry }
-    # Remove any entries with :updated followed by :no_change • n
-    no_change_entry = [{status: :updated}] + [{status: :no_change}] * (window_size - 1)
-    cls[:items].delete_if {|k,v| v[:status] == no_change_entry }
-    # Remove any entries with :created followed by :no_change • n
-    created_no_change_entry = [{status: :created}] + [{status: :no_change}] * (window_size - 1)
-    cls[:items].delete_if {|k,v| v[:status] == created_no_change_entry }
-    # Remove any entries with :not_present at the beggining and at the end
-    cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:not_present} }
-    # Remove any entries with :not_present at the beggining and deleted at the end
-    cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:deleted} }
-    # Now summarise
-    results = {created: [], deleted: [], updated: [], versions:[]}
-    cls[:items].each do |key, value|
-      value[:status].each_with_index do |status, index|
-        next if status[:status] == :no_change
-        next if status[:status] == :not_present
-        if status[:status] == :deleted
-            value[:overall_status] = :deleted
-            break
-        end
-        if status[:status] == :created && index != 0
-            value[:overall_status] = :created
-        end
-        if status[:status] == :updated
-          if value[:overall_status].blank?
-            value[:overall_status] = :updated
-          end
-        end
-      end
-    end
-    cls[:items].each do |key, value|
-      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
-    end
-    results[:versions] = cls[:versions]
-    results
-  end
+  # def changes_cdu (window_size)
+  #   cls = changes(window_size)
+  #   # Remove any entries with :deleted followed by :not_present • n
+  #   first_delete_entry = [{status: :deleted}] + [{status: :not_present}] * (window_size - 1)
+  #   cls[:items].delete_if {|k,v| v[:status] == first_delete_entry }
+  #   # Remove any entries with :updated followed by :no_change • n
+  #   no_change_entry = [{status: :updated}] + [{status: :no_change}] * (window_size - 1)
+  #   cls[:items].delete_if {|k,v| v[:status] == no_change_entry }
+  #   # Remove any entries with :created followed by :no_change • n
+  #   created_no_change_entry = [{status: :created}] + [{status: :no_change}] * (window_size - 1)
+  #   cls[:items].delete_if {|k,v| v[:status] == created_no_change_entry }
+  #   # Remove any entries with :not_present at the beggining and at the end
+  #   cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:not_present} }
+  #   # Remove any entries with :not_present at the beggining and deleted at the end
+  #   cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:deleted} }
+  #   # Now summarise
+  #   results = {created: [], deleted: [], updated: [], versions:[]}
+  #   cls[:items].each do |key, value|
+  #     value[:status].each_with_index do |status, index|
+  #       next if status[:status] == :no_change
+  #       next if status[:status] == :not_present
+  #       if status[:status] == :deleted
+  #           value[:overall_status] = :deleted
+  #           break
+  #       end
+  #       if status[:status] == :created && index != 0
+  #           value[:overall_status] = :created
+  #       end
+  #       if status[:status] == :updated
+  #         if value[:overall_status].blank?
+  #           value[:overall_status] = :updated
+  #         end
+  #       end
+  #     end
+  #   end
+  #   cls[:items].each do |key, value|
+  #     results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
+  #   end
+  #   results[:versions] = cls[:versions]
+  #   results
+  # end
 
 
   # Submission
@@ -789,6 +790,28 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     headers = ["Code", "Codelist Extensible (Yes/No)", "Codelist Name",
       "CDISC Submission Value", "CDISC Definition"]
     CSVHelpers.format(headers, results) 
+  end
+
+  # Compare_to_csv. Get the differences between two versions in csv format
+  #
+  # @params [] first version
+  # @params [] second_version
+  # @return 
+  def self.compare_to_csv(first_version, second_version)
+    results = first_version.differences(second_version)
+    headers = ["Status","Code", "Codelist Name","CDISC Submission Value"]
+    new_results = []
+      results.each do |key, value|
+        next if key == :versions
+         value.each do |x|
+          x.delete(:last_id)
+          x.delete(:id)
+          item = x.map{|k,v| v.to_s}.to_a
+          new_results <<  item.insert(0,key.to_s)
+         end 
+        results.delete(:versions)
+      end
+       CSVHelpers.format(headers, new_results)
   end
 
   # Audit Type. Text for the type to be used in an audit message

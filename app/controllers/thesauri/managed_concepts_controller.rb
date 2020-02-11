@@ -130,7 +130,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:fieldErrors => errors}, :status => 200
       end
     else
-      flash[:error] = "The edit lock has timed out."
+      flash[:error] = token_timeout_message
       render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
     end
   end
@@ -150,7 +150,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -184,7 +184,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:errors => new_tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -198,7 +198,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       children = tc.add_children_based_on(uc)
       render :json => {data: "" }, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -214,7 +214,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["The code list cannot be deleted as it is being edited by another user."]}, :status => 422
+      render :json => {:errors => ["token_destroy_message(tc)"]}, :status => 422
     end
   end
 
@@ -383,27 +383,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
         AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
         render json: {data: {}, error: errors}
       else
-        render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+        render :json => {:errors => ["token_timeout_message"]}, :status => 422
       end
     else
       render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
     end
   end
-
-  # def destroy_extensions
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-  #     tc.delete_extensions(uris)
-  #     render json: {data: {}, error: []}, :status => 200
-  #   else
-  #     render :json => {:errors => ["The edit lock has timed out."]}, :status => 422
-  #   end
-  # end
-
-  #Subsets
 
   def create_subset
     authorize Thesaurus, :create?
@@ -431,32 +416,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
     render json: {data: subset_tcs}
   end
-
-# def cross_reference_start
-  # 	authorize ThesaurusConcept, :show?
-  # 	results = []
-  # 	@direction = the_params[:direction].to_sym
-  #   refs = ThesaurusConcept.cross_references(params[:id], the_params[:namespace], @direction)
-  #   refs.each { |x| results << x[:uri].to_s }
-  #   render json: results
-  # end
-
-  # def cross_reference_details
-  # 	authorize ThesaurusConcept, :show?
-  # 	results = []
-  # 	direction = the_params[:direction].to_sym
-  #   item = ThesaurusConcept.find(params[:id], the_params[:namespace])
-  #   item.set_parent
-  #   item.parentIdentifier = item.identifier if item.parentIdentifier.empty?
-  #   item.cross_reference_details(direction).each do |detail|
-  #   	cr_items = []
-  #   	detail[:cross_references].each do |uri|
-  #   		cr_items << ThesaurusConcept.find(uri.id, uri.namespace).to_json
-  #   	end
-  #   	results << { item: item.to_json, comments: detail[:comments], cross_references: cr_items }
-  #   end
-  #   render json: results
-  # end
 
 private
 

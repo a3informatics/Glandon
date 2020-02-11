@@ -1,14 +1,6 @@
-$(document).ready( function() {
-  var ip = new IndexPanel(changes_path);
-  var tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), $("#timeline-end-btn"), $(".timeline-point"));
-
-  $(window).load(function(){
-    var newest_date = tl_slider.tl_points.eq(-1).children().first().html(), second_newest_date = tl_slider.tl_points.eq(-2).children().first().html();
-    tl_slider.moveToDate(tl_slider.r_slider, newest_date);
-    tl_slider.moveToDate(tl_slider.l_slider, second_newest_date);
-  });
-
-  $(".timeline-container").data(tl_slider);
+$(document).ready(function(){
+  var ip = new IndexPanel();
+  ip.loadData(compare_path);
 
   var filters = [];
 
@@ -36,7 +28,6 @@ $(document).ready( function() {
 
   // TESTING HELPERS
   <% if Rails.env == "test" || Rails.env == "development" %>
-    $(".timeline-container").data(tl_slider);
     $.each($(".alph-slider"), function(i, e){
       $(e).data(filters[i]);
     });

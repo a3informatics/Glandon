@@ -18,6 +18,7 @@ function ManagedItemsSelect(type, callback) {
   this.indexTable = this.initIndex();
   this.historyTable = this.initHistory();
   this.initialized = false;
+  this.select_multiple = selectMultiple;
   this.type = type;
   this.cache = {};
   this.selection = [];
@@ -109,14 +110,21 @@ ManagedItemsSelect.prototype.setListeners = function () {
  * @return [void]
  */
 ManagedItemsSelect.prototype.handleSelect = function (item, selected) {
-  var index = this.selection.indexOf(item.id);
+  if (this.selectMultiple) {
+    var index = this.selection.indexOf(item.id);
 
-  if (selected && index == -1)
-    this.selection.push(item.id);
-  else if(!selected)
-    this.selection.splice(index, 1);
+    if (selected && index == -1)
+      this.selection.push(item.id);
+    else if(!selected)
+      this.selection.splice(index, 1);
 
-  this.updateSelectionCount();
+    this.updateSelectionCount();
+  }
+  else {
+    this.selection = selected  ? [item.id] : [];
+    var name = this.indexTable.row({selected: true}).data().identifier + " v" + item.has_identifier.semantic_version;
+    this.updateSelectionCount(name);
+  }
 }
 
 /**
@@ -223,7 +231,7 @@ ManagedItemsSelect.prototype.initHistory = function () {
 		"processing": true,
     "scrollY": 400,
     "scrollCollapse": true,
-    "select": "multi",
+    "select": (this.selectMultiple ? "multi" : "single"),
 		"paging": true,
 		"language": {
 			"infoFiltered": "",
@@ -252,8 +260,11 @@ ManagedItemsSelect.prototype.cacheThis = function (target) {
  *
  * @return [void]
  */
-ManagedItemsSelect.prototype.updateSelectionCount = function () {
-  $(this.modalId + " #number-selected").text(this.selection.length);
+ManagedItemsSelect.prototype.updateSelectionCount = function (name) {
+  if(name == null)
+    $(this.modalId + " #number-selected").text(this.selection.length);
+  else
+    $(this.modalId + " #number-selected").text(name);
 
   if(this.selection.length == 0)
     $(this.modalId + " #submit-im-select-button").addClass("disabled");

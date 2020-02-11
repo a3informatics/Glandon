@@ -1,59 +1,61 @@
 function IndexPanel(url) {
   this.url = url;
   this.processing(false);
+  this.init();
+}
 
-  var _this = this;
-
-  $("#go_button").click(function(){
-    _this.get();
-  });
+IndexPanel.prototype.init = function () {
+  $("#go_button").on("click", function() {
+    this.loadData(this.makeUrlFromSlider());
+  }.bind(this));
 
   $("#results_div").parent().append(generateSpinnerWText("medium", "Fetching results..."));
   $('.spinner-container').hide();
 }
 
-IndexPanel.prototype.get = function (url) {
-  var _this = this;
+IndexPanel.prototype.loadData = function (url) {
+  this.processing(true);
 
-  _this.processing(true);
   $.ajax({
-    url: pathInsertId(_this.url, $(".point-highlight").eq(0).find(".ttip-text").attr("data-index")),
+    url: url,
     type: 'GET',
-    data: {cdisc_term: {other_id: $(".point-highlight").eq(1).find(".ttip-text").attr("data-index")}},
     dataType: 'json',
+    context: this,
     success: function(result) {
-      _this.processing(false);
-      _this.results("#created_div", result.data.created)
-      _this.results("#deleted_div", result.data.deleted)
-      _this.results("#updated_div", result.data.updated)
-      //$("#created_div").html("<pre>" + JSON.stringify(result.data.created, undefined, 2) + "</pre>");
-      //$("#deleted_div").html("<pre>" + JSON.stringify(result.data.deleted, undefined, 2) + "</pre>");
-      //$("#updated_div").html("<pre>" + JSON.stringify(result.data.updated, undefined, 2) + "</pre>");
+      this.processing(false);
+      this.results("#created_div", result.data.created);
+      this.results("#deleted_div", result.data.deleted);
+      this.results("#updated_div", result.data.updated);
     },
     error: function(xhr,status,error){
-      _this.processing(false);
+      this.processing(false);
       handleAjaxError(xhr, status, error);
     }
   });
 }
 
-IndexPanel.prototype.processing = function (state) {
-  if (state) {
+IndexPanel.prototype.makeUrlFromSlider = function () {
+  return this.url
+    .replace("compareThIdFirst", $(".point-highlight").eq(0).find(".ttip-text").attr("data-index"))
+    .replace("compareThIdSecond", $(".point-highlight").eq(1).find(".ttip-text").attr("data-index"));
+}
+
+IndexPanel.prototype.processing = function (enable) {
+  if (enable) {
     $('.spinner-container').show();
     $('#results_div').hide();
-  } else {
+  }
+  else {
     $('.spinner-container').hide();
     $('#results_div').show();
   }
 }
 
 IndexPanel.prototype.results = function(div, data) {
-  var _this = this;
-
-  var badge_class = _this.getBadgeClass(div);
+  var badge_class = this.getBadgeClass(div);
 
   // Reset
-  _this.resetViewToDefault($(div).parent());
+  this.resetViewToDefault($(div).parent());
   var html = '';
 
   $.each( data, function( key, value ) {

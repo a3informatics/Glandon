@@ -111,6 +111,17 @@ describe ApplicationController, type: :controller do
       expect{controller.path_for(:action, Fuseki::Base.new)}.to raise_error(Errors::ApplicationLogicError, "Generic path_for method called. Controllers should overload.")
     end
 
+    it "locked message" do
+      expect(controller.token_timeout_message).to eq("The changes were not saved as the edit lock has timed out.")
+    end
+
+    it "destroy message" do
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      expect(controller.token_destroy_message(ct)).to eq("The Terminology cannot be deleted as it is locked for editing by user: <unknown>.")
+      Token.obtain(ct, controller.current_user)
+      expect(controller.token_destroy_message(ct)).to eq("The Terminology cannot be deleted as it is locked for editing by user: base@example.com.")
+    end
+
   end
   
 end
