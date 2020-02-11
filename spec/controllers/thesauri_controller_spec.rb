@@ -469,7 +469,7 @@ describe ThesauriController do
       expect(AuditTrail.count).to eq(audit_count)
       expect(response.code).to eq("422")
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      expect(actual).to eq("The item is locked for editing by another user.")
+      expect(actual).to eq("The Terminology cannot be deleted as it is locked for editing by user: lock@example.com.")
     end
 
     it 'deletes thesaurus' do
@@ -831,7 +831,7 @@ describe ThesauriController do
       expect(x).to receive(:semantic_version).and_return("2.0.0")
       expect(y).to receive(:semantic_version).and_return("4.0.0")
       expect(Thesaurus).to receive(:compare_to_csv).and_return("abcd")
-      expect(@controller).to receive(:send_data).with("abcd", {filename: "Compare_C12345v2.0.0_and_C54321v4.0.0", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
+      expect(@controller).to receive(:send_data).with("abcd", {filename: "Compare_C12345v2.0.0_and_C54321v4.0.0.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
       expect(@controller).to receive(:render)
       get :compare_csv, id: x.uri.to_id, thesauri: {thesaurus_id: y.uri.to_id}
     end
@@ -930,7 +930,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal, write_file: true)
 
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))

@@ -171,7 +171,7 @@ class ThesauriController < ApplicationController
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -184,7 +184,7 @@ class ThesauriController < ApplicationController
       AuditTrail.delete_item_event(current_user, thesaurus, thesaurus.audit_message(:deleted))
       token.release
     else
-      render :json => {errors: "The item is locked for editing by another user."}, :status => 422 and return
+      render :json => {errors: token_destroy_message(thesaurus)}, :status => 422 and return
     end
     render :json => {}, :status => 200
   end
@@ -464,7 +464,7 @@ class ThesauriController < ApplicationController
       ct.set_referenced_thesaurus(ref_ct)
       render :json => {}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -524,7 +524,7 @@ class ThesauriController < ApplicationController
       ref_ct = ct.get_referenced_thesaurus
       render json: { data: ref_ct.nil? ? {} : ref_ct.to_h }, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -538,7 +538,7 @@ class ThesauriController < ApplicationController
       ct.select_children({id_set: [ids[1]]})
       render :json => {}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -550,7 +550,7 @@ class ThesauriController < ApplicationController
       ct.select_children(the_params)
       render :json => {}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -562,7 +562,7 @@ class ThesauriController < ApplicationController
       ct.deselect_children(the_params)
       render :json => {}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
@@ -574,7 +574,7 @@ class ThesauriController < ApplicationController
       ct.deselect_all_children
       render :json => {}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+      render :json => {:errors => [token_timeout_message]}, :status => 422
     end
   end
 
