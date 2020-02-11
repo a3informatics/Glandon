@@ -562,6 +562,8 @@ private
         return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
       when :impact
         return object.get_referenced_thesaurus.nil? ? "" : impact_iso_managed_v2_path(object, iso_managed: {new_th_id: "thId"})
+      when :clone
+        return clone_thesauri_path(object)
       else
         return ""
     end
