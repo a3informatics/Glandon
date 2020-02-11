@@ -25,4 +25,11 @@ $(document).ready(function(){
       }
     })
   });
+
+  // TESTING HELPERS
+  <% if Rails.env == "test" || Rails.env == "development" %>
+    $.each($(".alph-slider"), function(i, e){
+      $(e).data(filters[i]);
+    });
+  <% end %>
 });

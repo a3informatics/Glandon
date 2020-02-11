@@ -170,28 +170,28 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
 HistoryPanel.prototype.setListeners = function () {
   var _this = this;
 
-  $(".registration-state").off("click").on("click", function(){
+  $("#history tbody").off("click", ".registration-state").on("click", ".registation-state", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.updateRegistrationState(data);
   })
 
-  $(".context-menu").find("a:contains('Delete')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Delete')").on("click", ".context-menu a:contains('Delete')", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.removeItem(data);
   });
 
-  $(".context-menu").find("a:contains('Impact Analysis')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Impact Analysis')").on("click", ".context-menu a:contains('Impact Analysis')", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
     new CdiscVersionSelect(callback, "impact").open();
   });
 
-  $(".context-menu a:contains('Clone')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Clone')").on("click", ".context-menu a:contains('Clone')", function() {
     var item = _this.historyTable.row($(this).parents("tr:first")).data();
     $("#newTerminologyModal form#new_thesaurus").attr("action", item.clone_path);
   });
 
-  $(".context-menu a:contains('Compare')").off("click").on("click", function() {
+  $("#history tbody").off("click", ".context-menu a:contains('Compare')").on("click", ".context-menu a:contains('Compare')", function() {
     var item = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.itemSelector.callback = function(selected){
       location.href = item.compare_path + '?' + $.param({thesauri: {thesaurus_id: selected[0]}});
