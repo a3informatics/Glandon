@@ -27,6 +27,11 @@ describe Thesaurus do
       delete_all_public_test_files
     end
 
+    it "returns audit type" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(th.audit_type).to eq("Terminology")
+    end
+    
     it "returns the owner" do
       expected = IsoRegistrationAuthority.owner
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))

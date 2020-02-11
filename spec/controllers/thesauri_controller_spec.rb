@@ -404,7 +404,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)
       expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)
-      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology updated.")
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology owner: ACME, identifier: TEST, was updated.")
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

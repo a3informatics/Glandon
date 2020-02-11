@@ -791,6 +791,13 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     CSVHelpers.format(headers, results) 
   end
 
+  # Audit Type. Text for the type to be used in an audit message
+  #
+  # @return [String] the type for the audit message
+  def audit_type
+    "Terminology"
+  end
+
 private
   
   def self.recursion(item_id, results, sponsor_version, have_i_seen)
