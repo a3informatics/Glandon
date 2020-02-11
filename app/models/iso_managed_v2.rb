@@ -983,6 +983,14 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
     true
   end
 
+  def audit_message(operation, extra="")
+    "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier},#{extra.empty? ? "" : " (#{extra})"} was #{operation}."
+  end
+
+  def audit_type
+    "Unknown audit type"
+  end
+
 private
 
   # Clear Current, if any

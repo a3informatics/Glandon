@@ -38,7 +38,7 @@ private
     latest = object.latest?
     indicators = {current: object.current?, extended: false, extends: false, version_count: 0, subset: false, subsetted: false}
     result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "",
-      list_cn_path: "", impact_path: "", indicators: indicators}
+      list_cn_path: "", impact_path: "", clone_path: "", indicators: indicators}
 
     result[:show_path] = path_for(:show, object)
     result[:search_path] = path_for(:search, object)
@@ -48,6 +48,9 @@ private
     if edit && object.edit? && latest
       result[:edit_path] = path_for(:edit, object)
       # result[:tags_path] = path_for(:edit_tags, object)
+    end
+    if object.owned?
+      result[:clone_path] = path_for(:clone, object)
     end
     if object.registered? && object.owned? && latest && edit
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})

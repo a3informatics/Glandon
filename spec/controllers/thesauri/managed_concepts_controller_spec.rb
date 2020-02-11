@@ -380,7 +380,7 @@ describe Thesauri::ManagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
-      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus::ManagedConcept), "Code list updated.")
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus::ManagedConcept), "Code list owner: ACME, identifier: A00001, was updated.")
       post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

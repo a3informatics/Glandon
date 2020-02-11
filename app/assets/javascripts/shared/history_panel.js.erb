@@ -148,13 +148,14 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
     { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
     { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
 
-  if(row.impact_path != "")
+  if(row.impact_path != null && row.impact_path != "")
     menu_items.splice(menu_items.length - 1, 0, { link_path: "#", disabled: "false", icon: "icon-impact", text: "Impact Analysis"});
-  if(row.list_cn_path != "")
+  if(row.list_cn_path != null && row.list_cn_path != "")
     menu_items.splice(menu_items.length - 1, 0, { link_path: row.list_cn_path, disabled: "false", icon: "icon-note", text: "List Change notes"});
-  if(row.current_path != "")
+  if(row.current_path != null && row.current_path != "")
     menu_items.splice(menu_items.length -2, 0, { link_path: row.current_path, disabled: row.indicators.current ? "true":"false", icon: "icon-current", text: "Make current"});
-
+  if(row.clone_path != null && row.clone_path != "")
+    menu_items.splice(menu_items.length -2, 0, { link_path: "#newTerminologyModal", disabled: "false", icon: "icon-copy", text: "Clone", dt_toggle: "modal"});
   return generateContextMenu(id, menu_items);
 }
 
@@ -180,6 +181,11 @@ HistoryPanel.prototype.setListeners = function () {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     var callback = function(date, id){ location.href = data.impact_path.replace("thId", id); }
     new CdiscVersionSelect(callback, "impact").open();
+  });
+
+  $(".context-menu a:contains('Clone')").off("click").on("click", function() {
+    var item = _this.historyTable.row($(this).parents("tr:first")).data();
+    $("#newTerminologyModal form#new_thesaurus").attr("action", item.clone_path);
   });
 }
 

@@ -1,0 +1,48 @@
+<%= javascript_include_tag 'shared/tags', 'shared/iso_managed/managed_item_version_picker'  %>
+<%= javascript_tag "var miVersionPickHistoryUrl = '#{history_url}';" %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="im-version-picker-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="circular-badge small bg-prim-light" style="margin-right: 6px;">
+            <span class="<%= id_to_type(type)[:icon] %> text-white"></span>
+          </span>
+          Select <%= id_to_type(type)[:text] %> Version
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body font-light spinner-spread">
+        <div class="table-cardstyle all-columns">
+
+          <div id="im-version-picker-error"></div>
+
+          <div class="row">
+            <div class="text-centered" id="im-select-modal-description"><%= local_assigns.fetch :description, "Pick a version and click Submit" %></div>
+
+            <table id="history" class="table table-invisible table-row-clickable">
+              <thead>
+                <tr>
+                  <th class="fit">Version</th>
+                  <th class="fit">Last Change Date</th>
+                  <th class="fit">Owner</th>
+                  <th class="fit">Identifier</th>
+                  <th>Label</th>
+                  <th>Version Label</th>
+                  <th>State</th>
+                  <th class="ignore fit"></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" id="close-im-version-button" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn medium green disabled" id="submit-im-version-button">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
