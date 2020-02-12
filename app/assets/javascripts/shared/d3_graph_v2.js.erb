@@ -42,6 +42,8 @@ D3GraphV2.prototype.draw = function(graph) {
   this.svg = d3.select(this.d3Div).append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 " + this.width + " " + this.height)
+    .attr("width", this.width)
+    .attr("height", this.height)
     .call(d3.behavior.zoom()
             .translate([0, 0])
             .scale(1)

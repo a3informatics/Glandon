@@ -393,6 +393,15 @@ $(document).ready(function() {
 });
 
 /*
+* Positions the context menu corrently for any width display
+*/
+$(window).load(function(){
+ $("table tbody").on("focus", ".icon-context-menu", function(){
+   $(this).find(".context-menu").css("left", $(this).position().left);
+ });
+});
+
+/*
 * Datatables generic processing function
 * See: https://datatables.net/plug-ins/api/processing()
 */

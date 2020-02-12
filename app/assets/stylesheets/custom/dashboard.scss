@@ -8,3 +8,7 @@
   height: 380px;
   overflow-y: auto;
 }
+
+.modal-body .col-sm-6 {
+  width: calc(50% - 40px);
+}
