@@ -58,7 +58,7 @@ describe "Impact Analysis", :type => :feature do
       ui_dashboard_single_slider '2013-06-28'
       click_button 'Select'
       wait_for_ajax 20
-      expect(page).to have_content 'You must choose a CDISC release newer than 2013-06-28 Release to view Impact Analysis.'
+      expect(page).to have_content 'You must choose a CDISC release newer than 2018-03-30 Release to view Impact Analysis.'
       context_menu_element('history', 4, 'SPONSORTHTEST2', :impact_analysis)
       sleep 1
       ui_dashboard_single_slider '2019-12-20'
