@@ -50,6 +50,14 @@
   rdfs:range xsd:string ;
   skos:definition "The description, the actual annotation."^^xsd:string ;
 .
+:reference
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Reference"^^xsd:string ;
+  rdfs:domain :Annotation ;
+  rdfs:range xsd:string ;
+  skos:definition "Any reference(s) relevant to the annotation."^^xsd:string ;
+.
 :userReference
   rdf:type owl:DatatypeProperty ;
   rdf:type owl:DatatypeProperty ;
