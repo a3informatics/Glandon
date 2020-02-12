@@ -1,4 +1,29 @@
 Status,Code,Codelist Name,CDISC Submission Value
+created,C87162,Common Terminology Criteria for Adverse Events V4.0,TOXGR
+created,C78418,Concomitant Medication Dose Form,CMDOSFRM
+created,C78417,Concomitant Medication Dose Units,CMDOSU
+created,C78419,Concomitant Medication Dosing Frequency per Interval,CMDOSFRQ
+created,C78420,Concomitant Medication Route of Administration,CMROUTE
+created,C81223,Date Imputation Flag,DATEFL
+created,C81224,Derivation Type,DTYPE
+created,C78422,ECG Original Units,EGORRESU
+created,C78426,Exposure Dose Form,EXDOSFRM
+created,C78745,Exposure Dosing Frequency per Interval,EXDOSFRQ
+created,C78425,Exposure Route of Administration,EXROUTE
+created,C85492,Method,METHOD
+created,C85495,Microbiology Susceptibility Testing Result Category,MSRESCAT
+created,C85491,Microorganism,MICROORG
+created,C85494,PK Parameter Units of Measure,PKUNIT
+created,C81225,Parameter Type,PARAMTYP
+created,C83004,Substance Use Never/Current/Former Classification,SUNCF
+created,C81226,Time Imputation Flag,TIMEFL
+created,C78428,Total Volume Administration Unit,EXVOLTU
+created,C78427,Unit for the Duration of Treatment Interruption,EXINTPU
+created,C78421,Unit of Drug Dispensed or Returned,DAORRESU
+created,C78429,Unit of Measure for Flow Rate,EXFLRTU
+created,C78423,Units for Exposure,EXDOSU
+created,C78430,Units for Planned Exposure,EXPDOSEU
+created,C78431,Vital Signs Position of Subject,VSPOS
 updated,C66767,Action Taken with Study Treatment,ACN
 updated,C66780,Age Span,AGESPAN
 updated,C66781,Age Unit,AGEU
@@ -12,12 +37,12 @@ updated,C66787,Diagnosis Group,TDIGRP
 updated,C66788,Dictionary Name,DICTNAM
 updated,C66734,Domain Abbreviation,DOMAIN
 updated,C71150,ECG Result,EGSTRESC
+updated,C66790,Patient Ethnic Group,ETHNIC
 updated,C78735,Evaluator,EVAL
 updated,C71113,Frequency,FREQ
 updated,C65047,Laboratory Test Code,LBTESTCD
 updated,C67154,Laboratory Test Name,LBTEST
 updated,C76348,Marital Status,MARISTAT
-updated,C66790,Ethnic Group,ETHNIC
 updated,C66726,Pharmaceutical Dosage Form,FRM
 updated,C66728,Relation to Reference Period,STENRF
 updated,C66729,Route of Administration,ROUTE
@@ -34,28 +59,3 @@ updated,C71620,Unit,UNIT
 updated,C66770,Units for Vital Signs Results,VSRESU
 updated,C66741,Vital Signs Test Code,VSTESTCD
 updated,C67153,Vital Signs Test Name,VSTEST
-deleted,C87162,Common Terminology Criteria for Adverse Events V4.0,TOXGR
-deleted,C78418,Concomitant Medication Dose Form,CMDOSFRM
-deleted,C78417,Concomitant Medication Dose Units,CMDOSU
-deleted,C78419,Concomitant Medication Dosing Frequency per Interval,CMDOSFRQ
-deleted,C78420,Concomitant Medication Route of Administration,CMROUTE
-deleted,C81223,Date Imputation Flag,DATEFL
-deleted,C81224,Derivation Type,DTYPE
-deleted,C78422,ECG Original Units,EGORRESU
-deleted,C78426,Exposure Dose Form,EXDOSFRM
-deleted,C78745,Exposure Dosing Frequency per Interval,EXDOSFRQ
-deleted,C78425,Exposure Route of Administration,EXROUTE
-deleted,C85492,Method,METHOD
-deleted,C85495,Microbiology Susceptibility Testing Result Category,MSRESCAT
-deleted,C85491,Microorganism,MICROORG
-deleted,C85494,PK Parameter Units of Measure,PKUNIT
-deleted,C81225,Parameter Type,PARAMTYP
-deleted,C83004,Substance Use Never/Current/Former Classification,SUNCF
-deleted,C81226,Time Imputation Flag,TIMEFL
-deleted,C78428,Total Volume Administration Unit,EXVOLTU
-deleted,C78427,Unit for the Duration of Treatment Interruption,EXINTPU
-deleted,C78421,Unit of Drug Dispensed or Returned,DAORRESU
-deleted,C78429,Unit of Measure for Flow Rate,EXFLRTU
-deleted,C78423,Units for Exposure,EXDOSU
-deleted,C78430,Units for Planned Exposure,EXPDOSEU
-deleted,C78431,Vital Signs Position of Subject,VSPOS

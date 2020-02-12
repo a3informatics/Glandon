@@ -775,6 +775,8 @@ describe ThesauriController do
       y.uri = uri2
       expect(Thesaurus).to receive(:find_minimum).with(uri1.to_id).and_return(x)
       expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
+      expect_any_instance_of(IsoManagedV2).to receive(:same_item?).and_return(true)
+      expect_any_instance_of(IsoManagedV2).to receive(:earlier_version?).and_return(true)
       get :compare, {thesauri: {thesaurus_id: uri2.to_id}, id: uri1.to_id}
       expect(response).to render_template("compare")
     end

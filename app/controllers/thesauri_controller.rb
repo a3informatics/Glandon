@@ -368,8 +368,9 @@ class ThesauriController < ApplicationController
       flash[:error] = "You cannot compare a Terminology with itself"
       redirect_to @close_path and return
     end
-    @thesaurus = Thesaurus.find_minimum(params[:id])
-    @other_thesaurus = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    @th = Thesaurus.find_minimum(params[:id])
+    @other_th = Thesaurus.find_minimum(the_params[:thesaurus_id])
+    @th, @other_th = @other_th, @th if should_reorder?(@th, @other_th)
   end
 
   def compare_data
@@ -579,6 +580,10 @@ class ThesauriController < ApplicationController
   end
 
 private
+
+  def should_reorder? (first, second)
+    return (first.same_item?(second) && second.earlier_version?(first))
+  end
 
   # Path for given action
   def path_for(action, object)

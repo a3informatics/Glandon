@@ -56,15 +56,15 @@ describe "Thesauri Compare", :type => :feature do
       click_button "Submit and proceed"
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
-      expect(page).to have_content "Changes between CT v20.0.0 and CT v17.0.0"
-      expect(page).to have_xpath("//div[@id='created_div']/a", count: 0)
+      expect(page).to have_content "Changes between CT v17.0.0 and CT v20.0.0"
+      expect(page).to have_xpath("//div[@id='created_div']/a", count: 25)
       expect(page).to have_xpath("//div[@id='updated_div']/a", count: 18)
-      expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 25)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 0)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item R']", count: 2)
-      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 4)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item E']", count: 4)
       ui_dashboard_alpha_filter(:updated, "R")
       expect(page.find(".item.R .text", match: :first).text).to eq("Relation to Reference Period")
-      ui_dashboard_alpha_filter(:deleted, "U")
+      ui_dashboard_alpha_filter(:created, "U")
       expect(page.find(".item.U .text", match: :first).text).to eq("Unit for the Duration of Treatment Interruption")
     end
 
@@ -208,9 +208,10 @@ describe "Thesauri Compare", :type => :feature do
       click_button "Submit and proceed"
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
-      expect(page).to have_content "Changes between CT v20.0.0 and CT v15.0.0"
+      expect(page).to have_content "Changes between CT v15.0.0 and CT v20.0.0"
       click_link "CSV Report"
       file = download_content
+      # write_text_file_2(file, sub_dir, "compare_report_expected.csv")
       expected = read_text_file_2(sub_dir, "compare_report_expected.csv")
       expect(file).to eq(expected)
     end
