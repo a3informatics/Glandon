@@ -1,17 +1,23 @@
 # Thesaurus Search
 #
 # @author Dave Iberson-Hurst
-# @since 2.22.0
+# @since 2.32.0
 class Thesaurus
 
   module Difference
 
+    # Differences. Find the differences between two thesaurus
+    #
+    # @param [Thesaurus] other the other thesaurus to be compared against. Self should be the earlier version.
+    # @return [Hash] the results hash
     def differences(other)
       raw_results = {}
+      raw_results["#{self.uri.to_s}"] = {version: self.version, date: self.creation_date.strftime("%Y-%m-%d"), children: []}
+      raw_results["#{other.uri.to_s}"] = {version: other.version, date: other.creation_date.strftime("%Y-%m-%d"), children: []}
       query_string = %Q{
         SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
         {
-          #{[self.uri, other.uri].map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
+          #{[self.uri, other.uri].map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
           ?r bo:reference ?cl .
           ?cl isoT:hasIdentifier ?si2 .
           ?cl isoC:label ?l .
@@ -23,7 +29,6 @@ class Thesaurus
       triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
       triples.each do |entry|
         uri = entry[:e].to_s
-        raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
         raw_results[uri][:children] << DiffResult[key: entry[:i], identifier: entry[:i].to_sym, uri: entry[:cl].to_s, id: entry[:cl].to_id, last_id: "", label: entry[:l], notation: entry[:n]]
       end
       this_version = raw_results[self.uri.to_s]
@@ -47,6 +52,7 @@ class Thesaurus
 
   private
 
+    # Clean up results hash
     def finalize(data)
       results = []
       data.each do |x| 
