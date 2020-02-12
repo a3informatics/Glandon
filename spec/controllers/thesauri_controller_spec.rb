@@ -878,7 +878,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_paths_comm_reader_expected_1.yaml", equate_method: :hash_equal)
 
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
@@ -886,13 +886,13 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
-      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_paths_comm_reader_expected_2.yaml", equate_method: :hash_equal)
 
       # Sponsor
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: "AIRPORTS", scope_id: IsoRegistrationAuthority.repository_scope.id, count: 10, offset: 0}}
       actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
-      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "history_paths_comm_reader_expected_3.yaml", equate_method: :hash_equal)
 
     end
 
@@ -930,7 +930,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "history_paths_reader_expected_1.yaml", equate_method: :hash_equal)
 
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
