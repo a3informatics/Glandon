@@ -62,7 +62,7 @@
 :timestamp
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:label "User Reference"^^xsd:string ;
+  rdfs:label "Timestamp"^^xsd:string ;
   rdfs:domain :ChangeNote ;
   rdfs:range xsd:dateTime ;
   skos:definition "The date and time of when the change note was last created or modified."^^xsd:string ;

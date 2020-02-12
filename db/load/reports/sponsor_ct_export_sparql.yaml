@@ -1,0 +1,73 @@
+---
+:columns:
+  :clidentifier:
+    :label: Code List Identifier
+    :type: literal
+  :clpt:
+    :label: Code List Preferred Term
+    :type: literal
+  :cllabel:
+    :label: Code List Name
+    :type: literal
+  :clsub:
+    :label: Code List Submission Value
+    :type: literal
+  :scl:
+    :label: Code List Synonyms
+    :type: literal
+  :tcl:
+    :label: Code List Tags 
+    :type: literal
+  :cliidentifier:
+    :label: Code List Item Identifier
+    :type: literal
+  :clipt:
+    :label: Code List Item Preferred Term
+    :type: literal
+  :clilabel:
+    :label: Code List Item Name
+    :type: literal
+  :clisub:
+    :label: Code List Item Submission Value
+    :type: literal
+  :scli:
+    :label: Code List Item Synonyms
+    :type: literal
+  :tcli:
+    :label: Code List Item Tags
+    :type: literal
+:label: Sponsor CT Export
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+  PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX is: <http://purl.org/ontology/is/core#>
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+  SELECT ?clidentifier ?clpt ?cllabel ?clsub (GROUP_CONCAT(DISTINCT ?clsyn;separator=";") as ?scl) (GROUP_CONCAT(DISTINCT ?clt;separator=";") as ?tcl) ?cliidentifier ?clipt ?clilabel ?clisub (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?scli) (GROUP_CONCAT(DISTINCT ?clit;separator=";") as ?tcli)  WHERE       
+  {         
+    ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .         
+    ?s isoT:hasIdentifier ?si .         
+    ?s isoT:hasState ?rs .         
+    ?si isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> .
+    ?s th:isTopConceptReference/bo:reference ?cl .
+    ?cl th:identifier ?clidentifier .  
+    ?cl isoC:label ?cllabel .  
+    ?cl th:notation ?clsub .
+    ?cl th:synonym/isoC:label ?clsyn .
+    ?cl th:preferredTerm/isoC:label ?clpt .
+    ?cl th:narrower ?cli .
+    ?cl isoC:tagged/isoC:prefLabel ?clt .
+    ?cli th:identifier ?cliidentifier .  
+    ?cli isoC:label ?clilabel .  
+    ?cli th:notation ?clisub .
+    ?cli th:preferredTerm/isoC:label ?clipt .
+    ?cli th:synonym/isoC:label ?clisyn .
+    ?cli isoC:tagged/isoC:prefLabel ?clit .
+  } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ?cliidentifier ?clipt ?clilabel ?clisub ?p ?o ORDER BY ?clidentifier'
+:type: Ad Hoc Report Definition
