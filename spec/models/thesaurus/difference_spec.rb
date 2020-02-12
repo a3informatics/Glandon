@@ -144,6 +144,22 @@ describe "Thesaurus::Difference" do
       file_compare(12)
     end
 
+    it "difference, other empty" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      other = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      other.creation_date = "2020-02-12".to_time_with_default # Fix date
+      result = th.differences(other)
+      check_file_actual_expected(result, sub_dir, "differences_expected_14.yaml", equate_method: :hash_equal)
+    end
+
+    it "difference, base empty" do
+      th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      th.creation_date = "2020-02-12".to_time_with_default # Fix date
+      other = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      result = th.differences(other)
+      check_file_actual_expected(result, sub_dir, "differences_expected_15.yaml", equate_method: :hash_equal)
+    end
+
   end
 
 end
