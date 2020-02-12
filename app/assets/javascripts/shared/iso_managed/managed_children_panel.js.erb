@@ -21,11 +21,12 @@ function ManagedChildrenPanel(url, count, columns) {
     "columns": _this.columns,
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
+    "autoWidth": false,
     "processing": true,
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium \" src='<%= asset_path('loading.svg') %>'></div>"
+      "processing": generateSpinner("small")
     }
   });
   this.add(0);

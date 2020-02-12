@@ -24,10 +24,11 @@ function ChildrenPanel(url, count, columns, tc_id) {
     "pageLength": pageLength, // Global setting
     "lengthMenu": pageSettings, // Global setting
     "processing": true,
+    "autoWidth": false,
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": generateSpinner("medium")
+      "processing": generateSpinner("small")
     }
   });
 
