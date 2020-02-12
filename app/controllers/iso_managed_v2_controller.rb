@@ -26,7 +26,7 @@ class IsoManagedV2Controller < ApplicationController
     @new_cdisc_th = Thesaurus.find_minimum(the_params[:new_th_id])
     @ref_cdisc_th = Thesaurus.find_minimum(params[:id]).get_referenced_thesaurus
     if Date.parse(@new_cdisc_th.version_label) <= Date.parse(@ref_cdisc_th.version_label)
-      flash[:error] = "You must choose a CDISC release newer than #{@new_cdisc_th.version_label} to view Impact Analysis."
+      flash[:error] = "You must choose a CDISC release newer than #{@ref_cdisc_th.version_label} to view Impact Analysis."
       redirect_to request.referer
     end
     @close_path = request.referer
