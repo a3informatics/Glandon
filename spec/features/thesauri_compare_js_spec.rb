@@ -3,10 +3,16 @@ require 'rails_helper'
 describe "Thesauri Compare", :type => :feature do
 
   include PauseHelpers
+  include DataHelpers
   include UserAccountHelpers
   include WaitForAjaxHelper
   include UiHelpers
   include NameValueHelpers
+  include DownloadHelpers
+
+  def sub_dir
+    return "features/thesaurus"
+  end
 
   describe "Compare Terminology", :type => :feature do
 
@@ -188,7 +194,26 @@ describe "Thesauri Compare", :type => :feature do
       expect(page).to have_content identifier
     end
 
-    it "allows to export a csv report"
+    it "allows to export a csv report", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax 30
+      context_menu_element("history", 5, "2010-04-08 Release", :compare)
+      sleep 1
+      expect(page).to have_content "Select Terminology"
+      wait_for_ajax 20
+      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      wait_for_ajax 30
+      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'2009-02-18 Release')]").click
+      expect(page.find("#number-selected").text).to eq "CT v15.0.0"
+      click_button "Submit and proceed"
+      wait_for_ajax 30
+      expect(page).to have_content "Compare Terminologies"
+      expect(page).to have_content "Changes between CT v20.0.0 and CT v15.0.0"
+      click_link "CSV Report"
+      file = download_content
+      expected = read_text_file_2(sub_dir, "compare_report_expected.csv")
+      expect(file).to eq(expected)
+    end
 
     it "compare two same terminologies, error", js: true do
       click_navbar_cdisc_terminology
