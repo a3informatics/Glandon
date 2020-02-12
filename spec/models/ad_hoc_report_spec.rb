@@ -211,4 +211,9 @@ RSpec.describe AdHocReport, type: :model do
     check_file_actual_expected(results, sub_dir, "execute_expected_1.yaml")
   end 
 
+  it "simple test" do
+    report = read_yaml_file(sub_dir, "simple_test.yaml")
+  byebug
+  end
+  
 end
