@@ -15,10 +15,10 @@ function ManagedItemsSelect(type, callback) {
   this.modalId = "#im-select-modal";
   this.historyUrl = miHistoryTableUrl;
   this.indexUrl = miIndexTableUrl;
+  this.selectMultiple = selectMultiple;
   this.indexTable = this.initIndex();
   this.historyTable = this.initHistory();
   this.initialized = false;
-  this.select_multiple = selectMultiple;
   this.type = type;
   this.cache = {};
   this.selection = [];
