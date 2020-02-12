@@ -102,13 +102,13 @@ HistoryPanel.prototype.add = function (offset) {
         var row = _this.historyTable.row.add(result.data[i]);
       }
       _this.historyTable.draw();
+      _this.setListeners();
+
       if (result.count >= _this.count) {
         _this.historyTable.processing(false);
        _this.add(result.offset + _this.count)
-      } else {
+      } else
         _this.historyTable.processing(false);
-        _this.setListeners();
-      }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
@@ -170,10 +170,10 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
 HistoryPanel.prototype.setListeners = function () {
   var _this = this;
 
-  $("#history tbody").off("click", ".registration-state").on("click", ".registation-state", function() {
+  $("#history tbody").off("click", ".registration-state").on("click", ".registration-state", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.updateRegistrationState(data);
-  })
+  });
 
   $("#history tbody").off("click", ".context-menu a:contains('Delete')").on("click", ".context-menu a:contains('Delete')", function() {
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
