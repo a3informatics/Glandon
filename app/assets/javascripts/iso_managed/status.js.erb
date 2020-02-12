@@ -1,9 +1,8 @@
 $(document).ready(function() {
-  
+
 $("#version-edit-submit").on("click", function() {
   var value = $("#select-release option:selected").val();
   var data = { "iso_managed": { "sv_type": value } };
-  console.log(data);
   $.ajax({
     url: url_release,
     type: 'PUT',
