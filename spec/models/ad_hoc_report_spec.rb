@@ -213,7 +213,6 @@ RSpec.describe AdHocReport, type: :model do
 
   it "simple test" do
     report = read_yaml_file(sub_dir, "simple_test.yaml")
-  byebug
   end
   
 end
