@@ -110,7 +110,7 @@ ManagedItemsSelect.prototype.setListeners = function () {
  * @return [void]
  */
 ManagedItemsSelect.prototype.handleSelect = function (item, selected) {
-  if (this.selectMultiple) {
+  if (this.selectMultiple == true) {
     var index = this.selection.indexOf(item.id);
 
     if (selected && index == -1)
@@ -121,7 +121,7 @@ ManagedItemsSelect.prototype.handleSelect = function (item, selected) {
     this.updateSelectionCount();
   }
   else {
-    this.selection = selected  ? [item.id] : [];
+    this.selection = (selected == true ? [item.id] : []);
     var name = this.indexTable.row({selected: true}).data().identifier + " v" + item.has_identifier.semantic_version;
     this.updateSelectionCount(name);
   }
@@ -231,7 +231,7 @@ ManagedItemsSelect.prototype.initHistory = function () {
 		"processing": true,
     "scrollY": 400,
     "scrollCollapse": true,
-    "select": (this.selectMultiple ? "multi" : "single"),
+    "select": (this.selectMultiple == true ? "multi" : "single"),
 		"paging": true,
 		"language": {
 			"infoFiltered": "",
