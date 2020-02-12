@@ -55,27 +55,40 @@ class IsoManagedV2 < IsoConceptV2
     return self.version == IsoScopedIdentifierV2.latest_version(self.scoped_identifier, self.has_identifier.has_scope)
   end
 
-  # Later Version
+  # Later Version.
   #
-  # @param version [Integer] the version being compared against
-  # @return [Boolean] true if the item has a version later than that specified
-  def later_version?(version)
-    return self.has_identifier.later_version?(version)
+  # @param other [Object] the other version being compared against
+  # @return [Boolean] true if the item has a version later than this version
+  def later_version?(other)
+    same_item?(other) && self.has_identifier.later_version?(other.version)
   end
 
+  def same_item?(other)
+    same_scoped_identifier?(other) && same_owner?(other)
+  end
+
+  def same_scoped_identifier?(other)
+    self.scoped_identifier == other.scoped_identifier
+  end
+  
+  def same_owner?(other)
+    self.owner.uri == other.owner.uri
+  end
+  
   # Earlier Version
   #
-  # @param version [Integer] the version being compared against
+  # @param other [Object] the other version being compared against
   # @return [Boolean] true if the item has a version earlier than that specified
-  def earlier_version?(version)
-    return self.has_identifier.earlier_version?(version)
+  def earlier_version?(other)
+    return self.has_identifier.earlier_version?(other.version)
   end
 
   # Same Version
   #
+  # @param other [Object] the other version being compared against
   # @return [Boolean] Returns true if the item has the same version as that specified
-  def same_version?(version)
-    return self.has_identifier.same_version?(version)
+  def same_version?(other)
+    return self.has_identifier.same_version?(other.version)
   end
 
   def scope
