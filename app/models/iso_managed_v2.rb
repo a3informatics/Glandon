@@ -241,6 +241,12 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
+  # def first_release?
+  #   return false if state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
+  #   return true
+  #   # if !sv.to_s != "0.1.0" && state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
+  # end
+
   # Previous Release
   #
   # @return
@@ -249,7 +255,7 @@ class IsoManagedV2 < IsoConceptV2
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
     return SemanticVersion.first.to_s if results.count == 1 # If only one item force to base (first) version
     item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
-    item.nil? ? results.last[:semantic_version] : item[:semantic_version]
+    item.nil? ? results.last[:semantic_version] : item[:semantic_version] #item.nil? There is no Standard version
   end
 
   # Release
@@ -269,8 +275,8 @@ class IsoManagedV2 < IsoConceptV2
         when :major
           sv.increment_major
         when :minor
-          sv.increment_minor
-        when :patch
+          sv.increment_minor if sv.to_s != "0.1.0" || state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
+        when :patch   
           sv.increment_patch
         else
           self.errors.add(:base, "The release request type was invalid")
