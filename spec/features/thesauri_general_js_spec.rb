@@ -142,6 +142,25 @@ describe "Thesaurus", :type => :feature do
       click_link 'Return'
     end
 
+    it "Changes of a sponsor-created Code List", js: true do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      context_menu_element("history", 4, 'CDISC Extensions', :show)
+       wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'A00020')]/td/a", :text => 'Show').click
+      wait_for_ajax 10
+      click_link 'Changes'
+      wait_for_ajax 10
+      expect(page).to have_content 'A00020'
+      expect(page).to have_content 'Differences'
+      expect(page).to have_content 'Changes'
+      ui_check_table_info("differences_table", 1, 1, 1)
+      ui_check_table_info("changes", 1, 1, 1)
+    end
+
     it "allows for terminology to be exported as CSV"
     # it "allows for terminology to be exported as CSV", js: true do
     #   clear_downloads
