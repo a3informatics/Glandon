@@ -333,6 +333,12 @@ table th.th-xsmall{
   max-width: calc(100% - 40px);
 }
 
+.table-cardstyle table.dataTable th, .table-cardstyle table.dataTable td{
+  box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+}
+
 @media (max-width:768px) {
   .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
   .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,

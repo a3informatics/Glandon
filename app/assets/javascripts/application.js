@@ -478,3 +478,10 @@ function redirectPost(url, param, object){
   $(document.body).append(form);
   $(form).submit();
 }
+
+function refreshOnBackPressed(){
+  $(window).off('pageshow').on('pageshow', function() {
+    if (performance.navigation.type == 2)
+      location.reload();
+  });
+}
