@@ -218,6 +218,11 @@ function displaySuccess(text) {
 }
 
 function handleAjaxError (xhr, status, error, target) {
+  if (xhr.status == 401){
+    location.reload(true);
+    return;
+  }
+
     var json;
     var errors;
     var html;
