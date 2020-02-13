@@ -247,7 +247,7 @@ class IsoManagedV2 < IsoConceptV2
   def previous_release
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
-    return SemanticVersion.first.to_s if results.count == 1 # If only one item force to base (first) version
+    return SemanticVersion.base.to_s if results.count == 1 # If only one item force to base (first) version
     item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
     item.nil? ? results.last[:semantic_version] : item[:semantic_version]
   end
