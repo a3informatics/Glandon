@@ -130,7 +130,7 @@ SubsetSourceChildrenPanel.prototype.addOrRemoveItems = function(indexes, action)
   if(this.autoSelectMode)
     return;
 
-  var itemIds = this.childrenTable.rows(indexes).data().toArray().map(e => e.id);
+  var itemIds = this.childrenTable.rows(indexes).data().toArray().map(function(e) { return e.id });
   var callback = this.autoSelect.bind(this);
 
   switch (action) {
