@@ -73,7 +73,7 @@ class SemanticVersion
     @patch += 1
   end
 
-  # Next Versions. Don't increment the minor version. Assumed to have occured on creation of new draft.
+  # Next Versions.
   #
   # @return [Hash] The next versions hash
   def next_versions
