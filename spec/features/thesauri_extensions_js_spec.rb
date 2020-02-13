@@ -179,6 +179,26 @@ describe "Thesauri Extensions", :type => :feature do
       expect(page).to have_content("C96785E")
     end
 
+    it "Can refresh page while editing in a locked state, creates new version (REQ-MDR-EXT-???)", js:true do
+      go_to_edit_extension "C96785E"
+      click_link "Return"
+      wait_for_ajax 10
+      context_menu_element("history", 8, "C96785E", :document_control)
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_link "Return"
+      wait_for_ajax 10
+      ui_check_table_info("history", 1, 1, 1)
+      context_menu_element("history", 8, "C96785E", :edit)
+      expect(page).to have_content("Edit Extension")
+      page.driver.browser.navigate.refresh
+      expect(page).to have_content("Edit Extension")
+      page.go_back
+      wait_for_ajax 20
+      ui_check_table_info("history", 1, 3, 3)
+    end
+
     it "Add one or more existing Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
       go_to_edit_extension "C66770E"
       expect(page).to have_content("CDISC SDTM Unit for Vital Sign Result Terminology")
