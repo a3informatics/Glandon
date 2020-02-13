@@ -121,6 +121,8 @@ class ThesauriController < ApplicationController
   def release_select
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
+    last_id = Thesaurus.history_uris(identifier: @thesaurus.has_identifier.identifier, scope: @thesaurus.scope).first
+    @thesaurus = Thesaurus.find_minimum(last_id)
     @thesaurus = edit_item(@thesaurus)
     if !@thesaurus.nil?
       @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
