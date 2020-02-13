@@ -17,8 +17,6 @@ describe "ISO Managed JS", :type => :feature do
 
   before :all do
     ua_create
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
-      "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_ACME_TEST.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)
