@@ -494,7 +494,7 @@ function redirectPost(url, param, object){
 }
 
 function refreshOnBackPressed(){
-  $(window).off('pageshow').on('pageshow', function() {
+  $(window).one("load", function() {
     if (performance.navigation.type == 2)
       location.reload();
   });
