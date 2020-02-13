@@ -13,11 +13,16 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @managed_item = get_item(params)
-    @current_id = the_params[:current_id]
-    @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
     @referer = request.referer
-    @close_path = TypePathManagement.history_url_v2(@managed_item, true)
+    @managed_item = get_item(params)
+    token = get_token(@managed_item)
+    if !token.nil?
+      @current_id = the_params[:current_id]
+      @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions 
+      @close_path = TypePathManagement.history_url_v2(@managed_item, true) 
+    else
+      redirect_to @referer
+    end
   end
 
   def impact
@@ -43,17 +48,26 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     referer = request.referer
     @managed_item = IsoManagedV2.find_minimum(params[:id])
-    @managed_item.update_status(the_params)
-    flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
-    redirect_to referer
+    token = Token.find_token(@managed_item, current_user)
+    if !token.nil?
+      @managed_item.update_status(the_params)
+      flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
+    end
+      flash[:error] = "The edit lock has timed out."
+      redirect_to referer    
   end
 
   def update_semantic_version
     authorize IsoManaged, :status?
     @managed_item = get_item(params)
-    @managed_item.release(the_params[:sv_type].downcase.to_sym)
-    status = @managed_item.errors.empty? ? 200 : 422
-    render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+    token = Token.find_token(@managed_item, current_user)
+    if !token.nil?
+      @managed_item.release(the_params[:sv_type].downcase.to_sym)
+      status = @managed_item.errors.empty? ? 200 : 422
+      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+    else
+      render :json => { :data => "", :errors => ["The edit lock has timed out."]}
+    end
   end
 
   def find_by_tag
