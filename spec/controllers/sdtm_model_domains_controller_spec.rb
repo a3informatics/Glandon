@@ -16,10 +16,9 @@ describe SdtmModelDomainsController do
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
+      load_schema_file_into_triple_store("thesaurus.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
       load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
