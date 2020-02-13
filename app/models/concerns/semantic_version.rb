@@ -37,9 +37,16 @@ class SemanticVersion
 
   # First
   #
-  # @return (SemanticVersion) the first version
+  # @return (SemanticVersion) the first version (0.1.0)
   def self.first
     self.new(major: 0, minor: 1)
+  end
+
+  # Base
+  #
+  # @return (SemanticVersion) the base version (0.0.0)
+  def self.base
+    self.new(major: 0, minor: 0)
   end
 
   # Increment Major
@@ -74,8 +81,8 @@ class SemanticVersion
     minor_sv = self.dup
     patch_sv = self.dup
     major_sv.increment_major
-    #minor_sv.increment_minor 
-    patch_sv.increment_patch 
+    minor_sv.increment_minor
+    patch_sv.increment_patch
     result = {major: major_sv.to_s, minor: minor_sv.to_s, patch: patch_sv.to_s}
   end
 

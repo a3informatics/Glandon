@@ -257,6 +257,88 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       ui_check_table_info("history", 1, 3, 3)
     end
 
+    it "allows an item to move through the lifecyle updating semaversion number", scenario: true, js: true do
+      click_navbar_terminology
+      expect_page 'Index: Terminology'
+      click_link 'New Terminology'
+      sleep 1
+      fill_in 'thesauri_identifier', with: 'TEST3'
+      fill_in 'thesauri_label', with: 'Test Terminology3'
+      click_button 'Submit'
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'Test Terminology3')]/td/a").click
+      wait_for_ajax(10)
+      context_menu_element('history', 4, 'Test Terminology3', :document_control)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Incomplete")
+      expect(page).to have_content("Version: 0.1.0")
+
+      click_button "state_submit"
+      wait_for_ajax(10)
+      expect(page).to have_content("Candidate")
+      page.find("#version-edit").click
+      ui_select_check_options("select-release", ["Major: 1.0.0", "Minor: 0.1.0", "Patch: 0.0.1"])
+      
+      click_button "state_submit"
+      wait_for_ajax(10)
+      expect(page).to have_content("Recorded")
+      page.find("#version-edit").click
+      ui_select_check_options("select-release", ["Major: 1.0.0", "Minor: 0.1.0", "Patch: 0.0.1"])
+      
+      select "1.0.0", :from => "select-release"
+      click_button "version-edit-submit"
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Recorded")
+      expect(page).to have_content("Version: 1.0.0")
+
+      page.find("#version-edit").click
+      select "0.1.0", :from => "select-release"
+      click_button "version-edit-submit"
+      expect(page).to have_content("Version: 0.1.0")
+
+      page.find("#version-edit").click
+      select "0.0.1", :from => "select-release"
+      click_button "version-edit-submit"
+      expect(page).to have_content("Version: 0.0.1")
+
+      page.find("#version-edit").click
+      select "1.0.0", :from => "select-release"
+      click_button "version-edit-submit"
+      expect(page).to have_content("Version: 1.0.0")
+
+      click_button "state_submit"
+      wait_for_ajax(10)
+      expect(page).to have_content("Qualified")
+
+      click_button "state_submit"
+      wait_for_ajax(10)
+      expect(page).to have_content("Standard")
+      expect(page).to have_content("Version: 1.0.0")
+
+      click_link 'Return'
+      wait_for_ajax(120)
+
+      context_menu_element('history', 4, 'Test Terminology3', :edit)
+      wait_for_ajax(120)
+      click_link 'Return'
+      wait_for_ajax(20)
+      context_menu_element('history', 4, 'Test Terminology3', :document_control, 1)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Incomplete")
+      expect(page).to have_content("Version: 1.1.0")
+
+      click_button "state_submit"
+      wait_for_ajax(10)
+      expect(page).to have_content("Candidate")
+      page.find("#version-edit").click
+      ui_select_check_options("select-release", ["Major: 2.0.0", "Minor: 1.1.0", "Patch: 1.0.1"])
+
+    end
+
   end
 
 end
