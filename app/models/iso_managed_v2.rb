@@ -242,9 +242,8 @@ class IsoManagedV2 < IsoConceptV2
   end
 
   # def first_release?
-  #   return false if state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
-  #   return true
-  #   # if !sv.to_s != "0.1.0" && state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
+  # return false if sv.to_s != "0.1.0" || state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope).length != 1
+  # return true
   # end
 
   # Previous Release

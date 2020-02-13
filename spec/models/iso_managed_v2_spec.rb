@@ -1498,8 +1498,7 @@ describe "IsoManagedV2" do
       (1..5).each do |ver|
         uri = Uri.new(uri: "http://www.cdisc.org/CT/V#{ver}#TH")
         item = Thesaurus.find_minimum(uri)
-        item.has_state.registration_status = "Qualified"
-        item.has_state.save
+        set_state(item, "Qualified")
       end
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1513,14 +1512,39 @@ describe "IsoManagedV2" do
       (1..5).each do |ver|
         uri = Uri.new(uri: "http://www.cdisc.org/CT/V#{ver}#TH")
         item = Thesaurus.find_minimum(uri)
-        item.has_state.registration_status = "Qualified"
-        item.has_state.save
+        set_state(item, "Qualified")
       end
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
       item = Thesaurus.find_minimum(uri)
       item.release(:patch)
       actual = Thesaurus.find_minimum(uri)
       expect(actual.semantic_version).to eq("1.0.1")
+    end
+
+    it "allows the item release to be incremented, five versions, increment patch, minor and major" do
+      load_cdisc_term_versions(1..5)
+      (1..5).each do |ver|
+        uri = Uri.new(uri: "http://www.cdisc.org/CT/V#{ver}#TH")
+        item = Thesaurus.find_minimum(uri)
+        set_state(item, "Qualified")
+      end
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.release(:patch)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.0.1")
+
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.release(:minor)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.1.0")
+
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.release(:major)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("2.0.0")
     end
 
   end
