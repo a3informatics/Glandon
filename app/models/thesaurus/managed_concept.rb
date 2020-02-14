@@ -23,6 +23,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
+  include Thesaurus::Extensions
 
   # Extended? Is this item extended
   #
