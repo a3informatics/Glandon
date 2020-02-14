@@ -22,6 +22,7 @@ describe "Ad Hoc Reports", :type => :feature do
       load_cdisc_term_versions(1..2)
       AdHocReport.delete_all
       delete_all_public_files
+      clear_downloads
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       files = []
