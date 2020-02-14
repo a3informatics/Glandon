@@ -117,7 +117,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_click_tab "Test Terminology"
       ui_check_table_info("table-selection-overview", 1, 10, 911)
       ui_check_table_cell("table-selection-overview", 10, 1, "C96783")
-      ui_check_table_row_indicators("table-selection-overview", 1, 7, ["9 versions", "subsetted"])
+      ui_check_table_row_indicators("table-selection-overview", 1, 8, ["9 versions", "subsetted"])
       ui_click_tab "Sponsor CLs"
       wait_for_ajax 10
       find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"Test CL 2")]').click
@@ -133,7 +133,7 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_cell("table-selection-overview", 5, 1, "C99076E")
       ui_check_table_cell("table-selection-overview", 1, 6, "0.1.0")
       ui_check_table_cell("table-selection-overview", 2, 6, "58.0.0")
-      ui_check_table_row_indicators("table-selection-overview", 2, 7, ["9 versions", "subsetted"])
+      ui_check_table_row_indicators("table-selection-overview", 2, 8, ["9 versions", "subsetted"])
     end
 
     it "deselect CLs from the thesaurus, single or bulk", :type => :feature do
@@ -161,7 +161,7 @@ describe "Thesauri Release Select", :type => :feature do
     it "exclude CLs from the thesaurus, single or bulk", :type => :feature do
       navigate_to_release_sel
       ui_click_tab "Test Terminology"
-      find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C99079")]/td[8]/span').click
+      find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C99079")]/td[9]/span').click
       wait_for_ajax 10
       ui_click_tab "CDISC CLs"
       find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]')[:class].exclude? "selected"
@@ -180,7 +180,7 @@ describe "Thesauri Release Select", :type => :feature do
       navigate_to_release_sel
       ui_click_tab "Test Terminology"
       wait_for_ajax 10
-      ui_check_table_row_indicators("table-selection-overview", 6, 7, ["4 versions", "extension"])
+      ui_check_table_row_indicators("table-selection-overview", 6, 8, ["4 versions", "extension"])
       ui_check_table_cell("table-selection-overview", 6, 6, "0.3.0")
       find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C96783E")]/td[6]/span').click
       sleep 1
@@ -193,13 +193,13 @@ describe "Thesauri Release Select", :type => :feature do
       click_button "Submit"
       sleep 1
       wait_for_ajax 30
-      ui_check_table_row_indicators("table-selection-overview", 6, 7, ["4 versions", "extension", "Current"])
+      ui_check_table_row_indicators("table-selection-overview", 6, 8, ["4 versions", "extension", "Current"])
       ui_check_table_cell("table-selection-overview", 6, 6, "0.1.0")
       ui_click_tab "Sponsor Extensions"
       wait_for_ajax 10
       find(:xpath, '//*[@id="table-sponsor-extensions"]/tbody/tr[contains(.,"C96783E")]')[:class].include? "selected"
       ui_click_tab "Test Terminology"
-      find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C96783E")]/td[8]/span').click
+      find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C96783E")]/td[9]/span').click
       wait_for_ajax 10
       ui_click_tab "Sponsor Extensions"
       find(:xpath, '//*[@id="table-sponsor-extensions"]/tbody/tr[contains(.,"C96783E")]')[:class].exclude? "selected"
