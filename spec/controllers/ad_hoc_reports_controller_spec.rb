@@ -11,7 +11,7 @@ describe AdHocReportsController do
     login_content_admin
 
     def sub_dir
-      return "controllers"
+      return "controllers/ad_hoc_reports"
     end
 
     before :all do
@@ -72,7 +72,7 @@ describe AdHocReportsController do
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []}}
       expect(response).to render_template("results")
     end
 
@@ -83,7 +83,7 @@ describe AdHocReportsController do
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"running\":false}")
@@ -96,7 +96,7 @@ describe AdHocReportsController do
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id }
       get :run_results, { id: report.id }
       expect(response.code).to eq("200")
@@ -169,7 +169,7 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       expect(response).to render_template("results")
     end
 
@@ -182,7 +182,7 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id  }
       expect(response.code).to eq("200")
     end
@@ -196,7 +196,7 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_results, { id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
