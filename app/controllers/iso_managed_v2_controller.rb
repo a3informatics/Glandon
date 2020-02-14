@@ -15,11 +15,11 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     @referer = request.referer
     @managed_item = get_item(params)
-    token = get_token(@managed_item)
-    if !token.nil?
+    @token = get_token(@managed_item)
+    if !@token.nil?
       @current_id = the_params[:current_id]
-      @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions 
-      @close_path = TypePathManagement.history_url_v2(@managed_item, true) 
+      @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
+      @close_path = TypePathManagement.history_url_v2(@managed_item, true)
     else
       redirect_to @referer
     end
@@ -54,7 +54,7 @@ class IsoManagedV2Controller < ApplicationController
       flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
     end
       flash[:error] = "The edit lock has timed out."
-      redirect_to referer    
+      redirect_to TypePathManagement.history_url_v2(@managed_item)
   end
 
   def update_semantic_version

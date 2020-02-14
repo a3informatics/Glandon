@@ -1,26 +1,37 @@
 $(document).ready(function() {
 
-$("#version-edit-submit").on("click", function() {
-  var value = $("#select-release option:selected").val();
-  var data = { "iso_managed": { "sv_type": value } };
-  $.ajax({
-    url: url_release,
-    type: 'PUT',
-    dataType: 'json',
-    data: JSON.stringify( data ),
-    contentType: 'application/json',
-    error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error);
-    },
-    success: function(result){
-      location.reload();
-    }
-  });
-});
+  var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
+  var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);
 
-$(".content-editable").on("click", function(){
-  $("#"+$(this).attr("id")+"-after").css("display", "inline-block");
-  $(this).css("display", "none");
-});
+  $("#edit-properties-button").on("click", function() {
+    new EditProperties(epItemextension, "extension", "ManagedConcept", null).show();
+  });
+
+  function unloadCallback() {
+    timer.unload();
+  }
+
+  $("#version-edit-submit").on("click", function() {
+    var value = $("#select-release option:selected").val();
+    var data = { "iso_managed": { "sv_type": value } };
+    $.ajax({
+      url: url_release,
+      type: 'PUT',
+      dataType: 'json',
+      data: JSON.stringify( data ),
+      contentType: 'application/json',
+      error: function (xhr, status, error) {
+        handleAjaxError(xhr, status, error);
+      },
+      success: function(result){
+        location.reload();
+      }
+    });
+  });
+
+  $(".content-editable").on("click", function(){
+    $("#"+$(this).attr("id")+"-after").css("display", "inline-block");
+    $(this).css("display", "none");
+  });
 
 });
