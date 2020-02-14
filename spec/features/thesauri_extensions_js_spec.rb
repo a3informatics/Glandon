@@ -94,6 +94,7 @@ describe "Thesauri Extensions", :type => :feature do
     end
 
     it "if a CDISC code list is not extensible, extend button disabled (REQ-MDR-EXT-040)", js:true do
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(false)
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       expect(page).to have_content 'History'
@@ -108,8 +109,30 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       expect(page).to have_content("CDISC SDTM Relationship Type Terminology")
-      #expect(page).to have_xpath("//*[@id='extend'][@class='ico-btn-sec disabled']")
       expect(context_menu_element_header_present?(:extend, "disabled")).to eq(true)
+    end
+
+    it "if a CDISC code list is not extensible, extend button enabled (REQ-MDR-EXT-040)", js:true do
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(true)
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'History'
+      context_menu_element("history", 5, "2014-12-19 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2014-12-19 Release'
+      ui_check_table_info("children_table", 1, 10, 477)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C78737")
+      wait_for_ajax(10)
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      context_menu_element_header(:extend)
+      sleep 1
+      ui_confirmation_dialog true
+      expect(page).to have_content("Pick a Terminology")
+      click_button 'Close'
+      sleep 1
     end
 
     it "Create Extension, Terminology container (REQ-MDR-EXT-010)", js:true do
@@ -162,7 +185,7 @@ describe "Thesauri Extensions", :type => :feature do
 
     it "Create Extension, no Terminology container (REQ-MDR-EXT-???)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax(10) 
       expect(page).to have_content 'History'
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
@@ -177,6 +200,57 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content("Edit Extension")
       expect(page).to have_content("C96785E")
+    end
+
+    it "Create Extension, Terminology container, non_extensible code list (REQ-MDR-EXT-???)", js:true do
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(true)
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'History'
+      context_menu_element("history", 5, "2014-12-19 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2014-12-19 Release'
+      ui_check_table_info("children_table", 1, 10, 477)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C78737")
+      wait_for_ajax(10)
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      context_menu_element_header(:extend)
+      sleep 1
+      ui_confirmation_dialog true
+      find(:xpath, "//*[@id='thTable']/tbody/tr[contains(.,'TEST')]").click
+      find(:xpath, "//*[@id='thTable']/tbody/tr[contains(.,'TEST')]")[:class].include?("selected")
+      expect(page.find("#select_th")[:class]).not_to include("disabled")
+      click_button 'Select'
+      wait_for_ajax(10)
+      expect(page).to have_content("C78737E")
+    end
+
+
+    it "Create Extension, no Terminology container, non_extensible code list (REQ-MDR-EXT-???)", js:true do
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(true)
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'History'
+      context_menu_element("history", 5, "2014-12-19 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2014-12-19 Release'
+      ui_check_table_info("children_table", 1, 10, 477)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99077")
+      wait_for_ajax(10)
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      find(:xpath, "//tr[contains(.,'C99077')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      context_menu_element_header(:extend)
+      sleep 1
+      ui_confirmation_dialog true
+      expect(page).to have_content("Pick a Terminology")
+      click_button 'Do not select'
+      wait_for_ajax(10)
+      expect(page).to have_content("C99077E")
     end
 
     it "Can refresh page while editing in a locked state, creates new version (REQ-MDR-EXT-???)", js:true do
