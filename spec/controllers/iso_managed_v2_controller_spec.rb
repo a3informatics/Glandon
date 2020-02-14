@@ -89,13 +89,13 @@ describe IsoManagedV2Controller do
     end
 
     it 'updates the status, locked by another user' do
-      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      expect(TypePathManagement).to receive(:history_url_v2).and_return("/history")
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
       mi = IsoManagedV2.find_minimum(uri_1)
       token = Token.obtain(mi, @lock_user)
       post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
         administrative_note: "X1", unresolved_issue: "X2" }}
-      expect(response).to redirect_to("/registration_states")
+      expect(response).to redirect_to("/history")
     end
 
     it 'prevents updates with invalid data (the state)' do
