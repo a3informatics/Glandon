@@ -234,7 +234,7 @@ RSpec.describe AdHocReport, type: :model do
     report.background_id = job.id
     report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
     report.results_file = "ad_hoc_report_test_2_results.yaml"
-    job.start("Rspec test", "Starting...") {report.execute({query_params: [Uri.new(uri: "http://www.cdisc.org/CT/V1#TH").to_id]})}
+    job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V1#TH").to_id])}
     results = AdHocReportFiles.read("ad_hoc_report_test_2_results.yaml")
     check_file_actual_expected(results, sub_dir, "execute_expected_2.yaml")
   end 

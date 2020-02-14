@@ -166,7 +166,7 @@ private
     query = definition[:query].dup
     return query if !self.parameters? || params.empty?
     # Note: Only setup for one parameter
-    query.sub! '[[[parameter_1]]]', Uri.new(id: params[:query_params].first).to_ref
+    query.sub! '[[[parameter_1]]]', Uri.new(id: params.first).to_ref
     query
   end
 
