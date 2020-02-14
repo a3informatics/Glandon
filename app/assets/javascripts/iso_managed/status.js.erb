@@ -12,6 +12,7 @@ $(document).ready(function() {
   }
 
   $("#version-edit-submit").on("click", function() {
+    unload.keep = true;
     var value = $("#select-release option:selected").val();
     var data = { "iso_managed": { "sv_type": value } };
     $.ajax({
@@ -32,6 +33,10 @@ $(document).ready(function() {
   $(".content-editable").on("click", function(){
     $("#"+$(this).attr("id")+"-after").css("display", "inline-block");
     $(this).css("display", "none");
+  });
+
+  $(".keep-token-click").on("click", function(){
+    unload.keep = true;
   });
 
 });
