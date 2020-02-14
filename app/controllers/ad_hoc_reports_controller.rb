@@ -26,7 +26,7 @@ class AdHocReportsController < ApplicationController
       flash[:error] = "#{report.errors.full_messages.to_sentence}."
       redirect_to new_ad_hoc_report_path
     end
-  end  
+  end
 
   def run_start
     authorize AdHocReport
@@ -77,6 +77,7 @@ private
   end
 
   def query_params
+    return {query_params: []} if params.dig(:ad_hoc_report, :query_params).nil?
     params.require(:ad_hoc_report).permit(:query_params => [])
   end
 
