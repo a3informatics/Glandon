@@ -493,9 +493,8 @@ function redirectPost(url, param, object){
   $(form).submit();
 }
 
+// Include on pages which should force reload when navigated to with the back button. Call before $(document).ready 
 function refreshOnBackPressed(){
-  $(window).off('pageshow').on('pageshow', function() {
-    if (performance.navigation.type == 2)
-      location.reload();
-  });
+  if (performance.navigation.type == 2)
+    location.reload();
 }

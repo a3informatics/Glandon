@@ -281,6 +281,40 @@ describe "Thesauri Subsets", :type => :feature do
       w.close
     end
 
+
+    it "can refresh page while editing in a locked state, creates new version", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax 30
+      context_menu_element("history", 5, "20.0.0", :show)
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'C87162')]/td/a", :text => 'Show').click
+      wait_for_ajax 10
+      context_menu_element_header(:subsets)
+      sleep 1
+      wait_for_ajax 10
+      click_on "+ New subset"
+      sleep 2
+      click_on "Do not select"
+      sleep 1
+      click_link "Return"
+      wait_for_ajax 10
+      ui_check_table_info("history", 1, 1, 1)
+      context_menu_element("history", 5, "0.1.0", :document_control)
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_link "Return"
+      wait_for_ajax 10
+      ui_check_table_info("history", 1, 1, 1)
+      context_menu_element("history", 8, "0.1.0", :edit)
+      expect(page).to have_content("Edit Subset")
+      page.driver.browser.navigate.refresh
+      expect(page).to have_content("Edit Subset")
+      page.go_back
+      wait_for_ajax 20
+      ui_check_table_info("history", 1, 3, 3)
+    end
+    
   end
 
   describe "Subsets Released State", :type => :feature do
