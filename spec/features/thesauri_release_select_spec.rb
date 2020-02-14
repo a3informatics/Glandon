@@ -261,7 +261,7 @@ describe "Thesauri Release Select", :type => :feature do
   end
 
 
-  describe "The Curator User, initial state", :type => :feature, js:true do
+  describe "The Curator User", :type => :feature, js:true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -300,6 +300,27 @@ describe "Thesauri Release Select", :type => :feature do
       page.find(".card-with-tabs .show-more-btn").click
       expect(page).to have_content("Select CDISC Terminology version by dragging the slider")
       expect(page).to have_content("ver. 2015-12-18")
+    end
+
+    it "can refresh page while editing in a locked state, creates new version", :type => :feature do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'TST0')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element("history", 8, "0.1.0", :document_control)
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_link "Return"
+      wait_for_ajax 10
+      ui_check_table_info("history", 1, 1, 1)
+      context_menu_element("history", 8, "0.1.0", :edit)
+      expect(page).to have_content("Find & Select Code Lists")
+      page.driver.browser.navigate.refresh
+      expect(page).to have_content("Find & Select Code Lists")
+      page.go_back
+      wait_for_ajax 20
+      ui_check_table_info("history", 1, 3, 3)
     end
 
   end
