@@ -11,7 +11,6 @@ describe "Thesauri Extensions", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
