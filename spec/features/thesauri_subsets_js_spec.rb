@@ -345,7 +345,7 @@ describe "Thesauri Subsets", :type => :feature do
       ua_logoff
     end
 
-    it "allows to edit a subset, add, remove and move_after item", js:true do
+    it "allows to edit a subset, add, remove and move_after item, WILL CURRENTLY FAIL (Drag-n-drop)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(7)
       context_menu_element("history", 5, "2010-03-05 Release", :show)
