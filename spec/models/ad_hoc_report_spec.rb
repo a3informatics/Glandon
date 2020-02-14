@@ -123,7 +123,8 @@ RSpec.describe AdHocReport, type: :model do
     report = AdHocReport.new
     report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
     expect(report.parameters?).to eq(true)
-    expect(report.parameters).to eq([{description: "The terminology for which the report is required.", name: "Terminology"}])
+    expect(report.parameters).to eq([{description: "The terminology for which the report is required.", name: "Terminology", type: :thesauri}])
+    expect(report.parameter).to eq({description: "The terminology for which the report is required.", name: "Terminology", type: :thesauri})
   end
 
   it "will run a report, no params" do

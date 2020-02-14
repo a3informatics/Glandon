@@ -47,14 +47,27 @@ class AdHocReport < ActiveRecord::Base
     self.destroy
   end
 
+  # Parameters? Does this report have parameters?
+  #
+  # @return [Boolean] true if parameters, false otherwise
   def parameters?
     definition = read_definition
     definition[:parameters].any?
   end
 
+  # Parameters. Get the parameters.
+  #
+  # @return [Array] the parameters
   def parameters
     definition = read_definition
     definition[:parameters]
+  end
+
+  # Parameter. Get the parameter
+  #
+  # @return [Hash] the first parameter
+  def parameter
+    parameters.first
   end
 
   # Run A Report
