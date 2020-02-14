@@ -52,5 +52,7 @@
 				<%= link_to "+ Add New", new_ad_hoc_report_path, :class => "btn medium green" %>
 			<% end %>
 		</div>
+		<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :items_generic, select_multiple: false,
+			description: "Select one item to run the report based on."} %>
 	</div>
 </div>

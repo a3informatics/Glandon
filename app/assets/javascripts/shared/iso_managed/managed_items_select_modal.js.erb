@@ -13,13 +13,15 @@
  */
 function ManagedItemsSelect(callback) {
   this.modalId = "#im-select-modal";
-  this.historyUrl = miHistoryTableUrl;
-  this.indexUrl = miIndexTableUrl;
+  this.type = miType;
+  this.urls = {
+    thesauri: { historyUrl: miHistoryThesauriUrl, indexUrl: miIndexThesauriUrl },
+    code_lists: { historyUrl: miHistoryClUrl, indexUrl: miIndexClUrl }
+  }
   this.selectMultiple = selectMultiple;
   this.indexTable = this.initIndex();
   this.historyTable = this.initHistory();
   this.initialized = false;
-  this.type = miType;
   this.cache = {};
   this.selection = [];
   this.callback = callback;
@@ -27,7 +29,7 @@ function ManagedItemsSelect(callback) {
   // Load data when modal shown
   $(this.modalId).off('shown.bs.modal').on('shown.bs.modal', function (e) {
     if(!this.initialized)
-      this.loadData(this.indexUrl, this.indexTable, 0);
+      this.loadData(this.urls[this.type].indexUrl, this.indexTable, 0);
   }.bind(this));
 
   this.setListeners();
@@ -157,6 +159,9 @@ ManagedItemsSelect.prototype.loadHistory = function (item) {
  */
 ManagedItemsSelect.prototype.loadData = function (url, target, offset) {
   var count = this.getItemCount(target);
+
+  if(url == null)
+    throw new Exception("Type must be specific!");
 
   if(offset == 0) {
     this.clear(target);
@@ -323,7 +328,7 @@ ManagedItemsSelect.prototype.updateUI = function () {
  * @return [String] history url
  */
 ManagedItemsSelect.prototype.makeHistoryUrl = function (identifier, scopeId) {
-  return this.historyUrl.replace("miHistoryId", identifier).replace("miScopeId", scopeId);
+  return this.urls[this.type].historyUrl.replace("miHistoryId", identifier).replace("miScopeId", scopeId);
 }
 
 /**

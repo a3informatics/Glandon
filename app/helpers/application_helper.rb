@@ -25,7 +25,8 @@ module ApplicationHelper
     sdtm_user_domains: {link: "/sdtm_user_domains", text: "Domains", icon: "icon-sdtm"},
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
     user_settings: {link: "/user_settings", text: "User Settings"},
-    users: {link: "/users", text: "Users"}
+    users: {link: "/users", text: "Users"},
+    items_generic: {link: "#", text: "Items", icon: "icon-multi"}
   }
 
   def instance_title(title, item)
