@@ -37,9 +37,16 @@ class SemanticVersion
 
   # First
   #
-  # @return (SemanticVersion) the first version
+  # @return (SemanticVersion) the first version (0.1.0)
   def self.first
     self.new(major: 0, minor: 1)
+  end
+
+  # Base
+  #
+  # @return (SemanticVersion) the base version (0.0.0)
+  def self.base
+    self.new(major: 0, minor: 0)
   end
 
   # Increment Major
@@ -66,7 +73,7 @@ class SemanticVersion
     @patch += 1
   end
 
-  # Next Versions. Don't increment the minor version. Assumed to have occured on creation of new draft.
+  # Next Versions.
   #
   # @return [Hash] The next versions hash
   def next_versions

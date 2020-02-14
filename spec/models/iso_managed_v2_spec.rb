@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "IsoManagedV2" do
 
-	include DataHelpers
+  include DataHelpers
   include PublicFileHelpers
   include ValidationHelpers
   include SparqlHelpers
@@ -16,7 +16,7 @@ describe "IsoManagedV2" do
 
   describe "General" do
 
-  	before :all  do
+    before :all  do
       IsoHelpers.clear_cache
     end
 
@@ -36,7 +36,7 @@ describe "IsoManagedV2" do
       expect(item.audit_message(:created, "extra")).to eq("Terminology owner: CDISC, identifier: CT, (extra) was created.")
     end
 
-  	it "validates a valid object, general" do
+    it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = IsoManagedV2.find_with_properties(uri)
       expect(item.valid?).to eq(true)
@@ -88,24 +88,24 @@ describe "IsoManagedV2" do
     end
 
     it "allows a blank item to be created" do
-  		result =
-  			{
-        	:uri => {},
+      result =
+        {
+          :uri => {},
           :has_identifier => nil,
           :has_state => nil,
           :rdf_type => "http://www.assero.co.uk/ISO11179Types#AdministeredItem",
-        	:label => "",
-        	:origin => "",
-        	:change_description => "",
-        	:creation_date => "2016-01-01T00:00:00+00:00",
-        	:last_change_date => "2016-01-01T00:00:00+00:00",
-        	:explanatory_comment => "",
+          :label => "",
+          :origin => "",
+          :change_description => "",
+          :creation_date => "2016-01-01T00:00:00+00:00",
+          :last_change_date => "2016-01-01T00:00:00+00:00",
+          :explanatory_comment => "",
           :id => nil,
           tagged: []
-      	}
-  		item = IsoManagedV2.new
+        }
+      item = IsoManagedV2.new
       expect(item.to_h).to eq(result)
-  	end
+    end
 
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
@@ -178,12 +178,12 @@ describe "IsoManagedV2" do
     end
 
     it "allows next version for an identifier to be determned" do
-    	next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.owner.ra_namespace)
-    	expect(next_version).to eq(2)
-    	next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.find_by_short_name("ACME"))
-    	expect(next_version).to eq(1)
-    	next_version = IsoManagedV2.next_version("AIRPORTSxxxxx", IsoRegistrationAuthority.owner)
-    	expect(next_version).to eq(1)
+      next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.owner.ra_namespace)
+      expect(next_version).to eq(2)
+      next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.find_by_short_name("ACME"))
+      expect(next_version).to eq(1)
+      next_version = IsoManagedV2.next_version("AIRPORTSxxxxx", IsoRegistrationAuthority.owner)
+      expect(next_version).to eq(1)
     end
 
     it "handles not finding an item correctly" do
@@ -898,32 +898,32 @@ describe "IsoManagedV2" do
 
   end
 
-	describe "change notes csv" do
-		before :all  do
-			IsoHelpers.clear_cache
-		end
+  describe "change notes csv" do
+    before :all  do
+      IsoHelpers.clear_cache
+    end
 
-		before :each do
-			schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-			data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
-			load_files(schema_files, data_files)
-			NameValue.destroy_all
-			NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-			NameValue.create(name: "thesaurus_child_identifier", value: "456")
-		end
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
 
-		it "list change notes as csv" do
-			allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    it "list change notes as csv" do
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       change_note = tc.add_change_note(user_reference: "user1", reference: "ref 1", description: "description cl")
       tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       change_note2 = tc2.add_change_note(user_reference: "user2", reference: "ref 2", description: "description cli")
-			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-			result = tc.change_notes_csv
-			check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml")
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.change_notes_csv
+      check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml")
     end
 
-	end
+  end
 
   describe "Delete" do
 
@@ -1110,8 +1110,7 @@ describe "IsoManagedV2" do
       end
       item = Thesaurus.find_minimum(uris[0])
       set_state(item,"Incomplete")
-      result = item.previous_release
-      expect(result).to eq("0.1.0")
+      expect(item.previous_release).to eq("0.0.0")
     end
 
     it "find the previous_release, 2 items" do
