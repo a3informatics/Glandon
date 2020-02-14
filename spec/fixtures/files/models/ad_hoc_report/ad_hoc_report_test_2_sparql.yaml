@@ -1,15 +1,15 @@
 ---
-:parameters: []
+:parameters:
+  -
+    :name: Terminology
+    :description: "The terminology for which the report is required."
 :columns:
   :a:
     :label: URI
-    :type: uri
   :b: 
     :label: Identifier
-    :type: literal
   :c: 
     :label: Label
-    :type: literal
 :label: Ad Hoc Report 1
 :query: 'PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>  
   PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
@@ -23,7 +23,7 @@
   PREFIX is: <http://purl.org/ontology/is/core#>
   SELECT DISTINCT ?a ?b ?c WHERE   
   {      
-    ?a rdf:type th:Thesaurus .   
+    VALUES ?a {[[[parameter_1]]]}
     ?a isoT:hasIdentifier ?x .   
     ?x isoI:identifier ?b .   
     ?a isoC:label ?c . 
