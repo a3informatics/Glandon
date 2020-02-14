@@ -1,4 +1,9 @@
 ---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the report is required."
+    :type: :thesauri
 :columns:
   :x:
     :label: Item
@@ -34,7 +39,7 @@
   PREFIX iso: <http://purl.org/iso25964/skos-thes#>
   SELECT ?x ?i ?t ?ur ?r ?d WHERE       
   {         
-    BIND (<http://www.s-cubed.dk/XXXX/V1#TH> as ?th)
+    VALUES ?th {[[[parameter_1]]]}
     {
       ?th ^(an:current/bo:reference) ?cn .
       ?th isoT:hasIdentifier/isoI:identifier ?i .
