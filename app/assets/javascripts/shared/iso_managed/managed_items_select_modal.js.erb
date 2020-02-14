@@ -36,6 +36,25 @@ function ManagedItemsSelect(callback) {
 }
 
 /**
+ * Shows modal
+ *
+ * @return [void]
+ */
+ManagedItemsSelect.prototype.show = function () {
+  $(this.modalId).modal("show");
+}
+
+/**
+ * Updates Description Text
+ *
+ * @param newDescription [String] new description value
+ * @return [void]
+ */
+ManagedItemsSelect.prototype.setDescription = function (newDescription) {
+  $(this.modalId + " #im-select-modal-description").text(newDescription);
+}
+
+/**
  * Sets listeners
  *
  * @return [void]
