@@ -19,7 +19,7 @@
   min-width: 300px !important;
 }
 
-.card .card{
+.modal-body .card, .card .card{
   -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
   -moz-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
   box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.1);
@@ -331,6 +331,12 @@ table th.th-xsmall{
 
 .col-md-12.card{
   max-width: calc(100% - 40px);
+}
+
+.table-cardstyle table.dataTable th, .table-cardstyle table.dataTable td{
+  box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
 }
 
 @media (max-width:768px) {

@@ -218,6 +218,11 @@ function displaySuccess(text) {
 }
 
 function handleAjaxError (xhr, status, error, target) {
+  if (xhr.status == 401){
+    location.reload(true);
+    return;
+  }
+
     var json;
     var errors;
     var html;
@@ -393,6 +398,15 @@ $(document).ready(function() {
 });
 
 /*
+* Positions the context menu corrently for any width display
+*/
+$(window).load(function(){
+ $("table tbody").on("focus", ".icon-context-menu", function(){
+   $(this).find(".context-menu").css("left", $(this).position().left);
+ });
+});
+
+/*
 * Datatables generic processing function
 * See: https://datatables.net/plug-ins/api/processing()
 */
@@ -477,4 +491,11 @@ function redirectPost(url, param, object){
   form = $(form);
   $(document.body).append(form);
   $(form).submit();
+}
+
+function refreshOnBackPressed(){
+  $(window).off('pageshow').on('pageshow', function() {
+    if (performance.navigation.type == 2)
+      location.reload();
+  });
 }

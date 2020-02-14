@@ -118,6 +118,8 @@ describe SemanticVersion do
     expect(sv.next_versions).to eq({major: "2.0.0", minor:"1.3.0", patch:"1.2.1"})
     sv = SemanticVersion.from_s("0.2.0")
     expect(sv.next_versions).to eq({major: "1.0.0", minor:"0.3.0", patch:"0.2.1"})
+    sv = SemanticVersion.from_s("0.0.0")
+    expect(sv.next_versions).to eq({major: "1.0.0", minor:"0.1.0", patch:"0.0.1"})
   end
 
   it "outputs as a string" do
@@ -145,6 +147,11 @@ describe SemanticVersion do
   it "return first" do
     a = SemanticVersion.first
     expect(a.to_s).to eq("0.1.0")
+  end
+
+  it "return base" do
+    a = SemanticVersion.base
+    expect(a.to_s).to eq("0.0.0")
   end
 
 end

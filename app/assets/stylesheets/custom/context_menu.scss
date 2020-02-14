@@ -18,11 +18,7 @@
   outline: none;
 }
 
-.icon-context-menu:focus .context-menu {
-  display: block;
-}
-
-.context-menu:hover{
+.icon-context-menu:focus .context-menu, .context-menu:hover {
   display: block;
 }
 
@@ -34,6 +30,7 @@
   display: none;
   max-height: 220px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .context-menu.left{
@@ -81,4 +78,10 @@
 #history_wrapper div.dataTables_processing{
   margin-top: 60px !important;
   margin-bottom: 0 !important;
+}
+
+@supports (-moz-appearance:none) {
+  .context-menu {
+    padding-right: 10px;
+  }
 }

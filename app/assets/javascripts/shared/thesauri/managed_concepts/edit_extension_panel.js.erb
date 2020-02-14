@@ -24,8 +24,6 @@ function EditExtensionPanel(urls, extensionId, count, callback) {
 
   this.init();
   this.loadData(0);
-
-  $(window).resize(function(){ _this.table.columns.adjust() });
 }
 
 /**
@@ -41,11 +39,12 @@ EditExtensionPanel.prototype.init = function(){
     "lengthMenu": pageSettings, // Global setting
     "paging": true,
     "processing": true,
+    "autoWidth": false,
     "select": "api",
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": generateSpinner("medium")
+      "processing": generateSpinner("small")
     },
   });
 }

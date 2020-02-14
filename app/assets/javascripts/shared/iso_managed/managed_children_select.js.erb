@@ -42,11 +42,12 @@ ManagedChildrenSelect.prototype.init = function () {
 		"lengthMenu": pageSettings,
 		"processing": true,
 		"paging": true,
+		"autoWidth": false,
 		"select": "multi",
 		"language": {
 			"infoFiltered": "",
 			"emptyTable": "No items were found.",
-			"processing": generateSpinnerWText("medium")
+			"processing": generateSpinnerWText("small")
 		},
 		"createdRow": function(row, data, dataIndex) {
 			// Add color-owner badges to the overview table
@@ -247,7 +248,7 @@ ManagedChildrenSelect.prototype.processing = function (enable, text) {
 	this.loading = enable;
 
 	if(enable && text != null)
-		$(this.tableId+"_processing").html(generateSpinnerWText("medium", text));
+		$(this.tableId+"_processing").html(generateSpinnerWText("small", text));
 
 	this.table.processing(enable);
 	toggleTableActive(this.tableId, !enable);

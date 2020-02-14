@@ -536,6 +536,11 @@ img.modal-img{
   background-color: $grey-bright;
 }
 
+.modal-open .modal-body {
+  min-width: auto !important;
+  overflow-x: auto;
+}
+
 @media (max-width: 768px){
   .page-scroll-styled::-webkit-scrollbar-thumb, .page-scroll-styled::-webkit-scrollbar-track,
   .page-scroll-styled::-webkit-scrollbar{
@@ -545,6 +550,14 @@ img.modal-img{
   .table-width-wrapper{
     padding: 0 !important;
   }
+
+  .modal-open .modal-dialog{
+    width: calc(100% - 20px) !important;
+  }
+}
+
+.registration-state{
+  white-space: nowrap;
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
