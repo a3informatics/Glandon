@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Ad-Hoc Reports")' %>
-<%= javascript_include_tag 'standard_datatable' %>
+<%= javascript_include_tag 'standard_datatable', 'ad_hoc_report_index' %>
 <% first_level_breadcrumb (:ad_hoc_reports) %>
 
 <div class="row">
@@ -23,8 +23,6 @@
 			    	<th>Last Run</th>
 			    	<th class="fit">Active</th>
 			    	<th class="fit ignore"></th>
-			    	<th class="fit ignore"></th>
-			    	<th class="fit ignore"></th>
 			  	</tr>
 				</thead>
 				<tbody>
@@ -33,17 +31,19 @@
 							<td><%= item.label %></td>
 			    		<td><%= Timestamp.new(item.last_run).to_datetime %></td>
 			    		<%= true_false_glyphicon(item.active) %>
-			    		<td><%= link_to "Run", run_start_ad_hoc_report_path(item), :class => "btn green btn-xs" %></td>
-			    		<td><%= link_to "Results", results_ad_hoc_report_path(item), :class => "btn btn-xs" %></td>
-							<td>
-				    		<% if policy(AdHocReport).destroy? %>
-									<button class="btn red btn-xs" id="delete_button_<%=item.id%>"
-											onclick="new ConfirmationDialog(function(){$('#delete_link_<%=item.id%>').click()}, {dangerous: true}).show();">
-										Delete
-									</button>
-									<%= link_to "", ad_hoc_report_path(item), method: :delete, id: "delete_link_#{item.id}" %>
-				    		<% end %>
-			    		</td>
+							<td class="text-right">
+								<%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+					        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: run_start_ad_hoc_report_path(item), icon: "icon-history",
+					           id: "run-#{item.id}", text: "Run", dt_toggle: "", disabled: false } %>
+				          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path:  results_ad_hoc_report_path(item), icon: "icon-copy",
+				            id: "results-#{item.id}", text: "Results", dt_toggle: "", disabled: false} %>
+									<% if policy(AdHocReport).destroy? %>
+					          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "delete-#{item.id}",
+					            icon: "icon-trash", text: "Delete", dt_toggle: "", disabled: false } %>
+										<%= link_to "", ad_hoc_report_path(item), method: :delete, id: "delete_link_#{item.id}" %>
+									<% end %>
+					      <% end %>
+							</td>
 			    	</tr>
 					<% end %>
 			  </tbody>
