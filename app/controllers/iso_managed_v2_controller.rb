@@ -52,9 +52,11 @@ class IsoManagedV2Controller < ApplicationController
     if !token.nil?
       @managed_item.update_status(the_params)
       flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
-    end
+      redirect_to referer
+    else
       flash[:error] = "The edit lock has timed out."
       redirect_to TypePathManagement.history_url_v2(@managed_item)
+    end
   end
 
   def update_semantic_version
