@@ -111,13 +111,28 @@ RSpec.describe AdHocReport, type: :model do
     expect(item.errors.count).to eq(1)
   end
 
-  it "will run a report" do
+  it "reports the parameters, empty" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
+    report = AdHocReport.new
+    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+    expect(report.parameters?).to eq(false)
+  end
+
+  it "reports the parameters, present" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_2_sparql.yaml", "test")
+    report = AdHocReport.new
+    report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
+    expect(report.parameters?).to eq(true)
+    expect(report.parameters).to eq([{description: "The terminology for which the report is required.", name: "Terminology"}])
+  end
+
+  it "will run a report, no params" do
     copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
     report = AdHocReport.new
     expect(report).to receive(:execute).and_return(true)
     report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
     report.results_file = "ad_hoc_report_test_1_results.yaml"
-    report.run
+    report.run({})
     expect(report.last_run).to be_within(1.second).of Time.now
     expect(report.background_id).not_to eq(-1)
     expect(report.active).to be(true)
@@ -199,16 +214,28 @@ RSpec.describe AdHocReport, type: :model do
     expect(public_file_does_not_exist?("test", "ad_hoc_report_1_results.yaml")).to eq(true)
   end
 
-  it "executes a report" do
+  it "executes a report, no params" do
     copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
     job = Background.create
     report = AdHocReport.new
     report.background_id = job.id
     report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
     report.results_file = "ad_hoc_report_test_1_results.yaml"
-    job.start("Rspec test", "Starting...") {report.execute}
+    job.start("Rspec test", "Starting...") {report.execute({})}
     results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
     check_file_actual_expected(results, sub_dir, "execute_expected_1.yaml")
+  end 
+
+  it "executes a report, params" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_2_sparql.yaml", "test")
+    job = Background.create
+    report = AdHocReport.new
+    report.background_id = job.id
+    report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
+    report.results_file = "ad_hoc_report_test_2_results.yaml"
+    job.start("Rspec test", "Starting...") {report.execute({query_params: [Uri.new(uri: "http://www.cdisc.org/CT/V1#TH").to_id]})}
+    results = AdHocReportFiles.read("ad_hoc_report_test_2_results.yaml")
+    check_file_actual_expected(results, sub_dir, "execute_expected_2.yaml")
   end 
 
   it "simple test" do
