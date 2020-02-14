@@ -530,12 +530,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     # Get the final result
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
+      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
       (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) 
       (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) 
       WHERE\n
       {
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
         WHERE
         {
           VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
@@ -553,6 +553,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
               } GROUP BY ?sci ?ns
             }
             ?s isoT:hasState ?st .
+            ?st isoR:registrationStatus ?rs .
             ?st isoR:effectiveDate ?ed .
             ?st isoR:untilDate ?ud .
             BIND ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime && xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime AS ?current ) .
@@ -570,12 +571,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
             BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )
           }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ORDER BY ?i
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ORDER BY ?i
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :isoR])
-    query_results.by_object_set([:s, :i, :n, :d, :pt, :e, :o, :ext, :sub, :eo, :so, :sv, :sci, :ns, :count, :current, :sys, :gt ]).each do |x|
+    query_results.by_object_set([:s, :i, :n, :d, :pt, :e, :o, :rs, :ext, :sub, :eo, :so, :sv, :sci, :ns, :count, :current, :sys, :gt ]).each do |x|
       indicators = {current: x[:current].to_bool, extended: x[:ext].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subset: x[:so].to_bool, subsetted: x[:sub].to_bool}
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], state: x[:rs], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, semantic_version: x[:sv], tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id }
     end
     results

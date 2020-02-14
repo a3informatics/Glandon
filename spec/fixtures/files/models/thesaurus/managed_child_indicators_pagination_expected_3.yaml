@@ -3,6 +3,7 @@
   :notation: TCNTRL
   :preferred_term: CDISC SDTM Control Type Terminology
   :synonym: Control Type; TCNTRL; Type of Control
+  :state: Standard
   :extensible: true
   :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
     (placebo, no treatment, dose-response, active), external (historical, published
@@ -24,6 +25,7 @@
   :notation: LBTESTCD
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Code
   :synonym: LBTESTCD; Laboratory Test Code
+  :state: Standard
   :extensible: true
   :definition: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
     Model.
@@ -44,6 +46,7 @@
   :notation: FRM
   :preferred_term: CDISC SDTM Pharmaceutical Dosage FormTerminology
   :synonym: Dose Form; FRM; Pharmaceutical Dosage Form
+  :state: Standard
   :extensible: true
   :definition: The form of the completed pharmaceutical product, e.g. tablet, capsule,
     injection, elixir, suppository. Dosage form can have a significant effect on the
@@ -68,6 +71,7 @@
   :notation: NCOMPLT
   :preferred_term: CDISC SDTM Reason for Non-Completion Terminology
   :synonym: Completion/Reason for Non-Completion; NCOMPLT
+  :state: Standard
   :extensible: true
   :definition: The reason that a subject was discontinued from a clinical trial.
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1YyI0M2NjcyNw==
@@ -87,6 +91,7 @@
   :notation: STENRF
   :preferred_term: CDISC SDTM Relation to Reference Period Terminology
   :synonym: Relation to Reference Period; STENRF
+  :state: Standard
   :extensible: false
   :definition: The name of a code list that contains terms that reference timepoints
     within and without a defined time period.
@@ -107,6 +112,7 @@
   :notation: ROUTE
   :preferred_term: CDISC SDTM Route of Administration Terminology
   :synonym: ROUTE; Route of Administration
+  :state: Standard
   :extensible: true
   :definition: The course by which a substance was administered in order to reach
     the site of action in the body.
@@ -127,6 +133,7 @@
   :notation: SEX
   :preferred_term: CDISC SDTM Sex of Individual Terminology
   :synonym: SEX; Sex
+  :state: Standard
   :extensible: false
   :definition: The assemblage of physical properties or qualities by which male is
     distinguished from female; the physical difference between male and female; the
@@ -148,6 +155,7 @@
   :notation: SEXPOP
   :preferred_term: CDISC SDTM Sex of Study Group Terminology
   :synonym: SEXPOP; Sex of Participants
+  :state: Standard
   :extensible: false
   :definition: The specific sex, either male, female, or mixed of the subject group
     being studied. (NCI)
@@ -168,6 +176,7 @@
   :notation: SIZE
   :preferred_term: CDISC SDTM Size Terminology
   :synonym: SIZE; Size
+  :state: Standard
   :extensible: true
   :definition: The physical magnitude of something. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1YyI0M2NjczMw==
@@ -187,6 +196,7 @@
   :notation: DOMAIN
   :preferred_term: CDISC SDTM Submission Domain Abbreviation Terminology
   :synonym: DOMAIN; Domain Abbreviation
+  :state: Standard
   :extensible: true
   :definition: A unique, 2-character domain code used in the regulatory submission
     process.  The domain abbreviation is used consistently throughout the submission,
@@ -209,6 +219,7 @@
   :notation: TBLIND
   :preferred_term: CDISC SDTM Trial Blinding Schema Terminology
   :synonym: TBLIND; Trial Blinding Schema
+  :state: Standard
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of blinding
     for the trial. (NCI)
@@ -229,6 +240,7 @@
   :notation: TINDTP
   :preferred_term: CDISC SDTM Trial Indication Type Terminology
   :synonym: TINDTP; Trial Indication Type
+  :state: Standard
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of trial,
     e.g. cure or prevention. (NCI)
@@ -249,6 +261,7 @@
   :notation: TPHASE
   :preferred_term: CDISC SDTM Trial Phase Terminology
   :synonym: TPHASE; Trial Phase
+  :state: Standard
   :extensible: true
   :definition: 'Clinical trials are broken into three or four phases: Phase I tests
     a new drug or treatment for safety in a small group; Phase II expands the study
@@ -273,6 +286,7 @@
   :notation: TSPARMCD
   :preferred_term: CDISC SDTM Trial Summary Parameter Terminology by Code
   :synonym: TSPARMCD; Trial Summary Parameter Test Code
+  :state: Standard
   :extensible: true
   :definition: Individual characteristics of a clinical trial, e.g. description of
     trial design, trial blinding schema, and primary objective of trial. (NCI)
@@ -293,6 +307,7 @@
   :notation: TTYPE
   :preferred_term: CDISC SDTM Trial Type Terminology
   :synonym: TTYPE; Trial Type
+  :state: Standard
   :extensible: true
   :definition: The type of clinical trial performed e.g. efficacy, safety. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1YyI0M2NjczOQ==
@@ -312,6 +327,7 @@
   :notation: VSTESTCD
   :preferred_term: CDISC SDTM Vital Sign Terminology by Code
   :synonym: VSTESTCD; Vital Signs Test Code
+  :state: Standard
   :extensible: true
   :definition: The name given to the test that analyzes a particular set of vital
     signs including temperature, respiratory rate, heart beat (pulse), and blood pressure.
@@ -333,6 +349,7 @@
   :notation: NY
   :preferred_term: CDISC SDTM Yes No Unknown or Not Applicable Response Terminology
   :synonym: NY; No Yes Response
+  :state: Standard
   :extensible: false
   :definition: A term that is used to indicate a question with permissible values
     of yes/no/unknown/not applicable.
@@ -353,6 +370,7 @@
   :notation: ACN
   :preferred_term: CDISC SDTM Action Taken with Study Treatment Terminology
   :synonym: ACN; Action Taken with Study Treatment
+  :state: Standard
   :extensible: false
   :definition: The reason that changes were made to the therapy under study. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyI0M2Njc2Nw==
@@ -372,6 +390,7 @@
   :notation: OUT
   :preferred_term: CDISC SDTM Adverse Event Outcome Terminology
   :synonym: OUT; Outcome of Event
+  :state: Standard
   :extensible: false
   :definition: A condition or event that is attributed to the adverse event and is
     the result or conclusion of the adverse event. (NCI)
@@ -392,6 +411,7 @@
   :notation: AESEV
   :preferred_term: CDISC SDTM Severity Intensity Scale for Adverse Event Terminology
   :synonym: AESEV; Severity/Intensity Scale for Adverse Events
+  :state: Standard
   :extensible: false
   :definition: A scale that defines the degree or state of disease existing in a patient
     as a result of the occurrence of an adverse event. (NCI)
@@ -412,6 +432,7 @@
   :notation: VSRESU
   :preferred_term: CDISC SDTM Unit for Vital Sign Result Terminology
   :synonym: Units for Vital Signs Results; VSRESU
+  :state: Standard
   :extensible: true
   :definition: The unit used to record and describe the result of a test investigating
     a vital sign. (NCI)
@@ -432,6 +453,7 @@
   :notation: AGESPAN
   :preferred_term: CDISC SDTM Age GroupTerminology
   :synonym: AGESPAN; Age Span
+  :state: Standard
   :extensible: true
   :definition: Subgroups of populations based on age. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI0M2Njc4MA==
@@ -451,6 +473,7 @@
   :notation: AGEU
   :preferred_term: CDISC SDTM Age UnitTerminology
   :synonym: AGEU; Age Unit
+  :state: Standard
   :extensible: false
   :definition: Those units of time that are routinely used to express the age of a
     person. (NCI)
@@ -471,6 +494,7 @@
   :notation: SOC
   :preferred_term: CDISC SDTM System Organ Class Terminology
   :synonym: CDISC System Organ Class; SOC
+  :state: Standard
   :extensible: false
   :definition: Terms at the highest level of the CDISC system organ class terminology.
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1YyI0M2Njc4Mw==
@@ -490,6 +514,7 @@
   :notation: TOXGR
   :preferred_term: CDISC SDTM CommonTerminology Criteria for Adverse Event Grade Terminology
   :synonym: Common Terminology Criteria for Adverse Events; TOXGR
+  :state: Standard
   :extensible: false
   :definition: A standard terminology developed to report adverse events occurring
     in cancer clinical trials.  Common terminology criteria for adverse events (CTCAE)
@@ -513,6 +538,7 @@
   :notation: COUNTRY
   :preferred_term: CDISC SDTM Country Terminology
   :synonym: COUNTRY; Country
+  :state: Standard
   :extensible: false
   :definition: A collective generic term that refers here to a wide variety of dependencies,
     areas of special sovereignty, uninhabited islands, and other entities in addition
@@ -534,6 +560,7 @@
   :notation: TDIGRP
   :preferred_term: CDISC SDTM Diagnosis Group Terminology
   :synonym: Diagnosis Group; TDIGRP
+  :state: Standard
   :extensible: true
   :definition: A grouping of individuals on the basis of a shared procedure or disease,
     or lack thereof (e.g. healthy volunteers, type 2 diabetic subjects, subjects with
@@ -556,6 +583,7 @@
   :notation: DICTNAM
   :preferred_term: CDISC SDTM Dictionary Name Terminology
   :synonym: DICTNAM; Dictionary Name; Name of Dictionary
+  :state: Standard
   :extensible: true
   :definition: A name given to a reference source that lists words and gives their
     meaning. (NCI)
@@ -576,6 +604,7 @@
   :notation: ND
   :preferred_term: CDISC SDTM Not DoneTerminology
   :synonym: ND; Not Done
+  :state: Standard
   :extensible: false
   :definition: Indicates a task, process or examination that has either not been initiated
     or completed. (NCI)
@@ -596,6 +625,7 @@
   :notation: ETHNIC
   :preferred_term: CDISC SDTM Patient Ethnic GroupTerminology
   :synonym: ETHNIC; Patient Ethnic Group
+  :state: Standard
   :extensible: true
   :definition: A social group characterized by a distinctive social and cultural tradition
     maintained from generation to generation, a common history and origin and a sense
@@ -619,6 +649,7 @@
   :notation: IECAT
   :preferred_term: CDISC SDTM Category of Inclusion And Or ExclusionTerminology
   :synonym: Category for Inclusion/Exclusion; IECAT
+  :state: Standard
   :extensible: false
   :definition: A collection of criteria on which subjects are evaluated and that must
     be met by all study subjects. (NCI)
@@ -639,6 +670,7 @@
   :notation: TSPARM
   :preferred_term: CDISC SDTM Trial Summary Parameter Terminology by Name
   :synonym: TSPARM; Trial Summary Parameter Test Name
+  :state: Standard
   :extensible: true
   :definition: Individual characteristics of a clinical trial, e.g. description of
     trial design, trial blinding schema, and primary objective of trial. (NCI)
@@ -659,6 +691,7 @@
   :notation: VSTEST
   :preferred_term: CDISC SDTM Vital Sign Terminology  by Name
   :synonym: VSTEST; Vital Signs Test Name
+  :state: Standard
   :extensible: true
   :definition: The name given to the test that analyzes a particular set of vital
     signs including temperature, respiratory rate, heart beat (pulse), and blood pressure.
@@ -680,6 +713,7 @@
   :notation: LBTEST
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Name
   :synonym: LBTEST; Laboratory Test Name
+  :state: Standard
   :extensible: true
   :definition: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
     Model.
@@ -700,6 +734,7 @@
   :notation: LBTEST
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Name
   :synonym: LBTEST; Laboratory Test Name
+  :state: Incomplete
   :extensible: false
   :definition: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
     Model.
