@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UserSettings do
 
-  C_EMAIL = "settings@example.com"
+  C_SETTINGS_EMAIL = "settings@example.com"
 
   # Note, easier to use User class that includes UserSettings module
   # Results depend on config.yml content
@@ -11,11 +11,11 @@ describe UserSettings do
   include UserAccountHelpers
 
   before :all do
-    @user = ua_add_user(email: C_EMAIL)
+    @user = ua_add_user(email: C_SETTINGS_EMAIL)
   end
 
   after :all do
-    ua_remove_user(C_EMAIL)
+    ua_remove_user(C_SETTINGS_EMAIL)
   end
 
   it "read and write a setting" do
@@ -25,7 +25,6 @@ describe UserSettings do
 	end
 
   it "read settings" do
-    user = ua_add_user(email: C_EMAIL)
     the_settings = @user.settings
     expected =
     	{
