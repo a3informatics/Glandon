@@ -116,7 +116,7 @@ describe "Thesauri Subsets", :type => :feature do
       expect(page).to have_content("Preferred term: PK unit")
     end
 
-    it "allows to edit a subset, add, remove and move_after item", js:true do
+    it "allows to edit a subset, add, remove and move_after item, WILL CURRENTLY FAIL (Drag-n-drop)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(7)
       context_menu_element("history", 5, "2010-03-05 Release", :show)
@@ -370,6 +370,7 @@ describe "Thesauri Subsets", :type => :feature do
       ui_check_table_cell("subset_children_table", 1, 2, "Day Times Gram per Milliliter\nday*g/mL (C85584)")
       ui_check_table_cell("subset_children_table", 2, 2, "Day Times Kilogram per Milliliter\nday*kg/mL (C85585)")
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
+      wait_for_ajax(10)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax(10)
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
