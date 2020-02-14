@@ -20,8 +20,8 @@
   PREFIX iso: <http://purl.org/iso25964/skos-thes#>
   SELECT ?i ?l WHERE
   {         
-    ?th rdf:type th:Thesaurus
+    ?th rdf:type th:Thesaurus .
     ?th isoT:hasIdentifier/isoI:identifier ?i .
-    ?th isoC:label ?l
+    ?th isoC:label ?l .
   }'
 :type: Ad Hoc Report Definition
