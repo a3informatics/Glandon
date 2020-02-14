@@ -140,6 +140,7 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax(10)
       ui_check_table_cell("subset_children_table", 1, 2, "Day Times Gram per Milliliter\nday*g/mL (C85584)")
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
+      wait_for_ajax(10)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax(10)
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
@@ -314,7 +315,7 @@ describe "Thesauri Subsets", :type => :feature do
       wait_for_ajax 20
       ui_check_table_info("history", 1, 3, 3)
     end
-    
+
   end
 
   describe "Subsets Released State", :type => :feature do
