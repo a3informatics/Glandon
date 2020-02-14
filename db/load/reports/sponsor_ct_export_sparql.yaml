@@ -1,4 +1,9 @@
 ---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the export is required."
+    :type: :thesauri
 :columns:
   :clidentifier:
     :label: Code List Identifier
@@ -51,10 +56,7 @@
   PREFIX iso: <http://purl.org/iso25964/skos-thes#>
   SELECT ?clidentifier ?clpt ?cllabel ?clsub (GROUP_CONCAT(DISTINCT ?clsyn;separator=";") as ?scl) (GROUP_CONCAT(DISTINCT ?clt;separator=";") as ?tcl) ?cliidentifier ?clipt ?clilabel ?clisub (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?scli) (GROUP_CONCAT(DISTINCT ?clit;separator=";") as ?tcli)  WHERE       
   {         
-    ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .         
-    ?s isoT:hasIdentifier ?si .         
-    ?s isoT:hasState ?rs .         
-    ?si isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> .
+    VALUES ?s {[[[parameter_1]]]}
     ?s th:isTopConceptReference/bo:reference ?cl .
     ?cl th:identifier ?clidentifier .  
     ?cl isoC:label ?cllabel .  
