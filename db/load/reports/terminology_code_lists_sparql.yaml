@@ -1,0 +1,44 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the code lists are required."
+    :type: :thesauri
+:columns:
+  :clidentifier:
+    :label: Identifier
+  :clpt:
+    :label: Preferred Term
+  :cllabel:
+    :label: Name
+  :clsub:
+    :label: Submission Value
+  :scl:
+    :label: Synonyms
+  :tcl:
+    :label: Tags 
+:label: Terminology Code Lists
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+  PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX is: <http://purl.org/ontology/is/core#>
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+  SELECT ?clidentifier ?clpt ?cllabel ?clsub (GROUP_CONCAT(DISTINCT ?clsyn;separator=";") as ?scl) (GROUP_CONCAT(DISTINCT ?clt;separator=";") as ?tcl) WHERE      
+  {         
+    VALUES ?s {[[[parameter_1]]]}
+    ?s th:isTopConceptReference/bo:reference ?cl .
+    ?cl th:identifier ?clidentifier .  
+    ?cl isoC:label ?cllabel .  
+    ?cl th:notation ?clsub .
+    ?cl th:synonym/isoC:label ?clsyn .
+    ?cl th:preferredTerm/isoC:label ?clpt .
+    ?cl isoC:tagged/isoC:prefLabel ?clt .
+  } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ORDER BY ?clidentifier'
+:type: Ad Hoc Report Definition
