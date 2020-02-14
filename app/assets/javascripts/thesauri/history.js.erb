@@ -1,7 +1,7 @@
 $(document).ready( function() {
   refreshOnBackPressed();
-  
-  var mis = new ManagedItemsSelect("thesaurus", null);
+
+  var mis = new ManagedItemsSelect(null);
   var hp = new HistoryPanel(url_path, strict_params, identifier, scope_id, 20, mis);
   var cp = new CommentsPanel(comments_url_path);
 

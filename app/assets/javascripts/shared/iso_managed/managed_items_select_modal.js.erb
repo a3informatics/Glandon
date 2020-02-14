@@ -11,7 +11,7 @@
  *
  * @return [void]
  */
-function ManagedItemsSelect(type, callback) {
+function ManagedItemsSelect(callback) {
   this.modalId = "#im-select-modal";
   this.historyUrl = miHistoryTableUrl;
   this.indexUrl = miIndexTableUrl;
@@ -19,7 +19,7 @@ function ManagedItemsSelect(type, callback) {
   this.indexTable = this.initIndex();
   this.historyTable = this.initHistory();
   this.initialized = false;
-  this.type = type;
+  this.type = miType;
   this.cache = {};
   this.selection = [];
   this.callback = callback;
@@ -376,14 +376,14 @@ ManagedItemsSelect.prototype.loadDataParams = function(c, o){
 	var data = {};
   var param;
 
-  if (this.type == "codelist")
+  if (this.type == "code_lists")
 	  param = "managed_concept";
-  else if (this.type == "thesaurus")
+  else if (this.type == "thesauri")
     param = "thesauri";
 
 	data[param] = { count: c, offset: o }
 
-  if (this.type == "codelist")
+  if (this.type == "code_lists")
     data[param].type = "all";
 
 	return data;
