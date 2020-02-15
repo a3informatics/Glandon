@@ -143,6 +143,27 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, no errors, version 2, short V" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    full_path_a = test_file_path(sub_dir, "import_input_9a.xlsx")
+    full_path_b = test_file_path(sub_dir, "import_input_9b.xlsx")
+    params = {identifier: "V2 I", version: "1", date: "2019-11-22", files: [full_path_a, full_path_b], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_9.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_9.yaml")
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    public_file_exists?("test", filename)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_9.ttl")
+    check_ttl_fix_v2(filename, "import_expected_9.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
   it "import, no errors, version 2.1" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")

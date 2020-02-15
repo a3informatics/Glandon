@@ -5,6 +5,8 @@ module TripleStoreHelpers
     def clear
       sparql_query = "CLEAR DEFAULT"
       CRUD.update(sparql_query)
+      sparql_query = "DROP DEFAULT"
+      CRUD.update(sparql_query)
     end
 
     def check_load
