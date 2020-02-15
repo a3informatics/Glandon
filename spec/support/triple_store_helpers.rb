@@ -32,6 +32,19 @@ module TripleStoreHelpers
       result
     end
 
+    def triple_count()
+      query_string = %Q{
+        SELECT (COUNT(?s) as ?count) WHERE 
+        {
+          ?s ?p ?o
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", []) 
+      result = query_results.by_object(:count).first.to_i
+  puts colourize("Total count=#{result}", "blue")
+      result
+    end
+
     def subject_present?(subject)
       query_string = %Q{
         ASK { #{subject.to_ref} ?p ?o }
