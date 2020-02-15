@@ -1697,7 +1697,14 @@ defaults: &defaults
           selection:
             first: true
           sheet:
-            actions: []
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  Harmonized: 
+                    - Global
+                  Study: 
+                    - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"

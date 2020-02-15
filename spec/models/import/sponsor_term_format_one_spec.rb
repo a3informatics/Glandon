@@ -143,7 +143,7 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 2, short V" do
+  it "import, no errors, multiple files, version 3, short V" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path_a = test_file_path(sub_dir, "import_input_9a.xlsx")
     full_path_b = test_file_path(sub_dir, "import_input_9b.xlsx")
