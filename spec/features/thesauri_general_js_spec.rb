@@ -607,6 +607,7 @@ describe "Thesaurus", :type => :feature do
       ua_create
       nv_destroy
       nv_create(parent: "10", child: "999")
+      Token.delete_all
     end
 
     before :each do
@@ -670,7 +671,7 @@ describe "Thesaurus", :type => :feature do
       ui_check_table_cell("history", 1, 7, "#{new_state}")
     end
 
-    it "Child status", js: true do
+    it "Child status", js:true do
       unsuccesful_th_state_update(:Incomplete, :Candidate)
       succesful_cl_state_update(:Incomplete, :Candidate, "A00001")
       succesful_th_state_update(:Incomplete, :Candidate)
@@ -678,14 +679,63 @@ describe "Thesaurus", :type => :feature do
       unsuccesful_th_state_update(:Candidate, :Recorded)
       succesful_cl_state_update(:Candidate, :Recorded, "A00001")
       succesful_th_state_update(:Candidate, :Recorded)
-      
+
       unsuccesful_th_state_update(:Recorded, :Qualified)
       succesful_cl_state_update(:Recorded, :Qualified, "A00001")
       succesful_th_state_update(:Recorded, :Qualified)
-      
+
       unsuccesful_th_state_update(:Qualified, :Standard)
       succesful_cl_state_update(:Qualified, :Standard, "A00001")
       succesful_th_state_update(:Qualified, :Standard)
+    end
+
+    it "edit lock, extend", js:true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'STATE\''
+      context_menu_element('history', 4, 'STATE', :document_control)
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#imh_header")[:class].include?("warning")
+      page.find("#timeout").click
+      wait_for_ajax(120)
+      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      page.find("#imh_header")[:class].include?("danger")
+      sleep 28
+      page.find("#timeout")[:class].include?("disabled")
+      page.find("#imh_header")[:class].include?("danger")
+      Token.restore_timeout
+    end
+
+    it "expires edit lock, prevents changes", js:true do
+      Token.set_timeout(10)
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'STATE\''
+      context_menu_element('history', 4, 'STATE', :document_control)
+      sleep 12
+      click_on "Submit Status Change"
+      expect(page).to have_content("The edit lock has timed out")
+      Token.restore_timeout
+    end
+
+    it "clears token when leaving page", js:true do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'State Test Terminology')]/td/a").click
+      wait_for_ajax_long
+      expect(page).to have_content 'Version History of \'STATE\''
+      context_menu_element('history', 4, 'STATE', :document_control)
+      tokens = Token.where(item_uri: "http://www.acme-pharma.com/STATE/V1")
+      token = tokens[0]
+      click_link 'Return'
+      tokens = Token.where(item_uri: "http://www.acme-pharma.com/STATE/V1")
+      expect(tokens).to match_array([])
     end
 
   end

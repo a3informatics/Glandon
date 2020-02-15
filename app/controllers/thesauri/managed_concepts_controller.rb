@@ -229,6 +229,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
+    @can_extend_unextensible = Thesaurus::ManagedConcept.can_extend_unextensible?
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?

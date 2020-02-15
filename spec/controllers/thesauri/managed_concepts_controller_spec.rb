@@ -145,6 +145,36 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:can_be_extended)).to eq(true)
     end
 
+    it "show, non extensible code list" do
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(true)
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:context_id)).to eq(th_uri.to_id)
+      expect(assigns(:can_be_extended)).to eq(false)
+      expect(assigns(:can_extend_unextensible)).to eq(true)
+      expect(assigns(:is_extended)).to eq(false)
+      expect(assigns(:is_extended_path)).to eq("")
+      expect(assigns(:is_extending)).to eq(false)
+      expect(assigns(:is_extending_path)).to eq("")
+      expect(response).to render_template("show")
+    end
+
+    it "show, non extensible code list" do
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
+      expect(Thesaurus::ManagedConcept).to receive(:can_extend_unextensible?).and_return(false)
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:context_id)).to eq(th_uri.to_id)
+      expect(assigns(:can_be_extended)).to eq(false)
+      expect(assigns(:can_extend_unextensible)).to eq(false)
+      expect(assigns(:is_extended)).to eq(false)
+      expect(assigns(:is_extended_path)).to eq("")
+      expect(assigns(:is_extending)).to eq(false)
+      expect(assigns(:is_extending_path)).to eq("")
+      expect(response).to render_template("show")
+    end
+
     it "show, extended" do
       th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
