@@ -57,6 +57,32 @@ describe "Token Locks", :type => :feature do
 
     end
 
+    it "locks a terminology, document control page (REQ-MDR-EL-010)", js:true do
+
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_terminology
+        find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
+        expect(page).to have_content 'Version History of \'AIRPORTS\''
+        wait_for_ajax
+        context_menu_element('history', 4, '0.1.0', :edit)
+        wait_for_ajax(10)
+        expect(page).to have_content 'Find & Select Code Lists'
+      end
+
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_terminology
+        find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
+        expect(page).to have_content 'Version History of \'AIRPORTS\''
+        wait_for_ajax(20)
+        context_menu_element('history', 4, '0.1.0', :document_control)
+        wait_for_ajax(20)
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
+
+    end
+
     it "locks a biomedical concept"
 
     it "locks a form (REQ-MDR-EL-010)"#, js:true do
