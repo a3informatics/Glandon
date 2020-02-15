@@ -30,6 +30,8 @@ class Import::SponsorTermFormatOne < Import
     @tags = []
     @parent_set = {}
     @th = Thesaurus.find_minimum(params[:uri])
+    uri = Thesaurus.history_uris(identifier: ::CdiscTerm::C_IDENTIFIER, scope: ::IsoRegistrationAuthority.cdisc_scope).first
+    @future_th = Thesaurus.find_minimum(uri)
     readers = read_all_sources(params)
     merge_reader_data(readers)
     
@@ -90,7 +92,6 @@ private
   def merge_reader_data(readers)
     readers.each do |reader|
       reader.engine.parent_set.each do |k, v|
-byebug
         v.add_tags_no_save(reader.engine.tags) 
         @parent_set[k] = v
         merge_errors(@parent_set[k], self)
@@ -111,6 +112,9 @@ byebug
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
         existing_ref = true
+      elsif child.future_referenced?(@futire_th)
+        add_log("Future Reference Sponsor detected: #{child.identifier}")
+        ref = child
       elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
         ref = child.to_subset_of_extension(@extensions)

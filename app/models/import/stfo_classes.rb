@@ -39,14 +39,29 @@ module Import::STFOClasses
     # @param [Thesaurus] ct the reference thesaurus
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def referenced?(ct)
-      return nil if !NciThesaurusUtility.c_code?(self.identifier)
-      return nil if subset?
+      return false if !NciThesaurusUtility.c_code?(self.identifier)
+      return false if subset?
       ref_ct = reference(ct)
-      return nil if ref_ct.nil?
-      return ref_ct if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
+      return false if ref_ct.nil?
+      return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
       others = self.child_identifiers - ref_ct.child_identifiers
       add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
-      nil
+      false
+    end
+
+    # Future Referenced?. Is the Code List actually referencing one from a future thesarus. The code list
+    #   items must match the items in the referenced ManagedConcept or be a subset thereof.
+    #
+    # @param [Thesaurus] ct the future reference thesaurus
+    # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
+    def future_referenced?(ct)
+      return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
+      ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
+      return false if ref_ct.nil?
+      return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
+      others = self.child_identifiers - ref_ct.child_identifiers
+      add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
+      false
     end
 
     # Extension?. Is the Code List an extension code list?
@@ -54,16 +69,16 @@ module Import::STFOClasses
     # @param [Thesaurus] ct the reference thesaurus
     # @return [Thesaurus::ManagedConcept] either nil if not an extension or the extension item.
     def extension?(ct)
-      return nil if !NciThesaurusUtility.c_code?(self.identifier)
-      return nil if subset?
+      return false if !NciThesaurusUtility.c_code?(self.identifier)
+      return false if subset?
       ref_ct = reference(ct)
       if !ref_ct.nil?
         ref_ct.narrower_objects
         others = self.child_identifiers - ref_ct.child_identifiers
-        return self if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
+        return true if STFOCodeListItem.sponsor_identifier_referenced_or_ncit_set?(others) and others.any?
         add_log("Extension check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       end
-      nil
+      false
     end
 
     def to_extension(ct)
@@ -86,7 +101,6 @@ module Import::STFOClasses
       end
       self
     rescue => e
-byebug
       add_error("Exception in to_extension, identifier '#{self.identifier}'.")
       self
     end
@@ -257,6 +271,7 @@ byebug
         end
       else
         add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'.")
+byebug
         return nil
       end
     end
@@ -297,6 +312,12 @@ byebug
       ref_ct = ct.find_by_identifiers([self.identifier])
       return nil if !ref_ct.key?(self.identifier)
       self.class.find_full(ref_ct[self.identifier])
+    end
+
+    def future_reference(ct, identifier)
+      ref_ct = ct.find_by_identifiers([identifier])
+      return nil if !ref_ct.key?(identifier)
+      self.class.find_full(ref_ct[identifier])
     end
 
     def subset_list
