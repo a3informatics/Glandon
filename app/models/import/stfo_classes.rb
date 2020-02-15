@@ -81,7 +81,7 @@ module Import::STFOClasses
       false
     end
 
-    def to_extension(ct)
+    def to_extension(ct, fixes)
       new_narrower = []
       ref_ct = reference(ct)
       if ref_ct.nil?
@@ -93,7 +93,7 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          new_child = sponsor_or_referenced(ct, child) if new_child.nil?
+          new_child = sponsor_or_referenced(ct, child, fixes) if new_child.nil?
           next if new_child.nil?
           new_narrower << new_child 
         end
@@ -227,10 +227,10 @@ module Import::STFOClasses
       sponsor_parent_identifier? && sponsor_child_or_referenced_identifiers?
     end
 
-    def to_hybrid_sponsor(ct)
+    def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
       self.narrower.each do |child|
-        new_child = sponsor_or_referenced(ct, child)
+        new_child = sponsor_or_referenced(ct, child, fixes)
         next if new_child.nil?
         new_narrower << new_child 
       end
@@ -241,23 +241,23 @@ module Import::STFOClasses
       self
     end
 
-    def sponsor_or_referenced(ct, child)
+    def sponsor_or_referenced(ct, child, fixes)
       if STFOCodeListItem.sponsor_referenced_format?(child.identifier)
-        item = find_sponsor_referenced(ct, child)
+        item = find_sponsor_referenced(ct, child, fixes)
         return item.nil? ? child : item
       elsif NciThesaurusUtility.c_code?(child.identifier)
-        item = find_referenced(ct, child.identifier)
+        item = find_referenced(ct, child.identifier, fixes)
         return item.nil? ? nil : item
       else
         return child
       end
     end
 
-    def find_sponsor_referenced(ct, child)
-      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier))
+    def find_sponsor_referenced(ct, child, fixes)
+      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier), fixes)
     end
 
-    def find_referenced(ct, identifier)
+    def find_referenced(ct, identifier, fixes)
       options = ct.find_identifier(identifier)
       if options.empty?
         add_error("Cannot find referenced item #{identifier}, none found, identifier '#{self.identifier}'.")
@@ -270,10 +270,14 @@ module Import::STFOClasses
           return nil
         end
       else
-        add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'.")
-byebug
+        uri = fixes.fix(self.identifier, identifier)
+        return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
+        add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
         return nil
       end
+    rescue => e
+      add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+      nil
     end
 
     # Sponsor Identifier? Does the identifier match the sponsor format?

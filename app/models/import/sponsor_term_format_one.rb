@@ -22,6 +22,7 @@ class Import::SponsorTermFormatOne < Import
   # @option params [String] :version_label the version label
   # @option params [String] :version the version
   # @option params [String] :date the date of issue
+  # @option params [String] :fixes filename for import fixes
   # @option params [Array] :files
   # @option params [Background] :job the background job
   # @option params [Uri] :term the uri for the reference term to be used
@@ -29,9 +30,8 @@ class Import::SponsorTermFormatOne < Import
   def import(params)
     @tags = []
     @parent_set = {}
-    @th = Thesaurus.find_minimum(params[:uri])
-    uri = Thesaurus.history_uris(identifier: ::CdiscTerm::C_IDENTIFIER, scope: ::IsoRegistrationAuthority.cdisc_scope).first
-    @future_th = Thesaurus.find_minimum(uri)
+    set_thesarus(params)
+    @fixes = Fixes.new(params[:fixes])
     readers = read_all_sources(params)
     merge_reader_data(readers)
     
@@ -88,6 +88,13 @@ class Import::SponsorTermFormatOne < Import
 
 private
 
+  # Set future  
+  def set_thesarus(params)
+    @th = Thesaurus.find_minimum(params[:uri])
+    uri = Thesaurus.history_uris(identifier: ::CdiscTerm::C_IDENTIFIER, scope: ::IsoRegistrationAuthority.cdisc_scope).first
+    @future_th = Thesaurus.find_minimum(uri)
+  end
+
   # Merge the parent sets. Error if they dont match!
   def merge_reader_data(readers)
     readers.each do |reader|
@@ -112,7 +119,7 @@ private
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
         existing_ref = true
-      elsif child.future_referenced?(@futire_th)
+      elsif child.future_referenced?(@future_th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
         ref = child
       elsif child.subset_of_extension?(@extensions)
@@ -125,14 +132,14 @@ private
         add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.") if ref.nil?
       elsif child.extension?(@th)
         add_log("Extension detected: #{child.identifier}")
-        ref = child.to_extension(@th)
+        ref = child.to_extension(@th, @fixes)
         @extensions[ref.identifier] = ref if !ref.nil?
       elsif child.sponsor?
         add_log("Sponsor detected: #{child.identifier}")
         ref = child
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
-        ref = child.to_hybrid_sponsor(@th)
+        ref = child.to_hybrid_sponsor(@th, @fixes)
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil
@@ -229,6 +236,22 @@ private
 
     def pop
       @stack.pop
+    end
+
+  end
+
+  # Class to access fixes
+  class Fixes
+
+    def initialize(file_path)
+      @config = file_path.blank? ? nil : YAML.load(File.read(file_path)).deep_symbolize_keys
+    end
+
+    def fix(cl, cli)
+      return nil if @config.nil?
+      uri = @config.dig(:fixes, cl.to_sym, cli.to_sym)
+      return nil if uri.nil?
+      Uri.new(uri: uri)
     end
 
   end
