@@ -1,4 +1,6 @@
 defaults: &defaults
+  extensions:
+    can_extend_unextensible: true 
   identifiers:
     scheme_type: flat # either :flat or :hierarchical. Can be symbol or string
     parent: 
