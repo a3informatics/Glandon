@@ -37,8 +37,8 @@
     ?cl th:identifier ?clidentifier .  
     ?cl isoC:label ?cllabel .  
     ?cl th:notation ?clsub .
-    ?cl th:synonym/isoC:label ?clsyn .
     ?cl th:preferredTerm/isoC:label ?clpt .
     ?cl isoC:tagged/isoC:prefLabel ?clt .
+    OPTIONAL {?cl th:synonym/isoC:label ?clsyn .}
   } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ORDER BY ?clidentifier'
 :type: Ad Hoc Report Definition

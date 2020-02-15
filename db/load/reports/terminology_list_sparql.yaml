@@ -5,6 +5,12 @@
     :label: Identifier
   :l:
     :label: Label
+  :sn:
+    :label: Owner
+  :v:
+    :version: Version
+  :s:
+    :label: State
 :label: Terminology List
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
   PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
@@ -18,10 +24,13 @@
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
   PREFIX is: <http://purl.org/ontology/is/core#>
   PREFIX iso: <http://purl.org/iso25964/skos-thes#>
-  SELECT ?i ?l WHERE
+  SELECT ?i ?l ?sn ?v ?s WHERE
   {         
     ?th rdf:type th:Thesaurus .
-    ?th isoT:hasIdentifier/isoI:identifier ?i .
     ?th isoC:label ?l .
+    ?th isoT:hasIdentifier/isoI:identifier ?i .
+    ?th isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?sn .
+    ?th isoT:hasIdentifier/isoI:semanticVersion ?v .
+    ?th isoT:hasState/isoR:registrationStatus ?s .
   }'
 :type: Ad Hoc Report Definition
