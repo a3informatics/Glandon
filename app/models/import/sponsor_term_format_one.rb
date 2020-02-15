@@ -89,11 +89,12 @@ private
   # Merge the parent sets. Error if they dont match!
   def merge_reader_data(readers)
     readers.each do |reader|
-      reader.engine.parent_set.each do |k, v| 
+      reader.engine.parent_set.each do |k, v|
+byebug
+        v.add_tags_no_save(reader.engine.tags) 
         @parent_set[k] = v
         merge_errors(@parent_set[k], self)
       end
-      @tags += reader.engine.tags
     end
   end
 
