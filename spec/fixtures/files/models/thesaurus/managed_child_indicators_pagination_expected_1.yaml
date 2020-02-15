@@ -3,6 +3,7 @@
   :notation: ETHNIC
   :preferred_term: Patient Ethnic Group
   :synonym: Ethnicity
+  :state: Standard
   :extensible: true
   :definition: A social group characterized by a distinctive social and cultural tradition
     maintained from generation to generation, a common history and origin and a sense
@@ -26,6 +27,7 @@
   :notation: Patient
   :preferred_term: Patient Ethnic Group
   :synonym: ''
+  :state: Standard
   :extensible: true
   :definition: A person who receives medical attention, care, or treatment, or who
     is registered with medical professional or institution with the purpose to receive
@@ -47,6 +49,7 @@
   :notation: AGESPAN
   :preferred_term: Age Group
   :synonym: Age Span
+  :state: Standard
   :extensible: true
   :definition: Subgroups of populations based on age. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzIwNTg3L1YxI0MyMDU4Nw==
@@ -66,6 +69,7 @@
   :notation: COUNTRY
   :preferred_term: Country
   :synonym: Country
+  :state: Standard
   :extensible: false
   :definition: A collective generic term that refers here to a wide variety of dependencies,
     areas of special sovereignty, uninhabited islands, and other entities in addition
@@ -87,6 +91,7 @@
   :notation: SIZE
   :preferred_term: Size
   :synonym: Size
+  :state: Standard
   :extensible: true
   :definition: The physical magnitude of something. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
@@ -106,6 +111,7 @@
   :notation: SEX
   :preferred_term: Sex
   :synonym: Sex
+  :state: Standard
   :extensible: false
   :definition: The assemblage of physical properties or qualities by which male is
     distinguished from female; the physical difference between male and female; the
@@ -127,6 +133,7 @@
   :notation: ROUTE
   :preferred_term: Route of Administration
   :synonym: Route of Administration
+  :state: Standard
   :extensible: true
   :definition: The course by which a substance was administered in order to reach
     the site of action in the body.
@@ -147,6 +154,7 @@
   :notation: FRM
   :preferred_term: Pharmaceutical Dosage Form
   :synonym: Dose Form
+  :state: Standard
   :extensible: true
   :definition: The form of the completed pharmaceutical product, e.g. tablet, capsule,
     injection, elixir, suppository. Dosage form can have a significant effect on the
@@ -171,6 +179,7 @@
   :notation: TPHASE
   :preferred_term: Trial Phase
   :synonym: Trial Phase
+  :state: Standard
   :extensible: true
   :definition: 'Clinical trials are broken into three or four phases: Phase I tests
     a new drug or treatment for safety in a small group; Phase II expands the study
@@ -195,6 +204,7 @@
   :notation: IECAT
   :preferred_term: Category for Inclusion and or Exclusion
   :synonym: Category for Inclusion/Exclusion
+  :state: Standard
   :extensible: false
   :definition: A collection of criteria on which subjects are evaluated and that must
     be met by all study subjects. (NCI)
@@ -215,6 +225,7 @@
   :notation: ND
   :preferred_term: Not Done
   :synonym: ND; Not Done
+  :state: Standard
   :extensible: false
   :definition: Indicates a task, process or examination that has either not been initiated
     or completed. (NCI)
@@ -235,6 +246,7 @@
   :notation: NY
   :preferred_term: Yes, No, Unknown, or Not Applicable Response
   :synonym: No Yes Response
+  :state: Standard
   :extensible: false
   :definition: A term that is used to indicate a question with permissible values
     of yes/no/unknown/not applicable.
@@ -255,6 +267,7 @@
   :notation: OUT
   :preferred_term: Adverse Event Outcome
   :synonym: Outcome of Event
+  :state: Standard
   :extensible: false
   :definition: A condition or event that is attributed to the adverse event and is
     the result or conclusion of the adverse event. (NCI)
@@ -275,6 +288,7 @@
   :notation: ACN
   :preferred_term: Action Taken with Study Treatment
   :synonym: Action Taken with Study Treatment
+  :state: Standard
   :extensible: false
   :definition: The reason that changes were made to the therapy under study. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OQ==
@@ -294,6 +308,7 @@
   :notation: DOMAIN
   :preferred_term: Submission Domain Abbreviation
   :synonym: Domain Abbreviation
+  :state: Standard
   :extensible: true
   :definition: A unique, 2-character domain code used in the regulatory submission
     process.  The domain abbreviation is used consistently throughout the submission,
@@ -316,6 +331,7 @@
   :notation: NCOMPLT
   :preferred_term: Reason for Non-Completion
   :synonym: Completion/Reason for Non-Completion
+  :state: Standard
   :extensible: true
   :definition: The reason that a subject was discontinued from a clinical trial.
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjI3L1YxI0M0OTYyNw==
@@ -335,6 +351,7 @@
   :notation: STENRF
   :preferred_term: Relation to Reference Period
   :synonym: Relation to Reference Period
+  :state: Standard
   :extensible: false
   :definition: The name of a code list that contains terms that reference timepoints
     within and without a defined time period.
@@ -355,6 +372,7 @@
   :notation: TCNTRL
   :preferred_term: Control Type
   :synonym: Type of Control
+  :state: Standard
   :extensible: true
   :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
     (placebo, no treatment, dose-response, active), external (historical, published
@@ -376,6 +394,7 @@
   :notation: TDIGRP
   :preferred_term: Diagnosis Group
   :synonym: Diagnosis Group
+  :state: Standard
   :extensible: true
   :definition: A grouping of individuals on the basis of a shared procedure or disease,
     or lack thereof (e.g. healthy volunteers, type 2 diabetic subjects, subjects with
@@ -398,6 +417,7 @@
   :notation: TINDTP
   :preferred_term: Trial Indication Type
   :synonym: Trial Indication Type
+  :state: Standard
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of trial,
     e.g. cure or prevention. (NCI)
@@ -418,6 +438,7 @@
   :notation: "[TBLIND]"
   :preferred_term: Trial Blinding Schema
   :synonym: Trial Blinding Schema
+  :state: Standard
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of blinding
     for the trial. (NCI)
@@ -438,6 +459,7 @@
   :notation: TTYPE
   :preferred_term: Trial Type
   :synonym: Type of Trial
+  :state: Standard
   :extensible: true
   :definition: The type of clinical trial performed e.g. efficacy, safety. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjYwL1YxI0M0OTY2MA==
@@ -457,6 +479,7 @@
   :notation: VSTEST
   :preferred_term: Vital Signs
   :synonym: Vital Signs Test Name
+  :state: Standard
   :extensible: true
   :definition: The name given to the test that analyzes a particular set of vital
     signs including temperature, respiratory rate, heart beat (pulse), and blood pressure.
@@ -478,6 +501,7 @@
   :notation: VSRESU
   :preferred_term: Units for Vital Signs Results
   :synonym: Units for Vital Signs Results
+  :state: Standard
   :extensible: true
   :definition: The unit used to record and describe the result of a test investigating
     a vital sign. (NCI)
@@ -498,6 +522,7 @@
   :notation: TSPARM
   :preferred_term: Trial Summary Parameter
   :synonym: Trial Summary Parameter
+  :state: Standard
   :extensible: true
   :definition: Individual characteristics of a clinical trial, e.g. description of
     trial design, trial blinding schema, and primary objective of trial. (NCI)
@@ -518,6 +543,7 @@
   :notation: SEXPOP
   :preferred_term: Sex of Study Group
   :synonym: Sex of Participants
+  :state: Standard
   :extensible: false
   :definition: The specific sex, either male, female, or mixed of the subject group
     being studied. (NCI)
@@ -538,6 +564,7 @@
   :notation: TOXGR
   :preferred_term: Common Terminology Criteria for Adverse Events
   :synonym: Standard Toxicity Grade
+  :state: Standard
   :extensible: false
   :definition: A standard terminology developed to report adverse events occurring
     in cancer clinical trials.  Common terminology criteria for adverse events (CTCAE)
@@ -561,6 +588,7 @@
   :notation: AESEV
   :preferred_term: Severity/Intensity Scale for Adverse Events
   :synonym: Severity/Intensity of an Adverse Event
+  :state: Standard
   :extensible: false
   :definition: A scale that defines the degree or state of disease existing in a patient
     as a result of the occurrence of an adverse event. (NCI)
@@ -581,6 +609,7 @@
   :notation: DICTNAM
   :preferred_term: Dictionary Name
   :synonym: Name of Dictionary
+  :state: Standard
   :extensible: true
   :definition: A name given to a reference source that lists words and gives their
     meaning. (NCI)
@@ -601,6 +630,7 @@
   :notation: AGEU
   :preferred_term: Age Unit
   :synonym: Age Units
+  :state: Standard
   :extensible: false
   :definition: Those units of time that are routinely used to express the age of a
     person. (NCI)
@@ -621,6 +651,7 @@
   :notation: SOC
   :preferred_term: CDISC System Organ Class
   :synonym: System Organ Class
+  :state: Standard
   :extensible: false
   :definition: Terms at the highest level of the CDISC system organ class terminology.
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY0Mzg4L1YxI0M2NDM4OA==
@@ -640,6 +671,7 @@
   :notation: LABTEST
   :preferred_term: CDISC SDTM Laboratory Test Terminology
   :synonym: ''
+  :state: Standard
   :extensible: true
   :definition: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
     Model.

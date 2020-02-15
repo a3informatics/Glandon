@@ -403,6 +403,7 @@ ManagedChildrenSelect.prototype.columns = function () {
   			{"data": "semantic_version", "render": function (data, type, row, meta) {
 					return type == "display" ? _this.versionHTML(row) : data;
 				}},
+				{"data": "state"},
 				{"data": "indicators", "width": "80px",
 					"render": function (data, type, row, meta) {
 						return type == "display" ? formatIndicators(data) : formatIndicatorsString(data);
