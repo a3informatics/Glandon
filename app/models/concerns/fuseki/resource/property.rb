@@ -207,8 +207,7 @@ module Fuseki
       # @params [Uri] subject the subject uri for the property
       # @return [Void] no return
       def to_triples(sparql, subject)
-        objects = get
-        objects = [objects] if !array?
+        objects = get_values
         datatype = @metadata[:base_type]
         objects.each do |object|
           statement = object? ? {uri: uri_for_object(object)} : {literal: "#{to_literal(datatype, object)}", primitive_type: datatype}
@@ -233,6 +232,15 @@ module Fuseki
       end
 
     private
+
+      # Get values for object property. Can be single or an array. Return as an array
+      def get_values
+        value = get
+        return [value] if !object?
+        return value if array?
+        return [] if value.nil?
+        [value]
+      end
 
       # Set an object, either single or array
       def set_the_property(value)

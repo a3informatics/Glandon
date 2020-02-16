@@ -24,59 +24,15 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
   include Thesaurus::Extensions
+  include Thesaurus::Subsets
 
-  # Extended? Is this item extended
+  # Upgrade. Upgrade the Managed Concept to refer to the new reference. Adjust references accordingly
   #
-  # @result [Boolean] return true if extended
-  def extended?
-    !extended_by.nil?
-  end
-
-  # Extended By. Get the URI of the extension item if it exists.
-  #
-  # @result [Uri] the Uri or nil if not present.
-  def extended_by
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).last[:s]
-  end
-
-  # Extension? Is this item extending another managed concept
-  #
-  # @result [Boolean] return true if extending another
-  def extension?
-    !extension_of.nil?
-  end
-
-  # Extension Of. Get the URI of the item being extended, if it exists.
-  #
-  # @result [Uri] the Uri or nil if not present.
-  def extension_of
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:extends ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
-  end
-
-  # Subset? Is this item subsetting another managed concept
-  #
-  # @result [Boolean] return true if this instance is a subset of another
-  def subset?
-    !self.subset_of.nil?
-  end
-
-  def subset_of
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:subsets ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
-  end
-
-  # Finds the subsets of this Thesaurus::ManagedConcept
-  #
-  # @return [Array] Uri of subsets referring to this instance, nil if none found
-  def subsetted_by
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:subsets ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s])
+  # @param new_reference [Thesurus::ManagedConcept] the new reference
+  # @return [Void] no return
+  def upgrade(new_reference)
+    return upgrade_extension(new_reference) if self.extension?
+    return upgrade_subset(new_reference) if self.subset?
   end
 
   # Replace If No Change. Replace the current with the previous if no differences.

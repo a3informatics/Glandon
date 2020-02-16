@@ -177,6 +177,12 @@ module Fuseki
       opts[:base_type] = ""
       add_to_resources(name, opts)
 
+      if opts[:cardinality] != :one 
+        define_method("#{name}_push") do |value|
+          @properties.property(name.to_sym).set(value)
+        end
+      end
+
       define_method "#{name}_links" do
         generic_links(name)
       end
@@ -282,13 +288,11 @@ module Fuseki
     def add_to_resources(name, opts)
 
       define_method("#{name}=") do |value|
-        #instance_variable_set("@#{name}", value)
         @properties.property(name.to_sym).set_raw(value)
       end
 
       define_method("#{name}") do 
         @properties.property(name.to_sym).get
-        #instance_variable_get("@#{name}")
       end
       
       @resources ||= {}
