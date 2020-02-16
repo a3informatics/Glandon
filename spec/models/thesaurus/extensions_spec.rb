@@ -77,11 +77,8 @@ describe "Thesaurus::Extensions" do
 
     it "can upgrade an extension" do
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
-puts colourize("V32 Narrower Count: #{tc_32.narrower.count}", "blue")
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
-puts colourize("V34 Narrower Count: #{tc_34.narrower.count}", "blue")
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
-puts colourize("V45 Narrower Count: #{tc_45.narrower.count}", "blue")
       item_1 = tc_32.create_extension
       item_1 = Thesaurus::ManagedConcept.find(item_1.uri)
       expect(item_1.narrower.count).to eq(7)
@@ -94,34 +91,41 @@ puts colourize("V45 Narrower Count: #{tc_45.narrower.count}", "blue")
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(10)
       check_file_actual_expected(item_3.to_h, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
+      tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      expect(tc_32.narrower.count).to eq(7)
+      tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
+      expect(tc_34.narrower.count).to eq(8)
+      tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
+      expect(tc_45.narrower.count).to eq(10)
     end
 
     it "can upgrade an extension with extension" do
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
-puts colourize("V32 Narrower Count: #{tc_32.narrower.count}", "blue")
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
-puts colourize("V34 Narrower Count: #{tc_34.narrower.count}", "blue")
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
-puts colourize("V45 Narrower Count: #{tc_45.narrower.count}", "blue")
       item_1 = tc_32.create_extension
       item_1 = Thesaurus::ManagedConcept.find(item_1.uri)
       expect(item_1.narrower.count).to eq(7)
       check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
       item_1.narrower_push a_tc("A1")
       expect(item_1.narrower.count).to eq(8)
-byebug
       item_1.save
-byebug
       item_2 = item_1.upgrade(tc_34)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
       expect(item_2.narrower.count).to eq(9)
-      check_file_actual_expected(item_2.to_h, sub_dir, "upgrade_expected_2b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item_2.to_h, sub_dir, "upgrade_expected_2b.yaml", equate_method: :hash_equal)
       item_2.narrower_push a_tc("A2")
       item_2.save
       item_3 = item_1.upgrade(tc_45)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
-      expect(item_3.narrower.count).to eq(11)
+      expect(item_3.narrower.count).to eq(12)
       check_file_actual_expected(item_3.to_h, sub_dir, "upgrade_expected_2c.yaml", equate_method: :hash_equal, write_file: true)
+      tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      expect(tc_32.narrower.count).to eq(7)
+      tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
+      expect(tc_34.narrower.count).to eq(8)
+      tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
+      expect(tc_45.narrower.count).to eq(10)
    end
 
   end

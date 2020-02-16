@@ -66,7 +66,6 @@ class Thesaurus
     # @return [Void] no return
     def upgrade_extension(new_reference)
       self.extends = new_reference
-byebug
       self.narrower = extension_children(new_reference)
       self.save
       self
@@ -78,9 +77,8 @@ byebug
     def extension_children(new_reference)
       parts = []
       parts << "{ #{new_reference.uri.to_ref} th:narrower ?s }"
-      parts << "{ #{self.uri.to_ref} th:narrower ?s . FILTER NOT EXISTS { ?s ^th:narrower #{new_reference.uri.to_ref} . }}"
+      parts << "{ { #{self.uri.to_ref} th:narrower ?s } MINUS { #{self.uri.to_ref} th:extends/th:narrower ?s } }"
       query_string = "SELECT DISTINCT ?s WHERE { #{parts.join(" UNION\n")} }"
-  puts "*****\n#{query_string}\n*****"
       query_results = Sparql::Query.new.query(query_string, uri.namespace, [:th])
       query_results.by_object_set([:s]).map{|x| x[:s]}
     end
