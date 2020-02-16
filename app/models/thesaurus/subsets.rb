@@ -16,9 +16,11 @@ class Thesaurus
       self.subsets = new_reference
       uris = subset_children(new_reference)
       self.narrower = uris
+      transaction_begin
       self.save
       subset.delete_subset
       subset.add(uris.map{|x| x.to_id})
+      transaction_execute
       self
     end
   

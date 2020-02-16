@@ -13,10 +13,10 @@ describe "Thesaurus::Subsets" do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl"]
       load_files(schema_files, data_files)
-      # load_cdisc_term_versions(1..20)
-      # NameValue.destroy_all
-      # NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      # NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      load_cdisc_term_versions(1..20)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
     it "determines if an item is subsetted" do
@@ -50,13 +50,15 @@ describe "Thesaurus::Subsets" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..45)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
     it "can upgrade a subset" do
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
-  byebug
       item_1 = tc_32.create_subset
       item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
@@ -71,21 +73,30 @@ describe "Thesaurus::Subsets" do
       item_1 = Thesaurus::ManagedConcept.find(item_1.id)
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
       expect(item_1.narrower.count).to eq(2)
-      check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      result = item_1.to_h
+      result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
+      result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal)
 
       item_2 = item_1.upgrade(tc_34)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
       expect(item_2.narrower.count).to eq(2)
-      check_file_actual_expected(item_2.to_h, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      result = item_2.to_h
+      result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
+      result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
       item_2.is_ordered_objects.add([uri_3.to_id])
       
       item_3 = item_1.upgrade(tc_45)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(3)
-      check_file_actual_expected(item_3.to_h, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
+      result = item_3.to_h
+      result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
+      result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal)
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
       expect(tc_32.narrower.count).to eq(7)
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
