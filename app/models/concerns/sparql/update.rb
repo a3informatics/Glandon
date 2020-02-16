@@ -112,7 +112,6 @@ module Sparql
       delete_triples = parts.join("\n")
       result = "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_triples}\n}\n" + 
         "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{where_triples}\n}"  
-puts colourize("Selective update: #{result}", "blue")
       result
     end
 

@@ -1,0 +1,105 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUA==
+:uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Not Set
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9SUw==
+  :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9TSQ==
+  :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: NP000123P
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2020-02-16T17:31:04+01:00'
+:last_change_date: '2020-02-16T17:31:04+01:00'
+:explanatory_comment: ''
+:identifier: ''
+:notation: ''
+:definition: ''
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQyODcy
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C42872
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Washout Period
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C42872
+  :notation: WASHOUT
+  :definition: A period of time during a clinical study when a participant is taken
+    off of a study drug or other medication in order to eliminate the effects of the
+    treatment.
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#f9fa5d9fad08dc5cebaf63b78c030054a0a7ebb6
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQ4MjYy
+  :uri: http://www.cdisc.org/C99079/V28#C99079_C48262
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Trial Screening
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C48262
+  :notation: SCREENING
+  :definition: A period in a clinical study during which subjects are evaluated for
+    participation in the study.
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#716ec4895092b5d6db6f3f01d7cfe670bbf37464
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMiNDOTkwNzlfQzEwMTUyNg==
+  :uri: http://www.cdisc.org/C99079/V32#C99079_C101526
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Treatment Epoch
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C101526
+  :notation: TREATMENT
+  :definition: A period in a clinical study during which subjects receive therapeutic
+    treatment.
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#304a40a07c957332262373e61e2fbfb78e9a5ba4
+  :synonym: []
+:extends: 
+:subsets: http://www.cdisc.org/C99079/V32#C99079
+:preferred_term: 
+:synonym: []
+:is_ordered: 
