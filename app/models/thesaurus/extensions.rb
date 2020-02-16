@@ -1,7 +1,7 @@
-# Managed Concepts
+# Managed Concepts Extensions
 #
-# @author Dave Iberson-Hurst
-# @since 2.22.0
+# @author Clarisa Romero
+# @since 2.33.0
 class Thesaurus
 
   module Extensions
