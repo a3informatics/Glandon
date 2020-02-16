@@ -7,14 +7,18 @@ class Thesaurus
   module Subsets
 
     # Upgrade. Upgrade the Managed Concept to refer to the new reference. Adjust references accordingly
-    # This will be all the children of the new reference plus the extending items already present
+    # This will be all the children in the current subset that exist in the new reference in the same order.
     #
     # @param new_reference [Thesurus::ManagedConcept] the new reference
     # @return [Void] no return
     def upgrade_subset(new_reference)
-      self.extends = new_reference
-      self.narrower = subset_children(new_reference)
+      subset = self.is_ordered_objects
+      self.subsets = new_reference
+      uris = subset_children(new_reference)
+      self.narrower = uris
       self.save
+      subset.delete_subset
+      subset.add(uris.map{|x| x.to_id})
       self
     end
   
@@ -48,7 +52,7 @@ class Thesaurus
     # Get the subset children. The order is t be preserved.
     def subset_children(new_reference)
       set = self.is_ordered_objects.list_uris
-      query_string = "SELECT DISTINCT ?e WHERE { VALUES ?s { #{set.map{|x| x[:uri].to_ref}.join(" ")} } ?s th:identifier ?i_old . #{new_reference.uri.to_ref} th:narrower ?e . ?e th:identifier ?i_new . FILTER (STR(?i_old) = STR(?inew)) }"
+      query_string = "SELECT DISTINCT ?e WHERE { VALUES ?s { #{set.map{|x| x[:uri].to_ref}.join(" ")} } ?s th:identifier ?i . #{new_reference.uri.to_ref} th:narrower ?e . ?e th:identifier ?i . }"
       query_results = Sparql::Query.new.query(query_string, uri.namespace, [:th])
       query_results.by_object_set([:e]).map{|x| x[:e]}
     end

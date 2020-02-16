@@ -52,11 +52,11 @@ describe "Thesaurus::Subsets" do
       load_cdisc_term_versions(1..45)
     end
 
-    it "can upgrade an extension" do
+    it "can upgrade a subset" do
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
-byebug
+  byebug
       item_1 = tc_32.create_subset
       item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
@@ -66,22 +66,26 @@ byebug
 
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079_C42872")
       uri_2 = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079_C48262")
-      uri_3 = Uri.new(uri: "http://www.cdisc.org/C99079/V32#C99079_C16032")
-      item_1.is_ordered.add([uri_1.to_id, uri_2.to_id, uri_3.to_id])
-      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
+      uri_3 = Uri.new(uri: "http://www.cdisc.org/C99079/V34#C99079_C16032")
+      item_1.is_ordered.add([uri_1.to_id, uri_2.to_id])
+      item_1 = Thesaurus::ManagedConcept.find(item_1.id)
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
-      expect(item_1.narrower_objects.count).to eq(3)
-      check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
-
+      expect(item_1.narrower.count).to eq(2)
+      check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
 
       item_2 = item_1.upgrade(tc_34)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
-      expect(item_2.narrower.count).to eq(3)
-      check_file_actual_expected(item_2.to_h, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      expect(item_2.narrower.count).to eq(2)
+      check_file_actual_expected(item_2.to_h, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      item_2.is_ordered_objects.add([uri_3.to_id])
+      
       item_3 = item_1.upgrade(tc_45)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(3)
-      check_file_actual_expected(item_3.to_h, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item_3.to_h, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x[:item].to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
       expect(tc_32.narrower.count).to eq(7)
       tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
