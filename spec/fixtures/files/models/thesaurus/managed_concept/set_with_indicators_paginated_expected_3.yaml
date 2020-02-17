@@ -1,6 +1,7 @@
 ---
 - :identifier: A00001
   :notation: LHR
+  :label: London Heathrow
   :preferred_term: London Heathrow
   :synonym: Heathrow; LHR
   :extensible: false
@@ -19,6 +20,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
 - :identifier: C16564
   :notation: ETHNIC
+  :label: Patient Ethnic Group
   :preferred_term: Patient Ethnic Group
   :synonym: Ethnicity
   :extensible: true
@@ -41,6 +43,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C16960
   :notation: Patient
+  :label: Patient Ethnic Group
   :preferred_term: Patient Ethnic Group
   :synonym: ''
   :extensible: true
@@ -61,6 +64,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C20587
   :notation: AGESPAN
+  :label: Age Group
   :preferred_term: Age Group
   :synonym: Age Span
   :extensible: true
@@ -79,6 +83,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C25188
   :notation: MARISTAT
+  :label: Marital Status
   :preferred_term: Marital Status
   :synonym: Marital Status
   :extensible: true
@@ -97,6 +102,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C25464
   :notation: COUNTRY
+  :label: Country
   :preferred_term: Country
   :synonym: Country
   :extensible: false
@@ -117,6 +123,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C25681
   :notation: SIZE
+  :label: Size
   :preferred_term: Size
   :synonym: Size
   :extensible: true
@@ -135,6 +142,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C28421
   :notation: SEX
+  :label: Sex
   :preferred_term: Sex
   :synonym: Sex
   :extensible: false
@@ -155,6 +163,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C38114
   :notation: ROUTE
+  :label: Route of Administration
   :preferred_term: Route of Administration
   :synonym: Route of Administration
   :extensible: true
@@ -174,6 +183,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C42636
   :notation: FRM
+  :label: Pharmaceutical Dosage Form
   :preferred_term: Pharmaceutical Dosage Form
   :synonym: Dose Form
   :extensible: true
@@ -197,6 +207,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C48281
   :notation: TPHASE
+  :label: Trial Phase
   :preferred_term: Trial Phase
   :synonym: Trial Phase
   :extensible: true
@@ -220,6 +231,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49480
   :notation: IECAT
+  :label: Category for Inclusion and or Exclusion
   :preferred_term: Category for Inclusion and or Exclusion
   :synonym: Category for Inclusion/Exclusion
   :extensible: false
@@ -239,6 +251,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49484
   :notation: ND
+  :label: Not Done
   :preferred_term: Not Done
   :synonym: ND; Not Done
   :extensible: false
@@ -258,6 +271,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49486
   :notation: NY
+  :label: Yes, No, Unknown, or Not Applicable Response
   :preferred_term: Yes, No, Unknown, or Not Applicable Response
   :synonym: No Yes Response
   :extensible: false
@@ -277,6 +291,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49489
   :notation: OUT
+  :label: Adverse Event Outcome
   :preferred_term: Adverse Event Outcome
   :synonym: Outcome of Event
   :extensible: false
@@ -296,6 +311,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49499
   :notation: ACN
+  :label: Action Taken with Study Treatment
   :preferred_term: Action Taken with Study Treatment
   :synonym: Action Taken with Study Treatment
   :extensible: false
@@ -314,6 +330,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49558
   :notation: DOMAIN
+  :label: Submission Domain Abbreviation
   :preferred_term: Submission Domain Abbreviation
   :synonym: Domain Abbreviation
   :extensible: true
@@ -335,6 +352,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49627
   :notation: NCOMPLT
+  :label: Reason for Non-Completion
   :preferred_term: Reason for Non-Completion
   :synonym: Completion/Reason for Non-Completion
   :extensible: true
@@ -353,6 +371,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49638
   :notation: STENRF
+  :label: Relation to Reference Period
   :preferred_term: Relation to Reference Period
   :synonym: Relation to Reference Period
   :extensible: false
@@ -372,6 +391,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49647
   :notation: TCNTRL
+  :label: Control Type
   :preferred_term: CDISC SDTM Control Type Terminology
   :synonym: Control Type; TCNTRL; Type of Control
   :extensible: true
@@ -392,6 +412,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49650
   :notation: TDIGRP
+  :label: Diagnosis Group
   :preferred_term: Diagnosis Group
   :synonym: Diagnosis Group
   :extensible: true
@@ -413,6 +434,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49652
   :notation: TINDTP
+  :label: Trial Indication Type
   :preferred_term: Trial Indication Type
   :synonym: Trial Indication Type
   :extensible: true
@@ -432,6 +454,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49658
   :notation: "[TBLIND]"
+  :label: Trial Blinding Schema
   :preferred_term: Trial Blinding Schema
   :synonym: Trial Blinding Schema
   :extensible: true
@@ -451,6 +474,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49660
   :notation: TTYPE
+  :label: Trial Type
   :preferred_term: Trial Type
   :synonym: Type of Trial
   :extensible: true
@@ -469,6 +493,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49672
   :notation: VSTEST
+  :label: Vital Signs
   :preferred_term: Vital Signs
   :synonym: Vital Signs Test Name
   :extensible: true
@@ -489,6 +514,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49675
   :notation: VSRESU
+  :label: Units for Vital Signs Results
   :preferred_term: Units for Vital Signs Results
   :synonym: Units for Vital Signs Results
   :extensible: true
@@ -508,6 +534,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49691
   :notation: TSPARM
+  :label: Trial Summary Parameter
   :preferred_term: Trial Summary Parameter
   :synonym: Trial Summary Parameter
   :extensible: true
@@ -527,6 +554,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49696
   :notation: SEXPOP
+  :label: Sex of Study Group
   :preferred_term: Sex of Study Group
   :synonym: Sex of Participants
   :extensible: false
@@ -546,6 +574,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49704
   :notation: TOXGR
+  :label: Common Terminology Criteria for Adverse Events
   :preferred_term: Common Terminology Criteria for Adverse Events
   :synonym: Standard Toxicity Grade
   :extensible: false
@@ -568,6 +597,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C49705
   :notation: AESEV
+  :label: Severity/Intensity Scale for Adverse Events
   :preferred_term: Severity/Intensity Scale for Adverse Events
   :synonym: Severity/Intensity of an Adverse Event
   :extensible: false
@@ -587,6 +617,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C50399
   :notation: DICTNAM
+  :label: Dictionary Name
   :preferred_term: Dictionary Name
   :synonym: Name of Dictionary
   :extensible: true
@@ -606,6 +637,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C50400
   :notation: AGEU
+  :label: Age Unit
   :preferred_term: Age Unit
   :synonym: Age Units
   :extensible: false
@@ -625,6 +657,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C64388
   :notation: SOC
+  :label: CDISC System Organ Class
   :preferred_term: CDISC System Organ Class
   :synonym: System Organ Class
   :extensible: false
@@ -643,6 +676,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C65047
   :notation: LBTESTCD
+  :label: Laboratory Test Code
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Code
   :synonym: Laboratory Test Code
   :extensible: true
@@ -662,6 +696,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66726
   :notation: FRM
+  :label: Pharmaceutical Dosage Form
   :preferred_term: CDISC SDTM Pharmaceutical Dosage Form Terminology
   :synonym: Dose Form; Pharmaceutical Dosage Form
   :extensible: true
@@ -685,6 +720,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66727
   :notation: NCOMPLT
+  :label: Completion/Reason for Non-Completion
   :preferred_term: CDISC SDTM Reason for Non-Completion Terminology
   :synonym: Completion/Reason for Non-Completion
   :extensible: true
@@ -705,6 +741,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66728
   :notation: STENRF
+  :label: Relation to Reference Period
   :preferred_term: CDISC SDTM Relation to Reference Period Terminology
   :synonym: Relation to Reference Period
   :extensible: false
@@ -723,6 +760,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66729
   :notation: ROUTE
+  :label: Route of Administration
   :preferred_term: CDISC SDTM Route of Administration Terminology
   :synonym: Route of Administration
   :extensible: true
@@ -742,6 +780,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66731
   :notation: SEX
+  :label: Sex
   :preferred_term: CDISC SDTM Sex of Individual Terminology
   :synonym: Sex
   :extensible: false
@@ -762,6 +801,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66732
   :notation: SEXPOP
+  :label: Sex of Participants
   :preferred_term: CDISC SDTM Sex of Study Group Terminology
   :synonym: Sex of Participants
   :extensible: false
@@ -781,6 +821,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66733
   :notation: SIZE
+  :label: Size
   :preferred_term: CDISC SDTM Size Terminology
   :synonym: Size
   :extensible: true
@@ -799,6 +840,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66734
   :notation: DOMAIN
+  :label: Domain Abbreviation
   :preferred_term: CDISC SDTM Submission Domain Abbreviation Terminology
   :synonym: Domain Abbreviation
   :extensible: true
@@ -820,6 +862,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66735
   :notation: TBLIND
+  :label: Trial Blinding Schema
   :preferred_term: CDISC SDTM Trial Blinding Schema Terminology
   :synonym: Trial Blinding Schema
   :extensible: true
@@ -839,6 +882,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66736
   :notation: TINDTP
+  :label: Trial Indication Type
   :preferred_term: CDISC SDTM Trial Indication Type Terminology
   :synonym: Trial Indication Type
   :extensible: true
@@ -858,6 +902,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66737
   :notation: TPHASE
+  :label: Trial Phase
   :preferred_term: CDISC SDTM Trial Phase Terminology
   :synonym: Trial Phase
   :extensible: true
@@ -881,6 +926,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66738
   :notation: TSPARMCD
+  :label: Trial Summary Parameter Test Code
   :preferred_term: CDISC SDTM Trial Summary Parameter Terminology by Code
   :synonym: Trial Summary Parameter Test Code
   :extensible: true
@@ -900,6 +946,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66739
   :notation: TTYPE
+  :label: Trial Type
   :preferred_term: CDISC SDTM Trial Type Terminology
   :synonym: Trial Type
   :extensible: true
@@ -918,6 +965,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66741
   :notation: VSTESTCD
+  :label: Vital Signs Test Code
   :preferred_term: CDISC SDTM Vital Sign Terminology by Code
   :synonym: Vital Signs Test Code
   :extensible: true
@@ -938,6 +986,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66742
   :notation: NY
+  :label: No Yes Response
   :preferred_term: CDISC SDTM Yes No Unknown or Not Applicable Response Terminology
   :synonym: No Yes Response
   :extensible: false
@@ -957,6 +1006,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66767
   :notation: ACN
+  :label: Action Taken with Study Treatment
   :preferred_term: CDISC SDTM Action Taken with Study Treatment Terminology
   :synonym: Action Taken with Study Treatment
   :extensible: false
@@ -975,6 +1025,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66768
   :notation: OUT
+  :label: Outcome of Event
   :preferred_term: CDISC SDTM Adverse Event Outcome Terminology
   :synonym: Outcome of Event
   :extensible: false
@@ -994,6 +1045,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66769
   :notation: AESEV
+  :label: Severity/Intensity Scale for Adverse Events
   :preferred_term: CDISC SDTM Severity Intensity Scale for Adverse Event Terminology
   :synonym: Severity/Intensity Scale for Adverse Events
   :extensible: false
@@ -1013,6 +1065,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66770
   :notation: VSRESU
+  :label: Units for Vital Signs Results
   :preferred_term: CDISC SDTM Unit for Vital Sign Result Terminology
   :synonym: Units for Vital Signs Results
   :extensible: true
@@ -1032,6 +1085,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66780
   :notation: AGESPAN
+  :label: Age Span
   :preferred_term: CDISC SDTM Age Group Terminology
   :synonym: Age Span
   :extensible: true
@@ -1050,6 +1104,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66781
   :notation: AGEU
+  :label: Age Unit
   :preferred_term: CDISC SDTM Age Unit Terminology
   :synonym: Age Unit
   :extensible: false
@@ -1069,6 +1124,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66783
   :notation: SOC
+  :label: CDISC System Organ Class
   :preferred_term: CDISC SDTM System Organ Class Terminology
   :synonym: CDISC System Organ Class
   :extensible: false
@@ -1087,6 +1143,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66784
   :notation: TOXGR
+  :label: Common Terminology Criteria for Adverse Events
   :preferred_term: CDISC SDTM Common Terminology Criteria for Adverse Event Grade
     Terminology
   :synonym: Common Terminology Criteria for Adverse Events
@@ -1110,6 +1167,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66785
   :notation: TCNTRL
+  :label: Control Type
   :preferred_term: CDISC SDTM Control Type Terminology
   :synonym: Control Type; Type of Control
   :extensible: true
@@ -1130,6 +1188,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66786
   :notation: COUNTRY
+  :label: Country
   :preferred_term: CDISC SDTM Country Terminology
   :synonym: Country
   :extensible: false
@@ -1150,6 +1209,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66787
   :notation: TDIGRP
+  :label: Diagnosis Group
   :preferred_term: CDISC SDTM Diagnosis Group Terminology
   :synonym: Diagnosis Group
   :extensible: true
@@ -1171,6 +1231,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66788
   :notation: DICTNAM
+  :label: Dictionary Name
   :preferred_term: CDISC SDTM Dictionary Name Terminology
   :synonym: Dictionary Name; Name of Dictionary
   :extensible: true
@@ -1190,6 +1251,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66789
   :notation: ND
+  :label: Not Done
   :preferred_term: CDISC SDTM Not Done Terminology
   :synonym: Not Done
   :extensible: false
@@ -1209,6 +1271,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66790
   :notation: ETHNIC
+  :label: Ethnic Group
   :preferred_term: CDISC SDTM Ethnic Group Terminology
   :synonym: Ethnic Group
   :extensible: true
@@ -1231,6 +1294,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66797
   :notation: IECAT
+  :label: Category for Inclusion/Exclusion
   :preferred_term: CDISC SDTM Category of Inclusion And Or Exclusion Terminology
   :synonym: Category for Inclusion/Exclusion
   :extensible: false
@@ -1250,6 +1314,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C67152
   :notation: TSPARM
+  :label: Trial Summary Parameter Test Name
   :preferred_term: CDISC SDTM Trial Summary Parameter Terminology by Name
   :synonym: Trial Summary Parameter Test Name
   :extensible: true
@@ -1269,6 +1334,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C67153
   :notation: VSTEST
+  :label: Vital Signs Test Name
   :preferred_term: CDISC SDTM Vital Sign Terminology by Name
   :synonym: Vital Signs Test Name
   :extensible: true
@@ -1289,6 +1355,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C67154
   :notation: LBTEST
+  :label: Laboratory Test Name
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Name
   :synonym: Laboratory Test Name
   :extensible: true
@@ -1308,6 +1375,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71113
   :notation: FREQ
+  :label: Frequency
   :preferred_term: CDISC SDTM Frequency Terminology
   :synonym: Frequency
   :extensible: true
@@ -1327,6 +1395,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71148
   :notation: POSITION
+  :label: Position
   :preferred_term: CDISC SDTM Body Position Terminology
   :synonym: Position
   :extensible: true
@@ -1345,6 +1414,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71150
   :notation: EGSTRESC
+  :label: ECG Result
   :preferred_term: CDISC SDTM ECG Finding Terminology
   :synonym: ECG Result
   :extensible: true
@@ -1364,6 +1434,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71151
   :notation: EGMETHOD
+  :label: ECG Test Method
   :preferred_term: CDISC SDTM ECG Test Method Terminology
   :synonym: ECG Test Method
   :extensible: true
@@ -1382,6 +1453,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71152
   :notation: EGTEST
+  :label: ECG Test Name
   :preferred_term: CDISC SDTM ECG Test Name Terminology
   :synonym: ECG Test Name
   :extensible: true
@@ -1400,6 +1472,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71153
   :notation: EGTESTCD
+  :label: ECG Test Code
   :preferred_term: CDISC SDTM ECG Test Terminology by Code
   :synonym: ECG Test Code
   :extensible: true
@@ -1418,6 +1491,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C71620
   :notation: UNIT
+  :label: Unit
   :preferred_term: CDISC SDTM Unit of Measure Terminology
   :synonym: Unit
   :extensible: true
@@ -1436,6 +1510,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74456
   :notation: LOC
+  :label: Anatomical Location
   :preferred_term: CDISC SDTM Anatomical Location Terminology
   :synonym: Anatomical Location
   :extensible: true
@@ -1454,6 +1529,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74457
   :notation: RACE
+  :label: Race
   :preferred_term: CDISC SDTM Race Terminology
   :synonym: Race
   :extensible: true
@@ -1473,6 +1549,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74558
   :notation: DSCAT
+  :label: Category for Disposition Event
   :preferred_term: CDISC SDTM Category For Disposition Event Terminology
   :synonym: Category for Disposition Event
   :extensible: true
@@ -1492,6 +1569,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74559
   :notation: SCCD
+  :label: Subject Characteristic Code
   :preferred_term: CDISC SDTM Subject Characteristic Code Terminology
   :synonym: Subject Characteristic Code
   :extensible: true
@@ -1510,6 +1588,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74560
   :notation: SKINCLAS
+  :label: Skin Classification
   :preferred_term: CDISC SDTM Fitzpatrick Skin Classification Terminology
   :synonym: Skin Classification
   :extensible: true
@@ -1529,6 +1608,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C74561
   :notation: SKINTYP
+  :label: Skin Type
   :preferred_term: CDISC SDTM Skin Type Terminology
   :synonym: Skin Type
   :extensible: true
@@ -1548,6 +1628,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C76348
   :notation: MARISTAT
+  :label: Marital Status
   :preferred_term: Marital Status Terminology
   :synonym: Marital Status
   :extensible: true
@@ -1566,6 +1647,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C76351
   :notation: SKINCLAS
+  :label: Skin Classification
   :preferred_term: CDISC SDTM Fitzpatrick Skin Classification Terminology
   :synonym: Skin Classification
   :extensible: true
@@ -1585,6 +1667,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78417
   :notation: CMDOSU
+  :label: Concomitant Medication Dose Units
   :preferred_term: CDISC CDASH Concomitant Medication Dose Units Terminology
   :synonym: Dose Units
   :extensible: true
@@ -1604,6 +1687,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78418
   :notation: CMDOSFRM
+  :label: Concomitant Medication Dose Form
   :preferred_term: CDISC CDASH Concomitant Medication Dose Form Terminology
   :synonym: Dose Form
   :extensible: true
@@ -1623,6 +1707,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78419
   :notation: CMDOSFRQ
+  :label: Concomitant Medication Dosing Frequency per Interval
   :preferred_term: CDISC CDASH Concomitant Medication Dosing Frequency per Interval
     Terminology
   :synonym: Dosing Frequency per Interval
@@ -1643,6 +1728,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78420
   :notation: CMROUTE
+  :label: Concomitant Medication Route of Administration
   :preferred_term: CDISC CDASH Concomitant Medication Route of Administration Terminology
   :synonym: Route of Administration
   :extensible: true
@@ -1662,6 +1748,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78421
   :notation: DAORRESU
+  :label: Unit of Drug Dispensed or Returned
   :preferred_term: CDISC CDASH Unit of Drug Dispensed or Returned Terminology
   :synonym: Unit of Drug Dispensed or Returned
   :extensible: true
@@ -1681,6 +1768,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78422
   :notation: EGORRESU
+  :label: ECG Original Units
   :preferred_term: CDISC CDASH ECG Original Units Terminology
   :synonym: ECG Original Units
   :extensible: true
@@ -1700,6 +1788,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78423
   :notation: EXDOSU
+  :label: Units for Exposure
   :preferred_term: CDISC CDASH Units for Exposure Terminology
   :synonym: Units for Exposure
   :extensible: true
@@ -1719,6 +1808,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78425
   :notation: EXROUTE
+  :label: Exposure Route of Administration
   :preferred_term: CDISC CDASH Exposure Route of Administration Terminology
   :synonym: Exposure Route of Administration
   :extensible: true
@@ -1738,6 +1828,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78426
   :notation: EXDOSFRM
+  :label: Exposure Dose Form
   :preferred_term: CDISC CDASH Exposure Dose Form Terminology
   :synonym: Exposure Dose Form
   :extensible: true
@@ -1757,6 +1848,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78427
   :notation: EXINTPU
+  :label: Unit for the Duration of Treatment Interruption
   :preferred_term: CDISC CDASH Unit for Duration of Treatment Interruption Terminology
   :synonym: Unit for the Duration of Treatment Interruption
   :extensible: true
@@ -1776,6 +1868,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78428
   :notation: EXVOLTU
+  :label: Total Volume Administration Unit
   :preferred_term: CDISC CDASH Total Volume Administration Unit Terminology
   :synonym: Total Volume Administration Unit
   :extensible: true
@@ -1795,6 +1888,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78429
   :notation: EXFLRTU
+  :label: Unit of Measure for Flow Rate
   :preferred_term: CDISC CDASH Unit of Measure for Flow Rate Terminology
   :synonym: Unit of Measure for Flow Rate
   :extensible: true
@@ -1814,6 +1908,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78430
   :notation: EXPDOSEU
+  :label: Units for Planned Exposure
   :preferred_term: CDISC CDASH Units for Planned Exposure Terminology
   :synonym: Units for Planned Exposure
   :extensible: true
@@ -1833,6 +1928,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78431
   :notation: VSPOS
+  :label: Vital Signs Position of Subject
   :preferred_term: CDISC CDASH Vital Signs Position of Subject Terminology
   :synonym: Vital Signs Position of Subject
   :extensible: true
@@ -1852,6 +1948,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78731
   :notation: DATEST
+  :label: Drug Accountability Test Name
   :preferred_term: CDISC SDTM Drug Accountability Test Terminology by Name
   :synonym: Drug Accountability Test Name
   :extensible: true
@@ -1870,6 +1967,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78732
   :notation: DATESTCD
+  :label: Drug Accountability Test Code
   :preferred_term: CDISC SDTM Drug Accountability Test Terminology by Code
   :synonym: Drug Accountability Test Code
   :extensible: true
@@ -1888,6 +1986,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78733
   :notation: SPECCOND
+  :label: Specimen Condition
   :preferred_term: CDISC SDTM Specimen Condition Terminology
   :synonym: Specimen Condition
   :extensible: true
@@ -1906,6 +2005,7 @@
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C78734
   :notation: SPECTYPE
+  :label: Specimen Type
   :preferred_term: CDISC SDTM Specimen Type Terminology
   :synonym: Specimen Type
   :extensible: true
