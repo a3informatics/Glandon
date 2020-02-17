@@ -178,6 +178,34 @@ describe "IsoRegistrationStateV2" do
     result.registration_status = "Standard"
     expect(result.has_been_released_state?).to eq(false)
   end
+
+  it "allows the item state to be checked for is or has been in release state, Incomplete" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Incomplete"
+    expect(result.is_or_has_been_released?).to eq(false)
+  end
+
+  it "allows the item state to be checked for is or has been in release state, standard" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Standard"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
+
+    it "allows the item state to be checked for is or has been in release state, retired" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Retired"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
+
+    it "allows the item state to be checked for is or has been in release state, superseeded" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Superseded"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
   
   it "allows the edit state to be determined for an editable item" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
