@@ -10,7 +10,6 @@ describe "Thesaurus", :type => :feature do
   describe "Sponsor Terminology", :type => :feature do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl"]
       load_files(schema_files, data_files)
       clear_iso_concept_object

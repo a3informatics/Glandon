@@ -30,6 +30,5 @@
 	</div>
 </div>
 
-<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri, index_url: thesauri_index_path,
-	history_url: history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"}),
+<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri,
 	description: "Select one Terminology version with which to compare. It is recommended to select only from other versions of the item you are comparing.", select_multiple: false} %>

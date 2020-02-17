@@ -8,7 +8,7 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/CN#1234-5678-9012-3456> rdf:type ba:ChangeNote . 
 <http://www.assero.co.uk/CN#1234-5678-9012-3456> isoC:label "Change Note"^^xsd:string . 
-<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:reference "R"^^xsd: . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:reference "R"^^xsd:string . 
 <http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:description "D"^^xsd:string . 
 <http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:userReference "UR"^^xsd:string . 

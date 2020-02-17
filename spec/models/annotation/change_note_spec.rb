@@ -68,6 +68,12 @@ describe Annotation::ChangeNote do
     check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
   end    
 
+  it "round trip, creates and reads a change note" do
+    item = create_change_note("UR", "D", "R", "1234-5678-9012-3456")
+    actual = Annotation::ChangeNote.find(item.uri)
+    expect(item.to_h).to hash_equal(actual.to_h)
+  end    
+
   it "updates a change note" do
     allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")

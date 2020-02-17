@@ -1,0 +1,38 @@
+refreshOnBackPressed();
+
+$(document).ready(function(){
+
+  var mis = new ManagedItemsSelect();
+
+  $(".context-menu a[id^='delete-']").on("click", function() {
+    removeReport(getReportId(this));
+  });
+
+  $(".context-menu a[id^='run-'][href='#']").on("click", function() {
+    selectReportItem(getReportId(this));
+  });
+
+  // Delete Report
+  let removeReport = function(id) {
+    new ConfirmationDialog(function(){ $('#delete_link_'+id).click() }, {dangerous: true}).show();
+  }
+
+  // Open Select Item for Report Dialog
+  let selectReportItem = function(id) {
+    mis.type = $("#paramtype-" + id).val();
+    mis.setDescription($("#paramdescription-" + id).val());
+    mis.callback = function(selectedId) { location.href = makeParamReportUrl(id, selectedId); }
+    mis.show();
+  }
+
+  // Get report ID from Jquery element
+  let getReportId = function(el) {
+    return $(el).attr("id").split('-')[1];
+  }
+
+  // Makes report parametrized url, based on startParamReportUrl declared in the view
+  let makeParamReportUrl = function(id, val) {
+    return startParamReportUrl.replace("reportId", id).replace("reportParam", val);
+  }
+
+});

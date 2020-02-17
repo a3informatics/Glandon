@@ -537,7 +537,9 @@ module UiHelpers
       impact_analysis: "Impact Analysis",
 			make_current: "Make current",
 			clone: "Clone",
-			compare: "Compare"
+			compare: "Compare",
+			run: "Run",
+			results: "Results"
     }
 	end
 
