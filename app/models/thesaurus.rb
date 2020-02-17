@@ -531,8 +531,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
       SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
-      (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) 
-      (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) 
+      (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys)
+      (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt)
       WHERE\n
       {
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
@@ -546,7 +546,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
             {
               SELECT DISTINCT ?sci ?ns (count(?lv) AS ?count) WHERE
               {
-                ?x rdf:type th:ManagedConcept .
+                VALUES ?x { #{uris.map{|x| x.to_ref}.join(" ")} }
                 ?x isoT:hasIdentifier/isoI:version ?lv .
                 ?x isoT:hasIdentifier/isoI:identifier ?sci .
                 ?x isoT:hasIdentifier/isoI:hasScope ?ns .
@@ -587,7 +587,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
   end
 
-  # Managed Children States. 
+  # Managed Children States.
   #
   # @return [Array] array of states for the children
   def managed_children_states
@@ -595,7 +595,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       SELECT ?s WHERE
       {
         #{self.uri.to_ref} th:isTopConceptReference/bo:reference/isoT:hasState/isoR:registrationStatus ?s .
-      } 
+      }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoR])
     query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
@@ -790,14 +790,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     end
     headers = ["Code", "Codelist Extensible (Yes/No)", "Codelist Name",
       "CDISC Submission Value", "CDISC Definition"]
-    CSVHelpers.format(headers, results) 
+    CSVHelpers.format(headers, results)
   end
 
   # Compare_to_csv. Get the differences between two versions in csv format
   #
   # @params [] first version
   # @params [] second_version
-  # @return 
+  # @return
   def self.compare_to_csv(first_version, second_version)
     results = first_version.differences(second_version)
     headers = ["Status","Code", "Codelist Name","CDISC Submission Value"]
@@ -809,7 +809,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
           x.delete(:id)
           item = x.map{|k,v| v.to_s}.to_a
           new_results <<  item.insert(0,key.to_s)
-         end 
+         end
         results.delete(:versions)
       end
        CSVHelpers.format(headers, new_results)
@@ -823,7 +823,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   end
 
 private
-  
+
   def self.recursion(item_id, results, sponsor_version, have_i_seen)
     tc = Thesaurus::ManagedConcept.find_with_properties(item_id)
     #tc.synonyms_and_preferred_terms
