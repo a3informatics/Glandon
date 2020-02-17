@@ -1,5 +1,8 @@
 <%= javascript_tag 'setPageTitle("Ad-Hoc Reports")' %>
 <%= javascript_include_tag 'standard_datatable', 'ad_hoc_report_index' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <% first_level_breadcrumb (:ad_hoc_reports) %>
 
 <%= javascript_tag "var startParamReportUrl = '#{run_start_ad_hoc_report_path(id: "reportId", ad_hoc_report: {query_params: ["reportParam"]})}'" %>
