@@ -45,7 +45,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax(120)
       ui_table_search("index", identifier)
-      ui_check_table_row_indicators("index", 1, 4, ["extension"])
+      ui_check_table_row_indicators("index", 1, 5, ["extension"])
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 8, identifier, :edit)
@@ -184,7 +184,7 @@ describe "Thesauri Extensions", :type => :feature do
 
     it "Create Extension, no Terminology container (REQ-MDR-EXT-???)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10) 
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)
