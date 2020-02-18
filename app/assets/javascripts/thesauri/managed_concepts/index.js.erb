@@ -2,8 +2,8 @@ $(document).ready( function() {
   var columns = [
     {"data" : "owner"},
     {"data" : "identifier"},
-    // {"data" : "preferred_term"},
-    {"data" : "label"}
+    {"data" : "label"},
+    {"data" : "notation"},
   ];
 
   var ip = new IndexPanel(indexCLUrl, "managed_concept", columns, 1000, "all");
