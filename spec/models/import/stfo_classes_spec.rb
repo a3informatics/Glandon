@@ -93,9 +93,7 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-    actual = object.extension?(ct)
-    expect(actual).to eq(object)
-    check_file_actual_expected(actual.to_h, sub_dir, "extension?_expected_1.yaml", equate_method: :hash_equal)
+    expect(object.extension?(ct)).to eq(true)
   end
 
   it "extension? II" do
@@ -108,9 +106,7 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000123")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-    actual = object.extension?(ct)
-    expect(actual).to eq(object)
-    check_file_actual_expected(actual.to_h, sub_dir, "extension?_expected_2.yaml", equate_method: :hash_equal)
+    expect(object.extension?(ct)).to eq(true)
   end
 
   it "not extension?" do
