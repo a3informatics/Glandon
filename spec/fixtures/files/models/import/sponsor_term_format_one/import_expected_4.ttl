@@ -77,9 +77,10 @@
 <http://www.s-cubed.dk/C118971/V1#C118971>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Category of Clinical Classification"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e98028d6-43d6-4d76-afcf-2f4ac831c59c> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#e6947095-2d9c-483d-ae19-3031ea066e00> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/C118971/V1#C118971_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/C118971/V1#C118971_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -171,7 +172,8 @@
 <http://www.s-cubed.dk/SN000631/V1#SN000631>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Subcategory of External Data Type"^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
 	isoT:hasState <http://www.s-cubed.dk/SN000631/V1#SN000631_RS> ;
 	isoT:hasIdentifier <http://www.s-cubed.dk/SN000631/V1#SN000631_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -210,7 +212,7 @@
 <http://www.s-cubed.dk/SN000631/V1#SN000631_S003970>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
-	isoC:tagged <http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	th:identifier "S003970"^^xsd:string ;
 	th:notation "IMMUNOPHENOTYPING"^^xsd:string ;
 	th:definition "(Synonym 1 NCI) The characterization of a set of cells according to the antigens expressed."^^xsd:string ;

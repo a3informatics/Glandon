@@ -122,8 +122,7 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "S000124X")
     expected = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/C76351/V10#C76351"))
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-    actual = object.extension?(ct)
-    expect(actual).to eq(nil)
+    expect(object.extension?(ct)).to eq(false)
   end
 
   it "referenced?" do
@@ -134,9 +133,7 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573")
     expected = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/C76351/V10#C76351"))
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-    actual = object.referenced?(ct)
-    expect(actual.uri).to eq(expected.uri)
-    check_file_actual_expected(actual.to_h, sub_dir, "reference?_expected_1.yaml", equate_method: :hash_equal)
+    expect(object.referenced?(ct)).to be(true)
   end
 
   it "not referenced?" do
@@ -146,8 +143,7 @@ describe Import::STFOClasses do
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74571")
     object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573X")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
-    actual = object.referenced?(ct)
-    expect(actual).to eq(nil)
+    expect(object.referenced?(ct)).to eq(false)
   end
 
   it "obtains reference" do
@@ -157,6 +153,16 @@ describe Import::STFOClasses do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
     actual = object.reference(ct)
     check_file_actual_expected(actual.to_h, sub_dir, "reference_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "future referenced?" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.identifier = "SC76351"
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74574")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74572")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+    expect(object.future_referenced?(ct)).to eq(true)
   end
 
   it "child identifiers" do

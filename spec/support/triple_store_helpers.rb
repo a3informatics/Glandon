@@ -5,6 +5,8 @@ module TripleStoreHelpers
     def clear
       sparql_query = "CLEAR DEFAULT"
       CRUD.update(sparql_query)
+      sparql_query = "DROP DEFAULT"
+      CRUD.update(sparql_query)
     end
 
     def check_load
@@ -29,6 +31,19 @@ module TripleStoreHelpers
       query_results = Sparql::Query.new.query(query_string, "", []) 
       result = query_results.by_object(:count).first.to_i
   puts colourize("Count #{rdf_type}=#{result}", "blue")
+      result
+    end
+
+    def triple_count()
+      query_string = %Q{
+        SELECT (COUNT(?s) as ?count) WHERE 
+        {
+          ?s ?p ?o
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", []) 
+      result = query_results.by_object(:count).first.to_i
+  puts colourize("Total count=#{result}", "blue")
       result
     end
 
