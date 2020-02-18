@@ -11,11 +11,6 @@ describe Form::Item::BcProperty do
   end
 
   before :all do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"
-    ]
     data_files = 
     [
       "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
@@ -28,7 +23,7 @@ describe Form::Item::BcProperty do
     # load_schema_file_into_triple_store("ISO11179Identification.ttl")
     # load_schema_file_into_triple_store("ISO11179Registration.ttl")
     # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("business_operational.ttl")
     # load_schema_file_into_triple_store("BusinessForm.ttl")
     # load_schema_file_into_triple_store("ISO25964.ttl")
     # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")

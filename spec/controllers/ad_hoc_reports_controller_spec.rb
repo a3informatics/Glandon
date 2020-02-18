@@ -6,13 +6,13 @@ describe AdHocReportsController do
   include PauseHelpers
   include PublicFileHelpers
 
+  def sub_dir
+    return "controllers/ad_hoc_reports"
+  end
+
   describe "ad hoc reports as content admin" do
 
     login_content_admin
-
-    def sub_dir
-      return "controllers"
-    end
 
     before :all do
       clear_triple_store
@@ -55,7 +55,7 @@ describe AdHocReportsController do
       delete_all_public_test_files
       delete_all_public_report_files
       audit_count = AuditTrail.count
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       count = AdHocReport.all.count
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
@@ -68,22 +68,22 @@ describe AdHocReportsController do
     it "allows a report to be run" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []}}
       expect(response).to render_template("results")
     end
 
     it "allows the progress of a report run to be seen" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"running\":false}")
@@ -92,11 +92,11 @@ describe AdHocReportsController do
     it "allows the results of a report to be presented" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id }
       get :run_results, { id: report.id }
       expect(response.code).to eq("200")
@@ -106,7 +106,7 @@ describe AdHocReportsController do
     it "allows the existing results of a report to be presented" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       post :create, { ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
@@ -163,26 +163,26 @@ describe AdHocReportsController do
     it "allows a report to be run" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       files = []
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       expect(response).to render_template("results")
     end
 
     it "allows the progress of a report run to be seen" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       files = []
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_progress, { id: report.id  }
       expect(response.code).to eq("200")
     end
@@ -190,13 +190,13 @@ describe AdHocReportsController do
     it "allows the results of a report to be presented" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       files = []
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id }
+      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
       get :run_results, { id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
@@ -205,7 +205,7 @@ describe AdHocReportsController do
      it "allows the existing results of a report to be presented" do
       delete_all_public_test_files
       delete_all_public_report_files
-      copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
+      copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
       files = []

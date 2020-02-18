@@ -898,23 +898,22 @@ describe "IsoManagedV2" do
 
   end
 
-  describe "change notes csv" do
-    before :all  do
-      IsoHelpers.clear_cache
-    end
+	describe "change notes csv" do
+		before :all  do
+			IsoHelpers.clear_cache
+		end
 
-    before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
-      load_files(schema_files, data_files)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
-    end
+		before :each do
+			data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+			load_files(schema_files, data_files)
+			NameValue.destroy_all
+			NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+			NameValue.create(name: "thesaurus_child_identifier", value: "456")
+		end
 
-    it "list change notes as csv" do
-      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+		it "list change notes as csv" do
+			allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+			tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       change_note = tc.add_change_note(user_reference: "user1", reference: "ref 1", description: "description cl")
       tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       change_note2 = tc2.add_change_note(user_reference: "user2", reference: "ref 2", description: "description cli")

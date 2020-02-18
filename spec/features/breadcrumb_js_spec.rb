@@ -9,8 +9,6 @@ describe "Breadcrumb", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
-      "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl", "CDISCBiomedicalConcept.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)

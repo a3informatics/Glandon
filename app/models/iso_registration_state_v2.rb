@@ -100,6 +100,13 @@ class IsoRegistrationStateV2 < Fuseki::Base
   def has_been_released_state?
     self.registration_status == :Retired.to_s || self.registration_status == :Superseded.to_s
   end
+
+  # Is or has been released
+  #
+  # @return [Boolean] true if it has been or currently is in the released state, false otherwise
+  def is_or_has_been_released?
+    released_state? || has_been_released_state?
+  end
   
   # Can the item be edited
   #

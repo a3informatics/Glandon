@@ -1,0 +1,68 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the change notes are required."
+    :type: :thesauri
+:columns:
+  :x:
+    :label: Item
+    :type: literal
+  :i:
+    :label: Identifier
+    :type: literal
+  :t:
+    :label: Timestamp
+    :type: literal
+  :ur:
+    :label: User
+    :type: literal
+  :r:
+    :label: Reference
+    :type: literal
+  :d:
+    :label: Note Description
+    :type: literal
+:label: Change Note Export
+:query: 'PREFIX an: <http://www.assero.co.uk/Annotations#>
+  PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+  PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX is: <http://purl.org/ontology/is/core#>
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+  SELECT ?x ?i ?t ?ur ?r ?d WHERE       
+  {         
+    VALUES ?th {[[[parameter_1]]]}
+    {
+      ?th ^(an:current/bo:reference) ?cn .
+      ?th isoT:hasIdentifier/isoI:identifier ?i .
+      BIND (?th as ?s)
+      BIND ("Terminology" as ?x)
+    } UNION
+    {
+      ?th th:isTopConceptReference/bo:reference ?cl .
+      ?cl ^(an:current/bo:reference) ?cn .
+      ?cl th:identifier ?i .
+      BIND (?cl as ?s)
+      BIND ("Code List" as ?x)    
+    } UNION
+    {
+      ?th th:isTopConceptReference/bo:reference/th:narrower ?cli .
+      ?cli ^(an:current/bo:reference) ?cn .
+      ?cli th:identifier ?i .
+      BIND (?cli as ?s)
+      BIND ("Code List Item" as ?x)    
+      }
+    ?cn an:timestamp ?t .
+    ?cn an:reference ?r .
+    ?cn an:description ?d .
+    ?cn an:userReference ?ur .
+  }'
+:type: Ad Hoc Report Definition
