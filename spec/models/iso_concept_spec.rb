@@ -41,8 +41,6 @@ describe IsoConcept do
 	context "Main Tests" do
 
 	  before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
-        "BusinessForm.ttl", "business_operational_extension.ttl", "CDISCBiomedicalConcept.ttl" ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", "iso_concept_data.ttl", "iso_concept_data_2.ttl",
         "form_example_vs_baseline_new.ttl", "BC.ttl"]
       load_files(schema_files, data_files)
@@ -54,7 +52,7 @@ describe IsoConcept do
 	    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
 	    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 	    # load_schema_file_into_triple_store("ISO25964.ttl")
-	    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+	    # load_schema_file_into_triple_store("business_operational.ttl")
 	    # load_schema_file_into_triple_store("BusinessForm.ttl")
 	    # load_schema_file_into_triple_store("business_operational_extension.ttl")
 	    # load_schema_file_into_triple_store("business_cross_reference.ttl")
@@ -954,7 +952,7 @@ describe IsoConcept do
 	#     load_schema_file_into_triple_store("ISO11179Registration.ttl")
 	#     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 	#     load_schema_file_into_triple_store("ISO25964.ttl")
-	#     load_schema_file_into_triple_store("BusinessOperational.ttl")
+	#     load_schema_file_into_triple_store("business_operational.ttl")
 	#     load_schema_file_into_triple_store("BusinessForm.ttl")
 	#     load_schema_file_into_triple_store("business_operational_extension.ttl")
 	#     load_schema_file_into_triple_store("business_cross_reference.ttl")
@@ -1265,11 +1263,10 @@ describe IsoConcept do
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("business_operational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-2.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-3.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-4.ttl")
@@ -1476,8 +1473,6 @@ describe IsoConcept do
   context "Form Difference Tests" do
   
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
-        "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl" ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_general.ttl",
         "form_example_vs_baseline_new.ttl", "BC.ttl", "BCT.ttl"]
       load_files(schema_files, data_files)
@@ -1488,7 +1483,7 @@ describe IsoConcept do
       # load_schema_file_into_triple_store("ISO11179Identification.ttl")
       # load_schema_file_into_triple_store("ISO11179Registration.ttl")
       # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_schema_file_into_triple_store("BusinessOperational.ttl")
+      # load_schema_file_into_triple_store("business_operational.ttl")
       # load_schema_file_into_triple_store("BusinessForm.ttl")
       # load_schema_file_into_triple_store("ISO25964.ttl")
       # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
@@ -1683,7 +1678,7 @@ describe IsoConcept do
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("business_operational.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")

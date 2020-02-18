@@ -18,6 +18,7 @@ $(document).ready( function() {
     columnDefs: [],
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
+    "autoWidth": false,
     "order": dtMainOrder
   });
 
@@ -25,8 +26,8 @@ $(document).ready( function() {
     columnDefs: [],
     "pageLength": pageLength,
     "lengthMenu": pageSettings
-  });		
-  
+  });
+
   dtTertiaryDataTable = $('#tertiary').DataTable({
   	columnDefs: [],
     "pageLength": pageLength,
@@ -36,10 +37,10 @@ $(document).ready( function() {
 });
 
 /**
- * Show all items in the main table. 
+ * Show all items in the main table.
  * Really only for testing purposes.
  *
- * @return [Null] 
+ * @return [Null]
  */
 function dtMainTableAll() {
   dtMainDataTable.page.len(-1).draw();

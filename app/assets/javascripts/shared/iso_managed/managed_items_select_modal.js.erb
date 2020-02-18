@@ -11,15 +11,17 @@
  *
  * @return [void]
  */
-function ManagedItemsSelect(type, callback) {
+function ManagedItemsSelect(callback) {
   this.modalId = "#im-select-modal";
-  this.historyUrl = miHistoryTableUrl;
-  this.indexUrl = miIndexTableUrl;
+  this.type = miType;
+  this.urls = {
+    thesauri: { historyUrl: miHistoryThesauriUrl, indexUrl: miIndexThesauriUrl },
+    code_lists: { historyUrl: miHistoryClUrl, indexUrl: miIndexClUrl }
+  }
   this.selectMultiple = selectMultiple;
   this.indexTable = this.initIndex();
   this.historyTable = this.initHistory();
   this.initialized = false;
-  this.type = type;
   this.cache = {};
   this.selection = [];
   this.callback = callback;
@@ -27,10 +29,29 @@ function ManagedItemsSelect(type, callback) {
   // Load data when modal shown
   $(this.modalId).off('shown.bs.modal').on('shown.bs.modal', function (e) {
     if(!this.initialized)
-      this.loadData(this.indexUrl, this.indexTable, 0);
+      this.loadData(this.urls[this.type].indexUrl, this.indexTable, 0);
   }.bind(this));
 
   this.setListeners();
+}
+
+/**
+ * Shows modal
+ *
+ * @return [void]
+ */
+ManagedItemsSelect.prototype.show = function () {
+  $(this.modalId).modal("show");
+}
+
+/**
+ * Updates Description Text
+ *
+ * @param newDescription [String] new description value
+ * @return [void]
+ */
+ManagedItemsSelect.prototype.setDescription = function (newDescription) {
+  $(this.modalId + " #im-select-modal-description").text(newDescription);
 }
 
 /**
@@ -157,6 +178,9 @@ ManagedItemsSelect.prototype.loadHistory = function (item) {
  */
 ManagedItemsSelect.prototype.loadData = function (url, target, offset) {
   var count = this.getItemCount(target);
+
+  if(url == null)
+    throw new Exception("Type must be specific!");
 
   if(offset == 0) {
     this.clear(target);
@@ -323,7 +347,7 @@ ManagedItemsSelect.prototype.updateUI = function () {
  * @return [String] history url
  */
 ManagedItemsSelect.prototype.makeHistoryUrl = function (identifier, scopeId) {
-  return this.historyUrl.replace("miHistoryId", identifier).replace("miScopeId", scopeId);
+  return this.urls[this.type].historyUrl.replace("miHistoryId", identifier).replace("miScopeId", scopeId);
 }
 
 /**
@@ -376,14 +400,14 @@ ManagedItemsSelect.prototype.loadDataParams = function(c, o){
 	var data = {};
   var param;
 
-  if (this.type == "codelist")
+  if (this.type == "code_lists")
 	  param = "managed_concept";
-  else if (this.type == "thesaurus")
+  else if (this.type == "thesauri")
     param = "thesauri";
 
 	data[param] = { count: c, offset: o }
 
-  if (this.type == "codelist")
+  if (this.type == "code_lists")
     data[param].type = "all";
 
 	return data;

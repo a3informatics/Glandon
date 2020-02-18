@@ -4,9 +4,11 @@ $(document).ready( function() {
     {"data" : "notation"},
     {"data" : "preferred_term"},
     {"data" : "synonym"},
-    {"data" : "extensible"},
+    {"data" : "extensible", "render": function (data, type, row, meta) {
+      return (type=="display") ? "<span class='i-centered icon-extend"+(data ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>" : data;
+    }},
     {"data" : "definition"},
-    {"data" : "tags"}
+    {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}}
   ];
   var mcp = new ManagedChildrenPanel(url_path, 1000, columns);
 });

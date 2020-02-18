@@ -107,7 +107,7 @@ describe "Thesauri Subsets", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax
       ui_table_search("index", "S123")
-      find(:xpath, "//tr[contains(.,'PK unit')]/td/a").click
+      find(:xpath, "//tr[contains(.,'S123')]/td/a").click
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :edit)
       wait_for_ajax(10)

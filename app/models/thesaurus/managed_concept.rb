@@ -481,11 +481,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
     results =[]
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count
+      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count
         (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys)
         (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count WHERE
+        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count WHERE
         {
           ?s rdf:type th:ManagedConcept .
           ?s isoT:hasIdentifier/isoI:version ?v .
@@ -508,18 +508,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           ?s th:notation ?n .
           ?s th:definition ?d .
           ?s th:extensible ?e .
+          ?s isoC:label ?l . 
           ?s th:preferredTerm/isoC:label ?pt .
           ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
           OPTIONAL {?s th:synonym/isoC:label ?sy }
           OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
-    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
+    query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
   begin
       indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
+      results << {identifier: x[:i], notation: x[:n], label: x[:l], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
   rescue => e
     #byebug

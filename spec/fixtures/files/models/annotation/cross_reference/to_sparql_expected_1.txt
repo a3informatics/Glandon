@@ -8,7 +8,7 @@ INSERT DATA
 { 
 <http://example.com/A#base_CI1> rdf:type ba:ChangeInstruction . 
 <http://example.com/A#base_CI1> isoC:label "Label"^^xsd:string . 
-<http://example.com/A#base_CI1> ba:reference ""^^xsd: . 
+<http://example.com/A#base_CI1> ba:reference ""^^xsd:string . 
 <http://example.com/A#base_CI1> ba:description "This is the comment"^^xsd:string . 
 <http://example.com/A#base_CI1> ba:ordinal "1"^^xsd: . 
 <http://example.com/A#base_CI1> ba:semantic "A Relationship"^^xsd:string . 

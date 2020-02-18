@@ -10,70 +10,82 @@
 	rdf:type owl:Ontology ;
 .
 :359a3f39-0920-44cb-b13c-e8bdf5fbd4b8
-	isoC:isTopConcept :93cb31cf-7069-405c-903b-7c173b71444b ;
+	isoC:isTopConcept :11706ca6-d81b-4731-bcd0-7ec6bd7ca626 ;
 .
-:93cb31cf-7069-405c-903b-7c173b71444b
+:11706ca6-d81b-4731-bcd0-7ec6bd7ca626
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Process"^^xsd:string ;
 	isoC:description "Process related tags"^^xsd:string ;
-	isoC:narrower :f87b9fd6-e968-4d6d-9d6d-006feada747e ;
-	isoC:narrower :10f78422-be35-486b-94b5-d7ba7e107ff8 ;
+	isoC:narrower :a5841d22-553d-4f89-883d-b49df0a43435 ;
+	isoC:narrower :63113f52-aec8-437c-8075-e2874184a495 ;
+	isoC:narrower :c6512aff-24fd-464d-860c-b3746819667b ;
 .
-:f87b9fd6-e968-4d6d-9d6d-006feada747e
+:a5841d22-553d-4f89-883d-b49df0a43435
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Stage"^^xsd:string ;
 	isoC:description "Stage related tags"^^xsd:string ;
-	isoC:narrower :3ba7d1cc-7318-4601-b65c-69054c4c4d8d ;
-	isoC:narrower :e98028d6-43d6-4d76-afcf-2f4ac831c59c ;
-	isoC:narrower :e6947095-2d9c-483d-ae19-3031ea066e00 ;
+	isoC:narrower :03cc2812-7873-4638-bf99-7882a82eddf3 ;
+	isoC:narrower :82a71a7c-5591-449d-a1c5-eb5ee0d88aca ;
+	isoC:narrower :9b1897b7-35ce-4e50-8b1a-136d7db5190d ;
 .
-:3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+:03cc2812-7873-4638-bf99-7882a82eddf3
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "DC Stage"^^xsd:string ;
 	isoC:description "Data capture stage"^^xsd:string ;
 .
-:e98028d6-43d6-4d76-afcf-2f4ac831c59c
+:82a71a7c-5591-449d-a1c5-eb5ee0d88aca
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "SDTM Stage"^^xsd:string ;
 	isoC:description "SDTM stage"^^xsd:string ;
 .
-:e6947095-2d9c-483d-ae19-3031ea066e00
+:9b1897b7-35ce-4e50-8b1a-136d7db5190d
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "ADaM Stage"^^xsd:string ;
 	isoC:description "ADaM stage"^^xsd:string ;
 .
-:10f78422-be35-486b-94b5-d7ba7e107ff8
+:63113f52-aec8-437c-8075-e2874184a495
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Use"^^xsd:string ;
 	isoC:description "Use related tags"^^xsd:string ;
-	isoC:narrower :d3801cbb-45a1-4978-8f0c-a26477f71992 ;
-	isoC:narrower :fa6e9a48-c6cd-4f67-8501-bc88929c1c7e ;
-	isoC:narrower :b034af8f-ea43-4881-be4c-dbdf52f85771 ;
-	isoC:narrower :66cd369d-8f16-4b7e-82d2-fff19d30f719 ;
-	isoC:narrower :1647aa6d-8e46-4901-8632-dd5c8f779901 ;
+	isoC:narrower :fba2ce83-6f35-4be0-ab80-c15510e5bb3d ;
+	isoC:narrower :28be7b0d-7c44-43bd-b41c-2191b6598eea ;
+	isoC:narrower :e61e5cd1-92d6-4b23-9986-9e865b730837 ;
+	isoC:narrower :18ced098-4dbc-4aca-8298-3fa0a4f08aac ;
 .
-:d3801cbb-45a1-4978-8f0c-a26477f71992
+:fba2ce83-6f35-4be0-ab80-c15510e5bb3d
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "CRF GL Use"^^xsd:string ;
 	isoC:description "CRF GL use"^^xsd:string ;
 .
-:fa6e9a48-c6cd-4f67-8501-bc88929c1c7e
+:28be7b0d-7c44-43bd-b41c-2191b6598eea
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "SDTM Use"^^xsd:string ;
 	isoC:description "SDTM use"^^xsd:string ;
 .
-:b034af8f-ea43-4881-be4c-dbdf52f85771
+:e61e5cd1-92d6-4b23-9986-9e865b730837
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "ADaM Use"^^xsd:string ;
 	isoC:description "ADaM use"^^xsd:string ;
 .
-:66cd369d-8f16-4b7e-82d2-fff19d30f719
+:18ced098-4dbc-4aca-8298-3fa0a4f08aac
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "ED Use"^^xsd:string ;
 	isoC:description "ED use"^^xsd:string ;
 .
-:1647aa6d-8e46-4901-8632-dd5c8f779901
+:c6512aff-24fd-464d-860c-b3746819667b
 	rdf:type isoC:ConceptSystemNode ;
-	isoC:prefLabel "Study Use"^^xsd:string ;
-	isoC:description "Study use"^^xsd:string ;
+	isoC:prefLabel "Scope"^^xsd:string ;
+	isoC:description "The scope of an item."^^xsd:string ;
+	isoC:narrower :142528b6-1e35-4a5c-8974-70b58f951116 ;
+	isoC:narrower :b0d06e9f-ed91-4828-a918-e7c16fc027bf ;
+.
+:142528b6-1e35-4a5c-8974-70b58f951116
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Study"^^xsd:string ;
+	isoC:description "Study use only."^^xsd:string ;
+.
+:b0d06e9f-ed91-4828-a918-e7c16fc027bf
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Global"^^xsd:string ;
+	isoC:description "Global use."^^xsd:string ;
 .

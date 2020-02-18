@@ -47,10 +47,33 @@ class AdHocReport < ActiveRecord::Base
     self.destroy
   end
 
+  # Parameters? Does this report have parameters?
+  #
+  # @return [Boolean] true if parameters, false otherwise
+  def parameters?
+    definition = read_definition
+    definition[:parameters].any?
+  end
+
+  # Parameters. Get the parameters.
+  #
+  # @return [Array] the parameters
+  def parameters
+    definition = read_definition
+    definition[:parameters]
+  end
+
+  # Parameter. Get the parameter
+  #
+  # @return [Hash] the first parameter
+  def parameter
+    parameters.first
+  end
+
   # Run A Report
   #
   # @return [Null] no return
-  def run
+  def run(params)
     self.last_run = Time.now
     dt_hash = { columns: [], data: [] }
     AdHocReportFiles.save(self.results_file, dt_hash)
@@ -60,7 +83,7 @@ class AdHocReport < ActiveRecord::Base
     self.save
     #job.ad_hoc_report(self)
     definition = read_definition
-    job.start("Run ad-hoc report: #{definition[:label]}", "Starting...") {self.execute}
+    job.start("Run ad-hoc report: #{definition[:label]}", "Starting...") {self.execute(params)}
   end
 
   # Report Running
@@ -109,11 +132,12 @@ class AdHocReport < ActiveRecord::Base
   # Execute an ad-hoc report
   #
   # @return [Void] no return
-  def execute
+  def execute(params)
     results = []
-    job = Background.find(self.background_id)
     definition = read_definition
-    query_results = Sparql::Query.new.query(definition[:query], "", [:th, :bo])
+    job = Background.find(self.background_id)
+    sparql_query = get_query(params)
+    query_results = Sparql::Query.new.query(sparql_query, "", [:th, :bo])
     triples = query_results.by_object_set(definition[:columns].keys)
     triples.each do |triple|
       entry = []
@@ -136,10 +160,21 @@ class AdHocReport < ActiveRecord::Base
 
 private
 
+  # Return the query, substitute params if present
+  def get_query(params)
+    definition = read_definition
+    query = definition[:query].dup
+    return query if !self.parameters? || params.empty?
+    # Note: Only setup for one parameter
+    query.sub! '[[[parameter_1]]]', Uri.new(id: params.first).to_ref
+    query
+  end
+
   # Check the file structure
   def self.check_definition(definition)
     return false if definition.blank?
     result = definition.key?(:type) &&
+      definition.key?(:parameters) &&
       definition.key?(:label) &&
       definition.key?(:columns) &&
       definition.key?(:query) &&

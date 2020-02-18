@@ -26,13 +26,13 @@ class AdHocReportsController < ApplicationController
       flash[:error] = "#{report.errors.full_messages.to_sentence}."
       redirect_to new_ad_hoc_report_path
     end
-  end  
+  end
 
   def run_start
     authorize AdHocReport
     @report = AdHocReport.find(params[:id])
     @columns = @report.columns
-    @report.run
+    @report.run(check_query_params) # Protect against dodgy URIs in the params
     render "results"
   end
 
@@ -73,7 +73,18 @@ class AdHocReportsController < ApplicationController
 private
 
   def the_params
-    params.require(:ad_hoc_report).permit( :files => [] )
+    params.require(:ad_hoc_report).permit(:files => [])
+  end
+
+  def query_params
+    return {query_params: []} if params.dig(:ad_hoc_report, :query_params).nil?
+    params.require(:ad_hoc_report).permit(:query_params => [])
+  end
+
+  def check_query_params
+    params = query_params
+    params[:query_params].each{|x| Errors.application_error(self.class.name, __method__.to_s, "Possible threat from bad id detected #{x}.") unless Uri.safe_id?(x)}
+    params[:query_params]
   end
 
 end

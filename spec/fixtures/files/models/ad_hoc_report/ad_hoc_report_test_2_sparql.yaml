@@ -1,0 +1,32 @@
+---
+:parameters:
+  -
+    :name: Terminology
+    :description: "The terminology for which the report is required."
+    :type: :thesauri
+:columns:
+  :a:
+    :label: URI
+  :b: 
+    :label: Identifier
+  :c: 
+    :label: Label
+:label: Ad Hoc Report 1
+:query: 'PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>  
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX th:<http://www.assero.co.uk/Thesaurus#> 
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
+  PREFIX is: <http://purl.org/ontology/is/core#>
+  SELECT DISTINCT ?a ?b ?c WHERE   
+  {      
+    VALUES ?a {[[[parameter_1]]]}
+    ?a isoT:hasIdentifier ?x .   
+    ?x isoI:identifier ?b .   
+    ?a isoC:label ?c . 
+  }'
+:type: Ad Hoc Report Definition

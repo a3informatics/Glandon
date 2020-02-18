@@ -1,6 +1,11 @@
 <%= javascript_tag 'setPageTitle("Ad-Hoc Reports")' %>
-<%= javascript_include_tag 'standard_datatable' %>
+<%= javascript_include_tag 'standard_datatable', 'ad_hoc_report_index' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <% first_level_breadcrumb (:ad_hoc_reports) %>
+
+<%= javascript_tag "var startParamReportUrl = '#{run_start_ad_hoc_report_path(id: "reportId", ad_hoc_report: {query_params: ["reportParam"]})}'" %>
 
 <div class="row">
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
@@ -20,30 +25,39 @@
 				<thead>
 			  	<tr>
 			    	<th>Label</th>
+						<th>Required Parameter</th>
 			    	<th>Last Run</th>
 			    	<th class="fit">Active</th>
-			    	<th class="fit ignore"></th>
-			    	<th class="fit ignore"></th>
-			    	<th class="fit ignore"></th>
+			    	<th class="fit"></th>
 			  	</tr>
 				</thead>
 				<tbody>
 					<% @items.each do |item| %>
 			    	<tr>
 							<td><%= item.label %></td>
+							<td><%= item.parameters? ? item.parameters.first[:name] : "" %></td>
 			    		<td><%= Timestamp.new(item.last_run).to_datetime %></td>
 			    		<%= true_false_glyphicon(item.active) %>
-			    		<td><%= link_to "Run", run_start_ad_hoc_report_path(item), :class => "btn green btn-xs" %></td>
-			    		<td><%= link_to "Results", results_ad_hoc_report_path(item), :class => "btn btn-xs" %></td>
-							<td>
-				    		<% if policy(AdHocReport).destroy? %>
-									<button class="btn red btn-xs" id="delete_button_<%=item.id%>"
-											onclick="new ConfirmationDialog(function(){$('#delete_link_<%=item.id%>').click()}, {dangerous: true}).show();">
-										Delete
-									</button>
-									<%= link_to "", ad_hoc_report_path(item), method: :delete, id: "delete_link_#{item.id}" %>
-				    		<% end %>
-			    		</td>
+							<td class="text-right">
+								<%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+
+					        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: item.parameters? ? "#" : run_start_ad_hoc_report_path(item),
+										icon: "icon-history", id: "run-#{item.id}", text: "Run", dt_toggle: "", disabled: false } %>
+				          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path:  results_ad_hoc_report_path(item), icon: "icon-copy",
+				            id: "results-#{item.id}", text: "Results", dt_toggle: "", disabled: false} %>
+
+									<% if policy(AdHocReport).destroy? %>
+					          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "delete-#{item.id}",
+					            icon: "icon-trash", text: "Delete", dt_toggle: "", disabled: false } %>
+										<%= link_to "", ad_hoc_report_path(item), method: :delete, id: "delete_link_#{item.id}" %>
+									<% end %>
+
+					      <% end %>
+								<% if item.parameters? %>
+									<input type="hidden" id="paramtype-<%=item.id%>" value="<%= item.parameters.first[:type].to_s %>"/>
+									<input type="hidden" id="paramdescription-<%=item.id%>" value="<%= item.parameters.first[:description] %>"/>
+								<% end %>
+							</td>
 			    	</tr>
 					<% end %>
 			  </tbody>
@@ -52,5 +66,7 @@
 				<%= link_to "+ Add New", new_ad_hoc_report_path, :class => "btn medium green" %>
 			<% end %>
 		</div>
+		<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :items_generic, select_multiple: false,
+			description: "Select one item to run the report based on."} %>
 	</div>
 </div>

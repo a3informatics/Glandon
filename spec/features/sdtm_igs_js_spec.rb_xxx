@@ -20,8 +20,6 @@ describe "SDTM IG", :type => :feature do
     before :all do
       Token.destroy_all
       Token.set_timeout(5)
-      schema_files = ["ISO11179Types.ttl","ISO11179Identification.ttl", "ISO11179Registration.ttl","ISO11179Concepts.ttl", "thesaurus.ttl",
-        "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl"]
       data_files = ["iso_registration_authority_real.ttl", "iso_namespace_real.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl", "sdtm_model_and_ig.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)
@@ -84,8 +82,6 @@ describe "SDTM IG", :type => :feature do
       Background.destroy_all
       Token.destroy_all
       Token.set_timeout(5)
-      schema_files = ["ISO11179Types.ttl","ISO11179Identification.ttl", "ISO11179Registration.ttl","ISO11179Concepts.ttl", "thesaurus.ttl",
-        "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl"]
       data_files = ["iso_registration_authority_real.ttl", "iso_namespace_real.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl", "sdtm_model_and_ig.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)

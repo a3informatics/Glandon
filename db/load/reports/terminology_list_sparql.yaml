@@ -1,0 +1,36 @@
+---
+:parameters: []
+:columns:
+  :i:
+    :label: Identifier
+  :l:
+    :label: Label
+  :sn:
+    :label: Owner
+  :v:
+    :version: Version
+  :s:
+    :label: State
+:label: Terminology List
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+  PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX is: <http://purl.org/ontology/is/core#>
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+  SELECT ?i ?l ?sn ?v ?s WHERE
+  {         
+    ?th rdf:type th:Thesaurus .
+    ?th isoC:label ?l .
+    ?th isoT:hasIdentifier/isoI:identifier ?i .
+    ?th isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?sn .
+    ?th isoT:hasIdentifier/isoI:semanticVersion ?v .
+    ?th isoT:hasState/isoR:registrationStatus ?s .
+  }'
+:type: Ad Hoc Report Definition

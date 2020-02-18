@@ -55,7 +55,7 @@ private
     if object.owned?
       result[:clone_path] = path_for(:clone, object)
     end
-    if object.registered? && object.owned? && latest && edit
+    if object.registered? && object.owned? && (latest || object.has_state.is_or_has_been_released?) && edit
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})
     end
     if object.registered? && object.can_be_current? && status

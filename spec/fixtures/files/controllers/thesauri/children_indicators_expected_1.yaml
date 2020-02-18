@@ -3,6 +3,7 @@
   :notation: TCNTRL
   :preferred_term: CDISC SDTM Control Type Terminology
   :synonym: Control Type; TCNTRL; Type of Control
+  :state: Standard
   :extensible: true
   :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
     (placebo, no treatment, dose-response, active), external (historical, published
@@ -24,6 +25,7 @@
   :notation: ACN
   :preferred_term: CDISC SDTM Action Taken with Study Treatment Terminology
   :synonym: ACN; Action Taken with Study Treatment
+  :state: Standard
   :extensible: false
   :definition: The reason that changes were made to the therapy under study. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyI0M2Njc2Nw==
@@ -43,6 +45,7 @@
   :notation: OUT
   :preferred_term: CDISC SDTM Adverse Event Outcome Terminology
   :synonym: OUT; Outcome of Event
+  :state: Standard
   :extensible: false
   :definition: A condition or event that is attributed to the adverse event and is
     the result or conclusion of the adverse event. (NCI)
@@ -63,6 +66,7 @@
   :notation: AGESPAN
   :preferred_term: CDISC SDTM Age GroupTerminology
   :synonym: AGESPAN; Age Span
+  :state: Standard
   :extensible: true
   :definition: Subgroups of populations based on age. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI0M2Njc4MA==
@@ -82,6 +86,7 @@
   :notation: AGEU
   :preferred_term: CDISC SDTM Age UnitTerminology
   :synonym: AGEU; Age Unit
+  :state: Standard
   :extensible: false
   :definition: Those units of time that are routinely used to express the age of a
     person. (NCI)
@@ -102,6 +107,7 @@
   :notation: SOC
   :preferred_term: CDISC SDTM System Organ Class Terminology
   :synonym: CDISC System Organ Class; SOC
+  :state: Standard
   :extensible: false
   :definition: Terms at the highest level of the CDISC system organ class terminology.
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1YyI0M2Njc4Mw==
@@ -121,6 +127,7 @@
   :notation: TOXGR
   :preferred_term: CDISC SDTM CommonTerminology Criteria for Adverse Event Grade Terminology
   :synonym: Common Terminology Criteria for Adverse Events; TOXGR
+  :state: Standard
   :extensible: false
   :definition: A standard terminology developed to report adverse events occurring
     in cancer clinical trials.  Common terminology criteria for adverse events (CTCAE)
@@ -144,6 +151,7 @@
   :notation: COUNTRY
   :preferred_term: CDISC SDTM Country Terminology
   :synonym: COUNTRY; Country
+  :state: Standard
   :extensible: false
   :definition: A collective generic term that refers here to a wide variety of dependencies,
     areas of special sovereignty, uninhabited islands, and other entities in addition
@@ -165,6 +173,7 @@
   :notation: TDIGRP
   :preferred_term: CDISC SDTM Diagnosis Group Terminology
   :synonym: Diagnosis Group; TDIGRP
+  :state: Standard
   :extensible: true
   :definition: A grouping of individuals on the basis of a shared procedure or disease,
     or lack thereof (e.g. healthy volunteers, type 2 diabetic subjects, subjects with
@@ -187,6 +196,7 @@
   :notation: IECAT
   :preferred_term: CDISC SDTM Category of Inclusion And Or ExclusionTerminology
   :synonym: Category for Inclusion/Exclusion; IECAT
+  :state: Standard
   :extensible: false
   :definition: A collection of criteria on which subjects are evaluated and that must
     be met by all study subjects. (NCI)

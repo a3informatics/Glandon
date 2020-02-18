@@ -14,7 +14,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI1>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI1_TUC2> ;
 	ba:ordinal "1"^^xsd: ;
@@ -44,7 +44,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI2>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI2_TUC2> ;
 	ba:ordinal "2"^^xsd: ;
@@ -74,7 +74,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI3>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI3_TUC2> ;
 	ba:ordinal "3"^^xsd: ;
@@ -104,7 +104,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Replacing C114218 in this codelist."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI4_TUC2> ;
 	ba:ordinal "4"^^xsd: ;
@@ -134,7 +134,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI5>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI5_TUC2> ;
 	ba:ordinal "5"^^xsd: ;
@@ -164,7 +164,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI6>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Replacing C114218 in this codelist."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI6_TUC2> ;
 	ba:ordinal "6"^^xsd: ;
@@ -194,7 +194,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI7>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Replaces C33794 in this codelist."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI7_TUC2> ;
 	ba:ordinal "7"^^xsd: ;
@@ -224,7 +224,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI8>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI8_TUC3> ;
 	ba:ordinal "8"^^xsd: ;
@@ -265,7 +265,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI9>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI9_TUC3> ;
 	ba:ordinal "9"^^xsd: ;
@@ -306,7 +306,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI10>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI10_TUC3> ;
 	ba:ordinal "10"^^xsd: ;
@@ -347,7 +347,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI11>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI11_TUC3> ;
 	ba:ordinal "11"^^xsd: ;
@@ -388,7 +388,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI12>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI12_TUC3> ;
 	ba:ordinal "12"^^xsd: ;
@@ -429,7 +429,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI13>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI13_TUC3> ;
 	ba:ordinal "13"^^xsd: ;
@@ -470,7 +470,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI14>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI14_TUC3> ;
 	ba:ordinal "14"^^xsd: ;
@@ -511,7 +511,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI15>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI15_TUC3> ;
 	ba:ordinal "15"^^xsd: ;
@@ -552,7 +552,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI16>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI16_TUC3> ;
 	ba:ordinal "16"^^xsd: ;
@@ -593,7 +593,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI17>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI17_TUC3> ;
 	ba:ordinal "17"^^xsd: ;
@@ -634,7 +634,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI18>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI18_TUC3> ;
 	ba:ordinal "18"^^xsd: ;
@@ -675,7 +675,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI19>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI19_TUC3> ;
 	ba:ordinal "19"^^xsd: ;
@@ -716,7 +716,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI20>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI20_TUC3> ;
 	ba:ordinal "20"^^xsd: ;
@@ -757,7 +757,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI21>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI21_TUC3> ;
 	ba:ordinal "21"^^xsd: ;
@@ -798,7 +798,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI22>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI22_TUC3> ;
 	ba:ordinal "22"^^xsd: ;
@@ -839,7 +839,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI23>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI23_TUC3> ;
 	ba:ordinal "23"^^xsd: ;
@@ -880,7 +880,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI24>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI24_TUC3> ;
 	ba:ordinal "24"^^xsd: ;
@@ -921,7 +921,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI25>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI25_TUC3> ;
 	ba:ordinal "25"^^xsd: ;
@@ -962,7 +962,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI26>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI26_TUC3> ;
 	ba:ordinal "26"^^xsd: ;
@@ -1003,7 +1003,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI27>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI27_TUC3> ;
 	ba:ordinal "27"^^xsd: ;
@@ -1044,7 +1044,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI28>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI28_TUC3> ;
 	ba:ordinal "28"^^xsd: ;
@@ -1085,7 +1085,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI29>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI29_TUC3> ;
 	ba:ordinal "29"^^xsd: ;
@@ -1126,7 +1126,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI30>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI30_TUC3> ;
 	ba:ordinal "30"^^xsd: ;
@@ -1167,7 +1167,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI31>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI31_TUC3> ;
 	ba:ordinal "31"^^xsd: ;
@@ -1208,7 +1208,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI32>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)"^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI32_TUC2> ;
 	ba:ordinal "32"^^xsd: ;
@@ -1238,7 +1238,7 @@
 <http://www.cdisc.org/CT/V53#TH_CI33>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "C123628 has been retired. Please use the existing term TMRESP (C132458)"^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V53#TH_CI33_TUC2> ;
 	ba:ordinal "33"^^xsd: ;
