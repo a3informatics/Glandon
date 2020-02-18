@@ -51,7 +51,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_no_link '+ Add New'
       Capybara.ignore_hidden_elements = false
       expect(page).to have_no_link 'Delete'
-      Capybara.ignore_hidden_elements = false
+      Capybara.ignore_hidden_elements = true
     end
 
     it "shoud allow a report to be run, parameters to be selected (REQ-MDR-AR-020)", js:true do
@@ -117,7 +117,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_link '+ Add New'
       Capybara.ignore_hidden_elements = false
       expect(page).to have_link 'Delete'
-      Capybara.ignore_hidden_elements = false
+      Capybara.ignore_hidden_elements = true
     end
 
     it "allows a report to be deleted (REQ-MDR-AR-070)", js: true do
