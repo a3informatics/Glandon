@@ -137,6 +137,15 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def upgrade
+    authorize Thesaurus, :edit?
+    @thesaurus = Thesaurus.find_minimum(params[:id])
+    # ref new and old can be found throught @thesaurus, change later
+    @new_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_new])
+    @ref_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_old])
+    @close_path = request.referer
+  end
+
   def children
     authorize Thesaurus, :edit?
     results = []
@@ -616,6 +625,10 @@ private
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
     params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :filter, :id_set => [])
+  end
+
+  def upgrade_params
+    params.require(:thesauri).permit(:ref_old, :ref_new)
   end
 
 end

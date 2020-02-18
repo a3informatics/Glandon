@@ -267,6 +267,7 @@ Rails.application.routes.draw do
       get :compare
       get :compare_data
       get :compare_csv
+      get :upgrade
     end
   end
 
