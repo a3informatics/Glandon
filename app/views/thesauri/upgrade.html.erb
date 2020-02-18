@@ -1,0 +1,59 @@
+<%= javascript_tag 'setPageTitle("Upgrade: '+@thesaurus.scoped_identifier+' ('+@thesaurus.semantic_version+')")' %>
+<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
+<%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'custom/d3_graph_v2', 'shared/datatables_loading' %>
+<%= javascript_include_tag  'shared/tags', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/tabs_layout' %>
+<%= javascript_tag "var graphBaseUrl = '#{impact_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}'" %>
+<%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @thesaurus.id})}'" %>
+
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-upgrade",
+    main_text: "Upgrade <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
+    sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+             icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-4 card narrow">
+    <div class="card-header">
+      Changed CDISC Terms
+    </div>
+    <div class="card-content">
+      <%= render partial: 'shared/impact/changes_cdisc_panel' %>
+    </div>
+  </div>
+
+  <div class="col-md-8 card wide">
+    <div class="card-header">
+      Impact <span id="impact-item-identifier"></span>
+    </div>
+    <div class="card-content">
+      <div class="tabs-layout" id="impact-tabs">
+
+        <div class="tabs-sel">
+          <div class="tab-option active" id="tab-affected"><div>Affected Items</div></div>
+          <div class="tab-option" id="tab-changes"><div>Change Details</div></div>
+        </div>
+
+        <div class="tab-wrap scroll-styled" data-tab="tab-affected">
+          <div class="text-xnormal text-link ci-card-title">
+            Upgrade affected items
+          </div>
+          <div class="text-small font-light">
+            The list's scope is limited to items included in this Terminology.
+          </div>
+          <br/>
+          <%= render partial: "shared/iso_managed/managed_item_ico_list" %>
+        </div>
+
+        <div class="tab-wrap closed scroll-styled" data-tab="tab-changes">
+          <%= render partial: "shared/impact/changes_differences_panel" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

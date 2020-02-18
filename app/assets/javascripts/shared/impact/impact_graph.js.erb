@@ -1,25 +1,27 @@
 /*
-* Impact Analysis Graph
+* Impact Analysis Graph and Table
 *
 */
 
 /**
- * Impact Analysis Graph Constructor
+ * Impact Analysis Graph and Table Constructor
  * Gets data, builds and renders impact graph, handles events
  *
  * @param dataUrl [String] url to fetch the data
+ * @param noGraph [Boolean] if no graph rendered, only table of items affected, set to true
  * @return [void]
  */
-function ImpactGraph(dataUrl) {
+function ImpactGraph(dataUrl, noGraph) {
   this.cache = {};
   this.graphBaseUrl = graphBaseUrl;
   this.tabName = "tab-graph";
   this.data = null;
   this.processing = false;
   this.activeAjaxes = 0;
+  this.noGraph = noGraph;
 
   this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
-  this.graph = new D3GraphV2();
+  this.graph = this.noGraph == true ? null : new D3GraphV2();
 }
 
 /**
@@ -138,6 +140,12 @@ ImpactGraph.prototype.renderData = function(data) {
   // Render in itemsAffectedPanel (without the root node)
   this.itemsAffectedPanel.addItems(data.slice(1));
 
+  if (this.noGraph == true){
+    this.loading(false);
+    return;
+  }
+
+
   // Build graph data - nodes, links and draw
   setTimeout(function(){
     var nodes = JSON.parse(JSON.stringify(data));
@@ -163,7 +171,6 @@ ImpactGraph.prototype.renderData = function(data) {
         });
       }
     });
-
     this.graph.draw({links: links, nodes: nodes});
     this.loading(false);
   }.bind(this), 100);
