@@ -227,6 +227,14 @@ module Import::STFOClasses
       sponsor_parent_identifier? && sponsor_child_or_referenced_identifiers?
     end
 
+    # Future Hybrid Sponsor? Is this a hybrid sponsor code list
+    #
+    # @return [Boolean] true if a hybrid sponsor code list, false otherwise.
+    def future_hybrid_sponsor?
+      return nil if subset?
+      STFOCodeListItem.sponsor_referenced_format?(self.identifier) && sponsor_child_or_referenced_identifiers?
+    end
+
     def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
       self.narrower.each do |child|
