@@ -26,8 +26,7 @@
 						<%= render partial: "shared/thesauri/new_terminology" %>
 					<% end %>
 				</div>
-				<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri, index_url: thesauri_index_path,
-					history_url: history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"}),
+				<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri, 
 					description: "Select one or more Terminology version in which to search, or choose all Current / Latest versions."} %>
 
 			</div>

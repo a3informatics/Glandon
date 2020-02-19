@@ -7,9 +7,9 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ISO11
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ISO11179Identification.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ISO11179Registration.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/ISO11179Concepts.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/annotations.ttl" $FileEndPoint  
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/business_operational.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/thesaurus.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/BusinessOperational.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/cross_reference.ttl" $FileEndPoint  
 # Load Identification
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_identification.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems.ttl" $FileEndPoint

@@ -35,11 +35,14 @@ describe IsoConceptSystem do
       sdtm = use.add({label: "SDTM Use", description: "SDTM use"})
       adam = use.add({label: "ADaM Use", description: "ADaM use"})
       ed = use.add({label: "ED Use", description: "ED use"})
-      study = use.add({label: "Study Use", description: "Study use"})
+      scope = process.add({label: "Scope", description: "The scope of an item."})
+      study = scope.add({label: "Study", description: "Study use only."})
+      global = scope.add({label: "Global", description: "Global use."})
 
       process.narrower_objects
       stage.narrower_objects
       use.narrower_objects
+      scope.narrower_objects
 
       sparql = Sparql::Update.new
       sparql.default_namespace(cs.uri.namespace)
@@ -49,6 +52,8 @@ describe IsoConceptSystem do
       stage.narrower.each {|x| x.to_sparql(sparql, true)}
       use.to_sparql(sparql, true)
       use.narrower.each {|x| x.to_sparql(sparql, true)}
+      scope.to_sparql(sparql, true)
+      scope.narrower.each {|x| x.to_sparql(sparql, true)}
       file = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_process.ttl")
     end

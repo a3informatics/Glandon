@@ -1,0 +1,188 @@
+@prefix : <http://www.s-cubed.dk/Q1_2020/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/Q1_2020/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 3-0 Test Upgrade"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_11.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConcept <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
+	th:isTopConcept <http://www.s-cubed.dk/NP001000P/V2#NP001000P> ;
+	th:reference <http://www.cdisc.org/CT/V53#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "Q1 2020"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
+.
+:TH_TMC2
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/NP001000P/V2#NP001000P> ;
+.
+<http://www.cdisc.org/CT/V53#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V53#TH> ;
+.
+<http://www.s-cubed.dk/SN000710/V2#SN000710>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Code Breaker"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
+	isoT:hasState <http://www.s-cubed.dk/SN000710/V2#SN000710_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SN000710/V2#SN000710_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SN000710"^^xsd:string ;
+	th:notation "DSCBWHOR"^^xsd:string ;
+	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001997> ;
+	th:narrower <http://www.cdisc.org/C78735/V14#C78735_C25936> ;
+	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	th:narrower <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9071ffa4c86f3803eb1a941d2619da1855ad1310> ;
+.
+<http://www.s-cubed.dk/SN000710/V2#SN000710_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/SN000710/V2#SN000710_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SN000710"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#28be7b0d-7c44-43bd-b41c-2191b6598eea> ;
+	th:identifier "S001999"^^xsd:string ;
+	th:notation "STUDY NURSE"^^xsd:string ;
+	th:definition "A professional healthcare provider who has graduated from a nursing program, and who is involved in the study."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#455ac8d77ff2d75756fe783f4ca2ce141e980a1e> ;
+.
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Code Breaker Subset 01"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b0d06e9f-ed91-4828-a918-e7c16fc027bf> ;
+	isoT:hasState <http://www.s-cubed.dk/NP001000P/V2#NP001000P_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V2#NP001000P_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "NP001000P"^^xsd:string ;
+	th:notation "DSCBWHOR_01"^^xsd:string ;
+	th:definition "Used to collect who performed the code breaking."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	th:narrower <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
+	th:subsets <http://www.s-cubed.dk/SN000710/V2#SN000710> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#da4a09f60b8be877afdf06c17c8ae6fdf0acf821> ;
+	th:isOrdered <http://www.assero.co.uk/TS#711086e7-20c8-42b8-a2f3-ea0808ce11b5> ;
+.
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/NP001000P/V2#NP001000P_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "NP001000P"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "2"^^xsd:positiveInteger ;
+	isoI:semanticVersion "2.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/TS#711086e7-20c8-42b8-a2f3-ea0808ce11b5>
+	rdf:type th:Subset ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TSM#c9dd7a28-9b56-4a30-8062-83e2e02e8050> ;
+.
+<http://www.assero.co.uk/TSM#c9dd7a28-9b56-4a30-8062-83e2e02e8050>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.s-cubed.dk/SN000710/V1#SN000710_S001998> ;
+	th:memberNext <http://www.assero.co.uk/TSM#51a010d7-1a89-4a12-9756-09712a48f4c4> ;
+.
+<http://www.assero.co.uk/TSM#51a010d7-1a89-4a12-9756-09712a48f4c4>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.s-cubed.dk/NP001000P/V2#NP001000P_S001999> ;
+.

@@ -108,7 +108,7 @@ describe Thesaurus do
 
     it "allows the current item to be retrived" do
       owner = IsoRegistrationAuthority.owner
-      result = Thesaurus.current({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+      result = Thesaurus.current_uri({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
       expect(result.to_s).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
     end
 

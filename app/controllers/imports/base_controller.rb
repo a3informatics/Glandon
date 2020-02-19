@@ -1,3 +1,5 @@
+require 'controller_helpers.rb'
+
 # Imports Base Controller. The core controller for imports
 #
 # @author Dave Iberson-Hurst

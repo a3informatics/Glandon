@@ -145,6 +145,7 @@ class Excel::Engine
   #
   # @param [Hash] params the parameters hash
   # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [Hash] :additional hash containing the tag path
   # @return [Array] the tags, an array of tags
   def tag_from_sheet_name(params)
     @tags = []
@@ -156,7 +157,7 @@ class Excel::Engine
       break
     end
     tags.each do |tag|
-      @tags << IsoConceptSystem.path(["CDISC"] + [tag])
+      @tags << IsoConceptSystem.path(params[:additional][:path] + [tag])
     end
     @tags
   end

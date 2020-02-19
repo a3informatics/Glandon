@@ -14,7 +14,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI1>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC2> ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC3> ;
@@ -72,7 +72,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI2>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC2> ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC3> ;
@@ -130,7 +130,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI3>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI3_TUC2> ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI3_TUC3> ;
@@ -171,7 +171,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI4_TUC2> ;
 	ba:ordinal "4"^^xsd: ;
@@ -201,7 +201,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI5>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI5_TUC2> ;
 	ba:ordinal "5"^^xsd: ;
@@ -231,7 +231,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI6>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI6_TUC2> ;
 	ba:ordinal "6"^^xsd: ;
@@ -261,7 +261,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI7>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI7_TUC2> ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI7_TUC3> ;
@@ -302,7 +302,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI8>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI8_TUC2> ;
 	ba:ordinal "8"^^xsd: ;
@@ -332,7 +332,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI9>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI9_TUC2> ;
 	ba:ordinal "9"^^xsd: ;
@@ -362,7 +362,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI10>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI10_TUC2> ;
 	ba:ordinal "10"^^xsd: ;
@@ -392,7 +392,7 @@
 <http://www.cdisc.org/CT/V52#TH_CI11>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Term being added into correct codelist, ONCRSCAT. This term was incorrectly published in the wrong codelist (ONCRSR)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V52#TH_CI11_TUC2> ;
 	ba:ordinal "11"^^xsd: ;

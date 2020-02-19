@@ -320,6 +320,9 @@ defaults: &defaults
             actions:
               -
                 method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "CDISC"
                 map:
                   ADaM: 
                     - ADaM
@@ -541,6 +544,9 @@ defaults: &defaults
             actions:
               -
                 method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "CDISC"
                 map:
                   ADaM: 
                     - ADaM
@@ -770,6 +776,9 @@ defaults: &defaults
             actions:
               -
                 method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "CDISC"
                 map:
                   ADaM: 
                     - ADaM
@@ -1002,6 +1011,9 @@ defaults: &defaults
             actions:
               -
                 method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "CDISC"
                 map:
                   ADaM: 
                     - ADaM
@@ -1226,6 +1238,9 @@ defaults: &defaults
             actions:
               -
                 method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "CDISC"
                 map:
                   ADaM: 
                     - ADaM
@@ -1446,9 +1461,20 @@ defaults: &defaults
       sheets: 
         version_2:
           selection:
-            label: Harmonized_Terminology_Listing
+            first: true
           sheet:
-            actions: []
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "Process"
+                    - "Scope"
+                map:
+                  Harmonized: 
+                    - Global
+                  Study: 
+                    - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"
@@ -1688,9 +1714,20 @@ defaults: &defaults
             actions: []
         version_3:
           selection:
-            label: Harmonized_Terminology_Listing
+            first: true
           sheet:
-            actions: []
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "Process"
+                    - "Scope"
+                map:
+                  Harmonized: 
+                    - Global
+                  Study: 
+                    - Study
             header_row:
               - "CODELIST_LONG_NAME"
               - "CODELIST_SHORT_NAME"

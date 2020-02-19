@@ -16,7 +16,7 @@ describe IsoManagedV2Controller do
     end
 
     def current_status
-      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      current_uri = CdiscTerm.current_uri(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       puts colourize("Current: #{current_uri}\n+++++", "blue")
     end
 

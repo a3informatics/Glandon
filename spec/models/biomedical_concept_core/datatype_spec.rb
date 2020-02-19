@@ -18,7 +18,7 @@ describe BiomedicalConceptCore::Datatype do
     # load_schema_file_into_triple_store("ISO11179Identification.ttl")
     # load_schema_file_into_triple_store("ISO11179Registration.ttl")
     # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("business_operational.ttl")
     # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     # load_test_file_into_triple_store("BCT.ttl")
     # load_test_file_into_triple_store("BC.ttl")

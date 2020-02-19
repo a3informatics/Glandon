@@ -9,7 +9,7 @@ module DataHelpers
   def schema_files
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
-      "BusinessOperational.ttl", "thesaurus.ttl", "annotations.ttl",
+      "business_operational.ttl", "thesaurus.ttl", "annotations.ttl",
       "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
     ]
   end
@@ -24,6 +24,7 @@ module DataHelpers
     test_files.each {|f| load_test_file_into_triple_store(f)}
     test_query # Make sure any loading has finished.
     load_schema
+    IsoRegistrationAuthority.clear_scopes
   end
   
   def load_schema

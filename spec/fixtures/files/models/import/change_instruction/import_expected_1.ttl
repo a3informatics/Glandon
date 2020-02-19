@@ -14,7 +14,7 @@
 <http://www.cdisc.org/CT/V59#TH_CI1>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd: ;
+	ba:reference ""^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
 	ba:current <http://www.cdisc.org/CT/V59#TH_CI1_TUC2> ;
 	ba:ordinal "1"^^xsd: ;

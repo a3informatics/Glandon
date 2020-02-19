@@ -37,8 +37,6 @@ describe "Change Notes", :type => :feature do
   end
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
-                    "thesaurus.ttl", "BusinessOperational.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..2)
@@ -71,9 +69,11 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_content("No change notes found")
       click_button "Close"
+      sleep 1
     end
 
     it "allows viewing change notes modal, edit page", js:true do
@@ -85,9 +85,11 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :edit)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_content("No change notes found")
       click_button "Close"
+      sleep 1
     end
 
     it "allows to create a change note", js:true do
@@ -99,12 +101,14 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       add_change_note("Some reference name", "String of text for the newly created change note.")
       check_change_note("#cn-0", "Some reference name", "String of text for the newly created change note.", "curator@example.com")
       add_change_note("Another reference name", "And another string of text for the newly created change note.")
       check_change_note("#cn-1", "Another reference name", "And another string of text for the newly created change note.", "curator@example.com")
       click_button "Close"
+      sleep 1
     end
 
     # Depends on the previous test(s)
@@ -117,6 +121,7 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_css(".note", count: 2)
       fill_in_change_note("#cn-1", "New reference", "New CN text")
@@ -124,6 +129,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       check_change_note("#cn-1", "New reference", "New CN text", "curator@example.com")
       click_button "Close"
+      sleep 1
     end
 
     # Depends on the previous test(s)
@@ -136,6 +142,7 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_css(".note", count: 2)
       fill_in_change_note("#cn-0", "Some reference", "Some text")
@@ -149,6 +156,7 @@ describe "Change Notes", :type => :feature do
       ui_confirmation_dialog true
       expect(page).to have_css(".note", count: 2)
       click_button "Close"
+      sleep 1
     end
 
     # Depends on the previous test(s)
@@ -161,12 +169,14 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_css(".note", count: 2)
       page.find("#del-cn-0-button").click
       ui_confirmation_dialog true
       expect(page).to have_css(".note", count: 1)
       click_button "Close"
+      sleep 1
     end
 
     # Depends on the previous test(s)
@@ -179,6 +189,7 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_css(".note", count: 1)
       fill_in_change_note("#cn-0", " ", " ")
@@ -188,6 +199,7 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_content("Reference is empty")
       expect(page).to have_content("Description is empty")
       click_button "Close"
+      sleep 1
     end
 
   end
@@ -213,6 +225,7 @@ describe "Change Notes", :type => :feature do
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NP000010P")
       expect(page).to have_css(".note", count: 1)
       check_change_note("#cn-0", "New reference", "New CN text", "curator@example.com")
@@ -221,6 +234,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       check_change_note("#cn-0", "Edited reference", "Edited change note text by another user", "content_admin@example.com")
       click_button "Close"
+      sleep 1
     end
 
   end
@@ -292,9 +306,11 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'NC00000999C')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NC00000999C")
       expect(page).to have_content("No change notes found")
       click_button "Close"
+      sleep 1
     end
 
     it "allows to create, edit and delete a change note", js:true do
@@ -308,6 +324,7 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'NC00000999C')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:change_notes)
+      sleep 1
       expect(page).to have_content("Change notes for NC00000999C")
       # Add CN
       add_change_note("Some reference name", "String of text for the newly created change note.")
@@ -324,6 +341,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(page).to have_css(".note", count: 0)
       click_button "Close"
+      sleep 1
     end
 
   end
@@ -352,12 +370,12 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_content("Edit Extension")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       wait_for_ajax(20)
       expect(page).to have_content("Change notes for C66790E")
       expect(page).to have_content("No change notes found")
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
     it "allows to create, edit and delete a change note", js:true do
@@ -371,7 +389,7 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_content("Edit Extension")
       expect(page).to have_content("C66790E")
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("Change notes for C66790E")
       # Add CN
       add_change_note("Some reference name", "String of text for the newly created change note.")
@@ -388,7 +406,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(page).to have_css(".note", count: 0)
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
   end
@@ -411,20 +429,20 @@ describe "Change Notes", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66790')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       context_menu_element_header(:subsets)
-      sleep 0.5
-      page.find("#new_subset").click
       sleep 1
+      page.find("#new_subset").click
+      sleep 2
       click_button "Do not select"
       wait_for_ajax(20)
       expect(page).to have_content("Edit Subset")
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       wait_for_ajax(20)
       expect(page).to have_content("Change notes for NP000011P")
       expect(page).to have_content("No change notes found")
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
     it "allows to create, edit and delete a change note", js:true do
@@ -438,7 +456,7 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_content("Edit Subset")
       expect(page).to have_content("NP000011P")
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       expect(page).to have_content("Change notes for NP000011P")
       # Add CN
       add_change_note("Some reference name", "String of text for the newly created change note.")
@@ -455,7 +473,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(page).to have_css(".note", count: 0)
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
   end
@@ -480,12 +498,12 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       wait_for_ajax(20)
       expect(page).to have_content("Change notes for CNTST")
       expect(page).to have_content("No change notes found")
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
     it "allows viewing change notes modal, edit page", js:true do
@@ -497,12 +515,12 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       wait_for_ajax(20)
       expect(page).to have_content("Change notes for CNTST")
       expect(page).to have_content("No change notes found")
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
     it "allows to create, edit and delete a change note", js:true do
@@ -514,7 +532,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(context_menu_element_header_present?(:change_notes)).to eq(true)
       context_menu_element_header(:change_notes)
-      sleep 0.5
+      sleep 1
       wait_for_ajax(20)
       expect(page).to have_content("Change notes for CNTST")
       # Add CN
@@ -532,7 +550,7 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       expect(page).to have_css(".note", count: 0)
       click_button "Close"
-      sleep 0.5
+      sleep 1
     end
 
   end

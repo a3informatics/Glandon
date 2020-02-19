@@ -11,7 +11,6 @@ describe "Thesauri Extensions", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
@@ -46,7 +45,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax(120)
       ui_table_search("index", identifier)
-      ui_check_table_row_indicators("index", 1, 4, ["extension"])
+      ui_check_table_row_indicators("index", 1, 5, ["extension"])
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 8, identifier, :edit)
@@ -185,7 +184,7 @@ describe "Thesauri Extensions", :type => :feature do
 
     it "Create Extension, no Terminology container (REQ-MDR-EXT-???)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10) 
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       wait_for_ajax(10)

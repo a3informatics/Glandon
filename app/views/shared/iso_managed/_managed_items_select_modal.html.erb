@@ -1,7 +1,6 @@
 <%= stylesheet_link_tag 'shared/datatables_loading', 'shared/managed_children_select' %>
 <%= javascript_include_tag 'shared/tags', 'shared/iso_managed/managed_items_select_modal' %>
-<%= javascript_tag "var miIndexTableUrl = '#{index_url}';" %>
-<%= javascript_tag "var miHistoryTableUrl = '#{history_url}';" %>
+<%= javascript_tag "var miType = '#{type.to_s}'" %>
 <%= javascript_tag "var selectMultiple = #{(local_assigns.fetch :select_multiple, true)}" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="im-select-modal">
@@ -54,7 +53,7 @@
                       <th class="fit">Owner</th>
                       <th class="fit">Identifier</th>
                       <th>Label</th>
-                      <th class="ignore fit"></th>
+                      <th class="th-xsmall fit ignore"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,3 +91,12 @@
     </div>
   </div>
 </div>
+<%  index_th_url = thesauri_index_path
+    history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
+    history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) %>
+
+<%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
+                        miHistoryThesauriUrl = '#{history_th_url}',
+                        miIndexClUrl = '#{index_cl_url}',
+                        miHistoryClUrl = '#{history_cl_url}'; "%>

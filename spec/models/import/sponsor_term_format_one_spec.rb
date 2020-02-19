@@ -66,7 +66,8 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short I" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path = test_file_path(sub_dir, "import_input_3.xlsx")
-    params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    fixes = test_file_path(sub_dir, "import_fixes_3.yaml")
+    params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], fixes: fixes, version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #public_file_does_not_exist?("test", filename)
@@ -124,7 +125,8 @@ describe "Import::SponsorTermFormatOne" do
   it "import, no errors, version 2, short IV" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     full_path = test_file_path(sub_dir, "import_input_8.xlsx")
-    params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    fixes = test_file_path(sub_dir, "import_fixes_8.yaml")
+    params = {identifier: "V2 I", version: "1", date: "2018-11-22", files: [full_path], fixes: fixes, version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     public_file_exists?("test", filename)
@@ -141,65 +143,84 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 2.1", :speed => 'slow' do
-    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
-    full_path = test_file_path(sub_dir, "import_input_1_v2-1_CDISC_v43.xlsx")
-    params = {identifier: "Q3 2019", version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2-1 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+  it "import, no errors, multiple files, version 3, short V" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    full_path_a = test_file_path(sub_dir, "import_input_9a.xlsx")
+    full_path_b = test_file_path(sub_dir, "import_input_9b.xlsx")
+    params = {identifier: "V2 I", version: "1", date: "2019-11-22", files: [full_path_a, full_path_b], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
-    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    public_file_exists?("test", filename)
+    #public_file_does_not_exist?("test", filename)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_1_2-1.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_1_2-1.yaml")
-    #copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_9.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_9.yaml")
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
-    #expect(public_file_exists?("test", filename)).to eq(true)
+    public_file_exists?("test", filename)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1_2-1.ttl")
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1_2-1.ttl")
-    check_ttl_fix_v2(filename, "import_expected_1_2-1.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_9.ttl")
+    check_ttl_fix_v2(filename, "import_expected_9.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, no errors, version 2.6", :speed => 'slow' do
+  it "import, no errors, version 2.1" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
-    full_path = test_file_path(sub_dir, "import_input_5_v2-6_CDISC_v43.xlsx")
+    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
+    fixes = test_file_path(sub_dir, "import_fixes_1.yaml")
+    params = {identifier: "Q3 2019", version: "1", date: "2018-11-22", files: [full_path], fixes: fixes, version_label: "1.1.1", label: "Version 2-1 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    actual = read_public_yaml_file("test", filename)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_1.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_1.yaml")
+    #copy_file_from_public_files("test", filename, sub_dir)
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    #expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.ttl")
+    check_ttl_fix_v2(filename, "import_expected_1.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors, version 2.6" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    full_path = test_file_path(sub_dir, "import_input_5.xlsx")
     params = {identifier: "Q4 2019", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_5_2-6.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_5_2-6.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_5.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_5.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5_2-6.ttl")
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_5_2-6.ttl")
-    check_ttl_fix_v2(filename, "import_expected_5_2-6.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5.ttl")
+    check_ttl_fix_v2(filename, "import_expected_5.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
  
-  it "import, no errors, version 3.0", :speed => 'slow' do
+  it "import, no errors, version 3.0" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
-    full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
+    full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = {identifier: "Q1 2020", version: "1", date: "2019-09-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2_3-0.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_2_3-0.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_2.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2_3-0.ttl")
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_2_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_expected_2_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2.ttl")
+    check_ttl_fix_v2(filename, "import_expected_2.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -213,16 +234,16 @@ puts colourize("Load 2.6 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_7_2-6.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_7_2-6.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_7a.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_7a.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_7_2-6.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_input_7a.ttl")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
 puts colourize("Load 2.6 triples ...", "blue")
-    load_local_file_into_triple_store(sub_dir, "import_load_7_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_input_7a.ttl")
 puts colourize("Load 3.0 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_7_v3-0_CDISC_v53.xlsx")
     params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
@@ -230,37 +251,14 @@ puts colourize("Load 3.0 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_7_3-0.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_7_3-0.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_7b.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_7b.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_7_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_load_7_3-0.ttl", {last_change_date: true})
-    expect(@job.status).to eq("Complete")
-    delete_data_file(sub_dir, filename)
-  end
-
-  it "import, no errors, full version 3.0 with base", :speed => 'slow' do
-    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
-puts colourize("Load 2.6 triples ...", "blue")
-    load_local_file_into_triple_store(sub_dir, "import_load_5_2-6.ttl")
-puts colourize("Load 3.0 excel ...", "blue")
-    full_path = test_file_path(sub_dir, "import_input_2_v3-0_CDISC_v53.xlsx")
-    params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
-    result = @object.import(params)
-    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
-    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
-    actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_9_3-0.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_9_3-0.yaml")
-    #copy_file_from_public_files("test", filename, sub_dir)
-    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
-    #expect(public_file_exists?("test", filename)).to eq(true)
-    copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_9_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_load_9_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_7b.ttl")
+    check_ttl_fix_v2(filename, "import_expected_7b.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -273,7 +271,7 @@ puts colourize("Load 3.0 excel ...", "blue")
   it "import, no errors, full version 3.0 with base, bug issue I" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
 puts colourize("Load 2.6 triples ...", "blue")
-    load_local_file_into_triple_store(sub_dir, "import_load_5_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_load_10.ttl")
 puts colourize("Load 3.0 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_10.xlsx")
     params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
@@ -281,14 +279,14 @@ puts colourize("Load 3.0 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_10_3-0.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_10_3-0.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_10.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_10.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_10_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_load_10_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_10.ttl")
+    check_ttl_fix_v2(filename, "import_expected_10.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -296,7 +294,7 @@ puts colourize("Load 3.0 excel ...", "blue")
   it "import, no errors, full version 3.0 with base, bug issue II" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
 puts colourize("Load 2.6 triples ...", "blue")
-    load_local_file_into_triple_store(sub_dir, "import_load_5_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_load_11.ttl")
 puts colourize("Load 3.0 excel ...", "blue")
     full_path = test_file_path(sub_dir, "import_input_11.xlsx")
     params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], version_label: "1.0.0", label: "Version 3-0 Test Upgrade", semantic_version: "1.0.0", job: @job, uri: ct.uri}
@@ -304,14 +302,14 @@ puts colourize("Load 3.0 excel ...", "blue")
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_11_3-0.yaml")
-    check_file_actual_expected(actual, sub_dir, "import_errors_expected_11_3-0.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_11.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_11.yaml")
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_11_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_load_11_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_11.ttl")
+    check_ttl_fix_v2(filename, "import_expected_11.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
