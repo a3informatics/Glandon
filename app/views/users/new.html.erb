@@ -1,27 +1,36 @@
 <%= javascript_tag 'setPageTitle("New User Account")' %>
 <% breadcrumb ([id_to_type(:users), {link: "#", text: "New"}]) %>
-<div class="text-medium font-light text-large">New user account</div>
-<div class="p-justified font-light text-small text-medium">
-  <%= password_message %>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <%= form_for User.new, url: create_user_path do |f| %>
-    <div class="form-wrap">
-      <div class="form-group">
-        <%= f.email_field :email, autocomplete: "off", placeholder: "Email", autofocus: true %>
-      </div>
-      <div class="form-group">
-        <%= f.text_field :name, autocomplete: "off", placeholder: "Display name", autofocus: true %>
-      </div>
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
-      </div>
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
-      </div>
+<div class="row centered">
+  <div class="col-md-8 card wide">
+    <div class="card-header">
+      New user account
     </div>
-    <%= f.submit "Create account", id: "create_button", class: "btn medium submit-btn" %>
-    <% end %>
+    <div class="card-content">
+      <center>
+        <div class="flex-total-center font-light text-small">
+          <%= password_message %>
+        </div>
+        <img src="<%= asset_path (local_assigns.fetch :img_path, 'icons/new_user') %>" class="modal-img centered"/>
+        <div class="row">
+            <%= form_for User.new, url: create_user_path do |f| %>
+            <div class="form-wrap wide">
+              <div class="form-group">
+                <%= f.email_field :email, autocomplete: "off", placeholder: "Email", autofocus: true %>
+              </div>
+              <div class="form-group">
+                <%= f.text_field :name, autocomplete: "off", placeholder: "Display name", autofocus: true %>
+              </div>
+              <div class="form-group">
+                <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+              </div>
+              <div class="form-group">
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
+              </div>
+            </div>
+            <%= f.submit "Create account", id: "create_button", class: "btn medium green submit-btn" %>
+            <% end %>
+        </div>
+      </center>
+    </div>
   </div>
 </div>
