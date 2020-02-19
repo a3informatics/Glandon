@@ -1,13 +1,13 @@
 <%= javascript_tag 'setPageTitle("Upgrade: '+@thesaurus.scoped_identifier+' ('+@thesaurus.semantic_version+')")' %>
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'custom/d3_graph_v2', 'shared/datatables_loading' %>
-<%= javascript_include_tag  'shared/tags', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/tabs_layout' %>
+<%= javascript_include_tag  'shared/tags', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
 <%= javascript_tag "var graphBaseUrl = '#{impact_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}'" %>
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @thesaurus.id})}'" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-upgrade",
-    main_text: "Upgrade <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
+    main_text: "Upgrade Code Lists <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",

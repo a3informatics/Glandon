@@ -1,0 +1,71 @@
+/*
+* Upgrade Panel (Wraps Impact Graph panel functions)
+*
+*/
+
+/**
+ * Upgrade Panel Constructor
+ * Gets data, builds and renders impact graph, handles events
+ *
+ * @return [void]
+ */
+function UpgradePanel() {
+  this.impact = new ImpactGraph(null, true);
+  this.tabName = "tab-affected";
+  this.initTable();
+  this.setListeners();
+}
+
+/**
+ * Sets event handlers
+ *
+ * @return [void]
+ */
+UpgradePanel.prototype.setListeners = function() {
+  var _this = this;
+
+  $(this.impact.itemList.tableId + " tbody")
+    .off("click", ".upgrade")
+    .on("click", ".upgrade", function(){
+      let data = _this.impact.itemList.table.row($(this).parents("tr:first")).data();
+      var itemId = data.id;
+      var upgradeToId = data.owner.toLowerCase() == "cdisc" ? "" : data.cl_new;
+  });
+}
+
+/**
+ * Clears table, adds column, reinitializes
+ *
+ * @return [void]
+ */
+UpgradePanel.prototype.initTable = function() {
+  this.impact.itemList.columns.push(
+    { "data": "id",
+      "orderable": false,
+      "render": function(data, type, row, meta) {
+        return (row.can_be_upgraded || false) ? this.upgradeButtonHTML(row) : "";
+      }.bind(this) });
+
+  this.impact.itemList.table.destroy();
+  $(this.impact.itemList.tableId + " thead tr").append("<th class='fit'></th>");
+  this.impact.itemList.initTable();
+}
+
+/**
+ * Loads data from server or cache, if present
+ *
+ * @param item [Object] Clicked Row Data from the History Panel
+ * @return [void]
+ */
+UpgradePanel.prototype.loadData = function(item) {
+  this.impact.loadData(item);
+}
+
+/**
+ * Generates HTML for the upgrade button
+ *
+ * @return [String] Formatted HTML
+ */
+UpgradePanel.prototype.upgradeButtonHTML = function(item) {
+  return "<button class='btn medium green upgrade'><span class='icon-upgrade text-small'></span> Upgrade</button>";
+}
