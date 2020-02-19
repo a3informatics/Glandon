@@ -332,6 +332,7 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
+            additional: { path: ["CDISC"] },
             map: { ADaM: ["ADaM"], CDASH: ["CDASH", "XXX"], SDTM: ["SDTM"] }
           }
         ]
@@ -357,6 +358,7 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
+            additional: { path: ["CDISC"] },
             map: { ADaM: ["ADaM"], CDash: ["CDASH"], SDTM: ["SDTM"] }
           }
         ]
@@ -372,9 +374,9 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
-    result = object.tag_from_sheet_name({map: {cdash: ["XXX"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {cdash: ["XXX"], x: ["X"]}})
     expect(result).to eq([])
   end
 
@@ -384,7 +386,7 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS"]).and_return({tag: "QS"})
-    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
     expect(result).to eq([{:tag=>"QS"}])
   end
 
@@ -394,7 +396,7 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS-FT"]).and_return({tag: "QS-FT"})
-    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
     expect(result).to eq([{:tag=>"QS-FT"}])
   end
 
@@ -404,7 +406,7 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
     result = object.set_tags({object: parent})
     expect(parent.tagged).to eq([{:tag=>"A"}])

@@ -1404,16 +1404,18 @@ describe "IsoManagedV2" do
 
     def change_current(uri)
       item = CdiscTerm.find_minimum(uri)
-    puts colourize("+++++ Set +++++\nSet: #{uri}", "blue")
       item.make_current
-      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
-    puts colourize("Current: #{current_uri}\n+++++", "blue")
+      current_uri = CdiscTerm.current_uri(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       expect(current_uri).to eq(item.uri)
+      current = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      expect(current.uri).to eq(item.uri)
     end
 
     it "allows the current item to be found and to be made current" do
-      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      current_uri = CdiscTerm.current_uri(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
       expect(current_uri).to eq(nil)
+      current = CdiscTerm.current_uri(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      expect(current).to eq(nil)
       change_current(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       change_current(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
       change_current(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
