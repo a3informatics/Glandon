@@ -1609,4 +1609,30 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "upgrade" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor6_impact.ttl")
+    end
+
+    it "have I been upgraded?" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+      result = tc.have_i_been_upgraded?(new_th)
+      check_file_actual_expected(result, sub_dir, "have_I_been_upgraded_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "have I been upgraded?" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+      result = tc.have_i_been_upgraded?(new_th)
+      check_file_actual_expected(result, sub_dir, "have_I_been_upgraded_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

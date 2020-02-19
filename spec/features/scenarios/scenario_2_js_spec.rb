@@ -43,7 +43,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       ua_logoff
     end
 
-    it "allows an item to move through the lifecyle", scenario: true, js: true do
+    it "allows an item to move through the lifecyle (REQ-GENERIC-MI-020, REQ-GENERIC-MI-060)", scenario: true, js: true do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
@@ -188,7 +188,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       wait_for_ajax(120)
     end
 
-    it "allows an item to move through the lifecyle 2", scenario: true, js: true do
+    it "allows an item to move through the lifecyle 2 (REQ-GENERIC-MI-020, REQ-GENERIC-MI-060)", scenario: true, js: true do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
@@ -339,7 +339,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
 
     end
 
-    it "allows an item to move through the lifecyle", scenario: true, js: true do
+    it "allows an item to move through the lifecyle (REQ-GENERIC-MI-020, REQ-GENERIC-MI-060)", scenario: true, js: true do
       click_navbar_terminology
       expect_page 'Index: Terminology'
       click_link 'New Terminology'
