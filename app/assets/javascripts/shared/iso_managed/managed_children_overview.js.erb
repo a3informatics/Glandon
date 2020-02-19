@@ -66,7 +66,6 @@ ManagedChildrenSelectOverview.prototype.executeRequest = function (requestParams
 		success: function(result){
 			this.mcs.processing(false);
 			try { callback() } catch(exc) {};
-			try { requestParams.context.processing(false) } catch(exc) {};
 		},
 		error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
@@ -128,7 +127,7 @@ ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data, para
 	var idArray = [];
 
 	$.each(data, function(i, item){
-		var targetItem = params.action == "remove" ? this.mcs.findRowByParam("scopeAndIdentifier", item).data() : item;
+		var targetItem = (params.action == "remove" ? this.mcs.findRowByParam("scopeAndIdentifier", item).data() : item);
 		idArray.push(targetItem.id);
 	}.bind(this));
 
@@ -146,10 +145,11 @@ ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data
 	switch(params.action){
 		case "add":
 			// this.addItems(data, params);
-			this.refresh();
+			this.refresh(params.context.processing.bind(params.context, false));
 			break;
 		case "remove":
 			this.removeItems(data, params);
+			try { params.context.processing(false) } catch(exc) {};
 			break;
 		case "change_version":
 			this.refresh();
@@ -265,7 +265,7 @@ ManagedChildrenSelectOverview.prototype.refresh = function (callback) {
 
 	this.mcs.loadData(0, function() {
 		if(callback != null)
-			callback();
+			try { callback() }catch(e){ }
 
 		this.setListeners();
 	}.bind(this));

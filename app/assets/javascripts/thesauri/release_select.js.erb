@@ -109,7 +109,7 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
       // Update CDISC ver UI
       $("#cdisc-version-label").html(this.cdiscCT.version);
       $(".tab-option.disabled").removeClass("disabled");
-      $(".show-more-btn").click();
+      $(".tab-wrap .show-more-btn").click();
 
       // Remove selection of all CDISC items
       var rows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
