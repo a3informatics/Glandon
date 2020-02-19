@@ -546,7 +546,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
             {
               SELECT DISTINCT ?sci ?ns (count(?lv) AS ?count) WHERE
               {
-                VALUES ?x { #{uris.map{|x| x.to_ref}.join(" ")} }
+                ?x rdf:type th:ManagedConcept .
                 ?x isoT:hasIdentifier/isoI:version ?lv .
                 ?x isoT:hasIdentifier/isoI:identifier ?sci .
                 ?x isoT:hasIdentifier/isoI:hasScope ?ns .

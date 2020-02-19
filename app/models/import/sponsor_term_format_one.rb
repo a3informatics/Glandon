@@ -8,7 +8,7 @@ class Import::SponsorTermFormatOne < Import
   include Import::STFOClasses
 
   C_V2 = "01/01/1900".to_datetime 
-  C_V3 = "01/06/2019".to_datetime 
+  C_V3 = "01/09/2019".to_datetime 
   C_FORMAT_MAP = [
     {range: (C_V2...C_V3), sheet: :version_2}, 
     {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]

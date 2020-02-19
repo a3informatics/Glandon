@@ -44,7 +44,7 @@ describe "Import::SponsorTermFormatOne" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
-    params = {identifier: "Q4 2019", version: "1", date: "2019-09-01", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 2-6, Q4 2019", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = {identifier: "Q3 2019", version: "1", date: "2019-08-08", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 2-6, Q3 2019", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
