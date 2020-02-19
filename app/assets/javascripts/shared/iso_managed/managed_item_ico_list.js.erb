@@ -116,7 +116,7 @@ ManagedItemIconList.prototype.itemHTML = function(data) {
   data.notation == null ? "" : data.notation;
   data.label == null ? "Empty label" : data.label;
 
-  var html = '<div class="font-regular text-normal">'+data.label+'<span class="font-light"> ('+typeToString[data.rdf_type]+')</span></div>';
+  var html = '<div class="font-regular text-small">'+data.label+'<span class="font-light"> ('+typeToString[data.rdf_type]+')</span></div>';
   html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
   return html;
 }
