@@ -58,8 +58,8 @@ module Import::STFOClasses
       return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
       ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
       return false if ref_ct.nil?
-      return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
-      others = self.child_identifiers - ref_ct.child_identifiers
+      return true if self.to_referenced_child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
+      others = self.to_referenced_child_identifiers - ref_ct.child_identifiers
       add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       false
     end
@@ -306,6 +306,10 @@ module Import::STFOClasses
     # @return [Array] array of the identifiers
     def child_identifiers
       self.narrower.map{|x| x.identifier}
+    end
+
+    def to_referenced_child_identifiers
+      self.narrower.map{|x|  STFOCodeListItem.to_referenced(x.identifier)}
     end
 
     # Reference. Obtain the Managed Concept from the quoted CT with the matching identifier (if present)
