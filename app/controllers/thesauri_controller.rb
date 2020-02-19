@@ -141,9 +141,8 @@ class ThesauriController < ApplicationController
   def upgrade
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    # ref new and old can be found throught @thesaurus, change later
-    @new_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_new])
-    @ref_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_old])
+    @ref_cdisc_th = @thesaurus.get_referenced_thesaurus
+    @base_cdisc_th = @thesaurus.get_baseline_referenced_thesaurus
     @close_path = request.referer
   end
 
