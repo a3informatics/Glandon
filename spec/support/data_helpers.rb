@@ -24,6 +24,7 @@ module DataHelpers
     test_files.each {|f| load_test_file_into_triple_store(f)}
     test_query # Make sure any loading has finished.
     load_schema
+    IsoRegistrationAuthority.clear_scopes
   end
   
   def load_schema

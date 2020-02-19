@@ -126,6 +126,14 @@
   rdfs:range bo:Reference  ;
   skos:definition "A relationship linking a thesaurus with a reference thesaurus."^^xsd:string ;
 .
+:baselineReference
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Baseline reference relationship"^^xsd:string ;
+  rdfs:domain :Thesaurus ;
+  rdfs:range bo:Reference  ;
+  skos:definition "A relationship linking a thesaurus with a baseline reference thesaurus. used for upgrades"^^xsd:string ;
+.
 :definition
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;

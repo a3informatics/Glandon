@@ -7,7 +7,7 @@ $(document).ready(function(){
 
   var selectCallback = function(dataRow){
     toggleTableActive(ccp.id, false);
-    $("#impact-item-identifier").text(" of " + dataRow.identifier);
+    $("#impact-item-identifier").text(dataRow.identifier);
     $("#tab-affected").click();
     dp.reload(dataRow.differences_url);
     cp.reload(dataRow.changes_url);

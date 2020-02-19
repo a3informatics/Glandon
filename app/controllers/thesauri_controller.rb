@@ -55,8 +55,9 @@ class ThesauriController < ApplicationController
       format.json do
         results = []
         history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = Thesaurus.current(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(Thesaurus, history_results, current)
+        current = Thesaurus.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = Thesaurus.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(Thesaurus, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
@@ -140,9 +141,8 @@ class ThesauriController < ApplicationController
   def upgrade
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    # ref new and old can be found throught @thesaurus, change later
-    @new_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_new])
-    @ref_cdisc_th = Thesaurus.find_minimum(upgrade_params[:ref_old])
+    @ref_cdisc_th = @thesaurus.get_referenced_thesaurus
+    @base_cdisc_th = @thesaurus.get_baseline_referenced_thesaurus
     @close_path = request.referer
   end
 

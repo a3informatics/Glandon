@@ -24,8 +24,9 @@ class IsoRegistrationAuthority < Fuseki::Base
   validates_with Validator::Uniqueness, attribute: :organization_identifier, on: :create
   validates_with Validator::Klass, property: :ra_namespace, level: :uri
 
-  @@repository_scope = nil
-  @@cdisc_scope = nil
+  @@repository_scope = nil  # Simple cache for the repository (owner) scope
+  @@cdisc_scope = nil       # Simple cache for the CDISC scope
+  @@owner = nil             # Simple cache for the owner
 
   # Find by the short name.
   #
@@ -74,8 +75,8 @@ class IsoRegistrationAuthority < Fuseki::Base
   #
   # @return [IsoRegistrationAuthority] the object
   def self.owner
-    object = where_only({owner: true})
-    find_children(object.uri)
+    @@owner ||= get_owner
+    @@owner
   end
 
   # Find the scope for the repository owner
@@ -118,8 +119,18 @@ class IsoRegistrationAuthority < Fuseki::Base
     def self.clear_scopes
       @@repository_scope = nil
       @@cdisc_scope = nil
+      @@owner = nil
     end
 
+  end
+
+private
+
+  # Find the owner of the repository
+  def self.get_owner
+    object = where_only({owner: true})
+    object.ra_namespace_objects
+    object
   end
 
 end

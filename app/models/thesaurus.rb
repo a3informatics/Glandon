@@ -10,6 +10,7 @@ class Thesaurus <  IsoManagedV2
   object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TmcReference", children: true
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
+  object_property :baseline_reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
 
   include Thesaurus::Search
   include Thesaurus::Where
@@ -601,18 +602,22 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
   end
 
-  # Set Referenced Thesaurus. Set the referenced thesaurus
+  # Set Referenced Thesaurus. Set the referenced thesaurus and set the baseline if necessary
   #
   # @param [Thesaurus] object the thesaurus object
   # @return [Void] no return
   def set_referenced_thesaurus(object)
     tx = transaction_begin
     self.reference_objects
+    self.baseline_reference_objects
     if self.reference.nil?
-      self.reference = OperationalReferenceV3.create({reference: object.uri, transaction: tx}, self)
+      self.reference = OperationalReferenceV3.create({reference: object.uri, ordinal: 1, transaction: tx}, self)
+      self.baseline_reference = nil
       self.save
     else
       ref = self.reference
+      self.baseline_reference = OperationalReferenceV3.create({reference: ref.reference.dup, ordinal: 2, transaction: tx}, self) if self.baseline_reference.nil?
+      self.save
       ref.reference = object.uri
       ref.save
     end
@@ -621,11 +626,20 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
 
   # Referenced Thesaurus. Find the single referenced thesaurus
   #
-  # @return [Uri] the uri of the singfle reference thesaurus
+  # @return [Uri] the uri of the single reference thesaurus
   def get_referenced_thesaurus
     ref = self.reference_objects
     return nil if ref.nil?
-    return Thesaurus.find_minimum(ref.reference)
+    Thesaurus.find_minimum(ref.reference)
+  end
+
+  # Baseline Referenced Thesaurus. Find the single referenced baseline thesaurus
+  #
+  # @return [Uri] the uri of the single baseline reference thesaurus
+  def get_baseline_referenced_thesaurus
+    ref = self.baseline_reference_objects
+    return nil if ref.nil?
+    Thesaurus.find_minimum(ref.reference)
   end
 
   # Add Child. Adds a child item that is itself managed

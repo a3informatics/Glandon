@@ -20,7 +20,7 @@ function ImpactGraph(dataUrl, noGraph) {
   this.activeAjaxes = 0;
   this.noGraph = noGraph;
 
-  this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
+  this.itemList = new ManagedItemIconList("No affected items found.");
   this.graph = this.noGraph == true ? null : new D3GraphV2();
 }
 
@@ -113,6 +113,7 @@ ImpactGraph.prototype.filterData = function(newData, currentItem) {
     // Item not seen before
     if (idxInInstanceData == -1) {
       item.impactLinks = [currentItem.id];
+      item["cl_new"] = currentItem.cl_new;
       filtered.push(item);
     }
     // Item seen before, add link to current
@@ -138,7 +139,7 @@ ImpactGraph.prototype.renderData = function(data) {
     return;
 
   // Render in itemsAffectedPanel (without the root node)
-  this.itemsAffectedPanel.addItems(data.slice(1));
+  this.itemList.addItems(data.slice(1));
 
   if (this.noGraph == true){
     this.loading(false);
@@ -216,7 +217,7 @@ ImpactGraph.prototype.makeDataUrl = function(id) {
  */
 ImpactGraph.prototype.loading = function(enable) {
   if (typeof tabLoading != "undefined"){
-      this.itemsAffectedPanel.loading(enable);
+      this.itemList.loading(enable);
       tabLoading(this.tabName, enable);
       this.processing = enable;
   }

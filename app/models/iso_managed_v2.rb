@@ -600,12 +600,17 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
+  def self.latest_uri(params)
+    item = latest(params)
+    item.nil? ? nil : item.uri
+  end
+
   # Latest. Find the latest item from the history
   #
   # @params [Hash] params
   # @params params [String] :identifier the identifier
   # @params params [IsoNamespace] :scope the scope namespace
-  # @return [IsoManaged] the found object or nil (if empty history)
+  # @return [Object] the latest object or nil if not found.
   def self.latest(params)
     results = history_uris(params)
     results.empty? ? nil : find_minimum(results.first)
@@ -950,14 +955,19 @@ class IsoManagedV2 < IsoConceptV2
     results.map{|x| {uri: x[:s], version: x[:v].to_i}}
   end
 
+  def self.current(params)
+    uri = current_uri(params)
+    uri.nil? ? nil : find_minimum(uri)
+  end
+
   # Current. Find the current item for the scope.
   #
   # @params [Hash] params
   # @params params [String] :identifier the identifier
   # @params params [IsoNamespace] :scope the scope namespace
   # @raise [Errors::ApplicationLogicError] raised if mutliple items found
-  # @return [object] the current item if found, nil otherwise
-  def self.current(params)
+  # @return [Uri] the current item's URI if found, nil otherwise
+  def self.current_uri(params)
     date_time = Time.now.iso8601
     query_string = %Q{
       SELECT ?s WHERE
@@ -1026,9 +1036,8 @@ private
 
   # Clear Current, if any
   def clear_current
-    current_uri = self.class.current(identifier: self.scoped_identifier, scope: self.scope)
-    return false if current_uri.nil?
-    current_item = IsoManagedV2.find_minimum(current_uri)
+    current_item = self.class.current(identifier: self.scoped_identifier, scope: self.scope)
+    return false if current_item.nil?
     current_item.has_state.make_not_current
     true
   end

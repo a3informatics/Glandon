@@ -57,6 +57,7 @@ describe Thesaurus do
           :is_top_concept_reference => [],
           :tagged => [],
           :reference => nil,
+          :baseline_reference => nil
         }
       expect(th.to_h).to hash_equal(result)
     end
@@ -108,7 +109,7 @@ describe Thesaurus do
 
     it "allows the current item to be retrived" do
       owner = IsoRegistrationAuthority.owner
-      result = Thesaurus.current({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+      result = Thesaurus.current_uri({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
       expect(result.to_s).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
     end
 
@@ -865,21 +866,26 @@ describe Thesaurus do
       expect(s_th.get_referenced_thesaurus).to eq(nil)
       s_th.set_referenced_thesaurus(r_th_1)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
+      expect(s_th.get_baseline_referenced_thesaurus).to eq(nil)
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.reference_objects
       same_uri = s_th.reference.uri
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.set_referenced_thesaurus(r_th_2)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       expect(s_th.reference.uri).to eq(same_uri) # Make sure op ref is re-used, i.e same one as first one
       s_th.set_referenced_thesaurus(r_th_3)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_3.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       s_th.set_referenced_thesaurus(r_th_2)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       ref = OperationalReferenceV3.find(s_th.reference.uri)
     end
 
