@@ -13,7 +13,7 @@
  */
 function ImpactGraph(dataUrl, noGraph) {
   this.cache = {};
-  this.graphBaseUrl = graphBaseUrl;
+  this.baseUrl = dataUrl;
   this.tabName = "tab-graph";
   this.data = null;
   this.processing = false;
@@ -206,7 +206,7 @@ ImpactGraph.prototype.isCached = function(id) {
  * @return [String] formatted URL
  */
 ImpactGraph.prototype.makeDataUrl = function(id) {
-  return this.graphBaseUrl.replace("clId", id);
+  return this.baseUrl.replace("clId", id);
 }
 
 /**
