@@ -2,8 +2,7 @@
 
 // Row Clickable Styles
 
-.table-row-clickable tbody tr:hover{
-  color: $secondary-color-medium;
+.table-row-clickable tbody tr:hover, .table-row-clickable tbody tr.selected:hover{
   background: $row-highlight-background !important;
   cursor: pointer;
 }
@@ -15,14 +14,23 @@
 
 .table-row-clickable .selected td:first-of-type{
   position: relative;
+  font-family: $font-primary !important;
+}
+
+.table-row-clickable tbody tr.selected{
+  color: $primary-color-light !important;
+}
+
+.table-row-clickable.no-mark tbody tr.selected{
+  color: $primary-color-light !important;
 }
 
 // Selected checkmark
 
-.table-row-clickable .selected td:first-of-type::before{
+.table-row-clickable tr.selected td:first-of-type::before{
   font-family: 'icomoon';
   display: block;
-  color: $secondary-color-light;
+  color: $primary-color-light;
   position: absolute;
   left: -20px;
   font-size: $font-tiny;
@@ -62,28 +70,31 @@ table.table-disabled {
   border-radius: 0px;
 }
 
-.table-row-clickable tr.selected.b td:first-of-type::before{
+.table-row-clickable tbody tr.selected.b td:first-of-type::before{
   background: $primary-color-light;
 }
 
-.table-row-clickable tr.selected.r td:first-of-type::before{
+.table-row-clickable tbody tr.selected.r td:first-of-type::before{
   background: $accent-color-2;
 }
 
-.table-row-clickable tr.selected.y td:first-of-type::before{
+.table-row-clickable tbody tr.selected.y td:first-of-type::before{
   background: $accent-color-1;
 }
 
-.table-row-clickable tr.selected.b{
+.table-row-clickable tbody tr.selected.b{
   color: $primary-color-medium !important;
+  background: white !important;
 }
 
-.table-row-clickable tr.selected.r{
+.table-row-clickable tbody tr.selected.r{
   color: $accent-color-2 !important;
+  background: white !important;
 }
 
-.table-row-clickable tr.selected.y{
+.table-row-clickable tbody tr.selected.y{
   color: $accent-color-1-dark !important;
+  background: white !important;
 }
 
 .table-row-clickable thead th{
