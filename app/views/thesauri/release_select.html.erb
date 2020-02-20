@@ -32,6 +32,10 @@
           icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty?, target: "_blank" } %>
         <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
           icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+        <% if !@ref_thesaurus.nil? && !@base_cdisc_th.nil? %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: upgrade_thesauri_path(@thesaurus), id: "upgrade",
+            icon: "icon-upgrade", text: "Upgrade Code Lists", dt_toggle: "", disabled: false } %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
@@ -45,7 +49,7 @@
     <div class="card-header">
       Find & Select Code Lists
     </div>
-    <div class="card-content card-with-tabs">
+    <div class="card-content card-with-tabs spinner-spread">
       <div class="tabs-layout" id="release-select-tabs">
 
         <div class="tabs-sel">
@@ -58,7 +62,9 @@
 
         <div class="tab-wrap" data-tab="tab-cdisc-cls">
           <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-cdisc-cls"} do %>
-            <div class="text-centered font-light"> CDISC version used: <span id="cdisc-version-label" class="bg-label"><%=@cdisc_date%></span></div><br/>
+            <div class="text-centered font-light"> CDISC version used:
+              <span id="cdisc-version-label" class="bg-label"><%= @ref_thesaurus.nil? ? "None" : @ref_thesaurus.version_label.split(' ')[0]%></span>
+            </div><br/>
             <%= render layout: "shared/show_more", :locals => {:size => "small", :show_text => show_text, :centered => "centered"} do %>
               <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
                 title_text: "Select CDISC Terminology version by dragging the slider:",

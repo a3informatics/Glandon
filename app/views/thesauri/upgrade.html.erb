@@ -2,13 +2,13 @@
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'custom/d3_graph_v2', 'shared/datatables_loading' %>
 <%= javascript_include_tag  'shared/tags', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
-<%= javascript_tag "var graphBaseUrl = '#{impact_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}'" %>
-<%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @thesaurus.id})}'" %>
+<%= javascript_tag "var upgradeBaseUrl = '#{upgrade_data_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}'" %>
+<%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@base_cdisc_th, thesauri: {thesaurus_id: @ref_cdisc_th.id, sponsor_th_id: @thesaurus.id})}'" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-upgrade",
     main_text: "Upgrade Code Lists <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
-    sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
+    sub_text: "Baseline CDISC CT: #{@base_cdisc_th.version_label}. New version: #{@ref_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
              icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
@@ -43,7 +43,9 @@
             Upgrade affected items
           </div>
           <div class="text-small font-light">
-            The list's scope is limited to items included in this Terminology.
+            The list's scope is limited to items included in this Terminology. <br/>
+            Click Upgrade to create an updated version of a Subset or an Extension based on the <span class="font-regular">changed</span> CDISC Code List. <br/>
+            You have to include the updated version in your Terminology Release <span class="font-regular">manually</span>.
           </div>
           <br/>
           <%= render partial: "shared/iso_managed/managed_item_ico_list" %>

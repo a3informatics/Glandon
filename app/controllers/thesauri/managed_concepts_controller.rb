@@ -456,8 +456,8 @@ private
   # Read a Thesaurus Concept
   def read_concept(id)
     tc = Thesaurus::ManagedConcept.find_with_properties(id)
-    last_id = Thesaurus::ManagedConcept.history_uris(identifier: tc.has_identifier.identifier, scope: tc.scope).first
-    tc = Thesaurus::ManagedConcept.find_with_properties(last_id)
+    latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
+    tc = Thesaurus::ManagedConcept.find_with_properties(latest_uri)
     tc = edit_item(tc)
     return nil if tc.nil?
     tc.synonyms_and_preferred_terms

@@ -3,6 +3,8 @@
 *
 *
 */
+refreshOnBackPressed();
+
 $(document).ready(function(){
   var releaseSelect = new ReleaseSelect();
   var unload = new Unload(false);
@@ -117,8 +119,9 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
         var data = rows.data();
         var params = { action: "remove", autoDeselect: false, thisTable: true, rows: rows}
         var callback = function() {
-          this.tabs.target.updateSelectionCallback(data, params)
-          this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+          location.reload();
+          // this.tabs.target.updateSelectionCallback(data, params)
+          // this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
         }.bind(this);
 
         this.tabs.target.updateSelection(params, data, callback);
