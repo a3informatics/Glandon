@@ -122,16 +122,15 @@ class ThesauriController < ApplicationController
   def release_select
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    last_id = Thesaurus.history_uris(identifier: @thesaurus.has_identifier.identifier, scope: @thesaurus.scope).first
-    @thesaurus = Thesaurus.find_minimum(last_id)
+    @thesaurus = Thesaurus.latest(identifier: @thesaurus.has_identifier.identifier, scope: @thesaurus.scope)
     @thesaurus = edit_item(@thesaurus)
     if !@thesaurus.nil?
       @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
       @versions = CdiscTerm.version_dates
       @versions_normalized = normalize_versions(@versions)
       @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
-      ref_thesaurus = @thesaurus.get_referenced_thesaurus
-      @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+      @ref_thesaurus = @thesaurus.get_referenced_thesaurus
+      @base_cdisc_th = @thesaurus.get_baseline_referenced_thesaurus
       @edit_tags_path = path_for(:edit_tags, @thesaurus)
     else
       redirect_to request.referrer
@@ -141,9 +140,13 @@ class ThesauriController < ApplicationController
   def upgrade
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
+    @close_path = request.referer
     @ref_cdisc_th = @thesaurus.get_referenced_thesaurus
     @base_cdisc_th = @thesaurus.get_baseline_referenced_thesaurus
-    @close_path = request.referer
+    if Date.parse(@base_cdisc_th.version_label) >= Date.parse(@ref_cdisc_th.version_label)
+      flash[:error] = "You must choose a CDISC release newer than the baseline #{@base_cdisc_th.version_label} to do an Upgrade."
+      redirect_to @close_path
+    end
   end
 
   def children
