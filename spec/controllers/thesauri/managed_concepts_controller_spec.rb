@@ -97,6 +97,21 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "upgrade" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.new
+      tc.uri = Uri.new(uri: "http://www.cdisc.org/CT/VX#XXX")
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(tc)
+      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct.set_referenced_thesaurus(ref_ct)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgrade?).and_return({:errors=>"", :upgrade=>true})
+      get :upgrade, id: "tc_1.id", upgrade: {sponsor_th_id: ct.id, source_id: "source", target_id: "target_id"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
+    end
+
     it "upgrade data" do
       expected = [
                   {

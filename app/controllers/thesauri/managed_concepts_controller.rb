@@ -337,6 +337,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: results}
   end
 
+  def upgrade
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
+    ref_ct = ct.get_referenced_thesaurus
+    results = tc.upgrade?(upgrade_params[:source_id], ref_ct)
+    if results[:errors].empty?
+      new_tc = tc.upgrade(upgrade_params[:target_id])
+      render json: {data: ""}, status: 200
+    else
+      render json: {errors: results[:errors]}
+    end
+  end
+
   def upgrade_data
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
@@ -512,6 +526,10 @@ private
 
   def impact_params
     params.require(:impact).permit(:sponsor_th_id)
+  end
+
+  def upgrade_params
+    params.require(:upgrade).permit(:source_id, :target_id, :sponsor_th_id)
   end
 
   # Not required currently, will be for user-defined identifiers
