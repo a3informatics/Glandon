@@ -338,7 +338,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   def upgrade
-    authorize Thesaurus, :show?
+    authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
     ref_ct = ct.get_referenced_thesaurus
