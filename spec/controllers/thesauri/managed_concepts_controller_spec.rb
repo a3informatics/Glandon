@@ -106,7 +106,7 @@ describe Thesauri::ManagedConceptsController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       ct.set_referenced_thesaurus(ref_ct)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgrade?).and_return({:errors=>"", :upgrade=>true})
-      get :upgrade, id: "tc_1.id", upgrade: {sponsor_th_id: ct.id, source_id: "source", target_id: "target_id"}
+      put :upgrade, id: "tc_1.id", upgrade: {sponsor_th_id: ct.id, source_id: "source", target_id: "target_id"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
