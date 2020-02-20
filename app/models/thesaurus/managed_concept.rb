@@ -37,31 +37,30 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   # Have I been upgraded?
   #
+  # @param new_th [Thesaurus] the new thesaurus
   # @return [Boolean] return true if this instance has already been upgraded, false otherwise
   def have_i_been_upgraded?(new_th)
     query_string = %Q{
-
       SELECT DISTINCT (count(?a) AS ?count)
-WHERE 
-{ 
-      SELECT DISTINCT ?a
       WHERE 
-      {
-        #{self.uri.to_ref} isoT:hasIdentifier/isoI:identifier ?i .
-        #{self.uri.to_ref} isoT:hasIdentifier/isoI:hasScope ?scope .
-        ?a rdf:type th:ManagedConcept . 
-        ?a isoT:hasIdentifier/isoI:identifier ?i .
-        ?a isoT:hasIdentifier/isoI:hasScope ?scope .
-        FILTER (STR(?a) != STR(#{self.uri.to_ref})) 
-        {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ ?a . BIND ("EXT" as ?b)} 
-        UNION
-        {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ ?a . BIND ("EXTSUB" as ?b)} 
-        UNION
-        {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ ?a . BIND ("SUB" as ?b)} 
-        UNION
-        {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ ?a . BIND ("SRC" as ?b)}
+      { 
+            SELECT DISTINCT ?a WHERE 
+            {
+              #{self.uri.to_ref} isoT:hasIdentifier/isoI:identifier ?i .
+              #{self.uri.to_ref} isoT:hasIdentifier/isoI:hasScope ?scope .
+              ?a rdf:type th:ManagedConcept . 
+              ?a isoT:hasIdentifier/isoI:identifier ?i .
+              ?a isoT:hasIdentifier/isoI:hasScope ?scope .
+              FILTER (STR(?a) != STR(#{self.uri.to_ref})) 
+              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ ?a . BIND ("EXT" as ?b)} 
+              UNION
+              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ ?a . BIND ("EXTSUB" as ?b)} 
+              UNION
+              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ ?a . BIND ("SUB" as ?b)} 
+              UNION
+              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ ?a . BIND ("SRC" as ?b)}
+            }
       }
-    }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo])
     count = query_results.by_object(:count)

@@ -1623,14 +1623,35 @@ describe "Thesaurus::ManagedConcept" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       result = tc.have_i_been_upgraded?(new_th)
-      check_file_actual_expected(result, sub_dir, "have_I_been_upgraded_expected_1.yaml", equate_method: :hash_equal)
+      expect(result).to eq(true)
     end
 
     it "have I been upgraded?" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       result = tc.have_i_been_upgraded?(new_th)
-      check_file_actual_expected(result, sub_dir, "have_I_been_upgraded_expected_2.yaml", equate_method: :hash_equal)
+      expect(result).to eq(false)
+    end
+
+    it "have I been upgraded?" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      result = tc.have_i_been_upgraded?(new_th)
+      expect(result).to eq(false)
+    end
+
+    it "have I been upgraded?" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      result = tc.have_i_been_upgraded?(new_th)
+      expect(result).to eq(false)
+    end
+
+    it "have I been upgraded?" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      result = tc.have_i_been_upgraded?(new_th)
+      expect(result).to eq(true)
     end
 
   end
