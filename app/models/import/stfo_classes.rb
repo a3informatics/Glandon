@@ -254,7 +254,7 @@ module Import::STFOClasses
         item = find_sponsor_referenced(ct, child, fixes)
         return item.nil? ? child : item
       elsif NciThesaurusUtility.c_code?(child.identifier)
-        item = find_referenced(ct, child.identifier, fixes)
+        item = find_referenced(ct, child.identifier, child, fixes)
         return item.nil? ? nil : item
       else
         return child
@@ -262,10 +262,10 @@ module Import::STFOClasses
     end
 
     def find_sponsor_referenced(ct, child, fixes)
-      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier), fixes)
+      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier), child, fixes)
     end
 
-    def find_referenced(ct, identifier, fixes)
+    def find_referenced(ct, identifier, child, fixes)
       options = ct.find_identifier(identifier)
       if options.empty?
         add_error("Cannot find referenced item #{identifier}, none found, identifier '#{self.identifier}'.")
@@ -278,6 +278,8 @@ module Import::STFOClasses
           return nil
         end
       else
+        option = matching_notation(child, options)
+        return option if !option.nil?
         uri = fixes.fix(self.identifier, identifier)
         return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
         add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
@@ -285,6 +287,19 @@ module Import::STFOClasses
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def matching_notation(child, options)
+      results = []
+      options.each do |x|
+        possibility = Thesaurus::UnmanagedConcept.find_children(x[:uri])
+        msg = child.notation == possibility.notation ? "Notation match found" : "Notation not matched"
+        msg = "#{msg} '#{child.notation}', '#{possibility.notation}', identifier '#{self.identifier}'"
+        add_log(msg)
+        results << possibility if child.notation == possibility.notation
+      end
+      return results.first if results.count == 1
       nil
     end
 
