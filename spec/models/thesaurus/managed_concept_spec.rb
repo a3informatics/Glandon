@@ -1615,43 +1615,76 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor6_impact.ttl")
     end
 
-    it "have I been upgraded?" do
+    it "have I been upgraded? I" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       result = tc.have_i_been_upgraded?(new_th)
       expect(result).to eq(true)
     end
 
-    it "have I been upgraded?" do
+    it "have I been upgraded? II" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       result = tc.have_i_been_upgraded?(new_th)
       expect(result).to eq(false)
     end
 
-    it "have I been upgraded?" do
+    it "have I been upgraded? III" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V35#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
       result = tc.have_i_been_upgraded?(new_th)
       expect(result).to eq(false)
     end
 
-    it "have I been upgraded?" do
+    it "have I been upgraded? IV" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
       result = tc.have_i_been_upgraded?(new_th)
       expect(result).to eq(false)
     end
 
-    it "have I been upgraded?" do
+    it "have I been upgraded? V" do
       new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
       result = tc.have_i_been_upgraded?(new_th)
       expect(result).to eq(true)
+    end
+
+    it "upgrade? I" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      result = tc.upgrade?(source.id, new_th)
+      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>""})
+    end
+
+    it "upgrade? II" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      result = tc.upgrade?(source.id, new_th)
+      expect(result).to eq({:errors=>"", :upgrade=>true})
+    end
+
+    it "upgrade? III" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      result = tc.upgrade?(source.id, new_th)
+      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>""})
+    end
+
+    it "upgrade? IV" do
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      result = tc.upgrade?(source.id, new_th)
+      expect(result).to eq({upgrade: "", errors: "Cannot upgrade. You must first upgrade Code List: C66767"})
     end
 
   end

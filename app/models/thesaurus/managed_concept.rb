@@ -67,6 +67,37 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return count[0] == "0" ? false : true
   end
 
+  # Upgrade?
+  #
+  # @param source_id [Thesaurus::ManagedConcept] source id
+  # @param new_th [Thesaurus::ManagedConcept] new_th
+  # @return [Hash] 
+  def upgrade?(source_id, new_th)
+    results = {}
+    if self.have_i_been_upgraded?(new_th)
+      results = {upgrade: "", errors: "Item already upgraded"}
+    elsif !self.subset_of.nil?
+      if subset_of.to_id == source_id
+        results = {upgrade: true, errors: ""}
+      else
+        sponsor_tc = Thesaurus::ManagedConcept.find_full(self.subset_of)
+        latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: sponsor_tc.identifier, scope: sponsor_tc.scope)
+        if latest_uri == sponsor_tc.uri
+          results = {upgrade: "", errors: "Cannot upgrade. You must first upgrade Code List: #{sponsor_tc.identifier}"}
+        else
+          results = {upgrade: true, errors: ""}
+        end 
+      end
+    else
+      if !self.extension_of.nil?
+        if extension_of.to_id == source_id 
+          results = {upgrade: true, errors: ""}
+        end
+      end
+    end
+    results
+  end
+
   # Replace If No Change. Replace the current with the previous if no differences.
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
