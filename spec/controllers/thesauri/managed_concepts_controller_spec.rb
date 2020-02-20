@@ -97,6 +97,46 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "upgrade data" do
+      expected = [
+                  {
+                    :uri=>"http://www.s-cubed.dk/Identifier_1/V1#TH",
+                    :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lkZW50aWZpZXJfMS9WMSNUSA==",
+                    :real_type=>"http://www.assero.co.uk/Thesaurus#Thesaurus",
+                    :label=>"Label 1",
+                    :identifier=>"Identifier 1",
+                    :notation=>" ",
+                    :owner=>"S-cubed",
+                    :rdf_type=>"http://www.assero.co.uk/Thesaurus#Thesaurus",
+                    :upgraded=>true
+                  },
+                  {
+                    :uri=>"http://www.s-cubed.dk/C99079E/V1#C99079E",
+                    :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0M5OTA3OUUvVjEjQzk5MDc5RQ==",
+                    :real_type=>"http://www.assero.co.uk/Thesaurus#ManagedConcept",
+                    :label=>"Epoch",
+                    :identifier=>"C99079E",
+                    :notation=>"EPOCH",
+                    :owner=>"S-cubed",
+                    :rdf_type=>"http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension",
+                    :upgraded=>false
+                  }
+                ]
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct.set_referenced_thesaurus(ref_ct)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:have_i_been_upgraded?).and_return(false)
+      get :upgrade_data, id: "tc_1.id", impact: {sponsor_th_id: ct.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected) 
+    end
+
     it "differences summary" do
       expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
       request.env['HTTP_ACCEPT'] = "application/json"
