@@ -337,6 +337,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: results}
   end
 
+  def upgrade_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
+    ref_ct = ct.get_referenced_thesaurus
+    results = tc.impact(ct)
+    results.each do |x|
+      tc = Thesaurus::ManagedConcept.find_with_properties(x[:id])
+      upgraded = tc.have_i_been_upgraded?(ref_ct)
+      x[:upgraded] = upgraded
+    end
+    render json: {data: results}
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])

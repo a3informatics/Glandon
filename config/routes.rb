@@ -208,6 +208,7 @@ Rails.application.routes.draw do
         get :impact
         get :differences_summary
         patch :update_properties
+        get :upgrade_data
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
