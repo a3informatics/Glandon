@@ -1660,7 +1660,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
       result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>""})
+      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=> false})
     end
 
     it "upgrade? II" do
@@ -1676,7 +1676,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
       result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>""})
+      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>false})
     end
 
     it "upgrade? IV" do
@@ -1684,7 +1684,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
       result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({upgrade: "", errors: "Cannot upgrade. You must first upgrade Code List: C66767"})
+      expect(result).to eq({upgrade: false, errors: "Cannot upgrade. You must first upgrade Code List: C66767"})
     end
 
   end

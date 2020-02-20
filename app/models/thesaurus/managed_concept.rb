@@ -73,25 +73,25 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param new_th [Thesaurus::ManagedConcept] new_th
   # @return [Hash] 
   def upgrade?(source_id, new_th)
-    results = {}
+    results = {upgrade: false, errors: ""}
     if self.have_i_been_upgraded?(new_th)
-      results = {upgrade: "", errors: "Item already upgraded"}
+      results[:errors] = "Item already upgraded"
     elsif !self.subset_of.nil?
       if subset_of.to_id == source_id
-        results = {upgrade: true, errors: ""}
+        results[:upgrade] = true
       else
         sponsor_tc = Thesaurus::ManagedConcept.find_full(self.subset_of)
         latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: sponsor_tc.identifier, scope: sponsor_tc.scope)
         if latest_uri == sponsor_tc.uri
-          results = {upgrade: "", errors: "Cannot upgrade. You must first upgrade Code List: #{sponsor_tc.identifier}"}
+          results[:errors] = "Cannot upgrade. You must first upgrade Code List: #{sponsor_tc.identifier}"
         else
-          results = {upgrade: true, errors: ""}
+          results[:upgrade] = true
         end 
       end
     else
       if !self.extension_of.nil?
         if extension_of.to_id == source_id 
-          results = {upgrade: true, errors: ""}
+          results[:upgrade] = true
         end
       end
     end
