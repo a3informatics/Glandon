@@ -344,7 +344,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     ref_ct = ct.get_referenced_thesaurus
     results = tc.upgrade?(upgrade_params[:source_id], ref_ct)
     if results[:errors].empty?
-      new_tc = tc.upgrade(upgrade_params[:target_id])
+      target = Thesaurus::ManagedConcept.find_with_properties(upgrade_params[:target_id])
+      new_tc = tc.upgrade(target)
       render json: {data: ""}, status: 200
     else
       render json: {errors: results[:errors]}
