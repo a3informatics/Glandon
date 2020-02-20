@@ -345,7 +345,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
     results = tc.impact(ct)
     results.each do |x|
       tc = Thesaurus::ManagedConcept.find_with_properties(x[:id])
-      upgraded = tc.have_i_been_upgraded?(ref_ct)
+      if x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension" ||  x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset"
+        upgraded = tc.have_i_been_upgraded?(ref_ct)
+      else
+        upgraded = true
+      end
       x[:upgraded] = upgraded
     end
     render json: {data: results}
