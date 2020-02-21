@@ -113,7 +113,8 @@ ImpactGraph.prototype.filterData = function(newData, currentItem) {
     // Item not seen before
     if (idxInInstanceData == -1) {
       item.impactLinks = [currentItem.id];
-      item["cl_new"] = currentItem.cl_new;
+      item["target_id"] = (currentItem.cl_new || currentItem.target_id);
+      item["source_id"] = (currentItem.id || currentItem.source_id) ;
       filtered.push(item);
     }
     // Item seen before, add link to current

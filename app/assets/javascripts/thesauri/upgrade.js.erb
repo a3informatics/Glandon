@@ -3,7 +3,7 @@ $(document).ready(function(){
   var ccp = new ChangesCdiscPanel(cdiscChangesUrl);
   var dp = new DifferencesPanel();
   var cp = new ChangesPanel(null, 2);
-  var up = new UpgradePanel(upgradeBaseUrl);
+  var up = new UpgradePanel(upgradeDataUrl, upgradeBaseUrl);
 
   var selectCallback = function(dataRow) {
     toggleTableActive(ccp.id, false);

@@ -9,11 +9,36 @@
  *
  * @return [void]
  */
-function UpgradePanel(dataUrl) {
+function UpgradePanel(dataUrl, upgradeUrl) {
   this.impact = new ImpactGraph(dataUrl, true);
+  this.upgradeUrl = upgradeUrl;
   this.tabName = "tab-affected";
   this.initTable();
   this.setListeners();
+}
+
+/**
+ * Makes the upgrade
+ *
+ * @return [void]
+ */
+UpgradePanel.prototype.upgrade = function(url, callback) {
+  this.impact.loading(true);
+
+  $.ajax({
+    url: url,
+    type: 'PUT',
+    dataType: 'json',
+    context: this,
+    success: function (result) {
+      this.impact.loading(false);
+      try { callback() }catch(e){ };
+    },
+    error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+      this.impact.loading(false);
+		}
+  })
 }
 
 /**
@@ -27,9 +52,14 @@ UpgradePanel.prototype.setListeners = function() {
   $(this.impact.itemList.tableId + " tbody")
     .off("click", ".upgrade")
     .on("click", ".upgrade", function(){
-      let data = _this.impact.itemList.table.row($(this).parents("tr:first")).data();
-      var itemId = data.id;
-      var upgradeToId = data.owner.toLowerCase() == "cdisc" ? "" : data.cl_new;
+      let buttonEl = $(this);
+      let data = _this.impact.itemList.table.row(buttonEl.parents("tr:first")).data();
+      let itemId = data.id, sourceId = data.source_id, targetId = data.target_id;
+      var cback = function(){
+        buttonEl.replaceWith(this.upgradeButtonHTML({upgraded: true}));
+        displaySuccess("Item was successfully upgraded");
+      }.bind(_this)
+      _this.upgrade(_this.makeUrl(itemId, sourceId, targetId), cback);
   });
 }
 
@@ -43,12 +73,24 @@ UpgradePanel.prototype.initTable = function() {
     { "data": "id",
       "orderable": false,
       "render": function(data, type, row, meta) {
-        return (row.upgraded) ? "" : this.upgradeButtonHTML(row);
+        return this.upgradeButtonHTML(row);
       }.bind(this) });
 
   this.impact.itemList.table.destroy();
   $(this.impact.itemList.tableId + " thead tr").append("<th class='fit'></th>");
   this.impact.itemList.initTable();
+}
+
+/**
+ * Generates URL for impact data
+ *
+ * @param id [String] id of the item to be upgraded
+ * @param source [String] id of cdisc source code list
+ * @param target [String] id of the new version of the cdisc code list
+ * @return [String] formatted URL
+ */
+UpgradePanel.prototype.makeUrl = function(id, source, target) {
+  return this.upgradeUrl.replace("clId", id).replace("srcClId", source).replace("tgtClId", target);
 }
 
 /**
@@ -67,5 +109,8 @@ UpgradePanel.prototype.loadData = function(item) {
  * @return [String] Formatted HTML
  */
 UpgradePanel.prototype.upgradeButtonHTML = function(item) {
-  return "<button class='btn medium green upgrade'><span class='icon-upgrade text-small'></span> Upgrade</button>";
+  if (item.upgraded)
+    return "<button class='btn medium grey disabled'>Cannot upgrade</button>";
+  else
+    return "<button class='btn medium light upgrade'><span class='icon-upgrade text-small'></span> Upgrade</button>";
 }
