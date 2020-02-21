@@ -539,7 +539,8 @@ module UiHelpers
 			clone: "Clone",
 			compare: "Compare",
 			run: "Run",
-			results: "Results"
+			results: "Results",
+      upgrade: "Upgrade Code Lists"
     }
 	end
 
