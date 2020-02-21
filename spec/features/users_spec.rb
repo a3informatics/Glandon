@@ -98,6 +98,30 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'Welcome text displayed here.'
     end
 
+    it "allows to escape the password expired page (REQ-GENERIC-PM-050)" do
+      ua_sys_admin_login
+      # Manually create user
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      click_link 'New'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'usr3@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Display name', :with => 'Test User 3'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
+      click_button 'Create'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr3@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      click_button 'Log in'
+
+      expect(page).to have_content 'Renew your password'
+      click_on "Return to the Log in page"
+      expect(page).to have_content "Welcome"
+    end
+
   end
 
   describe "User Management", :type => :feature do
@@ -374,7 +398,6 @@ describe "Users", :type => :feature do
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
     end
-
 
     it "prevents last sys admin to be deleted", js:true do
       ua_sys_admin_login
