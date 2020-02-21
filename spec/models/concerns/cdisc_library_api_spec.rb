@@ -62,6 +62,12 @@ describe "CDISC Library API" do
       check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_6.yaml", equate_method: :hash_equal)
     end
 
+    it "ct packages by date, define" do
+      object = CDISCLibraryAPI.new
+      result = object.ct_packages_by_date('2019-12-20')
+      check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_7.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
     it "ct packages by date, no date found" do
       object = CDISCLibraryAPI.new
       expect{object.ct_packages_by_date("201-11-11")}.to raise_error(Errors::ApplicationLogicError, "No CT release found matching requested date '201-11-11'.")
