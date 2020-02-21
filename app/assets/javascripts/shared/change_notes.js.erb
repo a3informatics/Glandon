@@ -126,7 +126,7 @@ ChangeNotesView.prototype.deleteNoteListener = function(targets){
 ChangeNotesView.prototype.editNoteListener = function(targets){
   var _this = this;
 
-  targets.off("click").on("click", function(){
+  targets.off("focus").on("focus", function(){
     var note = _this.table.row($(this).closest("tr"));
 
     if(!_this.editMode.active)
@@ -146,6 +146,9 @@ ChangeNotesView.prototype.addNewNoteListener = function(target){
   var _this = this;
 
   target.off("click").on("click", function(){
+    if(_this.editMode.active)
+      return;
+
     _this.table.row.add({new: true, timestamp: "9999"}).draw();
 
     var note = _this.table.row($("#cn-new").closest("tr"));
@@ -194,6 +197,8 @@ ChangeNotesView.prototype.initEditModeControls = function(note){
 
   var id = $(note.node()).find(".note").attr("id").split('-')[1];
   var saveBtnId = "save-cn-"+id+"-button", cancelBtnId = "cancel-cn-"+id+"-button";
+
+  $(note.node()).find(".note-footer").html("");
 
   $(note.node()).find(".note-footer")
                 .append(_this.newButtonHTML(saveBtnId, "note-save-button", "ok", "Save"))
@@ -249,8 +254,12 @@ ChangeNotesView.prototype.resetNoteData = function(note, cache){
  */
 ChangeNotesView.prototype.deactivateNotesExcept = function(note){
   $(this.modal).find(".note").addClass("inactive");
+  $(this.modal).find(".content-editable").attr("contenteditable", false);
   $(note.node()).find(".note").removeClass("inactive")
                               .addClass("active");
+  $(note.node()).find(".content-editable").attr("contenteditable", true);
+  $(note.node()).find(".content-editable")[0].focus();
+
 }
 
 /**
@@ -301,9 +310,9 @@ ChangeNotesView.prototype.newNoteHTML = function(num, email, date, ref, text){
  */
 ChangeNotesView.prototype.newButtonHTML = function(id, cls, icon, ttip){
   var html =
-    '<div class="circular-badge small bg-grey-bright '+cls+' ttip" id="'+id+'">'+
+    '<button class="circular-badge small bg-grey-bright '+cls+' ttip" id="'+id+'">'+
       '<span class="ttip-text ttip-left ttip-top shadow-small text-small">'+ttip+'</span>' +
       '<span class="icon-'+icon+' text-link"></span>' +
-    '</div>';
+    '</button>';
   return html;
 }

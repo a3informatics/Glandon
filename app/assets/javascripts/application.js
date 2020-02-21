@@ -407,6 +407,14 @@ $(window).load(function(){
 });
 
 /*
+* Prevent users from tabbing into a disabled button and pressing enter
+*/
+$(document).on("keydown", "a.disabled, button.disabled", function(e){
+  if((e.keyCode || e.which) == 13)
+    e.preventDefault();
+});
+
+/*
 * Datatables generic processing function
 * See: https://datatables.net/plug-ins/api/processing()
 */
@@ -493,7 +501,7 @@ function redirectPost(url, param, object){
   $(form).submit();
 }
 
-// Include on pages which should force reload when navigated to with the back button. Call before $(document).ready 
+// Include on pages which should force reload when navigated to with the back button. Call before $(document).ready
 function refreshOnBackPressed(){
   if (performance.navigation.type == 2)
     location.reload();
