@@ -339,7 +339,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   def upgrade
-    authorize Thesaurus, :show?
+    authorize Thesaurus, :edit?
     tc = read_concept(protect_from_bad_id(params))
     if !tc.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
