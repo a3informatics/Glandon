@@ -65,7 +65,7 @@ describe "CDISC Library API" do
     it "ct packages by date, define" do
       object = CDISCLibraryAPI.new
       result = object.ct_packages_by_date('2019-12-20')
-      check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_7.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(result, sub_dir, "ct_package_by_date_expected_7.yaml", equate_method: :hash_equal)
     end
 
     it "ct packages by date, no date found" do
