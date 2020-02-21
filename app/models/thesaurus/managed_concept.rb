@@ -33,6 +33,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def upgrade(new_reference)
     return upgrade_extension(new_reference) if self.extension?
     return upgrade_subset(new_reference) if self.subset?
+    Errors.application_error(self.class.name, __method__.to_s, "Only Subsets or Extensions can be upgraded.")
   end
 
   # Have I been upgraded?

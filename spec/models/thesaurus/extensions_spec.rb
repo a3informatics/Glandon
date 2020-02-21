@@ -128,6 +128,13 @@ describe "Thesaurus::Extensions" do
       expect(tc_45.narrower.count).to eq(10)
    end
 
+    it "cannot upgrade non extension" do
+      tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      tc_34 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
+      tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
+      expect{tc_32.upgrade(tc_34)}.to raise_error(Errors::ApplicationLogicError, "Only Subsets or Extensions can be upgraded.")
+    end
+
   end
 
 end
