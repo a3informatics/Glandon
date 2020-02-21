@@ -334,7 +334,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
     results = tc.impact(ct)
-    byebug
     render json: {data: results}
   end
 
