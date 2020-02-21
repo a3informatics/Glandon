@@ -424,7 +424,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
         render json: {data: {}, error: errors}
       else
-        render :json => {:errors => ["token_timeout_message"]}, :status => 422
+        render :json => {:errors => [token_timeout_message]}, :status => 422
       end
     else
       render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
