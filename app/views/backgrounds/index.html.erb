@@ -56,13 +56,13 @@
 			</table>
 			<button class="btn red medium" id="delete_completed_button"
 					onclick="new ConfirmationDialog(function(){$('#delete_link_completed').click()}, {dangerous: true}).show();">
-				Delete Completed
+				<span class="icon-trash"></span> Delete Completed
 			</button>
 			<%= link_to "", destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}), method: :delete, id: "delete_link_completed" %>
 
 			<button class="btn red medium" id="delete_all_button"
 					onclick="new ConfirmationDialog(function(){$('#delete_link_all').click()}, {dangerous: true}).show();">
-				Delete All
+				<span class="icon-trash"></span> Delete All
 			</button>
 			<%= link_to "", destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}), method: :delete, id: "delete_link_all" %>
 		</div>
