@@ -334,21 +334,27 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
     results = tc.impact(ct)
+    byebug
     render json: {data: results}
   end
 
   def upgrade
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
-    ref_ct = ct.get_referenced_thesaurus
-    results = tc.upgrade?(upgrade_params[:source_id], ref_ct)
-    if results[:errors].empty?
-      target = Thesaurus::ManagedConcept.find_with_properties(upgrade_params[:target_id])
-      new_tc = tc.upgrade(target)
-      render json: {data: ""}, status: 200
+    tc = read_concept(protect_from_bad_id(params))
+    if !tc.nil?
+      ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
+      ref_ct = ct.get_referenced_thesaurus
+      results = tc.upgrade?(upgrade_params[:source_id], ref_ct)
+      if results[:errors].empty?
+        target = Thesaurus::ManagedConcept.find_with_properties(upgrade_params[:target_id])
+        new_tc = tc.upgrade(target)
+        render json: {data: ""}, status: 200
+      else
+        render json: {errors: results[:errors]}
+      end
+      Token.find_token(tc, current_user).release
     else
-      render json: {errors: results[:errors]}
+      redirect_to request.referrer
     end
   end
 
