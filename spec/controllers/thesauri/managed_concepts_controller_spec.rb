@@ -15,7 +15,7 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_upgrade.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
@@ -99,17 +99,13 @@ describe Thesauri::ManagedConceptsController do
 
     it "upgrade" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      tc = Thesaurus::ManagedConcept.new
-      tc.uri = Uri.new(uri: "http://www.cdisc.org/CT/VX#XXX")
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(tc)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/U00001/V1#U00001"))
+      source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct = Thesaurus.create({:identifier => "TESTUpgrade", :label => "Test Thesaurus"})
       ct.set_referenced_thesaurus(ref_ct)
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgrade?).and_return({:errors=>"", :upgrade=>true})
-      target = Thesaurus::ManagedConcept.new
-      target.uri = Uri.new(uri: "http://www.cdisc.org/CT/VX#TARGET")
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(target)
-      put :upgrade, id: "tc_1.id", upgrade: {sponsor_th_id: ct.id, source_id: "source", target_id: target.id}
+      target = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V2#C65047"))
+      put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id, source_id: source.id, target_id: target.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
