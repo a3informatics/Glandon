@@ -602,10 +602,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
   end
 
-  # Upgrade
+  # Upgrade. Upgrade the thesaurus when referened version updated.
   #
+  # @return [Void] no return
   def upgrade
-    tx = transaction_begin
     self.reference_objects
     self.baseline_reference_objects
     query_string = %Q{
@@ -614,21 +614,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
         #{self.uri.to_ref} th:isTopConceptReference ?r .
         ?r bo:ordinal ?ord .
         ?r bo:reference ?s .
-        #{self.reference.reference.to_ref} th:isTopConceptReference/bo:reference ?s .
+         #{self.baseline_reference.reference.to_ref} th:isTopConceptReference/bo:reference ?s .
         ?s isoT:hasIdentifier/isoI:identifier ?i .
         OPTIONAL {
-          #{self.baseline_reference.reference.to_ref} th:isTopConceptReference/bo:reference ?x .
+          #{self.reference.reference.to_ref} th:isTopConceptReference/bo:reference ?x .
           ?x isoT:hasIdentifier/isoI:identifier ?i . 
         }
-        FILTER (?x = ?s)
       } ORDER BY ?ord 
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
-    remove = query_results.by_object_set([:s]).map{|x| x[:s].to_id}
-    add = query_results.by_object_set([:x]).map{|x| x[:x].to_id}
-    deselect_children({id_set: remove})
-    select_children({id_set: add})
-    transaction_execute
+    old_items = query_results.by_object_set([:s]).map{|x| x[:s]}
+    new_items = query_results.by_object_set([:x]).map{|x| x[:x]}.reject(&:blank?)
+    deselect_children({id_set: old_items.map{|x| x.to_id}})
+    select_children({id_set: new_items.map{|x| x.to_id}})
   end
 
   # Set Referenced Thesaurus. Set the referenced thesaurus and set the baseline if necessary
@@ -636,7 +634,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   # @param [Thesaurus] object the thesaurus object
   # @return [Void] no return
   def set_referenced_thesaurus(object)
-    execute = transaction_not_active?
     tx = transaction_begin
     self.reference_objects
     self.baseline_reference_objects
@@ -652,7 +649,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ref.reference = object.uri
       ref.save
     end
-    transaction_execute(execute) 
+    transaction_execute 
     nil
   end
 
@@ -699,7 +696,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   def select_children(params)
     ordinal = next_ordinal(:is_top_concept_reference)
     self.is_top_concept_reference_objects
-    execute = transaction_not_active?
     tx = transaction_begin
     params[:id_set].each do |id|
       uri = Uri.new(id: id)
@@ -710,7 +706,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       self.add_link(:is_top_concept_reference, ref.uri)
       ordinal += 1
     end
-    transaction_execute(execute)
+    transaction_execute
   end
 
   # Deselect Children. Deselect 1 or more child items. The child items are not deleted only the references.
