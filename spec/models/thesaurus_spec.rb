@@ -858,7 +858,7 @@ describe Thesaurus do
       load_cdisc_term_versions(1..10)
     end
 
-    it "get and set reference thesauri" do
+    it "upgrade thesauri, I" do
       s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
@@ -876,6 +876,7 @@ describe Thesaurus do
       s_th.upgrade
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.is_top_concept_reference_objects
+      s_th.is_top_concept_objects
       s_th.reference_objects
       s_th.baseline_reference_objects
       check_file_actual_expected(s_th.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)

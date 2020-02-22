@@ -74,14 +74,14 @@ module Fuseki
 
       # To Be Saved?
       # 
-      # @return [Boolean] true if the property has been updated
+      # @return [Boolean] true if the property is to be saved
       def to_be_saved?
         @to_be_saved
       end
 
-      # Saved
+      # Saved. Set the prperty as saved.
       # 
-      # @return [Boolean] true if the property has been updated
+      # @return [Boolean] false
       def saved
         @to_be_saved = false
       end

@@ -315,4 +315,46 @@ describe Fuseki::Persistence do
     end
 
   end
+
+  describe "transaction tests" do
+    
+    it "begin and active?" do
+      item = FusekiBaseHelpers::TestAdministeredItem.new
+      expect(item.transaction_active?).to eq(false)
+      expect(item.transaction_not_active?).to eq(true)
+      expect_any_instance_of(Sparql::Transaction).to receive(:register).with(item)
+      result = item.transaction_begin
+      expect(item.transaction_active?).to eq(true)
+      expect(item.transaction_not_active?).to eq(false)
+      expect(result).to_not be(nil)
+      expect_any_instance_of(Sparql::Transaction).to receive(:register).with(item)
+      expect(item.transaction_begin).to eq(result)
+    end
+
+    it "set" do
+      item_1 = FusekiBaseHelpers::TestAdministeredItem.new
+      expect_any_instance_of(Sparql::Transaction).to receive(:register).with(item_1)
+      result = item_1.transaction_begin
+      item_2 = FusekiBaseHelpers::TestAdministeredItem.new
+      expect_any_instance_of(Sparql::Transaction).to receive(:register).with(item_2)
+      expect(item_2.transaction_set(result)).to eq(result)
+    end
+
+    it "execute" do
+      item = FusekiBaseHelpers::TestAdministeredItem.new
+      result = item.transaction_begin
+      expect_any_instance_of(Sparql::Transaction).to receive(:execute)
+      expect(item.transaction_execute).to eq(result)
+      expect(item.transaction_execute(false)).to eq(result)
+    end
+
+    it "clears" do
+      item = FusekiBaseHelpers::TestAdministeredItem.new
+      expect(item.transaction_clear).to be(nil)
+      expect(item.new_record?).to be(false)
+      expect(item.properties.saved?).to be(true)
+    end
+
+  end
+
 end

@@ -263,20 +263,55 @@ module Fuseki
     # Deprecate true_type
     alias :my_type :true_type
 
+    # Transaction Begin. Begin a transaction. if one already is in progress it will be used
+    #
+    # @return [Sparql::Transaction] the transaction instance
     def transaction_begin
-      @transaction = Sparql::Transaction.new
+      @transaction ||= Sparql::Transaction.new
+      @transaction.register(self)
+      @transaction
     end
 
+    # Transaction Active?
+    #
+    # @return [Boolean] true if transaction already active, false otherwise
+    def transaction_active?
+      !@transaction.nil?
+    end
+
+    # Transaction Not Active?
+    #
+    # @return [Boolean] true if no transaction active, false otherwise
+    def transaction_not_active?
+      !transaction_active?
+    end
+
+    # Transaction Set. Set the transaction. Used when handling multiple instance updates.
+    #
+    # @return [Sparql::Transaction] the transaction instance
     def transaction_set(transaction)
       @transaction = transaction
+      @transaction.register(self)
+      @transaction
     end
     
-    def transaction_execute
-      @transaction.execute
+    # Transaction Execute. Execute the transaction
+    #
+    # @param [Boolean] execute run the transaction if true. Defaults to true.
+    # @return [Sparql::Transaction] the transaction instance
+    def transaction_execute(execute=true)
+      @transaction.execute if execute
+      @transaction
     end
     
+    # Transaction Clear. Clear the transaction
+    #
+    # @return [Object] nil
     def transaction_clear
       @transaction = nil
+      @new_record = false
+      self.properties.saved
+      nil
     end
 
     def where_child(params)
@@ -459,8 +494,7 @@ module Fuseki
       sparql.default_namespace(@uri.namespace)
       to_sparql(sparql, recurse)
       operation == :create ? sparql.create : sparql.update(@uri)
-      @new_record = false
-      self
+      complete_create_or_update
     end
 
     # To Selective Update. Perform a selective update
@@ -472,11 +506,16 @@ module Fuseki
       sparql.default_namespace(@uri.namespace)
       predicates = to_selective_sparql(sparql)
       sparql.selective_update(predicates, @uri)
-      @new_record = false
+      complete_create_or_update
+    end
+
+    def complete_create_or_update
+      return self if !@transaction.nil?
+      @new_record = false # Will be set when transaction executed
       self.properties.saved
       self
     end
-
+    
     def to_sparql(sparql, recurse=false)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|

@@ -605,6 +605,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   # Upgrade
   #
   def upgrade
+    tx = transaction_begin
     self.reference_objects
     self.baseline_reference_objects
     query_string = %Q{
@@ -625,9 +626,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
     remove = query_results.by_object_set([:s]).map{|x| x[:s].to_id}
     add = query_results.by_object_set([:x]).map{|x| x[:x].to_id}
-byebug
     deselect_children({id_set: remove})
     select_children({id_set: add})
+    transaction_execute
   end
 
   # Set Referenced Thesaurus. Set the referenced thesaurus and set the baseline if necessary
@@ -635,6 +636,7 @@ byebug
   # @param [Thesaurus] object the thesaurus object
   # @return [Void] no return
   def set_referenced_thesaurus(object)
+    execute = transaction_not_active?
     tx = transaction_begin
     self.reference_objects
     self.baseline_reference_objects
@@ -646,10 +648,12 @@ byebug
       ref = self.reference
       self.baseline_reference = OperationalReferenceV3.create({reference: ref.reference.dup, ordinal: 2, transaction: tx}, self) if self.baseline_reference.nil?
       self.save
+      ref.transaction_set(tx)
       ref.reference = object.uri
       ref.save
     end
-    transaction_execute
+    transaction_execute(execute) 
+    nil
   end
 
   # Referenced Thesaurus. Find the single referenced thesaurus
@@ -695,6 +699,7 @@ byebug
   def select_children(params)
     ordinal = next_ordinal(:is_top_concept_reference)
     self.is_top_concept_reference_objects
+    execute = transaction_not_active?
     tx = transaction_begin
     params[:id_set].each do |id|
       uri = Uri.new(id: id)
@@ -705,7 +710,7 @@ byebug
       self.add_link(:is_top_concept_reference, ref.uri)
       ordinal += 1
     end
-    transaction_execute
+    transaction_execute(execute)
   end
 
   # Deselect Children. Deselect 1 or more child items. The child items are not deleted only the references.
