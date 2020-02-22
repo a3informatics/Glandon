@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Thesaurus::Subsets" do
 
   include DataHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/thesaurus/subsets"
@@ -76,6 +77,8 @@ describe "Thesaurus::Subsets" do
       result = item_1.to_h
       result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      result[:last_change_date] = "2020-02-16T18:31:47+01:00"
+      result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal)
 
@@ -85,6 +88,8 @@ describe "Thesaurus::Subsets" do
       result = item_2.to_h
       result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      result[:last_change_date] = "2020-02-16T18:31:47+01:00"
+      result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
       item_2.is_ordered_objects.add([uri_3.to_id])
@@ -95,6 +100,8 @@ describe "Thesaurus::Subsets" do
       result = item_3.to_h
       result[:preferred_term] = "http://www.assero.co.uk/PT#17af17b8-1ad2-4151-ba39-c6c27de2480a"
       result[:is_ordered] = "http://www.assero.co.uk/TS#aef73f0b-3538-4c42-a74b-4c6d346021ec"
+      result[:last_change_date] = "2020-02-16T18:31:47+01:00"
+      result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1c.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_3.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1c.yaml", equate_method: :hash_equal)
       tc_32 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
