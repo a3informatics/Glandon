@@ -127,9 +127,9 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier) # Do early
       old_narrower.each do |child|
-        new_child = ext.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ref_ct, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Subset of extension, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -170,9 +170,9 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier)
       old_narrower.each do |child|
-        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ref_ct, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -195,9 +195,9 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier)
       old_narrower.each do |child|
-        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ref_ct, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -306,7 +306,7 @@ module Import::STFOClasses
     def find_in_cl(cl, identifier)
       item = cl.narrower.find{|x| x.identifier == identifier}
       return item if !item.nil?
-      item = cl.narrower.find{|x| x.identifier == STFOCodeListItem.to_referenced(identifier)} if self.sponsor_referenced_format?(identifier)
+      item = cl.narrower.find{|x| x.identifier == STFOCodeListItem.to_referenced(identifier)} if STFOCodeListItem.sponsor_referenced_format?(identifier)
       item
     end
 
@@ -369,7 +369,7 @@ module Import::STFOClasses
       this = subset_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
     rescue => e
-      byebug
+      add_error("Exception in subset_list_equal?")
     end
 
   private
