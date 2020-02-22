@@ -92,6 +92,10 @@ module Fuseki
           @metadata
         end
 
+        def saved?
+          !@set.map{|key, property| property.to_be_saved?}.all?
+        end
+
       end
 
     end

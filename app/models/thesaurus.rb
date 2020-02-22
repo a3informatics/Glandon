@@ -602,6 +602,33 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
   end
 
+  # Upgrade. Upgrade the thesaurus when referened version updated.
+  #
+  # @return [Void] no return
+  def upgrade
+    self.reference_objects
+    self.baseline_reference_objects
+    query_string = %Q{
+      SELECT DISTINCT ?s ?x WHERE        
+      {                
+        #{self.uri.to_ref} th:isTopConceptReference ?r .
+        ?r bo:ordinal ?ord .
+        ?r bo:reference ?s .
+         #{self.baseline_reference.reference.to_ref} th:isTopConceptReference/bo:reference ?s .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        OPTIONAL {
+          #{self.reference.reference.to_ref} th:isTopConceptReference/bo:reference ?x .
+          ?x isoT:hasIdentifier/isoI:identifier ?i . 
+        }
+      } ORDER BY ?ord 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
+    old_items = query_results.by_object_set([:s]).map{|x| x[:s]}
+    new_items = query_results.by_object_set([:x]).map{|x| x[:x]}.reject(&:blank?)
+    deselect_children({id_set: old_items.map{|x| x.to_id}})
+    select_children({id_set: new_items.map{|x| x.to_id}})
+  end
+
   # Set Referenced Thesaurus. Set the referenced thesaurus and set the baseline if necessary
   #
   # @param [Thesaurus] object the thesaurus object
@@ -618,10 +645,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ref = self.reference
       self.baseline_reference = OperationalReferenceV3.create({reference: ref.reference.dup, ordinal: 2, transaction: tx}, self) if self.baseline_reference.nil?
       self.save
+      ref.transaction_set(tx)
       ref.reference = object.uri
       ref.save
     end
-    transaction_execute
+    transaction_execute 
+    nil
   end
 
   # Referenced Thesaurus. Find the single referenced thesaurus
@@ -649,10 +678,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   # @return [Object] the created object. May contain errors if unsuccesful.
   def add_child(params={})
     ordinal = next_ordinal(:is_top_concept_reference)
-    transaction_begin
+    tx = transaction_begin
     child = Thesaurus::ManagedConcept.create
     return child if child.errors.any?
-    ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal}, self)
+    ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal, transaction: tx}, self)
     self.add_link(:is_top_concept, child.uri)
     self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
@@ -667,12 +696,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   def select_children(params)
     ordinal = next_ordinal(:is_top_concept_reference)
     self.is_top_concept_reference_objects
-    transaction_begin
+    tx = transaction_begin
     params[:id_set].each do |id|
       uri = Uri.new(id: id)
       refs = self.is_top_concept_reference.select {|x| x.reference == uri}
       next if refs.any?
-      ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal}, self)
+      ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal, transaction: tx}, self)
       self.add_link(:is_top_concept, uri)
       self.add_link(:is_top_concept_reference, ref.uri)
       ordinal += 1

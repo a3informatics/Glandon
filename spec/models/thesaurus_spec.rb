@@ -850,7 +850,62 @@ describe Thesaurus do
 
   end
 
-  describe "Referenced Versions and selection" do
+  describe "Upgrade" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..15)
+    end
+
+    it "upgrade thesauri, I" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.set_referenced_thesaurus(t_th_old)
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V2#C66783"))
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66737/V2#C66737"))
+      tc_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      s_th.select_children({id_set: [tc_1.id, tc_2.id, tc_3.id]})
+      s_th.set_referenced_thesaurus(t_th_new)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.upgrade
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.is_top_concept_reference_objects
+      s_th.is_top_concept_objects
+      s_th.reference_objects
+      s_th.baseline_reference_objects
+      check_file_actual_expected(s_th.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "upgrade thesauri, I" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V9#TH"))
+      t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V12#TH"))
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.set_referenced_thesaurus(t_th_old)
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C25188/V9#C25188"))
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74560/V8#C74560"))
+      tc_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V4#C66783"))
+      tc_4 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66737/V9#C66737"))
+      tc_5 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc_6 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C71620/V9#C71620"))
+      s_th.select_children({id_set: [tc_1.id, tc_2.id, tc_3.id, tc_4.id, tc_5.id, tc_6.id]})
+      s_th.set_referenced_thesaurus(t_th_new)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.upgrade
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.is_top_concept_reference_objects
+      s_th.is_top_concept_objects
+      s_th.reference_objects
+      s_th.baseline_reference_objects
+      check_file_actual_expected(s_th.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+ describe "Referenced Versions and selection" do
 
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
