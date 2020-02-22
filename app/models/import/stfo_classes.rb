@@ -303,6 +303,13 @@ module Import::STFOClasses
       nil
     end
 
+    def find_in_cl(cl, identifier)
+      item = cl.narrower.find{|x| x.identifier == identifier}
+      return item if !item.nil?
+      item = cl.narrower.find{|x| x.identifier == STFOCodeListItem.to_referenced(identifier)} if self.sponsor_referenced_format?(identifier)
+      item
+    end
+
     # Sponsor Identifier? Does the identifier match the sponsor format?
     #
     # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.

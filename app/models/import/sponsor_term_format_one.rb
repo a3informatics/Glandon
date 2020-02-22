@@ -253,6 +253,7 @@ private
     def fix(cl, cli)
       return nil if @config.nil?
       uri = @config.dig(:fixes, cl.to_sym, cli.to_sym)
+    puts colourize("Checking fix #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end
