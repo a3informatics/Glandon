@@ -268,13 +268,13 @@ module Import::STFOClasses
     def find_referenced(ct, identifier, child, fixes)
       options = ct.find_identifier(identifier)
       if options.empty?
-        add_error("Cannot find referenced item #{identifier}, none found, identifier '#{self.identifier}'.")
+        add_error("Cannot find referenced item '#{identifier}', none found, identifier '#{self.identifier}'.")
         return nil
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
           return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
         else
-          add_error("Cannot find referenced item #{identifier}, incorrect type, identifier '#{self.identifier}'.")
+          add_error("Cannot find referenced itemRheindahlen jhq  incorrect type, identifier '#{self.identifier}'.")
           return nil
         end
       else
@@ -282,7 +282,7 @@ module Import::STFOClasses
         return option if !option.nil?
         uri = fixes.fix(self.identifier, identifier)
         return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
-        add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
+        add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
         return nil
       end
     rescue => e
