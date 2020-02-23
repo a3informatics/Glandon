@@ -46,7 +46,7 @@ describe Annotations::ChangeNotesController do
       allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
       cn_1 = Annotation::ChangeNote.create(user_reference: "UR1", description: "D2", reference: "R2")
       or_1 = OperationalReferenceV3.create({reference: nil, context: nil}, cn_1)
-      cn_1.current << or_1
+      cn_1.current_push(or_1)
       cn_1.save
       delete :destroy, :id => cn_1.id
       expect(response.content_type).to eq("application/json")
@@ -58,7 +58,7 @@ describe Annotations::ChangeNotesController do
 
   describe "Unauthorized User" do
 
-    it "add a chnage note" do
+    it "add a change note" do
       put :update, {id: "aaa"}
       expect(response).to redirect_to("/users/sign_in")
     end
