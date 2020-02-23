@@ -919,7 +919,7 @@ describe "IsoManagedV2" do
       change_note2 = tc2.add_change_note(user_reference: "user2", reference: "ref 2", description: "description cli")
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       result = tc.change_notes_csv
-      check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml")
+      check_file_actual_expected(result, sub_dir, "list_change_notes_csv_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
