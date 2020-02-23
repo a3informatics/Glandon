@@ -59,8 +59,6 @@ describe "Upgrade", :type => :feature do
       find(:xpath, "//*[@id='managed-item-icon-table']/tbody/tr[2]/td[3]/button").click
       wait_for_ajax_long
       expect(page).to have_content 'Item was successfully upgraded'
-
-    byebug
     end
 
   end
