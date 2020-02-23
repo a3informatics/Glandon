@@ -127,7 +127,7 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier) # Do early
       old_narrower.each do |child|
-        new_child = find_in_cl(ref_ct, child.identifier)
+        new_child = find_in_cl(ext, child.identifier)
         if new_child.nil?
           add_error("Subset of extension, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
@@ -262,19 +262,26 @@ module Import::STFOClasses
     end
 
     def find_sponsor_referenced(ct, child, fixes)
-      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier), child, fixes)
+      find_referenced(ct,  STFOCodeListItem.to_referenced(child.identifier), child, fixes)
     end
 
     def find_referenced(ct, identifier, child, fixes)
       options = ct.find_identifier(identifier)
       if options.empty?
-        add_error("Cannot find referenced item '#{identifier}', none found, identifier '#{self.identifier}'.")
-        return nil
+        # See if we can find anything in the future
+        items = future_reference(ct, identifier)
+        if items.any?
+          add_log ("**** Found future referenced item '#{identifier}' in version #{items.first[:version]}, identifier '#{self.identifier}'.")
+          return child # We return the imported child item, not the one found
+        else
+          add_error("Cannot find referenced item '#{identifier}', none found, identifier '#{self.identifier}'.")
+          return nil
+        end
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
           return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
         else
-          add_error("Cannot find referenced itemRheindahlen jhq  incorrect type, identifier '#{self.identifier}'.")
+          add_error("Cannot find referenced item incorrect type, identifier '#{self.identifier}'.")
           return nil
         end
       else
@@ -353,9 +360,24 @@ module Import::STFOClasses
     end
 
     def future_reference(ct, identifier)
-      ref_ct = ct.find_by_identifiers([identifier])
-      return nil if !ref_ct.key?(identifier)
-      self.class.find_full(ref_ct[identifier])
+      items = find_any_referenced(ct, identifier)
+      return nil if items.empty?
+      self.class.find_full(item.first[:uri])
+    end
+
+    def find_any_referenced(ct, identifier)
+      results = {}
+      query_string = %Q{
+        SELECT ?s ?th ?v WHERE 
+        {
+          ?s th:identifier "#{identifier}" .
+          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
+          ?th isoT:hasIdentifier/isoI:version ?v .
+          FILTER (?v > #{ct.version})
+        } ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
+      triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
     end
 
     def subset_list

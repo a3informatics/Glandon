@@ -91,8 +91,6 @@ private
   # Set future  
   def set_thesarus(params)
     @th = Thesaurus.find_minimum(params[:uri])
-    uri = Thesaurus.history_uris(identifier: ::CdiscTerm::C_IDENTIFIER, scope: ::IsoRegistrationAuthority.cdisc_scope).first
-    @future_th = Thesaurus.find_minimum(uri)
   end
 
   # Merge the parent sets. Error if they dont match!
@@ -119,7 +117,7 @@ private
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
         existing_ref = true
-      elsif child.future_referenced?(@future_th)
+      elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
         ref = child
       elsif child.subset_of_extension?(@extensions)
