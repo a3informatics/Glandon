@@ -269,13 +269,13 @@ module Import::STFOClasses
       options = ct.find_identifier(identifier)
       if options.empty?
         # See if we can find anything in the future
-        items = future_reference(ct, identifier)
-        if items.any?
-          add_log ("**** Found future referenced item '#{identifier}' in version #{items.first[:version]}, identifier '#{self.identifier}'.")
-          return child # We return the imported child item, not the one found
-        else
+        item = future_reference(ct, identifier)
+        if item.nil?
           add_error("Cannot find referenced item '#{identifier}', none found, identifier '#{self.identifier}'.")
           return nil
+        else
+          add_log ("**** Found future referenced item '#{identifier}', identifier '#{self.identifier}'.")
+          return child # We return the imported child item, not the one found
         end
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
@@ -294,6 +294,7 @@ module Import::STFOClasses
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+byebug
       nil
     end
 
@@ -362,22 +363,7 @@ module Import::STFOClasses
     def future_reference(ct, identifier)
       items = find_any_referenced(ct, identifier)
       return nil if items.empty?
-      self.class.find_full(item.first[:uri])
-    end
-
-    def find_any_referenced(ct, identifier)
-      results = {}
-      query_string = %Q{
-        SELECT ?s ?th ?v WHERE 
-        {
-          ?s th:identifier "#{identifier}" .
-          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
-          ?th isoT:hasIdentifier/isoI:version ?v .
-          FILTER (?v > #{ct.version})
-        } ORDER BY ?v
-      }
-      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
-      triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
+      self.class.find_full(items.first[:uri])
     end
 
     def subset_list
@@ -395,6 +381,21 @@ module Import::STFOClasses
     end
 
   private
+
+    def find_any_referenced(ct, identifier)
+      results = {}
+      query_string = %Q{
+        SELECT ?s ?th ?v WHERE 
+        {
+          ?s th:identifier "#{identifier}" .
+          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
+          ?th isoT:hasIdentifier/isoI:version ?v .
+          FILTER (?v > #{ct.version})
+        } ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
+      triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
+    end
 
     # Add error
     def add_error(msg)
