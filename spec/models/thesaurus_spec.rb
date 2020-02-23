@@ -9,6 +9,7 @@ describe Thesaurus do
   include CdiscCtHelpers
   include IsoManagedHelpers
   include ThesauriHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/thesaurus"
@@ -876,10 +877,11 @@ describe Thesaurus do
       s_th.is_top_concept_objects
       s_th.reference_objects
       s_th.baseline_reference_objects
+      check_dates(s_th, sub_dir, "update_expected_1.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(s_th.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "upgrade thesauri, I" do
+    it "upgrade thesauri, II" do
       s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V9#TH"))
       t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V12#TH"))
@@ -900,6 +902,7 @@ describe Thesaurus do
       s_th.is_top_concept_objects
       s_th.reference_objects
       s_th.baseline_reference_objects
+      check_dates(s_th, sub_dir, "update_expected_1.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(s_th.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
     end
 

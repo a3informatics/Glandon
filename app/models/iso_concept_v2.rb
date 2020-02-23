@@ -86,7 +86,7 @@ class IsoConceptV2 < Fuseki::Base
     params[:transaction] = tx
     cn = Annotation::ChangeNote.create(params)
     op_ref = OperationalReferenceV3.create({reference: self.uri, transaction: tx}, cn)
-    cn.current << op_ref
+    cn.current_push(op_ref)
     cn.save
     transaction_execute
     cn
