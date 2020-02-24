@@ -342,16 +342,28 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = read_concept(protect_from_bad_id(params))
     if !tc.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
+      baseline_ref_ct = ct.get_baseline_referenced_thesaurus
       ref_ct = ct.get_referenced_thesaurus
-      results = tc.upgrade?(upgrade_params[:source_id], ref_ct)
+      source = baseline_ref_ct.find_by_identifiers([tc.identifier])
+      if !source.key?(tc.identifier)
+        render json: {errors: "."}
+      else
+        source = Thesaurus::ManagedConcept.find_minimum(source[tc.identifier])
+      end
+      results = tc.upgrade?(source.id, ref_ct)
       if results[:errors].empty?
-        target = Thesaurus::ManagedConcept.find_with_properties(upgrade_params[:target_id])
+        target = ref_ct.find_by_identifiers([tc.identifier])
+        if !target.key?(tc.identifier)
+          render json: {errors: "."}
+        else
+          target = Thesaurus::ManagedConcept.find_minimum(target[tc.identifier])
+        end
         new_tc = tc.upgrade(target)
-        render json: {data: ""}, status: 200
+          render json: {data: ""}, status: 200
       else
         render json: {errors: results[:errors]}
       end
-      Token.find_token(tc, current_user).release
+        Token.find_token(tc, current_user).release
     else
       redirect_to request.referrer
     end
@@ -366,7 +378,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     results.each do |x|
       tc = Thesaurus::ManagedConcept.find_with_properties(x[:id])
       if x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension" ||  x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset"
-        upgraded = tc.have_i_been_upgraded?(ref_ct)
+        upgraded = tc.upgraded?(ref_ct)
       else
         upgraded = true
       end
