@@ -99,7 +99,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
  * @return [void]
  */
 ReleaseSelect.prototype.referenceThUpdate = function(){
-  this.tabs.cdiscTab.processing(true, "Clearing CDISC items from the selection...");
+  this.tabs.cdiscTab.processing(true, "Updating CDISC version...");
 
   $.ajax({
     url: this.referenceThUrl,
@@ -111,24 +111,15 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
       // Update CDISC ver UI
       $("#cdisc-version-label").html(this.cdiscCT.version);
       $(".tab-option.disabled").removeClass("disabled");
+      $("#select-cdisc-ver-button").removeClass("disabled");
       $(".tab-wrap .show-more-btn").click();
 
       // Remove selection of all CDISC items
-      var rows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
-      if(rows.count() > 0){
-        var data = rows.data();
-        var params = { action: "remove", autoDeselect: false, thisTable: true, rows: rows}
-        var callback = function() {
-          location.reload();
-          // this.tabs.target.updateSelectionCallback(data, params)
-          // this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
-        }.bind(this);
-
-        this.tabs.target.updateSelection(params, data, callback);
-      }
-      else {
+      var CDISCrows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
+      if (!this.tabs.target.mcs.loading && CDISCrows.count() > 0)
+        location.reload();
+      else
         this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
-      }
     },
     error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
@@ -159,7 +150,9 @@ ReleaseSelect.prototype.setEventListeners = function(){
       _this.changeCdiscVer();
     else
       new ConfirmationDialog(function() { _this.changeCdiscVer() },
-        {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true})
+        {subtitle: "If you change CDISC version, the CDISC Code Lists which have changed between the versions will be updated in your thesaurus."+
+                    " Deleted CDISC Code Lists will be removed." +
+                    " Any created CDISC Code Lists will not be added. This operation cannot be undone.", dangerous: true})
         .show();
   });
 

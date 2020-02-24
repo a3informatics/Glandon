@@ -258,6 +258,8 @@ ManagedChildrenSelect.prototype.processing = function (enable, text) {
 	this.table.processing(enable);
 	toggleTableActive(this.tableId, !enable);
 
+	enable ? $("#select-cdisc-ver-button").addClass("disabled") : $("#select-cdisc-ver-button").removeClass("disabled");
+	
 	if($("#cdisc-version-label").text() != "None")
 		enable ? $("#release-select-tabs .tab-option").addClass("disabled") : $("#release-select-tabs .tab-option").removeClass("disabled")
 }
