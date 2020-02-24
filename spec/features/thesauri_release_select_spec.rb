@@ -14,7 +14,7 @@ describe "Thesauri Release Select", :type => :feature do
     before :all do
       timer_start
       load_files(schema_files, [])
-      load_test_file_into_triple_store("test_db_1.nq.gz")
+      load_test_file_into_triple_store("test_db_2.nq.gz")
       timer_stop("Triple store loaded")
       Token.delete_all
       ua_create
@@ -59,15 +59,14 @@ describe "Thesauri Release Select", :type => :feature do
     it "select a CDISC version", :type => :feature do
       navigate_to_release_sel
       page.find('.card-with-tabs .show-more-btn').click
-      sleep 0.2
+      sleep 0.5
       ui_dashboard_single_slider '2013-12-20'
       click_button 'Submit selected version'
-      ui_confirmation_dialog true
       wait_for_ajax 50
       ui_check_table_info("table-cdisc-cls", 1, 10, 372)
       ui_check_table_cell("table-cdisc-cls", 3, 1, "C99077")
       page.find('.card-with-tabs .show-more-btn').click
-      sleep 0.2
+      sleep 0.5
       ui_dashboard_single_slider '2019-09-27'
       click_button 'Submit selected version'
       ui_confirmation_dialog true
@@ -76,6 +75,13 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_cell("table-cdisc-cls", 2, 1, "C99078")
       ui_check_table_row_indicators("table-cdisc-cls", 1, 7, ["9 versions", "subsetted"])
       ui_check_table_row_indicators("table-cdisc-cls", 4, 7, ["3 versions", "extended"])
+      page.find('.card-with-tabs .show-more-btn').click
+      sleep 0.5
+      ui_dashboard_single_slider '2013-12-20'
+      click_button 'Submit selected version'
+      ui_confirmation_dialog true
+      wait_for_ajax 10
+      expect(page).to have_content("The reference thesaurus must be a later version than the current one is (2019-09-27 Release)")
     end
 
     it "checks sponsor CLs, Subsets and Extensions and indicators", :type => :feature do
@@ -176,7 +182,7 @@ describe "Thesauri Release Select", :type => :feature do
       expect(page).to have_content("773 rows selected")
     end
 
-    it "changes version of a sponsor multi-versioned codelist, and corrent exclusion UI update", :type => :feature do
+    it "changes version of a sponsor multi-versioned codelist, and UI update", :type => :feature do
       navigate_to_release_sel
       ui_click_tab "Test Terminology"
       wait_for_ajax 10
@@ -205,22 +211,6 @@ describe "Thesauri Release Select", :type => :feature do
       find(:xpath, '//*[@id="table-sponsor-extensions"]/tbody/tr[contains(.,"C96783E")]')[:class].exclude? "selected"
       find(:xpath, '//*[@id="table-sponsor-extensions"]/tbody/tr[contains(.,"C96783E")]').click
       wait_for_ajax 10
-    end
-
-    it "change the CDISC version, clears selection", :type => :feature do
-      navigate_to_release_sel
-      page.find('.card-with-tabs .show-more-btn').click
-      sleep 0.2
-      ui_dashboard_single_slider '2018-03-30'
-      click_button 'Submit selected version'
-      ui_confirmation_dialog true
-      wait_for_ajax 50
-      expect(page).to_not have_content ("rows selected")
-      page.evaluate_script 'window.location.reload()'
-      wait_for_ajax 10
-      ui_click_tab "Test Terminology"
-      ui_check_table_info("table-selection-overview", 1, 2, 2)
-      ui_check_table_cell("table-selection-overview", 2, 1, "C96783E")
     end
 
     it "edit lock, extend", :type => :feature do
@@ -256,6 +246,65 @@ describe "Thesauri Release Select", :type => :feature do
       click_link 'Return'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
       expect(tokens).to match_array([])
+    end
+
+  end
+
+  describe "Change CDISC reference, updates selection children versions", :type => :feature, js:true do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      Token.delete_all
+      ua_create
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    it "change the CDISC version, upgrade selection", :type => :feature do
+      ui_create_terminology("TEST", "Tst th")
+      find(:xpath, '//tr[contains(.,"TEST")]').click
+      wait_for_ajax 10
+      context_menu_element_v2("history", "0.1.0", :edit)
+      wait_for_ajax 10
+      page.find('.card-with-tabs .show-more-btn').click
+      sleep 0.5
+      ui_dashboard_single_slider '2016-12-16'
+      click_button 'Submit selected version'
+      # ui_confirmation_dialog true
+      wait_for_ajax 50
+      ui_check_table_info("table-cdisc-cls", 1, 10, 656)
+      page.find("#table-cdisc-cls-bulk-select").click
+      wait_for_ajax 30
+      page.find('.card-with-tabs .show-more-btn').click
+      sleep 0.5
+      ui_dashboard_single_slider '2018-09-28'
+      click_button 'Submit selected version'
+      ui_confirmation_dialog true
+      wait_for_ajax 50
+      ui_check_table_info("table-cdisc-cls", 1, 10, 856)
+      expect(page).to have_content("654 rows selected")
+      page.find('.card-with-tabs .show-more-btn').click
+      sleep 0.5
+      ui_dashboard_single_slider '2019-09-27'
+      click_button 'Submit selected version'
+      ui_confirmation_dialog true
+      wait_for_ajax 50
+      ui_check_table_info("table-cdisc-cls", 1, 10, 911)
+      expect(page).to have_content("649 rows selected")
     end
 
   end
