@@ -36,31 +36,39 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     Errors.application_error(self.class.name, __method__.to_s, "Only Subsets or Extensions can be upgraded.")
   end
 
-  # Have I been upgraded?
+  # Upgraded?
   #
   # @param new_th [Thesaurus] the new thesaurus
   # @return [Boolean] return true if this instance has already been upgraded, false otherwise
-  def have_i_been_upgraded?(new_th)
+  def upgraded?(new_th)
     query_string = %Q{
       SELECT DISTINCT (count(?a) AS ?count)
       WHERE 
       { 
-            SELECT DISTINCT ?a WHERE 
+          SELECT DISTINCT ?a ?x WHERE              
+          {               
             {
-              #{self.uri.to_ref} isoT:hasIdentifier/isoI:identifier ?i .
-              #{self.uri.to_ref} isoT:hasIdentifier/isoI:hasScope ?scope .
-              ?a rdf:type th:ManagedConcept . 
-              ?a isoT:hasIdentifier/isoI:identifier ?i .
-              ?a isoT:hasIdentifier/isoI:hasScope ?scope .
-              FILTER (STR(?a) != STR(#{self.uri.to_ref})) 
-              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ ?a . BIND ("EXT" as ?b)} 
-              UNION
-              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ ?a . BIND ("EXTSUB" as ?b)} 
-              UNION
-              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ ?a . BIND ("SUB" as ?b)} 
-              UNION
-              {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ ?a . BIND ("SRC" as ?b)}
+            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ #{self.uri.to_ref}  . }  
+              as ?x)
+            BIND ("Extension" as ?a)
+            }                
+            UNION               
+            {
+            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ #{self.uri.to_ref}  .}    as ?x)
+            BIND ("Subset of extension" as ?a)
+            }                
+            UNION               
+            {
+            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ #{self.uri.to_ref}  .} as ?x)
+            BIND ("Subset" as ?a)
+            }          
+            UNION               
+            {
+            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ #{self.uri.to_ref}  .} as ?x)
+            BIND ("Code List" as ?a)
             }
+          FILTER (?x = true)
+        } 
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo])
@@ -75,7 +83,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Hash] 
   def upgrade?(source_id, new_th)
     results = {upgrade: false, errors: ""}
-    if self.have_i_been_upgraded?(new_th)
+    if self.upgraded?(new_th)
       results[:errors] = "Item already upgraded"
     elsif !self.subset_of.nil?
       if subset_of.to_id == source_id

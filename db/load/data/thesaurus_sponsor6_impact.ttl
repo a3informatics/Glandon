@@ -29,7 +29,6 @@
 	th:isTopConceptReference :TH_TCR3 ;
   th:isTopConceptReference :TH_TCR4 ;
   th:isTopConceptReference :TH_TCR5 ;
-  
 	th:isTopConcept <http://www.acme-pharma.com/A00001/V2#A00001> ;
 	th:isTopConcept <http://www.acme-pharma.com/A00002/V2#A00002> ;
 	th:isTopConcept <http://www.cdisc.org/C66781/V2#C66781> ;
@@ -252,8 +251,8 @@
   rdf:type th:ManagedConcept ;
   isoC:label "Action Taken with Study Treatment Subset 01"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992> ;
-  isoT:hasState <http://www.s-cubed.dk/NP000123P/V1#NP000123P_RS> ;
-  isoT:hasIdentifier <http://www.s-cubed.dk/NP000123P/V1#NP000123P_SI> ;
+  isoT:hasState <http://www.s-cubed.dk/NP000123P/V2#NP000123P_RS> ;
+  isoT:hasIdentifier <http://www.s-cubed.dk/NP000123P/V2#NP000123P_SI> ;
   isoT:origin ""^^xsd:string ;
   isoT:changeDescription ""^^xsd:string ;
   isoT:creationDate "2019-09-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -285,7 +284,7 @@
   isoR:multipleEdit "false"^^xsd:boolean ;
   isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP000123P/V1#NP000123P_SI>
+<http://www.s-cubed.dk/NP000123P/V2#NP000123P_SI>
   rdf:type isoI:ScopedIdentifier ;
   isoI:identifier "NP000123P"^^xsd:string ;
   isoI:versionLabel "1.0.0"^^xsd:string ;
