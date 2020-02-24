@@ -269,6 +269,7 @@ describe ThesauriController do
       get :get_reference, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_1.yaml", equate_method: :hash_equal)
+      expect_any_instance_of(Thesaurus).to receive(:upgrade)
       put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_1.id}}
       get :get_reference, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -279,6 +280,7 @@ describe ThesauriController do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
       ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      expect_any_instance_of(Thesaurus).to_not receive(:upgrade)
       put :set_reference, {id: ct.id, thesaurus: { thesaurus_id: ref_ct.id}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_3.yaml", equate_method: :hash_equal)
