@@ -476,7 +476,8 @@ class ThesauriController < ApplicationController
     token = Token.find_token(ct, current_user)
     if !token.nil?
       ref_ct = Thesaurus.find_minimum(the_params[:thesaurus_id])
-      ct.set_referenced_thesaurus(ref_ct)
+      should_upgrade = ct.set_referenced_thesaurus(ref_ct)
+      ct.upgrade if should_upgrade
       render :json => {}, :status => 200
     else
       render :json => {:errors => [token_timeout_message]}, :status => 422
