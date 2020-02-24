@@ -52,9 +52,9 @@ UpgradePanel.prototype.setListeners = function() {
   $(this.impact.itemList.tableId + " tbody")
     .off("click", ".upgrade")
     .on("click", ".upgrade", function(){
-      let buttonEl = $(this);
-      let data = _this.impact.itemList.table.row(buttonEl.parents("tr:first")).data();
-      let itemId = data.id, sourceId = data.source_id, targetId = data.target_id;
+      var buttonEl = $(this);
+      var data = _this.impact.itemList.table.row(buttonEl.parents("tr:first")).data();
+      var itemId = data.id, sourceId = data.source_id, targetId = data.target_id;
       var cback = function(){
         buttonEl.replaceWith(this.upgradeButtonHTML({upgraded: true}));
         displaySuccess("Item was successfully upgraded");
