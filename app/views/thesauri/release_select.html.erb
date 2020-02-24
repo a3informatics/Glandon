@@ -67,7 +67,7 @@
             </div><br/>
             <%= render layout: "shared/show_more", :locals => {:size => "small", :show_text => show_text, :centered => "centered"} do %>
               <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
-                title_text: "Select CDISC Terminology version by dragging the slider:",
+                title_text: "Select CDISC Terminology version by dragging the slider (must be a later version):",
                 start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
                 button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit selected version</button>".html_safe }%>
             <% end %>
