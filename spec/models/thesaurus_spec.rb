@@ -32,7 +32,7 @@ describe Thesaurus do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(th.audit_type).to eq("Terminology")
     end
-    
+
     it "returns the owner" do
       expected = IsoRegistrationAuthority.owner
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
@@ -157,7 +157,7 @@ describe Thesaurus do
       load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor2_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor3_impact.ttl")
-      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")    
+      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
     end
 
     # it "calculates changes_impact, no deleted items" do
@@ -805,7 +805,7 @@ describe Thesaurus do
     end
 
     it "adds a child item then deletes thesaurus" do
-      uri_check_set = 
+      uri_check_set =
       [
         { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: false},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: false},
@@ -864,12 +864,14 @@ describe Thesaurus do
       t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
       s_th = Thesaurus.find_minimum(s_th.uri)
-      s_th.set_referenced_thesaurus(t_th_old)
+      should_upgrade = s_th.set_referenced_thesaurus(t_th_old)
+      expect(should_upgrade).to eq(false)
       tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V2#C66783"))
       tc_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66737/V2#C66737"))
       tc_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       s_th.select_children({id_set: [tc_1.id, tc_2.id, tc_3.id]})
-      s_th.set_referenced_thesaurus(t_th_new)
+      should_upgrade = s_th.set_referenced_thesaurus(t_th_new)
+      expect(should_upgrade).to eq(true)
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.upgrade
       s_th = Thesaurus.find_minimum(s_th.uri)
@@ -886,7 +888,8 @@ describe Thesaurus do
       t_th_old = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V9#TH"))
       t_th_new = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V12#TH"))
       s_th = Thesaurus.find_minimum(s_th.uri)
-      s_th.set_referenced_thesaurus(t_th_old)
+      should_upgrade = s_th.set_referenced_thesaurus(t_th_old)
+      expect(should_upgrade).to eq(false)
       tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C25188/V9#C25188"))
       tc_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74560/V8#C74560"))
       tc_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V4#C66783"))
@@ -894,7 +897,8 @@ describe Thesaurus do
       tc_5 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       tc_6 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C71620/V9#C71620"))
       s_th.select_children({id_set: [tc_1.id, tc_2.id, tc_3.id, tc_4.id, tc_5.id, tc_6.id]})
-      s_th.set_referenced_thesaurus(t_th_new)
+      should_upgrade = s_th.set_referenced_thesaurus(t_th_new)
+      expect(should_upgrade).to eq(true)
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.upgrade
       s_th = Thesaurus.find_minimum(s_th.uri)
@@ -922,25 +926,29 @@ describe Thesaurus do
       r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       r_th_3 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       expect(s_th.get_referenced_thesaurus).to eq(nil)
-      s_th.set_referenced_thesaurus(r_th_1)
+      should_upgrade = s_th.set_referenced_thesaurus(r_th_1)
+      expect(should_upgrade).to eq(false)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
       expect(s_th.get_baseline_referenced_thesaurus).to eq(nil)
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.reference_objects
       same_uri = s_th.reference.uri
       s_th = Thesaurus.find_minimum(s_th.uri)
-      s_th.set_referenced_thesaurus(r_th_2)
+      should_upgrade = s_th.set_referenced_thesaurus(r_th_2)
+      expect(should_upgrade).to eq(true)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
       expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
       expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
       expect(s_th.reference.uri).to eq(same_uri) # Make sure op ref is re-used, i.e same one as first one
-      s_th.set_referenced_thesaurus(r_th_3)
+      should_upgrade = s_th.set_referenced_thesaurus(r_th_3)
+      expect(should_upgrade).to eq(true)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_3.uri)
       expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
-      s_th.set_referenced_thesaurus(r_th_2)
+      should_upgrade = s_th.set_referenced_thesaurus(r_th_2)
+      expect(should_upgrade).to eq(true)
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
       expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
@@ -1037,7 +1045,7 @@ describe Thesaurus do
       @tc_1.narrower << @tc_1a
       # @tc_1.narrower << @tc_1b
       @tc_1.set_initial("A00001")
-      
+
       @tc_2 = Thesaurus::ManagedConcept.new
       @tc_2.identifier = "A00002"
       @tc_2.definition = "Copenhagen"
@@ -1082,7 +1090,7 @@ describe Thesaurus do
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_3_impact.ttl")
-    end 
+    end
 
   end
 
