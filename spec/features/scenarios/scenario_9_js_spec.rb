@@ -318,7 +318,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Change CDISC Reference
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Test Terminology")
+      click_row_contains("main", "Cloned Terminology")
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 20
@@ -327,11 +327,12 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Upgrade Terms
       context_menu_element_header :upgrade
       wait_for_ajax 20
-      expect(page).to have_content("Upgrade Code Lists CLONE v0.2.0")
+      expect(page).to have_content("Upgrade Code Lists CLONE v0.1.0")
+      pause
+
       click_row_contains("changes_cdisc_table", "Epoch")
       wait_for_ajax 20
 
-      pause
 
       ua_logoff
     end
