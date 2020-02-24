@@ -1018,6 +1018,25 @@ describe Thesaurus do
       tc = Thesaurus::ManagedConcept.find_minimum(uri_3)
     end
 
+    it "valid reference" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      expect(s_th.get_referenced_thesaurus).to eq(nil)
+      s_th = s_th.valid_reference?(r_th_1)
+      expect(s_th.errors.empty?).to eq(true)
+      s_th.set_referenced_thesaurus(r_th_1)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.reference_objects
+      s_th = s_th.valid_reference?(r_th_2)
+      expect(s_th.errors.empty?).to eq(true)
+      s_th.set_referenced_thesaurus(r_th_2)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.reference_objects
+      s_th = s_th.valid_reference?(r_th_1)
+      expect(s_th.errors.full_messages).to eq(["The reference thesaurus must be a later version than the current one is (#{r_th_2.version_label})."])
+    end
+
   end
 
   describe "impact data test" do
@@ -1100,12 +1119,12 @@ describe Thesaurus do
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
     end
 
-    
+
     before :all  do
       IsoHelpers.clear_cache
     end
 
-    before :each do  
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_versions(CdiscCtHelpers.version_range)
@@ -1164,7 +1183,7 @@ describe Thesaurus do
       s_th.delete
       expect{Thesaurus.find_minimum(s_th.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/TEST/V1#TH in Thesaurus.")
       expect(triple_store.check_uris(uri_check_set)).to be(true)
-    end 
+    end
 
   end
 
