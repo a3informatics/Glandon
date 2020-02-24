@@ -1670,11 +1670,11 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "upgraded? II" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      tc_1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V58#C99079"))
-      tc_2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V62#C99079"))
+      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
+      tc_1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66767/V35#C66767"))
+      tc_2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66767/V56#C66767"))
       item = tc_1.create_extension
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C99079E/V1#C99079E"))
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767E/V1#C66767E"))
       result = item.upgraded?(new_th)
       expect(result).to eq(false)
     end
