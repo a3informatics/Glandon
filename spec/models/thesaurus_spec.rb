@@ -1094,4 +1094,78 @@ describe Thesaurus do
 
   end
 
+  describe "Delete References" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do  
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_versions(CdiscCtHelpers.version_range)
+    end
+
+    it "create, delete and create thesaurus setting references" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V52#TH"))
+      r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
+      expect(s_th.get_referenced_thesaurus).to eq(nil)
+      s_th.set_referenced_thesaurus(r_th_1)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
+      expect(s_th.get_baseline_referenced_thesaurus).to eq(nil)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.reference_objects
+      same_uri = s_th.reference.uri
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.set_referenced_thesaurus(r_th_2)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.get_baseline_referenced_thesaurus.uri).to eq(r_th_1.uri)
+      expect(s_th.reference.uri).to eq(same_uri)
+      expect(Thesaurus.find_minimum(s_th.id).uri.to_s).to eq("http://www.acme-pharma.com/TEST/V1#TH")
+      s_th.delete
+      expect{Thesaurus.find_minimum(s_th.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/TEST/V1#TH in Thesaurus.")
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      expect(s_th.get_referenced_thesaurus).to eq(nil)
+      s_th.set_referenced_thesaurus(r_th_1)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
+    end
+
+    it "delete thesaurus, check reference and baseline reference" do
+      uri_check_set =
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/TEST/V1#TH"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/TEST/V1#TH_RS"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/TEST/V1#TH_SI"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/TEST/V1#TH_R1"), present: false}, #reference
+        { uri: Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/TEST/V1#TH_R2"), present: false}, #baseline_reference
+        { uri: Uri.new(uri: "http://www.cdisc.org/CT/V52#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/NS#ACME"), present: true}
+
+      ]
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V52#TH"))
+      r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
+      s_th.set_referenced_thesaurus(r_th_1)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.reference_objects
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.set_referenced_thesaurus(r_th_2)
+      s_th.delete
+      expect{Thesaurus.find_minimum(s_th.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/TEST/V1#TH in Thesaurus.")
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+    end 
+
+  end
+
 end

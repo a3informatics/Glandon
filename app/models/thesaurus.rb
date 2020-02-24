@@ -9,8 +9,8 @@ class Thesaurus <  IsoManagedV2
 
   object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TmcReference", children: true
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
-  object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
-  object_property :baseline_reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
+  object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3"
+  object_property :baseline_reference, cardinality: :one, model_class: "OperationalReferenceV3"
 
   include Thesaurus::Search
   include Thesaurus::Where
