@@ -144,7 +144,7 @@ describe Thesauri::ManagedConceptsController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       ct.set_referenced_thesaurus(ref_ct)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:have_i_been_upgraded?).and_return(false)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgraded?).and_return(false)
       get :upgrade_data, id: "tc_1.id", impact: {sponsor_th_id: ct.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
