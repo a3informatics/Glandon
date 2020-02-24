@@ -264,13 +264,13 @@ describe ThesauriController do
       ref_ct_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       token = Token.obtain(ct, @user)
-      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_2.id}}
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_1.id}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       get :get_reference, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_1.yaml", equate_method: :hash_equal)
       expect_any_instance_of(Thesaurus).to receive(:upgrade)
-      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_1.id}}
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_2.id}}
       get :get_reference, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_2.yaml", equate_method: :hash_equal)
@@ -285,6 +285,20 @@ describe ThesauriController do
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_3.yaml", equate_method: :hash_equal)
     end
+
+    it "sets reference, lock, error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      ref_ct_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ref_ct_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      token = Token.obtain(ct, @user)
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_2.id}}
+      expect(response.code).to eq("200")
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_1.id}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "set_reference_expected_4.yaml", equate_method: :hash_equal)
+    end
+
 
     it "get reference, lock, ref" do
       request.env['HTTP_ACCEPT'] = "application/json"
