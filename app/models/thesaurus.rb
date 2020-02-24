@@ -655,6 +655,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     should_upgrade
   end
 
+  # Check if can Set Referenced Thesaurus.
+  #
+  # @param [Thesaurus] object the thesaurus object
+  # @return [Object] current object
+  def valid_reference?(object)
+    self.reference_objects
+    return self if self.reference.nil?
+    ref = self.reference
+    ref_th = Thesaurus.find_minimum(ref.reference)
+    self.errors.add(:base, "The reference thesaurus must be a later version than the current one is (#{ref_th.version_label}).") if object.version <= ref_th.version
+    self
+  end
+
   # Referenced Thesaurus. Find the single referenced thesaurus
   #
   # @return [Uri] the uri of the single reference thesaurus
