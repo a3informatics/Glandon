@@ -10,7 +10,7 @@
  * @return [void]
  */
 function UpgradePanel(dataUrl, upgradeUrl) {
-  this.impact = new ImpactGraph(dataUrl, true);
+  this.impact = new ImpactGraph(dataUrl, true, false);
   this.upgradeUrl = upgradeUrl;
   this.tabName = "tab-affected";
   this.initTable();
