@@ -216,15 +216,14 @@ TimelineSlider.prototype.moveToDate = function(slider, date){
 TimelineSlider.prototype.disableRange = function(fromDate, untilDate) {
   var _this = this;
 
-  fromDate = Date.parse(fromDate);
-  untilDate = Date.parse(untilDate);
+  fromDate = parseDateString(fromDate);
+  untilDate = parseDateString(untilDate);
 
   this.tl_points.each(function(){
-    var current = Date.parse($(this).text());
+    var current = parseDateString($(this).text());
     if (current >= fromDate && current < untilDate)
       $(this).addClass("disabled");
 });
-
 
 }
 
