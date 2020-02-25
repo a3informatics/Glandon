@@ -25,6 +25,7 @@ function ManagedItemVersionPicker(type, callback) {
   // Load data when modal shown
   $(this.modalId).off('shown.bs.modal').on('shown.bs.modal', function (e) {
     this.loadData(this.makeHistoryUrl(this.item.scoped_identifier, this.item.scope_id), 0);
+    $(this.submitId).addClass("disabled");
   }.bind(this));
 
   this.setListeners();
@@ -66,8 +67,14 @@ ManagedItemVersionPicker.prototype.setListeners = function () {
 
   // Submit click and hide self
   $(this.modalId + ' ' + this.submitId).on('click', function() {
-    $(this.modalId).modal("hide");
-    this.callback(this.historyTable.row({selected: true}).data());
+    var rowSelected = this.historyTable.row({selected: true});
+    if (rowSelected.count() == 0) {
+      displayAlertsInElement(alertError("You must select a version."), $("#im-version-picker-error"));
+    }
+    else {
+      $(this.modalId).modal("hide");
+      this.callback(rowSelected.data());
+    }
   }.bind(this));
 
 }
