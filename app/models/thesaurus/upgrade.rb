@@ -7,36 +7,40 @@ class Thesaurus
 
   module Upgrade
 
+    # Upgraded?
+    #
+    # @param th [Thesaurus] the new thesaurus
     def upgrade(th)
       set_type_and_references(th)
-      execute
+      execute if proceed?
     end
 
     # Upgraded?
     #
-    # @param new_th [Thesaurus] the new thesaurus
+    # @param th [Thesaurus] the new thesaurus
     # @return [Boolean] return true if this instance has already been upgraded, false otherwise
-    def upgraded?(new_th)
+    def upgraded?(th)
+      set_type_and_references(th)
       query_string = %Q{
         SELECT DISTINCT ?a ?x WHERE              
         {               
           {
-            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ #{self.uri.to_ref}} as ?x)
+            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ #{self.uri.to_ref}} as ?x)
             BIND ("Extension" as ?a)
           }                
           UNION               
           {
-            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ #{self.uri.to_ref}} as ?x)
+            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ #{self.uri.to_ref}} as ?x)
             BIND ("Subset of extension" as ?a)
           }                
           UNION               
           {
-            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ #{self.uri.to_ref}} as ?x)
+            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ #{self.uri.to_ref}} as ?x)
             BIND ("Subset" as ?a)
           }          
           UNION               
           {
-            BIND (EXISTS {#{new_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ #{self.uri.to_ref}} as ?x)
+            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ #{self.uri.to_ref}} as ?x)
             BIND ("Code List" as ?a)
           }
           FILTER (?x = true)
@@ -51,6 +55,7 @@ class Thesaurus
     # Set the upgrade type and necessary references
     def set_type_and_references(th)
       @th = th
+      @old_tc = set_source_tc(self.extension?)
       @type = set_type
       @new_tc = set_target_tc   
     end
@@ -65,17 +70,23 @@ class Thesaurus
 
     # Set the upgrade type
     def set_type
-      return :extension if self.is_extensible?
-      return :sponsor_subset if self.is_subset? && self.subsets.owner == owner
+      return :extension if self.extension?
+      return :sponsor_subset if self.subset? && @old_tc.owned?
       :reference_subset
     end
 
     # Set the target TC
     def set_target_tc
       th = set_target_th
-      results = th.find_identifier(self.identifier)
+      results = th.find_identifier(@old_tc.identifier)
       Errors.application_error(self.class.name, __method__.to_s, "Cannot find target code list, identifier 'self.identifier'.") if results.empty?
       Thesaurus::ManagedConcept.find_minimum(results.first[:uri])
+    end
+
+    # Set source TC
+    def set_source_tc(extension)
+      uri = extension ? self.extends_links : self.subsets_links
+      Thesaurus::ManagedConcept.find_with_properties(uri)
     end
 
     # Set the target Thesaurus
@@ -83,9 +94,9 @@ class Thesaurus
       if @type == :sponsor_subset
         @target_th = @th
       else
-        @th.reference_objects
-        @target_th = @th.reference.reference
+        @target_th = Thesaurus.find_minimum(@th.reference_objects.reference)
       end
+      @target_th
     end
 
     # Proceed? Should the upgrade proceed

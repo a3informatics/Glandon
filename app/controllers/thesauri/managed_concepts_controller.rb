@@ -373,16 +373,16 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
-    ref_ct = ct.get_referenced_thesaurus
+    #ref_ct = ct.get_referenced_thesaurus
     results = tc.impact(ct)
     results.each do |x|
-      tc = Thesaurus::ManagedConcept.find_with_properties(x[:id])
-      if x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension" ||  x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset"
-        upgraded = tc.upgraded?(ref_ct)
-      else
-        upgraded = true
-      end
-      x[:upgraded] = upgraded
+      tc = Thesaurus::ManagedConcept.find_minimum(x[:id])
+      #if x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension" ||  x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset"
+      x[:upgraded] = tc.upgraded?(ct)
+      #else
+      #  upgraded = true
+      #end
+      #x[:upgraded] = upgraded
     end
     render json: {data: results}
   end
