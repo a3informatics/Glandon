@@ -4,7 +4,7 @@
 <%= javascript_include_tag  'shared/tags', 'thesauri/upgrade', 'shared/impact/impact_graph', 'shared/thesauri/upgrade_panel', 'shared/tabs_layout' %>
 <%= javascript_tag "var upgradeDataUrl = '#{upgrade_data_thesauri_managed_concept_path(id: "clId", impact: {sponsor_th_id: @thesaurus.id})}',
                         cdiscChangesUrl = '#{changes_impact_thesauri_path(@base_cdisc_th, thesauri: {thesaurus_id: @ref_cdisc_th.id, sponsor_th_id: @thesaurus.id})}',
-                        upgradeBaseUrl = '#{upgrade_thesauri_managed_concept_path(id: "clId", upgrade: {sponsor_th_id: @thesaurus.id, source_id: "srcClId", target_id: "tgtClId"})}';" %>
+                        upgradeBaseUrl = '#{upgrade_thesauri_managed_concept_path(id: "clId", upgrade: {sponsor_th_id: @thesaurus.id})}';" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-upgrade",
