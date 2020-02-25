@@ -39,7 +39,7 @@ CdiscVersionSelect.prototype.init = function () {
 
   $("#select-cdisc-ter-btn").off("click").on("click", function() {
     var selectedPoint = $(this.id + " .timeline-point.point-highlight span");
-    var selectedDate = Date.parse(selectedPoint.text());
+    var selectedDate = parseDateString(selectedPoint.text());
     var selectedId = selectedPoint.attr("data-index");
 
     this.callback(selectedDate, selectedId);
