@@ -25,6 +25,21 @@ describe "Thesaurus::Upgrade" do
       load_data_file_into_triple_store("thesaurus_sponsor6_impact.ttl")
     end
 
+    it "check extension needs to be upgraded, I" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      tc_55 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V54#C115304"))
+      tc_61 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V60#C115304"))
+      e_old = tc_55.create_extension
+      s_th_old.add_extension(e_old.id)
+      params = {}
+      params[:registration_status] = "Qualified"
+      params[:previous_state] = "Recorded"      
+      s_th_old.update_status(params)
+      s_th_new = s_th_old.create_next_version
+byebug
+      e_old.upgraded?(s_th_new)
+    end
+
     # it "have I been upgraded? I" do
     #   new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
     #   tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
@@ -84,37 +99,37 @@ describe "Thesaurus::Upgrade" do
       expect(result).to eq(false)
     end
 
-    it "upgrade? I" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
-      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
-      result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=> false})
-    end
+    # it "upgrade? I" do
+    #   new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    #   tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+    #   source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+    #   result = tc.upgrade?(source.id, new_th)
+    #   expect(result).to eq({:errors=>"Item already upgraded", :upgrade=> false})
+    # end
 
-    it "upgrade? II" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
-      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
-      result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({:errors=>"", :upgrade=>true})
-    end
+    # it "upgrade? II" do
+    #   new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+    #   tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+    #   source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+    #   result = tc.upgrade?(source.id, new_th)
+    #   expect(result).to eq({:errors=>"", :upgrade=>true})
+    # end
 
-    it "upgrade? III" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
-      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
-      result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>false})
-    end
+    # it "upgrade? III" do
+    #   new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    #   tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+    #   source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+    #   result = tc.upgrade?(source.id, new_th)
+    #   expect(result).to eq({:errors=>"Item already upgraded", :upgrade=>false})
+    # end
 
-    it "upgrade? IV" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
-      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
-      result = tc.upgrade?(source.id, new_th)
-      expect(result).to eq({upgrade: false, errors: "Cannot upgrade. You must first upgrade Code List: C66767"})
-    end
+    # it "upgrade? IV" do
+    #   new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+    #   tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/NP000123P/V1#NP000123P"))
+    #   source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+    #   result = tc.upgrade?(source.id, new_th)
+    #   expect(result).to eq({upgrade: false, errors: "Cannot upgrade. You must first upgrade Code List: C66767"})
+    # end
 
   end
 
