@@ -28,16 +28,16 @@ describe "Thesaurus::Upgrade" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..46)
+      load_cdisc_term_versions(1..8)
     end
 
     it "check extension needs to be upgraded, I" do
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
-      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V43#TH"))
-      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V46#TH"))
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
-      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
-      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
       e_old = s_th_old.add_extension(tc_old.id)
       make_standard(e_old)
       s_th_old = Thesaurus.find_minimum(s_th_old.uri)
@@ -50,11 +50,11 @@ describe "Thesaurus::Upgrade" do
 
     it "check subset needs to be upgraded, I" do
       s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
-      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V32#TH"))
-      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V38#TH"))
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
-      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
-      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V38#C99079"))
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
       subset_old = s_th_old.add_subset(tc_old.id)
       make_standard(subset_old)
       s_th_old = Thesaurus.find_minimum(s_th_old.uri)
@@ -67,11 +67,11 @@ describe "Thesaurus::Upgrade" do
 
     it "check subset of extension needs to be upgraded, I" do
       s_th_old = Thesaurus.create({ :identifier => "S TH2", :label => "Old Sponsor Thesaurus" })
-      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V32#TH"))
-      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V40#TH"))
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
-      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C100129/V32#C100129"))
-      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C100129/V40#C100129"))
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
       e_old = s_th_old.add_extension(tc_old.id) #add extension to old sponsor
       make_standard(e_old)
       s_th_old = Thesaurus.find_minimum(s_th_old.uri) #add subsetf of extension
@@ -87,11 +87,11 @@ describe "Thesaurus::Upgrade" do
 
     it "check extension needs to be upgraded, II" do
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
-      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V43#TH"))
-      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V46#TH"))
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
-      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
-      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
       e_old = s_th_old.add_extension(tc_old.id)
       make_standard(e_old)
       s_th_old = Thesaurus.find_minimum(s_th_old.uri)
@@ -106,11 +106,11 @@ describe "Thesaurus::Upgrade" do
 
     it "check subset needs to be upgraded, II" do
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
-      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V43#TH"))
-      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V46#TH"))
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
-      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
-      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
       subset_old = s_th_old.add_subset(tc_old.id)
       make_standard(subset_old)
       s_th_old = Thesaurus.find_minimum(s_th_old.uri)
