@@ -11,6 +11,15 @@ describe Thesauri::ManagedConceptsController do
     return "controllers/thesauri/managed_concept"
   end
 
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
+    puts colourize("Make standard: #{item.errors.count}", "blue")
+    puts colourize("Make standard: #{item.errors.full_messages.to_sentence}", "blue") if item.errors.count > 0
+  end
+
   describe "Authorized User - Read" do
 
     login_curator
@@ -114,12 +123,20 @@ describe Thesauri::ManagedConceptsController do
 
     it "upgrade data" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      ct = Thesaurus.create({:identifier => "TESTUpgrade", :label => "Test Thesaurus"})
-      source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
-      ext = ct.add_extension(source.id)
-      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      ct.set_referenced_thesaurus(ref_ct)
-      get :upgrade_data, id: source.id, impact: {sponsor_th_id: ct.id}
+      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V1#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V2#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C65047/V1#C65047"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C65047/V2#C65047"))
+      e_old = s_th_old.add_extension(tc_old.id)
+      make_standard(e_old)
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      get :upgrade_data, id: tc_old.id, impact: {sponsor_th_id: s_th_new.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
