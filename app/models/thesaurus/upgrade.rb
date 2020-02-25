@@ -24,30 +24,27 @@ class Thesaurus
     # @return [Boolean] return true if this instance has already been upgraded, false otherwise
     def upgraded?(th)
       set_type_and_references(th)
+      query_body = ""
+      if @type == :extension
+        query_body = %Q{
+          BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ #{self.uri.to_ref}} as ?x)
+          BIND ("Extension" as ?a)
+        }                
+      elsif @type == :sponsor_subset
+        query_body = %Q{
+          BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ #{self.uri.to_ref}} as ?x)
+          BIND ("Subset Of" as ?a)
+        }          
+      elsif @type == :reference_subset
+        query_body = %Q{
+          BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ #{self.uri.to_ref}} as ?x)
+          BIND ("Subset" as ?a)
+        }          
+      else
+        return true
+      end
       query_string = %Q{
-        SELECT DISTINCT ?a ?x WHERE              
-        {               
-          {
-            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends)+ #{self.uri.to_ref}} as ?x)
-            BIND ("Extension" as ?a)
-          }                
-          UNION               
-          {
-            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:extends/^th:subsets)+ #{self.uri.to_ref}} as ?x)
-            BIND ("Subset of extension" as ?a)
-          }                
-          UNION               
-          {
-            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference/^th:subsets)+ #{self.uri.to_ref}} as ?x)
-            BIND ("Subset" as ?a)
-          }          
-          UNION               
-          {
-            BIND (EXISTS {#{@target_th.uri.to_ref} (th:isTopConceptReference/bo:reference)+ #{self.uri.to_ref}} as ?x)
-            BIND ("Code List" as ?a)
-          }
-          FILTER (?x = true)
-        } 
+        SELECT DISTINCT ?a ?x WHERE { #{query_body} FILTER (?x = true) }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo])
       query_results.by_object(:x).any?
@@ -75,7 +72,8 @@ class Thesaurus
     def set_type
       return :extension if self.extension?
       return :sponsor_subset if self.subset? && @old_tc.owned?
-      :reference_subset
+      return :reference_subset if self.subset?
+      :other
     end
 
     # Set the target TC
