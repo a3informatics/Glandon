@@ -724,6 +724,47 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "upgrade impact" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..10)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      delete_all_public_test_files
+    end
+
+    it "upgrade impact, extension" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "upgrade impact, subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "upgrade impact, extension and subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+  end
+
   describe "updates" do
 
     before :all  do

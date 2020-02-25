@@ -358,7 +358,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
-    results = tc.impact(ct)
+    results = tc.upgrade_impact(ct)
     results.each do |x|
       tc = Thesaurus::ManagedConcept.find_minimum(x[:id])
       x[:upgraded] = tc.respond_to?(:upgraded?) ? tc.upgraded?(ct) : true

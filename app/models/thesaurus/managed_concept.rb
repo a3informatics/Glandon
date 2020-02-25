@@ -621,15 +621,14 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
   def impact(sponsor)
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension
-      WHERE      
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension WHERE      
       {   
         BIND (#{self.uri.to_ref} as ?source)
           {
             BIND (#{sponsor.uri.to_ref} as ?s) .
             ?s th:isTopConceptReference/bo:reference ?source  .
             ?s rdf:type ?t .
-            BIND (" " as ?n) .
+            BIND ("" as ?n) .
           } 
           UNION
           {
@@ -648,6 +647,52 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
           }
         ?s isoC:label ?l .
         ?s isoT:hasIdentifier/isoI:identifier ?i .
+        ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
+        BIND (EXISTS {?s th:extends ?y} as ?extension ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo, :isoC])
+    query_results.by_object_set([:s, :t, :l, :i, :n, :o, :subset, :extension]).each do |x|
+      if x[:subset].to_bool
+         type = x[:t].to_s + "#Subset"
+      elsif x[:extension].to_bool
+        type = x[:t].to_s + "#Extension"
+      else 
+        type = x[:t].to_s
+      end
+      results << {uri: x[:s].to_s, id: x[:s].to_id, real_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], rdf_type: type}
+    end
+    results
+  end
+
+  # Upgrade Impact. 
+  #
+  # @param th [Thesaurus] the sponsor thesaurus being upgraded
+  # @return [Hash] the results hash
+  def upgrade_impact(th)
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension WHERE      
+      {   
+        BIND (#{self.uri.to_ref} as ?source)
+          {
+            ?source th:narrower/^th:narrower ?s  .
+            FILTER (STR(?source) != STR(?s)) .
+            #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+          UNION
+          {
+            ?source ^th:subsets ?s  .
+            #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+        ?s isoC:label ?l .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        ?s isoT:hasIdentifier/isoI:hasScope #{IsoRegistrationAuthority.repository_scope.uri.to_ref} .
         ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
         BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
         BIND (EXISTS {?s th:extends ?y} as ?extension ) .

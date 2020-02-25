@@ -31,6 +31,12 @@ describe "Thesaurus::Upgrade" do
       load_cdisc_term_versions(1..8)
     end
 
+    it "check upgraded for something not interested in" do
+      s_th = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      expect(tc.upgraded?(s_th)).to be(true)
+    end
+
     it "check extension needs to be upgraded, I" do
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
       r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
