@@ -361,7 +361,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     results = tc.impact(ct)
     results.each do |x|
       tc = Thesaurus::ManagedConcept.find_minimum(x[:id])
-      x[:upgraded] = tc.upgraded?(ct)
+      x[:upgraded] = tc.respond_to?(:upgraded?) ? tc.upgraded?(ct) : true
     end
     render json: {data: results}
   end
