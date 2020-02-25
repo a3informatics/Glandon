@@ -703,6 +703,33 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     child
   end
 
+  # Replace Child. Replaces a child item that is itself managed
+  #
+  # @params [Thesaurus::ManagedConcept] old_ref the item to be replaced 
+  # @params [Thesaurus::ManagedConcept] new_ref the new item
+  # @return [Void] no return
+  def replace_child(old_ref, new_ref)
+    query = %Q{
+      DELETE
+      {
+        ?r bo:reference #{old_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{old_ref.uri.to_ref} .
+      }
+      INSERT
+      {
+        ?r bo:reference #{new_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{new_ref.uri.to_ref} .
+      }
+      WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference ?r .
+        ?r bo:reference #{old_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{old_ref.uri.to_ref} .
+      }
+    }
+    partial_update(query, [:th, :bo])
+  end
+
   # Select Children. Select 1 or more child items that are managed
   #
   # @params [Hash] params the parameters
@@ -947,36 +974,5 @@ private
     end
 
   end
-
-=begin
-  # Find From Concept. Finds the Thesaurus form a child irrespective of depth in the tree.
-  #
-  # @param id [string] The id of the form.
-  # @param namespace [hash] The raw triples keyed by id.
-  # @return [object] The thesaurus object.
-  def self.find_from_concept(id, ns)
-    result = self.new
-    query = UriManagement.buildNs(ns, ["iso25964"]) +
-      "SELECT ?a WHERE \n" +
-      "{\n" +
-      "  ?a (iso25964:hasConcept|iso25964:hasChild)%2B :" + id + " . \n" +
-      "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue('a', true, node)
-      result = self.find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri), false)
-    end
-    return result
-  end
-
-  # TODO: This needs looking at. used by CdiscTerm
-  def self.import(params, ownerNamespace)
-    object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
-    return object
-  end
-=end
 
 end

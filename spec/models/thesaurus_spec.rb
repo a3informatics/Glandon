@@ -568,6 +568,23 @@ describe Thesaurus do
       expect(item.to_h[:preferred_term][:label]).to eq("updated pt")
     end
 
+    it "replace child and update" do
+      th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S1222")
+      old_child = th.add_child(identifier: "S1222")
+      actual = th.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(1)
+      check_file_actual_expected(actual, sub_dir, "replace_child_expected_1a.yaml")
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S1333")
+      new_child = Thesaurus::ManagedConcept.create
+      th.replace_child(old_child, new_child)
+      actual = th.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(1)
+      check_file_actual_expected(actual, sub_dir, "replace_child_expected_1b.yaml")
+    end
+
     # Required for manul identifiers
     # it "allows a child TC to be added - error, invalid identifier" do
     #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
