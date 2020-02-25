@@ -48,28 +48,90 @@ describe "Thesaurus::Upgrade" do
       expect(e_old.upgraded?(s_th_new)).to be(false)
     end
 
-    it "upgraded? I" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      tc_1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V58#C99079"))
-      tc_2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V62#C99079"))
-      item = tc_1.create_extension
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C99079E/V1#C99079E"))
-      result = item.upgraded?(new_th)
-      expect(result).to eq(false)
-      item.upgrade(tc_2)
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C99079E/V1#C99079E"))
-      result = item.upgraded?(new_th)
-      expect(result).to eq(true)
+    it "check subset needs to be upgraded, I" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V32#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V38#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      tc_new = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V38#C99079"))
+      subset_old = s_th_old.add_subset(tc_old.id)
+      make_standard(subset_old)
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      expect(subset_old.upgraded?(s_th_new)).to be(false)
     end
 
-    it "upgraded? II" do
-      new_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
-      tc_1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66767/V35#C66767"))
-      tc_2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66767/V56#C66767"))
-      item = tc_1.create_extension
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.s-cubed.dk/C66767E/V1#C66767E"))
-      result = item.upgraded?(new_th)
-      expect(result).to eq(false)
+    it "check subset of extension needs to be upgraded, I" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH2", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V32#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V40#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C100129/V32#C100129"))
+      tc_new = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C100129/V40#C100129"))
+      
+
+      e_old = s_th_old.add_extension(tc_old.id) #add extension to old sponsor
+      make_standard(e_old)
+
+       s_th_old = Thesaurus.find_minimum(s_th_old.uri) #add subsetf of extension
+      subset_old = s_th_old.add_subset(e_old.id)
+      make_standard(subset_old)
+
+
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri) #make old sponsor standard
+      make_standard(s_th_old)
+
+
+      s_th_new = s_th_old.create_next_version #create new sponsor version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      
+
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      expect(subset_old.upgraded?(s_th_new)).to be(false)
+    end
+
+    it "check extension needs to be upgraded, II" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V43#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V46#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
+      tc_new = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
+      e_old = s_th_old.add_extension(tc_old.id)
+      make_standard(e_old)
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      expect(e_old.upgraded?(s_th_new)).to be(false)
+      e_old.upgrade(s_th_new)
+      e_old = Thesaurus::ManagedConcept.find_minimum(e_old.uri)
+      expect(e_old.upgraded?(s_th_new)).to be(true)
+    end
+
+    it "check subset needs to be upgraded, II" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V43#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V46#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
+      tc_new = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
+      subset_old = s_th_old.add_subset(tc_old.id)
+      make_standard(subset_old)
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      expect(subset_old.upgraded?(s_th_new)).to be(false)
+      subset_old.upgrade(s_th_new)
+      subset_old = Thesaurus::ManagedConcept.find_minimum(subset_old.uri)
+      expect(subset_old.upgraded?(s_th_new)).to be(true)
     end
 
   end
