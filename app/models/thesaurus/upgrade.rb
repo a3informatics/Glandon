@@ -23,6 +23,7 @@ class Thesaurus
     # @param th [Thesaurus] the new thesaurus
     # @return [Boolean] return true if this instance has already been upgraded, false otherwise
     def upgraded?(th)
+      return true if !interested?
       set_type_and_references(th)
       query_body = ""
       if @type == :extension
@@ -66,6 +67,11 @@ class Thesaurus
       return upgrade_extension(@new_tc) if @type == :extension
       return upgrade_subset(@new_tc) if @type == :sponsor_subset || :reference_subset
       Errors.application_error(self.class.name, __method__.to_s, "Only Subsets or Extensions can be upgraded.")
+    end
+
+    # Decide if we are interested in upgrading
+    def interested?
+      self.extension? || self.subset?
     end
 
     # Set the upgrade type
