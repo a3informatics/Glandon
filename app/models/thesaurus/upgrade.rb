@@ -7,12 +7,15 @@ class Thesaurus
 
   module Upgrade
 
-    # Upgraded?
+    # Upgrade. Upgrade the instance
     #
-    # @param th [Thesaurus] the new thesaurus
+    # @param th [Thesaurus] the new thesaurus to which the upgraded item belongs
+    # @return [Thesaurus::ManagedConcept] the new item or nil if errors.
     def upgrade(th)
       set_type_and_references(th)
-      execute if proceed?
+      new_item = execute
+      th.replace_child(self, new_item) if !new_item.nil?
+      new_item
     end
 
     # Upgraded?
