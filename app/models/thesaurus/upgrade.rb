@@ -46,7 +46,6 @@ class Thesaurus
       query_string = %Q{
         SELECT DISTINCT ?a ?x WHERE { #{query_body} FILTER (?x = true) }
       }
-    byebug
       query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo])
       query_results.by_object(:x).any?
     end

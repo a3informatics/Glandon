@@ -19,7 +19,7 @@ class Thesaurus
       transaction_begin
       self.save
       subset.delete_subset
-      subset.add(uris.map{|x| x.to_id})
+      subset.add(uris.map{|x| x.to_id}) if uris.any?
       transaction_execute
       self
     end
