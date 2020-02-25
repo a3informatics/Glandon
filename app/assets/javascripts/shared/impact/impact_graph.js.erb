@@ -11,7 +11,7 @@
  * @param noGraph [Boolean] if no graph rendered, only table of items affected, set to true
  * @return [void]
  */
-function ImpactGraph(dataUrl, noGraph) {
+function ImpactGraph(dataUrl, noGraph, useCache) {
   this.cache = {};
   this.baseUrl = dataUrl;
   this.tabName = "tab-graph";
@@ -19,6 +19,7 @@ function ImpactGraph(dataUrl, noGraph) {
   this.processing = false;
   this.activeAjaxes = 0;
   this.noGraph = noGraph;
+  this.useCache = (useCache == null ? true : useCache);
 
   this.itemList = new ManagedItemIconList("No affected items found.");
   this.graph = this.noGraph == true ? null : new D3GraphV2();
@@ -186,7 +187,7 @@ ImpactGraph.prototype.renderData = function(data) {
  * @return [void]
  */
 ImpactGraph.prototype.saveToCache = function(id, data) {
-  // if(this.cache[id] == null)
+  if(this.useCache == true)
     this.cache[id] = data;
 }
 
