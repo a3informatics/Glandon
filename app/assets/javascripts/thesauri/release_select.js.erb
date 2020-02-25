@@ -38,7 +38,9 @@ function ReleaseSelect(){
  * @return [TimelineSlider]
  */
 ReleaseSelect.prototype.initTimelineSlider = function(){
-  return new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+  var tl = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+  tl.disableRange(tl.tl_points.eq(0).text(), $("#cdisc-version-label").text());
+  return tl;
 }
 
 /**
@@ -118,8 +120,10 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
       var CDISCrows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
       if (!this.tabs.target.mcs.loading && CDISCrows.count() > 0)
         location.reload();
-      else
+      else {
+        this.timeline.disableRange(this.timeline.tl_points.eq(0).text(), $("#cdisc-version-label").text());
         this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+      }
     },
     error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
