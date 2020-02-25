@@ -342,28 +342,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = read_concept(protect_from_bad_id(params))
     if !tc.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
-      baseline_ref_ct = ct.get_baseline_referenced_thesaurus
-      ref_ct = ct.get_referenced_thesaurus
-      source = baseline_ref_ct.find_by_identifiers([tc.identifier])
-      if !source.key?(tc.identifier)
-        render json: {errors: "."}
+      item = tc.upgrade(ct)
+      if tc.errors.empty?
+        render json: {data: ""}, status: 200
       else
-        source = Thesaurus::ManagedConcept.find_minimum(source[tc.identifier])
+        render json: {errors: tc.errors}
       end
-      results = tc.upgrade?(source.id, ref_ct)
-      if results[:errors].empty?
-        target = ref_ct.find_by_identifiers([tc.identifier])
-        if !target.key?(tc.identifier)
-          render json: {errors: "."}
-        else
-          target = Thesaurus::ManagedConcept.find_minimum(target[tc.identifier])
-        end
-        new_tc = tc.upgrade(target)
-          render json: {data: ""}, status: 200
-      else
-        render json: {errors: results[:errors]}
-      end
-        Token.find_token(tc, current_user).release
+      Token.find_token(tc, current_user).release
     else
       redirect_to request.referrer
     end
@@ -371,18 +356,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def upgrade_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
-    #ref_ct = ct.get_referenced_thesaurus
     results = tc.impact(ct)
     results.each do |x|
       tc = Thesaurus::ManagedConcept.find_minimum(x[:id])
-      #if x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension" ||  x[:rdf_type] == "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset"
       x[:upgraded] = tc.upgraded?(ct)
-      #else
-      #  upgraded = true
-      #end
-      #x[:upgraded] = upgraded
     end
     render json: {data: results}
   end
@@ -547,7 +526,7 @@ private
   end
 
   def upgrade_params
-    params.require(:upgrade).permit(:source_id, :target_id, :sponsor_th_id)
+    params.require(:upgrade).permit(:sponsor_th_id)
   end
 
   # Not required currently, will be for user-defined identifiers

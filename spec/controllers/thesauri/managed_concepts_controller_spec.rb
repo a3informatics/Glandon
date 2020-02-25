@@ -5,6 +5,7 @@ describe Thesauri::ManagedConceptsController do
   include DataHelpers
   include UserAccountHelpers
   include IsoManagedHelpers
+  include ControllerHelpers
 
   def sub_dir
     return "controllers/thesauri/managed_concept"
@@ -105,50 +106,24 @@ describe Thesauri::ManagedConceptsController do
       ct = Thesaurus.create({:identifier => "TESTUpgrade", :label => "Test Thesaurus"})
       ct.set_referenced_thesaurus(ref_ct)
       target = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V2#C65047"))
-      put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id, source_id: source.id, target_id: target.id}
+      put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
     end
 
     it "upgrade data" do
-      expected = [
-                  {
-                    :uri=>"http://www.s-cubed.dk/Identifier_1/V1#TH",
-                    :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lkZW50aWZpZXJfMS9WMSNUSA==",
-                    :real_type=>"http://www.assero.co.uk/Thesaurus#Thesaurus",
-                    :label=>"Label 1",
-                    :identifier=>"Identifier 1",
-                    :notation=>" ",
-                    :owner=>"S-cubed",
-                    :rdf_type=>"http://www.assero.co.uk/Thesaurus#Thesaurus",
-                    :upgraded=>true
-                  },
-                  {
-                    :uri=>"http://www.s-cubed.dk/C99079E/V1#C99079E",
-                    :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0M5OTA3OUUvVjEjQzk5MDc5RQ==",
-                    :real_type=>"http://www.assero.co.uk/Thesaurus#ManagedConcept",
-                    :label=>"Epoch",
-                    :identifier=>"C99079E",
-                    :notation=>"EPOCH",
-                    :owner=>"S-cubed",
-                    :rdf_type=>"http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension",
-                    :upgraded=>false
-                  }
-                ]
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
-      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct = Thesaurus.create({:identifier => "TESTUpgrade", :label => "Test Thesaurus"})
+      source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
+      ext = ct.add_extension(source.id)
+      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       ct.set_referenced_thesaurus(ref_ct)
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgraded?).and_return(false)
-      get :upgrade_data, id: "tc_1.id", impact: {sponsor_th_id: ct.id}
+      get :upgrade_data, id: source.id, impact: {sponsor_th_id: ct.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected) 
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_data_expected_1.yaml", write_file: true)
     end
 
     it "differences summary" do
