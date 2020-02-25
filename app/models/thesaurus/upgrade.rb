@@ -49,6 +49,7 @@ class Thesaurus
           FILTER (?x = true)
         } 
       }
+    byebug
       query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo])
       query_results.by_object(:x).any?
     end
@@ -82,7 +83,7 @@ class Thesaurus
     def set_target_tc
       th = set_target_th
       results = th.find_identifier(@old_tc.identifier)
-      Errors.application_error(self.class.name, __method__.to_s, "Cannot find target code list, identifier 'self.identifier'.") if results.empty?
+      Errors.application_error(self.class.name, __method__.to_s, "Cannot find target code list, identifier '#{self.identifier}'.") if results.empty?
       Thesaurus::ManagedConcept.find_minimum(results.first[:uri])
     end
 
@@ -105,9 +106,9 @@ class Thesaurus
     # Proceed? Should the upgrade proceed
     def proceed?
       return true if @type != :reference_subset
-      based_on = self.subsets
+      based_on = Thesaurus::ManagedConcept.find_with_properties(self.subsets)
       latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: based_on.identifier, scope: based_on.scope)
-      return true if latest_uri == based_on.uri
+      return true if latest_uri != based_on.uri
       self.errors.add(:base, "Cannot upgrade. You must first upgrade the referenced code list: #{based_on.identifier}")
       false
     end
