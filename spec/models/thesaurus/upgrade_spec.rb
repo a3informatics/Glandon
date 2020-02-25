@@ -19,24 +19,25 @@ describe "Thesaurus::Upgrade" do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..62)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
-      load_data_file_into_triple_store("thesaurus_sponsor6_impact.ttl")
+      load_cdisc_term_versions(1..46)
+      #load_data_file_into_triple_store("mdr_identification.ttl")
+      #load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
+      #load_data_file_into_triple_store("thesaurus_sponsor6_impact.ttl")
     end
 
     it "check extension needs to be upgraded, I" do
       s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
-      tc_55 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V54#C115304"))
-      tc_61 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V60#C115304"))
+      tc_55 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V43#C115304"))
+      tc_61 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C115304/V46#C115304"))
       e_old = tc_55.create_extension
       s_th_old.add_extension(e_old.id)
       params = {}
       params[:registration_status] = "Qualified"
-      params[:previous_state] = "Recorded"      
+      params[:previous_state] = "Incomplete"
+  byebug      
       s_th_old.update_status(params)
       s_th_new = s_th_old.create_next_version
-byebug
+
       e_old.upgraded?(s_th_new)
     end
 
