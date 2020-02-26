@@ -63,13 +63,13 @@
     ?cl th:notation ?clsub .
     ?cl th:preferredTerm/isoC:label ?clpt .
     ?cl th:narrower ?cli .
-    ?cl isoC:tagged/isoC:prefLabel ?clt .
+    OPTIONAL {?cl isoC:tagged/isoC:prefLabel ?clt .}
     OPTIONAL {?cl th:synonym/isoC:label ?clsyn .}
     ?cli th:identifier ?cliidentifier .  
     ?cli isoC:label ?clilabel .  
     ?cli th:notation ?clisub .
     ?cli th:preferredTerm/isoC:label ?clipt .
-    ?cli isoC:tagged/isoC:prefLabel ?clit .
+    OPTIONAL {?cli isoC:tagged/isoC:prefLabel ?clit .}
     OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
   } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ?cliidentifier ?clipt ?clilabel ?clisub ?p ?o ORDER BY ?clidentifier'
 :type: Ad Hoc Report Definition
