@@ -1,6 +1,6 @@
-namespace :data do
+namespace :users do
   desc "Update Users Enable"
-  task :users_enable => :environment do
+  task :active => :environment do
     User.update_all is_active: true
   end
 end
