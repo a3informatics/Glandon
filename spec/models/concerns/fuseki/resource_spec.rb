@@ -214,6 +214,13 @@ describe Fuseki::Resource do
       expect(item.respond_to?(:fred_objects?)).to eq(true)
     end
 
+    it "object and push method" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      TestR4.object_property(:fred, {cardinality: :many, model_class: "TestRTarget", children: true})
+      item = TestR4.new
+      expect(item.respond_to?(:fred_push)).to eq(true)
+    end
+
   end
 
   describe "read metadata" do

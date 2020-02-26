@@ -82,10 +82,11 @@ class IsoConceptV2 < Fuseki::Base
   # @option params [String] :reference any references
   # @return [Annotation::ChangeNote] the change note, may contain errors.
   def add_change_note(params)
-    transaction_begin
+    tx = transaction_begin
+    params[:transaction] = tx
     cn = Annotation::ChangeNote.create(params)
-    op_ref = OperationalReferenceV3.create({reference: self.uri}, cn)
-    cn.current << op_ref
+    op_ref = OperationalReferenceV3.create({reference: self.uri, transaction: tx}, cn)
+    cn.current_push(op_ref)
     cn.save
     transaction_execute
     cn

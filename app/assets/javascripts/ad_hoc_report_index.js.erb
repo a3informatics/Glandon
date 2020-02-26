@@ -13,12 +13,12 @@ $(document).ready(function(){
   });
 
   // Delete Report
-  let removeReport = function(id) {
+  var removeReport = function(id) {
     new ConfirmationDialog(function(){ $('#delete_link_'+id).click() }, {dangerous: true}).show();
   }
 
   // Open Select Item for Report Dialog
-  let selectReportItem = function(id) {
+  var selectReportItem = function(id) {
     mis.type = $("#paramtype-" + id).val();
     mis.setDescription($("#paramdescription-" + id).val());
     mis.callback = function(selectedId) { location.href = makeParamReportUrl(id, selectedId); }
@@ -26,12 +26,12 @@ $(document).ready(function(){
   }
 
   // Get report ID from Jquery element
-  let getReportId = function(el) {
+  var getReportId = function(el) {
     return $(el).attr("id").split('-')[1];
   }
 
   // Makes report parametrized url, based on startParamReportUrl declared in the view
-  let makeParamReportUrl = function(id, val) {
+  var makeParamReportUrl = function(id, val) {
     return startParamReportUrl.replace("reportId", id).replace("reportParam", val);
   }
 

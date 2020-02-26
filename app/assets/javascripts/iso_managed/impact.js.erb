@@ -3,11 +3,11 @@ $(document).ready(function(){
   var ccp = new ChangesCdiscPanel(cdiscChangesUrl);
   var dp = new DifferencesPanel(null);
   var cp = new ChangesPanel(null, 2);
-  var ig = new ImpactGraph();
+  var ig = new ImpactGraph(graphBaseUrl);
 
   var selectCallback = function(dataRow){
     toggleTableActive(ccp.id, false);
-    $("#impact-item-identifier").text(" of " + dataRow.identifier);
+    $("#impact-item-identifier").text(dataRow.identifier);
     $("#tab-affected").click();
     dp.reload(dataRow.differences_url);
     cp.reload(dataRow.changes_url);

@@ -110,8 +110,9 @@ module Sparql
       predicates.each_with_index {|x, index| parts << "#{uri.to_ref} #{x.to_ref} ?o#{index+1} . " }
       where_triples = parts.map {|x| "OPTIONAL { #{x}}" }.join("\n")
       delete_triples = parts.join("\n")
-      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_triples}\n}\n" + 
+      result = "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_triples}\n}\n" + 
         "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{where_triples}\n}"  
+      result
     end
 
     # To Create Sparql. Build the sparql for a create

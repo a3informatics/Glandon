@@ -5,9 +5,19 @@ describe Thesauri::ManagedConceptsController do
   include DataHelpers
   include UserAccountHelpers
   include IsoManagedHelpers
+  include ControllerHelpers
 
   def sub_dir
     return "controllers/thesauri/managed_concept"
+  end
+
+  def make_standard(item)
+    params = {}
+    params[:registration_status] = "Standard"
+    params[:previous_state] = "Incomplete"
+    item.update_status(params)
+    puts colourize("Make standard: #{item.errors.count}", "blue")
+    puts colourize("Make standard: #{item.errors.full_messages.to_sentence}", "blue") if item.errors.count > 0
   end
 
   describe "Authorized User - Read" do
@@ -15,7 +25,7 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_upgrade.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
@@ -95,6 +105,42 @@ describe Thesauri::ManagedConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "upgrade" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/U00001/V1#U00001"))
+      source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
+      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.create({:identifier => "TESTUpgrade", :label => "Test Thesaurus"})
+      ct.set_referenced_thesaurus(ref_ct)
+      target = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V2#C65047"))
+      put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
+    end
+
+    it "upgrade data" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V1#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V2#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_old = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C65047/V1#C65047"))
+      tc_new = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C65047/V2#C65047"))
+      e_old = s_th_old.add_extension(tc_old.id)
+      make_standard(e_old)
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      get :upgrade_data, id: tc_old.id, impact: {sponsor_th_id: s_th_new.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_data_expected_1.yaml", write_file: true)
     end
 
     it "differences summary" do

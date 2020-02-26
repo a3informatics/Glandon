@@ -337,6 +337,35 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: results}
   end
 
+  def upgrade
+    authorize Thesaurus, :edit?
+    tc = read_concept(protect_from_bad_id(params))
+    if !tc.nil?
+      ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
+      item = tc.upgrade(ct)
+      if tc.errors.empty?
+        render json: {data: ""}, status: 200
+      else
+        render json: {errors: tc.errors}
+      end
+      Token.find_token(tc, current_user).release
+    else
+      redirect_to request.referrer
+    end
+  end
+
+  def upgrade_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
+    results = tc.upgrade_impact(ct)
+    results.each do |x|
+      tc = Thesaurus::ManagedConcept.find_minimum(x[:id])
+      x[:upgraded] = tc.respond_to?(:upgraded?) ? tc.upgraded?(ct) : true
+    end
+    render json: {data: results}
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
@@ -385,7 +414,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
         render json: {data: {}, error: errors}
       else
-        render :json => {:errors => ["token_timeout_message"]}, :status => 422
+        render :json => {:errors => [token_timeout_message]}, :status => 422
       end
     else
       render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
@@ -424,8 +453,8 @@ private
   # Read a Thesaurus Concept
   def read_concept(id)
     tc = Thesaurus::ManagedConcept.find_with_properties(id)
-    last_id = Thesaurus::ManagedConcept.history_uris(identifier: tc.has_identifier.identifier, scope: tc.scope).first
-    tc = Thesaurus::ManagedConcept.find_with_properties(last_id)
+    latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
+    tc = Thesaurus::ManagedConcept.find_with_properties(latest_uri)
     tc = edit_item(tc)
     return nil if tc.nil?
     tc.synonyms_and_preferred_terms
@@ -494,6 +523,10 @@ private
 
   def impact_params
     params.require(:impact).permit(:sponsor_th_id)
+  end
+
+  def upgrade_params
+    params.require(:upgrade).permit(:sponsor_th_id)
   end
 
   # Not required currently, will be for user-defined identifiers

@@ -1,25 +1,28 @@
 /*
-* Impact Analysis Graph
+* Impact Analysis Graph and Table
 *
 */
 
 /**
- * Impact Analysis Graph Constructor
+ * Impact Analysis Graph and Table Constructor
  * Gets data, builds and renders impact graph, handles events
  *
  * @param dataUrl [String] url to fetch the data
+ * @param noGraph [Boolean] if no graph rendered, only table of items affected, set to true
  * @return [void]
  */
-function ImpactGraph(dataUrl) {
+function ImpactGraph(dataUrl, noGraph, useCache) {
   this.cache = {};
-  this.graphBaseUrl = graphBaseUrl;
+  this.baseUrl = dataUrl;
   this.tabName = "tab-graph";
   this.data = null;
   this.processing = false;
   this.activeAjaxes = 0;
+  this.noGraph = noGraph;
+  this.useCache = (useCache == null ? true : useCache);
 
-  this.itemsAffectedPanel = new ManagedItemIconList("No affected items found.");
-  this.graph = new D3GraphV2();
+  this.itemList = new ManagedItemIconList("No affected items found.");
+  this.graph = this.noGraph == true ? null : new D3GraphV2();
 }
 
 /**
@@ -111,6 +114,8 @@ ImpactGraph.prototype.filterData = function(newData, currentItem) {
     // Item not seen before
     if (idxInInstanceData == -1) {
       item.impactLinks = [currentItem.id];
+      item["target_id"] = (currentItem.cl_new || currentItem.target_id);
+      item["source_id"] = (currentItem.id || currentItem.source_id) ;
       filtered.push(item);
     }
     // Item seen before, add link to current
@@ -136,7 +141,13 @@ ImpactGraph.prototype.renderData = function(data) {
     return;
 
   // Render in itemsAffectedPanel (without the root node)
-  this.itemsAffectedPanel.addItems(data.slice(1));
+  this.itemList.addItems(data.slice(1));
+
+  if (this.noGraph == true){
+    this.loading(false);
+    return;
+  }
+
 
   // Build graph data - nodes, links and draw
   setTimeout(function(){
@@ -163,7 +174,6 @@ ImpactGraph.prototype.renderData = function(data) {
         });
       }
     });
-
     this.graph.draw({links: links, nodes: nodes});
     this.loading(false);
   }.bind(this), 100);
@@ -177,7 +187,7 @@ ImpactGraph.prototype.renderData = function(data) {
  * @return [void]
  */
 ImpactGraph.prototype.saveToCache = function(id, data) {
-  // if(this.cache[id] == null)
+  if(this.useCache == true)
     this.cache[id] = data;
 }
 
@@ -198,7 +208,7 @@ ImpactGraph.prototype.isCached = function(id) {
  * @return [String] formatted URL
  */
 ImpactGraph.prototype.makeDataUrl = function(id) {
-  return this.graphBaseUrl.replace("clId", id);
+  return this.baseUrl.replace("clId", id);
 }
 
 /**
@@ -209,7 +219,7 @@ ImpactGraph.prototype.makeDataUrl = function(id) {
  */
 ImpactGraph.prototype.loading = function(enable) {
   if (typeof tabLoading != "undefined"){
-      this.itemsAffectedPanel.loading(enable);
+      this.itemList.loading(enable);
       tabLoading(this.tabName, enable);
       this.processing = enable;
   }

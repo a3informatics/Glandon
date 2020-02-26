@@ -212,6 +212,20 @@ TimelineSlider.prototype.moveToDate = function(slider, date){
   }, 320)
 }
 
+// Greys out points in a range of dates
+TimelineSlider.prototype.disableRange = function(fromDate, untilDate) {
+  var _this = this;
+
+  fromDate = parseDateString(fromDate);
+  untilDate = parseDateString(untilDate);
+
+  this.tl_points.each(function(){
+    var current = parseDateString($(this).text());
+    if (current >= fromDate && current < untilDate)
+      $(this).addClass("disabled");
+});
+
+}
 
 <% if Rails.env.test? %>
 

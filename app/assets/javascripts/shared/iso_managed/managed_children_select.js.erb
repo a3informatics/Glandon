@@ -142,6 +142,11 @@ ManagedChildrenSelect.prototype.setListeners = function () {
  */
 ManagedChildrenSelect.prototype.addOrRemoveItems = function (indexes, action) {
 	if (!this.autoSelectMode) {
+
+		if (this.target.mcs.loading) {
+			this.revertAction(indexes, action);
+			return;
+		}
 		this.processing(true, "Updating selection...");
 
 		var params = { context: this, action: action, autoDeselect: false };
@@ -252,6 +257,11 @@ ManagedChildrenSelect.prototype.processing = function (enable, text) {
 
 	this.table.processing(enable);
 	toggleTableActive(this.tableId, !enable);
+
+	enable ? $("#select-cdisc-ver-button").addClass("disabled") : $("#select-cdisc-ver-button").removeClass("disabled");
+	
+	if($("#cdisc-version-label").text() != "None")
+		enable ? $("#release-select-tabs .tab-option").addClass("disabled") : $("#release-select-tabs .tab-option").removeClass("disabled")
 }
 
 /**
@@ -324,6 +334,23 @@ ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
 	});
 
 	return _this.table.rows(indexes);
+}
+
+/**
+ * Reverts action UI on error
+ * @param indexes [Array] Indexes of rows that are affected
+ * @param action [String] select / deselect
+ *
+ * @return [String] Styled button HTML
+ */
+ManagedChildrenSelect.prototype.revertAction = function (indexes, action) {
+	this.autoSelectMode = true;
+	if(action == "add")
+		this.table.rows(indexes).deselect();
+	else
+		this.table.rows(indexes).select();
+
+	this.autoSelectMode = false;
 }
 
 /**

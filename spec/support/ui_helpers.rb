@@ -539,7 +539,8 @@ module UiHelpers
 			clone: "Clone",
 			compare: "Compare",
 			run: "Run",
-			results: "Results"
+			results: "Results",
+      upgrade: "Upgrade Code Lists"
     }
 	end
 
@@ -549,6 +550,13 @@ module UiHelpers
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
     page.execute_script(js_code)
   end
+
+	def context_menu_element_v2 (table, text, action)
+		option = context_menu_actions_map[action]
+		js_code = "var el = contextMenuElementV2('#{table}', '#{text}', '#{option}'); "
+		js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
+		page.execute_script(js_code)
+	end
 
 	def context_menu_element_header (action)
 		option = context_menu_actions_map[action]

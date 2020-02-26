@@ -476,25 +476,6 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
     end
 
-    it "determines if code list extended and finds the URIs" do
-      tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
-      expect(tc1.extended?).to eq(false)
-      expect(tc2.extended?).to eq(false)
-      expect(tc1.extension?).to eq(false)
-      expect(tc2.extension?).to eq(false)
-      sparql = %Q{INSERT DATA { #{tc2.uri.to_ref} th:extends #{tc1.uri.to_ref} }}
-      Sparql::Update.new.sparql_update(sparql, "", [:th])
-      expect(tc1.extended?).to eq(true)
-      expect(tc2.extended?).to eq(false)
-      expect(tc1.extension?).to eq(false)
-      expect(tc2.extension?).to eq(true)
-      expect(tc1.extended_by).to eq(tc2.uri)
-      expect(tc1.extension_of).to eq(nil)
-      expect(tc2.extension_of).to eq(tc1.uri)
-      expect(tc2.extended_by).to eq(nil)
-    end
-
   end
 
   describe "change notes" do
@@ -540,7 +521,7 @@ describe "Thesaurus::ManagedConcept" do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..33)
+      #load_cdisc_term_versions(1..33)
       delete_all_public_test_files
     end
 
@@ -739,6 +720,47 @@ describe "Thesaurus::ManagedConcept" do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
       results = tc.impact(th)
       check_file_actual_expected(results, sub_dir, "impact_expected_5.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "upgrade impact" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..10)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      delete_all_public_test_files
+    end
+
+    it "upgrade impact, extension" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "upgrade impact, subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "upgrade impact, extension and subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_3.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end

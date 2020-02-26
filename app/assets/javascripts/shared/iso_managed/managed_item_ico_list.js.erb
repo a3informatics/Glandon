@@ -14,7 +14,8 @@
 function ManagedItemIconList(emptyTableText) {
 	this.tableId = "#managed-item-icon-table";
 	this.emptyTable = emptyTableText || "No items were found.";
-  this.table = this.initTable();
+	this.columns = this.columns();
+  this.initTable();
   return this;
 }
 
@@ -23,10 +24,10 @@ function ManagedItemIconList(emptyTableText) {
  *
  * @return [void]
  */
-ManagedItemIconList.prototype.initTable = function () {
-	return $(this.tableId).DataTable({
+ManagedItemIconList.prototype.initTable = function (columns) {
+	this.table = $(this.tableId).DataTable({
 		"order": [[0, "desc"]],
-		"columns": this.columns(),
+		"columns": this.columns,
 		"pageLength": pageLength,
 		"lengthMenu": pageSettings,
 		"processing": true,
@@ -115,7 +116,7 @@ ManagedItemIconList.prototype.itemHTML = function(data) {
   data.notation == null ? "" : data.notation;
   data.label == null ? "Empty label" : data.label;
 
-  var html = '<div class="font-regular text-normal">'+data.label+'<span class="font-light"> ('+typeToString[data.rdf_type]+')</span></div>';
+  var html = '<div class="font-regular text-small">'+data.label+'<span class="font-light"> ('+typeToString[data.rdf_type]+')</span></div>';
   html += '<div class="font-light text-small">'+data.notation+' ('+data.identifier+')</div>';
   return html;
 }

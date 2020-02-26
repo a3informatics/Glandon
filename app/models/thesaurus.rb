@@ -9,7 +9,8 @@ class Thesaurus <  IsoManagedV2
 
   object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TmcReference", children: true
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
-  object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
+  object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3"
+  object_property :baseline_reference, cardinality: :one, model_class: "OperationalReferenceV3"
 
   include Thesaurus::Search
   include Thesaurus::Where
@@ -531,8 +532,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
       SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
-      (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) 
-      (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) 
+      (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys)
+      (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt)
       WHERE\n
       {
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
@@ -587,7 +588,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     (managed_children_states & IsoRegistrationStateV2.previous_states(self.registration_status)).empty?
   end
 
-  # Managed Children States. 
+  # Managed Children States.
   #
   # @return [Array] array of states for the children
   def managed_children_states
@@ -595,37 +596,94 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       SELECT ?s WHERE
       {
         #{self.uri.to_ref} th:isTopConceptReference/bo:reference/isoT:hasState/isoR:registrationStatus ?s .
-      } 
+      }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoR])
     query_results.by_object_set([:s]).map{|x| x[:s].to_sym}
   end
 
-  # Set Referenced Thesaurus. Set the referenced thesaurus
+  # Upgrade. Upgrade the thesaurus when referened version updated.
+  #
+  # @return [Void] no return
+  def upgrade
+    self.reference_objects
+    self.baseline_reference_objects
+    query_string = %Q{
+      SELECT DISTINCT ?s ?x WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference ?r .
+        ?r bo:ordinal ?ord .
+        ?r bo:reference ?s .
+         #{self.baseline_reference.reference.to_ref} th:isTopConceptReference/bo:reference ?s .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        OPTIONAL {
+          #{self.reference.reference.to_ref} th:isTopConceptReference/bo:reference ?x .
+          ?x isoT:hasIdentifier/isoI:identifier ?i .
+        }
+      } ORDER BY ?ord
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
+    old_items = query_results.by_object_set([:s]).map{|x| x[:s]}
+    new_items = query_results.by_object_set([:x]).map{|x| x[:x]}.reject(&:blank?)
+    deselect_children({id_set: old_items.map{|x| x.to_id}})
+    select_children({id_set: new_items.map{|x| x.to_id}})
+  end
+
+  # Set Referenced Thesaurus. Set the referenced thesaurus and set the baseline if necessary
   #
   # @param [Thesaurus] object the thesaurus object
-  # @return [Void] no return
+  # @return [Boolean] true if the upgrade should be called on this instance
   def set_referenced_thesaurus(object)
     tx = transaction_begin
+    should_upgrade = false
     self.reference_objects
+    self.baseline_reference_objects
     if self.reference.nil?
-      self.reference = OperationalReferenceV3.create({reference: object.uri, transaction: tx}, self)
+      self.reference = OperationalReferenceV3.create({reference: object.uri, ordinal: 1, transaction: tx}, self)
+      self.baseline_reference = nil
       self.save
     else
       ref = self.reference
+      self.baseline_reference = OperationalReferenceV3.create({reference: ref.reference.dup, ordinal: 2, transaction: tx}, self) if self.baseline_reference.nil?
+      self.save
+      ref.transaction_set(tx)
       ref.reference = object.uri
       ref.save
+      should_upgrade = true
     end
     transaction_execute
+    should_upgrade
+  end
+
+  # Check if can Set Referenced Thesaurus.
+  #
+  # @param [Thesaurus] object the thesaurus object
+  # @return [Object] current object
+  def valid_reference?(object)
+    self.reference_objects
+    return self if self.reference.nil?
+    ref = self.reference
+    ref_th = Thesaurus.find_minimum(ref.reference)
+    self.errors.add(:base, "The reference thesaurus must be a later version than the current one is (#{ref_th.version_label}).") if object.version <= ref_th.version
+    self
   end
 
   # Referenced Thesaurus. Find the single referenced thesaurus
   #
-  # @return [Uri] the uri of the singfle reference thesaurus
+  # @return [Uri] the uri of the single reference thesaurus
   def get_referenced_thesaurus
     ref = self.reference_objects
     return nil if ref.nil?
-    return Thesaurus.find_minimum(ref.reference)
+    Thesaurus.find_minimum(ref.reference)
+  end
+
+  # Baseline Referenced Thesaurus. Find the single referenced baseline thesaurus
+  #
+  # @return [Uri] the uri of the single baseline reference thesaurus
+  def get_baseline_referenced_thesaurus
+    ref = self.baseline_reference_objects
+    return nil if ref.nil?
+    Thesaurus.find_minimum(ref.reference)
   end
 
   # Add Child. Adds a child item that is itself managed
@@ -635,14 +693,41 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   # @return [Object] the created object. May contain errors if unsuccesful.
   def add_child(params={})
     ordinal = next_ordinal(:is_top_concept_reference)
-    transaction_begin
+    tx = transaction_begin
     child = Thesaurus::ManagedConcept.create
     return child if child.errors.any?
-    ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal}, self)
+    ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal, transaction: tx}, self)
     self.add_link(:is_top_concept, child.uri)
     self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
     child
+  end
+
+  # Replace Child. Replaces a child item that is itself managed
+  #
+  # @params [Thesaurus::ManagedConcept] old_ref the item to be replaced 
+  # @params [Thesaurus::ManagedConcept] new_ref the new item
+  # @return [Void] no return
+  def replace_child(old_ref, new_ref)
+    query = %Q{
+      DELETE
+      {
+        ?r bo:reference #{old_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{old_ref.uri.to_ref} .
+      }
+      INSERT
+      {
+        ?r bo:reference #{new_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{new_ref.uri.to_ref} .
+      }
+      WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference ?r .
+        ?r bo:reference #{old_ref.uri.to_ref} .
+        #{self.uri.to_ref} th:isTopConcept #{old_ref.uri.to_ref} .
+      }
+    }
+    partial_update(query, [:th, :bo])
   end
 
   # Select Children. Select 1 or more child items that are managed
@@ -653,12 +738,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   def select_children(params)
     ordinal = next_ordinal(:is_top_concept_reference)
     self.is_top_concept_reference_objects
-    transaction_begin
+    tx = transaction_begin
     params[:id_set].each do |id|
       uri = Uri.new(id: id)
       refs = self.is_top_concept_reference.select {|x| x.reference == uri}
       next if refs.any?
-      ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal}, self)
+      ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal, transaction: tx}, self)
       self.add_link(:is_top_concept, uri)
       self.add_link(:is_top_concept_reference, ref.uri)
       ordinal += 1
@@ -790,14 +875,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     end
     headers = ["Code", "Codelist Extensible (Yes/No)", "Codelist Name",
       "CDISC Submission Value", "CDISC Definition"]
-    CSVHelpers.format(headers, results) 
+    CSVHelpers.format(headers, results)
   end
 
   # Compare_to_csv. Get the differences between two versions in csv format
   #
   # @params [] first version
   # @params [] second_version
-  # @return 
+  # @return
   def self.compare_to_csv(first_version, second_version)
     results = first_version.differences(second_version)
     headers = ["Status","Code", "Codelist Name","CDISC Submission Value"]
@@ -809,7 +894,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
           x.delete(:id)
           item = x.map{|k,v| v.to_s}.to_a
           new_results <<  item.insert(0,key.to_s)
-         end 
+         end
         results.delete(:versions)
       end
        CSVHelpers.format(headers, new_results)
@@ -823,7 +908,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
   end
 
 private
-  
+
   def self.recursion(item_id, results, sponsor_version, have_i_seen)
     tc = Thesaurus::ManagedConcept.find_with_properties(item_id)
     #tc.synonyms_and_preferred_terms
@@ -889,36 +974,5 @@ private
     end
 
   end
-
-=begin
-  # Find From Concept. Finds the Thesaurus form a child irrespective of depth in the tree.
-  #
-  # @param id [string] The id of the form.
-  # @param namespace [hash] The raw triples keyed by id.
-  # @return [object] The thesaurus object.
-  def self.find_from_concept(id, ns)
-    result = self.new
-    query = UriManagement.buildNs(ns, ["iso25964"]) +
-      "SELECT ?a WHERE \n" +
-      "{\n" +
-      "  ?a (iso25964:hasConcept|iso25964:hasChild)%2B :" + id + " . \n" +
-      "  ?a rdf:type iso25964:Thesaurus . \n" +
-      "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue('a', true, node)
-      result = self.find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri), false)
-    end
-    return result
-  end
-
-  # TODO: This needs looking at. used by CdiscTerm
-  def self.import(params, ownerNamespace)
-    object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
-    return object
-  end
-=end
 
 end

@@ -89,7 +89,7 @@ describe Annotation::ChangeNote do
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     cn_1 = Annotation::ChangeNote.create(user_reference: "UR1", description: "D2", reference: "R2")
     or_1 = OperationalReferenceV3.create({reference: nil, context: nil}, cn_1)
-    cn_1.current << or_1
+    cn_1.current_push(or_1)
     cn_1.save
     item = Annotation::ChangeNote.find(cn_1.id)
     item.delete

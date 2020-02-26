@@ -1,0 +1,223 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSA==
+:uri: http://www.acme-pharma.com/TEST/V1#TH
+:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:label: Test Thesaurus
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SUw==
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9TSQ==
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: TEST
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2020-02-22T17:32:44+01:00'
+:last_change_date: '2020-02-22T17:32:44+01:00'
+:explanatory_comment: ''
+:is_top_concept_reference:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9UTUMz
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC3
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :reference: http://www.acme-pharma.com/A00001/V1#A00001
+  :context: 
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9UTUM0
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC4
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 4
+  :reference: http://www.cdisc.org/C66783/V4#C66783
+  :context: 
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9UTUM1
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_TMC5
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 5
+  :reference: http://www.cdisc.org/C66737/V4#C66737
+  :context: 
+:is_top_concept:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4Mw==
+  :uri: http://www.cdisc.org/C66783/V4#C66783
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: CDISC System Organ Class
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :has_state: http://www.cdisc.org/C66783/V4#C66783_RS
+  :has_identifier: http://www.cdisc.org/C66783/V4#C66783_SI
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66783
+  :notation: SOC
+  :definition: Terms at the highest level of the CDISC system organ class terminology.
+  :extensible: false
+  :narrower:
+  - http://www.cdisc.org/C66783/V4#C66783_C3371
+  - http://www.cdisc.org/C66783/V4#C66783_C49403
+  - http://www.cdisc.org/C66783/V4#C66783_C27574
+  - http://www.cdisc.org/C66783/V4#C66783_C41198
+  - http://www.cdisc.org/C66783/V4#C66783_C26726
+  - http://www.cdisc.org/C66783/V4#C66783_C35117
+  - http://www.cdisc.org/C66783/V4#C66783_C3009
+  - http://www.cdisc.org/C66783/V4#C66783_C3430
+  - http://www.cdisc.org/C66783/V4#C66783_C49399
+  - http://www.cdisc.org/C66783/V4#C66783_C20188
+  - http://www.cdisc.org/C66783/V4#C66783_C35814
+  - http://www.cdisc.org/C66783/V4#C66783_C3507
+  - http://www.cdisc.org/C66783/V4#C66783_C3262
+  - http://www.cdisc.org/C66783/V4#C66783_C49405
+  - http://www.cdisc.org/C66783/V4#C66783_C3079
+  - http://www.cdisc.org/C66783/V4#C66783_C2893
+  - http://www.cdisc.org/C66783/V4#C66783_C26767
+  - http://www.cdisc.org/C66783/V4#C66783_C25218
+  - http://www.cdisc.org/C66783/V4#C66783_C27669
+  - http://www.cdisc.org/C66783/V4#C66783_C26835
+  - http://www.cdisc.org/C66783/V4#C66783_C49404
+  - http://www.cdisc.org/C66783/V4#C66783_C49401
+  - http://www.cdisc.org/C66783/V4#C66783_C49402
+  - http://www.cdisc.org/C66783/V4#C66783_C49400
+  - http://www.cdisc.org/C66783/V4#C66783_C2990
+  - http://www.cdisc.org/C66783/V4#C66783_C3959
+  :extends: 
+  :subsets: 
+  :preferred_term: http://www.assero.co.uk/PT#2b19e0511fa043da5bcabadc83d7d5d1ac4b1dbe
+  :synonym:
+  - http://www.assero.co.uk/SYN#9f625ee992fa0b5103e70d741d9cbf11f1045ea7
+  :is_ordered: 
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0I0M2NjczNw==
+  :uri: http://www.cdisc.org/C66737/V4#C66737
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Trial Phase
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :has_state: http://www.cdisc.org/C66737/V4#C66737_RS
+  :has_identifier: http://www.cdisc.org/C66737/V4#C66737_SI
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66737
+  :notation: TPHASE
+  :definition: 'Clinical trials are broken into three or four phases: Phase I tests
+    a new drug or treatment for safety in a small group; Phase II expands the study
+    to a larger group of people; Phase III expands the study to an even larger group
+    of people to measure whether the treatment actually benefits patients, and whether
+    its benefits exceed its risks; and Phase IV takes place after the drug or treatment
+    has been licensed and marketed. (NCI)'
+  :extensible: true
+  :narrower:
+  - http://www.cdisc.org/C66737/V4#C66737_C49686
+  - http://www.cdisc.org/C66737/V4#C66737_C15601
+  - http://www.cdisc.org/C66737/V4#C66737_C49688
+  - http://www.cdisc.org/C66737/V4#C66737_C47865
+  - http://www.cdisc.org/C66737/V4#C66737_C15602
+  - http://www.cdisc.org/C66737/V4#C66737_C49689
+  - http://www.cdisc.org/C66737/V4#C66737_C15600
+  - http://www.cdisc.org/C66737/V4#C66737_C49687
+  - http://www.cdisc.org/C66737/V4#C66737_C15694
+  - http://www.cdisc.org/C66737/V4#C66737_C15603
+  - http://www.cdisc.org/C66737/V4#C66737_C48660
+  - http://www.cdisc.org/C66737/V4#C66737_C15693
+  :extends: 
+  :subsets: 
+  :preferred_term: http://www.assero.co.uk/PT#ea316b4c8700efa4ad1f09c6a6565e2e8a8723c2
+  :synonym:
+  - http://www.assero.co.uk/SYN#73056984706139d0dc7464d5c079e1b1dca9efff
+  :is_ordered: 
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: London Heathrow
+  :tagged: []
+  :has_state: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :has_identifier: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2019-12-15T20:50:53+01:00'
+  :explanatory_comment: ''
+  :identifier: A00001
+  :notation: LHR
+  :definition: A definition
+  :extensible: false
+  :narrower:
+  - http://www.acme-pharma.com/A00001/V1#A00001_A000012
+  - http://www.acme-pharma.com/A00001/V1#A00001_A000011
+  :extends: 
+  :subsets: 
+  :preferred_term: http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a
+  :synonym:
+  - http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
+  - http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
+  :is_ordered: 
+:reference:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SMQ==
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_R1
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :reference: http://www.cdisc.org/CT/V5#TH
+  :context: 
+:baseline_reference:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SMg==
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_R2
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 2
+  :reference: http://www.cdisc.org/CT/V2#TH
+  :context: 
