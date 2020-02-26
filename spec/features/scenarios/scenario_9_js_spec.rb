@@ -328,9 +328,9 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       context_menu_element_header :upgrade
       wait_for_ajax 20
       expect(page).to have_content("Upgrade Code Lists CLONE v0.1.0")
-      # pause
+      pause
 
-      click_row_contains("changes_cdisc_table", "Epoch")
+      click_row_contains("changes_cdisc_table", "EPOCH")
       wait_for_ajax 20
 
 

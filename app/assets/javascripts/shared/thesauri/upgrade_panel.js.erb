@@ -56,8 +56,8 @@ UpgradePanel.prototype.setListeners = function() {
       var data = _this.impact.itemList.table.row(buttonEl.parents("tr:first")).data();
       var itemId = data.id, sourceId = data.source_id, targetId = data.target_id;
       var cback = function(){
-        buttonEl.replaceWith(this.upgradeButtonHTML({upgraded: true}));
         displaySuccess("Item was successfully upgraded");
+        _this.loadData(_this.currentItem);
       }.bind(_this)
       _this.upgrade(_this.makeUrl(itemId, sourceId, targetId), cback);
   });
@@ -100,6 +100,7 @@ UpgradePanel.prototype.makeUrl = function(id, source, target) {
  * @return [void]
  */
 UpgradePanel.prototype.loadData = function(item) {
+  this.currentItem = item;
   this.impact.loadData(item);
 }
 
