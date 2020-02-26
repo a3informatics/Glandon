@@ -12,16 +12,17 @@ class Thesaurus
     # @param new_reference [Thesurus::ManagedConcept] the new reference
     # @return [Void] no return
     def upgrade_subset(new_reference)
-      subset = self.is_ordered_objects
-      self.subsets = new_reference
+      object = self.create_next_version
+      subset = object.is_ordered_objects
+      tx = transaction_begin
+      object.subsets = new_reference
       uris = subset_children(new_reference)
-      self.narrower = uris
-      transaction_begin
-      self.save
+      object.narrower = uris
+      object.save
       subset.delete_subset
       subset.add(uris.map{|x| x.to_id}) if uris.any?
       transaction_execute
-      self
+      object
     end
   
     # Subset? Is this item subsetting another managed concept

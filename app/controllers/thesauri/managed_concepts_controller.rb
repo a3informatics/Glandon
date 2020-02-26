@@ -339,18 +339,19 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def upgrade
     authorize Thesaurus, :edit?
-    tc = read_concept(protect_from_bad_id(params))
-    if !tc.nil?
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    token = get_token(tc)
+    if !token.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
       item = tc.upgrade(ct)
       if tc.errors.empty?
-        render json: {data: ""}, status: 200
+        render json: {data: {}}
       else
         render json: {errors: tc.errors}
       end
-      Token.find_token(tc, current_user).release
+      token.release
     else
-      redirect_to request.referrer
+      render json: {errors: [flash[:error]]}
     end
   end
 

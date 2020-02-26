@@ -1,4 +1,3 @@
-
 # Managed Concepts Upgrade
 #
 # @author Clarisa Romero & Dave Iberson-hurst
@@ -109,7 +108,7 @@ class Thesaurus
 
     # Proceed? Should the upgrade proceed
     def proceed?
-      return true if @type != :reference_subset
+      return true if @type != :sponsor_subset
       based_on = Thesaurus::ManagedConcept.find_with_properties(self.subsets)
       latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: based_on.identifier, scope: based_on.scope)
       return true if latest_uri != based_on.uri
