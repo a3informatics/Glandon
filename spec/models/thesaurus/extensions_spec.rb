@@ -81,7 +81,8 @@ describe "Thesaurus::Extensions" do
       tc_34 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
       tc_45 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
       item_1 = tc_32.create_extension
-      item_1 = Thesaurus::ManagedConcept.find(item_1.uri)
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
+      item_1.narrower_objects
       expect(item_1.narrower.count).to eq(7)
       check_dates(item_1, sub_dir, "upgrade_expected_1a.yaml", :last_change_date)
       check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
@@ -106,7 +107,8 @@ describe "Thesaurus::Extensions" do
       tc_34 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V34#C99079"))
       tc_45 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
       item_1 = tc_32.create_extension
-      item_1 = Thesaurus::ManagedConcept.find(item_1.uri)
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
+      item_1.narrower_objects
       expect(item_1.narrower.count).to eq(7)
       check_dates(item_1, sub_dir, "upgrade_expected_2a.yaml", :last_change_date)
       check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)

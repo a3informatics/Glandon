@@ -16,8 +16,8 @@ describe Thesauri::ManagedConceptsController do
     params[:registration_status] = "Standard"
     params[:previous_state] = "Incomplete"
     item.update_status(params)
-    puts colourize("Make standard: #{item.errors.count}", "blue")
-    puts colourize("Make standard: #{item.errors.full_messages.to_sentence}", "blue") if item.errors.count > 0
+    #puts colourize("Make standard: #{item.errors.count}", "blue")
+    #puts colourize("Make standard: #{item.errors.full_messages.to_sentence}", "blue") if item.errors.count > 0
   end
 
   describe "Authorized User - Read" do
@@ -118,7 +118,7 @@ describe Thesauri::ManagedConceptsController do
       put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({}) 
     end
 
     it "upgrade data" do
@@ -140,7 +140,7 @@ describe Thesauri::ManagedConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "upgrade_data_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "upgrade_data_expected_1.yaml")
     end
 
     it "differences summary" do

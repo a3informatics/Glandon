@@ -6,6 +6,8 @@ describe "Audit Trail", :type => :feature do
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
+  include WaitForAjaxHelper
+  include NameValueHelpers
 
   before :all do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
@@ -105,6 +107,15 @@ describe "Audit Trail", :type => :feature do
       fill_in 'Identifier', with: 'I2'
       click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(2)
+    end
+
+    it "correctly marks the create event of a Code List", js:true do
+      click_navbar_code_lists
+      identifier = ui_new_code_list
+      click_navbar_at
+      fill_in 'Identifier', with: identifier
+      click_button 'Filter results'
+      ui_check_table_cell("main", 1, 6, "Create")
     end
 
   end

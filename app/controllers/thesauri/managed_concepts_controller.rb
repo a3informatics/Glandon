@@ -48,7 +48,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     object = Thesaurus::ManagedConcept.create
     if object.errors.empty?
-      AuditTrail.update_item_event(current_user, object, object.audit_message(:created))
+      AuditTrail.create_item_event(current_user, object, object.audit_message(:created))
       result = object.to_h
       result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
       render :json => { data: result}, :status => 200
@@ -339,18 +339,19 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def upgrade
     authorize Thesaurus, :edit?
-    tc = read_concept(protect_from_bad_id(params))
-    if !tc.nil?
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    token = get_token(tc)
+    if !token.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
       item = tc.upgrade(ct)
       if tc.errors.empty?
-        render json: {data: ""}, status: 200
+        render json: {data: {}}
       else
         render json: {errors: tc.errors}
       end
-      Token.find_token(tc, current_user).release
+      token.release
     else
-      redirect_to request.referrer
+      render json: {errors: [flash[:error]]}
     end
   end
 

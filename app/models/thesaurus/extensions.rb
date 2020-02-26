@@ -65,10 +65,11 @@ class Thesaurus
     # @param new_reference [Thesurus::ManagedConcept] the new reference
     # @return [Void] no return
     def upgrade_extension(new_reference)
-      self.extends = new_reference
-      self.narrower = extension_children(new_reference)
-      self.save
-      self
+      object = self.create_next_version
+      object.extends = new_reference
+      object.narrower = extension_children(new_reference)
+      object.save
+      object
     end
 
   private
