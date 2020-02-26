@@ -12,6 +12,7 @@ class Thesaurus
     # @param th [Thesaurus] the new thesaurus to which the upgraded item belongs
     # @return [Thesaurus::ManagedConcept] the new item or nil if errors.
     def upgrade(th)
+      return nil if !interested?
       set_type_and_references(th)
       new_item = execute
       th.replace_child(self, new_item) if !new_item.nil?

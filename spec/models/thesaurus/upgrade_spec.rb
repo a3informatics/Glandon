@@ -32,13 +32,13 @@ describe "Thesaurus::Upgrade" do
     end
 
     it "check upgraded for something not interested in" do
-      s_th = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      s_th = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
       expect(tc.upgraded?(s_th)).to be(true)
     end
 
     it "check extension needs to be upgraded, I" do
-      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
       r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
       r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
@@ -72,7 +72,7 @@ describe "Thesaurus::Upgrade" do
     end
 
     it "check subset of extension needs to be upgraded, I" do
-      s_th_old = Thesaurus.create({ :identifier => "S TH2", :label => "Old Sponsor Thesaurus" })
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
       r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
       r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
@@ -92,7 +92,7 @@ describe "Thesaurus::Upgrade" do
     end
 
     it "check extension needs to be upgraded, II" do
-      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
       r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
       r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
@@ -111,7 +111,7 @@ describe "Thesaurus::Upgrade" do
     end
 
     it "check subset needs to be upgraded, II" do
-      s_th_old = Thesaurus.create({ :identifier => "S TH OLD", :label => "Old Sponsor Thesaurus" })
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
       r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
       r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
       s_th_old.set_referenced_thesaurus(r_th_old)
@@ -127,6 +127,21 @@ describe "Thesaurus::Upgrade" do
       expect(subset_old.upgraded?(s_th_new)).to be(false)
       result = subset_old.upgrade(s_th_new)
       expect(result.upgraded?(s_th_new)).to be(true)
+    end
+
+    it "cannot upgrade non extension" do
+      s_th_old = Thesaurus.create({ :identifier => "S TH", :label => "Old Sponsor Thesaurus" })
+      r_th_old = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V4#TH"))
+      r_th_new = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V8#TH"))
+      s_th_old.set_referenced_thesaurus(r_th_old)
+      tc_34 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V8#C67154"))
+      s_th_old = Thesaurus.find_minimum(s_th_old.uri)
+      make_standard(s_th_old)
+      s_th_new = s_th_old.create_next_version
+      s_th_new.set_referenced_thesaurus(r_th_new)
+      s_th_new = Thesaurus.find_minimum(s_th_new.uri)
+      result = tc_34.upgrade(s_th_new)
+      expect(result).to eq(nil)
     end
 
   end
