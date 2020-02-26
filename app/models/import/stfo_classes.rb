@@ -211,6 +211,36 @@ module Import::STFOClasses
       nil
     end
 
+    def to_existing_subset
+      refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
+      return nil if refs.empty?
+      ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
+      tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
+      return nil if tcs.empty?
+      tc = tcs.first
+      new_narrower = []
+      self.identifier = tc.identifier
+      old_narrower = self.narrower.dup
+      self.narrower = []
+      self.update_identifier(self.identifier)
+      old_narrower.each do |child|
+        new_child = find_in_cl(ref_ct, child.identifier)
+        if new_child.nil?
+          add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+        else
+          new_narrower << new_child
+        end
+      end
+      self.narrower = new_narrower
+      self.subsets = ref_ct
+      self.add_ordering
+      self
+    rescue => e
+byebug
+      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      nil
+    end
+
     # Sponsor? Is this a sponsor code list
     #
     # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
