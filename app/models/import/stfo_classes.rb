@@ -216,10 +216,9 @@ module Import::STFOClasses
       return nil if refs.empty?
       ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
       tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
-      return nil if tcs.empty?
-      tc = tcs.first
+      tc = tcs.empty? ? nil : tcs.first
       new_narrower = []
-      self.identifier = tc.identifier
+      self.identifier = tc.nil? ? Thesaurus::ManagedConcept.new_identifier : tc.identifier
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
@@ -236,7 +235,6 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-byebug
       add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
       nil
     end
