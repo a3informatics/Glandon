@@ -50,7 +50,7 @@ PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
 SELECT DISTINCT ?sl ?sclil ?si ?sn ?cll ?clil ?i ?n ?ctv ?t  WHERE        
 {           
-  VALUES ?th {<http://www.acme-pharma.com/AIRPORTS/V1#TH>}     
+  VALUES ?th {[[[parameter_1]]]}     
   {       
     {           
       ?th (th:isTopConceptReference/bo:reference) ?scl .
