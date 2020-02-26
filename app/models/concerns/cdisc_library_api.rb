@@ -60,7 +60,7 @@ class CDISCLibraryAPI
   def ct_tags(title)
     product = product_from_title(title)
     entry = ct_products.select{|k,v| v[:label].upcase == product.upcase}
-    return nil if entry.blank?
+    return [] if entry.blank?
     entry.values.first[:tags]
   end
 
