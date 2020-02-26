@@ -8,6 +8,7 @@ var d3HeightOverride = false;
 var d3HeightOverrideValue = $(window).height() - 180;
 var rectW = 120;
 var rectH = 30;
+var maxDepth = 1;
 
 /**
  * D3 Initialise: Create a D3 tree.
@@ -297,7 +298,8 @@ function d3AdjustHeight(height) {
  */
 function d3CalculateMinWidth(data) {
   var depth = treeDepth([data]) + 1;
-  return (120 + 30) * depth;
+  maxDepth = Math.max(maxDepth, depth);
+  return (120 + 30) * maxDepth;
 }
 
 /**
