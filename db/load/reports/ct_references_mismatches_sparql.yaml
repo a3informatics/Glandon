@@ -1,0 +1,101 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the ---- is required."
+    :type: :thesauri
+:columns:
+  :sl:
+    :label: Sponsor Code List Label
+    :type: literal
+  :sclil:
+    :label: Sponsor Code List Item Label
+    :type: literal
+  :si:
+    :label: Sponsor Identifier
+    :type: literal
+  :sn:
+    :label: Sponsor Notation
+    :type: literal
+  :cll:
+    :label: CDISC Code List Label
+    :type: literal
+  :clil:
+    :label: CDISC Code List Item Label
+    :type: literal
+  :i:
+    :label: CDISC Identifier
+    :type: literal
+  :n:
+    :label: CDISC Notation
+    :type: literal
+  :ctv:
+    :label: CDISC Version
+    :type: literal
+  :t:
+    :label: Type
+    :type: literal
+:label: Submission Impact Export
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>  
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
+PREFIX is: <http://purl.org/ontology/is/core#> 
+PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
+SELECT DISTINCT ?scli ?clil ?clii ?label ?identifier ?n ?v ?t WHERE        
+{           
+  VALUES ?th {[[[parameter_1]]]}     
+  {       
+    
+    { 
+      ?th th:isTopConceptReference/bo:reference ?scl .
+      ?scl th:identifier ?scli .
+      ?scl th:extends ?cl .
+      ?cl isoC:label ?label .
+      ?cl th:identifier ?identifier .
+      ?cl th:notation ?n .
+    ?cl isoT:hasIdentifier ?i .
+      ?i isoI:version ?v .
+      BIND ("Extension" as ?t)          
+    }   
+    UNION       
+    { 
+      ?th th:isTopConceptReference/bo:reference ?scl .
+      ?scl th:identifier ?scli .
+      ?scl th:subsets ?cl .     
+      ?cl isoC:label ?label .
+      ?cl th:identifier ?identifier .
+      ?cl th:notation ?n .
+    ?cl isoT:hasIdentifier ?i .
+    ?i isoI:version ?v .
+      BIND ("Subset" as ?t)             
+    } 
+    UNION       
+    { 
+      ?th th:isTopConceptReference/bo:reference ?scl .
+      ?scl th:identifier ?scli .
+      ?scl th:narrower ?cli .    
+      ?cli isoC:label ?clil .
+      ?cli th:identifier ?clii .
+      ?cli th:notation ?n .
+      FILTER (strstarts(str(?cli), "http://www.cdisc.org/"))
+      BIND ("Narrower" as ?t)             
+    } 
+    FILTER (NOT EXISTS { ?refct (th:isTopConceptReference/bo:reference) ?cl } 
+          || NOT EXISTS { ?refct (th:isTopConceptReference/bo:reference/th:narrower) ?cli } )
+    {       
+      SELECT DISTINCT ?refct WHERE          
+      {                         
+        ?th th:reference ?ref .           
+        ?ref bo:reference ?refct .        
+      }           
+    }     
+  } 
+}'
+:type: Ad Hoc Report Definition
