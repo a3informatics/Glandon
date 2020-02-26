@@ -110,22 +110,12 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
     dataType: 'json',
     context: this,
     success: function (result) {
-      // Update CDISC ver UI
-      $("#cdisc-version-label").html(this.cdiscCT.version);
-      $(".tab-option.disabled").removeClass("disabled");
-      $("#select-cdisc-ver-button").removeClass("disabled");
-      $(".tab-wrap .show-more-btn").click();
-
-      // Remove selection of all CDISC items
-      var CDISCrows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
-      if (!this.tabs.target.mcs.loading && CDISCrows.count() > 0)
-        location.reload();
-      else {
-        this.timeline.disableRange(this.timeline.tl_points.eq(0).text(), $("#cdisc-version-label").text());
-        this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
-      }
+      // Refresh
+      location.reload();
     },
     error: function (xhr, status, error) {
+      $("#select-cdisc-ver-button").removeClass("disabled");
+      $(".tab-wrap .show-more-btn").click();
 			handleAjaxError(xhr, status, error);
 			this.tabs.cdiscTab.processing(false);
 		}
