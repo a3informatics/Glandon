@@ -48,7 +48,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     object = Thesaurus::ManagedConcept.create
     if object.errors.empty?
-      AuditTrail.update_item_event(current_user, object, object.audit_message(:created))
+      AuditTrail.create_item_event(current_user, object, object.audit_message(:created))
       result = object.to_h
       result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
       render :json => { data: result}, :status => 200
