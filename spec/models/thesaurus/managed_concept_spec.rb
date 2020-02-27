@@ -743,7 +743,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
       item = th.add_extension(tc.id)
       results = tc.upgrade_impact(th)
-      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "upgrade impact, subset" do
@@ -751,7 +751,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
       item = th.add_subset(tc.id)
       results = tc.upgrade_impact(th)
-      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "upgrade impact, extension and subset" do
@@ -760,7 +760,7 @@ describe "Thesaurus::ManagedConcept" do
       item = th.add_extension(tc.id)
       item = th.add_subset(tc.id)
       results = tc.upgrade_impact(th)
-      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
