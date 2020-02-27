@@ -327,9 +327,11 @@ describe Thesaurus::ManagedConcept do
           definition: "The oldest LHR Terminal",
           notation: "T1"
         })
-      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1") 
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")            
       @tc_1.set_initial("A00001")
       @tc_2 = Thesaurus::ManagedConcept.new
       @tc_2.identifier = "A00002"
@@ -337,10 +339,40 @@ describe Thesaurus::ManagedConcept do
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
       @tc_2.set_initial("A00002")
+      @tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "Epoch Extension",
+          identifier: "A00001E",
+          definition: "Extends Epoch",
+          notation: "EPOCH"
+        })
+      @tc_3.preferred_term = Thesaurus::PreferredTerm.new(label: "Epoch Extension")
+      cdisc_uri = Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079")
+      cdisc = Thesaurus::ManagedConcept.find_with_properties(cdisc_uri)
+      cdisc.narrower_objects
+      @tc_3.narrower = cdisc.narrower
+      @tc_3.extends = cdisc_uri
+      @tc_3.set_initial(@tc_3.identifier)
+      @tc_4 = Thesaurus::ManagedConcept.from_h({
+          label: "Epoch Extension 2",
+          identifier: "A00002E",
+          definition: "Extends Epoch2",
+          notation: "EPOCH"
+        })
+      @tc_4.preferred_term = Thesaurus::PreferredTerm.new(label: "Epoch Extension2")
+      cdisc_uri = Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079")
+      cdisc = Thesaurus::ManagedConcept.find_with_properties(cdisc_uri)
+      cdisc.narrower_objects
+      @tc_4.narrower = cdisc.narrower
+      @tc_4.extends = cdisc_uri
+      @tc_4.set_initial(@tc_4.identifier)
       @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 4, optional: true})
       @th_1.is_top_concept << @tc_1.uri
       @th_1.is_top_concept << @tc_2.uri
+      @th_1.is_top_concept << @tc_3.uri
+      @th_1.is_top_concept << @tc_4.uri
       @th_1.reference = OperationalReferenceV3.new(reference: ct)
       @th_1.set_initial("AIRPORTS")
     end
@@ -362,6 +394,8 @@ describe Thesaurus::ManagedConcept do
       @th_1.to_sparql(sparql, true)
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
+      @tc_3.to_sparql(sparql, true)
+      @tc_4.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport.ttl")
     end 
