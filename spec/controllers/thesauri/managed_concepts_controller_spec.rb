@@ -118,7 +118,7 @@ describe Thesauri::ManagedConceptsController do
       put :upgrade, id: tc.id, upgrade: {sponsor_th_id: ct.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({}) 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({})
     end
 
     it "upgrade data" do
@@ -549,6 +549,23 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:token)).to eq(nil)
       expect(response).to redirect_to("/referrer")
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
+    end
+
+    it "destroy" do
+      audit_count = AuditTrail.count
+      tc = Thesaurus::ManagedConcept.create
+      delete :destroy, {id: tc.id}
+      expect(response.code).to eq("200")
+      expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
+    it "destroy, error" do
+      audit_count = AuditTrail.count
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      delete :destroy, {id: tc.id}
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The code list cannot be deleted as it is in use."])
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
   end
