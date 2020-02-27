@@ -78,6 +78,7 @@ describe IsoManagedV2Controller do
 
     it 'updates the status' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      audit_count = AuditTrail.count
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
       mi = IsoManagedV2.find_minimum(uri_1)
       token = Token.obtain(mi, @user)
@@ -86,9 +87,11 @@ describe IsoManagedV2Controller do
       actual = IsoManagedV2.find_minimum(uri_1)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
       expect(response).to redirect_to("/registration_states")
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
     it 'updates the status, locked by another user' do
+      audit_count = AuditTrail.count
       expect(TypePathManagement).to receive(:history_url_v2).and_return("/history")
       uri_1 = Uri.new(uri: "http://www.cdisc.org/C49499/V1#C49499")
       mi = IsoManagedV2.find_minimum(uri_1)
@@ -96,6 +99,7 @@ describe IsoManagedV2Controller do
       post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard",
         administrative_note: "X1", unresolved_issue: "X2" }}
       expect(response).to redirect_to("/history")
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it 'prevents updates with invalid data (the state)' do

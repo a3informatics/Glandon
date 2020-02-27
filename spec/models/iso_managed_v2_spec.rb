@@ -982,7 +982,7 @@ describe "IsoManagedV2" do
       params[:registration_status] = "Qualified"
       params[:previous_state] = "Recorded"
       item.update_status(params)
-    end  
+    end
 
     it "allows the item status to be updated, not standard" do
       update_children
@@ -1028,6 +1028,12 @@ describe "IsoManagedV2" do
       item.update_status(params)
       actual = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "generates the audit message for Status update" do
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc.update_status({previous_state: "Incomplete", registration_status: "Candidate"})
+      expect(tc.audit_message_status_update).to eq("Code list owner: ACME, identifier: A00001, state was updated from Incomplete to Candidate.")
     end
 
   end
