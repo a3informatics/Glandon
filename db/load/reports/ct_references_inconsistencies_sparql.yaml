@@ -2,40 +2,37 @@
 :parameters:
   - 
     :name: "Terminology"
-    :description: "The terminology for which the ---- is required."
+    :description: "The terminology for which the CDISC References Inconsistencies are required."
     :type: :thesauri
 :columns:
-  :sl:
+  :scli:
+    :label: Sponsor Code List Identifier
+    :type: literal
+  :scll:
     :label: Sponsor Code List Label
     :type: literal
-  :sclil:
-    :label: Sponsor Code List Item Label
+  :identifier:
+    :label: CDISC Code List Identifier
     :type: literal
-  :si:
-    :label: Sponsor Identifier
-    :type: literal
-  :sn:
-    :label: Sponsor Notation
-    :type: literal
-  :cll:
+  :label:
     :label: CDISC Code List Label
     :type: literal
-  :clil:
-    :label: CDISC Code List Item Label
+  :clii:
+    :label: Sponsor Code List Item Identifier
     :type: literal
-  :i:
-    :label: CDISC Identifier
+  :clil:
+    :label: Sponsor Code List Item Label
     :type: literal
   :n:
-    :label: CDISC Notation
+    :label: CDISC Submission Value
     :type: literal
-  :ctv:
+  :v:
     :label: CDISC Version
     :type: literal
   :t:
     :label: Type
     :type: literal
-:label: Submission Impact Export
+:label: CDISC References Inconsistencies
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
@@ -48,42 +45,47 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
 PREFIX is: <http://purl.org/ontology/is/core#> 
 PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
-SELECT DISTINCT ?scli ?clil ?clii ?label ?identifier ?n ?v ?t WHERE        
+SELECT DISTINCT ?scli ?scll ?identifier ?label  ?clii ?clil ?n ?v ?t WHERE        
 {           
   VALUES ?th {[[[parameter_1]]]}     
   {       
-    
     { 
       ?th th:isTopConceptReference/bo:reference ?scl .
       ?scl th:identifier ?scli .
+      ?scl isoC:label ?scll .
       ?scl th:extends ?cl .
       ?cl isoC:label ?label .
       ?cl th:identifier ?identifier .
       ?cl th:notation ?n .
-    ?cl isoT:hasIdentifier ?i .
-      ?i isoI:version ?v .
+    ?cl isoT:hasIdentifier/isoI:version ?v .
       BIND ("Extension" as ?t)          
     }   
     UNION       
     { 
       ?th th:isTopConceptReference/bo:reference ?scl .
       ?scl th:identifier ?scli .
+      ?scl isoC:label ?scll .
       ?scl th:subsets ?cl .     
       ?cl isoC:label ?label .
       ?cl th:identifier ?identifier .
       ?cl th:notation ?n .
-    ?cl isoT:hasIdentifier ?i .
-    ?i isoI:version ?v .
+    ?cl isoT:hasIdentifier/isoI:version ?v .
       BIND ("Subset" as ?t)             
     } 
     UNION       
     { 
       ?th th:isTopConceptReference/bo:reference ?scl .
       ?scl th:identifier ?scli .
-      ?scl th:narrower ?cli .    
+      ?scl isoC:label ?scll .
+      ?scl th:narrower ?cli .
       ?cli isoC:label ?clil .
       ?cli th:identifier ?clii .
       ?cli th:notation ?n .
+      ?cli ^(th:narrower) ?clp .
+      ?clp isoC:label ?label .
+      ?clp th:identifier ?identifier .
+      ?clp isoT:hasIdentifier/isoI:version ?v
+      FILTER (strstarts(str(?clp), "http://www.cdisc.org/"))
       FILTER (strstarts(str(?cli), "http://www.cdisc.org/"))
       BIND ("Narrower" as ?t)             
     } 
