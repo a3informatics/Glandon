@@ -8,7 +8,7 @@ class Import::SponsorTermFormatOne < Import
   include Import::STFOClasses
 
   C_V2 = "01/01/1900".to_datetime 
-  C_V3 = "01/06/2019".to_datetime 
+  C_V3 = "01/09/2019".to_datetime 
   C_FORMAT_MAP = [
     {range: (C_V2...C_V3), sheet: :version_2}, 
     {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
@@ -91,8 +91,6 @@ private
   # Set future  
   def set_thesarus(params)
     @th = Thesaurus.find_minimum(params[:uri])
-    uri = Thesaurus.history_uris(identifier: ::CdiscTerm::C_IDENTIFIER, scope: ::IsoRegistrationAuthority.cdisc_scope).first
-    @future_th = Thesaurus.find_minimum(uri)
   end
 
   # Merge the parent sets. Error if they dont match!
@@ -119,7 +117,7 @@ private
         add_log("Reference Sponsor detected: #{child.identifier}")
         ref = child.reference(@th)
         existing_ref = true
-      elsif child.future_referenced?(@future_th)
+      elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
         ref = child
       elsif child.subset_of_extension?(@extensions)
@@ -129,7 +127,8 @@ private
         add_log("Subset detected: #{child.identifier}")
         ref = child.to_cdisc_subset(@th)
         ref = child.to_sponsor_subset(@filtered) if ref.nil? # Note using previously processed sponsor CLs.
-        add_error(child, "Code list subset cannot be aligned, identifier '#{child.identifier}'.") if ref.nil?
+        ref = child.to_existing_subset if ref.nil?
+        add_error(@parent, "Code list subset cannot be aligned, identifier '#{child.identifier}'.") if ref.nil?
       elsif child.extension?(@th)
         add_log("Extension detected: #{child.identifier}")
         ref = child.to_extension(@th, @fixes)
@@ -140,6 +139,9 @@ private
       elsif child.hybrid_sponsor?
         add_log("Hybrid Sponsor detected: #{child.identifier}")
         ref = child.to_hybrid_sponsor(@th, @fixes)
+      elsif child.future_hybrid_sponsor?  
+        add_log("Future Hybrid Sponsor detected: #{child.identifier}")
+        ref = child
       else
         add_error(@parent, "Code list type not detected, identifier '#{child.identifier}'.")
         ref = nil
@@ -250,6 +252,7 @@ private
     def fix(cl, cli)
       return nil if @config.nil?
       uri = @config.dig(:fixes, cl.to_sym, cli.to_sym)
+    puts colourize("Checking fix #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end

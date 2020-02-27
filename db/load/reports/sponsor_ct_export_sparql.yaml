@@ -70,6 +70,6 @@
     ?cli th:notation ?clisub .
     ?cli th:preferredTerm/isoC:label ?clipt .
     OPTIONAL {?cli isoC:tagged/isoC:prefLabel ?clit .}
-    OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
+    OPTIONAL {?cli isoC:tagged/isoC:prefLabel ?clit . }
   } GROUP BY ?clidentifier ?cllabel ?clsub ?clpt ?cliidentifier ?clipt ?clilabel ?clisub ?p ?o ORDER BY ?clidentifier'
 :type: Ad Hoc Report Definition

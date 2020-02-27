@@ -1,0 +1,208 @@
+@prefix : <http://www.s-cubed.dk/Q2_2019/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/Q2_2019/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2-6 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_14.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "Q2 2019"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/SC132314/V1#SC132314> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Specimen Collection Method"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoT:hasState <http://www.s-cubed.dk/SC132314/V1#SC132314_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/SC132314/V1#SC132314_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "SC132314"^^xsd:string ;
+	th:notation "CLMETH"^^xsd:string ;
+	th:definition "Terminology relevant to the method used in specimen collection."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_S000902> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC113747> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC132353> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15189> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC15361> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC51913> ;
+	th:narrower <http://www.s-cubed.dk/SC132314/V1#SC132314_SC85859> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#95fafb5d42a72289a734b8ddfeb96cb87cbbd864> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SC132314"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_S000902>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S000902"^^xsd:string ;
+	th:notation "SURGERY"^^xsd:string ;
+	th:definition "The branch of medical science that treats disease or injury by operative procedures."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f386e273e072a19088478636787e8266ccfbcc8e> ;
+.
+<http://www.assero.co.uk/PT#f386e273e072a19088478636787e8266ccfbcc8e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Surgery"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC113747>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC113747"^^xsd:string ;
+	th:notation "SWAB"^^xsd:string ;
+	th:definition "A technique in which a tufted material on the end of a stick is rubbed against a surface."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ab1f9071dc88631b90cdeeb112c0107f22f095a0> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC132353>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC132353"^^xsd:string ;
+	th:notation "INDUCED EXPECTORATION"^^xsd:string ;
+	th:definition "A technique in which hypotonic saline is inhaled, followed by expectoration."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1c540e077011cdfe655c731c56d9e8f9b710c078> ;
+.
+<http://www.assero.co.uk/PT#1c540e077011cdfe655c731c56d9e8f9b710c078>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Induced Expectoration"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC15189>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC15189"^^xsd:string ;
+	th:notation "BIOPSY"^^xsd:string ;
+	th:definition "The removal of tissue specimens or fluid from the living body for microscopic examination, performed to establish a diagnosis."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#757e6f3b2fef6f93ce7f3afbf5451148d77e73d9> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC15361>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC15361"^^xsd:string ;
+	th:notation "FINE NEEDLE ASPIRATION"^^xsd:string ;
+	th:definition "The removal of tissue specimens or fluid from the living body with a thin needle."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#49a40f7ab85efde71aa2e79b8dd4e9b3e963cf4b> ;
+.
+<http://www.assero.co.uk/PT#49a40f7ab85efde71aa2e79b8dd4e9b3e963cf4b>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Fine Needle Aspiration"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC51913>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC51913"^^xsd:string ;
+	th:notation "LAVAGE"^^xsd:string ;
+	th:definition "A technique in which a cavity or organ is flushed with a fluid, which is then collected."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2c79c98b40b184f6072c23900692b44e98bad16b> ;
+.
+<http://www.s-cubed.dk/SC132314/V1#SC132314_SC85859>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC85859"^^xsd:string ;
+	th:notation "EXPECTORATION"^^xsd:string ;
+	th:definition "A technique in which material is cleared from the throat or lungs by coughing it up and spitting it out."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7d21f5d7e9c40de445907edb5f86308a96855962> ;
+.
+<http://www.assero.co.uk/PT#7d21f5d7e9c40de445907edb5f86308a96855962>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Expectoration"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#95fafb5d42a72289a734b8ddfeb96cb87cbbd864>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Specimen Collection Method"^^xsd:string ;
+.

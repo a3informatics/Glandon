@@ -58,8 +58,8 @@ module Import::STFOClasses
       return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
       ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
       return false if ref_ct.nil?
-      return true if self.child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
-      others = self.child_identifiers - ref_ct.child_identifiers
+      return true if self.to_referenced_child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
+      others = self.to_referenced_child_identifiers - ref_ct.child_identifiers
       add_log("Referenced check failed, the item identifiers for code list #{self.identifier} not matching are: #{others.join(", ")}") 
       false
     end
@@ -127,9 +127,9 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier) # Do early
       old_narrower.each do |child|
-        new_child = ext.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ext, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Subset of extension, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -170,9 +170,9 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier)
       old_narrower.each do |child|
-        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ref_ct, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("CDISC Subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -195,9 +195,37 @@ module Import::STFOClasses
       self.narrower = []
       self.update_identifier(self.identifier)
       old_narrower.each do |child|
-        new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+        new_child = find_in_cl(ref_ct, child.identifier)
         if new_child.nil?
-          add_error("Cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+          add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
+        else
+          new_narrower << new_child
+        end
+      end
+      self.narrower = new_narrower
+      self.subsets = ref_ct
+      self.add_ordering
+      self
+    rescue => e
+      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def to_existing_subset
+      refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
+      return nil if refs.empty?
+      ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
+      tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
+      tc = tcs.empty? ? nil : tcs.first
+      new_narrower = []
+      self.identifier = tc.nil? ? Thesaurus::ManagedConcept.new_identifier : tc.identifier
+      old_narrower = self.narrower.dup
+      self.narrower = []
+      self.update_identifier(self.identifier)
+      old_narrower.each do |child|
+        new_child = find_in_cl(ref_ct, child.identifier)
+        if new_child.nil?
+          add_error("Sponsor subset, cannot find a code list item, identifier '#{child.identifier}', for a subset '#{self.identifier}'.")
         else
           new_narrower << new_child
         end
@@ -227,6 +255,14 @@ module Import::STFOClasses
       sponsor_parent_identifier? && sponsor_child_or_referenced_identifiers?
     end
 
+    # Future Hybrid Sponsor? Is this a hybrid sponsor code list
+    #
+    # @return [Boolean] true if a hybrid sponsor code list, false otherwise.
+    def future_hybrid_sponsor?
+      return nil if subset?
+      STFOCodeListItem.sponsor_referenced_format?(self.identifier) && sponsor_child_or_referenced_identifiers?
+    end
+
     def to_hybrid_sponsor(ct, fixes)
       new_narrower = []
       self.narrower.each do |child|
@@ -246,7 +282,7 @@ module Import::STFOClasses
         item = find_sponsor_referenced(ct, child, fixes)
         return item.nil? ? child : item
       elsif NciThesaurusUtility.c_code?(child.identifier)
-        item = find_referenced(ct, child.identifier, fixes)
+        item = find_referenced(ct, child.identifier, child, fixes)
         return item.nil? ? nil : item
       else
         return child
@@ -254,30 +290,60 @@ module Import::STFOClasses
     end
 
     def find_sponsor_referenced(ct, child, fixes)
-      find_referenced(ct, STFOCodeListItem.to_referenced(child.identifier), fixes)
+      find_referenced(ct,  STFOCodeListItem.to_referenced(child.identifier), child, fixes)
     end
 
-    def find_referenced(ct, identifier, fixes)
+    def find_referenced(ct, identifier, child, fixes)
       options = ct.find_identifier(identifier)
       if options.empty?
-        add_error("Cannot find referenced item #{identifier}, none found, identifier '#{self.identifier}'.")
-        return nil
+        # See if we can find anything in the future
+        item = future_reference(ct, identifier)
+        if item.nil?
+          add_error("Cannot find referenced item '#{identifier}', none found, identifier '#{self.identifier}'.")
+          return nil
+        else
+          add_log ("**** Found future referenced item '#{identifier}', identifier '#{self.identifier}'.")
+          return child # We return the imported child item, not the one found
+        end
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
           return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
         else
-          add_error("Cannot find referenced item #{identifier}, incorrect type, identifier '#{self.identifier}'.")
+          add_error("Cannot find referenced item incorrect type, identifier '#{self.identifier}'.")
           return nil
         end
       else
+        option = matching_notation(child, options)
+        return option if !option.nil?
         uri = fixes.fix(self.identifier, identifier)
         return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
-        add_error("Cannot find referenced item #{identifier}, multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
+        add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
         return nil
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+byebug
       nil
+    end
+
+    def matching_notation(child, options)
+      results = []
+      options.each do |x|
+        possibility = Thesaurus::UnmanagedConcept.find_children(x[:uri])
+        msg = child.notation == possibility.notation ? "Notation match found" : "Notation not matched"
+        msg = "#{msg} '#{child.notation}', '#{possibility.notation}', identifier '#{self.identifier}'"
+        add_log(msg)
+        results << possibility if child.notation == possibility.notation
+      end
+      return results.first if results.count == 1
+      nil
+    end
+
+    def find_in_cl(cl, identifier)
+      item = cl.narrower.find{|x| x.identifier == identifier}
+      return item if !item.nil?
+      item = cl.narrower.find{|x| x.identifier == STFOCodeListItem.to_referenced(identifier)} if STFOCodeListItem.sponsor_referenced_format?(identifier)
+      item
     end
 
     # Sponsor Identifier? Does the identifier match the sponsor format?
@@ -308,6 +374,10 @@ module Import::STFOClasses
       self.narrower.map{|x| x.identifier}
     end
 
+    def to_referenced_child_identifiers
+      self.narrower.map{|x|  STFOCodeListItem.to_referenced(x.identifier)}
+    end
+
     # Reference. Obtain the Managed Concept from the quoted CT with the matching identifier (if present)
     #
     # @param [Thesaurus] ct the reference thesaurus
@@ -319,9 +389,9 @@ module Import::STFOClasses
     end
 
     def future_reference(ct, identifier)
-      ref_ct = ct.find_by_identifiers([identifier])
-      return nil if !ref_ct.key?(identifier)
-      self.class.find_full(ref_ct[identifier])
+      items = find_any_referenced(ct, identifier)
+      return nil if items.empty?
+      self.class.find_full(items.first[:uri])
     end
 
     def subset_list
@@ -335,10 +405,25 @@ module Import::STFOClasses
       this = subset_list.map {|x| x.to_s}
       return other - this == [] && this - other == []
     rescue => e
-      byebug
+      add_error("Exception in subset_list_equal?")
     end
 
   private
+
+    def find_any_referenced(ct, identifier)
+      results = {}
+      query_string = %Q{
+        SELECT ?s ?th ?v WHERE 
+        {
+          ?s th:identifier "#{identifier}" .
+          ?th th:isTopConceptReference/bo:reference/th:narrower ?s .
+          ?th isoT:hasIdentifier/isoI:version ?v .
+          FILTER (?v > #{ct.version})
+        } ORDER BY ?v
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
+      triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
+    end
 
     # Add error
     def add_error(msg)
