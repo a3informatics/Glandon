@@ -209,13 +209,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
     token = get_token(tc)
     if !token.nil?
       if tc.delete_or_unlink == 1
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:deleted))
+        AuditTrail.delete_item_event(current_user, tc, tc.audit_message(:deleted))
         render :json => {}, :status => 200
       else
         render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => ["token_destroy_message(tc)"]}, :status => 422
+      render :json => {:errors => [token_destroy_message(tc)]}, :status => 422
     end
   end
 

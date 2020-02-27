@@ -51,7 +51,11 @@ class IsoManagedV2Controller < ApplicationController
     token = Token.find_token(@managed_item, current_user)
     if !token.nil?
       @managed_item.update_status(the_params)
-      flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
+      if !@managed_item.errors.empty?
+        flash[:error] = @managed_item.errors.full_messages.to_sentence
+      else
+        AuditTrail.update_item_event(current_user, @managed_item, @managed_item.audit_message_status_update)
+      end
       redirect_to referer
     else
       flash[:error] = "The edit lock has timed out."

@@ -96,6 +96,17 @@ describe "CDISC Library API" do
       expect(object.ct_tags(result[:label])).to eq(["Protocol"])
     end
 
+    it "ct package tags, GLAN-1235" do
+      object = CDISCLibraryAPI.new
+      result = object.ct_package("/mdr/ct/packages/define-xmlct-2019-12-20")
+      expect(object.ct_tags(result[:label])).to eq(["Define-XML"])
+    end
+
+    it "ct package tags, empty" do
+      object = CDISCLibraryAPI.new
+      expect(object.ct_tags("XXX")).to eq([])
+    end
+
     it "ct package, not enabled" do
       expect(EnvironmentVariable).to receive(:read).and_return("false")
       object = CDISCLibraryAPI.new

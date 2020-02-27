@@ -1,0 +1,94 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the submission impact is required."
+    :type: :thesauri
+:columns:
+  :sl:
+    :label: Sponsor Code List Label
+    :type: literal
+  :sclil:
+    :label: Sponsor Code List Item Label
+    :type: literal
+  :si:
+    :label: Sponsor Identifier
+    :type: literal
+  :sn:
+    :label: Sponsor Notation
+    :type: literal
+  :cll:
+    :label: CDISC Code List Label
+    :type: literal
+  :clil:
+    :label: CDISC Code List Item Label
+    :type: literal
+  :i:
+    :label: CDISC Identifier
+    :type: literal
+  :n:
+    :label: CDISC Notation
+    :type: literal
+  :ctv:
+    :label: CDISC Version
+    :type: literal
+  :t:
+    :label: Type
+    :type: literal
+:label: Submission Impact Export
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>  
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
+PREFIX is: <http://purl.org/ontology/is/core#> 
+PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
+SELECT DISTINCT ?sl ?sclil ?si ?sn ?cll ?clil ?i ?n ?ctv ?t  WHERE        
+{           
+  VALUES ?th {[[[parameter_1]]]}     
+  {       
+    {           
+      ?th (th:isTopConceptReference/bo:reference) ?scl .
+      ?scl isoC:label ?sl .
+      ?scl th:identifier ?si .        
+      ?scl th:notation ?sn .          
+      ?ct (th:isTopConceptReference/bo:reference) ?cl .
+      ?cl isoC:label ?cll . 
+      ?cl th:identifier ?i .        
+      ?cl th:notation ?n .          
+      FILTER (?sn = ?n)           
+      BIND ("Code List" as ?t)          
+    } UNION       
+    {         
+      ?th th:isTopConceptReference/bo:reference/th:narrower ?scli .
+      ?scli isoC:label ?sclil .
+      ?scli th:identifier ?si .         
+      ?scli th:notation ?sn .           
+      ?ct th:isTopConceptReference/bo:reference/th:narrower ?cli .
+      ?cli isoC:label ?clil .
+      ?cli th:identifier ?i .         
+      ?cli th:notation ?n .           
+      FILTER (?sn = ?n)           
+      BIND ("Code List Item" as ?t)             
+    }       
+    {       
+      SELECT DISTINCT ?ct ?ctv WHERE          
+      {               
+        ?ct rdf:type th:Thesaurus .           
+        ?ct isoT:hasIdentifier ?cti .           
+        ?cti isoI:version ?ctv.           
+        ?th th:reference ?ref .           
+        ?ref bo:reference ?refct .          
+        ?refct isoT:hasIdentifier ?i .          
+        ?i isoI:version ?v.           
+        FILTER (?ctv > ?v )           
+      }           
+    }     
+  } 
+}'
+:type: Ad Hoc Report Definition

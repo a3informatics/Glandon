@@ -2073,7 +2073,8 @@ defaults: &defaults
             to: 2015-03-27
           Define:
             label: Define-XML
-            tag: Define-XML
+            tags: 
+              - Define-XML
             from: 2019-12-20
             to: 2100-01-01
 

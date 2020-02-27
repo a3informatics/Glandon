@@ -44,7 +44,7 @@ class Import::CdiscTerm < Import
     save_exception(e, msg)
     params[:job].exception(msg, e)
   end 
-  #handle_asynchronously :import unless Rails.env.test?
+  handle_asynchronously :import unless Rails.env.test?
 
   # Configuration. Sets the parameters for the import
   # 

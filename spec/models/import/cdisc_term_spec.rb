@@ -311,7 +311,7 @@ describe "Import::CdiscTerm" do
       delete_data_file(sub_dir, filename)
     end
 
-    it "excel import dupplicate synonyms and PTs" do
+    it "excel import duplicate synonyms and PTs" do
       load_local_file_into_triple_store(sub_dir, "characters_1.ttl")
       full_path_1 = test_file_path(sub_dir, "characters_1.xlsx")
       params = 
