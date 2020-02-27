@@ -57,7 +57,6 @@ module Import::STFOClasses
     def future_referenced?(ct)
       return false if !STFOCodeListItem.sponsor_referenced_format?(self.identifier)
       ref_ct = future_reference(ct, STFOCodeListItem.to_referenced(self.identifier))
-byebug
       return false if ref_ct.nil?
       return true if self.to_referenced_child_identifiers - ref_ct.child_identifiers == [] # self should be equal or subset of the reference 
       others = self.to_referenced_child_identifiers - ref_ct.child_identifiers
