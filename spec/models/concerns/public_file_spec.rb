@@ -22,7 +22,7 @@ describe PublicFile do
     filename = PublicFile.save("test", "PublicFile2.txt", "Contents of the file 2")
     data = PublicFile.read(filename)
     expect(data).to eq("Contents of the file 2")
-    path = path = Rails.root.join("public", "test", "PublicFile2.txt")
+    path = Rails.root.join("public", "test", "PublicFile2.txt")
     expect(filename).to eq(path.to_s)
   end
 
