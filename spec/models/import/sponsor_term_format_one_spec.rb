@@ -58,7 +58,7 @@ describe "Import::SponsorTermFormatOne" do
     object = Import::SponsorTermFormatOne.new
     expect(object.format({date: "01/01/2000"})).to eq(:version_2)
     expect(object.format({date: "30/05/2019"})).to eq(:version_2)
-    expect(object.format({date: "01/06/2019"})).to eq(:version_3)
+    expect(object.format({date: "01/09/2019"})).to eq(:version_3)
     expect(object.format({date: DateTime.now.to_date})).to eq(:version_3)
     expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_3) # Future date
   end

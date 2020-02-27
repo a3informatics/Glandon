@@ -11,10 +11,10 @@ describe Import::STFOClasses do
     return "models/import/stfo_classes"
   end
 
-	before :each do
+	before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl", "iso_concept_systems_process.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..10)
+    load_cdisc_term_versions(1..30)
   end
 
   after :each do
@@ -151,12 +151,12 @@ describe Import::STFOClasses do
     check_file_actual_expected(actual.to_h, sub_dir, "reference_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "future referenced?" do
+  it "future referenced? - WILL CURRENTLY FAIL - needs update" do
     object = Import::STFOClasses::STFOCodeList.new
-    object.identifier = "SC76351"
-    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74574")
-    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74573")
-    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "C74572")
+    object.identifier = "SC71620"
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48579")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC48590")
+    object.narrower << Import::STFOClasses::STFOCodeListItem.new(identifier: "SC49668")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
     expect(object.future_referenced?(ct)).to eq(true)
   end
