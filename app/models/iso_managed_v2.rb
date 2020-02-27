@@ -78,7 +78,7 @@ class IsoManagedV2 < IsoConceptV2
   def same_scoped_identifier?(other)
     self.scoped_identifier == other.scoped_identifier
   end
-  
+
   # Same Owner? Do the two items share the same owner?
   #
   # @param other [Object] the other item
@@ -86,7 +86,7 @@ class IsoManagedV2 < IsoConceptV2
   def same_owner?(other)
     self.owner.uri == other.owner.uri
   end
-  
+
   # Earlier Version
   #
   # @param other [Object] the other version being compared against
@@ -395,7 +395,7 @@ class IsoManagedV2 < IsoConceptV2
     self.create_or_update(:create, true) if self.valid?(:create) && self.create_permitted?
     self
   end
-  
+
   # Creation Date Exists? Does the creation date already exist in the history?
   #
   # @params [Hash] params
@@ -406,7 +406,7 @@ class IsoManagedV2 < IsoConceptV2
   def self.creation_date_exists?(params)
     date = Time.parse(params[:date]).strftime("%Y-%m-%d")
     query_string = %Q{
-      SELECT ?d WHERE { 
+      SELECT ?d WHERE {
         ?s rdf:type #{rdf_type.to_ref} .
         ?s isoT:hasIdentifier ?si .
         ?si isoI:identifier '#{params[:identifier]}' .
@@ -428,7 +428,7 @@ class IsoManagedV2 < IsoConceptV2
   def self.history(params)
     parts = []
     results = []
-    base = %Q{ 
+    base = %Q{
       ?e isoT:hasIdentifier ?si .
       ?si isoI:identifier '#{params[:identifier]}' .
       ?si isoI:version ?v .
@@ -498,31 +498,31 @@ class IsoManagedV2 < IsoConceptV2
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
     query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE 
+      SELECT ?s ?p ?o ?e ?v WHERE
       {
-        { 
+        {
           VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          ?e ?p ?o . 
-          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) 
-          BIND (?e as ?s) 
-        } 
+          ?e ?p ?o .
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+          BIND (?e as ?s)
+        }
         UNION
-        { 
+        {
           VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          ?si ?p ?o . 
-          BIND (?si as ?s) 
-        } 
+          ?si ?p ?o .
+          BIND (?si as ?s)
+        }
         UNION
-        { 
+        {
           VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
-          ?e isoT:hasState ?s . 
-          ?s ?p ?o 
+          ?e isoT:hasState ?s .
+          ?s ?p ?o
         }
       } ORDER BY DESC (?v)
     }
@@ -748,7 +748,7 @@ class IsoManagedV2 < IsoConceptV2
   # @option params [String] Registration Status, the new state
   # @return [Null] errors are in the error object, if any
   def update_status(params)
-    params[:multiple_edit] = false  
+    params[:multiple_edit] = false
     self.has_state.update(params)
     return if merge_errors(self.has_state, "Registration Status")
     sv = SemanticVersion.from_s(self.semantic_version)
@@ -891,7 +891,7 @@ class IsoManagedV2 < IsoConceptV2
             BIND(?x as ?s)
             BIND("latest" as ?status)
             {
-              SELECT DISTINCT ?key ?id ?scope (MAX(?lv) as ?v) 
+              SELECT DISTINCT ?key ?id ?scope (MAX(?lv) as ?v)
               {
                 ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
                 ?s isoT:hasIdentifier ?si .
@@ -1026,6 +1026,10 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
 
   def audit_message(operation, extra="")
     "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier},#{extra.empty? ? "" : " (#{extra})"} was #{operation}."
+  end
+
+  def audit_message_status_update
+    "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier}, state was updated from #{self.has_state.previous_state} to #{self.has_state.registration_status}."
   end
 
   def audit_type
