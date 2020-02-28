@@ -1,5 +1,9 @@
 module ImportHelpers
   
+  def replace_rails_root(text)
+    text.sub!("/Users/daveih/Documents/rails/Glandon", Rails.root.to_s)
+  end
+
   def import_type(text)
     @import_type = text
   end
@@ -16,11 +20,11 @@ module ImportHelpers
     expected["id"] = result.id
     if options[:error_file]
       expected["error_file"].sub!(extract_filename(expected["error_file"], "errors"), extract_filename(result.error_file, "errors"))
-      expected["error_file"].sub!("/Users/daveih/Documents/rails/Glandon", Rails.root.to_s)
+      replace_rails_root(expected["error_file"])
     end
     if options[:output_file]
       expected["output_file"].sub!(extract_filename(expected["output_file"], "load"), extract_filename(result.output_file, "load"))
-      expected["output_file"].sub!("/Users/daveih/Documents/rails/Glandon", Rails.root.to_s)
+      replace_rails_root(expected["output_file"])
     end
     expect(import_hash(result)).to hash_equal(expected)
   end
