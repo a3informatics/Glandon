@@ -1,7 +1,7 @@
 module ImportHelpers
   
   def replace_rails_root(text)
-    text.sub!("/Users/daveih/Documents/rails/Glandon", Rails.root.to_s)
+    text.sub(Rails.root.to_s, "/Users/daveih/Documents/rails/Glandon")
   end
 
   def import_type(text)
@@ -18,15 +18,16 @@ module ImportHelpers
     options.reverse_merge(default_options)
     expected["background_id"] = result.background_id
     expected["id"] = result.id
+    actual = import_hash(result)
     if options[:error_file]
       expected["error_file"].sub!(extract_filename(expected["error_file"], "errors"), extract_filename(result.error_file, "errors"))
-      replace_rails_root(expected["error_file"])
+      actual["error_file"] = replace_rails_root(actual["error_file"])
     end
     if options[:output_file]
       expected["output_file"].sub!(extract_filename(expected["output_file"], "load"), extract_filename(result.output_file, "load"))
-      replace_rails_root(expected["output_file"])
+      actual["output_file"] = replace_rails_root(actual["output_file"])
     end
-    expect(import_hash(result)).to hash_equal(expected)
+    expect(actual).to hash_equal(expected)
   end
 
 private
