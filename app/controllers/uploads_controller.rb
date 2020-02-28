@@ -9,9 +9,14 @@ class UploadsController < ApplicationController
 
   def create
     authorize Upload
-    post = Upload.save(params[:upload])
-    redirect_to uploads_path
-    flash[:success] = 'Upload complete.'
+    if params[:upload].nil?
+      redirect_to uploads_path
+      flash[:error] = 'No file selected.'
+    else
+      post = Upload.save(params[:upload])
+      redirect_to uploads_path
+      flash[:success] = 'Upload complete.'
+    end
   end
 
 end
