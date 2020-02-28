@@ -1,0 +1,65 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which code lists and code list items that do not have any tags are required."
+    :type: :thesauri
+:columns:
+  :sclid:
+    :label: Sponsor Code List Identifier
+    :type: literal
+  :scll:
+    :label: Sponsor Code List Label
+    :type: literal
+  :scln:
+    :label: Sponsor Code List Submission Value
+    :type: literal
+  :sclii:
+    :label: Sponsor Code List Item Identifier
+    :type: literal
+  :sclil:
+    :label: Sponsor Code List Item Label
+    :type: literal
+  :sclil:
+    :label: Sponsor Code List Item Submission Value
+    :type: literal
+  :t:
+    :label: Type
+    :type: literal
+:label: Missing tags
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>  
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>  
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
+PREFIX is: <http://purl.org/ontology/is/core#> 
+PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
+SELECT DISTINCT ?sclid ?scll ?scln ?sclii ?sclil ?sclin ?t WHERE        
+{           
+  VALUES ?th {[[[parameter_1]]]}     
+  {       
+    { 
+      ?th th:isTopConceptReference/bo:reference ?scl .
+      ?scl th:identifier ?sclid .
+      ?scl isoC:label ?scll .
+      ?scl th:notation ?scln .
+      FILTER NOT EXISTS { ?scl (isoC:tagged) ?sclt }
+      BIND ("Code List" as ?t)          
+    }    
+    UNION       
+    { 
+      ?th th:isTopConceptReference/bo:reference/th:narrower ?scli .
+      ?scli th:identifier ?sclii .
+      ?scli isoC:label ?sclil .
+      ?scli th:notation ?sclin .
+      FILTER NOT EXISTS { ?scli (isoC:tagged) ?sclit }
+      BIND ("Code List Item" as ?t)             
+    } 
+  } 
+}'
+:type: Ad Hoc Report Definition
