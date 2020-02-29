@@ -88,6 +88,20 @@ describe IsoConceptSystem::Node do
     other.add_link(:tagged, child.uri)
     child.delete
     expect(child.errors.count).to eq(1)
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
+  end
+
+  it "prevents an object being destroyed, child linked" do
+    cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
+    child = cs.add(label: "Node 2_1", description: "Node 2_1")
+    another_child = child.add(label: "Node 2_1_1", description: "Node 2_1_1")
+    child = IsoConceptSystem::Node.find(child.uri)
+    other = IsoConceptV2.create(uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X")
+    other = IsoConceptV2.find(other.uri)
+    other.add_link(:tagged, another_child.uri)
+    child.delete
+    expect(child.errors.count).to eq(1)
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
   end
 
   it "returns the children property" do
