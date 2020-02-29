@@ -18,7 +18,7 @@ class IsoConceptV2 < Fuseki::Base
   # @param label [String] the label required or to be created
   # @return [Thesaurus::Synonym] the found or new synonym object
   def self.where_only_or_create(label)
-    super({label: label}, {uri: create_uri(base_uri), label: label})
+    super({label: label}, {label: label})
   end
 
   # Add Tags No Save. Add tags if not already present, dont save

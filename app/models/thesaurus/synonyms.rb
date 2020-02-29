@@ -44,7 +44,7 @@ class Thesaurus
       end
       objects.map{|x| present[x.label] = x}
       synonym_parts.each do |synonym|
-        object = present.key?(synonym) ? present[synonym] : Thesaurus::Synonym.create({uri: Thesaurus::Synonym.create_uri(Thesaurus::Synonym.base_uri), label: synonym})
+        object = present.key?(synonym) ? present[synonym] : Thesaurus::Synonym.create(label: synonym)
         results << object
       end
       results
