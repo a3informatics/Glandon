@@ -35,6 +35,15 @@ describe "Upload Files", :type => :feature do
       ua_logoff
     end
 
+    it "upload, no file chosen (REQ-MDR-UPL-020)", js: true do
+      ua_content_admin_login
+      click_navbar_upload
+      expect(page).to have_content 'File Upload'
+      click_on "Start upload"
+      expect(page).to have_content "No file selected"
+      ua_logoff
+    end
+
   end
 
   describe "not valid user", :type => :feature do
@@ -45,7 +54,7 @@ describe "Upload Files", :type => :feature do
       expect(page).not_to have_content 'File Upload'
       ua_logoff
     end
-   
+
   end
 
 end
