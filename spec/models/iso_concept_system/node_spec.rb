@@ -9,6 +9,10 @@ describe IsoConceptSystem::Node do
     return "models/iso_concept_system/node"
   end
 
+  def delete_error_msg
+    "Cannot destroy tag as it has children tags or the tag or a child tag is currently in use."
+  end
+
   before :each do
     schema_files =
     [
@@ -72,19 +76,18 @@ describe IsoConceptSystem::Node do
     actual = IsoConceptSystem::Node.find(actual.uri)
     child.delete
     expect(child.errors.count).to eq(1)
-    expect(child.errors.full_messages.to_sentence).to eq("Cannot destroy tag as it has children tags or is currently in use.")
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
   end
 
   it "prevents an object being destroyed, linked" do
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     child = cs.add(label: "Node 2_1", description: "Node 2_1")
     child = IsoConceptSystem::Node.find(child.uri)
-    other = IsoConceptV2.create({uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X"})
+    other = IsoConceptV2.create(uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X")
     other = IsoConceptV2.find(other.uri)
     other.add_link(:tagged, child.uri)
     child.delete
     expect(child.errors.count).to eq(1)
-    expect(child.errors.full_messages.to_sentence).to eq("Cannot destroy tag as it has children tags or is currently in use.")
   end
 
   it "returns the children property" do
