@@ -127,17 +127,6 @@ module Fuseki
         opts.key?(:cache) ? opts[:cache] : false
       end
 
-      # Define URI creation method for the class
-      define_singleton_method :create_uri do |parent|
-        result = Uri.new(uri: parent.to_s) 
-        if opts.key?(:uri_unique)
-          result = Uri.new(namespace: base_uri.namespace, fragment: SecureRandom.uuid)
-        elsif opts.key?(:uri_suffix)
-          result.extend_fragment(opts[:uri_suffix])
-        end
-        result
-      end
-
       # Define instance method for creating a URI.
       define_method :create_uri do |parent|
         result = Uri.new(uri: parent.to_s) 

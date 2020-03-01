@@ -9,15 +9,12 @@ describe IsoConceptSystem::Node do
     return "models/iso_concept_system/node"
   end
 
+  def delete_error_msg
+    "Cannot destroy tag as it has children tags or the tag or a child tag is currently in use."
+  end
+
   before :each do
-    schema_files =
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"
-    ]
-    data_files =
-    [
-      "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"
-    ]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
     load_files(schema_files, data_files)
   end
 
@@ -46,9 +43,9 @@ describe IsoConceptSystem::Node do
 
 	it "prevents child objects being added with identical labels" do
 		cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
-    child = cs.add({ :label => "Node XY", :description => "Node XY1"})
+    child = cs.add(:label => "Node XY", :description => "Node XY1")
 		expect(child.errors.count).to eq(0)
-		child = cs.add({ :label => "Node XY", :description => "Node XY2"})
+		child = cs.add(:label => "Node XY", :description => "Node XY2")
 		expect(child.errors.count).to eq(1)
 		expect(child.errors.full_messages.to_sentence).to eq("This tag label already exists at this level.")
 	end
@@ -72,19 +69,32 @@ describe IsoConceptSystem::Node do
     actual = IsoConceptSystem::Node.find(actual.uri)
     child.delete
     expect(child.errors.count).to eq(1)
-    expect(child.errors.full_messages.to_sentence).to eq("Cannot destroy tag as it has children tags or is currently in use.")
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
   end
 
   it "prevents an object being destroyed, linked" do
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     child = cs.add(label: "Node 2_1", description: "Node 2_1")
     child = IsoConceptSystem::Node.find(child.uri)
-    other = IsoConceptV2.create({uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X"})
+    other = IsoConceptV2.create(label: "Node X")
     other = IsoConceptV2.find(other.uri)
     other.add_link(:tagged, child.uri)
     child.delete
     expect(child.errors.count).to eq(1)
-    expect(child.errors.full_messages.to_sentence).to eq("Cannot destroy tag as it has children tags or is currently in use.")
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
+  end
+
+  it "prevents an object being destroyed, child linked" do
+    cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
+    child = cs.add(label: "Node 2_1", description: "Node 2_1")
+    another_child = child.add(label: "Node 2_1_1", description: "Node 2_1_1")
+    child = IsoConceptSystem::Node.find(child.uri)
+    other = IsoConceptV2.create(label: "Node X")
+    other = IsoConceptV2.find(other.uri)
+    other.add_link(:tagged, another_child.uri)
+    child.delete
+    expect(child.errors.count).to eq(1)
+    expect(child.errors.full_messages.to_sentence).to eq(delete_error_msg)
   end
 
   it "returns the children property" do

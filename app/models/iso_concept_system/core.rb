@@ -8,7 +8,7 @@ module IsoConceptSystem::Core
     klass = self.properties.property(children_property).klass
     transaction_begin
     params[:pref_label] = params.delete(:label) # rename lable to pref_label, legacy reasons.
-    params[:uri] = create_uri(self.uri)
+    params[:parent_uri] = self.uri
     child = klass.create(params)
     child.errors.add(:base, "This tag label already exists at this level.") if self.has_child?(params[:pref_label])
     return child if child.errors.any?
@@ -23,9 +23,6 @@ module IsoConceptSystem::Core
   # @return [Boolean] The new object created if no exception raised
   def update(params)
     params[:pref_label] = params.delete(:label) # rename label to pref_label, legacy reasons.
-    #self.properties.assign(params) if !params.empty?
-    #return if !valid?
-    #partial_update(update_query(params), [:isoC])
     super
   end
 
@@ -42,28 +39,5 @@ module IsoConceptSystem::Core
     results = Sparql::Query.new.query(query_string, "", [])
     !results.empty?
   end
-
-private
-
-  # Update query string
-  # def update_query(params)
-  #   %Q{
-  #     DELETE
-  #     {
-  #     #{self.uri.to_ref} isoC:prefLabel ?a .
-  #     #{self.uri.to_ref} isoC:description ?b .
-  #     }
-  #     INSERT
-  #     {
-  #     #{self.uri.to_ref} isoC:prefLabel "#{self.pref_label}"^^xsd:string .
-  #     #{self.uri.to_ref} isoC:description "#{self.description}"^^xsd:string .
-  #     }
-  #     WHERE
-  #     {
-  #     #{self.uri.to_ref} isoC:prefLabel ?a .
-  #     #{self.uri.to_ref} isoC:description ?b .
-  #     }
-  #   }
-  # end
 
 end

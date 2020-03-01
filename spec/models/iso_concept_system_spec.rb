@@ -46,12 +46,12 @@ describe IsoConceptSystem do
     end
 
     it "allows the object to be created from params" do
-      actual = IsoConceptSystem.create({uri: IsoConceptSystem.create_uri(IsoConceptSystem.base_uri), pref_label: "Node 3", description: "Node 3"})
+      actual = IsoConceptSystem.create(pref_label: "Node 3", description: "Node 3")
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :iso_concept_system_equal)
     end
 
     it "prevents an object being created from invalid json" do
-      actual = IsoConceptSystem.create({uri: IsoConceptSystem.create_uri(IsoConceptSystem.base_uri), pref_label: "Node 3", description: "Node 3±"})
+      actual = IsoConceptSystem.create(pref_label: "Node 3", description: "Node 3±")
       expect(actual.errors.count).to eq(1)
     end
 

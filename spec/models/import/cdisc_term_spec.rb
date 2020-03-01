@@ -267,6 +267,7 @@ describe "Import::CdiscTerm" do
       expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
       actual = read_yaml_file(sub_dir, filename)
+      actual = actual.map{|x| replace_rails_root(x)}
       check_file_actual_expected(actual, sub_dir, "import_version_2011-06-10.yaml", equate_method: :hash_equal)
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)

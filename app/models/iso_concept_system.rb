@@ -21,7 +21,7 @@ class IsoConceptSystem < Fuseki::Base
   # @raise [Errors::ApplicationError] if object not created.
   # @return [IsoConceptSystem] The new object created if no exception raised
   def self.root
-    result = where_only_or_create({pref_label: C_ROOT_LABEL}, {uri: create_uri(base_uri), pref_label: C_ROOT_LABEL, description: C_ROOT_DESC})
+    result = where_only_or_create({pref_label: C_ROOT_LABEL}, {pref_label: C_ROOT_LABEL, description: C_ROOT_DESC})
     Errors.application_error(self.name, __method__.to_s, "Errors creating the tag root node. #{result.errors.full_messages.to_sentence}") if result.errors.any?
     result
   end

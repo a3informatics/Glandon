@@ -22,10 +22,8 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   include Thesaurus::Synonyms
 
   def self.create(params, parent)
-    object = new(params)
-    object.uri = object.create_uri(parent.uri)
-    object.create_or_update(:create) if object.valid?(:create)
-    object
+    params[:parent_uri] = parent.uri
+    super(params)
   end
   
   def delete_or_unlink(parent_object)

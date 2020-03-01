@@ -18,10 +18,10 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:origin ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:changeDescription ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2019-12-15T21:11:36+01:00"^^xsd:dateTime . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2020-02-29T13:32:38+01:00"^^xsd:dateTime . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:explanatoryComment ""^^xsd:string . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> rdf:type isoR:RegistrationState . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:registrationStatus "Incomplete"^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:administrativeNote ""^^xsd:string . 
@@ -38,20 +38,18 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:version "1"^^xsd:positiveInteger . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:semanticVersion "0.1.0"^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:hasScope <http://www.assero.co.uk/NS#ACME> . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> rdf:type bo:TcReference . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> isoC:label ""^^xsd:string . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> bo:optional "true"^^xsd:boolean . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> bo:reference <http://www.assero.co.uk/TC#OWNER-A00022> . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> bo:localLabel ""^^xsd:string . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> rdf:type bo:TcReference . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> isoC:label ""^^xsd:string . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> bo:enabled "true"^^xsd:boolean . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> bo:optional "true"^^xsd:boolean . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> bo:ordinal "2"^^xsd:positiveInteger . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> bo:reference <http://www.acme-pharma.com/A00001/V1#A00001_A000011> . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> bo:localLabel ""^^xsd:string . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> rdf:type bo:TMcReference . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> isoC:label ""^^xsd:string . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> bo:enabled "true"^^xsd:boolean . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> bo:optional "true"^^xsd:boolean . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC1> bo:reference <http://www.assero.co.uk/TC#OWNER-A00022> . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> rdf:type bo:TMcReference . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> isoC:label ""^^xsd:string . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> bo:enabled "true"^^xsd:boolean . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> bo:optional "true"^^xsd:boolean . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> bo:ordinal "2"^^xsd:positiveInteger . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_TMC2> bo:reference <http://www.acme-pharma.com/A00001/V1#A00001_A000011> . 
 <http://www.assero.co.uk/TC#OWNER-A00022> rdf:type th:UnmanagedConcept . 
 <http://www.assero.co.uk/TC#OWNER-A00022> isoC:label "Axe"^^xsd:string . 
 <http://www.assero.co.uk/TC#OWNER-A00022> th:identifier "A00022"^^xsd:string . 
@@ -65,7 +63,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:notation "NOTATION1"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:definition "The definition."^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:extensible "false"^^xsd:boolean . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#12d47e4c-cd3f-4838-bcd3-aa050999afc0> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#8e5dab80-3ef3-4c16-a3fa-fbdde0043c99> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#41258fa7-f394-432e-9d3b-17a57b2ff8ee> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#2346714d2fc2865dea5734b3ed477a152c364f30> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#f8d605776c022c74e03ee5470bfc5904a27d3ed5> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#2bb61c644ff22ae561878a71c68b328dc1951b03> . 
 }
