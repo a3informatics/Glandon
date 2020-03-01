@@ -320,7 +320,7 @@ module Import::STFOClasses
         uri = fixes.fix(self.identifier, identifier)
         if !uri.nil?
           result = Thesaurus::UnmanagedConcept.find_children(uri)
-          add_error("Fix notation mismatch, fix '#{result.notation}' versus reqd '#{child.notation}'.") if result.notation != child.notation       
+          add_error("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
           add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")

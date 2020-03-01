@@ -313,6 +313,26 @@ puts colourize("Load 3.0 excel ...", "blue")
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, no errors, bug issue V" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    full_path = test_file_path(sub_dir, "import_input_16.xlsx")
+    params = {identifier: "TEST 16", version: "1", date: "2019-06-01", files: [full_path], version_label: "1.0.0", label: "Version 2-6 Test", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    result = @object.import(params)
+    filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+    #expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    actual = read_public_yaml_file("test", filename)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_16.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_16.yaml")
+    #copy_file_from_public_files("test", filename, sub_dir)
+    filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
+    #expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_16.ttl")
+    check_ttl_fix_v2(filename, "import_expected_16.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
   it "import, exception" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
