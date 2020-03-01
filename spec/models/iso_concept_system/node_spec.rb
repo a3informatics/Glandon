@@ -50,9 +50,9 @@ describe IsoConceptSystem::Node do
 
 	it "prevents child objects being added with identical labels" do
 		cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
-    child = cs.add({ :label => "Node XY", :description => "Node XY1"})
+    child = cs.add(:label => "Node XY", :description => "Node XY1")
 		expect(child.errors.count).to eq(0)
-		child = cs.add({ :label => "Node XY", :description => "Node XY2"})
+		child = cs.add(:label => "Node XY", :description => "Node XY2")
 		expect(child.errors.count).to eq(1)
 		expect(child.errors.full_messages.to_sentence).to eq("This tag label already exists at this level.")
 	end
@@ -83,7 +83,7 @@ describe IsoConceptSystem::Node do
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     child = cs.add(label: "Node 2_1", description: "Node 2_1")
     child = IsoConceptSystem::Node.find(child.uri)
-    other = IsoConceptV2.create(uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X")
+    other = IsoConceptV2.create(label: "Node X")
     other = IsoConceptV2.find(other.uri)
     other.add_link(:tagged, child.uri)
     child.delete
@@ -96,7 +96,7 @@ describe IsoConceptSystem::Node do
     child = cs.add(label: "Node 2_1", description: "Node 2_1")
     another_child = child.add(label: "Node 2_1_1", description: "Node 2_1_1")
     child = IsoConceptSystem::Node.find(child.uri)
-    other = IsoConceptV2.create(uri: IsoConceptV2.create_uri(IsoConceptV2.base_uri), label: "Node X")
+    other = IsoConceptV2.create(label: "Node X")
     other = IsoConceptV2.find(other.uri)
     other.add_link(:tagged, another_child.uri)
     child.delete

@@ -87,8 +87,22 @@ module Fuseki
         where({})
       end
 
-      def create(params)
+      # Create. Create an object setting attributes. 
+      #
+      # @param [Hash] params the parameters hash containing attribute values. Keys are determined by the object 
+      #   being created. Some key names are reserved:
+      # @option params [Uri] :parent_uri the parent uri object. Optional. 
+      #   If not specified base_uri method will be used
+      # @return [Object] the created object of the relevant class.
+      def create(params={})
+        # Extract parent URI if present.
+        parent_uri = extract_parent_uri(params)
+        params = clear_parent_uri(params)
+        # New object
         object = new(params)
+        # Set the URI if no explicit URI set in params. NOTE: This is set after object creation, important!
+        object.uri = object.create_uri(parent_uri) unless params.key?(:uri) 
+        # Create if valid
         object.create_or_update(:create) if object.valid?(:create)
         object
       end
@@ -189,6 +203,19 @@ module Fuseki
       end
 
     private
+
+      # Clear parent URI from the parameters hash.
+      def clear_parent_uri(params)
+        params.reject{|k,v| k == :parent_uri}
+      end
+
+      # Extract the parent URI from the parameters hash. If none present set base URI.
+      def extract_parent_uri(params)
+        return nil if params.key?(:uri)
+        params.key?(:parent_uri) ? params[:parent_uri] : self.base_uri
+      rescue => e
+        Errors.application_error(self.class.name, __method__.to_s, "Exception setting URI.")
+      end
 
       # Get object based on RDF class
       def rdf_type_klass(triples)

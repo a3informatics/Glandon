@@ -294,7 +294,7 @@ describe "Thesaurus Subset General" do
     expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
     expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("A000001")
     expected_mc = Thesaurus::ManagedConcept.create
-    subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(expected_mc.uri))
+    subset = Thesaurus::Subset.create(parent_uri: expected_mc.uri)
     expected_mc.is_ordered = subset
     expected_mc = Thesaurus::ManagedConcept.find(expected_mc.uri)
     expected_mc.is_ordered = subset
@@ -549,7 +549,6 @@ describe "Thesaurus Subset Item List and Clone" do
     subset.members = sm_1
     subset.save
     cloned = subset.clone
-    cloned.uri = Uri.new(uri: "http://www.example.com/a#c1")
     cloned.create_or_update(:create, true)
     check_members(subset, cloned, 1)
   end

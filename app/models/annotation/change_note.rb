@@ -23,7 +23,6 @@ class Annotation::ChangeNote < Annotation
   # @option params [String] :current the item for which the change note is relevant
   # @return [Annotation::ChangeNote] the change note, may contain errors.
   def self.create(params)
-    params[:uri] = create_uri(base_uri)
     params[:label] = "Change Note"
     params[:timestamp] = Time.now
     params[:by_authority] = IsoRegistrationAuthority.owner.uri

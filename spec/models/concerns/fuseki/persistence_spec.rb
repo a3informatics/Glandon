@@ -23,6 +23,23 @@ describe Fuseki::Persistence do
     after :each do
     end
 
+    it "creates an object, default uri" do
+      result = FusekiBaseHelpers::TestAdministeredItem.create(organization_identifier: "CCC", international_code_designator: "123")
+      expect(result.errors.count).to eq(0)
+      expect(result.uri.to_s).to eq("http://www.assero.co.uk/RA")
+    end
+
+    it "creates an object, parent uri" do
+      uri = Uri.new(uri: "http://www.exampel.com/a#1")
+      result = FusekiBaseHelpers::TestAdministeredItem.create(organization_identifier: "CCC", international_code_designator: "123", parent_uri: uri)
+      expect(result.errors.count).to eq(0)
+      expect(result.uri.to_s).to eq(uri.to_s)
+    end
+
+    it "creates an object, uri not set" do
+      expect{FusekiBaseHelpers::TestScopedIdentifier.create}.to raise_error(Errors::ApplicationLogicError, "Exception setting URI.")
+    end
+
     it "check validation, uri" do
       uri = Uri.new(uri: "http://www.assero.co.uk/XXX/V1#A")
       result = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri)
