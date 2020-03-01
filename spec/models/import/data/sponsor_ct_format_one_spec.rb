@@ -120,22 +120,22 @@ describe "Import::SponsorTermFormatOne" do
     puts colourize("OK", "blue")
   end
 
-  it "import version 2.6", :speed => 'slow'  do
+  it "import version 2.6, global & study", :speed => 'slow'  do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
-    full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
+    full_path = db_load_file_path("sponsor_one/ct", "global_study_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
     params = {identifier: "Q3 2019", version: "1", date: "2019-08-08", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 2-6, Q3 2019", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_2-6.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_2-6.yaml", equate_method: :hash_equal)
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
     check_ttl_fix_v2(filename, "import_expected_2-6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

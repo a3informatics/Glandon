@@ -294,6 +294,8 @@ module Import::STFOClasses
     end
 
     def find_referenced(ct, identifier, child, fixes)
+      result = exact_match(ct, identifier)
+      return result if !result.nil?
       options = ct.find_identifier(identifier)
       if options.empty?
         # See if we can find anything in the future
@@ -322,6 +324,13 @@ module Import::STFOClasses
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def exact_match(ct, identifier)
+      results = ct.find_by_identifiers([self.identifier, identifier])
+      return Thesaurus::UnmanagedConcept.find(results[identifier]) if results.key?(identifier)
+      add_log ("**** Failed to find exact match '#{identifier}', identifier '#{self.identifier}'.")
       nil
     end
 
