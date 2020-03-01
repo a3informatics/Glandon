@@ -14,14 +14,7 @@ describe IsoConceptSystem::Node do
   end
 
   before :each do
-    schema_files =
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"
-    ]
-    data_files =
-    [
-      "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"
-    ]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
     load_files(schema_files, data_files)
   end
 
