@@ -75,13 +75,9 @@ describe Fuseki::Resource do
     it "URI generation configured, unique" do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", base_uri: "http://www.example.com/X", uri_unique: true})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
-      expect(result.to_s.length > parent.to_s.length).to eq(true)
-      expect(result.to_s).to start_with("http://www.example.com/X")
-      result = TestR1.create_uri(parent)
       expect(result.to_s.length > parent.to_s.length).to eq(true)
       expect(result.to_s).to start_with("http://www.example.com/X")
     end
@@ -90,7 +86,6 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_AAA"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "AAA"})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
@@ -102,7 +97,6 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_14"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_property: :xxx})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
@@ -113,18 +107,9 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_BBB14"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB", uri_property: :xxx})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
-      expect(result.to_s).to eq(expected)
-    end
-
-    it "URI generation configured, property & prefix" do
-      parent = Uri.new(uri: "http://www.example.com/A#XXX")
-      expected = "#{parent.to_s}_BBB"
-      TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB"})
-      result = TestR1.create_uri(parent)
       expect(result.to_s).to eq(expected)
     end
 

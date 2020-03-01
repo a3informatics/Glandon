@@ -1,28 +1,16 @@
 ---
-- Code list type not detected, identifier 'SC135012'.
-- Code list type not detected, identifier 'SC125923'.
-- Code list type not detected, identifier 'SC124298'.
-- 'Action Taken with Study Treatment: Cannot find referenced item C78728, multiple
-  found, identifier ''C66767''. Found http://www.cdisc.org/C78737/V28#C78737_C78728,
-  http://www.cdisc.org/C99075/V33#C99075_C78728 and no fix.'
-- 'Action Taken with Study Treatment Collected: Cannot find referenced item C48660,
+- 'Action Taken with Study Treatment Collected: Cannot find referenced item ''C48660'',
   multiple found, identifier ''SN000730''. Found http://www.cdisc.org/C85495/V19#C85495_C48660,
   http://www.cdisc.org/C66737/V38#C66737_C48660, http://www.cdisc.org/C66767/V28#C66767_C48660,
   http://www.cdisc.org/C66742/V36#C66742_C48660 and no fix.'
-- 'Action Taken with Study Treatment Collected: Cannot find referenced item C49501,
+- 'Action Taken with Study Treatment Collected: Cannot find referenced item ''C49501'',
   multiple found, identifier ''SN000730''. Found http://www.cdisc.org/C102585/V32#C102585_C49501,
   http://www.cdisc.org/C66767/V4#C66767_C49501 and no fix.'
-- 'Anatomical Location: Cannot find referenced item C12754, none found, identifier
-  ''C74456''.'
-- 'Anatomical Location: Cannot find referenced item C34320, none found, identifier
-  ''C74456''.'
-- 'Anatomical Location: Cannot find referenced item C12686, none found, identifier
-  ''C74456''.'
-- 'Anatomical Location: Cannot find referenced item C17649, multiple found, identifier
+- 'Anatomical Location: Cannot find referenced item ''C17649'', multiple found, identifier
   ''C74456''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
   http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
   http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'
-- 'Anatomical Location: Cannot find referenced item C17998, multiple found, identifier
+- 'Anatomical Location: Cannot find referenced item ''C17998'', multiple found, identifier
   ''C74456''. Found http://www.cdisc.org/C71113/V6#C71113_C17998, http://www.cdisc.org/C101848/V36#C101848_C17998,
   http://www.cdisc.org/C85495/V19#C85495_C17998, http://www.cdisc.org/C78745/V19#C78745_C17998,
   http://www.cdisc.org/C66768/V4#C66768_C17998, http://www.cdisc.org/C78419/V19#C78419_C17998,
@@ -31,99 +19,50 @@
   http://www.cdisc.org/C66731/V4#C66731_C17998, http://www.cdisc.org/C101859/V39#C101859_C17998,
   http://www.cdisc.org/C66742/V4#C66742_C17998, http://www.cdisc.org/C101834/V36#C101834_C17998
   and no fix.'
-- 'Anatomical Location: Cannot find referenced item C69313, none found, identifier
-  ''C74456''.'
-- 'Anatomical Location: Cannot find referenced item C142369, none found, identifier
-  ''C74456''.'
-- 'Anatomical Location Subset 02: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001004P''.'
-- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''SC12348'',
-  for a subset ''NP001005P''.'
-- 'Anatomical Location Subset 03: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001005P''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''SC12348'',
-  for a subset ''NP001006P''.'
-- 'Anatomical Location Subset 04: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001006P''.'
-- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001007P''.'
-- 'Anatomical Location Subset 05: Cannot find a code list item, identifier ''SC12348'',
-  for a subset ''NP001007P''.'
-- 'Anatomical Location Subset 06: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001008P''.'
-- 'Anatomical Location Subset 08: Cannot find a code list item, identifier ''C17649'',
-  for a subset ''NP001009P''.'
-- 'Assistance to Administer Treatment: Cannot find referenced item C48660, multiple
-  found, identifier ''SN000738''. Found http://www.cdisc.org/C85495/V19#C85495_C48660,
-  http://www.cdisc.org/C66737/V38#C66737_C48660, http://www.cdisc.org/C66767/V28#C66767_C48660,
-  http://www.cdisc.org/C66742/V36#C66742_C48660 and no fix.'
-- 'Cancer Diagnosis Extent: Cannot find referenced item C14174, multiple found, identifier
-  ''SN000229''. Found http://www.cdisc.org/C90004/V26#C90004_C14174, http://www.cdisc.org/C90017/V26#C90017_C14174
+- 'Anatomical Location Subset 02: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001004P''.'
+- 'Anatomical Location Subset 03: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001005P''.'
+- 'Anatomical Location Subset 04: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001006P''.'
+- 'Anatomical Location Subset 05: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001007P''.'
+- 'Anatomical Location Subset 06: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001008P''.'
+- 'Anatomical Location Subset 08: Subset of extension, cannot find a code list item,
+  identifier ''C17649'', for a subset ''NP001009P''.'
+- 'Cancer Diagnosis Extent: Cannot find referenced item ''C14174'', multiple found,
+  identifier ''SN000229''. Found http://www.cdisc.org/C90004/V26#C90004_C14174, http://www.cdisc.org/C90017/V26#C90017_C14174
   and no fix.'
-- 'Cardiovascular Test Code: Cannot find referenced item C120943, multiple found,
-  identifier ''C101847''. Found http://www.cdisc.org/C120535/V43#C120535_C120943,
-  http://www.cdisc.org/C120534/V43#C120534_C120943 and no fix.'
-- 'Cardiovascular Test Code: Cannot find referenced item C127564, none found, identifier
-  ''C101847''.'
-- 'Cardiovascular Test Code: Cannot find referenced item C127571, none found, identifier
-  ''C101847''.'
-- 'Cardiovascular Test Code: Cannot find referenced item C127572, none found, identifier
-  ''C101847''.'
-- 'Cardiovascular Test Name: Cannot find referenced item C120943, multiple found,
+- 'Cardiovascular Test Name: Cannot find referenced item ''C120943'', multiple found,
   identifier ''C101846''. Found http://www.cdisc.org/C120535/V43#C120535_C120943,
   http://www.cdisc.org/C120534/V43#C120534_C120943 and no fix.'
-- 'Cardiovascular Test Name: Cannot find referenced item C127564, none found, identifier
-  ''C101846''.'
-- 'Cardiovascular Test Name: Cannot find referenced item C127571, none found, identifier
-  ''C101846''.'
-- 'Cardiovascular Test Name: Cannot find referenced item C127572, none found, identifier
-  ''C101846''.'
-- 'Category for Adverse Event: Cannot find referenced item C17649, multiple found,
+- 'Category for Adverse Event: Cannot find referenced item ''C17649'', multiple found,
   identifier ''SN000753''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
   http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
   http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'
-- 'Category for Medical History: Cannot find referenced item C17649, multiple found,
-  identifier ''SN000804''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
+- 'Category for Medical History: Cannot find referenced item ''C17649'', multiple
+  found, identifier ''SN000804''. Found http://www.cdisc.org/C99078/V31#C99078_C17649,
+  http://www.cdisc.org/C101855/V33#C101855_C17649, http://www.cdisc.org/C101852/V33#C101852_C17649,
+  http://www.cdisc.org/C101865/V33#C101865_C17649, http://www.cdisc.org/C66727/V4#C66727_C17649
+  and no fix.'
+- 'Category for Medication: Cannot find referenced item ''C17649'', multiple found,
+  identifier ''SN000760''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
   http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
   http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'
-- 'Category for Medication: Cannot find referenced item C17649, multiple found, identifier
-  ''SN000760''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
+- 'Category for Procedures: Cannot find referenced item ''C17649'', multiple found,
+  identifier ''SN000465''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
   http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
   http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'
-- 'Category for Procedures: Cannot find referenced item C17649, multiple found, identifier
-  ''SN000465''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
-  http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
-  http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'
-- 'Category of Clinical Classification: Cannot find referenced item C138333, none
-  found, identifier ''C118971''.'
-- 'Category of Clinical Classification: Cannot find referenced item C124704, none
-  found, identifier ''C118971''.'
-- 'Category of Clinical Classification: Cannot find referenced item C124703, none
-  found, identifier ''C118971''.'
-- 'Code Breaker Subset 01: Cannot find a code list item, identifier ''SC25936'', for
-  a subset ''NP001016P''.'
-- 'Common Terminology Criteria for Adverse Events: Cannot find referenced item C48275,
+- 'Common Terminology Criteria for Adverse Events: Cannot find referenced item ''C48275'',
   multiple found, identifier ''SN001030''. Found http://www.cdisc.org/C87162/V19#C87162_C48275,
   http://www.cdisc.org/C66768/V28#C66768_C48275, http://www.cdisc.org/C66784/V28#C66784_C48275
   and no fix.'
 - 'Common Terminology Criteria for Adverse Events Numeric: Cannot find referenced
-  item C48275, multiple found, identifier ''SN001072''. Found http://www.cdisc.org/C87162/V19#C87162_C48275,
+  item ''C48275'', multiple found, identifier ''SN001072''. Found http://www.cdisc.org/C87162/V19#C87162_C48275,
   http://www.cdisc.org/C66768/V28#C66768_C48275, http://www.cdisc.org/C66784/V28#C66784_C48275
   and no fix.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC84263'', for a subset ''NP001017P''.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC84264'', for a subset ''NP001017P''.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC84265'', for a subset ''NP001017P''.'
-- 'Common Terminology Criteria for Adverse Events Subset 01: Cannot find a code list
-  item, identifier ''SC84266'', for a subset ''NP001017P''.'
-- 'Completion/Reason for Non-Completion: Cannot find referenced item C132447, none
-  found, identifier ''C66727''.'
-- 'Completion/Reason for Non-Completion: Cannot find referenced item C142742, none
-  found, identifier ''C66727''.'
-- 'Contact Method: Cannot find referenced item C18002, none found, identifier ''SN000185''.'
-- 'Contact Method: Cannot find referenced item C17649, multiple found, identifier
+- 'Contact Method: Cannot find referenced item ''C17649'', multiple found, identifier
   ''SN000185''. Found http://www.cdisc.org/C99078/V31#C99078_C17649, http://www.cdisc.org/C101855/V33#C101855_C17649,
   http://www.cdisc.org/C101852/V33#C101852_C17649, http://www.cdisc.org/C101865/V33#C101865_C17649,
   http://www.cdisc.org/C66727/V4#C66727_C17649 and no fix.'

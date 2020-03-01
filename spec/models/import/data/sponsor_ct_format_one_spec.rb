@@ -120,7 +120,7 @@ describe "Import::SponsorTermFormatOne" do
     puts colourize("OK", "blue")
   end
 
-  it "import version 2.6" do
+  it "import version 2.6", :speed => 'slow'  do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")

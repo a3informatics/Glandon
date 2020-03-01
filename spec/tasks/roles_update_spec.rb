@@ -1,21 +1,21 @@
 require 'rails_helper'
 require 'rake'
 
-describe 'roles one rake task' do
+describe 'roles update rake task' do
   
   before :all do
-    Rake.application.rake_require "tasks/roles_one"
+    Rake.application.rake_require "tasks/roles_update"
     Rake::Task.define_task(:environment)
   end
 
-  describe 'roles one' do
+  describe 'roles update' do
     
     before do
     end
 
     let :run_rake_task do
-      Rake::Task["data:roles_one"].reenable
-      Rake.application.invoke_task "data:roles_one"
+      Rake::Task["roles:update"].reenable
+      Rake.application.invoke_task "roles:update"
     end
 
     it "update the roles table" do

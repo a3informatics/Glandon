@@ -301,6 +301,12 @@ describe Thesaurus::ManagedConcept do
       @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       @th_1 = Thesaurus.new
       @th_1.label = "Test Terminology"
+      cs_1 = IsoConceptSystem.new
+      cs_1.uri = Uri.new(uri: "http://www.assero.co.uk/TAG1")
+      cs_2 = IsoConceptSystem.new
+      cs_2.uri = Uri.new(uri: "http://www.assero.co.uk/TAG2")
+      cs_3 = IsoConceptSystem.new
+      cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
       @tc_1 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow",
           identifier: "A00001",
@@ -310,6 +316,7 @@ describe Thesaurus::ManagedConcept do
       @tc_1.synonym << Thesaurus::Synonym.new(label:"Heathrow")
       @tc_1.synonym << Thesaurus::Synonym.new(label:"LHR")
       @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"London Heathrow")
+      @tc_1.add_tags_no_save([cs_1, cs_2])
       @tc_1a = Thesaurus::UnmanagedConcept.from_h({
           label: "Terminal 5",
           identifier: "A000011",
@@ -327,7 +334,8 @@ describe Thesaurus::ManagedConcept do
           definition: "The oldest LHR Terminal",
           notation: "T1"
         })
-      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1") 
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
+      @tc_1b.add_tags_no_save([cs_3]) 
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
       @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
@@ -397,7 +405,7 @@ describe Thesaurus::ManagedConcept do
       @tc_3.to_sparql(sparql, true)
       @tc_4.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_ad_hoc.ttl")
     end 
 
   end

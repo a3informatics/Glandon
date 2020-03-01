@@ -9,6 +9,7 @@ describe "Thesaurus::ManagedConcept" do
   include ThesauriHelpers
   include IsoManagedHelpers
   include TimeHelpers
+  include NameValueHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -154,9 +155,11 @@ describe "Thesaurus::ManagedConcept" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      #NameValue.destroy_all
+      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
     end
 
     it "returns audit type" do
@@ -487,9 +490,8 @@ describe "Thesaurus::ManagedConcept" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
     end
 
     it "change notes managed and unmanaged concepts" do
@@ -736,6 +738,8 @@ describe "Thesaurus::ManagedConcept" do
       load_cdisc_term_versions(1..10)
       load_data_file_into_triple_store("mdr_identification.ttl")
       delete_all_public_test_files
+      nv_destroy
+      nv_create(parent: "10", child: "999")
     end
 
     it "upgrade impact, extension" do
@@ -1210,9 +1214,11 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl",]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      #NameValue.destroy_all
+      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
     end
 
     it "delete extension" do
@@ -1424,9 +1430,11 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      #NameValue.destroy_all
+      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
     end
 
     it "determines if an item is subsetted" do

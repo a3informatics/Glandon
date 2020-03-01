@@ -510,19 +510,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
     query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
-  begin
       indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
       results << {identifier: x[:i], notation: x[:n], label: x[:l], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
-  rescue => e
-    #byebug
-puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
-  end
     end
     results
   end
 
-# To CSV. The code list as a set of CSV record with a header.
+  # To CSV. The code list as a set of CSV record with a header.
   #
   # @return [Array] the set of CSV record, each is an array of stirngs
   def to_csv
@@ -567,18 +562,23 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
     object
   end
 
+  # Create Subset
+  #
+  # @return [Thesaurus::ManagedConcept] the new subset
   def create_subset
     source_mc = Thesaurus::ManagedConcept.find_minimum(self.id)
     transaction_begin
     new_mc = Thesaurus::ManagedConcept.create
-    subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
+    subset = Thesaurus::Subset.create(parent_uri: new_mc.uri)
     new_mc.add_link(:is_ordered, subset.uri)
     new_mc.add_link(:subsets, source_mc.uri)
     transaction_execute
     new_mc
   end
 
-  # Change notes paginated query
+  # Change Notes Paginated
+  #
+  # @return [Array] an array of record results
   def change_notes_paginated(params)
     results = []
     count = params[:count].to_i
@@ -669,7 +669,7 @@ puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
   # Upgrade Impact. 
   #
   # @param th [Thesaurus] the sponsor thesaurus being upgraded
-  # @return [Hash] the results hash
+  # @return [Array] array of results
   def upgrade_impact(th)
     results = []
     query_string = %Q{

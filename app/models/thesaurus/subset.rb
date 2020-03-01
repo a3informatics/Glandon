@@ -31,40 +31,21 @@ class Thesaurus::Subset < IsoConceptV2
 
   #Find Managed Concept. Find the managed concept 
   def find_mc
-      objects = []
-      query_string = %Q{
-        SELECT DISTINCT ?s ?p ?o WHERE {
-          #{self.uri.to_ref} (^th:isOrdered) ?s .
-          ?s ?p ?o
-        }
+    objects = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?p ?o WHERE {
+        #{self.uri.to_ref} (^th:isOrdered) ?s .
+        ?s ?p ?o
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:th])
-      return nil if query_results.empty?
-      query_results.by_subject.each do |subject, triples|
-        objects << Thesaurus::ManagedConcept.from_results(Uri.new(uri: subject), triples)
-      end
-      return objects.first if objects.count == 1
-      Errors.application_error(self.class.name, __method__.to_s, "Multiple MC found.")
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return nil if query_results.empty?
+    query_results.by_subject.each do |subject, triples|
+      objects << Thesaurus::ManagedConcept.from_results(Uri.new(uri: subject), triples)
+    end
+    return objects.first if objects.count == 1
+    Errors.application_error(self.class.name, __method__.to_s, "Multiple MC found.")
   end
-
-  # Add. Add a new subset member to the Subset
-  #
-  # @param uc_id [String] the identifier of the unmanaged concept to be linked to the new subset member
-  # @return [Object] the created Subset Member
-  # def add(uc_id)
-  #   transaction_begin
-  #   sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
-  #   mc = self.find_mc
-  #   last_sm = self.last
-  #   if last_sm.nil? #Add the first member
-  #    self.add_link(:members, sm.uri)
-  #   else #Add the new member to the last position 
-  #    last_sm.add_link(:member_next, sm.uri)
-  #   end
-  #   mc.add_link(:narrower, sm.item) 
-  #   transaction_execute
-  #   sm
-  # end
 
   # Remove. Remove a subset member of the Subset
   #
@@ -118,7 +99,12 @@ class Thesaurus::Subset < IsoConceptV2
   def clone
     cloned_members = []
     object = super
-    list_uris.each {|items| cloned_members << Thesaurus::SubsetMember.new({item: items[:uri], uri: Thesaurus::SubsetMember.create_uri(self.uri)})}
+    object.uri = create_uri(self.class.base_uri)
+    list_uris.each do |items| 
+      item = Thesaurus::SubsetMember.new(item: items[:uri])
+      item.uri = item.create_uri(object.uri)
+      cloned_members << item
+    end
     return object if cloned_members.empty?
     cloned_members.each_with_index do |cloned_member, index|
       next_item = ordinal = index + 1
@@ -215,7 +201,7 @@ class Thesaurus::Subset < IsoConceptV2
     sparql.default_namespace(self.uri.namespace)
     mc = self.find_mc
     arr.each do |x|
-      member = Thesaurus::SubsetMember.create({item: Uri.new(id: x), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+      member = Thesaurus::SubsetMember.create(item: Uri.new(id: x))
       subset_members << member
       member.to_sparql(sparql)
       sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})

@@ -159,19 +159,19 @@ describe "Tags", :type => :feature do
       expect(page).not_to have_content 'TAG4'
     end
 
-    # #not implemented
-    # it "still (not) delete tags used by managed items (REQ-MDR-TAG-060) - WILL CURRENTLY FAIL", js: true do
-    #   load_test_file_into_triple_store("tag_test_data.ttl")
-    #   create_tag_form("TAGFORM", "Tag test form" )
-    #   add_tags("Forms", "TAGFORM", "TAG4-1-1")
-    #   click_navbar_tags
-    #   expect(page).to have_content 'Manage Tags'
-    #   ui_click_node_name ("TAG4-1-1")
-    #   ui_check_input('edit_label','TAG4-1-1')
-    #   click_button 'Delete'
-    #   wait_for_ajax
-    #   expect(page).not_to have_content 'TAG4-1-1'
-    # end
+    it "Not delete tags where children used by managed items, GLAN-1234. (REQ-MDR-TAG-060)", js: true do
+      root = IsoConceptSystem.root
+      first = root.add(label: "Tag1", description: "Tag1")
+      second = first.add(label: "Tag1_1", description: "Tag1_1")
+      third = second.add(label: "Tag1_1_1", description: "Tag1_1_1")
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct.add_tag(third.id)
+      click_navbar_tags
+      expect(page).to have_content 'Manage Tags'
+      ui_click_node_name ("Tag1")
+      click_on 'Delete tag'
+      expect(page).to have_content 'Cannot destroy tag as it has children tags'
+    end
 
     it "update tag labels (REQ-MDR-TAG-110)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
@@ -555,7 +555,6 @@ describe "Tags", :type => :feature do
       detach_tag("TAG1")
       expect(page).to have_content "TAG1", count: 1
     end
-
 
   end
 

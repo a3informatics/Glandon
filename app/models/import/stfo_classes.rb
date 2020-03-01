@@ -322,7 +322,6 @@ module Import::STFOClasses
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
-byebug
       nil
     end
 

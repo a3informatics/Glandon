@@ -3,9 +3,9 @@ require 'rails_helper'
 describe UploadsController do
 
   include DataHelpers
-  
+
   describe "Authorized User" do
-  	
+
     login_content_admin
 
     it "index users" do
@@ -21,10 +21,15 @@ describe UploadsController do
       expect(response).to redirect_to("/uploads")
     end
 
+    it 'upload, file nil' do
+      post :create, :upload => nil
+      expect(response).to redirect_to("/uploads")
+    end
+
   end
 
   describe "Unauthorized User" do
-    
+
     it "index user" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
