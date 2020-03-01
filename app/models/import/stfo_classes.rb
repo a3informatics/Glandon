@@ -318,9 +318,14 @@ module Import::STFOClasses
         option = matching_notation(child, options)
         return option if !option.nil?
         uri = fixes.fix(self.identifier, identifier)
-        return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
-        add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
-        return nil
+        if !uri.nil?
+          result = Thesaurus::UnmanagedConcept.find_children(uri)
+          add_error("Fix notation mismatch, fix '#{result.notation}' versus reqd '#{child.notation}'.") if result.notation != child.notation       
+          return result 
+        else
+          add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
+          return nil
+        end
       end
     rescue => e
       add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
