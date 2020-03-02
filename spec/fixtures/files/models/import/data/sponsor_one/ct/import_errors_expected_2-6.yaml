@@ -7,8 +7,6 @@
 - 'Cardiovascular Test Name: Fix notation mismatch, fix ''Pulmonary Systolic Pressure''
   ''C120943'' versus reqd ''Pulmonary Artery Systolic Pressure'' ''SC120943'', identifier
   ''C101846''.'
-- 'Respiratory Test Name: Fix notation mismatch, fix ''Non-target Response'' ''C94535''
-  versus reqd ''Non-Target Response'' ''SC94535'', identifier ''C111107''.'
 - 'Morphology Test Name: Fix notation mismatch, fix ''OTHER'' ''C17649'' versus reqd
   ''Other'' ''SC17649'', identifier ''C114116''.'
 - 'Nervous System Physiology Test Name: Fix notation mismatch, fix ''OTHER'' ''C17649''
@@ -19,20 +17,41 @@
   reqd ''Other'' ''SC17649'', identifier ''C120528''.'
 - 'Anatomical Location: Cannot find referenced item ''C13360'', none found, identifier
   ''C74456''.'
-- 'Tumor Response Result: Fix notation mismatch, fix ''DISEASE RELAPSE'' ''C38155''
-  versus reqd ''RELAPSED DISEASE'' ''SC38155'', identifier ''C96785''.'
+- 'Anatomical Location: Fix notation mismatch, fix ''EYE, IRIS'' ''C12737'' versus
+  reqd ''IRIS'' ''SC12737'', identifier ''C74456''.'
+- 'Anatomical Location: Fix notation mismatch, fix ''JOINT, TARSUS'' ''C33735'' versus
+  reqd ''TARSAL JOINT'' ''SC33735'', identifier ''C74456''.'
+- 'External Data Type: Fix notation mismatch, fix ''RPQ'' ''C119103'' versus reqd
+  ''UCT'' ''SC119103'', identifier ''SN000062''.'
+- 'External Data Type: Fix notation mismatch, fix ''CORONARY THROMBUS TIMI GRADE''
+  ''C119104'' versus reqd ''CDLQI'' ''SC119104'', identifier ''SN000062''.'
+- 'External Data Type: Fix notation mismatch, fix ''CORONARY ARTERY DISSECTION NHLBI
+  GRADE'' ''C119105'' versus reqd ''EQ-5D-Y'' ''SC119105'', identifier ''SN000062''.'
+- 'External Data Type: Fix notation mismatch, fix ''STENT THROMBOSIS CORONARY ARC
+  TIMING'' ''C119106'' versus reqd ''CU-Q2oL'' ''SC119106'', identifier ''SN000062''.'
 - 'Impact of Weight on Self Perceptions Questionnaire Results: Fix notation mismatch,
   fix ''NEVER'' ''C70543'' versus reqd ''5'' ''SC70543'', identifier ''SN000333''.'
 - 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''LIMB''
   ''C12429'' versus reqd ''Limb'' ''SC12429'', identifier ''SN000449''.'
+- 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''CENTRAL
+  NERVOUS SYSTEM'' ''C12438'' versus reqd ''Central Nervous System'' ''SC12438'',
+  identifier ''SN000449''.'
 - 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''NOSE''
   ''C12756'' versus reqd ''Nose'' ''SC12756'', identifier ''SN000449''.'
 - 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''VERTEBRAL
   COLUMN'' ''C12998'' versus reqd ''Vertebral Column'' ''SC12998'', identifier ''SN000449''.'
+- 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''CHEST''
+  ''C25389'' versus reqd ''Chest'' ''SC25389'', identifier ''SN000449''.'
+- 'Body Systems of Physical Examination Test Name: Fix notation mismatch, fix ''THROAT''
+  ''C54272'' versus reqd ''Throat'' ''SC54272'', identifier ''SN000449''.'
+- 'Body Systems of Physical Examination Test Code: Fix notation mismatch, fix ''CENTRAL
+  NERVOUS SYSTEM'' ''C12438'' versus reqd ''NVS'' ''SC12438'', identifier ''SN000450''.'
 - 'Body Systems of Physical Examination Test Code: Fix notation mismatch, fix ''VERTEBRAL
   COLUMN'' ''C12998'' versus reqd ''VERTBCOL'' ''SC12998'', identifier ''SN000450''.'
 - 'Physical Examination Test Name: Fix notation mismatch, fix ''EAR'' ''C12394'' versus
   reqd ''Ear'' ''SC12394'', identifier ''SN000600''.'
+- 'Physical Examination Test Name: Fix notation mismatch, fix ''CHEST'' ''C25389''
+  versus reqd ''Chest'' ''SC25389'', identifier ''SN000600''.'
 - 'Subcategory of External Data Type: Fix notation mismatch, fix ''ADT0101'' ''C119108''
   versus reqd ''SKIN BIOPSY'' ''SC119108'', identifier ''SN000631''.'
 - 'Subcategory of External Data Type: Fix notation mismatch, fix ''ADT0102'' ''C119109''
@@ -41,9 +60,9 @@
   versus reqd ''ARCHIVED SAMPLES'' ''SC119110'', identifier ''SN000631''.'
 - 'Subcategory of External Data Type: Fix notation mismatch, fix ''Immunoglobulin
   E'' ''C81970'' versus reqd ''IMMUNOGLOBULIN E'' ''SC81970'', identifier ''SN000631''.'
-- 'Reason Treatment Not Taken: Fix notation mismatch, fix ''Body Weight Gain'' ''C62754''
-  versus reqd ''WEIGHT GAIN'' ''SC62754'', identifier ''SN000795''.'
 - 'Adjudication Observation Object: Cannot find referenced item ''C50577'', none found,
   identifier ''SN001125''.'
 - 'Type of Cardiovascular Event: Cannot find referenced item ''C50577'', none found,
   identifier ''SN001129''.'
+- 'MSSI Questionnaire Results for Question MSSI0106: Fix notation mismatch, fix ''NORMAL''
+  ''C14165'' versus reqd ''0'' ''SC14165'', identifier ''SN002099''.'
