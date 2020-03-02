@@ -309,7 +309,9 @@ module Import::STFOClasses
         end
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-          return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+          result = Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+          add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
+          return result 
         else
           add_error("Cannot find referenced item incorrect type, identifier '#{self.identifier}'.")
           return nil
