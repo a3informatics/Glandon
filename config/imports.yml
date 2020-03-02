@@ -1495,6 +1495,7 @@ defaults: &defaults
               - "ADAM_STAGE"
               - "INACTIVE_F"
               - "STUDY_USE"
+              - "GLOBAL_USE"
           columns: 
           - 
             label: "CODELIST_SHORT_NAME"
@@ -1722,6 +1723,20 @@ defaults: &defaults
                 can_be_empty: true
                 map:
                   "Y": "Study"
+                additional:
+                  path:
+                    - Process 
+                    - Scope
+          - 
+            label: "GLOBAL_USE"
+            actions: 
+              -
+                method: set_column_tag
+                object: child
+                can_be_empty: true
+                map:
+                  "Y": "Global"
+                  "N": ""
                 additional:
                   path:
                     - Process 
