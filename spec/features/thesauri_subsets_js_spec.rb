@@ -80,6 +80,12 @@ describe "Thesauri Subsets", :type => :feature do
       sleep 1
       expect(page).to have_content("Edit Subset")
       expect(AuditTrail.count).to eq(audit_count+1)
+      click_link "Return"
+      wait_for_ajax 10
+      ui_check_table_info("history", 1, 1, 1)
+      click_link "Return"
+      wait_for_ajax 10
+      expect(page).to have_content("Index: Code Lists")
     end
 
     it "adds a new subset, Do not select terminology (REQ-MDR-?????)", js:true do
