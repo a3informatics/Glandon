@@ -320,7 +320,7 @@ module Import::STFOClasses
         uri = fixes.fix(self.identifier, identifier)
         if !uri.nil?
           result = Thesaurus::UnmanagedConcept.find_children(uri)
-          add_error("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
+          add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
           return result 
         else
           add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
@@ -444,10 +444,17 @@ module Import::STFOClasses
       self.errors.add(:base, msg)
     end
 
-    # Add error
+    # Add log
     def add_log(msg)
       puts colourize("#{msg}", "blue")
       ConsoleLogger.info(self.class.name, "add_log", msg)
+    end
+
+    # Add warning / annotation
+    def add_warning(msg)
+      puts colourize("#{msg}", "yellow")
+      ConsoleLogger.info(self.class.name, "add_warning", msg)
+      self.errors.add(:base, msg)
     end
 
     def save_next(results, member)
