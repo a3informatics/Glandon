@@ -48,8 +48,3 @@ class Thesaurus::SubsetMember < IsoConceptV2
   end
 
 end
-
-# def initialize(value)
-#     @value = value
-#     @next  = nil
-# end

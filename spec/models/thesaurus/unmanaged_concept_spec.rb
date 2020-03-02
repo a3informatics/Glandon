@@ -106,7 +106,7 @@ describe "Thesaurus::UnmanagedConcept" do
       check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
     end
 
-    it "allows a TC to be exported as SPARQL I, WILL CURRENTLY FAIL (Synonym links)" do
+    it "allows a TC to be exported as SPARQL I" do
       ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       sparql = Sparql::Update.new
       th = Thesaurus.new
@@ -135,7 +135,6 @@ describe "Thesaurus::UnmanagedConcept" do
       th.to_sparql(sparql, true)
       tc_1.to_sparql(sparql, true)
       tc_2.to_sparql(sparql, true)
-      #full_path = sparql.to_file << May fix timestamp issue
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl", last_change_date: true)
     end
@@ -246,7 +245,6 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).twice.and_return(local_configuration)
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race",
         identifier: "A00004",
         label: "New",
@@ -266,7 +264,6 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race",
         identifier: "?",
         label: "New",
@@ -283,7 +280,6 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race!@£$%^&*(){}",
         identifier: "?",
         label: "New",
@@ -298,7 +294,6 @@ describe "Thesaurus::UnmanagedConcept" do
     it "prevents a TC being added with invalid data, II" do
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race!@£$%^&*(){}",
         identifier: "?",
         label: "New",
@@ -331,7 +326,6 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race",
         identifier: "A00004",
         label: "New",
@@ -348,7 +342,6 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       params =
       {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
         definition: "Other or mixed race",
         identifier: "A00004",
         label: "New",
