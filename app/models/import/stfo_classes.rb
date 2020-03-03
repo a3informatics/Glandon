@@ -93,7 +93,8 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          new_child = sponsor_or_referenced(ct, child, fixes) if new_child.nil?
+          next if !new_child.nil?
+          new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
           new_narrower << new_child 
         end
