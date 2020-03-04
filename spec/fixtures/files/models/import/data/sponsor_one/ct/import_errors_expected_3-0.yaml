@@ -1,19 +1,17 @@
 ---
-- 'Action Taken with Study Treatment Collected: Fix notation mismatch, fix ''NA''
-  ''C48660'' versus reqd ''NOT APPLICABLE'' ''SC48660'', identifier ''SN000730''.'
-- 'Cardiovascular Test Name: Fix notation mismatch, fix ''PULSYSBP'' ''C120943'' versus
-  reqd ''Pulmonary Artery Systolic Pressure'' ''SC120943'', identifier ''C101846''.'
-- 'Type of Hearing Damage: Fix notation mismatch, fix ''NA'' ''C48660'' versus reqd
-  ''NOT APPLICABLE'' ''SC48660'', identifier ''SN000311''.'
-- 'Initial Prolonged: Fix notation mismatch, fix ''NA'' ''C48660'' versus reqd ''NOT
-  APPLICABLE'' ''SC48660'', identifier ''SN000332''.'
+- 'Duplicates detected: ["C135381"], identifier ''C101846''.'
+- 'Duplicates detected: ["C135381"], identifier ''C101847''.'
+- 'Duplicates detected: ["C138970"], identifier ''C67154''.'
+- 'Duplicates detected: ["C138970"], identifier ''C65047''.'
+- 'Duplicates detected: ["C132261"], identifier ''C96778''.'
+- 'Duplicates detected: ["C132261"], identifier ''C96779''.'
+- 'Duplicates detected: ["C25301"], identifier ''C71620''.'
+- 'Action Taken with Study Treatment Collected: Exception in find_referenced, identifier
+  ''SN000730''.'
+- 'Cardiovascular Test Name: Fix notation mismatch, fix ''Pulmonary Systolic Pressure''
+  ''C120943'' versus reqd ''Pulmonary Artery Systolic Pressure'' ''SC120943'', identifier
+  ''C101846''.'
 - 'Morphology Test Name: Fix notation mismatch, fix ''OTHER'' ''C17649'' versus reqd
   ''Other'' ''SC17649'', identifier ''SN001097''.'
-- 'Oncology Findings About Test Name: Fix notation mismatch, fix ''OCCUR'' ''C127786''
-  versus reqd ''Occurrence Indicator'' ''SC127786'', identifier ''SN001367''.'
-- 'Oncology Findings About Test Code: Fix notation mismatch, fix ''Occurrence Indicator''
-  ''C127786'' versus reqd ''OCCUR'' ''SC127786'', identifier ''SN001366''.'
 - 'Physical Examination Test Name: Fix notation mismatch, fix ''CHEST'' ''C25389''
   versus reqd ''Chest'' ''SC25389'', identifier ''SN000600''.'
-- 'Vaccine Findings About Test Name: Fix notation mismatch, fix ''LDIAM'' ''C96684''
-  versus reqd ''Longest Diameter'' ''SC96684'', identifier ''SN001362''.'
