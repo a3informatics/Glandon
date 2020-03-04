@@ -186,9 +186,17 @@ describe "Import::SponsorTermFormatOne" do
     text.gsub(/[\u201C\u201D]/, '"')
   end
 
-  it "import version 2.6, global & study", :speed => 'slow'  do
+  it "prepare comparison files", :speed => 'slow' do
+    #actual = cl_target("import_global_study_results_raw_2-6.csv")
+    actual = cl_target("import_global_results_raw_2-6.csv")
+    check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
+    actual = cl_target("import_global_results_raw_3-0.csv")
+    check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
+  end
+
+  it "import version 2.6", :speed => 'slow'  do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
-    full_path = db_load_file_path("sponsor_one/ct", "global_study_v2-6_CDISC_v43.xlsx")
+    full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
     params = {identifier: "Q3 2019", version: "1", date: "2019-08-08", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 2-6, Q3 2019", semantic_version: "1.0.0", job: @job, uri: ct.uri}
     result = @object.import(params)
@@ -207,19 +215,14 @@ describe "Import::SponsorTermFormatOne" do
     delete_data_file(sub_dir, filename)
   end
  
-  it "Import 2.6 Results", :speed => 'slow' do
-    actual = cl_target("import_results_raw_2-6.csv")
-    check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
-  end
-
-  it "Import 2.6 Results", :speed => 'slow' do
+  it "import 2.6 QC", :speed => 'slow' do
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     uri = Uri.new(uri: "http://www.s-cubed.dk/Q3_2019/V1#TH")
     th = Thesaurus.find_minimum(uri)
-    #expect(count_cl(th)).to eq(1727)
-    #expect(count_cli(th)).to eq(33187)
-    #expect(count_distinct_cli(th)).to eq(33185)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
+    expect(count_cl(th)).to eq(results.count)
+    expect(count_cli(th)).to eq(22322)
+    expect(count_distinct_cli(th)).to eq(20096)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
@@ -245,6 +248,20 @@ describe "Import::SponsorTermFormatOne" do
     check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
+  end
+
+  it "import 3.0 QC", :speed => 'slow' do
+    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    uri = Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH")
+    th = Thesaurus.find_minimum(uri)
+    results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+    #expect(count_cl(th)).to eq(results.count)
+    #expect(count_cli(th)).to eq(22322)
+    #expect(count_distinct_cli(th)).to eq(20096)
+    results.each do |x|
+      check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
+    end
   end
 
 end

@@ -1494,8 +1494,8 @@ defaults: &defaults
               - "SDTM_STAGE"
               - "ADAM_STAGE"
               - "INACTIVE_F"
-              - "STUDY_USE"
-              - "GLOBAL_USE"
+              # - "STUDY_USE"
+              # - "GLOBAL_USE"
           columns: 
           - 
             label: "CODELIST_SHORT_NAME"
@@ -1714,33 +1714,33 @@ defaults: &defaults
           - 
             label: "INACTIVE_F"
             actions: []
-          - 
-            label: "STUDY_USE"
-            actions: 
-              -
-                method: set_column_tag
-                object: child
-                can_be_empty: true
-                map:
-                  "Y": "Study"
-                additional:
-                  path:
-                    - Process 
-                    - Scope
-          - 
-            label: "GLOBAL_USE"
-            actions: 
-              -
-                method: set_column_tag
-                object: child
-                can_be_empty: true
-                map:
-                  "Y": "Global"
-                  "N": ""
-                additional:
-                  path:
-                    - Process 
-                    - Scope
+          # - 
+          #   label: "STUDY_USE"
+          #   actions: 
+          #     -
+          #       method: set_column_tag
+          #       object: child
+          #       can_be_empty: true
+          #       map:
+          #         "Y": "Study"
+          #       additional:
+          #         path:
+          #           - Process 
+          #           - Scope
+          # - 
+          #   label: "GLOBAL_USE"
+          #   actions: 
+          #     -
+          #       method: set_column_tag
+          #       object: child
+          #       can_be_empty: true
+          #       map:
+          #         "Y": "Global"
+          #         "N": ""
+          #       additional:
+          #         path:
+          #           - Process 
+          #           - Scope
         version_3:
           selection:
             first: true
