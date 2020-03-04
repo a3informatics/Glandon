@@ -159,6 +159,22 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 1, 1)
     end
 
+    it "Search table with 'All' set as default", js:true do
+      click_link 'settings_button'
+      click_link 'All'
+      click_navbar_terminology
+      click_link 'Search Terminologies'
+      sleep 0.6
+      wait_for_ajax(10)
+      page.find("#select-all-latest").click
+      click_button "Submit and proceed"
+      wait_for_ajax(10)
+      expect(page).to have_content("Search Latest")
+      ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
+      ui_term_column_search(:code_list, 'C')
+      ui_check_table_info("searchTable", 1, 100, "4,359")
+    end
+
 
   end
 
