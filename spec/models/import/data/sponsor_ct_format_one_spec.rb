@@ -28,9 +28,6 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
     load_cdisc_term_versions(1..62)
-    NameValue.destroy_all
-    NameValue.create(name: "thesaurus_parent_identifier", value: "1000")
-    NameValue.create(name: "thesaurus_child_identifier", value: "10000")
     Import.destroy_all
     delete_all_public_test_files
     setup
@@ -195,6 +192,9 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import version 2.6", :speed => 'slow'  do
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "1000")
+    NameValue.create(name: "thesaurus_child_identifier", value: "10000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
@@ -229,6 +229,9 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import version 3.0", :speed => 'slow' do
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "1500")
+    NameValue.create(name: "thesaurus_child_identifier", value: "15000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     full_path = db_load_file_path("sponsor_one/ct", "global_v3-0_CDISC_v53.xlsx")
@@ -256,11 +259,10 @@ describe "Import::SponsorTermFormatOne" do
     uri = Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH")
     th = Thesaurus.find_minimum(uri)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-    #expect(count_cl(th)).to eq(results.count)
-    #expect(count_cli(th)).to eq(22322)
-    #expect(count_distinct_cli(th)).to eq(20096)
+    expect(count_cl(th)).to eq(results.count)
+    expect(count_cli(th)).to eq(31960)
+    expect(count_distinct_cli(th)).to eq(20096)
     results.each do |x|
-byebug if x[:name] == "Anatomical Location Subset 06"
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
   end

@@ -102,7 +102,7 @@ module Import::STFOClasses
       end
       self
     rescue => e
-      add_error("Exception in to_extension, identifier '#{self.identifier}'.")
+      add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
       self
     end
 
@@ -141,7 +141,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_subset_of_extension, identifier '#{self.identifier}'.")
+      add_error("Exception in to_subset_of_extension, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -159,7 +159,7 @@ module Import::STFOClasses
       self.is_ordered = subset
       nil
     rescue => e
-      add_error("Exception in add_ordering, identifier '#{self.identifier}'.")
+      add_error("Exception in add_ordering, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -185,7 +185,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_cdisc_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -211,12 +211,11 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_sponsor_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
     def to_existing_subset
-byebug
       refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
       return nil if refs.empty?
       ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
@@ -240,7 +239,7 @@ byebug
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_existing_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 

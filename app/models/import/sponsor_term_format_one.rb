@@ -112,7 +112,6 @@ private
     @parent.reference = ref
     results[:managed_children].each_with_index do |child, index| 
       # Order of the checks is important
-byebug if child.label == "Anatomical Location Subset 01"
       existing_ref = false
       if child.referenced?(@th)
         add_log("Reference Sponsor detected: #{child.identifier}")
