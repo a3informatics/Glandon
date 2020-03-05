@@ -123,7 +123,8 @@ module Import::STFOClasses
     def to_subset_of_extension(extensions)
       new_narrower = []
       ext = extensions[self.identifier]
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier) # Do early
@@ -166,7 +167,8 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
@@ -191,7 +193,8 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       new_narrower = []
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
@@ -213,6 +216,7 @@ module Import::STFOClasses
     end
 
     def to_existing_subset
+byebug
       refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
       return nil if refs.empty?
       ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
@@ -331,7 +335,7 @@ module Import::STFOClasses
         end
       end
     rescue => e
-      add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+      add_error("Exception in find_referenced: #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -439,6 +443,18 @@ module Import::STFOClasses
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoT, :isoI])
       triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
+    end
+
+    # Find a new identifier. Match on label and notaiton or generate a new one.
+    def new_identifier(label, notation)
+      results = Thesaurus::ManagedConcept.where(label: label, notation: notation)
+      if results.empty?
+        Thesaurus::ManagedConcept.new_identifier
+      elsif results.count == 1
+        return results.first.identifier
+      else
+        add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")
+      end
     end
 
     # Add error

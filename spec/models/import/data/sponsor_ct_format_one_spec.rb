@@ -260,6 +260,7 @@ describe "Import::SponsorTermFormatOne" do
     #expect(count_cli(th)).to eq(22322)
     #expect(count_distinct_cli(th)).to eq(20096)
     results.each do |x|
+byebug if x[:name] == "Anatomical Location Subset 06"
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
   end
