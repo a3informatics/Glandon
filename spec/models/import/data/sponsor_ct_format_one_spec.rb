@@ -260,8 +260,8 @@ describe "Import::SponsorTermFormatOne" do
     th = Thesaurus.find_minimum(uri)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
     expect(count_cl(th)).to eq(results.count)
-    expect(count_cli(th)).to eq(31960)
-    expect(count_distinct_cli(th)).to eq(20096)
+    expect(count_cli(th)).to eq(31959)
+    expect(count_distinct_cli(th)).to eq(29555)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
