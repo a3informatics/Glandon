@@ -267,4 +267,20 @@ describe "Import::SponsorTermFormatOne" do
     end
   end
 
+  it "2-6 versus 3.0 QC", :speed => 'slow' do
+    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    uri_2_6 = Uri.new(uri: "http://www.s-cubed.dk/Q3_2019/V1#TH")
+    uri_3_0 = Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH")
+    th_2_6 = Thesaurus.find_minimum(uri_2_6)
+    th_3_0 = Thesaurus.find_minimum(uri_3_0)
+    results = th_2_6.differences(th_3_0)
+    check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
+    r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
+    r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+    prev = r_2_6.map{|x| x[:identifier].to_sym}
+    curr = r_3_0.map{|x| x[:identifier].to_sym}
+    puts "Created: #{results[:created].map{|x| x[:identifier]} == curr - prev}"
+    puts "Deleted: #{results[:deleted].map{|x| x[:identifier]} == prev - curr}"
+  end
 end
