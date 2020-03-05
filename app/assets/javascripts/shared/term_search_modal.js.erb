@@ -79,6 +79,9 @@ TermSearch.prototype.initTable = function() {
     "scrollCollapse": true,
     "ajax": {
       "url": this.searchUrl,
+      "error": function (xhr, error, code) {
+        handleAjaxError(xhr, status, error, "#select-modal-error");
+      }
     },
     "deferLoading": 0,
     "language": {
