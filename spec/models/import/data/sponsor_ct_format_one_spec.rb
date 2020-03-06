@@ -21,7 +21,19 @@ describe "Import::SponsorTermFormatOne" do
     @object.save
   end
 
+  def read_installation(installation)
+     content = YAML.load_file(Rails.root.join "config/installations/#{installation}/#{:thesauri}.yml").deep_symbolize_keys
+     Rails.configuration.thesauri = content[Rails.env.to_sym]
+  end
+
+  def thesauri_identifiers(parent, child)
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "#{parent}")
+    NameValue.create(name: "thesaurus_child_identifier", value: "#{child}")    
+  end
+    
 	before :each do
+    read_installation(:sanofi)
     @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/Q3_2019/V1#TH")
     @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/Q1_2020/V1#TH")
     load_files(schema_files, [])
@@ -194,9 +206,7 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import version 2.6", :speed => 'slow'  do
-    NameValue.destroy_all
-    NameValue.create(name: "thesaurus_parent_identifier", value: "1000")
-    NameValue.create(name: "thesaurus_child_identifier", value: "10000")
+    thesauri_identifiers("3000", "10000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
@@ -230,9 +240,7 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import version 3.0", :speed => 'slow' do
-    NameValue.destroy_all
-    NameValue.create(name: "thesaurus_parent_identifier", value: "1500")
-    NameValue.create(name: "thesaurus_child_identifier", value: "15000")
+    thesauri_identifiers("3500", "15000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     full_path = db_load_file_path("sponsor_one/ct", "global_v3-0_CDISC_v53.xlsx")
@@ -242,13 +250,13 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-0.yaml", equate_method: :hash_equal)
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
     check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

@@ -454,6 +454,8 @@ module Import::STFOClasses
       else
         add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")
       end
+    rescue => e
+      add_error("Exception in new_identifier, #{e}. Label: #{label}, identifier: #{identifier}.")
     end
 
     # Add error
