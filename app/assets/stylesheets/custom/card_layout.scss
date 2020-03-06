@@ -357,13 +357,6 @@ table th.th-xsmall{
   }
 }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-
-  .table-cardstyle .row-sponsor td:first-of-type::before, .table-cardstyle .row-cdisc td:first-of-type::before{
-    top: 75% !important;
-  }
-}
-
 @media (max-width: 1140px){
   .sub-card-wrap .sub-card{
     width: calc(100% - 20px) !important;
@@ -374,4 +367,57 @@ table th.th-xsmall{
   .sub-card-wrap.eq .sub-card{
     width: calc(50% - 20px);
   }
+}
+
+
+// IE and Edge Fixes
+
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.table-cardstyle tbody tr td:first-of-type::before {
+  @include ieandedge {
+    display: none !important;
+  }
+}
+
+.table-cardstyle tbody tr td:first-of-type {
+  @include ieandedge {
+    overflow: hidden;
+    padding-left: 2px !important;
+  }
+}
+
+.table-cardstyle tbody tr.row-sponsor td:first-of-type,
+.table-cardstyle tbody tr.y td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $primary-color-medium;
+  }
+}
+
+.table-cardstyle tbody tr.row-cdisc td:first-of-type,
+.table-cardstyle tbody tr.y td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $accent-color-1-dark;
+  }
+}
+
+.table-cardstyle tbody tr.r td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $accent-color-2;
+  }
+}
+
+.table-cardstyle table.table-row-clickable tbody tr.selected {
+  background-color: #fafafa !important;
 }
