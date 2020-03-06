@@ -20,7 +20,10 @@ IsoManagedListOldPanel.prototype.load = function () {
   _this.isoManagedTable = $('#iso_managed_table').DataTable( {
     "ajax": {
       "url": "/iso_managed_v2/find_by_tag?[iso_managed]tag_id=" + _this.tagId,
-      "dataSrc": "data"
+      "dataSrc": "data",
+      "error": function (xhr, error, code) {
+        handleAjaxError(xhr, status, error);
+      }
     },
     "bProcessing": true,
     "bInfo" : false,
