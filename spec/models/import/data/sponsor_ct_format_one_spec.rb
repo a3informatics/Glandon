@@ -268,6 +268,18 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "2-6 versus 3.0 QC", :speed => 'slow' do
+    new_items = 
+    [
+      :NP001500P, :NP001501P, :NP001502P, :NP001503P, :NP001504P, :NP001505P, :NP001506P, 
+      :NP001507P, :NP001508P, :NP001509P, :NP001510P, :NP001511P, :NP001512P, :NP001513P, 
+      :NP001514P, :NP001515P, :NP001516P, :NP001517P
+    ]
+    deleted_items =
+    [
+      :NP001003P, :NP001041P, :NP001042P, :NP001043P, :NP001045P, :NP001054P, :NP001055P, 
+      :NP001056P, :NP001057P, :NP001058P, :NP001070P, :NP001071P, :NP001072P, :NP001073P, 
+      :NP001074P, :NP001075P, :NP001087P, :NP001094P
+    ]
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
     uri_2_6 = Uri.new(uri: "http://www.s-cubed.dk/Q3_2019/V1#TH")
@@ -278,9 +290,12 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
     r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
     r_3_0 = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-    prev = r_2_6.map{|x| x[:identifier].to_sym}
-    curr = r_3_0.map{|x| x[:identifier].to_sym}
-    puts "Created: #{results[:created].map{|x| x[:identifier]} == curr - prev}"
-    puts "Deleted: #{results[:deleted].map{|x| x[:identifier]} == prev - curr}"
+    prev = r_2_6.map{|x| x[:identifier].to_sym}.uniq
+    curr = r_3_0.map{|x| x[:identifier].to_sym}.uniq
+    created = results[:created].map{|x| x[:identifier]}
+    deleted = results[:deleted].map{|x| x[:identifier]}
+    expect(created).to match_array(new_items + curr - prev)
+    expect(deleted).to match_array(prev - curr + deleted_items)
   end
+
 end
