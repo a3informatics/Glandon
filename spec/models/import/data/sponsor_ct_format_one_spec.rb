@@ -22,6 +22,8 @@ describe "Import::SponsorTermFormatOne" do
   end
 
 	before :each do
+    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/Q3_2019/V1#TH")
+    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/Q1_2020/V1#TH")
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -217,8 +219,7 @@ describe "Import::SponsorTermFormatOne" do
  
   it "import 2.6 QC", :speed => 'slow' do
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    uri = Uri.new(uri: "http://www.s-cubed.dk/Q3_2019/V1#TH")
-    th = Thesaurus.find_minimum(uri)
+    th = Thesaurus.find_minimum(@uri_2_6)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
     expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(22322)
@@ -256,8 +257,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import 3.0 QC", :speed => 'slow' do
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
-    uri = Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH")
-    th = Thesaurus.find_minimum(uri)
+    th = Thesaurus.find_minimum(@uri_3_0)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
     expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(31959)
@@ -282,10 +282,8 @@ describe "Import::SponsorTermFormatOne" do
     ]
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
-    uri_2_6 = Uri.new(uri: "http://www.s-cubed.dk/Q3_2019/V1#TH")
-    uri_3_0 = Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH")
-    th_2_6 = Thesaurus.find_minimum(uri_2_6)
-    th_3_0 = Thesaurus.find_minimum(uri_3_0)
+    th_2_6 = Thesaurus.find_minimum(@uri_2_6)
+    th_3_0 = Thesaurus.find_minimum(@uri_3_0)
     results = th_2_6.differences(th_3_0)
     check_file_actual_expected(results, sub_dir, "import_differences_expected_1.yaml", equate_method: :hash_equal)
     r_2_6 = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
