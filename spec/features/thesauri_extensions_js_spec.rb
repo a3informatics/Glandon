@@ -448,6 +448,36 @@ describe "Thesauri Extensions", :type => :feature do
       expect(page).to have_content("The changes were not saved as the edit lock timed out")
     end
 
+    it "search table with 'All' set as default", js:true do
+      click_link 'settings_button'
+      click_link 'All'
+      click_navbar_code_lists
+      wait_for_ajax 20
+      find(:xpath, "//tr[contains(.,'C100130')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2('history', '2013-10-04 Release', :show)
+      wait_for_ajax 10
+      context_menu_element_header(:extend)
+      sleep 1.5
+      click_button 'Do not select'
+      sleep 1
+      wait_for_ajax(10)
+      click_link 'Add items'
+      sleep 1
+      wait_for_ajax(10)
+      page.find("#select-all-latest").click
+      click_button "Submit and proceed"
+      sleep 2
+      ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
+      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
+      input.set("C10")
+      input.native.send_keys(:return)
+      wait_for_ajax(120)
+      ui_check_table_info("searchTable", 1, 100, "4,448")
+      click_button "Close"
+      sleep 1
+    end
+
   end
 
 end
