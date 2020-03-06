@@ -14,18 +14,24 @@ ns:CDISC
   isoI:shortName "CDISC"^^xsd:string ;
   isoI:authority "www.cdisc.org"^^xsd:string ;
 .
-ns:ACME
+ns:SCUBED 
   rdf:type isoI:Namespace ;
-  isoI:name "ACME Pharma"^^xsd:string ; 
-  isoI:shortName "ACME"^^xsd:string ; 
-  isoI:authority "www.acme-pharma.com"^^xsd:string ;
+  isoI:name "S-cubed Aps"^^xsd:string ; 
+  isoI:shortName "S-cubed"^^xsd:string ; 
+  isoI:authority "www.s-cubed.dk"^^xsd:string ;
+.
+ns:SANOFI
+  rdf:type isoI:Namespace ;
+  isoI:name "Sanofi-aventis Groupe"^^xsd:string ; 
+  isoI:shortName "Sanofi"^^xsd:string ; 
+  isoI:authority "www.sanofi.com"^^xsd:string ;
 .
 ra:DUNS123456789
   rdf:type isoR:RegistrationAuthority ; 
-  isoR:raNamespace <http://www.assero.co.uk/NS#ACME> ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
   isoR:organizationIdentifier "123456789"^^xsd:string ;
   isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
-  isoR:owner "true"^^xsd:boolean ;   
+  isoR:owner "false"^^xsd:boolean ;   
 .
 ra:DUNS084433759
   rdf:type isoR:RegistrationAuthority ;
@@ -33,4 +39,11 @@ ra:DUNS084433759
   isoR:organizationIdentifier "084433759"^^xsd:string ;
   isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
   isoR:owner "false"^^xsd:boolean ;   
+.
+ra:DUNS804424612
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#SANOFI> ;
+  isoR:organizationIdentifier "804424612"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
+  isoR:owner "true"^^xsd:boolean ;   
 .
