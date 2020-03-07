@@ -3,6 +3,7 @@ require 'rails_helper'
 describe ExportsController do
 
   include DataHelpers
+  include UploadHelpers
   
   describe "Authorized User" do
   	
@@ -16,23 +17,8 @@ describe ExportsController do
       clear_triple_store
       Token.delete_all
       @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("business_operational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("form_example_dm1.ttl")
-      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -47,7 +33,7 @@ describe ExportsController do
 
     it "start" do
       file = Hash.new
-      file['datafile'] = fixture_file_upload("files/upload.txt", 'text/html')
+      file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
       get :start, { export: { export_list_path: "XXX" } }
       expect(assigns(:list_path)).to eq("XXX")
       expect(response).to render_template("start")
