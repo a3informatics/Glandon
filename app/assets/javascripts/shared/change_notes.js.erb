@@ -31,7 +31,10 @@ ChangeNotesView.prototype.init = function(){
    "order": [1, "desc"],
    "ajax": {
      "url": _this.urlSource,
-     "dataSrc": "data"
+     "dataSrc": "data",
+     "error": function (xhr, error, code) {
+       handleAjaxError(xhr, status, error);
+     }
    },
    "language": {
      "infoFiltered": "",

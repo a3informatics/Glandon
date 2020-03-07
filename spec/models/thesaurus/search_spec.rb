@@ -272,7 +272,23 @@ describe "Thesaurus::Search" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal)
-    end  
+    end
+
+    it "allows a terminology to be searched, overall II" do
+      params = standard_params
+      params[:search][:value] = "C100129"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_17.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, code list identifier II" do
+      params = standard_params
+      params[:columns][C_TS_PI][:search][:value] = "C100129"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_18.yaml", equate_method: :hash_equal)
+    end   
 
   end
 

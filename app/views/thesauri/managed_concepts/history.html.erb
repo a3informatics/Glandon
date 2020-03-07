@@ -6,7 +6,7 @@
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
-<% @close_path = thesauri_index_path %>
+<% @close_path = thesauri_managed_concepts_path %>
 <div class="row">
 	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
     <div class="actions-wrap">

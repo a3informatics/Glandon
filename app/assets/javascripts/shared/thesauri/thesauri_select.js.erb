@@ -84,7 +84,10 @@ ThesauriSelect.prototype.initTable = function() {
     "processing": true,
     "ajax": {
       "url": "/thesauri/index_owned",
-      "dataSrc": "data"
+      "dataSrc": "data",
+      "error": function (xhr, error, code) {
+        handleAjaxError(xhr, status, error);
+      }
     },
     "rowId": "id",
     "deferLoading": 0,

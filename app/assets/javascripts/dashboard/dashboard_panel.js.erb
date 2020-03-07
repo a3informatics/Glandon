@@ -30,7 +30,10 @@ function DashboardPanel(id, url, safe_parameter) {
      "pagingType": "full",
      "ajax": {
        "url": _this.url,
-       "dataSrc": "data"
+       "dataSrc": "data",
+       "error": function (xhr, error, code) {
+         handleAjaxError(xhr, status, error);
+       }
      },
      "language": {
        "infoFiltered": "",
