@@ -8,6 +8,7 @@ describe "Import::SponsorTermFormatOne" do
   include PublicFileHelpers
   include SparqlHelpers
   include ThesauriHelpers
+  include InstallationHelpers
   
 	def sub_dir
     return "models/import/data/sponsor_one/ct"
@@ -32,8 +33,11 @@ describe "Import::SponsorTermFormatOne" do
     NameValue.create(name: "thesaurus_child_identifier", value: "#{child}")    
   end
     
-	before :each do
-    read_installation(:sanofi)
+	before :all do
+    select_installation(:thesauri, :sanofi)
+  end
+
+  before :each do
     @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/Q3_2019/V1#TH")
     @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/Q1_2020/V1#TH")
     load_files(schema_files, [])
@@ -50,6 +54,10 @@ describe "Import::SponsorTermFormatOne" do
   after :each do
     Import.destroy_all
     delete_all_public_test_files
+  end
+
+  after :all do
+    restore_installation(:thesauri)
   end
 
   def count_cl(th)
