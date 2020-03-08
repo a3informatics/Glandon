@@ -283,7 +283,7 @@ describe "Import::SponsorTermFormatOne" do
     end
   end
 
-  it "2-6 versus 3.0 QC", :speed => 'slow' do
+  it "2-6 versus 3.0 QC I", :speed => 'slow' do
     new_items = 
     [
       :SN003500, :SN003501, :SN003502, :SN003503, :SN003504, :SN003505, :SN003506, 
@@ -310,6 +310,21 @@ describe "Import::SponsorTermFormatOne" do
     deleted = results[:deleted].map{|x| x[:identifier]}
     expect(created).to match_array(new_items + curr - prev)
     expect(deleted).to match_array(prev - curr + deleted_items)
+  end
+
+  it "2-6 versus 3.0 QC II", :speed => 'slow' do
+    results = {}
+    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    th_2_6 = Thesaurus.find_minimum(@uri_2_6)
+    th_3_0 = Thesaurus.find_minimum(@uri_3_0)
+    diffs = th_2_6.differences(th_3_0)
+    diffs[:updated].each do |cl|
+      item = Thesaurus::ManagedConcept.find_minimum(cl[:id])
+      next if item.owner_short_name != "Sanofi"
+      results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
+    end
+    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end
