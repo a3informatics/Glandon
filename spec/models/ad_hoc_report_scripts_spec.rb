@@ -21,7 +21,7 @@ RSpec.describe AdHocReport, type: :model do
     delete_all_public_files
   end
 
-  it "executes a submission impact report" do
+  it "executes a submission impact report - WILL CURRENTLY FAIL" do
     copy_report_to_public_files("submission_impact_sparql.yaml", "test")
     job = Background.create
     report = AdHocReport.new
