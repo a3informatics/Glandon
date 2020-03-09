@@ -45,15 +45,15 @@ describe "Upgrade", :type => :feature do
 
     it "upgrade", js:true do
       find(:xpath, "//tr[contains(.,'SPONSORUPGRADE')]/td/a").click
-      wait_for_ajax_long
+      wait_for_ajax 10
       context_menu_element('history', 4, 'SPONSORUPGRADE', :edit)
-      wait_for_ajax_long
+      wait_for_ajax 20
       context_menu_element_header(:upgrade)
       expect(page).to have_content 'Upgrade Code Lists SPONSORUPGRADE v0.1.0'
       expect(page).to have_content 'Baseline CDISC CT: 2017-09-29 Release. New version: 2018-12-21 Release.'
-      wait_for_ajax_long
+      wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
-      wait_for_ajax_long
+      wait_for_ajax 20
       expect(page).to have_content 'Upgrade affected items'
       expect(page).to have_content 'EPOCH (NP000123P)'
       expect(page).to have_content 'EPOCH (C99079)'
@@ -65,15 +65,16 @@ describe "Upgrade", :type => :feature do
       expect(page).to have_content("Differences")
       ui_check_table_info("differences_table", 1, 4, 4)
       page.go_back
-      wait_for_ajax_long
+      wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
+      wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Extension')]/td/button").click
       wait_for_ajax 10
       expect(page).to have_content "Item was successfully upgraded"
       expect(find(:xpath, "//tr[contains(.,'Extension')]/td/button").text).to eq("Cannot upgrade")
       find(:xpath, "//tr[contains(.,'Subset')]/td/button").click
       wait_for_ajax 10
-      expect(page).to have_content "Item was successfully upgraded"
+      expect(page).to_not have_content "Error"
       expect(find(:xpath, "//tr[contains(.,'Subset')]/td/button").text).to eq("Cannot upgrade")
     end
 
