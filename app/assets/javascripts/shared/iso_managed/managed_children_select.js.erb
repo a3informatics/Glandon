@@ -163,7 +163,7 @@ ManagedChildrenSelect.prototype.addOrRemoveItems = function (indexes, action) {
  * @return [void]
  */
 ManagedChildrenSelect.prototype.autoSelect = function () {
-	this.processing(true, "Updating selection...");
+	this.processing(true, "Loading...");
 
 	// Checks if overview table is loading, retries in 200 ms
 	if(this.target.mcs.loading)
@@ -205,7 +205,7 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 	else {
 		setTimeout(function () {
 			var _this = this;
-			this.processing(true, "Updating selection...");
+			this.processing(true, "Loading...");
 			this.autoSelectMode = true;
 
 			$.each(data, function(i, item){
@@ -259,7 +259,7 @@ ManagedChildrenSelect.prototype.processing = function (enable, text) {
 	toggleTableActive(this.tableId, !enable);
 
 	enable ? $("#select-cdisc-ver-button").addClass("disabled") : $("#select-cdisc-ver-button").removeClass("disabled");
-	
+
 	if($("#cdisc-version-label").text() != "None")
 		enable ? $("#release-select-tabs .tab-option").addClass("disabled") : $("#release-select-tabs .tab-option").removeClass("disabled")
 }
