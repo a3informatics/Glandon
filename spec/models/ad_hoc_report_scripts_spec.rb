@@ -30,7 +30,7 @@ RSpec.describe AdHocReport, type: :model do
     report.results_file = "submission_impact_results_1.yaml"
     job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH").to_id])}
     results = AdHocReportFiles.read("submission_impact_results_1.yaml")
-    check_file_actual_expected(results, sub_dir, "submission_impact_expected_1.yaml")
+    check_file_actual_expected(results, sub_dir, "submission_impact_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "executes a ct references inconsistencies report" do
@@ -42,7 +42,7 @@ RSpec.describe AdHocReport, type: :model do
     report.results_file = "ct_references_inconsistencies_results_1.yaml"
     job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH").to_id])}
     results = AdHocReportFiles.read("ct_references_inconsistencies_results_1.yaml")
-    check_file_actual_expected(results, sub_dir, "ct_references_inconsistencies_expected_1.yaml")
+    check_file_actual_expected(results, sub_dir, "ct_references_inconsistencies_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "executes a missing tags report" do
@@ -54,7 +54,7 @@ RSpec.describe AdHocReport, type: :model do
     report.results_file = "missing_tags_results_1.yaml"
     job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH").to_id])}
     results = AdHocReportFiles.read("missing_tags_results_1.yaml")
-    check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml")
+    check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal)
   end
   
 end
