@@ -76,6 +76,13 @@ describe IsoConceptSystemsController do
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")    
     end
 
+    it "prevents the root node being deleted" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      expect(response.code).to eq("200")    
+      expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")    
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -86,14 +93,20 @@ describe IsoConceptSystemsController do
     end
 
     it "show a concept" do
-      get :show, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      get :show, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "add a concept" do
-      post :add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      post :add, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
       expect(response).to redirect_to("/users/sign_in")
     end
+
+    it "delete root concept" do
+      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
   end
 
 end

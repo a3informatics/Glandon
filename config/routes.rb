@@ -133,7 +133,7 @@ Rails.application.routes.draw do
       get :admin
     end
   end
-  resources :iso_concept_systems, only: [:index, :show] do
+  resources :iso_concept_systems, only: [:index, :show, :destroy] do
     member do
       post :add
     end

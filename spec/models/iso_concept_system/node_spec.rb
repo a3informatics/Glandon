@@ -115,4 +115,21 @@ describe IsoConceptSystem::Node do
     expect(cs.pref_label).to eq("BBB")
     expect(cs.description).to eq("ddd fff")
   end
+
+  it "cannot delete root" do
+    root = IsoConceptSystem.root
+    root.delete
+    expect(root.errors.count).to eq(1)
+    expect(root.errors.full_messages.to_sentence).to eq("You are not permitted to delete the root tag")
+    node = IsoConceptSystem::Node.find(root.id)
+    node.delete
+    expect(node.errors.count).to eq(1)
+    expect(root.errors.full_messages.to_sentence).to eq("You are not permitted to delete the root tag")
+  end
+
+  it "root?" do
+    node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
+    expect(node.root?).to eq(false)
+  end
+
 end
