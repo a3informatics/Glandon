@@ -88,7 +88,10 @@ ThesauriSearchPanel.prototype.initTable = function () {
   this.tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
       "url": _this.url,
-      "dataSrc": "data"
+      "dataSrc": "data",
+      "error": function (xhr, error, code) {
+        handleAjaxError(xhr, status, error);
+      }
     },
     "deferLoading": 0,
     "processing": true,

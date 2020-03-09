@@ -62,7 +62,7 @@ describe IsoConceptSystems::NodesController do
       delete :destroy, {:id => node.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("500")
-      expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or is currently in use.\"]}")
+      expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or the tag or a child tag is currently in use.\"]}")
     end
 
     it "update a node" do

@@ -36,7 +36,10 @@ ChangesCdiscPanel.prototype.init = function() {
     "scrollCollapse": true,
     "autoWidth": false,
     "ajax": {
-      "url": this.url
+      "url": this.url,
+      "error": function (xhr, error, code) {
+        handleAjaxError(xhr, status, error);
+      }
     },
     "language": {
       "infoFiltered": "",

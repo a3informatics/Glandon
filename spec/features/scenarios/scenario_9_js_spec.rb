@@ -41,9 +41,9 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   end
 
   def in_modal
-    sleep 0.7
+    sleep 1
     yield
-    sleep 0.7
+    sleep 1
   end
 
   describe "Curator User", :type => :feature do
@@ -372,6 +372,27 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
 
       ua_logoff
+    end
+
+  end
+
+  describe "Curator User", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      Token.destroy_all
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
     end
 
     it "Upgrade of a Subset of an Extension, prevents upgrade of Subset before Extension. Status: Incomplete, WILL CURRENTLY FAIL", scenario: true, js: true do
