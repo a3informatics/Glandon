@@ -164,7 +164,16 @@ private
 
   # Check for a change in an item
   def check_and_add(ref, index, existing_ref)
+    check_duplicates(ref)
     existing_ref ? @parent.add(ref, index + 1) : check_against_previous(ref, index)
+  end
+
+  def check_duplicates(ref)
+    s = Set.new
+    ids = ref.narrower.map{|e| e.identifier}
+    results = ids.select{|e| !s.add?(e)}.uniq
+    return if results.empty?
+    add_error(@parent, "Duplicates detected: #{results}, identifier '#{ref.identifier}'.")
   end
 
   def check_against_previous(ref, index)

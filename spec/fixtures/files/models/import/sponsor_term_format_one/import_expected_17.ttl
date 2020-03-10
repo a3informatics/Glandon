@@ -1,0 +1,1759 @@
+@prefix : <http://www.s-cubed.dk/TEST_16/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/TEST_16/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2-6 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_17.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/C100129/V1#C100129> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST 16"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/C100129/V1#C100129> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Category of Questionnaire"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoT:hasState <http://www.s-cubed.dk/C100129/V1#C100129_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C100129/V1#C100129_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C100129"^^xsd:string ;
+	th:notation "QSCAT"^^xsd:string ;
+	th:definition "A grouping of observations within the Questionnaire domain."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100779> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100774> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100760> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100777> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100772> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100768> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100763> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100759> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100773> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100771> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100766> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100776> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100767> ;
+	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C100762> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102113> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102116> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102111> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102119> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102114> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102112> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102124> ;
+	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102115> ;
+	th:narrower <http://www.cdisc.org/C100129/V32#C100129_C102123> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103527> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103522> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103518> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C100761> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103525> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103520> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C100778> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103516> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C100769> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103528> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103523> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103519> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103530> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103526> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103521> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103517> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103529> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103524> ;
+	th:narrower <http://www.cdisc.org/C100129/V33#C100129_C103515> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C105168> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C105167> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C105169> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C105165> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C105164> ;
+	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C100765> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C100764> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106695> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106694> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106700> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C102118> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106693> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106890> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106698> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106699> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106889> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106696> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106697> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C105166> ;
+	th:narrower <http://www.cdisc.org/C100129/V35#C100129_C106888> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111379> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111381> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111377> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111384> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111382> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111378> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111380> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C111383> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112523> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112519> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112526> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112521> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112524> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112527> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112522> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112518> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112525> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112520> ;
+	th:narrower <http://www.cdisc.org/C100129/V37#C100129_C112528> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113879> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113874> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C66957> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113878> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C106621> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113873> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113872> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113877> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C102117> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113875> ;
+	th:narrower <http://www.cdisc.org/C100129/V38#C100129_C113876> ;
+	th:narrower <http://www.cdisc.org/C100129/V39#C100129_C115796> ;
+	th:narrower <http://www.cdisc.org/C100129/V39#C100129_C115799> ;
+	th:narrower <http://www.cdisc.org/C100129/V39#C100129_C115797> ;
+	th:narrower <http://www.cdisc.org/C100129/V39#C100129_C115798> ;
+	th:narrower <http://www.cdisc.org/C100129/V40#C100129_C117997> ;
+	th:narrower <http://www.cdisc.org/C100129/V40#C100129_C117996> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119097> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C117995> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119102> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119094> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119098> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119103> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119095> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119096> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119099> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119092> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119101> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119093> ;
+	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C119100> ;
+	th:narrower <http://www.cdisc.org/C100129/V43#C100129_C121003> ;
+	th:narrower <http://www.cdisc.org/C100129/V43#C100129_C121002> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_C123666> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S000072> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S000255> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S000259> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S004138> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S004156> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S004425> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S006482> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S006735> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S007630> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008007> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008008> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008009> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008010> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008539> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008623> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008641> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008655> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S008741> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009238> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009510> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009509> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009614> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009626> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009717> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009751> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009760> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S009888> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S010388> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S010864> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011294> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011493> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011494> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011495> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011496> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011497> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011498> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011499> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011500> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011501> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011502> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011503> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011504> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S011505> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012208> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012285> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012311> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012381> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012384> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012385> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012408> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012423> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012434> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012461> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012522> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012529> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012536> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012544> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012546> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012548> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012550> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012552> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012602> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012603> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S012792> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S030946> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S030947> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S030948> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S031211> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S031292> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S031332> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S032133> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_S032139> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_SC102122> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_SC125756> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_SC135739> ;
+	th:narrower <http://www.s-cubed.dk/C100129/V1#C100129_SC147585> ;
+	th:extends <http://www.cdisc.org/C100129/V43#C100129> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a4a7969524ee10e2d15639af89b64dd19c212556> ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C100129"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_C123666>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "C123666"^^xsd:string ;
+	th:notation "EXACT"^^xsd:string ;
+	th:definition "EXACT version 1.1- English (Universal)- EXACT© 2013, Evidera, Inc. All rights reserved."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2fcd7594574d97028eeaf63a6ada106831abfaf8> ;
+	th:synonym <http://www.assero.co.uk/SYN#e855b6c7d9e94f8a3c598e08b60b8ae90f7cb1fa> ;
+.
+<http://www.assero.co.uk/PT#2fcd7594574d97028eeaf63a6ada106831abfaf8>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Exacerbations of Chronic Pulmonary Disease Tool Patient"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S000072>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S000072"^^xsd:string ;
+	th:notation "GTEE"^^xsd:string ;
+	th:definition "Global Treatment Effectiveness Evaluation Scale - United States/English - Mapi. ID7813"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#84683e560f67c6d375b40c0a1562d39f7e87815f> ;
+.
+<http://www.assero.co.uk/PT#84683e560f67c6d375b40c0a1562d39f7e87815f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Global Treatment Effectiveness Evaluation Scale"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S000255>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S000255"^^xsd:string ;
+	th:notation "CHAQ"^^xsd:string ;
+	th:definition "Childhood Health Assessment Questionnaire (CHAQ) (Singh G, Athreya BH, Fries JF, Goldsmith DP.Measurement of health status in children with juvenile rheumatoid arthritis. Arthritis Rheum. 1994 Dec;37(12):1761-9.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#94a6a8b1d5ac966f2f83cf60aaaa1ae4645af754> ;
+	th:synonym <http://www.assero.co.uk/SYN#16f9f50c4cb69cdb6e56f3c58bfe9b41621882e3> ;
+.
+<http://www.assero.co.uk/PT#94a6a8b1d5ac966f2f83cf60aaaa1ae4645af754>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Childhood Health Assessment Questionnaire (CHAQ)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#16f9f50c4cb69cdb6e56f3c58bfe9b41621882e3>
+	rdf:type th:Synonym ;
+	isoC:label "CHAQ01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S000259>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S000259"^^xsd:string ;
+	th:notation "HRPQ"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d9437185038a2daadcf1ded9f467773cd869ad95> ;
+.
+<http://www.assero.co.uk/PT#d9437185038a2daadcf1ded9f467773cd869ad95>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Health-Related Productivity Questionnaire"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S004138>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S004138"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN CHILD (TEEN, CHILD, YOUNG CHILD) REPORT"^^xsd:string ;
+	th:definition "PedsQL PPQ-PYQ -  United States/English - MAPI Institute PedsQL-3.0-PPQ-PYC_AU3.0_eng-Usori.doc PEDIATRIC PAIN CHILD (TEEN, CHILD, YOUNG CHILD) REPORT."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#93a4b4bf92dbf424ed495e76aea38afcc60afac0> ;
+	th:synonym <http://www.assero.co.uk/SYN#4d126be04d443b21ee5c8e51585ebc20e56b53f2> ;
+.
+<http://www.assero.co.uk/PT#93a4b4bf92dbf424ed495e76aea38afcc60afac0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL Pediatric Pain Child Report (Teen, Child and Young Child) V3"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#4d126be04d443b21ee5c8e51585ebc20e56b53f2>
+	rdf:type th:Synonym ;
+	isoC:label "PQPC9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S004156>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S004156"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN PARENT REPORT FOR TEEN, CHILD, YOUNG CHILD"^^xsd:string ;
+	th:definition "PedsQL PPQ-PYQ -  United States/English - MAPI Institute PedsQL-3.0-PPQ-PYC_AU3.0_eng-Usori.doc PEDIATRIC PAIN PARENT REPORT FOR TEEN, CHILD, YOUNG CHILD."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1735e66a4fdbb96564f43a4b5564b042d372af92> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#1735e66a4fdbb96564f43a4b5564b042d372af92>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL Pediatric Pain Parent Report for Teen, Child and Young Child V3"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9>
+	rdf:type th:Synonym ;
+	isoC:label "PQPP9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S004425>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S004425"^^xsd:string ;
+	th:notation "BDIII"^^xsd:string ;
+	th:definition "Beck Depression Inventory-II United states/English - Mapi. BDII_AU1.1_eng-Usori.doc Copyright 1996 by Aron T.Beck All rights reserved. Printed in the United States of America."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#fec30541b5e8b77cb649a70d2c1b14971a427587> ;
+	th:synonym <http://www.assero.co.uk/SYN#06bec6e1f664feb5022e9d4429f8223b9283a052> ;
+.
+<http://www.assero.co.uk/PT#fec30541b5e8b77cb649a70d2c1b14971a427587>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Beck Depression Inventory-II"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#06bec6e1f664feb5022e9d4429f8223b9283a052>
+	rdf:type th:Synonym ;
+	isoC:label "BDIII9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S006482>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S006482"^^xsd:string ;
+	th:notation "QLQ-C30"^^xsd:string ;
+	th:definition "European Organisation for the Research and Treatment of Cancer Quality of Life Questionnaire - Core 30 Version 3.0 (EORTC QLQ-C30 Version 3.0) (Copyright 1995 EORTC Quality of Life Group. All rights reserved. Version 3.0)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8932f5d009364d858d9174f7786ed28900fa9227> ;
+	th:synonym <http://www.assero.co.uk/SYN#fc5feacbc243989a98841afad206046249d80546> ;
+.
+<http://www.assero.co.uk/SYN#fc5feacbc243989a98841afad206046249d80546>
+	rdf:type th:Synonym ;
+	isoC:label "C3009"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S006735>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S006735"^^xsd:string ;
+	th:notation "KCCQ-12"^^xsd:string ;
+	th:definition "Kansas City Cardiomyopathy Questionnaire (KCCQ - 12). Spertus JA, Jones PG. Development and Validation of a Short Version of the Kansas City Cardiomyopathy Questionnaire. Circ Cardiovasc Qual Outcomes. 2015;8(5):469-476."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9e2b845a3dedb6bb24558d6849961c122203a9e2> ;
+	th:synonym <http://www.assero.co.uk/SYN#366aff2ea57c8555b552fdc4c35e549b73d3e219> ;
+.
+<http://www.assero.co.uk/PT#9e2b845a3dedb6bb24558d6849961c122203a9e2>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Kansas City Cardiomyopathy Questionnaire-12 Item"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#366aff2ea57c8555b552fdc4c35e549b73d3e219>
+	rdf:type th:Synonym ;
+	isoC:label "KCCQ9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S007630>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007630"^^xsd:string ;
+	th:notation "VAS - Physician's Global Assessment"^^xsd:string ;
+	th:definition "Visual Analogue Scale of physician's global assessment."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6b5beab141b1d0f1904d581689e1c221cc631a6f> ;
+	th:synonym <http://www.assero.co.uk/SYN#cfab9c26f797edf6a87946a5089436001127eae4> ;
+.
+<http://www.assero.co.uk/PT#6b5beab141b1d0f1904d581689e1c221cc631a6f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Physician's Global Assessment"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#cfab9c26f797edf6a87946a5089436001127eae4>
+	rdf:type th:Synonym ;
+	isoC:label "VAS09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008007>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008007"^^xsd:string ;
+	th:notation "PDSS FOR 7 DAYS RECALL"^^xsd:string ;
+	th:definition "Pompe Disease Symptom Scale (PDSS) v1.17"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e5716a00b9772e0ac3669cf5f04ded2109ffb001> ;
+	th:synonym <http://www.assero.co.uk/SYN#ad31eaa3f834badd87f3b31bf1be794f9eabfb61> ;
+.
+<http://www.assero.co.uk/PT#e5716a00b9772e0ac3669cf5f04ded2109ffb001>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PDSS for 7 Day Recall"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#ad31eaa3f834badd87f3b31bf1be794f9eabfb61>
+	rdf:type th:Synonym ;
+	isoC:label "PDSS8"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008008>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008008"^^xsd:string ;
+	th:notation "PDIS FOR 7 DAYS RECALL"^^xsd:string ;
+	th:definition "Pompe Disease Impact Scale (PDIS) v1.27"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#030ab00af94184d3852a5123cdfd847ca85ce948> ;
+	th:synonym <http://www.assero.co.uk/SYN#acdc6f7d27652ba11fd91d00510769c7fe2f9534> ;
+.
+<http://www.assero.co.uk/PT#030ab00af94184d3852a5123cdfd847ca85ce948>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PDIS for 7 Day Recall"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#acdc6f7d27652ba11fd91d00510769c7fe2f9534>
+	rdf:type th:Synonym ;
+	isoC:label "PDIS8"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008009>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008009"^^xsd:string ;
+	th:notation "PDSS FOR 24 HOURS RECALL"^^xsd:string ;
+	th:definition "Pompe Disease Symptom Scale (PDSS) v1.1"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5eeda86a57556ff7a0bdcfcf5949e5343a44bdc1> ;
+	th:synonym <http://www.assero.co.uk/SYN#51bb2e76178c92f8432857eec6d5de42d05196cc> ;
+.
+<http://www.assero.co.uk/PT#5eeda86a57556ff7a0bdcfcf5949e5343a44bdc1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PDSS for 24 Hours Recall"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#51bb2e76178c92f8432857eec6d5de42d05196cc>
+	rdf:type th:Synonym ;
+	isoC:label "PDSS9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008010>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008010"^^xsd:string ;
+	th:notation "PDIS FOR 24 HOURS RECALL"^^xsd:string ;
+	th:definition "Pompe Disease Impact Scale (PDIS) v1.2"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7428177057cd9f5d1ed8f5e071833b9b24160dd4> ;
+	th:synonym <http://www.assero.co.uk/SYN#bbf8668e2fd8c682a3dc2908c187c4df058d574c> ;
+.
+<http://www.assero.co.uk/PT#7428177057cd9f5d1ed8f5e071833b9b24160dd4>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PDIS for 24 Hours Recall"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#bbf8668e2fd8c682a3dc2908c187c4df058d574c>
+	rdf:type th:Synonym ;
+	isoC:label "PDIS9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008539>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S008539"^^xsd:string ;
+	th:notation "POEM"^^xsd:string ;
+	th:definition "The patient-oriented eczema measure: development and initial validation of a new tool for measuring atopic eczema severity from the patients' perspective. (Charman CR, Venn AJ, Williams HC. Arch Dermatol. 2004;140(12):1513-9)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d2ba281dc480e2454b9242cf765c0a16bc095a98> ;
+	th:synonym <http://www.assero.co.uk/SYN#d92da0d0552c3e2e34757b84e5731073bce17e7e> ;
+.
+<http://www.assero.co.uk/SYN#d92da0d0552c3e2e34757b84e5731073bce17e7e>
+	rdf:type th:Synonym ;
+	isoC:label "POEM9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008623>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008623"^^xsd:string ;
+	th:notation "TRIM-D"^^xsd:string ;
+	th:definition "Treatment-Related Impact Measure for Diabetes (TRIM-D) (Copyright TRIM-D Novo Nordisk, August 2008.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#50199270f9db27ed8e65f1a2d86d0b8f31bda664> ;
+	th:synonym <http://www.assero.co.uk/SYN#d2b6eb2b053bfe95f36f9b569d86866ea1da82e2> ;
+.
+<http://www.assero.co.uk/PT#50199270f9db27ed8e65f1a2d86d0b8f31bda664>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Treatment-Related Impact Measure for Diabetes (TRIM-D)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#d2b6eb2b053bfe95f36f9b569d86866ea1da82e2>
+	rdf:type th:Synonym ;
+	isoC:label "TRIMD9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008641>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008641"^^xsd:string ;
+	th:notation "PRURITUS NRS"^^xsd:string ;
+	th:definition "Pruritus Numerical Rating Scale (NRS). Internal Sanofi Version 1.0."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#627427569be13f7c3191aa22334cb87e27515cc1> ;
+	th:synonym <http://www.assero.co.uk/SYN#c1eb22d0fbee221cf036ff7d99490aea82aeb518> ;
+.
+<http://www.assero.co.uk/PT#627427569be13f7c3191aa22334cb87e27515cc1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Pruritus Numerical Rating Scale (NRS)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#c1eb22d0fbee221cf036ff7d99490aea82aeb518>
+	rdf:type th:Synonym ;
+	isoC:label "PRNRS9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008655>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008655"^^xsd:string ;
+	th:notation "PRURITUS CATEGORICAL SCALE"^^xsd:string ;
+	th:definition "Pruritus Categorical Scale.  Internal Sanofi Version 1.0."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#96af5b859faf87374de65288a9b4113ce4663629> ;
+	th:synonym <http://www.assero.co.uk/SYN#3aad154de3c32a73f3ddeb383499b24aaa50cc5b> ;
+.
+<http://www.assero.co.uk/PT#96af5b859faf87374de65288a9b4113ce4663629>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Pruritus Categorical Scale"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#3aad154de3c32a73f3ddeb383499b24aaa50cc5b>
+	rdf:type th:Synonym ;
+	isoC:label "PRCS9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S008741>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S008741"^^xsd:string ;
+	th:notation "WECHSLER QUESTIONNAIRE"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d80fa252a790b2aca9005ba15176668dc18eaa61> ;
+.
+<http://www.assero.co.uk/PT#d80fa252a790b2aca9005ba15176668dc18eaa61>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Wechsler Questionnaire"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009238>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	th:identifier "S009238"^^xsd:string ;
+	th:notation "IGA"^^xsd:string ;
+	th:definition "The 5-point Investigator's Global Assessment (IGA) Scale: A modified tool for evaluating plaque psoriasis severity in clinical trials. R668-AD-1424 IGA Rating Assessment_V1.0_08 October 2015."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#fdb70e5bf8176a1eee3383aabe2d5247a9b7b9e3> ;
+	th:synonym <http://www.assero.co.uk/SYN#4e2a787c41b00afe04ccd0496585544e52b2e1b6> ;
+.
+<http://www.assero.co.uk/PT#fdb70e5bf8176a1eee3383aabe2d5247a9b7b9e3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Investigator's Global Assessment (IGA)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#4e2a787c41b00afe04ccd0496585544e52b2e1b6>
+	rdf:type th:Synonym ;
+	isoC:label "IGA09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009510>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009510"^^xsd:string ;
+	th:notation "PESQ"^^xsd:string ;
+	th:definition "Patient Experience and Satisfaction Questionnaire (PESQ) Version 1_28_Sep_2018."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bb8da1d7c1209821266f0cab7b2617edec466cb8> ;
+	th:synonym <http://www.assero.co.uk/SYN#45ed8bf92e17d81db91a43ea5e6f8e220d4df174> ;
+.
+<http://www.assero.co.uk/PT#bb8da1d7c1209821266f0cab7b2617edec466cb8>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Experience and Satisfaction Questionnaire"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#45ed8bf92e17d81db91a43ea5e6f8e220d4df174>
+	rdf:type th:Synonym ;
+	isoC:label "PESQ09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009509>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009509"^^xsd:string ;
+	th:notation "PEQ"^^xsd:string ;
+	th:definition "Patient Expectations Questionnaire (PEQ) Version 1_28_Sep_2018."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ad388737797155655bb4c2125f97d43a7d15b39a> ;
+	th:synonym <http://www.assero.co.uk/SYN#9e62f7382dfa1d5877180a8ac5a63ffc07467658> ;
+.
+<http://www.assero.co.uk/PT#ad388737797155655bb4c2125f97d43a7d15b39a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Expectations Questionnaire"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#9e62f7382dfa1d5877180a8ac5a63ffc07467658>
+	rdf:type th:Synonym ;
+	isoC:label "PEQ09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009614>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009614"^^xsd:string ;
+	th:notation "BECK DEPRESSION INVENTORY II"^^xsd:string ;
+	th:definition "Beck Depression Inventory II Copyright 1996 by Aron T. Beck All Rights Reserved. Printed in United States of america."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#993491266b2a26a6782663a9d7f11a9f75a71a68> ;
+	th:synonym <http://www.assero.co.uk/SYN#7c48a26d9b9fbcb7a731c86ebde47924e970f028> ;
+.
+<http://www.assero.co.uk/PT#993491266b2a26a6782663a9d7f11a9f75a71a68>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Beck Depression Inventory II"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#7c48a26d9b9fbcb7a731c86ebde47924e970f028>
+	rdf:type th:Synonym ;
+	isoC:label "BDI29"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009626>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009626"^^xsd:string ;
+	th:notation "BFI SHORT FORM"^^xsd:string ;
+	th:definition "Brief Fatigue Inventory Short Form Copyright 1997 University of Texas M.D Anderson Cancer Center. All rights reserved."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#05b505bd38d8faad46b92efc00e039aff4b48882> ;
+	th:synonym <http://www.assero.co.uk/SYN#b3294ab00ec7f4d086bc39715a297230605353bf> ;
+.
+<http://www.assero.co.uk/PT#05b505bd38d8faad46b92efc00e039aff4b48882>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Brief Fatigue Inventory Short Form"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b3294ab00ec7f4d086bc39715a297230605353bf>
+	rdf:type th:Synonym ;
+	isoC:label "BFI9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009717>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009717"^^xsd:string ;
+	th:notation "PATIENT GLOBAL IMPRESSION OF SEVERITY"^^xsd:string ;
+	th:definition "Patient Global Impression of Severity (PGIS) USA/English Version V1.0."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1f580327794bb46a4dcb77693a254408c1cc6b36> ;
+	th:synonym <http://www.assero.co.uk/SYN#da07e127178ac2528ab10f2330eba17b2a06055f> ;
+.
+<http://www.assero.co.uk/PT#1f580327794bb46a4dcb77693a254408c1cc6b36>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression of Severity"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#da07e127178ac2528ab10f2330eba17b2a06055f>
+	rdf:type th:Synonym ;
+	isoC:label "PGIS09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009751>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009751"^^xsd:string ;
+	th:notation "PATIENT GLOBAL IMPRESSION OF CHANGE"^^xsd:string ;
+	th:definition "Patient Global Impression of Change (PGI-C) - English Version 1.0"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1835f2699cfe5bdca51bf79d4ebf0ff143e0fcb0> ;
+	th:synonym <http://www.assero.co.uk/SYN#f9e175503c555eb52677e980df5410f360bfb12e> ;
+.
+<http://www.assero.co.uk/PT#1835f2699cfe5bdca51bf79d4ebf0ff143e0fcb0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression of Change (PGI-C)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f9e175503c555eb52677e980df5410f360bfb12e>
+	rdf:type th:Synonym ;
+	isoC:label "PGIC09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009760>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009760"^^xsd:string ;
+	th:notation "DAILY SYMPTOM DIARY"^^xsd:string ;
+	th:definition "The Daily Symptom since subject started taking the study medication."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#26d5ff14ffb216869af0d98218c551993ec620d7> ;
+	th:synonym <http://www.assero.co.uk/SYN#eed89dc67d51f7ce291be076c3deddb74ee1c977> ;
+.
+<http://www.assero.co.uk/PT#26d5ff14ffb216869af0d98218c551993ec620d7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Daily Symptom Diary"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#eed89dc67d51f7ce291be076c3deddb74ee1c977>
+	rdf:type th:Synonym ;
+	isoC:label "DSD09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S009888>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S009888"^^xsd:string ;
+	th:notation "MOISTURE USE"^^xsd:string ;
+	th:definition "Question regarding moisturiser use.  Internal Sanofi Version 1.0."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8298873b07d30c0cbed6c889064b5a9edfade508> ;
+	th:synonym <http://www.assero.co.uk/SYN#aaf5fcaa2aa2208116ba02113cc297ff734e07ce> ;
+.
+<http://www.assero.co.uk/PT#8298873b07d30c0cbed6c889064b5a9edfade508>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Moisturizer Use"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#aaf5fcaa2aa2208116ba02113cc297ff734e07ce>
+	rdf:type th:Synonym ;
+	isoC:label "MOISU9"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S010388>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S010388"^^xsd:string ;
+	th:notation "NEUROSTATUS SCORING"^^xsd:string ;
+	th:definition "Slightly modified from J.F. Kurtzke, Neurology 1983:33,1444-52 ©2011 Ludwig Kappos, MD, Neurology, University Hospital Basel, 4031 Basel, Switzerland; Version 04/10.2"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#520f5ba763140e5ef6c95d950542dd0784d05257> ;
+	th:synonym <http://www.assero.co.uk/SYN#049ee61343b58f40bf29e4c6329adadaea5fa2f7> ;
+.
+<http://www.assero.co.uk/PT#520f5ba763140e5ef6c95d950542dd0784d05257>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Neurostatus Scoring"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#049ee61343b58f40bf29e4c6329adadaea5fa2f7>
+	rdf:type th:Synonym ;
+	isoC:label "NSS09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S010864>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S010864"^^xsd:string ;
+	th:notation "QLQ-BR23"^^xsd:string ;
+	th:definition "European Organisation for the Research and Treatment of Cancer Quality of Life - Breast 23 Version 1.0 (Copyright 1994 EORTC Quality of Life Group. All rights reserved. Version 1.0)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8664ade3a6c0dc0aef5d1b013802422f20bceb3a> ;
+	th:synonym <http://www.assero.co.uk/SYN#b71cc6f69850724fda125032fa77026393c59675> ;
+.
+<http://www.assero.co.uk/PT#8664ade3a6c0dc0aef5d1b013802422f20bceb3a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "European Organisation for the Research and Treatment of Cancer Quality of Life - Breast 23 Version 1.0"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b71cc6f69850724fda125032fa77026393c59675>
+	rdf:type th:Synonym ;
+	isoC:label "C3008"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011294>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011294"^^xsd:string ;
+	th:notation "MSSI"^^xsd:string ;
+	th:definition "The Mainz Severity Score Index (MSSI) MSSI Version 1 (US English), 11 Oct 2018."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ed9dbcf7e152a3790495e87425a23d16a83e87af> ;
+	th:synonym <http://www.assero.co.uk/SYN#e606e951c6f54694e9b7822957de292b5b697a96> ;
+.
+<http://www.assero.co.uk/PT#ed9dbcf7e152a3790495e87425a23d16a83e87af>
+	rdf:type th:PreferredTerm ;
+	isoC:label "The Mainz Severity Score Index"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#e606e951c6f54694e9b7822957de292b5b697a96>
+	rdf:type th:Synonym ;
+	isoC:label "MSSI01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011493>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011493"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE CHILD REPORT"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale child report."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#953b320838fcabbaaac057c5b2244d2243053463> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#953b320838fcabbaaac057c5b2244d2243053463>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE CHILD REPORT"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909>
+	rdf:type th:Synonym ;
+	isoC:label "PQG09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011494>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011494"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE YOUNG CHILD REPORT"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale young child report."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4358ccaaeba92157c4578a3c09fe229ad1d33f2b> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#4358ccaaeba92157c4578a3c09fe229ad1d33f2b>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE YOUNG CHILD REPORT"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011495>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011495"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE TEENAGER REPORT"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale teenager report."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#77c14c19c2b446847aa3bf36a9d206c4f99f2f56> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#77c14c19c2b446847aa3bf36a9d206c4f99f2f56>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE TEENAGER REPORT"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011496>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011496"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR YOUNG CHILD"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale parent report for young child."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#327827be0a936864baf3019e511c211c9a677581> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#327827be0a936864baf3019e511c211c9a677581>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR YOUNG CHILD"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011497>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011497"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR TODDLERS"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale parent report for toddlers."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6c15b9660a6e7870ce81935f9c774f71544ea4e8> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#6c15b9660a6e7870ce81935f9c774f71544ea4e8>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR TODDLERS"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011498>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011498"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR TEENAGER"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale parent report for teenager."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#480e915f414cdf169e07bd8b65098abe0909d146> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#480e915f414cdf169e07bd8b65098abe0909d146>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR TEENAGER"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011499>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011499"^^xsd:string ;
+	th:notation "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR CHILD"^^xsd:string ;
+	th:definition "PEDS-QL generic core scale parent report for child."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5510393bc93f3ed84758affb2cf0a1a650d28f44> ;
+	th:synonym <http://www.assero.co.uk/SYN#94d1042dfcc9d53630a59164160f68b16fd99909> ;
+.
+<http://www.assero.co.uk/PT#5510393bc93f3ed84758affb2cf0a1a650d28f44>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL GENERIC CORE SCALE PARENT REPORT FOR CHILD"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011500>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011500"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN YOUNG CHILD"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain young child."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#558ab5da729ba3813c2d7ab30f9b58b869e5a6dc> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#558ab5da729ba3813c2d7ab30f9b58b869e5a6dc>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN YOUNG CHILD"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011501>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011501"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN TEEN FORM"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain teen form."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a1d5385c3922a9f1f8caf9ebc3507bbc033ca196> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#a1d5385c3922a9f1f8caf9ebc3507bbc033ca196>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN TEEN FORM"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011502>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011502"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN PARENT OF YOUNG CHILD FORM"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain parent of young child form."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#50478be2e5a1f8d246b95b8d5b9195fa699740e7> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#50478be2e5a1f8d246b95b8d5b9195fa699740e7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN PARENT OF YOUNG CHILD FORM"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011503>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011503"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN PARENT OF TEEN FORM"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain parent of teen form."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3f0891bff32b68f544ad87dbbd12b327616cf66e> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#3f0891bff32b68f544ad87dbbd12b327616cf66e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN PARENT OF TEEN FORM"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011504>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011504"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN PARENT OF CHILD FORM"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain parent of child form."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f8fe798ad6e5cd263125bf54ff6d329d218cf511> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#f8fe798ad6e5cd263125bf54ff6d329d218cf511>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN PARENT OF CHILD FORM"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S011505>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S011505"^^xsd:string ;
+	th:notation "PEDS-QL PEDIATRIC PAIN CHILD FORM"^^xsd:string ;
+	th:definition "PEDS-QL pediatric pain child form."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ab1b789bc68cdfd7dddf5a0279610ef5937bd840> ;
+	th:synonym <http://www.assero.co.uk/SYN#bc5276b8405edee68ea2e7aadd56196e6ef6afb9> ;
+.
+<http://www.assero.co.uk/PT#ab1b789bc68cdfd7dddf5a0279610ef5937bd840>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PEDS-QL PEDIATRIC PAIN CHILD FORM"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012208>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012208"^^xsd:string ;
+	th:notation "MDS-UDYSRS"^^xsd:string ;
+	th:definition "The Movement Disorder Society version of the Unified Dyskinesia Rating Scale (MDS-UDysRS) (copyright 2008 Movement Disorder Society. All Rights Reserved)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3a50df8fdbfe8bc10fba7152c59cbd52c7d2c168> ;
+	th:synonym <http://www.assero.co.uk/SYN#36add5870c2a25bbc7417548816ac291035fe400> ;
+.
+<http://www.assero.co.uk/PT#3a50df8fdbfe8bc10fba7152c59cbd52c7d2c168>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Movement Disorder Society-Unified Dyskinesia Rating Scale"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#36add5870c2a25bbc7417548816ac291035fe400>
+	rdf:type th:Synonym ;
+	isoC:label "UDY01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012285>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012285"^^xsd:string ;
+	th:notation "HAQ-DI 08"^^xsd:string ;
+	th:definition "HAQ Copyright Stanford University, 1980, All rights reserved. (Fries JF, Spitz P, Kraines RG, Holman HR. Measurement of patient outcome in arthritis. Arthritis Rheum. 1980; 23:137-45).)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0f13741e72e56421edfc98f1311b6a6e957e6ee7> ;
+	th:synonym <http://www.assero.co.uk/SYN#cb7371645718321ecf112d5b1422a31cec809a4a> ;
+.
+<http://www.assero.co.uk/PT#0f13741e72e56421edfc98f1311b6a6e957e6ee7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Health Assessment Questionnaire Disability Index 08"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#cb7371645718321ecf112d5b1422a31cec809a4a>
+	rdf:type th:Synonym ;
+	isoC:label "HAQ08"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012311>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012311"^^xsd:string ;
+	th:notation "IGA PN"^^xsd:string ;
+	th:definition "IGA Nodular Prurigo Version 2.0 (December 06 2018)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ae8d91f71c65c6c711918c9e55fa29b855eb4785> ;
+	th:synonym <http://www.assero.co.uk/SYN#a79d3769bbfc13eabd9e77b5d39198647ac1eb4f> ;
+.
+<http://www.assero.co.uk/PT#ae8d91f71c65c6c711918c9e55fa29b855eb4785>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Investigator's Global Assessment Prurigo Nodularis Questionnaire"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#a79d3769bbfc13eabd9e77b5d39198647ac1eb4f>
+	rdf:type th:Synonym ;
+	isoC:label "IGA01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012381>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012381"^^xsd:string ;
+	th:notation "PAS BASELINE"^^xsd:string ;
+	th:definition "PAS, Version 1.0a (Baseline) 18.08.2017."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bdd7fc2b2b524f3f881e23c414b0165d38b3682b> ;
+.
+<http://www.assero.co.uk/PT#bdd7fc2b2b524f3f881e23c414b0165d38b3682b>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Prurigo Activity Score Baseline Questionnaire"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012384>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012384"^^xsd:string ;
+	th:notation "CDLQ V2.0"^^xsd:string ;
+	th:definition "Children's Dermatology Life Quality Index (CDLQI) (Copyright of Lewis-Jones MS, Finlay AY. The Children's Dermatology Life Quality Index (CDLQI): Initial validation and practical use. British Journal of Dermatology, 1995; 132: 942-949.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ea5f4ef47699d0835e603e02ae64ba50ad405727> ;
+	th:synonym <http://www.assero.co.uk/SYN#84a62ac861a3034404eb30d20356b29622a01373> ;
+.
+<http://www.assero.co.uk/SYN#84a62ac861a3034404eb30d20356b29622a01373>
+	rdf:type th:Synonym ;
+	isoC:label "CDLQ2"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012385>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012385"^^xsd:string ;
+	th:notation "EQ5DY"^^xsd:string ;
+	th:definition "EuroQol 5-dimensional questionnaire Youth."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#75b280cab71709f8d4e7dad6155f781182a82af0> ;
+.
+<http://www.assero.co.uk/PT#75b280cab71709f8d4e7dad6155f781182a82af0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "EuroQol 5-dimensional questionnaire Youth"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012408>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012408"^^xsd:string ;
+	th:notation "UCT"^^xsd:string ;
+	th:definition "Urticaria Control Test."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0342c019cbd5ee76d3afca6679bc5f218c472eb0> ;
+	th:synonym <http://www.assero.co.uk/SYN#e818108784548f43f97eb5e6c6d9d6f776b37a0d> ;
+.
+<http://www.assero.co.uk/PT#0342c019cbd5ee76d3afca6679bc5f218c472eb0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Urticaria Control Test"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#e818108784548f43f97eb5e6c6d9d6f776b37a0d>
+	rdf:type th:Synonym ;
+	isoC:label "UCT01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012423>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012423"^^xsd:string ;
+	th:notation "MSWD V1.0"^^xsd:string ;
+	th:definition "Patients with Chronic Spontaneous Urticaria (CSU) - Missed school/Work days."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#3600bc3e6d6c0960cb075cb2f6c8694f5c76eaa4> ;
+	th:synonym <http://www.assero.co.uk/SYN#b5ae4745de392a3571454eec15ec3c49ed8caac9> ;
+.
+<http://www.assero.co.uk/PT#3600bc3e6d6c0960cb075cb2f6c8694f5c76eaa4>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patients with Chronic Spontaneous Urticaria (CSU) - Missed school/Work days."^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b5ae4745de392a3571454eec15ec3c49ed8caac9>
+	rdf:type th:Synonym ;
+	isoC:label "MSWD01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012434>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012434"^^xsd:string ;
+	th:notation "CUQL"^^xsd:string ;
+	th:definition "Chronic Urticaria Quality of Life Questionnaire (CU-Q2OL)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7823d88718941d05cce1ef438f17cddd1a8f2001> ;
+	th:synonym <http://www.assero.co.uk/SYN#dbd1bf04a558fc5d8b39e0c26ca9afe0f10930eb> ;
+.
+<http://www.assero.co.uk/PT#7823d88718941d05cce1ef438f17cddd1a8f2001>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Chronic Urticaria Quality of Life Questionnaire"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#dbd1bf04a558fc5d8b39e0c26ca9afe0f10930eb>
+	rdf:type th:Synonym ;
+	isoC:label "CUQL01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012461>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012461"^^xsd:string ;
+	th:notation "PGIS"^^xsd:string ;
+	th:definition "Patient Global Impression of Severity (PGIS) of CSU Disease."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e37a0d80f69d8d4cca49c9ffac4c8b3e702ab997> ;
+	th:synonym <http://www.assero.co.uk/SYN#beca51200a89afcf8ad8ec8e5e6b50e8d2b4280e> ;
+.
+<http://www.assero.co.uk/PT#e37a0d80f69d8d4cca49c9ffac4c8b3e702ab997>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression of Severity (PGIS) of CSU Disease"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#beca51200a89afcf8ad8ec8e5e6b50e8d2b4280e>
+	rdf:type th:Synonym ;
+	isoC:label "PGIS08"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012522>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012522"^^xsd:string ;
+	th:notation "SRI-SF8a"^^xsd:string ;
+	th:definition "PROMIS Item Bank v. 1.0 - Sleep-Related Impairment - Short Form 8a (© 2008-2016 PROMIS Health Organization and PROMIS Cooperative Group)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a4766490bfe0766924e0ed8d0508dc4fce960176> ;
+	th:synonym <http://www.assero.co.uk/SYN#3c687637cc94b7355e43284fe86b34b6d36b6a77> ;
+.
+<http://www.assero.co.uk/PT#a4766490bfe0766924e0ed8d0508dc4fce960176>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Sleep Related Impairment - Short Form 8a"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#3c687637cc94b7355e43284fe86b34b6d36b6a77>
+	rdf:type th:Synonym ;
+	isoC:label "SRI01"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012529>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012529"^^xsd:string ;
+	th:notation "MSWD V2.0"^^xsd:string ;
+	th:definition "Patients with Prudigo Noduralis (PN) - Missed School/Work days."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4146b200e2fd71a0fe2756f45e2977a771251342> ;
+	th:synonym <http://www.assero.co.uk/SYN#b3f3a1d58dd2401f122baaf3dd2d1b6e7e6e9c95> ;
+.
+<http://www.assero.co.uk/PT#4146b200e2fd71a0fe2756f45e2977a771251342>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patients with Prurigo Nodularis (PN) - Missed school/Work days"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b3f3a1d58dd2401f122baaf3dd2d1b6e7e6e9c95>
+	rdf:type th:Synonym ;
+	isoC:label "MSWD02"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012536>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012536"^^xsd:string ;
+	th:notation "ADSD"^^xsd:string ;
+	th:definition "Final Adult Atopic Dermatitis Sleep Diary."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1b5046d49e0929745ff922ae730b6dc71e1cfbb0> ;
+	th:synonym <http://www.assero.co.uk/SYN#c8ff450394485554fdde02d08317bdfd4afa4315> ;
+.
+<http://www.assero.co.uk/PT#1b5046d49e0929745ff922ae730b6dc71e1cfbb0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Atopic Dermatitis Sleep Diary"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012544>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012544"^^xsd:string ;
+	th:notation "PEAK PRURITUS NRS"^^xsd:string ;
+	th:definition "Peak Pruritus numerical rating scale."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#357a04d5555bfaafb4c55bf54c898796485e73ce> ;
+	th:synonym <http://www.assero.co.uk/SYN#06a4dc1604ed8dc748ece56dbfc3049b5d49446e> ;
+.
+<http://www.assero.co.uk/PT#357a04d5555bfaafb4c55bf54c898796485e73ce>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Peak Pruritus NRS"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#06a4dc1604ed8dc748ece56dbfc3049b5d49446e>
+	rdf:type th:Synonym ;
+	isoC:label "PPNRS1"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012546>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012546"^^xsd:string ;
+	th:notation "SKIN PAIN NRS"^^xsd:string ;
+	th:definition "Skin Pain numerical rating scale."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c2b8b33a650c955cf5abc968d0e316768160c79a> ;
+	th:synonym <http://www.assero.co.uk/SYN#6424ce5ff744977679cf06094cdf98056fcd0efa> ;
+.
+<http://www.assero.co.uk/PT#c2b8b33a650c955cf5abc968d0e316768160c79a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Skin Pain NRS"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#6424ce5ff744977679cf06094cdf98056fcd0efa>
+	rdf:type th:Synonym ;
+	isoC:label "SPNRS1"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012548>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012548"^^xsd:string ;
+	th:notation "SKIN BURN NRS"^^xsd:string ;
+	th:definition "Skin Burn numerical rating scale."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d871fbd8504bb52cd3d5fad5799082b927c9697e> ;
+	th:synonym <http://www.assero.co.uk/SYN#8722090aa15b34ca470b5d8430160607394c1d9c> ;
+.
+<http://www.assero.co.uk/PT#d871fbd8504bb52cd3d5fad5799082b927c9697e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Skin Burn NRS"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#8722090aa15b34ca470b5d8430160607394c1d9c>
+	rdf:type th:Synonym ;
+	isoC:label "SBNRS1"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012550>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012550"^^xsd:string ;
+	th:notation "SKIN SENSITIVITY NRS"^^xsd:string ;
+	th:definition "Skin Sensitivity to touch numerical rating scale."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b05fd7204bb7d2c486a1a32e1b74f9b7764409dd> ;
+	th:synonym <http://www.assero.co.uk/SYN#5cca4bf49c76aa70ec2589306f3f43d52edf58e0> ;
+.
+<http://www.assero.co.uk/PT#b05fd7204bb7d2c486a1a32e1b74f9b7764409dd>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Skin Sensitivity to touch NRS"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#5cca4bf49c76aa70ec2589306f3f43d52edf58e0>
+	rdf:type th:Synonym ;
+	isoC:label "SSNRS1"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012552>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S012552"^^xsd:string ;
+	th:notation "ARVAS"^^xsd:string ;
+	th:definition "Allergic Rhinitis-Visual Analog Scale."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2a88001ad6ae0cd7f680649c68b615093f93a993> ;
+	th:synonym <http://www.assero.co.uk/SYN#87caa45f48d78232b31fe6ab54871c2577a09f02> ;
+.
+<http://www.assero.co.uk/PT#2a88001ad6ae0cd7f680649c68b615093f93a993>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Allergic Rhinitis-Visual Analog Scale"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#87caa45f48d78232b31fe6ab54871c2577a09f02>
+	rdf:type th:Synonym ;
+	isoC:label "ARVAS1"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012602>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012602"^^xsd:string ;
+	th:notation "PGIC PN"^^xsd:string ;
+	th:definition "Patient Global Impression of Change (PGIC) of PN Disease."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#99d847926706903a8f54617b29cf0a5f7bb0acb5> ;
+	th:synonym <http://www.assero.co.uk/SYN#14304098d4489a8ebd450336e798c0f4fa8acdb0> ;
+.
+<http://www.assero.co.uk/PT#99d847926706903a8f54617b29cf0a5f7bb0acb5>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression of Change (PGIC) of PN Disease"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#14304098d4489a8ebd450336e798c0f4fa8acdb0>
+	rdf:type th:Synonym ;
+	isoC:label "PGIC07"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012603>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012603"^^xsd:string ;
+	th:notation "PGIS PN"^^xsd:string ;
+	th:definition "Patient Global Impression of Severity (PGIS) of PN Disease."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6da0a4381c695f7454395028be1fd98cf016bc52> ;
+.
+<http://www.assero.co.uk/PT#6da0a4381c695f7454395028be1fd98cf016bc52>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression of Severity (PGIS) of PN Disease."^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S012792>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S012792"^^xsd:string ;
+	th:notation "PAS FOLLOW-UP"^^xsd:string ;
+	th:definition "PAS, Version 1.0b (Follow-Up) 18.08.2017."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2b69585ea39058b8b0ba8dc2fa97e662759b2033> ;
+.
+<http://www.assero.co.uk/PT#2b69585ea39058b8b0ba8dc2fa97e662759b2033>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Prurigo Activity Score Follow-Up Questionnaire"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S030946>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S030946"^^xsd:string ;
+	th:notation "ACQ-5"^^xsd:string ;
+	th:definition "Asthma Control Questionnaire, 5-question version (ACQ-5) (Juniper EF, Svensson K, Mork AC, Stahl E. Measurement properties and interpretation of three shortened versions of the asthma control questionnaire. Respir Med. 2005;99:553-8.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f6c6b4048e761b0811742fffc47a7b5b4b0490d7> ;
+	th:synonym <http://www.assero.co.uk/SYN#6dc58625956eedaf3901e824b0b4796091768e66> ;
+.
+<http://www.assero.co.uk/PT#f6c6b4048e761b0811742fffc47a7b5b4b0490d7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Asthma Control Questionnaire - 5 Item"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#6dc58625956eedaf3901e824b0b4796091768e66>
+	rdf:type th:Synonym ;
+	isoC:label "ACQ08"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S030947>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S030947"^^xsd:string ;
+	th:notation "AQLQ(S)"^^xsd:string ;
+	th:definition "Asthma Quality of Life Questionnaire with standardised activities (AQLQ(S)) (Juniper EF, Guyatt GH, Willan A, Griffith LE. Determining a minimal important change in a disease-specific quality of life questionnaire. J Clin Epidemiol. 1994;47(1):81-7.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6917bb6a297a458bcb0df440baead50bad3bd63d> ;
+	th:synonym <http://www.assero.co.uk/SYN#22e21aa0cc008a66b19b3351565747b218b32381> ;
+.
+<http://www.assero.co.uk/PT#6917bb6a297a458bcb0df440baead50bad3bd63d>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Standardized Asthma Quality of Life Questionnaire - 32 Item"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#22e21aa0cc008a66b19b3351565747b218b32381>
+	rdf:type th:Synonym ;
+	isoC:label "AQL09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S030948>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S030948"^^xsd:string ;
+	th:notation "RQLQ(S)"^^xsd:string ;
+	th:definition "Rhinoconjunctivitis Quality of Life Questionnaire with standardised activities (RQLQ(S)) (Juniper EF, Guyatt GH, O'Byrne PM, Viveiros M. Aqueous beclomethasone dipropionate nasal spray \"regular\" versus \"as required\" use in the treatment of seasonal allergic rhinitis. J Allergy Clin Imunol 1990; 863 (3Pr1) :380-6.)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#805fea7aacf21ae60f09024cbe1d1636d54b63e5> ;
+	th:synonym <http://www.assero.co.uk/SYN#06107ccfe4cc55e09c78890be883639ebd222cbf> ;
+.
+<http://www.assero.co.uk/PT#805fea7aacf21ae60f09024cbe1d1636d54b63e5>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Standardized Rhinoconjunctivitis Quality of Life Questionnaire - 28 Item"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#06107ccfe4cc55e09c78890be883639ebd222cbf>
+	rdf:type th:Synonym ;
+	isoC:label "RQL09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S031211>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S031211"^^xsd:string ;
+	th:notation "AQLQQ(S)"^^xsd:string ;
+	th:definition "Asthma Quality of Life Questionnaire with standardised activities (AQLQQ(S)) (Juniper EF, Svensson K, Mörk AC, Ståhl E. Modification of the Asthma Quality of Life Questionnaire (standardised) in patients 12 years and older. Health and Quality of Life Outcomes. Health and Quality of Life Outcomes 2005, 3:58)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6917bb6a297a458bcb0df440baead50bad3bd63d> ;
+	th:synonym <http://www.assero.co.uk/SYN#08af29650bcb2c50deeb420c307a33c66fd6fcef> ;
+.
+<http://www.assero.co.uk/SYN#08af29650bcb2c50deeb420c307a33c66fd6fcef>
+	rdf:type th:Synonym ;
+	isoC:label "AQLQ09"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S031292>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S031292"^^xsd:string ;
+	th:notation "ACQ-7"^^xsd:string ;
+	th:definition "Asthma Control Questionnaire (ACQ) (The Asthma Control Questionnaire is copyrighted. It may not be changed, translated or sold [paper or software] without the permission of Elizabeth Juniper. Juniper EF, O'Byrne PM, Guyatt GH, Ferrie PJ, King DR. Development and validation of a questionnaire to measure asthma control. Eur Respir J 1999;14:902-907)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ac292a621022c162f846314c26f814888161497c> ;
+	th:synonym <http://www.assero.co.uk/SYN#b6077123b74cea552063f601171680f3e3bfd07a> ;
+.
+<http://www.assero.co.uk/PT#ac292a621022c162f846314c26f814888161497c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Asthma Control Questionnaire - 7-question (ACQ)"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b6077123b74cea552063f601171680f3e3bfd07a>
+	rdf:type th:Synonym ;
+	isoC:label "ACQ03"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S031332>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S031332"^^xsd:string ;
+	th:notation "ANRS"^^xsd:string ;
+	th:definition "Asthma Symptom Score Numerical Rating Scale (ANRS)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cbd3579488b5b0bd517615434b5808e9492c9ddc> ;
+.
+<http://www.assero.co.uk/PT#cbd3579488b5b0bd517615434b5808e9492c9ddc>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Asthma Symptom Score Numerical Rating Scale (NRS)."^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S032133>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S032133"^^xsd:string ;
+	th:notation "WPAI-AD"^^xsd:string ;
+	th:definition "The Work Productivity and Activity Impairment - Atopic Dermatitis v2.0 (WPAI:AD) Questionnaire - Reilly MC, Zbrozek AS, Dukes EM. The validity and reproducibility of a work productivity and activity impairment instrument. PharmacoEconomics 1993; 4(5):353-65.."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e74175dcb90c6aacc22052588b9c2a0133406439> ;
+	th:synonym <http://www.assero.co.uk/SYN#1ea9b572552247f2c265d0f8c2729eda58cc9bee> ;
+.
+<http://www.assero.co.uk/PT#e74175dcb90c6aacc22052588b9c2a0133406439>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Work Productivity and Activity Impairment Atopic Dermatitis Version 2.0 Questionnaire"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_S032139>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S032139"^^xsd:string ;
+	th:notation "MSWD V3.0"^^xsd:string ;
+	th:definition "Missed school/Work days because of skin condition."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#84333a164bb552dcbe3de956dfb6663230d2e70f> ;
+	th:synonym <http://www.assero.co.uk/SYN#b55642425f83d2a5b7155d3d8f302c767855b585> ;
+.
+<http://www.assero.co.uk/PT#84333a164bb552dcbe3de956dfb6663230d2e70f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Missed school/Work days because of skin condition"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b55642425f83d2a5b7155d3d8f302c767855b585>
+	rdf:type th:Synonym ;
+	isoC:label "MSWD03"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_SC102122>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC102122"^^xsd:string ;
+	th:notation "SF36 V2.0 STANDARD"^^xsd:string ;
+	th:definition "The Short Form 36 Health Survey Standard, US Version 2.0 (SF36 v2.0 Standard) (copyright 1996, 2000 by Quality Metric Incorporated and Medical Outcomes Trust. All rights reserved)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e5aae9daf2b17cccf15884081b7fa735758b30cb> ;
+	th:synonym <http://www.assero.co.uk/SYN#0967dc24b29040b8507dffe91677bf4e65b3f78c> ;
+.
+<http://www.assero.co.uk/PT#e5aae9daf2b17cccf15884081b7fa735758b30cb>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Short Form 36 Health Survey Standard"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_SC125756>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC125756"^^xsd:string ;
+	th:notation "COPD ASSESSMENT TEST"^^xsd:string ;
+	th:definition "COPD Assessment Test (CAT) (COPD Assessment Test and the CAT logo is a trade mark of the GlaxoSmithKline group of companie. Copyright 2009 GlaxoSmithKline group of companies. All rights reserved)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d91a59c4556c8344fbe30a44268556ed14cb3f60> ;
+	th:synonym <http://www.assero.co.uk/SYN#070317286972d1d3b89fe51ac5bc010e3a60dcd4> ;
+.
+<http://www.assero.co.uk/PT#d91a59c4556c8344fbe30a44268556ed14cb3f60>
+	rdf:type th:PreferredTerm ;
+	isoC:label "COPD Assessment Test (CAT)"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_SC135739>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	th:identifier "SC135739"^^xsd:string ;
+	th:notation "PGI"^^xsd:string ;
+	th:definition "Patient Global Impression (PGI) generic modification for any disease/condition concept use case (Modified from Guy W: ECDEU Assessment Manual for Psychopharmacology. Rockville, MD: U.S. Department of Health, Education, and Welfare; 1976)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ace601d5e8b6efb60d0c84cfcda5d1be9bcadfa3> ;
+	th:synonym <http://www.assero.co.uk/SYN#3f616a6ca07252a622de42ee85645ede2f177ce0> ;
+.
+<http://www.assero.co.uk/PT#ace601d5e8b6efb60d0c84cfcda5d1be9bcadfa3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Patient Global Impression"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C100129/V1#C100129_SC147585>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC147585"^^xsd:string ;
+	th:notation "FACIT-FATIGUE V4"^^xsd:string ;
+	th:definition "Functional Assessment of Chronic Illness Therapy-Fatigue Scale Version 4 (FACIT-FATIGUE V4) (Copyright 1987, 1997 David Cella, Ph.D. All Rights Reserved; Questionnaires and all related subscales, translations, and adaptations ('FACIT System') are owned and copyrighted by David Cella, Ph.D. The ownership and copyright of the FACIT System resides strictly with Dr. Cella. Dr. Cella has granted FACIT.org the right to license usage of the FACIT System to other parties)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#dfcfc38213dc792855cabf22901f98cc8b4be03d> ;
+	th:synonym <http://www.assero.co.uk/SYN#f9b6fdea3f82d21b311221e7e7527210df37427b> ;
+.
+<http://www.assero.co.uk/PT#a4a7969524ee10e2d15639af89b64dd19c212556>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Category of Questionnaire"^^xsd:string ;
+.

@@ -39,7 +39,9 @@ defaults: &defaults
   RDBMS_PASSWORD: ""
   # Base URL authority
   url_authority: "www.assero.co.uk"
-  welcome_text: "The A3 Community MDR is a free version of the A3 MDR. Crafted for the benefit of the community, the application provides tools that help those working with the CDISC standards."
+  welcome_text: "Teh desired welcome text on login page"
+  # Installation
+  installation: "dir name of sponsor specific configuration"
 
 development:
   <<: *defaults
@@ -76,3 +78,5 @@ test:
   #HOST_NAME: www.assero-demo.co.uk
   HOST_PROTOCOL: "https"
   welcome_text: "Welcome text displayed here."
+  # Installation
+  installation: "test" # Keep this as test

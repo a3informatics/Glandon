@@ -286,7 +286,7 @@
 	th:narrower <http://www.cdisc.org/C83004/V19#C83004_C70543> ;
 	th:subsets <http://www.s-cubed.dk/C71113/V1#C71113> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
-	th:isOrdered <http://www.assero.co.uk/TS#0c002e50-c806-446f-a875-d9335343fe59> ;
+	th:isOrdered <http://www.assero.co.uk/TS#25dd2874-a677-4b5d-adf5-14df0c551768> ;
 .
 <http://www.s-cubed.dk/NP001000P/V1#NP001000P_RS>
 	rdf:type isoR:RegistrationState ;
@@ -312,30 +312,30 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 .
-<http://www.assero.co.uk/TS#0c002e50-c806-446f-a875-d9335343fe59>
+<http://www.assero.co.uk/TS#25dd2874-a677-4b5d-adf5-14df0c551768>
 	rdf:type th:Subset ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TSM#0e4c636c-0985-4d46-8249-037342ca0c38> ;
+	th:members <http://www.assero.co.uk/TSM#07a8c1f3-cc9b-4ca5-8788-3cacbf21a2f5> ;
 .
-<http://www.assero.co.uk/TSM#0e4c636c-0985-4d46-8249-037342ca0c38>
+<http://www.assero.co.uk/TSM#07a8c1f3-cc9b-4ca5-8788-3cacbf21a2f5>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001888> ;
-	th:memberNext <http://www.assero.co.uk/TSM#d9c64d7e-a6cf-40d7-910b-6ce363b2f263> ;
+	th:memberNext <http://www.assero.co.uk/TSM#66c80a02-cbaa-40c2-81f8-44fed4a81938> ;
 .
-<http://www.assero.co.uk/TSM#d9c64d7e-a6cf-40d7-910b-6ce363b2f263>
+<http://www.assero.co.uk/TSM#66c80a02-cbaa-40c2-81f8-44fed4a81938>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001887> ;
-	th:memberNext <http://www.assero.co.uk/TSM#e81fd8d4-b3f0-4345-8604-a15e3b3438d4> ;
+	th:memberNext <http://www.assero.co.uk/TSM#3f1a7302-3677-4ff8-82bb-28fe9a8de941> ;
 .
-<http://www.assero.co.uk/TSM#e81fd8d4-b3f0-4345-8604-a15e3b3438d4>
+<http://www.assero.co.uk/TSM#3f1a7302-3677-4ff8-82bb-28fe9a8de941>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.s-cubed.dk/C71113/V1#C71113_S001886> ;
-	th:memberNext <http://www.assero.co.uk/TSM#3b1d6196-3b33-43f0-965f-aa771f9a2a34> ;
+	th:memberNext <http://www.assero.co.uk/TSM#95ffb7f3-5bb1-410e-81c5-0d042db90c72> ;
 .
-<http://www.assero.co.uk/TSM#3b1d6196-3b33-43f0-965f-aa771f9a2a34>
+<http://www.assero.co.uk/TSM#95ffb7f3-5bb1-410e-81c5-0d042db90c72>
 	rdf:type th:SubsetMember ;
 	isoC:label ""^^xsd:string ;
 	th:item <http://www.cdisc.org/C83004/V19#C83004_C70543> ;

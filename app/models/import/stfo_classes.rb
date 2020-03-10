@@ -93,7 +93,8 @@ module Import::STFOClasses
           new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
           # If new_child is NOT nil then already in the CL being extended, nothing else to do.
           # Otherwise try and find it.
-          new_child = sponsor_or_referenced(ct, child, fixes) if new_child.nil?
+          next if !new_child.nil?
+          new_child = sponsor_or_referenced(ct, child, fixes)
           next if new_child.nil?
           new_narrower << new_child 
         end
@@ -101,7 +102,7 @@ module Import::STFOClasses
       end
       self
     rescue => e
-      add_error("Exception in to_extension, identifier '#{self.identifier}'.")
+      add_error("Exception in to_extension, #{e}, identifier '#{self.identifier}'.")
       self
     end
 
@@ -122,7 +123,8 @@ module Import::STFOClasses
     def to_subset_of_extension(extensions)
       new_narrower = []
       ext = extensions[self.identifier]
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier) # Do early
@@ -139,7 +141,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_subset_of_extension, identifier '#{self.identifier}'.")
+      add_error("Exception in to_subset_of_extension, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -157,7 +159,7 @@ module Import::STFOClasses
       self.is_ordered = subset
       nil
     rescue => e
-      add_error("Exception in add_ordering, identifier '#{self.identifier}'.")
+      add_error("Exception in add_ordering, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -165,7 +167,8 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
@@ -182,7 +185,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_cdisc_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_cdisc_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -190,7 +193,8 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       new_narrower = []
-      self.identifier = Thesaurus::ManagedConcept.new_identifier
+      #self.identifier = Thesaurus::ManagedConcept.new_identifier
+      self.identifier = new_identifier(self.label, self.notation)
       old_narrower = self.narrower.dup
       self.narrower = []
       self.update_identifier(self.identifier)
@@ -207,7 +211,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_sponsor_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -235,7 +239,7 @@ module Import::STFOClasses
       self.add_ordering
       self
     rescue => e
-      add_error("Exception in to_sponsor_subset, identifier '#{self.identifier}'.")
+      add_error("Exception in to_existing_subset, #{e}, identifier '#{self.identifier}'.")
       nil
     end
 
@@ -294,6 +298,8 @@ module Import::STFOClasses
     end
 
     def find_referenced(ct, identifier, child, fixes)
+      result = exact_match(ct, identifier)
+      return result if !result.nil?
       options = ct.find_identifier(identifier)
       if options.empty?
         # See if we can find anything in the future
@@ -307,7 +313,9 @@ module Import::STFOClasses
         end
       elsif options.count == 1
         if options.first[:rdf_type] == Thesaurus::UnmanagedConcept.rdf_type.to_s
-          return Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+          result = Thesaurus::UnmanagedConcept.find_children(options.first[:uri])
+          add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
+          return result 
         else
           add_error("Cannot find referenced item incorrect type, identifier '#{self.identifier}'.")
           return nil
@@ -316,12 +324,24 @@ module Import::STFOClasses
         option = matching_notation(child, options)
         return option if !option.nil?
         uri = fixes.fix(self.identifier, identifier)
-        return Thesaurus::UnmanagedConcept.find_children(uri) if !uri.nil?
-        add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
-        return nil
+        if !uri.nil?
+          result = Thesaurus::UnmanagedConcept.find_children(uri)
+          add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
+          return result 
+        else
+          add_error("Cannot find referenced item '#{identifier}', multiple found, identifier '#{self.identifier}'. Found #{ options.map{|x| x[:uri].to_s}.join(", ")} and no fix.")
+          return nil
+        end
       end
     rescue => e
-      add_error("Exception in find_referenced, identifier '#{self.identifier}'.")
+      add_error("Exception in find_referenced: #{e}, identifier '#{self.identifier}'.")
+      nil
+    end
+
+    def exact_match(ct, identifier)
+      results = ct.find_by_identifiers([self.identifier, identifier])
+      return Thesaurus::UnmanagedConcept.find(results[identifier]) if results.key?(identifier)
+      add_log ("**** Failed to find exact match '#{identifier}', identifier '#{self.identifier}'.")
       nil
     end
 
@@ -424,16 +444,37 @@ module Import::STFOClasses
       triples = query_results.by_object_set([:s, :th, :v]).map{|x| {uri: x[:s], version: x[:v]}}
     end
 
+    # Find a new identifier. Match on label and notaiton or generate a new one.
+    def new_identifier(label, notation)
+      results = Thesaurus::ManagedConcept.where(label: label, notation: notation)
+      if results.empty?
+        Thesaurus::ManagedConcept.new_identifier
+      elsif results.count == 1
+        return results.first.identifier
+      else
+        add_error("Found multiple matching labels/notation for new identifier, identifier #{self.identifier}")
+      end
+    rescue => e
+      add_error("Exception in new_identifier, #{e}. Label: #{label}, identifier: #{identifier}.")
+    end
+
     # Add error
     def add_error(msg)
       puts colourize("#{msg}", "red")
       self.errors.add(:base, msg)
     end
 
-    # Add error
+    # Add log
     def add_log(msg)
       puts colourize("#{msg}", "blue")
       ConsoleLogger.info(self.class.name, "add_log", msg)
+    end
+
+    # Add warning / annotation
+    def add_warning(msg)
+      puts colourize("#{msg}", "yellow")
+      ConsoleLogger.info(self.class.name, "add_warning", msg)
+      self.errors.add(:base, msg)
     end
 
     def save_next(results, member)

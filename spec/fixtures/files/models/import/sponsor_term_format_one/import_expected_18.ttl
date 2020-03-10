@@ -1,0 +1,450 @@
+@prefix : <http://www.s-cubed.dk/TEST_16/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/TEST_16/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Version 2-6 Test"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin "Created from files: 'import_input_18.xlsx'"^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.s-cubed.dk/C67153/V1#C67153> ;
+	th:reference <http://www.cdisc.org/CT/V43#TH_R1> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "TEST 16"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.s-cubed.dk/C67153/V1#C67153> ;
+.
+<http://www.cdisc.org/CT/V43#TH_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/CT/V43#TH> ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Vital Signs Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	isoT:hasState <http://www.s-cubed.dk/C67153/V1#C67153_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/C67153/V1#C67153_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-06-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C67153"^^xsd:string ;
+	th:notation "VSTEST"^^xsd:string ;
+	th:definition "The test name given to the test that analyzes a particular set of vital signs including temperature, respiratory rate, heart rate, and blood pressure."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25208> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25299> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49680> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49679> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49678> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49677> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25347> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49676> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C16358> ;
+	th:narrower <http://www.cdisc.org/C67153/V16#C67153_C25157> ;
+	th:narrower <http://www.cdisc.org/C67153/V20#C67153_C87054> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98785> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C84372> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98793> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100947> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100945> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100948> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100946> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C71258> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C103346> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C60832> ;
+	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C12472> ;
+	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C81298> ;
+	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C81255> ;
+	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C104622> ;
+	th:narrower <http://www.cdisc.org/C67153/V37#C67153_C25298> ;
+	th:narrower <http://www.cdisc.org/C67153/V40#C67153_C117976> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S006622> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S006623> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007258> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007259> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007260> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007261> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007262> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007263> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007264> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007265> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007266> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007267> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007268> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007269> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007270> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S007271> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S009925> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_S010959> ;
+	th:narrower <http://www.s-cubed.dk/C67153/V1#C67153_SC122232> ;
+	th:extends <http://www.cdisc.org/C67153/V40#C67153> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d5d04d1a73f901f017edab020cc208d433611856> ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C67153"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S006622>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S006622"^^xsd:string ;
+	th:notation "Mean Heart Rate"^^xsd:string ;
+	th:definition "The average (mean) number of cycles of contraction and subsequent relaxation of the heart, usually expressed as beats per minute, obtained from a set of measurements of the heart rate."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#fdd81cc6565efcaa5a51ee3a5318142a98a67b3a> ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S006623>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S006623"^^xsd:string ;
+	th:notation "Mean Temperature"^^xsd:string ;
+	th:definition "The average (mean) measure of the kinetic energy of a system of particles. Temperature may be quantified, in the context of thermodynamics, as the potential of one system to transfer thermal energy to another system until both systems reach a state of thermal equilibrium."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#fbd542eb75dbc9abecc0b02b74797df58b8c72fa> ;
+.
+<http://www.assero.co.uk/PT#fbd542eb75dbc9abecc0b02b74797df58b8c72fa>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Mean Temperature"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007258>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007258"^^xsd:string ;
+	th:notation "Food Energy"^^xsd:string ;
+	th:definition "The amount of energy in food that is available to the body. The values for food energy are expressed in kilocalories (kcal) or kilojoules (kJ)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0df622f5671c396c62cf54d9af241b2c6ece4e75> ;
+.
+<http://www.assero.co.uk/PT#0df622f5671c396c62cf54d9af241b2c6ece4e75>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Food Energy"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007259>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007259"^^xsd:string ;
+	th:notation "Measured Minutes"^^xsd:string ;
+	th:definition "The time during the examination when measurements are taken."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7efcd90479e2a29121d037f4153b8ce4173701a3> ;
+.
+<http://www.assero.co.uk/PT#7efcd90479e2a29121d037f4153b8ce4173701a3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Measured Minutes"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007260>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007260"^^xsd:string ;
+	th:notation "Energy Expenditure 24h"^^xsd:string ;
+	th:definition "The amount of energy (or calories) that a person needs to carry out a physical function such as breathing, circulating blood, digesting food, or physical movement on 24 hours."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5571df1a408a8a355a2ad718ee043dc24628a434> ;
+.
+<http://www.assero.co.uk/PT#5571df1a408a8a355a2ad718ee043dc24628a434>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Energy Expenditure 24h"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007261>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007261"^^xsd:string ;
+	th:notation "Respiratory Quotient 24h"^^xsd:string ;
+	th:definition "Ratio of the volume of carbon dioxide (CO2) produced to the volume of oxygen (O2) used, or VCO2/VO2. Indicator of metabolic fuel or substrate use in tissues; it must be calculated under resting or steady-state exercise conditions."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#33b62d55571d73d8fcbd1f54b1d49aafd024577c> ;
+.
+<http://www.assero.co.uk/PT#33b62d55571d73d8fcbd1f54b1d49aafd024577c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Respiratory Quotient 24h"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007262>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007262"^^xsd:string ;
+	th:notation "Sleep Duration"^^xsd:string ;
+	th:definition "Time of natural and periodic state of rest during which consciousness of the world is suspended."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e69a450f70aa1decad7653115529281802b646f6> ;
+.
+<http://www.assero.co.uk/PT#e69a450f70aa1decad7653115529281802b646f6>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Sleep Duration"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007263>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007263"^^xsd:string ;
+	th:notation "Sleep Energy Expenditure"^^xsd:string ;
+	th:definition "The amount of energy (or calories) that a person needs during the sleep period."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#913e619b388dacccebc3ac5c433d5b388cfe7080> ;
+.
+<http://www.assero.co.uk/PT#913e619b388dacccebc3ac5c433d5b388cfe7080>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Sleep Energy Expenditure"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007264>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007264"^^xsd:string ;
+	th:notation "Sleep Respiratory Quotient"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a5f91745f30fcca9d78d3f9580fe1c730c28e95e> ;
+.
+<http://www.assero.co.uk/PT#a5f91745f30fcca9d78d3f9580fe1c730c28e95e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Sleep Respiratory Quotient"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007265>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007265"^^xsd:string ;
+	th:notation "Resting Energy Expenditure"^^xsd:string ;
+	th:definition "Energy expenditure of a recumbent person who is not fasting and is the sum of BEE (Basal Energy expenditure) and DIT (Diet Induced Thermogenesis)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#907b4ae44756058779b973ae2d0c34740ce3f428> ;
+.
+<http://www.assero.co.uk/PT#907b4ae44756058779b973ae2d0c34740ce3f428>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Resting Energy Expenditure"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007266>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007266"^^xsd:string ;
+	th:notation "Resting Respiratory Quotient"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9ad83bfc38a38b2e99650a23f8a71d7d548dca59> ;
+.
+<http://www.assero.co.uk/PT#9ad83bfc38a38b2e99650a23f8a71d7d548dca59>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Resting Respiratory Quotient"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007267>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007267"^^xsd:string ;
+	th:notation "Activity-Related Energy Expenditure"^^xsd:string ;
+	th:definition "Energy expended during unscripted physical activity, such as getting up to use the restroom during a period of prescribed rest."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e846f34c3de907a6b72fa7154303f43431291ab0> ;
+.
+<http://www.assero.co.uk/PT#e846f34c3de907a6b72fa7154303f43431291ab0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Activity-Related Energy Expenditure"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007268>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007268"^^xsd:string ;
+	th:notation "Diet Induced Thermogenesis"^^xsd:string ;
+	th:definition "Process of energy production in the body caused directly by the metabolizing of food consumed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#109985125b7a0c2391d0c54d4b8db69a21789738> ;
+.
+<http://www.assero.co.uk/PT#109985125b7a0c2391d0c54d4b8db69a21789738>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Diet Induced Thermogenesis"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007269>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007269"^^xsd:string ;
+	th:notation "Basal Energy Expenditure"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#31a41783f240de7d94a56d22002093e87fadb999> ;
+.
+<http://www.assero.co.uk/PT#31a41783f240de7d94a56d22002093e87fadb999>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Basal Energy Expenditure"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007270>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007270"^^xsd:string ;
+	th:notation "Basal Respiratory Quotient"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c60f429639eb4bd1b2955369948b61d3491fed4e> ;
+.
+<http://www.assero.co.uk/PT#c60f429639eb4bd1b2955369948b61d3491fed4e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Basal Respiratory Quotient"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S007271>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "S007271"^^xsd:string ;
+	th:notation "Energy Balance"^^xsd:string ;
+	th:definition "Not defined."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#65d608b3deac0d168fcf20b334c3441118d7b35d> ;
+.
+<http://www.assero.co.uk/PT#65d608b3deac0d168fcf20b334c3441118d7b35d>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Energy Balance"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S009925>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S009925"^^xsd:string ;
+	th:notation "Vital Signs All"^^xsd:string ;
+	th:definition "Generic test derived in SDTM when all vital signs tests are not done."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#dc3485c43c673ea177c05a4ec6f684ee60978e2a> ;
+.
+<http://www.assero.co.uk/PT#dc3485c43c673ea177c05a4ec6f684ee60978e2a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Vital Signs All"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_S010959>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	th:identifier "S010959"^^xsd:string ;
+	th:notation "Maximum Temperature"^^xsd:string ;
+	th:definition "The maximum of the temperature observed during an event."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ea6ddb0d04bd75c395cd45b7c4faecd96ad83ff9> ;
+.
+<http://www.assero.co.uk/PT#ea6ddb0d04bd75c395cd45b7c4faecd96ad83ff9>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Maximum Temperature"^^xsd:string ;
+.
+<http://www.s-cubed.dk/C67153/V1#C67153_SC122232>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
+	th:identifier "SC122232"^^xsd:string ;
+	th:notation "Body Fat Measurement"^^xsd:string ;
+	th:definition "A measurement of the total fat mass within the subject's body. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d5b2c2ba38024ff355a69db90f535472984d2de8> ;
+	th:synonym <http://www.assero.co.uk/SYN#d5b2c2ba38024ff355a69db90f535472984d2de8> ;
+.
+<http://www.assero.co.uk/PT#d5d04d1a73f901f017edab020cc208d433611856>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Vital Signs Test Name"^^xsd:string ;
+.
