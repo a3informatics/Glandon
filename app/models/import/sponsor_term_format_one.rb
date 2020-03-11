@@ -258,10 +258,18 @@ private
       @config = file_path.blank? ? nil : YAML.load(File.read(file_path)).deep_symbolize_keys
     end
 
-    def fix(cl, cli)
+    def override?(cl, cli)
       return nil if @config.nil?
-      uri = @config.dig(:fixes, cl.to_sym, cli.to_sym)
-    puts colourize("Checking fix #{cl}, #{cli}, uri=#{uri}", "blue")
+      entry = @config.dig(:override, cl.to_sym, cli.to_sym)
+    puts colourize("Checking override #{cl}, #{cli}, entry=#{entry}", "brown")
+      return false if entry.nil?
+      true
+    end
+
+    def qualify(cl, cli)
+      return nil if @config.nil?
+      uri = @config.dig(:qualify, cl.to_sym, cli.to_sym)
+    puts colourize("Checking qualify #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end
