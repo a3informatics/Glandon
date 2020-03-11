@@ -3,6 +3,12 @@
 <div class="table-cardstyle all-columns">
 
 	<center>
+		<div id="search_active_info" class="font-light text-small" hidden>
+			<img src="<%=image_path("loading.gif")%>" width="30"></img>	Search running in background...
+			<button id="abort_button" class="btn red btn-xs">Abort</button>
+			<hr>
+		</div>
+
 		<input id="overall_search" type="text" class="search-server overall" size="30" placeholder="Overall Search"></input>
 		<button id="clear_button" class="btn btn-xs grey"><span class="icon-times text-tiny"></span> Clear All</button>
 	</center>

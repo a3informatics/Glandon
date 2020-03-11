@@ -1,27 +1,26 @@
 /*
-* Search Panel V2. Panel used to search terminologies
+* Search Panel V2. Panel used to search terminologies. Paginated.
 */
 
 /*
-* Requires: JavaScript 'shared/tags' in the view
+* Requires: JavaScript 'shared/tags' included in the view
 */
 
 /**
-* Initialisation
+* SearchPanelV2 Constructor
 *
 * @param url [String] url for the search
 * @return [void]
 */
 function SearchPanelV2(url) {
-  var _this = this;
   this.url = url;
   this.tsSearchTable = null;
-  this.length = 50;
+  this.length = 500;
+  this.active = false;
   this.filterPageSettings();
   this.initTable();
   this.setListeners();
 }
-
 
 /**
 * Initialise Table
@@ -49,14 +48,18 @@ SearchPanelV2.prototype.initTable = function () {
   this.toggleFilters(false);
 }
 
+
+
 /**
-* Performs a search on the current inputs
+* Performs a search on the current input values
 *
 * @return [void]
 */
 SearchPanelV2.prototype.search = function () {
   this.tsSearchTable.clear().draw();
   this.toggleFilters(true);
+  this.toggleInputs(false);
+  this.ajaxActive(true);
   this.tsSearchTable.processing(true);
   this.serverSearch(0, this.length);
 }
@@ -67,7 +70,7 @@ SearchPanelV2.prototype.search = function () {
 * @return [void]
 */
 SearchPanelV2.prototype.serverSearch = function (offset, length) {
-  $.ajax({
+  this.ajax = $.ajax({
     url: this.url,
     data: this.searchData(offset, length),
     type: 'GET',
@@ -80,15 +83,22 @@ SearchPanelV2.prototype.serverSearch = function (offset, length) {
       this.tsSearchTable.draw();
       this.tsSearchTable.processing(false);
 
-      // if (result.count >= this.length) {
-      //   this.historyTable.processing(false);
-      //   this.serverSearch(result.offset + this.length)
-      // } else
-      //   this.tsSearchTable.processing(false);
+      if (result.recordsFiltered >= offset + length) {
+        this.serverSearch(offset + length, length);
+      }
+      else {
+        this.tsSearchTable.processing(false);
+        this.toggleInputs(true);
+        this.ajaxActive(false);
+      }
     },
     error: function(xhr,status,error){
-      handleAjaxError(xhr, status, error);
+      if (xhr.statusText != 'abort')
+        handleAjaxError(xhr, status, error);
+
       this.tsSearchTable.processing(false);
+      this.toggleInputs(true);
+      this.ajaxActive(false);
     }
   });
 }
@@ -104,38 +114,7 @@ SearchPanelV2.prototype.setListeners = function () {
   this.columnFilterEvent();
   this.rowClickEvents();
   $("#clear_button").on("click", this.clearSearch.bind(this));
-}
-
-/**
-* Clears the table of records, and inputs of any text
-*
-* @return [void]
-*/
-SearchPanelV2.prototype.clearSearch = function () {
-  this.clearInput("#searchTable_filter input")
-  this.clearInput("#overall_search, #searchTable_wrapper thead input, #searchTable_wrapper tfoot input");
-  this.toggleFilters(false);
-  this.tsSearchTable.clear().draw();
-}
-
-/**
-* Clears input value
-*
-* @param target [String] JQuery selector
-* @return [void]
-*/
-SearchPanelV2.prototype.clearInput = function (target) {
-  $(target).val("");
-}
-
-/**
-* Enables / Disables the table footer filters
-*
-* @param enable [Boolean] true/false - enable/disable filters
-* @return [void]
-*/
-SearchPanelV2.prototype.toggleFilters = function (enable) {
-  enable ? $("#searchTable_wrapper .dataTables_scrollFoot").show() : $("#searchTable_wrapper .dataTables_scrollFoot").hide();
+  $("#abort_button").on("click", function() { if(this.ajax != null) { this.ajax.abort(); } }.bind(this));
 }
 
 /**
@@ -148,16 +127,20 @@ SearchPanelV2.prototype.rowClickEvents = function () {
 
   // Row single click
   $('#searchTable tbody').on('click', 'tr', function () {
-    $("#searchTable tr.selected").removeClass('selected');
-    $(this).addClass('selected');
+    if (!_this.active) {
+      $("#searchTable tr.selected").removeClass('selected');
+      $(this).addClass('selected');
+    }
   });
 
   // Row double click
   $('#searchTable tbody').on('dblclick', 'tr', function () {
-    var data = _this.tsSearchTable.row(this).data();
-    _this.clearSearch();
-    $('#searchTable_csearch_parent_identifier').val(data.parent_identifier);
-    _this.search();
+    if (!_this.active) {
+      var data = _this.tsSearchTable.row(this).data();
+      _this.clearSearch();
+      $('#searchTable_csearch_parent_identifier').val(data.parent_identifier);
+      _this.search();
+    }
   });
 
 }
@@ -187,7 +170,7 @@ SearchPanelV2.prototype.overallSearchEvent = function () {
   var _this = this;
 
   $("#overall_search").on("keyup", function(e) {
-    if(e.keyCode == 13 && this.value != "")
+    if(e.keyCode == 13 && this.value != "" && !_this.active)
       _this.search();
   });
 }
@@ -201,9 +184,64 @@ SearchPanelV2.prototype.overallSearchEvent = function () {
 SearchPanelV2.prototype.searchInputEvent = function () {
   var _this = this;
   $('#searchTable_wrapper thead input.search-server').on('keyup', function (e) {
-    if (e.keyCode == 13 && this.value != "")
+    if (e.keyCode == 13 && this.value != "" && !_this.active)
       _this.search();
   });
+}
+
+/**
+* Clears the table of records, and inputs of any text
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.clearSearch = function () {
+  if (!this.active) {
+    this.clearInput("#searchTable_filter input")
+    this.clearInput("#overall_search, #searchTable_wrapper thead input, #searchTable_wrapper tfoot input");
+    this.toggleFilters(false);
+    this.tsSearchTable.clear().draw();
+  }
+}
+
+/**
+* Clears input value
+*
+* @param target [String] JQuery selector
+* @return [void]
+*/
+SearchPanelV2.prototype.clearInput = function (target) {
+  $(target).val("");
+}
+
+/**
+* Enables / Disables the table search inputs
+*
+* @param enable [Boolean] true/false - enable/disable search inputs
+* @return [void]
+*/
+SearchPanelV2.prototype.toggleInputs = function (enable) {
+  $("#overall_search, #searchTable_wrapper thead input").prop("disabled", !enable);
+}
+
+/**
+* Enables / Disables the table footer filters
+*
+* @param enable [Boolean] true/false - enable/disable filters
+* @return [void]
+*/
+SearchPanelV2.prototype.toggleFilters = function (enable) {
+  enable ? $("#searchTable_wrapper .dataTables_scrollFoot").show() : $("#searchTable_wrapper .dataTables_scrollFoot").hide();
+}
+
+/**
+* Enables / Disables the active ajax state
+*
+* @param active [Boolean] true/false - enable/disable active ajax state
+* @return [void]
+*/
+SearchPanelV2.prototype.ajaxActive = function (active) {
+  this.active = active;
+  active ? $("#search_active_info").show() : $("#search_active_info").hide();
 }
 
 /**
