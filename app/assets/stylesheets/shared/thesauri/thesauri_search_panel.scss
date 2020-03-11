@@ -1,0 +1,52 @@
+@import "custom/vars.scss";
+@import "shared/managed_children_select.scss";
+
+#searchTable {
+  min-width: 1000px;
+  border-collapse: separate;
+}
+
+#searchTable tbody tr.selected > td {
+  color: $primary-color-light !important;
+  font-family: $font-primary !important;
+}
+
+.dataTables_scrollBody > table > thead > tr, .dataTables_scrollBody > table > tfoot > tr  {
+    visibility: collapse;
+    height: 0px !important;
+}
+
+.search-server {
+  width: 100%;
+  font-family: $font-light;
+  border: 2px solid $primary-color-brightest;
+  background-image: image-url("icons/cloud.png");
+  background-repeat: no-repeat;
+  background-position: 6px 50%;
+  background-size: 18px;
+  padding-left: 30px;
+}
+
+.search-server:focus {
+  outline: dotted $primary-color-bright 2px;
+  background-image: image-url("icons/cloud_b.png");
+}
+
+.search-server.overall{
+  display: inline-block;
+  width: auto;
+  border: 0px;
+  border-bottom: 2px solid $primary-color-bright;
+  padding: 6px 0px 6px 32px;
+  margin: 10px 0px;
+}
+
+.filter-local {
+  width: 100%;
+  font-family: $font-light;
+  border: 1px solid $grey-light;
+}
+
+.filter-local:focus{
+  outline: dotted $grey-light 2px;
+}

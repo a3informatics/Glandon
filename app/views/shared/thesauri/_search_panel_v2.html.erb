@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag    'shared/datatables_loading', 'shared/thesauri/thesauri_search_panel' %>
+<%= javascript_include_tag 'shared/thesauri/search_panel_v2' %>
+<div class="table-cardstyle all-columns">
+
+	<center>
+		<input id="overall_search" type="text" class="search-server overall" size="30" placeholder="Overall Search"></input>
+		<button id="clear_button" class="btn btn-xs grey"><span class="icon-times text-tiny"></span> Clear All</button>
+	</center>
+
+	<table id="searchTable" class="table striped table-row-clickable" style="width:100%">
+		<thead>
+			<tr>
+	      <% columns.each do |item| %>
+					<th><%=item[:name]%></th>
+	      <% end %>
+	  	</tr>
+	    <tr class="bordered">
+				<% columns.each do |item| %>
+					<th><input id="searchTable_csearch_<%=item[:id]%>" type="text" class="input-sm search-server" size="10" placeholder="Search"></input></th>
+				<% end %>
+	    </tr>
+		</thead>
+		<tbody>
+		</tbody>
+	  <tfoot>
+			<tr class="bordered">
+				<% columns.each do |item| %>
+					<th><input id="searchTable_cfilter_<%=item[:id]%>" type="text" class="input-sm filter-local" size="10" placeholder="Filter"></input></th>
+				<% end %>
+	    </tr>
+	  </tfoot>
+	</table>
+</div>

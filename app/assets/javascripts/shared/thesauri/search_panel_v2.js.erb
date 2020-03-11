@@ -1,0 +1,273 @@
+/*
+* Search Panel V2. Panel used to search terminologies
+*/
+
+/*
+* Requires: JavaScript 'shared/tags' in the view
+*/
+
+/**
+* Initialisation
+*
+* @param url [String] url for the search
+* @return [void]
+*/
+function SearchPanelV2(url) {
+  var _this = this;
+  this.url = url;
+  this.tsSearchTable = null;
+  this.length = 50;
+  this.filterPageSettings();
+  this.initTable();
+  this.setListeners();
+}
+
+
+/**
+* Initialise Table
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.initTable = function () {
+  this.tsSearchTable = $('#searchTable').DataTable( {
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "columns": this.columns(),
+    "processing": true,
+    "scrollY": 500,
+    "scrollX": true,
+    "scrollCollapse": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "Make a new column or global search to see data",
+      "processing": generateSpinnerWText("small", "Searching"),
+      "sSearch": "Filter:"
+    },
+    "orderCellsTop": true,
+  });
+
+  this.toggleFilters(false);
+}
+
+/**
+* Performs a search on the current inputs
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.search = function () {
+  this.tsSearchTable.clear().draw();
+  this.toggleFilters(true);
+  this.tsSearchTable.processing(true);
+  this.serverSearch(0, this.length);
+}
+
+/**
+* Performs a paginated server search
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.serverSearch = function (offset, length) {
+  $.ajax({
+    url: this.url,
+    data: this.searchData(offset, length),
+    type: 'GET',
+    dataType: 'json',
+    context: this,
+    success: function(result) {
+    	for (i = 0; i < result.data.length; i++) {
+        this.tsSearchTable.row.add(result.data[i]);
+      }
+      this.tsSearchTable.draw();
+      this.tsSearchTable.processing(false);
+
+      // if (result.count >= this.length) {
+      //   this.historyTable.processing(false);
+      //   this.serverSearch(result.offset + this.length)
+      // } else
+      //   this.tsSearchTable.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.tsSearchTable.processing(false);
+    }
+  });
+}
+
+/**
+* Sets event handlers
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.setListeners = function () {
+  this.searchInputEvent();
+  this.overallSearchEvent();
+  this.columnFilterEvent();
+  this.rowClickEvents();
+  $("#clear_button").on("click", this.clearSearch.bind(this));
+}
+
+/**
+* Clears the table of records, and inputs of any text
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.clearSearch = function () {
+  this.clearInput("#searchTable_filter input")
+  this.clearInput("#overall_search, #searchTable_wrapper thead input, #searchTable_wrapper tfoot input");
+  this.toggleFilters(false);
+  this.tsSearchTable.clear().draw();
+}
+
+/**
+* Clears input value
+*
+* @param target [String] JQuery selector
+* @return [void]
+*/
+SearchPanelV2.prototype.clearInput = function (target) {
+  $(target).val("");
+}
+
+/**
+* Enables / Disables the table footer filters
+*
+* @param enable [Boolean] true/false - enable/disable filters
+* @return [void]
+*/
+SearchPanelV2.prototype.toggleFilters = function (enable) {
+  enable ? $("#searchTable_wrapper .dataTables_scrollFoot").show() : $("#searchTable_wrapper .dataTables_scrollFoot").hide();
+}
+
+/**
+* Row Single and Double Click Events
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.rowClickEvents = function () {
+  var _this = this;
+
+  // Row single click
+  $('#searchTable tbody').on('click', 'tr', function () {
+    $("#searchTable tr.selected").removeClass('selected');
+    $(this).addClass('selected');
+  });
+
+  // Row double click
+  $('#searchTable tbody').on('dblclick', 'tr', function () {
+    var data = _this.tsSearchTable.row(this).data();
+    _this.clearSearch();
+    $('#searchTable_csearch_parent_identifier').val(data.parent_identifier);
+    _this.search();
+  });
+
+}
+
+/**
+* Setup Filter Input Event
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.columnFilterEvent = function () {
+  var _this = this;
+
+  $("#searchTable_wrapper input.filter-local").each(function(i) {
+    $(this).on("keyup change", function(e) {
+      _this.tsSearchTable.column(i).search($(this).val()).draw();
+    });
+  });
+}
+
+
+/**
+* Setup Overal Search Event
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.overallSearchEvent = function () {
+  var _this = this;
+
+  $("#overall_search").on("keyup", function(e) {
+    if(e.keyCode == 13 && this.value != "")
+      _this.search();
+  });
+}
+
+/**
+* Setup Search Input Event. Apply the column search. Fires on return or field empty assuming not the
+* current search value (i.e. something has changed).
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.searchInputEvent = function () {
+  var _this = this;
+  $('#searchTable_wrapper thead input.search-server').on('keyup', function (e) {
+    if (e.keyCode == 13 && this.value != "")
+      _this.search();
+  });
+}
+
+/**
+* Generates AJAX request data
+*
+* @return [Object] request data
+*/
+SearchPanelV2.prototype.searchData = function (start, length) {
+  var order = this.tsSearchTable.order()[0];
+  var reqData = {
+    columns: {},
+    order: {
+      0: {
+        column: order[0],
+        dir: order[1]
+      }
+    },
+    start: start,
+    length: length,
+    search: {
+      value: $("#overall_search").val()
+    }
+  };
+
+  this.tsSearchTable.columns().every( function (index) {
+    var value = $('#searchTable_wrapper thead tr:eq(1) th:eq(' + index + ') .search-server').val();
+    var data = this.dataSrc();
+    reqData.columns[index] = {
+      data: data,
+      search: {
+        value: value
+      }
+    }
+  });
+  return reqData;
+}
+
+/**
+* Column definitions
+*
+* @return [Object Array] column definition objects
+*/
+SearchPanelV2.prototype.columns = function () {
+  return [
+    {"data" : "parent_identifier", "width" : "10%"},
+    {"data" : "parent_label", "width" : "11%"},
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "notation", "width" : "11%"},
+    {"data" : "preferred_term", "width" : "10%" },
+    {"data" : "synonym", "width" : "10%" },
+    {"data" : "definition", "width" : "28%"},
+    {"data" : "tags", "width" : "10%", "render" : function (data, type, row, meta) {
+      return (data == null ? data : colorCodeTagsBadge(data) )
+    }}
+  ];
+}
+
+/**
+* Removes the 'All' option from the page settings
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.filterPageSettings = function () {
+  pageSettings[0] = $.grep(pageSettings[0], function(v) { return v != -1; });
+  pageSettings[1] = $.grep(pageSettings[1], function(v) { return v != "All"; });
+  pageLength = pageLength == -1 ? Math.max.apply(Math, pageSettings[0]) : pageLength;
+}
