@@ -1,48 +1,31 @@
 /*
-* Term Search
+* Extends 'Search Panel V2'. Modal used to search terminologies and select Code List Items. Paginated.
 */
 
 /*
 * Requires: JavaScript 'shared/tags' in the view
 */
 
+TermSearchModal.prototype = Object.create(SearchPanelV2.prototype);
+
 /**
-* Term Search Constructor
-* @param context_id [String] The context_id of the Th
-* @param callback [Function]
+* Term Search Modal Constructor
+* @param callback [Function] called when Add Terms is clicked
+* @param url [String] url of the search
 *
 * @return [void]
 */
-function TermSearch(context_id, callback, url) {
+function TermSearchModal(callback, url) {
+  SearchPanelV2.call(this, url);
+
   this.selected = [];
   this.callback = callback; // Note that this can also be set in call to search
-  this.searchUrl = url;
-  this.ref = "";            // Set in call to search
-  this.tsCurrentRef;
-  this.tsCurrentRow;
-  this.context_id = context_id;
-  this.tsSearchTable = null;
-  this.tsCurrentRef = null;
-  this.tsCurrentRow = null;
   this.codeListAllowed = false;
-
-  this.filterOutAll();
-  this.initTable();
-  this.appendSearchBoxes();
-  this.setListeners();
-
-  var _this = this;
-
-  $('#searchModal').on('shown.bs.modal', function () {
-    _this.tsSearchTable.columns.adjust();
-    _this.updateUI();
-  });
-
-  $("#searchModal .dataTables_scrollHead input").css("width", "100%");
 
   if(!this.codeListAllowed)
     $("#searchModal .modal-info").text("Code Lists cannot be included and appear grey in the table. Only Code List Items are allowed.")
 }
+
 
 /**
 * Initializes with url and shows self
@@ -50,45 +33,37 @@ function TermSearch(context_id, callback, url) {
 * @param selection [Array / String] Search Filter  with either Term IDs or filter current/latest
 * @return [void]
 */
-TermSearch.prototype.initAndShow = function(selection) {
-  // Clear
-  $('#searchModal #clear_search').click();
+TermSearchModal.prototype.initAndShow = function(selection) {
+  this.clearSearch();
 
   // Make URL
   var data = {thesauri: {}};
   data.thesauri[(selection instanceof Array ? "id_set" : "filter")] = selection;
-  this.searchUrl = searchMultiUrl + "?" + $.param(data);
-  this.tsSearchTable.ajax.url(this.searchUrl);
+  this.url = searchMultiUrl + "?" + $.param(data);
 
   // Show self
   $('#searchModal').modal("show");
 }
 
 /**
-* Initializes the datatable. Note the deferLoading setting.
+* Initializes the Datatable
 *
 * @return [void]
 */
-TermSearch.prototype.initTable = function() {
+TermSearchModal.prototype.initTable = function() {
   this.tsSearchTable = $('#searchModal #searchTable').DataTable({
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
     "columns": this.columns(),
     "processing": true,
-    "serverSide": true,
     "scrollY": 500,
+    "scrollX": true,
     "scrollCollapse": true,
-    "ajax": {
-      "url": this.searchUrl,
-      "error": function (xhr, error, code) {
-        handleAjaxError(xhr, status, error, "#select-modal-error");
-      }
-    },
-    "deferLoading": 0,
     "language": {
       "infoFiltered": "",
-      "emptyTable": "Type a search string into one of the columns or use global search (top right) to see data",
-      "processing":  generateSpinner("medium")
+      "emptyTable": "Make a new column or global search to see data",
+      "processing": generateSpinner("small"),
+      "sSearch": "Filter:"
     },
     "orderCellsTop": true,
     "select": {
@@ -102,7 +77,15 @@ TermSearch.prototype.initTable = function() {
         $(row).addClass("disabled");
     }.bind(this),
   });
-};
+}
+
+/**
+* Row Click Event empty override
+*
+* @return [void]
+*/
+TermSearchModal.prototype.rowClickEvent = function () { }
+
 
 /**
 * Handles the UI for selection of deselection of an item in the table
@@ -111,7 +94,7 @@ TermSearch.prototype.initTable = function() {
 *
 * @return [void]
 */
-TermSearch.prototype.selectOrDeselectItem = function(id, select) {
+TermSearchModal.prototype.selectOrDeselectItem = function(id, select) {
   if(select){
     if(!this.selectionContains(id))
       this.selected.push(id);
@@ -129,7 +112,7 @@ TermSearch.prototype.selectOrDeselectItem = function(id, select) {
 *
 * @return [void]
 */
-TermSearch.prototype.updateUI = function() {
+TermSearchModal.prototype.updateUI = function() {
   var itemCount = this.selected.length;
   $("#searchModal .selection-info #number-selected").text(itemCount);
 
@@ -140,46 +123,14 @@ TermSearch.prototype.updateUI = function() {
 }
 
 /**
-* Resets the UI of the table to clear search
+* Sets the listeners and handlers for all events in the TermSearchModal
 *
 * @return [void]
 */
-TermSearch.prototype.resetSearchUI = function() {
-  $("#searchModal #searchTable_filter input").val("");
-  this.tsSearchTable.columns().every( function () {
-    $('#searchModal #searchTable thead input').val("");
-  });
-  this.tsSearchTable.search('');
-  this.tsSearchTable.columns().search('');
-  this.tsSearchTable.rows().remove().draw();
-}
+TermSearchModal.prototype.setListeners = function() {
+  // Call super
+  SearchPanelV2.prototype.setListeners.call(this);
 
-/**
-* Appends search boxes to the search table
-*
-* @return [void]
-*/
-TermSearch.prototype.appendSearchBoxes = function() {
-  // Setup - add a text input to each header cell
-  $('#searchModal .dataTables_scrollHead thead tr:eq(1) th').each( function () {
-    var title = $(this).text();
-    var id = "searchTable_csearch_" + title.toLowerCase();
-    if (title == "Extensible") {
-      // Do nothing
-    } else if (title == "Definition") {
-      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="20" placeholder="Search ..." />' );
-    } else {
-      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="10" placeholder="Search ..." />' );
-    }
-  });
-}
-
-/**
-* Sets the listeners and handlers for all events in the term_search_panel
-*
-* @return [void]
-*/
-TermSearch.prototype.setListeners = function() {
   var _this = this;
 
   // Select item within table event
@@ -204,70 +155,28 @@ TermSearch.prototype.setListeners = function() {
       _this.callback(_this.selected);
 
     $('#searchModal').modal('hide');
-    _this.selected = [];
-    _this.resetSearchUI();
   });
 
-  //Clear search
-  $('#searchModal #clear_search').off('click').on('click', function(){
-    _this.resetSearchUI();
-  });
-
-  //Clear selection
+  // Clear selection
   $('#searchModal #clear-selection').off('click').on('click', function(){
     _this.tsSearchTable.rows({selected: true}).deselect();
     _this.selected = [];
     _this.updateUI();
   });
 
-  // Add search functionality to search inputs.
-  this.tsSearchTable.columns().every(function (index) {
-    var that = this;
-      $('#searchModal .dataTables_scrollHead thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
-      if (e.which == 13 || this.value == "") {
-        if (that.search() !== this.value) {
-          that.search(this.value).draw();
-        }
-      }
-    });
-  });
+  // Show modal
+  $('#searchModal').on('shown.bs.modal', function () {
+    this.tsSearchTable.columns.adjust();
+    this.updateUI();
+  }.bind(this));
 
-  // Apply the overall search. Fires on return or field empty assuming not the
-  // current search value (i.e. something has changed).
-  $("#searchModal #searchTable_filter input")
-    .unbind() // Unbind previous default bindings
-    .bind("keyup", function(e) { // Bind our desired behavior
-    if(this.value == "" || e.keyCode == 13) {
-      if (_this.tsSearchTable.search() !== this.value) {
-        _this.tsSearchTable.search(this.value).draw();
-      }
-    }
-  });
+  // Hide modal
+  $('#searchModal').on('hide.bs.modal', function () {
+    $("#searchModal #abort_button").click();
+    $("#searchModal #clear_button").click();
+    $("#searchModal #clear-selection").click();
+  }.bind(this));
 
-  // handle double click on terminology table
-  $('#searchModal #searchTable tbody').on('dblclick', 'tr', function () {
-    if (_this.tsSearchTable.data().any() ) {
-      if (_this.tsCurrentRef != null) {
-      }
-      var row = _this.tsSearchTable.row(this).index();
-      _this.tsCurrentRef = this;
-      _this.tsCurrentRow = row;
-      var data = _this.tsSearchTable.row(row).data();
-      // Clear search fields in UI and within datatables.
-      $("#searchModal #searchTable_filter input").val("");
-      _this.tsSearchTable.columns().every( function () {
-        $('#searchModal #searchTable thead input').val("");
-      });
-      _this.tsSearchTable.search('');
-      _this.tsSearchTable.columns().search('');
-      // Set our parent identifier search and trigger.
-      $('#searchModal #searchTable_csearch_cl').val(data.parent_identifier);
-      var e = jQuery.Event("keyup");
-      e.which = 13;
-      e.keyCode = 13;
-      $('#searchModal #searchTable_csearch_cl').trigger(e);
-    }
-  });
 }
 
 /**
@@ -275,60 +184,6 @@ TermSearch.prototype.setListeners = function() {
 *
 * @return [Boolean] value true if contained in the selection
 */
-TermSearch.prototype.selectionContains = function(id) {
+TermSearchModal.prototype.selectionContains = function(id) {
   return $.inArray(id, this.selected) != -1;
-}
-
-/**
-* Search function ?
-*
-* @return [void]
-*/
-TermSearch.prototype.search = function(ref, div, callback) {
-  this.ref = ref;
-  this.div = div;
-  this.callback = callback;
-  $('#searchModal').modal('show');
-}
-
-/**
-* Returns column definitions for the search table
-*
-* @return [Array] column definitions
-*/
-TermSearch.prototype.columns = function() {
-  return [
-    {"data" : "parent_identifier", "width" : "10%"},
-    {"data" : "parent_label", "width" : "10%"},
-    {"data" : "identifier", "width" : "10%"},
-    {"data" : "notation", "width" : "10%"},
-    {"data" : "preferred_term", "width" : "10%" },
-    {"data" : "synonym", "width" : "10%" },
-    {"data" : "definition", "width" : "30%"},
-    {"data" : "tags", "width" : "10%", "render" : function (data, type, row, meta) {
-      return (data == null ? data : colorCodeTagsBadge(data));
-    }}
-  ];
-}
-
-/* File Out All. Remove the All option from the datatables table length option if
-*   present. Also updates the selected page length.
-*
-* @return [Void]
-*/
-TermSearch.prototype.filterOutAll = function () {
-  var max = pageSettings[0][0];
-  for (var i=0; i<pageSettings[0].length; i++) {
-    if (pageSettings[0][i] === -1) {
-      pageSettings[0].splice(i,1);
-      pageSettings[1].splice(i,1);
-    } else {
-      if (pageSettings[0][i] > max) {
-        max = pageSettings[0][i];
-      }
-    }
-  }
-  if (pageLength === -1) {
-    pageLength = max;
-  }
 }

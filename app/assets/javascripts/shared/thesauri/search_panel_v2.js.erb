@@ -39,7 +39,7 @@ SearchPanelV2.prototype.initTable = function () {
     "language": {
       "infoFiltered": "",
       "emptyTable": "Make a new column or global search to see data",
-      "processing": generateSpinnerWText("small", "Searching"),
+      "processing": generateSpinner("small"),
       "sSearch": "Filter:"
     },
     "orderCellsTop": true,
@@ -112,28 +112,36 @@ SearchPanelV2.prototype.setListeners = function () {
   this.searchInputEvent();
   this.overallSearchEvent();
   this.columnFilterEvent();
-  this.rowClickEvents();
+  this.rowClickEvent();
+  this.rowDblClickEvent();
   $("#clear_button").on("click", this.clearSearch.bind(this));
   $("#abort_button").on("click", function() { if(this.ajax != null) { this.ajax.abort(); } }.bind(this));
 }
 
 /**
-* Row Single and Double Click Events
+* Row Single Click Event
 *
 * @return [void]
 */
-SearchPanelV2.prototype.rowClickEvents = function () {
+SearchPanelV2.prototype.rowClickEvent = function () {
   var _this = this;
 
-  // Row single click
   $('#searchTable tbody').on('click', 'tr', function () {
     if (!_this.active) {
       $("#searchTable tr.selected").removeClass('selected');
       $(this).addClass('selected');
     }
   });
+}
 
-  // Row double click
+/**
+* Row Double Click Event
+*
+* @return [void]
+*/
+SearchPanelV2.prototype.rowDblClickEvent = function () {
+  var _this = this;
+
   $('#searchTable tbody').on('dblclick', 'tr', function () {
     if (!_this.active) {
       var data = _this.tsSearchTable.row(this).data();
@@ -142,7 +150,6 @@ SearchPanelV2.prototype.rowClickEvents = function () {
       _this.search();
     }
   });
-
 }
 
 /**
