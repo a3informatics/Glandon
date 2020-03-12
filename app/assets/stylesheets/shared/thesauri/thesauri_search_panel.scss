@@ -6,6 +6,10 @@
   border-collapse: separate;
 }
 
+#searchTable_wrapper thead tr:first-of-type {
+  border-bottom: 2px solid $grey-light !important; 
+}
+
 #searchTable tbody tr.selected > td {
   color: $primary-color-light !important;
   font-family: $font-primary !important;
