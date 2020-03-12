@@ -241,7 +241,7 @@ describe "Import::SponsorTermFormatOne" do
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
     expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(22322)
-    expect(count_distinct_cli(th)).to eq(20096)
+    expect(count_distinct_cli(th)).to eq(20097)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
