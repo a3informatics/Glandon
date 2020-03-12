@@ -24,7 +24,7 @@
 	    <div class="col-md-12">
 				<%= render partial: "shared/thesauri/search_panel_v2", :locals => {columns: [{name: "Code List", id: "parent_identifier"}, {name: "Code List Name", id: "parent_label"},
 				{name: "Item", id: "identifier"}, {name: "Submission Value", id: "notation"}, {name: "Preferred Term", id: "preferred_term"}, {name: "Synonym", id: "synonym"},
-				{name: "Definition", id: "definition"}, {name: "Tags", id: "tags"}]} %>
+				{name: "Definition", id: "definition"}, {name: "Tags", id: "tags"}, {name: "TIdentifier", id: "tidentifier", searchable: false}, {name: "TVersion", id: "tversion", searchable: false}]} %>
 	    </div>
 	  </div>
 	</div>

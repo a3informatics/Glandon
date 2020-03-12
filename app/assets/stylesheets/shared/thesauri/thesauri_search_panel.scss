@@ -1,13 +1,13 @@
 @import "custom/vars.scss";
 @import "shared/managed_children_select.scss";
 
-#searchTable {
-  min-width: 1000px;
+table#searchTable {
+  min-width: 1100px !important;
   border-collapse: separate;
 }
 
 #searchTable_wrapper thead tr:first-of-type {
-  border-bottom: 2px solid $grey-light !important; 
+  border-bottom: 2px solid $grey-light !important;
 }
 
 #searchTable tbody tr.selected > td {

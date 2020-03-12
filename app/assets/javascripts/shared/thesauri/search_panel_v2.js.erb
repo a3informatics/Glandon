@@ -78,6 +78,9 @@ SearchPanelV2.prototype.serverSearch = function (offset, length) {
     context: this,
     success: function(result) {
     	for (i = 0; i < result.data.length; i++) {
+        result.data[i]["tidentifier"] = "CT";
+        result.data[i]["tversion"] = "62.0.0";
+
         this.tsSearchTable.row.add(result.data[i]);
       }
       this.tsSearchTable.draw();
@@ -274,6 +277,9 @@ SearchPanelV2.prototype.searchData = function (start, length) {
   };
 
   this.tsSearchTable.columns().every( function (index) {
+    if ($(this.header()).attr("data-searchable") == "false")
+      return;
+
     var value = $('#searchTable_wrapper thead tr:eq(1) th:eq(' + index + ') .search-server').val();
     var data = this.dataSrc();
     reqData.columns[index] = {
@@ -293,16 +299,18 @@ SearchPanelV2.prototype.searchData = function (start, length) {
 */
 SearchPanelV2.prototype.columns = function () {
   return [
-    {"data" : "parent_identifier", "width" : "10%"},
-    {"data" : "parent_label", "width" : "11%"},
-    {"data" : "identifier", "width" : "10%"},
-    {"data" : "notation", "width" : "11%"},
-    {"data" : "preferred_term", "width" : "10%" },
-    {"data" : "synonym", "width" : "10%" },
+    {"data" : "parent_identifier", "width" : "7%"},
+    {"data" : "parent_label", "width" : "8%"},
+    {"data" : "identifier", "width" : "7%"},
+    {"data" : "notation", "width" : "8%"},
+    {"data" : "preferred_term", "width" : "7%" },
+    {"data" : "synonym", "width" : "7%" },
     {"data" : "definition", "width" : "28%"},
-    {"data" : "tags", "width" : "10%", "render" : function (data, type, row, meta) {
+    {"data" : "tags", "width" : "7%", "render" : function (data, type, row, meta) {
       return (data == null ? data : colorCodeTagsBadge(data) )
-    }}
+    }},
+    {"data" : "tidentifier", "width" : "4%"},
+    {"data" : "tversion", "width" : "4%"}
   ];
 }
 
