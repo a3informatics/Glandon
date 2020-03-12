@@ -12,11 +12,12 @@
 * @param url [String] url for the search
 * @return [void]
 */
-function SearchPanelV2(url) {
+function SearchPanelV2(url, searchingMultiple) {
   this.url = url;
   this.tsSearchTable = null;
   this.length = 500;
   this.active = false;
+  this.searchingMultiple = (searchingMultiple == null ? true : searchingMultiple);
   this.filterPageSettings();
   this.initTable();
   this.setListeners();
@@ -298,7 +299,7 @@ SearchPanelV2.prototype.searchData = function (start, length) {
 * @return [Object Array] column definition objects
 */
 SearchPanelV2.prototype.columns = function () {
-  return [
+  var columns = [
     {"data" : "parent_identifier", "width" : "7%"},
     {"data" : "parent_label", "width" : "8%"},
     {"data" : "identifier", "width" : "7%"},
@@ -308,10 +309,15 @@ SearchPanelV2.prototype.columns = function () {
     {"data" : "definition", "width" : "28%"},
     {"data" : "tags", "width" : "7%", "render" : function (data, type, row, meta) {
       return (data == null ? data : colorCodeTagsBadge(data) )
-    }},
-    {"data" : "tidentifier", "width" : "4%"},
-    {"data" : "tversion", "width" : "4%"}
+    }}
   ];
+
+  if (this.searchingMultiple) {
+    columns.push({"data" : "tidentifier", "width" : "4%"});
+    columns.push({"data" : "tversion", "width" : "4%"});
+  }
+
+  return columns;
 }
 
 /**
