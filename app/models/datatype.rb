@@ -4,8 +4,8 @@
 # @since 2.22.0
 class Datatype < Fuseki::Base
 
-  configure rdf_type: "http://www.assero.co.uk/Thesaurus#PreferredTerm",
-            base_uri: "http://#{IsoRegistrationAuthority.repository_scope.authority}/DT",
+  configure rdf_type: "http://www.s-cubed.dk/Datatypes#Datatype",
+            base_uri: "http://#{ENV["url_authority"]}/DT",
             uri_unique: :short_label,
             cache: true,
             key_property: :short_label
@@ -14,23 +14,33 @@ class Datatype < Fuseki::Base
   data_property :short_label
   data_property :odm
 
-  @@methods = 
-  { 
-    "http://www.w3.org/2001/XMLSchema#string": {typed: :to_s, literal: :to_s}
-    "http://www.w3.org/2001/XMLSchema#boolean": {typed: :to_bool, literal: :to_s}
-    "http://www.w3.org/2001/XMLSchema#dateTime": {typed: :to_time_with_default, literal: :iso8601}
-    "http://www.w3.org/2001/XMLSchema#integer": {typed: :to_i, literal: :to_s}
-    "http://www.w3.org/2001/XMLSchema#positveInteger": {typed: :to_i, literal: :to_s}
-  }
+  validates :xsd, presence: true
+  validates :short_label, presence: true
+  validates :odm, presence: true
 
-  # Set a simple typed value
+  # To Typed
+  #
+  # @param value [String] the value
+  # @return the value converted to the correct type
   def to_typed(value)
-    value.send(@@methods[self.type][:typed])
+    value.send(datatype_configuration[:typed])
   end
 
-  # Build the object literal as a string
+  # To Literal
+  #
+  # @param value [String] the value
+  # @return the value converted to the literal string
   def to_literal(value)
-    value.send(@@methods[self.type][:literal])
+    value.send(datatype_configuration[:literal])
+  end
+
+private
+
+  # Read the method configuration for a given datatype
+  def datatype_configuration
+    result = Rails.configuration.datatypes[self.xsd.to_sym]
+    return result if !result.nil?
+    Errors.application_error(self.class.name, "datatype_configuration", "Unable to access configuration for type #{self.xsd}.")
   end
 
 end
