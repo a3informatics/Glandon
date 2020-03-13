@@ -1,0 +1,44 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-search", title: "How to use Search", wide: true} do %>
+  <%= javascript_tag "var showHideTexts = ['Show syntax examples', 'Hide syntax examples'];" %>
+  The feature has two uses: Searching (database) and Filtering (local results). <br/><br/>
+
+  <span class="font-bold">Searching</span><br/>
+  Overall Search can be used to find any column (global) matches.
+  Column search is used to find matches in the respective column(s).
+  Search boxes are marked with the <span class="icon-cloud"></span> icon. <br/>
+  Search syntax comprises of:
+  <ul>
+    <li><span class="font-regular">x AND y</span> (Intersection) results with both x and y present.</li>
+    <li><span class="font-regular">x OR y</span> (Union) results with either x or y present.</li>
+    <li><span class="font-regular">y —x</span> (Exclusion) results with y, but not x present.</li>
+    <li><span class="font-regular">"x y z"</span> (Exact match) results containing the phrase 'x y z', in that order. Case sensitive.</li>
+    <li><span class="font-regular">x y</span> (Exact match) same as "x y". Default.</li>
+  </ul>
+
+  <%= render layout: "shared/show_more", :locals => {:size => "tiny", show_text: "Show syntax examples"} do %>
+    Valid examples:
+    <ul>
+      <li>Fred AND Harry</li>
+      <li>Fred AND Harry -Oliver</li>
+      <li>Fred OR Harry</li>
+      <li>Fred OR Harry -Oliver</li>
+      <li>"Fred Harry Oliver"</li>
+      <li>Fred Harry Oliver (same as "Fred Harry Oliver")</li>
+    </ul>
+    Invalid examples:
+    <ul>
+      <li>Fred - Harry</li>
+      <li>Fred AND Harry Oliver</li>
+      <li>Fred AND Harry OR Oliver</li>
+    </ul>
+  <% end %>
+  <br/>
+  As some searches may take longer, the results are fetched in batches. New searches cannot be conducted while a search is active. To stop an on-going search, click the <span class="text-accent-2">Abort</span> button.<br/><br/>
+
+  <span class="font-bold">Filtering</span><br/>
+  Local filtering is used to narrow down local results retrieved by Search.
+  Overall filter will match input from all columns (top-right Filter field), while column filters are limited to their respective column data. <br/>
+  Search syntax cannot be used for filters. <br/><br/>
+
+  Multiple Search and Filter fields can be combined to narrow the results.
+<% end %>
