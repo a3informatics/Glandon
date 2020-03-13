@@ -20,8 +20,9 @@
         <hr>
 
         <%= render partial: "shared/thesauri/search_panel_v2", :locals => {columns: [{name: "Code List", id: "parent_identifier"}, {name: "Code List Name", id: "parent_label"},
-        {name: "Item", id: "identifier"}, {name: "Submission Value", id: "notation"}, {name: "Preferred Term", id: "preferred_term"}, {name: "Synonym", id: "synonym"},
-        {name: "Definition", id: "definition"}, {name: "Tags", id: "tags"}, {name: "TIdentifier", id: "tidentifier", searchable: false}, {name: "TVersion", id: "tversion", searchable: false}]} %>
+  			{name: "Item", id: "identifier"}, {name: "Submission Value", id: "notation"}, {name: "Preferred Term", id: "preferred_term"}, {name: "Synonym", id: "synonym"},
+  			{name: "Definition", id: "definition"}, {name: "Tags", id: "tags"}, {name: "<span class='icon-terminology text-xnormal'></span>".html_safe, id: "tidentifier", searchable: false},
+  			{name: "<span class='icon-current text-normal'></span>".html_safe, id: "tversion", searchable: false}]} %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Close</button>

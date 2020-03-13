@@ -63,6 +63,7 @@ SearchPanelV2.prototype.search = function () {
   this.ajaxActive(true);
   this.tsSearchTable.processing(true);
   this.serverSearch(0, this.length);
+  this.clearInput("#searchTable_wrapper tfoot input");
 }
 
 /**
@@ -79,7 +80,7 @@ SearchPanelV2.prototype.serverSearch = function (offset, length) {
     context: this,
     success: function(result) {
     	for (i = 0; i < result.data.length; i++) {
-        result.data[i]["tidentifier"] = "CT";
+        result.data[i]["tidentifier"] = "Some Terminology";
         result.data[i]["tversion"] = "62.0.0";
 
         this.tsSearchTable.row.add(result.data[i]);
@@ -222,6 +223,7 @@ SearchPanelV2.prototype.clearSearch = function () {
 */
 SearchPanelV2.prototype.clearInput = function (target) {
   $(target).val("");
+  $(target).trigger("change");
 }
 
 /**

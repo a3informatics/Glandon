@@ -2,7 +2,7 @@
 @import "shared/managed_children_select.scss";
 
 table#searchTable {
-  min-width: 1100px !important;
+  min-width: 1200px !important;
   border-collapse: separate;
 }
 
@@ -61,6 +61,4 @@ table#searchTable {
 
 input:disabled{
   opacity: .6;
-  // background-image: image-url("loading.gif");
-  // background-size: 26px;
 }

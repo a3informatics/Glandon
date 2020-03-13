@@ -17,7 +17,7 @@
 		<thead>
 			<tr>
 	      <% columns.each do |item| %>
-					<th data-searchable="<%= (item.fetch(:searchable, true)) %>"><%=item[:name]%></th>
+					<th class="th-xsmall" data-searchable="<%= (item.fetch(:searchable, true)) %>"><%=item[:name]%></th>
 	      <% end %>
 	  	</tr>
 	    <tr class="bordered">
