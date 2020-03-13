@@ -30,6 +30,8 @@ function InformationDialog(options) {
 InformationDialog.prototype.show = function() {
   if(this.options.div == null)
     $("body").prepend(this.generateDialogHTML());
+  else
+    this.adjustDisplay();
 
   this.listeners();
 
@@ -74,6 +76,16 @@ InformationDialog.prototype.listeners = function() {
  */
 InformationDialog.prototype.generateId = function() {
   return "#information-dialog-" + ($(".cd-wrap").length + 1);
+}
+
+/**
+ * Moves element out of a modal, if it is included in modal, for styling issues
+ *
+ * @return [void]
+ */
+InformationDialog.prototype.adjustDisplay = function() {
+  if($(".modal-open").find($(this.id)).length > 0)
+    $("body").append( $('.modal-open ' + this.id) );
 }
 
 /**

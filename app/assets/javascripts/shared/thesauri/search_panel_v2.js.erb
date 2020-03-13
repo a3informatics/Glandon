@@ -21,6 +21,10 @@ function SearchPanelV2(url, searchingMultiple) {
   this.filterPageSettings();
   this.initTable();
   this.setListeners();
+
+  $("#search-help").on("click", function(){
+    new InformationDialog({div: $("#information-dialog-search")}).show();
+  });
 }
 
 /**

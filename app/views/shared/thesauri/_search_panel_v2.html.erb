@@ -2,6 +2,8 @@
 <%= javascript_include_tag 'shared/thesauri/search_panel_v2' %>
 <div class="table-cardstyle all-columns">
 
+	<%= render partial: 'shared/help_dialogs/search_help' %>
+
 	<center>
 		<div id="search_active_info" class="font-light text-small" hidden>
 			<img src="<%=image_path("loading.gif")%>" width="30"></img>	Search running in background...
@@ -11,6 +13,7 @@
 
 		<input id="overall_search" type="text" class="search-server overall" size="30" placeholder="Overall Search"></input>
 		<button id="clear_button" class="btn btn-xs grey"><span class="icon-times text-tiny"></span> Clear All</button>
+		<span id="search-help" class="icon-help text-small text-light clickable ttip"> <span class="ttip-text shadow-small font-light text-medium"> How to search </span></span>
 	</center>
 
 	<table id="searchTable" class="table striped table-row-clickable" style="width:100%">

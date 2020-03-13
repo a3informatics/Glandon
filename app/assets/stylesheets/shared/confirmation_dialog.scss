@@ -69,7 +69,7 @@
 }
 
 @media (max-width: 768px){
-  .cd-body{
-    width: 350px;
+  .cd-body, .cd-wrap.wide .cd-body{
+    width: 95%;
   }
 }
