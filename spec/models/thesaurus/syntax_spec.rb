@@ -4,27 +4,27 @@ describe "Syntax" do
 
   it "splits string AND" do
     x = Thesaurus::Syntax.new("Clarisa AND Romero")
-    expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(?x, 'Clarisa') && CONTAINS(?x, 'Romero')) .")
+    expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(UCASE(?x), UCASE('Clarisa')) && CONTAINS(UCASE(?x), UCASE('Romero'))) .")
   end
 
   it "splits string AND MINUS" do
       x = Thesaurus::Syntax.new("Clarisa AND Romero -Analia")
-      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(?x, 'Clarisa') && CONTAINS(?x, 'Romero') && !CONTAINS(?x, 'Analia')) .")
+      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(UCASE(?x), UCASE('Clarisa')) && CONTAINS(UCASE(?x), UCASE('Romero')) && !CONTAINS(UCASE(?x), UCASE('Analia'))) .")
   end
 
   it "splits string OR" do
       x = Thesaurus::Syntax.new("Clarisa OR Romero")
-      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(?x, 'Clarisa') || CONTAINS(?x, 'Romero')) .")
+      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(UCASE(?x), UCASE('Clarisa')) || CONTAINS(UCASE(?x), UCASE('Romero'))) .")
   end
 
   it "splits string OR MINUS" do
       x = Thesaurus::Syntax.new("Clarisa OR Romero -Analia")
-      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(?x, 'Clarisa') || CONTAINS(?x, 'Romero') && !CONTAINS(?x, 'Analia')) .")
+      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(UCASE(?x), UCASE('Clarisa')) || CONTAINS(UCASE(?x), UCASE('Romero')) && !CONTAINS(UCASE(?x), UCASE('Analia'))) .")
   end
 
   it "splits string MINUS" do
       x = Thesaurus::Syntax.new("Clarisa -Romero")
-      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(?x, 'Clarisa') && !CONTAINS(?x, 'Romero')) .")
+      expect(x.array_to_sparql).to eq(". FILTER (CONTAINS(UCASE(?x), UCASE('Clarisa')) && !CONTAINS(UCASE(?x), UCASE('Romero'))) .")
   end
 
   it "splits string MINUS invalid" do
@@ -34,7 +34,7 @@ describe "Syntax" do
 
   it "splits string EXACT MATCH" do
       x = Thesaurus::Syntax.new("\"Clarisa Romero\"")
-      expect{x.array_to_sparql}.to raise_error(Errors::ApplicationLogicError, "Invalid type")
+      expect{x.array_to_sparql}.to raise_error(Errors::ApplicationLogicError, "Invalid type") #This test should pass
   end
 
   it "splits string EXACT MATCH" do
