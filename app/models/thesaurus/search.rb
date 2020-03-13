@@ -90,12 +90,20 @@ class Thesaurus
         columns.each do |column|
           next if column[1][:search][:value].blank?
           if column[0] == "7"
-            search_clauses += "  FILTER(UCASE(#{get_order_variable(column[0])}) IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
+            search_clauses += "  FILTER(UCASE(#{get_order_variable(column[0])}) IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n" #Tags
           else
-            search_clauses += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
+            column_filter = Thesaurus::Syntax.new("#{column[1][:search][:value]}")
+            #search_clauses += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
+            search_clauses += column_filter.array_to_sparql(get_order_variable(column[0]))
+            #search_clauses += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
           end
         end
-        search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
+        if !search[:value].blank?
+          overall_filter = Thesaurus::Syntax.new("#{search[:value]}")
+          search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x " 
+          search_clauses += overall_filter.array_to_sparql("?x")
+        end
+        #search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
 
         # Main SPARQL
         main_part = %Q{
