@@ -1,0 +1,11 @@
+<div id="<%= id %>" class="cd-wrap <%= "wide" if (local_assigns.fetch :wide, false) %>">
+  <div class="cd-body shadow-medium <%= "danger" if (local_assigns.fetch :dangerous, false) %>">
+    <div class="cd-title text-xnormal"> <%= local_assigns.fetch(:title, "Information") %> </div>
+    <div class="cd-subtitle text-small font-light">
+      <%= yield %>
+    </div>
+    <div class="cd-footer">
+      <button id="id-dismiss-button" class="btn grey medium">Dismiss</button>
+    </div>
+  </div>
+</div>
