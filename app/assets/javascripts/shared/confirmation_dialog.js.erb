@@ -23,6 +23,7 @@ function ConfirmationDialog(confirmCallback, options, negativeCallback) {
   this.options = options == null ? this.defaultOptions({}) : this.defaultOptions(options);
   this.callback = confirmCallback;
   this.negativeCallback = negativeCallback;
+  this.id = this.generateId();
 }
 
 /**
@@ -32,11 +33,11 @@ function ConfirmationDialog(confirmCallback, options, negativeCallback) {
  */
 ConfirmationDialog.prototype.show = function() {
   $("body").prepend(this.generateDialogHTML());
-  this.setButtonCallbacks();
+  this.setListeners();
 
   setTimeout(function(){
-    $("#cd-wrap").addClass("cd-show");
-  }, 1);
+    $(this.id).addClass("cd-show");
+  }.bind(this), 1);
 }
 
 
@@ -46,31 +47,45 @@ ConfirmationDialog.prototype.show = function() {
  * @return [void]
  */
 ConfirmationDialog.prototype.dismiss = function() {
-  $("#cd-wrap").removeClass("cd-show");
+  $(this.id).removeClass("cd-show");
 
   setTimeout(function(){
-    $("#cd-wrap").remove();
-  }, 200);
+    $(this.id).remove();
+  }.bind(this), 200);
 }
 
 /**
- * Sets the click events for the postive and negative buttons
+ * Sets the click events for the postive and negative buttons, escape button
  *
  * @return [void]
  */
-ConfirmationDialog.prototype.setButtonCallbacks = function() {
+ConfirmationDialog.prototype.setListeners = function() {
   var _this = this;
-  $("#cd-positive-button").on('click', function(){
+  $(this.id + " #cd-positive-button").on('click', function(){
     if(_this.callback != null)
       _this.callback(_this);
     _this.dismiss();
   });
 
-  $("#cd-negative-button").on('click', function(){
+  $(this.id + " #cd-negative-button").on('click', function(){
     _this.dismiss();
     if(_this.negativeCallback != null)
       _this.negativeCallback();
   });
+
+  $(window).one("keyup", function(e){
+    if(e.keyCode == 27 || e.which == 27)
+      this.dismiss();
+  }.bind(this));
+}
+
+/**
+ * Generates unique ID for the div
+ *
+ * @return [String] id
+ */
+ConfirmationDialog.prototype.generateId = function() {
+  return "#confirmation-dialog-" + ($(".cd-wrap").length + 1);
 }
 
 /**
@@ -83,9 +98,9 @@ ConfirmationDialog.prototype.toggleProcessing = function(enable) {
   if(!this.options.withLoading)
     return;
   if(enable)
-    $("#cd-loading").removeClass("hidden");
+    $(this.id + " .cd-loading").removeClass("hidden");
   else
-    $("#cd-loading").addClass("hidden");
+    $(this.id + " .cd-loading").addClass("hidden");
 }
 
 /**
@@ -113,12 +128,12 @@ ConfirmationDialog.prototype.defaultOptions = function(userOptions) {
  */
 ConfirmationDialog.prototype.generateDialogHTML = function() {
   var html = '';
-  html += '<div id="cd-wrap">';
-  html +=   '<div id="cd-body" class="shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
-  html +=     '<div id="cd-title" class="text-xnormal">' + this.options.title + '</div>';
-  html +=     '<div id="cd-subtitle" class="text-small font-light">' + this.options.subtitle + '</div>';
-  html +=     this.options.withLoading ? ('<div id="cd-loading" class="hidden">'+generateSpinner("small")+'</div>') : '';
-  html +=     '<div id="cd-footer">';
+  html += '<div id="' + this.id.replace('#','') + '" class="cd-wrap">';
+  html +=   '<div class="cd-body shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
+  html +=     '<div class="cd-title text-xnormal">' + this.options.title + '</div>';
+  html +=     '<div class="cd-subtitle text-small font-light">' + this.options.subtitle + '</div>';
+  html +=     this.options.withLoading ? ('<div class="cd-loading hidden">'+generateSpinner("small")+'</div>') : '';
+  html +=     '<div class="cd-footer">';
   html +=       '<button id="cd-negative-button" class="btn medium">' + this.options.negativeButton + '</button>';
   html +=       '<button id="cd-positive-button" class="btn medium">' + this.options.positiveButton + '</button>';
   html +=     '</div>';
