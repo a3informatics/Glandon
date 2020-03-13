@@ -7,7 +7,7 @@ class Thesaurus
       @parts = @parts.reject { |c| c.empty? } #Remove blank elements from array if there is any 
     end
 
-    def array_to_sparql
+    def array_to_sparql(column)
       case @parts.length
       when 3
         @parts[1] == "AND" || @parts[1] == "OR" ? type = @parts[1].to_sym : type = nil #AND or OR operator
@@ -20,37 +20,23 @@ class Thesaurus
       else 
          Errors.application_error(self.class.name, __method__.to_s, "Invalid syntax")
       end
-      type_to_sparql(type, @parts) 
+      type_to_sparql(type, @parts, column) 
     end
 
-    # def array_to_sparql
-    #   case @parts
-    #   when @parts[1] == "AND" || @parts[1] == "OR" ? type = @parts[1].to_sym : type = nil #AND or OR operator
-    #   when 4@parts[1] == "AND" ? type = :AND_MINUS : type = :OR_MINUS #AND MINUS or OR MINUS operator
-    #   when 2
-    #     type = :MINUS #MINUS operator
-    #   when 1
-    #     type = :EXACT #We only assume one word?
-    #   else 
-    #      Errors.application_error(self.class.name, __method__.to_s, "Invalid syntax")
-    #   end
-    #   type_to_sparql(type, @parts) 
-    # end
-
-    def type_to_sparql(type, results) 
+    def type_to_sparql(type, results, column) 
       case type
       when :AND
-        return and_statement(results)
+        return and_statement(results, column)
       when :OR
-        return or_statement(results)
+        return or_statement(results, column)
       when :MINUS
-        return minus_statement(results)
+        return minus_statement(results, column)
       when :AND_MINUS
-        return and_minus_statement(results)
+        return and_minus_statement(results, column)
       when :OR_MINUS
-        return or_minus_statement(results)
+        return or_minus_statement(results, column)
       when :EXACT
-        return exact_match_statement(results)
+        return exact_match_statement(results, column)
       else
         Errors.application_error(self.class.name, __method__.to_s, "Invalid type")
       end
@@ -58,32 +44,32 @@ class Thesaurus
 
   private
 
-    def or_statement(elements)
-     sparql = ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0]}')) || CONTAINS(UCASE(?x), UCASE('#{elements[2]}'))) ."
+    def or_statement(elements, column)
+     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) ."
      return sparql
     end
 
-    def and_statement(elements)
-     sparql = ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0]}')) && CONTAINS(UCASE(?x), UCASE('#{elements[2]}'))) ."
+    def and_statement(elements, column)
+     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) ."
      return sparql
     end
 
-    def minus_statement(elements)
-     sparql = ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0]}')) && !CONTAINS(UCASE(?x), UCASE('#{elements[1][1..-1]}'))) ."
+    def minus_statement(elements, column)
+     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[1][1..-1]}'))) ."
      return sparql
     end
 
-    def exact_match_statement(elements)
-     return ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0].gsub("\"", "")}'))) ."
+    def exact_match_statement(elements, column)
+     return ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0].gsub("\"", "")}'))) ."
     end
 
-    def and_minus_statement(elements)
-      sparql = ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0]}')) && CONTAINS(UCASE(?x), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(?x), UCASE('#{elements[3][1..-1]}'))) ."
+    def and_minus_statement(elements, column)
+      sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][1..-1]}'))) ."
      return sparql
     end
 
-    def or_minus_statement(elements)
-      sparql = ". FILTER (CONTAINS(UCASE(?x), UCASE('#{elements[0]}')) || CONTAINS(UCASE(?x), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(?x), UCASE('#{elements[3][1..-1]}'))) ."
+    def or_minus_statement(elements, column)
+      sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][1..-1]}'))) ."
      return sparql
     end
     
