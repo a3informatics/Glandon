@@ -13,6 +13,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all .3s;
+  overflow-y: auto;
 }
 
 .cd-wrap.cd-show{
@@ -33,7 +34,10 @@
   transition: all .3s;
   margin: 0 auto;
   margin-top: 100px;
-  max-height: 600px;
+}
+
+.cd-body .cd-subtitle {
+  max-height: 500px;
   overflow-y: auto;
 }
 

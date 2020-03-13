@@ -101,9 +101,9 @@ InformationDialog.prototype.defaultOptions = function(userOptions) {
 InformationDialog.prototype.generateDialogHTML = function() {
   var html = '';
   html += '<div id="' + this.id.replace('#','') + '" class="cd-wrap ' + (this.options.wide ? 'wide' : '') + '">';
-  html +=   '<div class="cd-body scroll-styled shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
+  html +=   '<div class="cd-body shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
   html +=     '<div class="cd-title text-xnormal">' + this.options.title + '</div>';
-  html +=     '<div class="cd-subtitle text-small font-light">' + this.options.subtitle + '</div>';
+  html +=     '<div class="cd-subtitle scroll-styled text-small font-light">' + this.options.subtitle + '</div>';
   html +=     '<div class="cd-footer">';
   html +=       '<button id="id-dismiss-button" class="btn grey medium">Dismiss</button>';
   html +=     '</div>';
