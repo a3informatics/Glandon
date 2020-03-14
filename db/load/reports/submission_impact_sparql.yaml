@@ -8,85 +8,103 @@
   :sl:
     :label: Sponsor Code List Label
     :type: literal
+  :si:
+    :label: Sponsor Code List Identifier
+    :type: literal
   :sclil:
     :label: Sponsor Code List Item Label
     :type: literal
-  :si:
-    :label: Sponsor Identifier
+  :sclii:
+    :label: Sponsor Code List Item Identifier
     :type: literal
   :sn:
-    :label: Sponsor Notation
+    :label: The Notation
     :type: literal
   :cll:
     :label: CDISC Code List Label
     :type: literal
+  :cli:
+    :label: CDISC Code List Identifier
+    :type: literal
   :clil:
     :label: CDISC Code List Item Label
     :type: literal
-  :i:
-    :label: CDISC Identifier
-    :type: literal
-  :n:
-    :label: CDISC Notation
+  :clii:
+    :label: CDISC Code List Item Identifier
     :type: literal
   :ctv:
-    :label: CDISC Version
+    :label: CDISC Terminology Version
     :type: literal
   :t:
     :label: Type
     :type: literal
 :label: Submission Impact Export
-:query: 'PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
-PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
-PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
 PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
-SELECT DISTINCT ?sl ?sclil ?si ?sn ?cll ?clil ?i ?n ?ctv ?t  WHERE        
-{           
-  VALUES ?th {[[[parameter_1]]]}     
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+SELECT DISTINCT ?sl ?si ?sclil ?sclii ?sn ?cll ?cli ?clil ?clii ?ctv ?t WHERE 
+{ 
+  VALUES ?th {[[[parameter_1]]]} 
   { 
-    {       
-      SELECT DISTINCT ?ct ?ctv WHERE          
-      {               
-        ?ct rdf:type th:Thesaurus .           
-        ?ct isoT:hasIdentifier/isoI:version ?ctv.                      
-        ?th th:reference/bo:reference ?refct .       
-        ?refct isoT:hasIdentifier/isoI:version ?v.           
-        FILTER (?ctv > ?v )           
-      }           
-    }     
-    {           
-      ?th (th:isTopConceptReference/bo:reference) ?scl .
-      FILTER (NOT EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                   FILTER (?o = false ) } 
-           && EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                 FILTER (?o = true ) } )       
-      ?scl th:notation ?sn .          
-      ?ct (th:isTopConceptReference/bo:reference) ?cl .
-      ?cl th:notation ?n .          
-      FILTER (?sn = ?n) 
+    { 
+      SELECT DISTINCT ?ct ?ctv WHERE 
+      { 
+        ?th th:reference/bo:reference ?refct . 
+        ?refct isoT:hasIdentifier/isoI:version ?v. 
+        ?refct isoT:hasIdentifier/isoI:identifier ?ident. 
+        ?ct isoT:hasIdentifier/isoI:identifier ?ident . 
+        ?ct isoT:hasIdentifier/isoI:version ?ctv . 
+        FILTER (?ctv > ?v ) 
+      } 
+    }
+    ?th (th:isTopConceptReference/bo:reference) ?scl .
+    {    
+      FILTER (
+        NOT EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner false } &&         
+        EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner true} 
+      ) 
+      ?scl th:notation ?sn . 
+      ?cl th:notation ?sn .
+      FILTER (?scl != ?cl)
+      ?cl rdf:type th:ManagedConcept .
       ?cl isoC:label ?cll . 
-      ?cl th:identifier ?i .
-      ?scl isoC:label ?sl .
-      ?scl th:identifier ?si .
-      BIND ("Code List" as ?t)          
-    } UNION       
-    {         
-      ?th th:isTopConceptReference/bo:reference ?scl .
-      ?scl  th:narrower ?scli .
-      FILTER (NOT EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                   FILTER (?o = false ) } 
-           && EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                 FILTER (?o = true ) } )        
-      ?scli th:notation ?sn .           
-      ?ct th:isTopConceptReference/bo:reference/th:narrower ?cli .
-      ?cli th:notation ?n .       
-      FILTER (?sn = ?n)
-      ?cli isoC:label ?clil .
-      ?cli th:identifier ?i .
-      ?scli isoC:label ?sclil .
-      ?scli th:identifier ?si . 
-      BIND ("Code List Item" as ?t)             
-    }       
+      ?cl th:identifier ?cli . 
+      BIND ("Code List" as ?t) 
+      BIND ("" as ?sclil)
+      BIND ("" as ?sclii)
+      BIND ("" as ?clii)
+      BIND ("" as ?clil)
+    } 
+    UNION 
+    { 
+      ?scl th:narrower ?scli .
+      FILTER
+      (
+        NOT EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner false } && 
+        EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner true } 
+      ) 
+      ?scli th:notation ?sn . 
+      ?clis th:notation ?sn . 
+      FILTER (?scli != ?clis)
+      ?clis rdf:type th:UnmanagedConcept .
+      ?clis isoC:label ?clil . 
+      ?clis th:identifier ?clii . 
+      ?scli isoC:label ?sclil . 
+      ?scli th:identifier ?sclii . 
+      ?clis ^th:narrower ?x .
+      ?x isoC:label ?cll . 
+      ?x th:identifier ?cli . 
+      BIND ("Code List Item" as ?t) 
+    } 
+    ?scl isoC:label ?sl . 
+    ?scl th:identifier ?si . 
   } 
 }'
 :type: Ad Hoc Report Definition
