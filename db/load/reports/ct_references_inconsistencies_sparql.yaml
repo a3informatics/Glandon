@@ -33,7 +33,9 @@
     :label: Type
     :type: literal
 :label: CDISC References Inconsistencies
-:query: 'PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
+:query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>  
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>  
 PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>  
 PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>   
@@ -41,8 +43,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
-PREFIX is: <http://purl.org/ontology/is/core#> 
-PREFIX iso: <http://purl.org/iso25964/skos-thes#> 
 SELECT DISTINCT ?scli ?scll ?identifier ?label  ?clii ?clil ?n ?v ?t WHERE        
 {           
   VALUES ?th {[[[parameter_1]]]}     
