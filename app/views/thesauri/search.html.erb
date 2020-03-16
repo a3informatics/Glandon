@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Search Terminology: '+@thesaurus.has_identifier.identifier+' ('+@thesaurus.semantic_version+')")' %>
-<%= javascript_include_tag 'shared/tags', 'thesauri/search' %>
+<%= javascript_include_tag 'shared/tags', 'shared/show_more_js', 'thesauri/search' %>
 <%= javascript_tag "var url_path = '#{search_thesauri_path(@thesaurus)}';" %>
 <% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
