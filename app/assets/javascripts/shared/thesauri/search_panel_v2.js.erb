@@ -67,6 +67,7 @@ SearchPanelV2.prototype.search = function () {
   this.ajaxActive(true);
   this.tsSearchTable.processing(true);
   this.serverSearch(0, this.length);
+  this.tsSearchTable.search("");
   this.clearInput("#searchTable_wrapper tfoot input");
 }
 
@@ -209,7 +210,7 @@ SearchPanelV2.prototype.searchInputEvent = function () {
 */
 SearchPanelV2.prototype.clearSearch = function () {
   if (!this.active) {
-    this.clearInput("#searchTable_filter input")
+    this.tsSearchTable.search("");
     this.clearInput("#overall_search, #searchTable_wrapper thead input, #searchTable_wrapper tfoot input");
     this.toggleFilters(false);
     this.tsSearchTable.clear().draw();

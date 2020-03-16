@@ -272,7 +272,7 @@ module UiHelpers
 			thesaurus_version: "searchTable_c#{type.to_s}_tversion" }
 	end
 
-  def ui_term_column_search(column, text)
+  def ui_term_column_search(column, text, wait = true)
     input = search_column_input_map(:search)[column]
 		begin
 			fill_in input, with: text
@@ -283,7 +283,7 @@ module UiHelpers
 			ui_hit_return(input)
 			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
-    wait_for_ajax(120)
+    wait_for_ajax(120) if wait
   end
 
 	def ui_term_column_filter(column, text)
