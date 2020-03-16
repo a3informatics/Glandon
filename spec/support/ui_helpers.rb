@@ -257,17 +257,43 @@ module UiHelpers
   def ui_term_column_search(column, text)
     column_input_map =
     {
-      notation: "searchTable_csearch_submission_value",
       code_list: "searchTable_csearch_parent_identifier",
       code_list_name: "searchTable_csearch_parent_label",
+			item: "searchTable_csearch_identifier",
+			notation: "searchTable_csearch_notation",
+			preferred_term: "searchTable_csearch_preferred_term",
+			synonym: "searchTable_csearch_synonym",
       definition: "searchTable_csearch_definition",
       tags: "searchTable_csearch_tags"
     }
     input = column_input_map[column]
     fill_in input, with: text
     ui_hit_return(input)
-    wait_for_ajax(15)
+    wait_for_ajax(120)
   end
+
+	def ui_term_column_filter(column, text)
+		column_input_map =
+		{
+			code_list: "searchTable_cfilter_parent_identifier",
+			code_list_name: "searchTable_cfilter_parent_label",
+			item: "searchTable_cfilter_identifier",
+			notation: "searchTable_cfilter_notation",
+			preferred_term: "searchTable_cfilter_preferred_term",
+			synonym: "searchTable_cfilter_synonym",
+			definition: "searchTable_cfilter_definition",
+			tags: "searchTable_cfilter_tags",
+			thesaurus: "searchTable_cfilter_tidentifier",
+			thesaurus_version: "searchTable_cfilter_tversion",
+		}
+		input = column_input_map[column]
+		begin
+			fill_in input, with: text
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(1000,0)
+			fill_in input, with: text
+    end
+	end
 
   def ui_show_more_tags_th
     find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
