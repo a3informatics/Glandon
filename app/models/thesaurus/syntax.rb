@@ -70,7 +70,9 @@ class Thesaurus
     end
 
     def or_minus_statement(elements, column)
-      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
+     #sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
+     sparql = "FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) ) .  \n 
+               FILTER (!CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}')) ) .  \n"
      return sparql
     end
 
