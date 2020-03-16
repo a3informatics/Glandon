@@ -311,16 +311,32 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_PI][:search][:value] = "C66770 OR C100129"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "advanced_search_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "advanced_search_1.yaml", equate_method: :hash_equal)
     end
 
-    # it "allows a terminology to be searched, code list label" do
-    #   params = standard_params
-    #   params[:columns][C_TS_PL][:search][:value] = "Units for Vital Signs Results"
-    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
-    #   results = ct.search(params)
-    #   check_file_actual_expected(results, sub_dir, "advanced_search_3b.yaml", equate_method: :hash_equal)
-    # end
+    it "allows a terminology to be searched, code list label I" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Epoch OR Laterality"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, code list label II" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Tumor AND Findings"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, code list label III" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Tumor OR Findings"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_4.yaml", equate_method: :hash_equal)
+    end
 
     # it "allows a terminology to be searched, item identifier" do
     #   params = standard_params
