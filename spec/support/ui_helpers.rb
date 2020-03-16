@@ -259,19 +259,21 @@ module UiHelpers
 		wait_for_ajax 120
 	end
 
+	def search_column_input_map(type)
+		{ code_list: "searchTable_c#{type.to_s}_parent_identifier",
+			code_list_name: "searchTable_c#{type.to_s}_parent_label",
+			item: "searchTable_c#{type.to_s}_identifier",
+			notation: "searchTable_c#{type.to_s}_notation",
+			preferred_term: "searchTable_c#{type.to_s}_preferred_term",
+			synonym: "searchTable_c#{type.to_s}_synonym",
+			definition: "searchTable_c#{type.to_s}_definition",
+			tags: "searchTable_c#{type.to_s}_tags",
+			thesaurus: "searchTable_c#{type.to_s}_tidentifier",
+			thesaurus_version: "searchTable_c#{type.to_s}_tversion" }
+	end
+
   def ui_term_column_search(column, text)
-    column_input_map =
-    {
-      code_list: "searchTable_csearch_parent_identifier",
-      code_list_name: "searchTable_csearch_parent_label",
-			item: "searchTable_csearch_identifier",
-			notation: "searchTable_csearch_notation",
-			preferred_term: "searchTable_csearch_preferred_term",
-			synonym: "searchTable_csearch_synonym",
-      definition: "searchTable_csearch_definition",
-      tags: "searchTable_csearch_tags"
-    }
-    input = column_input_map[column]
+    input = search_column_input_map(:search)[column]
 		begin
 			fill_in input, with: text
 			ui_hit_return(input)
@@ -285,20 +287,7 @@ module UiHelpers
   end
 
 	def ui_term_column_filter(column, text)
-		column_input_map =
-		{
-			code_list: "searchTable_cfilter_parent_identifier",
-			code_list_name: "searchTable_cfilter_parent_label",
-			item: "searchTable_cfilter_identifier",
-			notation: "searchTable_cfilter_notation",
-			preferred_term: "searchTable_cfilter_preferred_term",
-			synonym: "searchTable_cfilter_synonym",
-			definition: "searchTable_cfilter_definition",
-			tags: "searchTable_cfilter_tags",
-			thesaurus: "searchTable_cfilter_tidentifier",
-			thesaurus_version: "searchTable_cfilter_tversion",
-		}
-		input = column_input_map[column]
+		input = search_column_input_map(:filter)[column]
 		begin
 			fill_in input, with: text
   	rescue Capybara::ElementNotFound => e
@@ -306,6 +295,21 @@ module UiHelpers
 			fill_in input, with: text
 			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
+	end
+
+	def ui_term_filter_visible
+		page.has_css?("#searchTable_wrapper .dataTables_scrollFoot")
+	end
+
+	def ui_term_input_empty?(type, column)
+		begin
+			result = find("##{search_column_input_map(type)[column]}").text == ""
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+			result = find("##{search_column_input_map(type)[column]}").text == ""
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    end
+		result
 	end
 
   def ui_show_more_tags_th
