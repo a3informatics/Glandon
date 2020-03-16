@@ -247,12 +247,17 @@ module UiHelpers
   end
 
   # Terminology
-    def ui_term_overall_search(text)
+  def ui_term_overall_filter(text)
     input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
     input.set(text)
-    input.native.send_keys(:return)
-    wait_for_ajax(15)
   end
+
+	def ui_term_overall_search(text)
+		input = find("#overall_search")
+		input.set(text)
+		input.native.send_keys(:return)
+		wait_for_ajax 120
+	end
 
   def ui_term_column_search(column, text)
     column_input_map =
@@ -267,8 +272,15 @@ module UiHelpers
       tags: "searchTable_csearch_tags"
     }
     input = column_input_map[column]
-    fill_in input, with: text
-    ui_hit_return(input)
+		begin
+			fill_in input, with: text
+			ui_hit_return(input)
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+			fill_in input, with: text
+			ui_hit_return(input)
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    end
     wait_for_ajax(120)
   end
 
@@ -290,8 +302,9 @@ module UiHelpers
 		begin
 			fill_in input, with: text
   	rescue Capybara::ElementNotFound => e
-			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(1000,0)
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
 			fill_in input, with: text
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
     end
 	end
 
