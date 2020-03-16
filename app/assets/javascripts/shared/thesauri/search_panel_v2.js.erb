@@ -15,7 +15,7 @@
 function SearchPanelV2(url, searchingMultiple) {
   this.url = url;
   this.tsSearchTable = null;
-  this.length = 500;
+  this.length = 10000;
   this.active = false;
   this.searchingMultiple = (searchingMultiple == null ? true : searchingMultiple);
   this.filterPageSettings();
@@ -84,9 +84,6 @@ SearchPanelV2.prototype.serverSearch = function (offset, length) {
     context: this,
     success: function(result) {
     	for (i = 0; i < result.data.length; i++) {
-        result.data[i]["tidentifier"] = "Some Terminology";
-        result.data[i]["tversion"] = "62.0.0";
-
         this.tsSearchTable.row.add(result.data[i]);
       }
       this.tsSearchTable.draw();
@@ -284,7 +281,7 @@ SearchPanelV2.prototype.searchData = function (start, length) {
   };
 
   this.tsSearchTable.columns().every( function (index) {
-    if ($(this.header()).attr("data-searchable") == "false")
+    if ($(this.header()).attr("data-search") == "false")
       return;
 
     var value = $('#searchTable_wrapper thead tr:eq(1) th:eq(' + index + ') .search-server').val();
@@ -319,8 +316,8 @@ SearchPanelV2.prototype.columns = function () {
   ];
 
   if (this.searchingMultiple) {
-    columns.push({"data" : "tidentifier", "width" : "4%"});
-    columns.push({"data" : "tversion", "width" : "4%"});
+    columns.push({"data" : "thesaurus_identifier", "width" : "4%"});
+    columns.push({"data" : "thesaurus_version", "width" : "4%"});
   }
 
   return columns;
