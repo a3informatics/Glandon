@@ -3,15 +3,15 @@ class Thesaurus
   class Syntax
 
     def initialize(string)
-      @parts = "#{string}".match('([\S]+)\s(AND|OR)\s([\S]+)(\s-[\S]+)?|([\S]+)\s-([\S]+)|(\\".*?\\")')
-    end
-
-    def array_to_sparql(column)
+      @parts = "#{string}".match('^([\S]+)\s(AND|OR)\s([\S]+)(\s-[\S]+)?$|^([\S]+)\s-([\S]+)$|^(\\".*?\\")$|^(.*?)$')
       if !@parts.nil?
         @parts = @parts.captures.reject { |c| c.nil? } #Remove nil elements from array if there is any
       else
         Errors.application_error(self.class.name, __method__.to_s, "No matches")
-      end 
+      end
+    end
+
+    def array_to_sparql(column)
       case @parts.length
       when 3
         @parts[1] == "AND" || @parts[1] == "OR" ? type = @parts[1].to_sym : type = nil #AND/OR operator
@@ -20,9 +20,7 @@ class Thesaurus
       when 2
         type = :MINUS #MINUS operator
       when 1
-        type = :EXACT 
-      else 
-         Errors.application_error(self.class.name, __method__.to_s, "Invalid syntax")
+        type = :EXACT
       end
       type_to_sparql(type, @parts, column) 
     end
@@ -47,7 +45,6 @@ class Thesaurus
     end
 
   private
-
     def or_statement(elements, column)
      sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) ."
      return sparql
@@ -76,6 +73,10 @@ class Thesaurus
       sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) ."
      return sparql
     end
-    
+
+    # def default_statement(elements, column)
+    #  sparql = " FILTER regex(#{column}, \"#{elements}\", 'i') . \n "
+    #  return sparql
+    # end
   end
 end
