@@ -258,8 +258,8 @@ module UiHelpers
     column_input_map =
     {
       notation: "searchTable_csearch_submission_value",
-      code_list: "searchTable_csearch_cl",
-      code_list_name: "searchTable_csearch_cl_name",
+      code_list: "searchTable_csearch_parent_identifier",
+      code_list_name: "searchTable_csearch_parent_label",
       definition: "searchTable_csearch_definition",
       tags: "searchTable_csearch_tags"
     }
