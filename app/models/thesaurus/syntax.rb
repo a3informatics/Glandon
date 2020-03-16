@@ -46,31 +46,31 @@ class Thesaurus
 
   private
     def or_statement(elements, column)
-     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) ."
+     sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) . \n "
      return sparql
     end
 
     def and_statement(elements, column)
-     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) ."
+     sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) . \n "
      return sparql
     end
 
     def minus_statement(elements, column)
-     sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[1]}'))) ."
+     sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[1]}'))) . \n "
      return sparql
     end
 
     def exact_match_statement(elements, column)
-     return ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0].gsub("\"", "")}'))) ."
+     return " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0].gsub("\"", "")}'))) . \n "
     end
 
     def and_minus_statement(elements, column)
-      sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) ."
+      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
      return sparql
     end
 
     def or_minus_statement(elements, column)
-      sparql = ". FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) ."
+      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
      return sparql
     end
 
