@@ -110,7 +110,7 @@ class Thesaurus
               VALUES ?e { #{uris.map{|x| x.to_ref}.join(" ")} }
               ?e th:isTopConceptReference/bo:reference ?mc .
               ?e isoT:hasIdentifier/isoI:identifier ?thi .
-              ?e isoT:hasIdentifier/isoI:versionLabel ?thv .
+              ?e isoT:hasIdentifier/isoI:semanticVersion ?thv .
               {
                 {
                   ?mc th:narrower+ ?uc .
