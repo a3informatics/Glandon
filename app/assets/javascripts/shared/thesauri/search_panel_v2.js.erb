@@ -276,7 +276,7 @@ SearchPanelV2.prototype.searchData = function (start, length) {
     start: start,
     length: length,
     search: {
-      value: $("#overall_search").val()
+      value: $("#overall_search").val().trim()
     }
   };
 
@@ -284,7 +284,7 @@ SearchPanelV2.prototype.searchData = function (start, length) {
     if ($(this.header()).attr("data-search") == "false")
       return;
 
-    var value = $('#searchTable_wrapper thead tr:eq(1) th:eq(' + index + ') .search-server').val();
+    var value = $('#searchTable_wrapper thead tr:eq(1) th:eq(' + index + ') .search-server').val().trim();
     var data = this.dataSrc();
     reqData.columns[index] = {
       data: data,
