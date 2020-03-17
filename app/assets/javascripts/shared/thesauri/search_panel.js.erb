@@ -90,7 +90,7 @@ SearchPanel.prototype.serverSearch = function (offset, length) {
       this.tsSearchTable.draw();
       this.tsSearchTable.processing(false);
 
-      if (result.recordsFiltered >= offset + length) {
+      if (result.recordsFiltered >= length) {
         this.serverSearch(offset + length, length);
       }
       else {
