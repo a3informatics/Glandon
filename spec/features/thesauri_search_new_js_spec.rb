@@ -299,6 +299,35 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
     end
 
+    it "Search, special characters in search and filters", js:true do
+      search_latest
+
+      ui_term_column_search(:code_list_name, 'Unit')
+      ui_check_table_info("searchTable", 1, 10, 734)
+      ui_term_column_search(:notation, '*')
+      ui_check_table_info("searchTable", 1, 10, 72)
+      ui_term_column_search(:notation, '/')
+      ui_check_table_info("searchTable", 1, 10, 444)
+      ui_term_column_search(:notation, '/ AND *')
+      ui_check_table_info("searchTable", 1, 10, 72)
+      ui_term_column_search(:notation, '/ -*')
+      ui_check_table_info("searchTable", 1, 10, 372)
+
+      click_button "clear_button"
+
+      ui_term_column_search(:code_list_name, 'Unit')
+      ui_term_column_filter(:notation, '%')
+      ui_check_table_info("searchTable", 1, 5, 5)
+      ui_term_column_filter(:notation, '/')
+      ui_check_table_info("searchTable", 1, 10, 444)
+
+      click_button "clear_button"
+      ui_term_column_search(:code_list_name, 'Unit')
+      ui_term_column_search(:definition, 'twenty-four hours')
+      ui_check_table_info("searchTable", 1, 10, 20)
+
+    end
+
   end
 
 end
