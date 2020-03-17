@@ -1,198 +1,202 @@
 ---
-:count: 639
+:count: 116
 :items:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzMi9WMzMjQzEwMTgzMg==
-  :uri: http://www.cdisc.org/C101832/V33#C101832
-  :parent_identifier: C101832
-  :parent_label: Findings About Test Code
-  :identifier: C101832
-  :notation: FATESTCD
-  :definition: Terminology relevant to the test codes that describe findings about
-    an event or intervention.
-  :preferred_term: CDISC SDTM Findings About Test Code Terminology
-  :synonym: Findings About Test Code
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzcjQzEwMTg2NQ==
+  :uri: http://www.cdisc.org/C101865/V37#C101865
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C101865
+  :notation: ACSPCAT
+  :definition: A classification of the presentation of acute coronary syndrome.
+  :preferred_term: CDISC SDTM Acute Coronary Syndrome Presentation Category Terminology
+  :synonym: Acute Coronary Syndrome Presentation Category
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzMi9WMzMjQzEwMTgzMl9DMTAyNjI2
-  :uri: http://www.cdisc.org/C101832/V33#C101832_C102626
-  :parent_identifier: C101832
-  :parent_label: Findings About Test Code
-  :identifier: C102626
-  :notation: DRSTAT
-  :definition: The state or condition of not responding to a pharmacological agent.
-  :preferred_term: Drug Resistance Status
-  :synonym: Drug Resistance Status
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzcjQzEwMTg2NV9DODAzODM=
+  :uri: http://www.cdisc.org/C101865/V37#C101865_C80383
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C80383
+  :notation: NON-ST ELEVATION MYOCARDIAL INFARCTION
+  :definition: A myocardial infarction that does not produce elevation in the ST segments
+    of the ECG.
+  :preferred_term: Non-ST Elevation Myocardial Infarction by ECG Finding
+  :synonym: NON-STEMI; NSTEMI
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzMy9WMzMjQzEwMTgzMw==
-  :uri: http://www.cdisc.org/C101833/V33#C101833
-  :parent_identifier: C101833
-  :parent_label: Findings About Test Name
-  :identifier: C101833
-  :notation: FATEST
-  :definition: Terminology relevant to the test names that describe findings about
-    an event or intervention.
-  :preferred_term: CDISC SDTM Findings About Test Name Terminology
-  :synonym: Findings About Test Name
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzMjQzEwMTg2NV9DMTAxODg4
+  :uri: http://www.cdisc.org/C101865/V33#C101865_C101888
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C101888
+  :notation: ST ELEVATION MYOCARDIAL INFARCTION
+  :definition: A myocardial infarction that produces elevation in the ST segments
+    of the ECG.
+  :preferred_term: ST Elevation Myocardial Infarction by ECG Finding
+  :synonym: STEMI
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzMy9WMzMjQzEwMTgzM19DMTAyNjI2
-  :uri: http://www.cdisc.org/C101833/V33#C101833_C102626
-  :parent_identifier: C101833
-  :parent_label: Findings About Test Name
-  :identifier: C102626
-  :notation: Drug Resistance Status
-  :definition: The state or condition of not responding to a pharmacological agent.
-  :preferred_term: Drug Resistance Status
-  :synonym: Drug Resistance Status
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzMjQzEwMTg2NV9DNjY5MTE=
+  :uri: http://www.cdisc.org/C101865/V33#C101865_C66911
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C66911
+  :notation: UNSTABLE ANGINA
+  :definition: Angina pectoris (or equivalent type of ischemic discomfort) which has
+    recently changed in frequency, duration, intensity, or occurs at rest.
+  :preferred_term: Unstable Angina
+  :synonym: ''
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDQjQzEwNjQ3OF9DMTIyMTg5
-  :uri: http://www.cdisc.org/C106478/V44#C106478_C122189
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C122189
-  :notation: Number of Early Term Births
-  :definition: A measurement of the total number of birth events at which the gestational
-    age of the neonate is 37 weeks and 0 days through 38 weeks and 6 days.
-  :preferred_term: Number of Early Term Births
-  :synonym: Number of Early Term Births
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzMjQzEwMTg2NV9DNjY5MTQ=
+  :uri: http://www.cdisc.org/C101865/V33#C101865_C66914
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C66914
+  :notation: STABLE ANGINA
+  :definition: Angina pectoris which has not recently changed in frequency, duration
+    or intensity. Stable angina pectoris is relieved by rest or administration of
+    oral, sublingual or transdermal antianginal medications.
+  :preferred_term: Stable Angina
+  :synonym: ''
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDQjQzEwNjQ3OF9DMTIyMTkw
-  :uri: http://www.cdisc.org/C106478/V44#C106478_C122190
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C122190
-  :notation: Number of Full Term Births
-  :definition: A measurement of the total number of birth events at which the gestational
-    age of the neonate is 39 weeks and 0 days through 40 weeks and 6 days. (NCI)
-  :preferred_term: Number of Full Term Births
-  :synonym: Number of Full Term Births
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzMjQzEwMTg2NV9DMTc2NDk=
+  :uri: http://www.cdisc.org/C101865/V33#C101865_C17649
+  :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
+  :identifier: C17649
+  :notation: OTHER
+  :definition: Different than the one(s) previously specified or mentioned. (NCI)
+  :preferred_term: Other
+  :synonym: Other
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDQjQzEwNjQ3OF9DMTIyMTkz
-  :uri: http://www.cdisc.org/C106478/V44#C106478_C122193
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C122193
-  :notation: Number of Premature Births
-  :definition: A measurement of the total number of birth events at which the gestational
-    age of the neonate is less than 37 weeks and 0 days. (NCI)
-  :preferred_term: Number of Premature Births
-  :synonym: Number of Premature Births
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WNDYjQzExMTEwOQ==
+  :uri: http://www.cdisc.org/C111109/V46#C111109
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C111109
+  :notation: DECAT
+  :definition: A terminology codelist based on the category of related records for
+    the device event.
+  :preferred_term: CDISC SDTM Device Events Category Terminology
+  :synonym: Category of Device Events
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDMjQzEwNjQ3OF9DMTIwODMy
-  :uri: http://www.cdisc.org/C106478/V43#C106478_C120832
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C120832
-  :notation: Number of Ectopic Pregnancies
-  :definition: A measurement of the total number of ectopic pregnancies experienced
-    by a female subject.
-  :preferred_term: Number of Ectopic Pregnancies
-  :synonym: Number of Ectopic Pregnancies
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzYjQzExMTEwOV9DNjcyMjc=
+  :uri: http://www.cdisc.org/C111109/V36#C111109_C67227
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C67227
+  :notation: SOFTWARE UPDATE
+  :definition: All program coding after initial deployment to correct coding errors,
+    enhance the functionality of the software, and perfect the functioning of the
+    software. (NCI)
+  :preferred_term: Software Maintenance
+  :synonym: ''
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDMjQzEwNjQ3OF9DMTIwODM0
-  :uri: http://www.cdisc.org/C106478/V43#C106478_C120834
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C120834
-  :notation: Number of Late Fetal Deaths
-  :definition: A measurement of the total number of fetal deaths (in which the fetus
-    is greater than or equal to 20 weeks gestational age) experienced by a female
-    subject.
-  :preferred_term: Number of Late Fetal Deaths
-  :synonym: Number of Late Fetal Deaths
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzYjQzExMTEwOV9DMTExMzA5
+  :uri: http://www.cdisc.org/C111109/V36#C111109_C111309
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C111309
+  :notation: SCHEDULED MAINTENANCE
+  :definition: An inspection and/or surveillance activity that has been anticipated
+    to occur and was assigned a time or date when that activity is to be performed.
+    (NCI)
+  :preferred_term: Scheduled Maintenance
+  :synonym: ''
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDMjQzEwNjQ3OF9DMTIwODM1
-  :uri: http://www.cdisc.org/C106478/V43#C106478_C120835
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C120835
-  :notation: Number of Induced Abortions
-  :definition: A measurement of the total number of induced abortions experienced
-    by a female subject.
-  :preferred_term: Number of Induced Abortions
-  :synonym: Number of Induced Abortions
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzkjQzExMTEwOV9DNjI5NTQ=
+  :uri: http://www.cdisc.org/C111109/V39#C111109_C62954
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C62954
+  :notation: DEVICE OPERATIONAL ISSUE
+  :definition: Issue associated with any deviations from specifications relating to
+    device operations (e.g. deployment, connection, electrical, computer software,
+    infusion/flow, output, protective-measure, and incompatibility issues).
+  :preferred_term: Medical Device Operational Issue
+  :synonym: Device Operational Malfunction
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WMzUjQzEwNjQ3OF9DMTA2NTUw
-  :uri: http://www.cdisc.org/C106478/V35#C106478_C106550
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C106550
-  :notation: Number of Abortions
-  :definition: A measurement of the total number of instances in which there has been
-    a spontaneous termination of pregnancy (miscarriage) or elective termination of
-    pregnancy.
-  :preferred_term: Number of Abortions
-  :synonym: Number of Abortions
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzkjQzExMTEwOV9DMTEyMzYx
+  :uri: http://www.cdisc.org/C111109/V39#C111109_C112361
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C112361
+  :notation: NON-STUDY EQUIPMENT ISSUE
+  :definition: Issue associated with any deviations from specifications relating to
+    non-study device or equipment operations.
+  :preferred_term: Non-Study Device Issue
+  :synonym: Non-Study Equipment Malfunction
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WMzUjQzEwNjQ3OF9DMTY5NTU=
-  :uri: http://www.cdisc.org/C106478/V35#C106478_C16955
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C16955
-  :notation: Number of Live Births
-  :definition: A measurement of the total number of live-born offspring a female has
-    delivered.
-  :preferred_term: Parity
-  :synonym: Number of Live Births
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzYjQzExMTEwOV9DNjI5OTQ=
+  :uri: http://www.cdisc.org/C111109/V36#C111109_C62994
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C62994
+  :notation: CALIBRATION FAILURE
+  :definition: Issue associated with the failure of the device to perform a self-calibration
+    procedure or process designed to assure the accuracy and proper performance of
+    the device. (FDA)
+  :preferred_term: Medical Device Failure to Calibrate
+  :synonym: Calibrate, Failure To; Failure to Calibrate
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WMzUjQzEwNjQ3OF9DMTA2NTUx
-  :uri: http://www.cdisc.org/C106478/V35#C106478_C106551
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C106551
-  :notation: Number of Pregnancies
-  :definition: A measurement of the total number of pregnancy events experienced by
-    a female.
-  :preferred_term: Number of Pregnancies
-  :synonym: Number of Pregnancies
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzkjQzExMTEwOV9DMTE2MTIx
+  :uri: http://www.cdisc.org/C111109/V39#C111109_C116121
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C116121
+  :notation: DATA STORAGE FAILURE
+  :definition: Issue associated with the failure of the software to store collected
+    data.
+  :preferred_term: Data Storage Failure
+  :synonym: ''
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDMjQzEwNjQ3OF9DMTIwODM2
-  :uri: http://www.cdisc.org/C106478/V43#C106478_C120836
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C120836
-  :notation: Number of Previous Pregnancies
-  :definition: A measurement of the total number of pregnancy events experienced by
-    the female subject prior to the current pregnancy.
-  :preferred_term: Number of Previous Pregnancies
-  :synonym: Number of Previous Pregnancies
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WMzYjQzExMTEwOV9DNjMyNjk=
+  :uri: http://www.cdisc.org/C111109/V36#C111109_C63269
+  :parent_identifier: C111109
+  :parent_label: Category of Device Events
+  :identifier: C63269
+  :notation: COMPUTER SOFTWARE ISSUE
+  :definition: Issue associated with written programs, codes, and/or software system
+    that affects device performance or communication with another device. (NCI)
+  :preferred_term: Computer Software Problem Associated with Medical Device
+  :synonym: Software Malfunction
   :tags: SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ3OC9WNDMjQzEwNjQ3OF9DMTIwODM3
-  :uri: http://www.cdisc.org/C106478/V43#C106478_C120837
-  :parent_identifier: C106478
-  :parent_label: Reproductive System Findings Test Name
-  :identifier: C120837
-  :notation: Number of Spontaneous Abortions
-  :definition: A measurement of the total number of spontaneous abortions (in which
-    the fetus is less than 20 weeks gestational age) experienced by a female subject.
-  :preferred_term: Number of Spontaneous Abortions
-  :synonym: Number of Spontaneous Abortions
-  :tags: SDTM
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNTMwNC9WMzkjQzExNTMwNF9DMTE1Nzg5
+  :uri: http://www.cdisc.org/C115304/V39#C115304_C115789
+  :parent_identifier: C115304
+  :parent_label: Category of Functional Test
+  :identifier: C115789
+  :notation: SIX MINUTE WALK
+  :definition: '6 Minute Walk Test (6MWT) (Goldman MD, Marrie RA, Cohen JA. Evaluation
+    of the six-minute walk in multiple sclerosis subjects and healthy controls. Multiple
+    Sclerosis 2008; 14: 383-390).'
+  :preferred_term: 6 Minute Walk Functional Test
+  :synonym: SIXMW1
+  :tags: QS-FT; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0

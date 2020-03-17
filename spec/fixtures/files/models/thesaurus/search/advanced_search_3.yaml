@@ -1,53 +1,234 @@
 ---
-:count: 4
+:count: 258
 :items:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA1L1YyNiNDOTAwMDVfQzkwNDc5
-  :uri: http://www.cdisc.org/C90005/V26#C90005_C90479
-  :parent_identifier: C90005
-  :parent_label: Tumor Findings Test Name
-  :identifier: C90479
-  :notation: Tumor Examination
-  :definition: An assessment or evaluation of a neoplastic mass. (NCI)
-  :preferred_term: Tumor Examination
-  :synonym: Tumor Examination
-  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDUjQzEwMDEyOV9DMTIzNjYz
+  :uri: http://www.cdisc.org/C100129/V45#C100129_C123663
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C123663
+  :notation: MSWS-12
+  :definition: 12-Item Multiple Sclerosis Walking Scale (MSWS-12) (Copyright 2000
+    Neurological Outcome Measures Unit).
+  :preferred_term: 12-Item Multiple Sclerosis Walking Scale Questionnaire
+  :synonym: MSWS01
+  :tags: QRS; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA1L1YyNiNDOTAwMDU=
-  :uri: http://www.cdisc.org/C90005/V26#C90005
-  :parent_identifier: C90005
-  :parent_label: Tumor Findings Test Name
-  :identifier: C90005
-  :notation: TFTEST
-  :definition: Terminology for the test names concerned with the assessment or evaluation
-    of a neoplastic mass.
-  :preferred_term: CDISC SEND Tumor Findings Test Name Terminology
-  :synonym: Tumor Findings Test Name
-  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDYjQzEwMDEyOQ==
+  :uri: http://www.cdisc.org/C100129/V46#C100129
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C100129
+  :notation: QSCAT
+  :definition: A grouping of observations within the Questionnaire domain.
+  :preferred_term: CDISC Questionnaire Category Terminology
+  :synonym: Category of Questionnaire
+  :tags: COA; QRS; QS; QS-FT; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA2L1YyNiNDOTAwMDZfQzkwNDc5
-  :uri: http://www.cdisc.org/C90006/V26#C90006_C90479
-  :parent_identifier: C90006
-  :parent_label: Tumor Findings Test Code
-  :identifier: C90479
-  :notation: TUMEX
-  :definition: An assessment or evaluation of a neoplastic mass. (NCI)
-  :preferred_term: Tumor Examination
-  :synonym: Tumor Examination
-  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDQjQzEwMDEyOV9DMTIyMzcx
+  :uri: http://www.cdisc.org/C100129/V44#C100129_C122371
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C122371
+  :notation: ADHD-RS-IV HOME VERSION
+  :definition: 'ADHD Rating Scale-IV (ADHD-RS-IV) Home Version (Copyright 1998. DuPaul
+    GJ, Power TJ, Anastopoulos AD, Reid R. ADHD Rating Scale-IV: Checklists, Norms,
+    and Clinical Interpretation. New York: The Guilford Press; 1998).'
+  :preferred_term: ADHD Rating Scale-IV Home Version Questionnaire
+  :synonym: ADHD01
+  :tags: QRS; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA2L1YyNiNDOTAwMDY=
-  :uri: http://www.cdisc.org/C90006/V26#C90006
-  :parent_identifier: C90006
-  :parent_label: Tumor Findings Test Code
-  :identifier: C90006
-  :notation: TFTESTCD
-  :definition: Terminology for the test codes concerned with the assessment or evaluation
-    of a neoplastic mass.
-  :preferred_term: CDISC SEND Tumor Findings Test Code Terminology
-  :synonym: Tumor Findings Test Code
-  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzEjQzEwMDEyOV9DMTAyMTEx
+  :uri: http://www.cdisc.org/C100129/V31#C100129_C102111
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C102111
+  :notation: AIMS
+  :definition: 'Abnormal Involuntary Movement Scale (AIMS) (Guy W. Ed. ECDEU Assessment
+    Manual for Psychopharmacology. Rockville MD: US Dept of Health, Education and
+    Welfare. 1976, Publication No. (ADM) 76-338).'
+  :preferred_term: Abnormal Involuntary Movement Scale Questionnaire
+  :synonym: AIMS01
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzcjQzEwMDEyOV9DMTEyNTE4
+  :uri: http://www.cdisc.org/C100129/V37#C100129_C112518
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C112518
+  :notation: AQ20
+  :definition: 'Airway Questionnaire 20 (AQ20) (Barley EA, Quirk FH, Jones PW. Asthma
+    health status in clinical practice: validity of a new short and simple instrument.
+    Respir Med 1998; 92:1207-14. Copyright Reserved P.W. Jones, PhD FRCP).'
+  :preferred_term: Airway Questionnaire 20
+  :synonym: AQ01
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDIjQzEwMDEyOV9DMTE5MDk4
+  :uri: http://www.cdisc.org/C100129/V42#C100129_C119098
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C119098
+  :notation: AUDIT-C
+  :definition: Alcohol Use Disorder Identification Test-Consumption Questions (AUDIT-C)
+    (Bush K, Kivlahan DR, McDonell MB, Fihn SD, Bradley KA; for the Ambulatory Care
+    Quality Improvement Project (ACQUIP). The AUDIT Alcohol Consumption Questions
+    (AUDIT-C) An Effective Brief Screening Test for Problem Drinking. Arch Intern
+    Med. Sep 14 1998;158:1789-1795).
+  :preferred_term: Alcohol Use Disorder Identification Test Alcohol Consumption Questions
+    Questionnaire
+  :synonym: ADTC01
+  :tags: COA; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDIjQzEwMDEyOV9DMTE5MDk3
+  :uri: http://www.cdisc.org/C100129/V42#C100129_C119097
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C119097
+  :notation: AUDIT-SR
+  :definition: 'Alcohol Use Disorder Identification Test: Self-Report Version (AUDIT)
+    (Saunders JB, Aasland, OG, Babor, TF, De La Fuente JR, Grant M. Development of
+    the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project
+    on Early Detection of Persons with harmful Alcohol Consumption-II. Addiction (1993)
+    88:791-804).'
+  :preferred_term: Alcohol Use Disorder Identification Test Self-Report Version Questionnaire
+  :synonym: ADT01
+  :tags: COA; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTA1MTY2
+  :uri: http://www.cdisc.org/C100129/V35#C100129_C105166
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C105166
+  :notation: ADCS-ADL
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL) (Galasko, D., Bennett, D., Sano, M., Ernesto, C., Thomas,
+    R., Grundman, M., Ferris, S., and the ADCS. "An Inventory to Assess Activities
+    of Daily Living for Clinical Trials in Alzheimer''s Disease." Alzheimer''s Disease
+    and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study Activities of Daily Living
+    Inventory Questionnaire
+  :synonym: ADL01
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTA2ODg4
+  :uri: http://www.cdisc.org/C100129/V35#C100129_C106888
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C106888
+  :notation: ADCS-ADL MCI
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL), MCI Version (Galasko, D., Bennett, D., Sano, M., Ernesto,
+    C., Thomas, R., Grundman, M., Ferris, S., and the ADCS. An Inventory to Assess
+    Activities of Daily Living for Clinical Trials in Alzheimer''s Disease. Alzheimer''s
+    Disease and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study-Activities of Daily Living
+    Inventory Mild Cognitive Impairment Questionnaire
+  :synonym: ADL03
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDYjQzEwMDEyOV9DMTA2ODg5
+  :uri: http://www.cdisc.org/C100129/V46#C100129_C106889
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C106889
+  :notation: ADCS-ADL SEVERE DEMENTIA
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL), Severe Dementia Version (Galasko, D., Bennett, D., Sano,
+    M., Ernesto, C., Thomas, R., Grundman, M., Ferris, S., and the ADCS. An Inventory
+    to Assess Activities of Daily Living for Clinical Trials in Alzheimer''s Disease.
+    Alzheimer''s Disease and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study-Activities of Daily Living
+    Inventory Severe Dementia Questionnaire
+  :synonym: ADL02
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzMjQzEwMDEyOV9DMTAzNTE1
+  :uri: http://www.cdisc.org/C100129/V33#C100129_C103515
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C103515
+  :notation: ADCS-CGIC
+  :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression of
+    Change (ADCS-CGIC) (Schneider LS, Olin JT, Doody RS, Clark CM, Morris JC, Reisberg
+    B, Schmitt FA, Grundman M, Thomas RG, Ferris SH, and the Alzheimer's Disease Cooperative
+    Study. Validity and Reliability of the Alzheimer's Disease Cooperative Study-Clinical
+    Global Impression of Change. Alzheimer Disease and Associated Disorders. 1997;
+    11(2):S22-S32).
+  :preferred_term: Alzheimer's Disease Cooperative Study-Clinical Global Impression
+    of Change Questionnaire
+  :synonym: ACGC01
+  :tags: QS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDQjQzEwMDEyOV9DMTIyMzcw
+  :uri: http://www.cdisc.org/C100129/V44#C100129_C122370
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C122370
+  :notation: ACQ
+  :definition: Asthma Control Questionnaire (ACQ) (The Asthma Control Questionnaire
+    is copyrighted. It may not be changed, translated or sold [paper or software]
+    without the permission of Elizabeth Juniper. Juniper EF, O'Byrne PM, Guyatt GH,
+    Ferrie PJ, King DR. Development and validation of a questionnaire to measure asthma
+    control. Eur Respir J 1999;14:902-907).
+  :preferred_term: Asthma Control Questionnaire
+  :synonym: ACQ01
+  :tags: QRS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDUjQzEwMDEyOV9DMTIzNjU4
+  :uri: http://www.cdisc.org/C100129/V45#C100129_C123658
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C123658
+  :notation: ACT
+  :definition: 'Asthma Control Test (ACT) (Asthma Control Test copyright, QualityMetric
+    Incorporated 2002, 2004. All Rights Reserved. Asthma Control Test is a trademark
+    of QualityMetric Incorporated. Nathan RA, Sorkness CA, Kosinski M, Schatz M, Li
+    JT, Marcus P, Murray JJ, Pendergraft TB. Development of the asthma control test:
+    a survey for assessing asthma control. J Allergy Clin Immunol. 2004 Jan;113(1):59-65).'
+  :preferred_term: Asthma Control Test Questionnaire
+  :synonym: ACT01
+  :tags: QRS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDQjQzEwMDEyOV9DMTIyMzcy
+  :uri: http://www.cdisc.org/C100129/V44#C100129_C122372
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C122372
+  :notation: AQLQ
+  :definition: 'Asthma Quality of Life Questionnaire (AQLQ) (The AQLQ is copyrighted.
+    It may not be altered, sold [paper or electronic], translated or adapted for another
+    medium without the permission of Elizabeth Juniper. Juniper EF, Guyatt GH, Epstein
+    RS, Ferrie PJ, Jaeschke R, Hiller TK. Evaluation of impairment of health-related
+    quality of life in asthma: development of a questionnaire for use in clinical
+    trials. Thorax 1992; 47:76-83).'
+  :preferred_term: Asthma Quality of Life Questionnaire
+  :synonym: AQLQ01
+  :tags: QRS; SDTM
+  :thesaurus_identifier: CT
+  :thesaurus_version: 46.0.0
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzEjQzEwMDEyOV9DMTAyMTEz
+  :uri: http://www.cdisc.org/C100129/V31#C100129_C102113
+  :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
+  :identifier: C102113
+  :notation: BARS
+  :definition: 'Barnes Akathisia Rating Scale (BARS) (Barnes TR: A Rating Scale for
+    Drug-Induced Akathisia. British Journal of Psychiatry 154:672-676, 1989).'
+  :preferred_term: Barnes Akathisia Rating Scale Questionnaire
+  :synonym: BARS01
+  :tags: QS; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0

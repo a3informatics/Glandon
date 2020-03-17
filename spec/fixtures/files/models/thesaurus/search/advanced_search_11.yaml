@@ -1,164 +1,27 @@
 ---
-:count: 12
+:count: 2
 :items:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMzMyOS9WMzMjQzEwMzMyOV9DMTAzMzc5
-  :uri: http://www.cdisc.org/C103329/V33#C103329_C103379
-  :parent_identifier: C103329
-  :parent_label: General Observation Class
-  :identifier: C103379
-  :notation: TRIAL DESIGN
-  :definition: This SDTM class describes the plan for the procedures to be followed
-    in a clinical trial, including planned and actual timing of events, control group,
-    method of allocating treatments, blinding methods, assignment of epochs that subjects
-    pass through in the course of a trial.
-  :preferred_term: CDISC Trial Design Class
-  :synonym: ''
-  :tags: SDTM
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0Mi9WMzcjQzExMjQ0Ml9DMTEyNjE3
+  :uri: http://www.cdisc.org/C112442/V37#C112442_C112617
+  :parent_identifier: C112442
+  :parent_label: Kurtzke Functional Systems Scores Questionnaire Test Name
+  :identifier: C112617
+  :notation: KFSS1-Cerebral or Mental Functions
+  :definition: Kurtzke Functional Systems Scores - Cerebral (or mental) functions.
+  :preferred_term: KFSS - Cerebral (or Mental) Functions
+  :synonym: KFSS1-Cerebral or Mental Functions
+  :tags: QS; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU4L1Y4I0M3NDU1OF9DNzQ1ODg=
-  :uri: http://www.cdisc.org/C74558/V8#C74558_C74588
-  :parent_identifier: C74558
-  :parent_label: Category for Disposition Event
-  :identifier: C74588
-  :notation: PROTOCOL MILESTONE
-  :definition: Occurrences within some epochs that are initiated by a protocol-specified
-    event. The most common protocol milestone is "Informed Consent Obtained" which
-    usually documents the start of the study.
-  :preferred_term: Protocol Milestone
-  :synonym: Protocol Milestone
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU4L1Y4I0M3NDU1OF9DNzQ1OTA=
-  :uri: http://www.cdisc.org/C74558/V8#C74558_C74590
-  :parent_identifier: C74558
-  :parent_label: Category for Disposition Event
-  :identifier: C74590
-  :notation: DISPOSITION EVENT
-  :definition: The group of incidents that occur during a clinical trial and describe
-    whether a subject completed the study epoch or the reason this event did not occur.
-    The subject's disposition is often described for each phase of the study.
-  :preferred_term: Protocol Disposition Event
-  :synonym: Disposition Event
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTY3L1YzMiNDODk5NjdfQzgyNjM3
-  :uri: http://www.cdisc.org/C89967/V32#C89967_C82637
-  :parent_identifier: C89967
-  :parent_label: Study Design
-  :identifier: C82637
-  :notation: CROSSOVER
-  :definition: Participants receive one of two or more alternative intervention(s)
-    during the initial epoch of the study and receive other intervention(s) during
-    the subsequent epoch(s) of the study.
-  :preferred_term: Crossover Study
-  :synonym: ''
-  :tags: SEND
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDczL1YzMyNDOTkwNzM=
-  :uri: http://www.cdisc.org/C99073/V33#C99073
-  :parent_identifier: C99073
-  :parent_label: Laterality
-  :identifier: C99073
-  :notation: LAT
-  :definition: CDISC terminology for anatomical location or specimen further detailing
-    the side(s) of interest.
-  :preferred_term: CDISC SDTM Laterality Terminology
-  :synonym: Laterality
-  :tags: SDTM; SEND
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1YyOCNDOTkwNzZfQzgyNjM3
-  :uri: http://www.cdisc.org/C99076/V28#C99076_C82637
-  :parent_identifier: C99076
-  :parent_label: Intervention Model
-  :identifier: C82637
-  :notation: CROSS-OVER
-  :definition: Participants receive one of two or more alternative intervention(s)
-    during the initial epoch of the study and receive other intervention(s) during
-    the subsequent epoch(s) of the study.
-  :preferred_term: Crossover Study
-  :synonym: ''
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
-  :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C102255
-  :notation: BLINDED TREATMENT
-  :definition: A period in a clinical study during which subjects receive blinded
-    therapeutic treatment.
-  :preferred_term: Blinded Treatment Epoch
-  :synonym: ''
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1Y0NSNDOTkwNzlfQzEyMzQ1Mg==
-  :uri: http://www.cdisc.org/C99079/V45#C99079_C123452
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C123452
-  :notation: CONTINUATION TREATMENT
-  :definition: A period in a clinical study during which subjects receive continuation
-    treatment.
-  :preferred_term: Continuation Therapy Epoch
-  :synonym: Continuation Phase
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1Y0NSNDOTkwNzlfQzEyMzQ1Mw==
-  :uri: http://www.cdisc.org/C99079/V45#C99079_C123453
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C123453
-  :notation: INDUCTION TREATMENT
-  :definition: A period in a clinical study during which subjects receive induction
-    treatment.
-  :preferred_term: Induction Therapy Epoch
-  :synonym: Induction Phase; Intensive Phase
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
-  :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C102256
-  :notation: OPEN LABEL TREATMENT
-  :definition: A period in a clinical study during which subjects receive open label
-    therapeutic treatment.
-  :preferred_term: Open Label Treatment Epoch
-  :synonym: ''
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMiNDOTkwNzlfQzEwMTUyNg==
-  :uri: http://www.cdisc.org/C99079/V32#C99079_C101526
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C101526
-  :notation: TREATMENT
-  :definition: A period in a clinical study during which subjects receive therapeutic
-    treatment.
-  :preferred_term: Treatment Epoch
-  :synonym: ''
-  :tags: SDTM
-  :thesaurus_identifier: CT
-  :thesaurus_version: 46.0.0
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1Y0NSNDOTkwNzk=
-  :uri: http://www.cdisc.org/C99079/V45#C99079
-  :parent_identifier: C99079
-  :parent_label: Epoch
-  :identifier: C99079
-  :notation: EPOCH
-  :definition: The name of the EPOCH.
-  :preferred_term: CDISC SDTM Epoch Terminology
-  :synonym: Epoch
-  :tags: SDTM
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0My9WMzcjQzExMjQ0M19DMTEyNjE3
+  :uri: http://www.cdisc.org/C112443/V37#C112443_C112617
+  :parent_identifier: C112443
+  :parent_label: Kurtzke Functional Systems Scores Questionnaire Test Code
+  :identifier: C112617
+  :notation: KFSS107
+  :definition: Kurtzke Functional Systems Scores - Cerebral (or mental) functions.
+  :preferred_term: KFSS - Cerebral (or Mental) Functions
+  :synonym: KFSS1-Cerebral or Mental Functions
+  :tags: QS; SDTM
   :thesaurus_identifier: CT
   :thesaurus_version: 46.0.0
