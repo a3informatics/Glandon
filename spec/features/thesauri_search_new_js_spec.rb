@@ -328,6 +328,41 @@ describe "Thesauri Search", :type => :feature do
 
     end
 
+    it "Search, multiple, differences", js:true do
+      click_navbar_terminology
+      click_link 'Search Terminologies'
+      sleep 0.6
+      wait_for_ajax(10)
+      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      wait_for_ajax(30)
+      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//*[@id='history']/tbody/tr[5]").click
+      click_button "Submit and proceed"
+      wait_for_ajax(10)
+
+      ui_term_column_search(:code_list, 'C66781')
+      ui_check_table_info("searchTable", 1, 10, 12)
+      ui_term_column_search(:definition, 'person')
+      ui_check_table_info("searchTable", 1, 1, 1)
+      ui_check_table_cell("searchTable", 1, 10, "26.0.0")
+      ui_term_column_search(:definition, 'subject')
+      ui_check_table_info("searchTable", 1, 1, 1)
+      ui_check_table_cell("searchTable", 1, 10, "30.0.0")
+
+      click_button "clear_button"
+
+      ui_term_column_search(:code_list, 'C66781')
+      ui_term_column_filter(:synonym, 'hour')
+      ui_check_table_info("searchTable", 1, 1, 1)
+      ui_check_table_cell("searchTable", 1, 10, "30.0.0")
+      ui_term_column_filter(:synonym, '')
+      ui_term_overall_filter('hour')
+      ui_check_table_info("searchTable", 1, 4, 4)
+      ui_term_overall_filter('')
+      ui_term_overall_search('hour')
+      ui_check_table_info("searchTable", 1, 4, 4)
+    end
+
   end
 
 end

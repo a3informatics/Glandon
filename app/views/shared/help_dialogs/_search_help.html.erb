@@ -14,7 +14,6 @@
     <li><span class="font-regular">"x y z"</span> (Exact match) results containing the phrase 'x y z', in that order. Case sensitive.</li>
     <li><span class="font-regular">x y</span> (Exact match) same as "x y". Default.</li>
   </ul>
-  This syntax cannot be used for searching tags. Tags are found with the ; separator (e.g. SEND; SDTM) <br/>
 
   <%= render layout: "shared/show_more", :locals => {:size => "tiny", show_text: "Show syntax examples"} do %>
     Valid examples:
@@ -31,10 +30,12 @@
       <li>Fred - Harry</li>
       <li>-Harry</li>
       <li>Fred AND Harry Oliver</li>
+      <li>Fred AND Harry AND Oliver</li>
       <li>Fred OR "Harry Oliver"</li>
       <li>Fred AND Harry OR Oliver</li>
     </ul>
   <% end %>
+  These <span class="text-accent-2">cannot be combined</span> into complex queries (e.g. x AND y OR z -w will not work). This syntax cannot be used for searching tags. Tags are found with the ; separator (e.g. SEND; SDTM) <br/>
   <br/>
   As some searches may take longer, the results are fetched in batches. New searches cannot be conducted while a search is active. To stop an on-going search, click the <span class="text-accent-2">Abort</span> button.<br/><br/>
 
