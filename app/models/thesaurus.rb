@@ -525,8 +525,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     results =[]
     tags = params.key?(:tags) ? params[:tags] : []
     date_time = Time.now.iso8601
-    # Get set of URIs
-    uris = child_uri_set(params)
+    
+    # Get set of URIs. Not needed if we dont use VALUES in the following query.
+    # uris = child_uri_set(params)
 
     # Get the final result
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
@@ -539,38 +540,36 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current
         WHERE
         {
-          VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
           {
-            ?s rdf:type th:ManagedConcept .
-            ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .
-            ?s isoT:hasIdentifier/isoI:identifier ?sci .
+            SELECT DISTINCT ?s ?sv ?sci ?ns (count(?lv) AS ?count) WHERE
             {
-              SELECT DISTINCT ?sci ?ns (count(?lv) AS ?count) WHERE
-              {
-                ?x rdf:type th:ManagedConcept .
-                ?x isoT:hasIdentifier/isoI:version ?lv .
-                ?x isoT:hasIdentifier/isoI:identifier ?sci .
-                ?x isoT:hasIdentifier/isoI:hasScope ?ns .
-              } GROUP BY ?sci ?ns
-            }
-            ?s isoT:hasState ?st .
-            ?st isoR:registrationStatus ?rs .
-            ?st isoR:effectiveDate ?ed .
-            ?st isoR:untilDate ?ud .
-            BIND ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime && xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime AS ?current ) .
-            ?s th:identifier ?i .
-            ?s th:notation ?n .
-            ?s th:definition ?d .
-            ?s th:extensible ?e .
-            ?s th:preferredTerm/isoC:label ?pt .
-            ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o
-            OPTIONAL {?s th:synonym/isoC:label ?sy .}
-            OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
-            BIND (EXISTS {?s th:extends ?xe1} as ?eo)
-            BIND (EXISTS {?s th:subsets ?xs1} as ?so)
-            BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )
-            BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )
+              #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+              ?s isoT:hasIdentifier/isoI:semanticVersion ?sv .                 
+              ?s isoT:hasIdentifier/isoI:identifier ?sci .                 
+              ?s isoT:hasIdentifier/isoI:hasScope ?ns .                 
+              ?x rdf:type th:ManagedConcept .                 
+              ?x isoT:hasIdentifier/isoI:identifier ?sci .                 
+              ?x isoT:hasIdentifier/isoI:hasScope ?ns .                 
+              ?x isoT:hasIdentifier/isoI:version ?lv .    
+            } GROUP BY ?s ?sv ?sci ?ns
           }
+          ?s isoT:hasState ?st .
+          ?st isoR:registrationStatus ?rs .
+          ?st isoR:effectiveDate ?ed .
+          ?st isoR:untilDate ?ud .
+          BIND ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime && xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime AS ?current ) .
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?s th:definition ?d .
+          ?s th:extensible ?e .
+          ?s th:preferredTerm/isoC:label ?pt .
+          ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o
+          OPTIONAL {?s th:synonym/isoC:label ?sy .}
+          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+          BIND (EXISTS {?s th:extends ?xe1} as ?eo)
+          BIND (EXISTS {?s th:subsets ?xs1} as ?so)
+          BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )
+          BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )
         } ORDER BY ?i ?sy ?t
       } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ORDER BY ?i
     }
