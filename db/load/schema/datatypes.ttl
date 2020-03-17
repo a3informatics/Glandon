@@ -10,48 +10,23 @@
 <http://www.assero.co.uk/Datatypes>
   rdf:type owl:Ontology ;
 .
-:Datatype
+:ComplexDatatype
   rdf:type owl:Class ;
-  rdfs:label "Datatype"^^xsd:string ;
+  rdfs:label "Complex Datatype"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
-  skos:definition "A simple datatype."^^xsd:string ;
+  skos:definition "A complex datatype."^^xsd:string ;
 .
-:xsd
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Schema datatype"^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range xsd:string ;
-  skos:definition "The XSD datatyep URI."^^xsd:string ;
+:Attribute
+  rdf:type owl:Class ;
+  rdfs:label "Complex Datatype Attribute"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "An attribute of a complex datatype."^^xsd:string ;
 .
-:shortLabel
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Short label"^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range xsd:string ;
-  skos:definition "A short label for the datatype, typically one or two characters."^^xsd:string ;
+:hasAttribute
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Attribute"^^xsd:string ;
+  rdfs:domain :ComplexDatatype ;
+  rdfs:range :Attribute ;
+  skos:definition "Reference to an attribute."^^xsd:string ;
 .
-:odm
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "ODM Equivalent"^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range xsd:string ;
-  skos:definition "The ODM equivalent datatype"^^xsd:string ;
-.
-:literalMethod
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Literal output format"^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range xsd:string ;
-  skos:definition "The output format for literals"^^xsd:string ;
-.
-:typeMethod
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Literal output format"^^xsd:string ;
-  rdfs:domain :Datatype ;
-  rdfs:range xsd:string ;
-  skos:definition "The output format for literals"^^xsd:string ;

@@ -30,7 +30,7 @@ module Sparql
         #
         # @return [String] string representation of the object
         def to_s
-          "\"#{normal_escape}\"^^xsd:#{@type}"
+          "\"#{normal_escape}\"^^xsd:#{@type.fragment}"
         end
 
         # To Ref
@@ -44,7 +44,7 @@ module Sparql
         #
         # @return [String] turtle string representation of the object
         def to_turtle
-          "\"#{turtle_escape}\"^^xsd:#{@type}"
+          "\"#{turtle_escape}\"^^xsd:#{@type.fragment}"
         end
 
       private
@@ -57,13 +57,13 @@ module Sparql
 
         # Turtle Escape. Note the single inpsect but the need to remove the quotes on start and end of string
         def turtle_escape
-          return @value if @type != BaseDatatype.to_xsd(BaseDatatype::C_STRING)
+          return @value if !@type.string?
           @value.dup.inspect.trim_inspect_quotes #.inspect.trim_inspect_quotes << Seems we don't need double operation.
         end
 
         # Normal Escape. Note the single inpsect but the need to remove the quotes on start and end of string
         def normal_escape
-          return @value if @type != BaseDatatype.to_xsd(BaseDatatype::C_STRING)
+          return @value if !@type.string?
           @value.dup.inspect.trim_inspect_quotes
         end
 

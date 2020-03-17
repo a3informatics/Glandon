@@ -2,18 +2,24 @@ defaults: &defaults
   http://www.w3.org/2001/XMLSchema#string: 
     typed: :to_s
     literal: :to_s
+    default: ""
   http://www.w3.org/2001/XMLSchema#boolean:
     typed: :to_bool
     literal: :to_s
+    default: true
   http://www.w3.org/2001/XMLSchema#dateTime:
     typed: :to_time_with_default
     literal: :iso8601
+    default: ""
+    default_method: :to_time_with_default  
   http://www.w3.org/2001/XMLSchema#integer: 
     typed: :to_i
     literal: :to_s
-  http://www.w3.org/2001/XMLSchema#positveInteger: 
+    default: 1
+  http://www.w3.org/2001/XMLSchema#positiveInteger: 
     typed: :to_i 
     literal: :to_s
+    default: 1
 
 development:
   <<: *defaults
