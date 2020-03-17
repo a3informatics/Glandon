@@ -64,17 +64,18 @@ class Thesaurus
           results << {id: t[:uri].to_id, uri: t[:uri].to_s, parent_identifier: t[:pi], parent_label: t[:pl], identifier: t[:i], notation: t[:n], 
             definition: t[:d], preferred_term: t[:pt], synonym: t[:sys], tags: t[:gt], thesaurus_identifier: t[:thi], thesaurus_version: t[:thv]}
         end
-        return { count: search_count(params, uris), items: results }
+        return { count: results.count, items: results }
       end
 
     private
 
       # Search resut count
-      def search_count(params, uris)
-        results = []
-        query_results = Sparql::Query.new.query(search_query_string(params, uris, false), "", [:bo, :th, :isoC, :isoT, :isoI])
-        query_results.results.count
-      end
+      # def search_count(params, uris)
+      #   results = []
+      #   query_results = Sparql::Query.new.query(search_query_string(params, uris, false), "", [:bo, :th, :isoC, :isoT, :isoI])
+      # byebug
+      #   query_results.results.count
+      # end
 
       # Build the search query string
       def search_query_string(params, uris, limit=true)
