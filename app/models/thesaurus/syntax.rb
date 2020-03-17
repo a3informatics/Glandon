@@ -11,6 +11,10 @@ class Thesaurus
       end
     end
 
+    # Array to SPARQL
+    # 
+    # @param column [String] the string refering to the search column.
+    # @return [String] a string containing the final query filter
     def array_to_sparql(column)
       case @parts.length
       when 3
@@ -20,11 +24,12 @@ class Thesaurus
       when 2
         type = :MINUS #MINUS operator
       when 1
-        type = :EXACT
+        type = :EXACT #EXACT operator
       end
       type_to_sparql(type, @parts, column) 
     end
 
+  private
     def type_to_sparql(type, results, column) 
       case type
       when :AND
@@ -44,41 +49,40 @@ class Thesaurus
       end
     end
 
-  private
+    # Get the OR query string 
     def or_statement(elements, column)
      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) . \n "
      return sparql
     end
 
+    # Get the AND query string 
     def and_statement(elements, column)
      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}'))) . \n "
      return sparql
     end
 
+    # Get the MINUS query string 
     def minus_statement(elements, column)
      sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[1]}'))) . \n "
      return sparql
     end
 
+    # Get the EXACT query string 
     def exact_match_statement(elements, column)
      return " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0].gsub("\"", "")}'))) . \n "
     end
 
+    # Get the AND MINUS query string 
     def and_minus_statement(elements, column)
       sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) && CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
      return sparql
     end
 
+    # Get the OR MINUS query string 
     def or_minus_statement(elements, column)
-     #sparql = " FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) && !CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}'))) . \n "
-     sparql = "FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) ) .  \n 
-               FILTER (!CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}')) ) .  \n"
+     sparql = "FILTER (CONTAINS(UCASE(#{column}), UCASE('#{elements[0]}')) || CONTAINS(UCASE(#{column}), UCASE('#{elements[2]}')) ) .  \n FILTER (!CONTAINS(UCASE(#{column}), UCASE('#{elements[3][2..-1]}')) ) .  \n"
      return sparql
     end
 
-    # def default_statement(elements, column)
-    #  sparql = " FILTER regex(#{column}, \"#{elements}\", 'i') . \n "
-    #  return sparql
-    # end
   end
 end
