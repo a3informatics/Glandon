@@ -7,9 +7,6 @@
 <%= javascript_include_tag 'shared/tags', 'thesauri/search_multiple' %>
 <%= javascript_tag "var url_path = '#{@search_url}';" %>
 
-<%= javascript_tag "var idSet = '#{local_assigns.fetch :id_set, []}',
-												filter = '#{local_assigns.fetch :filter, ""}';" %>
-
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-terminology",
     main_text: "<span class='text-medium font-light'>Search</span> #{@search_type}".html_safe,
@@ -27,7 +24,7 @@
 	    Search
 	  </div>
 	  <div class="card-content">
-			<%= render partial: "shared/thesauri/search_panel_v2", :locals => {columns: [{name: "Code List", id: "parent_identifier"}, {name: "Code List Name", id: "parent_label"},
+			<%= render partial: "shared/thesauri/search_panel", :locals => {columns: [{name: "Code List", id: "parent_identifier"}, {name: "Code List Name", id: "parent_label"},
 			{name: "Item", id: "identifier"}, {name: "Submission Value", id: "notation"}, {name: "Preferred Term", id: "preferred_term"}, {name: "Synonym", id: "synonym"},
 			{name: "Definition", id: "definition"}, {name: "Tags", id: "tags"}, {name: "<span class='icon-terminology text-xnormal'></span>".html_safe, id: "tidentifier", searchable: false},
 			{name: "<span class='icon-current text-normal'></span>".html_safe, id: "tversion", searchable: false}]} %>

@@ -1,5 +1,5 @@
 /*
-* Search Panel V2. Panel used to search terminologies. Paginated.
+* Search Panel. Panel used to search terminologies. Paginated.
 */
 
 /*
@@ -7,12 +7,12 @@
 */
 
 /**
-* SearchPanelV2 Constructor
+* SearchPanel Constructor
 *
 * @param url [String] url for the search
 * @return [void]
 */
-function SearchPanelV2(url, searchingMultiple) {
+function SearchPanel(url, searchingMultiple) {
   this.url = url;
   this.tsSearchTable = null;
   this.length = 10000;
@@ -32,7 +32,7 @@ function SearchPanelV2(url, searchingMultiple) {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.initTable = function () {
+SearchPanel.prototype.initTable = function () {
   this.tsSearchTable = $('#searchTable').DataTable( {
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
@@ -60,7 +60,7 @@ SearchPanelV2.prototype.initTable = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.search = function () {
+SearchPanel.prototype.search = function () {
   this.tsSearchTable.clear().draw();
   this.toggleFilters(true);
   this.toggleInputs(false);
@@ -76,7 +76,7 @@ SearchPanelV2.prototype.search = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.serverSearch = function (offset, length) {
+SearchPanel.prototype.serverSearch = function (offset, length) {
   this.ajax = $.ajax({
     url: this.url,
     data: this.searchData(offset, length),
@@ -115,7 +115,7 @@ SearchPanelV2.prototype.serverSearch = function (offset, length) {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.setListeners = function () {
+SearchPanel.prototype.setListeners = function () {
   this.searchInputEvent();
   this.overallSearchEvent();
   this.columnFilterEvent();
@@ -130,7 +130,7 @@ SearchPanelV2.prototype.setListeners = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.rowClickEvent = function () {
+SearchPanel.prototype.rowClickEvent = function () {
   var _this = this;
 
   $('#searchTable tbody').on('click', 'tr', function () {
@@ -146,7 +146,7 @@ SearchPanelV2.prototype.rowClickEvent = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.rowDblClickEvent = function () {
+SearchPanel.prototype.rowDblClickEvent = function () {
   var _this = this;
 
   $('#searchTable tbody').on('dblclick', 'tr', function () {
@@ -164,7 +164,7 @@ SearchPanelV2.prototype.rowDblClickEvent = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.columnFilterEvent = function () {
+SearchPanel.prototype.columnFilterEvent = function () {
   var _this = this;
 
   $("#searchTable_wrapper input.filter-local").each(function(i) {
@@ -180,7 +180,7 @@ SearchPanelV2.prototype.columnFilterEvent = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.overallSearchEvent = function () {
+SearchPanel.prototype.overallSearchEvent = function () {
   var _this = this;
 
   $("#overall_search").on("keyup", function(e) {
@@ -195,7 +195,7 @@ SearchPanelV2.prototype.overallSearchEvent = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.searchInputEvent = function () {
+SearchPanel.prototype.searchInputEvent = function () {
   var _this = this;
   $('#searchTable_wrapper thead input.search-server').on('keyup', function (e) {
     if (e.keyCode == 13 && this.value != "" && !_this.active)
@@ -208,7 +208,7 @@ SearchPanelV2.prototype.searchInputEvent = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.clearSearch = function () {
+SearchPanel.prototype.clearSearch = function () {
   if (!this.active) {
     this.tsSearchTable.search("");
     this.clearInput("#overall_search, #searchTable_wrapper thead input, #searchTable_wrapper tfoot input");
@@ -223,7 +223,7 @@ SearchPanelV2.prototype.clearSearch = function () {
 * @param target [String] JQuery selector
 * @return [void]
 */
-SearchPanelV2.prototype.clearInput = function (target) {
+SearchPanel.prototype.clearInput = function (target) {
   $(target).val("");
   $(target).trigger("change");
 }
@@ -234,7 +234,7 @@ SearchPanelV2.prototype.clearInput = function (target) {
 * @param enable [Boolean] true/false - enable/disable search inputs
 * @return [void]
 */
-SearchPanelV2.prototype.toggleInputs = function (enable) {
+SearchPanel.prototype.toggleInputs = function (enable) {
   $("#overall_search, #searchTable_wrapper thead input").prop("disabled", !enable);
 }
 
@@ -244,7 +244,7 @@ SearchPanelV2.prototype.toggleInputs = function (enable) {
 * @param enable [Boolean] true/false - enable/disable filters
 * @return [void]
 */
-SearchPanelV2.prototype.toggleFilters = function (enable) {
+SearchPanel.prototype.toggleFilters = function (enable) {
   enable ? $("#searchTable_wrapper .dataTables_scrollFoot").show() : $("#searchTable_wrapper .dataTables_scrollFoot").hide();
 }
 
@@ -254,7 +254,7 @@ SearchPanelV2.prototype.toggleFilters = function (enable) {
 * @param active [Boolean] true/false - enable/disable active ajax state
 * @return [void]
 */
-SearchPanelV2.prototype.ajaxActive = function (active) {
+SearchPanel.prototype.ajaxActive = function (active) {
   this.active = active;
   active ? $("#search_active_info").show() : $("#search_active_info").hide();
 }
@@ -264,7 +264,7 @@ SearchPanelV2.prototype.ajaxActive = function (active) {
 *
 * @return [Object] request data
 */
-SearchPanelV2.prototype.searchData = function (start, length) {
+SearchPanel.prototype.searchData = function (start, length) {
   var order = this.tsSearchTable.order()[0];
   var reqData = {
     columns: {},
@@ -302,7 +302,7 @@ SearchPanelV2.prototype.searchData = function (start, length) {
 *
 * @return [Object Array] column definition objects
 */
-SearchPanelV2.prototype.columns = function () {
+SearchPanel.prototype.columns = function () {
   var columns = [
     {"data" : "parent_identifier", "width" : "7%"},
     {"data" : "parent_label", "width" : "8%"},
@@ -329,7 +329,7 @@ SearchPanelV2.prototype.columns = function () {
 *
 * @return [void]
 */
-SearchPanelV2.prototype.filterPageSettings = function () {
+SearchPanel.prototype.filterPageSettings = function () {
   pageSettings[0] = $.grep(pageSettings[0], function(v) { return v != -1; });
   pageSettings[1] = $.grep(pageSettings[1], function(v) { return v != "All"; });
   pageLength = pageLength == -1 ? Math.max.apply(Math, pageSettings[0]) : pageLength;

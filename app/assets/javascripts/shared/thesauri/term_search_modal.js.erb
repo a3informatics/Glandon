@@ -1,12 +1,12 @@
 /*
-* Extends 'Search Panel V2'. Modal used to search terminologies and select Code List Items. Paginated.
+* Extends 'Search Panel'. Modal used to search terminologies and select Code List Items. Paginated.
 */
 
 /*
 * Requires: JavaScript 'shared/tags' in the view
 */
 
-TermSearchModal.prototype = Object.create(SearchPanelV2.prototype);
+TermSearchModal.prototype = Object.create(SearchPanel.prototype);
 
 /**
 * Term Search Modal Constructor
@@ -16,7 +16,7 @@ TermSearchModal.prototype = Object.create(SearchPanelV2.prototype);
 * @return [void]
 */
 function TermSearchModal(callback, url) {
-  SearchPanelV2.call(this, url);
+  SearchPanel.call(this, url);
 
   this.selected = [];
   this.callback = callback; // Note that this can also be set in call to search
@@ -129,7 +129,7 @@ TermSearchModal.prototype.updateUI = function() {
 */
 TermSearchModal.prototype.setListeners = function() {
   // Call super
-  SearchPanelV2.prototype.setListeners.call(this);
+  SearchPanel.prototype.setListeners.call(this);
 
   var _this = this;
 
