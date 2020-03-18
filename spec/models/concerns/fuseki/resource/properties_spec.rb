@@ -4,25 +4,14 @@ describe Fuseki::Resource::Properties do
   
   include DataHelpers
   include PublicFileHelpers
-
+  include FusekiBaseHelpers
+  
   def sub_dir
     return "models/concerns/fuseki/resource/properties"
   end
 
   before :all do
     IsoHelpers.clear_cache
-  end
-
-  def property_metadata(property)
-    result = {}
-    property.each {|key, value| result[key] = value.respond_to?(:to_h) ? value.to_h : value}
-    result
-  end
-
-  def all_metadata(metadata)
-    result = {}
-    metadata.each {|key, property| result[key] = property_metadata(property)}
-    result
   end
 
   before :each do
