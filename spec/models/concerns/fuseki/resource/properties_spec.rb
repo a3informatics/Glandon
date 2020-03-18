@@ -13,6 +13,18 @@ describe Fuseki::Resource::Properties do
     IsoHelpers.clear_cache
   end
 
+  def property_metadata(property)
+    result = {}
+    property.each {|key, value| result[key] = value.respond_to?(:to_h) ? value.to_h : value}
+    result
+  end
+
+  def all_metadata(metadata)
+    result = {}
+    metadata.each {|key, property| result[key] = property_metadata(property)}
+    result
+  end
+
   before :each do
     data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
     load_files(schema_files, data_files)
@@ -23,7 +35,7 @@ describe Fuseki::Resource::Properties do
     item = FusekiBaseHelpers::TestRegistrationAuthorities.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     expect(properties.parent.class).to eq(FusekiBaseHelpers::TestRegistrationAuthorities)
-    check_file_actual_expected(properties.metadata, sub_dir, "properties_new_expected_1.yaml")
+    check_file_actual_expected(all_metadata(properties.metadata), sub_dir, "properties_new_expected_1.yaml")
   end
   
   it "ignore property" do
@@ -40,7 +52,7 @@ describe Fuseki::Resource::Properties do
     item = FusekiBaseHelpers::TestRegistrationAuthorities.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     result = properties.property(:owner)
-    check_file_actual_expected(result.metadata, sub_dir, "property_expected_1.yaml")
+    check_file_actual_expected(property_metadata(result.metadata), sub_dir, "property_expected_1.yaml")
   end  
 
   it "assign" do

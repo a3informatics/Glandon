@@ -51,11 +51,11 @@ class XSDDatatype
     datatype_configuration[:default].send(datatype_configuration[:default_method])
   end
 
-  # To String
+  # To Hash. Return as a hash
   #
-  # @return [String] the object as a string
-  def to_s
-    @datatype
+  # @return [Hash] the object as a hash
+  def to_h
+    {datatype: @datatype, fragment: @fragment}
   end
 
 private
