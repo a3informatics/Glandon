@@ -210,156 +210,43 @@ class Thesaurus <  IsoManagedV2
     {versions: versions, items: final_results}
   end
 
-  # def changes_impact(other_version)
-  #   uris = [self.uri, other_version.uri]
-  #   raw_results = {}
-  #   final_results = {}
-  #   # Get the raw results
-  #   query_string = %Q{
-  #     SELECT ?e ?v ?d ?i ?cl ?l ?n
-  #     WHERE
-  #     {
-  #       #{uris.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r .
-  #                                #{x.to_ref} isoT:creationDate ?d .
-  #                                #{x.to_ref} isoT:hasIdentifier ?si1 .
-  #                                ?si1 isoI:version ?v .
-  #                                BIND (#{x.to_ref} as ?e)}" }.join(" UNION\n")}
-  #       ?r bo:reference ?cl .
-  #       ?cl isoT:hasIdentifier ?si2 .
-  #       ?cl isoC:label ?l .
-  #       ?cl th:notation ?n .
-  #       ?si2 isoI:identifier ?i .
-  #     }
-  #   }
-  #   query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-  #   triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-  #   triples.each do |entry|
-  #     uri = entry[:e].to_s
-  #     raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
-  #     raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
-  #   end
-
-  #   # Build the skeleton final results with a default value.
-  #   raw_results.each do |uri, version|
-  #     version[:children].each do |entry|
-  #       key = entry[:key].to_sym
-  #       next if final_results.key?(key)
-  #       final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: :not_present}
-  #     end
-  #   end
-
-  #   # Process the changes
-  #   # raw_results.each_with_index do |(uri, version), index|
-  #       common_items = raw_results.values.first[:children] & raw_results.values.last[:children]
-  #       deleted_items = raw_results.values.first[:children] - raw_results.values.last[:children]
-
-  #     if !common_items.empty?
-  #       common_items.each do |entry|
-  #         prev = raw_results.values.first[:children].find{|x| x[:key] == entry[:key]}
-  #         curr = raw_results.values.last[:children].find{|x| x[:key] == entry[:key]}
-  #         final_results[entry[:key].to_sym][:status] = curr.no_change?(prev) ? :no_change : :updated
-  #       end
-  #     end
-
-  #     if !deleted_items.empty?
-  #       deleted_items.each do |entry|
-  #         final_results[entry[:key].to_sym][:status] = :deleted
-  #       end
-  #     end
-  #   # end
-  #   # Remove blank entries (those with no changes)
-  #   no_change_entry = :no_change
-  #   not_present_entry = :not_present
-  #   final_results.delete_if {|k,v| v[:status] == no_change_entry || v[:status] == not_present_entry}
-  #   # And return
-  #   {items: final_results}
-  # end
-
   # Changes_impact_v2. It finds the changes between two CDISC thesauruses, filtered by items with existing links to the specific sponsor thesaurus
   #
   # @param [Object] new_version the required window size for changes
   # @param [Object] sponsor_version the required window size for changes
   # @return [Array] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes_impact_v2(new_version, sponsor_version)
-      final_results = []
-      # Get the raw results
-      query_string = %Q{
-        SELECT DISTINCT ?cl ?v ?l ?n ?i ?o ?t ?cl_new WHERE
+    final_results = []
+    # Get the raw results
+    query_string = %Q{
+      SELECT DISTINCT ?cl ?v ?l ?n ?i ?o ?t ?cl_new WHERE
+      {
+        { #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?cl  } MINUS { #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl }
+        BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl}
+          && NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl} AS ?cilink)
+        FILTER(?cilink=false)
+        ?cl isoT:hasIdentifier ?si .
+        ?si isoI:version ?v .
+        ?cl isoC:label ?l .
+        ?cl th:notation ?n .
+        ?si isoI:identifier ?i .
+        ?cl isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        ?cl rdf:type ?t
+        OPTIONAL
         {
-          { #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?cl  } MINUS { #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl }
-          BIND (NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower/^th:narrower ?cl}
-            && NOT EXISTS {#{sponsor_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl} AS ?cilink)
-          FILTER(?cilink=false)
-          ?cl isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?cl isoC:label ?l .
-          ?cl th:notation ?n .
-          ?si isoI:identifier ?i .
-          ?cl isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
-          ?cl rdf:type ?t
-          OPTIONAL
-          {
-            #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl_new .
-            ?cl_new isoT:hasIdentifier/isoI:identifier ?i .
-          }
+          #{new_version.uri.to_ref} th:isTopConceptReference/bo:reference ?cl_new .
+          ?cl_new isoT:hasIdentifier/isoI:identifier ?i .
         }
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-      triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :o, :t, :cl_new])
-      triples.each do |entry|
-        final_results.push({identifier: entry[:i], id: Uri.new(uri: entry[:cl].to_s).to_id, label: entry[:l],
-          notation: entry[:n], version: entry[:v], owner: entry[:o], rdf_type: entry[:t].to_s, cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
-      end
-      final_results
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    triples = query_results.by_object_set([:cl, :v, :l, :n, :i, :o, :t, :cl_new])
+    triples.each do |entry|
+      final_results.push({identifier: entry[:i], id: Uri.new(uri: entry[:cl].to_s).to_id, label: entry[:l],
+        notation: entry[:n], version: entry[:v], owner: entry[:o], rdf_type: entry[:t].to_s, cl_new: Uri.new(uri: entry[:cl_new].to_s).to_id})
     end
-
-  # Changes_CDU
-  #
-  # @param [Integer] window_size the required window size for changes
-  # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions,
-  # and an array of the versions selected by the user (first and last)
-  # def changes_cdu (window_size)
-  #   cls = changes(window_size)
-  #   # Remove any entries with :deleted followed by :not_present • n
-  #   first_delete_entry = [{status: :deleted}] + [{status: :not_present}] * (window_size - 1)
-  #   cls[:items].delete_if {|k,v| v[:status] == first_delete_entry }
-  #   # Remove any entries with :updated followed by :no_change • n
-  #   no_change_entry = [{status: :updated}] + [{status: :no_change}] * (window_size - 1)
-  #   cls[:items].delete_if {|k,v| v[:status] == no_change_entry }
-  #   # Remove any entries with :created followed by :no_change • n
-  #   created_no_change_entry = [{status: :created}] + [{status: :no_change}] * (window_size - 1)
-  #   cls[:items].delete_if {|k,v| v[:status] == created_no_change_entry }
-  #   # Remove any entries with :not_present at the beggining and at the end
-  #   cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:not_present} }
-  #   # Remove any entries with :not_present at the beggining and deleted at the end
-  #   cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:deleted} }
-  #   # Now summarise
-  #   results = {created: [], deleted: [], updated: [], versions:[]}
-  #   cls[:items].each do |key, value|
-  #     value[:status].each_with_index do |status, index|
-  #       next if status[:status] == :no_change
-  #       next if status[:status] == :not_present
-  #       if status[:status] == :deleted
-  #           value[:overall_status] = :deleted
-  #           break
-  #       end
-  #       if status[:status] == :created && index != 0
-  #           value[:overall_status] = :created
-  #       end
-  #       if status[:status] == :updated
-  #         if value[:overall_status].blank?
-  #           value[:overall_status] = :updated
-  #         end
-  #       end
-  #     end
-  #   end
-  #   cls[:items].each do |key, value|
-  #     results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
-  #   end
-  #   results[:versions] = cls[:versions]
-  #   results
-  # end
-
+    final_results
+  end
 
   # Submission
   #
@@ -528,6 +415,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     
     # Get set of URIs. Not needed if we dont use VALUES in the following query.
     # uris = child_uri_set(params)
+    count = params[:count].to_i
+    offset = params[:offset].to_i
 
     # Get the final result
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
@@ -571,7 +460,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
           BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )
           BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ORDER BY ?i
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ORDER BY ?i LIMIT #{count} OFFSET #{offset}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :isoR])
     query_results.by_object_set([:s, :i, :n, :d, :pt, :e, :o, :rs, :ext, :sub, :eo, :so, :sv, :sci, :ns, :count, :current, :sys, :gt ]).each do |x|
