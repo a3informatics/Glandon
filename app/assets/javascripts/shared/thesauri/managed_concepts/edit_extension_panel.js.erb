@@ -252,7 +252,7 @@ EditExtensionPanel.prototype.newFromSynonymHandler = function() {
   var _this = this;
 
   // Select row event
-  this.table.one('select', function (e, dt, type, indexes) {
+  this.table.off('select').on('select', function (e, dt, type, indexes) {
     var row = _this.table.row(indexes[0]);
     var synonyms = row.data().synonym.split(';');
     var synonymsCount = (synonyms.length == 1 ? (synonyms[0].length > 0 ? 1 : 0) : synonyms.length);

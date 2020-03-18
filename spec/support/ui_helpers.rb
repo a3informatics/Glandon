@@ -247,27 +247,70 @@ module UiHelpers
   end
 
   # Terminology
-    def ui_term_overall_search(text)
+  def ui_term_overall_filter(text)
     input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
     input.set(text)
-    input.native.send_keys(:return)
-    wait_for_ajax(15)
   end
 
-  def ui_term_column_search(column, text)
-    column_input_map =
-    {
-      notation: "searchTable_csearch_submission_value",
-      code_list: "searchTable_csearch_cl",
-      code_list_name: "searchTable_csearch_cl_name",
-      definition: "searchTable_csearch_definition",
-      tags: "searchTable_csearch_tags"
-    }
-    input = column_input_map[column]
-    fill_in input, with: text
-    ui_hit_return(input)
-    wait_for_ajax(15)
+	def ui_term_overall_search(text)
+		input = find("#overall_search")
+		input.set(text)
+		input.native.send_keys(:return)
+		wait_for_ajax 120
+	end
+
+	def search_column_input_map(type)
+		{ code_list: "searchTable_c#{type.to_s}_parent_identifier",
+			code_list_name: "searchTable_c#{type.to_s}_parent_label",
+			item: "searchTable_c#{type.to_s}_identifier",
+			notation: "searchTable_c#{type.to_s}_notation",
+			preferred_term: "searchTable_c#{type.to_s}_preferred_term",
+			synonym: "searchTable_c#{type.to_s}_synonym",
+			definition: "searchTable_c#{type.to_s}_definition",
+			tags: "searchTable_c#{type.to_s}_tags",
+			thesaurus: "searchTable_c#{type.to_s}_tidentifier",
+			thesaurus_version: "searchTable_c#{type.to_s}_tversion" }
+	end
+
+  def ui_term_column_search(column, text, wait = true)
+    input = search_column_input_map(:search)[column]
+		begin
+			fill_in input, with: text
+			ui_hit_return(input)
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+			fill_in input, with: text
+			ui_hit_return(input)
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    end
+    wait_for_ajax(120) if wait
   end
+
+	def ui_term_column_filter(column, text)
+		input = search_column_input_map(:filter)[column]
+		begin
+			fill_in input, with: text
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+			fill_in input, with: text
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    end
+	end
+
+	def ui_term_filter_visible
+		page.has_css?("#searchTable_wrapper .dataTables_scrollFoot")
+	end
+
+	def ui_term_input_empty?(type, column)
+		begin
+			result = find("##{search_column_input_map(type)[column]}").text == ""
+  	rescue Capybara::ElementNotFound => e
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(2000,0)
+			result = find("##{search_column_input_map(type)[column]}").text == ""
+			find("#searchTable_wrapper .dataTables_scrollBody").scroll_to(-2000,0)
+    end
+		result
+	end
 
   def ui_show_more_tags_th
     find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click

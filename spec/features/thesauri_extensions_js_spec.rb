@@ -282,10 +282,7 @@ describe "Thesauri Extensions", :type => :feature do
       page.find("#select-all-latest").click
       click_button "Submit and proceed"
       sleep 2
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C100129")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
+      ui_term_column_search(:code_list, "C100129")
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
       click_button 'Add items'
       wait_for_ajax(10)
@@ -299,18 +296,10 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax(10)
       click_button "Submit and proceed"
       sleep 2
-      input.set("")
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl name"]')
-      input.set("Country")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
+      ui_term_column_search(:code_list_name, "Country")
       find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
-      input.set("")
-      input = find(:xpath, '//*[@id="searchTable_csearch_preferred term"]')
-      input.set("Congo")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
+      ui_term_column_search(:preferred_term, "Congo")
       find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
       expect(find("#searchModal #number-selected").text).to eq("3")
       click_button 'Add items'
@@ -327,10 +316,7 @@ describe "Thesauri Extensions", :type => :feature do
       page.find("#select-all-latest").click
       click_button "Submit and proceed"
       sleep 2
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C1")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
+      ui_term_column_search(:code_list, "C1")
       find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[2]")[:class].include?("disabled")
       expect(find("#searchModal #number-selected").text).to eq("1")
@@ -469,10 +455,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_button "Submit and proceed"
       sleep 2
       ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
-      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C10")
-      input.native.send_keys(:return)
-      wait_for_ajax(120)
+      ui_term_column_search(:code_list, "C10")
       ui_check_table_info("searchTable", 1, 100, "4,448")
       click_button "Close"
       sleep 1
