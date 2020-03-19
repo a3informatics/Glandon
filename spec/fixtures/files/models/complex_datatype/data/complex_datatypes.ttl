@@ -1,0 +1,56 @@
+@prefix : <http://www.assero.co.uk/CDT#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CDT>
+	rdf:type owl:Ontology ;
+.
+:BL
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "BL"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#value> ;
+.
+<http://www.assero.co.uk/CDTP#value>
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "value"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "float"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "integer"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "dateTime"^^xsd:string ;
+.
+:CD
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "CD"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#code> ;
+.
+<http://www.assero.co.uk/CDTP#code>
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "code"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "string"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> ""^^xsd:string ;
+.
+:PQR
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "PQR"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#code> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#value> ;
+.
+:PQR_INT
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "PQR_INT"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#code> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#value> ;
+.
+:DATETIME
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Date Time"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "DATETIME"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> <http://www.assero.co.uk/CDTP#value> ;
+.

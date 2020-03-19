@@ -4,15 +4,17 @@
 # @since Hackathon
 class ComplexDatatype < Fuseki::Base
 
-  configure rdf_type: "http://www.s-cubed.dk/Datatypes#ComplexDatatype",
+  configure rdf_type: "http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype",
             base_uri: "http://#{ENV["url_authority"]}/CDT",
-            uri_unique: :short_label,
+            uri_property: :short_name,
             cache: true,
-            key_property: :short_label
+            key_property: :short_name
 
   data_property :label
-  object_property :attribute, cardinality: :many, model_class: "ComplexDatatype::Atribute"
+  data_property :short_name
+  object_property :has_property, cardinality: :many, model_class: "ComplexDatatype::Property"
   
   validates :label, presence: true
+  validates :short_name, presence: true
 
 end
