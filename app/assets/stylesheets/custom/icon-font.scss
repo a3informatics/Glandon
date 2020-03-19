@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.icon-codelist_item:before {
+  content: "\e958";
+}
+.icon-instruction:before {
+  content: "\e959";
+}
 .icon-cloud:before {
   content: "\e957";
 }
