@@ -33,12 +33,12 @@
           <div class="tabs-layout" id="selector-type-tabs">
 
             <div class="tabs-sel">
-              <div class="tab-option with-icon active" id="tab-thesauri"><span class="icon-terminology bg-prim-light"></span><span>Terminologies</span></div>
+              <div class="tab-option with-icon" id="tab-thesauri"><span class="icon-terminology bg-prim-light"></span><span>Terminologies</span></div>
               <div class="tab-option with-icon" id="tab-codelists"><span class="icon-codelist bg-prim-bright"></span><span>Code Lists</span></div>
               <div class="tab-option with-icon" id="tab-codelist-items"><span class="icon-codelist-item bg-prim-bright"></span><span>Code List Items</span></div>
             </div>
 
-            <div class="tab-wrap" data-tab="tab-thesauri">
+            <div class="tab-wrap closed" data-tab="tab-thesauri">
               <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "thesauri-selector"} %>
             </div>
 
@@ -61,12 +61,4 @@
     </div>
   </div>
 </div>
-<%  index_th_url = thesauri_index_path
-    history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
-    index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
-    history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) %>
-
-<%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
-                        miHistoryThesauriUrl = '#{history_th_url}',
-                        miIndexClUrl = '#{index_cl_url}',
-                        miHistoryClUrl = '#{history_cl_url}'; "%>
+<%= render partial: "shared/js_urls" %>
