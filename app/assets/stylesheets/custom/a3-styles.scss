@@ -166,6 +166,20 @@
   transform: scale(1.1);
 }
 
+// MODALS
+
+.modal-lg.wide-screen {
+  width: 85%;
+}
+
+.modal-lg.full-screen {
+  width: 95%;
+}
+
+.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body {
+  padding: 20px 40px;
+}
+
 // LIST WRAP (CDISC_TERMS)
 
 .list-wrap{
