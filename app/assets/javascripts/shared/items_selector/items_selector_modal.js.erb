@@ -1,0 +1,87 @@
+/*
+* Items Selector
+*/
+
+/*
+* Parameters
+** id [String] id of the modal (must match the id passed to the partial)
+** types [Object] {thesauri, cls, clitems} should specify ones to enable with true/false
+** multiple [Boolean] enable/disable multiple item selection
+** callback [Function] called when user clicks Submit. User's selection is passed as parameter.
+*/
+
+/**
+* Items Selector Modal Constructor
+*
+* @param [Object] user-defined values
+* @return [void]
+*/
+function ItemsSelector(params) {
+ this.params = this.paramsDefault(params);
+ this.modal = $("#selector-modal-" + this.params.id);
+
+ this.initializeTabs();
+}
+
+/**
+ * Initializes UI based on params. Removes unused elements. Opens first enabled tab.
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.initializeTabs = function(userParams) {
+  var types = Object.keys(this.params.types);
+  for (var t of types) {
+    if (!this.params.types[t])
+      this.disableTab(t);
+  }
+
+  this.openTab(types.filter(function (t) { return this.params.types[t] }.bind(this))[0]);
+}
+
+/**
+ * Opens a tab, if not disabled
+ *
+ * @param tab [String] Key of the types object referring to the tab
+ * @return [void]
+ */
+ItemsSelector.prototype.openTab = function(tab) {
+  tab = this.modal.find("#tab-" + tab);
+
+  if (!tab.hasClass("disabled")){
+    setTimeout(function() {tab.click()}, 10);
+  }
+}
+
+/**
+ * Disables a tab, removes content
+ *
+ * @param tab [String] Key of the types object referring to the tab
+ * @return [void]
+ */
+ItemsSelector.prototype.disableTab = function(tab) {
+  this.modal.find("#tab-" + tab).addClass("disabled");
+  this.modal.find("#selector-" + tab).remove();
+}
+
+/**
+ * Merges user parameters with default values in missing fields
+ *
+ * @param userParams [Object] user-defined values
+ * @return [Object] parameters with default values in missing fields
+ */
+ItemsSelector.prototype.paramsDefault = function(userParams) {
+  userParams = userParams || {};
+
+  return {
+    id: userParams.id || "",
+    multiple: userParams.multiple || true,
+    callback: userParams.callback,
+    types: userParams.types == null ?
+      { thesauri: true, cls: false, clitems: false } :
+      {
+        thesauri: userParams.types.thesauri || false,
+        cls: userParams.types.cls || false,
+        clitems: userParams.types.clitems || false
+      },
+  }
+}

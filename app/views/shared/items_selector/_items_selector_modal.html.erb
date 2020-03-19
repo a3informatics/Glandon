@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'shared/datatables_loading', 'custom/tabs_layout', 'shared/managed_children_select' %>
 <%= javascript_include_tag 'shared/tags', 'shared/tabs_layout' %>
+<%= javascript_include_tag 'shared/items_selector/items_selector_modal', 'shared/items_selector/managed_item_selector', 'shared/items_selector/unmanaged_item_selector' %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="selector-modal-<%= id %>">
   <div class="modal-dialog modal-lg wide-screen" role="document">
@@ -34,20 +35,20 @@
 
             <div class="tabs-sel">
               <div class="tab-option with-icon" id="tab-thesauri"><span class="icon-terminology bg-prim-light"></span><span>Terminologies</span></div>
-              <div class="tab-option with-icon" id="tab-codelists"><span class="icon-codelist bg-prim-bright"></span><span>Code Lists</span></div>
-              <div class="tab-option with-icon" id="tab-codelist-items"><span class="icon-codelist-item bg-prim-bright"></span><span>Code List Items</span></div>
+              <div class="tab-option with-icon" id="tab-cls"><span class="icon-codelist bg-prim-bright"></span><span>Code Lists</span></div>
+              <div class="tab-option with-icon" id="tab-clitems"><span class="icon-codelist-item bg-prim-bright"></span><span>Code List Items</span></div>
             </div>
 
             <div class="tab-wrap closed" data-tab="tab-thesauri">
-              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "thesauri-selector"} %>
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-thesauri"} %>
             </div>
 
-            <div class="tab-wrap closed" data-tab="tab-codelists">
-              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "codelist-selector"} %>
+            <div class="tab-wrap closed" data-tab="tab-cls">
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-cls"} %>
             </div>
 
-            <div class="tab-wrap closed" data-tab="tab-codelist-items">
-              <%= render partial: "shared/items_selector/unmanaged_item_selector", locals: {id: "codelist-item-selector"} %>
+            <div class="tab-wrap closed" data-tab="tab-clitems">
+              <%= render partial: "shared/items_selector/unmanaged_item_selector", locals: {id: "selector-clitems"} %>
             </div>
 
           </div>
