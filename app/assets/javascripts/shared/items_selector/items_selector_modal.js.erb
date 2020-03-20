@@ -19,9 +19,11 @@
 function ItemsSelector(params) {
  this.params = this.paramsDefault(params);
  this.modal = $("#selector-modal-" + this.params.id);
+ this.errorDiv = this.modal.find("#selector-modal-error");
 
- this.initTabUI();
  this.initSelection();
+ this.setListeners();
+ this.initTabs();
 }
 
 /**
@@ -39,6 +41,76 @@ ItemsSelector.prototype.setCallback = function(callback) {
 }
 
 /**
+ * Sets listeners
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.setListeners = function(callback) {
+  this.modal.find(".tab-option").on("switch", this.onTabClick.bind(this));
+
+  this.modal.on("shown.bs.modal", this.onModalShow.bind(this));
+
+  this.modal.on("hide.bs.modal", this.onModalClose.bind(this));
+}
+
+/**
+ ****** Events ******
+**/
+
+/**
+ * Calls the show function of the clicked tab
+ *
+ * @param type [String] name of the tab
+ * @param selected [Boolean] true / false - selected / deselected
+ * @param data [Object Array] array of data affected
+ * @return [void]
+ */
+ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) {
+  var subselection = this.selection[type];
+
+  data.each(function(d) {
+    if(selected && !subselection.includes(d))
+      subselection.push(d);
+    else if (!selected && subselection.includes(d))
+      subselection.splice(subselection.indexOf(d), 1);
+  });
+
+  this.updateSelectionInfo(type);
+}
+
+/**
+ * Calls the show function of the clicked tab
+ *
+ * @param e [Event] event data
+ * @param id [String] clicked tab id
+ * @return [void]
+ */
+ItemsSelector.prototype.onTabClick = function(e, id) {
+  id = id.split('-')[1];
+  this.tabs[id].show();
+}
+
+/**
+ * Called when modal opened
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.onModalShow = function() {
+  this.openDefaultTab();
+}
+
+/**
+ * Called when modal closed
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.onModalClose = function() {
+  $.each(this.tabs, function(type, tab) {
+    // tab.resetUI();
+  });
+}
+
+/**
  ****** UI ******
 **/
 
@@ -49,25 +121,26 @@ ItemsSelector.prototype.setCallback = function(callback) {
  */
 ItemsSelector.prototype.initSelection = function() {
   this.selection = { thesauri: [], cls: [], clitems: [] };
-  this.updateSelectionInfo("None");
 
   if (!this.params.multiple)
     this.modal.find("#view-selection").remove();
+
+  this.updateSelectionInfo();
 }
 
 /**
  * Sets the selection's element text to a new value
  *
- * @param value [String] Text value (required if multiple disabled)
+ * @param sourceTabName [String] name of the calling tab
  * @return [void]
  */
-ItemsSelector.prototype.updateSelectionInfo = function(value) {
+ItemsSelector.prototype.updateSelectionInfo = function(sourceTabName) {
   var selEl = this.modal.find("#selected-info");
 
   if (this.params.multiple)
     selEl.text(this.getSelectionLength());
   else
-    selEl.text(value);
+    selEl.text(this.getSelectionText(sourceTabName));
 }
 
 /**
@@ -82,6 +155,18 @@ ItemsSelector.prototype.getSelectionLength = function() {
   });
 
   return result;
+}
+
+/**
+ * Calculated the total selection length
+ *
+ * @param sourceTabName [String] name of the calling tab
+ * @return [String] Selection text (identifier + semantic version)
+ */
+ItemsSelector.prototype.getSelectionText = function(sourceTabName) {
+  var subselection = this.selection[sourceTabName];
+  subselection = subselection == null ? [] : subselection;
+  return subselection.length > 0 ? subselection[0].has_identifier.identifier + " v" + subselection[0].has_identifier.semantic_version : "None";
 }
 
 /**
@@ -103,19 +188,53 @@ ItemsSelector.prototype.resetUI = function() {
  *
  * @return [void]
  */
-ItemsSelector.prototype.initTabUI = function(userParams) {
-  $.each(this.params.types, function(tab, enabled){
-    if (!enabled) {
-      this.disableTab(tab);
-      delete this.params.types[tab];
-    }
-  }.bind(this));
+ItemsSelector.prototype.initTabs = function(userParams) {
+  this.tabs = {};
 
-  this.openDefaultTab();
+  $.each(this.params.types, function(tab, enabled){
+    if (enabled)
+      this.initializeTab(tab);
+    else
+      this.disableTab(tab);
+  }.bind(this));
 }
 
 /**
- * Opens a tab
+ * Initializes a tab selector instance
+ *
+ * @param tabName [String] Name of the tab
+ * @return [void]
+ */
+ItemsSelector.prototype.initializeTab = function(tabName) {
+  switch (tabName) {
+    case "thesauri":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          callback: this.onPanelSelectionChange.bind(this),
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl}
+        });
+      break;
+    case "cls":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          callback: this.onPanelSelectionChange.bind(this),
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryClUrl, index: miIndexClUrl}
+        });
+      break;
+
+  }
+}
+
+/**
+ * Simulates click on the first enabled tab, opening it
  *
  * @return [void]
  */
@@ -123,7 +242,7 @@ ItemsSelector.prototype.openDefaultTab = function() {
   var defaultTab = Object.keys(this.params.types)[0];
   defaultTab = this.getTab(defaultTab);
 
-  setTimeout(function() {defaultTab.click()}, 100);
+  setTimeout(function() {defaultTab.click(); }, 100);
 }
 
 /**
@@ -132,9 +251,10 @@ ItemsSelector.prototype.openDefaultTab = function() {
  * @param tabName [String] Name of the tab
  * @return [void]
  */
-ItemsSelector.prototype.disableTab = function(tab) {
-  this.getTab(tab).addClass("disabled");
-  this.modal.find("#selector-" + tab).remove();
+ItemsSelector.prototype.disableTab = function(tabName) {
+  this.getTab(tabName).addClass("disabled");
+  this.modal.find("#selector-" + tabName).remove();
+  delete this.params.types[tabName];
 }
 
 /**
@@ -150,6 +270,39 @@ ItemsSelector.prototype.getTab = function(tabName) {
 /**
  ****** Support ******
 **/
+
+/**
+ * Columns defs
+ *
+ * @param table [String] Table type
+ * @return [Object Array] Column definitions for specific table type
+ */
+ItemsSelector.prototype.columns = function (table) {
+  switch (table) {
+    case "index":
+      return [
+        {"data" : "owner"},
+        {"data" : "identifier"},
+        {"render" : function (data, type, row, meta) {
+            return row.label || row.preferred_term;
+        }},
+        {"data": "indicators", "orderable": false, "render" : function (data, type, row, meta) {
+            return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
+        }},
+      ];
+    case "history":
+      return [
+        {"render" : function (data, type, row, meta) {
+          return (type == 'display' ? row.has_identifier.semantic_version : row.has_identifier.version);
+        }},
+        {"data" : "has_identifier.version_label"},
+        {"data" : "has_state.registration_status"},
+        {"data" : "indicators", "orderable": false, "render": function (data, type, row, meta) {
+          return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
+        }},
+      ];
+  }
+}
 
 /**
  * Merges user parameters with default values in missing fields
