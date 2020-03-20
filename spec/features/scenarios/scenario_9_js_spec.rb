@@ -116,12 +116,9 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
         click_on "Submit and proceed"
       end
       in_modal do
-        find(:xpath, '//*[@id="searchTable_csearch_cl"]').set "C10"
-        find(:xpath, '//*[@id="searchTable_csearch_cl"]').native.send_keys :return
-        wait_for_ajax 30
+        ui_term_column_search(:code_list, "C10")
         find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
         find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
-        wait_for_ajax 30
         find(:xpath, "//*[@id='searchTable']/tbody/tr[1]").click
         click_button 'Add items'
       end
