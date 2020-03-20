@@ -3,7 +3,7 @@
 */
 
 /*
-* Parameters
+* Params
 ** id [String] id of the modal (must match the id passed to the partial)
 ** types [Object] {thesauri, cls, clitems} should specify ones to enable with true/false
 ** multiple [Boolean] enable/disable multiple item selection
@@ -20,48 +20,136 @@ function ItemsSelector(params) {
  this.params = this.paramsDefault(params);
  this.modal = $("#selector-modal-" + this.params.id);
 
- this.initializeTabs();
+ this.initTabUI();
+ this.initSelection();
 }
+
+/**
+ ****** General ******
+**/
+
+/**
+ * Sets a new callback
+ *
+ * @param callback [Function] New user submission callback
+ * @return [void]
+ */
+ItemsSelector.prototype.setCallback = function(callback) {
+  this.params.callback = callback;
+}
+
+/**
+ ****** UI ******
+**/
+
+/**
+ * Initializes selection type, UI
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.initSelection = function() {
+  this.selection = { thesauri: [], cls: [], clitems: [] };
+  this.updateSelectionInfo("None");
+
+  if (!this.params.multiple)
+    this.modal.find("#view-selection").remove();
+}
+
+/**
+ * Sets the selection's element text to a new value
+ *
+ * @param value [String] Text value (required if multiple disabled)
+ * @return [void]
+ */
+ItemsSelector.prototype.updateSelectionInfo = function(value) {
+  var selEl = this.modal.find("#selected-info");
+
+  if (this.params.multiple)
+    selEl.text(this.getSelectionLength());
+  else
+    selEl.text(value);
+}
+
+/**
+ * Calculated the total selection length
+ *
+ * @return [Integer] total length of selection
+ */
+ItemsSelector.prototype.getSelectionLength = function() {
+  var result = 0;
+  $.each(this.selection, function(type, values) {
+    result += values.length;
+  });
+
+  return result;
+}
+
+/**
+ * Sets a new callback
+ *
+ * @param callback [Function] New user submission callback
+ * @return [void]
+ */
+ItemsSelector.prototype.resetUI = function() {
+
+}
+
+/**
+ ****** Tabs ******
+**/
 
 /**
  * Initializes UI based on params. Removes unused elements. Opens first enabled tab.
  *
  * @return [void]
  */
-ItemsSelector.prototype.initializeTabs = function(userParams) {
-  var types = Object.keys(this.params.types);
-  for (var t of types) {
-    if (!this.params.types[t])
-      this.disableTab(t);
-  }
+ItemsSelector.prototype.initTabUI = function(userParams) {
+  $.each(this.params.types, function(tab, enabled){
+    if (!enabled) {
+      this.disableTab(tab);
+      delete this.params.types[tab];
+    }
+  }.bind(this));
 
-  this.openTab(types.filter(function (t) { return this.params.types[t] }.bind(this))[0]);
+  this.openDefaultTab();
 }
 
 /**
- * Opens a tab, if not disabled
+ * Opens a tab
  *
- * @param tab [String] Key of the types object referring to the tab
  * @return [void]
  */
-ItemsSelector.prototype.openTab = function(tab) {
-  tab = this.modal.find("#tab-" + tab);
+ItemsSelector.prototype.openDefaultTab = function() {
+  var defaultTab = Object.keys(this.params.types)[0];
+  defaultTab = this.getTab(defaultTab);
 
-  if (!tab.hasClass("disabled")){
-    setTimeout(function() {tab.click()}, 10);
-  }
+  setTimeout(function() {defaultTab.click()}, 100);
 }
 
 /**
  * Disables a tab, removes content
  *
- * @param tab [String] Key of the types object referring to the tab
+ * @param tabName [String] Name of the tab
  * @return [void]
  */
 ItemsSelector.prototype.disableTab = function(tab) {
-  this.modal.find("#tab-" + tab).addClass("disabled");
+  this.getTab(tab).addClass("disabled");
   this.modal.find("#selector-" + tab).remove();
 }
+
+/**
+ * Gets tab element
+ *
+ * @param tabName [String] Name of the tab
+ * @return [JQuery Element] tab element
+ */
+ItemsSelector.prototype.getTab = function(tabName) {
+  return this.modal.find("#tab-" + tabName);
+}
+
+/**
+ ****** Support ******
+**/
 
 /**
  * Merges user parameters with default values in missing fields
@@ -74,7 +162,7 @@ ItemsSelector.prototype.paramsDefault = function(userParams) {
 
   return {
     id: userParams.id || "",
-    multiple: userParams.multiple || true,
+    multiple: userParams.multiple !== false,
     callback: userParams.callback,
     types: userParams.types == null ?
       { thesauri: true, cls: false, clitems: false } :
