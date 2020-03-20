@@ -13,12 +13,12 @@ describe "Protocol" do
 
   describe "basic tests" do
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
 
-    after :all do
+    after :each do
     end
 
     it "create an instance" do
@@ -50,6 +50,8 @@ describe "Protocol" do
     it "Study example" do
       s1 = Study.create(identifier: "MY STUDY", name: "My Study")
       p1 = Protocol.create(identifier: "XXX", implements: s1.uri)
+      p1.implements = s1.uri
+      p1.save
       actual = Protocol.find_minimum(p1.uri)
       study = actual.implements_links
       study = Study.find_minimum(actual.implements_links)
