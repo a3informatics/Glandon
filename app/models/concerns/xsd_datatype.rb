@@ -9,6 +9,7 @@ class XSDDatatype
 
   # Initialise
   def initialize(fragment)
+    byebug if fragment.blank?
     @datatype = "#{C_XML_SCHEMA_NS}##{fragment}"
     @fragment = fragment
   end

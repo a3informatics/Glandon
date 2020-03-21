@@ -1,0 +1,63 @@
+---
+- :label: "Basic Observation"
+  :identifier: "BASIC OBS"
+  :identified_by: 
+    :label: "Test"
+    :madatory: true
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD 
+  :has_items:
+  - :label: "Category Code"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Subcategory Code"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Position"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Site of Administration"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Laterality"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Method"
+    :madatory: false
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Date Time"
+    :madatory: true
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: DT
+  - :label: "Not Done"
+    :madatory: true
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: BL
+  - :label: "Reason Not Done"
+    :madatory: true
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+  - :label: "Result"
+    :madatory: true
+    :enabled: true  
+    :complex_datatype: 
+     - :short_name: CD
+     - :short_name: PQR
+
+
