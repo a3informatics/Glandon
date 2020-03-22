@@ -119,4 +119,30 @@ describe IsoConceptSystem do
 
   end
 
+  describe "Root" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "cannot delete root" do
+      root = IsoConceptSystem.root
+      root.delete
+      expect(root.errors.count).to eq(1)
+      expect(root.errors.full_messages.to_sentence).to eq("You are not permitted to delete the root tag")
+    end
+
+    it "root?" do
+      root = IsoConceptSystem.root
+      expect(root.root?).to eq(true)
+      result = IsoConceptSystem.path(["CDISC", "SDTM"])
+      expect(result.root?).to eq(false)
+    end
+
+  end
 end

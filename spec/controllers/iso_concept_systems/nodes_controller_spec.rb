@@ -65,6 +65,15 @@ describe IsoConceptSystems::NodesController do
       expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or the tag or a child tag is currently in use.\"]}")
     end
 
+    it "prevents a node being destroyed if it the root" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      node = IsoConceptSystem.root
+      delete :destroy, {:id => node.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("500")
+      expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")
+    end
+
     it "update a node" do
       request.env['HTTP_ACCEPT'] = "application/json"
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))

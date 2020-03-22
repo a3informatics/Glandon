@@ -35,6 +35,13 @@ class IsoConceptSystem::Node < Fuseki::Base
     :narrower
   end
 
+  # Root? Is this the root node. Will return false.
+  #
+  # @return [Boolean] false, can never be root node.
+  def root?
+    false
+  end
+
 private
 
   # Query for checking if a node can be deleted

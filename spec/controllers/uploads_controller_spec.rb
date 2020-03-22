@@ -3,6 +3,11 @@ require 'rails_helper'
 describe UploadsController do
 
   include DataHelpers
+  include UploadHelpers
+  
+  def sub_dir
+    return "controllers/uploads"
+  end
 
   describe "Authorized User" do
 
@@ -16,7 +21,7 @@ describe UploadsController do
 
     it 'uploads file' do
       file = Hash.new
-      file['datafile'] = fixture_file_upload("files/upload.txt", 'text/html')
+      file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
       post :create, :upload => file
       expect(response).to redirect_to("/uploads")
     end

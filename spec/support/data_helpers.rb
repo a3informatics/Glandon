@@ -261,8 +261,6 @@ module DataHelpers
     return Rails.root.join "db/load/#{sub_dir}/#{filename}"
   end
   
-private
-
   def set_path(sub_dir, filename)
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end

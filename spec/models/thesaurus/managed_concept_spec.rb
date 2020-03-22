@@ -545,11 +545,11 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl",
+        "thesaurus_sponsor_import.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("import_load_7_2-6.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor4_impact.ttl")
       load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")

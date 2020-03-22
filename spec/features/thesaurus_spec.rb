@@ -90,7 +90,6 @@ describe "Thesaurus", :type => :feature do
       wait_for_ajax(10)
       expect(page).to have_content 'Mid upper arm circumference'
       expect(page).to have_content 'A00003'
-      #save_and_open_page
     end
 
     it "history allows the search page to be viewed (REQ-MDR-ST-060)", js: true do
@@ -104,8 +103,6 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Search Terminology'
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'Standard'
-
-    #save_and_open_page
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
@@ -121,8 +118,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Search Terminology'
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'Standard'
-      #expect(page).to have_button('Notepad+')
-      wait_for_ajax(5) # Big load
+      wait_for_ajax(5)
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -138,8 +134,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Search Terminology'
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'Standard'
-      #expect(page).to have_button('Notepad+')
-      wait_for_ajax(5) # Big load
+      wait_for_ajax(5)
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_overall_search('other')
       ui_check_table_info("searchTable", 1, 2, 2)
@@ -158,8 +153,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Search Terminology'
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'Standard'
-      #expect(page).to have_button('Notepad+')
-      wait_for_ajax(5) # Big load
+      wait_for_ajax(5)
       ui_check_table_info("searchTable", 0, 0, 0)
 
       ui_term_column_search(:code_list, 'A00001')
@@ -171,14 +165,12 @@ describe "Thesaurus", :type => :feature do
       ui_term_column_search(:definition, 'Score')
       ui_check_table_info("searchTable", 1, 1, 1)
 
-      click_button 'clearbutton'
+      click_button 'clear_button'
 
-      fill_in 'searchTable_csearch_item', with: "A"
-      ui_hit_return('searchTable_csearch_item')
+      ui_term_column_search(:item, 'A')
       ui_check_table_info("searchTable", 1, 7, 7)
 
-      fill_in 'searchTable_csearch_submission_value', with: "Ethnic"
-      ui_hit_return('searchTable_csearch_submission_value')
+      ui_term_column_search(:notation, 'Ethnic')
       ui_check_table_info("searchTable", 1, 2, 2)
 
       click_link 'Return'

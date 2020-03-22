@@ -16,6 +16,13 @@ class IsoConceptSystem < Fuseki::Base
 
   include IsoConceptSystem::Core
 
+  # Root? Is this the root node
+  #
+  # @return [Boolean] true if root node, false otherwise
+  def root?
+    self.pref_label == C_ROOT_LABEL && self.description == C_ROOT_DESC
+  end
+
   # Root. Get the root node or create if not present
   #
   # @raise [Errors::ApplicationError] if object not created.
@@ -46,6 +53,14 @@ class IsoConceptSystem < Fuseki::Base
     subjects.each do |subject, triples|
       return IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
     end
+  end
+
+  # Delete. Cannot delete the root node.
+  #
+  # @return [Integer] count of items deleted, will be 0.
+  def delete
+    self.errors.add(:base, "You are not permitted to delete the root tag")
+    0
   end
 
   # Find All. 
