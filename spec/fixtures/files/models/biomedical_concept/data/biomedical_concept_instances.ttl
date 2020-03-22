@@ -20,7 +20,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-22T21:00:43+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-22T21:29:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	isoT:hasItem :BCI10 ;
 	isoT:identifiedBy :BCI1 ;
@@ -86,5 +86,19 @@
 	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "1"^^xsd:positiveInteger ;
-	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
+	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> :BCI1_BCCDT ;
+.
+:BCI1_BCCDT
+	rdf:type <http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype> ;
+	isoC:label ""^^xsd:string ;
+	<http://www.assero.co.uk/BiomedicalConcept#basedOn> <http://www.assero.co.uk/CDT#CD> ;
+	<http://www.assero.co.uk/BiomedicalConcept#hasProperty> :BCI1_BCCDT_BCPvalue ;
+.
+:BCI1_BCCDT_BCPvalue
+	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Property> ;
+	isoC:label "value"^^xsd:string ;
+	<http://www.assero.co.uk/BiomedicalConcept#questionText> ""^^xsd:string ;
+	<http://www.assero.co.uk/BiomedicalConcept#promptText> ""^^xsd:string ;
+	<http://www.assero.co.uk/BiomedicalConcept#format> "8"^^xsd:string ;
+	<http://www.assero.co.uk/BiomedicalConcept#hasCodedValue> <http://www.cdisc.org/C66741/V4#C66741_C25347> ;
 .

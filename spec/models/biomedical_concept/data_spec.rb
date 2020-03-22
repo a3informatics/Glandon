@@ -79,7 +79,7 @@ describe BiomedicalConcept do
     instances = read_yaml_file(sub_dir, "instances.yaml")
     instances.each do |instance|
       object = BiomedicalConceptInstance.new(label: instance[:label])
-      object.identified_by = create_item(instance[:identified_by], 1)
+      object.identified_by = create_item(instance[:identified_by], 1, false)
       instance[:has_items].each_with_index do |item, index| 
         next if !item[:enabled]
         object.has_item_push(create_item(item, index+2, false))
