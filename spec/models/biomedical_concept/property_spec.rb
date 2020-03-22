@@ -31,7 +31,6 @@ describe BiomedicalConcept::Property do
     result.question_text = "Draft 123"
     result.prompt_text = "Draft 123"
     result.format = "5.2"
-    result.alias = "xxx"
     result.uri = result.create_uri(result.class.base_uri)
     expect(result.valid?).to eq(true)
   end
@@ -41,7 +40,6 @@ describe BiomedicalConcept::Property do
     result.question_text = "Draft 123^^^"
     result.prompt_text = "Draft 123"
     result.format = "5.2"
-    result.alias = "xxx"
     result.uri = result.create_uri(result.class.base_uri)
     expect(result.valid?).to eq(false)
     expect(result.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")

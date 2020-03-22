@@ -20,7 +20,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-21T16:33:09+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-22T20:29:48+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	isoT:hasItem :BCI1 ;
 	isoT:hasItem :BCI2 ;
@@ -58,6 +58,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Category Code"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "1"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -67,6 +68,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Subcategory Code"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "2"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -75,6 +77,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Position"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "3"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -83,6 +86,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Site of Administration"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "4"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -91,6 +95,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Laterality"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "5"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -99,6 +104,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Method"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "6"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -107,13 +113,16 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Date Time"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "7"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#DATETIME> ;
 .
 :BCI8
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Not Done"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "8"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#BL> ;
@@ -122,6 +131,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "9"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;
@@ -130,6 +140,7 @@
 	rdf:type <http://www.assero.co.uk/BiomedicalConcept#Item> ;
 	isoC:label "Result"^^xsd:string ;
 	<http://www.assero.co.uk/BiomedicalConcept#mandatory> ""^^xsd:boolean ;
+	<http://www.assero.co.uk/BiomedicalConcept#collect> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#enabled> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/BiomedicalConcept#ordinal> "10"^^xsd:positiveInteger ;
 	<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype> <http://www.assero.co.uk/CDT#CD> ;

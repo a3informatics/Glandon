@@ -6,13 +6,13 @@
     :label: "value"
     :simple_datatype: "boolean"
 - :short_name: "CD"
-  :label: "Boolean"
+  :label: "Coded"
   :properties: 
    - 
     :label: "code"
     :simple_datatype: "string"
 - :short_name: "PQR"
-  :label: "Boolean"
+  :label: "Physical Quantity Result"
   :properties: 
    - 
     :label: "code"
@@ -21,11 +21,11 @@
     :label: "value"
     :simple_datatype: "float"
 - :short_name: "PQR_INT"
-  :label: "Boolean"
+  :label: "Physical Quantity Result, Integer"
   :properties: 
    - 
     :label: "code"
-    vsimple_datatype: "string"
+    :simple_datatype: "string"
    - 
     :label: "value"
     :simple_datatype: "integer"

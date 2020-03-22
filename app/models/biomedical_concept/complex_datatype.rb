@@ -1,9 +1,10 @@
 class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype",
-            base_uri: "http://#{ENV["url_authority"]}/BCCDT"
+            uri_property: :label,
+            uri_suffix: 'BCCDT'
 
-  object_property :is_a, cardinality: :one, model_class: "ComplexDatatype"
+  object_property :based_on, cardinality: :one, model_class: "ComplexDatatype"
   object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::Property"
 
  #  validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?

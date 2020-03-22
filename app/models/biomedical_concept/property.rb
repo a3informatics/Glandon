@@ -1,13 +1,13 @@
 class BiomedicalConcept::Property < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Property",
-            base_uri: "http://#{ENV["url_authority"]}/BCP"
+            uri_property: :label,
+            uri_suffix: 'BCP'
 
   data_property :question_text
   data_property :prompt_text
   data_property :format
-  data_property :alias
-  object_property :has_code_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
+  object_property :has_coded_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
 
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?

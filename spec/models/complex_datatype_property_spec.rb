@@ -1,12 +1,11 @@
 require 'rails_helper'
-require 'complex_datatype/property'
 
-describe ComplexDatatype::Property do
+describe ComplexDatatypeProperty do
 	
 	include DataHelpers
 
   def sub_dir
-    return "models/complex_datatype/property"
+    return "models/complex_datatype_property"
   end
 
   before :each do
@@ -15,14 +14,14 @@ describe ComplexDatatype::Property do
   end
 
   it "valid property" do
-		item = ComplexDatatype::Property.new(label: "boolean", simple_datatype: "http://www.aurl.com")
+		item = ComplexDatatypeProperty.new(label: "boolean", simple_datatype: "http://www.aurl.com")
     item.uri = item.create_uri(item.class.base_uri)
     item.valid?
     expect(item.errors.count).to eq(0)
 	end
 
   it "valid property, errors I" do
-    item = ComplexDatatype::Property.new(label: "boolean")
+    item = ComplexDatatypeProperty.new(label: "boolean")
     item.uri = item.create_uri(item.class.base_uri)
     item.valid?
     expect(item.errors.count).to eq(1)
@@ -30,7 +29,7 @@ describe ComplexDatatype::Property do
   end
 
   it "valid property, errors II" do
-    item = ComplexDatatype::Property.new(simple_datatype: "xxx")
+    item = ComplexDatatypeProperty.new(simple_datatype: "xxx")
     item.uri = item.create_uri(item.class.base_uri)
     item.valid?
     expect(item.errors.count).to eq(1)
@@ -38,7 +37,7 @@ describe ComplexDatatype::Property do
   end
 
   it "create property" do
-    item = ComplexDatatype::Property.create(label: "PQ", simple_datatype: "string")
+    item = ComplexDatatypeProperty.create(label: "PQ", simple_datatype: "string")
     expect(item.errors.count).to eq(0)
     expect(item.uri.to_s).to eq("http://www.assero.co.uk/CDTP#PQ")
   end
