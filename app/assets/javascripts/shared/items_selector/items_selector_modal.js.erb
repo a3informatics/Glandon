@@ -41,6 +41,16 @@ ItemsSelector.prototype.setCallback = function(callback) {
 }
 
 /**
+ * Gets subselection for a tab
+ *
+ * @param sourceTab [String] name of the tab
+ * @return [Array] tab's subselection
+ */
+ItemsSelector.prototype.getSubselection = function(sourceTab) {
+  return this.selection[sourceTab];
+}
+
+/**
  * Sets listeners
  *
  * @return [void]
@@ -66,16 +76,26 @@ ItemsSelector.prototype.setListeners = function(callback) {
  * @return [void]
  */
 ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) {
-  var subselection = this.selection[type];
+  if (this.params.multiple) {
+    var subselection = this.selection[type];
 
-  data.each(function(d) {
-    if(selected && !subselection.includes(d))
-      subselection.push(d);
-    else if (!selected && subselection.includes(d))
-      subselection.splice(subselection.indexOf(d), 1);
-  });
+    data.each(function(d) {
+      if(selected && !subselection.includes(d))
+        subselection.push(d);
+      else if (!selected && subselection.includes(d))
+        subselection.splice(subselection.indexOf(d), 1);
+    });
+  }
+  else {
+    this.selection = { thesauri: [], cls: [], clitems: [] };
+    $.each(this.tabs, function(name, tab) {
+      if (name != type)
+        tab.deselectAll();
+    })
+    this.selection[type] = selected ? [data[0]] : [];
+  }
 
-  this.updateSelectionInfo(type);
+  this.updateUI();
 }
 
 /**
@@ -123,7 +143,7 @@ ItemsSelector.prototype.initSelection = function() {
   this.selection = { thesauri: [], cls: [], clitems: [] };
 
   if (!this.params.multiple)
-    this.modal.find("#view-selection").remove();
+    this.modal.find("#view-selection").hide();
 
   this.updateSelectionInfo();
 }
@@ -131,48 +151,54 @@ ItemsSelector.prototype.initSelection = function() {
 /**
  * Sets the selection's element text to a new value
  *
- * @param sourceTabName [String] name of the calling tab
- * @return [void]
+ * @return [String] Text that the selection info was set to
  */
-ItemsSelector.prototype.updateSelectionInfo = function(sourceTabName) {
+ItemsSelector.prototype.updateSelectionInfo = function() {
   var selEl = this.modal.find("#selected-info");
+  var selText = this.getSelectionInfo();
+  selEl.text(selText);
 
-  if (this.params.multiple)
-    selEl.text(this.getSelectionLength());
-  else
-    selEl.text(this.getSelectionText(sourceTabName));
+  return selText;
 }
 
 /**
- * Calculated the total selection length
+ * Calculates the total selection length / builds selection string
  *
  * @return [Integer] total length of selection
  */
-ItemsSelector.prototype.getSelectionLength = function() {
-  var result = 0;
-  $.each(this.selection, function(type, values) {
-    result += values.length;
-  });
+ItemsSelector.prototype.getSelectionInfo = function() {
+  var result;
+
+  if (this.params.multiple) {
+    result = 0;
+    $.each(this.selection, function(type, values) {
+      result += values.length;
+    });
+  }
+  else {
+    result = "None";
+    $.each(this.selection, function(type, values) {
+      if (values.length > 0)
+        result = values[0].has_identifier.identifier + " v" + values[0].has_identifier.semantic_version;
+    });
+  }
 
   return result;
 }
 
 /**
- * Calculated the total selection length
+ * Updates UI after user action
  *
- * @param sourceTabName [String] name of the calling tab
- * @return [String] Selection text (identifier + semantic version)
+ * @return [void]
  */
-ItemsSelector.prototype.getSelectionText = function(sourceTabName) {
-  var subselection = this.selection[sourceTabName];
-  subselection = subselection == null ? [] : subselection;
-  return subselection.length > 0 ? subselection[0].has_identifier.identifier + " v" + subselection[0].has_identifier.semantic_version : "None";
+ItemsSelector.prototype.updateUI = function() {
+  var selText = this.updateSelectionInfo();
+  $("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0))
 }
 
 /**
- * Sets a new callback
  *
- * @param callback [Function] New user submission callback
+ *
  * @return [void]
  */
 ItemsSelector.prototype.resetUI = function() {
@@ -213,9 +239,9 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           type: tabName,
           multiple: this.params.multiple,
           columns: this.columns,
-          callback: this.onPanelSelectionChange.bind(this),
+          parentPanel: this,
           errorDiv: this.errorDiv,
-          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl}
+          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
         });
       break;
     case "cls":
@@ -224,9 +250,9 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           type: tabName,
           multiple: this.params.multiple,
           columns: this.columns,
-          callback: this.onPanelSelectionChange.bind(this),
+          parentPanel: this,
           errorDiv: this.errorDiv,
-          urls: {history: miHistoryClUrl, index: miIndexClUrl}
+          urls: {history: miHistoryClUrl, index: miIndexClUrl},
         });
       break;
 
@@ -266,6 +292,7 @@ ItemsSelector.prototype.disableTab = function(tabName) {
 ItemsSelector.prototype.getTab = function(tabName) {
   return this.modal.find("#tab-" + tabName);
 }
+
 
 /**
  ****** Support ******

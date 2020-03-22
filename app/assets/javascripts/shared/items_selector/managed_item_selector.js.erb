@@ -7,7 +7,7 @@
 ** type [String] type of the panel (thesauri/cls/clitems)
 ** errorDiv [JQUery Object] Div for showing errors
 ** multiple [Boolean] enable/disable multiple item selection
-** callback [Function] Called on selection change, data passed into parameters
+** parentPanel [Object Instance] Reference to parent panel
 ** columns [Function] Columns definitions function
 ** urls [Object] index and history URLs
 */
@@ -21,7 +21,7 @@
 function MISelector(params) {
  this.params = params;
  this.div = $("#selector-" + params.type);
- this.callback = params.callback;
+ this.parentPanel = params.parentPanel;
  this.initialized = false;
  this.cache = {};
 
@@ -48,6 +48,8 @@ MISelector.prototype.show = function(){
       count: this.getItemCount(this.indexTable),
       cacheData: false
     });
+  else
+    this.historyTable.draw();
 }
 
 /**
@@ -59,6 +61,20 @@ MISelector.prototype.setListeners = function() {
   this.indexTable.on('select.dt deselect.dt', this.onIndexSelect.bind(this));
 
   this.historyTable.on('select.dt deselect.dt', this.onHistorySelect.bind(this));
+}
+
+/**
+ * Marks rows based on selection
+ *
+ * @return [void]
+ */
+MISelector.prototype.markRows = function() {
+  var _this = this;
+
+  $.each(this.params.parentPanel.selection[this.params.type], function() {
+    var row = _this.findRowByParam(_this.historyTable, "id", this.id);
+    try { row.select(); } catch(e){};
+  });
 }
 
 /**
@@ -213,7 +229,8 @@ MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
 MISelector.prototype.onHistorySelect = function (e, dt, type, indexes) {
   var data = this.historyTable.rows(indexes).data();
   var selected = e.type == "select";
-  this.params.callback(this.params.type, selected, data);
+
+  this.parentPanel.onPanelSelectionChange(this.params.type, selected, data);
 }
 
 /**
@@ -241,6 +258,29 @@ MISelector.prototype.getItemCount = function(target){
     return 1000;
   else
     return 100;
+}
+
+/**
+ * Finds a row in a DataTable based on data
+ *
+ * @param [DataTable] table to search in
+ * @param [String] DataType by which to search, e.g. id
+ * @param [String] Value which to compare
+ * @return [DatatTable Row] DataTable Row result api instance (can be empty)
+ */
+MISelector.prototype.findRowByParam = function (table, dataType, data) {
+	return table.row(function (idx, dt, node) {
+		return dt[dataType] == data ? true : false;
+	});
+}
+
+/**
+ * Deselects all items
+ *
+ * @return [void]
+ */
+MISelector.prototype.deselectAll = function(){
+  this.historyTable.rows({selected: true}).deselect().draw();
 }
 
 /**
@@ -334,6 +374,9 @@ MISelector.prototype.historyTableInit = function () {
 			"infoFiltered": "",
 			"emptyTable": "No items were found.",
 			"processing": generateSpinner("small")
-		}
+		},
+    "drawCallback": function( settings ) {
+      this.markRows();
+    }.bind(this)
   });
 }
