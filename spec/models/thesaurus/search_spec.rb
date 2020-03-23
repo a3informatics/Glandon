@@ -292,42 +292,125 @@ describe "Thesaurus::Search" do
 
   end
 
-  # describe "Current Search" do
+  describe "Advanced Search" do
 
-  #   before :each do
-  #     IsoHelpers.clear_cache
-  #     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-  #     load_files(schema_files, data_files)
-  #     load_cdisc_term_versions(1..50)
-  #     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-  #     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
-  #   end
+    before :each do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..50)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+    end
 
-  #   after :all do
-  #   end
+    after :all do
+    end
 
-  #   it "allows the current terminologies to be searched, initial search, no parameters" do
-  #     @ct.has_state.make_current
-  #     params = standard_params
-  #     results = Thesaurus.search_current(params)
-  #     check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
-  #   end
+    it "allows a terminology to be searched, code list identifier" do
+      params = standard_params
+      params[:columns][C_TS_PI][:search][:value] = "C66770 OR C100129"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_1.yaml", equate_method: :hash_equal)
+    end
 
-  #   it "allows the current terminologies to be searched, several terminologies returning results" do
-  #     @ct.has_state.make_current
-  #     params = standard_params
-  #     params[:columns][C_TS_PI][:search][:value] = "C66770"
-  #     results = Thesaurus.search_current(params)
-  #     check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
-  #   end
+    it "allows a terminology to be searched, code list label I" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Epoch OR Laterality"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_2.yaml", equate_method: :hash_equal)
+    end
 
-  #   it "allows the current terminologies to be searched, several terminologies returning results" do
-  #     params = standard_params
-  #     params[:columns][C_TS_PI][:search][:value] = "C66770"
-  #     results = Thesaurus.search_current(params)
-  #     check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
-  #   end
+    it "allows a terminology to be searched, code list label II" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Epoch OR Category"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_3.yaml", equate_method: :hash_equal)
+    end
 
-  # end
+    it "allows a terminology to be searched, code list label III" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "category OR epoch -questionnaire"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, code list label IV" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Tumor AND Findings"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, code list label V" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Tumor OR Findings"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_6.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, item identifier" do
+      params = standard_params
+      params[:columns][C_TS_ID][:search][:value] = "C66770 OR C100129"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_7.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, submission value" do
+      params = standard_params
+      params[:columns][C_TS_NOT][:search][:value] = "QSCAT OR VSRESU"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_8.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, preferred term"  do
+      params = standard_params
+      params[:columns][C_TS_PT][:search][:value] = "DIABETES AND THERAPY"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_9.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, synonym" do
+      params = standard_params
+      params[:columns][C_TS_SYN][:search][:value] = "dose AND Units"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_10.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a terminology to be searched, definition" do
+      params = standard_params
+      params[:columns][C_TS_DEF][:search][:value] = "cerebral AND kurtzke"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_11.yaml", equate_method: :hash_equal)
+    end 
+
+    it "allows a terminology to be searched, overall" do
+      params = standard_params
+      params[:search][:value] = "Epoch OR Laterality"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_12.yaml", equate_method: :hash_equal)
+    end  
+
+    it "allows a terminology to be searched, combination columns" do
+      params = standard_params
+      params[:columns][C_TS_NOT][:search][:value] = "VST"
+      params[:columns][C_TS_PT][:search][:value] = "Test AND Name"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "advanced_search_13.yaml", equate_method: :hash_equal)
+    end
+
+  end
 
 end
