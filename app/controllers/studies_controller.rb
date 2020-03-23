@@ -12,11 +12,19 @@ class StudiesController < ApplicationController
 
   end
 
-  # def update
+  def update
 
-  # end
+  end
 
   def create
+
+  end
+
+  def history
+
+  end
+
+  def history_data
 
   end
 
