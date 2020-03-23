@@ -60,6 +60,16 @@ IndexPanel.prototype.initTable = function () {
 IndexPanel.prototype.loadData = function (offset) {
   this.indexTable.processing(true);
 
+  if (this.strict_params == "study") {
+    var mockData = [{owner: "S-cubed", identifier: "STUDY_01", label: "Test Study 01"}, {owner: "S-cubed", identifier: "STUDY_02", label: "Test Study 02"}, {owner: "S-cubed", identifier: "STUDY_03", label: "Test Study 03"}]
+    $.each(mockData, function(i, e){
+      this.indexTable.row.add(e);
+    }.bind(this));
+    this.indexTable.draw();
+    this.indexTable.processing(false);
+    return;
+  }
+
   $.ajax({
     url: this.url,
     data: this.loadDataParams(this.count, offset),
@@ -93,18 +103,27 @@ IndexPanel.prototype.loadData = function (offset) {
 IndexPanel.prototype.initColumns = function(columns){
   var _this = this;
 
-	columns.push(
-    { "data": "indicators",
-      "width": "80px",
-      "render" : function (data, type, row, meta) {
-        if(type == "display") return formatIndicators(data);
-        else return formatIndicatorsString(data);
-    }},
+  // Type specific columns
+  switch (this.strict_params) {
+    case "managed_concept":
+      columns.push({ "data": "indicators",
+        "width": "80px",
+        "render" : function (data, type, row, meta) {
+          if(type == "display") return formatIndicators(data);
+          else return formatIndicatorsString(data);
+        }});
+      break;
+    case "study":
+      break;
+  }
+
+  // History button (at the end)
+  columns.push(
     { "className": "text-right",
       "render" : function (data, type, row, meta) {
         return _this.historyButtonHTML(row.history_path);
     }}
-    );
+  );
 
 	return columns;
 }

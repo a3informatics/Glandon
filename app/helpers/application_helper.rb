@@ -26,6 +26,7 @@ module ApplicationHelper
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
+    studies: {link: "/studies", text: "Studies", icon: "icon-study"},
     items_generic: {link: "#", text: "Items", icon: "icon-multi"}
   }
 

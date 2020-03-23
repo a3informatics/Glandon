@@ -336,12 +336,12 @@
                 <% end %>
               </div>
               <div id="menu-type-swb" <%= "hidden" if !is_swb_menu? %>>
-                <% if link_group_on_role([IsoNamespace]) %>
+                <% if link_group_on_role([Thesaurus]) %>
                   <div id="main_nav_studies" class="category-container <%= if c_studies != menu_category_title then "collapsed" end %>">
                     <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-study", category_title: c_studies} %>
                     <ul class="nav">
-                      <%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoNamespace, link_id: "main_nav_studies",
-                        link_path: "#", link_text: "Studies", current_link: controller_name.to_s} %>
+                      <%= render partial: "shared/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_studies",
+                        link_path: studies_path, link_text: "Studies", current_link: controller_name.to_s} %>
                     </ul>
                   </div>
                 <% end %>
