@@ -61,6 +61,8 @@ ItemsSelector.prototype.setListeners = function(callback) {
   this.modal.on("shown.bs.modal", this.onModalShow.bind(this));
 
   this.modal.on("hide.bs.modal", this.onModalClose.bind(this));
+
+  this.modal.find("#clear-selection").on("click", this.clearSelection.bind(this));
 }
 
 /**
@@ -131,6 +133,22 @@ ItemsSelector.prototype.onModalClose = function() {
 }
 
 /**
+ * Clears selection, updates UI
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.clearSelection = function() {
+  var _this = this;
+
+  $.each(this.selection, function (name, subselection){
+    this.splice(0, this.length);
+    try { _this.tabs[name].deselectAll(); } catch(e) {};
+  });
+
+  this.updateUI();
+}
+
+/**
  ****** UI ******
 **/
 
@@ -145,7 +163,7 @@ ItemsSelector.prototype.initSelection = function() {
   if (!this.params.multiple)
     this.modal.find("#view-selection").hide();
 
-  this.updateSelectionInfo();
+  this.updateUI();
 }
 
 /**
