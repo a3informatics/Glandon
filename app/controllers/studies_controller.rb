@@ -12,9 +12,9 @@ class StudiesController < ApplicationController
 
   end
 
-  def update
+  # def update
 
-  end
+  # end
 
   def create
 
