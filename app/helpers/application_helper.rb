@@ -250,6 +250,22 @@ module ApplicationHelper
 		@controller_map[controller_name.to_sym]
 	end
 
+  # Converts a controller reference to a string representing the menu parent under which it belongs, Study Workbench
+  def controller_to_menu_swb
+    @category_studies = "Studies"
+
+    @controller_map_swb = {
+      studies: @category_studies,
+    }
+
+    @controller_map_swb[controller_name.to_sym]
+  end
+
+  # True if the current controller belong to the SWB menu
+  def is_swb_menu?
+    !controller_to_menu_swb.nil?
+  end
+
   def get_iso_managed_icon(item)
     case item.rdf_type.to_s.downcase
     when /thesaur/
