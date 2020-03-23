@@ -18,7 +18,7 @@
 :Study
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
-  rdfs:label "Thesaurus"^^xsd:string ;
+  rdfs:label "Study"^^xsd:string ;
   rdfs:subClassOf skos:ConceptScheme ;
   skos:definition "A thesaurus. A SKOS concept scheme"^^xsd:string ;
 .
@@ -26,23 +26,71 @@
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
   rdfs:subClassOf skos:Concept ;
-  rdfs:label "Concept"^^xsd:string ;
+  rdfs:label "Protocol"^^xsd:string ;
   skos:definition "A member of a thesaurus, a concept. Version managed."^^xsd:string ;
+.
+:TherapeuticArea
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Therapeutic Area"^^xsd:string ;
+  skos:definition ""^^xsd:string ;
+.
+:Indication
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Indication"^^xsd:string ;
+  skos:definition ""^^xsd:string ;
 .
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "implements Relationship"^^xsd:string ;
-  rdfs:domain  :Protocol ;
-  rdfs:range :Study ;
-  skos:definition "Protocol implements a study relationship."^^xsd:string ;
+  rdfs:label "Implements Relationship"^^xsd:string ;
+  rdfs:domain :Study ;
+  rdfs:range :Protocol ;
+  skos:definition "Relationship from a study to the protocol."^^xsd:string ;
 .
-:name
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:subPropertyOf skos:definition ;
-  rdfs:label "Name"^^xsd:string ;
-  rdfs:domain  :Study ;
-  rdfs:range xsd:string ;
-  skos:definition "The study's name."^^xsd:string ;
+:inTA
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Therapeutic Area Relationship"^^xsd:string ;
+  rdfs:domain :Study ;
+  rdfs:range :TherapeuticArea ;
+  skos:definition "Relationship from a study to the relevant Therapeutic Area."^^xsd:string ;
 .
+:specifies
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Specifies Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range :Indication ;
+  skos:definition "Relationship from a protocol to an indication."^^xsd:string ;
+.
+:includes
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes Relationship"^^xsd:string ;
+  rdfs:domain :TherapeuticArea ;
+  rdfs:range :Indication ;
+  skos:definition "Relationship from a Therapeutic Area to an indication."^^xsd:string ;
+.
+:studyPhase
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Study Phase Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range bo:Reference ;
+  skos:definition "Relationship from a protocol to the relevant study phase."^^xsd:string ;
+.
+:studyType
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Includes Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range bo:Reference ;
+  skos:definition "Relationship from a protocol to the relevant study type."^^xsd:string ;
+.
+
+
+
+
+
