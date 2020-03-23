@@ -23,9 +23,10 @@
 				</div>
 				<div class="actions-wrap half-block">
 					<% if policy(Thesaurus::ManagedConcept).new? %>
-						<a href="#" class="btn medium green" id="new_study_button">
-							<span class="icon-plus text-tiny"></span> New Study
-						</a>
+          <a href="#new-study-modal" class="btn medium green" id="new-study-button" data-toggle="modal">
+            <span class="icon-plus text-tiny"></span>&nbsp;
+            New Study
+          </a>
 					<% end %>
 				</div>
 			</div>
@@ -46,4 +47,5 @@
 			</div>
 		</div>
   </div>
+  <%= render partial: "shared/studies/new_study_modal" %>
 </div>

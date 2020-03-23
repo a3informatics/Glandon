@@ -28,7 +28,7 @@ private
 
   def authenticate_and_authorized
     authenticate_user!
-    authorize Study
+    authorize Form
   end
 
 end
