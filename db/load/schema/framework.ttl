@@ -1,0 +1,25 @@
+@prefix : <http://www.assero.co.uk/Framework#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/Framework>
+  rdf:type owl:Ontology ;
+.
+:CanonicalReference
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Reference"^^xsd:string ;
+  skos:definition "A canonical reference."^^xsd:string ;
+.
+:isA
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is One Relationship"^^xsd:string ;
+  rdfs:domain :isoC:Concept ;
+  rdfs:range CanonicalReference ;
+  skos:definition "Relationship indicating the target is one of these items."^^xsd:string ;
+.
