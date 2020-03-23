@@ -89,8 +89,17 @@
   rdfs:range bo:Reference ;
   skos:definition "Relationship from a protocol to the relevant study type."^^xsd:string ;
 .
-
-
-
-
-
+:Objective
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Objective"^^xsd:string ;
+  skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
+.
+:has
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "has Relationship"^^xsd:string ;
+  rdfs:domain  :Protocol ;
+  rdfs:range :Objective ;
+  skos:definition "Relationship from a protocol to an objective."^^xsd:string ;
+.
