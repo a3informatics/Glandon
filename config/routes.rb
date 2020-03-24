@@ -366,7 +366,11 @@ Rails.application.routes.draw do
       get :edit_multiple
     end
   end
-  resources :studies, only: [:create] do
+  resources :studies, only: [:create, :update] do
+    member do
+      get :history
+      get :history_data
+    end
     collection do
       get :index
       get :index_data

@@ -9,7 +9,9 @@ class StudiesController < ApplicationController
   end
 
   def index_data
-
+    studies = Study.all
+    studies = studies.map{|x| x.reverse_merge!({history_path: history_study_path({id: x[:id]})})}
+    render json: {data: studies}, status: 200
   end
 
   def history
@@ -21,10 +23,19 @@ class StudiesController < ApplicationController
   end
 
   # def update
+  def update
 
-  # end
+  end
 
   def create
+
+  end
+
+  def history
+
+  end
+
+  def history_data
 
   end
 
