@@ -480,6 +480,16 @@ describe Thesaurus do
       timer_stop("100 searches [79.95s]")
     end
 
+    it "get children with indicators extend used by thesaurus, GLAN-1285" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079")
+      s_th.select_children({id_set: [uri_1.to_id]})
+      actual = ct.managed_children_pagination(offset: 0, count: 1000)
+      check_file_actual_expected(actual, sub_dir, "select_children_expected_4.yaml", equate_method: :hash_equal)
+      expect(actual.count).to eq(ct.is_top_concept_links.count)
+    end
+
   end
 
   describe "Child Operations - Write" do

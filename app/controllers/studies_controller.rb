@@ -11,7 +11,8 @@ class StudiesController < ApplicationController
   C_CLASS_NAME = self.name
 
   def index
-
+    authorize Form
+    @protocols = Protocol.all
   end
 
   def index_data
@@ -36,7 +37,11 @@ class StudiesController < ApplicationController
   end
 
   def history
-
+    authorize Form, :view?
+    @study = Study.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    @identifier = the_params[:identifier]
+    @scope_id = the_params[:scope_id]
+    @close_path = studies_path
   end
 
   def history_data

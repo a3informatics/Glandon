@@ -278,6 +278,14 @@ table th.th-xsmall{
   justify-content: center;
 }
 
+.table-cardstyle .striped tbody tr:nth-of-type(even){
+  background: #fbfbfb !important;
+}
+
+.table-row-clickable.striped tbody tr:nth-of-type(even):hover{
+  background: #f6f6f6 !important;
+}
+
 // SCALING
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,

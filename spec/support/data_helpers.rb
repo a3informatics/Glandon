@@ -8,45 +8,45 @@ module DataHelpers
 
   def schema_files
     [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
       "business_operational.ttl", "thesaurus.ttl", "annotations.ttl",
-      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl", "protocol.ttl"
+      "framework.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
     ]
   end
 
   def triple_store
     @@ts
   end
-  
+
   def load_files(schema_files, test_files)
-    clear_triple_store
+    clear_triple_store 
     schema_files.each {|f| load_schema_file_into_triple_store(f)}
     test_files.each {|f| load_test_file_into_triple_store(f)}
     test_query # Make sure any loading has finished.
     load_schema
     IsoRegistrationAuthority.clear_scopes
   end
-  
+
   def load_schema
     Fuseki::Base.instance_variable_set(:@schema, nil)
     Fuseki::Base.class_variable_set(:@@subjects, nil)
     Fuseki::Base.set_schema
   end
-  
+
   def test_query
     # Query to just check the triple store.
     i = 0
     begin
       i += 1
       #query_string = "SELECT ?o WHERE {<http://www.assero.co.uk/ISO11179Identification#Namespace> <http://www.w3.org/2000/01/rdf-schema#label> ?o}"
-      #triples = Sparql::Query.new.query(query_string, "", []) 
+      #triples = Sparql::Query.new.query(query_string, "", [])
       #raise if triples.results.empty?
       #raise if triples.results.first.column(:o).value != "Namespace"
       @@ts.check_load
     rescue
       sleep 1
       puts colourize("***** !!!!! DB Check Failed, Attempt #{i} !!!!! *****", "red")
-      retry if i < 5 
+      retry if i < 5
     end
   end
 
@@ -68,7 +68,7 @@ module DataHelpers
     #  "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
     #sparql_query = "CLEAR DEFAULT"
   	#CRUD.update(sparql_query)
-    @@ts.clear    
+    @@ts.clear
   end
 
   def load_local_file_into_triple_store(sub_dir, filename)
@@ -121,7 +121,7 @@ module DataHelpers
       write_yaml_file(actual, sub_dir, filename)
     end
     expected = read_yaml_file(sub_dir, filename)
-    expect(actual).to self.send(equate_method, expected)   
+    expect(actual).to self.send(equate_method, expected)
   end
 
   def read_yaml_file_to_hash(filename)
@@ -218,29 +218,29 @@ module DataHelpers
 
   def clear_iso_concept_object
     IsoConcept.class_variable_set(:@@property_attributes, nil)
-    IsoConcept.class_variable_set(:@@extension_attributes, nil) 
+    IsoConcept.class_variable_set(:@@extension_attributes, nil)
     IsoConcept.class_variable_set(:@@link_attributes, nil)
   end
 
   def clear_iso_namespace_object
     IsoNamespace.class_variable_set(:@@idMap, Hash.new)
-    IsoNamespace.class_variable_set(:@@nameMap, Hash.new) 
+    IsoNamespace.class_variable_set(:@@nameMap, Hash.new)
   end
 
   def clear_iso_registration_authority_object
     IsoRegistrationAuthority.class_variable_set(:@@id_map, Hash.new)
-    IsoRegistrationAuthority.class_variable_set(:@@name_map, Hash.new) 
-    IsoRegistrationAuthority.class_variable_set(:@@repositoryOwner, nil) 
+    IsoRegistrationAuthority.class_variable_set(:@@name_map, Hash.new)
+    IsoRegistrationAuthority.class_variable_set(:@@repositoryOwner, nil)
   end
 
   def clear_iso_registration_state_object
     IsoRegistrationState.class_variable_set(:@@owner, nil)
   end
-  
+
   def clear_enumerated_label_object
     EnumeratedLabel.class_variable_set(:@@uri_cache, {})
   end
-  
+
   def clear_token_object
     Token.class_variable_set(:@@token_timeout, nil)
   end
@@ -260,7 +260,7 @@ module DataHelpers
   def db_load_file_path(sub_dir, filename)
     return Rails.root.join "db/load/#{sub_dir}/#{filename}"
   end
-  
+
   def set_path(sub_dir, filename)
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end
