@@ -4,6 +4,7 @@ class Study < IsoManagedV2
             uri_suffix: "ST"
 
   data_property :name
+  data_property :description
   object_property :implements, cardinality: :one, model_class: "Protocol"
 
 
