@@ -13,19 +13,23 @@ class StudiesController < ApplicationController
   def index_data
     authorize Form, :view?
     studies = Study.all
-    studies = studies.map{|x| x.reverse_merge!({history_path: history_study_path(id: x[:id], identifier: x[:identifier], scope_id: x[:scope_id])})}
+    studies = studies.map{|x| x.reverse_merge!({history_path: history_studies_path(study: {identifier: x[:identifier], scope_id: x[:scope_id]})})}
     render json: {data: studies}, status: 200
   end
 
   def history
+    authorize Form, :view?
+    @study = Study.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    @identifier = the_params[:identifier]
+    @scope_id = the_params[:scope_id]
     @close_path = studies_path
   end
 
   def history_data
+    authorize Form
 
   end
 
-  # def update
   def update
 
   end
@@ -38,21 +42,13 @@ class StudiesController < ApplicationController
     else
       flash[:error] = @study.errors.full_messages.to_sentence
     end
-    render json: {history_url: history_study_path(id: @study.id)}, status: 200
-  end
-
-  def history
-
-  end
-
-  def history_data
-
+    render json: {history_url: history_studies_path(study: {identifier: x[:identifier], scope_id: x[:scope_id]}), status: 200
   end
 
 private
 
   def the_params
-    params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description)
+    params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description, :scope_id)
   end
 
   # def authenticate_and_authorized
