@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-24T13:59:57+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-24T16:07:48+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:hasItem :BCT_BCI2 ;
 	th:hasItem :BCT_BCI3 ;
@@ -72,7 +72,7 @@
 	bc:hasProperty :BCT_BCI2_BCCDTCD_BCPcode ;
 .
 :BCT_BCI2_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -95,7 +95,7 @@
 	bc:hasProperty :BCT_BCI3_BCCDTCD_BCPcode ;
 .
 :BCT_BCI3_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -118,7 +118,7 @@
 	bc:hasProperty :BCT_BCI4_BCCDTCD_BCPcode ;
 .
 :BCT_BCI4_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -141,7 +141,7 @@
 	bc:hasProperty :BCT_BCI5_BCCDTCD_BCPcode ;
 .
 :BCT_BCI5_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -164,7 +164,7 @@
 	bc:hasProperty :BCT_BCI6_BCCDTCD_BCPcode ;
 .
 :BCT_BCI6_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -187,7 +187,7 @@
 	bc:hasProperty :BCT_BCI7_BCCDTCD_BCPcode ;
 .
 :BCT_BCI7_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -210,7 +210,7 @@
 	bc:hasProperty :BCT_BCI8_BCCDTDATETIME_BCPvalue ;
 .
 :BCT_BCI8_BCCDTDATETIME_BCPvalue
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -233,7 +233,7 @@
 	bc:hasProperty :BCT_BCI9_BCCDTBL_BCPvalue ;
 .
 :BCT_BCI9_BCCDTBL_BCPvalue
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -256,7 +256,7 @@
 	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPvalue ;
 .
 :BCT_BCI10_BCCDTCD_BCPvalue
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -280,7 +280,7 @@
 	bc:hasProperty :BCT_BCI11_BCCDTCD_BCPcode ;
 .
 :BCT_BCI11_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -295,7 +295,7 @@
 	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPvalue ;
 .
 :BCT_BCI11_BCCDTPQR_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -303,7 +303,7 @@
 	bc:isA <http://www.assero.co.uk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 :BCT_BCI11_BCCDTPQR_BCPvalue
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
@@ -326,7 +326,7 @@
 	bc:hasProperty :BCT_BCI1_BCCDTCD_BCPcode ;
 .
 :BCT_BCI1_BCCDTCD_BCPcode
-	rdf:type bc:Property ;
+	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;

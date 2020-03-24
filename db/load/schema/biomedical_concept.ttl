@@ -41,7 +41,7 @@
   rdfs:label "Biomedical Concept Complex Datatype"^^xsd:string ;
   skos:definition "A complex datatype within a Biomedical Concept."^^xsd:string ;
 .
-:Property
+:PropertyX
   rdf:type owl:Class ;
   rdfs:subClassOf isoC:Concept ;
   rdfs:label "Biomedical Concept Property"^^xsd:string ;
@@ -76,14 +76,14 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Property Relationship"^^xsd:string ;
   rdfs:domain :ComplexDatatype ;
-  rdfs:range :Property ;
+  rdfs:range :PropertyX ;
   skos:definition "Reference to the a property."^^xsd:string
 .
 :hasCodeValue
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Has Coded Value Realtionship"^^xsd:string ;
-  rdfs:domain :Property ;
+  rdfs:domain :PropertyX ;
   rdfs:range bo:TMcReference ;
   skos:definition "Reference to a coded value."^^xsd:string
 .
@@ -97,7 +97,7 @@
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
+  rdfs:subPropertyOf isoC:PropertyX ;
   rdfs:label "Ordinal"^^xsd:string ;
   rdfs:domain :Item ;
   rdfs:range xsd:positiveInteger ;
@@ -131,7 +131,7 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Question Text"^^xsd:string ;
-  rdfs:domain :Property ;
+  rdfs:domain :PropertyX ;
   rdfs:range xsd:string ;
   skos:definition "The question text for a property."^^xsd:string ;
 .
@@ -139,14 +139,14 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Prompt Text"^^xsd:string ;
-  rdfs:domain :Property ;
+  rdfs:domain :PropertyX ;
   rdfs:range xsd:string ;
   skos:definition "The prompt text for a property."^^xsd:string ;
 .
 :format
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :Property ;
+  rdfs:domain :PropertyX ;
   rdfs:label "The format for the reponse"^^xsd:string ;
   rdfs:range xsd:string ;
 .

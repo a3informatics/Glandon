@@ -1,6 +1,6 @@
-class BiomedicalConcept::Property < IsoConceptV2
+class BiomedicalConcept::PropertyX < IsoConceptV2
 
-  configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Property",
+  configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#PropertyX",
             uri_property: :label,
             uri_suffix: 'BCP'
 
@@ -17,7 +17,7 @@ class BiomedicalConcept::Property < IsoConceptV2
   # def remove
   #   update = UriManagement.buildNs(self.namespace, ["cbc"]) +
   #     "DELETE \n" +
-  #     "{\n" +
+  #     "{\n" +M
   #     "  :" + self.id + " cbc:hasThesaurusConcept ?s .\n" +
   #     "  ?s ?p ?o .\n"+
   #     "}\n" +

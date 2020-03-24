@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'biomedical_concept/property'
 
 describe BiomedicalConcept do
 	
@@ -23,7 +22,7 @@ describe BiomedicalConcept do
   end
 
   def create_item(params, ordinal, bc_template=nil)
-    t_item = bc_template.has_items.find{|x| x[:label] == params[:label]} if !bc_template.nil?
+    t_item = find_item(bc_template, params[:label]) if !bc_template.nil?
     params[:ordinal] = ordinal
     item = BiomedicalConcept::Item.new(params)
     params[:complex_datatype].each do |datatype|
@@ -34,17 +33,29 @@ describe BiomedicalConcept do
     item
   end
 
+  def find_item(bc_template, label)
+    return bc_template.identified_by if bc_template.identified_by.label == label
+    bc_template.has_item.find{|x| x.label == label}
+  end
+
   def create_property(params, t_cdt)
     params = params.merge(format: "", question_test: "", prompt_text: "") if t_cdt.nil?
-    property = BiomedicalConcept::Property.new(params)
-    ref = CanonicalReference.where(label: params[:is_a])
-    property.is_a = ref.first.uri
-    return property if t_cdt.nil?
-    t_property = t_cdt.has_property.find{|x| x[:label] == params[:label]} 
-    params[:has_coded_value].each_with_index do |term, index|
-      items = @ct.find_by_identifiers([term[:cl], term[:cli]])
-      op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: items[term[:cli]], optional: true)
-      property.has_coded_value_push(op_ref) 
+    refs = params[:has_coded_value].dup
+    params[:has_coded_value] = []
+    property = BiomedicalConcept::PropertyX.new(params)
+    if t_cdt.nil?
+      ref = CanonicalReference.where(label: params[:is_a])
+      property.is_a = ref.first.uri
+    else
+      t_cdt.has_property_objects
+      t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
+      property.is_a = t_property.uri
+      refs.each_with_index do |term, index|
+        items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
+        uri = Uri.new(uri: items[term[:cli]].to_s)
+        op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
+        property.has_coded_value_push(op_ref) 
+      end
     end
     property
   end
@@ -52,7 +63,10 @@ describe BiomedicalConcept do
   def create_complex_datatype(params, cdt_template, t_item)
     cdt = BiomedicalConcept::ComplexDatatype.new(label: cdt_template.short_name)
     cdt.based_on = cdt_template
-    t_cdt = t_item.has_complex_datatype.find{|x| x[:label] == cdt_template.short_name} if !t_item.nil?
+    if !t_item.nil?
+      t_item.has_complex_datatype_objects
+      t_cdt = t_item.has_complex_datatype.find{|x| x.label == cdt_template.short_name} 
+    end
     params[:has_property].each do |property|
       cdt.has_property_push(create_property(property, t_cdt))
     end
@@ -91,7 +105,7 @@ describe BiomedicalConcept do
     results = []
     instances = read_yaml_file(sub_dir, "instances.yaml")
     instances.each do |instance|
-      template = BiomedicalConceptTemplate.find(Uri.new(uri: instance[:based_on]))
+      template = BiomedicalConceptTemplate.find_children(Uri.new(uri: instance[:based_on]))
       object = BiomedicalConceptInstance.new(label: instance[:label])
       object.based_on = template.uri
       object.identified_by = create_item(instance[:identified_by], 1, template)
