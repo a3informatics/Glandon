@@ -12,7 +12,7 @@ class ComplexDatatype < Fuseki::Base
 
   data_property :label
   data_property :short_name
-  object_property :has_property, cardinality: :many, model_class: "ComplexDatatypeProperty"
+  object_property :has_property, cardinality: :many, model_class: "ComplexDatatype::PropertyX"
   
   validates :label, presence: true
   validates :short_name, presence: true

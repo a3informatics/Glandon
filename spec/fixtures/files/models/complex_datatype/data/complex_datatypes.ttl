@@ -15,52 +15,52 @@
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :BL_value ;
 .
 :BL_value
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "value"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "boolean"^^xsd:string ;
 .
 :CD
 	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
-	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Coded"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "CD"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :CD_code ;
 .
 :CD_code
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "code"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "string"^^xsd:string ;
 .
 :PQR
 	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
-	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Physical Quantity Result"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "PQR"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :PQR_code ;
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :PQR_value ;
 .
 :PQR_code
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "code"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "string"^^xsd:string ;
 .
 :PQR_value
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "value"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "float"^^xsd:string ;
 .
 :PQR_INT
 	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype> ;
-	<http://www.s-cubed.dk/ComplexDatatypes#label> "Boolean"^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#label> "Physical Quantity Result, Integer"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#shortName> "PQR_INT"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :PQR_INT_code ;
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :PQR_INT_value ;
 .
 :PQR_INT_code
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "code"^^xsd:string ;
-	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> ""^^xsd:string ;
+	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "string"^^xsd:string ;
 .
 :PQR_INT_value
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "value"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "integer"^^xsd:string ;
 .
@@ -71,7 +71,7 @@
 	<http://www.s-cubed.dk/ComplexDatatypes#hasProperty> :DATETIME_value ;
 .
 :DATETIME_value
-	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#Property> ;
+	rdf:type <http://www.s-cubed.dk/ComplexDatatypes#PropertyX> ;
 	<http://www.s-cubed.dk/ComplexDatatypes#label> "value"^^xsd:string ;
 	<http://www.s-cubed.dk/ComplexDatatypes#simpleDatatype> "dateTime"^^xsd:string ;
 .

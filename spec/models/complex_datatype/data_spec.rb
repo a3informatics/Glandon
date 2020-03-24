@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'complex_datatype/property'
 
 describe ComplexDatatype do
 	
@@ -22,7 +21,7 @@ describe ComplexDatatype do
       item = ComplexDatatype.new(label: cdt[:label], short_name: cdt[:short_name])
       item.uri = item.create_uri(item.class.base_uri)
       cdt[:properties].each do |property|
-        prop = ComplexDatatype::Property.new(label: property[:label], simple_datatype: property[:simple_datatype])
+        prop = ComplexDatatype::PropertyX.new(label: property[:label], simple_datatype: property[:simple_datatype])
         prop.uri = prop.create_uri(item.uri)
         item.has_property.push(prop)
       end

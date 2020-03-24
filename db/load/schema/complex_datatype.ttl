@@ -17,7 +17,7 @@
   rdfs:subClassOf isoC:Concept ;
   skos:definition "A complex datatype."^^xsd:string ;
 .
-:Property
+:PropertyX
   rdf:type owl:Class ;
   rdfs:label "Complex Datatype Property"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ;
@@ -28,7 +28,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Attribute"^^xsd:string ;
   rdfs:domain :ComplexDatatype ;
-  rdfs:range :Property ;
+  rdfs:range :PropertyX ;
   skos:definition "Reference to a property."^^xsd:string ;
 .
 :label
@@ -36,7 +36,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Label"^^xsd:string ;
   rdfs:domain [ a owl:Class ;
-    owl:unionOf ( :ComplexDatatype :Property)
+    owl:unionOf ( :ComplexDatatype :PropertyX)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The label."^^xsd:string ;
@@ -45,7 +45,7 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "The simple datatype."^^xsd:string ;
-  rdfs:domain :Property ;
+  rdfs:domain :PropertyX ;
   rdfs:range xsd:string ;
   skos:definition "The property's simple datatype."^^xsd:string ;
 .
