@@ -35,16 +35,28 @@ describe "Study" do
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "simple update" do
+    it "simple update I" do
+      actual = Study.create(identifier: "XXX")
+      actual = Study.find_minimum(actual.uri)
+      actual.description = "New description"
+      actual.save
+      actual = Study.find_minimum(actual.uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+      actual.description = "Really new description"
+      actual.save
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "simple update II" do
       actual = Study.create(identifier: "XXX")
       actual = Study.find_minimum(actual.uri)
       actual.label = "New label"
       actual.save
       actual = Study.find_minimum(actual.uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_3.yaml", equate_method: :hash_equal)
       actual.label = "Really new label"
       actual.save
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "Study example" do

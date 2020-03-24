@@ -53,9 +53,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "In Therapeutic Area Relationship"^^xsd:string ;
-  rdfs:domain :Study ;
+  rdfs:domain :Protocol ;
   rdfs:range :TherapeuticArea ;
-  skos:definition "Relationship from a study to the relevant Therapeutic Area."^^xsd:string ;
+  skos:definition "Relationship from a protocol to the relevant Therapeutic Area."^^xsd:string ;
 .
 :specifies
   rdf:type owl:ObjectProperty ;
@@ -99,7 +99,15 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "has Relationship"^^xsd:string ;
-  rdfs:domain  :Protocol ;
+  rdfs:domain :Indication ;
   rdfs:range :Objective ;
-  skos:definition "Relationship from a protocol to an objective."^^xsd:string ;
+  skos:definition "Relationship from an indication to an objective."^^xsd:string ;
+.
+:indicationName
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "has Relationship"^^xsd:string ;
+  rdfs:domain :Indication ;
+  rdfs:range bo:Reference ;
+  skos:definition "Relationship from an indication to the relevant indication name."^^xsd:string ;
 .
