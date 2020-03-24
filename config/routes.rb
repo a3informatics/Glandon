@@ -367,6 +367,9 @@ Rails.application.routes.draw do
     end
   end
   resources :studies, only: [:create, :update] do
+    member do
+      get :study_build
+    end
     collection do
       get :index
       get :index_data
