@@ -9,7 +9,7 @@
 */
 function NewStudyModal() {
   this.modal = $("#new-study-modal");
-  this.url = studiesUrl;
+  this.url = studyCreateUrl;
   this.errorDiv = this.modal.find(".errors");
   this.submitButton = this.modal.find("#create-study-button");
 
@@ -43,8 +43,7 @@ NewStudyModal.prototype.submitData = function() {
     data: this.getData(),
     context: this,
     success: function(result){
-      this.loading(false);
-      this.modal.modal("hide");
+      location.href = result.data.history_url;
     },
     error: function(xhr,status,error){
       this.loading(false);
@@ -60,12 +59,13 @@ NewStudyModal.prototype.submitData = function() {
  * @return [Object] formatted request data
  */
 NewStudyModal.prototype.getData = function() {
-  var inputFields = this.modal.find("input, select option:selected, textarea");
-  var data = {};
+  var inputFields = this.modal.find("input, textarea");
+  // var inputFields = this.modal.find("input, select option:selected, textarea");
+  var data = {study: {}};
 
   inputFields.each(function () {
     var dataKey = $(this).attr("name") || $(this).parent().attr("name");
-    data[dataKey] = $(this).val();
+    data.study[dataKey] = $(this).val();
   });
 
   return data;

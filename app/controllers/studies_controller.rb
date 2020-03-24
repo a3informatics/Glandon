@@ -6,7 +6,8 @@ class StudiesController < ApplicationController
   C_CLASS_NAME = self.name
 
   def index
-    @protocols = Protocol.unique
+    authorize Form
+    @protocols = Protocol.all
   end
 
   def index_data

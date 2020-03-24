@@ -10,7 +10,7 @@
  * @param [String] URL for data load
  * @param [String] Strict param for data load request
  * @param [Columns] Columns defs
- * @param [Int] Count (items fetched in one call)
+ * @param [Int] Count (items fetched in one call). Set to -1 if not paginated
  * @param [String] optional: 'type' param for data load request
  *
  * @return [void]
@@ -60,16 +60,6 @@ IndexPanel.prototype.initTable = function () {
 IndexPanel.prototype.loadData = function (offset) {
   this.indexTable.processing(true);
 
-  if (this.strict_params == "study") {
-    var mockData = [{owner: "S-cubed", identifier: "STUDY_01", label: "Test Study 01"}, {owner: "S-cubed", identifier: "STUDY_02", label: "Test Study 02"}, {owner: "S-cubed", identifier: "STUDY_03", label: "Test Study 03"}]
-    $.each(mockData, function(i, e){
-      this.indexTable.row.add(e);
-    }.bind(this));
-    this.indexTable.draw();
-    this.indexTable.processing(false);
-    return;
-  }
-
   $.ajax({
     url: this.url,
     data: this.loadDataParams(this.count, offset),
@@ -82,7 +72,7 @@ IndexPanel.prototype.loadData = function (offset) {
       }
       this.indexTable.draw();
 
-      if (result.count >= this.count)
+      if (this.count != -1 && result.count >= this.count)
         this.loadData(parseInt(result.offset) + this.count)
       else
         this.indexTable.processing(false);

@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Index: Studies")' %>
 
-<%= javascript_tag "var studiesUrl = '#{index_data_studies_path}'" %>
+<%= javascript_tag "var studiesIndexUrl = '#{index_data_studies_path}', studyCreateUrl='#{studies_path}'" %>
 <%= javascript_include_tag 'studies/index', 'shared/index_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
