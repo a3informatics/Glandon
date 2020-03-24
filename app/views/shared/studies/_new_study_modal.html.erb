@@ -16,20 +16,20 @@
             <div class="errors"></div>
             <center>
               <img src="<%= asset_path 'icons/new_study' %>" class="modal-img large"/>
-              <div class="font-light">Fill out the parameters of your new Study:</div>
+              <br/><div class="font-light">Fill out the parameters for the new Study:</div><br/>
             </center>
             <div class="form-wrap wide no-labels">
               <div class="form-row">
                   <div class="form-group">
-                    <input type="text" autocomplete="false" autofocus="true" placeholder="Study identifier" name="identifier" id="ns_input_identifier" value=""></input>
+                    <input type="text" autocomplete="false" autofocus="true" placeholder="Study identifier" maxlength="100" name="identifier" id="ns_input_identifier" value=""></input>
                   </div>
                   <div class="form-group">
-                    <input type="text" autocomplete="false" name="label"  placeholder="Study label" id="ns_input_label" value=""></input>
+                    <input type="text" autocomplete="false" name="label"  placeholder="Study label" maxlength="100" id="ns_input_label" value=""></input>
                   </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <input type="text" autocomplete="false" name="name" placeholder="Study name" id="ns_input_name" value=""></input>
+                  <input type="text" autocomplete="false" name="name" placeholder="Study name" maxlength="100" id="ns_input_name" value=""></input>
                 </div>
                 <div class="form-group">
                   <select name="protocol" class="form-control" id="ns_select_protocol" value="">
@@ -44,7 +44,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <textarea name="description" class="wide" id="ns_input_description" placeholder="Study description" value=""></textarea>
+                  <textarea name="description" class="wide" id="ns_input_description" maxlength="500" placeholder="Study description" value=""></textarea>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn medium light" data-dismiss="modal" aria-label="Close">Close</button>
-        <button id="create-study-button" class="btn medium green">Create Study</button>
+        <button id="create-study-button" class="btn medium green">Submit</button>
       </div>
     </div>
   </div>

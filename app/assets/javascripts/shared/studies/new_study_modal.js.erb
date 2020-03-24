@@ -31,6 +31,10 @@ NewStudyModal.prototype.setListeners = function() {
  * @return [void]
  */
 NewStudyModal.prototype.submitData = function() {
+
+  if (!this.validate())
+    return;
+
   this.loading(true);
 
   $.ajax({
@@ -63,8 +67,31 @@ NewStudyModal.prototype.getData = function() {
     var dataKey = $(this).attr("name") || $(this).parent().attr("name");
     data[dataKey] = $(this).val();
   });
-  
+
   return data;
+};
+
+/**
+ * Validates all inputs filled out. Shows error
+ *
+ * @return [Boolean] validation passed / failed
+ */
+NewStudyModal.prototype.validate = function() {
+  var inputFields = this.modal.find("input, select option:selected, textarea");
+  var missingFields = [];
+
+  inputFields.each(function () {
+    if ($(this).val() == "") {
+      var dataKey = $(this).attr("name") || $(this).parent().attr("name");
+      missingFields.push(dataKey);
+    }
+  });
+
+  if (missingFields.length > 0) {
+    displayAlertsInElement(alertError("The following fields are empty: " + missingFields.join(', ')), this.errorDiv);
+    return false;
+  }
+  return true;
 };
 
 /**
@@ -80,6 +107,6 @@ NewStudyModal.prototype.loading = function(enable) {
   }
   else {
     this.submitButton.removeClass("disabled");
-    this.submitButton.text("Create Study");
+    this.submitButton.text("Submit");
   }
 };
