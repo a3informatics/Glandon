@@ -4,6 +4,8 @@ require 'controller_helpers.rb'
 
 class StudiesController < ApplicationController
 
+  include ControllerHelpers
+
   before_action :authenticate_user!
 
   C_CLASS_NAME = self.name
@@ -38,12 +40,12 @@ class StudiesController < ApplicationController
   end
 
   def history_data
-    authorize Form, :view?
+    authorize Form, :show?
     results = []
     history_results = Study.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
     current = Study.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
     latest = Study.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    results = add_history_paths(Study, history_results, current, latest)
+    results = add_history_paths(Form, history_results, current, latest)
     render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
   end
 
