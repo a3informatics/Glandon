@@ -1,0 +1,180 @@
+@prefix : <http://www.assero.co.uk/CAR#> .
+@prefix fr: <http://www.assero.co.uk/Framework#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CAR>
+	rdf:type owl:Ontology ;
+.
+:18a302ee283ea042f30ca2cb852a2846f97c9413
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Test Code"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "DefinedObservation.nameCode"^^xsd:string ;
+.
+:a3c686e711e4720f99b4562bb3dbaae7ab658cf2
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Category"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "DefinedObservation.categoryCode"^^xsd:string ;
+.
+:479a67983e739413da55faf0dc509f83fd5dea64
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Sub Category"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "DefinedObservation.subcategoryCode"^^xsd:string ;
+.
+:88306943fea7e76f9cd57cae0ea6d8b32d2e8434
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Method"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.methodCode.CD"^^xsd:string ;
+.
+:cf1c85adba548e8d681255278976584a7e4a44de
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Position"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.bodyPositionCode"^^xsd:string ;
+.
+:bae7d5be70820ed56467bd9a63744e23b47bd711
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Status"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.negationIndicator"^^xsd:string ;
+.
+:52b30e2515e4fa778a3ab77470f0b096877a26c2
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.negationReason.SC"^^xsd:string ;
+.
+:232daabe4ca2dfdb32645c572b1d34ddb4fe9995
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Date Time of Observation"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.dateRange.IVL_TS_DATETIME.low"^^xsd:string ;
+.
+:d219c68101f532de10add2cf42fb9dbeca73d3be
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Location"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.approachAnatomicSiteCode"^^xsd:string ;
+.
+:ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Laterality"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservation.approachAnatomicSiteLateralityCode"^^xsd:string ;
+.
+:af5f0ce4847da645162514a984a7b88b67016e80
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Result Value"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservationResult.value"^^xsd:string ;
+.
+:7715259cc4b4ef877c53de5ab0e9673dff58ca35
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Result Units"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedObservationResult.value"^^xsd:string ;
+.
+:e6ab7982fa5d5e8fceb52c9b3af93556aeacbae7
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Baseline"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedClinicalResult.baselineIndicator"^^xsd:string ;
+.
+:2a4eb8036d87ab68656ba5b80bbf77123f088904
+	rdf:type fr:CanonicalReference ;
+	isoC:label "AE Term"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.value"^^xsd:string ;
+.
+:de314fa0c9d9e359b633f2fdab4659c886fe5986
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Severity"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.severityCode"^^xsd:string ;
+.
+:bc7845e67c63c354e69a957bab304d72da2f9fb7
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Seriousness"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.seriousnessCode"^^xsd:string ;
+.
+:1fff6a31661b491fc40cc9c1ad7fe5e479cb7500
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Pattern"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.occurrencepatternCode"^^xsd:string ;
+.
+:3239c890f4b1b44ea81233e5766557a1008c0b6b
+	rdf:type fr:CanonicalReference ;
+	isoC:label "hospitalization Required"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.hospitalizationRequiredIndicator"^^xsd:string ;
+.
+:83c87956785cde43c109e30fcbd95cca63a18d38
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Start Date Time"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.low"^^xsd:string ;
+.
+:71c54c70967ea84127e4bd588bd627ec0e581dfb
+	rdf:type fr:CanonicalReference ;
+	isoC:label "End Date Time"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.high"^^xsd:string ;
+.
+:485290959383eee39c093e50e84fdc851ac37a32
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Action Taken"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEventActionTaken.typeCode"^^xsd:string ;
+.
+:1baf5ac06f7430ac72727c2dfb3f152e07d9d5da
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Action Taken Extra"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEventActionTaken2.typeCode"^^xsd:string ;
+.
+:73a0f131076b513c16bfe3f4cff9ab8b765c9f23
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Adverse Event Outcome"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "AdverseEventOutcomeResult"^^xsd:string ;
+.
+:465e8e7b0c616acafe9d6226a6ba40b31f849e8e
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Specimen"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "Material.formCode"^^xsd:string ;
+.
+:b8480e9c78891769429c713a44f238f2ca3c3abb
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Directionality"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedProcedure.targetAnatomicSiteDirectionalityCode"^^xsd:string ;
+.
+:07500ad5733a5c873074c6df8d3e516da1de8ae1
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Performer"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "Performer.typeCode"^^xsd:string ;
+.
+:d699fef06a44f40a786e8ee2bdeb79751e876f97
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Performer Alias"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "Performer.evaluatorAlias"^^xsd:string ;
+.
+:d09dedccec5a3934ea7c58e6f37d3a394481a8a1
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Clinical Significance"^^xsd:string ;
+	fr:definition "Not set."^^xsd:string ;
+	fr:bridg "PerformedClinicalInterpretation.clinicallySignificantIndicator"^^xsd:string ;
+.

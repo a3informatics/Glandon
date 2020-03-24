@@ -24,10 +24,10 @@ module Sparql
         #   {:uri => Uri class}
         #
         # @example namespace and fragement
-        # {:namespace => string, :fragment => string} - Namespace can be "" but default namepace must be set
+        # {:namespace => string, :fragment => XSD datatype} - Namespace can be "" but default namepace must be set
         #
         # @example namespace prefix and fragement
-        # {:prefix => string, :fragment => string} - Prefix can be "" but default namepace must be set
+        # {:prefix => string, :fragment => XSD datatype} - Prefix can be "" but default namepace must be set
         #
         # @return [SparqlUpdateV2::StatementLiteral] the object
         def initialize(args, default_namespace, prefix_set)

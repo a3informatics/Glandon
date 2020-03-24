@@ -1,5 +1,17 @@
 module FusekiBaseHelpers
 
+  def property_metadata(property)
+    result = {}
+    property.each {|key, value| result[key] = value.respond_to?(:to_h) ? value.to_h : value}
+    result
+  end
+
+  def all_metadata(metadata)
+    result = {}
+    metadata.each {|key, property| result[key] = property_metadata(property)}
+    result
+  end
+
   class TestScopedIdentifier < Fuseki::Base
     
     configure rdf_type: "http://www.assero.co.uk/Test#ScopedIdentifier"

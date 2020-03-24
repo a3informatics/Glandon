@@ -139,7 +139,7 @@ module Fuseki
       # @param [String] value the property value
       # @return [Void] no return
       def set_simple(value)
-        set_the_property(to_typed(@metadata[:base_type], value))
+        set_the_property(@metadata[:base_type].to_typed(value))
       rescue => e
         puts "simple: Error #{name}=#{value}"
       end
@@ -210,7 +210,7 @@ module Fuseki
         objects = get_values
         datatype = @metadata[:base_type]
         objects.each do |object|
-          statement = object? ? {uri: uri_for_object(object)} : {literal: "#{to_literal(datatype, object)}", primitive_type: datatype}
+          statement = object? ? {uri: uri_for_object(object)} : {literal: "#{datatype.to_literal(object)}", primitive_type: datatype}
           sparql.add({:uri => subject}, {:uri => predicate}, statement)
         end
       end
@@ -256,29 +256,6 @@ module Fuseki
 
       def get_the_property
         @parent.instance_variable_get(@instance_variable_name)
-      end
-
-      # Set a simple typed value
-      def to_typed(base_type, value)
-        x = false
-        if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-          result = "#{value}"
-        elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-          result = value.to_bool
-        elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-          result = value.to_time_with_default
-        elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-          result = value.to_i
-        elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-          result = value.to_i
-        else
-          x = true
-          result = "#{value}"
-        end
-      puts "***** Schema Issue, Extensible *****" if @name == :extensible && x
-        return result
-      rescue => e
-        byebug
       end
 
       # Build the object literal as a string

@@ -227,16 +227,17 @@ module Fuseki
     # @option opts [Symbol] :default the default value. Optional
     # @return [Void] no return
     def data_property(name, opts = {})
+      simple_datatype = XSDDatatype.new(self.schema_metadata.datatype(predicate_uri(name)))
       options = 
       { 
         cardinality: :one, 
         model_class: nil, 
         type: :data, 
-        base_type: self.schema_metadata.datatype(predicate_uri(name)), 
+        base_type: simple_datatype, 
         read_exclude: false, 
         delete_exclude: false 
       }
-      options[:default] = opts.key?(:default) ? opts[:default] : default_typed(options[:base_type])
+      options[:default] = opts.key?(:default) ? opts[:default] : simple_datatype.default
       add_to_resources(name, options)
     end
 
@@ -312,23 +313,6 @@ module Fuseki
         Fuseki::Base.instance_variable_set(:@type_map, {})
       end
       Fuseki::Base.instance_variable_get(:@type_map)[rdf_type] = self
-    end
-
-    # Set a simple typed value
-    def default_typed(base_type)
-      if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-        ""
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-        true
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-        "".to_time_with_default
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-        0
-      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-        1
-      else
-        ""
-      end
     end
 
   end
