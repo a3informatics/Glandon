@@ -161,7 +161,7 @@ HistoryPanel.prototype.contextMenuHTML = function (row, c) {
   if(row.compare_path != null && row.compare_path != "")
     menu_items.splice(menu_items.length - 2, 0, { link_path: "#im-version-picker-modal", disabled: "false", icon: "icon-compare", text: "Compare", dt_toggle: "modal"});
   if(row.build_path != null && row.build_path != "")
-    menu_items.splice(menu_items.length - 2, 0, { link_path: "#", disabled: "false", icon: "icon-build", text: "Build"});
+    menu_items.splice(menu_items.length - 2, 0, { link_path: row.build_path, disabled: "false", icon: "icon-build", text: "Build"});
   return generateContextMenu(id, menu_items);
 }
 
