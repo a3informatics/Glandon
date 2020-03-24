@@ -27,12 +27,12 @@ describe ManagedCollection do
       delete_all_public_test_files
     end
 
-    it "allows an object to be initialised" do
+    it "initialised" do
       item = ManagedCollection.new
       check_file_actual_expected(item.to_h, sub_dir, "new_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "allows validity of the object to be checked - error" do
+    it "validity - error" do
       item = ManagedCollection.new
       valid = item.valid?
       expect(valid).to eq(false)
@@ -40,7 +40,7 @@ describe ManagedCollection do
       expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, and Has state: Empty object")
     end
 
-    it "allows validity of the object to be checked" do
+    it "validity" do
       item = ManagedCollection.new
       ra = IsoRegistrationAuthority.find(Uri.new(uri:"http://www.assero.co.uk/RA#DUNS123456789"))
       item.has_state = IsoRegistrationStateV2.new
@@ -56,10 +56,15 @@ describe ManagedCollection do
       expect(valid).to eq(true)
     end
 
-    # it "allows a Thesaurus to be found" do
-    #   item = ManagedCollection.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-    #   check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
-    # end
+    it "collection" do
+      item_1 = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.acme-pharma.com/ITEM1/V1#MC"))
+      parent.has_managed << item_2
+      parent.has_managed << item_3
+      check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
+    end
 
   end
 
