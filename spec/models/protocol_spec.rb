@@ -34,7 +34,7 @@ describe "Protocol" do
       expect(actual.semantic_version).to eq("0.1.0")
       expect(actual.studyPhase).to eq(nil)
       expect(actual.studyType).to eq(nil)
-      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "simple update" do
@@ -43,10 +43,10 @@ describe "Protocol" do
       actual.label = "New label"
       actual.save
       actual = Protocol.find_minimum(actual.uri)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
       actual.label = "Really new label"
       actual.save
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
     end
 
     # it "Study example" do
