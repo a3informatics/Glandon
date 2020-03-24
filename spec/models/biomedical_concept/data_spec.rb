@@ -22,23 +22,25 @@ describe BiomedicalConcept do
     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
   end
 
-  def create_item(params, ordinal, bc_template=true)
+  def create_item(params, ordinal, bc_template=nil)
+    t_item = bc_template.has_items.find{|x| x[:label] == params[:label]} if !bc_template.nil?
     params[:ordinal] = ordinal
     item = BiomedicalConcept::Item.new(params)
     params[:complex_datatype].each do |datatype|
       cdt = find_complex_datatype(datatype[:short_name])
-      cdt = create_complex_datatype(datatype, cdt, bc_template) 
+      cdt = create_complex_datatype(datatype, cdt, t_item) 
       item.has_complex_datatype_push(cdt)
     end
     item
   end
 
-  def create_property(params, bc_template)
-    params = params.merge(format: "", question_test: "", prompt_text: "") if bc_template
+  def create_property(params, t_cdt)
+    params = params.merge(format: "", question_test: "", prompt_text: "") if t_cdt.nil?
     property = BiomedicalConcept::Property.new(params)
     ref = CanonicalReference.where(label: params[:is_a])
     property.is_a = ref.first.uri
-    return property if bc_template
+    return property if t_cdt.nil?
+    t_property = t_cdt.has_property.find{|x| x[:label] == params[:label]} 
     params[:has_coded_value].each_with_index do |term, index|
       items = @ct.find_by_identifiers([term[:cl], term[:cli]])
       op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: items[term[:cli]], optional: true)
@@ -47,11 +49,12 @@ describe BiomedicalConcept do
     property
   end
 
-  def create_complex_datatype(params, cdt_template, bc_template)
+  def create_complex_datatype(params, cdt_template, t_item)
     cdt = BiomedicalConcept::ComplexDatatype.new(label: cdt_template.short_name)
     cdt.based_on = cdt_template
+    t_cdt = t_item.has_complex_datatype.find{|x| x[:label] == cdt_template.short_name} if !t_item.nil?
     params[:has_property].each do |property|
-      cdt.has_property_push(create_property(property, bc_template))
+      cdt.has_property_push(create_property(property, t_cdt))
     end
     cdt
   end
@@ -84,14 +87,17 @@ describe BiomedicalConcept do
 	end
 
   it "create instances" do
+    load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     results = []
     instances = read_yaml_file(sub_dir, "instances.yaml")
     instances.each do |instance|
+      template = BiomedicalConceptTemplate.find(Uri.new(uri: instance[:based_on]))
       object = BiomedicalConceptInstance.new(label: instance[:label])
-      object.identified_by = create_item(instance[:identified_by], 1, false)
+      object.based_on = template.uri
+      object.identified_by = create_item(instance[:identified_by], 1, template)
       instance[:has_items].each_with_index do |item, index| 
         next if !item[:enabled]
-        object.has_item_push(create_item(item, index+2, false))
+        object.has_item_push(create_item(item, index+2, template))
       end
       object.set_initial(instance[:identifier])
       results << object

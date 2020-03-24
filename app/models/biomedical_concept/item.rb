@@ -8,7 +8,7 @@ configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Item",
   data_property :collect, default: true
   data_property :enabled, default: true
   data_property :ordinal, default: 1
-  object_property :has_complex_datatype, cardinality: :many, model_class: "BiomedicalConcept::ComplexDatatype"
+  object_property :has_complex_datatype, cardinality: :many, model_class: "BiomedicalConcept::ComplexDatatype", children: true
 
   # validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   # validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?

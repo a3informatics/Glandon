@@ -5,7 +5,7 @@ class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
             uri_suffix: 'BCCDT'
 
   object_property :based_on, cardinality: :one, model_class: "ComplexDatatype"
-  object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::Property"
+  object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::Property", children: true
 
  #  validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
  #  validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
