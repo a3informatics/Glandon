@@ -34,7 +34,7 @@ describe StudiesController do
 
     it "index data" do
       expected = [{id: "a1", label: "aaa", identifier: "something", scope_id:"asd"}, {id: "a2", label: "bbb", identifier: "somethingelse", scope_id:"fgh"}]
-      expect(Study).to receive(:all).and_return(expected)
+      expect(Study).to receive(:unique).and_return(expected)
       get :index_data
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -46,9 +46,7 @@ describe StudiesController do
       count = Study.all.count
       expect(count).to eq(0)
       post :create, study: { :identifier => "NEW TH", :label => "New Thesaurus" }
-      expect(assigns(:study).errors.count).to eq(0)
       expect(Study.all.count).to eq(count + 1)
-      expect(flash[:success]).to be_present
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:history_url]
@@ -61,9 +59,7 @@ describe StudiesController do
       post :create, study: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
       count = Study.all.count
       expect(count).to eq(0)
-      expect(assigns(:study).errors.count).to eq(1)
       expect(Study.all.count).to eq(count)
-      expect(flash[:error]).to be_present
     end
     
   end

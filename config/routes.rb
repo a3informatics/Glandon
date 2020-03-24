@@ -367,13 +367,11 @@ Rails.application.routes.draw do
     end
   end
   resources :studies, only: [:create, :update] do
-    member do
-      get :history
-      get :history_data
-    end
     collection do
       get :index
       get :index_data
+      get :history
+      get :history_data
     end
   end
   resources :forms do
