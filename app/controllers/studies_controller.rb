@@ -54,10 +54,28 @@ class StudiesController < ApplicationController
     render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
   end
 
+  def study_build
+    authorize Form, :edit?
+    @study = Study.find_minimum(params[:id])
+    @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
+  end
+
 private
 
   def the_params
     params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description, :scope_id, :count, :offset)
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return ""
+      when :edit
+        return study_build_study_path(object)
+      else
+        return ""
+    end
   end
 
 end
