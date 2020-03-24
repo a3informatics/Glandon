@@ -42,7 +42,7 @@ class Study < IsoManagedV2
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
     triples = query_results.by_object_set([:e, :i, :l, :ns, :sn])
     triples.each do |entry|
-      results << {id: entry[:e], identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
+      results << {id: entry[:e].to_id, identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
     end
     results
   end
