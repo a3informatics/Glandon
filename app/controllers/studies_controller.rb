@@ -5,10 +5,18 @@ class StudiesController < ApplicationController
   C_CLASS_NAME = self.name
 
   def index
-
+    @protocols = Protocol.unique
   end
 
   def index_data
+
+  end
+
+  def history
+    @close_path = studies_path
+  end
+
+  def history_data
 
   end
 

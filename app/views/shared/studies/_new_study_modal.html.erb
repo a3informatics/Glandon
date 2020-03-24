@@ -34,11 +34,9 @@
                 <div class="form-group">
                   <select name="protocol" class="form-control" id="ns_select_protocol" value="">
                      <option value="" disabled selected>Select protocol...</option>
-                     <option value="LY246708">LY246708</option>
-                     <option value="DS8500-A-U202">DS8500-A-U202</option>
-                     <option value="CPT_TALib-RA-BWE_V002">CPT_TALib-RA-BWE_V002</option>
-                     <option value="FLU 001">FLU 001</option>
-                     <option value="CPT_TALib-Alzheimers-BWE_V003">CPT_TALib-Alzheimers-BWE_V003</option>
+                     <% @protocols.each do |p| %>
+                      <option value="<%= p.id %>"><%= p.label %></option>
+                     <% end %>
                   </select>
                 </div>
               </div>
