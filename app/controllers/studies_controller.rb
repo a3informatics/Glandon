@@ -30,7 +30,14 @@ class StudiesController < ApplicationController
   end
 
   def create
-
+    authorize Form, :create?
+    @study = Study.create(the_params)
+    if @study.errors.empty?
+      flash[:success] = 'Study was successfully created.'
+    else
+      flash[:error] = @study.errors.full_messages.to_sentence
+    end
+    render json: {history_url: history_study_path(id: @study.id)}, status: 200
   end
 
   def history
@@ -44,7 +51,7 @@ class StudiesController < ApplicationController
 private
 
   def the_params
-    params.require(:study).permit(:description)
+    params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description)
   end
 
   # def authenticate_and_authorized
