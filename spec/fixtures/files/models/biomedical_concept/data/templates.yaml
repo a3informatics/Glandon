@@ -6,58 +6,109 @@
     :madatory: true
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD 
+    - :short_name: CD 
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Test Code"
   :has_items:
   - :label: "Category Code"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Category"
   - :label: "Subcategory Code"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Sub Category"
   - :label: "Position"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Position"
   - :label: "Site of Administration"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Location"
   - :label: "Laterality"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Laterality"
   - :label: "Method"
     :madatory: false
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Method"
   - :label: "Date Time"
     :madatory: true
     :enabled: true  
     :complex_datatype: 
-     - :short_name: DATETIME
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :is_a: "Date Time of Observation"
   - :label: "Not Done"
     :madatory: true
     :enabled: true  
     :complex_datatype: 
-     - :short_name: BL
+    - :short_name: BL
+      :has_property: 
+      - 
+        :label: "value"
+        :is_a: "Status"
   - :label: "Reason Not Done"
     :madatory: true
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "value"
+        :is_a: "Reason Not Done"
   - :label: "Result"
     :madatory: true
     :enabled: true  
     :complex_datatype: 
-     - :short_name: CD
-     - :short_name: PQR
+    - :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Result Value"
+    - :short_name: PQR
+      :has_property: 
+      - 
+        :label: "code"
+        :is_a: "Result Units"
+      - 
+        :label: "value"
+        :is_a: "Result Value"
 
 

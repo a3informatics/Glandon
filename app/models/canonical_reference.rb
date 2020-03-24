@@ -2,7 +2,8 @@ class CanonicalReference < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Framework#CanonicalReference",
             base_uri: "http://#{ENV["url_authority"]}/CAR",
-            uri_unique: :label
+            uri_unique: :label,
+            cache: true
 
   data_property :definition
   data_property :bridg

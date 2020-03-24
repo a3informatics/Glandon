@@ -11,38 +11,47 @@ describe BiomedicalConcept do
   end
 
   before :each do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
+      "canonical_references.ttl", "complex_datatypes.ttl"
+    ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..62)
-    load_local_file_into_triple_store(sub_dir, "complex_datatypes.ttl")
     @cdt_set = {}
     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
   end
 
-  def create_item(params, ordinal, template=true)
-    item = BiomedicalConcept::Item.new(label: params[:label], mandatory: params[:mandatory], enabled: params[:enabled], ordinal: ordinal)
+  def create_item(params, ordinal, bc_template=true)
+    params[:ordinal] = ordinal
+    item = BiomedicalConcept::Item.new(params)
     params[:complex_datatype].each do |datatype|
       cdt = find_complex_datatype(datatype[:short_name])
-      cdt = create_complex_datatype(datatype, cdt) if !template
+      cdt = create_complex_datatype(datatype, cdt, bc_template) 
       item.has_complex_datatype_push(cdt)
     end
     item
   end
 
-  def create_property(params)
-    property = BiomedicalConcept::Property.new(label: params[:label], format: params[:format], question_text: params[:question_text], prompt_text: params[:prompt_text])
-    params[:has_coded_value].each do |term|
+  def create_property(params, bc_template)
+    params = params.merge(format: "", question_test: "", prompt_text: "") if bc_template
+    property = BiomedicalConcept::Property.new(params)
+    ref = CanonicalReference.where(label: params[:is_a])
+    property.is_a = ref.first.uri
+    return property if bc_template
+    params[:has_coded_value].each_with_index do |term, index|
       items = @ct.find_by_identifiers([term[:cl], term[:cli]])
-      property.has_coded_value_push(items[term[:cli]]) 
+      op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: items[term[:cli]], optional: true)
+      property.has_coded_value_push(op_ref) 
     end
     property
   end
 
-  def create_complex_datatype(params, cdt_template)
-    cdt = BiomedicalConcept::ComplexDatatype.new
+  def create_complex_datatype(params, cdt_template, bc_template)
+    cdt = BiomedicalConcept::ComplexDatatype.new(label: cdt_template.short_name)
     cdt.based_on = cdt_template
     params[:has_property].each do |property|
-      cdt.has_property_push(create_property(property))
+      cdt.has_property_push(create_property(property, bc_template))
     end
     cdt
   end
@@ -62,7 +71,7 @@ describe BiomedicalConcept do
       object = BiomedicalConceptTemplate.new(label: template[:label])
       object.identified_by = create_item(template[:identified_by], 1)
       template[:has_items].each_with_index do |x, index| 
-        object.has_item_push(create_item(x, index+1))
+        object.has_item_push(create_item(x, index+2))
       end
       object.set_initial(template[:identifier])
       results << object
