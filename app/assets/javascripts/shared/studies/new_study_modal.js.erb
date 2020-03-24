@@ -31,7 +31,7 @@ NewStudyModal.prototype.setListeners = function() {
  * @return [void]
  */
 NewStudyModal.prototype.submitData = function() {
-
+  
   if (!this.validate())
     return;
 
@@ -43,7 +43,7 @@ NewStudyModal.prototype.submitData = function() {
     data: this.getData(),
     context: this,
     success: function(result){
-      location.href = result.data.history_url;
+      location.href = result.history_url;
     },
     error: function(xhr,status,error){
       this.loading(false);
