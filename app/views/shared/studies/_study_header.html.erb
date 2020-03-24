@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+<%= javascript_include_tag 'shared/tags' %>
+
+<div id="imh_header" class="col-md-12 card">
+  <div class="card-content">
+    <div class="h-outside-wrap">
+      <div class="h-inner-wrap">
+        <span class="circular-badge big <%= item_accent_color item.owner_short_name %> text-white">
+          <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
+        </span>
+      </div>
+      <div class="h-inner-wrap mid">
+        <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
+        <div class="text-large"> <%= item.label %> </div>
+        <div class="font-light">
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
+        </div>
+          <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
+            <div class="label-w-margin">Study name: <span class="font-light bg-label bg-prim-light text-white"> <%= item.name %> </span></div>
+            <div class="label-w-margin">Study description: <span class="font-light"> <%= item.description %> </span></div>
+            <% if (local_assigns.fetch :with_tags, true) %>
+              <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+            <% end %>
+          <% end %>
+      </div>
+      <div class="h-inner-wrap">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".bg-label");' %>
