@@ -1,10 +1,24 @@
-<%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study", with_tags: false} do %>
-  <div class="actions-wrap">
+<% third_level_breadcrumb(:studies, @study, @close_path) %>
 
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
-      icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-      
-  </div>
-<% end %>
+<div class="row">
+  <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
+    <div class="actions-wrap">
+
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
+        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+	<div class="col-md-12 card wide">
+    <div class="card-header">
+      Study Build
+    </div>
+    <div class="card-content">
+  	</div>
+	</div>
+</div>
