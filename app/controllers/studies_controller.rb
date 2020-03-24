@@ -12,7 +12,7 @@ class StudiesController < ApplicationController
   def index_data
     authorize Form, :view?
     studies = Study.all
-    studies = studies.map{|x| x.reverse_merge!({history_path: history_study_path({id: x[:id]})})}
+    studies = studies.map{|x| x.reverse_merge!({history_path: history_study_path(id: x[:id], identifier: x[:identifier], scope_id: x[:scope_id])})}
     render json: {data: studies}, status: 200
   end
 
