@@ -256,6 +256,11 @@ describe ThesauriController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "children_indicators_expected_1.yaml", equate_method: :hash_equal)
+      post :children_with_indicators, {id: ct.id, thesauri: {offset: 10, count: 30}} # Only 24 items left
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "children_indicators_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "sets reference, lock" do
@@ -530,12 +535,6 @@ describe ThesauriController do
       get :search, params
       expect(response).to render_template("search")
     end
-
-    # it "initiates a search of the current terminologies" do
-    #   params = standard_params
-    #   get :search_current, params
-    #   expect(response).to render_template("search_current")
-    # end
 
     it "initiates a search of multiple terminologies" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
