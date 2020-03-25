@@ -47,8 +47,8 @@ describe "Study" do
       check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
       actual.description = "Really new description"
       actual.save
-      actual = Study.find_minimum(actual.uri)
-      expect(actual.label).to eq("Really new label")
+      actual = Study.find_with_properties(actual.uri)
+      expect(actual.description).to eq("Really new description")
     end
 
     it "simple update II" do
@@ -65,7 +65,7 @@ describe "Study" do
 
     it "Study example" do
       p1 = Protocol.create(identifier: "XXX")
-      s1 = Study.create(identifier: "MY STUDY", label: "My Study", implements: p1.uri)
+      s1 = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: p1.uri)
       s1.implements = p1.uri
       s1.save
       actual = Study.find_minimum(s1.uri)
