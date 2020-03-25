@@ -1,6 +1,7 @@
 @prefix : <http://www.assero.co.uk/Protocol#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix en: <http://www.assero.co.uk/Enumerated#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -34,6 +35,24 @@
   rdfs:subClassOf bo:Component ;
   rdfs:label "Indication"^^xsd:string ;
   skos:definition "TBD"^^xsd:string ;
+.
+:Parameter
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Parameter"^^xsd:string ;
+  skos:definition "A single objct or endpoint parameter."^^xsd:string ;
+.
+:Endpoint
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Endpoint"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Objective
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Objective"^^xsd:string ;
+  skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
 .
 :implements
   rdf:type owl:ObjectProperty ;
@@ -83,12 +102,6 @@
   rdfs:range bo:Reference ;
   skos:definition "Relationship from a protocol to the relevant study type."^^xsd:string ;
 .
-:Objective
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Objective"^^xsd:string ;
-  skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
-.
 :has
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -113,39 +126,30 @@
   rdfs:range :Endpoint ;
   skos:definition "Relationship from an objective to an endpoint."^^xsd:string ;
 .
-:type
+:objectiveType
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "type Relationship"^^xsd:string ;
+  rdfs:label "Type Relationship"^^xsd:string ;
   rdfs:domain :Objective ;
-  rdfs:range :Primary ;
-  skos:definition "Relationship from an objective to a ???."^^xsd:string ;
+  rdfs:range en:Enumerated ;
+  skos:definition "Relationship from an objective to its type."^^xsd:string ;
 .
-:Endpoint
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Endpoint"^^xsd:string ;
-  skos:definition "The ."^^xsd:string ;
+:parameterRdfType
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "RDF Type Relationship"^^xsd:string ;
+  rdfs:domain :Parameter ;
+  rdfs:range isoC:Concept ;
+  skos:definition "Relationship from a parameter to the RDF type of the required data."^^xsd:string ;
 .
 :fullText
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Objective ;
-  rdfs:label "fullText"^^xsd:string ;
+  rdfs:label "Full Text"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Objective :Endpoint)
+    ] ;
   rdfs:range xsd:string ;
-  skos:definition "The full text of an Objective"^^xsd:string ;
-.
-:fullText
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain :Endpoint ;
-  rdfs:label "fullText"^^xsd:string ;
-  rdfs:range xsd:string ;
-  skos:definition "The full text of an Endpoint"^^xsd:string ;
-.
-:Parameter
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Parameter"^^xsd:string ;
-  skos:definition "The ."^^xsd:string ;
+  skos:definition "The full text of an Objective or Endpoint"^^xsd:string ;
 .
 :description
   rdf:type owl:DatatypeProperty ;
