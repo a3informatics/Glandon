@@ -1,4 +1,4 @@
-class TherapeuticArea < IsoConceptV2
+class TherapeuticArea < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Protocol#TherapeuticArea",
             uri_suffix: "TA"

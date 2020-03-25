@@ -5,12 +5,12 @@ defaults: &defaults
     scheme_type: flat # either :flat or :hierarchical. Can be symbol or string
     parent: 
       generated: 
-        pattern: "TCL[identifier]" 
+        pattern: "H[identifier]" 
         width: "6"
     child: 
       generated: 
-        pattern: "TCLI[identifier]"
-        width: "8"
+        pattern: "HI[identifier]"
+        width: "6"
 
 development:
   <<: *defaults

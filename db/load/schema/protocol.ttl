@@ -102,7 +102,7 @@
   rdfs:range bo:Reference ;
   skos:definition "Relationship from a protocol to the relevant study type."^^xsd:string ;
 .
-:has
+:hasObjective
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "has Relationship"^^xsd:string ;
@@ -110,12 +110,12 @@
   rdfs:range :Objective ;
   skos:definition "Relationship from an indication to an objective."^^xsd:string ;
 .
-:indicationName
+:indication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "has Relationship"^^xsd:string ;
   rdfs:domain :Indication ;
-  rdfs:range bo:Reference ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Relationship from an indication to the relevant indication name."^^xsd:string ;
 .
 :isAssessedBy
