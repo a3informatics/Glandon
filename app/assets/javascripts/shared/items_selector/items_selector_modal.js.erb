@@ -109,7 +109,7 @@ ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) 
       this.selection[name] = [];
       if (name != type)
         tab.deselectAll();
-    })
+    }.bind(this))
     this.selection[type] = selected ? [data[0]] : [];
   }
 
@@ -450,12 +450,15 @@ ItemsSelector.prototype.viewSelectionHTML = function() {
  * Columns defs
  *
  * @param table [String] Table type
+ * @param type [String] Tab type name
  * @return [Object Array] Column definitions for specific table type
  */
-ItemsSelector.prototype.columns = function (table) {
-  switch (table) {
+ItemsSelector.prototype.columns = function (table, type) {
+  var columns;
+
+  switch(table) {
     case "index":
-      return [
+      columns = [
         {"data" : "owner"},
         {"data" : "identifier"},
         {"render" : function (data, type, row, meta) {
@@ -465,8 +468,9 @@ ItemsSelector.prototype.columns = function (table) {
             return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
         }},
       ];
+      break;
     case "history":
-      return [
+      columns = [
         {"render" : function (data, type, row, meta) {
           return (type == 'display' ? row.has_identifier.semantic_version : row.has_identifier.version);
         }},
@@ -476,7 +480,13 @@ ItemsSelector.prototype.columns = function (table) {
           return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
         }},
       ];
+      break;
   }
+
+  if (type == "bcs")
+      columns[3] = {"visible": false}
+
+  return columns;
 }
 
 /**

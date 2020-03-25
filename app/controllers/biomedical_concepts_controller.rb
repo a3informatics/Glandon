@@ -1,9 +1,9 @@
 class BiomedicalConceptsController < ApplicationController
-  
+
   C_CLASS_NAME = "BiomedicalConceptsController"
 
   before_action :authenticate_user!
-  
+
   def editable
     authorize BiomedicalConcept, :index?
     results = {:data => []}
@@ -26,7 +26,7 @@ class BiomedicalConceptsController < ApplicationController
     @bcs = BiomedicalConcept.unique
     @biomedical_concept = BiomedicalConcept.new
     respond_to do |format|
-      format.html 
+      format.html
       format.json do
         results = {}
         results[:data] = []
@@ -37,7 +37,7 @@ class BiomedicalConceptsController < ApplicationController
       end
     end
   end
-  
+
   def list
     authorize BiomedicalConcept
     @bcs = BiomedicalConcept.list
@@ -54,7 +54,19 @@ class BiomedicalConceptsController < ApplicationController
     authorize BiomedicalConcept
     @identifier = the_params[:identifier]
     @bc = BiomedicalConcept.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-    redirect_to biomedical_concepts_path if @bc.count == 0
+    respond_to do |format|
+      format.html do
+        redirect_to biomedical_concepts_path if @bc.count == 0
+      end
+      format.json do
+        results = {}
+        results[:data] = []
+        @bc.each do |item|
+          results[:data] << item
+        end
+        render json: results
+      end
+    end
   end
 
   def new
@@ -166,7 +178,7 @@ class BiomedicalConceptsController < ApplicationController
     redirect_to request.referer
   end
 
-  def show 
+  def show
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
     respond_to do |format|
@@ -193,7 +205,7 @@ class BiomedicalConceptsController < ApplicationController
     @bc = IsoManaged.find(params[:id], the_params[:namespace])
     send_data to_turtle(@bc.triples), filename: "#{@bc.owner_short_name}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
-  
+
   def export_json
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
@@ -207,11 +219,11 @@ class BiomedicalConceptsController < ApplicationController
     flash[:error] = "The operation is currently disabled"
     redirect_to history_biomedical_concepts_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.scope.id })
   end
-  
+
 private
 
   def the_params
     params.require(:biomedical_concept).permit(:namespace, :uri, :identifier, :label, :scope_id, :bc_id, :bc_namespace, :bct_id, :bct_namespace)
-  end  
+  end
 
 end

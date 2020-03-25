@@ -357,7 +357,7 @@ MISelector.prototype.clearTable = function (target) {
 MISelector.prototype.indexTableInit = function() {
   return $(this.div).find("#index").DataTable({
     "order": [[0, "desc"]],
-		"columns": this.params.columns("index"),
+		"columns": this.params.columns("index", this.params.type),
 		"pageLength": 10,
     "lengthChange": false,
 		"processing": true,
@@ -385,7 +385,7 @@ MISelector.prototype.indexTableInit = function() {
 MISelector.prototype.historyTableInit = function () {
   return $(this.div).find("#history").DataTable({
     "order": [[0, "desc"]],
-		"columns": this.params.columns("history"),
+		"columns": this.params.columns("history", this.params.type),
 		"pageLength": 10,
     "lengthChange": false,
 		"processing": true,
