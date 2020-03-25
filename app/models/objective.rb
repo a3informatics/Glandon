@@ -5,7 +5,6 @@ class Objective < IsoManagedV2
 
   data_property :fullText
   object_property :isAssessedBy, cardinality: :one, model_class: "Endpoint"
-  object_property :type, cardinality: :many, model_class: "Primary"
-  object_property :type, cardinality: :many, model_class: "Secondary"
+  object_property :type, cardinality: :many, model_class: ""
 
 end
