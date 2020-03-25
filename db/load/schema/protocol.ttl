@@ -105,3 +105,11 @@
   rdfs:range bo:Reference ;
   skos:definition "Relationship from an indication to the relevant indication name."^^xsd:string ;
 .
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Description"^^xsd:string ;
+  rdfs:domain :Study ;
+  rdfs:range xsd:string ;
+  skos:definition "The description of the study."^^xsd:string ;
+
