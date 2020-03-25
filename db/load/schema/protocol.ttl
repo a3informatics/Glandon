@@ -125,32 +125,12 @@
   rdfs:label "type Relationship"^^xsd:string ;
   rdfs:domain :Objective ;
   rdfs:range :Primary ;
-  skos:definition "Relationship from an objective to a primary."^^xsd:string ;
-.
-:type
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "type Relationship"^^xsd:string ;
-  rdfs:domain :Objective ;
-  rdfs:range :Secondary ;
-  skos:definition "Relationship from an objective to a secondary."^^xsd:string ;
+  skos:definition "Relationship from an objective to a ???."^^xsd:string ;
 .
 :Endpoint
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
   rdfs:label "Endpoint"^^xsd:string ;
-  skos:definition "The ."^^xsd:string ;
-.
-:Primary
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Primary"^^xsd:string ;
-  skos:definition "The ."^^xsd:string ;
-.
-:Secondary
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Secondary"^^xsd:string ;
   skos:definition "The ."^^xsd:string ;
 .
 :fullText
