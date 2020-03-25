@@ -81,8 +81,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "owner".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#owner", base_type: "boolean"},
-        "organization_identifier".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier", base_type: "string"},
+        "owner".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#owner", base_type: XSDDatatype.new("boolean")},
+        "organization_identifier".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier", base_type: XSDDatatype.new("string")},
       }
       @owner = false
       @organization_identifier = ""
@@ -102,8 +102,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "ra_namespace".to_sym => {type: :object, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace", base_type: ""}, 
-        "effective_date".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", base_type: "dateTime"}
+        "ra_namespace".to_sym => {type: :object, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace", base_type: XSDDatatype.new("")}, 
+        "effective_date".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", base_type: XSDDatatype.new("dateTime")}
       }
       self.class.instance_variable_set(:@properties, props)
       @effective_date = "".to_time_with_default

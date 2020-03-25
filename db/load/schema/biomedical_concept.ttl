@@ -1,0 +1,152 @@
+@prefix : <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cdt: <http://www.assero.co.uk/ComplextDatatypes#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/BiomedicalConcept>
+  rdf:type owl:Ontology ;
+.
+:BiomedicalConcept
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "A Biomedical Concept. An observation."^^xsd:string ;
+.
+:BiomedicalConceptInstance
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept Instance"^^xsd:string ;
+  rdfs:subClassOf :BiomedicalConcept ;
+  skos:definition "A Biomedical Concept instance."^^xsd:string ;
+.
+:BiomedicalConceptTemplate
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept Template"^^xsd:string ;
+  rdfs:subClassOf :BiomedicalConcept ;
+  skos:definition "A template (or pattern) for a Biomedical Concept."^^xsd:string ;
+.
+:Item
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Biomedical Concept Item"^^xsd:string ;
+  skos:definition "An item within a Biomedical Concept."^^xsd:string ;
+.
+:ComplexDatatype
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Biomedical Concept Complex Datatype"^^xsd:string ;
+  skos:definition "A complex datatype within a Biomedical Concept."^^xsd:string ;
+.
+:PropertyX
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Biomedical Concept Property"^^xsd:string ;
+  skos:definition "A datatype property within a Biomedical Concept."^^xsd:string ;
+.
+:hasTemplate
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Template Relationship"^^xsd:string ;
+  rdfs:domain :BiomedicalConceptInstance ;
+  rdfs:range bo:reference ;
+  skos:definition "Relationship to relate Biomedical Concepts with the defining Template."^^xsd:string ;
+.
+:hasItem
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Item Relationship"^^xsd:string ;
+  rdfs:domain :BiomedicalConceptInstance ;
+  rdfs:range :Item ;
+  skos:definition "Link to the constiuent parts of the Biomedical Concept (Instance or Template)"^^xsd:string
+.
+:hasComplexDatatype
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Complex Datatype Relationship"^^xsd:string ;
+  rdfs:domain :Item ;
+  rdfs:range :ComplexDatatype ;
+  skos:definition "Link to the complex datatype"^^xsd:string
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Property Relationship"^^xsd:string ;
+  rdfs:domain :ComplexDatatype ;
+  rdfs:range :PropertyX ;
+  skos:definition "Reference to the a property."^^xsd:string
+.
+:hasCodeValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Coded Value Realtionship"^^xsd:string ;
+  rdfs:domain :PropertyX ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Reference to a coded value."^^xsd:string
+.
+:basedOn
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based On Relationship"^^xsd:string ;
+  rdfs:domain :ComplexDatatype ;
+  rdfs:range cdt:ComplexDatatype ;
+  skos:definition "Reference to the class that defines this class."^^xsd:string
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:PropertyX ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:domain :Item ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "Order of the node within the collection"^^xsd:string ;
+.
+:enabled
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Enabled"^^xsd:string ;
+  rdfs:domain :Item ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The property is enabled."^^xsd:string ;
+.
+:mandatory
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Mandatory"^^xsd:string ;
+  rdfs:domain :Item ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The property is mandatory."^^xsd:string ;
+.
+:collect
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Collect"^^xsd:string ;
+  rdfs:domain :Item ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The property can be collected (rather than a fixed value)"^^xsd:string ;
+.
+:questionText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Question Text"^^xsd:string ;
+  rdfs:domain :PropertyX ;
+  rdfs:range xsd:string ;
+  skos:definition "The question text for a property."^^xsd:string ;
+.
+:promptText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Prompt Text"^^xsd:string ;
+  rdfs:domain :PropertyX ;
+  rdfs:range xsd:string ;
+  skos:definition "The prompt text for a property."^^xsd:string ;
+.
+:format
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :PropertyX ;
+  rdfs:label "The format for the reponse"^^xsd:string ;
+  rdfs:range xsd:string ;
+.
