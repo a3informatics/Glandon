@@ -1,6 +1,6 @@
 class BiomedicalConcept < IsoManagedV2
 
-  configure rdf_type: "http://www.assero.co.uk/Thesaurus#BiomedicalConcept"
+  configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept"
 
   object_property :has_item, cardinality: :many, model_class: "BiomedicalConcept::Item", children: true
   object_property :identified_by, cardinality: :one, model_class: "BiomedicalConcept::Item"

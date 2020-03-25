@@ -1,5 +1,7 @@
-<% third_level_breadcrumb(:studies, @study, @close_path) %>
+<%= javascript_tag 'setPageTitle("Study build: '+@study.has_identifier.identifier+' ('+@study.semantic_version+')")' %>
 
+<%= javascript_include_tag "studies/build" %>
+<% third_level_breadcrumb(:studies, @study, @close_path) %>
 <div class="row">
   <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
     <div class="actions-wrap">
@@ -19,6 +21,7 @@
       Study Build
     </div>
     <div class="card-content">
+      <%= render partial: "shared/studies/study_build_panel" %>
   	</div>
 	</div>
 </div>

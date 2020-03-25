@@ -10,13 +10,11 @@ describe BiomedicalConcept do
   end
 
   before :each do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
-      "canonical_references.ttl", "complex_datatypes.ttl"
-    ]
-    load_files(schema_files, data_files)
+    load_files(schema_files, [])
     load_cdisc_term_versions(1..62)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("canonical_references.ttl")
+    load_data_file_into_triple_store("complex_datatypes.ttl")
     @cdt_set = {}
     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
   end
@@ -121,6 +119,13 @@ describe BiomedicalConcept do
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
   copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
+  end
+
+  it "check data" do
+    load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
+    load_local_file_into_triple_store(sub_dir, "biomedical_concept_instances.ttl")
+    expect(BiomedicalConceptTemplate.unique.count).to eq(1)
+    expect(BiomedicalConceptInstance.unique.count).to eq(1)
   end
 
 end

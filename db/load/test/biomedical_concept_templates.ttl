@@ -1,4 +1,4 @@
-@prefix : <http://www.s-cubed.dk/BASIC_OBS/V1#> .
+@prefix : <http://www.acme-pharma.com/BASIC_OBS/V1#> .
 @prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -10,7 +10,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/BASIC_OBS/V1>
+<http://www.acme-pharma.com/BASIC_OBS/V1>
 	rdf:type owl:Ontology ;
 .
 :BCT
@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-25T17:01:55+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-25T15:38:56+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI2 ;
 	bc:hasItem :BCT_BCI3 ;
@@ -53,7 +53,7 @@
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 :BCT_BCI2
 	rdf:type bc:Item ;
