@@ -1,0 +1,493 @@
+/*
+* Items Selector
+*/
+
+/*
+* Params
+** id [String] id of the modal (must match the id passed to the partial)
+** types [Object] {thesauri, cls, clitems} should specify ones to enable with true/false
+** multiple [Boolean] enable/disable multiple item selection
+** callback [Function] called when user clicks Submit. User's selection is passed as parameter.
+*/
+
+/**
+* Items Selector Modal Constructor
+*
+* @param [Object] user-defined values
+* @return [void]
+*/
+function ItemsSelector(params) {
+ this.params = this.paramsDefault(params);
+ this.modal = $("#selector-modal-" + this.params.id);
+ this.errorDiv = this.modal.find("#selector-modal-error");
+
+ this.initSelection();
+ this.setListeners();
+ this.initTabs();
+}
+
+/**
+ ****** General ******
+**/
+
+/**
+ * Sets a new callback
+ *
+ * @param callback [Function] New user submission callback
+ * @return [void]
+ */
+ItemsSelector.prototype.setCallback = function(callback) {
+  this.params.callback = callback;
+}
+
+/**
+ * Gets subselection for a tab
+ *
+ * @param sourceTab [String] name of the tab
+ * @return [Array] tab's subselection
+ */
+ItemsSelector.prototype.getSubselection = function(sourceTab) {
+  return this.selection[sourceTab];
+}
+
+/**
+ * Sets listeners
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.setListeners = function(callback) {
+  this.modal.find(".tab-option").on("switch", this.onTabClick.bind(this));
+
+  this.modal.on("shown.bs.modal", this.onModalShow.bind(this));
+
+  this.modal.on("hide.bs.modal", this.onModalClose.bind(this));
+
+  this.modal.find("#clear-selection").on("click", this.clearSelection.bind(this));
+
+  this.modal.find("#view-selection").on("click", this.viewSelection.bind(this));
+
+  this.modal.find("#selector-modal-submit").on("click", this.submit.bind(this));
+}
+
+/**
+ ****** Events ******
+**/
+
+/**
+ * Pass selection to callback, reset and hide dialog
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.submit = function() {
+  try { this.callback(this.selection) } catch(e) { }
+
+  this.reset();
+  this.modal.modal("hide");
+}
+
+/**
+ * Calls the show function of the clicked tab
+ *
+ * @param type [String] name of the tab
+ * @param selected [Boolean] true / false - selected / deselected
+ * @param data [Object Array] array of data affected
+ * @return [void]
+ */
+ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) {
+  if (this.params.multiple) {
+    var subselection = this.selection[type];
+
+    data.each(function(d) {
+      if(selected && !subselection.includes(d))
+        subselection.push(d);
+      else if (!selected && subselection.includes(d))
+        subselection.splice(subselection.indexOf(d), 1);
+    });
+  }
+  else {
+    this.selection = { thesauri: [], cls: [], clitems: [] };
+    $.each(this.tabs, function(name, tab) {
+      if (name != type)
+        tab.deselectAll();
+    })
+    this.selection[type] = selected ? [data[0]] : [];
+  }
+
+  this.updateUI();
+}
+
+/**
+ * Calls the show function of the clicked tab
+ *
+ * @param e [Event] event data
+ * @param id [String] clicked tab id
+ * @return [void]
+ */
+ItemsSelector.prototype.onTabClick = function(e, id) {
+  id = id.split('-')[1];
+  this.tabs[id].show();
+  this.tabs[id].refresh();
+}
+
+/**
+ * Called when modal opened
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.onModalShow = function() {
+  this.openDefaultTab();
+}
+
+/**
+ * Called when modal closed
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.onModalClose = function() {
+  this.reset();
+}
+
+/**
+ * Clears selection, updates UI
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.clearSelection = function() {
+  var _this = this;
+
+  $.each(this.selection, function (name, subselection){
+    this.splice(0, this.length);
+    try { _this.tabs[name].deselectAll(); } catch(e) {};
+  });
+
+  this.updateUI();
+}
+
+/**
+ ****** UI ******
+**/
+
+/**
+ * Initializes selection type, UI
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.initSelection = function() {
+  this.selection = {};
+
+  $.each(this.params.types, function(name, enabled){
+      if (enabled)
+        this.selection[name] = [];
+  }.bind(this));
+
+  if (!this.params.multiple)
+    this.modal.find("#view-selection").hide();
+
+  this.updateUI();
+}
+
+/**
+ * Sets the selection's element text to a new value
+ *
+ * @return [String] Text that the selection info was set to
+ */
+ItemsSelector.prototype.updateSelectionInfo = function() {
+  var selEl = this.modal.find("#selected-info");
+  var selText = this.getSelectionInfo();
+  selEl.text(selText);
+
+  return selText;
+}
+
+/**
+ * Calculates the total selection length / builds selection string
+ *
+ * @return [Integer/String] new selection info value
+ */
+ItemsSelector.prototype.getSelectionInfo = function() {
+  var result;
+
+  if (this.params.multiple) {
+    result = 0;
+    $.each(this.selection, function(type, values) {
+      result += values.length;
+    });
+  }
+  else {
+    result = "None";
+    $.each(this.selection, function(type, values) {
+      if (values.length > 0)
+        result = this.selectionItemString(values[0]);
+    }.bind(this));
+  }
+
+  return result;
+}
+
+/**
+ * Makes item string with identifier and version
+ *
+ * @param item [Object] item data
+ * @return [String]
+ */
+ItemsSelector.prototype.selectionItemString = function(item) {
+  return item.has_identifier.identifier + " v" + item.has_identifier.semantic_version;
+}
+
+/**
+ * Updates UI after user action
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.updateUI = function() {
+  var selText = this.updateSelectionInfo();
+  $("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0))
+}
+
+/**
+ * Resets the
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.reset = function() {
+  this.clearSelection();
+  this.updateUI();
+
+  $.each(this.tabs, function(type, tab) {
+    tab.reset();
+  });
+}
+
+/** Shows selection in an InformationDialog
+ *
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.viewSelection = function() {
+  var _this = this;
+
+  var selectionText = this.viewSelectionHTML();
+  var infDialog = new InformationDialog({title: "Current selection", subtitle: selectionText, wide: true}).show();
+
+  $(infDialog.id).on("click", ".removable", function() {
+    var target = _this.findInSelection($(this).attr("data-id"));
+
+    if (target != null){
+      _this.selection[target.type].splice([target.index], 1);
+      _this.updateUI();
+      _this.getOpenTab().refresh();
+      infDialog.setText(_this.viewSelectionHTML());
+    }
+  })
+}
+
+/**
+ ****** Tabs ******
+**/
+
+/**
+ * Initializes UI based on params. Removes unused elements. Opens first enabled tab.
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.initTabs = function(userParams) {
+  this.tabs = {};
+
+  $.each(this.params.types, function(tab, enabled){
+    if (enabled)
+      this.initializeTab(tab);
+    else
+      this.disableTab(tab);
+  }.bind(this));
+}
+
+/**
+ * Initializes a tab selector instance
+ *
+ * @param tabName [String] Name of the tab
+ * @return [void]
+ */
+ItemsSelector.prototype.initializeTab = function(tabName) {
+  switch (tabName) {
+    case "thesauri":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
+        });
+      break;
+    case "cls":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryClUrl, index: miIndexClUrl},
+        });
+      break;
+
+  }
+}
+
+/**
+ * Simulates click on the first enabled tab, opening it
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.openDefaultTab = function() {
+  var defaultTab = Object.keys(this.params.types)[0];
+  defaultTab = this.getTab(defaultTab);
+
+  setTimeout(function() {defaultTab.click(); }, 100);
+}
+
+/**
+ * Disables a tab, removes content
+ *
+ * @param tabName [String] Name of the tab
+ * @return [void]
+ */
+ItemsSelector.prototype.disableTab = function(tabName) {
+  this.getTab(tabName).remove();
+  this.modal.find("#selector-" + tabName).remove();
+  delete this.params.types[tabName];
+}
+
+/**
+ * Gets tab element
+ *
+ * @param tabName [String] Name of the tab
+ * @return [JQuery Element] tab element
+ */
+ItemsSelector.prototype.getTab = function(tabName) {
+  return this.modal.find("#tab-" + tabName);
+}
+
+/**
+ * Gets currently open tab reference
+ *
+ * @return [Instance Reference] currently opened tab
+ */
+ItemsSelector.prototype.getOpenTab = function() {
+  var tabName = this.modal.find(".tab-option.active").attr("id").split('-')[1];
+  return this.tabs[tabName];
+}
+
+
+/**
+ ****** Support ******
+**/
+
+/**
+ * Finds object's index and type in the selection by ID property
+ *
+ * @param id [String] id to match by
+ * @return [Object] {type, index} matched object, null if not found
+ */
+ItemsSelector.prototype.findInSelection = function(id) {
+  var result = null;
+
+  $.each(this.selection, function(name, values) {
+    $.each(values, function(index) {
+      if (this.id == id) {
+        result = {type: name, index: index};
+        return false;
+      }
+    });
+
+    return result == null;
+  });
+
+  return result;
+}
+
+/** Builds HTML for view selection
+ *
+ * @return [String] formatted HTML text
+ */
+ItemsSelector.prototype.viewSelectionHTML = function() {
+  var _this = this;
+  var selInfo = this.getSelectionInfo();
+
+  if (selInfo == 0 || selInfo == "None")
+    return "Selection is empty";
+
+  var html = "<i>Click on an item to remove it from the selection.</i><br/>";
+
+  $.each(this.selection, function(name, values) {
+    html += "<span class='label-styled label-w-margin'>" + _this.getTab(name).text() + " </span><br/>";
+
+    if(values.length == 0)
+      html += "<i class='label-w-margin'>None</i>";
+    else {
+      $.each(values, function() {
+        html += "<span class='bg-label label-w-margin removable' data-id='" + this.id + "'>" + _this.selectionItemString(this) + "</span>";
+      });
+    }
+
+    html += "<br/>";
+  });
+  return html;
+}
+
+/**
+ * Columns defs
+ *
+ * @param table [String] Table type
+ * @return [Object Array] Column definitions for specific table type
+ */
+ItemsSelector.prototype.columns = function (table) {
+  switch (table) {
+    case "index":
+      return [
+        {"data" : "owner"},
+        {"data" : "identifier"},
+        {"render" : function (data, type, row, meta) {
+            return row.label || row.preferred_term;
+        }},
+        {"data": "indicators", "orderable": false, "render" : function (data, type, row, meta) {
+            return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
+        }},
+      ];
+    case "history":
+      return [
+        {"render" : function (data, type, row, meta) {
+          return (type == 'display' ? row.has_identifier.semantic_version : row.has_identifier.version);
+        }},
+        {"data" : "has_identifier.version_label"},
+        {"data" : "has_state.registration_status"},
+        {"data" : "indicators", "orderable": false, "render": function (data, type, row, meta) {
+          return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
+        }},
+      ];
+  }
+}
+
+/**
+ * Merges user parameters with default values in missing fields
+ *
+ * @param userParams [Object] user-defined values
+ * @return [Object] parameters with default values in missing fields
+ */
+ItemsSelector.prototype.paramsDefault = function(userParams) {
+  userParams = userParams || {};
+
+  return {
+    id: userParams.id || "",
+    multiple: userParams.multiple !== false,
+    callback: userParams.callback,
+    types: userParams.types == null ?
+      { thesauri: true, cls: false, clitems: false } :
+      {
+        thesauri: userParams.types.thesauri || false,
+        cls: userParams.types.cls || false,
+        clitems: userParams.types.clitems || false
+      },
+  }
+}

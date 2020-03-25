@@ -38,6 +38,8 @@ InformationDialog.prototype.show = function() {
   setTimeout(function(){
     $(this.id).addClass("cd-show");
   }.bind(this), 1);
+
+  return this;
 }
 
 
@@ -89,6 +91,15 @@ InformationDialog.prototype.adjustDisplay = function() {
 }
 
 /**
+ * Sets subtitle text to new text
+ *
+ * @return [void]
+ */
+InformationDialog.prototype.setText = function(newText) {
+  $(this.id).find(".cd-subtitle").html(newText);
+}
+
+/**
  * Sets the default options combined with optional user options
  *
  * @param [Object] User options (can be empty object {})
@@ -114,7 +125,7 @@ InformationDialog.prototype.generateDialogHTML = function() {
   var html = '';
   html += '<div id="' + this.id.replace('#','') + '" class="cd-wrap ' + (this.options.wide ? 'wide' : '') + '">';
   html +=   '<div class="cd-body shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
-  html +=     '<div class="cd-title text-xnormal">' + this.options.title + '</div>';
+  html +=     '<div class="cd-title text-xnormal text-link">' + this.options.title + '</div>';
   html +=     '<div class="cd-subtitle scroll-styled text-small font-light">' + this.options.subtitle + '</div>';
   html +=     '<div class="cd-footer">';
   html +=       '<button id="id-dismiss-button" class="btn grey medium">Dismiss</button>';

@@ -4,7 +4,7 @@
 <%= javascript_tag "var selectMultiple = #{(local_assigns.fetch :select_multiple, true)}" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="im-select-modal">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-lg wide-screen" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <span class="modal-title text-normal text-medium" id="tableModalLabel">
@@ -91,12 +91,4 @@
     </div>
   </div>
 </div>
-<%  index_th_url = thesauri_index_path
-    history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
-    index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
-    history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) %>
-
-<%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
-                        miHistoryThesauriUrl = '#{history_th_url}',
-                        miIndexClUrl = '#{index_cl_url}',
-                        miHistoryClUrl = '#{history_cl_url}'; "%>
+<%= render partial: "shared/js_urls" %>
