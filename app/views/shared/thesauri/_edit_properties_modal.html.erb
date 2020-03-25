@@ -1,7 +1,7 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<%= stylesheet_link_tag 'shared/thesauri/edit_properties' %>
+<%= stylesheet_link_tag 'shared/form_modal' %>
 <%= javascript_include_tag 'shared/thesauri/edit_properties' %>
 
 <div class="modal fade bd-example-modal-lg edit-properties" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-properties-<%= modal_id %>">
@@ -21,7 +21,7 @@
             <center>
               <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
             </center>
-            <div class="form-wrap wide">
+            <div class="form-wrap wide with-labels">
               <div class="form-row">
                 <div class="form-group">
                   <label for="notation"> Submission value: </label><br/>

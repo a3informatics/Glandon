@@ -10,7 +10,7 @@
  * @param [String] URL for data load
  * @param [String] Strict param for data load request
  * @param [Columns] Columns defs
- * @param [Int] Count (items fetched in one call)
+ * @param [Int] Count (items fetched in one call). Set to -1 if not paginated
  * @param [String] optional: 'type' param for data load request
  *
  * @return [void]
@@ -72,7 +72,7 @@ IndexPanel.prototype.loadData = function (offset) {
       }
       this.indexTable.draw();
 
-      if (result.count >= this.count)
+      if (this.count != -1 && result.count >= this.count)
         this.loadData(parseInt(result.offset) + this.count)
       else
         this.indexTable.processing(false);
@@ -93,18 +93,27 @@ IndexPanel.prototype.loadData = function (offset) {
 IndexPanel.prototype.initColumns = function(columns){
   var _this = this;
 
-	columns.push(
-    { "data": "indicators",
-      "width": "80px",
-      "render" : function (data, type, row, meta) {
-        if(type == "display") return formatIndicators(data);
-        else return formatIndicatorsString(data);
-    }},
+  // Type specific columns
+  switch (this.strict_params) {
+    case "managed_concept":
+      columns.push({ "data": "indicators",
+        "width": "80px",
+        "render" : function (data, type, row, meta) {
+          if(type == "display") return formatIndicators(data);
+          else return formatIndicatorsString(data);
+        }});
+      break;
+    case "study":
+      break;
+  }
+
+  // History button (at the end)
+  columns.push(
     { "className": "text-right",
       "render" : function (data, type, row, meta) {
         return _this.historyButtonHTML(row.history_path);
     }}
-    );
+  );
 
 	return columns;
 }
