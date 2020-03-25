@@ -13,6 +13,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/thesa
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/framework.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/complex_datatype.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/biomedical_concept.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/protocol.ttl" $FileEndPoint
 # Load Identification
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_transcelerate_identification.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems.ttl" $FileEndPoint
