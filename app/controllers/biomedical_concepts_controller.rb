@@ -23,17 +23,12 @@ class BiomedicalConceptsController < ApplicationController
 
   def index
     authorize BiomedicalConcept
-    @bcs = BiomedicalConcept.unique
-    @biomedical_concept = BiomedicalConcept.new
+    bcs = BiomedicalConceptInstance.all
+    # @biomedical_concept = BiomedicalConcept.new
     respond_to do |format|
-      format.html
       format.json do
-        results = {}
-        results[:data] = []
-        @bcs.each do |item|
-          results[:data] << item
-        end
-        render json: results
+        bcs = bcs.map{|bc| bc.to_h }
+        render json: {data: bcs}, status: 200
       end
     end
   end
