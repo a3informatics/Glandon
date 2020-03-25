@@ -147,3 +147,9 @@
   rdfs:range xsd:string ;
   skos:definition "The full text of an Endpoint"^^xsd:string ;
 .
+:Parameter
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Parameter"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
