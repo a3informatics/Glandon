@@ -105,11 +105,11 @@ ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) 
     });
   }
   else {
-    this.selection = { thesauri: [], cls: [], clitems: [] };
     $.each(this.tabs, function(name, tab) {
+      this.selection[name] = [];
       if (name != type)
         tab.deselectAll();
-    })
+    }.bind(this))
     this.selection[type] = selected ? [data[0]] : [];
   }
 
