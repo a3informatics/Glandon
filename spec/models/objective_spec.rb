@@ -31,8 +31,8 @@ describe "Objective" do
       expect(actual.scoped_identifier).to eq("XXX")
       expect(actual.version).to eq(1)
       expect(actual.semantic_version).to eq("0.1.0")
-      #check_dates(actual, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_dates(actual, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

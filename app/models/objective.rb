@@ -5,8 +5,7 @@ class Objective < IsoManagedV2
 
   data_property :full_text
   object_property :is_assessed_by, cardinality: :one, model_class: "Endpoint"
-  object_property :type, cardinality: :one, model_class: "Enumerated"
-  object_property :has_parameter, cardinality: :many, model_class: "Parameter"
-
+#  object_property :type, cardinality: :one, model_class: "Enumerated"
+#  object_property :has_parameter, cardinality: :many, model_class: "Parameter"
 
 end
