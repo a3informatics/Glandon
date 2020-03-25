@@ -28,12 +28,14 @@
   rdfs:subClassOf isoC:Concept ;
   skos:definition "Generic reference type."^^xsd:string ;
 .
+# Deprecated
 :BcReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept."^^xsd:string ;
 .
+# Deprecated
 :BctReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Template Reference"^^xsd:string ;
@@ -46,12 +48,6 @@
   rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept property."^^xsd:string ;
-.
-:BcPReference
-  rdf:type owl:Class ;
-  rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
-  rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Biomedical Concept Property."^^xsd:string ;
 .
 # Deprecated
 :TcReference

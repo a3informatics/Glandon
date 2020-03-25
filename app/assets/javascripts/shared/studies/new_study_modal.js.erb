@@ -31,9 +31,9 @@ NewStudyModal.prototype.setListeners = function() {
  * @return [void]
  */
 NewStudyModal.prototype.submitData = function() {
-
-  if (!this.validate())
-    return;
+  //
+  // if (!this.validate())
+  //   return;
 
   this.loading(true);
 
@@ -43,7 +43,7 @@ NewStudyModal.prototype.submitData = function() {
     data: this.getData(),
     context: this,
     success: function(result){
-      location.href = result.data.history_url;
+      location.href = result.history_url;
     },
     error: function(xhr,status,error){
       this.loading(false);
@@ -65,7 +65,7 @@ NewStudyModal.prototype.getData = function() {
 
   inputFields.each(function () {
     var dataKey = $(this).attr("name") || $(this).parent().attr("name");
-    data.study[dataKey] = $(this).val();
+    data.study[dataKey] = $(this).val().trim();
   });
 
   return data;

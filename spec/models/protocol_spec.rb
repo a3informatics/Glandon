@@ -6,6 +6,7 @@ describe "Protocol" do
   include PublicFileHelpers
   include SparqlHelpers
   include ThesauriHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/protocol"
@@ -26,14 +27,15 @@ describe "Protocol" do
       expect(actual.scoped_identifier).to eq("XXX")
       expect(actual.version).to eq(1)
       expect(actual.semantic_version).to eq("0.1.0")
-      expect(actual.studyPhase).to eq(nil)
-      expect(actual.studyType).to eq(nil)
+      expect(actual.study_phase).to eq(nil)
+      expect(actual.study_type).to eq(nil)
       actual = Protocol.find_minimum(actual.uri)
       expect(actual.scoped_identifier).to eq("XXX")
       expect(actual.version).to eq(1)
       expect(actual.semantic_version).to eq("0.1.0")
-      expect(actual.studyPhase).to eq(nil)
-      expect(actual.studyType).to eq(nil)
+      expect(actual.study_phase).to eq(nil)
+      expect(actual.study_type).to eq(nil)
+      check_dates(actual, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -43,25 +45,12 @@ describe "Protocol" do
       actual.label = "New label"
       actual.save
       actual = Protocol.find_minimum(actual.uri)
+      check_dates(actual, sub_dir, "update_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
       actual.label = "Really new label"
       actual.save
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
+      expect(actual.label).to eq("Really new label")
     end
-
-    # it "Study example" do
-    #   s1 = Study.create(identifier: "MY STUDY", name: "My Study")
-    #   p1 = Protocol.create(identifier: "XXX", implements: s1.uri)
-    #   p1.implements = s1.uri
-    #   p1.save
-    #   actual = Protocol.find_minimum(p1.uri)
-    #   study = actual.implements_links
-    #   study = Study.find_minimum(actual.implements_links)
-    #   expect(study.scoped_identifier).to eq("MY STUDY")
-    #   check_file_actual_expected(study.to_h, sub_dir, "study_expected_1.yaml", equate_method: :hash_equal)
-    #   actual = study.protocols
-    #   expect(actual).to match_array([p1.uri])
-    # end
 
   end
 
