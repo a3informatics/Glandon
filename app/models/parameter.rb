@@ -4,6 +4,7 @@ class Parameter < IsoConceptV2
             uri_suffix: "PA"
 
   data_property :parameter_rdf_type
+  data_property :label
 
 
 end
