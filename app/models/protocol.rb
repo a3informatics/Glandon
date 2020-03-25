@@ -3,11 +3,10 @@ class Protocol < IsoManagedV2
   configure rdf_type: "http://www.assero.co.uk/Protocol#Protocol",
             uri_suffix: "PR"
 
-  data_property :name
-  object_property :studyPhase, cardinality: :one, model_class: "OperationalReferenceV3"
-  object_property :studyType, cardinality: :one, model_class: "OperationalReferenceV3"
+  object_property :study_phase, cardinality: :one, model_class: "OperationalReferenceV3"
+  object_property :study_type, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :specifies, cardinality: :many, model_class: "Indication"
-  object_property :inTA, cardinality: :one, model_class: "TherapeuticArea"
+  object_property :in_TA, cardinality: :one, model_class: "TherapeuticArea"
 
   # List all Protocols
   #
