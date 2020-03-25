@@ -1,3 +1,5 @@
+<%= javascript_tag 'setPageTitle("Study build: '+@study.has_identifier.identifier+' ('+@study.semantic_version+')")' %>
+
 <%= javascript_include_tag "studies/build" %>
 <% third_level_breadcrumb(:studies, @study, @close_path) %>
 <div class="row">
@@ -19,9 +21,7 @@
       Study Build
     </div>
     <div class="card-content">
-      <a href="#selector-modal-1" class="btn medium" data-toggle="modal">Selector</a>
-
-      <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
+      <%= render partial: "shared/studies/study_build_panel" %>
   	</div>
 	</div>
 </div>
