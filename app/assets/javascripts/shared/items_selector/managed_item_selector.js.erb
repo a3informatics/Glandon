@@ -64,6 +64,16 @@ MISelector.prototype.setListeners = function() {
 }
 
 /**
+ * Sets listeners
+ *
+ * @return [void]
+ */
+MISelector.prototype.refresh = function() {
+  this.indexTable.rows({selected: true}).deselect().select();
+}
+
+
+/**
  * Marks rows based on selection
  *
  * @return [void]
@@ -128,6 +138,20 @@ MISelector.prototype.loadHistory = function (data) {
       cacheData: true,
       cacheKey: data.identifier + data.scope_id
     });
+}
+
+/**
+ * Resets cache, table
+ *
+ * @return [void]
+ */
+MISelector.prototype.reset = function() {
+  var _this = this;
+
+  this.clearCache();
+  this.indexTable.clear().draw();
+  this.historyTable.clear().draw();
+  this.initialized = false;
 }
 
 /**

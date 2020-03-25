@@ -63,11 +63,27 @@ ItemsSelector.prototype.setListeners = function(callback) {
   this.modal.on("hide.bs.modal", this.onModalClose.bind(this));
 
   this.modal.find("#clear-selection").on("click", this.clearSelection.bind(this));
+
+  this.modal.find("#view-selection").on("click", this.viewSelection.bind(this));
+
+  this.modal.find("#selector-modal-submit").on("click", this.submit.bind(this));
 }
 
 /**
  ****** Events ******
 **/
+
+/**
+ * Pass selection to callback, reset and hide dialog
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.submit = function() {
+  try { this.callback(this.selection) } catch(e) { }
+
+  this.reset();
+  this.modal.modal("hide");
+}
 
 /**
  * Calls the show function of the clicked tab
@@ -110,6 +126,7 @@ ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) 
 ItemsSelector.prototype.onTabClick = function(e, id) {
   id = id.split('-')[1];
   this.tabs[id].show();
+  this.tabs[id].refresh();
 }
 
 /**
@@ -127,9 +144,7 @@ ItemsSelector.prototype.onModalShow = function() {
  * @return [void]
  */
 ItemsSelector.prototype.onModalClose = function() {
-  $.each(this.tabs, function(type, tab) {
-    // tab.resetUI();
-  });
+  this.reset();
 }
 
 /**
@@ -158,7 +173,12 @@ ItemsSelector.prototype.clearSelection = function() {
  * @return [void]
  */
 ItemsSelector.prototype.initSelection = function() {
-  this.selection = { thesauri: [], cls: [], clitems: [] };
+  this.selection = {};
+
+  $.each(this.params.types, function(name, enabled){
+      if (enabled)
+        this.selection[name] = [];
+  }.bind(this));
 
   if (!this.params.multiple)
     this.modal.find("#view-selection").hide();
@@ -182,7 +202,7 @@ ItemsSelector.prototype.updateSelectionInfo = function() {
 /**
  * Calculates the total selection length / builds selection string
  *
- * @return [Integer] total length of selection
+ * @return [Integer/String] new selection info value
  */
 ItemsSelector.prototype.getSelectionInfo = function() {
   var result;
@@ -197,11 +217,21 @@ ItemsSelector.prototype.getSelectionInfo = function() {
     result = "None";
     $.each(this.selection, function(type, values) {
       if (values.length > 0)
-        result = values[0].has_identifier.identifier + " v" + values[0].has_identifier.semantic_version;
-    });
+        result = this.selectionItemString(values[0]);
+    }.bind(this));
   }
 
   return result;
+}
+
+/**
+ * Makes item string with identifier and version
+ *
+ * @param item [Object] item data
+ * @return [String]
+ */
+ItemsSelector.prototype.selectionItemString = function(item) {
+  return item.has_identifier.identifier + " v" + item.has_identifier.semantic_version;
 }
 
 /**
@@ -215,12 +245,40 @@ ItemsSelector.prototype.updateUI = function() {
 }
 
 /**
+ * Resets the
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.reset = function() {
+  this.clearSelection();
+  this.updateUI();
+
+  $.each(this.tabs, function(type, tab) {
+    tab.reset();
+  });
+}
+
+/** Shows selection in an InformationDialog
  *
  *
  * @return [void]
  */
-ItemsSelector.prototype.resetUI = function() {
+ItemsSelector.prototype.viewSelection = function() {
+  var _this = this;
 
+  var selectionText = this.viewSelectionHTML();
+  var infDialog = new InformationDialog({title: "Current selection", subtitle: selectionText, wide: true}).show();
+
+  $(infDialog.id).on("click", ".removable", function() {
+    var target = _this.findInSelection($(this).attr("data-id"));
+
+    if (target != null){
+      _this.selection[target.type].splice([target.index], 1);
+      _this.updateUI();
+      _this.getOpenTab().refresh();
+      infDialog.setText(_this.viewSelectionHTML());
+    }
+  })
 }
 
 /**
@@ -296,7 +354,7 @@ ItemsSelector.prototype.openDefaultTab = function() {
  * @return [void]
  */
 ItemsSelector.prototype.disableTab = function(tabName) {
-  this.getTab(tabName).addClass("disabled");
+  this.getTab(tabName).remove();
   this.modal.find("#selector-" + tabName).remove();
   delete this.params.types[tabName];
 }
@@ -311,10 +369,72 @@ ItemsSelector.prototype.getTab = function(tabName) {
   return this.modal.find("#tab-" + tabName);
 }
 
+/**
+ * Gets currently open tab reference
+ *
+ * @return [Instance Reference] currently opened tab
+ */
+ItemsSelector.prototype.getOpenTab = function() {
+  var tabName = this.modal.find(".tab-option.active").attr("id").split('-')[1];
+  return this.tabs[tabName];
+}
+
 
 /**
  ****** Support ******
 **/
+
+/**
+ * Finds object's index and type in the selection by ID property
+ *
+ * @param id [String] id to match by
+ * @return [Object] {type, index} matched object, null if not found
+ */
+ItemsSelector.prototype.findInSelection = function(id) {
+  var result = null;
+
+  $.each(this.selection, function(name, values) {
+    $.each(values, function(index) {
+      if (this.id == id) {
+        result = {type: name, index: index};
+        return false;
+      }
+    });
+
+    return result == null;
+  });
+
+  return result;
+}
+
+/** Builds HTML for view selection
+ *
+ * @return [String] formatted HTML text
+ */
+ItemsSelector.prototype.viewSelectionHTML = function() {
+  var _this = this;
+  var selInfo = this.getSelectionInfo();
+
+  if (selInfo == 0 || selInfo == "None")
+    return "Selection is empty";
+
+  var html = "<i>Click on an item to remove it from the selection.</i><br/>";
+
+  $.each(this.selection, function(name, values) {
+    html += "<span class='label-styled label-w-margin'>" + _this.getTab(name).text() + " </span><br/>";
+
+    if(values.length == 0)
+      html += "<i class='label-w-margin'>None</i>";
+    else {
+      $.each(values, function() {
+        html += "<span class='bg-label label-w-margin removable' data-id='" + this.id + "'>" + _this.selectionItemString(this) + "</span>";
+      });
+    }
+
+    html += "<br/>";
+  });
+  return html;
+}
 
 /**
  * Columns defs

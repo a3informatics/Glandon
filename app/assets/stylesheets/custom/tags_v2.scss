@@ -106,26 +106,6 @@
   flex-direction: column;
 }
 
-.tag-item.removable{
-  transition: box-shadow .2s;
-}
-
-.tag-item.removable:hover{
-  cursor: pointer;
-  box-shadow: inset 0 0 0 2px $accent-color-2-light !important;
-  position: relative;
-}
-
-.tag-item.removable:hover::after{
-  position: absolute;
-  font-family: 'icomoon';
-  content: "\e932";
-  font-size: 12pt;
-  color: $accent-color-2;
-  top: -11px;
-  right: -9px;
-}
-
 .tag-item.clickable.selected{
   box-shadow: inset 0 0 0 0px !important;
   color: white;
