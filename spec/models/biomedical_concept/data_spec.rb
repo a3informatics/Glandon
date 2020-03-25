@@ -123,4 +123,11 @@ describe BiomedicalConcept do
   copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
+  it "check data" do
+    load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
+    load_local_file_into_triple_store(sub_dir, "biomedical_concept_instances.ttl")
+    expect(BiomedicalConceptTemplate.unique.count).to eq(1)
+    expect(BiomedicalConceptInstance.unique.count).to eq(1)
+  end
+
 end

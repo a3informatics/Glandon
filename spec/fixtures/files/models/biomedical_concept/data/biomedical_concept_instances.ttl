@@ -1,10 +1,9 @@
 @prefix : <http://www.acme-pharma.com/HEIGHT/V1#> .
-@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -16,18 +15,18 @@
 	rdf:type owl:Ontology ;
 .
 :BCI
-	rdf:type th:BiomedicalConceptInstance ;
+	rdf:type bc:BiomedicalConceptInstance ;
 	isoC:label "Height"^^xsd:string ;
 	isoT:hasState :BCI_RS ;
 	isoT:hasIdentifier :BCI_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-24T16:53:42+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-25T15:39:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:hasItem :BCI_BCI10 ;
-	th:identifiedBy :BCI_BCI1 ;
-	th:basedOn <http://www.acme-pharma.com/BASIC_OBS/V1#BCT> ;
+	bc:hasItem :BCI_BCI10 ;
+	bc:identifiedBy :BCI_BCI1 ;
+	bc:basedOn <http://www.acme-pharma.com/BASIC_OBS/V1#BCT> ;
 .
 :BCI_RS
 	rdf:type isoR:RegistrationState ;

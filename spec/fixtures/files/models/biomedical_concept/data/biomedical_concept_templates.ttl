@@ -1,10 +1,9 @@
 @prefix : <http://www.acme-pharma.com/BASIC_OBS/V1#> .
-@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -15,26 +14,26 @@
 	rdf:type owl:Ontology ;
 .
 :BCT
-	rdf:type th:BiomedicalConceptTemplate ;
+	rdf:type bc:BiomedicalConceptTemplate ;
 	isoC:label "Basic Observation"^^xsd:string ;
 	isoT:hasState :BCT_RS ;
 	isoT:hasIdentifier :BCT_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-24T16:53:05+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-25T15:38:56+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:hasItem :BCT_BCI2 ;
-	th:hasItem :BCT_BCI3 ;
-	th:hasItem :BCT_BCI4 ;
-	th:hasItem :BCT_BCI5 ;
-	th:hasItem :BCT_BCI6 ;
-	th:hasItem :BCT_BCI7 ;
-	th:hasItem :BCT_BCI8 ;
-	th:hasItem :BCT_BCI9 ;
-	th:hasItem :BCT_BCI10 ;
-	th:hasItem :BCT_BCI11 ;
-	th:identifiedBy :BCT_BCI1 ;
+	bc:hasItem :BCT_BCI2 ;
+	bc:hasItem :BCT_BCI3 ;
+	bc:hasItem :BCT_BCI4 ;
+	bc:hasItem :BCT_BCI5 ;
+	bc:hasItem :BCT_BCI6 ;
+	bc:hasItem :BCT_BCI7 ;
+	bc:hasItem :BCT_BCI8 ;
+	bc:hasItem :BCT_BCI9 ;
+	bc:hasItem :BCT_BCI10 ;
+	bc:hasItem :BCT_BCI11 ;
+	bc:identifiedBy :BCT_BCI1 ;
 .
 :BCT_RS
 	rdf:type isoR:RegistrationState ;
