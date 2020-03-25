@@ -5,7 +5,7 @@
 /*
 * Params
 ** id [String] id of the modal (must match the id passed to the partial)
-** types [Object] {thesauri, cls, clitems} should specify ones to enable with true/false
+** types [Object] {thesauri, cls, clitems, bcs} should specify ones to enable with true/false
 ** multiple [Boolean] enable/disable multiple item selection
 ** callback [Function] called when user clicks Submit. User's selection is passed as parameter.
 */
@@ -105,8 +105,8 @@ ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) 
     });
   }
   else {
-    this.selection = { thesauri: [], cls: [], clitems: [] };
     $.each(this.tabs, function(name, tab) {
+      this.selection[name] = [];
       if (name != type)
         tab.deselectAll();
     })
@@ -331,7 +331,17 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           urls: {history: miHistoryClUrl, index: miIndexClUrl},
         });
       break;
-
+    case "bcs":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
+        });
+      break;
   }
 }
 
@@ -483,11 +493,12 @@ ItemsSelector.prototype.paramsDefault = function(userParams) {
     multiple: userParams.multiple !== false,
     callback: userParams.callback,
     types: userParams.types == null ?
-      { thesauri: true, cls: false, clitems: false } :
+      { thesauri: true, cls: false, clitems: false, bcs: false } :
       {
         thesauri: userParams.types.thesauri || false,
         cls: userParams.types.cls || false,
-        clitems: userParams.types.clitems || false
+        clitems: userParams.types.clitems || false,
+        bcs: userParams.types.bcs || false
       },
   }
 }

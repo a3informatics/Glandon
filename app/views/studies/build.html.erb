@@ -1,5 +1,5 @@
+<%= javascript_include_tag "studies/build" %>
 <% third_level_breadcrumb(:studies, @study, @close_path) %>
-
 <div class="row">
   <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
     <div class="actions-wrap">
@@ -19,6 +19,9 @@
       Study Build
     </div>
     <div class="card-content">
+      <a href="#selector-modal-1" class="btn medium" data-toggle="modal">Selector</a>
+
+      <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
   	</div>
 	</div>
 </div>
