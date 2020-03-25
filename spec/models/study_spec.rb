@@ -6,6 +6,7 @@ describe "Study" do
   include PublicFileHelpers
   include SparqlHelpers
   include ThesauriHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/study"
@@ -32,6 +33,7 @@ describe "Study" do
       expect(actual.version).to eq(1)
       expect(actual.semantic_version).to eq("0.1.0")
       expect(actual.implements).to eq(nil)
+      check_dates(actual, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -41,10 +43,12 @@ describe "Study" do
       actual.label = "New label"
       actual.save
       actual = Study.find_minimum(actual.uri)
+      check_dates(actual, sub_dir, "update_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
       actual.label = "Really new label"
       actual.save
-      check_file_actual_expected(actual.to_h, sub_dir, "update_expected_2.yaml", equate_method: :hash_equal)
+      actual = Study.find_minimum(actual.uri)
+      expect(actual.label).to eq("Really new label")
     end
 
     it "Study example" do
@@ -56,6 +60,7 @@ describe "Study" do
       protocol = actual.implements_links
       protocol = Protocol.find_minimum(actual.implements_links)
       expect(actual.scoped_identifier).to eq("MY STUDY")
+      check_dates(actual, sub_dir, "study_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "study_expected_1.yaml", equate_method: :hash_equal)
       actual = actual.protocols
       expect(actual).to match_array([p1.uri])
