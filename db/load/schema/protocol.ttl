@@ -111,3 +111,59 @@
   rdfs:range bo:Reference ;
   skos:definition "Relationship from an indication to the relevant indication name."^^xsd:string ;
 .
+:isAssessedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "isAssessedBy Relationship"^^xsd:string ;
+  rdfs:domain :Objective ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from an objective to an endpoint."^^xsd:string ;
+.
+:type
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "type Relationship"^^xsd:string ;
+  rdfs:domain :Objective ;
+  rdfs:range :Primary ;
+  skos:definition "Relationship from an objective to a primary."^^xsd:string ;
+.
+:type
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "type Relationship"^^xsd:string ;
+  rdfs:domain :Objective ;
+  rdfs:range :Secondary ;
+  skos:definition "Relationship from an objective to a secondary."^^xsd:string ;
+.
+:Endpoint
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Endpoint"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Primary
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Primary"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Secondary
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Secondary"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:fullText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Objective ;
+  rdfs:label "fullText"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The full text of an Objective"^^xsd:string ;
+.
+:fullText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Endpoint ;
+  rdfs:label "fullText"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The full text of an Endpoint"^^xsd:string ;
+.
