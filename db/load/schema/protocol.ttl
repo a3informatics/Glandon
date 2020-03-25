@@ -10,36 +10,30 @@
 
 <http://www.assero.co.uk/Protocol>
   rdf:type owl:Ontology ;
-  owl:imports <http://purl.org/dc/elements/1.1/> ;
-  owl:imports <http://purl.org/dc/terms/> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
-  owl:imports <http://www.w3.org/2004/02/skos/core> ;
 .
 :Study
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
   rdfs:label "Study"^^xsd:string ;
-  rdfs:subClassOf skos:ConceptScheme ;
-  skos:definition "A thesaurus. A SKOS concept scheme"^^xsd:string ;
+  skos:definition "A clinical study"^^xsd:string ;
 .
 :Protocol
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
-  rdfs:subClassOf skos:Concept ;
   rdfs:label "Protocol"^^xsd:string ;
-  skos:definition "A member of a thesaurus, a concept. Version managed."^^xsd:string ;
+  skos:definition "A clinical protocol."^^xsd:string ;
 .
 :TherapeuticArea
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
   rdfs:label "Therapeutic Area"^^xsd:string ;
-  skos:definition ""^^xsd:string ;
+  skos:definition "An area of interest within clinical research."^^xsd:string ;
 .
 :Indication
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
   rdfs:label "Indication"^^xsd:string ;
-  skos:definition ""^^xsd:string ;
+  skos:definition "TBD"^^xsd:string ;
 .
 :implements
   rdf:type owl:ObjectProperty ;
@@ -47,7 +41,7 @@
   rdfs:label "Implements Relationship"^^xsd:string ;
   rdfs:domain :Study ;
   rdfs:range :Protocol ;
-  skos:definition "Relationship from a study to the protocol."^^xsd:string ;
+  skos:definition "The relationship between the study and the protocol it implements."^^xsd:string ;
 .
 :inTA
   rdf:type owl:ObjectProperty ;

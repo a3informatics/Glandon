@@ -56,7 +56,7 @@ class StudiesController < ApplicationController
 
   def build
     authorize Form, :edit?
-    @study = Study.find_minimum(params[:id])
+    @study = Study.find_with_properties(params[:id])
     @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
   end
 

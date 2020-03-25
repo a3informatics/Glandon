@@ -1,0 +1,22 @@
+defaults: &defaults
+  extensions:
+    can_extend_unextensible: true 
+  identifiers:
+    scheme_type: flat # either :flat or :hierarchical. Can be symbol or string
+    parent: 
+      generated: 
+        pattern: "TCL[identifier]" 
+        width: "6"
+    child: 
+      generated: 
+        pattern: "TCLI[identifier]"
+        width: "8"
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

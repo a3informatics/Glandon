@@ -10,13 +10,14 @@
 <% second_level_breadcrumb(:studies, @scope_id, @identifier) %>
 
 <div class="row">
-	<%= render layout: "shared/iso_managed/managed_header_card", :locals => {badge: "icon-study", item: @study, header_title: "Item History", with_tags: false} do %>
+  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-study", item: @study, header_title: "Item History", with_tags: false} do %>
     <div class="actions-wrap">
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
-  <% end %>
+	<% end %>
 </div>
+
 <div class="row centered">
 	<div class="col-md-11 card table-cardstyle">
 		<%= render partial: "shared/history_panel", locals: {title: "Version History of '#{@identifier}'"} %>

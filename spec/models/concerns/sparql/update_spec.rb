@@ -137,7 +137,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
-    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => XSDDatatype.new("string")})
     expect(sparql.to_create_sparql).to eq(result)
   end
 
@@ -164,15 +164,15 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
-    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "2012-01-01T12:34:56+01:00", :primitive_type => "dateTime"})
-    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "2012-01-01T12:34:56+01:00", :primitive_type => XSDDatatype.new("dateTime")})
+    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => XSDDatatype.new("string")})
     expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "put a literal triple in the predicate position" do
     sparql = Sparql::Update.new()
     s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
-    expect{sparql.add({:uri => s_uri}, {:literal => "error", :primitive_type => "string"}, {:literal => "hello world", :primitive_type => "string"})}.to raise_error(Errors::ApplicationLogicError, "Invalid triple part detected. Args: {:literal=>\"error\", :primitive_type=>\"string\"}")
+    expect{sparql.add({:uri => s_uri}, {:literal => "error", :primitive_type => XSDDatatype.new("string")}, {:literal => "hello world", :primitive_type => XSDDatatype.new("string")})}.to raise_error(Errors::ApplicationLogicError, "Invalid triple part detected. Args: {:literal=>\"error\", :primitive_type=>\"string\"}")
   end
 
   it "put a empty namespace in the predicate position with no default namespace" do
@@ -183,8 +183,8 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
-    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:literal => "hello world", :primitive_type => "string"})
-    expect{sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => "string"})}.to raise_error(Errors::ApplicationLogicError, "No default namespace available and namespace not set. Args: {:namespace=>\"\", :fragment=>\"ooo2\"}")
+    sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:literal => "hello world", :primitive_type => XSDDatatype.new("string")})
+    expect{sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => XSDDatatype.new("string")})}.to raise_error(Errors::ApplicationLogicError, "No default namespace available and namespace not set. Args: {:namespace=>\"\", :fragment=>\"ooo2\"}")
   end
 
   it "put a empty prefix in the object position with no default namespace" do
@@ -316,7 +316,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/aaa&\n\r\t", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/aaa&\n\r\t", :primitive_type => XSDDatatype.new("string")})
     sparql.create
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
@@ -337,9 +337,9 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "#ooo4"})
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t", :primitive_type => XSDDatatype.new("string")})
     string = %Q{+/ \ "test" 'aaa \ "  / % & \n\r\t}
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo5"}, {:literal => string, :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo5"}, {:literal => string, :primitive_type => XSDDatatype.new("string")})
     sparql.upload
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
@@ -370,17 +370,17 @@ describe Sparql::Update do
     sparql.add({:uri => s1_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
-    sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
-    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo5"}, {:literal => "A \"string\" 1", :primitive_type => "string"})
-    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo6"}, {:literal => "A string 2", :primitive_type => "string"})
-    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo7"}, {:literal => "A string 3", :primitive_type => "string"})
+    sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => XSDDatatype.new("string")})
+    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo5"}, {:literal => "A \"string\" 1", :primitive_type => XSDDatatype.new("string")})
+    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo6"}, {:literal => "A string 2", :primitive_type => XSDDatatype.new("string")})
+    sparql.add({:uri => s7_uri}, {:prefix => "bd", :fragment => "ooo7"}, {:literal => "A string 3", :primitive_type => XSDDatatype.new("string")})
     bulk = 200000
     count = bulk + 40
-    (1..10).each {|c| sparql.add({:uri => s2_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
-    (1..10).each {|c| sparql.add({:uri => s3_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
-    (1..10).each {|c| sparql.add({:uri => s4_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
-    (1..10).each {|c| sparql.add({:uri => s5_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
-    (1..bulk).each {|c| sparql.add({:uri => s6_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
+    (1..10).each {|c| sparql.add({:uri => s2_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
+    (1..10).each {|c| sparql.add({:uri => s3_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
+    (1..10).each {|c| sparql.add({:uri => s4_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
+    (1..10).each {|c| sparql.add({:uri => s5_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
+    (1..bulk).each {|c| sparql.add({:uri => s6_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
     timer_start    
     full_path = sparql.to_file
     timer_stop("#{count} triple file took: ")
