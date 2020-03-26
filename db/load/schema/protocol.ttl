@@ -148,6 +148,16 @@
   rdfs:range isoC:Concept ;
   skos:definition "Relationship from a parameter to the RDF type of the required data."^^xsd:string ;
 .
+:hasParameter
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "hasParameter Relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Objective :Endpoint)
+    ] ;
+  rdfs:range :Parameter ;
+  skos:definition "Relationship from an objective or endtpoint to an parameter."^^xsd:string ;
+.
 :fullText
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Full Text"^^xsd:string ;
