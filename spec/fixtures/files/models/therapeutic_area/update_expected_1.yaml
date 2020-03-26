@@ -1,12 +1,12 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BS
-:uri: http://www.acme-pharma.com/XXX/V1#PR
-:rdf_type: http://www.assero.co.uk/Protocol#Protocol
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1RB
+:uri: http://www.acme-pharma.com/XXX/V1#TA
+:rdf_type: http://www.assero.co.uk/Protocol#TherapeuticArea
 :label: New label
 :tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSX1JT
-  :uri: http://www.acme-pharma.com/XXX/V1#PR_RS
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1RBX1JT
+  :uri: http://www.acme-pharma.com/XXX/V1#TA_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -31,8 +31,8 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSX1NJ
-  :uri: http://www.acme-pharma.com/XXX/V1#PR_SI
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1RBX1NJ
+  :uri: http://www.acme-pharma.com/XXX/V1#TA_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: XXX
   :version_label: ''
@@ -47,10 +47,7 @@
     :authority: www.acme-pharma.com
 :origin: ''
 :change_description: ''
-:creation_date: '2020-03-24T08:24:12+01:00'
-:last_change_date: '2020-03-24T08:24:12+01:00'
+:creation_date: '2020-03-26T14:36:27+01:00'
+:last_change_date: '2020-03-26T14:36:27+01:00'
 :explanatory_comment: ''
-:study_phase: 
-:study_type: 
-:for_indication: []
-:in_TA: 
+:includes_indication: []

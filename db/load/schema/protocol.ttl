@@ -76,18 +76,18 @@
   rdfs:range :TherapeuticArea ;
   skos:definition "Relationship from a protocol to the relevant Therapeutic Area."^^xsd:string ;
 .
-:specifies
+:forIndication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Specifies Relationship"^^xsd:string ;
+  rdfs:label "For Indication Relationship"^^xsd:string ;
   rdfs:domain :Protocol ;
   rdfs:range :Indication ;
   skos:definition "Relationship from a protocol to an indication."^^xsd:string ;
 .
-:includes
+:includesIndication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Includes Relationship"^^xsd:string ;
+  rdfs:label "Includes Indication Relationship"^^xsd:string ;
   rdfs:domain :TherapeuticArea ;
   rdfs:range :Indication ;
   skos:definition "Relationship from a Therapeutic Area to an indication."^^xsd:string ;
