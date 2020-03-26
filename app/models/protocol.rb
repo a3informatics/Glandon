@@ -19,28 +19,38 @@ class Protocol < IsoManagedV2
 
   validates :title, presence: true
 
-  # # List all Protocols
-  # #
-  # # @return [Array] Each hash contains {id, identifier, label, scope_id, owner_short_name}
-  # def self.all
-  #   results = []
-  #   query_string = %Q{
-  #     SELECT DISTINCT ?e ?l ?i ?ns ?sn WHERE
-  #     {
-  #       ?e rdf:type #{self.rdf_type.to_ref} .
-  #       ?e isoC:label ?l .
-  #       ?e isoT:hasIdentifier ?si .
-  #       ?si isoI:identifier ?i .
-  #       ?si isoI:hasScope ?ns .
-  #       ?ns isoI:shortName ?sn .
-  #     }
-  #   }
-  #   query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-  #   triples = query_results.by_object_set([:e, :i, :l, :ns, :sn])
-  #   triples.each do |entry|
-  #     results << {id: entry[:e], identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
-  #   end
-  #   results
-  # end
+  def name_value
+    uri = self.uri.to_ref
+    query_string = %Q{
+      SELECT DISTINCT ?a ?t ?st ?stp ?stt ?im ?m ?i ?ta WHERE
+      {
+        #{uri} pr:title ?t .
+        OPTIONAL { #{uri} pr:acronym ?a }
+        OPTIONAL { #{uri} pr:short_title ?st }
+        #{uri} pr:studyPhase/bo:reference/isoC:label ?stp .
+        #{uri} pr:studyType/bo:reference/isoC:label ?stt .
+        #{uri} pr:interventionModel/bo:reference/isoC:label ?im .
+        #{uri} pr:masking/bo:reference/isoC:label ?m .
+        #{uri} pr:forIndication/isoC:label ?i .
+        OPTIONAL { #{uri} pr:inTA/isoC:label ?ta }
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:a, :t, :st, :stp, :stt, :im, :m, :i, :ta])
+    return [] if triples.empty?
+    entry = triples.first
+    result = 
+    [
+      {name: "Acronym", value: entry[:a]},
+      {name: "Title", value: entry[:t]}, 
+      {name: "Short Title", value: entry[:st]}, 
+      {name: "Study Phase", value: entry[:stp]}, 
+      {name: "Study Type", value: entry[:stt]}, 
+      {name: "Intervention", value: entry[:im]}, 
+      {name: "Masking", value: entry[:m]}, 
+      {name: "Indication", value: entry[:i]}, 
+      {name: "Therapeutic Area", value: entry[:ta]}
+    ]
+  end
 
 end
