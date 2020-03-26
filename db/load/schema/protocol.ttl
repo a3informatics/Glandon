@@ -54,6 +54,12 @@
   rdfs:label "Objective"^^xsd:string ;
   skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
 .
+:Epoch
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Epoch"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
