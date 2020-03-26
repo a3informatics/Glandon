@@ -320,6 +320,8 @@ MISelector.prototype.loadDataParams = function(c, o){
       return { managed_concept: { count: c, offset: o, type: "all" } };
     case "thesauri":
       return { thesauri: { count: c, offset: o } };
+    case "bcs":
+      return { biomedical_concept: { count: c, offset: o } };
   }
 }
 
