@@ -22,10 +22,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T15:43:18+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:studyPhase :PR_TUC1 ;
-	pr:studyType :PR_TUC1 ;
+	pr:acronym "H2Q-MC-LZZT"^^xsd:string ;
+	pr:title "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease."^^xsd:string ;
+	pr:shortTitle ""^^xsd:string ;
+	pr:studyPhase :PR_TUC3 ;
+	pr:studyType :PR_TUC4 ;
+	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_ALZ/V1#IND> ;
 .
 :PR_RS
@@ -48,16 +53,45 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-:PR_TUC1
+:PR_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C15601> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:PR_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C98388> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C15601> ;
+	bo:reference <http://www.cdisc.org/C99076/V55#C99076_C82639> ;
 	bo:context <http://www.cdisc.org/CT/V62#TH> ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C98388> ;
+.
+<http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66735/V4#C66735_C15228> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR>
 	rdf:type pr:Protocol ;
@@ -67,10 +101,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T15:43:18+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:studyPhase <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC1> ;
-	pr:studyType <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC1> ;
+	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
+	pr:title "A made up protocol title"^^xsd:string ;
+	pr:shortTitle ""^^xsd:string ;
+	pr:studyPhase <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC3> ;
+	pr:studyType <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC4> ;
+	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND> ;
 .
 <http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_RS>
@@ -93,16 +132,25 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC1>
+<http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C15600> ;
 	bo:context <http://www.cdisc.org/CT/V62#TH> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/DS8500-A-U202/V1#PR_TUC4>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C98388> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR>
 	rdf:type pr:Protocol ;
@@ -112,10 +160,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T15:43:18+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:studyPhase <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC1> ;
-	pr:studyType <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC1> ;
+	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
+	pr:title "A made up protocol title"^^xsd:string ;
+	pr:shortTitle ""^^xsd:string ;
+	pr:studyPhase <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC3> ;
+	pr:studyType <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC4> ;
+	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND> ;
 .
 <http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_RS>
@@ -138,16 +191,25 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC1>
+<http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C15600> ;
 	bo:context <http://www.cdisc.org/CT/V62#TH> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/CPT_TALib-RA-BWE_V002/V1#PR_TUC4>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C16084> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/FLU001/V1#PR>
 	rdf:type pr:Protocol ;
@@ -157,10 +219,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T15:43:18+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:studyPhase <http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC1> ;
-	pr:studyType <http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC1> ;
+	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
+	pr:title "A made up protocol title"^^xsd:string ;
+	pr:shortTitle ""^^xsd:string ;
+	pr:studyPhase <http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC3> ;
+	pr:studyType <http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC4> ;
+	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND> ;
 .
 <http://www.transceleratebiopharmainc.com/FLU001/V1#PR_RS>
@@ -183,16 +250,25 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC1>
+<http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C15602> ;
 	bo:context <http://www.cdisc.org/CT/V62#TH> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC4>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C98388> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR>
 	rdf:type pr:Protocol ;
@@ -202,10 +278,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T15:43:18+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:studyPhase <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
-	pr:studyType <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
+	pr:title "A made up protocol title"^^xsd:string ;
+	pr:shortTitle ""^^xsd:string ;
+	pr:studyPhase <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC3> ;
+	pr:studyType <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC4> ;
+	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
+	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_ALZ/V1#IND> ;
 .
 <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_RS>
@@ -228,14 +309,23 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1>
+<http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66737/V42#C66737_C49686> ;
 	bo:context <http://www.cdisc.org/CT/V62#TH> ;
 	bo:localLabel ""^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC4>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C99077/V28#C99077_C98722> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
 .

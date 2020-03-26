@@ -180,51 +180,68 @@ describe "Transcelerate Data" do
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
 
+      tc = th.find_by_identifiers(["C99076", "C82639"])["C82639"]
+      im_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      tc = th.find_by_identifiers(["C66735", "C15228"])["C15228"]
+      m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
 
       # Protocols
       tc = th.find_by_identifiers(["C66737", "C15601"])["C15601"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Nervous system disorders")
       ind = Indication.where(label: "Alzheimer's Disease")
-      p_1 = Protocol.new(label: "LY246708", in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, study_phase: phase_ref)
+      p_1 = Protocol.new(label: "LY246708", 
+        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.", 
+        short_title: "", acronym: "H2Q-MC-LZZT", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_1.set_initial("LY246708")
 
       tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Metabolic")
       ind = Indication.where(label: "Diabetes Mellitus")
-      p_2 = Protocol.new(label: "DS8500-A-U202", in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, study_phase: phase_ref)
+      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_2.set_initial("DS8500-A-U202")
 
       tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C16084"])["C16084"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Inflammation")
       ind = Indication.where(label: "Rheumatoid Arthritis")
-      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, study_phase: phase_ref)
+      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_3.set_initial("CPT_TALib-RA-BWE_V002")
 
       tc = th.find_by_identifiers(["C66737", "C15602"])["C15602"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Vaccines")
       ind = Indication.where(label: "Influenza")
-      p_4 = Protocol.new(label: "FLU 001", in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, study_phase: phase_ref)
+      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_4.set_initial("FLU001")
 
       tc = th.find_by_identifiers(["C66737", "C49686"])["C49686"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98722"])["C98722"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Nervous system disorders")
       ind = Indication.where(label: "Alzheimer's Disease")
-      p_5 = Protocol.new(label: "CPT_TALib-Alzheimers-BWE_V003", in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, study_phase: phase_ref)
+      p_5 = Protocol.new(label: "CPT_TALib-Alzheimers-BWE_V003", title: "A made up protocol title", short_title: "", 
+        acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri],
+        study_type: type_ref, study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_5.set_initial("CPT_TALib-ALZ-BWE_V003")
 
       # Generate
