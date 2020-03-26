@@ -1,6 +1,3 @@
-<%= stylesheet_link_tag 'shared/datatables_loading', 'custom/tabs_layout' %>
-<%= javascript_include_tag 'shared/tags', 'shared/tabs_layout' %>
-
 <div class="tabs-layout" id="selector-type-tabs">
 
   <div class="tabs-sel">
@@ -25,5 +22,5 @@
 
 </div>
 
-<a href="#selector-modal-1" class="btn medium" data-toggle="modal" style="display:none">Selector</a>
+<a href="#selector-modal-1" class="btn medium" data-toggle="modal" >Selector</a>
 <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>

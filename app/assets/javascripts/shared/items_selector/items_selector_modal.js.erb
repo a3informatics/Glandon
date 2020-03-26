@@ -482,9 +482,8 @@ ItemsSelector.prototype.columns = function (table, type) {
       ];
       break;
   }
-
   if (type == "bcs")
-      columns[3] = {"visible": false}
+      columns[3] = {visible: false, "render" : function (data, type, row, meta) {return "" }}
 
   return columns;
 }
