@@ -1,14 +1,12 @@
 ---
 :cardinality: :one
-:model_class: 
+:model_class: {}
 :type: :data
-:base_type: boolean
+:base_type:
+  :datatype: http://www.w3.org/2001/XMLSchema#boolean
+  :fragment: boolean
 :read_exclude: false
 :delete_exclude: false
 :default: false
 :name: :owner
-:predicate: !ruby/object:Uri
-  scheme: http
-  authority: www.assero.co.uk
-  path: Test
-  fragment: owner
+:predicate: http://www.assero.co.uk/Test#owner

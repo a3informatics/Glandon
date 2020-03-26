@@ -53,8 +53,9 @@ module Fuseki
           "  ?s rdf:type #{rdf_type.to_ref} ."
         params.each do |name, value|
           predicate = properties["#{name}".to_sym][:predicate]
-          literal = self.schema_metadata.datatype(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
-          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{self.schema_metadata.datatype(predicate)} ."
+          datatype = XSDDatatype.new(self.schema_metadata.datatype(predicate))
+          literal = datatype.string? ? value.dup.inspect.trim_inspect_quotes : value
+          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{datatype.fragment} ."
         end
         query_string += "  ?s ?p ?o ."
         query_string += "}"
@@ -341,24 +342,24 @@ module Fuseki
       nil
     end
 
-    def where_child(params)
-      where_clauses = ""
-      params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
-      properties = properties_instance
-      unions = []
-      properties.object_relationships.map.each do |relationship|
-        unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
-      end
-      query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
-      results = Sparql::Query.new.query(query_string, self.rdf_type.namespace, [])
-      objects = []
-      map = results.subject_map
-      results.by_subject.each do |subject, triples|
-        klass = map[subject.to_s].constantize
-        objects << klass.from_results(Uri.new(uri: subject), triples)
-      end
-      objects
-    end
+    # def where_child(params)
+    #   where_clauses = ""
+    #   params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
+    #   properties = properties_instance
+    #   unions = []
+    #   properties.object_relationships.map.each do |relationship|
+    #     unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
+    #   end
+    #   query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
+    #   results = Sparql::Query.new.query(query_string, self.rdf_type.namespace, [])
+    #   objects = []
+    #   map = results.subject_map
+    #   results.by_subject.each do |subject, triples|
+    #     klass = map[subject.to_s].constantize
+    #     objects << klass.from_results(Uri.new(uri: subject), triples)
+    #   end
+    #   objects
+    # end
 
     # Update. Update the object with the specified properties if valud
     #

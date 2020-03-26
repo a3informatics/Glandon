@@ -18,9 +18,14 @@
 :Component
   rdf:type owl:Class ;
   rdfs:label "Component"^^xsd:string ;
-  rdfs:subClassOf isoC:Concept ; # Deprecated, to be removed.
-  rdfs:subClassOf isoT::AdministeredItem ;
-  skos:definition "Generic reference type."^^xsd:string ;
+  rdfs:subClassOf isoT:AdministeredItem ;
+  skos:definition "Generic component type."^^xsd:string ;
+.
+:Collection
+  rdf:type owl:Class ;
+  rdfs:label "Collection"^^xsd:string ;
+  rdfs:subClassOf :Component ;
+  skos:definition "Generic collection type."^^xsd:string ;
 .
 :Reference
   rdf:type owl:Class ;
@@ -28,12 +33,14 @@
   rdfs:subClassOf isoC:Concept ;
   skos:definition "Generic reference type."^^xsd:string ;
 .
+# Deprecated
 :BcReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept."^^xsd:string ;
 .
+# Deprecated
 :BctReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Template Reference"^^xsd:string ;
@@ -46,12 +53,6 @@
   rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept property."^^xsd:string ;
-.
-:BcPReference
-  rdf:type owl:Class ;
-  rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
-  rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Biomedical Concept Property."^^xsd:string ;
 .
 # Deprecated
 :TcReference
@@ -152,6 +153,14 @@
   rdfs:label "Tabulation Column relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Tabulation Column relationship."^^xsd:string ;
+.
+:hasManaged
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Managed"^^xsd:string ;
+  rdfs:domain :Collection ;
+  rdfs:range :Reference ;
+  skos:definition "Relationship to a reference."^^xsd:string ;
 .
 :reference
   rdf:type owl:ObjectProperty ;

@@ -1,0 +1,334 @@
+@prefix : <http://www.acme-pharma.com/BASIC_OBS/V1#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/BASIC_OBS/V1>
+	rdf:type owl:Ontology ;
+.
+:BCT
+	rdf:type bc:BiomedicalConceptTemplate ;
+	isoC:label "Basic Observation"^^xsd:string ;
+	isoT:hasState :BCT_RS ;
+	isoT:hasIdentifier :BCT_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-25T15:38:56+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bc:hasItem :BCT_BCI2 ;
+	bc:hasItem :BCT_BCI3 ;
+	bc:hasItem :BCT_BCI4 ;
+	bc:hasItem :BCT_BCI5 ;
+	bc:hasItem :BCT_BCI6 ;
+	bc:hasItem :BCT_BCI7 ;
+	bc:hasItem :BCT_BCI8 ;
+	bc:hasItem :BCT_BCI9 ;
+	bc:hasItem :BCT_BCI10 ;
+	bc:hasItem :BCT_BCI11 ;
+	bc:identifiedBy :BCT_BCI1 ;
+.
+:BCT_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:BCT_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "BASIC OBS"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:BCT_BCI2
+	rdf:type bc:Item ;
+	isoC:label "Category Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI2_BCCDTCD ;
+.
+:BCT_BCI2_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI2_BCCDTCD_BCPcode ;
+.
+:BCT_BCI2_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+.
+:BCT_BCI3
+	rdf:type bc:Item ;
+	isoC:label "Subcategory Code"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "3"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI3_BCCDTCD ;
+.
+:BCT_BCI3_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI3_BCCDTCD_BCPcode ;
+.
+:BCT_BCI3_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+.
+:BCT_BCI4
+	rdf:type bc:Item ;
+	isoC:label "Position"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "4"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI4_BCCDTCD ;
+.
+:BCT_BCI4_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI4_BCCDTCD_BCPcode ;
+.
+:BCT_BCI4_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+.
+:BCT_BCI5
+	rdf:type bc:Item ;
+	isoC:label "Site of Administration"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "5"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI5_BCCDTCD ;
+.
+:BCT_BCI5_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI5_BCCDTCD_BCPcode ;
+.
+:BCT_BCI5_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+.
+:BCT_BCI6
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "6"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI6_BCCDTCD ;
+.
+:BCT_BCI6_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI6_BCCDTCD_BCPcode ;
+.
+:BCT_BCI6_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+.
+:BCT_BCI7
+	rdf:type bc:Item ;
+	isoC:label "Method"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI7_BCCDTCD ;
+.
+:BCT_BCI7_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI7_BCCDTCD_BCPcode ;
+.
+:BCT_BCI7_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+.
+:BCT_BCI8
+	rdf:type bc:Item ;
+	isoC:label "Date Time"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "8"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI8_BCCDTDATETIME ;
+.
+:BCT_BCI8_BCCDTDATETIME
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#DATETIME> ;
+	bc:hasProperty :BCT_BCI8_BCCDTDATETIME_BCPvalue ;
+.
+:BCT_BCI8_BCCDTDATETIME_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
+.
+:BCT_BCI9
+	rdf:type bc:Item ;
+	isoC:label "Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "9"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI9_BCCDTBL ;
+.
+:BCT_BCI9_BCCDTBL
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "BL"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#BL> ;
+	bc:hasProperty :BCT_BCI9_BCCDTBL_BCPvalue ;
+.
+:BCT_BCI9_BCCDTBL_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+.
+:BCT_BCI10
+	rdf:type bc:Item ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI10_BCCDTCD ;
+.
+:BCT_BCI10_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPvalue ;
+.
+:BCT_BCI10_BCCDTCD_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+.
+:BCT_BCI11
+	rdf:type bc:Item ;
+	isoC:label "Result"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI11_BCCDTCD ;
+	bc:hasComplexDatatype :BCT_BCI11_BCCDTPQR ;
+.
+:BCT_BCI11_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI11_BCCDTCD_BCPcode ;
+.
+:BCT_BCI11_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+.
+:BCT_BCI11_BCCDTPQR
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "PQR"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPcode ;
+	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPvalue ;
+.
+:BCT_BCI11_BCCDTPQR_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
+.
+:BCT_BCI11_BCCDTPQR_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+.
+:BCT_BCI1
+	rdf:type bc:Item ;
+	isoC:label "Test"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "1"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCT_BCI1_BCCDTCD ;
+.
+:BCT_BCI1_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCT_BCI1_BCCDTCD_BCPcode ;
+.
+:BCT_BCI1_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.assero.co.uk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
+.

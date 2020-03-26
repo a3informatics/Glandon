@@ -5,7 +5,7 @@
   <div class="card-content">
     <div class="h-outside-wrap">
       <div class="h-inner-wrap">
-        <span class="circular-badge big <%= thesaurus_accent_color item.owner_short_name %> text-white">
+        <span class="circular-badge big <%= item_accent_color item.owner_short_name %> text-white">
           <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
         </span>
       </div>

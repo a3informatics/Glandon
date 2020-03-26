@@ -137,6 +137,38 @@
   display: inline-block;
 }
 
+.label-styled{
+  padding-right: 14px;
+  border-bottom: 2px solid $secondary-color-light;
+  display: inline-block;
+}
+
+.label-w-margin{
+  margin-top: 6px;
+}
+
+// Removable
+
+.removable{
+  transition: box-shadow .2s;
+}
+
+.removable:hover{
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px $accent-color-2-light !important;
+  position: relative;
+}
+
+.removable:hover::after{
+  position: absolute;
+  font-family: 'icomoon';
+  content: "\e932";
+  font-size: 12pt;
+  color: $accent-color-2;
+  top: -11px;
+  right: -9px;
+}
+
 // ICO HEADERS used in the community version dashboard
 .ico-header{
   width: 55%;
@@ -164,6 +196,24 @@
 
 .ico-header:hover .ico{
   transform: scale(1.1);
+}
+
+// MODALS
+
+.modal-lg.medium-screen {
+  width: 60%;
+}
+
+.modal-lg.wide-screen {
+  width: 85%;
+}
+
+.modal-lg.full-screen {
+  width: 95%;
+}
+
+.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body {
+  padding: 20px 40px;
 }
 
 // LIST WRAP (CDISC_TERMS)
@@ -417,6 +467,11 @@
   color: white !important;
 }
 
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+  border-color: $secondary-color-light !important;
+  outline: none !important;
+}
+
 //
 .boxed-title{
   padding: 6px 20px;
@@ -515,6 +570,11 @@
 
 img.modal-img{
   width: 120px;
+  margin: 10px 0px;
+}
+
+img.modal-img.large{
+  width: 160px;
   margin: 10px 0px;
 }
 

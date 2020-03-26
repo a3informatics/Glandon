@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "shared/form_modal" %>
+<%= javascript_include_tag "shared/studies/new_study_modal" %>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-study-modal">
+  <div class="modal-dialog modal-lg medium-screen" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="icon-study text-link text-xnormal" style="margin-right:10px;"></span>
+          Create a New Study
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="errors"></div>
+            <center>
+              <img src="<%= asset_path 'icons/new_study' %>" class="modal-img large"/>
+              <br/><div class="font-light">Fill out the parameters for the new Study:</div><br/>
+            </center>
+            <div class="form-wrap wide no-labels">
+              <div class="form-row">
+                  <div class="form-group">
+                    <input type="text" autocomplete="false" autofocus="true" placeholder="Study identifier" maxlength="100" name="identifier" id="ns_input_identifier" value=""></input>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" autocomplete="false" name="label"  placeholder="Study label" maxlength="100" id="ns_input_label" value=""></input>
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <select name="protocol" class="form-control" id="ns_select_protocol" value="">
+                     <option value="" disabled selected>Select protocol...</option>
+                     <% @protocols.each do |p| %>
+                      <option value="<%= p.id %>"><%= p.label %></option>
+                     <% end %>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <textarea name="description" class="wide" id="ns_input_description" maxlength="500" placeholder="Study description" value=""></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn medium light" data-dismiss="modal" aria-label="Close">Close</button>
+        <button id="create-study-button" class="btn medium green">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

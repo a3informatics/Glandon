@@ -1,0 +1,160 @@
+@prefix : <http://www.s-cubed.dk/HEIGHT/V1#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/HEIGHT/V1>
+	rdf:type owl:Ontology ;
+.
+:BCI
+	rdf:type bc:BiomedicalConceptInstance ;
+	isoC:label "Height"^^xsd:string ;
+	isoT:hasState :BCI_RS ;
+	isoT:hasIdentifier :BCI_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-25T17:02:33+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bc:hasItem :BCI_BCI10 ;
+	bc:identifiedBy :BCI_BCI1 ;
+	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
+.
+:BCI_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:BCI_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "HEIGHT"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:BCI_BCI10
+	rdf:type bc:Item ;
+	isoC:label "Result"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "10"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI10_BCCDTPQR ;
+.
+:BCI_BCI10_BCCDTPQR
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "PQR"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPvalue ;
+	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPcode ;
+.
+:BCI_BCI10_BCCDTPQR_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Height value?"^^xsd:string ;
+	bc:promptText "Height"^^xsd:string ;
+	bc:format "5.2"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+.
+:BCI_BCI10_BCCDTPQR_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText "Result unit?"^^xsd:string ;
+	bc:promptText "Unit"^^xsd:string ;
+	bc:format "20"^^xsd:string ;
+	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC1 ;
+	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC2 ;
+	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC3 ;
+	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC4 ;
+	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+.
+:BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V34#C66770_C49668> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:BCI_BCI10_BCCDTPQR_BCPcode_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V42#C66770_C48500> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:BCI_BCI10_BCCDTPQR_BCPcode_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V6#C71620_C41139> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:BCI_BCI10_BCCDTPQR_BCPcode_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V6#C71620_C71253> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:BCI_BCI1
+	rdf:type bc:Item ;
+	isoC:label "Test"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "1"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI1_BCCDTCD ;
+.
+:BCI_BCI1_BCCDTCD
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:hasProperty :BCI_BCI1_BCCDTCD_BCPcode ;
+.
+:BCI_BCI1_BCCDTCD_BCPcode
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
+	bc:questionText ""^^xsd:string ;
+	bc:promptText ""^^xsd:string ;
+	bc:format "8"^^xsd:string ;
+	bc:hasCodedValue :BCI_BCI1_BCCDTCD_BCPcode_TUC1 ;
+	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+.
+:BCI_BCI1_BCCDTCD_BCPcode_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66741/V4#C66741_C25347> ;
+	bo:context <http://www.cdisc.org/CT/V62#TH> ;
+	bo:localLabel ""^^xsd:string ;
+.

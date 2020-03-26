@@ -1,18 +1,19 @@
 defaults: &defaults
   optional: &default_optional
-    isoB: "http://www.assero.co.uk/ISO11179Basic"
     isoI: "http://www.assero.co.uk/ISO11179Identification"
     isoR: "http://www.assero.co.uk/ISO11179Registration"
     isoC: "http://www.assero.co.uk/ISO11179Concepts"
     isoT: "http://www.assero.co.uk/ISO11179Types"
     th: "http://www.assero.co.uk/Thesaurus"
-    iso25964: "http://www.assero.co.uk/ISO25964"
-    iso21090: "http://www.assero.co.uk/ISO21090"
-    cbc: "http://www.assero.co.uk/CDISCBiomedicalConcept"
+    fr: "http://www.assero.co.uk/Framework"
+    pr: "http://www.assero.co.uk/Protocol"    
+    en: "http://www.assero.co.uk/Enumerated"    
+    bc: "http://www.assero.co.uk/BiomedicalConcept"
     bo: "http://www.assero.co.uk/BusinessOperational"
     ba: "http://www.assero.co.uk/Annotations"
     bf: "http://www.assero.co.uk/BusinessForm"
     bd: "http://www.assero.co.uk/BusinessDomain"
+    pr: "http://www.assero.co.uk/Protocol"
     owl: "http://www.w3.org/2002/07/owl"
   required: &default_required
     rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns"
