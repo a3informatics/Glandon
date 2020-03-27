@@ -1,0 +1,80 @@
+/*
+* Vertical List
+* Fetches data from server and displays in a simple vertical list
+* Important: server data must be in format: { data: [ {name: "", value: ""} ] }
+*/
+
+
+/**
+* Vertical List Constructor
+*
+* @param table [String] id of the table
+* @param url [String] url for data fetch
+*/
+function VerticalList(table, url) {
+  this.table = $(table);
+  this.url = url;
+}
+
+/**
+ * Ajax data fetch
+ *
+ * @return [void]
+ */
+VerticalList.prototype.loadData = function() {
+  this.loading(true);
+
+
+  $.ajax({
+    url: this.url,
+    type: "GET",
+    context: this,
+    success: function(result){
+      this.appendData(result.data);
+    },
+    error: function(xhr,status,error){
+      this.loading(false);
+      handleAjaxError(xhr, status, error);
+    }
+  });
+
+  return this;
+};
+
+/**
+ * Clears data
+ *
+ * @return [void]
+ */
+VerticalList.prototype.clear = function(data) {
+  this.table.html("");
+};
+
+/**
+ * Appends data to table, formats
+ *
+ * @param [Array] array of objects (format: {name: "", value: ""})
+ * @return [void]
+ */
+VerticalList.prototype.appendData = function(data) {
+  var html = "";
+
+  $.each(data, function(idx) {
+      html += "<tr>";
+      html +=   "<td><span class='label-styled'>" + this.name + "</span></td>";
+      html +=   "<td>" + this.value + "</td>";
+      html += "</tr>";
+  });
+
+  this.table.html(html);
+};
+
+/**
+ * Enables / disables loading state of table
+ *
+ * @param enable [Boolean] enable/disable loading ~ true/false
+ * @return [void]
+ */
+VerticalList.prototype.loading = function(enable) {
+  this.table.toggleClass("loading", enable);
+};

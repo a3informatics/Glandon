@@ -5,6 +5,7 @@
     <div class="tab-option with-icon small" id="tab-design"><span class="icon-build bg-prim-bright"></span><span>Design and Interventions</span></div>
     <div class="tab-option with-icon small" id="tab-objectives"><span class="icon-selection bg-prim-bright"></span><span>Objectives</span></div>
     <div class="tab-option with-icon small" id="tab-endpoints"><span class="icon-multi bg-prim-bright"></span><span>Endpoints</span></div>
+    <div class="tab-option with-icon small" id="tab-timeline"><span class="icon-date bg-prim-bright"></span><span>Timeline</span></div>
   </div>
 
   <div class="tab-wrap" data-tab="tab-content">
@@ -20,7 +21,10 @@
   <div class="tab-wrap closed" data-tab="tab-endpoints">
   </div>
 
+  <div class="tab-wrap closed" data-tab="tab-timeline">
+  </div>
+
 </div>
 
-<a href="#selector-modal-1" class="btn medium" data-toggle="modal" >Selector</a>
+<a href="#selector-modal-1" class="btn medium" data-toggle="modal">Selector</a>
 <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
