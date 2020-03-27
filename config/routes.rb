@@ -377,6 +377,7 @@ Rails.application.routes.draw do
       get :history_data
     end
   end
+  resources :protocols, only: [:show]
   resources :forms do
     collection do
       get :history

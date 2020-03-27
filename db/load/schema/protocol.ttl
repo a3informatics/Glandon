@@ -1,6 +1,7 @@
 @prefix : <http://www.assero.co.uk/Protocol#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix en: <http://www.assero.co.uk/Enumerated#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -35,6 +36,30 @@
   rdfs:label "Indication"^^xsd:string ;
   skos:definition "TBD"^^xsd:string ;
 .
+:Parameter
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Parameter"^^xsd:string ;
+  skos:definition "A single objct or endpoint parameter."^^xsd:string ;
+.
+:Endpoint
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Endpoint"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Objective
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Objective"^^xsd:string ;
+  skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
+.
+:Epoch
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Epoch"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -51,18 +76,18 @@
   rdfs:range :TherapeuticArea ;
   skos:definition "Relationship from a protocol to the relevant Therapeutic Area."^^xsd:string ;
 .
-:specifies
+:forIndication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Specifies Relationship"^^xsd:string ;
+  rdfs:label "For Indication Relationship"^^xsd:string ;
   rdfs:domain :Protocol ;
   rdfs:range :Indication ;
   skos:definition "Relationship from a protocol to an indication."^^xsd:string ;
 .
-:includes
+:includesIndication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Includes Relationship"^^xsd:string ;
+  rdfs:label "Includes Indication Relationship"^^xsd:string ;
   rdfs:domain :TherapeuticArea ;
   rdfs:range :Indication ;
   skos:definition "Relationship from a Therapeutic Area to an indication."^^xsd:string ;
@@ -72,24 +97,34 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Study Phase Relationship"^^xsd:string ;
   rdfs:domain :Protocol ;
-  rdfs:range bo:Reference ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Relationship from a protocol to the relevant study phase."^^xsd:string ;
 .
 :studyType
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Includes Relationship"^^xsd:string ;
+  rdfs:label "Study Type Relationship"^^xsd:string ;
   rdfs:domain :Protocol ;
-  rdfs:range bo:Reference ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Relationship from a protocol to the relevant study type."^^xsd:string ;
 .
-:Objective
-  rdf:type owl:Class ;
-  rdfs:subClassOf bo:Component ;
-  rdfs:label "Objective"^^xsd:string ;
-  skos:definition "The reason for performing a trial in terms of the scientific questions to be answered by the analysis of data collected during the trial."^^xsd:string ;
+:interventionModel
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Intervention Model Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Relationship from a protocol to the relevant intervention model."^^xsd:string ;
 .
-:has
+:masking
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Masking Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Relationship from a protocol to the relevant masking."^^xsd:string ;
+.
+:hasObjective
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "has Relationship"^^xsd:string ;
@@ -97,13 +132,56 @@
   rdfs:range :Objective ;
   skos:definition "Relationship from an indication to an objective."^^xsd:string ;
 .
-:indicationName
+:indication
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "has Relationship"^^xsd:string ;
   rdfs:domain :Indication ;
-  rdfs:range bo:Reference ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Relationship from an indication to the relevant indication name."^^xsd:string ;
+.
+:isAssessedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "isAssessedBy Relationship"^^xsd:string ;
+  rdfs:domain :Objective ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from an objective to an endpoint."^^xsd:string ;
+.
+:objectiveType
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Type Relationship"^^xsd:string ;
+  rdfs:domain :Objective ;
+  rdfs:range en:Enumerated ;
+  skos:definition "Relationship from an objective to its type."^^xsd:string ;
+.
+:parameterRdfType
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "RDF Type Relationship"^^xsd:string ;
+  rdfs:domain :Parameter ;
+  rdfs:range isoC:Concept ;
+  skos:definition "Relationship from a parameter to the RDF type of the required data."^^xsd:string ;
+.
+:hasParameter
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "hasParameter Relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Objective :Endpoint)
+    ] ;
+  rdfs:range :Parameter ;
+  skos:definition "Relationship from an objective or endtpoint to an parameter."^^xsd:string ;
+.
+:fullText
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Full Text"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Objective :Endpoint)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The full text of an Objective or Endpoint"^^xsd:string ;
 .
 :description
   rdf:type owl:DatatypeProperty ;
@@ -112,4 +190,27 @@
   rdfs:domain :Study ;
   rdfs:range xsd:string ;
   skos:definition "The description of the study."^^xsd:string ;
-
+.
+:title
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Title"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range xsd:string ;
+  skos:definition "The title for the protocol."^^xsd:string ;
+.
+:shortTitle
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Short Title"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range xsd:string ;
+  skos:definition "The short title for the protocol."^^xsd:string ;
+.
+:acronym
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Acronym"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range xsd:string ;
+  skos:definition "The protocol acronym."^^xsd:string ;
