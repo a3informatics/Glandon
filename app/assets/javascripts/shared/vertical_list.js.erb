@@ -17,6 +17,16 @@ function VerticalList(table, url) {
 }
 
 /**
+ * Call when display. Clears and loads data.
+ *
+ * @return [void]
+ */
+VerticalList.prototype.show = function() {
+  if (!this.loaded)
+    this.loadData();
+};
+
+/**
  * Ajax data fetch
  *
  * @return [void]
@@ -24,21 +34,19 @@ function VerticalList(table, url) {
 VerticalList.prototype.loadData = function() {
   this.loading(true);
 
-
   $.ajax({
     url: this.url,
     type: "GET",
     context: this,
     success: function(result){
       this.appendData(result.data);
+      this.loaded = true;
     },
     error: function(xhr,status,error){
       this.loading(false);
       handleAjaxError(xhr, status, error);
     }
   });
-
-  return this;
 };
 
 /**
@@ -46,7 +54,7 @@ VerticalList.prototype.loadData = function() {
  *
  * @return [void]
  */
-VerticalList.prototype.clear = function(data) {
+VerticalList.prototype.clear = function() {
   this.table.html("");
 };
 
