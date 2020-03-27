@@ -60,6 +60,18 @@
   rdfs:label "Epoch"^^xsd:string ;
   skos:definition "The ."^^xsd:string ;
 .
+:Arm
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Arm"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Visit
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Visit"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
