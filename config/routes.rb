@@ -369,6 +369,7 @@ Rails.application.routes.draw do
   resources :studies, only: [:create, :update] do
     member do
       get :build
+      get :design
     end
     collection do
       get :index
