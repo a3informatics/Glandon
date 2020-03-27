@@ -192,6 +192,22 @@
   rdfs:range :Parameter ;
   skos:definition "Relationship from an objective or endtpoint to an parameter."^^xsd:string ;
 .
+:inArm
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Arm Relationship"^^xsd:string ;
+  rdfs:domain :Element ;
+  rdfs:range :Arm ;
+  skos:definition "Relationship from an Element to an Arm."^^xsd:string ;
+.
+:inEpoch
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Epoch Relationship"^^xsd:string ;
+  rdfs:domain :Element ;
+  rdfs:range :Epoch ;
+  skos:definition "Relationship from an Element to an Epoch."^^xsd:string ;
+.
 :fullText
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Full Text"^^xsd:string ;
