@@ -218,9 +218,7 @@ ImpactGraph.prototype.makeDataUrl = function(id) {
  * @return [void]
  */
 ImpactGraph.prototype.loading = function(enable) {
-  if (typeof tabLoading != "undefined"){
-      this.itemList.loading(enable);
-      tabLoading(this.tabName, enable);
-      this.processing = enable;
-  }
+  this.itemList.loading(enable);
+  $("#"+this.tabName).trigger("loading", [enable]);
+  this.processing = enable;
 }
