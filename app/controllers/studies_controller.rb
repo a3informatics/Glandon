@@ -12,7 +12,7 @@ class StudiesController < ApplicationController
 
   def index
     authorize Form
-    @protocols = Protocol.all
+    @protocols = Protocol.unique
   end
 
   def index_data

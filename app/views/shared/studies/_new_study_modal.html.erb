@@ -32,7 +32,7 @@
                   <select name="protocol" class="form-control" id="ns_select_protocol" value="">
                      <option value="" disabled selected>Select protocol...</option>
                      <% @protocols.each do |p| %>
-                      <option value="<%= p.id %>"><%= p.label %></option>
+                      <option value="<%= p[:identifier] %>"><%= p[:label] %></option>
                      <% end %>
                   </select>
                 </div>
