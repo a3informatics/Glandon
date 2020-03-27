@@ -1,0 +1,60 @@
+/*
+* Study Timeline Tab
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Timeline Constructor
+ *
+ * @return [void]
+ */
+function StudyTimeline() {
+  this.tabName = "tab-timeline";
+  this.tabWrap = $(".tab-wrap[data-tab='"+this.tabName+"']");
+  this.processing = false;
+  this.refreshOnShow = true;
+  this.data = { epochs: [], arms: [], timepoints: [] }
+}
+
+/**
+ * Shows tab - reloads data
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.show = function() {
+  if (this.refreshOnShow)
+    this.refresh();
+}
+
+/**
+ * Refreshes
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.refresh = function() {
+  this.clear();
+}
+
+/**
+ * Clears data and listeners
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.clear = function() {
+  this.data = { epochs: [], arms: [], timepoints: [] }
+
+  this.tabWrap.find("#" + this.tabName + "-body *").remove();
+  this.tabWrap.find("#" + this.tabName + "-body").html("");
+}
+
+/**
+ * Loading state toggle
+ *
+ * @param enable [Boolean] enable or disable loading
+ * @return [void]
+ */
+StudyTimeline.prototype.loading = function(enable) {
+  this.processing = enable;
+  $("#" + this.tabName).trigger("loading", [enable, true])
+}
