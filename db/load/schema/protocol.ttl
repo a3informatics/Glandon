@@ -236,3 +236,12 @@
   rdfs:domain :Protocol ;
   rdfs:range xsd:string ;
   skos:definition "The protocol acronym."^^xsd:string ;
+.
+:shortName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Short Name"^^xsd:string ;
+  rdfs:domain :Visit ;
+  rdfs:range xsd:string ;
+  skos:definition "The short name for the visit."^^xsd:string ;
+.

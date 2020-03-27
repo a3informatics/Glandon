@@ -23,9 +23,10 @@ describe "Visit" do
     end
 
     it "create an instance" do
-      item = Visit.create(label: "VVV")
+      item = Visit.create(label: "VVV", short_name: "V")
       actual = Visit.find(item.uri)
       expect(actual.label).to eq("VVV")
+      expect(actual.short_name).to eq("V")
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
