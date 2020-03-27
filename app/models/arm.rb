@@ -6,5 +6,6 @@ class Arm < IsoConceptV2
 
   data_property :description
   data_property :arm_type
+  data_property :ordinal
 
 end

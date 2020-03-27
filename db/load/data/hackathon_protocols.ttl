@@ -14,6 +14,68 @@
 <http://www.transceleratebiopharmainc.com/LY246708/V1>
 	rdf:type owl:Ontology ;
 .
+<http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b>
+	rdf:type pr:Epoch ;
+	isoC:label "Screening"^^xsd:string ;
+.
+<http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf>
+	rdf:type pr:Epoch ;
+	isoC:label "Treatment"^^xsd:string ;
+.
+<http://www.assero.co.uk/ARM#277ca11c0868821a747951dad75cadc2ec72a550>
+	rdf:type pr:Arm ;
+	isoC:label "High Dose"^^xsd:string ;
+	pr:description "High Dose"^^xsd:string ;
+	pr:armType ""^^xsd:string ;
+.
+<http://www.assero.co.uk/ARM#0ac1d245034a693e8162cd5411f641e2c5d8c13f>
+	rdf:type pr:Arm ;
+	isoC:label "Low Dose"^^xsd:string ;
+	pr:description "Low Dose"^^xsd:string ;
+	pr:armType ""^^xsd:string ;
+.
+<http://www.assero.co.uk/ARM#19bf56b95c95a7ff1f6bff8f07c06c906e75022e>
+	rdf:type pr:Arm ;
+	isoC:label "Placebo"^^xsd:string ;
+	pr:description "Placebo"^^xsd:string ;
+	pr:armType ""^^xsd:string ;
+.
+<http://www.assero.co.uk/ELE#2b9ba7ac-78d4-4208-ae36-c476bbcae8ff>
+	rdf:type pr:Element ;
+	isoC:label "Screen"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#277ca11c0868821a747951dad75cadc2ec72a550> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b> ;
+.
+<http://www.assero.co.uk/ELE#30dbfc20-fe64-4513-892b-815aaaa6ac2b>
+	rdf:type pr:Element ;
+	isoC:label "Screen"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#0ac1d245034a693e8162cd5411f641e2c5d8c13f> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b> ;
+.
+<http://www.assero.co.uk/ELE#3cffc1db-d01a-4346-b8fb-5826557f05e5>
+	rdf:type pr:Element ;
+	isoC:label "Screen"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#19bf56b95c95a7ff1f6bff8f07c06c906e75022e> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b> ;
+.
+<http://www.assero.co.uk/ELE#346945e5-a878-4e1a-9330-b1a965865189>
+	rdf:type pr:Element ;
+	isoC:label "High Dose"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#277ca11c0868821a747951dad75cadc2ec72a550> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
+.
+<http://www.assero.co.uk/ELE#f126ba02-7758-460a-a44f-64359115a989>
+	rdf:type pr:Element ;
+	isoC:label "Low Dose"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#0ac1d245034a693e8162cd5411f641e2c5d8c13f> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
+.
+<http://www.assero.co.uk/ELE#cd7c0f60-eae7-4936-814f-fce4ba7cd713>
+	rdf:type pr:Element ;
+	isoC:label "Placebo"^^xsd:string ;
+	pr:inArm <http://www.assero.co.uk/ARM#19bf56b95c95a7ff1f6bff8f07c06c906e75022e> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
+.
 :PR
 	rdf:type pr:Protocol ;
 	isoC:label "LY246708"^^xsd:string ;
@@ -22,7 +84,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-27T18:35:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "H2Q-MC-LZZT"^^xsd:string ;
 	pr:title "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease."^^xsd:string ;
@@ -32,6 +94,11 @@
 	pr:interventionModel <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1> ;
 	pr:masking <http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2> ;
 	pr:forIndication <http://www.transceleratebiopharmainc.com/IND_ALZ/V1#IND> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#277ca11c0868821a747951dad75cadc2ec72a550> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#0ac1d245034a693e8162cd5411f641e2c5d8c13f> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#19bf56b95c95a7ff1f6bff8f07c06c906e75022e> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 :PR_RS
 	rdf:type isoR:RegistrationState ;
@@ -101,7 +168,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-27T18:35:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
 	pr:title "A made up protocol title"^^xsd:string ;
@@ -160,7 +227,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-27T18:35:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
 	pr:title "A made up protocol title"^^xsd:string ;
@@ -219,7 +286,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-27T18:35:55+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
 	pr:title "A made up protocol title"^^xsd:string ;
@@ -278,7 +345,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-03-26T16:40:28+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-03-27T18:35:55+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "MADE UP ACRONYM"^^xsd:string ;
 	pr:title "A made up protocol title"^^xsd:string ;

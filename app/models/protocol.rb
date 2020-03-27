@@ -55,4 +55,23 @@ class Protocol < IsoManagedV2
     ]
   end
 
+  # Design. Get the design for the protocol
+  #
+  # @return [Array] Array of epochs and the associated arms and elemnts 
+  def design
+    uri = self.uri.to_ref
+    query_string = %Q{
+      SELECT DISTINCT ?a ?e ?el WHERE
+      {
+        #{uri} pr:specifiesEpoch ?e .
+        ?e ^pr:inEpoch ?el .
+        ?el pr:inArm ?a
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:a, :e, :el])
+byebug
+    return [] if triples.empty?
+  end    
+
 end

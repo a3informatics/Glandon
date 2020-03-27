@@ -283,3 +283,13 @@
   rdfs:range xsd:string ;
   skos:definition "The short name for the visit."^^xsd:string ;
 .
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Description"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Epoch :Arm)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The ordinal for an epoch or arm."^^xsd:string ;
+.
