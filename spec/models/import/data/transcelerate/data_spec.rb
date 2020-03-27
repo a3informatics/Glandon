@@ -88,6 +88,25 @@ describe "Transcelerate Data" do
 
   end
 
+  describe "Parameters" do
+
+    it "Parameter" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance")
+      p_1 = Parameter.new(label: "BC", parameter_rdf_type: uri)
+      p_1.uri = p_1.create_uri(p_1.class.base_uri)
+      uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#Intervention")
+      p_2 = Parameter.new(label: "Intervention", parameter_rdf_type: uri)
+      p_2.uri = p_2.create_uri(p_2.class.base_uri)
+      sparql = Sparql::Update.new
+      sparql.default_namespace(p_1.uri.namespace)
+      p_1.to_sparql(sparql, true)
+      p_2.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_parameters.ttl")
+    end 
+
+  end
+
   describe "MDR Data" do
 
     it "Objectives" do
