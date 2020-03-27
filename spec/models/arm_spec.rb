@@ -19,7 +19,7 @@ describe "Arm" do
     end
 
     it "create an instance" do
-      item = Arm.create(label: "XXX", description:"D", arm_type:"type")
+      item = Arm.create(label: "XXX", description:"D", arm_type:"type", ordinal: 1)
       actual = Arm.find(item.uri)
       expect(actual.label).to eq("XXX")
       expect(actual.description).to eq("D")

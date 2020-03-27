@@ -23,7 +23,7 @@ describe "Epoch" do
     end
 
     it "create an instance" do
-      item = Epoch.create(label: "XXX")
+      item = Epoch.create(label: "XXX", ordinal: 1)
       actual = Epoch.find(item.uri)
       expect(actual.label).to eq("XXX")
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)

@@ -286,10 +286,10 @@
 :ordinal
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Description"^^xsd:string ;
+  rdfs:label "Ordinal"^^xsd:string ;
   rdfs:domain [ a owl:Class ;
     owl:unionOf ( :Epoch :Arm)
     ] ;
-  rdfs:range xsd:string ;
+  rdfs:range xsd:integer ;
   skos:definition "The ordinal for an epoch or arm."^^xsd:string ;
 .

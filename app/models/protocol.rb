@@ -59,19 +59,29 @@ class Protocol < IsoManagedV2
   #
   # @return [Array] Array of epochs and the associated arms and elemnts 
   def design
-    uri = self.uri.to_ref
+    results = {}
     query_string = %Q{
-      SELECT DISTINCT ?a ?e ?el WHERE
+      SELECT DISTINCT ?e ?el ?a ?al ?ele ?elel WHERE
       {
-        #{uri} pr:specifiesEpoch ?e .
-        ?e ^pr:inEpoch ?el .
-        ?el pr:inArm ?a
-      }
+        #{self.uri.to_ref} pr:specifiesEpoch ?e .
+        ?e pr:ordinal ?eo .
+        ?e isoC:label ?el .
+        ?e ^pr:inEpoch ?ele .         
+        ?ele isoC:label ?elel .
+        ?ele pr:inArm ?a .
+        ?a isoC:label ?al .
+        ?a pr:ordinal ?ao .
+      } ORDER BY ?eo ?ao
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
-    triples = query_results.by_object_set([:a, :e, :el])
-byebug
+    triples = query_results.by_object_set([:e, :el, :a, :al, :ele, :elel])
     return [] if triples.empty?
+    triples.each do |entry|
+      uri_s = entry[:e].to_s
+      results[uri_s] = {label: entry[:el], id: entry[:e].to_id, arms: []} if !results.key?(uri_s)
+      results[uri_s][:arms] << {label: entry[:al], id: entry[:a].to_id, element: {label: entry[:elel], id: entry[:ele].to_id}}
+    end
+    results.map{|k,v| v}
   end    
 
 end

@@ -68,7 +68,7 @@ describe "Protocol" do
     it "design" do
       item = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
       actual = item.design
-      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal)
     end
 
   end
