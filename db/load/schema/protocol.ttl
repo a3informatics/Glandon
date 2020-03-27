@@ -199,9 +199,19 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Description"^^xsd:string ;
-  rdfs:domain :Study ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Study :Arm)
+    ] ;
   rdfs:range xsd:string ;
-  skos:definition "The description of the study."^^xsd:string ;
+  skos:definition "The description of the study or arm."^^xsd:string ;
+.
+:armType
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Arm type"^^xsd:string ;
+  rdfs:domain :Arm ;
+  rdfs:range xsd:string ;
+  skos:definition "The type of the arm."^^xsd:string ;
 .
 :title
   rdf:type owl:DatatypeProperty ;
