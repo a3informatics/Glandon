@@ -12,6 +12,8 @@ class Protocol < IsoManagedV2
   object_property :masking, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
   object_property :for_indication, cardinality: :many, model_class: "Indication"
   object_property :in_TA, cardinality: :one, model_class: "TherapeuticArea"
+  object_property :specifies_arm, cardinality: :many, model_class: "Arm"
+  object_property :specifies_epoch, cardinality: :many, model_class: "Epoch"
 
   validates_with Validator::Field, attribute: :acronym, method: :valid_label?
   validates_with Validator::Field, attribute: :title, method: :valid_label?

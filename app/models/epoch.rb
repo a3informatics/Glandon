@@ -1,6 +1,7 @@
 class Epoch < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Protocol#Epoch",
-            uri_suffix: "EP"
-
+            base_uri: "http://#{ENV["url_authority"]}/EP",
+            uri_unique: :label
+            
 end
