@@ -44,9 +44,11 @@ describe StudiesController do
     end
 
     it 'creates study' do
+      p = Protocol.create(identifier: "XXX", title: "sss", short_title: "yyy", acronym: "WW")
       count = Study.all.count
       expect(count).to eq(0)
-      post :create, study: { :identifier => "NEW TH", :label => "New Thesaurus" }
+      expect(Protocol).to receive(:latest).and_return(p)
+      post :create, study: { :identifier => "NEW TH", :label => "New Thesaurus", :protocol_identifier => "XXX" }
       expect(Study.all.count).to eq(count + 1)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -55,9 +57,11 @@ describe StudiesController do
     end
 
     it 'creates study, fails bad identifier' do
+      p = Protocol.create(identifier: "XXX", title: "sss", short_title: "yyy", acronym: "WW")
       count = Study.all.count
       expect(count).to eq(0)
-      post :create, study: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
+      expect(Protocol).to receive(:latest).and_return(p)
+      post :create, study: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus", :protocol_identifier => "XXX" }
       count = Study.all.count
       expect(count).to eq(0)
       expect(Study.all.count).to eq(count)
@@ -79,7 +83,7 @@ describe StudiesController do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       get :design, id: study.id
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal)
     end
 
   end
