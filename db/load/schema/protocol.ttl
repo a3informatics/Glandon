@@ -84,6 +84,18 @@
   rdfs:label "Timepoint"^^xsd:string ;
   skos:definition "An timepoint."^^xsd:string ;
 .
+:ProtocolEndpoint
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Protocol Endpoint"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:ProtocolObjective
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Protocol Objective"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -229,6 +241,22 @@
   rdfs:domain :Element ;
   rdfs:range :Epoch ;
   skos:definition "Relationship from an Element to an Epoch."^^xsd:string ;
+.
+:derivedFromEndpoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "derivedFromEndpoint Relationship"^^xsd:string ;
+  rdfs:domain :ProtocolEndpoint ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from an protocol endpoint to an endpoint."^^xsd:string ;
+.
+:derivedFromObjective
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "derivedFromObjective Relationship"^^xsd:string ;
+  rdfs:domain :ProtocolObjective ;
+  rdfs:range :Objective ;
+  skos:definition "Relationship from an protocol objective to an objective."^^xsd:string ;
 .
 :fullText
   rdf:type owl:DatatypeProperty ;
