@@ -1,5 +1,4 @@
-var tabLoading;
-
+// Click events
 $(document).ready(function() {
   $(".tabs-layout").each(function(){
     var _layout = this;
@@ -11,17 +10,21 @@ $(document).ready(function() {
       $(this).trigger("switch", [this.id]);
     });
   });
+});
 
-  tabLoading = function(name, enable){
-    var tab = $(".tab-wrap[data-tab='"+name+"']");
+// Loading event
+$(document).off("loading", ".tab-option").on("loading", ".tab-option", function(e, enable, disableOthers){
+  var tab = $(".tab-wrap[data-tab='"+ $(this).attr("id")+"']");
 
-    if(enable){
-      tab.addClass("processing");
-      spinnerInElement(tab, "small");
-    }
-    else{
-      tab.removeClass("processing");
-      removeSpinnerInElement(tab);
-    }
+  if (enable) {
+    tab.addClass("processing");
+    spinnerInElement(tab, "small");
   }
+  else {
+    tab.removeClass("processing");
+    removeSpinnerInElement(tab);
+  }
+
+  if (disableOthers != null && disableOthers)
+    $(this).siblings().toggleClass("disabled", enable);
 });
