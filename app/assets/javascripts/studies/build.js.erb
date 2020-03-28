@@ -27,7 +27,7 @@ function StudyBuild() {
  */
 StudyBuild.prototype.initTabs = function() {
   this.tabs = {
-    timeline: {instance: new StudyTimeline(), header: $("#tab-timeline")},
+    timeline: {instance: new StudyMatrix(), header: $("#tab-timeline")},
     content: {instance: new VerticalList("#study-content-table", protocolShowUrl), header: $("#tab-content")},
   }
 }
