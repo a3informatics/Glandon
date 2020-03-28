@@ -78,6 +78,12 @@
   rdfs:label "Intervention"^^xsd:string ;
   skos:definition "An intervention."^^xsd:string ;
 .
+:Timepoint
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Timepoint"^^xsd:string ;
+  skos:definition "An timepoint."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -292,4 +298,28 @@
     ] ;
   rdfs:range xsd:integer ;
   skos:definition "The ordinal for an epoch or arm."^^xsd:string ;
+.
+:lowerBound
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Lower Bound"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The lower bound for the timepoint."^^xsd:string ;
+.
+:upperBound
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Upper Bound"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The upper bound for the timepoint."^^xsd:string ;
+.
+:offset
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Offset"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range xsd:positiveInteger ;
+  skos:definition "The offset for the timepoint."^^xsd:string ;
 .
