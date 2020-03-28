@@ -96,6 +96,12 @@
   rdfs:label "Protocol Objective"^^xsd:string ;
   skos:definition "The ."^^xsd:string ;
 .
+:TimepointOffset
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Timepoint Offset"^^xsd:string ;
+  skos:definition "The offset of the timepoint based on day 0."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -258,6 +264,14 @@
   rdfs:range :Objective ;
   skos:definition "Relationship from an protocol objective to an objective."^^xsd:string ;
 .
+:atOffset
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "At Offset Relationship"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range :TimepointOffset ;
+  skos:definition "Relationship from a timepoint to it offset."^^xsd:string ;
+.
 :fullText
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Full Text"^^xsd:string ;
@@ -327,27 +341,27 @@
   rdfs:range xsd:integer ;
   skos:definition "The ordinal for an epoch or arm."^^xsd:string ;
 .
-:lowerBound
+:windowMinus
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Lower Bound"^^xsd:string ;
-  rdfs:domain :Timepoint ;
+  rdfs:label "Window Minus"^^xsd:string ;
+  rdfs:domain :TimepointOffset ;
   rdfs:range xsd:positiveInteger ;
-  skos:definition "The lower bound for the timepoint."^^xsd:string ;
+  skos:definition "The lower bound for the timepoint window."^^xsd:string ;
 .
-:upperBound
+:windowPlus
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:label "Upper Bound"^^xsd:string ;
-  rdfs:domain :Timepoint ;
+  rdfs:label "Window Plus"^^xsd:string ;
+  rdfs:domain :TimepointOffset ;
   rdfs:range xsd:positiveInteger ;
-  skos:definition "The upper bound for the timepoint."^^xsd:string ;
+  skos:definition "The upper bound for the timepoint window."^^xsd:string ;
 .
-:offset
+:windowOffset
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Offset"^^xsd:string ;
-  rdfs:domain :Timepoint ;
+  rdfs:domain :TimepointOffset ;
   rdfs:range xsd:positiveInteger ;
-  skos:definition "The offset for the timepoint."^^xsd:string ;
+  skos:definition "The offset for the timepoint window."^^xsd:string ;
 .
