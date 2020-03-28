@@ -1,0 +1,253 @@
+/*
+* Study Timeline
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Timeline Constructor
+ *
+ * @param armId [String] id of the arm to which this instance belongs
+ * @param matrixReference [Object Instance] reference to the parent matrix instance
+ * @return [void]
+ */
+function StudyTimeline(armId, matrixReference) {
+  this.armId = armId;
+  this.matrixReference = matrixReference;
+  this.tabName = "tab-timeline";
+  this.wrapper = $("#tab-timeline-body");
+  this.div = this.wrapper.find("#study-timeline");
+  this.ready = false;
+  this.tpRadius = 30;
+
+  this.data = { timepoints: [] }
+
+  this.setListeners();
+}
+
+
+/**
+ ************** General **************
+**/
+
+
+/**
+ * Shows timeline
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.show = function() {
+  if (this.ready)
+    this.render();
+  else
+    this.loadData();
+}
+
+/**
+ * Loads timeline data
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.loadData = function() {
+  this.loading(true);
+
+  // TODO: Ajax call for data
+  // TODO: this.ready = true;
+
+  this.data.timepoints = this.mockData();
+
+  this.loading(false);
+  this.render();
+}
+
+/**
+ * Sets event listeners and handlers
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.setListeners = function() {
+
+}
+
+/**
+ * Renders timeline
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.render = function() {
+  this.div.empty();
+  this.div.append("<div id='tl-wrapper'></div>");
+  var wrap = this.div.find("#tl-wrapper");
+
+  wrap.append("<div id='timeline-axis'></div>")
+  // var axis = wrap.find("#timeline-axis");
+
+  $.each(this.data.timepoints, function(index, timepoint) {
+    wrap.append(this.generateTimepointHTML(timepoint));
+  }.bind(this));
+
+  var epochs = this.matrixReference.data.epochs;
+  $.each(epochs, function(index, epoch){
+    wrap.append(this.generateEpochHTML(epoch));
+  }.bind(this));
+}
+
+
+/**
+ ************** Support **************
+**/
+
+
+/**
+ * Generates HTML for a single timepoint
+ *
+ * @param timepoint [Object] timepoint to calculate offset for
+ * @return [Int] timepoint offset in %
+ */
+StudyTimeline.prototype.generateTimepointHTML = function(timepoint) {
+  timepoint.offsetLeftHTML = this.calculateTPOffset(timepoint)
+  var offsetLeft = "calc(" + timepoint.offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
+  var color = this.matrixReference.getItem("id", timepoint.epoch_id, "epochs").color;
+
+  var style = "left: " + offsetLeft + "; background-color: " + color + ";";
+  var classes = "timepoint" + (timepoint.baseline ? " baseline" : "");
+  var contents = "<span class='tp-badge'>"+ timepoint.biomedical_concepts.length +"</span>";
+  contents += "<span class='tp-label'>"+ this.timepointLabel(timepoint) +"</span>";
+
+  return "<div class='"+ classes +"' style='"+ style +"'>"+ contents +"</div>";
+}
+
+/**
+ * Builds a string time label for a timepoint
+ *
+ * @param timepoint [Object] timepoint object to generate label for
+ * @return [Int] timepoint offset in %
+ */
+StudyTimeline.prototype.timepointLabel = function(timepoint) {
+  return timepoint.value + " " + (timepoint.value == 1 ? timepoint.unit.substring(0, timepoint.unit.length -2) : timepoint.unit)
+}
+
+/**
+ * Calculates timepoint offset in % relative to max offset
+ *
+ * @param timepoint [Object] timepoint to calculate offset for
+ * @return [Int] timepoint offset in %
+ */
+StudyTimeline.prototype.calculateTPOffset = function(timepoint) {
+  var maxOffset = this.data.timepoints[this.data.timepoints.length - 1].offset;
+  var minOffset = this.data.timepoints[0].offset;
+  var result = ((timepoint.offset - minOffset) * 100) / (maxOffset - minOffset);
+
+  return Math.round(result * 100) / 100;
+}
+
+/**
+ * Generates HTML for an epoch on the timeline
+ *
+ * @param epoch [Object] single epoch object
+ * @return [String] epoch HTML to be appended to timeline
+ */
+StudyTimeline.prototype.generateEpochHTML = function(epoch) {
+  var tps = this.firstAndLastEpochTPs(epoch);
+  var offsetLeft = "calc(" + tps[0].offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
+  var width;
+
+  if(tps[1] == null){
+    var difference = this.data.timepoints[this.data.timepoints.length-1].offsetLeftHTML - tps[0].offsetLeftHTML;
+    width = "calc(" + difference + "% + " + this.tpRadius + "px)";
+  }
+  else {
+    var difference = tps[1].offsetLeftHTML - tps[0].offsetLeftHTML;
+    width = difference + "%";
+  }
+
+  var style = "background-color: " + epoch.color + "; left: " + offsetLeft + "; width: " + width;
+
+  return "<div class='epoch-block' style='"+ style +"'></div>";
+}
+
+/**
+ * Generates HTML for an epoch on the timeline
+ *
+ * @param epoch [Object] single epoch object
+ * @return [String] epoch HTML to be appended to timeline
+ */
+StudyTimeline.prototype.firstAndLastEpochTPs = function(epoch) {
+  var epochTps = this.data.timepoints.filter(function(timepoint){
+    return timepoint.epoch_id == epoch.id;
+  });
+  var lastIdx = this.data.timepoints.indexOf(epochTps[epochTps.length-1]);
+
+  return [epochTps[0], this.data.timepoints[lastIdx + 1]];
+}
+
+/**
+ * Sets event listeners and handlers
+ *
+ * @param enable [Boolean] enable or disable loading
+ * @return [void]
+ */
+StudyTimeline.prototype.loading = function(enable) {
+  this.matrixReference.armLoading(this.armId, enable)
+}
+
+StudyTimeline.prototype.mockData = function() {
+  this.ready = true;
+  return [
+    {
+      id: "991",
+      epoch_id: "111x",
+      arms: ["210x", "310x"],
+      element_id: "211x",
+      unit: "weeks",
+      value: -2,
+      biomedical_concepts: [{label: "BC1", id: "881"}],
+      baseline: false,
+      offset: -2
+    },
+    {
+      id: "992",
+      epoch_id: "112x",
+      arms: ["210x"],
+      element_id: "212x",
+      unit: "days",
+      value: 0,
+      biomedical_concepts: [{label: "BC1", id: "881"}],
+      baseline: true,
+      offset: 0
+    },
+    {
+      id: "993",
+      epoch_id: "112x",
+      arms: ["210x", "310x"],
+      element_id: "213x",
+      unit: "weeks",
+      value: 8,
+      biomedical_concepts: [{label: "BC1", id: "881"}],
+      baseline: false,
+      offset: 8
+    },
+    {
+      id: "994",
+      epoch_id: "112x",
+      arms: ["210x"],
+      element_id: "214x",
+      unit: "weeks",
+      value: 12,
+      biomedical_concepts: [{label: "BC1", id: "881"}],
+      baseline: false,
+      offset: 12
+    },
+    {
+      id: "995",
+      epoch_id: "112x",
+      arms: ["210x"],
+      element_id: "214x",
+      unit: "weeks",
+      value: 16,
+      biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
+      baseline: false,
+      offset: 16
+    },
+  ];
+}

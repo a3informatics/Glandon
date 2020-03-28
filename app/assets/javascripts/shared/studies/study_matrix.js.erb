@@ -86,6 +86,7 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
+  this.div.on("matrixloaded", function() { $(this.data.arms[0].div).click() }.bind(this));
 }
 
 
@@ -125,7 +126,7 @@ StudyMatrix.prototype.processMatrixData = function(data) {
 
     $.each(epoch.arms, function(idx, arm) {
       arm.element.type = "element";
-      var thisArm = this.getData("id", arm.id, "arms");
+      var thisArm = this.getItem("id", arm.id, "arms");
       if (thisArm == null)
         this.data.arms.push(
           {
@@ -133,7 +134,8 @@ StudyMatrix.prototype.processMatrixData = function(data) {
             label: arm.label,
             id: arm.id,
             color: this.generateColorShade(this.colorBases().green, idx),
-            elements: [arm.element]
+            elements: [arm.element],
+            timeline: new StudyTimeline(arm.id, this),
           }
         );
       else
@@ -143,7 +145,7 @@ StudyMatrix.prototype.processMatrixData = function(data) {
 
   }.bind(this));
 
-  this.makeMatrixUI();
+  this.render();
 }
 
 /**
@@ -151,7 +153,7 @@ StudyMatrix.prototype.processMatrixData = function(data) {
  *
  * @return [void]
  */
-StudyMatrix.prototype.makeMatrixUI = function() {
+StudyMatrix.prototype.render = function() {
   this.div.empty();
 
   this.div.append("<table><tr>");
@@ -178,6 +180,7 @@ StudyMatrix.prototype.makeMatrixUI = function() {
 
   }.bind(this));
 
+  this.div.trigger("matrixloaded", []);
 }
 
 /**
@@ -203,10 +206,10 @@ StudyMatrix.prototype.onMatrixItemHover = function(e) {
  * @return [void]
  */
 StudyMatrix.prototype.onEpochClick = function(e) {
-  var dataItem = this.getData("id", $(e.target).attr("data-id"), "epochs");
+  var epoch = this.getItem("id", $(e.target).attr("data-id"), "epochs");
 
   // Deselected
-  if (dataItem.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
+  if (epoch.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
     this.matrixItemClickStyle($(e.target), false);
   }
   // Selected
@@ -222,8 +225,12 @@ StudyMatrix.prototype.onEpochClick = function(e) {
  * @return [void]
  */
 StudyMatrix.prototype.onArmClick = function(e) {
+  var arm = this.getItem("id", $(e.target).attr("data-id"), "arms");
+
   this.matrixItemClickStyle(".bg-label.active.arm", false);
   this.matrixItemClickStyle(e.target, true);
+
+  arm.timeline.show();
 }
 
 /**
@@ -246,7 +253,7 @@ StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
  * @return [void]
  */
 StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
-  var dataItem = this.getData("id", $(target).attr("data-id"));
+  var dataItem = this.getItem("id", $(target).attr("data-id"));
 
   this.div.find(target).css("background-color", enable ? dataItem.color : "");
   this.div.find(target).css("color", enable ? "white" : "");
@@ -276,7 +283,7 @@ StudyMatrix.prototype.matrixItemHTML = function(item) {
  * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
  * @return [Data Object] matched object, or null
  */
-StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
+StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
   var object = null;
 
   if(dataType != null) {
@@ -309,6 +316,20 @@ StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
 
 
 /**
+ * Toggle loading on an matrix arm item
+ *
+ * @param armId [String] id of the arm
+ * @param enable [Boolean] enable / disable loading
+ * @return [void]
+ */
+StudyMatrix.prototype.armLoading = function(armId, enable) {
+  var arm = this.getItem("id", armId, "arms");
+  $(arm.div).toggleClass("loading", enable);
+  this.div.find(".bg-label").not($(arm.div)).toggleClass("disabled", enable);
+}
+
+
+/**
  * Loading state toggle
  *
  * @param enable [Boolean] enable or disable loading
@@ -336,11 +357,13 @@ StudyMatrix.prototype.clear = function() {
  * @return [String] CSS HSL format string for color
  */
 StudyMatrix.prototype.generateColorShade = function(base, index) {
-  var changeConst = 20;
-  var hue = base.h + (changeConst * index);
-  var li = base.l - (2*index)
+  var hueChange = 25, liChange = 2, satChange = 3;
 
-  return "hsl(" + hue + ", " + base.s + "%, " + li + "%)";
+  var hue = base.h + (hueChange * index);
+  var li = (hue > 40 & hue < 120) ? base.l - 20 : base.l - (liChange * index);
+  var sat = base.s - (satChange * index);
+
+  return "hsl(" + hue + ", " + sat + "%, " + li + "%)";
 }
 
 /**
@@ -350,9 +373,8 @@ StudyMatrix.prototype.generateColorShade = function(base, index) {
  */
 StudyMatrix.prototype.colorBases = function() {
   return {
-    red: {h: 0, s: 75, l: 75},
-    green: {h: 140, s: 60
-      , l: 70}
+    red: {h: 0, s: 85, l: 80},
+    green: {h: 140, s: 60, l: 70}
   };
 }
 
@@ -365,18 +387,18 @@ StudyMatrix.prototype.matrixData = function(callback) {
         {
           label: "High Dose",
           id: "210x",
-          element: { label: "Screen", id: "211"}
+          element: { label: "Screen", id: "211x"}
         },
         {
           label: "Low Dose",
           id: "310x",
-          element: { label: "Screen", id: "311"}
+          element: { label: "Screen", id: "311x"}
         },
         {
           label: "Placebo",
           id: "410x",
-          element: { label: "Screen", id: "411"}
-        }
+          element: { label: "Screen", id: "411x"}
+        },
       ]
     },
     {
@@ -399,7 +421,7 @@ StudyMatrix.prototype.matrixData = function(callback) {
           element: { label: "Placebo", id: "412x"}
         }
       ]
-    },
+    }
   ];
 
   callback(data);
