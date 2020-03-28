@@ -4,6 +4,7 @@ describe StudiesController do
 
   include DataHelpers
   include UserAccountHelpers
+  include ControllerHelpers
 
   def sub_dir
     return "controllers/studies"
@@ -62,6 +63,25 @@ describe StudiesController do
       expect(Study.all.count).to eq(count)
     end
     
+  end
+
+  describe "Authorized User" do
+
+    login_curator
+
+    before :all do
+      load_files(schema_files, [])
+      load_test_file_into_triple_store("transcelerate.nq.gz")
+    end
+
+    it "show" do
+      pr = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
+      study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
+      get :design, id: study.id
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
   end
 
 end

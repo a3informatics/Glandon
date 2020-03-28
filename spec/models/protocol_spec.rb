@@ -58,4 +58,19 @@ describe "Protocol" do
 
   end
 
+  describe "method tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_test_file_into_triple_store("transcelerate.nq.gz")
+    end
+
+    it "design" do
+      item = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
+      actual = item.design
+      check_file_actual_expected(actual, sub_dir, "design_expected.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

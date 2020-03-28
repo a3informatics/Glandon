@@ -12,6 +12,8 @@ class Protocol < IsoManagedV2
   object_property :masking, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
   object_property :for_indication, cardinality: :many, model_class: "Indication"
   object_property :in_TA, cardinality: :one, model_class: "TherapeuticArea"
+  object_property :specifies_arm, cardinality: :many, model_class: "Arm"
+  object_property :specifies_epoch, cardinality: :many, model_class: "Epoch"
 
   validates_with Validator::Field, attribute: :acronym, method: :valid_label?
   validates_with Validator::Field, attribute: :title, method: :valid_label?
@@ -52,5 +54,34 @@ class Protocol < IsoManagedV2
       {name: "Therapeutic Area", value: entry[:ta]}
     ]
   end
+
+  # Design. Get the design for the protocol
+  #
+  # @return [Array] Array of epochs and the associated arms and elemnts 
+  def design
+    results = {}
+    query_string = %Q{
+      SELECT DISTINCT ?e ?el ?a ?al ?ele ?elel WHERE
+      {
+        #{self.uri.to_ref} pr:specifiesEpoch ?e .
+        ?e pr:ordinal ?eo .
+        ?e isoC:label ?el .
+        ?e ^pr:inEpoch ?ele .         
+        ?ele isoC:label ?elel .
+        ?ele pr:inArm ?a .
+        ?a isoC:label ?al .
+        ?a pr:ordinal ?ao .
+      } ORDER BY ?eo ?ao
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:e, :el, :a, :al, :ele, :elel])
+    return [] if triples.empty?
+    triples.each do |entry|
+      uri_s = entry[:e].to_s
+      results[uri_s] = {label: entry[:el], id: entry[:e].to_id, arms: []} if !results.key?(uri_s)
+      results[uri_s][:arms] << {label: entry[:al], id: entry[:a].to_id, element: {label: entry[:elel], id: entry[:ele].to_id}}
+    end
+    results.map{|k,v| v}
+  end    
 
 end

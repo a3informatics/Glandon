@@ -60,6 +60,24 @@
   rdfs:label "Epoch"^^xsd:string ;
   skos:definition "The ."^^xsd:string ;
 .
+:Arm
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Arm"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Visit
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Visit"^^xsd:string ;
+  skos:definition "The ."^^xsd:string ;
+.
+:Intervention
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Intervention"^^xsd:string ;
+  skos:definition "An intervention."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -174,6 +192,38 @@
   rdfs:range :Parameter ;
   skos:definition "Relationship from an objective or endtpoint to an parameter."^^xsd:string ;
 .
+:specifiesArm
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Specifies Arm Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range :Arm ;
+  skos:definition "Relationship from a Protocol to an Arm."^^xsd:string ;
+.
+:specifiesEpoch
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Specifies Epoch Relationship"^^xsd:string ;
+  rdfs:domain :Protocol ;
+  rdfs:range :Epoch ;
+  skos:definition "Relationship from a Protocol to an Epoch."^^xsd:string ;
+.
+:inArm
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Arm Relationship"^^xsd:string ;
+  rdfs:domain :Element ;
+  rdfs:range :Arm ;
+  skos:definition "Relationship from an Element to an Arm."^^xsd:string ;
+.
+:inEpoch
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Epoch Relationship"^^xsd:string ;
+  rdfs:domain :Element ;
+  rdfs:range :Epoch ;
+  skos:definition "Relationship from an Element to an Epoch."^^xsd:string ;
+.
 :fullText
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Full Text"^^xsd:string ;
@@ -187,9 +237,19 @@
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Description"^^xsd:string ;
-  rdfs:domain :Study ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Study :Arm)
+    ] ;
   rdfs:range xsd:string ;
-  skos:definition "The description of the study."^^xsd:string ;
+  skos:definition "The description of the study or arm."^^xsd:string ;
+.
+:armType
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Arm type"^^xsd:string ;
+  rdfs:domain :Arm ;
+  rdfs:range xsd:string ;
+  skos:definition "The type of the arm."^^xsd:string ;
 .
 :title
   rdf:type owl:DatatypeProperty ;
@@ -214,3 +274,22 @@
   rdfs:domain :Protocol ;
   rdfs:range xsd:string ;
   skos:definition "The protocol acronym."^^xsd:string ;
+.
+:shortName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Short Name"^^xsd:string ;
+  rdfs:domain :Visit ;
+  rdfs:range xsd:string ;
+  skos:definition "The short name for the visit."^^xsd:string ;
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Epoch :Arm)
+    ] ;
+  rdfs:range xsd:integer ;
+  skos:definition "The ordinal for an epoch or arm."^^xsd:string ;
+.

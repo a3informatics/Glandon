@@ -19,9 +19,11 @@ describe "Arm" do
     end
 
     it "create an instance" do
-      item = Arm.create(label: "XXX")
+      item = Arm.create(label: "XXX", description:"D", arm_type:"type", ordinal: 1)
       actual = Arm.find(item.uri)
       expect(actual.label).to eq("XXX")
+      expect(actual.description).to eq("D")
+      expect(actual.arm_type).to eq("type")
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 

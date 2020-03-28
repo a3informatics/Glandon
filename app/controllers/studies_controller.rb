@@ -22,9 +22,9 @@ class StudiesController < ApplicationController
     render json: {data: studies}, status: 200
   end
 
-  def update
+  # def update
 
-  end
+  # end
 
   def create
     authorize Form, :create?
@@ -56,9 +56,15 @@ class StudiesController < ApplicationController
 
   def build
     authorize Form, :edit?
-    @study = Study.find_with_properties(params[:id])
+    @study = Study.find_with_properties(protect_from_bad_id(params))
     @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
   end
+
+  def design
+    authorize Form, :edit?
+    study = Study.find_minimum(protect_from_bad_id(params))
+    render json: {data: study.protocol.design}    
+  end 
 
 private
 
