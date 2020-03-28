@@ -1,1 +1,33 @@
 @import "custom/vars.scss";
+
+#tab-timeline-body {
+  font-family: $font-light;
+}
+
+#timeline-matrix {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#timeline-matrix table {
+  width: auto !important;
+  font-size: $font-small;
+}
+
+#timeline-matrix table td {
+  text-align: center;
+  padding: 4px 0px;
+}
+
+#timeline-matrix table .bg-label {
+  padding: 4px 15px;
+  display: block;
+  border: 2px solid;
+  background-color: white;
+  transition: background-color 0.1s; 
+}
+
+#timeline-matrix table .bg-label:hover {
+  cursor: pointer;
+}
