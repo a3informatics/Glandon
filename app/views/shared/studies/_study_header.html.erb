@@ -18,7 +18,7 @@
             <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
           <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
-            <div class="label-w-margin">Protocol: <span class="font-light label-styled"> <%= item.protocols[0].presence || "No protocol" %> </span></div>
+            <div class="label-w-margin">Protocol: <span class="font-light label-styled"> <%= item.protocol %> </span></div>
             <div class="label-w-margin">Study description: <span class="font-light"> <%= item.description %> </span></div>
             <% if (local_assigns.fetch :with_tags, true) %>
               <div class="label-w-margin"> <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %> </div>

@@ -4,30 +4,33 @@
   font-family: $font-light;
 }
 
-#timeline-matrix {
+#study-matrix {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: block;
+  // justify-content: center;
+  overflow-x: auto;
 }
 
-#timeline-matrix table {
+#study-matrix table {
+  margin: 0 auto;
   width: auto !important;
   font-size: $font-small;
 }
 
-#timeline-matrix table td {
+#study-matrix table td {
+  white-space: nowrap;
   text-align: center;
   padding: 4px 0px;
 }
 
-#timeline-matrix table .bg-label {
+#study-matrix table .bg-label {
   padding: 4px 15px;
   display: block;
   border: 2px solid;
   background-color: white;
-  transition: background-color 0.1s; 
+  transition: background-color 0.1s;
 }
 
-#timeline-matrix table .bg-label:hover {
+#study-matrix table .bg-label:hover {
   cursor: pointer;
 }

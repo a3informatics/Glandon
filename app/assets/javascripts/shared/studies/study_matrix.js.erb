@@ -1,21 +1,22 @@
 /*
-* Study Timeline Tab
+* Study Matrix
 *
 * Only in Study Build page
 */
 
 /**
- * Study Timeline Constructor
+ * Study Matrix Constructor
  *
  * @return [void]
  */
-function StudyTimeline() {
+function StudyMatrix() {
   this.tabName = "tab-timeline";
-  this.tabWrap = $(".tab-wrap[data-tab='"+this.tabName+"']");
+  this.wrapper = $("#tab-timeline-body");
+  this.div = this.wrapper.find("#study-matrix");
   this.processing = false;
   this.refreshOnShow = true;
 
-  this.data = { epochs: [], arms: [], timepoints: [] }
+  this.data = { epochs: [], arms: [], }
 
   this.setListeners();
 }
@@ -31,7 +32,7 @@ function StudyTimeline() {
  *
  * @return [void]
  */
-StudyTimeline.prototype.show = function() {
+StudyMatrix.prototype.show = function() {
   if (this.refreshOnShow)
     this.refresh();
 }
@@ -41,7 +42,7 @@ StudyTimeline.prototype.show = function() {
  *
  * @return [void]
  */
-StudyTimeline.prototype.executeRequest = function(params, callback) {
+StudyMatrix.prototype.executeRequest = function(params, callback) {
   this.loading(true);
 
   $.ajax({
@@ -66,7 +67,7 @@ StudyTimeline.prototype.executeRequest = function(params, callback) {
  *
  * @return [void]
  */
-StudyTimeline.prototype.refresh = function() {
+StudyMatrix.prototype.refresh = function() {
   this.clear();
   this.initMatrix();
 }
@@ -77,13 +78,13 @@ StudyTimeline.prototype.refresh = function() {
  *
  * @return [void]
  */
-StudyTimeline.prototype.setListeners = function() {
+StudyMatrix.prototype.setListeners = function() {
   var _this = this;
 
-  $("#timeline-matrix").on("mouseenter mouseleave", ".bg-label", this.onMatrixItemHover.bind(this));
+  this.div.on("mouseenter mouseleave", ".bg-label", this.onMatrixItemHover.bind(this));
 
-  $("#timeline-matrix").on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
-  $("#timeline-matrix").on("click", ".bg-label.arm", this.onArmClick.bind(this));
+  this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
+  this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
 }
 
@@ -98,7 +99,7 @@ StudyTimeline.prototype.setListeners = function() {
  *
  * @return [void]
  */
-StudyTimeline.prototype.initMatrix = function() {
+StudyMatrix.prototype.initMatrix = function() {
   // TODO: Build params: url, type, data
   // TODO: call executeRequest with params, callback passe
   this.matrixData(this.processMatrixData.bind(this));
@@ -110,7 +111,7 @@ StudyTimeline.prototype.initMatrix = function() {
  * @param data [Array] Array of hashes of Epochs
  * @return [void]
  */
-StudyTimeline.prototype.processMatrixData = function(data) {
+StudyMatrix.prototype.processMatrixData = function(data) {
   $.each(data, function(index, epoch) {
     this.data.epochs.push(
       {
@@ -150,17 +151,16 @@ StudyTimeline.prototype.processMatrixData = function(data) {
  *
  * @return [void]
  */
-StudyTimeline.prototype.makeMatrixUI = function() {
-  var targetElement = $("#timeline-matrix");
-  targetElement.empty();
+StudyMatrix.prototype.makeMatrixUI = function() {
+  this.div.empty();
 
-  targetElement.append("<table><tr>");
-  targetElement.find("table tr").append("<td>Arms/Epochs</td>");
+  this.div.append("<table><tr>");
+  this.div.find("table tr").append("<td>Arms/Epochs</td>");
 
   // Epochs row
   $.each(this.data.epochs, function(i, epoch) {
 
-    targetElement.find("table tr").append("<td>" + this.matrixItemHTML(epoch) + "</td>");
+    this.div.find("table tr").append("<td>" + this.matrixItemHTML(epoch) + "</td>");
     epoch.div = ".epoch[data-id='"+epoch.id+"']";
 
   }.bind(this));
@@ -168,12 +168,12 @@ StudyTimeline.prototype.makeMatrixUI = function() {
   // Arms and Elements rows
   $.each(this.data.arms, function(i, arm) {
 
-    targetElement.find("table").append("<tr>")
-    targetElement.find("table tr").eq(i+1).append("<td>" + this.matrixItemHTML(arm) + "</td>")
+    this.div.find("table").append("<tr>")
+    this.div.find("table tr").eq(i+1).append("<td>" + this.matrixItemHTML(arm) + "</td>")
     arm.div = ".arm[data-id='"+arm.id+"']";
 
     $.each(arm.elements, function(ii, element) {
-      targetElement.find("table tr").eq(i+1).append("<td>" + element.label + "</td>");
+      this.div.find("table tr").eq(i+1).append("<td>" + element.label + "</td>");
     }.bind(this));
 
   }.bind(this));
@@ -185,7 +185,7 @@ StudyTimeline.prototype.makeMatrixUI = function() {
  *
  * @return [void]
  */
-StudyTimeline.prototype.onMatrixItemHover = function(e) {
+StudyMatrix.prototype.onMatrixItemHover = function(e) {
   switch (e.type) {
     case "mouseenter":
       this.setMatrixItemCSS(e.target, true)
@@ -202,11 +202,11 @@ StudyTimeline.prototype.onMatrixItemHover = function(e) {
  *
  * @return [void]
  */
-StudyTimeline.prototype.onEpochClick = function(e) {
+StudyMatrix.prototype.onEpochClick = function(e) {
   var dataItem = this.getData("id", $(e.target).attr("data-id"), "epochs");
 
   // Deselected
-  if (dataItem.id == $(".bg-label.epoch.active").attr("data-id")) {
+  if (dataItem.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
     this.matrixItemClickStyle($(e.target), false);
   }
   // Selected
@@ -221,7 +221,7 @@ StudyTimeline.prototype.onEpochClick = function(e) {
  *
  * @return [void]
  */
-StudyTimeline.prototype.onArmClick = function(e) {
+StudyMatrix.prototype.onArmClick = function(e) {
   this.matrixItemClickStyle(".bg-label.active.arm", false);
   this.matrixItemClickStyle(e.target, true);
 }
@@ -233,9 +233,9 @@ StudyTimeline.prototype.onArmClick = function(e) {
  * @param selected [Boolean] enable / disable selected style
  * @return [void]
  */
-StudyTimeline.prototype.matrixItemClickStyle = function(target, selected) {
+StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
   this.setMatrixItemCSS(target, selected);
-  $(target).toggleClass("active", selected);
+  this.div.find(target).toggleClass("active", selected);
 }
 
 /**
@@ -245,11 +245,11 @@ StudyTimeline.prototype.matrixItemClickStyle = function(target, selected) {
  * @param enable [Boolean] enable / disable style
  * @return [void]
  */
-StudyTimeline.prototype.setMatrixItemCSS = function(target, enable) {
+StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
   var dataItem = this.getData("id", $(target).attr("data-id"));
 
-  $(target).css("background-color", enable ? dataItem.color : "");
-  $(target).css("color", enable ? "white" : "");
+  this.div.find(target).css("background-color", enable ? dataItem.color : "");
+  this.div.find(target).css("color", enable ? "white" : "");
 }
 
 /**
@@ -258,7 +258,7 @@ StudyTimeline.prototype.setMatrixItemCSS = function(target, enable) {
  * @param item [Object] data item
  * @return [void]
  */
-StudyTimeline.prototype.matrixItemHTML = function(item) {
+StudyMatrix.prototype.matrixItemHTML = function(item) {
   return '<div class="bg-label ' + item.type + '" style="border-color: ' + (item.color || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
 }
 
@@ -276,7 +276,7 @@ StudyTimeline.prototype.matrixItemHTML = function(item) {
  * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
  * @return [Data Object] matched object, or null
  */
-StudyTimeline.prototype.getData = function(propertyType, value, dataType) {
+StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
   var object = null;
 
   if(dataType != null) {
@@ -314,7 +314,7 @@ StudyTimeline.prototype.getData = function(propertyType, value, dataType) {
  * @param enable [Boolean] enable or disable loading
  * @return [void]
  */
-StudyTimeline.prototype.loading = function(enable) {
+StudyMatrix.prototype.loading = function(enable) {
   this.processing = enable;
   $("#" + this.tabName).trigger("loading", [enable, true])
 }
@@ -324,9 +324,8 @@ StudyTimeline.prototype.loading = function(enable) {
  *
  * @return [void]
  */
-StudyTimeline.prototype.clear = function() {
-  this.data = { epochs: [], arms: [], timepoints: [] }
-
+StudyMatrix.prototype.clear = function() {
+  this.data = { epochs: [], arms: [] }
 }
 
 /**
@@ -336,11 +335,12 @@ StudyTimeline.prototype.clear = function() {
  * @param index [Int] current element's index
  * @return [String] CSS HSL format string for color
  */
-StudyTimeline.prototype.generateColorShade = function(base, index) {
+StudyMatrix.prototype.generateColorShade = function(base, index) {
   var changeConst = 20;
   var hue = base.h + (changeConst * index);
+  var li = base.l - (2*index)
 
-  return "hsl(" + hue + ", " + base.s + "%, " + base.l + "%)";
+  return "hsl(" + hue + ", " + base.s + "%, " + li + "%)";
 }
 
 /**
@@ -348,14 +348,15 @@ StudyTimeline.prototype.generateColorShade = function(base, index) {
  *
  * @return [Object] color bases
  */
-StudyTimeline.prototype.colorBases = function() {
+StudyMatrix.prototype.colorBases = function() {
   return {
-    red: {h: 0, s: 90, l: 80},
-    green: {h: 140, s: 70, l: 70}
+    red: {h: 0, s: 75, l: 75},
+    green: {h: 140, s: 60
+      , l: 70}
   };
 }
 
-StudyTimeline.prototype.matrixData = function(callback) {
+StudyMatrix.prototype.matrixData = function(callback) {
   var data = [
     {
       label: "Screening",
