@@ -207,15 +207,18 @@ StudyMatrix.prototype.onMatrixItemHover = function(e) {
  */
 StudyMatrix.prototype.onEpochClick = function(e) {
   var epoch = this.getItem("id", $(e.target).attr("data-id"), "epochs");
+  var activeArm = this.getActiveArm();
 
   // Deselected
   if (epoch.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
     this.matrixItemClickStyle($(e.target), false);
+    activeArm.timeline.render(activeArm.timeline.data.timepoints);
   }
   // Selected
   else {
-    this.matrixItemClickStyle(".bg-label.epoch.active", false);
+    $(".bg-label.epoch.active").click();
     this.matrixItemClickStyle($(e.target), true);
+    activeArm.timeline.render(activeArm.timeline.filterTimepoints("epoch_id", epoch.id));
   }
 }
 
@@ -226,6 +229,7 @@ StudyMatrix.prototype.onEpochClick = function(e) {
  */
 StudyMatrix.prototype.onArmClick = function(e) {
   var arm = this.getItem("id", $(e.target).attr("data-id"), "arms");
+  $(".bg-label.epoch.active").click();
 
   this.matrixItemClickStyle(".bg-label.active.arm", false);
   this.matrixItemClickStyle(e.target, true);
@@ -255,7 +259,7 @@ StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
 StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
   var dataItem = this.getItem("id", $(target).attr("data-id"));
 
-  this.div.find(target).css("background-color", enable ? dataItem.color : "");
+  this.div.find(target).css("background-color", enable ? this.hslString(dataItem.color) : "");
   this.div.find(target).css("color", enable ? "white" : "");
 }
 
@@ -266,7 +270,7 @@ StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
  * @return [void]
  */
 StudyMatrix.prototype.matrixItemHTML = function(item) {
-  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (item.color || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
+  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (this.hslString(item.color) || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
 }
 
 
@@ -314,6 +318,14 @@ StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
  ************** Support **************
 **/
 
+/**
+ * Find currently active arm object
+ *
+ * @return [Object] current arm object
+ */
+StudyMatrix.prototype.getActiveArm = function() {
+  return this.getItem("id", this.div.find(".arm.active").attr("data-id"), "arms");
+}
 
 /**
  * Toggle loading on an matrix arm item
@@ -350,11 +362,21 @@ StudyMatrix.prototype.clear = function() {
 }
 
 /**
+ * Generates a HSL color string
+ *
+ * @param obj [Object] must contain values h,s,l
+ * @return [String] CSS HSL format string for color
+ */
+StudyMatrix.prototype.hslString = function(obj) {
+  return "hsl(" + obj.h + ", " + obj.s + "%, " + obj.l + "%)";
+}
+
+/**
  * Generates a shade of color for an element in a collection
  *
  * @param base [Object] one of the bases defined in colorBases (h,s,l)
  * @param index [Int] current element's index
- * @return [String] CSS HSL format string for color
+ * @return [Object] HSL values for color
  */
 StudyMatrix.prototype.generateColorShade = function(base, index) {
   var hueChange = 25, liChange = 2, satChange = 3;
@@ -363,7 +385,7 @@ StudyMatrix.prototype.generateColorShade = function(base, index) {
   var li = (hue > 40 & hue < 120) ? base.l - 20 : base.l - (liChange * index);
   var sat = base.s - (satChange * index);
 
-  return "hsl(" + hue + ", " + sat + "%, " + li + "%)";
+  return {h: hue, s: sat, l: li};
 }
 
 /**
@@ -404,6 +426,90 @@ StudyMatrix.prototype.matrixData = function(callback) {
     {
       label: "Treatment",
       id: "112x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    },
+    {
+      label: "Treatment",
+      id: "113x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    },
+    {
+      label: "Treatment",
+      id: "114x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    },
+    {
+      label: "Treatment",
+      id: "115x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    },
+    {
+      label: "Follow-Up",
+      id: "116x",
       arms: [
         {
           label: "High Dose",

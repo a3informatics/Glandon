@@ -20,7 +20,7 @@ function StudyTimeline(armId, matrixReference) {
   this.ready = false;
   this.tpRadius = 30;
 
-  this.data = { timepoints: [] }
+  this.data = { timepoints: [], renderTimepoints: [] }
 
   this.setListeners();
 }
@@ -38,7 +38,7 @@ function StudyTimeline(armId, matrixReference) {
  */
 StudyTimeline.prototype.show = function() {
   if (this.ready)
-    this.render();
+    this.render(this.data.timepoints);
   else
     this.loadData();
 }
@@ -57,7 +57,7 @@ StudyTimeline.prototype.loadData = function() {
   this.data.timepoints = this.mockData();
 
   this.loading(false);
-  this.render();
+  this.render(this.data.timepoints);
 }
 
 /**
@@ -70,19 +70,22 @@ StudyTimeline.prototype.setListeners = function() {
 }
 
 /**
- * Renders timeline
+ * Renders timeline based on a set of timepoints
  *
+ * @param timepointSet [Array] set or subset of timepoint data objects to render
  * @return [void]
  */
-StudyTimeline.prototype.render = function() {
+StudyTimeline.prototype.render = function(timepointSet) {
+  this.data.renderTimepoints = timepointSet;
   this.div.empty();
+  this.div.addClass("fadein");
+
   this.div.append("<div id='tl-wrapper'></div>");
   var wrap = this.div.find("#tl-wrapper");
 
-  wrap.append("<div id='timeline-axis'></div>")
-  // var axis = wrap.find("#timeline-axis");
+  wrap.append(this.generateAxisHTML());
 
-  $.each(this.data.timepoints, function(index, timepoint) {
+  $.each(timepointSet, function(index, timepoint) {
     wrap.append(this.generateTimepointHTML(timepoint));
   }.bind(this));
 
@@ -90,6 +93,8 @@ StudyTimeline.prototype.render = function() {
   $.each(epochs, function(index, epoch){
     wrap.append(this.generateEpochHTML(epoch));
   }.bind(this));
+
+  setTimeout(function(){this.div.removeClass("fadein")}.bind(this), 1);
 }
 
 
@@ -97,6 +102,18 @@ StudyTimeline.prototype.render = function() {
  ************** Support **************
 **/
 
+
+/**
+ * Generates HTML for the axis
+ *
+ * @return [String] Styled axis HTML
+ */
+StudyTimeline.prototype.generateAxisHTML = function() {
+  var arm = this.matrixReference.getItem("id", this.armId, "arms");
+  var axisColor = this.matrixReference.hslString(arm.color);
+  var axisLabel = "<div class='axis-label' style='color: "+ axisColor +"'>" + arm.label + "</div>";
+  return "<div id='timeline-axis' style='background-color: " + axisColor + "'>" + axisLabel + "</div>";
+}
 
 /**
  * Generates HTML for a single timepoint
@@ -107,7 +124,9 @@ StudyTimeline.prototype.render = function() {
 StudyTimeline.prototype.generateTimepointHTML = function(timepoint) {
   timepoint.offsetLeftHTML = this.calculateTPOffset(timepoint)
   var offsetLeft = "calc(" + timepoint.offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
+
   var color = this.matrixReference.getItem("id", timepoint.epoch_id, "epochs").color;
+  color = this.matrixReference.hslString({h: color.h, s: color.s + 10, l: color.l})
 
   var style = "left: " + offsetLeft + "; background-color: " + color + ";";
   var classes = "timepoint" + (timepoint.baseline ? " baseline" : "");
@@ -134,9 +153,12 @@ StudyTimeline.prototype.timepointLabel = function(timepoint) {
  * @return [Int] timepoint offset in %
  */
 StudyTimeline.prototype.calculateTPOffset = function(timepoint) {
-  var maxOffset = this.data.timepoints[this.data.timepoints.length - 1].offset;
-  var minOffset = this.data.timepoints[0].offset;
+  var maxOffset = this.data.renderTimepoints[this.data.renderTimepoints.length - 1].offset;
+  var minOffset = this.data.renderTimepoints[0].offset;
   var result = ((timepoint.offset - minOffset) * 100) / (maxOffset - minOffset);
+
+  if (isNaN(result))
+    return 0;
 
   return Math.round(result * 100) / 100;
 }
@@ -149,21 +171,33 @@ StudyTimeline.prototype.calculateTPOffset = function(timepoint) {
  */
 StudyTimeline.prototype.generateEpochHTML = function(epoch) {
   var tps = this.firstAndLastEpochTPs(epoch);
-  var offsetLeft = "calc(" + tps[0].offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
-  var width;
+  var offsetLeft, width;
+
+  if (tps == null)
+      return;
+
+  offsetLeft = "calc(" + tps[0].offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
 
   if(tps[1] == null){
-    var difference = this.data.timepoints[this.data.timepoints.length-1].offsetLeftHTML - tps[0].offsetLeftHTML;
-    width = "calc(" + difference + "% + " + this.tpRadius + "px)";
+    var lastEl = this.data.renderTimepoints[this.data.renderTimepoints.length-1];
+    if (lastEl.id == tps[0].id)
+      width = "calc(100% - " + lastEl.offsetLeftHTML + "% + " + this.tpRadius/2 + "px)";
+    else {
+      var difference = lastEl.offsetLeftHTML - tps[0].offsetLeftHTML;
+      width = "calc(" + difference + "% + " + this.tpRadius + "px)";
+    }
   }
   else {
     var difference = tps[1].offsetLeftHTML - tps[0].offsetLeftHTML;
     width = difference + "%";
   }
 
-  var style = "background-color: " + epoch.color + "; left: " + offsetLeft + "; width: " + width;
+  var color = this.matrixReference.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l + 12 });
+  var labelColor = this.matrixReference.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l - 40 });
+  var style = "background-color: " + color + "; left: " + offsetLeft + "; width: " + width;
+  var content = "<div class='epoch-label' style='color: "+ labelColor +"'>" + epoch.label + "</div>";
 
-  return "<div class='epoch-block' style='"+ style +"'></div>";
+  return "<div class='epoch-block' style='"+ style +"' data-epoch-id='"+epoch.id+"'>"+ content +"</div>";
 }
 
 /**
@@ -173,12 +207,23 @@ StudyTimeline.prototype.generateEpochHTML = function(epoch) {
  * @return [String] epoch HTML to be appended to timeline
  */
 StudyTimeline.prototype.firstAndLastEpochTPs = function(epoch) {
-  var epochTps = this.data.timepoints.filter(function(timepoint){
+  var epochTps = this.data.renderTimepoints.filter(function(timepoint){
     return timepoint.epoch_id == epoch.id;
   });
-  var lastIdx = this.data.timepoints.indexOf(epochTps[epochTps.length-1]);
+  var lastIdx = this.data.renderTimepoints.indexOf(epochTps[epochTps.length-1]);
 
-  return [epochTps[0], this.data.timepoints[lastIdx + 1]];
+  return (epochTps.length == 0) ? null : [epochTps[0], this.data.renderTimepoints[lastIdx + 1]];
+}
+
+/**
+ * Filters timepoints based on a value
+ *
+ * @param paramType [String] name of the property to filter on
+ * @param value [String] value to compare
+ * @return [Array] filtered array of this instance's timepoint data
+ */
+StudyTimeline.prototype.filterTimepoints = function(paramType, value) {
+  return this.data.timepoints.filter( function(tp) { return tp[paramType] == value });
 }
 
 /**
@@ -193,61 +238,203 @@ StudyTimeline.prototype.loading = function(enable) {
 
 StudyTimeline.prototype.mockData = function() {
   this.ready = true;
-  return [
-    {
-      id: "991",
-      epoch_id: "111x",
-      arms: ["210x", "310x"],
-      element_id: "211x",
-      unit: "weeks",
-      value: -2,
-      biomedical_concepts: [{label: "BC1", id: "881"}],
-      baseline: false,
-      offset: -2
-    },
-    {
-      id: "992",
-      epoch_id: "112x",
-      arms: ["210x"],
-      element_id: "212x",
-      unit: "days",
-      value: 0,
-      biomedical_concepts: [{label: "BC1", id: "881"}],
-      baseline: true,
-      offset: 0
-    },
-    {
-      id: "993",
-      epoch_id: "112x",
-      arms: ["210x", "310x"],
-      element_id: "213x",
-      unit: "weeks",
-      value: 8,
-      biomedical_concepts: [{label: "BC1", id: "881"}],
-      baseline: false,
-      offset: 8
-    },
-    {
-      id: "994",
-      epoch_id: "112x",
-      arms: ["210x"],
-      element_id: "214x",
-      unit: "weeks",
-      value: 12,
-      biomedical_concepts: [{label: "BC1", id: "881"}],
-      baseline: false,
-      offset: 12
-    },
-    {
-      id: "995",
-      epoch_id: "112x",
-      arms: ["210x"],
-      element_id: "214x",
-      unit: "weeks",
-      value: 16,
-      biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
-      baseline: false,
-      offset: 16
-    },
-  ];
+  switch(this.armId){
+    case "210x":
+      return [
+        {
+          id: "991",
+          epoch_id: "111x",
+          arms: ["210x", "310x"],
+          element_id: "211x",
+          unit: "weeks",
+          value: -2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: -2
+        },
+        {
+          id: "992",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "212x",
+          unit: "days",
+          value: 0,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: true,
+          offset: 0
+        },
+        {
+          id: "993",
+          epoch_id: "112x",
+          arms: ["210x", "310x"],
+          element_id: "213x",
+          unit: "weeks",
+          value: 8,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 8
+        },
+        {
+          id: "994",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "weeks",
+          value: 12,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 12
+        },
+        {
+          id: "995",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "weeks",
+          value: 16,
+          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
+          baseline: false,
+          offset: 16
+        },
+        {
+          id: "996",
+          epoch_id: "116x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "weeks",
+          value: 18,
+          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
+          baseline: false,
+          offset: 18
+        },
+      ];
+    case "310x":
+      return [
+        {
+          id: "991",
+          epoch_id: "111x",
+          arms: ["210x", "310x"],
+          element_id: "211x",
+          unit: "weeks",
+          value: -2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: -2
+        },
+        {
+          id: "992",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "212x",
+          unit: "days",
+          value: 0,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: true,
+          offset: 0
+        },
+        {
+          id: "993",
+          epoch_id: "112x",
+          arms: ["210x", "310x"],
+          element_id: "213x",
+          unit: "weeks",
+          value: 4,
+          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 4
+        },
+        {
+          id: "994",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "months",
+          value: 2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 8
+        },
+      ];
+    case "410x":
+      return [
+        {
+          id: "991",
+          epoch_id: "111x",
+          arms: ["210x", "310x"],
+          element_id: "211x",
+          unit: "weeks",
+          value: -2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: -2
+        },
+        {
+          id: "992",
+          epoch_id: "111x",
+          arms: ["210x"],
+          element_id: "212x",
+          unit: "days",
+          value: -2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: -0.2
+        },
+        {
+          id: "992",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "212x",
+          unit: "days",
+          value: 0,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: true,
+          offset: 0
+        },
+        {
+          id: "993",
+          epoch_id: "112x",
+          arms: ["210x", "310x"],
+          element_id: "213x",
+          unit: "weeks",
+          value: 4,
+          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 4
+        },
+        {
+          id: "994",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "months",
+          value: 2,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 8
+        },
+        {
+          id: "995",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "months",
+          value: 4,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 16
+        },
+        {
+          id: "996",
+          epoch_id: "112x",
+          arms: ["210x"],
+          element_id: "214x",
+          unit: "months",
+          value: 6,
+          biomedical_concepts: [{label: "BC1", id: "881"}],
+          baseline: false,
+          offset: 24
+        },
+      ];
+  }
+
 }
