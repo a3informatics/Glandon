@@ -97,10 +97,14 @@ describe "Transcelerate Data" do
       uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#Intervention")
       p_2 = Parameter.new(label: "Intervention", parameter_rdf_type: uri)
       p_2.uri = p_2.create_uri(p_2.class.base_uri)
+      uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#TimepointOffset")
+      p_3 = Parameter.new(label: "Timepoint", parameter_rdf_type: uri)
+      p_3.uri = p_3.create_uri(p_3.class.base_uri)
       sparql = Sparql::Update.new
       sparql.default_namespace(p_1.uri.namespace)
       p_1.to_sparql(sparql, true)
       p_2.to_sparql(sparql, true)
+      p_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_parameters.ttl")
     end 
@@ -109,6 +113,63 @@ describe "Transcelerate Data" do
 
   describe "MDR Data" do
 
+    it "End Points" do
+      endpoints = 
+      [
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to Week [[[Timepoint]]] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
+        },
+        {
+          label: "A label",         
+          full_text: "The change [absolute] in HbA1c from baseline to [[[Timepoint]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in continuous laboratory tests: Hepatic Function Panel"
+        },
+        {
+          label: "A label", 
+          full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in ECG parameter: QTcF"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]]] in the [[[BC]]]"
+        }
+      ]
+      items = []
+      endpoints.each_with_index do |ep, index|
+        item = EndPoint.new(ep)
+        item.set_initial("EP #{index+1}")
+        items << item
+      end
+      sparql = Sparql::Update.new
+      sparql.default_namespace(i_1.uri.namespace)
+      items.each {|x| x.to_sparql(sparql, true)}
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_endpoints.ttl")
+    end
+
     it "Objectives" do
       obj_1 = "To assess the effect of [study intervention X] on the ADAS-Cog and CIBIC+ scores at Week [X] in participants with Mild to Moderate Alzheimer’s Disease"
       obj_1 = "To evaluate the efficacy of [Study Intervention X] administered to individuals with Type 2 Diabetes Mellitus (T2DM)]"
@@ -116,19 +177,6 @@ describe "Transcelerate Data" do
       obj_1 = "To document the safety profile of [StudyIntervention]."
       obj_1 = "To assess the effect of [study intervention X] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"
       obj_1 = "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"
-    end
-
-    it "End Points" do
-      ep_1 = "The change from baseline to Week [X] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
-      ep_1 = "The change from baseline to Week [X] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
-      ep_1 = "The change [absolute] in HbA1c from baseline to [Week X]"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
-      ep_1 = "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
-      ep_1 = "The change from baseline to [Week X] in continuous laboratory tests: Hepatic Function Panel"
-      ep_1 = "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
-      ep_1 = "The change from baseline to [Week X] in ECG parameter: QTcF"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
     end
 
     it "Indications" do
