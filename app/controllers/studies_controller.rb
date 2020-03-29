@@ -28,7 +28,10 @@ class StudiesController < ApplicationController
 
   def create
     authorize Form, :create?
-    study = Study.create(the_params)
+    params = the_params.slice(:identifier, :label, :description)
+    protocol = Protocol.latest(identifier: the_params[:protocol_identifier], scope: IsoRegistrationAuthority.repository_scope)
+    params[:implements] = protocol.uri 
+    study = Study.create(params)
     if study.errors.empty?
       render json: {history_url: history_studies_path({study:{identifier: study.scoped_identifier, scope_id: study.has_identifier.has_scope.id}})}, status: 200
     else
@@ -69,7 +72,7 @@ class StudiesController < ApplicationController
 private
 
   def the_params
-    params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description, :scope_id, :count, :offset)
+    params.require(:study).permit(:identifier, :label, :description, :protocol_identifier, :scope_id, :count, :offset)
   end
 
   # Path for given action
