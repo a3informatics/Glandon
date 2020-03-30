@@ -49,8 +49,8 @@ StudyBuild.prototype.setListeners = function() {
  * @return [void]
  */
 StudyBuild.prototype.onTabSwitch = function(e, tabId) {
-  try {
+  // try {
     var tabName = tabId.split('-')[1];
     this.tabs[tabName].instance.show();
-  } catch(e) { };
+  // } catch(e) { };
 }
