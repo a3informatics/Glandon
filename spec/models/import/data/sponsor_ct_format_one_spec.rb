@@ -25,6 +25,8 @@ describe "Import::SponsorTermFormatOne" do
       {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08"},
       {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26"}
     ]
+    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/#{@release_details[0][:identifier]}/V1#TH")
+    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/#{@release_details[1][:identifier]}/V1#TH")
   end
 
   def read_installation(installation)
@@ -43,8 +45,6 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   before :each do
-    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/@release_details[0][:identifier]/V1#TH")
-    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/@release_details[1][:identifier]/V1#TH")
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -225,9 +225,9 @@ describe "Import::SponsorTermFormatOne" do
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
     params = 
     {
-      identifier: "@release_details[0][:identifier]", version: "1", 
-      date: "@release_details[0][:date]", files: [full_path], fixes: fixes, 
-      version_label: "1.0.0", label: "@release_details[0][:label]", 
+      identifier: @release_details[0][:identifier], version: "1", 
+      date: @release_details[0][:date], files: [full_path], fixes: fixes, 
+      version_label: "1.0.0", label: @release_details[0][:label], 
       semantic_version: "1.0.0", job: @job, uri: ct.uri
     }
     result = @object.import(params)
@@ -240,7 +240,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
     check_ttl_fix_v2(filename, "import_expected_2-6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -266,9 +266,9 @@ describe "Import::SponsorTermFormatOne" do
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-0.yaml")
     params = 
     {
-      identifier: "@release_details[1][:identifier]", version: "1", 
-      date: "@release_details[1][:date]", files: [full_path], fixes: fixes, 
-      version_label: "1.0.0", label: "@release_details[1][:label]", 
+      identifier: @release_details[1][:identifier], version: "1", 
+      date: @release_details[1][:date], files: [full_path], fixes: fixes, 
+      version_label: "1.0.0", label: @release_details[1][:label], 
       semantic_version: "1.0.0", job: @job, uri: ct.uri
     }
     result = @object.import(params)
