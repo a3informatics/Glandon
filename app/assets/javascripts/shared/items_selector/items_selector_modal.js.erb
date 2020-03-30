@@ -98,13 +98,19 @@ ItemsSelector.prototype.onPanelSelectionChange = function(type, selected, data) 
     var subselection = this.selection[type];
 
     data.each(function(d) {
-      if(selected && !subselection.includes(d))
+      var itemInSelection = this.findInSelection(d.id, type);
+
+      if(selected && itemInSelection == null)
         subselection.push(d);
-      else if (!selected && subselection.includes(d))
-        subselection.splice(subselection.indexOf(d), 1);
-    });
+      else if (!selected && itemInSelection != null)
+        subselection.splice(itemInSelection.index, 1);
+
+    }.bind(this));
   }
   else {
+    if (this.findInSelection(data[0].id, type) != null)
+      return;
+
     $.each(this.tabs, function(name, tab) {
       this.selection[name] = [];
       if (name != type)
@@ -231,7 +237,12 @@ ItemsSelector.prototype.getSelectionInfo = function() {
  * @return [String]
  */
 ItemsSelector.prototype.selectionItemString = function(item) {
-  return item.has_identifier.identifier + " v" + item.has_identifier.semantic_version;
+  if (item.parentData != null)
+    return item.notation +
+      " (Code List: " + (item.parentData.notation || item.parentData.has_identifier.identifier) +
+      " v" + item.parentData.has_identifier.semantic_version + ")";
+
+  return (item.notation || item.has_identifier.identifier) + " v" + item.has_identifier.semantic_version;
 }
 
 /**
@@ -314,7 +325,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
         {
           type: tabName,
           multiple: this.params.multiple,
-          columns: this.columns,
+          columns: this.columns.bind(this),
           parentPanel: this,
           errorDiv: this.errorDiv,
           urls: {history: miHistoryThesauriUrl, index: miIndexThesauriUrl},
@@ -325,10 +336,21 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
         {
           type: tabName,
           multiple: this.params.multiple,
-          columns: this.columns,
+          columns: this.columns.bind(this),
           parentPanel: this,
           errorDiv: this.errorDiv,
           urls: {history: miHistoryClUrl, index: miIndexClUrl},
+        });
+      break;
+    case "clitems":
+      this.tabs[tabName] = new UMISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryClUrl, index: miIndexClUrl, children: miChildrenClUrl},
         });
       break;
     case "bcs":
@@ -336,7 +358,7 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
         {
           type: tabName,
           multiple: this.params.multiple,
-          columns: this.columns,
+          columns: this.columns.bind(this),
           parentPanel: this,
           errorDiv: this.errorDiv,
           urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
@@ -398,21 +420,32 @@ ItemsSelector.prototype.getOpenTab = function() {
  * Finds object's index and type in the selection by ID property
  *
  * @param id [String] id to match by
+ * @param subselection [String] subselection name (optional)
  * @return [Object] {type, index} matched object, null if not found
  */
-ItemsSelector.prototype.findInSelection = function(id) {
+ItemsSelector.prototype.findInSelection = function(id, subselection) {
   var result = null;
 
-  $.each(this.selection, function(name, values) {
-    $.each(values, function(index) {
-      if (this.id == id) {
-        result = {type: name, index: index};
-        return false;
-      }
+  if (subselection != null) {
+    $.each(this.selection[subselection], function(index, data) {
+        if (data.id == id) {
+          result = {type: subselection, index: index};
+          return false;
+        }
     });
+  }
+  else {
+    $.each(this.selection, function(name, values) {
+      $.each(values, function(index) {
+        if (this.id == id) {
+          result = {type: name, index: index};
+          return false;
+        }
+      });
 
-    return result == null;
-  });
+      return result == null;
+    });
+  }
 
   return result;
 }
@@ -481,9 +514,28 @@ ItemsSelector.prototype.columns = function (table, type) {
         }},
       ];
       break;
+    case "children":
+      columns = [
+        {"data" : "identifier"},
+        {"data" : "notation"},
+        {"data" : "preferred_term"}
+      ];
+      break;
   }
-  if (type == "bcs")
+
+  switch(type) {
+    case "bcs":
       columns[3] = {visible: false, "render" : function (data, type, row, meta) {return "" }}
+      break;
+    case "clitems":
+    case "cls":
+      if(table == "index"){
+        this.modal.find(".tab-wrap[data-tab='tab-"+type+"']").find("#index thead th:eq(2)").after("<th>Submission Value</th>");
+        columns.splice(3, 0, {"data": "notation"});
+      }
+      break;
+
+  }
 
   return columns;
 }

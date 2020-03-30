@@ -13,7 +13,7 @@
 */
 
 /**
-* Managed Item Selector PanelConstructor
+* Managed Item Selector Panel Constructor
 *
 * @param [Object] user-defined values
 * @return [void]
@@ -25,8 +25,7 @@ function MISelector(params) {
  this.initialized = false;
  this.cache = {};
 
- this.indexTable = this.indexTableInit();
- this.historyTable = this.historyTableInit();
+ this.initTables();
  this.setListeners();
 }
 
@@ -251,8 +250,10 @@ MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
  * @return [String] history url
  */
 MISelector.prototype.onHistorySelect = function (e, dt, type, indexes) {
+  var parentData = this.indexTable.rows({selected: true}).data()[0];
   var data = this.historyTable.rows(indexes).data();
   var selected = e.type == "select";
+  data.each(function(d){d.notation = parentData.notation });
 
   this.parentPanel.onPanelSelectionChange(this.params.type, selected, data);
 }
@@ -316,6 +317,7 @@ MISelector.prototype.deselectAll = function(){
  */
 MISelector.prototype.loadDataParams = function(c, o){
   switch (this.params.type) {
+    case "clitems":
     case "cls":
       return { managed_concept: { count: c, offset: o, type: "all" } };
     case "thesauri":
@@ -350,6 +352,16 @@ MISelector.prototype.clearTable = function (target) {
 /**
  ****** Initializers ******
 **/
+
+/**
+ * Initialize all tables
+ *
+ * @return [void]
+ */
+MISelector.prototype.initTables = function() {
+  this.indexTable = this.indexTableInit();
+  this.historyTable = this.historyTableInit();
+}
 
 /**
  * Initialize the Index table
