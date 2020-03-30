@@ -19,7 +19,7 @@ describe Annotation::ChangeInstruction do
   before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
     load_files(schema_files, data_files)
-    load_versions(1..33)
+    load_versions(1..42)
   end
 
   it "will initialize an object" do
@@ -59,8 +59,19 @@ describe Annotation::ChangeInstruction do
   it "creates a change instruction" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
-    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id], current: [uri2.to_id])
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", semantic: "S", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
+  end
+
+  it "creates a change instruction" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
+    check_file_actual_expected(item.to_h, sub_dir, "create_expected_2.yaml")
   end    
 
   # it "creates and reads a change instruction" do
@@ -74,15 +85,15 @@ describe Annotation::ChangeInstruction do
   #   expect(item.to_h).to hash_equal(actual.to_h)
   # end    
 
-  # it "updates a change instruction" do
-  #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-  #   allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
-  #   item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous:, current:)
-  #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-  #   item.update(description: "D1", reference: "R, R1")
-  #   item = Annotation::ChangeInstruction.find(item.id)
-  #   check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
-  # end   
+  it "updates a change instruction" do
+    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
+    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous:, current:)
+    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+    item.update(description: "D1", reference: "R, R1")
+    item = Annotation::ChangeInstruction.find(item.id)
+    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
+  end   
 
   # it "deletes a change instruction" do
   #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))

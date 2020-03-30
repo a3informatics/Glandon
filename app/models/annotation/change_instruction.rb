@@ -23,15 +23,18 @@ class Annotation::ChangeInstruction < Annotation
   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
   def self.create(params)
     ci = Annotation::ChangeInstruction.new
+    ci.uri = ci.create_uri(ci.class.base_uri)
     ci.by_authority = IsoRegistrationAuthority.owner.uri
-    params[:previous].each do |p|
+    ci.reference = params[:reference]
+    ci.description = params[:description]
+    ci.semantic = params[:semantic]
+    params[:previous].each_with_index do |p, index| 
       uri = Uri.new(id: p)
-      self.previous_push(ci.add_op_reference(uri)) # <<<< need something like this to add to the collection. Same below
-      # What about ordinal?????. Needs setting
+      ci.previous_push(ci.add_op_reference(uri, index))
     end
-    params[:current].each do |c|
+    params[:current].each_with_index do |c, index|
       uri = Uri.new(id: c)
-      ci.add_op_reference(uri)
+      ci.current_push(ci.add_op_reference(uri, index))
     end
     ci.save
     ci
@@ -72,9 +75,9 @@ class Annotation::ChangeInstruction < Annotation
     add_reference(self.current, ct, reference)
   end
 
-    def add_op_reference(uri)
+  def add_op_reference(uri, index)
     object = OperationalReferenceV3.new
-    #object.ordinal = self.previous.count + self.current.count + 1
+    object.ordinal = index + 1
     object.uri = object.create_uri(self.uri)
     object.reference = uri
     object.enabled = true
