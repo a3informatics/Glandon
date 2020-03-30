@@ -22,21 +22,19 @@ class Annotation::ChangeInstruction < Annotation
   # @option params [Array] :previous the previous item for which the change instruction is relevant
   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
   def self.create(params)
-    #transaction_begin
     ci = Annotation::ChangeInstruction.new
     ci.by_authority = IsoRegistrationAuthority.owner.uri
     params[:previous].each do |p|
       uri = Uri.new(id: p)
-      ci.add_op_reference(uri)
+      self.previous_push(ci.add_op_reference(uri)) # <<<< need something like this to add to the collection. Same below
+      # What about ordinal?????. Needs setting
     end
     params[:current].each do |c|
       uri = Uri.new(id: c)
       ci.add_op_reference(uri)
     end
-    #super(params)
-    #ci.save
-    #transaction_execute
-    #ci
+    ci.save
+    ci
   end
 
 #   # Update
@@ -81,6 +79,7 @@ class Annotation::ChangeInstruction < Annotation
     object.reference = uri
     object.enabled = true
     object.optional = false
+    object
   end
 
 private
