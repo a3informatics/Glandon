@@ -226,13 +226,16 @@ describe "Import::SponsorTermFormatOne" do
     text.gsub(/[\u201C\u201D]/, '"')
   end
 
-  it "prepare comparison files", :speed => 'slow' do
-    #actual = cl_target("import_global_study_results_raw_2-6.csv")
-    actual = cl_target("import_global_results_raw_2-6.csv")
-    check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
-    actual = cl_target("import_global_results_raw_3-0.csv")
-    check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
-  end
+  # Initial way of creating expected results files.
+  # Hand modified after newr release from Sponsor
+  # 
+  # it "prepare comparison files", :speed => 'slow' do
+  #   #actual = cl_target("import_global_study_results_raw_2-6.csv")
+  #   actual = cl_target("import_global_results_raw_2-6.csv")
+  #   check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
+  #   actual = cl_target("import_global_results_raw_3-0.csv")
+  #   check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
+  # end
 
   it "import version 2.6", :speed => 'slow'  do
     thesauri_identifiers("3000", "10000")
@@ -292,13 +295,13 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-0.yaml", equate_method: :hash_equal)
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
     check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -347,7 +350,7 @@ describe "Import::SponsorTermFormatOne" do
       next if item.owner_short_name != "Sanofi"
       results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
     end
-    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end
