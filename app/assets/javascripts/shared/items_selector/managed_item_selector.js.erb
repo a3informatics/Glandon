@@ -34,7 +34,7 @@ function MISelector(params) {
 **/
 
 /**
- * Show panel event
+ * Shows panel (load index data)
  *
  * @return [void]
  */
@@ -52,7 +52,7 @@ MISelector.prototype.show = function(){
 }
 
 /**
- * Sets listeners
+ * Sets event listeners & handlers
  *
  * @return [void]
  */
@@ -63,7 +63,7 @@ MISelector.prototype.setListeners = function() {
 }
 
 /**
- * Sets listeners
+* Refreshes history table
  *
  * @return [void]
  */
@@ -73,7 +73,7 @@ MISelector.prototype.refresh = function() {
 
 
 /**
- * Marks rows based on selection
+ * Marks (selects) rows based on selection
  *
  * @return [void]
  */
@@ -87,8 +87,9 @@ MISelector.prototype.markRows = function() {
 }
 
 /**
- * Loads data into tables
+ * Fetches data to fill tables with
  *
+ * @param params [Object] Request parameters (url count offset errorDiv)
  * @return [void]
  */
 MISelector.prototype.loadData = function (params) {
@@ -140,7 +141,7 @@ MISelector.prototype.loadHistory = function (data) {
 }
 
 /**
- * Resets cache, table
+ * Clears cache, table, UI
  *
  * @return [void]
  */
@@ -205,19 +206,20 @@ MISelector.prototype.clearCache = function () {
 /**
  * Called when each chunk (page) of data is loaded
  *
- * @return [Object] request params
+ * @return [void]
  */
 MISelector.prototype.onTablePageLoaded = function (params) {
   this.processing(false);
   toggleTableActive("#index", false);
   params.offset += params.count;
+
   this.loadData(params);
 }
 
 /**
  * Called when each data is finished loading
  *
- * @return [Object] request params
+ * @return [void]
  */
 MISelector.prototype.onTableLoaded = function (params) {
   if (params.cacheData)
@@ -228,9 +230,9 @@ MISelector.prototype.onTableLoaded = function (params) {
 }
 
 /**
- * Generates history url
+ * Select Index Table Item Event
  *
- * @return [String] history url
+ * @return [void]
  */
 MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
   switch (e.type) {
@@ -245,9 +247,9 @@ MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
 }
 
 /**
- * Generates history url
+ * Select History Table Item Event
  *
- * @return [String] history url
+ * @return [void]
  */
 MISelector.prototype.onHistorySelect = function (e, dt, type, indexes) {
   var parentData = this.indexTable.rows({selected: true}).data()[0];
@@ -274,7 +276,7 @@ MISelector.prototype.makeHistoryUrl = function (identifier, scopeId) {
 }
 
 /**
- * Generates parameters for request for fetching data
+ * Generates item count for request for fetching data
  *
  * @return [Int] Item count for specific type
  */
@@ -341,8 +343,9 @@ MISelector.prototype.processing = function (enable) {
 }
 
 /**
- * Clears both tables' data
+ * Clears target table data
  *
+ * @param target [DataTable] Target table
  * @return [void]
  */
 MISelector.prototype.clearTable = function (target) {
@@ -364,9 +367,9 @@ MISelector.prototype.initTables = function() {
 }
 
 /**
- * Initialize the Index table
+ * Initializes Index table
  *
- * @return [void]
+ * @return [DataTable] initialized DT instance
  */
 MISelector.prototype.indexTableInit = function() {
   return $(this.div).find("#index").DataTable({
@@ -392,9 +395,9 @@ MISelector.prototype.indexTableInit = function() {
 }
 
 /**
- * Initializes index table
+ * Initializes History table
  *
- * @return [void]
+ * @return [DataTable] initialized DT instance
  */
 MISelector.prototype.historyTableInit = function () {
   return $(this.div).find("#history").DataTable({

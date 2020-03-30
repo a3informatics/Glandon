@@ -1,5 +1,5 @@
 /*
-* Unmanaged Item Selector Panel
+* Unmanaged Item Selector Panel [Extends: MISelector]
 */
 
 /*
@@ -30,7 +30,7 @@ function UMISelector(params) {
 **/
 
 /**
- * Show panel event
+ * Set listeners (extends setListeners from MISelector)
  *
  * @return [void]
  */
@@ -41,8 +41,9 @@ UMISelector.prototype.setListeners = function(){
 }
 
 /**
- * Load Data into Children Table
+ * Load Data into Children Table from server / cache
  *
+ * @param data [Object] data object of the parent item
  * @return [void]
  */
 UMISelector.prototype.loadChildrenTable = function (data) {
@@ -60,16 +61,16 @@ UMISelector.prototype.loadChildrenTable = function (data) {
 }
 
 /**
- * Deselects all items
+ * Deselects all items in the children table
  *
  * @return [void]
  */
-UMISelector.prototype.deselectAll = function(){
+UMISelector.prototype.deselectAll = function() {
   this.childrenTable.rows({selected: true}).deselect().draw();
 }
 
 /**
- * Resets cache, table
+ * Resets cache, table (extends reset from MISelector)
  *
  * @return [void]
  */
@@ -81,7 +82,7 @@ UMISelector.prototype.reset = function() {
 }
 
 /**
- * Sets listeners
+ * Refreshes children table (overrides refresh from MISelector)
  *
  * @return [void]
  */
@@ -90,7 +91,7 @@ UMISelector.prototype.refresh = function() {
 }
 
 /**
- * Marks rows based on selection
+ * Marks (selects) rows based on selection (overrides markRows from MISelector)
  *
  * @return [void]
  */
@@ -123,7 +124,7 @@ UMISelector.prototype.onChildSelect = function (e, dt, type, indexes) {
 }
 
 /**
- * History Version Select Event
+ * History Version Select Event (overrides onHistorySelect from MISelector)
  *
  * @return [String] history url
  */
@@ -167,7 +168,7 @@ UMISelector.prototype.toggleTableTabs = function (targetTable) {
 }
 
 /**
- * Generates history url
+ * Generates url for CL children
  *
  * @param id [String] CL id
  * @return [String] children url
@@ -178,6 +179,7 @@ UMISelector.prototype.makeChildrenUrl = function (id) {
 
 /**
  * Enables or disables processing within the modal tables
+ * (extends processing from MISelector)
  *
  * @param enable [Boolean] Processing enable / disable == true / false
  * @return [void]
@@ -197,6 +199,7 @@ UMISelector.prototype.processing = function (enable) {
 
 /**
  * Initialize all tables
+ * (extends initTables from MISelector)
  *
  * @return [void]
  */
@@ -208,7 +211,7 @@ UMISelector.prototype.initTables = function() {
 }
 
 /**
- * Initialize the Index table
+ * Initialize the Children table
  *
  * @return [void]
  */
