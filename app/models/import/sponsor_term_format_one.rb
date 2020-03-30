@@ -11,8 +11,8 @@ class Import::SponsorTermFormatOne < Import
   C_V3 = "01/01/2100".to_datetime 
   C_FORMAT_MAP = [
     {range: (C_V2...C_V3), sheet: :version_2}, 
-    {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
-  C_DEFAULT = :version_3
+    {range: (C_V3...C_V3+1), sheet: :version_3}]
+  C_DEFAULT = :version_2
 
   # Import. Import the rectangular structure
   #

@@ -6,10 +6,21 @@
 - 'Duplicates detected: ["C132261"], identifier ''C96779''.'
 - 'Duplicates detected: ["C132261"], identifier ''C96778''.'
 - 'Duplicates detected: ["C25301"], identifier ''C71620''.'
-- 'Cardiovascular Test Name: Fix notation mismatch, fix ''Pulmonary Systolic Pressure''
-  ''C120943'' versus reqd ''Pulmonary Artery Systolic Pressure'' ''SC120943'', identifier
-  ''C101846''.'
 - 'Morphology Test Name: Fix notation mismatch, fix ''OTHER'' ''C17649'' versus reqd
   ''Other'' ''SC17649'', identifier ''SN001097''.'
 - 'Physical Examination Test Name: Fix notation mismatch, fix ''CHEST'' ''C25389''
   versus reqd ''Chest'' ''SC25389'', identifier ''SN000600''.'
+- 'Vaccine Findings About Test Code: Cannot find referenced item ''C127786'', multiple
+  found, identifier ''SN001363''. Found http://www.cdisc.org/C132312/V51#C132312_C127786,
+  http://www.cdisc.org/C124303/V51#C124303_C127786, http://www.cdisc.org/C127267/V48#C127267_C127786,
+  http://www.cdisc.org/C132320/V51#C132320_C127786, http://www.cdisc.org/C132313/V51#C132313_C127786,
+  http://www.cdisc.org/C132316/V51#C132316_C127786, http://www.cdisc.org/C124302/V51#C124302_C127786,
+  http://www.cdisc.org/C132315/V51#C132315_C127786, http://www.cdisc.org/C132319/V51#C132319_C127786,
+  http://www.cdisc.org/C127266/V48#C127266_C127786 and no fix.'
+- 'Vaccine Findings About Test Name: Cannot find referenced item ''C127786'', multiple
+  found, identifier ''SN001362''. Found http://www.cdisc.org/C132312/V51#C132312_C127786,
+  http://www.cdisc.org/C124303/V51#C124303_C127786, http://www.cdisc.org/C127267/V48#C127267_C127786,
+  http://www.cdisc.org/C132320/V51#C132320_C127786, http://www.cdisc.org/C132313/V51#C132313_C127786,
+  http://www.cdisc.org/C132316/V51#C132316_C127786, http://www.cdisc.org/C124302/V51#C124302_C127786,
+  http://www.cdisc.org/C132315/V51#C132315_C127786, http://www.cdisc.org/C132319/V51#C132319_C127786,
+  http://www.cdisc.org/C127266/V48#C127266_C127786 and no fix.'

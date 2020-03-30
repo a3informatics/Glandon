@@ -22,11 +22,11 @@ describe "Import::SponsorTermFormatOne" do
     @object.save
     @release_details =
     [
-      {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08"},
-      {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26"}
+      {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08", uri: "http://www.sanofi.com/2019_R1/V1#TH"},
+      {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"}
     ]
-    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/#{@release_details[0][:identifier]}/V1#TH")
-    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/#{@release_details[1][:identifier]}/V1#TH")
+    @uri_2_6 = Uri.new(uri: "#{@release_details[0][:uri]}")
+    @uri_3_0 = Uri.new(uri: "#{@release_details[1][:uri]}")
   end
 
   def read_installation(installation)
@@ -78,6 +78,19 @@ describe "Import::SponsorTermFormatOne" do
     result
   end
 
+  def cl_identifiers(th)
+    query_string = %Q{
+      SELECT DISTINCT ?identifier ?label WHERE 
+      {
+        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+        ?s th:identifier ?identifier .
+        ?s isoC:label ?label .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
+    query_results.by_object(:identifier, :label)
+  end
+
   def count_cli(th)
     query_string = %Q{
       SELECT (COUNT(?s) as ?count) WHERE 
@@ -118,16 +131,17 @@ describe "Import::SponsorTermFormatOne" do
 
   def cl_info(th, key)
     query_string = %Q{
-      SELECT ?n (COUNT(?cli) as ?count) WHERE 
+      SELECT ?n ?i (COUNT(?cli) as ?count) WHERE 
       {
         #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
         ?s isoC:label "#{key}" .
         ?s th:notation ?n .
+        ?s th:identifier ?i .
         ?s th:narrower ?cli .
-      } GROUP BY ?n
+      } GROUP BY ?n ?i
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC]) 
-    result = query_results.by_object_set([:n, :count]).map{|x| {notation: x[:n], count: x[:count]}}
+    result = query_results.by_object_set([:n, :i, :count]).map{|x| {notation: x[:n], identifier: x[:i], count: x[:count]}}
     result.first
   end
 
@@ -150,8 +164,10 @@ describe "Import::SponsorTermFormatOne" do
     if result.nil?
       puts colourize("#{long_name} : #{identifier}", "red")
       puts colourize("Notation: [<not found>, #{notation}] Count: [<not found>, #{count}]\n", "red")
-    elsif result[:notation] == notation && "#{result[:count]}".to_i == "#{count}".to_i
+    elsif result[:notation] == notation && result[:identifier] == identifier && "#{result[:count]}".to_i == "#{count}".to_i
       #puts colourize("#{long_name} : #{identifier}", "green")
+    elsif result[:notation] == notation && result[:identifier] != identifier && "#{result[:count]}".to_i == "#{count}".to_i
+      puts colourize("#{notation} : #{long_name} : #{identifier} != #{result[:identifier]}", "brown")
     else
       db_items = cl_items(th, long_name)
       puts colourize("#{long_name} : #{identifier}", "red")
@@ -240,7 +256,7 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
     check_ttl_fix_v2(filename, "import_expected_2-6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -275,13 +291,13 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
     actual = read_public_yaml_file("test", filename)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3-0.yaml")
     check_file_actual_expected(actual, sub_dir, "import_errors_expected_3-0.yaml", equate_method: :hash_equal)
     #copy_file_from_public_files("test", filename, sub_dir)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
     check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
@@ -292,9 +308,11 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
     th = Thesaurus.find_minimum(@uri_3_0)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-    expect(count_cl(th)).to eq(results.count)
-    expect(count_cli(th)).to eq(31959)
-    expect(count_distinct_cli(th)).to eq(29554)
+byebug
+    expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
+    #expect(count_cl(th)).to eq(results.count)
+    expect(count_cli(th)).to eq(31929)
+    expect(count_distinct_cli(th)).to eq(29513)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
