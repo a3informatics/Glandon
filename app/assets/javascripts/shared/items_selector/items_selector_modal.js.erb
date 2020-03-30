@@ -5,7 +5,7 @@
 /*
 * Params
 ** id [String] id of the modal (must match the id passed to the partial)
-** types [Object] {thesauri, cls, clitems} should specify ones to enable with true/false
+** types [Object] {thesauri, cls, clitems, bcs} should specify ones to enable with true/false
 ** multiple [Boolean] enable/disable multiple item selection
 ** callback [Function] called when user clicks Submit. User's selection is passed as parameter.
 */
@@ -331,7 +331,17 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           urls: {history: miHistoryClUrl, index: miIndexClUrl},
         });
       break;
-
+    case "bcs":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns,
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
+        });
+      break;
   }
 }
 
@@ -440,12 +450,15 @@ ItemsSelector.prototype.viewSelectionHTML = function() {
  * Columns defs
  *
  * @param table [String] Table type
+ * @param type [String] Tab type name
  * @return [Object Array] Column definitions for specific table type
  */
-ItemsSelector.prototype.columns = function (table) {
-  switch (table) {
+ItemsSelector.prototype.columns = function (table, type) {
+  var columns;
+
+  switch(table) {
     case "index":
-      return [
+      columns = [
         {"data" : "owner"},
         {"data" : "identifier"},
         {"render" : function (data, type, row, meta) {
@@ -455,8 +468,9 @@ ItemsSelector.prototype.columns = function (table) {
             return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
         }},
       ];
+      break;
     case "history":
-      return [
+      columns = [
         {"render" : function (data, type, row, meta) {
           return (type == 'display' ? row.has_identifier.semantic_version : row.has_identifier.version);
         }},
@@ -466,7 +480,12 @@ ItemsSelector.prototype.columns = function (table) {
           return (type == "display" ? formatIndicators(data) : formatIndicatorsString(data));
         }},
       ];
+      break;
   }
+  if (type == "bcs")
+      columns[3] = {visible: false, "render" : function (data, type, row, meta) {return "" }}
+
+  return columns;
 }
 
 /**
@@ -483,11 +502,12 @@ ItemsSelector.prototype.paramsDefault = function(userParams) {
     multiple: userParams.multiple !== false,
     callback: userParams.callback,
     types: userParams.types == null ?
-      { thesauri: true, cls: false, clitems: false } :
+      { thesauri: true, cls: false, clitems: false, bcs: false } :
       {
         thesauri: userParams.types.thesauri || false,
         cls: userParams.types.cls || false,
-        clitems: userParams.types.clitems || false
+        clitems: userParams.types.clitems || false,
+        bcs: userParams.types.bcs || false
       },
   }
 }
