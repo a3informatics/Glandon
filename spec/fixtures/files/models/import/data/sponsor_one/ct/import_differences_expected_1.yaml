@@ -1535,6 +1535,16 @@
   :last_id: ''
   :label: Quality Of Life Enjoyment And Satisfaction Questionnaire Test Name
   :notation: QLES1TN
+- :identifier: :SN000515
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNTE1L1YxI1NOMDAwNTE1
+  :last_id: ''
+  :label: Questionnaire Test Code
+  :notation: QSTESTCD
+- :identifier: :SN000733
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNzMzL1YxI1NOMDAwNzMz
+  :last_id: ''
+  :label: Questionnaire Test Name
+  :notation: QSTEST
 - :identifier: :C130249
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMDI0OS9WNTAjQzEzMDI0OQ==
   :last_id: ''
@@ -2433,6 +2443,11 @@
   :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwMTIzL1YyI1NOMDAwMTIz
   :label: Category for Disease Status
   :notation: TTCAT
+- :identifier: :SN000804
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwODA0L1YxI1NOMDAwODA0
+  :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwODA0L1YyI1NOMDAwODA0
+  :label: Category for Medical History
+  :notation: MHCAT
 - :identifier: :SN000760
   :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNzYwL1YxI1NOMDAwNzYw
   :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNzYwL1YyI1NOMDAwNzYw
@@ -3878,6 +3893,11 @@
   :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNDE1L1YyI1NOMDAwNDE1
   :label: Pharmacokinetic Test Code
   :notation: PCTESTCD
+- :identifier: :SN000414
+  :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNDE0L1YxI1NOMDAwNDE0
+  :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNDE0L1YyI1NOMDAwNDE0
+  :label: Pharmacokinetic Test Name
+  :notation: PCTEST
 - :identifier: :SN000601
   :id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNjAxL1YxI1NOMDAwNjAx
   :last_id: aHR0cDovL3d3dy5zYW5vZmkuY29tL1NOMDAwNjAxL1YyI1NOMDAwNjAx
@@ -5081,4 +5101,4 @@
   :notation: VRTEST
 :versions:
 - '2019-08-08'
-- '2020-01-01'
+- '2020-03-26'

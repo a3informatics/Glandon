@@ -92,7 +92,7 @@
   - S003958
 - :name: Action Taken with Study Treatment Subset 01
   :short_name: ACN_01
-  :identifier: C66767
+  :identifier: SN003000
   :items:
   - C48660
   - C49501
@@ -102,7 +102,7 @@
   - C49505
 - :name: Action Taken with Study Treatment Subset 03
   :short_name: ACN_03
-  :identifier: C66767
+  :identifier: SN003001
   :items:
   - C48660
   - C49502
@@ -1345,11 +1345,13 @@
   :identifier: SN001215
   :items:
   - S013089
+  - S014068
 - :name: Ambulation Score Functional Test Test Name
   :short_name: AMBS01TN
   :identifier: SN001214
   :items:
   - S013089
+  - S014068
 - :name: Amount of Substance
   :short_name: SUAM
   :identifier: SN000566
@@ -1358,7 +1360,7 @@
   - S003703
 - :name: Amount of Substance Subset 01
   :short_name: SUAM_01
-  :identifier: SN000566
+  :identifier: SN003081
   :items:
   - S001121
   - S003703
@@ -2329,14 +2331,14 @@
   - SC17998
 - :name: Anatomical Location Subset 01
   :short_name: LOC_01
-  :identifier: C74456
+  :identifier: SN003031
   :items:
   - C33763
   - C89806
   - S001153
 - :name: Anatomical Location Subset 02
   :short_name: LOC_02
-  :identifier: C74456
+  :identifier: SN003032
   :items:
   - C12366
   - C12382
@@ -2374,7 +2376,7 @@
   - S001156
 - :name: Anatomical Location Subset 03
   :short_name: LOC_03
-  :identifier: C74456
+  :identifier: SN003033
   :items:
   - C12220
   - C12246
@@ -2443,7 +2445,7 @@
   - S001140
 - :name: Anatomical Location Subset 04
   :short_name: LOC_04
-  :identifier: C74456
+  :identifier: SN003034
   :items:
   - C12246
   - C12263
@@ -2525,7 +2527,7 @@
   - SC17998
 - :name: Anatomical Location Subset 05
   :short_name: LOC_05
-  :identifier: C74456
+  :identifier: SN003035
   :items:
   - C102330
   - C102716
@@ -2641,7 +2643,7 @@
   - S001127
 - :name: Anatomical Location Subset 06
   :short_name: LOC_06
-  :identifier: C74456
+  :identifier: SN003036
   :items:
   - C12431
   - C12434
@@ -2649,7 +2651,7 @@
   - C34320
 - :name: Anatomical Location Subset 07
   :short_name: LOC_07
-  :identifier: C74456
+  :identifier: SN003500
   :items:
   - C139186
   - C32141
@@ -2657,7 +2659,7 @@
   - C89806
 - :name: Anatomical Location Subset 08
   :short_name: LOC_08
-  :identifier: C74456
+  :identifier: SN003037
   :items:
   - C12366
   - C12378
@@ -2674,7 +2676,7 @@
   - S006406
 - :name: Anatomical Location Subset 09
   :short_name: LOC_09
-  :identifier: C74456
+  :identifier: SN003038
   :items:
   - S001131
   - S001135
@@ -2686,7 +2688,7 @@
   - S006409
 - :name: Anatomical Location Subset 10
   :short_name: LOC_10
-  :identifier: C74456
+  :identifier: SN003039
   :items:
   - C12390
   - C12394
@@ -2696,7 +2698,7 @@
   - SC142369
 - :name: Anatomical Location Subset 11
   :short_name: LOC_11
-  :identifier: C74456
+  :identifier: SN003040
   :items:
   - C12390
   - C12421
@@ -2880,7 +2882,7 @@
   - SC48660
 - :name: Assistance to Administer Treatment Subset 01
   :short_name: TXASSIST_01
-  :identifier: SN000738
+  :identifier: SN003088
   :items:
   - S006248
   - S006740
@@ -4186,7 +4188,8 @@
   - S007693
   - S010947
   - S030095
-  - SC17649
+  - C17649
+  - S030132
 - :name: Category for Medication
   :short_name: CMCAT
   :identifier: SN000760
@@ -4216,7 +4219,7 @@
   - SC17649
 - :name: Category for Medication Subset 02
   :short_name: CMCAT_02
-  :identifier: SN000760
+  :identifier: SN003012
   :items:
   - S030061
   - S030062
@@ -4473,6 +4476,7 @@
   - S010977
   - SC136711
   - SC38046
+  - S030132
 - :name: Category of Ophthalmic Examination
   :short_name: OECAT
   :identifier: SN000692
@@ -4746,7 +4750,7 @@
 - :name: Child Health Assessment Questionnaire Abilities to Function in Daily Life
     Subset 01
   :short_name: CHAQABIL_01
-  :identifier: SN001918
+  :identifier: SN003011
   :items:
   - S004915
   - S004916
@@ -5232,7 +5236,7 @@
   - SC25936
 - :name: Code Breaker Subset 01
   :short_name: DSCBWHOR_01
-  :identifier: SN000710
+  :identifier: SN003016
   :items:
   - S001998
   - S001999
@@ -6585,7 +6589,7 @@
   - S011605
 - :name: Common Terminology Criteria for Adverse Events Subset 01
   :short_name: TOXGR_01
-  :identifier: SN001030
+  :identifier: SN003082
   :items:
   - S011595
   - S011596
@@ -6649,14 +6653,14 @@
   - S009936
 - :name: Completion/Reason for Non-Completion Subset 01
   :short_name: NCOMPLT_01
-  :identifier: C66727
+  :identifier: SN003048
   :items:
   - C17649
   - C35571
   - C41331
 - :name: Completion/Reason for Non-Completion Subset 02
   :short_name: NCOMPLT_02
-  :identifier: C66727
+  :identifier: SN003049
   :items:
   - C17649
   - C25250
@@ -6666,13 +6670,13 @@
   - C49634
 - :name: Completion/Reason for Non-Completion Subset 03
   :short_name: NCOMPLT_03
-  :identifier: C66727
+  :identifier: SN003050
   :items:
   - C17649
   - C41331
 - :name: Completion/Reason for Non-Completion Subset 04
   :short_name: NCOMPLT_04
-  :identifier: C66727
+  :identifier: SN003051
   :items:
   - C102355
   - C25250
@@ -6682,7 +6686,7 @@
   - C49634
 - :name: Completion/Reason for Non-Completion Subset 05
   :short_name: NCOMPLT_05
-  :identifier: C66727
+  :identifier: SN003052
   :items:
   - C106576
   - C17649
@@ -6692,7 +6696,7 @@
   - S001277
 - :name: Completion/Reason for Non-Completion Subset 06
   :short_name: NCOMPLT_06
-  :identifier: C66727
+  :identifier: SN003053
   :items:
   - C106576
   - C17649
@@ -6703,7 +6707,7 @@
   - S001277
 - :name: Completion/Reason for Non-Completion Subset 07
   :short_name: NCOMPLT_07
-  :identifier: C66727
+  :identifier: SN003501
   :items:
   - C102355
   - C41331
@@ -6713,19 +6717,19 @@
   - S001275
 - :name: Completion/Reason for Non-Completion Subset 08
   :short_name: NCOMPLT_08
-  :identifier: C66727
+  :identifier: SN003502
   :items:
   - C25250
   - S001276
 - :name: Completion/Reason for Non-Completion Subset 09
   :short_name: NCOMPLT_09
-  :identifier: C66727
+  :identifier: SN003503
   :items:
   - C25250
   - C49628
 - :name: Completion/Reason for Non-Completion Subset 10
   :short_name: NCOMPLT_10
-  :identifier: C66727
+  :identifier: SN003504
   :items:
   - C17649
   - C35571
@@ -6735,7 +6739,7 @@
   - S001277
 - :name: Completion/Reason for Non-Completion Subset 11
   :short_name: NCOMPLT_11
-  :identifier: C66727
+  :identifier: SN003505
   :items:
   - C17649
   - C41331
@@ -6785,7 +6789,7 @@
   - SC18002
 - :name: Contact Method Subset 01
   :short_name: DSMETHOD_01
-  :identifier: SN000185
+  :identifier: SN003017
   :items:
   - S000911
   - S000989
@@ -8019,7 +8023,7 @@
   - C98798
 - :name: Directionality Subset 01
   :short_name: DIR_01
-  :identifier: C99074
+  :identifier: SN003015
   :items:
   - C25309
   - C25355
@@ -8261,21 +8265,21 @@
   - SC17998
 - :name: Duration of Symptoms Subset 01
   :short_name: CEDURATI_01
-  :identifier: SN000067
+  :identifier: SN003008
   :items:
   - S001603
   - S001604
   - SC17998
 - :name: Duration of Symptoms Subset 02
   :short_name: CEDURATI_02
-  :identifier: SN000067
+  :identifier: SN003009
   :items:
   - S000001
   - S000002
   - SC17998
 - :name: Duration of Symptoms Subset 03
   :short_name: CEDURATI_03
-  :identifier: SN000067
+  :identifier: SN003010
   :items:
   - S000003
   - S000004
@@ -8303,7 +8307,7 @@
 - :name: Eastern Cooperative Oncology Group Performance Status Questionnaire Results
     Subset 01
   :short_name: ECOG1R_01
-  :identifier: SN000193
+  :identifier: SN003018
   :items:
   - S002084
   - S002085
@@ -9947,7 +9951,6 @@
   :short_name: FACAT
   :identifier: SN000231
   :items:
-  - S000048
   - S000879
   - S000880
   - S001576
@@ -9968,6 +9971,8 @@
   - S011272
   - S030095
   - S031110
+  - S014032
+  - S030132
 - :name: Findings About Subcategory
   :short_name: FASCAT
   :identifier: SN000234
@@ -9986,6 +9991,7 @@
   - S011271
   - S012141
   - S030133
+  - S003209
 - :name: Fitzpatrick Skin Classification Response
   :short_name: SKINCLAS
   :identifier: C76351
@@ -10103,7 +10109,7 @@
   - S001888
 - :name: Frequency Subset 01
   :short_name: FREQ_01
-  :identifier: C71113
+  :identifier: SN003019
   :items:
   - C64954
   - C70543
@@ -11199,7 +11205,7 @@
   - S001885
 - :name: Group Subset 01
   :short_name: GROUP_01
-  :identifier: SN000280
+  :identifier: SN003020
   :items:
   - S001868
   - S001869
@@ -12121,54 +12127,6 @@
   - C132361
   - C132362
   - S007361
-  - S007792
-  - S007793
-  - S007794
-  - S007795
-  - S007796
-  - S008043
-  - S008044
-  - S008045
-  - S008046
-  - S008047
-  - S008048
-  - S008049
-  - S008050
-  - S008051
-  - S008052
-  - S008053
-  - S008054
-  - S008055
-  - S008056
-  - S008057
-  - S008058
-  - S008059
-  - S008060
-  - S008061
-  - S008062
-  - S008063
-  - S008064
-  - S008444
-  - S008445
-  - S008484
-  - S008485
-  - S008486
-  - S008487
-  - S008488
-  - S008489
-  - S009275
-  - S009276
-  - S009277
-  - S009278
-  - S009279
-  - S009280
-  - S009281
-  - S009282
-  - S009283
-  - S009284
-  - S009285
-  - S009286
-  - S009334
   - S009950
 - :name: Immunogenicity Specimen Assessments Test Name
   :short_name: ISTEST
@@ -12181,54 +12139,6 @@
   - C132361
   - C132362
   - S007361
-  - S007792
-  - S007793
-  - S007794
-  - S007795
-  - S007796
-  - S008043
-  - S008044
-  - S008045
-  - S008046
-  - S008047
-  - S008048
-  - S008049
-  - S008050
-  - S008051
-  - S008052
-  - S008053
-  - S008054
-  - S008055
-  - S008056
-  - S008057
-  - S008058
-  - S008059
-  - S008060
-  - S008061
-  - S008062
-  - S008063
-  - S008064
-  - S008444
-  - S008445
-  - S008484
-  - S008485
-  - S008486
-  - S008487
-  - S008488
-  - S008489
-  - S009275
-  - S009276
-  - S009277
-  - S009278
-  - S009279
-  - S009280
-  - S009281
-  - S009282
-  - S009283
-  - S009284
-  - S009285
-  - S009286
-  - S009334
   - S009950
 - :name: Immunology and Inflammation Findings About Test Code
   :short_name: IIFATSCD
@@ -12825,7 +12735,7 @@
   - S002696
 - :name: Karnofsky Performance Status Scale Questionnaire Results Subset 01
   :short_name: KPSSR_01
-  :identifier: SN000897
+  :identifier: SN003024
   :items:
   - S002687
   - S002688
@@ -15873,8 +15783,6 @@
   - S900553
   - S900554
   - S900555
-  - SC123557
-  - SC138970
   - SC142287
   - SC147302
   - SC147322
@@ -15891,6 +15799,18 @@
   - SC163437
   - SC163541
   - SC163544
+  - S014048
+  - S014049
+  - S014050
+  - S014051
+  - S014052
+  - S014053
+  - S014054
+  - S014055
+  - C123557
+  - C138970
+  - S014056
+  - S014057
 - :name: Laboratory Test Name
   :short_name: LBTEST
   :identifier: C67154
@@ -18343,8 +18263,6 @@
   - S900553
   - S900554
   - S900555
-  - SC123557
-  - SC138970
   - SC142287
   - SC147302
   - SC147322
@@ -18361,9 +18279,21 @@
   - SC163437
   - SC163541
   - SC163544
+  - S014048
+  - S014049
+  - S014050
+  - S014051
+  - S014052
+  - S014053
+  - S014054
+  - S014055
+  - C123557
+  - C138970
+  - S014056
+  - S014057
 - :name: Laboratory Test Name Subset 01
   :short_name: LBTEST_01
-  :identifier: C67154
+  :identifier: SN003029
   :items:
   - C100122
   - C100418
@@ -19626,9 +19556,19 @@
   - S002662
   - SC163435
   - SC163437
+  - S014048
+  - S014049
+  - S014050
+  - S014051
+  - S014052
+  - S014053
+  - S014054
+  - S014055
+  - S014056
+  - S014057
 - :name: Laboratory Test Name Subset 03
   :short_name: LBTEST_03
-  :identifier: C67154
+  :identifier: SN003030
   :items:
   - C64489
   - C64491
@@ -19666,13 +19606,13 @@
   - SC86071
 - :name: Laboratory Test Standard Character Result Subset 01
   :short_name: LBSTRESC_01
-  :identifier: C102580
+  :identifier: SN003027
   :items:
   - C38757
   - C38758
 - :name: Laboratory Test Standard Character Result Subset 02
   :short_name: LBSTRESC_02
-  :identifier: C102580
+  :identifier: SN003028
   :items:
   - C38757
   - C38758
@@ -19715,13 +19655,13 @@
   - C68598
 - :name: Laterality Subset 01
   :short_name: LAT_01
-  :identifier: C99073
+  :identifier: SN003025
   :items:
   - C25228
   - C25229
 - :name: Laterality Subset 03
   :short_name: LAT_03
-  :identifier: C99073
+  :identifier: SN003026
   :items:
   - C25228
   - C25229
@@ -20735,13 +20675,13 @@
   - S000981
 - :name: Method of Code Breaking Subset 01
   :short_name: DSCBMETH_01
-  :identifier: SN000711
+  :identifier: SN003506
   :items:
   - S000954
   - S000981
 - :name: Method Subset 03
   :short_name: METHOD_03
-  :identifier: C85492
+  :identifier: SN003044
   :items:
   - C103512
   - C103514
@@ -22462,7 +22402,7 @@
   - C97157
 - :name: Microorganism Subset 01
   :short_name: MICROORG_01
-  :identifier: C85491
+  :identifier: SN003047
   :items:
   - C112266
   - C112267
@@ -24273,25 +24213,25 @@
   - C49488
 - :name: No Yes Response _YN Subset
   :short_name: NY_YN
-  :identifier: C66742
+  :identifier: SN003062
   :items:
   - C49487
   - C49488
 - :name: No Yes Response Subset 01
   :short_name: NY_01
-  :identifier: C66742
+  :identifier: SN003060
   :items:
   - C49488
 - :name: No Yes Response Subset 02
   :short_name: NY_02
-  :identifier: C66742
+  :identifier: SN003061
   :items:
   - C48660
   - C49487
   - C49488
 - :name: No Yes Response_YNU Subset
   :short_name: NY_YNU
-  :identifier: C66742
+  :identifier: SN003063
   :items:
   - C17998
   - C49487
@@ -24317,7 +24257,7 @@
   - C62222
 - :name: Normal Abnormal Response Subset 01
   :short_name: NORMABNM_01
-  :identifier: C101834
+  :identifier: SN003059
   :items:
   - C14165
   - C25401
@@ -24557,7 +24497,7 @@
   - SC48660
 - :name: Oncology Response Assessment Result Subset 01
   :short_name: ONCRSR_01
-  :identifier: C96785
+  :identifier: SN003507
   :items:
   - C35571
   - C4870
@@ -24565,7 +24505,7 @@
   - C96700
 - :name: Oncology Response Assessment Result Subset 02
   :short_name: ONCRSR_02
-  :identifier: C96785
+  :identifier: SN003508
   :items:
   - C62222
   - SC142356
@@ -24608,6 +24548,9 @@
   - S009962
   - S010243
   - S010931
+  - S013800
+  - S013801
+  - S014058
 - :name: Oncology Response Assessment Test Name
   :short_name: ONCRTS
   :identifier: C96781
@@ -24644,6 +24587,9 @@
   - S009962
   - S010243
   - S010931
+  - S013800
+  - S013801
+  - S014058
 - :name: Ophthalmic Exam Test Code
   :short_name: OETESTCD
   :identifier: C117743
@@ -24769,7 +24715,7 @@
   - SC17998
 - :name: Overall Stage Grouping Subset 01
   :short_name: PROGSTG_01
-  :identifier: SN000469
+  :identifier: SN003068
   :items:
   - S003179
   - S003180
@@ -28616,14 +28562,14 @@
   - S000198
 - :name: Position Subset 01
   :short_name: POSITION_01
-  :identifier: C71148
+  :identifier: SN003064
   :items:
   - C100758
   - C17649
   - C62166
 - :name: Position Subset 02
   :short_name: POSITION_02
-  :identifier: C71148
+  :identifier: SN003065
   :items:
   - C62122
   - C62165
@@ -28847,7 +28793,7 @@
   - SC17649
 - :name: Procedure Subset 01
   :short_name: PROCEDUR_01
-  :identifier: C101858
+  :identifier: SN003066
   :items:
   - C38044
   - C51998
@@ -28856,7 +28802,7 @@
   - SC17649
 - :name: Procedure Subset 02
   :short_name: PROCEDUR_02
-  :identifier: C101858
+  :identifier: SN003067
   :items:
   - C51998
   - C99521
@@ -28879,13 +28825,13 @@
   - SC25742
 - :name: Proposed Adverse Event Term Subset 01
   :short_name: AETERM_01
-  :identifier: SN000016
+  :identifier: SN003006
   :items:
   - S000105
   - SC25742
 - :name: Proposed Adverse Event Term Subset 02
   :short_name: AETERM_02
-  :identifier: SN000016
+  :identifier: SN003007
   :items:
   - S000103
   - S000104
@@ -28897,7 +28843,7 @@
   - S001387
 - :name: Proposed Medical History Term Subset 01
   :short_name: MHTERM_01
-  :identifier: SN000367
+  :identifier: SN003046
   :items:
   - S001386
   - S001387
@@ -29680,7 +29626,7 @@
   - SC62220
 - :name: Reason for Treatment Use Subset 01
   :short_name: TRTRSN_01
-  :identifier: SN000583
+  :identifier: SN003083
   :items:
   - S000037
   - S003007
@@ -29692,7 +29638,7 @@
   - SC41331
 - :name: Reason for Treatment Use Subset 02
   :short_name: TRTRSN_02
-  :identifier: SN000583
+  :identifier: SN003084
   :items:
   - S000037
   - S003001
@@ -29716,13 +29662,13 @@
   - SC62220
 - :name: Reason for Treatment Use Subset 03
   :short_name: TRTRSN_03
-  :identifier: SN000583
+  :identifier: SN003085
   :items:
   - SC101516
   - SC62220
 - :name: Reason for Treatment Use Subset 04
   :short_name: TRTRSN_04
-  :identifier: SN000583
+  :identifier: SN003086
   :items:
   - S003011
   - SC62220
@@ -29788,7 +29734,7 @@
   - C53279
 - :name: Relation to Reference Period Subset 01
   :short_name: STENRF_01
-  :identifier: C66728
+  :identifier: SN003080
   :items:
   - C25456
   - C25629
@@ -29811,7 +29757,7 @@
   - S000099
 - :name: Relationship to Study Treatment Subset 01
   :short_name: AERELA_01
-  :identifier: SN000012
+  :identifier: SN003002
   :items:
   - S000090
   - S000093
@@ -30719,7 +30665,7 @@
   - S003258
 - :name: Route of Administration Response Subset 01
   :short_name: ROUTE_01
-  :identifier: C66729
+  :identifier: SN003509
   :items:
   - C28161
   - C38238
@@ -30731,7 +30677,7 @@
   - C38675
 - :name: Route of Administration Response Subset 02
   :short_name: ROUTE_02
-  :identifier: C66729
+  :identifier: SN003510
   :items:
   - C17649
   - C38272
@@ -30739,7 +30685,7 @@
   - C38304
 - :name: Route of Administration Response Subset 03
   :short_name: ROUTE_03
-  :identifier: C66729
+  :identifier: SN003511
   :items:
   - C38238
   - C38284
@@ -30747,7 +30693,7 @@
   - S003258
 - :name: Route of Administration Response Subset 05
   :short_name: ROUTE_05
-  :identifier: C66729
+  :identifier: SN003512
   :items:
   - C28161
   - C38238
@@ -31283,7 +31229,7 @@
   - S010835
 - :name: Self-Measured Plasma Glucose Time Subset 01
   :short_name: SMPGTIME_01
-  :identifier: SN000554
+  :identifier: SN003076
   :items:
   - S003734
   - S003739
@@ -31291,7 +31237,7 @@
   - S010835
 - :name: Self-Measured Plasma Glucose Time Subset 02
   :short_name: SMPGTIME_02
-  :identifier: SN000554
+  :identifier: SN003077
   :items:
   - S003728
   - S003729
@@ -31312,13 +31258,13 @@
   - SC41132
 - :name: Setting Hospitalization Subset 01
   :short_name: HOSP_01
-  :identifier: SN000636
+  :identifier: SN003022
   :items:
   - S000047
   - S000284
 - :name: Setting Hospitalization Subset 02
   :short_name: HOSP_02
-  :identifier: SN000636
+  :identifier: SN003023
   :items:
   - S000091
   - S000358
@@ -31344,7 +31290,7 @@
   - SC41340
 - :name: Severity and Intensity Scale for Adverse Events Subset 01
   :short_name: AESEVMD_01
-  :identifier: SN000612
+  :identifier: SN003004
   :items:
   - SC17998
   - SC41338
@@ -31352,7 +31298,7 @@
   - SC41340
 - :name: Severity and Intensity Scale for Adverse Events Subset 02
   :short_name: AESEVMD_02
-  :identifier: SN000612
+  :identifier: SN003005
   :items:
   - SC17998
   - SC41132
@@ -31572,13 +31518,13 @@
   - S000902
 - :name: Specimen Collection Method Subset 01
   :short_name: CLMETH_01
-  :identifier: C132314
+  :identifier: SN003513
   :items:
   - C15189
   - C15361
 - :name: Specimen Collection Method Subset 02
   :short_name: CLMETH_02
-  :identifier: C132314
+  :identifier: SN003514
   :items:
   - C15189
   - S000902
@@ -31739,7 +31685,7 @@
   - SC17649
 - :name: Specimen Type Subset 02
   :short_name: SPECTYPE_02
-  :identifier: C78734
+  :identifier: SN003078
   :items:
   - C12434
   - C13278
@@ -32195,8 +32141,10 @@
   - S007165
   - S010975
   - S010976
-  - SC27958
-  - SC97156
+  - C4876
+  - C97156
+  - C27958
+  - S030133
 - :name: Subcategory for Medication
   :short_name: CMSCAT
   :identifier: SN002031
@@ -32216,12 +32164,12 @@
   - S030351
 - :name: Subcategory for Medication Subset 01
   :short_name: CMSCAT_01
-  :identifier: SN002031
+  :identifier: SN003013
   :items:
   - S004855
 - :name: Subcategory for Medication Subset 02
   :short_name: CMSCAT_02
-  :identifier: SN002031
+  :identifier: SN003014
   :items:
   - S003105
   - S004822
@@ -32252,7 +32200,7 @@
   - S012141
 - :name: Subcategory for Procedures Subset 01
   :short_name: PRSCAT_01
-  :identifier: SN000121
+  :identifier: SN003069
   :items:
   - S003206
   - S003207
@@ -32287,7 +32235,7 @@
   - SC4876
 - :name: Subcategory of Clinical Event Subset 01
   :short_name: CESCAT_01
-  :identifier: SN000697
+  :identifier: SN003515
   :items:
   - S000038
   - S000062
@@ -32356,7 +32304,7 @@
   - S000062
 - :name: Subcategory of Vital Signs Subset 01
   :short_name: VSSCAT_01
-  :identifier: SN002054
+  :identifier: SN003516
   :items:
   - S000038
   - S000062
@@ -32463,7 +32411,7 @@
   - C37987
 - :name: Subject Status Response Subset 01
   :short_name: SSTATRS_01
-  :identifier: C124304
+  :identifier: SN003079
   :items:
   - C28554
   - C37987
@@ -33372,6 +33320,7 @@
   - C49657
   - C71485
   - C71486
+  - C48262
 - :name: Trial Phase Response
   :short_name: TPHASE
   :identifier: C66737
@@ -33716,7 +33665,7 @@
   - C94522
 - :name: Tumor or Lesion Identification Test Results Subset 01
   :short_name: TUIDRS_01
-  :identifier: C123650
+  :identifier: SN003517
   :items:
   - C94520
   - C94521
@@ -33877,6 +33826,9 @@
   - S010980
   - S011311
   - SC25676
+  - S012306
+  - S013842
+  - SC127786
 - :name: Type 1 Diabetes Findings About Test Name
   :short_name: D1FATS
   :identifier: SC163028
@@ -33897,6 +33849,9 @@
   - S010980
   - S011311
   - SC25676
+  - S012306
+  - S013842
+  - SC127786
 - :name: Type of Error Reported
   :short_name: ERRORTYP
   :identifier: SN001104
@@ -33915,7 +33870,7 @@
   - SC48660
 - :name: Type of Hearing Damage Subset 01
   :short_name: HLTYPE_01
-  :identifier: SN000311
+  :identifier: SN003021
   :items:
   - S001355
   - S001356
@@ -35652,33 +35607,33 @@
   - SC85782
 - :name: Unit Subset 01
   :short_name: UNIT_01
-  :identifier: C71620
+  :identifier: SN003089
   :items:
   - C18063
   - C18064
 - :name: Unit Subset 02
   :short_name: UNIT_02
-  :identifier: C71620
+  :identifier: SN003090
   :items:
   - C18063
   - C18064
   - C70512
 - :name: Unit Subset 03
   :short_name: UNIT_03
-  :identifier: C71620
+  :identifier: SN003091
   :items:
   - C25301
   - C29844
   - C29846
 - :name: Unit Subset 04
   :short_name: UNIT_04
-  :identifier: C71620
+  :identifier: SN003092
   :items:
   - C64387
   - C67015
 - :name: Unit Subset 05
   :short_name: UNIT_05
-  :identifier: C71620
+  :identifier: SN003093
   :items:
   - C25613
   - C67015
@@ -35761,9 +35716,16 @@
   - S013520
   - S013521
   - S013522
-  - SC124727
-  - SC25676
-  - SC96684
+  - C124727
+  - C25676
+  - C96684
+  - S014045
+  - SC127786
+  - S014046
+  - S014065
+  - S013814
+  - S014047
+  - S011285
 - :name: Vaccine Findings About Test Name
   :short_name: VAFATS
   :identifier: SN001362
@@ -35778,9 +35740,16 @@
   - S013520
   - S013521
   - S013522
-  - SC124727
-  - SC25676
-  - SC96684
+  - C124727
+  - C25676
+  - C96684
+  - S014045
+  - SC127786
+  - S014046
+  - S014065
+  - S013814
+  - S014047
+  - S011285
 - :name: Version of Controlled Terminology
   :short_name: CTVERS
   :identifier: SN000307
@@ -36531,3 +36500,14 @@
   - C130846
   - C130847
   - C130848
+- :name: Questionnaire Test Code
+  :short_name: QSTESTCD
+  :identifier: SN000515
+  :items:
+  - S014067
+- :name: Questionnaire Test Name
+  :short_name: QSTEST
+  :identifier: SN000733
+  :items:
+  - S014067
+  

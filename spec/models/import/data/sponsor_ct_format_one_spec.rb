@@ -87,8 +87,8 @@ describe "Import::SponsorTermFormatOne" do
         ?s isoC:label ?label .
       }
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
-    query_results.by_object(:identifier, :label)
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
+    query_results.by_object_set([:identifier, :label])
   end
 
   def count_cli(th)
@@ -163,15 +163,15 @@ describe "Import::SponsorTermFormatOne" do
     result = cl_info(th, long_name)
     if result.nil?
       puts colourize("#{long_name} : #{identifier}", "red")
-      puts colourize("Notation: [<not found>, #{notation}] Count: [<not found>, #{count}]\n", "red")
+      puts colourize("Notation: [A: <not found>, E: #{notation}] Count: [A: <not found>, E: #{count}]\n", "red")
     elsif result[:notation] == notation && result[:identifier] == identifier && "#{result[:count]}".to_i == "#{count}".to_i
       #puts colourize("#{long_name} : #{identifier}", "green")
     elsif result[:notation] == notation && result[:identifier] != identifier && "#{result[:count]}".to_i == "#{count}".to_i
-      puts colourize("#{notation} : #{long_name} : #{identifier} != #{result[:identifier]}", "brown")
+      puts colourize("E: #{notation}, #{long_name}, #{identifier} != E: #{result[:identifier]}", "brown")
     else
       db_items = cl_items(th, long_name)
       puts colourize("#{long_name} : #{identifier}", "red")
-      puts colourize("Notation: [#{result[:notation]}, #{notation}] Count: [#{result[:count]}, #{count}]", "red")
+      puts colourize("Notation: [A: #{result[:notation]}, E: #{notation}] Count: [A: #{result[:count]}, E: #{count}]", "red")
       puts colourize("Missing:  #{items - db_items}", "red")
       puts colourize("Extra:    #{db_items - items}\n", "red")
     end
@@ -266,6 +266,7 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     th = Thesaurus.find_minimum(@uri_2_6)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
+    expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
     expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(22322)
     expect(count_distinct_cli(th)).to eq(20096)
@@ -308,9 +309,8 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
     th = Thesaurus.find_minimum(@uri_3_0)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
-byebug
     expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
-    #expect(count_cl(th)).to eq(results.count)
+    expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(31929)
     expect(count_distinct_cli(th)).to eq(29513)
     results.each do |x|
@@ -319,18 +319,6 @@ byebug
   end
 
   it "2-6 versus 3.0 QC I", :speed => 'slow' do
-    new_items = 
-    [
-      :SN003500, :SN003501, :SN003502, :SN003503, :SN003504, :SN003505, :SN003506, 
-      :SN003507, :SN003508, :SN003509, :SN003510, :SN003511, :SN003512, :SN003513, 
-      :SN003514, :SN003515, :SN003516, :SN003517
-    ]
-    deleted_items =
-    [
-      :SN003003, :SN003041, :SN003042, :SN003043, :SN003045, :SN003054, :SN003055, 
-      :SN003056, :SN003057, :SN003058, :SN003070, :SN003071, :SN003072, :SN003073, 
-      :SN003074, :SN003075, :SN003087, :SN003094
-    ]
     load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
@@ -343,8 +331,8 @@ byebug
     curr = r_3_0.map{|x| x[:identifier].to_sym}.uniq
     created = results[:created].map{|x| x[:identifier]}
     deleted = results[:deleted].map{|x| x[:identifier]}
-    expect(created).to match_array(new_items + curr - prev)
-    expect(deleted).to match_array(prev - curr + deleted_items)
+    expect(created).to match_array(curr - prev) # New now accounted for
+    expect(deleted).to match_array(prev - curr)
   end
 
   it "2-6 versus 3.0 QC II", :speed => 'slow' do
@@ -359,7 +347,7 @@ byebug
       next if item.owner_short_name != "Sanofi"
       results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
     end
-    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
 end
