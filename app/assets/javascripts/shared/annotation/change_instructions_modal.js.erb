@@ -1,0 +1,249 @@
+/*
+* Change Instructions Modal
+* Lists Change Instructions for any item.
+*/
+
+$(document).ready(function() {
+  var ciModal = new CIListModal();
+});
+
+/**
+* Change Instructions Modal Constructor
+*
+* @return [void]
+*/
+function CIListModal() {
+ this.modal = $("#change-instructions-modal");
+ this.errorDiv = this.modal.find("#change-instructions-error");
+ this.ready = false;
+
+ this.table = this.initTable();
+ this.setListeners();
+}
+
+/**
+ ****** General ******
+**/
+
+/**
+ * Fetches Change Instructions, fill in table
+ *
+ * @return [void]
+ */
+CIListModal.prototype.loadData = function () {
+  this.table.processing(true);
+
+	$.ajax({
+		url: listCIsUrl,
+		type: 'GET',
+		dataType: 'json',
+		context: this,
+		success: function (result) {
+      $.each(result.data, function(i, item){
+        this.table.row.add(item);
+      }.bind(this));
+
+      this.table.draw();
+      this.table.processing(false);
+      this.ready = true;
+		},
+		error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error, this.errorDiv);
+			this.table.processing(false);
+		}
+	});
+}
+
+/**
+ * Makes new Change Instructions call, redirects on success
+ *
+ * @return [void]
+ */
+CIListModal.prototype.createNew = function () {
+	$.ajax({
+		url: newCIUrl,
+		type: 'POST',
+		dataType: 'json',
+		context: this,
+		success: function (result) {
+      location.href = result.edit_path;
+		},
+		error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error, this.errorDiv);
+			this.table.processing(false);
+		}
+	});
+}
+
+/**
+ * Sets event listeners, handlers
+ *
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.setListeners = function () {
+  this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
+  this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
+}
+
+
+
+/**
+ * Called when edit icon clicked
+ *
+ * @param e [Event] original click event
+ * @return [void]
+ */
+CIListModal.prototype.actionClick = function (e) {
+  var rowData = this.table.row($(e.target).closest("tr")).data();
+
+  if ($(e.target).hasClass("icon-edit")){
+    location.href = rowData.edit_path;
+  }
+  else if ($(e.target).hasClass("icon-trash")){
+    new ConfirmationDialog(function() { location.href = rowData.delete_path }.bind(this), {dangerous: true})
+      .show();
+  }
+}
+
+/**
+ ****** HTML ******
+**/
+
+
+/**
+ * Generates HTML for a single item
+ *
+ * @param data [Object] Change Instruction data object
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.itemHTML = function (data) {
+  var html = "";
+
+  html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
+  html +=   "<div class='ci-header'>";
+  html +=     "<div class='icon-instruction text-link text-large'></div>";
+  html +=     "<div class='actions'><span class='icon-edit'></span><span class='icon-trash'></span></div>";
+  html +=   "</div>"
+  html +=   "<div class='ci-body'>";
+  html +=     "<div>Reference: " +
+                (data.reference == "" ? "Not set" : data.reference) + "</div>";
+  html +=     "<hr>"
+  html +=     "<div>" + data.description + "</div>"
+  html +=     this.linksListHTML(data);
+  html +=   "</div>"
+  html += "</div>"
+  return html;
+}
+
+/**
+ * Generates HTML for a list of links for CI
+ *
+ * @param data [Object] Change Instruction data object
+ * @return [String] formatted likns list HTML
+ */
+CIListModal.prototype.linksListHTML = function (data) {
+  var html = "";
+
+  html += "<div class='items-list scroll-styled'>"
+
+  $.each(data.previous, function(idx, link) {
+    html += "<a href='" + link.show_path + "' class='item'>";
+    html +=   this.linkIcon("old", "Previous");
+    html +=   "<div class='text-block'>";
+    html +=     this.linkText(link);
+    html +=   "</div>";
+    html += "</a>";
+  }.bind(this));
+
+  $.each(data.current, function(idx, link) {
+    html += "<a href='" + link.show_path + "' class='item'>";
+    html +=   this.linkIcon("new", "Current");
+    html +=   "<div class='text-block'>";
+    html +=     this.linkText(link);
+    html +=   "</div>";
+    html += "</a>";
+  }.bind(this));
+
+  html += "</div>";
+
+  return html;
+}
+
+/**
+ * Builds icon with tooltip for a link
+ *
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.linkIcon = function(icon, text) {
+  var html = "<span class='icon-" + icon + " text-normal ttip'>";
+  html +=      "<span class='ttip-text ttip-table shadow-small text-tiny'>" + text + "</span>";
+  html +=    "</span>";
+
+  return html;
+}
+
+/**
+ * Builds HTML text for a link
+ *
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.linkText = function(link) {
+  var text = "<div class='font-regular'>";
+  text += (link.parent.label || link.parent.notation) + " ";
+  text += "(" + link.parent.identifier + ") v" + link.parent.semantic_version;
+  text += "</div>";
+
+  if (link.child != null) {
+    text += "<div>"
+    text +=   (link.child.label || link.child.notation) + " (" + link.child.identifier + ")";
+    text += "</div>"
+  }
+
+  return text;
+}
+
+
+/**
+ ****** Support ******
+**/
+
+
+/**
+ * Column definition
+ *
+ * @return [Array] column
+ */
+CIListModal.prototype.column = function() {
+  return [{
+      data: "id",
+      orderable: false,
+      render: function (data, type, row, meta) {
+        return (type == "display" ? this.itemHTML(row) : "");
+      }.bind(this)
+    }];
+}
+
+/**
+ * Initializes table
+ *
+ * @return [DataTable] initialized DT instance
+ */
+CIListModal.prototype.initTable = function() {
+  return this.modal.find("#change-instructions-table").DataTable({
+    "order": [[0, "desc"]],
+		"columns": this.column(),
+    "lengthChange": false,
+		"processing": true,
+		"paging": false,
+    "searching": false,
+    "info": false,
+    "scrollY": 450,
+    "scrollCollapse": true,
+    "autoWidth": false,
+		"language": {
+			"infoFiltered": "",
+			"emptyTable": "No Change Instructions were found.",
+			"processing": generateSpinner("small")
+		}
+  });
+}

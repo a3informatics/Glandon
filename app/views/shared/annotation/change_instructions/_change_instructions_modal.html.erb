@@ -1,0 +1,37 @@
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+
+<%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
+<%= javascript_include_tag 'shared/annotation/change_instructions_modal' %>
+<%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(item_id)}'" %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="change-instructions-modal">
+  <div class="modal-dialog modal-lg medium-screen" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="icon-instruction text-link" style="margin-right:10px;"></span>
+          Change Instructions for <%= item_name %>
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body font-light">
+        <div id="change-instructions-error"></div>
+        <center>
+            <table id="change-instructions-table">
+              <thead><th></th></thead>
+              <tbody></tbody>
+            </table>
+          <button class="btn medium green ttip" id="add-ci-button">
+            + Create new
+            <span class="ttip-text text-medium text-tiny shadow-small">Creates a blank Change Instruction</span>
+          </button>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" id="close-ci-modal-button" data-dismiss="modal" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

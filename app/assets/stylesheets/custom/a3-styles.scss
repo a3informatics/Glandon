@@ -200,6 +200,14 @@
 
 // MODALS
 
+.modal-lg.small-screen {
+  width: 50%;
+}
+
+.modal-lg.medium-screen {
+  width: 60%;
+}
+
 .modal-lg.wide-screen {
   width: 85%;
 }
@@ -208,7 +216,8 @@
   width: 95%;
 }
 
-.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body {
+.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body,
+  .modal-lg.small-screen .modal-body, .modal-lg.medium-screen .modal-body {
   padding: 20px 20px;
 }
 

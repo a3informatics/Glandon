@@ -1,10 +1,7 @@
 @import "custom/vars.scss";
 
-// Change Notes
 
-#change-notes-modal{
-  min-width: 350px;
-}
+// Change Notes
 
 #change-notes-modal-error, #add-cn-button{
   margin: 4px 0px;
@@ -118,4 +115,78 @@
 
 td.note-cell {
   color: $primary-color-light;
+}
+
+// Change instructions
+
+#change-instructions-error, #add-ci-button{
+  margin: 8px 0px;
+}
+
+#change-instructions-modal table {
+  min-height: 50px;
+}
+
+.change-instruction {
+  max-width: 700px;
+  display: block;
+  background: white;
+  margin: 10px auto;
+}
+
+.change-instruction .ci-header, .change-instruction .ci-body {
+  color: $grey-medium;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 20px;
+}
+
+.change-instruction .ci-header div:first-of-type {
+  float: left;
+}
+
+.change-instruction .ci-header div:last-of-type {
+  float: right;
+}
+
+.change-instruction .ci-header .actions span {
+  color: $grey-light;
+  margin-left: 10px;
+}
+
+.change-instruction .ci-header .actions span:hover {
+  cursor: pointer;
+  color: $grey-medium;
+}
+
+.change-instruction .ci-body hr{
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.change-instruction .items-list {
+  margin: 10px 20px;
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.change-instruction .items-list a.item {
+  margin: 6px 4px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  background: $grey-bright;
+  text-decoration: none;
+  color: $grey-medium;
+}
+
+.change-instruction .items-list .item .text-block {
+  margin-left: 14px;
+  font-size: 9pt;
+  transition: transform .3s;
+}
+
+.change-instruction .items-list a.item:hover .text-block {
+  transform: translateX(5px);
 }
