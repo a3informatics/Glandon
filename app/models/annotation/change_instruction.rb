@@ -40,24 +40,26 @@ class Annotation::ChangeInstruction < Annotation
     ci
   end
 
-#   # Update
-#   #
-#   # @param [Hash] params the parameters hash
-#   # @option params [String] :semantic the ...
-#   # @option params [String] :description the change instruction description
-#   # @option params [String] :reference any references
-#   # @option params [String] :current the current item for which the change instruction is relevant
-#   # @option params [String] :previous the previous item for which the change instruction is relevant
-#   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
-#   def update(params)
-#     params[:timestamp] = Time.now
-#     super(params)
-#   end
+  # Update
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [String] :semantic the ...
+  # @option params [String] :description the change instruction description
+  # @option params [String] :reference any references
+  # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
+  # def update(params)
+  #   #self.reference = params[:reference]
+  #   #self.description = params[:description]
+  #   #self.semantic = params[:semantic]
+  #   #self.save
+  #   #self
+  #   super(params)
+  # end
 
 #   # Delete. Delete the change instruction and the associated references.
 #   #
 #   # @return [Integer] count of items deleted
-#   def delete
+#   def delete_change_instruction
 #     self.current_objects
 #     op_ref = OperationalReferenceV3.find(self.current.first.uri) #will we have more than one OP?
 #     transaction_begin
@@ -66,6 +68,34 @@ class Annotation::ChangeInstruction < Annotation
 #     transaction_execute
 #     1
 #   end
+
+  def remove_reference(id)
+  byebug
+      #self.remove_previous_reference(params[:id])
+    uri = Uri.new(id: id)
+    self.current_objects
+    op_ref = OperationalReferenceV3.find(self.current.first.uri)
+    transaction_begin
+    op_ref.delete
+    transaction_execute
+    1
+  end
+
+  def add_references(params)
+    byebug
+    #previous_count = self.previous.count
+    #current_count = self.current.count
+    params[:previous].each do |p| 
+      uri = Uri.new(id: p)
+      self.previous_push(self.add_op_reference(uri, self.previous.count))
+    end
+    params[:current].each do |c|
+      uri = Uri.new(id: c)
+      self.current_push(self.add_op_reference(uri, self.current.count))
+    end
+    self.save
+    self
+  end
 
   def add_previous(ct, reference)
     add_reference(self.previous, ct, reference)
@@ -86,6 +116,15 @@ class Annotation::ChangeInstruction < Annotation
   end
 
 private
+
+  def remove_previous_reference(id)
+    self.current_objects
+    op_ref = OperationalReferenceV3.find(self.current.first.uri)
+    transaction_begin
+    op_ref.delete
+    transaction_execute
+    1
+  end
   
   def add_reference(collection, ct, reference)
     set = ct.find_by_identifiers(reference)
