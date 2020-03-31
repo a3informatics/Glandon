@@ -14,6 +14,7 @@ describe "Transcelerate Data" do
   before :all do
     IsoHelpers.clear_cache
     load_files(schema_files, [])
+    load_cdisc_term_versions(1..62)
     load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
   end
 
@@ -87,7 +88,48 @@ describe "Transcelerate Data" do
 
   end
 
+  describe "Parameters" do
+
+    it "Parameter" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance")
+      p_1 = Parameter.new(label: "BC", parameter_rdf_type: uri)
+      p_1.uri = p_1.create_uri(p_1.class.base_uri)
+      uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#Intervention")
+      p_2 = Parameter.new(label: "Intervention", parameter_rdf_type: uri)
+      p_2.uri = p_2.create_uri(p_2.class.base_uri)
+      sparql = Sparql::Update.new
+      sparql.default_namespace(p_1.uri.namespace)
+      p_1.to_sparql(sparql, true)
+      p_2.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_parameters.ttl")
+    end 
+
+  end
+
   describe "MDR Data" do
+
+    it "Objectives" do
+      obj_1 = "To assess the effect of [study intervention X] on the ADAS-Cog and CIBIC+ scores at Week [X] in participants with Mild to Moderate Alzheimer’s Disease"
+      obj_1 = "To evaluate the efficacy of [Study Intervention X] administered to individuals with Type 2 Diabetes Mellitus (T2DM)]"
+      obj_1 = "To assess the dose-dependent improvement in behavior. Improved scores on the [assessment] will indicate improvement in these areas"
+      obj_1 = "To document the safety profile of [StudyIntervention]."
+      obj_1 = "To assess the effect of [study intervention X] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"
+      obj_1 = "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"
+    end
+
+    it "End Points" do
+      ep_1 = "The change from baseline to Week [X] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
+      ep_1 = "The change from baseline to Week [X] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
+      ep_1 = "The change [absolute] in HbA1c from baseline to [Week X]"
+      ep_1 = "The change from baseline to Week [X] in the [assessment]"
+      ep_1 = "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
+      ep_1 = "The change from baseline to [Week X] in continuous laboratory tests: Hepatic Function Panel"
+      ep_1 = "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
+      ep_1 = "The change from baseline to [Week X] in ECG parameter: QTcF"
+      ep_1 = "The change from baseline to Week [X] in the [assessment]"
+      ep_1 = "The change from baseline to Week [X] in the [assessment]"
+    end
 
     it "Indications" do
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
@@ -128,16 +170,16 @@ describe "Transcelerate Data" do
 
       # TAs
       i_1 = Indication.where(label: "Alzheimer's Disease")
-      ta_1 = TherapeuticArea.new(label: "Nervous system disorders", indication: i_1.first.uri)
+      ta_1 = TherapeuticArea.new(label: "Nervous system disorders", includes_indication: [i_1.first.uri])
       ta_1.set_initial("TA NSD")
       i_2 = Indication.where(label: "Diabetes Mellitus")
-      ta_2 = TherapeuticArea.new(label: "Metabolic", indication: i_2.first.uri)
+      ta_2 = TherapeuticArea.new(label: "Metabolic", includes_indication: [i_2.first.uri])
       ta_2.set_initial("TA M")
       i_3 = Indication.where(label: "Rheumatoid Arthritis")
-      ta_3 = TherapeuticArea.new(label: "Inflammation", indication: i_3.first.uri)
+      ta_3 = TherapeuticArea.new(label: "Inflammation", includes_indication: [i_3.first.uri])
       ta_3.set_initial("TA I")
       i_4 = Indication.where(label: "Influenza")
-      ta_4 = TherapeuticArea.new(label: "Vaccines", indication: i_4.first.uri)
+      ta_4 = TherapeuticArea.new(label: "Vaccines", includes_indication: [i_4.first.uri])
       ta_4.set_initial("TA V")
 
       # Generate
@@ -149,6 +191,125 @@ describe "Transcelerate Data" do
       ta_4.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_tas.ttl")
+    end
+
+    it "Protocol" do
+      load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+
+      # Epochs & Arms
+      e_1 = Epoch.new(label: "Screening", ordinal: 1)
+      e_1.uri = e_1.create_uri(e_1.class.base_uri)
+      e_2 = Epoch.new(label: "Treatment", ordinal: 2)
+      e_2.uri = e_2.create_uri(e_2.class.base_uri)      
+      a_1 = Arm.new(label: "High Dose", description: "High Dose", arm_type: "", ordinal: 1)
+      a_1.uri = a_1.create_uri(a_1.class.base_uri)
+      a_2 = Arm.new(label: "Low Dose", description: "Low Dose", arm_type: "", ordinal: 2)
+      a_2.uri = a_2.create_uri(a_2.class.base_uri)
+      a_3 = Arm.new(label: "Placebo", description: "Placebo", arm_type: "", ordinal: 3)
+      a_3.uri = a_3.create_uri(a_3.class.base_uri)
+      el_1 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_1.uri)
+      el_1.uri = el_1.create_uri(el_1.class.base_uri)
+      el_2 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_2.uri)
+      el_2.uri = el_2.create_uri(el_2.class.base_uri)
+      el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri)
+      el_3.uri = el_3.create_uri(el_3.class.base_uri)
+      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri)
+      el_4.uri = el_4.create_uri(el_4.class.base_uri)
+      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri)
+      el_5.uri = el_5.create_uri(el_5.class.base_uri)
+      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri)
+      el_6.uri = el_6.create_uri(el_6.class.base_uri)
+
+      # Protocol
+      tc = th.find_by_identifiers(["C99076", "C82639"])["C82639"]
+      im_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
+      tc = th.find_by_identifiers(["C66735", "C15228"])["C15228"]
+      m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
+
+      # Protocols
+      tc = th.find_by_identifiers(["C66737", "C15601"])["C15601"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Nervous system disorders")
+      ind = Indication.where(label: "Alzheimer's Disease")
+      p_1 = Protocol.new(label: "LY246708", 
+        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.", 
+        short_title: "", acronym: "H2Q-MC-LZZT", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
+        specifies_epoch: [e_1.uri, e_2.uri], specifies_arm: [a_1.uri, a_2.uri, a_3.uri])
+      p_1.set_initial("LY246708")
+
+      tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Metabolic")
+      ind = Indication.where(label: "Diabetes Mellitus")
+      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
+      p_2.set_initial("DS8500-A-U202")
+
+      tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C16084"])["C16084"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Inflammation")
+      ind = Indication.where(label: "Rheumatoid Arthritis")
+      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
+      p_3.set_initial("CPT_TALib-RA-BWE_V002")
+
+      tc = th.find_by_identifiers(["C66737", "C15602"])["C15602"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Vaccines")
+      ind = Indication.where(label: "Influenza")
+      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
+      p_4.set_initial("FLU001")
+
+      tc = th.find_by_identifiers(["C66737", "C49686"])["C49686"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C98722"])["C98722"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Nervous system disorders")
+      ind = Indication.where(label: "Alzheimer's Disease")
+      p_5 = Protocol.new(label: "CPT_TALib-Alzheimers-BWE_V003", title: "A made up protocol title", short_title: "", 
+        acronym: "MADE UP ACRONYM", 
+        in_ta: ta.first.uri, for_indication: [ind.first.uri],
+        study_type: type_ref, study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
+      p_5.set_initial("CPT_TALib-ALZ-BWE_V003")
+
+      # Generate
+      sparql = Sparql::Update.new
+      sparql.default_namespace(p_1.uri.namespace)
+      e_1.to_sparql(sparql, true)
+      e_2.to_sparql(sparql, true)
+      a_1.to_sparql(sparql, true)
+      a_2.to_sparql(sparql, true)
+      a_3.to_sparql(sparql, true)
+      el_1.to_sparql(sparql, true)
+      el_2.to_sparql(sparql, true)
+      el_3.to_sparql(sparql, true)
+      el_4.to_sparql(sparql, true)
+      el_5.to_sparql(sparql, true)
+      el_6.to_sparql(sparql, true)
+      p_1.to_sparql(sparql, true)
+      p_2.to_sparql(sparql, true)
+      p_3.to_sparql(sparql, true)
+      p_4.to_sparql(sparql, true)
+      p_5.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
     end
 
   end

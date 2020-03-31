@@ -1,0 +1,406 @@
+/*
+* Study Matrix
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Matrix Constructor
+ *
+ * @return [void]
+ */
+function StudyMatrix() {
+  this.tabName = "tab-timeline";
+  this.wrapper = $("#tab-timeline-body");
+  this.div = this.wrapper.find("#study-matrix");
+  this.processing = false;
+  this.refreshOnShow = true;
+
+  this.data = { epochs: [], arms: [], }
+
+  this.setListeners();
+}
+
+
+/**
+ ************** General **************
+**/
+
+
+/**
+ * Shows tab - reloads data
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.show = function() {
+  if (this.refreshOnShow)
+    this.refresh();
+}
+
+/**
+ * Makes an ajax call
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.executeRequest = function(params, callback) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      this.loading(false);
+      callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
+ * Refreshes everything
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.refresh = function() {
+  this.clear();
+  this.initMatrix();
+}
+
+
+/**
+ * Sets Listeners
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.setListeners = function() {
+  var _this = this;
+
+  this.div.on("mouseenter mouseleave", ".bg-label", this.onMatrixItemHover.bind(this));
+
+  this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
+  this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
+
+}
+
+
+/**
+ ************** Matrix **************
+**/
+
+
+/**
+ * Builds params for ajax call
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.initMatrix = function() {
+  // TODO: Build params: url, type, data
+  // TODO: call executeRequest with params, callback passe
+  this.matrixData(this.processMatrixData.bind(this));
+}
+
+/**
+ * Builds matrix data structure (epochs, arms, elements)
+ *
+ * @param data [Array] Array of hashes of Epochs
+ * @return [void]
+ */
+StudyMatrix.prototype.processMatrixData = function(data) {
+  $.each(data, function(index, epoch) {
+    this.data.epochs.push(
+      {
+        type: "epoch",
+        label: epoch.label,
+        id: epoch.id,
+        color: this.generateColorShade(this.colorBases().red, index),
+        arms: epoch.arms.map(function(a){ return a.id })
+      }
+    );
+
+    $.each(epoch.arms, function(idx, arm) {
+      arm.element.type = "element";
+      var thisArm = this.getData("id", arm.id, "arms");
+      if (thisArm == null)
+        this.data.arms.push(
+          {
+            type: "arm",
+            label: arm.label,
+            id: arm.id,
+            color: this.generateColorShade(this.colorBases().green, idx),
+            elements: [arm.element]
+          }
+        );
+      else
+        thisArm.elements.push(arm.element);
+
+    }.bind(this));
+
+  }.bind(this));
+
+  this.makeMatrixUI();
+}
+
+/**
+ * Generates HTML for the matrix based on this instance's data structure
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.makeMatrixUI = function() {
+  this.div.empty();
+
+  this.div.append("<table><tr>");
+  this.div.find("table tr").append("<td>Arms/Epochs</td>");
+
+  // Epochs row
+  $.each(this.data.epochs, function(i, epoch) {
+
+    this.div.find("table tr").append("<td>" + this.matrixItemHTML(epoch) + "</td>");
+    epoch.div = ".epoch[data-id='"+epoch.id+"']";
+
+  }.bind(this));
+
+  // Arms and Elements rows
+  $.each(this.data.arms, function(i, arm) {
+
+    this.div.find("table").append("<tr>")
+    this.div.find("table tr").eq(i+1).append("<td>" + this.matrixItemHTML(arm) + "</td>")
+    arm.div = ".arm[data-id='"+arm.id+"']";
+
+    $.each(arm.elements, function(ii, element) {
+      this.div.find("table tr").eq(i+1).append("<td>" + element.label + "</td>");
+    }.bind(this));
+
+  }.bind(this));
+
+}
+
+/**
+ * Trigerred on matrix item hover. Handles styles
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onMatrixItemHover = function(e) {
+  switch (e.type) {
+    case "mouseenter":
+      this.setMatrixItemCSS(e.target, true)
+      break;
+    case "mouseleave":
+      if (!$(event.target).hasClass("active"))
+        this.setMatrixItemCSS(e.target, false)
+      break;
+  }
+}
+
+/**
+ * Trigerred on EPOCH item click.
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onEpochClick = function(e) {
+  var dataItem = this.getData("id", $(e.target).attr("data-id"), "epochs");
+
+  // Deselected
+  if (dataItem.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
+    this.matrixItemClickStyle($(e.target), false);
+  }
+  // Selected
+  else {
+    this.matrixItemClickStyle(".bg-label.epoch.active", false);
+    this.matrixItemClickStyle($(e.target), true);
+  }
+}
+
+/**
+ * Trigerred on ARM item click.
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onArmClick = function(e) {
+  this.matrixItemClickStyle(".bg-label.active.arm", false);
+  this.matrixItemClickStyle(e.target, true);
+}
+
+/**
+ * Handles styling of click events on a matrix item.
+ *
+ * @param target [Jquery Element] target element node
+ * @param selected [Boolean] enable / disable selected style
+ * @return [void]
+ */
+StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
+  this.setMatrixItemCSS(target, selected);
+  this.div.find(target).toggleClass("active", selected);
+}
+
+/**
+ * Sets CSS of a matrix item when hovered / clicked
+ *
+ * @param target [JQuery Element] target item
+ * @param enable [Boolean] enable / disable style
+ * @return [void]
+ */
+StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
+  var dataItem = this.getData("id", $(target).attr("data-id"));
+
+  this.div.find(target).css("background-color", enable ? dataItem.color : "");
+  this.div.find(target).css("color", enable ? "white" : "");
+}
+
+/**
+ * Generates HTML for a matrix item and color (if color null, will use lightgrey)
+ *
+ * @param item [Object] data item
+ * @return [void]
+ */
+StudyMatrix.prototype.matrixItemHTML = function(item) {
+  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (item.color || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
+}
+
+
+/**
+ ************** Getters **************
+**/
+
+
+/**
+ * Gets a data object by its property type
+ *
+ * @param propertyType [String] type of the property to compare
+ * @param value [String] Any value, normally String
+ * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
+ * @return [Data Object] matched object, or null
+ */
+StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
+  var object = null;
+
+  if(dataType != null) {
+    $.each(this.data[dataType], function(index, obj) {
+      if (obj[propertyType] == value) {
+        object = obj;
+        return false;
+      }
+    });
+  }
+  else {
+    $.each(this.data, function(type) {
+      $.each(this.data[type], function(index, obj) {
+        if (obj[propertyType] == value) {
+          object = obj;
+          return false;
+        }
+      });
+      return (object == null);
+    }.bind(this));
+  }
+
+  return object;
+}
+
+
+/**
+ ************** Support **************
+**/
+
+
+/**
+ * Loading state toggle
+ *
+ * @param enable [Boolean] enable or disable loading
+ * @return [void]
+ */
+StudyMatrix.prototype.loading = function(enable) {
+  this.processing = enable;
+  $("#" + this.tabName).trigger("loading", [enable, true])
+}
+
+/**
+ * Clears data and listeners
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.clear = function() {
+  this.data = { epochs: [], arms: [] }
+}
+
+/**
+ * Generates a shade of color for an element in a collection
+ *
+ * @param base [Object] one of the bases defined in colorBases (h,s,l)
+ * @param index [Int] current element's index
+ * @return [String] CSS HSL format string for color
+ */
+StudyMatrix.prototype.generateColorShade = function(base, index) {
+  var changeConst = 20;
+  var hue = base.h + (changeConst * index);
+  var li = base.l - (2*index)
+
+  return "hsl(" + hue + ", " + base.s + "%, " + li + "%)";
+}
+
+/**
+ * Support: Color bases (HSL) for red, green
+ *
+ * @return [Object] color bases
+ */
+StudyMatrix.prototype.colorBases = function() {
+  return {
+    red: {h: 0, s: 75, l: 75},
+    green: {h: 140, s: 60
+      , l: 70}
+  };
+}
+
+StudyMatrix.prototype.matrixData = function(callback) {
+  var data = [
+    {
+      label: "Screening",
+      id: "111x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "Screen", id: "211"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Screen", id: "311"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Screen", id: "411"}
+        }
+      ]
+    },
+    {
+      label: "Treatment",
+      id: "112x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    },
+  ];
+
+  callback(data);
+}

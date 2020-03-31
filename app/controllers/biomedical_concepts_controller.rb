@@ -46,18 +46,11 @@ class BiomedicalConceptsController < ApplicationController
   def history
     authorize BiomedicalConcept
     @identifier = the_params[:identifier]
-    @bc = BiomedicalConcept.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+    bc = BiomedicalConcept.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
     respond_to do |format|
-      format.html do
-        redirect_to biomedical_concepts_path if @bc.count == 0
-      end
       format.json do
-        results = {}
-        results[:data] = []
-        @bc.each do |item|
-          results[:data] << item
-        end
-        render json: results
+        bc = bc.map{|b| b.to_h}
+        render json: {data: bc}, status: 200
       end
     end
   end

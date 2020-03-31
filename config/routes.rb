@@ -369,6 +369,7 @@ Rails.application.routes.draw do
   resources :studies, only: [:create, :update] do
     member do
       get :build
+      get :design
     end
     collection do
       get :index
@@ -377,6 +378,7 @@ Rails.application.routes.draw do
       get :history_data
     end
   end
+  resources :protocols, only: [:show]
   resources :forms do
     collection do
       get :history

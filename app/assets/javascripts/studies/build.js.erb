@@ -1,7 +1,56 @@
 $(document).ready(function() {
-  new ItemsSelector({
-    id: "1",
-    multiple: true,
-    types: {bcs: true,}
-  })
+  new StudyBuild();
 });
+
+/*
+* Study Build
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Build Constructor
+ *
+ * @return [void]
+ */
+function StudyBuild() {
+  this.initTabs();
+  this.setListeners();
+
+  setTimeout(function() { this.tabs.timeline.header.click() }.bind(this), 5);
+}
+
+/**
+ * Initializes tabs
+ *
+ * @return [void]
+ */
+StudyBuild.prototype.initTabs = function() {
+  this.tabs = {
+    timeline: {instance: new StudyMatrix(), header: $("#tab-timeline")},
+    content: {instance: new VerticalList("#study-content-table", protocolShowUrl), header: $("#tab-content")},
+  }
+}
+
+/**
+ * Sets listeners
+ *
+ * @return [void]
+ */
+StudyBuild.prototype.setListeners = function() {
+  $(".tab-option").on("switch", this.onTabSwitch.bind(this));
+}
+
+/**
+ * Sets listeners
+ *
+ * @param e [Event]
+ * @param tabId [String] id of the clicked-on tab
+ * @return [void]
+ */
+StudyBuild.prototype.onTabSwitch = function(e, tabId) {
+  try {
+    var tabName = tabId.split('-')[1];
+    this.tabs[tabName].instance.show();
+  } catch(e) { };
+}

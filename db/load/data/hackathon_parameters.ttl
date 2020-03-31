@@ -1,0 +1,23 @@
+@prefix : <http://www.assero.co.uk/PARAM#> .
+@prefix pr: <http://www.assero.co.uk/Protocol#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/PARAM>
+	rdf:type owl:Ontology ;
+.
+:a7a051355c3e05fb5fb80de30930bee9d2eb7847
+	rdf:type pr:Parameter ;
+	isoC:label "BC"^^xsd:string ;
+	pr:parameterRdfType bc:BiomedicalConceptInstance ;
+.
+:e9b90c40495e48d97191c4d5aa8c54637b0eabc2
+	rdf:type pr:Parameter ;
+	isoC:label "Intervention"^^xsd:string ;
+	pr:parameterRdfType pr:Intervention ;
+.

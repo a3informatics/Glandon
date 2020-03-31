@@ -3,7 +3,7 @@
     index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
     history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_bc_url = biomedical_concepts_path
-    history_bc_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    history_bc_url = history_biomedical_concepts_path(biomedical_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
 %>
 
 <%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',

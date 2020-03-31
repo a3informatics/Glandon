@@ -1,0 +1,36 @@
+@import "custom/vars.scss";
+
+#tab-timeline-body {
+  font-family: $font-light;
+}
+
+#study-matrix {
+  width: 100%;
+  display: block;
+  // justify-content: center;
+  overflow-x: auto;
+}
+
+#study-matrix table {
+  margin: 0 auto;
+  width: auto !important;
+  font-size: $font-small;
+}
+
+#study-matrix table td {
+  white-space: nowrap;
+  text-align: center;
+  padding: 4px 0px;
+}
+
+#study-matrix table .bg-label {
+  padding: 4px 15px;
+  display: block;
+  border: 2px solid;
+  background-color: white;
+  transition: background-color 0.1s;
+}
+
+#study-matrix table .bg-label:hover {
+  cursor: pointer;
+}
