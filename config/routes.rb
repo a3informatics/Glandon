@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       get :edit_tags
       get :tags_full
       get :change_notes
+      get :change_instructions
       post :change_note, action: :add_change_note
     end
   end
