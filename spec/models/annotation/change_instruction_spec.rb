@@ -62,30 +62,57 @@ describe Annotation::ChangeInstruction do
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", semantic: "S", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
-    check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml", write_file:true)
   end
 
-  it "creates a change instruction" do
+  it "creates a change instruction II" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
-    check_file_actual_expected(item.to_h, sub_dir, "create_expected_2.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "create_expected_2.yaml", write_file:true)
   end
 
 
-  it "add reference/s" do
+  it "updates a change instruction" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
-    item.save
+    item.update(description: "D1", reference: "R, R1")
+    item = Annotation::ChangeInstruction.find(item.id)
+    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml", write_file: true)
+  end 
+
+
+  it "add references I" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
+    #item.save
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [], current: [uri4.to_id])
     check_file_actual_expected(item.to_h, sub_dir, "add_reference_expected_1.yaml", write_file: true)
-  end  
+  end
+
+  it "add references II" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id], current: [])
+  byebug
+    item.save
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri2.to_id], current: [uri3.to_id, uri4.to_id])
+     item.save
+    item = Annotation::ChangeInstruction.find(item.id)
+    check_file_actual_expected(item.to_h, sub_dir, "add_reference_expected_2.yaml", write_file: true)
+  end   
 
   it "remove reference" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
@@ -109,17 +136,7 @@ describe Annotation::ChangeInstruction do
   #   actual = Annotation::ChangeInstruction.find(item.uri)
   #   expect(item.to_h).to hash_equal(actual.to_h)
   # end    
-
-  it "updates a change instruction" do
-    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
-    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
-    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
-    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
-    item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
-    item.update(description: "D1", reference: "R, R1")
-    item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml", write_file: true)
-  end   
+  
 
   # it "deletes a change instruction" do
   #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))

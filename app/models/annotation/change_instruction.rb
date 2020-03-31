@@ -34,7 +34,7 @@ class Annotation::ChangeInstruction < Annotation
     end
     params[:current].each_with_index do |c, index|
       uri = Uri.new(id: c)
-      ci.current_push(ci.add_op_reference(uri, index))
+      ci.current_push(ci.add_op_reference(uri, index+10000))
     end
     ci.save
     ci
@@ -69,32 +69,25 @@ class Annotation::ChangeInstruction < Annotation
 #     1
 #   end
 
-  def remove_reference(id)
-  byebug
-      #self.remove_previous_reference(params[:id])
-    uri = Uri.new(id: id)
-    self.current_objects
-    op_ref = OperationalReferenceV3.find(self.current.first.uri)
-    transaction_begin
-    op_ref.delete
-    transaction_execute
-    1
-  end
+  # def remove_reference(id)
+  #   uri = Uri.new(id: id)
+  #   self.current_objects
+  #   op_ref = OperationalReferenceV3.find(self.current.first.uri)
+  #   transaction_begin
+  #   op_ref.delete
+  #   transaction_execute
+  #   1
+  # end
 
   def add_references(params)
-    byebug
-    #previous_count = self.previous.count
-    #current_count = self.current.count
     params[:previous].each do |p| 
-      uri = Uri.new(id: p)
-      self.previous_push(self.add_op_reference(uri, self.previous.count))
+      self.previous_push(self.add_op_reference(Uri.new(id: p), self.previous.count))
     end
     params[:current].each do |c|
-      uri = Uri.new(id: c)
-      self.current_push(self.add_op_reference(uri, self.current.count))
+      self.current_push(self.add_op_reference(Uri.new(id: c), self.current.count))
     end
-    self.save
-    self
+     self.save
+     self
   end
 
   def add_previous(ct, reference)
@@ -116,15 +109,6 @@ class Annotation::ChangeInstruction < Annotation
   end
 
 private
-
-  def remove_previous_reference(id)
-    self.current_objects
-    op_ref = OperationalReferenceV3.find(self.current.first.uri)
-    transaction_begin
-    op_ref.delete
-    transaction_execute
-    1
-  end
   
   def add_reference(collection, ct, reference)
     set = ct.find_by_identifiers(reference)
