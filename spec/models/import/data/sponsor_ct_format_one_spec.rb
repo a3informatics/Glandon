@@ -259,14 +259,14 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
-    check_ttl_fix_v2(filename, "import_expected_2-6.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+    check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
  
   it "import 2.6 QC", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     th = Thesaurus.find_minimum(@uri_2_6)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
     expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
@@ -281,7 +281,7 @@ describe "Import::SponsorTermFormatOne" do
   it "import version 3.0", :speed => 'slow' do
     thesauri_identifiers("3500", "15000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     full_path = db_load_file_path("sponsor_one/ct", "global_v3-0_CDISC_v53.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-0.yaml")
     params = 
@@ -301,15 +301,15 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+    check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
 
   it "import 3.0 QC", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th = Thesaurus.find_minimum(@uri_3_0)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
     expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
@@ -322,8 +322,8 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "2-6 versus 3.0 QC I", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
     th_3_0 = Thesaurus.find_minimum(@uri_3_0)
     results = th_2_6.differences(th_3_0)
@@ -340,8 +340,8 @@ describe "Import::SponsorTermFormatOne" do
 
   it "2-6 versus 3.0 QC II", :speed => 'slow' do
     results = {}
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
     th_3_0 = Thesaurus.find_minimum(@uri_3_0)
     diffs = th_2_6.differences(th_3_0)
