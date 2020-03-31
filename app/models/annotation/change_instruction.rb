@@ -69,33 +69,26 @@ class Annotation::ChangeInstruction < Annotation
 #     1
 #   end
 
-  # def remove_reference(id)
-  #   uri = Uri.new(id: id)
-  #   self.current_objects
-  #   op_ref = OperationalReferenceV3.find(self.current.first.uri)
-  #   transaction_begin
-  #   op_ref.delete
-  #   transaction_execute
-  #   1
-  # end
+  def remove_reference(id)
+    uri = Uri.new(id: id)
+  byebug
+    self.current_objects
+    op_ref = OperationalReferenceV3.find(self.current.first.uri)
+    transaction_begin
+    op_ref.delete
+    transaction_execute
+    1
+  end
 
   def add_references(params)
     params[:previous].each do |p| 
       self.previous_push(self.add_op_reference(Uri.new(id: p), self.previous.count))
     end
     params[:current].each do |c|
-      self.current_push(self.add_op_reference(Uri.new(id: c), self.current.count))
+      self.current_push(self.add_op_reference(Uri.new(id: c), self.current.count+10000))
     end
      self.save
      self
-  end
-
-  def add_previous(ct, reference)
-    add_reference(self.previous, ct, reference)
-  end
-
-  def add_current(ct, reference)
-    add_reference(self.current, ct, reference)
   end
 
   def add_op_reference(uri, index)
@@ -106,6 +99,14 @@ class Annotation::ChangeInstruction < Annotation
     object.enabled = true
     object.optional = false
     object
+  end
+
+  def add_previous(ct, reference)
+    add_reference(self.previous, ct, reference)
+  end
+
+  def add_current(ct, reference)
+    add_reference(self.current, ct, reference)
   end
 
 private

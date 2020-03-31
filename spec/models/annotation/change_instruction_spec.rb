@@ -93,9 +93,9 @@ describe Annotation::ChangeInstruction do
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
-    #item.save
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [], current: [uri4.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "add_reference_expected_1.yaml", write_file: true)
   end
 
@@ -105,11 +105,8 @@ describe Annotation::ChangeInstruction do
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id], current: [])
-  byebug
-    item.save
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri2.to_id], current: [uri3.to_id, uri4.to_id])
-     item.save
     item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "add_reference_expected_2.yaml", write_file: true)
   end   
@@ -120,23 +117,10 @@ describe Annotation::ChangeInstruction do
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
     item = Annotation::ChangeInstruction.create(description: "D", reference: "R", previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
-    # item.save
-    # item = Annotation::ChangeInstruction.find(item.id)
+    item = Annotation::ChangeInstruction.find(item.id)
     item.remove_reference(uri3.to_id)
     check_file_actual_expected(item.to_h, sub_dir, "remove_reference_expected_1.yaml", write_file: true)
-  end      
-
-  # it "creates and reads a change instruction" do
-  #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-  #   allow(SecureRandom).to receive(:uuid).and_return(sid)
-  #   item = Annotation::ChangeInstruction.create(description: description, reference: reference)
-  #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
-  #   allow(SecureRandom).to receive(:uuid).and_return(sid)
-  #   item = Annotation::ChangeInstruction.create(user_reference: user_reference, description: description, reference: reference)
-  #   actual = Annotation::ChangeInstruction.find(item.uri)
-  #   expect(item.to_h).to hash_equal(actual.to_h)
-  # end    
-  
+  end     
 
   # it "deletes a change instruction" do
   #   allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
