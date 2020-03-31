@@ -1,4 +1,11 @@
-fixes:
+override:
+  C101846:
+   SC120943: true
+  C74456:  
+    SC33735: true
+  SN000600:
+    SC25389: true
+qualify:
   C66729:
     C17649: http://www.cdisc.org/C99078/V31#C99078_C17649
   C71113:
