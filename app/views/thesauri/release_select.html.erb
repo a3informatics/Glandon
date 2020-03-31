@@ -41,7 +41,7 @@
   <% end %>
 
   <%= render partial: "shared/iso_managed/managed_item_version_picker", :locals => {type: :code_lists, history_url: history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) } %>
-  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @thesaurus.has_identifier.identifier, item_id: @thesaurus.id, item_notes_url: change_notes_iso_concept_path(@thesaurus.id)} %>
+  <%= render partial: "shared/shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus.has_identifier.identifier, item_id: @thesaurus.id, item_notes_url: change_notes_iso_concept_path(@thesaurus.id)} %>
 </div>
 
 <div class="row">

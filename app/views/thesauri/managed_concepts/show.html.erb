@@ -21,7 +21,7 @@
   <%= javascript_tag "var createSubsetInThUrl = '#{add_subset_thesauri_path}';" %>
 
   <%= render partial: "shared/thesauri/thesauri_select" %>
-  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
   <%= render partial: "shared/thesauri/subsets_index" %>
 <% end %>
 
