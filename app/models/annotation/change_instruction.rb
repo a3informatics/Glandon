@@ -75,7 +75,7 @@ class Annotation::ChangeInstruction < Annotation
     else
       set = self.current_objects
     end
-    object = set.find{|x| x.reference == Uri.new(id: params[:id])}   
+    object = set.find{|x| x.reference == Uri.new(id: params[:concept_id])}   
     transaction_begin
     object.delete
     self.save

@@ -4,7 +4,7 @@ describe Annotations::ChangeInstructionsController do
 
   include DataHelpers
 
-  describe "Authrorized User" do
+  describe "Authorized User" do
 
     login_curator
 
@@ -42,8 +42,20 @@ describe Annotations::ChangeInstructionsController do
       put :add_references, {:id => item.id, :change_instruction => {previous: [uri2.to_id], current: [uri3.to_id, uri4.to_id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "add_references_expected_1.yaml")
+    end
+
+    it "remove reference" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+      uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+      uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+      item = Annotation::ChangeInstruction.create
+      item = Annotation::ChangeInstruction.find(item.id)
+      item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
+      put :remove_reference, {:id => item.id, :change_instruction => {concept_id: uri3.to_id, type: "current"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
   end
