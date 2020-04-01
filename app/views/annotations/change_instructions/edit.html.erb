@@ -1,0 +1,30 @@
+<%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
+
+<div class="row">
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-instruction",
+    main_text: "Change Instruction <span class='font-light text-medium'>Edit</span>".html_safe,
+    sub_text: "Modify instruction's fields or item links." } do %>
+      <div class="btns-wrap">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+           icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+  <% end %>
+</div>
+
+<div class="row centered">
+  <div class="col-md-10 card wide">
+    <div class="card-header">
+      Edit Change Instruction
+    </div>
+    <div class="card-content">
+      <div class="font-light text-normal text-medium">
+        <div class="">
+          <span class="label-styled label-w-margin">Instruction Reference: </span> <br/> <span id="ci_reference" class="clickable content-editable with-icon">Reference value</span>
+        </div>
+        <div class="">
+          <span class="label-styled label-w-margin">Instruction Description: </span> <br/> <span id="ci_description" class="clickable content-editable with-icon">Description text value over here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -472,6 +472,11 @@
   color: white !important;
 }
 
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+  border-color: $secondary-color-light !important;
+  outline: none !important;
+}
+
 //
 .boxed-title{
   padding: 6px 20px;
@@ -486,6 +491,7 @@
 .content-editable{
   padding: 4px 8px;
   transition: background-color .3s;
+  position: relative;
 }
 
 .content-editable:hover{
@@ -496,6 +502,18 @@
 .content-editable:focus{
   outline: 1px solid $primary-color-bright;
   background-color: white;
+}
+
+.content-editable.with-icon::after {
+  display: inline-block;
+  font-family: 'icomoon';
+  content: "\e931";
+  color: #c4c4c4;
+  margin: 0px 5px;
+  font-size: 10pt;
+  position: absolute;
+  right: -25px;
+  top: 10%;
 }
 
 
@@ -570,6 +588,11 @@
 
 img.modal-img{
   width: 120px;
+  margin: 10px 0px;
+}
+
+img.modal-img.large{
+  width: 160px;
   margin: 10px 0px;
 }
 

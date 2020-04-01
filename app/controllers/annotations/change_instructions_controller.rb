@@ -23,6 +23,11 @@ class Annotations::ChangeInstructionsController < ApplicationController
     end
   end
 
+  def edit
+    authorize IsoConcept, :edit?
+    @close_path = request.referer
+  end
+
   def update
     authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])

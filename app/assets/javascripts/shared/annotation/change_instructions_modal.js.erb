@@ -26,32 +26,51 @@ function CIListModal() {
 **/
 
 /**
+ * Executes ajax request, invokes callback on success
+ *
+ * @param params [Object] must contain: url, type, callback, withTable (bool)
+ * @return [void]
+ */
+CIListModal.prototype.executeRequest = function (params) {
+  this.processing(true, params.withTable);
+
+	$.ajax({
+		url: params.url,
+		type: params.type,
+		dataType: 'json',
+		context: this,
+		success: function (result) {
+      params.callback(result);
+		},
+		error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error, this.errorDiv);
+      this.processing(false, params.withTable);
+		}
+	});
+}
+
+/**
  * Fetches Change Instructions, fill in table
  *
  * @return [void]
  */
 CIListModal.prototype.loadData = function () {
-  this.table.processing(true);
+  this.executeRequest({
+    url: listCIsUrl,
+    type: "GET",
+    withTable: true,
+    callback: function (result) {
 
-	$.ajax({
-		url: listCIsUrl,
-		type: 'GET',
-		dataType: 'json',
-		context: this,
-		success: function (result) {
       $.each(result.data, function(i, item){
         this.table.row.add(item);
       }.bind(this));
 
       this.table.draw();
-      this.table.processing(false);
       this.ready = true;
-		},
-		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error, this.errorDiv);
-			this.table.processing(false);
-		}
-	});
+      this.processing(false, true);
+
+    }.bind(this)
+  })
 }
 
 /**
@@ -60,19 +79,32 @@ CIListModal.prototype.loadData = function () {
  * @return [void]
  */
 CIListModal.prototype.createNew = function () {
-	$.ajax({
-		url: newCIUrl,
-		type: 'POST',
-		dataType: 'json',
-		context: this,
-		success: function (result) {
+  this.executeRequest({
+    url: newCIUrl,
+    type: "POST",
+    withTable: false,
+    callback: function (result) {
       location.href = result.edit_path;
-		},
-		error: function (xhr, status, error) {
-      handleAjaxError(xhr, status, error, this.errorDiv);
-			this.table.processing(false);
-		}
-	});
+    }.bind(this)
+  });
+}
+
+/**
+ * Makes a remove Change Instruction request, handles UI update
+ *
+ * @return [void]
+ */
+CIListModal.prototype.destroy = function (tableRow) {
+  this.executeRequest({
+    url: removeCIUrl,
+    type: "DELETE",
+    withTable: true,
+    callback: function (result) {
+      displayAlertsInElement(alertSuccess("Change Instruction deleted."), this.errorDiv);
+      tableRow.remove().draw();
+      this.processing(false, true);
+    }.bind(this)
+  });
 }
 
 /**
@@ -83,6 +115,7 @@ CIListModal.prototype.createNew = function () {
 CIListModal.prototype.setListeners = function () {
   this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
   this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
+  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
 }
 
 
@@ -94,13 +127,16 @@ CIListModal.prototype.setListeners = function () {
  * @return [void]
  */
 CIListModal.prototype.actionClick = function (e) {
-  var rowData = this.table.row($(e.target).closest("tr")).data();
+  var itemRow = this.table.row($(e.target).closest("tr"));
 
-  if ($(e.target).hasClass("icon-edit")){
-    location.href = rowData.edit_path;
+  // Redirect to edit
+  if ($(e.target).hasClass("icon-edit")) {
+    location.href = itemRow.data().edit_path;
   }
-  else if ($(e.target).hasClass("icon-trash")){
-    new ConfirmationDialog(function() { location.href = rowData.delete_path }.bind(this), {dangerous: true})
+  // Remove Instruction Confirmation
+  else if ($(e.target).hasClass("icon-trash")) {
+    new ConfirmationDialog(this.destroy.bind(this, itemRow),
+      {dangerous: true})
       .show();
   }
 }
@@ -207,6 +243,21 @@ CIListModal.prototype.linkText = function(link) {
  ****** Support ******
 **/
 
+
+/**
+ * Enables / disables processing state
+ *
+ * @param enable [Boolean] enable / disable - true / false
+ * @param withTable [Boolean] true if table processing should be invoked
+ * @return [void]
+ */
+CIListModal.prototype.processing = function(enable, withTable) {
+  if (withTable)
+    this.table.processing(enable);
+
+  $("#add-ci-button").text(enable ? "Processing..." : "+ Create new");
+  $("#add-ci-button").toggleClass("disabled", enable);
+}
 
 /**
  * Column definition

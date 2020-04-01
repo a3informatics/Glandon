@@ -4,7 +4,8 @@
 
 <%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'shared/annotation/change_instructions_modal' %>
-<%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(item_id)}'" %>
+<%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(id: item_id)}',
+                        newCIUrl = '#{annotations_change_instructions_path}';" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="change-instructions-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
@@ -23,9 +24,8 @@
               <thead><th></th></thead>
               <tbody></tbody>
             </table>
-          <button class="btn medium green ttip" id="add-ci-button">
+          <button class="btn medium green" id="add-ci-button">
             + Create new
-            <span class="ttip-text text-medium text-tiny shadow-small">Creates a blank Change Instruction</span>
           </button>
         </center>
       </div>
