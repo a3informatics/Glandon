@@ -12,6 +12,8 @@ class Annotation::ChangeInstruction < Annotation
   data_property :semantic 
   object_property :previous, cardinality: :many, model_class: "OperationalReferenceV3"
 
+  @@ordinal = 0
+
   # Create. 
   #
   # @param [Hash] params the parameters hash
@@ -23,12 +25,14 @@ class Annotation::ChangeInstruction < Annotation
   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
   def self.create
     ci = Annotation::ChangeInstruction.new
+    ci.ordinal = @@ordinal + 1
     ci.uri = ci.create_uri(ci.class.base_uri)
     ci.by_authority = IsoRegistrationAuthority.owner.uri
     ci.reference = "Not set"
     ci.description = "Not set"
     ci.semantic = "Not set"
     ci.save
+    @@ordinal+=1
     ci
   end
 
