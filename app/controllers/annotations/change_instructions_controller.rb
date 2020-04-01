@@ -27,6 +27,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   def edit
     authorize IsoConcept, :edit?
     @close_path = request.referer
+    @ci = Annotation::ChangeInstruction.find(params[:id]).to_h
   end
 
   def update
@@ -56,7 +57,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
     render :json => {data: "", errors: change_instruction.errors.full_messages}, :status => status
   end
 
-  def delete
+  def destroy
     authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.delete

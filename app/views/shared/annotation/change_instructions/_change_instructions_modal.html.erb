@@ -5,7 +5,7 @@
 <%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'shared/annotation/change_instructions_modal' %>
 <%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(id: item_id)}',
-                        newCIUrl = '#{annotations_change_instructions_path}';" %>
+                        ciBaseUrl = '#{annotations_change_instructions_path}';" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="change-instructions-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">

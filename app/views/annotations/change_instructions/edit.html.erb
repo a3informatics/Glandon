@@ -1,4 +1,9 @@
 <%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
+<%= stylesheet_link_tag 'shared/annotations' %>
+<%= javascript_include_tag 'shared/annotation/change_instruction_edit' %>
+<%= javascript_tag "var ciBaseUrl = '#{annotations_change_instruction_path(@ci[:id])}',
+                        ciAddRefUrl = '#{add_references_annotations_change_instruction_path(@ci[:id])}',
+                        ciRemRefUrl = '#{remove_reference_annotations_change_instruction_path(@ci[:id])}';" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-instruction",
@@ -16,13 +21,27 @@
     <div class="card-header">
       Edit Change Instruction
     </div>
-    <div class="card-content">
-      <div class="font-light text-normal text-medium">
-        <div class="">
-          <span class="label-styled label-w-margin">Instruction Reference: </span> <br/> <span id="ci_reference" class="clickable content-editable with-icon">Reference value</span>
+    <div class="card-content text-normal font-light">
+      <div class="change-instruction wide shadow-small">
+        <div class="ci-header">
+          <div class="icon-instruction text-large text-link"></div>
+          <div class="actions">
+            <span class="icon-ok clickable ttip text-link disabled" id="save-ci">
+              <span class="ttip-text ttip-left text-medium text-small shadow-small">
+                Save reference and description
+              </span>
+            </span>
+            <span class="icon-trash clickable text-accent-2 ttip" id="delete-ci">
+              <span class="ttip-text ttip-left text-medium text-small shadow-small">
+                Remove this Change Instruction
+              </span>
+            </span>
+          </div>
         </div>
-        <div class="">
-          <span class="label-styled label-w-margin">Instruction Description: </span> <br/> <span id="ci_description" class="clickable content-editable with-icon">Description text value over here</span>
+        <div class="ci-body">
+          <span> Reference: </span> <span id="reference" class="clickable content-editable with-icon" tabindex="0"><%= @ci[:reference] %></span>
+          <hr>
+          <span> Description: </span> <span id="description" class="clickable content-editable with-icon" tabindex="0"><%= @ci[:description]%></span>
         </div>
       </div>
     </div>

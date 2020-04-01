@@ -80,7 +80,7 @@ CIListModal.prototype.loadData = function () {
  */
 CIListModal.prototype.createNew = function () {
   this.executeRequest({
-    url: newCIUrl,
+    url: ciBaseUrl,
     type: "POST",
     withTable: false,
     callback: function (result) {
@@ -96,7 +96,7 @@ CIListModal.prototype.createNew = function () {
  */
 CIListModal.prototype.destroy = function (tableRow) {
   this.executeRequest({
-    url: removeCIUrl,
+    url: ciBaseUrl,
     type: "DELETE",
     withTable: true,
     callback: function (result) {
@@ -158,7 +158,7 @@ CIListModal.prototype.itemHTML = function (data) {
   html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
   html +=   "<div class='ci-header'>";
   html +=     "<div class='icon-instruction text-link text-large'></div>";
-  html +=     "<div class='actions'><span class='icon-edit'></span><span class='icon-trash'></span></div>";
+  html +=     "<div class='actions'><span class='icon-edit text-link'></span><span class='icon-trash text-accent-2'></span></div>";
   html +=   "</div>"
   html +=   "<div class='ci-body'>";
   html +=     "<div>Reference: " +

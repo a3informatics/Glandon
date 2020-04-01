@@ -83,13 +83,13 @@
   transform: translateY(-4px);
 }
 
-.content-editable{
+.card-item.note .content-editable{
   display: inline-block;
   word-break: break-all;
   margin-right: 5px;
 }
 
-.content-editable:hover{
+.card-item.note .content-editable:hover{
   position: relative;
 }
 
@@ -97,7 +97,7 @@
   display: none;
 }
 
-.content-editable:hover::after{
+.card-item.note .content-editable:hover::after{
   position: absolute;
   font-family: 'icomoon' !important;
   content: "\e931";
@@ -134,6 +134,10 @@ td.note-cell {
   margin: 10px auto;
 }
 
+.change-instruction.wide {
+  max-width: 900px;
+}
+
 .change-instruction .ci-header, .change-instruction .ci-body {
   color: $grey-medium;
   width: 100%;
@@ -150,13 +154,11 @@ td.note-cell {
 }
 
 .change-instruction .ci-header .actions span {
-  color: $grey-light;
   margin-left: 10px;
 }
 
 .change-instruction .ci-header .actions span:hover {
   cursor: pointer;
-  color: $grey-medium;
 }
 
 .change-instruction .ci-body hr{
@@ -189,4 +191,29 @@ td.note-cell {
 
 .change-instruction .items-list a.item:hover .text-block {
   transform: translateX(5px);
+}
+
+.change-instruction .content-editable{
+  display: inline-block;
+  word-break: break-all;
+  margin-right: 20px;
+}
+
+.change-instruction .content-editable:focus{
+  cursor: initial !important;
+}
+
+.change-instruction.processing {
+  position: relative;
+}
+
+.change-instruction.processing .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: rgba(255, 255, 255, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

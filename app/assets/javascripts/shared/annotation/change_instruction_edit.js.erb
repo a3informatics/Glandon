@@ -1,0 +1,152 @@
+/*
+* Change Instructions Editor
+* Edit Change Instructions page only.
+*/
+
+$(document).ready(function() {
+  var ciEditor = new CIEditor();
+});
+
+/**
+* Change Instructions Modal Constructor
+*
+* @return [void]
+*/
+function CIEditor() {
+  this.editing = false;
+  this.setListeners();
+}
+
+
+/**
+ ****** General ******
+**/
+
+
+/**
+ * Executes ajax request, invokes callback on success
+ *
+ * @param params [Object] must contain: url, type, callback
+ * @return [void]
+ */
+CIEditor.prototype.executeRequest = function (params) {
+  this.processing(true);
+
+	$.ajax({
+		url: params.url,
+		type: params.type,
+    data: params.data,
+		dataType: 'json',
+		context: this,
+		success: function (result) {
+      params.callback(result);
+		},
+		error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.processing(false);
+		}
+	});
+}
+
+/**
+ * Sets event listeners, handlers
+ *
+ * @return [void]
+ */
+CIEditor.prototype.setListeners = function () {
+  $(".content-editable").on("focus focusout", this.onContentEdit.bind(this));
+  $("#save-ci").on("click", this.saveFields.bind(this));
+  $("#delete-ci").on("click", this.destroy.bind(this, false));
+}
+
+/**
+ * Saves text fields
+ *
+ * @return [void]
+ */
+CIEditor.prototype.saveFields = function () {
+  var description = $("#description").text().trim();
+  var reference = $("#reference").text().trim();
+
+  this.executeRequest({
+    url: ciBaseUrl,
+    type: "PUT",
+    data: {
+      change_instruction: { description: description, reference: reference }
+    },
+    callback: function(result) {
+      displaySuccess("Changes saved.");
+      $("#save-ci").addClass("disabled");
+      this.processing(false);
+    }.bind(this)
+  })
+}
+
+/**
+ * Removes Change Instruction, redirects to root
+ *
+ * @param confirm [Boolean] shows confirmation dialog if false, force remove if true
+ * @return [void]
+ */
+CIEditor.prototype.destroy = function (confirm) {
+  if (!confirm)
+    new ConfirmationDialog(this.destroy.bind(this, true), {dangerous: true})
+    .show();
+
+  else
+    this.executeRequest({
+      url: ciBaseUrl,
+      type: "DELETE",
+      data: {},
+      callback: function (result) {
+        displaySuccess("Change Instruction was removed.");
+        $(".change-instruction").remove();
+        location.href = "/";
+      }.bind(this)
+    });
+}
+
+/**
+ * Enables content editing
+ *
+ * @param e [Event] trigger event
+ * @return [void]
+ */
+CIEditor.prototype.onContentEdit = function (e) {
+  switch(e.type){
+    case "focus":
+      $("#save-ci").removeClass("disabled");
+      $(e.target).prop("contenteditable", true);
+      $(".content-editable")
+        .removeClass("with-icon")
+        .not($(e.target))
+        .addClass("with-icon");
+      break;
+    case "focusout":
+      $(".content-editable")
+        .prop("contenteditable", false)
+        .addClass("with-icon");
+      break;
+  }
+}
+
+
+/**
+ ****** Support ******
+**/
+
+
+/**
+ * Toggles processing state
+ *
+ * @param enable [Boolean] true / false ~ enable / disable processing
+ * @return [void]
+ */
+CIEditor.prototype.processing = function (enable) {
+  $(".change-instruction").toggleClass("processing", enable);
+
+  if (enable)
+    spinnerInElement($(".change-instruction"), "small");
+  else
+    removeSpinnerInElement($(".change-instruction"));
+}
