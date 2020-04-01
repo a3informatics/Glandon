@@ -9,12 +9,13 @@ class Annotations::ChangeInstructionsController < ApplicationController
     concept = IsoConceptV2.find(params[:id])
     change_instructions = concept.linked_change_instructions
     results = change_instructions.map{|x| x.reverse_merge!({edit_path: annotations_change_instruction_path(x[:id])})}
+    results = results.map{|x| x.reverse_merge!({destroy_path: annotations_change_instruction_path(x[:id])})}
     render :json => {data: results}, :status => 200
   end
 
   def create
     authorize IsoConcept, :create?
-    change_instruction = Annotation::ChangeInstruction.create()
+    change_instruction = Annotation::ChangeInstruction.create
     if change_instruction.errors.empty?
       render json: {edit_path: edit_annotations_change_instruction_path(change_instruction.id)}, status: 200
     else
@@ -23,10 +24,11 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def update
+    authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.update(the_params)
     status = change_instruction.errors.empty? ? 200 : 400
-    render :json => {data: change_instruction.to_h, errors: change_instruction.errors.full_messages}, :status => status
+    render :json => {data: "", errors: change_instruction.errors.full_messages}, :status => status
   end
 
   def add_references
@@ -41,6 +43,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def remove_reference
+    authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.remove_reference(the_params[:concept_id])
     status = change_instruction.errors.empty? ? 200 : 400
@@ -48,9 +51,11 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def delete
+    authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.delete
-    render :json => {errors: []}, :status => 200
+    status = change_instruction.errors.empty? ? 200 : 400
+    render :json => {data: "", errors: change_instruction.errors.full_messages}, :status => status
   end
 
 private
