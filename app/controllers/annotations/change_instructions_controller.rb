@@ -51,7 +51,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   def remove_reference
     authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
-    change_instruction.remove_reference(the_params[:concept_id])
+    change_instruction.remove_reference(the_params)
     status = change_instruction.errors.empty? ? 200 : 400
     render :json => {data: "", errors: change_instruction.errors.full_messages}, :status => status
   end
@@ -67,7 +67,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
 private
 
   def the_params
-    params.require(:change_instruction).permit(:reference, :description, :semantic, :concept_id, :previous => [], :current => [])
+    params.require(:change_instruction).permit(:reference, :description, :semantic, :concept_id, :type, :previous => [], :current => [])
   end
 
 end
