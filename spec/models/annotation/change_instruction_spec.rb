@@ -58,13 +58,13 @@ describe Annotation::ChangeInstruction do
 
   it "creates a change instruction" do
     item = Annotation::ChangeInstruction.create
-    check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml", write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
   end
 
   it "updates a change instruction, fields" do
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
-    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml", write_file:true)
+    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
   end
 
   it "adds references I" do
@@ -75,7 +75,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_1.yaml", write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_1.yaml")
   end
 
   it "adds references II" do
@@ -86,7 +86,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml", write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml")
   end   
 
   it "removes reference" do
