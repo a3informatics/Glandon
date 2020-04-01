@@ -90,6 +90,7 @@ Rails.application.routes.draw do
     resources :change_notes, only: [:update, :destroy]
     resources :change_instructions, only: [:create, :edit, :update, :destroy] do
       member do
+        get :show
         put :add_references
         put :remove_reference
       end
