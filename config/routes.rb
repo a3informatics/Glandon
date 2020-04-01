@@ -88,7 +88,7 @@ Rails.application.routes.draw do
   end
   namespace :annotations do
     resources :change_notes, only: [:update, :destroy]
-    resources :change_instructions, only: [:create, :update, :destroy] do
+    resources :change_instructions, only: [:create, :edit, :update, :destroy] do
       member do
         put :add_references
         put :remove_reference

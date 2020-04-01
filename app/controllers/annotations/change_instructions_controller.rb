@@ -13,9 +13,13 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def create
-    change_instruction = Annotation::ChangeInstruction.create(the_params)
-    status = change_instruction.errors.empty? ? 200 : 400
-    render :json => {data: "", errors: change_instruction.errors.full_messages}, :status => status
+    authorize IsoConcept, :create?
+    change_instruction = Annotation::ChangeInstruction.create()
+    if change_instruction.errors.empty?
+      render json: {edit_path: edit_annotations_change_instruction_path(change_instruction.id)}, status: 200
+    else
+      render json: {errors: change_instruction.errors.full_messages}, status: 422
+    end
   end
 
   def update
