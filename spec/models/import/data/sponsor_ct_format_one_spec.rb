@@ -167,7 +167,7 @@ describe "Import::SponsorTermFormatOne" do
     elsif result[:notation] == notation && result[:identifier] == identifier && "#{result[:count]}".to_i == "#{count}".to_i
       #puts colourize("#{long_name} : #{identifier}", "green")
     elsif result[:notation] == notation && result[:identifier] != identifier && "#{result[:count]}".to_i == "#{count}".to_i
-      puts colourize("E: #{notation}, #{long_name}, #{identifier} != E: #{result[:identifier]}", "brown")
+      puts colourize("E: #{notation}, #{long_name}, #{identifier} != A: #{result[:identifier]}", "brown")
     else
       db_items = cl_items(th, long_name)
       puts colourize("#{long_name} : #{identifier}", "red")
@@ -350,7 +350,7 @@ describe "Import::SponsorTermFormatOne" do
       next if item.owner_short_name != "Sanofi"
       results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
     end
-    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
 end
