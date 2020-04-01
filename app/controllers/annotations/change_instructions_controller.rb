@@ -4,13 +4,14 @@ class Annotations::ChangeInstructionsController < ApplicationController
 
   C_CLASS_NAME = self.name
 
-  def change_instructions
+  def show
     authorize IsoConcept, :show?
-    concept = IsoConceptV2.find(params[:id])
-    change_instructions = concept.linked_change_instructions
-    results = change_instructions.map{|x| x.reverse_merge!({edit_path: annotations_change_instruction_path(x[:id])})}
-    results = results.map{|x| x.reverse_merge!({destroy_path: annotations_change_instruction_path(x[:id])})}
-    render :json => {data: results}, :status => 200
+    change_instruction = Annotation::ChangeInstruction.find(params[:id])
+    if change_instruction.errors.empty?
+      render json: {data: change_instruction.to_h}, status: 200
+    else
+      render json: {errors: change_instruction.errors.full_messages}, status: 422
+    end
   end
 
   def create
