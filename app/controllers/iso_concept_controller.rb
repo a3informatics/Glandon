@@ -51,6 +51,15 @@ class IsoConceptController < ApplicationController
     @close_path = request.referer
   end
 
+  def change_instructions
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    change_instructions = concept.linked_change_instructions
+    results = change_instructions.map{|x| x.reverse_merge!({edit_path: annotations_change_instruction_path(x[:id])})}
+    results = change_instructions.map{|x| x.reverse_merge!({destroy_path: annotations_change_instruction_path(x[:id])})}
+    render :json => {data: results}, :status => 200
+  end
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
