@@ -50,7 +50,7 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-    load_cdisc_term_versions(1..53)
+    load_cdisc_term_versions(1..62)
     Import.destroy_all
     delete_all_public_test_files
     setup
@@ -240,6 +240,30 @@ describe "Import::SponsorTermFormatOne" do
     text.gsub(/[\u201C\u201D]/, '"')
   end
 
+  # it "prepare comparison files", :speed => 'slow' do
+  #   # full_path = set_path(sub_dir, "v3-0.csv")
+  #   # items = CSV.read(full_path)
+  #   # results = []
+  #   # items[1..-1].each do |item|
+  #   #   results << {notation: item[0], identifier: item[1]}
+  #   # end
+  #   # check_file_actual_expected(results, sub_dir, "import_expected_new.yaml", equate_method: :hash_equal)
+  #   # check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  #   x1 = read_yaml_file(sub_dir, "import_new.yaml")
+  #   x2 = read_yaml_file(sub_dir, "import_expected_new.yaml")
+  #   check = {}
+  #   x1.each do |item|
+  #     key = "#{item[:notation]}.#{item[:identifier]}"
+  #     puts colourize("#{key} key", "brown") if check.key?(key)
+  #     check[key] = true
+  #     found = x2.find{|x| x[:notation] == item[:notation] && x[:identifier] == item[:identifier]}
+  #     next unless found.nil?
+  #     found = x2.find{|x| x[:notation] == item[:notation] && "#{x[:identifier]}" == "S#{item[:identifier]}"}
+  #     next unless found.nil?
+  #     puts colourize("[#{item[:notation]}, #{item[:identifier]}] !!!", "brown")
+  #   end
+  # end
+
   # Initial way of creating expected results files.
   # Hand modified after newr release from Sponsor
   # 
@@ -328,8 +352,8 @@ describe "Import::SponsorTermFormatOne" do
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
     expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
     expect(count_cl(th)).to eq(results.count)
-    #expect(count_cli(th)).to eq(31929)
-    #expect(count_distinct_cli(th)).to eq(29513)
+    expect(count_cli(th)).to eq(31930)
+    expect(count_distinct_cli(th)).to eq(29514)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
@@ -367,21 +391,21 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "import 3.0 check new", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
-    th = Thesaurus.find_minimum(@uri_3_0)
-    results = cl_items_unique(th)
-    check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
-  end
+  # it "import 3.0 check new", :speed => 'slow' do
+  #   load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+  #   load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+  #   th = Thesaurus.find_minimum(@uri_3_0)
+  #   results = cl_items_unique(th)
+  #   check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  # end
 
-  it "import 3.0 check old", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "CT_V2-6_Old.ttl")
-    load_local_file_into_triple_store(sub_dir, "CT_V3-0_Old.ttl")
-    th = Thesaurus.find_minimum(@uri_3_0)
-    results = cl_items_unique(th)
-    check_file_actual_expected(results, sub_dir, "import_old.yaml", equate_method: :hash_equal, write_file: true)
-    check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
-  end
+  # it "import 3.0 check old", :speed => 'slow' do
+  #   load_local_file_into_triple_store(sub_dir, "CT_V2-6_Old.ttl")
+  #   load_local_file_into_triple_store(sub_dir, "CT_V3-0_Old.ttl")
+  #   th = Thesaurus.find_minimum(@uri_3_0)
+  #   results = cl_items_unique(th)
+  #   check_file_actual_expected(results, sub_dir, "import_old.yaml", equate_method: :hash_equal, write_file: true)
+  #   check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  # end
 
 end
