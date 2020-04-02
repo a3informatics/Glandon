@@ -87,7 +87,33 @@ describe Annotation::ChangeInstruction do
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml")
-  end   
+  end
+
+  it "adds references III" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    item = Annotation::ChangeInstruction.create
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [], current: [uri3.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_3.yaml", write_file: true)
+  end
+
+  it "adds references IV" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    item = Annotation::ChangeInstruction.create
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri3.to_id], current: [])
+    item = Annotation::ChangeInstruction.find(item.id)
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_4.yaml", write_file: true)
+  end       
 
   it "removes reference" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")

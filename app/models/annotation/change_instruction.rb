@@ -157,19 +157,19 @@ class Annotation::ChangeInstruction < Annotation
   end
 
   def add_references(params)
-    transaction_begin
+    
     if !params[:previous].nil?
-      params[:previous].each_with_index do |p, index| 
-        self.previous_push(add_op_reference(Uri.new(id: p), index))
+      params[:previous].each do |p| 
+        self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
       end
     end
     if !params[:current].nil?
-      params[:current].each_with_index do |c, index|
-        self.current_push(add_op_reference(Uri.new(id: c), index+10000))
+      params[:current].each do |c|
+        self.current_push(add_op_reference(Uri.new(id: c), self.current.count+10000))
       end
     end
     self.save
-    transaction_execute
+    
     self
   end
 
