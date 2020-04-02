@@ -90,18 +90,18 @@ class Annotation::ChangeInstruction < Annotation
   
     OPTIONAL {
       ?r rdf:type th:ManagedConcept .
+      ?r rdf:type ?rdf_type .
       ?r th:notation ?p_n .
       ?r th:identifier ?p_id .
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
        BIND ("ManagedConcept" as ?type)
-       BIND ("th:ManagedConcept" as ?rdf_type)
     }
     OPTIONAL {
       ?r rdf:type th:UnmanagedConcept .
+      ?r rdf:type ?rdf_type .
       ?r th:identifier ?c_id .
       ?r th:notation ?c_n .
       BIND ("UnmanagedConcept" as ?type)
-      BIND ("th:UnmanagedConcept" as ?rdf_type)
       ?r ^th:narrower ?parent .
       ?parent th:notation ?p_n .
       ?parent th:identifier ?p_id .
@@ -116,11 +116,11 @@ class Annotation::ChangeInstruction < Annotation
     }
     OPTIONAL {
       ?r rdf:type th:Thesaurus .
+      ?r rdf:type ?rdf_type .
       ?r isoT:hasIdentifier/isoI:identifier ?p_id .
       ?r isoC:label ?p_n .
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
        BIND ("Thesaurus" as ?type)
-       BIND ("th:Thesaurus" as ?rdf_type)
     }
     }
   }}
@@ -131,11 +131,11 @@ class Annotation::ChangeInstruction < Annotation
         results[:id] = self.uri.to_id if results[:id].nil?
         case x[:type].to_sym
           when :ManagedConcept
-            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type]}}
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
           when :UnmanagedConcept
-            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type]}}
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
           when :Thesaurus
-            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type]}}
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
         end
       end
       results
@@ -157,9 +157,9 @@ class Annotation::ChangeInstruction < Annotation
   end
 
   def add_references(params)
-    
     if !params[:previous].nil?
-      params[:previous].each do |p| 
+      params[:previous].each do |p|
+        # self.previous.find{|x| x.reference == Uri.new(id: params[:concept_id])}   
         self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
       end
     end
@@ -169,7 +169,6 @@ class Annotation::ChangeInstruction < Annotation
       end
     end
     self.save
-    
     self
   end
 

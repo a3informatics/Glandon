@@ -71,7 +71,7 @@ describe Annotations::ChangeInstructionsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "get_data_expected.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "get_data_expected.yaml")
     end
 
     it "returns the change instructions links" do
@@ -83,7 +83,7 @@ describe Annotations::ChangeInstructionsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "get_data_expected_2.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "get_data_expected_2.yaml")
     end
 
   end

@@ -154,18 +154,18 @@ describe Annotation::ChangeInstruction do
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     results = item.get_data
-    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_2.yaml", equate_method: :hash_equal)
   end
 
-  it "change instructions links II" do
+  it "change instructions links III" do
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     item = Annotation::ChangeInstruction.find(item.id)
     results = item.get_data
-    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_3.yaml", equate_method: :hash_equal)
   end  
 
-  it "change instructions links II" do
+  it "change instructions links IV" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/CT/V30#TH")
     uri2 = Uri.new(uri: "http://www.cdisc.org/CT/V37#TH")
     item = Annotation::ChangeInstruction.create
@@ -174,7 +174,7 @@ describe Annotation::ChangeInstruction do
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     results = item.get_data
-    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_4.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_4.yaml", equate_method: :hash_equal)
   end       
 
   # it "deletes a change instruction" do
