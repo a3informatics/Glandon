@@ -25,7 +25,7 @@ describe 'name value seed rake task' do
       expect(NameValue.where(name: "thesaurus_parent_identifier").first.value).to eq("999")
       expect(NameValue.where(name: "thesaurus_child_identifier").first.value).to eq("111")
       run_rake_task
-      expect(NameValue.where(name: "thesaurus_parent_identifier").first.value).to eq("3100")
+      expect(NameValue.where(name: "thesaurus_parent_identifier").first.value).to eq("3600")
       expect(NameValue.where(name: "thesaurus_child_identifier").first.value).to eq("100000")
     end
 
