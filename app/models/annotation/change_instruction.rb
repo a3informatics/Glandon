@@ -69,7 +69,7 @@ class Annotation::ChangeInstruction < Annotation
   #     partial_update(query_string, [:th])
   # end
 
-    def get_change_instruction
+    def get_data
       results = {id: nil, reference: nil, description: nil, previous: [], current: []}
       query_string = %Q{
   SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE

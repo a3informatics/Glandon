@@ -115,7 +115,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    results = item.get_change_instruction
+    results = item.get_data
     check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_1.yaml", equate_method: :hash_equal)
   end
 
@@ -127,7 +127,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    results = item.get_change_instruction
+    results = item.get_data
     check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_2.yaml", equate_method: :hash_equal)
   end       
 
