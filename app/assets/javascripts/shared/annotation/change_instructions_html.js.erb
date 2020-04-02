@@ -9,7 +9,6 @@
 * @return [void]
 */
 function CIHtml() {
-
 }
 
 /**
@@ -31,7 +30,7 @@ CIHtml.prototype.changeInstruction = function (data) {
                 (data.reference == "" ? "Not set" : data.reference) + "</div>";
   html +=     "<hr>"
   html +=     "<div>" + data.description + "</div>"
-  html +=     this.linksListHTML(data, {withHref: true, iconTtip: true, class: ""});
+  html +=     this.linksList(data, {withHref: true, ttip: true, class: ""});
   html +=   "</div>"
   html += "</div>"
   return html;
@@ -44,7 +43,7 @@ CIHtml.prototype.changeInstruction = function (data) {
  * @param data [Object] Change Instruction data object
  * @return [String] formatted likns list HTML
  */
-CIHtml.prototype.linksList= function (data, opts) {
+CIHtml.prototype.linksList = function (data, opts) {
   var html = "";
 
   html += "<div class='items-list scroll-styled'>"
@@ -69,7 +68,7 @@ CIHtml.prototype.linksList= function (data, opts) {
  */
 CIHtml.prototype.listItem = function(link, type, opts) {
   var html = "<a href='" + (opts.withHref ? link.show_path : "#") + "' " +
-                "class='bg-label + " + opts.class + "' " +
+                "class='bg-label " + opts.class + "' " +
                 "data-id='" + link.parent.id + "' data-type='" + type + "'>";
   html +=         this.linkIcon(type, opts)
   html +=         "<span>" + this.linkText(link) + "</span>";
@@ -85,7 +84,7 @@ CIHtml.prototype.listItem = function(link, type, opts) {
  */
 CIHtml.prototype.linkIcon = function(type, opts) {
   var html = "";
-  if (opts.iconTtip) {
+  if (opts.ttip) {
     html += "<span class='icon-" + (type == "previous" ? "old" : "new") + " text-normal ttip'>";
     html +=   "<span class='ttip-text ttip-table shadow-small text-tiny'>" +
                 (type == "previous" ? "Previous" : "Current") +

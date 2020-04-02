@@ -27,6 +27,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   def edit
     authorize IsoConcept, :edit?
     @close_path = request.referer
+    change_instruction = Annotation::ChangeInstruction.find(params[:id])
     @base_url = annotations_change_instruction_path(id: params[:id])
     @add_refs_url = add_references_annotations_change_instruction_path(id: params[:id])
     @remove_ref_url = remove_reference_annotations_change_instruction_path(id: params[:id])
