@@ -103,7 +103,33 @@ describe Annotation::ChangeInstruction do
     op_ref = Uri.new(uri: "http://www.assero.co.uk/IC#CI1_R10001")
     expect{Annotation::ChangeInstruction.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in Annotation::ChangeInstruction.")
     expect{OperationalReferenceV3.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in OperationalReferenceV3.")
-  end     
+  end
+
+  it "change instructions links I" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    item = Annotation::ChangeInstruction.create
+    item.update(description: "D", reference: "R", semantic: "S")
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    results = item.get_change_instruction
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "change instructions links II" do
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    item = Annotation::ChangeInstruction.create
+    item.update(description: "D", reference: "R", semantic: "S")
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    results = item.get_change_instruction
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_2.yaml", equate_method: :hash_equal)
+  end       
 
   # it "deletes a change instruction" do
   #   ci_1 = Annotation::ChangeInstruction.create(description: "D2", reference: "R2")

@@ -69,29 +69,10 @@ class Annotation::ChangeInstruction < Annotation
   #     partial_update(query_string, [:th])
   # end
 
-    # Change Instruction
-  #
-  # @return [Array] set of Annotation::ChangeInstruction items
-#   def change_instructions
-#     result = []
-#     query_string = %Q{
-# SELECT DISTINCT ?s ?p ?o WHERE {
-#   #{self.uri.to_ref} ^bo:reference ?or .
-#   ?or ^ba:current ?s .
-#   ?or ^ba:previous ?s .
-#   ?s ?p ?o
-# }}
-#     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
-#     query_results.by_subject.each do |subject, triples|
-#       result << Annotation::ChangeInstruction.from_results(Uri.new(uri: subject), triples)
-#     end
-#     result
-#   end
-
     def get_change_instruction
       results = {id: nil, reference: nil, description: nil, previous: [], current: []}
       query_string = %Q{
-  SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t  WHERE
+  SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
   {
       #{self.uri.to_ref} ba:description ?desc .
       #{self.uri.to_ref} ba:reference ?reference .
@@ -109,36 +90,58 @@ class Annotation::ChangeInstruction < Annotation
       ?r th:notation ?p_n .
       ?r th:identifier ?p_id .
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+       BIND ("ManagedConcept" as ?type)
+       BIND ("th:ManagedConcept" as ?rdf_type)
     }
     OPTIONAL {
       ?r rdf:type th:UnmanagedConcept .
       ?r th:identifier ?c_id .
       ?r th:notation ?c_n .
+      BIND ("UnmanagedConcept" as ?type)
+      BIND ("th:UnmanagedConcept" as ?rdf_type)
       ?r ^th:narrower ?parent .
       ?parent th:notation ?p_n .
       ?parent th:identifier ?p_id .
+      ?parent isoT:hasIdentifier/isoI:version ?v.
+      ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
+      {
+        SELECT (max(?lv) AS ?v) WHERE
+            {
+              ?parent isoT:hasIdentifier/isoI:version ?lv.
+            } 
+      }
     }
     OPTIONAL {
       ?r rdf:type th:Thesaurus .
       ?r isoC:label ?p_n .
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+       BIND ("Thesaurus" as ?type)
+       BIND ("th:Thesaurus" as ?rdf_type)
     }
   }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
-      query_results.by_object_set([:r, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t]).each do |x|
+      query_results.by_object_set([:r, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type]).each do |x|
         results[:description] = x[:desc] if results[:description].nil?
         results[:reference] = x[:reference] if results[:reference].nil?
         results[:id] = self.uri.to_id if results[:id].nil?
-        results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n]}, child: {identifier: x[:c_id], notation: x[:c_n]}}
+        case x[:type].to_sym
+          when :ManagedConcept
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type]}}
+          when :UnmanagedConcept
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type]}}
+          when :Thesaurus
+            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type]}}
+        end
       end
       results
     end
 
   def remove_reference(params)
-    if params[:type] == "previous"
-      set = self.previous_objects
-    else
-      set = self.current_objects
+    case params[:type].to_sym
+      when :previous
+        set = self.previous_objects
+      when :current
+        set = self.current_objects
     end
     object = set.find{|x| x.reference == Uri.new(id: params[:concept_id])}   
     transaction_begin
