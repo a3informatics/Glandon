@@ -129,7 +129,15 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     results = item.get_data
     check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_2.yaml", equate_method: :hash_equal)
-  end       
+  end
+
+  it "change instructions links II" do
+    item = Annotation::ChangeInstruction.create
+    item.update(description: "D", reference: "R", semantic: "S")
+    item = Annotation::ChangeInstruction.find(item.id)
+    results = item.get_data
+    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+  end         
 
   # it "deletes a change instruction" do
   #   ci_1 = Annotation::ChangeInstruction.create(description: "D2", reference: "R2")

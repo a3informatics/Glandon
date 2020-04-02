@@ -76,14 +76,17 @@ class Annotation::ChangeInstruction < Annotation
   {
       #{self.uri.to_ref} ba:description ?desc .
       #{self.uri.to_ref} ba:reference ?reference .
-    {
-      #{self.uri.to_ref} (ba:current/bo:reference) ?r .
-      BIND ("current" as ?t)
-    } UNION
-    {
-      #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
-      BIND ("previous" as ?t)
-    }
+    
+
+    OPTIONAL {
+      {
+        #{self.uri.to_ref} (ba:current/bo:reference) ?r .
+        BIND ("current" as ?t)
+      } UNION
+      {
+        #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
+        BIND ("previous" as ?t)
+      }
   
     OPTIONAL {
       ?r rdf:type th:ManagedConcept .
@@ -117,6 +120,7 @@ class Annotation::ChangeInstruction < Annotation
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
        BIND ("Thesaurus" as ?type)
        BIND ("th:Thesaurus" as ?rdf_type)
+    }
     }
   }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])

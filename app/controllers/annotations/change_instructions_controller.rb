@@ -7,6 +7,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   def show
     authorize IsoConcept, :show?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
+  byebug
     if change_instruction.errors.empty?
       render json: {data: change_instruction.get_data}, status: 200
     else
