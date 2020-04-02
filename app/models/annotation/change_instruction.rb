@@ -5,14 +5,13 @@
 class Annotation::ChangeInstruction < Annotation
   
   configure rdf_type: "http://www.assero.co.uk/Annotations#ChangeInstruction",
-            uri_suffix: "CI",
+            base_uri: "http://#{ENV["url_authority"]}/CHIN",
+            uri_unique: true,
             uri_property: :ordinal
 
   data_property :ordinal, default: 1
   data_property :semantic 
   object_property :previous, cardinality: :many, model_class: "OperationalReferenceV3"
-
-  @@ordinal = 0
 
   # Create. 
   #
@@ -25,14 +24,12 @@ class Annotation::ChangeInstruction < Annotation
   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
   def self.create
     ci = Annotation::ChangeInstruction.new
-    ci.ordinal = @@ordinal + 1
     ci.uri = ci.create_uri(ci.class.base_uri)
     ci.by_authority = IsoRegistrationAuthority.owner.uri
     ci.reference = "Not set"
     ci.description = "Not set"
     ci.semantic = "Not set"
     ci.save
-    @@ordinal+=1
     ci
   end
 
@@ -72,58 +69,55 @@ class Annotation::ChangeInstruction < Annotation
     def get_data
       results = {id: nil, reference: nil, description: nil, previous: [], current: []}
       query_string = %Q{
-  SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
-  {
-      #{self.uri.to_ref} ba:description ?desc .
-      #{self.uri.to_ref} ba:reference ?reference .
-    
-
-    OPTIONAL {
+      SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
       {
-        #{self.uri.to_ref} (ba:current/bo:reference) ?r .
-        BIND ("current" as ?t)
-      } UNION
-      {
-        #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
-        BIND ("previous" as ?t)
-      }
-  
-    OPTIONAL {
-      ?r rdf:type th:ManagedConcept .
-      ?r rdf:type ?rdf_type .
-      ?r th:notation ?p_n .
-      ?r th:identifier ?p_id .
-      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
-       BIND ("ManagedConcept" as ?type)
-    }
-    OPTIONAL {
-      ?r rdf:type th:UnmanagedConcept .
-      ?r rdf:type ?rdf_type .
-      ?r th:identifier ?c_id .
-      ?r th:notation ?c_n .
-      BIND ("UnmanagedConcept" as ?type)
-      ?r ^th:narrower ?parent .
-      ?parent th:notation ?p_n .
-      ?parent th:identifier ?p_id .
-      ?parent isoT:hasIdentifier/isoI:version ?v.
-      ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
-      {
-        SELECT (max(?lv) AS ?v) WHERE
+        #{self.uri.to_ref} ba:description ?desc .
+        #{self.uri.to_ref} ba:reference ?reference .
+        OPTIONAL {
+          {
+            #{self.uri.to_ref} (ba:current/bo:reference) ?r .
+            BIND ("current" as ?t)
+          } UNION
+          {
+            #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
+            BIND ("previous" as ?t)
+          }
+          OPTIONAL {
+            ?r rdf:type th:ManagedConcept .
+            ?r rdf:type ?rdf_type .
+            ?r th:notation ?p_n .
+            ?r th:identifier ?p_id .
+            ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+             BIND ("ManagedConcept" as ?type)
+          }
+          OPTIONAL {
+            ?r rdf:type th:UnmanagedConcept .
+            ?r rdf:type ?rdf_type .
+            ?r th:identifier ?c_id .
+            ?r th:notation ?c_n .
+            BIND ("UnmanagedConcept" as ?type)
+            ?r ^th:narrower ?parent .
+            ?parent th:notation ?p_n .
+            ?parent th:identifier ?p_id .
+            ?parent isoT:hasIdentifier/isoI:version ?v.
+            ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
             {
-              ?parent isoT:hasIdentifier/isoI:version ?lv.
-            } 
-      }
-    }
-    OPTIONAL {
-      ?r rdf:type th:Thesaurus .
-      ?r rdf:type ?rdf_type .
-      ?r isoT:hasIdentifier/isoI:identifier ?p_id .
-      ?r isoC:label ?p_n .
-      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
-       BIND ("Thesaurus" as ?type)
-    }
-    }
-  }}
+              SELECT (max(?lv) AS ?v) WHERE
+                  {
+                    ?parent isoT:hasIdentifier/isoI:version ?lv.
+                  } 
+            }
+          }
+          OPTIONAL {
+            ?r rdf:type th:Thesaurus .
+            ?r rdf:type ?rdf_type .
+            ?r isoT:hasIdentifier/isoI:identifier ?p_id .
+            ?r isoC:label ?p_n .
+            ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+            BIND ("Thesaurus" as ?type)
+          }
+        }
+      }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
       query_results.by_object_set([:r, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type]).each do |x|
         results[:description] = x[:desc] if results[:description].nil?
@@ -158,8 +152,7 @@ class Annotation::ChangeInstruction < Annotation
 
   def add_references(params)
     if !params[:previous].nil?
-      params[:previous].each do |p|
-        # self.previous.find{|x| x.reference == Uri.new(id: params[:concept_id])}   
+      params[:previous].each do |p|  
         self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
       end
     end
