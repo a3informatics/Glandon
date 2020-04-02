@@ -116,6 +116,7 @@ class Annotation::ChangeInstruction < Annotation
     }
     OPTIONAL {
       ?r rdf:type th:Thesaurus .
+      ?r isoT:hasIdentifier/isoI:identifier ?p_id .
       ?r isoC:label ?p_n .
       ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
        BIND ("Thesaurus" as ?type)
