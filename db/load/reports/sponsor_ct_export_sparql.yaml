@@ -63,7 +63,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX iso: <http://purl.org/iso25964/skos-thes#>
-SELECT ?CLLN ?CLC ?CLSN ?CLE ?CLD ?CODE ?DECODE ?SVALUE (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?SYNONYM) ?CRFDV ?DISPAYORDER ?RANK ?DC_STAGE ?SDTM_STAGE ?ADAM_STAGE
+SELECT ?CLLN ?CLC ?CLSN ?CLE ?CLD ?CODE ?DECODE ?SVALUE (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?SYNONYM) ?CRFDV ?DISPLAYORDER ?RANK ?DC_STAGE ?SDTM_STAGE ?ADAM_STAGE
 WHERE       
 {         
   VALUES ?s {[[[parameter_1]]]}
@@ -75,15 +75,14 @@ WHERE
   ?cl th:preferredTerm/isoC:label ?CLLN .
   ?cl th:narrower ?cli .
   ?cli th:identifier ?CODE .  
-  ?cli th:notation ?SVALUE .
   ?cli th:preferredTerm/isoC:label ?DECODE .
-  OPTIONAL {?cli isoC:tagged/isoC:prefLabel ?clit .}
+  ?cli th:notation ?SVALUE .
   OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
-  BIND ("" AS ?CRFDV)
-  BIND ("" AS ?DISPAYORDER)
+  ?cli isoC:label ?CRFDV
+  BIND ("" AS ?DISPLAYORDER)
   BIND ("" AS ?RANK)
-  BIND ("" AS ?DC_STAGE)
-  BIND ("" AS ?SDTM_STAGE)
-  BIND ("" AS ?ADAM_STAGE)
-} GROUP BY ?CLLN ?CLC ?CLSN ?CLE ?CLD ?CODE ?DECODE ?SVALUE ?CRFDV ?DISPAYORDER ?RANK ?DC_STAGE ?SDTM_STAGE ?ADAM_STAGE ORDER BY ?CLC ?CODE'
+  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?DC_STAGE)
+  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?SDTM_STAGE)
+  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?ADAM_STAGE)
+} GROUP BY ?CLLN ?CLC ?CLSN ?CLE ?CLD ?CODE ?DECODE ?SVALUE ?CRFDV ?DISPLAYORDER ?RANK ?DC_STAGE ?SDTM_STAGE ?ADAM_STAGE ORDER BY ?CLC ?CODE'
 :type: Ad Hoc Report Definition
