@@ -167,30 +167,33 @@ td.note-cell {
 }
 
 .change-instruction .items-list {
-  margin: 10px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 20px;
   max-height: 200px;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.change-instruction .items-list a.item {
-  margin: 6px 4px;
-  padding: 10px 16px;
+.change-instruction a.bg-label {
+  width: 100%;
+  color: $grey-medium;
+  font-size: 10pt;
   display: flex;
   align-items: center;
-  background: $grey-bright;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.change-instruction a.bg-label:hover, .change-instruction a.bg-label:focus {
   text-decoration: none;
-  color: $grey-medium;
+  color: inherit;
 }
 
-.change-instruction .items-list .item .text-block {
-  margin-left: 14px;
-  font-size: 9pt;
-  transition: transform .3s;
-}
-
-.change-instruction .items-list a.item:hover .text-block {
-  transform: translateX(5px);
+.change-instruction .bg-label > span{
+  display: inline-block;
+  padding: 5px;
 }
 
 .change-instruction .content-editable{
@@ -216,4 +219,8 @@ td.note-cell {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.change-instruction .icon-ok.disabled {
+  color: $grey-light;
 }

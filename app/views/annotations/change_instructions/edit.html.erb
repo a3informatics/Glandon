@@ -1,9 +1,9 @@
 <%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
 <%= stylesheet_link_tag 'shared/annotations' %>
-<%= javascript_include_tag 'shared/annotation/change_instruction_edit' %>
-<%= javascript_tag "var ciBaseUrl = '#{annotations_change_instruction_path(@ci[:id])}',
-                        ciAddRefUrl = '#{add_references_annotations_change_instruction_path(@ci[:id])}',
-                        ciRemRefUrl = '#{remove_reference_annotations_change_instruction_path(@ci[:id])}';" %>
+<%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html' %>
+<%= javascript_tag "var ciBaseUrl = '#{@base_url}',
+                        ciAddRefsUrl = '#{@add_refs_url}',
+                        ciRemoveRefsUrl = '#{@remove_ref_url}';" %>
 
 <div class="row">
   <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-instruction",
@@ -22,11 +22,12 @@
       Edit Change Instruction
     </div>
     <div class="card-content text-normal font-light">
+
       <div class="change-instruction wide shadow-small">
         <div class="ci-header">
           <div class="icon-instruction text-large text-link"></div>
           <div class="actions">
-            <span class="icon-ok clickable ttip text-link disabled" id="save-ci">
+            <span class="icon-ok clickable ttip text-secondary-clr disabled" id="save-ci">
               <span class="ttip-text ttip-left text-medium text-small shadow-small">
                 Save reference and description
               </span>
@@ -38,12 +39,26 @@
             </span>
           </div>
         </div>
+
         <div class="ci-body">
-          <span> Reference: </span> <span id="reference" class="clickable content-editable with-icon" tabindex="0"><%= @ci[:reference] %></span>
+          <span> Reference: </span> <span id="reference" class="clickable content-editable with-icon" tabindex="0"></span>
+          <br/>
+          <span> Description: </span> <span id="description" class="clickable content-editable with-icon" tabindex="0"></span>
           <hr>
-          <span> Description: </span> <span id="description" class="clickable content-editable with-icon" tabindex="0"><%= @ci[:description]%></span>
+
+          <div class="label-w-margin"> Previous links: </div>
+          <div class='items-list scroll-styled' id="list-previous">
+            <button class="btn btn-xs light add-links" id="add-previous">Add</button>
+          </div>
+          <div class="label-w-margin"> Current links: </div>
+          <div class='items-list scroll-styled' id="list-current">
+            <button class="btn btn-xs light add-links" id="add-current">Add</button>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
+<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>

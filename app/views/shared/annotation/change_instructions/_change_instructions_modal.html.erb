@@ -3,7 +3,7 @@
 <% end %>
 
 <%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
-<%= javascript_include_tag 'shared/annotation/change_instructions_modal' %>
+<%= javascript_include_tag 'shared/annotation/change_instructions_modal', 'shared/annotation/change_instructions_html' %>
 <%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(id: item_id)}',
                         ciBaseUrl = '#{annotations_change_instructions_path}';" %>
 

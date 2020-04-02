@@ -15,6 +15,7 @@ $(document).ready(function() {
 function CIListModal() {
  this.modal = $("#change-instructions-modal");
  this.errorDiv = this.modal.find("#change-instructions-error");
+ this.htmlHelper = new CIHtml();
  this.ready = false;
 
  this.table = this.initTable();
@@ -142,104 +143,6 @@ CIListModal.prototype.actionClick = function (e) {
 }
 
 /**
- ****** HTML ******
-**/
-
-
-/**
- * Generates HTML for a single item
- *
- * @param data [Object] Change Instruction data object
- * @return [String] formatted HTML
- */
-CIListModal.prototype.itemHTML = function (data) {
-  var html = "";
-
-  html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
-  html +=   "<div class='ci-header'>";
-  html +=     "<div class='icon-instruction text-link text-large'></div>";
-  html +=     "<div class='actions'><span class='icon-edit text-link'></span><span class='icon-trash text-accent-2'></span></div>";
-  html +=   "</div>"
-  html +=   "<div class='ci-body'>";
-  html +=     "<div>Reference: " +
-                (data.reference == "" ? "Not set" : data.reference) + "</div>";
-  html +=     "<hr>"
-  html +=     "<div>" + data.description + "</div>"
-  html +=     this.linksListHTML(data);
-  html +=   "</div>"
-  html += "</div>"
-  return html;
-}
-
-/**
- * Generates HTML for a list of links for CI
- *
- * @param data [Object] Change Instruction data object
- * @return [String] formatted likns list HTML
- */
-CIListModal.prototype.linksListHTML = function (data) {
-  var html = "";
-
-  html += "<div class='items-list scroll-styled'>"
-
-  $.each(data.previous, function(idx, link) {
-    html += "<a href='" + link.show_path + "' class='item'>";
-    html +=   this.linkIcon("old", "Previous");
-    html +=   "<div class='text-block'>";
-    html +=     this.linkText(link);
-    html +=   "</div>";
-    html += "</a>";
-  }.bind(this));
-
-  $.each(data.current, function(idx, link) {
-    html += "<a href='" + link.show_path + "' class='item'>";
-    html +=   this.linkIcon("new", "Current");
-    html +=   "<div class='text-block'>";
-    html +=     this.linkText(link);
-    html +=   "</div>";
-    html += "</a>";
-  }.bind(this));
-
-  html += "</div>";
-
-  return html;
-}
-
-/**
- * Builds icon with tooltip for a link
- *
- * @return [String] formatted HTML
- */
-CIListModal.prototype.linkIcon = function(icon, text) {
-  var html = "<span class='icon-" + icon + " text-normal ttip'>";
-  html +=      "<span class='ttip-text ttip-table shadow-small text-tiny'>" + text + "</span>";
-  html +=    "</span>";
-
-  return html;
-}
-
-/**
- * Builds HTML text for a link
- *
- * @return [String] formatted HTML
- */
-CIListModal.prototype.linkText = function(link) {
-  var text = "<div class='font-regular'>";
-  text += (link.parent.label || link.parent.notation) + " ";
-  text += "(" + link.parent.identifier + ") v" + link.parent.semantic_version;
-  text += "</div>";
-
-  if (link.child != null) {
-    text += "<div>"
-    text +=   (link.child.label || link.child.notation) + " (" + link.child.identifier + ")";
-    text += "</div>"
-  }
-
-  return text;
-}
-
-
-/**
  ****** Support ******
 **/
 
@@ -269,7 +172,7 @@ CIListModal.prototype.column = function() {
       data: "id",
       orderable: false,
       render: function (data, type, row, meta) {
-        return (type == "display" ? this.itemHTML(row) : "");
+        return (type == "display" ? this.htmlHelper.changeInstruction(row) : "");
       }.bind(this)
     }];
 }

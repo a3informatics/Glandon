@@ -32,6 +32,15 @@ function ItemsSelector(params) {
 **/
 
 /**
+ * Shows modal
+ *
+ * @return [void]
+ */
+ItemsSelector.prototype.show = function(callback) {
+  this.modal.modal("show");
+}
+
+/**
  * Sets a new callback
  *
  * @param callback [Function] New user submission callback
@@ -80,7 +89,11 @@ ItemsSelector.prototype.setListeners = function(callback) {
  * @return [void]
  */
 ItemsSelector.prototype.submit = function() {
-  try { this.callback(this.selection) } catch(e) { }
+  try {
+    this.params.callback(JSON.parse(JSON.stringify(this.selection)))
+  } catch(e) {
+    console.log(e);
+  }
 
   this.reset();
   this.modal.modal("hide");

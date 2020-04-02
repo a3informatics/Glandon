@@ -15,12 +15,53 @@ $(document).ready(function() {
 function CIEditor() {
   this.editing = false;
   this.setListeners();
+  this.htmlHelper = new CIHtml();
+
+  this.selector = new ItemsSelector({
+    id: "1",
+    types: {thesauri: true, cls: true, clitems: true},
+    multiple: true,
+    callback: null
+  });
+
+  this.load();
 }
 
 
 /**
  ****** General ******
 **/
+
+
+/**
+ * Load data request
+ *
+ * @return [void]
+ */
+CIEditor.prototype.load = function () {
+  this.clear();
+  this.executeRequest({
+    url: ciBaseUrl,
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      this.initHTML(result.data);
+      this.processing(false);
+    }.bind(this)
+  });
+}
+
+/**
+ * Clear data
+ *
+ * @return [void]
+ */
+CIEditor.prototype.clear = function () {
+  $("#reference").text("");
+  $("#description").text("");
+  $("#list-previous .bg-label, #list-current .bg-label").remove();
+  $("#save-ci").addClass("disabled");
+}
 
 
 /**
@@ -54,9 +95,12 @@ CIEditor.prototype.executeRequest = function (params) {
  * @return [void]
  */
 CIEditor.prototype.setListeners = function () {
-  $(".content-editable").on("focus focusout", this.onContentEdit.bind(this));
-  $("#save-ci").on("click", this.saveFields.bind(this));
-  $("#delete-ci").on("click", this.destroy.bind(this, false));
+  $(".change-instruction").on("focus focusout", ".content-editable", this.onContentEdit.bind(this));
+  $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
+  $(".change-instruction").on("click", "#save-ci", this.saveFields.bind(this));
+  $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
+  $(".change-instruction").on("click", ".add-links", this.openSelector.bind(this));
+  $(".change-instruction").on("click", ".removable", this.destroyLink.bind(this));
 }
 
 /**
@@ -107,6 +151,27 @@ CIEditor.prototype.destroy = function (confirm) {
 }
 
 /**
+ * Removes Change Instruction, redirects to root
+ *
+ * @param confirm [Boolean] shows confirmation dialog if false, force remove if true
+ * @return [void]
+ */
+CIEditor.prototype.destroyLink = function (e) {
+  var linkId = $(e.target).attr("data-id");
+  var linkType = $(e.target).attr("data-type");
+
+  this.executeRequest({
+    url: ciRemoveRefsUrl,
+    type: "PUT",
+    data: {change_instruction: {type: linkType, concept_id: linkId}},
+    callback: function (result) {
+      $(e.target).remove();
+      this.processing(false);
+    }.bind(this)
+  });
+}
+
+/**
  * Enables content editing
  *
  * @param e [Event] trigger event
@@ -130,10 +195,88 @@ CIEditor.prototype.onContentEdit = function (e) {
   }
 }
 
+/**
+ * Key press for content-editable
+ *
+ * @param e [Event] trigger event
+ * @return [void]
+ */
+CIEditor.prototype.onKeyPress = function (e) {
+  switch(e.keyCode || e.which) {
+    case 13:
+      e.preventDefault();
+      $(e.target).blur();
+      $("#save-ci")[0].click();
+      break;
+    case 27:
+      $(e.target).blur();
+      break;
+  }
+}
+
+/**
+ * Opens selector for adding links
+ *
+ * @param e [Event] trigger event
+ * @return [void]
+ */
+CIEditor.prototype.openSelector = function (e) {
+  var type = $(e.target).attr("id").split('-')[1];
+  this.selector.setCallback(this.selectCallback.bind(this, type));
+  this.selector.show();
+}
+
+/**
+ * Process selection and post to server
+ *
+ * @param e [Event] trigger event
+ * @return [void]
+ */
+CIEditor.prototype.selectCallback = function (linkType, selection) {
+  var data = {
+    change_instruction: {
+      current: [],
+      previous: []
+  }};
+
+  $.each(selection, function(type, values) {
+    data.change_instruction[linkType] = data.change_instruction[linkType].concat(values.map(function(v){return v.id}));
+  });
+
+  this.executeRequest({
+    url: ciAddRefsUrl,
+    type: "PUT",
+    data: data,
+    callback: function(result) {
+      this.load();
+    }.bind(this)
+  })
+}
+
 
 /**
  ****** Support ******
 **/
+
+/**
+ * Fills page with CI data
+ *
+ * @return [void]
+ */
+CIEditor.prototype.initHTML = function (data) {
+  $("#reference").text(data.reference || "Not set");
+  $("#description").text(data.description || "Not set");
+
+  $.each(data.previous, function(index, item) {
+    var itemHTML = this.htmlHelper.listItem(item, "previous", {withHref: false, iconTtip: false, class: "removable"});
+    $("#list-previous button").before(itemHTML);
+  }.bind(this));
+
+  $.each(data.current, function(index, item) {
+    var itemHTML = this.htmlHelper.listItem(item, "current", {withHref: false, iconTtip: false, class: "removable"});
+    $("#list-current button").before(itemHTML);
+  }.bind(this));
+}
 
 
 /**
