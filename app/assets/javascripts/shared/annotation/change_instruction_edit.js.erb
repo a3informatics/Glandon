@@ -40,6 +40,7 @@ function CIEditor() {
  */
 CIEditor.prototype.load = function () {
   this.clear();
+
   this.executeRequest({
     url: ciBaseUrl,
     type: "GET",
@@ -59,7 +60,7 @@ CIEditor.prototype.load = function () {
 CIEditor.prototype.clear = function () {
   $("#reference").text("");
   $("#description").text("");
-  $("#list-previous .bg-label, #list-current .bg-label").remove();
+  $(".items-list").empty();
   $("#save-ci").addClass("disabled");
 }
 
@@ -80,6 +81,7 @@ CIEditor.prototype.executeRequest = function (params) {
 		dataType: 'json',
 		context: this,
 		success: function (result) {
+      console.log(result)
       params.callback(result);
 		},
 		error: function (xhr, status, error) {
@@ -95,7 +97,7 @@ CIEditor.prototype.executeRequest = function (params) {
  * @return [void]
  */
 CIEditor.prototype.setListeners = function () {
-  $(".change-instruction").on("focus focusout", ".content-editable", this.onContentEdit.bind(this));
+  $(".change-instruction").on("focusin focusout", ".content-editable", this.onContentEdit.bind(this));
   $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
   $(".change-instruction").on("click", "#save-ci", this.saveFields.bind(this));
   $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
@@ -166,6 +168,7 @@ CIEditor.prototype.destroyLink = function (e) {
     data: {change_instruction: {type: linkType, concept_id: linkId}},
     callback: function (result) {
       $(e.target).remove();
+      this.handleEmptyLists();
       this.processing(false);
     }.bind(this)
   });
@@ -178,8 +181,8 @@ CIEditor.prototype.destroyLink = function (e) {
  * @return [void]
  */
 CIEditor.prototype.onContentEdit = function (e) {
-  switch(e.type){
-    case "focus":
+  switch(e.type) {
+    case "focusin":
       $("#save-ci").removeClass("disabled");
       $(e.target).prop("contenteditable", true);
       $(".content-editable")
@@ -264,18 +267,32 @@ CIEditor.prototype.selectCallback = function (linkType, selection) {
  * @return [void]
  */
 CIEditor.prototype.initHTML = function (data) {
-  $("#reference").text(data.reference || "Not set");
-  $("#description").text(data.description || "Not set");
+  $("#reference").text(data.reference);
+  $("#description").text(data.description);
 
   $.each(data.previous, function(index, item) {
-    var itemHTML = this.htmlHelper.listItem(item, "previous", {withHref: false, iconTtip: false, class: "removable"});
-    $("#list-previous button").before(itemHTML);
+    var itemHTML = this.htmlHelper.listItem(item, "previous", {withHref: false, ttip: false, class: "removable"});
+    $("#list-previous").append(itemHTML);
   }.bind(this));
 
   $.each(data.current, function(index, item) {
-    var itemHTML = this.htmlHelper.listItem(item, "current", {withHref: false, iconTtip: false, class: "removable"});
-    $("#list-current button").before(itemHTML);
+    var itemHTML = this.htmlHelper.listItem(item, "current", {withHref: false, ttip: false, class: "removable"});
+    $("#list-current").append(itemHTML);
   }.bind(this));
+
+  this.handleEmptyLists();
+}
+
+/**
+ * Adds 'None' text to list if empty
+ *
+ * @return [void]
+ */
+CIEditor.prototype.handleEmptyLists = function () {
+  $(".items-list").each(function(){
+    if ($(this).html() == "")
+      $(this).html("<div class='text-small'><i>None</i></div>");
+  });
 }
 
 
