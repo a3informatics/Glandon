@@ -69,6 +69,71 @@ class Annotation::ChangeInstruction < Annotation
   #     partial_update(query_string, [:th])
   # end
 
+    # Change Instruction
+  #
+  # @return [Array] set of Annotation::ChangeInstruction items
+#   def change_instructions
+#     result = []
+#     query_string = %Q{
+# SELECT DISTINCT ?s ?p ?o WHERE {
+#   #{self.uri.to_ref} ^bo:reference ?or .
+#   ?or ^ba:current ?s .
+#   ?or ^ba:previous ?s .
+#   ?s ?p ?o
+# }}
+#     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
+#     query_results.by_subject.each do |subject, triples|
+#       result << Annotation::ChangeInstruction.from_results(Uri.new(uri: subject), triples)
+#     end
+#     result
+#   end
+
+    def get_change_instruction
+      results = {id: nil, reference: nil, description: nil, previous: [], current: []}
+      query_string = %Q{
+  SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t  WHERE
+  {
+      #{self.uri.to_ref} ba:description ?desc .
+      #{self.uri.to_ref} ba:reference ?reference .
+    {
+      #{self.uri.to_ref} (ba:current/bo:reference) ?r .
+      BIND ("current" as ?t)
+    } UNION
+    {
+      #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
+      BIND ("previous" as ?t)
+    }
+  
+    OPTIONAL {
+      ?r rdf:type th:ManagedConcept .
+      ?r th:notation ?p_n .
+      ?r th:identifier ?p_id .
+      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+    }
+    OPTIONAL {
+      ?r rdf:type th:UnmanagedConcept .
+      ?r th:identifier ?c_id .
+      ?r th:notation ?c_n .
+      ?r ^th:narrower ?parent .
+      ?parent th:notation ?p_n .
+      ?parent th:identifier ?p_id .
+    }
+    OPTIONAL {
+      ?r rdf:type th:Thesaurus .
+      ?r isoC:label ?p_n .
+      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
+    }
+  }}
+      query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
+      query_results.by_object_set([:r, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t]).each do |x|
+        results[:description] = x[:desc] if results[:description].nil?
+        results[:reference] = x[:reference] if results[:reference].nil?
+        results[:id] = self.uri.to_id if results[:id].nil?
+        results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n]}, child: {identifier: x[:c_id], notation: x[:c_n]}}
+      end
+      results
+    end
+
   def remove_reference(params)
     if params[:type] == "previous"
       set = self.previous_objects
@@ -85,12 +150,12 @@ class Annotation::ChangeInstruction < Annotation
 
   def add_references(params)
     transaction_begin
-    if !params[:previous].empty?
+    if !params[:previous].nil?
       params[:previous].each_with_index do |p, index| 
         self.previous_push(add_op_reference(Uri.new(id: p), index))
       end
     end
-    if !params[:current].empty?
+    if !params[:current].nil?
       params[:current].each_with_index do |c, index|
         self.current_push(add_op_reference(Uri.new(id: c), index+10000))
       end
