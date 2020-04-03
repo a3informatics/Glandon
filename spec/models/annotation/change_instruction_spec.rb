@@ -189,15 +189,21 @@ describe Annotation::ChangeInstruction do
     check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_4.yaml", equate_method: :hash_equal)
   end       
 
-  # it "deletes a change instruction" do
-  #   ci_1 = Annotation::ChangeInstruction.create(description: "D2", reference: "R2")
-  #   or_1 = OperationalReferenceV3.create({reference: nil, context: nil}, cn_1)
-  #   ci_1.current_push(or_1)
-  #   ci_1.save
-  #   item = Annotation::ChangeInstruction.find(ci_1.id)
-  #   item.delete
-  #   expect{Annotation::ChangeInstruction.find(ci_1.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CN#1234-5678-9012-3456 in Annotation::ChangeInstruction.")
-  #   expect{Annotation::ChangeInstruction.find(or_1.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CN#1234-5678-9012-3456_R1 in Annotation::ChangeInstruction.")
-  # end  
+  it "deletes a change instruction" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
+    ci_1 = Annotation::ChangeInstruction.create
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    item = Annotation::ChangeInstruction.find(ci_1.id)
+    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri3.to_id], current: [])
+    item = Annotation::ChangeInstruction.find(item.id)
+    or_1 = OperationalReferenceV3.find(Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10001"))
+    item.delete
+    expect{Annotation::ChangeInstruction.find(item.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-4567 in Annotation::ChangeInstruction.")
+    expect{Annotation::ChangeInstruction.find(or_1.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10001 in Annotation::ChangeInstruction.")
+  end  
   
 end
