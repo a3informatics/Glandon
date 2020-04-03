@@ -127,6 +127,75 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     result
   end
 
+  def change_instructions
+      results = {id: nil, reference: nil, description: nil, previous: [], current: []}
+      query_string = %Q{
+      SELECT DISTINCT ?ci ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
+      {
+        OPTIONAL{    
+          {
+            ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+            BIND ("current" as ?t)
+          } UNION
+          {
+            ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+            BIND ("previous" as ?t)
+          }
+          ?ci ba:description ?desc .
+          ?ci ba:reference ?reference .
+          OPTIONAL {
+            #{self.uri.to_ref} rdf:type th:ManagedConcept .
+            #{self.uri.to_ref} rdf:type ?rdf_type .
+            #{self.uri.to_ref} th:notation ?p_n .
+            #{self.uri.to_ref} th:identifier ?p_id .
+            #{self.uri.to_ref} isoT:hasIdentifier/isoI:semanticVersion ?sv
+            BIND ("ManagedConcept" as ?type)
+          }
+          OPTIONAL {
+            #{self.uri.to_ref} rdf:type th:UnmanagedConcept .
+            #{self.uri.to_ref} rdf:type ?rdf_type .
+            #{self.uri.to_ref} th:identifier ?c_id .
+            #{self.uri.to_ref} th:notation ?c_n .
+            BIND ("UnmanagedConcept" as ?type)
+            #{self.uri.to_ref} ^th:narrower ?parent .
+            ?parent th:notation ?p_n .
+            ?parent th:identifier ?p_id .
+            ?parent isoT:hasIdentifier/isoI:version ?v.
+            ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
+            {
+              SELECT (max(?lv) AS ?v) WHERE
+                  {
+                    ?parent isoT:hasIdentifier/isoI:version ?lv.
+                  } 
+            }
+          }
+          OPTIONAL {
+            #{self.uri.to_ref} rdf:type th:Thesaurus .
+            #{self.uri.to_ref} rdf:type ?rdf_type .
+            #{self.uri.to_ref} isoT:hasIdentifier/isoI:identifier ?p_id .
+            #{self.uri.to_ref} isoC:label ?p_n .
+            #{self.uri.to_ref} isoT:hasIdentifier/isoI:semanticVersion ?sv
+            BIND ("Thesaurus" as ?type)
+          }
+        }
+      }}
+      query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
+        query_results.by_object_set([:ci, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type]).each do |x|
+          results[:description] = x[:desc] if results[:description].nil?
+          results[:reference] = x[:reference] if results[:reference].nil?
+          results[:id] = x[:ci].to_id if results[:id].nil?
+          case x[:type].to_sym
+            when :ManagedConcept
+              results[x[:t].to_sym] << {parent: {id: self.uri.to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
+            when :UnmanagedConcept
+              results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {id: self.uri.to_id ,identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
+            when :Thesaurus
+              results[x[:t].to_sym] << {parent: {id: self.uri.to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
+          end
+        end
+      results
+    end
+
   # Tag labels. Get the ordered tag labels for the items
   #
   # @return [Array] set of ordered String items

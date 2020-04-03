@@ -54,9 +54,12 @@ class IsoConceptController < ApplicationController
   def change_instructions
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
-    change_instructions = concept.linked_change_instructions
-    results = change_instructions.map{|x| x.reverse_merge!({edit_path: annotations_change_instruction_path(x[:id])})}
-    results = change_instructions.map{|x| x.reverse_merge!({destroy_path: annotations_change_instruction_path(x[:id])})}
+    results = []
+    change_instructions = [concept.change_instructions]
+        change_instructions.each do |c|
+        next if c[:id] == nil
+        results << c.reverse_merge!({edit_path: annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
+      end
     render :json => {data: results}, :status => 200
   end
 
