@@ -92,7 +92,6 @@ RSpec.configure do |config|
 
 end
 
-byebug
 Capybara.register_driver :chrome do |app|
   # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
   profile = Selenium::WebDriver::Chrome::Profile.new
