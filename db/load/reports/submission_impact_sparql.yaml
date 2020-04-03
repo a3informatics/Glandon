@@ -5,40 +5,37 @@
     :description: "The terminology for which the submission impact is required."
     :type: :thesauri
 :columns:
-  :sl:
+  :scll:
     :label: Sponsor Code List Label
     :type: literal
-  :si:
+  :sclid:
     :label: Sponsor Code List Identifier
     :type: literal
   :sclil:
     :label: Sponsor Code List Item Label
     :type: literal
-  :sclii:
+  :scliid:
     :label: Sponsor Code List Item Identifier
     :type: literal
   :sn:
-    :label: The Notation
+    :label: Sponsor Notation
     :type: literal
   :cll:
     :label: CDISC Code List Label
     :type: literal
-  :cli:
+  :clid:
     :label: CDISC Code List Identifier
     :type: literal
   :clil:
     :label: CDISC Code List Item Label
     :type: literal
-  :clii:
+  :cliid:
     :label: CDISC Code List Item Identifier
     :type: literal
-  :ctv:
-    :label: CDISC Terminology Version
+  :cn:
+    :label: CDISC Notation
     :type: literal
-  :t:
-    :label: Type
-    :type: literal
-:label: Submission Impact Export
+:label: Code List Item Submission Value Impact Analysis
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
 PREFIX bo: <http://www.assero.co.uk/BusinessOperational#> 
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
@@ -49,63 +46,45 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
-SELECT DISTINCT ?sl ?si ?sclil ?sclii ?sn ?cll ?cli ?clil ?clii ?ctv ?t WHERE 
+SELECT DISTINCT ?scll ?sclid ?sclil ?scliid ?sn ?cll ?clid ?clil ?cliid ?cn WHERE 
 { 
-  VALUES ?th {[[[parameter_1]]]} 
+  VALUES ?th {<http://www.sanofi.com/2020_R1/V1#TH>} 
   { 
     { 
-      SELECT DISTINCT ?ct ?ctv WHERE 
+      SELECT DISTINCT ?auth (MAX(?ctvt) as ?ctv) WHERE 
       { 
         ?th th:reference/bo:reference ?refct . 
         ?refct isoT:hasIdentifier/isoI:version ?v. 
         ?refct isoT:hasIdentifier/isoI:identifier ?ident. 
-        ?ct isoT:hasIdentifier/isoI:identifier ?ident . 
-        ?ct isoT:hasIdentifier/isoI:version ?ctv . 
-        FILTER (?ctv > ?v ) 
-      } 
+        ?refct isoT:hasState/isoR:byAuthority ?auth . 
+        ?ctt isoT:hasIdentifier/isoI:identifier ?ident . 
+        ?ctt isoT:hasState/isoR:byAuthority ?auth . 
+        ?ctt isoT:hasIdentifier/isoI:version ?ctvt . 
+        FILTER (?ctvt > ?v ) 
+      } GROUP BY ?auth
     }
+    ?ct rdf:type th:Thesaurus .
+    ?ct isoT:hasIdentifier/isoI:version ?ctv .
+    ?ct isoT:hasState/isoR:byAuthority ?auth . 
+    ?th isoT:hasState/isoR:byAuthority ?auth1 . 
     ?th (th:isTopConceptReference/bo:reference) ?scl .
-    {    
-      FILTER (
-        NOT EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner false } &&         
-        EXISTS { ?scl isoT:hasState/isoR:byAuthority/isoR:owner true} 
-      ) 
-      ?scl th:notation ?sn . 
-      ?cl th:notation ?sn .
-      FILTER (?scl != ?cl)
-      ?cl rdf:type th:ManagedConcept .
-      ?cl isoC:label ?cll . 
-      ?cl th:identifier ?cli . 
-      BIND ("Code List" as ?t) 
-      BIND ("" as ?sclil)
-      BIND ("" as ?sclii)
-      BIND ("" as ?clii)
-      BIND ("" as ?clil)
-    } 
-    UNION 
-    { 
-      ?scl th:narrower ?scli .
-      FILTER
-      (
-        NOT EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner false } && 
-        EXISTS { ?scli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner true } 
-      ) 
-      ?scli th:notation ?sn . 
-      ?clis th:notation ?sn . 
-      FILTER (?scli != ?clis)
-      ?clis rdf:type th:UnmanagedConcept .
-      ?clis isoC:label ?clil . 
-      ?clis th:identifier ?clii . 
-      ?scli isoC:label ?sclil . 
-      ?scli th:identifier ?sclii . 
-      ?clis ^th:narrower ?x .
-      ?x isoC:label ?cll . 
-      ?x th:identifier ?cli . 
-      BIND ("Code List Item" as ?t) 
-    } 
-    ?scl isoC:label ?sl . 
-    ?scl th:identifier ?si . 
+    ?scl isoT:hasState/isoR:byAuthority ?auth1 . 
+    ?scl th:narrower ?scli .
+    ?scli th:identifier ?scliid . 
+    FILTER (STRSTARTS( ?scliid, "S"))
+    ?scli th:notation ?sn . 
+    ?clis th:notation ?sn . 
+    ?clis th:identifier ?cliid . 
+    FILTER (STRSTARTS( ?cliid, "C"))
+    ?clis isoC:label ?clil .
+    ?clis th:notation ?cn . 
+    ?scli isoC:label ?sclil . 
+    ?clis ^th:narrower ?cl .
+    ?cl isoC:label ?cll . 
+    ?cl th:identifier ?clid . 
+    FILTER (STRSTARTS( ?clid, "C"))
+    ?scl th:identifier ?sclid . 
+    ?scl isoC:label ?scll. 
   }
-  ?cl ^(th:isTopConceptReference/bo:reference) ?ct . 
 }'
 :type: Ad Hoc Report Definition
