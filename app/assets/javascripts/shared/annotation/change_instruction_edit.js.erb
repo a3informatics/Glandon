@@ -120,9 +120,9 @@ CIEditor.prototype.saveFields = function () {
       change_instruction: { description: description, reference: reference }
     },
     callback: function(result) {
-      displaySuccess("Changes saved.");
       $("#save-ci").addClass("disabled");
       this.processing(false);
+      this.success();
     }.bind(this)
   })
 }
@@ -169,6 +169,7 @@ CIEditor.prototype.destroyLink = function (e) {
       $(e.currentTarget).remove();
       this.handleEmptyLists();
       this.processing(false);
+      this.success();
     }.bind(this)
   });
 }
@@ -251,6 +252,7 @@ CIEditor.prototype.selectCallback = function (linkType, selection) {
     data: data,
     callback: function(result) {
       this.load();
+      this.success();
     }.bind(this)
   })
 }
@@ -259,6 +261,17 @@ CIEditor.prototype.selectCallback = function (linkType, selection) {
 /**
  ****** Support ******
 **/
+
+
+/**
+ * Success style change
+ *
+ * @return [void]
+ */
+CIEditor.prototype.success = function() {
+  $(".change-instruction").addClass("success");
+  setTimeout(function() {$(".change-instruction").removeClass("success")}, 500);
+}
 
 /**
  * Fills page with CI data
