@@ -5,32 +5,20 @@
     :description: "The terminology for which the CDISC References Inconsistencies are required."
     :type: :thesauri
 :columns:
-  :scli:
-    :label: Sponsor Code List Identifier
-    :type: literal
-  :scll:
+  :cll:
     :label: Sponsor Code List Label
     :type: literal
-  :identifier:
-    :label: CDISC Code List Identifier
-    :type: literal
-  :label:
-    :label: CDISC Code List Label
-    :type: literal
-  :clii:
-    :label: Sponsor Code List Item Identifier
+  :clid:
+    :label: Sponsor Code List Identifier
     :type: literal
   :clil:
     :label: Sponsor Code List Item Label
     :type: literal
-  :n:
-    :label: CDISC Submission Value
+  :cliid:
+    :label: Sponsor Code List Item Identifier
     :type: literal
-  :v:
-    :label: CDISC Version
-    :type: literal
-  :t:
-    :label: Type
+  :rv:
+    :label: CDISC Version Used
     :type: literal
 :label: CDISC References Inconsistencies
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
@@ -43,61 +31,19 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>  
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>  
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
-SELECT DISTINCT ?scli ?scll ?identifier ?label  ?clii ?clil ?n ?v ?t WHERE        
+SELECT DISTINCT ?cll ?clid ?clil ?cliid ?rv WHERE        
 {           
-  VALUES ?th {[[[parameter_1]]]}     
-  {       
-    { 
-      ?th th:isTopConceptReference/bo:reference ?scl .
-      ?scl th:identifier ?scli .
-      ?scl isoC:label ?scll .
-      ?scl th:extends ?cl .
-      ?cl isoC:label ?label .
-      ?cl th:identifier ?identifier .
-      ?cl th:notation ?n .
-    ?cl isoT:hasIdentifier/isoI:version ?v .
-      BIND ("Extension" as ?t)          
-    }   
-    UNION       
-    { 
-      ?th th:isTopConceptReference/bo:reference ?scl .
-      ?scl th:identifier ?scli .
-      ?scl isoC:label ?scll .
-      ?scl th:subsets ?cl .     
-      ?cl isoC:label ?label .
-      ?cl th:identifier ?identifier .
-      ?cl th:notation ?n .
-      ?cl isoT:hasIdentifier/isoI:version ?v .
-      BIND ("Subset" as ?t)             
-    } 
-    UNION       
-    { 
-      ?th th:isTopConceptReference/bo:reference ?scl .     
-      ?scl th:identifier ?scli .
-      ?scl isoC:label ?scll .
-      ?scl th:narrower ?cli .
-      ?cli isoC:label ?clil .
-      ?cli th:identifier ?clii .
-      ?cli th:notation ?n .
-      FILTER (EXISTS { ?cli ^th:narrower/isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                      FILTER (?o = false ) } )     
-      ?cli ^(th:narrower) ?clp .
-      FILTER (EXISTS { ?clp isoT:hasState/isoR:byAuthority/isoR:owner ?o .
-                      FILTER (?o = false ) } )  
-      ?clp isoC:label ?label .
-      ?clp th:identifier ?identifier .
-      ?clp isoT:hasIdentifier/isoI:version ?v
-      BIND ("Narrower" as ?t)             
-    } 
-    FILTER (NOT EXISTS { ?refct (th:isTopConceptReference/bo:reference) ?cl } 
-          || NOT EXISTS { ?refct (th:isTopConceptReference/bo:reference/th:narrower) ?cli } )
-    {       
-      SELECT DISTINCT ?refct WHERE          
-      {                         
-        ?th th:reference ?ref .           
-        ?ref bo:reference ?refct .        
-      }           
-    }     
-  } 
+  VALUES ?th {<http://www.transceleratebiopharmainc.com/R2x6/V1#TH>} 
+  ?th th:reference/bo:reference/isoT:hasState/isoR:byAuthority ?auth .
+  ?th th:reference/bo:reference/isoT:hasIdentifier/isoI:version ?rv . 
+  { ?th th:isTopConceptReference/bo:reference/th:narrower ?cli } MINUS
+  { ?th th:reference/bo:reference/th:isTopConceptReference/bo:reference/th:narrower ?cli }
+  ?cli th:identifier ?cliid . 
+  FILTER (STRSTARTS( ?cliid, "C"))
+  ?cli ^th:narrower ?cl .
+  ?cli isoC:label ?clil .
+  ?cli th:identifier ?cliid . 
+  ?cl isoC:label ?cll .
+  ?cl th:identifier ?clid . 
 }'
 :type: Ad Hoc Report Definition
