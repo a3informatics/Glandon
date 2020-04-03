@@ -5,6 +5,9 @@
 
 $(document).ready(function() {
   var ciEditor = new CIEditor();
+  var helpInfo = new InformationDialog({div: $("#edit-help")});
+
+  $(".icon-help").on("click", helpInfo.show.bind(helpInfo));
 });
 
 /**
@@ -270,7 +273,7 @@ CIEditor.prototype.selectCallback = function (linkType, selection) {
  */
 CIEditor.prototype.success = function() {
   $(".change-instruction").addClass("success");
-  setTimeout(function() {$(".change-instruction").removeClass("success")}, 500);
+  setTimeout(function() {$(".change-instruction").removeClass("success")}, 300);
 }
 
 /**

@@ -1,6 +1,7 @@
 <%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
 <%= stylesheet_link_tag 'shared/annotations' %>
-<%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html', 'shared/tags' %>
+<%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html',
+                            'shared/tags', 'shared/information_dialog' %>
 <%= javascript_tag "var ciBaseUrl = '#{@base_url}',
                         ciAddRefsUrl = '#{@add_refs_url}',
                         ciRemoveRefsUrl = '#{@remove_ref_url}';" %>
@@ -20,6 +21,7 @@
   <div class="col-md-10 card wide">
     <div class="card-header">
       Edit Change Instruction
+      <span class="icon-help clickable ttip"><span class="ttip-text text-medium shadow-small">Help</span></span>
     </div>
     <div class="card-content font-light">
 
@@ -61,4 +63,17 @@
   </div>
 </div>
 
+<%= render layout: "shared/information_dialog", :locals => {id: "edit-help", title: "Editing a Change Instruction"} do %>
+  Text fields with the <span class="icon-edit text-medium"></span> icon can be edited directly by clicking on them.
+  Remember to hit Enter or click on <span class="icon-ok text-secondary-clr"></span> to save your changes. <br/><br/>
+
+  Click on <span class="btn btn-xs light">+ Add</span> button to select one or more items from the MDR to which the instruction will be linked. <br/>
+  Items superseded by newer ones should be included in the <i>previous</i> list, while the new ones should be in the <i>current</i> list. <br/>
+  To remove a link to an item, simply click on it. <br/><br/>
+
+  To remove this Change Instruction altogether, click on the <span class="icon-trash text-accent-2"></span> icon. <br/><br/>
+
+  The Change Instruction will flash green every time your changes are saved.<br/>
+  Updates to links are saved automatically.
+<% end %>
 <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
