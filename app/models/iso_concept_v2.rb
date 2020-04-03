@@ -195,7 +195,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
             when :ManagedConcept
               results[x[:t].to_sym] << {parent: {id: x[:p].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
             when :UnmanagedConcept
-              results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {id: x[:p].to_id ,identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
+              results[x[:t].to_sym] << {parent: {id: x[:p].to_id, identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {id: x[:c].to_id ,identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
             #when :Thesaurus
               #results[x[:t].to_sym] << {parent: {id: self.uri.to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
           end

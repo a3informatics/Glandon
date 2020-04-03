@@ -60,7 +60,7 @@ class IsoConceptController < ApplicationController
       next if c[:id] == nil
       results << c.reverse_merge!({edit_path: annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
     end
-    # add_ci_show_paths(results)
+    add_ci_show_path(results)
     render :json => {data: results}, :status => 200
   end
 
@@ -141,27 +141,32 @@ class IsoConceptController < ApplicationController
 
 private
 
-  # def add_ci_show_paths(results)
-  # byebug
-  #   results.each do |type, content|
-  #     next if type == :description
-  #     content.each do |ref|
-  #       if ref[:child][:identifier].empty?
-  #         ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], managed_concept: link_params})
-  #       else
-  #         uc_params = link_params
-  #         uc_params[:parent_id] = ref[:parent][:id]
-  #         ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: uc_params})
-  #       end
-  #     end
-  #   end
-  # end
+  def add_ci_show_path(results)
+    results.each do |ci|
+      ci.each do |type, content|
+        next if type == :id
+        next if type == :reference
+        next if type == :description
+        next if type == :edit_path
+        next if type == :destroy_path
+        content.each do |ref|
+          if !ref.key?(:child)
+            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: link_params})
+          else
+            uc_params = link_params
+            uc_params[:parent_id] = ref[:parent][:id]
+            ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:child][:id], unmanaged_concept: uc_params})
+          end
+        end
+      end
+    end
+  end
   
-  # def link_params
-  #   return {} if params.dig(:unmanaged_concept, :context_id).nil?
-  #   return {} if params.dig(:unmanaged_concept, :context_id).empty?
-  #   params.require(:unmanaged_concept).permit(:context_id)
-  # end
+  def link_params
+    return {} if params.dig(:unmanaged_concept, :context_id).nil?
+    return {} if params.dig(:unmanaged_concept, :context_id).empty?
+    params.require(:unmanaged_concept).permit(:context_id)
+  end
 
   def get_klass(item)
     IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
