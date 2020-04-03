@@ -45,7 +45,7 @@
   <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
 <% end %>
 
-<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
+<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id} %>
 
 <% if @has_children %>
   <div class="row">

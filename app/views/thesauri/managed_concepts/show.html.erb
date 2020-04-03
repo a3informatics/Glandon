@@ -25,6 +25,9 @@
   <%= render partial: "shared/thesauri/subsets_index" %>
 <% end %>
 
+<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id} %>
+
+
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
@@ -50,6 +53,8 @@
             icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
           <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
             icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !@tc.supporting_edit? } %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-instructions-modal", id: "ci-modal-button",
+            icon: "icon-instruction", text: "Change instructions", dt_toggle: "modal", disabled: false } %>
         <% end %>
       <% end %>
     </div>
