@@ -73,6 +73,7 @@ SELECT DISTINCT ?scll ?sclid ?sclil ?scliid ?sn ?cll ?clid ?clil ?cliid ?cn WHER
     ?scli th:identifier ?scliid . 
     FILTER (STRSTARTS( ?scliid, "S"))
     ?scli th:notation ?sn . 
+    FILTER (STRLEN(STR(?sn))>2)
     ?clis th:notation ?sn . 
     ?clis th:identifier ?cliid . 
     FILTER (STRSTARTS( ?cliid, "C"))
