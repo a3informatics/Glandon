@@ -15,8 +15,9 @@ function ChangeNotesView(urlSource, urlNotes, itemHTML) {
   this.urlChangeNotes = urlNotes;
   this.rawNoteHTML = itemHTML;
   this.editMode = {active: false, node: null, cache: null};
+  this.initialized = false;
 
-  this.init();
+  $(this.modal).on("shown.bs.modal", this.init.bind(this));
 }
 
 /**
@@ -25,6 +26,9 @@ function ChangeNotesView(urlSource, urlNotes, itemHTML) {
  * @return [void]
  */
 ChangeNotesView.prototype.init = function(){
+  if (this.initialized)
+    return;
+
   var _this = this;
   _this.table = $("#change-notes-table").DataTable({
    "pagingType": "full",
@@ -51,6 +55,8 @@ ChangeNotesView.prototype.init = function(){
    ],
    "initComplete": function(){_this.initListeners()}
   });
+
+  this.initialized = true;
 }
 
 /**

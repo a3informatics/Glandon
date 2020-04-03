@@ -43,9 +43,9 @@
         </div>
 
         <div class="ci-body">
-          <span> Reference: </span> <span id="reference" class="clickable content-editable with-icon" tabindex="0"></span>
+          <span> Reference: </span> <span id="reference" class="clickable content-editable with-icon" tabindex="0" contenteditable="true"></span>
           <br/>
-          <span> Description: </span> <span id="description" class="clickable content-editable with-icon" tabindex="0"></span>
+          <span> Description: </span> <span id="description" class="clickable content-editable with-icon" tabindex="0" contenteditable="true"></span>
           <hr>
 
           <div class="label-w-margin"> Previous links: </div>
@@ -74,6 +74,7 @@
   To remove this Change Instruction altogether, click on the <span class="icon-trash text-accent-2"></span> icon. <br/><br/>
 
   The Change Instruction will flash green every time your changes are saved.<br/>
-  Updates to links are saved automatically.
+  Updates to links are saved automatically.<br/>
+  <span class="text-accent-2">If you leave this page without adding any links, this Change Instruction will be lost forever.</span>
 <% end %>
 <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>

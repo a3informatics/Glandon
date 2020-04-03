@@ -34,7 +34,7 @@ function CIListModal() {
  */
 CIListModal.prototype.setListeners = function () {
   this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
-  this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
+  this.modal.find("#change-instructions-table tbody").on("click", ".icon-trash", this.destroy.bind(this, true));
   this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
 }
 
@@ -73,7 +73,7 @@ CIListModal.prototype.loadData = function () {
     type: "GET",
     withTable: true,
     callback: function (result) {
-
+      console.log(result)
       $.each(result.data, function(i, item){
         this.table.row.add(item);
       }.bind(this));
@@ -105,41 +105,28 @@ CIListModal.prototype.createNew = function () {
 /**
  * Builds a remove Change Instruction request, handles UI update
  *
- * @param tableRow [DataTable Row] CI row which to delete
+ * @param confirm [Boolean] if true, will display a confirmation dialog
  * @return [void]
  */
-CIListModal.prototype.destroy = function (tableRow) {
+CIListModal.prototype.destroy = function (confirm, e) {
+  if (confirm) {
+    new ConfirmationDialog(this.destroy.bind(this, false, e),{dangerous: true})
+        .show();
+    return;
+  }
+
+  var itemRow = this.table.row($(e.target).closest("tr"));
+
   this.executeRequest({
-    url: ciBaseUrl,
+    url: itemRow.data().destroy_path,
     type: "DELETE",
     withTable: true,
     callback: function (result) {
       displayAlertsInElement(alertSuccess("Change Instruction deleted."), this.errorDiv);
-      tableRow.remove().draw();
+      itemRow.remove().draw();
       this.processing(false, true);
     }.bind(this)
   });
-}
-
-/**
- * Called when any of the CI action icons is clicked. Handles response.
- *
- * @param e [Event] original click event
- * @return [void]
- */
-CIListModal.prototype.actionClick = function (e) {
-  var itemRow = this.table.row($(e.target).closest("tr"));
-
-  // Redirect to edit
-  if ($(e.target).hasClass("icon-edit")) {
-    location.href = itemRow.data().edit_path;
-  }
-  // Remove Instruction Confirmation
-  else if ($(e.target).hasClass("icon-trash")) {
-    new ConfirmationDialog(this.destroy.bind(this, itemRow),
-      {dangerous: true})
-      .show();
-  }
 }
 
 
@@ -179,7 +166,7 @@ CIListModal.prototype.column = function() {
 }
 
 /**
- * Initializes invisible DataTable for change instructions 
+ * Initializes invisible DataTable for change instructions
  *
  * @return [DataTable] initialized DT instance
  */

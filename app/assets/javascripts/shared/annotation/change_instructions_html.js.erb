@@ -23,7 +23,8 @@ CIHtml.prototype.changeInstruction = function (data) {
   html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
   html +=   "<div class='ci-header'>";
   html +=     "<div class='icon-instruction text-link text-large'></div>";
-  html +=     "<div class='actions'><span class='icon-edit text-link'></span><span class='icon-trash text-accent-2'></span></div>";
+  html +=     "<div class='actions'><a href='"+data.edit_path+"' class='icon-edit text-link'></a>" +
+                "<a href='#' class='icon-trash text-accent-2'></a></div>";
   html +=   "</div>";
   html +=   "<div class='ci-body'>";
   html +=     "<div>Reference: " +
@@ -92,7 +93,7 @@ CIHtml.prototype.linkIcon = function(type, opts) {
   var html = "";
   if (opts.ttip) {
     html += "<span class='type-icon icon-" + (type == "previous" ? "old" : "new") + " text-normal ttip'>";
-    html +=   "<span class='ttip-text ttip-left shadow-small text-small'>" +
+    html +=   "<span class='ttip-text left ttip-table shadow-small text-small'>" +
                 (type == "previous" ? "Previous" : "Current") +
               "</span>";
     html += "</span>";
@@ -108,7 +109,7 @@ CIHtml.prototype.linkIcon = function(type, opts) {
 /**
  * Builds HTML text for an item link
  *
- * @param link [Object] Single link's data 
+ * @param link [Object] Single link's data
  * @return [String] formatted HTML
  */
 CIHtml.prototype.linkText = function(link) {

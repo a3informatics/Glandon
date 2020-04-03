@@ -150,7 +150,9 @@ MISelector.prototype.reset = function() {
 
   this.clearCache();
   this.indexTable.clear().draw();
+  this.indexTable.search("");
   this.historyTable.clear().draw();
+  this.historyTable.search("");
   this.initialized = false;
 }
 

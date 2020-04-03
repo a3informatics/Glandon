@@ -58,7 +58,7 @@ class IsoConceptController < ApplicationController
     change_instructions = [concept.change_instructions]
         change_instructions.each do |c|
         next if c[:id] == nil
-        results << c.reverse_merge!({edit_path: annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
+        results << c.reverse_merge!({edit_path: edit_annotations_change_instruction_path(id: c[:id]),destroy_path: annotations_change_instruction_path(id: c[:id])})
       end
     render :json => {data: results}, :status => 200
   end

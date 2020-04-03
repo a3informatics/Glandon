@@ -78,6 +78,7 @@ UMISelector.prototype.reset = function() {
   MISelector.prototype.reset.call(this);
 
   this.childrenTable.clear().draw();
+  this.childrenTable.search("");
   this.toggleTableTabs("index");
 }
 
