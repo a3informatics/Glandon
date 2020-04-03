@@ -151,6 +151,7 @@ class Annotation::ChangeInstruction < Annotation
   end
 
   def add_references(params)
+  transaction_begin
     if !params[:previous].nil?
       params[:previous].each do |p|  
         self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
@@ -162,6 +163,7 @@ class Annotation::ChangeInstruction < Annotation
       end
     end
     self.save
+    transaction_execute
     self
   end
 
