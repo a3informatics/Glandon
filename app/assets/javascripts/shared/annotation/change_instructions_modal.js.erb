@@ -26,8 +26,20 @@ function CIListModal() {
  ****** General ******
 **/
 
+
 /**
- * Executes ajax request, invokes callback on success
+ * Sets event listeners, handlers
+ *
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.setListeners = function () {
+  this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
+  this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
+  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
+}
+
+/**
+ * Builds, executes ajax request. Invokes callback on success
  *
  * @param params [Object] must contain: url, type, callback, withTable (bool)
  * @return [void]
@@ -51,7 +63,7 @@ CIListModal.prototype.executeRequest = function (params) {
 }
 
 /**
- * Fetches Change Instructions, fill in table
+ * Build load CI index data request, process and add to page
  *
  * @return [void]
  */
@@ -75,7 +87,7 @@ CIListModal.prototype.loadData = function () {
 }
 
 /**
- * Makes new Change Instructions call, redirects on success
+ * Builds new Change Instructions request, redirects to edit page on success
  *
  * @return [void]
  */
@@ -91,8 +103,9 @@ CIListModal.prototype.createNew = function () {
 }
 
 /**
- * Makes a remove Change Instruction request, handles UI update
+ * Builds a remove Change Instruction request, handles UI update
  *
+ * @param tableRow [DataTable Row] CI row which to delete
  * @return [void]
  */
 CIListModal.prototype.destroy = function (tableRow) {
@@ -109,20 +122,7 @@ CIListModal.prototype.destroy = function (tableRow) {
 }
 
 /**
- * Sets event listeners, handlers
- *
- * @return [String] formatted HTML
- */
-CIListModal.prototype.setListeners = function () {
-  this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
-  this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
-  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
-}
-
-
-
-/**
- * Called when edit icon clicked
+ * Called when any of the CI action icons is clicked. Handles response.
  *
  * @param e [Event] original click event
  * @return [void]
@@ -141,6 +141,7 @@ CIListModal.prototype.actionClick = function (e) {
       .show();
   }
 }
+
 
 /**
  ****** Support ******
@@ -165,7 +166,7 @@ CIListModal.prototype.processing = function(enable, withTable) {
 /**
  * Column definition
  *
- * @return [Array] column
+ * @return [Array] definition of the single column
  */
 CIListModal.prototype.column = function() {
   return [{
@@ -178,7 +179,7 @@ CIListModal.prototype.column = function() {
 }
 
 /**
- * Initializes table
+ * Initializes invisible DataTable for change instructions 
  *
  * @return [DataTable] initialized DT instance
  */
