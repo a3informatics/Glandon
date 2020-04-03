@@ -19,9 +19,9 @@ function CIEditor() {
 
   this.selector = new ItemsSelector({
     id: "1",
-    types: {thesauri: true, cls: true, clitems: true},
+    types: {cls: true, clitems: true},
     multiple: true,
-    callback: null
+    description: "Select one or more items to link to the Change Instruction."
   });
 
   this.load();
@@ -81,7 +81,6 @@ CIEditor.prototype.executeRequest = function (params) {
 		dataType: 'json',
 		context: this,
 		success: function (result) {
-      console.log(result)
       params.callback(result);
 		},
 		error: function (xhr, status, error) {
@@ -159,15 +158,15 @@ CIEditor.prototype.destroy = function (confirm) {
  * @return [void]
  */
 CIEditor.prototype.destroyLink = function (e) {
-  var linkId = $(e.target).attr("data-id");
-  var linkType = $(e.target).attr("data-type");
+  var linkId = $(e.currentTarget).attr("data-id");
+  var linkType = $(e.currentTarget).attr("data-type");
 
   this.executeRequest({
     url: ciRemoveRefsUrl,
     type: "PUT",
     data: {change_instruction: {type: linkType, concept_id: linkId}},
     callback: function (result) {
-      $(e.target).remove();
+      $(e.currentTarget).remove();
       this.handleEmptyLists();
       this.processing(false);
     }.bind(this)
@@ -184,10 +183,10 @@ CIEditor.prototype.onContentEdit = function (e) {
   switch(e.type) {
     case "focusin":
       $("#save-ci").removeClass("disabled");
-      $(e.target).prop("contenteditable", true);
+      $(e.currentTarget).prop("contenteditable", true);
       $(".content-editable")
         .removeClass("with-icon")
-        .not($(e.target))
+        .not($(e.currentTarget))
         .addClass("with-icon");
       break;
     case "focusout":
@@ -208,11 +207,11 @@ CIEditor.prototype.onKeyPress = function (e) {
   switch(e.keyCode || e.which) {
     case 13:
       e.preventDefault();
-      $(e.target).blur();
+      $(e.currentTarget).blur();
       $("#save-ci")[0].click();
       break;
     case 27:
-      $(e.target).blur();
+      $(e.currentTarget).blur();
       break;
   }
 }
@@ -224,7 +223,7 @@ CIEditor.prototype.onKeyPress = function (e) {
  * @return [void]
  */
 CIEditor.prototype.openSelector = function (e) {
-  var type = $(e.target).attr("id").split('-')[1];
+  var type = $(e.currentTarget).attr("id").split('-')[1];
   this.selector.setCallback(this.selectCallback.bind(this, type));
   this.selector.show();
 }
@@ -291,7 +290,7 @@ CIEditor.prototype.initHTML = function (data) {
 CIEditor.prototype.handleEmptyLists = function () {
   $(".items-list").each(function(){
     if ($(this).html() == "")
-      $(this).html("<div class='text-small'><i>None</i></div>");
+      $(this).html("<div class='text-small text-light'><i>Empty</i></div>");
   });
 }
 

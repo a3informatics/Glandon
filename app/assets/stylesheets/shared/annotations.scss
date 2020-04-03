@@ -191,9 +191,13 @@ td.note-cell {
   color: inherit;
 }
 
-.change-instruction .bg-label > span{
+.change-instruction .bg-label > span {
   display: inline-block;
-  padding: 5px;
+  padding: 7px 10px 7px 5px;
+}
+
+.change-instruction .bg-label > span:nth-of-type(2){
+  flex-grow: 2;
 }
 
 .change-instruction .content-editable{

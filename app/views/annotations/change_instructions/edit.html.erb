@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
 <%= stylesheet_link_tag 'shared/annotations' %>
-<%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html' %>
+<%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html', 'shared/tags' %>
 <%= javascript_tag "var ciBaseUrl = '#{@base_url}',
                         ciAddRefsUrl = '#{@add_refs_url}',
                         ciRemoveRefsUrl = '#{@remove_ref_url}';" %>
@@ -21,12 +21,12 @@
     <div class="card-header">
       Edit Change Instruction
     </div>
-    <div class="card-content text-normal font-light">
+    <div class="card-content font-light">
 
       <div class="change-instruction wide shadow-small">
         <div class="ci-header">
           <div class="icon-instruction text-large text-link"></div>
-          <div class="actions">
+          <div class="actions text-normal">
             <span class="icon-ok clickable ttip text-secondary-clr disabled" id="save-ci">
               <span class="ttip-text ttip-left text-medium text-small shadow-small">
                 Save reference and description
@@ -49,11 +49,11 @@
           <div class="label-w-margin"> Previous links: </div>
           <div class='items-list scroll-styled' id="list-previous">
           </div>
-          <button class="btn btn-xs light add-links" id="add-previous">Add</button>
+          <button class="btn btn-xs light add-links" id="add-previous">+ Add</button>
           <div class="label-w-margin"> Current links: </div>
           <div class='items-list scroll-styled' id="list-current">
           </div>
-          <button class="btn btn-xs light add-links" id="add-current">Add</button>
+          <button class="btn btn-xs light add-links" id="add-current">+ Add</button>
         </div>
       </div>
 

@@ -22,6 +22,7 @@ function ItemsSelector(params) {
  this.modal = $("#selector-modal-" + this.params.id);
  this.errorDiv = this.modal.find("#selector-modal-error");
 
+ this.setDescription(params.description);
  this.initSelection();
  this.setListeners();
  this.initTabs();
@@ -38,6 +39,16 @@ function ItemsSelector(params) {
  */
 ItemsSelector.prototype.show = function(callback) {
   this.modal.modal("show");
+}
+
+/**
+ * Sets a new description
+ *
+ * @param text [String] New description string
+ * @return [void]
+ */
+ItemsSelector.prototype.setDescription = function(text) {
+  this.modal.find("#im-select-modal-description").text(text);
 }
 
 /**
@@ -574,19 +585,19 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
  * @return [Object] parameters with default values in missing fields
  */
 ItemsSelector.prototype.paramsDefault = function(userParams) {
-  userParams = userParams || {};
+  userParams.types = _.defaults(userParams.types,
+    {
+      thesauri: false,
+      cls: false,
+      clitems: false,
+      bcs: false
+    });
 
-  return {
-    id: userParams.id || "",
-    multiple: userParams.multiple !== false,
-    callback: userParams.callback,
-    types: userParams.types == null ?
-      { thesauri: true, cls: false, clitems: false, bcs: false } :
-      {
-        thesauri: userParams.types.thesauri || false,
-        cls: userParams.types.cls || false,
-        clitems: userParams.types.clitems || false,
-        bcs: userParams.types.bcs || false
-      },
-  }
+  return _.defaults(userParams,
+    {
+      id: "",
+      multiple: false,
+      callback: null,
+      description: "To proceed, select one or more items.",
+    });
 }
