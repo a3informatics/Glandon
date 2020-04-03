@@ -160,12 +160,8 @@ td.note-cell {
   float: right;
 }
 
-.change-instruction .ci-header .actions span {
+.change-instruction .ci-header .actions > * {
   margin-left: 10px;
-}
-
-.change-instruction .ci-header .actions span:hover {
-  cursor: pointer;
 }
 
 .change-instruction .ci-body hr{
@@ -193,18 +189,19 @@ td.note-cell {
   margin-bottom: 5px;
 }
 
-.change-instruction a.bg-label:hover, .change-instruction a.bg-label:focus {
+.change-instruction a:hover, .change-instruction a:focus {
   text-decoration: none;
   color: inherit;
 }
 
 .change-instruction .bg-label > span {
   display: inline-block;
-  padding: 7px 10px 7px 5px;
+  padding: 7px 10px 8px 5px;
 }
 
 .change-instruction .bg-label > span:nth-of-type(2){
   flex-grow: 2;
+  padding-bottom: 7px;
 }
 
 .change-instruction .content-editable{

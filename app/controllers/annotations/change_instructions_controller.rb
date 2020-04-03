@@ -44,7 +44,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   def add_references
     authorize IsoConcept, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
-    change_instruction.add_references(the_params)
+    change_instruction = change_instruction.add_references(the_params)
     if change_instruction.errors.empty?
       render json: {data: ""}, status: 200
     else

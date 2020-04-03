@@ -26,8 +26,20 @@ function CIListModal() {
  ****** General ******
 **/
 
+
 /**
- * Executes ajax request, invokes callback on success
+ * Sets event listeners, handlers
+ *
+ * @return [String] formatted HTML
+ */
+CIListModal.prototype.setListeners = function () {
+  this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
+  this.modal.find("#change-instructions-table tbody").on("click", ".icon-trash", this.destroy.bind(this, true));
+  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
+}
+
+/**
+ * Builds, executes ajax request. Invokes callback on success
  *
  * @param params [Object] must contain: url, type, callback, withTable (bool)
  * @return [void]
@@ -51,7 +63,7 @@ CIListModal.prototype.executeRequest = function (params) {
 }
 
 /**
- * Fetches Change Instructions, fill in table
+ * Build load CI index data request, process and add to page
  *
  * @return [void]
  */
@@ -61,7 +73,7 @@ CIListModal.prototype.loadData = function () {
     type: "GET",
     withTable: true,
     callback: function (result) {
-
+      console.log(result)
       $.each(result.data, function(i, item){
         this.table.row.add(item);
       }.bind(this));
@@ -75,7 +87,7 @@ CIListModal.prototype.loadData = function () {
 }
 
 /**
- * Makes new Change Instructions call, redirects on success
+ * Builds new Change Instructions request, redirects to edit page on success
  *
  * @return [void]
  */
@@ -91,56 +103,32 @@ CIListModal.prototype.createNew = function () {
 }
 
 /**
- * Makes a remove Change Instruction request, handles UI update
+ * Builds a remove Change Instruction request, handles UI update
  *
+ * @param confirm [Boolean] if true, will display a confirmation dialog
  * @return [void]
  */
-CIListModal.prototype.destroy = function (tableRow) {
+CIListModal.prototype.destroy = function (confirm, e) {
+  if (confirm) {
+    new ConfirmationDialog(this.destroy.bind(this, false, e),{dangerous: true})
+        .show();
+    return;
+  }
+
+  var itemRow = this.table.row($(e.target).closest("tr"));
+
   this.executeRequest({
-    url: ciBaseUrl,
+    url: itemRow.data().destroy_path,
     type: "DELETE",
     withTable: true,
     callback: function (result) {
       displayAlertsInElement(alertSuccess("Change Instruction deleted."), this.errorDiv);
-      tableRow.remove().draw();
+      itemRow.remove().draw();
       this.processing(false, true);
     }.bind(this)
   });
 }
 
-/**
- * Sets event listeners, handlers
- *
- * @return [String] formatted HTML
- */
-CIListModal.prototype.setListeners = function () {
-  this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
-  this.modal.find("#change-instructions-table tbody").on("click", ".icon-edit, .icon-trash", this.actionClick.bind(this));
-  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
-}
-
-
-
-/**
- * Called when edit icon clicked
- *
- * @param e [Event] original click event
- * @return [void]
- */
-CIListModal.prototype.actionClick = function (e) {
-  var itemRow = this.table.row($(e.target).closest("tr"));
-
-  // Redirect to edit
-  if ($(e.target).hasClass("icon-edit")) {
-    location.href = itemRow.data().edit_path;
-  }
-  // Remove Instruction Confirmation
-  else if ($(e.target).hasClass("icon-trash")) {
-    new ConfirmationDialog(this.destroy.bind(this, itemRow),
-      {dangerous: true})
-      .show();
-  }
-}
 
 /**
  ****** Support ******
@@ -165,7 +153,7 @@ CIListModal.prototype.processing = function(enable, withTable) {
 /**
  * Column definition
  *
- * @return [Array] column
+ * @return [Array] definition of the single column
  */
 CIListModal.prototype.column = function() {
   return [{
@@ -178,7 +166,7 @@ CIListModal.prototype.column = function() {
 }
 
 /**
- * Initializes table
+ * Initializes invisible DataTable for change instructions
  *
  * @return [DataTable] initialized DT instance
  */

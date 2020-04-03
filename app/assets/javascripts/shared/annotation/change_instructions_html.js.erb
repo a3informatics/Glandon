@@ -8,11 +8,11 @@
 *
 * @return [void]
 */
-function CIHtml() {
-}
+function CIHtml() { }
+
 
 /**
- * Generates HTML for a single Change Instruction
+ * Generates HTML for a single Change Instruction (index)
  *
  * @param data [Object] Change Instruction data object
  * @return [String] formatted HTML
@@ -23,7 +23,8 @@ CIHtml.prototype.changeInstruction = function (data) {
   html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
   html +=   "<div class='ci-header'>";
   html +=     "<div class='icon-instruction text-link text-large'></div>";
-  html +=     "<div class='actions'><span class='icon-edit text-link'></span><span class='icon-trash text-accent-2'></span></div>";
+  html +=     "<div class='actions'><a href='"+data.edit_path+"' class='icon-edit text-link'></a>" +
+                "<a href='#' class='icon-trash text-accent-2'></a></div>";
   html +=   "</div>";
   html +=   "<div class='ci-body'>";
   html +=     "<div>Reference: " +
@@ -41,6 +42,7 @@ CIHtml.prototype.changeInstruction = function (data) {
  * Generates HTML for a list of links for CI
  *
  * @param data [Object] Change Instruction data object
+ * @param opts [Object] Options, must specify: withHref (bool), ttip (bool), class (string)
  * @return [String] formatted likns list HTML
  */
 CIHtml.prototype.linksList = function (data, opts) {
@@ -62,8 +64,11 @@ CIHtml.prototype.linksList = function (data, opts) {
 }
 
 /**
- * Builds icon with tooltip for a link
+ * Builds HTML for a link item in the list
  *
+ * @param link [Object] Single link's data
+ * @param type [String] previous/current
+ * @param opts [Object] Options, must specify: withHref (bool), ttip (bool), class (string)
  * @return [String] formatted HTML
  */
 CIHtml.prototype.listItem = function(link, type, opts) {
@@ -78,15 +83,17 @@ CIHtml.prototype.listItem = function(link, type, opts) {
 }
 
 /**
- * Builds icon with tooltip for a link
+ * Builds previous/current icon with tooltip for an item
  *
+ * @param type [String] previous/current
+ * @param opts [Object] Options, must specify: withHref (bool), ttip (bool), class (string)
  * @return [String] formatted HTML
  */
 CIHtml.prototype.linkIcon = function(type, opts) {
   var html = "";
   if (opts.ttip) {
     html += "<span class='type-icon icon-" + (type == "previous" ? "old" : "new") + " text-normal ttip'>";
-    html +=   "<span class='ttip-text ttip-left shadow-small text-small'>" +
+    html +=   "<span class='ttip-text left ttip-table shadow-small text-small'>" +
                 (type == "previous" ? "Previous" : "Current") +
               "</span>";
     html += "</span>";
@@ -100,8 +107,9 @@ CIHtml.prototype.linkIcon = function(type, opts) {
 }
 
 /**
- * Builds HTML text for a link
+ * Builds HTML text for an item link
  *
+ * @param link [Object] Single link's data
  * @return [String] formatted HTML
  */
 CIHtml.prototype.linkText = function(link) {

@@ -100,11 +100,7 @@ ItemsSelector.prototype.setListeners = function(callback) {
  * @return [void]
  */
 ItemsSelector.prototype.submit = function() {
-  try {
-    this.params.callback(JSON.parse(JSON.stringify(this.selection)))
-  } catch(e) {
-    console.log(e);
-  }
+  this.params.callback(JSON.parse(JSON.stringify(this.selection)))
 
   this.reset();
   this.modal.modal("hide");

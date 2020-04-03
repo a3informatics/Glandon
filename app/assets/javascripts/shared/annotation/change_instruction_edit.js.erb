@@ -5,13 +5,14 @@
 
 $(document).ready(function() {
   var ciEditor = new CIEditor();
-  var helpInfo = new InformationDialog({div: $("#edit-help")});
 
+  var helpInfo = new InformationDialog({div: $("#edit-help")});
   $(".icon-help").on("click", helpInfo.show.bind(helpInfo));
 });
 
+
 /**
-* Change Instructions Modal Constructor
+* Change Instructions Editor Constructor
 *
 * @return [void]
 */
@@ -37,41 +38,23 @@ function CIEditor() {
 
 
 /**
- * Load data request
+ * Sets event listeners, handlers
  *
  * @return [void]
  */
-CIEditor.prototype.load = function () {
-  this.clear();
-
-  this.executeRequest({
-    url: ciBaseUrl,
-    type: "GET",
-    data: {},
-    callback: function(result) {
-      this.initHTML(result.data);
-      this.processing(false);
-    }.bind(this)
-  });
+CIEditor.prototype.setListeners = function () {
+  $(".change-instruction").on("focusin focusout", ".content-editable", this.onContentEdit.bind(this));
+  $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
+  $(".change-instruction").on("click", "#save-ci", this.save.bind(this));
+  $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
+  $(".change-instruction").on("click", ".add-links", this.openSelector.bind(this));
+  $(".change-instruction").on("click", ".removable", this.destroyLink.bind(this));
 }
 
 /**
- * Clear data
+ * Generic ajax request builder, invokes callback on success
  *
- * @return [void]
- */
-CIEditor.prototype.clear = function () {
-  $("#reference").text("");
-  $("#description").text("");
-  $(".items-list").empty();
-  $("#save-ci").addClass("disabled");
-}
-
-
-/**
- * Executes ajax request, invokes callback on success
- *
- * @param params [Object] must contain: url, type, callback
+ * @param params [Object] must contain: url, type, data, callback
  * @return [void]
  */
 CIEditor.prototype.executeRequest = function (params) {
@@ -94,17 +77,22 @@ CIEditor.prototype.executeRequest = function (params) {
 }
 
 /**
- * Sets event listeners, handlers
+ * Build load CI data request
  *
  * @return [void]
  */
-CIEditor.prototype.setListeners = function () {
-  $(".change-instruction").on("focusin focusout", ".content-editable", this.onContentEdit.bind(this));
-  $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
-  $(".change-instruction").on("click", "#save-ci", this.saveFields.bind(this));
-  $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
-  $(".change-instruction").on("click", ".add-links", this.openSelector.bind(this));
-  $(".change-instruction").on("click", ".removable", this.destroyLink.bind(this));
+CIEditor.prototype.load = function () {
+  this.clear();
+
+  this.executeRequest({
+    url: ciBaseUrl,
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      this.initHTML(result.data);
+      this.processing(false);
+    }.bind(this)
+  });
 }
 
 /**
@@ -112,7 +100,7 @@ CIEditor.prototype.setListeners = function () {
  *
  * @return [void]
  */
-CIEditor.prototype.saveFields = function () {
+CIEditor.prototype.save = function () {
   var description = $("#description").text().trim();
   var reference = $("#reference").text().trim();
 
@@ -120,7 +108,10 @@ CIEditor.prototype.saveFields = function () {
     url: ciBaseUrl,
     type: "PUT",
     data: {
-      change_instruction: { description: description, reference: reference }
+      change_instruction: {
+        description: description,
+        reference: reference
+      }
     },
     callback: function(result) {
       $("#save-ci").addClass("disabled");
@@ -131,7 +122,7 @@ CIEditor.prototype.saveFields = function () {
 }
 
 /**
- * Removes Change Instruction, redirects to root
+ * Build CI destroy request, redirects to root
  *
  * @param confirm [Boolean] shows confirmation dialog if false, force remove if true
  * @return [void]
@@ -155,9 +146,9 @@ CIEditor.prototype.destroy = function (confirm) {
 }
 
 /**
- * Removes Change Instruction, redirects to root
+ * Build CI link destroy request, updates UI
  *
- * @param confirm [Boolean] shows confirmation dialog if false, force remove if true
+ * @param e [Event] source click event
  * @return [void]
  */
 CIEditor.prototype.destroyLink = function (e) {
@@ -178,7 +169,36 @@ CIEditor.prototype.destroyLink = function (e) {
 }
 
 /**
- * Enables content editing
+ * Process selection and post to server
+ *
+ * @param e [Event] trigger event
+ * @return [void]
+ */
+CIEditor.prototype.addLinks = function (linkType, selection) {
+
+  var data = {
+    change_instruction: {
+      current: [],
+      previous: []
+  }};
+
+  $.each(selection, function(type, values) {
+    data.change_instruction[linkType] = data.change_instruction[linkType].concat(values.map(function(v){return v.id}));
+  });
+
+  this.executeRequest({
+    url: ciAddRefsUrl,
+    type: "PUT",
+    data: data,
+    callback: function(result) {
+      this.load();
+      this.success();
+    }.bind(this)
+  })
+}
+
+/**
+ * Enables / disables content editing
  *
  * @param e [Event] trigger event
  * @return [void]
@@ -187,7 +207,6 @@ CIEditor.prototype.onContentEdit = function (e) {
   switch(e.type) {
     case "focusin":
       $("#save-ci").removeClass("disabled");
-      $(e.currentTarget).prop("contenteditable", true);
       $(".content-editable")
         .removeClass("with-icon")
         .not($(e.currentTarget))
@@ -195,7 +214,6 @@ CIEditor.prototype.onContentEdit = function (e) {
       break;
     case "focusout":
       $(".content-editable")
-        .prop("contenteditable", false)
         .addClass("with-icon");
       break;
   }
@@ -221,43 +239,15 @@ CIEditor.prototype.onKeyPress = function (e) {
 }
 
 /**
- * Opens selector for adding links
+ * Opens selector for adding links, bind callback
  *
  * @param e [Event] trigger event
  * @return [void]
  */
 CIEditor.prototype.openSelector = function (e) {
   var type = $(e.currentTarget).attr("id").split('-')[1];
-  this.selector.setCallback(this.selectCallback.bind(this, type));
+  this.selector.setCallback(this.addLinks.bind(this, type));
   this.selector.show();
-}
-
-/**
- * Process selection and post to server
- *
- * @param e [Event] trigger event
- * @return [void]
- */
-CIEditor.prototype.selectCallback = function (linkType, selection) {
-  var data = {
-    change_instruction: {
-      current: [],
-      previous: []
-  }};
-
-  $.each(selection, function(type, values) {
-    data.change_instruction[linkType] = data.change_instruction[linkType].concat(values.map(function(v){return v.id}));
-  });
-
-  this.executeRequest({
-    url: ciAddRefsUrl,
-    type: "PUT",
-    data: data,
-    callback: function(result) {
-      this.load();
-      this.success();
-    }.bind(this)
-  })
 }
 
 
@@ -267,7 +257,19 @@ CIEditor.prototype.selectCallback = function (linkType, selection) {
 
 
 /**
- * Success style change
+ * Clear all CI data from HTML
+ *
+ * @return [void]
+ */
+CIEditor.prototype.clear = function () {
+  $("#reference").text("");
+  $("#description").text("");
+  $(".items-list").empty();
+  $("#save-ci").addClass("disabled");
+}
+
+/**
+ * Success CI style animation
  *
  * @return [void]
  */
@@ -299,7 +301,7 @@ CIEditor.prototype.initHTML = function (data) {
 }
 
 /**
- * Adds 'None' text to list if empty
+ * Adds 'Empty' text to list if empty
  *
  * @return [void]
  */
@@ -309,7 +311,6 @@ CIEditor.prototype.handleEmptyLists = function () {
       $(this).html("<div class='text-small text-light'><i>Empty</i></div>");
   });
 }
-
 
 /**
  * Toggles processing state
