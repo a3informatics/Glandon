@@ -33,40 +33,35 @@ class Annotation::ChangeInstruction < Annotation
     ci
   end
 
-  # # Delete. Delete the change instruction and the associated references.
-  # #
-  # # @return [Integer] count of items deleted
-  # def delete_change_instruction
-  #   self.current_objects
-  #   op_ref = OperationalReferenceV3.find(self.current.first.uri) #will we have more than one OP?
-  #   transaction_begin
-  #   op_ref.delete
-  #   super
-  #   transaction_execute
-  #   1
-  #       query_string = %Q{
-  #       DELETE 
-  #       {
-  #         ?s ?p ?o
-  #       } 
-  #       WHERE 
-  #       {
-  #         {
-  #           #{self.uri.to_ref} (th:members/th:memberNext*) ?s .
-  #           ?s ?p ?o .
-  #         }     
-  #         UNION
-  #         { 
-  #           #{self.uri.to_ref} (^th:isOrdered) ?s .
-  #           ?s th:narrower ?o
-  #           BIND ( th:narrower as ?p ) .
-  #         } 
-  #       }
-  #     }
-  #     partial_update(query_string, [:th])
-  # end
+  # Delete. Delete the change instruction and the associated references.
+  def delete
+    query_string = %Q{
+      DELETE 
+        {
+          ?s ?p ?o
+        } 
+        WHERE 
+        {
+          {
+            #{self.uri.to_ref} (ba:current) ?s .
+            ?s ?p ?o .
+          }     
+          UNION
+          { 
+            #{self.uri.to_ref} (ba:previous) ?s .
+            ?s ?p ?o .
+          }
+          UNION
+          { 
+            #{self.uri.to_ref} ?p ?o .
+            BIND (#{self.uri.to_ref} as ?s)
+          }  
+        }
+      }
+      partial_update(query_string, [:ba])
+  end
 
-    def get_data
+  def get_data
       results = {id: nil, reference: nil, description: nil, previous: [], current: []}
       query_string = %Q{
       SELECT DISTINCT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
@@ -133,7 +128,7 @@ class Annotation::ChangeInstruction < Annotation
         end
       end
       results
-    end
+  end
 
   def remove_reference(params)
     case params[:type].to_sym
@@ -151,6 +146,7 @@ class Annotation::ChangeInstruction < Annotation
   end
 
   def add_references(params)
+  transaction_begin
     if !params[:previous].nil?
       params[:previous].each do |p|  
         self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
@@ -162,6 +158,7 @@ class Annotation::ChangeInstruction < Annotation
       end
     end
     self.save
+    transaction_execute
     self
   end
 
