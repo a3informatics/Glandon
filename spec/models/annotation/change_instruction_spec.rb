@@ -128,19 +128,20 @@ describe Annotation::ChangeInstruction do
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    item.remove_reference(type: "current", concept_id: uri3.to_id)
+    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002")
+    op_ref2 = Annotation::ChangeInstruction.find(op_ref2.to_id)
+    item.remove_reference(type: "current", concept_id: uri4.to_id)
     item = Annotation::ChangeInstruction.find(item.id)
-    op_ref = Uri.new(uri: "http://www.assero.co.uk/IC#CI1_R10001")
-    expect{Annotation::ChangeInstruction.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in Annotation::ChangeInstruction.")
-    expect{OperationalReferenceV3.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in OperationalReferenceV3.")
+    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in OperationalReferenceV3.")
   end
 
   it "adds and removes references" do
-  byebug
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
@@ -150,14 +151,20 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id], current: [])
     item = Annotation::ChangeInstruction.find(item.id)
+    op_ref = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R1")
+    op_ref = Annotation::ChangeInstruction.find(op_ref.to_id)
     item.remove_reference(type: "previous", concept_id: uri1.to_id)
     item = Annotation::ChangeInstruction.find(item.id)
-    op_ref = Uri.new(uri: "http://www.assero.co.uk/IC#CI1_R10001")
-    expect{Annotation::ChangeInstruction.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in Annotation::ChangeInstruction.")
-    expect{OperationalReferenceV3.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in OperationalReferenceV3.")
+    expect{Annotation::ChangeInstruction.find(op_ref.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R1 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R1 in OperationalReferenceV3.")
     item.add_references(previous: [uri2.to_id, uri3.to_id], current: [uri4.to_id, uri1.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
+    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002")
+    op_ref2 = Annotation::ChangeInstruction.find(op_ref2.to_id)
     item.remove_reference(type: "current", concept_id: uri1.to_id)
+    item = Annotation::ChangeInstruction.find(item.id)
+    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in OperationalReferenceV3.")
   end
 
   it "change instructions links I" do
@@ -165,6 +172,7 @@ describe Annotation::ChangeInstruction do
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     item = Annotation::ChangeInstruction.find(item.id)
@@ -177,6 +185,7 @@ describe Annotation::ChangeInstruction do
   it "change instructions links II" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     item = Annotation::ChangeInstruction.find(item.id)
@@ -187,6 +196,7 @@ describe Annotation::ChangeInstruction do
   end
 
   it "change instructions links III" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     item = Annotation::ChangeInstruction.find(item.id)
@@ -197,6 +207,7 @@ describe Annotation::ChangeInstruction do
   it "change instructions links IV" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/CT/V30#TH")
     uri2 = Uri.new(uri: "http://www.cdisc.org/CT/V37#TH")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     item = Annotation::ChangeInstruction.find(item.id)
