@@ -151,7 +151,7 @@ private
         next if type == :destroy_path
         content.each do |ref|
           if !ref.key?(:child)
-            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: link_params})
+            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: {context_id: ""}})
           else
             uc_params = link_params
             uc_params[:parent_id] = ref[:parent][:id]
