@@ -58,11 +58,13 @@ describe Annotation::ChangeInstruction do
 	end
 
   it "creates a change instruction" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
   end
 
   it "updates a change instruction, fields" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
     check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
