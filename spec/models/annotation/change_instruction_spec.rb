@@ -74,6 +74,7 @@ describe Annotation::ChangeInstruction do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
@@ -85,9 +86,11 @@ describe Annotation::ChangeInstruction do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item = Annotation::ChangeInstruction.find(item.id)
-    item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
+    item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml")
   end
@@ -96,11 +99,13 @@ describe Annotation::ChangeInstruction do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    item.add_references(previous: [], current: [uri3.to_id])
+    item.add_references(previous: [], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_3.yaml")
   end
@@ -109,25 +114,13 @@ describe Annotation::ChangeInstruction do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
     uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
     uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
-    item = Annotation::ChangeInstruction.create
-    item = Annotation::ChangeInstruction.find(item.id)
-    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
-    item = Annotation::ChangeInstruction.find(item.id)
-    item.add_references(previous: [uri3.to_id], current: [])
-    item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_4.yaml")
-  end
-
-  it "adds references IV" do
-    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
-    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
-    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
     uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id, uri3.to_id, uri4.to_id], current: [])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_5.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_4.yaml")
   end       
 
   it "removes reference" do
