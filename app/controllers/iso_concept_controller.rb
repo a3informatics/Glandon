@@ -58,7 +58,7 @@ class IsoConceptController < ApplicationController
     change_instructions = [concept.change_instructions]
     change_instructions.each do |c|
       next if c[:id] == nil
-      results << c.reverse_merge!({edit_path: annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
+      results << c.reverse_merge!({edit_path: edit_annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
     end
     add_ci_show_path(results)
     render :json => {data: results}, :status => 200
@@ -161,7 +161,7 @@ private
       end
     end
   end
-  
+
   def link_params
     return {} if params.dig(:unmanaged_concept, :context_id).nil?
     return {} if params.dig(:unmanaged_concept, :context_id).empty?
