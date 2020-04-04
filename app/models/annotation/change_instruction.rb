@@ -15,12 +15,6 @@ class Annotation::ChangeInstruction < Annotation
 
   # Create. 
   #
-  # @param [Hash] params the parameters hash
-  # @option params [String] :semantic The semantic of the change instruction
-  # @option params [String] :description The description, the actual annotation.
-  # @option params [String] :reference any references
-  # @option params [Array] :current the current item for which the change instruction is relevant
-  # @option params [Array] :previous the previous item for which the change instruction is relevant
   # @return [Annotation::ChangeInstruction] the change instruction, may contain errors.
   def self.create
     ci = Annotation::ChangeInstruction.new
@@ -61,6 +55,9 @@ class Annotation::ChangeInstruction < Annotation
       partial_update(query_string, [:ba])
   end
 
+  # Get data. 
+  #
+  # @return [Annotation::ChangeInstruction] the change instruction and the associated references
   def get_data
       results = {id: nil, reference: nil, description: nil, previous: [], current: []}
       query_string = %Q{
@@ -130,6 +127,11 @@ class Annotation::ChangeInstruction < Annotation
       results
   end
 
+  # Remove reference
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [String] :type current or previous
+  # @option params [String] :concept_id the concept referenced
   def remove_reference(params)
     case params[:type].to_sym
       when :previous
@@ -138,15 +140,20 @@ class Annotation::ChangeInstruction < Annotation
         set = self.current_objects
     end
     object = set.find{|x| x.reference == Uri.new(id: params[:concept_id])}   
+    op_ref = OperationalReferenceV3.find(object.uri)
     transaction_begin
-    object.delete
-    self.save
+    op_ref.delete
     transaction_execute
     1
   end
 
+  # Add references
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [String] :previous the previous ids references to add
+  # @option params [String] :current the current ids references to add
+  # @return [Annotation::ChangeNote] the change note, may contain errors.
   def add_references(params)
-  transaction_begin
     if !params[:previous].nil?
       params[:previous].each do |p|  
         self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
@@ -158,12 +165,7 @@ class Annotation::ChangeInstruction < Annotation
       end
     end
     self.save
-    transaction_execute
     self
-  end
-
-  def add_op_reference(uri, index)
-    OperationalReferenceV3.create({reference: uri, context: nil, ordinal: index + 1}, self)
   end
 
   def add_previous(ct, reference)
@@ -175,6 +177,10 @@ class Annotation::ChangeInstruction < Annotation
   end
 
 private
+  
+  def add_op_reference(uri, index)
+    OperationalReferenceV3.create({reference: uri, context: nil, ordinal: index + 1}, self)
+  end
   
   def add_reference(collection, ct, reference)
     set = ct.find_by_identifiers(reference)
