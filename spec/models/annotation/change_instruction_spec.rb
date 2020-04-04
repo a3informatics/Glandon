@@ -48,6 +48,7 @@ describe Annotation::ChangeInstruction do
 		result.description = "This is the comment"
     result.label = "Label"
     result.semantic = "A Relationship"
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
 		parent_uri = UriV2.new(uri: "http://example.com/A#base")
 		sparql = Sparql::Update.new
     result.generate_uri(parent_uri)
@@ -136,11 +137,32 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    item.remove_reference(type: "current", id: uri3.to_id)
+    item.remove_reference(type: "current", concept_id: uri3.to_id)
     item = Annotation::ChangeInstruction.find(item.id)
     op_ref = Uri.new(uri: "http://www.assero.co.uk/IC#CI1_R10001")
     expect{Annotation::ChangeInstruction.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in Annotation::ChangeInstruction.")
     expect{OperationalReferenceV3.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in OperationalReferenceV3.")
+  end
+
+  it "adds and removes references" do
+  byebug
+    uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+    uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+    uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+    uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
+    item = Annotation::ChangeInstruction.create
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.add_references(previous: [uri1.to_id], current: [])
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.remove_reference(type: "previous", concept_id: uri1.to_id)
+    item = Annotation::ChangeInstruction.find(item.id)
+    op_ref = Uri.new(uri: "http://www.assero.co.uk/IC#CI1_R10001")
+    expect{Annotation::ChangeInstruction.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/IC#CI1_R10001 in OperationalReferenceV3.")
+    item.add_references(previous: [uri2.to_id, uri3.to_id], current: [uri4.to_id, uri1.to_id])
+    item = Annotation::ChangeInstruction.find(item.id)
+    item.remove_reference(type: "current", concept_id: uri1.to_id)
   end
 
   it "change instructions links I" do
