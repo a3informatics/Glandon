@@ -33,7 +33,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>  
 SELECT DISTINCT ?cll ?clid ?clil ?cliid ?rv WHERE        
 {           
-  VALUES ?th {<http://www.transceleratebiopharmainc.com/R2x6/V1#TH>} 
+  VALUES ?th {[[[parameter_1]]]} 
   ?th th:reference/bo:reference/isoT:hasState/isoR:byAuthority ?auth .
   ?th th:reference/bo:reference/isoT:hasIdentifier/isoI:version ?rv . 
   { ?th th:isTopConceptReference/bo:reference/th:narrower ?cli } MINUS

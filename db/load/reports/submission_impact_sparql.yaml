@@ -48,7 +48,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 SELECT DISTINCT ?scll ?sclid ?sclil ?scliid ?sn ?cll ?clid ?clil ?cliid ?cn WHERE 
 { 
-  VALUES ?th {<http://www.sanofi.com/2020_R1/V1#TH>} 
+  VALUES ?th {[[[parameter_1]]]} 
   { 
     { 
       SELECT DISTINCT ?auth (MAX(?ctvt) as ?ctv) WHERE 
