@@ -159,12 +159,12 @@ describe "Transcelerate Data" do
       ]
       items = []
       endpoints.each_with_index do |ep, index|
-        item = EndPoint.new(ep)
+        item = Endpoint.new(ep)
         item.set_initial("EP #{index+1}")
         items << item
       end
       sparql = Sparql::Update.new
-      sparql.default_namespace(i_1.uri.namespace)
+      sparql.default_namespace(items.first.uri.namespace)
       items.each {|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_endpoints.ttl")
