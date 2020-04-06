@@ -11,13 +11,13 @@ describe Form::Item::TextLabel do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
     load_files(schema_files, data_files)
-    load_test_file_into_triple_store("form_example_general.ttl")
   end
 
   it "validates a valid object" do
     result = Form::Item::TextLabel.new
     result.label_text = "Draft 123"
     result.ordinal = 1
+    result.uri = result.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     expect(result.valid?).to eq(true)
   end
 
