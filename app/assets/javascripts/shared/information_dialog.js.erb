@@ -106,14 +106,13 @@ InformationDialog.prototype.setText = function(newText) {
  * @return [Object] Default values combined with user options that were set
  */
 InformationDialog.prototype.defaultOptions = function(userOptions) {
-  var options = {
-    title: userOptions.title == null ? "Information" : userOptions.title,
-    subtitle: userOptions.subtitle == null ? "" : userOptions.subtitle,
-    dangerous: userOptions.dangerous == null ? false : userOptions.dangerous,
-    wide: userOptions.wide == null ? false : userOptions.wide,
-    div: userOptions.div
-  }
-  return options;
+  return _.defaults(userOptions, {
+    title: "Information",
+    subtitle: "",
+    dangerous: false,
+    wide: false,
+    div: null
+  });
 }
 
 /**

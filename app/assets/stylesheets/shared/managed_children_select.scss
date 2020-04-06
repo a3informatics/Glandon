@@ -119,14 +119,14 @@ table.table-row-clickable tbody tr:first-of-type td{
 
 // Managed Items Select Modal
 
-#im-select-modal .card {
+.modal-content .card {
   min-height: 400px;
   max-height: 80%;
 }
 
 
 @media (max-width: 1250px){
-  #im-select-modal .card{
+  .modal-content .card {
     max-width: calc(100% - 40px);
     width: calc(100% - 40px);
   }

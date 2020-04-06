@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("List Change notes: '+@managed_item.label+'")' %>
 <% third_level_breadcrumb(:code_lists, @managed_item, @close_path) %>
 
-<%= stylesheet_link_tag 'shared/change_notes', 'shared/datatables_loading' %>
+<%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'iso_managed/list_change_notes', 'shared/list_change_notes_panel' %>
 
 <%= javascript_tag "var dataUrl = '#{list_change_notes_data_iso_managed_v2_path(@managed_item)}'" %>
