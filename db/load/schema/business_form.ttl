@@ -150,6 +150,14 @@
   rdfs:range bo:TcReference ;
   skos:definition "Reference to a Thesaurus Concept"^^xsd:string
 .
+:hasCodeValue
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Coded Value Relationship"^^xsd:string ;
+  rdfs:domain :Question ;
+  rdfs:range bo:TMcReference ;
+  skos:definition "Reference to a coded value."^^xsd:string
+.
 :completion
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
@@ -236,7 +244,7 @@
   rdfs:range xsd:string ;
   skos:definition "The annotation/mapping."^^xsd:string
 .
-:question_text
+:questionText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Question ;
