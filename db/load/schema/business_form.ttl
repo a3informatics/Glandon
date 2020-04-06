@@ -186,7 +186,7 @@
   rdfs:range xsd:boolean ;
   skos:definition "Item optional flag."^^xsd:string
 .
-:free_text
+:freeText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Placeholder ;
@@ -194,7 +194,7 @@
   rdfs:range xsd:string ;
   skos:definition "Placeholder free text."^^xsd:string
 .
-:label_text
+:labelText
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :TextLabel ;
