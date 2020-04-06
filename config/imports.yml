@@ -1591,6 +1591,16 @@ defaults: &defaults
                   column: 
                     - 8
                     - 12
+              -
+                method: set_property
+                object: child
+                property: label
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 
+                    - 8
+                    - 12
           - 
             label: "DECODE"
             actions: 
@@ -1600,6 +1610,16 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: true
                 map: {}
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 
+                    - 12
           - 
             label: "SYNONYM"
             actions: 
@@ -1636,6 +1656,15 @@ defaults: &defaults
                 condition: 
                   method: column_blank?
                   column: 8
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 12
           - 
             label: "DISPLAY_ORDER"
             actions:  []

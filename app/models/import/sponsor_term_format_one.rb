@@ -8,11 +8,11 @@ class Import::SponsorTermFormatOne < Import
   include Import::STFOClasses
 
   C_V2 = "01/01/1900".to_datetime 
-  C_V3 = "01/09/2019".to_datetime 
+  C_V3 = "01/01/2100".to_datetime 
   C_FORMAT_MAP = [
     {range: (C_V2...C_V3), sheet: :version_2}, 
-    {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
-  C_DEFAULT = :version_3
+    {range: (C_V3...C_V3+1), sheet: :version_3}]
+  C_DEFAULT = :version_2
 
   # Import. Import the rectangular structure
   #
@@ -258,10 +258,18 @@ private
       @config = file_path.blank? ? nil : YAML.load(File.read(file_path)).deep_symbolize_keys
     end
 
-    def fix(cl, cli)
+    def override?(cl, cli)
       return nil if @config.nil?
-      uri = @config.dig(:fixes, cl.to_sym, cli.to_sym)
-    puts colourize("Checking fix #{cl}, #{cli}, uri=#{uri}", "blue")
+      entry = @config.dig(:override, cl.to_sym, cli.to_sym)
+    puts colourize("Checking override #{cl}, #{cli}, entry=#{entry}", "brown")
+      return false if entry.nil?
+      true
+    end
+
+    def qualify(cl, cli)
+      return nil if @config.nil?
+      uri = @config.dig(:qualify, cl.to_sym, cli.to_sym)
+    puts colourize("Checking qualify #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end

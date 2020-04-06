@@ -81,30 +81,30 @@
 	th:notation "VSTEST"^^xsd:string ;
 	th:definition "The test name given to the test that analyzes a particular set of vital signs including temperature, respiratory rate, heart rate, and blood pressure."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25208> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25299> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49680> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49679> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49678> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49677> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25347> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49676> ;
-	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C16358> ;
-	th:narrower <http://www.cdisc.org/C67153/V16#C67153_C25157> ;
-	th:narrower <http://www.cdisc.org/C67153/V20#C67153_C87054> ;
 	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98785> ;
-	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C84372> ;
-	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98793> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100947> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100945> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100948> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100946> ;
-	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C71258> ;
-	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C103346> ;
-	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C60832> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25206> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25347> ;
 	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C12472> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49677> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49676> ;
+	th:narrower <http://www.cdisc.org/C67153/V16#C67153_C25157> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C103346> ;
 	th:narrower <http://www.cdisc.org/C67153/V34#C67153_C81298> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100946> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100945> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25208> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49680> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49678> ;
+	th:narrower <http://www.cdisc.org/C67153/V20#C67153_C87054> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C16358> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C25299> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100947> ;
+	th:narrower <http://www.cdisc.org/C67153/V33#C67153_C60832> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C84372> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C71258> ;
+	th:narrower <http://www.cdisc.org/C67153/V30#C67153_C100948> ;
+	th:narrower <http://www.cdisc.org/C67153/V28#C67153_C98793> ;
+	th:narrower <http://www.cdisc.org/C67153/V4#C67153_C49679> ;
 	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C81255> ;
 	th:narrower <http://www.cdisc.org/C67153/V35#C67153_C104622> ;
 	th:narrower <http://www.cdisc.org/C67153/V37#C67153_C25298> ;
@@ -153,7 +153,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S006622>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Mean Heart Rate"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -165,7 +165,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S006623>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Mean Temperature"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -181,7 +181,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007258>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Food Energy"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -197,7 +197,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007259>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Measured Minutes"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -213,7 +213,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007260>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Energy Expenditure 24h"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -229,7 +229,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007261>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Respiratory Quotient 24h"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -245,7 +245,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007262>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Sleep Duration"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -261,7 +261,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007263>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Sleep Energy Expenditure"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -277,7 +277,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007264>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Sleep Respiratory Quotient"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -293,7 +293,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007265>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Resting Energy Expenditure"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -309,7 +309,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007266>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Resting Respiratory Quotient"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -325,7 +325,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007267>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Activity-Related Energy Expenditure"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -341,7 +341,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007268>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Diet Induced Thermogenesis"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -357,7 +357,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007269>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Basal Energy Expenditure"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -373,7 +373,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007270>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Basal Respiratory Quotient"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -389,7 +389,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S007271>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Energy Balance"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;
@@ -405,7 +405,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S009925>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Vital Signs All"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "S009925"^^xsd:string ;
 	th:notation "Vital Signs All"^^xsd:string ;
@@ -419,7 +419,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_S010959>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Maximum Temperature"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	th:identifier "S010959"^^xsd:string ;
 	th:notation "Maximum Temperature"^^xsd:string ;
@@ -433,7 +433,7 @@
 .
 <http://www.s-cubed.dk/C67153/V1#C67153_SC122232>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Body Fat Measurement"^^xsd:string ;
 	isoC:tagged <http://www.assero.co.uk/CSN#03cc2812-7873-4638-bf99-7882a82eddf3> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#82a71a7c-5591-449d-a1c5-eb5ee0d88aca> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#9b1897b7-35ce-4e50-8b1a-136d7db5190d> ;

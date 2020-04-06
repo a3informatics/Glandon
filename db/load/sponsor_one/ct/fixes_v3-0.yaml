@@ -1,4 +1,11 @@
-fixes:
+override:
+  SN001097:  
+    SC17649: true
+  SN000600:
+    SC25389: true
+  C71620:
+    SC25301: true
+qualify:
   C66729:
     C17649: http://www.cdisc.org/C99078/V31#C99078_C17649
   C71113:
@@ -201,9 +208,11 @@ fixes:
   SN001362:
     C25676: http://www.cdisc.org/C132319/V51#C132319_C25676
     C96684: http://www.cdisc.org/C127267/V48#C127267_C96684
+    C127786: http://www.cdisc.org/C132312/V51#C132312_C127786
   SN001363:
     C25676: http://www.cdisc.org/C132320/V51#C132320_C25676
     C96684: http://www.cdisc.org/C127266/V48#C127266_C96684
+    C127786: http://www.cdisc.org/C132313/V51#C132313_C127786
   SN001364:
     C127786: http://www.cdisc.org/C132313/V51#C132313_C127786
   SN001365:

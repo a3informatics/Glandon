@@ -20,6 +20,13 @@ describe "Import::SponsorTermFormatOne" do
     @job.save
     @object.background_id = @job.id
     @object.save
+    @release_details =
+    [
+      {identifier: "2019 R1", label: "2019 Release 1", date: "2019-08-08", uri: "http://www.sanofi.com/2019_R1/V1#TH"},
+      {identifier: "2020 R1", label: "2020 Release 1", date: "2020-03-26", uri: "http://www.sanofi.com/2020_R1/V1#TH"}
+    ]
+    @uri_2_6 = Uri.new(uri: "#{@release_details[0][:uri]}")
+    @uri_3_0 = Uri.new(uri: "#{@release_details[1][:uri]}")
   end
 
   def read_installation(installation)
@@ -38,8 +45,6 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   before :each do
-    @uri_2_6 = Uri.new(uri: "http://www.sanofi.com/Q3_2019/V1#TH")
-    @uri_3_0 = Uri.new(uri: "http://www.sanofi.com/Q1_2020/V1#TH")
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -71,6 +76,33 @@ describe "Import::SponsorTermFormatOne" do
     result = query_results.by_object(:count).first.to_i
     puts colourize("Total CL count=#{result}", "blue")
     result
+  end
+
+  def cl_identifiers(th)
+    query_string = %Q{
+      SELECT DISTINCT ?identifier ?label WHERE 
+      {
+        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+        ?s th:identifier ?identifier .
+        ?s isoC:label ?label .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
+    query_results.by_object_set([:identifier, :label])
+  end
+
+  def cl_items_unique(th)
+    query_string = %Q{
+      SELECT DISTINCT ?notation ?identifier WHERE 
+      {
+        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s1 .
+        ?s1 th:notation ?notation .
+        ?s1 th:narrower ?s2 .
+        ?s2 th:identifier ?identifier .
+      } ORDER BY ?notation ?identifier
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
+    query_results.by_object_set([:notation, :identifier])
   end
 
   def count_cli(th)
@@ -113,16 +145,17 @@ describe "Import::SponsorTermFormatOne" do
 
   def cl_info(th, key)
     query_string = %Q{
-      SELECT ?n (COUNT(?cli) as ?count) WHERE 
+      SELECT ?n ?i (COUNT(?cli) as ?count) WHERE 
       {
         #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
         ?s isoC:label "#{key}" .
         ?s th:notation ?n .
+        ?s th:identifier ?i .
         ?s th:narrower ?cli .
-      } GROUP BY ?n
+      } GROUP BY ?n ?i
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC]) 
-    result = query_results.by_object_set([:n, :count]).map{|x| {notation: x[:n], count: x[:count]}}
+    result = query_results.by_object_set([:n, :i, :count]).map{|x| {notation: x[:n], identifier: x[:i], count: x[:count]}}
     result.first
   end
 
@@ -144,13 +177,15 @@ describe "Import::SponsorTermFormatOne" do
     result = cl_info(th, long_name)
     if result.nil?
       puts colourize("#{long_name} : #{identifier}", "red")
-      puts colourize("Notation: [<not found>, #{notation}] Count: [<not found>, #{count}]\n", "red")
-    elsif result[:notation] == notation && "#{result[:count]}".to_i == "#{count}".to_i
+      puts colourize("Notation: [A: <not found>, E: #{notation}] Count: [A: <not found>, E: #{count}]\n", "red")
+    elsif result[:notation] == notation && result[:identifier] == identifier && "#{result[:count]}".to_i == "#{count}".to_i
       #puts colourize("#{long_name} : #{identifier}", "green")
+    elsif result[:notation] == notation && result[:identifier] != identifier && "#{result[:count]}".to_i == "#{count}".to_i
+      puts colourize("E: #{notation}, #{long_name}, #{identifier} != A: #{result[:identifier]}", "brown")
     else
       db_items = cl_items(th, long_name)
       puts colourize("#{long_name} : #{identifier}", "red")
-      puts colourize("Notation: [#{result[:notation]}, #{notation}] Count: [#{result[:count]}, #{count}]", "red")
+      puts colourize("Notation: [A: #{result[:notation]}, E: #{notation}] Count: [A: #{result[:count]}, E: #{count}]", "red")
       puts colourize("Missing:  #{items - db_items}", "red")
       puts colourize("Extra:    #{db_items - items}\n", "red")
     end
@@ -205,20 +240,53 @@ describe "Import::SponsorTermFormatOne" do
     text.gsub(/[\u201C\u201D]/, '"')
   end
 
-  it "prepare comparison files", :speed => 'slow' do
-    #actual = cl_target("import_global_study_results_raw_2-6.csv")
-    actual = cl_target("import_global_results_raw_2-6.csv")
-    check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
-    actual = cl_target("import_global_results_raw_3-0.csv")
-    check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
-  end
+  # it "prepare comparison files", :speed => 'slow' do
+  #   # full_path = set_path(sub_dir, "v3-0.csv")
+  #   # items = CSV.read(full_path)
+  #   # results = []
+  #   # items[1..-1].each do |item|
+  #   #   results << {notation: item[0], identifier: item[1]}
+  #   # end
+  #   # check_file_actual_expected(results, sub_dir, "import_expected_new.yaml", equate_method: :hash_equal)
+  #   # check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  #   x1 = read_yaml_file(sub_dir, "import_new.yaml")
+  #   x2 = read_yaml_file(sub_dir, "import_expected_new.yaml")
+  #   check = {}
+  #   x1.each do |item|
+  #     key = "#{item[:notation]}.#{item[:identifier]}"
+  #     puts colourize("#{key} key", "brown") if check.key?(key)
+  #     check[key] = true
+  #     found = x2.find{|x| x[:notation] == item[:notation] && x[:identifier] == item[:identifier]}
+  #     next unless found.nil?
+  #     found = x2.find{|x| x[:notation] == item[:notation] && "#{x[:identifier]}" == "S#{item[:identifier]}"}
+  #     next unless found.nil?
+  #     puts colourize("[#{item[:notation]}, #{item[:identifier]}] !!!", "brown")
+  #   end
+  # end
+
+  # Initial way of creating expected results files.
+  # Hand modified after newr release from Sponsor
+  # 
+  # it "prepare comparison files", :speed => 'slow' do
+  #   #actual = cl_target("import_global_study_results_raw_2-6.csv")
+  #   actual = cl_target("import_global_results_raw_2-6.csv")
+  #   check_file_actual_expected(actual, sub_dir, "import_results_expected_2-6.yaml", equate_method: :hash_equal)
+  #   actual = cl_target("import_global_results_raw_3-0.csv")
+  #   check_file_actual_expected(actual, sub_dir, "import_results_expected_3-0.yaml", equate_method: :hash_equal)
+  # end
 
   it "import version 2.6", :speed => 'slow'  do
     thesauri_identifiers("3000", "10000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     full_path = db_load_file_path("sponsor_one/ct", "global_v2-6_CDISC_v43.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v2-6.yaml")
-    params = {identifier: "Q3 2019", version: "1", date: "2019-08-08", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 2-6, Q3 2019", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = 
+    {
+      identifier: @release_details[0][:identifier], version: "1", 
+      date: @release_details[0][:date], files: [full_path], fixes: fixes, 
+      version_label: "1.0.0", label: @release_details[0][:label], 
+      semantic_version: "1.0.0", job: @job, uri: ct.uri
+    }
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -229,19 +297,20 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2-6.ttl")
-    check_ttl_fix_v2(filename, "import_expected_2-6.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+    check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
  
   it "import 2.6 QC", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     th = Thesaurus.find_minimum(@uri_2_6)
     results = read_yaml_file(sub_dir, "import_results_expected_2-6.yaml")
+    expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
     expect(count_cl(th)).to eq(results.count)
     expect(count_cli(th)).to eq(22322)
-    expect(count_distinct_cli(th)).to eq(20096)
+    expect(count_distinct_cli(th)).to eq(20097)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
@@ -250,10 +319,16 @@ describe "Import::SponsorTermFormatOne" do
   it "import version 3.0", :speed => 'slow' do
     thesauri_identifiers("3500", "15000")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
     full_path = db_load_file_path("sponsor_one/ct", "global_v3-0_CDISC_v53.xlsx")
     fixes = db_load_file_path("sponsor_one/ct", "fixes_v3-0.yaml")
-    params = {identifier: "Q1 2020", version: "1", date: "2020-01-01", files: [full_path], fixes: fixes, version_label: "1.0.0", label: "Version 3-0, Q1 2020", semantic_version: "1.0.0", job: @job, uri: ct.uri}
+    params = 
+    {
+      identifier: @release_details[1][:identifier], version: "1", 
+      date: @release_details[1][:date], files: [full_path], fixes: fixes, 
+      version_label: "1.0.0", label: @release_details[1][:label], 
+      semantic_version: "1.0.0", job: @job, uri: ct.uri
+    }
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
     #expect(public_file_does_not_exist?("test", filename)).to eq(true)
@@ -264,40 +339,29 @@ describe "Import::SponsorTermFormatOne" do
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     #expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_3-0.ttl")
-    check_ttl_fix_v2(filename, "import_expected_3-0.ttl", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+    check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
 
   it "import 3.0 QC", :speed => 'slow' do
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th = Thesaurus.find_minimum(@uri_3_0)
     results = read_yaml_file(sub_dir, "import_results_expected_3-0.yaml")
+    expect(cl_identifiers(th).map{|x| x[:identifier]}).to match_array(results.map{|x| x[:identifier]})
     expect(count_cl(th)).to eq(results.count)
-    expect(count_cli(th)).to eq(31959)
-    expect(count_distinct_cli(th)).to eq(29554)
+    expect(count_cli(th)).to eq(31930)
+    expect(count_distinct_cli(th)).to eq(29514)
     results.each do |x|
       check_cl(th, x[:name], x[:identifier], x[:short_name], x[:items].count, x[:items])
     end
   end
 
   it "2-6 versus 3.0 QC I", :speed => 'slow' do
-    new_items = 
-    [
-      :SN003500, :SN003501, :SN003502, :SN003503, :SN003504, :SN003505, :SN003506, 
-      :SN003507, :SN003508, :SN003509, :SN003510, :SN003511, :SN003512, :SN003513, 
-      :SN003514, :SN003515, :SN003516, :SN003517
-    ]
-    deleted_items =
-    [
-      :SN003003, :SN003041, :SN003042, :SN003043, :SN003045, :SN003054, :SN003055, 
-      :SN003056, :SN003057, :SN003058, :SN003070, :SN003071, :SN003072, :SN003073, 
-      :SN003074, :SN003075, :SN003087, :SN003094
-    ]
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
     th_3_0 = Thesaurus.find_minimum(@uri_3_0)
     results = th_2_6.differences(th_3_0)
@@ -308,14 +372,14 @@ describe "Import::SponsorTermFormatOne" do
     curr = r_3_0.map{|x| x[:identifier].to_sym}.uniq
     created = results[:created].map{|x| x[:identifier]}
     deleted = results[:deleted].map{|x| x[:identifier]}
-    expect(created).to match_array(new_items + curr - prev)
-    expect(deleted).to match_array(prev - curr + deleted_items)
+    expect(created).to match_array(curr - prev) # New now accounted for
+    expect(deleted).to match_array(prev - curr)
   end
 
   it "2-6 versus 3.0 QC II", :speed => 'slow' do
     results = {}
-    load_local_file_into_triple_store(sub_dir, "import_expected_2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "import_expected_3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
     th_2_6 = Thesaurus.find_minimum(@uri_2_6)
     th_3_0 = Thesaurus.find_minimum(@uri_3_0)
     diffs = th_2_6.differences(th_3_0)
@@ -326,5 +390,22 @@ describe "Import::SponsorTermFormatOne" do
     end
     check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal)
   end
+
+  # it "import 3.0 check new", :speed => 'slow' do
+  #   load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
+  #   load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
+  #   th = Thesaurus.find_minimum(@uri_3_0)
+  #   results = cl_items_unique(th)
+  #   check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  # end
+
+  # it "import 3.0 check old", :speed => 'slow' do
+  #   load_local_file_into_triple_store(sub_dir, "CT_V2-6_Old.ttl")
+  #   load_local_file_into_triple_store(sub_dir, "CT_V3-0_Old.ttl")
+  #   th = Thesaurus.find_minimum(@uri_3_0)
+  #   results = cl_items_unique(th)
+  #   check_file_actual_expected(results, sub_dir, "import_old.yaml", equate_method: :hash_equal, write_file: true)
+  #   check_file_actual_expected(results, sub_dir, "import_new.yaml", equate_method: :hash_equal)
+  # end
 
 end
