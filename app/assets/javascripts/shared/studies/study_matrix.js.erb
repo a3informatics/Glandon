@@ -127,7 +127,9 @@ StudyMatrix.prototype.processMatrixData = function(data) {
     $.each(epoch.arms, function(idx, arm) {
       arm.element.type = "element";
       var thisArm = this.getItem("id", arm.id, "arms");
-      if (thisArm == null)
+      if (thisArm == null) {
+        var studyTimeline = new StudyTimeline(arm.id, this);
+
         this.data.arms.push(
           {
             type: "arm",
@@ -135,9 +137,10 @@ StudyMatrix.prototype.processMatrixData = function(data) {
             id: arm.id,
             color: this.generateColorShade(this.colorBases().green, idx),
             elements: [arm.element],
-            timeline: new StudyTimeline(arm.id, this),
+            timeline: studyTimeline,
           }
         );
+      }
       else
         thisArm.elements.push(arm.element);
 

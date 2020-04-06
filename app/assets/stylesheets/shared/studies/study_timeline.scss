@@ -141,6 +141,11 @@
   z-index: 11;
 }
 
+#tl-wrapper .timepoint:focus{
+  z-index: 11;
+  outline: solid lightgrey 1px;
+}
+
 #tl-wrapper .timepoint.baseline::after {
   position: absolute;
   width: 100%;
@@ -179,4 +184,8 @@
   top: 35px;
   display: block;
   background: white;
+}
+
+.bcs-wrap {
+  margin: 10px 0px;
 }

@@ -1,0 +1,46 @@
+@import "custom/vars.scss";
+
+.context-dialog {
+  width: 300px;
+  display: block;
+  position: absolute;
+  z-index: 200;
+  background: white;
+  font-family: $font-light;
+  color: $grey-medium;
+  padding: 20px;
+  border: 1px solid $primary-color-bright;
+  border-radius: 10px;
+}
+
+.context-dialog::after {
+  top: -1px;
+  left: -1px;
+  border-style: solid;
+  border-width: 14px 14px 0 0;
+  border-color: $primary-color-bright transparent transparent transparent;
+  position: absolute;
+  content: " ";
+}
+
+.context-dialog.left::after {
+  right: -1px;
+  border-width: 0 14px 14px 0;
+  border-color: transparent $primary-color-bright transparent transparent;
+}
+
+.context-dialog .cd-title {
+  width: 100%;
+  font-size: $font-xnormal;
+}
+
+.context-dialog .cd-title .icon-times {
+  float: right;
+  font-size: $font-tiny;
+  color: $grey-light;
+  line-height: inherit;
+}
+
+.context-dialog hr {
+  margin: 8px 0px;
+}
