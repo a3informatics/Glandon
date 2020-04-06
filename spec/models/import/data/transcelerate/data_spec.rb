@@ -171,12 +171,58 @@ describe "Transcelerate Data" do
     end
 
     it "Objectives" do
-      obj_1 = "To assess the effect of [study intervention X] on the ADAS-Cog and CIBIC+ scores at Week [X] in participants with Mild to Moderate Alzheimer’s Disease"
-      obj_1 = "To evaluate the efficacy of [Study Intervention X] administered to individuals with Type 2 Diabetes Mellitus (T2DM)]"
-      obj_1 = "To assess the dose-dependent improvement in behavior. Improved scores on the [assessment] will indicate improvement in these areas"
-      obj_1 = "To document the safety profile of [StudyIntervention]."
-      obj_1 = "To assess the effect of [study intervention X] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"
-      obj_1 = "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"
+      load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
+
+      enum_p = Enumerated.new(label: "Primary")
+      enum_p.create_uri(enum_p.class.base_uri)
+      enum_s = Enumerated.new(label: "Secondary")
+      enum_s.create_uri(enum_s.class.base_uri)
+      enum_ns = Enumerated.new(label: "Not Set")
+      enum_ns.create_uri(enum_ns.class.base_uri)
+
+      objectives = 
+      [
+        { 
+          label: "",
+          full_text: "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease",
+          objective_type: enum_ns.uri,
+          is_assessed_by: 
+          [
+            Uri.new(uri: "http://www.transceleratebiopharmainc.com/EP_1/V1#END"),
+            Uri.new(uri: "http://www.transceleratebiopharmainc.com/EP_2/V1#END")
+          ]
+        },
+        { 
+          label: "",
+          full_text: "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To document the safety profile of [[[Intervention]]].",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        } 
+      ] 
     end
 
     it "Indications" do
@@ -245,7 +291,45 @@ describe "Transcelerate Data" do
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+
+      # Visits
+      visits = 
+      [
+        {short_name: "BL", label: "Baseline"},
+        {short_name: "Wk8", label: "Week 8"},
+        {short_name: "Wk16", label: "Week 16"},
+        {short_name: "Wk24", label: "Week 24"}
+      ]
+      v_items = []
+      visits.each_with_index do |v, index|
+        item = Visit.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        v_items << item
+      end
+
+      # Timepoints
+      secs_per_week = 7*24*60*60
+      o_items = []
+      [0, 8, 16, 24].each_with_index do |v, index|
+        item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0)
+        item.uri = item.create_uri(item.class.base_uri)
+        o_items << item
+      end
+      tps = 
+      [
+        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri},
+        {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri},
+        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri},
+        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri},
+      ]
+      tp_items = []
+      tps.each_with_index do |v, index|
+        item = Timepoint.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        tp_items << item
+      end
 
       # Epochs & Arms
       e_1 = Epoch.new(label: "Screening", ordinal: 1)
@@ -356,6 +440,7 @@ describe "Transcelerate Data" do
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
       p_5.to_sparql(sparql, true)
+      v_items.each do {|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
     end
