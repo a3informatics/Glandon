@@ -24,6 +24,7 @@ describe Form::Item::TextLabel do
   it "does not validate an invalid object, text label" do
     result = Form::Item::TextLabel.new
     result.label_text = "Draft 123§"
+    result.uri = result.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     expect(result.valid?).to eq(false)
   end
   
