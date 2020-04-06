@@ -68,12 +68,6 @@
   rdfs:subClassOf :Item ;
   skos:definition "A passive mapping item."^^xsd:string
 .
-:TextLabel
-  rdf:type owl:Class ;
-  rdfs:label "Text label"^^xsd:string ;
-  rdfs:subClassOf :Item ;
-  skos:definition "A passive text label item."^^xsd:string
-.
 :BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
@@ -214,7 +208,7 @@
   rdfs:domain :Node ;
   rdfs:label "Node ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
-  skos:definition "The rodinal within the set."^^xsd:string
+  skos:definition "The ordinal within the set."^^xsd:string
 .
 :datatype
   rdf:type owl:DatatypeProperty ;
