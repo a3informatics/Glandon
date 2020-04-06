@@ -414,7 +414,7 @@ describe Thesaurus::ManagedConcept do
       @tc_3.to_sparql(sparql, true)
       @tc_4.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_ad_hoc.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_ad_hoc.ttl")
     end 
 
   end
