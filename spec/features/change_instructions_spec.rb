@@ -179,7 +179,7 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_current_path(root_path)
     end
 
-    it "Change instruction modal - edit link, show link, remove", js:true do
+    it "Change instruction modal - edit link, show link, remove, FAILS BECAUSE OF A BUG", js:true do
       click_navbar_code_lists
       wait_for_ajax(20)
       ui_table_search("index", "QSCAT")
@@ -203,18 +203,16 @@ describe "Change Instructions", :type => :feature do
       end
       wait_for_ajax 10
 
-      # find("#add-current").click
-      # in_modal do
-      #   ui_selector_tab_click("Code List Items")
-      #   pause
-      #   wait_for_ajax 20
-      #   ui_selector_item_click("index", "C100132")
-      #   ui_selector_item_click("history", "47.0.0")
-      #   ui_selector_item_click("children", "ADCMZ02")
-      #   click_on "Submit and proceed"
-      # end
-      # wait_for_ajax 10
-      # pause
+      find("#add-current").click
+      in_modal do
+        ui_selector_tab_click("Code List Items")
+        wait_for_ajax 20
+        ui_selector_item_click("index", "C100132")
+        ui_selector_item_click("history", "47.0.0")
+        ui_selector_item_click("children", "ADCMZ02")
+        click_on "Submit and proceed"
+      end
+      wait_for_ajax 10
 
       click_on "Return"
 
@@ -229,15 +227,15 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_content("Code Lists Items")
       page.go_back
 
-      # wait_for_ajax(20)
-      # context_menu_element_header(:change_instructions)
-      # in_modal do
-      #   check_link("current", "icon-codelist-item", "C100132").click
-      # end
-      # wait_for_ajax 10
-      # expect(page).to have_content("ADCMZ02")
-      # expect(page).to have_content("Shared Synonyms")
-      # page.go_back
+      wait_for_ajax(20)
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        check_link("current", "icon-codelist-item", "C100132").click
+      end
+      wait_for_ajax 10
+      expect(page).to have_content("ADCMZ02")
+      expect(page).to have_content("Shared Synonyms")
+      page.go_back
 
       #Edit CI link
       wait_for_ajax(20)
@@ -292,7 +290,7 @@ describe "Change Instructions", :type => :feature do
       end
     end
 
-    it "allows to create a change instruction", js:true do
+    it "allows to create, show a change instruction, FAILS BECAUSE OF A BUG", js:true do
       click_navbar_code_lists
       wait_for_ajax(20)
       ui_table_search("index", "PKUWKG")
