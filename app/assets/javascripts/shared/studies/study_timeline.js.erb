@@ -8,16 +8,18 @@
  * Study Timeline Constructor
  *
  * @param armId [String] id of the arm to which this instance belongs
- * @param matrixReference [Object Instance] reference to the parent matrix instance
+ * @param matrixRef [Object Instance] reference to the parent matrix instance
  * @return [void]
  */
-function StudyTimeline(armId, matrixReference) {
+function StudyTimeline(armId, matrixRef) {
   this.armId = armId;
-  this.matrixReference = matrixReference;
+  this.matrix = matrixRef;
+  this.ready = false;
+
   this.tabName = "tab-timeline";
   this.wrapper = $("#tab-timeline-body");
   this.div = this.wrapper.find("#study-timeline");
-  this.ready = false;
+
   this.tpRadius = 30;
   this.tpDialog = new ContextDialog("0");
 
@@ -68,25 +70,7 @@ StudyTimeline.prototype.loadData = function() {
 StudyTimeline.prototype.setListeners = function() {
   this.div
     .off("click", ".timepoint")
-    .on("click", ".timepoint", this.onTimepointClick.bind(this));
-}
-
-/**
- * Handler for timepoint click. Shows context dialog.
- *
- * @return [void]
- */
-StudyTimeline.prototype.onTimepointClick = function(e) {
-  var timepointData = this.findTimepoint("id", $(e.currentTarget).attr("data-id"));
-
-  this.tpDialog.show({
-    element: $(e.currentTarget),
-    title: "Time Point",
-    subtitle: this.timepointDetailsBtns(),
-    content: this.timepointDetailsHTML(timepointData)
-  });
-
-  this.tpDialog.setListeners();
+    .on("click", ".timepoint", this.openTpContextDialog.bind(this));
 }
 
 /**
@@ -104,21 +88,93 @@ StudyTimeline.prototype.render = function(timepointSet) {
   this.div.append("<div id='tl-wrapper'></div>");
   var wrap = this.div.find("#tl-wrapper");
 
-  wrap.append(this.generateAxisHTML());
+  wrap.append(this.axisHTML());
 
   $.each(timepointSet, function(index, timepoint) {
-    wrap.append(this.generateTimepointHTML(timepoint));
+    wrap.append(this.timepointHTML(timepoint));
   }.bind(this));
 
-  var epochs = this.matrixReference.data.epochs;
+  var epochs = this.matrix.data.epochs;
   $.each(epochs, function(index, epoch){
-    wrap.append(this.generateEpochHTML(epoch));
+    wrap.append(this.epochHTML(epoch));
   }.bind(this));
 
   setTimeout(function(){this.div.removeClass("fadein")}.bind(this), 1);
 
   this.setListeners();
 }
+
+
+/**
+ ************** Timepoint Details **************
+**/
+
+
+/**
+ * Shows context dialog with timepoint details.
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.openTpContextDialog = function(e) {
+  var timepointData = this.findTimepoint("id", $(e.currentTarget).attr("data-id"));
+
+  this.tpDialog.show({
+    element: $(e.currentTarget),
+    title: "Time Point",
+    subtitle: this.tpActionBtnsHTML(),
+    content: this.tpDetailsHTML(timepointData)
+  });
+
+  this.tpDialogListeners();
+}
+
+/**
+ * Event listeners and handlers for a timepoint context dialog
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.tpDialogListeners = function(e) {
+  this.tpDialog.setListeners();
+
+  $(this.tpDialog.id).on("click", ".bg-label", this.removeBCFromTp.bind(this));
+  $(this.tpDialog.id).find("#add-bcs").on("click", this.addBCToTp.bind(this));
+}
+
+/**
+ * Remove a BC from a timepoint request, UI update
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.removeBCFromTp = function(e) {
+  var wrapper = $(e.currentTarget).closest(".timepoint-details");
+  var bcId = $(e.currentTarget).attr("data-id");
+
+  $(e.currentTarget).remove();
+}
+
+/**
+ * Show selector dialog, add BCs to a timepoint request, UI update
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.addBCToTp = function(e) {
+  var _this = this;
+  var wrapper = $(e.currentTarget).closest(".timepoint-details");
+
+  this.matrix.bcsSelector.setCallback(function(data) {
+    $.each(data.bcs, function(idx, bc) {
+      // TODO: Add server request to post data
+      // TODO: Handle server response on added BCs (re-draw the dialog)
+      wrapper.find(".bg-labels-wrap")
+        .append("<span class='bg-label removable' data-id='"+ bc.id +"'>"+
+                  _this.bcLabel(bc) +
+                "</span>");
+    });
+  })
+
+  this.matrix.bcsSelector.show();
+}
+
 
 
 /**
@@ -131,42 +187,137 @@ StudyTimeline.prototype.render = function(timepointSet) {
  *
  * @return [String] Styled axis HTML
  */
-StudyTimeline.prototype.generateAxisHTML = function() {
-  var arm = this.matrixReference.getItem("id", this.armId, "arms");
-  var axisColor = this.matrixReference.hslString(arm.color);
-  var axisLabel = "<div class='axis-label' style='color: "+ axisColor +"'>" + arm.label + "</div>";
-  return "<div id='timeline-axis' style='background-color: " + axisColor + "'>" + axisLabel + "</div>";
+StudyTimeline.prototype.axisHTML = function() {
+  var arm = this.matrix.getItem("id", this.armId, "arms");
+
+  var axisColor = this.matrix.hslString(arm.color),
+      axisLabel = "<div class='axis-label' style='color: "+ axisColor +"'>" +
+                    arm.label +
+                  "</div>";
+
+  return "<div id='timeline-axis' style='background-color: " + axisColor + "'>" +
+            axisLabel +
+         "</div>";
 }
 
 /**
  * Generates HTML for a single timepoint
  *
- * @param timepoint [Object] timepoint to calculate offset for
- * @return [Int] timepoint offset in %
+ * @param timepoint [Object] timepoint to generate HTML for
+ * @return [String] formatted timepoint HTML
  */
-StudyTimeline.prototype.generateTimepointHTML = function(timepoint) {
-  timepoint.offsetLeftHTML = this.calculateTPOffset(timepoint)
-  var offsetLeft = "calc(" + timepoint.offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
+StudyTimeline.prototype.timepointHTML = function(timepoint) {
+  timepoint.offsetLeft = this.tpOffset(timepoint);
 
-  var color = this.matrixReference.getItem("id", timepoint.epoch_id, "epochs").color;
-  color = this.matrixReference.hslString({h: color.h, s: color.s + 10, l: color.l})
+  var tpOffset = "calc(" + timepoint.offsetLeft + "% - " + this.tpRadius/2 + "px)",
+      epochColor = this.matrix.getItem("id", timepoint.epoch_id, "epochs").color,
+      tpColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s + 10, l: epochColor.l}),
+      tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 25, l: epochColor.l - 22});
 
-  var style = "left: " + offsetLeft + "; background-color: " + color + ";";
-  var classes = "timepoint" + (timepoint.baseline ? " baseline" : "");
-  var contents = "<span class='tp-badge'>"+ timepoint.biomedical_concepts.length +"</span>";
-  contents += "<span class='tp-label'>"+ this.timepointLabel(timepoint) +"</span>";
+  var tpStyle = "left: " + tpOffset + "; " +
+                "background-color: " + tpColor + ";",
+      tpClass = "timepoint" + (timepoint.baseline ? " baseline" : ""),
+      tpContents = "<span class='tp-badge' style='background: "+ tpBadgeBgColor +"'>"+
+                      timepoint.biomedical_concepts.length +
+                   "</span>" +
+                   "<span class='tp-label'>"+
+                    this.timepointLabel(timepoint) +
+                   "</span>";
 
-  return "<div class='"+ classes +"' style='"+ style +"' tabindex='0' data-id='"+ timepoint.id +"'>"+ contents +"</div>";
+  return "<div class='"+ tpClass +"' style='"+ tpStyle +"' tabindex='0' data-id='"+ timepoint.id +"'>" +
+            tpContents +
+          "</div>";
 }
 
 /**
- * Builds a string time label for a timepoint
+ * Generates HTML for an epoch on the timeline
  *
- * @param timepoint [Object] timepoint object to generate label for
- * @return [Int] timepoint offset in %
+ * @param epoch [Object] single epoch object
+ * @return [String] epoch HTML to be appended to timeline
  */
-StudyTimeline.prototype.timepointLabel = function(timepoint) {
-  return timepoint.unit + " " + timepoint.value;
+StudyTimeline.prototype.epochHTML = function(epoch) {
+  var epochCSS = this.getEpochCSS(epoch);
+
+  if(_.isNull(epochCSS))
+    return "";
+
+  var style = "background-color: " + epochCSS.bgColor + "; " +
+              "left: " + epochCSS.offsetLeft + "; " +
+              "width: " + epochCSS.width + ";";
+
+  var content = "<div class='epoch-label' style='color: "+ epochCSS.labelColor +"'>" +
+                  epoch.label +
+                "</div>";
+
+  // HTML to Render
+  return "<div class='epoch-block' style='"+ style +"' data-epoch-id='"+epoch.id+"'>" +
+            content +
+         "</div>";
+}
+
+/**
+ * Makes a CSS width string for an epoch, based on various conditions
+ *
+ * @param epoch [Object] single epoch object
+ * @param edgeTimepoints [Array] edge timepoints calculated by getEpochEdgeTps
+ * @return [String] CSS Width string for an Epoch HTML / null if no epoch data
+ */
+StudyTimeline.prototype.getEpochCSS = function(epoch, edgeTimepoints) {
+  var edgeTimepoints = this.getEpochEdgeTps(epoch);
+
+  // No timepoints in an epoch - do not render
+  if (_.isEmpty(edgeTimepoints))
+      return null;
+
+  var epochBgColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l + 12 }),
+      epochLabelColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l - 40 }),
+      epochWidth, epochOffsetLeft;
+
+  // No next timepoint after epoch
+  if (_.isUndefined(edgeTimepoints[1])) {
+    var lastTimepoint = _.last(this.data.renderTimepoints);
+
+    // First and last timepoints are the same
+    if (lastTimepoint.id == edgeTimepoints[0].id)
+      epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "% + " + this.tpRadius/2 + "px)";
+    // First and last timepoints are not the same - find difference
+    else {
+      var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
+      epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"% + " + this.tpRadius/2 + "px)";
+    }
+  }
+  else {
+    // Difference between first epoch timepoint and first next epoch timepoint
+    var difference = edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft;
+    epochWidth = difference + "%";
+  }
+
+  epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "% - " + this.tpRadius/2 + "px)" || "0";
+
+  return {
+    bgColor: epochBgColor,
+    labelColor: epochLabelColor,
+    width: epochWidth,
+    offsetLeft: epochOffsetLeft
+  };
+}
+
+/**
+ * Finds first timepoint belonging to an epoch, and the first timepoint of the next epoch
+ *
+ * @param epoch [Object] single epoch object
+ * @return [Array] [0] first epoch timepoint, [1] first next epoch timepoint / null
+ * returns empty [] if no timepoints found
+ */
+StudyTimeline.prototype.getEpochEdgeTps = function(epoch) {
+  var epochTimepoints = _.filter(this.data.renderTimepoints, function (tp) { return tp.epoch_id == epoch.id; }),
+      nextTimepointIndex = _.indexOf(this.data.renderTimepoints, _.last(epochTimepoints)) + 1;
+      nextTimepoint = this.data.renderTimepoints[nextTimepointIndex];
+
+  if (_.isEmpty(epochTimepoints))
+    return [];
+
+  return [epochTimepoints[0], nextTimepoint];
 }
 
 /**
@@ -175,9 +326,13 @@ StudyTimeline.prototype.timepointLabel = function(timepoint) {
  * @param timepoint [Object] timepoint to calculate offset for
  * @return [Int] timepoint offset in %
  */
-StudyTimeline.prototype.calculateTPOffset = function(timepoint) {
-  var maxOffset = this.data.renderTimepoints[this.data.renderTimepoints.length - 1].offset;
-  var minOffset = this.data.renderTimepoints[0].offset;
+StudyTimeline.prototype.tpOffset = function(timepoint) {
+  var maxOffset = _.last(this.data.renderTimepoints).offset;
+  var minOffset = _.first(this.data.renderTimepoints).offset;
+
+  // Add 5% buffer for the right edge of the timeline
+  maxOffset += Math.abs((maxOffset - minOffset) * 0.05);
+
   var result = ((timepoint.offset - minOffset) * 100) / (maxOffset - minOffset);
 
   if (isNaN(result))
@@ -186,112 +341,53 @@ StudyTimeline.prototype.calculateTPOffset = function(timepoint) {
   return Math.round(result * 100) / 100;
 }
 
-/**
- * Generates HTML for an epoch on the timeline
- *
- * @param epoch [Object] single epoch object
- * @return [String] epoch HTML to be appended to timeline
- */
-StudyTimeline.prototype.generateEpochHTML = function(epoch) {
-  var tps = this.firstAndLastEpochTPs(epoch);
-  var offsetLeft, width;
-
-  if (tps == null)
-      return;
-
-  offsetLeft = "calc(" + tps[0].offsetLeftHTML + "% - " + this.tpRadius/2 + "px)";
-
-  if(tps[1] == null){
-    var lastEl = this.data.renderTimepoints[this.data.renderTimepoints.length-1];
-    if (lastEl.id == tps[0].id)
-      width = "calc(100% - " + lastEl.offsetLeftHTML + "% + " + this.tpRadius/2 + "px)";
-    else {
-      var difference = lastEl.offsetLeftHTML - tps[0].offsetLeftHTML;
-      width = "calc(" + difference + "% + " + this.tpRadius + "px)";
-    }
-  }
-  else {
-    var difference = tps[1].offsetLeftHTML - tps[0].offsetLeftHTML;
-    width = difference + "%";
-  }
-
-  var color = this.matrixReference.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l + 12 });
-  var labelColor = this.matrixReference.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l - 40 });
-  var style = "background-color: " + color + "; left: " + offsetLeft + "; width: " + width;
-  var content = "<div class='epoch-label' style='color: "+ labelColor +"'>" + epoch.label + "</div>";
-
-  return "<div class='epoch-block' style='"+ style +"' data-epoch-id='"+epoch.id+"'>"+ content +"</div>";
-}
 
 /**
- * Generates HTML for an epoch on the timeline
+ * Generates HTML action buttons to be shown in timepoint details dialog
  *
- * @param epoch [Object] single epoch object
- * @return [String] epoch HTML to be appended to timeline
+ * @param [Object] Timepoint data object
+ * @return [String] Action buttons HTML
  */
-StudyTimeline.prototype.firstAndLastEpochTPs = function(epoch) {
-  var epochTps = this.data.renderTimepoints.filter(function(timepoint){
-    return timepoint.epoch_id == epoch.id;
-  });
-  var lastIdx = this.data.renderTimepoints.indexOf(epochTps[epochTps.length-1]);
-
-  return (epochTps.length == 0) ? null : [epochTps[0], this.data.renderTimepoints[lastIdx + 1]];
-}
-
-
-/**
- * Generates HTML for the axis
- *
- * @param [Object] Timepoints data object
- * @return [String] Styled axis HTML
- */
-StudyTimeline.prototype.timepointDetailsBtns = function(timepoint) {
-  var html = "";
-
-  html += "<span class='text-link icon-edit clickable' style='margin-right: 10px;'></span>" +
+StudyTimeline.prototype.tpActionBtnsHTML = function(timepoint) {
+  return  "<span class='text-link icon-edit clickable' style='margin-right: 10px;'></span>" +
           "<span class='text-accent-2 icon-trash clickable'></span>";
-  return html;
 }
 
-
 /**
- * Generates HTML for the axis
+ * Generates HTML for timepoint details dialog
  *
- * @param [Object] Timepoints data object
- * @return [String] Styled axis HTML
+ * @param [Object] Timepoint data object
+ * @return [String] Timepoint details dialog formatted HTML
  */
-StudyTimeline.prototype.timepointDetailsHTML = function(timepoint) {
-  var epochName = this.matrixReference.getItem("id", timepoint.epoch_id, "epochs").label;
-  var armName = this.matrixReference.getItem("id", this.armId, "arms").label;
-  var html = "";
+StudyTimeline.prototype.tpDetailsHTML = function(timepoint) {
+  var epochName = this.matrix.getItem("id", timepoint.epoch_id, "epochs").label,
+      armName = this.matrix.getItem("id", this.armId, "arms").label,
+      html = "";
 
-  html += "<div class='font-regular text-normal'>" + this.timepointLabel(timepoint) + "</div>";
-  html += timepoint.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
-  html += "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
-  html += "Arm: <span class='text-link'>"+ armName +"</span><br/>";
-  html += "Biomedical Concepts: (click to remove)";
-  html += "<div class='bg-labels-wrap'>";
-  html += timepoint.biomedical_concepts.length == 0 ? "None" : "";
+  html += "<div class='timepoint-details' data-id='"+ timepoint.id +"'>";
+  html +=   "<div class='font-regular text-normal'>" +
+              this.timepointLabel(timepoint) +
+            "</div>";
+
+  html +=   timepoint.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
+  html +=   "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
+  html +=   "Arm: <span class='text-link'>"+ armName +"</span><br/>";
+
+  html +=   "Biomedical Concepts: (click to remove)";
+  html +=   "<div class='bg-labels-wrap scroll-styled'>";
+  html +=     _.isEmpty(timepoint.biomedical_concepts) ? "None" : "";
 
   $.each(timepoint.biomedical_concepts, function(index, bc){
-    html += "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ this.bcString(bc) +"</span>";
+    html +=   "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ this.bcLabel(bc) +"</span>";
   }.bind(this));
 
+  html +=   "</div>";
+  html +=   "<button class='btn btn-xs green' id='add-bcs'>+ Add BCs</button>";
   html += "</div>";
-  html += "<button class='btn btn-xs green'>+ Add BCs</button>";
 
   return html;
 }
 
-/**
- * Generates HTML for the axis
- *
- * @param [Object] Timepoints data object
- * @return [String] Styled axis HTML
- */
-StudyTimeline.prototype.bcString = function(bc) {
-  return bc.label + " (" + bc.identifier + ") v" + bc.semantic_version;
-}
 
 /**
  ************** Support **************
@@ -336,8 +432,30 @@ StudyTimeline.prototype.findTimepoint = function(property, value) {
  * @return [void]
  */
 StudyTimeline.prototype.loading = function(enable) {
-  this.matrixReference.armLoading(this.armId, enable)
+  this.matrix.armLoading(this.armId, enable)
 }
+
+/**
+ * Generates HTML for the axis
+ *
+ * @param [Object] Timepoints data object
+ * @return [String] Styled axis HTML
+ */
+StudyTimeline.prototype.bcLabel = function(bc) {
+  return bc.label + " (" + (bc.identifier || bc.has_identifier.identifier) + ") v" + (bc.semantic_version || "0.1.0");
+}
+
+/**
+ * Builds a string time label for a timepoint
+ *
+ * @param timepoint [Object] timepoint object to generate label for
+ * @return [Int] timepoint offset in %
+ */
+StudyTimeline.prototype.timepointLabel = function(timepoint) {
+  return timepoint.unit + " " + timepoint.value;
+}
+
+
 
 StudyTimeline.prototype.mockData = function() {
   this.ready = true;
@@ -462,7 +580,7 @@ StudyTimeline.prototype.mockData = function() {
     case "410x":
       return [
         {
-          id: "991",
+          id: "990",
           epoch_id: "111x",
           arms: ["210x", "310x"],
           element_id: "211x",
@@ -473,7 +591,7 @@ StudyTimeline.prototype.mockData = function() {
           offset: -2
         },
         {
-          id: "992",
+          id: "991",
           epoch_id: "111x",
           arms: ["210x"],
           element_id: "212x",

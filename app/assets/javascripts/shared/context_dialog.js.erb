@@ -12,6 +12,7 @@
 function ContextDialog(id) {
   this.width = 350;
   this.id = "#context-dialog-" + id;
+  this.processing = false;
 }
 
 
@@ -27,6 +28,9 @@ function ContextDialog(id) {
  * @return [void]
  */
 ContextDialog.prototype.show = function(params) {
+  if (this.processing)
+    return;
+
   this.clear();
   this.params = this.defaultParams(params);
   $("#main_area").append(this.generateDialog());
@@ -104,6 +108,17 @@ ContextDialog.prototype.generateDialog = function() {
  ****** Support ******
 **/
 
+
+/**
+ * Enable / disable loading style on dialog
+ *
+ * @param enable [Boolean] true / false ~ show / hide loading
+ * @return [void]
+ */
+ContextDialog.prototype.loading = function(enable) {
+  this.processing = enable;
+  $(this.id).toggleClass("loading", enable);
+}
 
 /**
  * Call to clear any Context Dialogs on page

@@ -52,6 +52,31 @@
   line-height: inherit;
 }
 
+.context-dialog.loading > div, .context-dialog.loading > span {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.context-dialog.loading::before {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 14px;
+  right: 36px;
+  display: block;
+  content: " ";
+  background: url(image_path('loading_inline.gif')) no-repeat;
+  background-size: 24px;
+  z-index: 100;
+}
+
 .context-dialog hr {
   margin: 8px 0px;
+}
+
+.context-dialog .bg-labels-wrap{
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 0px;
+  padding-top: 0px;
 }

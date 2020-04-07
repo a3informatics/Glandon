@@ -38,23 +38,6 @@
   cursor: pointer;
 }
 
-#study-matrix table .bg-label.loading {
-  position: relative;
-  pointer-events: none;
-}
-
-#study-matrix table .bg-label.loading::after {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: -8px;
-  right: -10px;
-  display: block;
-  content: " ";
-  background: url(image_path('loading_inline.gif')) no-repeat;
-  background-size: 16px;
-}
-
 #study-matrix table .bg-label.disabled {
   pointer-events: none;
   opacity: .5;
@@ -164,11 +147,11 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: $grey-medium;
-  color: white;
   font-size: 10px;
   line-height: 17px;
   text-align: center;
+  font-family: $font-primary;
+  color: white;
   right: -5px;
   top: 50%;
 }

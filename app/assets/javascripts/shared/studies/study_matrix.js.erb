@@ -16,6 +16,13 @@ function StudyMatrix() {
   this.processing = false;
   this.refreshOnShow = true;
 
+  this.bcsSelector = new ItemsSelector({
+    id: "1",
+    multiple: true,
+    types: {bcs:true},
+    description: "Pick one or more Biomedical Concepts to add to the Time Point.",
+  });
+
   this.data = { epochs: [], arms: [], }
 
   this.setListeners();
@@ -38,11 +45,22 @@ StudyMatrix.prototype.show = function() {
 }
 
 /**
- * Makes an ajax call
+ * Refreshes the tab, data, re-draws
  *
  * @return [void]
  */
-StudyMatrix.prototype.executeRequest = function(params, callback) {
+StudyMatrix.prototype.refresh = function() {
+  this.clear();
+  this.initMatrix();
+}
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyMatrix.prototype.executeRequest = function(params) {
   this.loading(true);
 
   $.ajax({
@@ -53,7 +71,7 @@ StudyMatrix.prototype.executeRequest = function(params, callback) {
     context: this,
     success: function(result) {
       this.loading(false);
-      callback(result);
+      params.callback(result);
     },
     error: function (xhr, status, error) {
       handleAjaxError(xhr, status, error);
@@ -63,18 +81,7 @@ StudyMatrix.prototype.executeRequest = function(params, callback) {
 }
 
 /**
- * Refreshes everything
- *
- * @return [void]
- */
-StudyMatrix.prototype.refresh = function() {
-  this.clear();
-  this.initMatrix();
-}
-
-
-/**
- * Sets Listeners
+ * Sets event listeners, handlers
  *
  * @return [void]
  */
@@ -96,13 +103,13 @@ StudyMatrix.prototype.setListeners = function() {
 
 
 /**
- * Builds params for ajax call
+ * Fetch and process matrix data
  *
  * @return [void]
  */
 StudyMatrix.prototype.initMatrix = function() {
   // TODO: Build params: url, type, data
-  // TODO: call executeRequest with params, callback passe
+  // TODO: call executeRequest with params, callback passed
   this.matrixData(this.processMatrixData.bind(this));
 }
 
@@ -113,6 +120,8 @@ StudyMatrix.prototype.initMatrix = function() {
  * @return [void]
  */
 StudyMatrix.prototype.processMatrixData = function(data) {
+
+  // Initialize Epochs
   $.each(data, function(index, epoch) {
     this.data.epochs.push(
       {
@@ -124,9 +133,11 @@ StudyMatrix.prototype.processMatrixData = function(data) {
       }
     );
 
+    // Initialize Arms
     $.each(epoch.arms, function(idx, arm) {
       arm.element.type = "element";
       var thisArm = this.getItem("id", arm.id, "arms");
+
       if (thisArm == null) {
         var studyTimeline = new StudyTimeline(arm.id, this);
 
@@ -143,16 +154,14 @@ StudyMatrix.prototype.processMatrixData = function(data) {
       }
       else
         thisArm.elements.push(arm.element);
-
     }.bind(this));
-
   }.bind(this));
 
   this.render();
 }
 
 /**
- * Generates HTML for the matrix based on this instance's data structure
+ * Renders HTML for the matrix based on this instance's data structure
  *
  * @return [void]
  */
@@ -187,8 +196,50 @@ StudyMatrix.prototype.render = function() {
 }
 
 /**
- * Trigerred on matrix item hover. Handles styles
+ * Handles styling of click events on a matrix item.
  *
+ * @param target [Jquery Element] target element node
+ * @param selected [Boolean] enable / disable selected style
+ * @return [void]
+ */
+StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
+  this.setMatrixItemCSS(target, selected);
+  this.div.find(target).toggleClass("active", selected);
+}
+
+/**
+ * Sets CSS of a matrix item when hovered / clicked
+ *
+ * @param target [JQuery Element] target item
+ * @param enable [Boolean] enable / disable style
+ * @return [void]
+ */
+StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
+  var dataItem = this.getItem("id", $(target).attr("data-id"));
+
+  this.div.find(target).css("background-color", enable ? this.hslString(dataItem.color) : "");
+  this.div.find(target).css("color", enable ? "white" : "");
+}
+
+
+/**
+ * Generates HTML for a matrix item and color (if color null, will use lightgrey)
+ *
+ * @param item [Object] data item
+ * @return [void]
+ */
+StudyMatrix.prototype.matrixItemHTML = function(item) {
+  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (this.hslString(item.color) || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
+}
+
+/**
+ ************** Event Handlers **************
+**/
+
+/**
+ * Trigerred on matrix item hover. Handles styles change
+ *
+ * @param e [Event] Mouse hover event
  * @return [void]
  */
 StudyMatrix.prototype.onMatrixItemHover = function(e) {
@@ -240,42 +291,6 @@ StudyMatrix.prototype.onArmClick = function(e) {
   arm.timeline.show();
 }
 
-/**
- * Handles styling of click events on a matrix item.
- *
- * @param target [Jquery Element] target element node
- * @param selected [Boolean] enable / disable selected style
- * @return [void]
- */
-StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
-  this.setMatrixItemCSS(target, selected);
-  this.div.find(target).toggleClass("active", selected);
-}
-
-/**
- * Sets CSS of a matrix item when hovered / clicked
- *
- * @param target [JQuery Element] target item
- * @param enable [Boolean] enable / disable style
- * @return [void]
- */
-StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
-  var dataItem = this.getItem("id", $(target).attr("data-id"));
-
-  this.div.find(target).css("background-color", enable ? this.hslString(dataItem.color) : "");
-  this.div.find(target).css("color", enable ? "white" : "");
-}
-
-/**
- * Generates HTML for a matrix item and color (if color null, will use lightgrey)
- *
- * @param item [Object] data item
- * @return [void]
- */
-StudyMatrix.prototype.matrixItemHTML = function(item) {
-  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (this.hslString(item.color) || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
-}
-
 
 /**
  ************** Getters **************
@@ -316,11 +331,6 @@ StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
   return object;
 }
 
-
-/**
- ************** Support **************
-**/
-
 /**
  * Find currently active arm object
  *
@@ -329,6 +339,12 @@ StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
 StudyMatrix.prototype.getActiveArm = function() {
   return this.getItem("id", this.div.find(".arm.active").attr("data-id"), "arms");
 }
+
+
+/**
+ ************** Support **************
+**/
+
 
 /**
  * Toggle loading on an matrix arm item
@@ -382,7 +398,7 @@ StudyMatrix.prototype.hslString = function(obj) {
  * @return [Object] HSL values for color
  */
 StudyMatrix.prototype.generateColorShade = function(base, index) {
-  var hueChange = 25, liChange = 2, satChange = 3;
+  var hueChange = 20, liChange = 2, satChange = 3;
 
   var hue = base.h + (hueChange * index);
   var li = (hue > 40 & hue < 120) ? base.l - 20 : base.l - (liChange * index);

@@ -17,11 +17,12 @@ function StudyBuild() {
   this.initTabs();
   this.setListeners();
 
-  setTimeout(function() { this.tabs.timeline.header.click() }.bind(this), 5);
+  // Start with a default tab opened
+  setTimeout(function() { this.tabs.content.header.click() }.bind(this), 5);
 }
 
 /**
- * Initializes tabs
+ * Initializes all tab handlers
  *
  * @return [void]
  */
@@ -36,24 +37,22 @@ StudyBuild.prototype.initTabs = function() {
 }
 
 /**
- * Sets listeners
+ * Sets event listeners, handlers
  *
  * @return [void]
  */
 StudyBuild.prototype.setListeners = function() {
-  $(".tab-option").on("switch", this.onTabSwitch.bind(this));
+  $("#study-build-tabs .tab-option").on("switch", this.onTabSwitch.bind(this));
 }
 
 /**
- * Sets listeners
+ * Tab switch handler
  *
- * @param e [Event]
+ * @param e [Event] click event
  * @param tabId [String] id of the clicked-on tab
  * @return [void]
  */
 StudyBuild.prototype.onTabSwitch = function(e, tabId) {
-  // try {
-    var tabName = tabId.split('-')[1];
-    this.tabs[tabName].instance.show();
-  // } catch(e) { };
+  var tabName = tabId.split('-')[1];
+  this.tabs[tabName].instance.show();
 }
