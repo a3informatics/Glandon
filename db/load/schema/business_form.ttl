@@ -150,7 +150,7 @@
   rdfs:range bo:TcReference ;
   skos:definition "Reference to a Thesaurus Concept"^^xsd:string
 .
-:hasCodeValue
+:hasCodedValue
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Has Coded Value Relationship"^^xsd:string ;
@@ -251,13 +251,5 @@
   rdfs:label "Question text"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
-.
-:is_common
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf isoC:property ;
-  rdfs:domain :CommonItem ;
-  rdfs:label "Is common"^^xsd:string ;
-  rdfs:range xsd:boolean ;
-  skos:definition "The item is marked as being a common item."^^xsd:string
 .
 
