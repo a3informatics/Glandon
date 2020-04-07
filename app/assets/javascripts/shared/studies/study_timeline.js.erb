@@ -98,6 +98,7 @@ StudyTimeline.prototype.onTimepointClick = function(e) {
 StudyTimeline.prototype.render = function(timepointSet) {
   this.data.renderTimepoints = timepointSet;
   this.div.empty();
+  this.tpDialog.clear();
   this.div.addClass("fadein");
 
   this.div.append("<div id='tl-wrapper'></div>");
@@ -265,15 +266,16 @@ StudyTimeline.prototype.timepointDetailsHTML = function(timepoint) {
   var html = "";
 
   html += "<div class='font-regular text-normal'>" + this.timepointLabel(timepoint) + "</div>";
+  html += timepoint.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
   html += "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
   html += "Arm: <span class='text-link'>"+ armName +"</span><br/>";
   html += "Biomedical Concepts: (click to remove)";
-  html += "<div class='bcs-wrap'>";
+  html += "<div class='bg-labels-wrap'>";
   html += timepoint.biomedical_concepts.length == 0 ? "None" : "";
 
   $.each(timepoint.biomedical_concepts, function(index, bc){
-    html += "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ bc.label +"</span>";
-  });
+    html += "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ this.bcString(bc) +"</span>";
+  }.bind(this));
 
   html += "</div>";
   html += "<button class='btn btn-xs green'>+ Add BCs</button>";
@@ -281,7 +283,15 @@ StudyTimeline.prototype.timepointDetailsHTML = function(timepoint) {
   return html;
 }
 
-
+/**
+ * Generates HTML for the axis
+ *
+ * @param [Object] Timepoints data object
+ * @return [String] Styled axis HTML
+ */
+StudyTimeline.prototype.bcString = function(bc) {
+  return bc.label + " (" + bc.identifier + ") v" + bc.semantic_version;
+}
 
 /**
  ************** Support **************
@@ -341,7 +351,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "211x",
           unit: "Week",
           value: -2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: -2
         },
@@ -352,7 +362,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "212x",
           unit: "Day",
           value: 0,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: true,
           offset: 0
         },
@@ -363,7 +373,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "213x",
           unit: "Week",
           value: 8,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 8
         },
@@ -374,7 +384,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Week",
           value: 12,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 12
         },
@@ -385,7 +395,8 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Week",
           value: 16,
-          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"},
+                                {identifier: "BC3", label: "Label 3", semantic_version: "1.2.1", id: "883"}],
           baseline: false,
           offset: 16
         },
@@ -396,7 +407,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Week",
           value: 18,
-          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC2", id: "882"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
           baseline: false,
           offset: 18
         },
@@ -410,7 +421,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "211x",
           unit: "Week",
           value: -2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
           baseline: false,
           offset: -2
         },
@@ -421,7 +432,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "212x",
           unit: "Day",
           value: 0,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: true,
           offset: 0
         },
@@ -432,7 +443,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "213x",
           unit: "Week",
           value: 4,
-          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
           baseline: false,
           offset: 4
         },
@@ -443,7 +454,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Month",
           value: 2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 8
         },
@@ -457,7 +468,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "211x",
           unit: "Week",
           value: -2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: -2
         },
@@ -468,7 +479,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "212x",
           unit: "Day",
           value: -2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: -0.2
         },
@@ -479,7 +490,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "212x",
           unit: "Day",
           value: 0,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: true,
           offset: 0
         },
@@ -490,7 +501,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "213x",
           unit: "Week",
           value: 4,
-          biomedical_concepts: [{label: "BC1", id: "881"}, {label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
           baseline: false,
           offset: 4
         },
@@ -501,7 +512,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Month",
           value: 2,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 8
         },
@@ -512,7 +523,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Month",
           value: 4,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 16
         },
@@ -523,7 +534,7 @@ StudyTimeline.prototype.mockData = function() {
           element_id: "214x",
           unit: "Month",
           value: 6,
-          biomedical_concepts: [{label: "BC1", id: "881"}],
+          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
           baseline: false,
           offset: 24
         },

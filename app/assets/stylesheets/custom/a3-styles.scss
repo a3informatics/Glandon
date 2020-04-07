@@ -137,6 +137,15 @@
   display: inline-block;
 }
 
+.bg-labels-wrap {
+  padding: 10px 4px;
+  margin-top: -8px;
+}
+
+.bg-labels-wrap .bg-label {
+  margin-top: 8px;
+}
+
 .label-styled{
   padding-right: 14px;
   border-bottom: 2px solid $secondary-color-light;

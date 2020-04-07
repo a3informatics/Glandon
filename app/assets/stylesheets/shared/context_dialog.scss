@@ -1,7 +1,11 @@
 @import "custom/vars.scss";
 
+.context-dialog.closed{
+  transform: scale(0);
+}
+
 .context-dialog {
-  width: 300px;
+  width: 350px;
   display: block;
   position: absolute;
   z-index: 200;
@@ -11,6 +15,13 @@
   padding: 20px;
   border: 1px solid $primary-color-bright;
   border-radius: 10px;
+  transition: transform .2s;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+.context-dialog.left {
+  transform-origin: top right;
 }
 
 .context-dialog::after {

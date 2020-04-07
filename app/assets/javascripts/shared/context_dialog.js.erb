@@ -10,7 +10,7 @@
 *
 */
 function ContextDialog(id) {
-  this.width = 300;
+  this.width = 350;
   this.id = "#context-dialog-" + id;
 }
 
@@ -31,6 +31,8 @@ ContextDialog.prototype.show = function(params) {
   this.params = this.defaultParams(params);
   $("#main_area").append(this.generateDialog());
   this.updatePosition();
+
+  $(this.id).removeClass("closed")
 
   return this;
 }
@@ -84,7 +86,7 @@ ContextDialog.prototype.setListeners = function() {
 ContextDialog.prototype.generateDialog = function() {
   var html = "";
 
-  html += "<div id='"+ this.id.replace('#', '') +"' class='context-dialog shadow-small'>";
+  html += "<div id='"+ this.id.replace('#', '') +"' class='context-dialog closed shadow-small'>";
   html +=   "<div class='cd-title'>"+ this.params.title +
               "<span class='icon-times clickable' id='cd-close'></span>" +
             "</div>";
