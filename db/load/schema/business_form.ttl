@@ -154,7 +154,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Has Coded Value Relationship"^^xsd:string ;
-  rdfs:domain :Question ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf  ( :Question :BcProperty)
+    ] ;
   rdfs:range bo:TMcReference ;
   skos:definition "Reference to a coded value."^^xsd:string
 .
