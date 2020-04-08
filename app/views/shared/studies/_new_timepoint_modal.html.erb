@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag "shared/form_modal" %>
+<%= javascript_include_tag "shared/studies/new_timepoint_modal" %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-timepoint-modal">
+  <div class="modal-dialog modal-lg medium-screen" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="icon-date text-link text-xnormal" style="margin-right:10px;"></span>
+          Create a New Timepoint
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="errors"></div>
+            <center>
+              <img src="<%= asset_path 'icons/new_timepoint' %>" class="modal-img wide"/>
+              <br/><div class="font-light">Fill out the parameters for the new Timepoint</div>
+              <div class="font-light"><i>(Biomedical Concepts can be attached to the Timepoint later.)</i></div><br/>
+            </center>
+
+            <div class="form-wrap">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="text-link">Time Unit</label>
+                  <select name="time_unit" class="form-control" id="nt_select_time_unit" value="">
+                    <option value="" disabled selected>Select</option>
+                    <option value="month">Month</option>
+                    <option value="week">Week</option>
+                    <option value="day">Day</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="text-link">Time Offset</label><br/>
+                  <input type="number" autocomplete="false" autofocus="true" placeholder="Value" maxlength="3" name="time_value" id="nt_input_time_value" value=""></input>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="text-link">Arm</label>
+                  <select name="arm_id" class="form-control" id="nt_select_arm_id" value="">
+                    <option value="" disabled selected>Select</option>
+                    <option value="all">All Arms</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="text-link">Epoch</label>
+                  <select name="epoch_id" class="form-control" id="nt_select_epoch_id" value="">
+                    <option value="" disabled selected>Select</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn medium light" data-dismiss="modal" aria-label="Close">Close</button>
+        <button id="create-timepoint-button" class="btn medium green">Add to Timeline</button>
+      </div>
+    </div>
+  </div>
+</div>

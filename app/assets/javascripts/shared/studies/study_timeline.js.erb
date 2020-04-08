@@ -212,7 +212,7 @@ StudyTimeline.prototype.timepointHTML = function(timepoint) {
   var tpOffset = "calc(" + timepoint.offsetLeft + "% - " + this.tpRadius/2 + "px)",
       epochColor = this.matrix.getItem("id", timepoint.epoch_id, "epochs").color,
       tpColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s + 10, l: epochColor.l}),
-      tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 25, l: epochColor.l - 22});
+      tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 40, l: epochColor.l - 22});
 
   var tpStyle = "left: " + tpOffset + "; " +
                 "background-color: " + tpColor + ";",

@@ -23,6 +23,8 @@ function StudyMatrix() {
     description: "Pick one or more Biomedical Concepts to add to the Time Point.",
   });
 
+  this.createTPModal = new NewTimepointModal(this);
+
   this.data = { epochs: [], arms: [], }
 
   this.setListeners();

@@ -4,12 +4,19 @@
   font-family: $font-light;
   overflow-x: auto;
   display: block;
+  padding: 10px;
+  text-align: center;
 }
 
-#study-matrix, #study-timeline {
+#study-matrix, #study-timeline, #btns-wrap {
   width: 100%;
   display: block;
   min-width: 900px;
+}
+
+#btns-wrap {
+  display: flex;
+  justify-content: center;
 }
 
 // Matrix
