@@ -105,7 +105,7 @@
 :hasCommon
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :Group ;
+  rdfs:domain :NormalGroup ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
   skos:definition "Has a common group relationship"^^xsd:string
