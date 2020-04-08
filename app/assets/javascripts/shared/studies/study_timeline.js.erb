@@ -69,8 +69,8 @@ StudyTimeline.prototype.loadData = function() {
  */
 StudyTimeline.prototype.setListeners = function() {
   this.div
-    .off("click", ".timepoint")
-    .on("click", ".timepoint", this.openTpContextDialog.bind(this));
+    .off("dblclick", ".timepoint")
+    .on("dblclick", ".timepoint", this.openTpContextDialog.bind(this));
 
   $(".epoch-block").resizable({
     handles: "w,e",
