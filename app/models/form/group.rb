@@ -8,6 +8,8 @@ class Form::Group < IsoConceptV2
   data_property :completion
   data_property :optional, default: false
 
+  object_property :has_item, cardinality: :many, model_class: "Form::Item", children: true
+
   validates_with Validator::Field, attribute: :ordinal, method: :valid_positive_integer?
   validates_with Validator::Field, attribute: :note, method: :valid_markdown?
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
