@@ -4,10 +4,28 @@
   padding-top: 6px;
 }
 
-.tabs-sel{
+.tabs-sel-wrap {
   width: 100%;
   display: flex;
-  direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid $grey-bright;
+}
+
+.tabs-sel-wrap .tabs-sel {
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 0;
+  display: block;
+  border: none;
+  width: auto;
+}
+
+.tabs-sel {
+  width: 100%;
+  display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   border-bottom: 1px solid $grey-bright;
@@ -88,11 +106,12 @@
 }
 
 .tab-option.with-icon{
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 40px;
   font-size: $font-small;
+  min-width: 130px;
 }
 
 .tab-option.with-icon span[class^='icon-']{
