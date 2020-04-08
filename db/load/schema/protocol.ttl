@@ -346,7 +346,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Window Minus"^^xsd:string ;
   rdfs:domain :TimepointOffset ;
-  rdfs:range xsd:positiveInteger ;
+  rdfs:range xsd:integer ;
   skos:definition "The lower bound for the timepoint window."^^xsd:string ;
 .
 :windowPlus
@@ -354,7 +354,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Window Plus"^^xsd:string ;
   rdfs:domain :TimepointOffset ;
-  rdfs:range xsd:positiveInteger ;
+  rdfs:range xsd:integer ;
   skos:definition "The upper bound for the timepoint window."^^xsd:string ;
 .
 :windowOffset
@@ -362,6 +362,6 @@
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Offset"^^xsd:string ;
   rdfs:domain :TimepointOffset ;
-  rdfs:range xsd:positiveInteger ;
+  rdfs:range xsd:integer ;
   skos:definition "The offset for the timepoint window."^^xsd:string ;
 .

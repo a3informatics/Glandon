@@ -440,7 +440,9 @@ describe "Transcelerate Data" do
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
       p_5.to_sparql(sparql, true)
-      v_items.each do {|x| x.to_sparql(sparql, true)}
+      v_items.each {|x| x.to_sparql(sparql, true)}
+      tp_items.each {|x| x.to_sparql(sparql, true)}
+      o_items.each {|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
     end
