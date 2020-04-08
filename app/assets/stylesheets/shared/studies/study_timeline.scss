@@ -99,7 +99,10 @@
   height: 70px;
   z-index: 1;
   top: 0;
-  border-right: 2px solid white;
+  -webkit-box-shadow: inset -3px 0px 0px 0px white;
+  -moz-box-shadow: inset -3px 0px 0px 0px white;
+  box-shadow: inset -3px 0px 0px 0px white;
+  box-sizing: border-box;
   opacity: .5;
 }
 
@@ -127,7 +130,7 @@
 
 #tl-wrapper .timepoint:hover {
   cursor: pointer;
-  transform: scale(1.3);
+  // transform: scale(1.3);
   z-index: 11;
 }
 
@@ -175,3 +178,8 @@
   display: block;
   background: white;
 }
+
+#tl-wrapper  .ui-resizable-handle.ui-resizable-w:hover,
+  #tl-wrapper  .ui-resizable-handle.ui-resizable-e:hover {
+    cursor: ew-resize !important;
+  }

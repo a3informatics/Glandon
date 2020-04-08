@@ -71,6 +71,29 @@ StudyTimeline.prototype.setListeners = function() {
   this.div
     .off("click", ".timepoint")
     .on("click", ".timepoint", this.openTpContextDialog.bind(this));
+
+  $(".epoch-block").resizable({
+    handles: "w,e",
+    containment: $("#tl-wrapper"),
+    alsoResizeReverse: $('.epoch-block'),
+  });
+
+  $(_.first($(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-w").remove();
+  $(_.last($(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-e").remove();
+
+
+  $(".timepoint").draggable({
+      axis: "x",
+      containment: $("#tl-wrapper"),
+      drag: function(event, ui) {
+
+      },
+      stop: function () {
+        var l = ( 100 * parseFloat($(this).position().left / parseFloat($("#tl-wrapper").width())) ) + "%" ;
+        $(this).css("left", l);
+      },
+      start: function(event, ui){ }
+    });
 }
 
 /**
@@ -209,7 +232,7 @@ StudyTimeline.prototype.axisHTML = function() {
 StudyTimeline.prototype.timepointHTML = function(timepoint) {
   timepoint.offsetLeft = this.tpOffset(timepoint);
 
-  var tpOffset = "calc(" + timepoint.offsetLeft + "% - " + this.tpRadius/2 + "px)",
+  var tpOffset = "calc(" + timepoint.offsetLeft + "%)",
       epochColor = this.matrix.getItem("id", timepoint.epoch_id, "epochs").color,
       tpColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s + 10, l: epochColor.l}),
       tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 40, l: epochColor.l - 22});
@@ -279,11 +302,11 @@ StudyTimeline.prototype.getEpochCSS = function(epoch, edgeTimepoints) {
 
     // First and last timepoints are the same
     if (lastTimepoint.id == edgeTimepoints[0].id)
-      epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "% + " + this.tpRadius/2 + "px)";
+      epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "%)";
     // First and last timepoints are not the same - find difference
     else {
       var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
-      epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"% + " + this.tpRadius/2 + "px)";
+      epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"%)";
     }
   }
   else {
@@ -292,7 +315,7 @@ StudyTimeline.prototype.getEpochCSS = function(epoch, edgeTimepoints) {
     epochWidth = difference + "%";
   }
 
-  epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "% - " + this.tpRadius/2 + "px)" || "0";
+  epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "%)" || "0";
 
   return {
     bgColor: epochBgColor,
