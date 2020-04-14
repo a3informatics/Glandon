@@ -15,6 +15,7 @@ function StudyTimeline(armId, matrixRef) {
   this.armId = armId;
   this.matrix = matrixRef;
   this.ready = false;
+  this.interactive = false;
 
   this.tabName = "tab-timeline";
   this.wrapper = $("#tab-timeline-body");
@@ -72,6 +73,18 @@ StudyTimeline.prototype.setListeners = function() {
     .off("dblclick", ".timepoint")
     .on("dblclick", ".timepoint", this.openTpContextDialog.bind(this));
 
+  if(this.interactive)
+    this.interactionListeners();
+
+
+}
+
+/**
+ * Timeline interaction event handlers
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.interactionListeners = function() {
   $(".epoch-block").resizable({
     handles: "w,e",
     containment: $("#tl-wrapper"),
@@ -83,17 +96,17 @@ StudyTimeline.prototype.setListeners = function() {
 
 
   $(".timepoint").draggable({
-      axis: "x",
-      containment: $("#tl-wrapper"),
-      drag: function(event, ui) {
+    axis: "x",
+    containment: $("#tl-wrapper"),
+    drag: function(event, ui) {
 
-      },
-      stop: function () {
-        var l = ( 100 * parseFloat($(this).position().left / parseFloat($("#tl-wrapper").width())) ) + "%" ;
-        $(this).css("left", l);
-      },
-      start: function(event, ui){ }
-    });
+    },
+    stop: function () {
+      var l = ( 100 * parseFloat($(this).position().left / parseFloat($("#tl-wrapper").width())) ) + "%" ;
+      $(this).css("left", l);
+    },
+    start: function(event, ui){ }
+  });
 }
 
 /**
