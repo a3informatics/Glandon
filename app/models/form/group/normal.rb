@@ -7,7 +7,7 @@ class Form::Group::Normal < Form::Group
 
   object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
   object_property :has_sub_group, cardinality: :many, model_class: "Form::Group::Normal"
-  #object_property :has_biomedical_concept, cardinality: :many, model_class: "Bc:Reference"
+  object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
 
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?

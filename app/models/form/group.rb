@@ -1,7 +1,8 @@
 class Form::Group < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Group",
-            uri_suffix: "G"
+            uri_suffix: "G",  
+            uri_unique: true
 
   data_property :ordinal, default: 1
   data_property :note

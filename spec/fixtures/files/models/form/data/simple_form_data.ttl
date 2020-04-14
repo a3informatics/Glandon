@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-08T18:14:01+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-14T09:56:09+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -54,24 +54,35 @@
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG_TL ;
-	bf:hasItem :F_NG_Q ;
-	bf:hasItem :F_NG_PL ;
-	bf:hasItem :F_NG_MA ;
+	bf:hasItem :F_NG_TL1 ;
+	bf:hasItem :F_NG_TL2 ;
+	bf:hasItem :F_NG_Q1 ;
+	bf:hasItem :F_NG_Q2 ;
+	bf:hasItem :F_NG_PL1 ;
+	bf:hasItem :F_NG_PL2 ;
+	bf:hasItem :F_NG_MA1 ;
+	bf:hasItem :F_NG_MA2 ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:F_NG_TL
+:F_NG_TL1
 	rdf:type bf:TextLabel ;
 	isoC:label ""^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:labelText "Label Text"^^xsd:string ;
+	bf:labelText "Label Text 1"^^xsd:string ;
+.
+:F_NG_TL2
+	rdf:type bf:TextLabel ;
+	isoC:label ""^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
 	bf:labelText "Label Text 2"^^xsd:string ;
 .
-:F_NG_Q
+:F_NG_Q1
 	rdf:type bf:Question ;
 	isoC:label "Race"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -82,13 +93,20 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
 	bf:questionText "Race:"^^xsd:string ;
+.
+:F_NG_Q2
+	rdf:type bf:Question ;
 	isoC:label "Sex"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
 	bf:completion "* Indicate the appropriate sex."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
 	bf:mapping "SEX"^^xsd:string ;
 	bf:questionText "Sex:"^^xsd:string ;
 .
-:F_NG_PL
+:F_NG_PL1
 	rdf:type bf:Placeholder ;
 	isoC:label ""^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -96,10 +114,17 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:freeText "Free text"^^xsd:string ;
+.
+:F_NG_PL2
+	rdf:type bf:Placeholder ;
+	isoC:label ""^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
 	bf:freeText "Free text 2"^^xsd:string ;
 .
-:F_NG_MA
+:F_NG_MA1
 	rdf:type bf:Mapping ;
 	isoC:label ""^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -107,5 +132,13 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "Mapping"^^xsd:string ;
+.
+:F_NG_MA2
+	rdf:type bf:Mapping ;
+	isoC:label ""^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "Mapping"^^xsd:string ;
 .
