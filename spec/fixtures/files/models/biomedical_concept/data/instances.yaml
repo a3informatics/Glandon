@@ -1,6 +1,998 @@
+#HEIGHT
 ---
 - :label: "Height"
   :identifier: "HEIGHT"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true
+    :collect: false  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25347
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Height"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49668
+        - 
+          :cl: C66770
+          :cli: C48500
+        - 
+          :cl: C71620
+          :cli: C41139
+        - 
+          :cl: C71620
+          :cli: C71253
+#WEIGHT
+---
+- :label: "Weight"
+  :identifier: "WEIGHT"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true 
+    :collect: false 
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25208
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Weight"
+        :format: "5.1"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C28252
+        - 
+          :cl: C66770
+          :cli: C48531
+#BMI
+---
+- :label: "BMI"
+  :identifier: "BMI"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true 
+    :collect: false 
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C16358
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "BMI"
+        :format: "4.1"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49671
+#RACE
+---
+- :label: "Race"
+  :identifier: "RACE"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true
+    :collect: false  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: H000051
+          :cli: HI000060
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Race"
+        :prompt_text: "Race"
+        :format: "200"
+        :has_coded_value:
+        - 
+          :cl: C74457
+          :cli: C16352
+        - 
+          :cl: C74457
+          :cli: C41259
+        - 
+          :cl: C74457
+          :cli: C41260
+        - 
+          :cl: C74457
+          :cli: C41219
+        - 
+          :cl: C74457
+          :cli: C41261
+        - 
+          :cl: C74457
+          :cli: C17998
+        - 
+          :cl: C74457
+          :cli: C43234
+#SEX
+---
+- :label: "Sex"
+  :identifier: "SEX"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true 
+    :collect: false 
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: H000051
+          :cli: HI000063
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Sex"
+        :prompt_text: "Sex"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66731
+          :cli: C16576
+        - 
+          :cl: C66731
+          :cli: C20197 
+        - 
+          :cl: C66731
+          :cli: C45908 
+        - 
+          :cl: C66731
+          :cli: C17998
+#AGE
+---
+- :label: "Age"
+  :identifier: "AGE"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true
+    :collect: false  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: H000051
+          :cli: HI000061     
+    :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Age(yrs)"
+        :prompt_text: "Age(yrs)"
+        :format: "3.0"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :collect: false  
+        :question_text: []
+        :prompt_text: []
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66781
+          :cli: C29848
+#ETHNICITY
+---
+- :label: "Ethnicity"
+  :identifier: "ETHNICITY"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: H000051
+          :cli: HI000062
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Ethnicity"
+        :prompt_text: "Ethnicity"
+        :format: "30"
+        :has_coded_value:
+        - 
+          :cl: C66790
+          :cli: C17459
+        - 
+          :cl: C66790
+          :cli: C41222
+        - 
+          :cl: C66790
+          :cli: C43234
+        - 
+          :cl: C66790
+          :cli: C17998
+#SYSBP
+---
+- :label: "Systolic Blood Pressure"
+  :identifier: "SYSBP"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25298
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Body Position"
+        :prompt_text: "Position"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C71148 
+          :cli: C62166
+        - 
+          :cl: C71148 
+          :cli: C62122
+        - 
+          :cl: C71148
+          :cli: C62167
+
+  - :label: "Site of Administration"
+    :enabled: true
+    :collet: false
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Location of Measurement"
+        :prompt_text: "Location"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C74456 
+          :cli: C32141 
+
+  - :label: "Laterality"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Laterality"
+        :prompt_text: "Laterality"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C99073 
+          :cli: C25229
+        - 
+          :cl: C99073 
+          :cli: C25228
+        - 
+          :cl: C99073
+          :cli: C13332
+
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Result"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49670
+        - 
+          :cl: C66770
+          :cli: C42547
+#DIABP
+---
+- :label: "Diastolic Blood Pressure"
+  :identifier: "DIABP"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25299
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Body Position"
+        :prompt_text: "Position"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C71148 
+          :cli: C62166
+        - 
+          :cl: C71148 
+          :cli: C62122
+        - 
+          :cl: C71148
+          :cli: C62167
+
+  - :label: "Site of Administration"
+    :enabled: true
+    :collet: false
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Location of Measurement"
+        :prompt_text: "Location"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C74456 
+          :cli: C32141 
+
+  - :label: "Laterality"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Laterality"
+        :prompt_text: "Laterality"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C99073 
+          :cli: C25229
+        - 
+          :cl: C99073 
+          :cli: C25228
+        - 
+          :cl: C99073
+          :cli: C13332
+
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Result"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49670
+        - 
+          :cl: C66770
+          :cli: C42547
+#HR
+---
+- :label: "Heart Rate"
+  :identifier: "HR"
+  ::based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C49677
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Body Position"
+        :prompt_text: "Position"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C71148 
+          :cli: C62166
+        - 
+          :cl: C71148 
+          :cli: C62122
+        - 
+          :cl: C71148
+          :cli: C62167
+
+  - :label: "Site of Administration"
+    :enabled: true
+    :collet: false
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Location of Measurement"
+        :prompt_text: "Location"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C74456 
+          :cli: C32141 
+
+  - :label: "Laterality"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Laterality"
+        :prompt_text: "Laterality"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C99073 
+          :cli: C25229
+        - 
+          :cl: C99073 
+          :cli: C25228
+        - 
+          :cl: C99073
+          :cli: C13332
+
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Result"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49670
+        - 
+          :cl: C66770
+          :cli: C42547
+#TEMP
+---
+- :label: "Temperature"
+  :identifier: "TEMP"
+    :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25206
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Body Position"
+        :prompt_text: "Position"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C71148 
+          :cli: C62166
+        - 
+          :cl: C71148 
+          :cli: C62122
+        - 
+          :cl: C71148
+          :cli: C62167
+
+  - :label: "Site of Administration"
+    :enabled: true
+    :collet: false
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Location of Measurement"
+        :prompt_text: "Location"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C74456 
+          :cli: C32141 
+
+  - :label: "Laterality"
+    :enabled: true
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Laterality"
+        :prompt_text: "Laterality"
+        :format: "40"
+        :has_coded_value:
+        - 
+          :cl: C99073 
+          :cli: C25229
+        - 
+          :cl: C99073 
+          :cli: C25228
+        - 
+          :cl: C99073
+          :cli: C13332
+
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Result"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49670
+        - 
+          :cl: C66770
+          :cli: C42547
+#HBA1C
+---
+- :label: "HbA1c"
+  :identifier: "HBA1C"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C65047
+          :cli: C64849
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Result"
+        :prompt_text: "Result"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Unit"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C71620
+          :cli: C25613
+        - 
+          :cl: C71620
+          :cli: C111253
+#AE
+---
+- :label: "Adverse Event"
+  :identifier: "AE"
   :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
   :identified_by: 
     :label: "Test"
@@ -18,7 +1010,204 @@
         - 
           :cl: C66741
           :cli: C25347
-        
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Height value?"
+        :prompt_text: "Height"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Result unit?"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49668
+        - 
+          :cl: C66770
+          :cli: C48500
+        - 
+          :cl: C71620
+          :cli: C41139
+        - 
+          :cl: C71620
+          :cli: C71253
+#ECG - INTP
+---
+- :label: "Electrocardiogram Interpretation"
+  :identifier: "INTP"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C71153
+          :cli: C41255
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Overall result"
+        :prompt_text: "Overall result"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C101834
+          :cli: C14165
+        - 
+          :cl: C101834
+          :cli: C25401
+        - 
+
+#DAD01
+---
+- :label: "Disability Assessment for Dementia Questionnaire"
+  :identifier: "DAD01"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25347
+      
+  :has_items:
+  - :label: "Category Code"
+    :enabled: false
+  - :label: "Subcategory Code"
+    :enabled: false
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: false 
+  - :label: "Result"
+    :enabled: true  
+    :complex_datatype: 
+    - 
+      :short_name: PQR
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Height value?"
+        :prompt_text: "Height"
+        :format: "5.2"
+        :has_coded_value: []
+      - 
+        :label: "code"
+        :question_text: "Result unit?"
+        :prompt_text: "Unit"
+        :format: "20"
+        :has_coded_value:
+        - 
+          :cl: C66770
+          :cli: C49668
+        - 
+          :cl: C66770
+          :cli: C48500
+        - 
+          :cl: C71620
+          :cli: C41139
+        - 
+          :cl: C71620
+          :cli: C71253
+#NPI1
+---
+- :label: "Neuropsychiatric Inventory Questionnaire"
+  :identifier: "NPI1"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true  
+    :complex_datatype: 
+     - 
+      :short_name: CD 
+      :has_property: 
+      -
+        :label: "code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: "8"
+        :has_coded_value:
+        - 
+          :cl: C66741
+          :cli: C25347
+      
   :has_items:
   - :label: "Category Code"
     :enabled: false

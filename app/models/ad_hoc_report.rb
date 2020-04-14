@@ -137,7 +137,7 @@ class AdHocReport < ActiveRecord::Base
     definition = read_definition
     job = Background.find(self.background_id)
     sparql_query = get_query(params)
-    query_results = Sparql::Query.new.query(sparql_query, "", [:th, :bo])
+    query_results = Sparql::Query.new.query(sparql_query, "", [])
     triples = query_results.by_object_set(definition[:columns].keys)
     triples.each do |triple|
       entry = []
