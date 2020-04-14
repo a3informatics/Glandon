@@ -50,6 +50,8 @@ var C_TH_CL = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
 var C_TH_SUBSET = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset";
 var C_TH_EXT = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension";
 var C_TH_CLI = "http://www.assero.co.uk/Thesaurus#UnmanagedConcept";
+var C_BC_BCI = "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance";
+var C_BC_A = "http://www.assero.co.uk/BiomedicalConcept#Assessment";
 
 var C_SI = "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier";
 var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
@@ -105,6 +107,8 @@ typeToString[C_IGDOMAIN] = "SDTM IG Domain";
 typeToString[C_CLASSDOMAIN] = "SDTM Class Domain";
 typeToString[C_MODEL] = "SDTM Model";
 typeToString[C_BC] = "Biomedical Concept";
+typeToString[C_BC_BCI] = "Biomedical Concept";
+typeToString[C_BC_A] = "Assessment";
 typeToString[C_BCT] = "Biomedical Concept Template";
 typeToString[C_TH] = "Terminology";
 typeToString[C_TH_NEW] = "Terminology";
