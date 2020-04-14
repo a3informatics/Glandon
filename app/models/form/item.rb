@@ -2,7 +2,7 @@ class Form::Item < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Item",
             uri_suffix: "I",  
-            uri_unique: true
+            uri_property: :ordinal
 
   data_property :ordinal, default: 1
   data_property :note

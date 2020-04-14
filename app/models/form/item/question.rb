@@ -1,8 +1,7 @@
 class Form::Item::Question < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Question",
-            uri_suffix: "Q",
-            uri_property: :ordinal
+            uri_suffix: "Q"
 
   data_property :datatype 
   data_property :format 
