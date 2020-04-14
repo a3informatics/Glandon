@@ -1,7 +1,8 @@
 class Form::Item::Common < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
-            uri_suffix: "COI"
+            uri_suffix: "COI",  
+            uri_property: :ordinal
 
   object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
 

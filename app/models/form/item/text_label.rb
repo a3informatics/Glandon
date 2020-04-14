@@ -1,7 +1,8 @@
 class Form::Item::TextLabel < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#TextLabel",
-            uri_suffix: "TL"
+            uri_suffix: "TL",  
+            uri_property: :ordinal
 
   data_property :label_text
   

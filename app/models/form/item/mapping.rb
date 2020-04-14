@@ -1,7 +1,8 @@
 class Form::Item::Mapping < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Mapping",
-            uri_suffix: "MA"
+            uri_suffix: "MA",  
+            uri_property: :ordinal
 
   data_property :mapping
 

@@ -1,7 +1,8 @@
 class Form::Item::BcProperty < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-            uri_suffix: "BP"
+            uri_suffix: "BP",  
+            uri_property: :ordinal
 
   object_property :has_property, cardinality: :many, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
