@@ -41,6 +41,7 @@ VerticalList.prototype.loadData = function() {
     success: function(result){
       this.appendData(result.data);
       this.loaded = true;
+      this.loading(false);
     },
     error: function(xhr,status,error){
       this.loading(false);

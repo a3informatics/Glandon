@@ -13,7 +13,7 @@
 */
 
 /**
-* Managed Item Selector PanelConstructor
+* Managed Item Selector Panel Constructor
 *
 * @param [Object] user-defined values
 * @return [void]
@@ -25,8 +25,7 @@ function MISelector(params) {
  this.initialized = false;
  this.cache = {};
 
- this.indexTable = this.indexTableInit();
- this.historyTable = this.historyTableInit();
+ this.initTables();
  this.setListeners();
 }
 
@@ -35,7 +34,7 @@ function MISelector(params) {
 **/
 
 /**
- * Show panel event
+ * Shows panel (load index data)
  *
  * @return [void]
  */
@@ -53,7 +52,7 @@ MISelector.prototype.show = function(){
 }
 
 /**
- * Sets listeners
+ * Sets event listeners & handlers
  *
  * @return [void]
  */
@@ -64,7 +63,7 @@ MISelector.prototype.setListeners = function() {
 }
 
 /**
- * Sets listeners
+* Refreshes history table
  *
  * @return [void]
  */
@@ -74,7 +73,7 @@ MISelector.prototype.refresh = function() {
 
 
 /**
- * Marks rows based on selection
+ * Marks (selects) rows based on selection
  *
  * @return [void]
  */
@@ -88,8 +87,9 @@ MISelector.prototype.markRows = function() {
 }
 
 /**
- * Loads data into tables
+ * Fetches data to fill tables with
  *
+ * @param params [Object] Request parameters (url count offset errorDiv)
  * @return [void]
  */
 MISelector.prototype.loadData = function (params) {
@@ -141,7 +141,7 @@ MISelector.prototype.loadHistory = function (data) {
 }
 
 /**
- * Resets cache, table
+ * Clears cache, table, UI
  *
  * @return [void]
  */
@@ -150,7 +150,9 @@ MISelector.prototype.reset = function() {
 
   this.clearCache();
   this.indexTable.clear().draw();
+  this.indexTable.search("");
   this.historyTable.clear().draw();
+  this.historyTable.search("");
   this.initialized = false;
 }
 
@@ -206,19 +208,20 @@ MISelector.prototype.clearCache = function () {
 /**
  * Called when each chunk (page) of data is loaded
  *
- * @return [Object] request params
+ * @return [void]
  */
 MISelector.prototype.onTablePageLoaded = function (params) {
   this.processing(false);
   toggleTableActive("#index", false);
   params.offset += params.count;
+
   this.loadData(params);
 }
 
 /**
  * Called when each data is finished loading
  *
- * @return [Object] request params
+ * @return [void]
  */
 MISelector.prototype.onTableLoaded = function (params) {
   if (params.cacheData)
@@ -229,9 +232,9 @@ MISelector.prototype.onTableLoaded = function (params) {
 }
 
 /**
- * Generates history url
+ * Select Index Table Item Event
  *
- * @return [String] history url
+ * @return [void]
  */
 MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
   switch (e.type) {
@@ -246,13 +249,15 @@ MISelector.prototype.onIndexSelect = function (e, dt, type, indexes) {
 }
 
 /**
- * Generates history url
+ * Select History Table Item Event
  *
- * @return [String] history url
+ * @return [void]
  */
 MISelector.prototype.onHistorySelect = function (e, dt, type, indexes) {
+  var parentData = this.indexTable.rows({selected: true}).data()[0];
   var data = this.historyTable.rows(indexes).data();
   var selected = e.type == "select";
+  data.each(function(d){d.notation = parentData.notation });
 
   this.parentPanel.onPanelSelectionChange(this.params.type, selected, data);
 }
@@ -273,7 +278,7 @@ MISelector.prototype.makeHistoryUrl = function (identifier, scopeId) {
 }
 
 /**
- * Generates parameters for request for fetching data
+ * Generates item count for request for fetching data
  *
  * @return [Int] Item count for specific type
  */
@@ -316,6 +321,7 @@ MISelector.prototype.deselectAll = function(){
  */
 MISelector.prototype.loadDataParams = function(c, o){
   switch (this.params.type) {
+    case "clitems":
     case "cls":
       return { managed_concept: { count: c, offset: o, type: "all" } };
     case "thesauri":
@@ -339,8 +345,9 @@ MISelector.prototype.processing = function (enable) {
 }
 
 /**
- * Clears both tables' data
+ * Clears target table data
  *
+ * @param target [DataTable] Target table
  * @return [void]
  */
 MISelector.prototype.clearTable = function (target) {
@@ -352,9 +359,19 @@ MISelector.prototype.clearTable = function (target) {
 **/
 
 /**
- * Initialize the Index table
+ * Initialize all tables
  *
  * @return [void]
+ */
+MISelector.prototype.initTables = function() {
+  this.indexTable = this.indexTableInit();
+  this.historyTable = this.historyTableInit();
+}
+
+/**
+ * Initializes Index table
+ *
+ * @return [DataTable] initialized DT instance
  */
 MISelector.prototype.indexTableInit = function() {
   return $(this.div).find("#index").DataTable({
@@ -380,9 +397,9 @@ MISelector.prototype.indexTableInit = function() {
 }
 
 /**
- * Initializes index table
+ * Initializes History table
  *
- * @return [void]
+ * @return [DataTable] initialized DT instance
  */
 MISelector.prototype.historyTableInit = function () {
   return $(this.div).find("#history").DataTable({

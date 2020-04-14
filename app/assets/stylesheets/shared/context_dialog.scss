@@ -1,0 +1,82 @@
+@import "custom/vars.scss";
+
+.context-dialog.closed{
+  transform: scale(0);
+}
+
+.context-dialog {
+  width: 350px;
+  display: block;
+  position: absolute;
+  z-index: 200;
+  background: white;
+  font-family: $font-light;
+  color: $grey-medium;
+  padding: 20px;
+  border: 1px solid $primary-color-bright;
+  border-radius: 10px;
+  transition: transform .2s;
+  transform: scale(1);
+  transform-origin: top left;
+}
+
+.context-dialog.left {
+  transform-origin: top right;
+}
+
+.context-dialog::after {
+  top: -1px;
+  left: -1px;
+  border-style: solid;
+  border-width: 14px 14px 0 0;
+  border-color: $primary-color-bright transparent transparent transparent;
+  position: absolute;
+  content: " ";
+}
+
+.context-dialog.left::after {
+  right: -1px;
+  border-width: 0 14px 14px 0;
+  border-color: transparent $primary-color-bright transparent transparent;
+}
+
+.context-dialog .cd-title {
+  width: 100%;
+  font-size: $font-xnormal;
+}
+
+.context-dialog .cd-title .icon-times {
+  float: right;
+  font-size: $font-tiny;
+  color: $grey-light;
+  line-height: inherit;
+}
+
+.context-dialog.loading > div, .context-dialog.loading > span {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.context-dialog.loading::before {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 14px;
+  right: 36px;
+  display: block;
+  content: " ";
+  background: url(image_path('loading_inline.gif')) no-repeat;
+  background-size: 24px;
+  z-index: 100;
+}
+
+.context-dialog hr {
+  margin: 8px 0px;
+}
+
+.context-dialog .bg-labels-wrap{
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 0px;
+  padding-top: 0px;
+}

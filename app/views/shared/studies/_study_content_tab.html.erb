@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "shared/table_list" %>
 <%= javascript_include_tag "shared/vertical_list" %>
 
-<%= javascript_tag "var protocolShowUrl = '#{protocol_path}';" %>
+<%= javascript_tag "var protocolShowUrl = '#{protocol_path(@study.protocol.id)}';" %>
 
 <div class="text-xnormal font-light ci-card-title">
   Study Content

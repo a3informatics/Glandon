@@ -16,6 +16,15 @@ function StudyMatrix() {
   this.processing = false;
   this.refreshOnShow = true;
 
+  this.bcsSelector = new ItemsSelector({
+    id: "1",
+    multiple: true,
+    types: {bcs:true},
+    description: "Pick one or more Biomedical Concepts to add to the Time Point.",
+  });
+
+  this.createTPModal = new NewTimepointModal(this);
+
   this.data = { epochs: [], arms: [], }
 
   this.setListeners();
@@ -38,11 +47,22 @@ StudyMatrix.prototype.show = function() {
 }
 
 /**
- * Makes an ajax call
+ * Refreshes the tab, data, re-draws
  *
  * @return [void]
  */
-StudyMatrix.prototype.executeRequest = function(params, callback) {
+StudyMatrix.prototype.refresh = function() {
+  this.clear();
+  this.initMatrix();
+}
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyMatrix.prototype.executeRequest = function(params) {
   this.loading(true);
 
   $.ajax({
@@ -53,7 +73,7 @@ StudyMatrix.prototype.executeRequest = function(params, callback) {
     context: this,
     success: function(result) {
       this.loading(false);
-      callback(result);
+      params.callback(result);
     },
     error: function (xhr, status, error) {
       handleAjaxError(xhr, status, error);
@@ -63,18 +83,7 @@ StudyMatrix.prototype.executeRequest = function(params, callback) {
 }
 
 /**
- * Refreshes everything
- *
- * @return [void]
- */
-StudyMatrix.prototype.refresh = function() {
-  this.clear();
-  this.initMatrix();
-}
-
-
-/**
- * Sets Listeners
+ * Sets event listeners, handlers
  *
  * @return [void]
  */
@@ -86,6 +95,7 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
+  this.div.on("matrixloaded", function() { $(this.data.arms[0].div).click() }.bind(this));
 }
 
 
@@ -95,13 +105,13 @@ StudyMatrix.prototype.setListeners = function() {
 
 
 /**
- * Builds params for ajax call
+ * Fetch and process matrix data
  *
  * @return [void]
  */
 StudyMatrix.prototype.initMatrix = function() {
   // TODO: Build params: url, type, data
-  // TODO: call executeRequest with params, callback passe
+  // TODO: call executeRequest with params, callback passed
   this.matrixData(this.processMatrixData.bind(this));
 }
 
@@ -112,6 +122,8 @@ StudyMatrix.prototype.initMatrix = function() {
  * @return [void]
  */
 StudyMatrix.prototype.processMatrixData = function(data) {
+
+  // Initialize Epochs
   $.each(data, function(index, epoch) {
     this.data.epochs.push(
       {
@@ -123,35 +135,39 @@ StudyMatrix.prototype.processMatrixData = function(data) {
       }
     );
 
+    // Initialize Arms
     $.each(epoch.arms, function(idx, arm) {
       arm.element.type = "element";
-      var thisArm = this.getData("id", arm.id, "arms");
-      if (thisArm == null)
+      var thisArm = this.getItem("id", arm.id, "arms");
+
+      if (thisArm == null) {
+        var studyTimeline = new StudyTimeline(arm.id, this);
+
         this.data.arms.push(
           {
             type: "arm",
             label: arm.label,
             id: arm.id,
             color: this.generateColorShade(this.colorBases().green, idx),
-            elements: [arm.element]
+            elements: [arm.element],
+            timeline: studyTimeline,
           }
         );
+      }
       else
         thisArm.elements.push(arm.element);
-
     }.bind(this));
-
   }.bind(this));
 
-  this.makeMatrixUI();
+  this.render();
 }
 
 /**
- * Generates HTML for the matrix based on this instance's data structure
+ * Renders HTML for the matrix based on this instance's data structure
  *
  * @return [void]
  */
-StudyMatrix.prototype.makeMatrixUI = function() {
+StudyMatrix.prototype.render = function() {
   this.div.empty();
 
   this.div.append("<table><tr>");
@@ -178,52 +194,7 @@ StudyMatrix.prototype.makeMatrixUI = function() {
 
   }.bind(this));
 
-}
-
-/**
- * Trigerred on matrix item hover. Handles styles
- *
- * @return [void]
- */
-StudyMatrix.prototype.onMatrixItemHover = function(e) {
-  switch (e.type) {
-    case "mouseenter":
-      this.setMatrixItemCSS(e.target, true)
-      break;
-    case "mouseleave":
-      if (!$(event.target).hasClass("active"))
-        this.setMatrixItemCSS(e.target, false)
-      break;
-  }
-}
-
-/**
- * Trigerred on EPOCH item click.
- *
- * @return [void]
- */
-StudyMatrix.prototype.onEpochClick = function(e) {
-  var dataItem = this.getData("id", $(e.target).attr("data-id"), "epochs");
-
-  // Deselected
-  if (dataItem.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
-    this.matrixItemClickStyle($(e.target), false);
-  }
-  // Selected
-  else {
-    this.matrixItemClickStyle(".bg-label.epoch.active", false);
-    this.matrixItemClickStyle($(e.target), true);
-  }
-}
-
-/**
- * Trigerred on ARM item click.
- *
- * @return [void]
- */
-StudyMatrix.prototype.onArmClick = function(e) {
-  this.matrixItemClickStyle(".bg-label.active.arm", false);
-  this.matrixItemClickStyle(e.target, true);
+  this.div.trigger("matrixloaded", []);
 }
 
 /**
@@ -246,11 +217,12 @@ StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
  * @return [void]
  */
 StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
-  var dataItem = this.getData("id", $(target).attr("data-id"));
+  var dataItem = this.getItem("id", $(target).attr("data-id"));
 
-  this.div.find(target).css("background-color", enable ? dataItem.color : "");
+  this.div.find(target).css("background-color", enable ? this.hslString(dataItem.color) : "");
   this.div.find(target).css("color", enable ? "white" : "");
 }
+
 
 /**
  * Generates HTML for a matrix item and color (if color null, will use lightgrey)
@@ -259,7 +231,66 @@ StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
  * @return [void]
  */
 StudyMatrix.prototype.matrixItemHTML = function(item) {
-  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (item.color || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
+  return '<div class="bg-label ' + item.type + '" style="border-color: ' + (this.hslString(item.color) || 'lightgrey') + ';" data-id="' + item.id + '" >' + item.label + '</div>';
+}
+
+/**
+ ************** Event Handlers **************
+**/
+
+/**
+ * Trigerred on matrix item hover. Handles styles change
+ *
+ * @param e [Event] Mouse hover event
+ * @return [void]
+ */
+StudyMatrix.prototype.onMatrixItemHover = function(e) {
+  switch (e.type) {
+    case "mouseenter":
+      this.setMatrixItemCSS(e.target, true)
+      break;
+    case "mouseleave":
+      if (!$(event.target).hasClass("active"))
+        this.setMatrixItemCSS(e.target, false)
+      break;
+  }
+}
+
+/**
+ * Trigerred on EPOCH item click.
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onEpochClick = function(e) {
+  var epoch = this.getItem("id", $(e.target).attr("data-id"), "epochs");
+  var activeArm = this.getActiveArm();
+
+  // Deselected
+  if (epoch.id == this.div.find(".bg-label.epoch.active").attr("data-id")) {
+    this.matrixItemClickStyle($(e.target), false);
+    activeArm.timeline.render(activeArm.timeline.data.timepoints);
+  }
+  // Selected
+  else {
+    $(".bg-label.epoch.active").click();
+    this.matrixItemClickStyle($(e.target), true);
+    activeArm.timeline.render(activeArm.timeline.filterTimepoints("epoch_id", epoch.id));
+  }
+}
+
+/**
+ * Trigerred on ARM item click.
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onArmClick = function(e) {
+  var arm = this.getItem("id", $(e.target).attr("data-id"), "arms");
+  $(".bg-label.epoch.active").click();
+
+  this.matrixItemClickStyle(".bg-label.active.arm", false);
+  this.matrixItemClickStyle(e.target, true);
+
+  arm.timeline.show();
 }
 
 
@@ -276,7 +307,7 @@ StudyMatrix.prototype.matrixItemHTML = function(item) {
  * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
  * @return [Data Object] matched object, or null
  */
-StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
+StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
   var object = null;
 
   if(dataType != null) {
@@ -302,10 +333,33 @@ StudyMatrix.prototype.getData = function(propertyType, value, dataType) {
   return object;
 }
 
+/**
+ * Find currently active arm object
+ *
+ * @return [Object] current arm object
+ */
+StudyMatrix.prototype.getActiveArm = function() {
+  return this.getItem("id", this.div.find(".arm.active").attr("data-id"), "arms");
+}
+
 
 /**
  ************** Support **************
 **/
+
+
+/**
+ * Toggle loading on an matrix arm item
+ *
+ * @param armId [String] id of the arm
+ * @param enable [Boolean] enable / disable loading
+ * @return [void]
+ */
+StudyMatrix.prototype.armLoading = function(armId, enable) {
+  var arm = this.getItem("id", armId, "arms");
+  $(arm.div).toggleClass("loading", enable);
+  this.div.find(".bg-label").not($(arm.div)).toggleClass("disabled", enable);
+}
 
 
 /**
@@ -329,18 +383,30 @@ StudyMatrix.prototype.clear = function() {
 }
 
 /**
+ * Generates a HSL color string
+ *
+ * @param obj [Object] must contain values h,s,l
+ * @return [String] CSS HSL format string for color
+ */
+StudyMatrix.prototype.hslString = function(obj) {
+  return "hsl(" + obj.h + ", " + obj.s + "%, " + obj.l + "%)";
+}
+
+/**
  * Generates a shade of color for an element in a collection
  *
  * @param base [Object] one of the bases defined in colorBases (h,s,l)
  * @param index [Int] current element's index
- * @return [String] CSS HSL format string for color
+ * @return [Object] HSL values for color
  */
 StudyMatrix.prototype.generateColorShade = function(base, index) {
-  var changeConst = 20;
-  var hue = base.h + (changeConst * index);
-  var li = base.l - (2*index)
+  var hueChange = 20, liChange = 2, satChange = 3;
 
-  return "hsl(" + hue + ", " + base.s + "%, " + li + "%)";
+  var hue = base.h + (hueChange * index);
+  var li = (hue > 40 & hue < 120) ? base.l - 20 : base.l - (liChange * index);
+  var sat = base.s - (satChange * index);
+
+  return {h: hue, s: sat, l: li};
 }
 
 /**
@@ -350,9 +416,8 @@ StudyMatrix.prototype.generateColorShade = function(base, index) {
  */
 StudyMatrix.prototype.colorBases = function() {
   return {
-    red: {h: 0, s: 75, l: 75},
-    green: {h: 140, s: 60
-      , l: 70}
+    red: {h: 0, s: 85, l: 80},
+    green: {h: 140, s: 60, l: 70}
   };
 }
 
@@ -365,18 +430,18 @@ StudyMatrix.prototype.matrixData = function(callback) {
         {
           label: "High Dose",
           id: "210x",
-          element: { label: "Screen", id: "211"}
+          element: { label: "Screen", id: "211x"}
         },
         {
           label: "Low Dose",
           id: "310x",
-          element: { label: "Screen", id: "311"}
+          element: { label: "Screen", id: "311x"}
         },
         {
           label: "Placebo",
           id: "410x",
-          element: { label: "Screen", id: "411"}
-        }
+          element: { label: "Screen", id: "411x"}
+        },
       ]
     },
     {
@@ -400,6 +465,27 @@ StudyMatrix.prototype.matrixData = function(callback) {
         }
       ]
     },
+    {
+      label: "Follow-Up",
+      id: "116x",
+      arms: [
+        {
+          label: "High Dose",
+          id: "210x",
+          element: { label: "High Dose", id: "212x"}
+        },
+        {
+          label: "Low Dose",
+          id: "310x",
+          element: { label: "Low Dose", id: "312x"}
+        },
+        {
+          label: "Placebo",
+          id: "410x",
+          element: { label: "Placebo", id: "412x"}
+        }
+      ]
+    }
   ];
 
   callback(data);

@@ -2,14 +2,24 @@
 
 #tab-timeline-body {
   font-family: $font-light;
+  overflow-x: auto;
+  display: block;
+  padding: 10px;
+  text-align: center;
 }
 
-#study-matrix {
+#study-matrix, #study-timeline, #btns-wrap {
   width: 100%;
   display: block;
-  // justify-content: center;
-  overflow-x: auto;
+  min-width: 900px;
 }
+
+#btns-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+// Matrix
 
 #study-matrix table {
   margin: 0 auto;
@@ -24,7 +34,7 @@
 }
 
 #study-matrix table .bg-label {
-  padding: 4px 15px;
+  padding: 4px 20px;
   display: block;
   border: 2px solid;
   background-color: white;
@@ -34,3 +44,142 @@
 #study-matrix table .bg-label:hover {
   cursor: pointer;
 }
+
+#study-matrix table .bg-label.disabled {
+  pointer-events: none;
+  opacity: .5;
+}
+
+// Timeline
+
+#study-timeline{
+  transition: opacity .5s;
+}
+
+#study-timeline.fadein{
+  opacity: 0;
+  transition: none;
+}
+
+#study-timeline #tl-wrapper {
+  width: 90%;
+  min-height: 120px;
+  position: relative;
+  display: block;
+  margin: 40px auto 10px auto;
+}
+
+#tl-wrapper #timeline-axis {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  top: calc(100% - 50px);
+  background-color: lightgrey;
+  z-index: 2;
+}
+
+#tl-wrapper #timeline-axis .axis-label {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  left: -40px;
+  bottom: -25px;
+  transform: rotate(-90deg);
+  transform-origin: 0% 0%;
+  font-family: $font-primary;
+  font-size: $font-normal;
+  white-space: nowrap;
+}
+
+#tl-wrapper .epoch-block {
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 70px;
+  z-index: 1;
+  top: 0;
+  -webkit-box-shadow: inset -3px 0px 0px 0px white;
+  -moz-box-shadow: inset -3px 0px 0px 0px white;
+  box-shadow: inset -3px 0px 0px 0px white;
+  box-sizing: border-box;
+  opacity: .5;
+}
+
+#tl-wrapper .epoch-label {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  top: 10px;
+  left: 25%;
+  opacity: .8;
+  font-family: $font-primary;
+  font-size: $font-small;
+}
+
+#tl-wrapper .timepoint {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 10;
+  top: calc(50% - 5px);
+  transition: transform .2s;
+}
+
+#tl-wrapper .timepoint:hover {
+  cursor: pointer;
+  // transform: scale(1.3);
+  z-index: 11;
+}
+
+#tl-wrapper .timepoint:focus{
+  z-index: 11;
+  outline: solid lightgrey 1px;
+}
+
+#tl-wrapper .timepoint.baseline::after {
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  color: white;
+  font-family: $font-bold;
+  text-align: center;
+  content: "B";
+  top: calc(50% - 10px);
+  left: 0%;
+  z-index: 11;
+}
+
+#tl-wrapper .timepoint .tp-badge{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  line-height: 17px;
+  text-align: center;
+  font-family: $font-primary;
+  color: white;
+  right: -5px;
+  top: 50%;
+}
+
+#tl-wrapper .timepoint .tp-label{
+  position: absolute;
+  word-spacing: 9999px;
+  line-height: 10px;
+  color: $grey-medium;
+  font-family: $font-primary;
+  font-size: 10px;
+  text-align: center;
+  top: 35px;
+  display: block;
+  background: white;
+}
+
+#tl-wrapper  .ui-resizable-handle.ui-resizable-w:hover,
+  #tl-wrapper  .ui-resizable-handle.ui-resizable-e:hover {
+    cursor: ew-resize !important;
+  }

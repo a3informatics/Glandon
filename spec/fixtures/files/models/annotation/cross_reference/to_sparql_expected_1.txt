@@ -6,10 +6,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
-<http://example.com/A#base_CI1> rdf:type ba:ChangeInstruction . 
-<http://example.com/A#base_CI1> isoC:label "Label"^^xsd:string . 
-<http://example.com/A#base_CI1> ba:reference ""^^xsd:string . 
-<http://example.com/A#base_CI1> ba:description "This is the comment"^^xsd:string . 
-<http://example.com/A#base_CI1> ba:ordinal "1"^^xsd: . 
-<http://example.com/A#base_CI1> ba:semantic "A Relationship"^^xsd:string . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> rdf:type ba:ChangeInstruction . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> isoC:label "Label"^^xsd:string . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> ba:reference ""^^xsd:string . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> ba:description "This is the comment"^^xsd:string . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> ba:ordinal "1"^^xsd: . 
+<http://www.assero.co.uk/CHIN#1234-5678-9012-3456> ba:semantic "A Relationship"^^xsd:string . 
 }

@@ -574,6 +574,7 @@ module UiHelpers
 			extension: "Extension",
 			extending: "Extending",
 			change_notes: "Change notes",
+			change_instructions: "Change instructions",
 			edit_tags: "Edit tags",
       list_change_notes: "List Change notes",
       edit_properties: "Edit properties",
@@ -583,7 +584,7 @@ module UiHelpers
 			compare: "Compare",
 			run: "Run",
 			results: "Results",
-      upgrade: "Upgrade Code Lists"
+      upgrade: "Upgrade Code Lists",
     }
 	end
 
@@ -777,6 +778,29 @@ module UiHelpers
     expect(page).to have_content "Identifier: #{identifier}"
     expect(page).to have_content version
   end
+
+
+	# Items Selector
+	def ui_selector_check_tabs(tab_names)
+		tab_names.each do |name|
+			expect(find ".tabs-layout").to have_content(name)
+		end
+	end
+
+	def ui_selector_check_tabs_gone(tab_names)
+		tab_names.each do |name|
+			expect(find "#selector-type-tabs .tabs-sel").not_to have_content(name)
+		end
+	end
+
+	def ui_selector_tab_click(tab_text)
+		find(:xpath, "//div[contains(concat(' ',normalize-space(@class), ' '),' tab-option') and contains(.,'#{tab_text}')]").click
+	end
+
+	def ui_selector_item_click(table, text)
+		find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]").click
+		wait_for_ajax 20
+	end
 
 private
 
