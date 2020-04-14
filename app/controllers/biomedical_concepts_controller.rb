@@ -23,7 +23,7 @@ class BiomedicalConceptsController < ApplicationController
 
   def index
     authorize BiomedicalConcept
-    @bcs = BiomedicalConcept.unique
+    @bcs = BiomedicalConceptInstance.unique
     @biomedical_concept = BiomedicalConcept.new
     respond_to do |format|
       format.html 
