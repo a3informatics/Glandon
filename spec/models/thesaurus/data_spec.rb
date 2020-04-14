@@ -460,9 +460,9 @@ describe Thesaurus::ManagedConcept do
 
     def add_cl(params)
       cl = Thesaurus::ManagedConcept.from_h({
-          label: params[:l].empty? : "Not Set" : params[:l],
+          label: params[:l].empty? ? "Not Set" : params[:l],
           identifier: Thesaurus::ManagedConcept.new_identifier,
-          definition: params[:d].empty? : "Not Set" : params[:d],
+          definition: params[:d].empty? ? "Not Set" : params[:d],
           notation: params[:n]
         })
       cl.preferred_term = find_or_new_pt(params[:pt])
@@ -473,9 +473,9 @@ describe Thesaurus::ManagedConcept do
       return if param_set.empty?
       param_set.each do |params|
         cli = Thesaurus::UnmanagedConcept.from_h({
-            label: params[:l].empty? : "Not Set" : params[:l],
+            label: params[:l].empty? ? "Not Set" : params[:l],
             identifier: Thesaurus::UnmanagedConcept.new_identifier,
-            definition: params[:d].empty? : "Not Set" : params[:d],
+            definition: params[:d].empty? ? "Not Set" : params[:d],
             notation: params[:n]
           })
         cli.preferred_term = find_or_new_pt(params[:pt])
