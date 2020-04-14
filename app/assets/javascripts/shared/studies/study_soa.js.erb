@@ -1,0 +1,200 @@
+/*
+* Study Schedule of Assessments
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Schedule of Assessments Constructor
+ *
+ * @return [void]
+ */
+function StudySchedule() {
+  this.div = $("#soa-body");
+  this.tab = $("#tab-soa");
+}
+
+
+/**
+ ************** General **************
+**/
+
+
+/**
+ * Clears and reloads schedule data
+ *
+ * @return [void]
+ */
+StudySchedule.prototype.show = function() {
+  this.clear();
+  this.loadData();
+}
+
+
+/**
+ * Loads and processes schedule data from server
+ *
+ * @return [void]
+ */
+StudySchedule.prototype.loadData = function() {
+  this.loading(true);
+
+  this.buildScheduleHTML(this.data());
+
+  this.loading(false);
+}
+
+
+/**
+ * Empties Schedule's HTML contents
+ *
+ * @return [void]
+ */
+StudySchedule.prototype.clear = function() {
+  this.div.find("table thead, table tbody").empty();
+}
+
+/**
+ ************** HTML **************
+**/
+
+
+/**
+ * Builds HTML schedule table
+ *
+ * @param data [Array of Objects]
+ * @return [void]
+ */
+StudySchedule.prototype.buildScheduleHTML = function(data) {
+  if(_.isEmpty(data) || _.isUndefined(data)) {
+    this.div.append("No data");
+    return;
+  }
+
+  // Append Visits
+  this.div.find("table thead").append("<tr></tr>");
+  this.div.find("table thead tr").append("<th>Type</th>");
+  this.div.find("table thead tr").append("<th>Assessment / Visit</th>");
+
+  $.each(data[0].visits, function(i, visit) {
+    this.div.find("table thead tr").append("<th><div class='bg-label'>" + visit.label + "</div></th>");
+  }.bind(this));
+
+  // Append Assessments
+  $.each(data, function(i, asmnt) {
+    this.div.find("table tbody").append("<tr></tr>");
+    this.div.find("table tbody tr").eq(i).append("<td>" + typeToColorIconBadge(asmnt.rdf_type, {ttip: true, size: "med"}) + "</td>");
+    this.div.find("table tbody tr").eq(i).append("<td><span class='font-regular'>" + asmnt.short_name + "</span> <br/>" + asmnt.label + "</td>");
+    $.each(asmnt.visits, function(idx, visit){
+      if(visit.applies)
+        this.div.find("table tbody tr").eq(i).append("<td class='cen'><span class='icon-ok text-link'></span></td>");
+      else
+        this.div.find("table tbody tr").eq(i).append("<td></td>");
+    }.bind(this));
+  }.bind(this));
+}
+
+
+/**
+ ************** Support **************
+**/
+
+/**
+ * Enable disable loading state
+ *
+ * @param enable [Boolean] true/false show/hide loading
+ * @return [void]
+ */
+StudySchedule.prototype.loading = function(enable) {
+ this.tab.trigger("loading", [enable]);
+}
+
+
+StudySchedule.prototype.data = function() {
+return [
+  {
+    label: "Demographics",
+    short_name: "DEM",
+    rdf_type: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance",
+    id: "111",
+    visits: [
+      {
+          label: "SCRN",
+          id: "991",
+          applies: true
+      },
+      {
+          label: "V1",
+          id: "992",
+          applies: false
+      },
+      {
+          label: "V2",
+          id: "993",
+          applies: false
+      },
+      {
+          label: "V3",
+          id: "994",
+          applies: false
+      },
+    ]
+  },
+  {
+    label: "Cancer Diagnosis - Questions",
+    short_name: "CDQ",
+    rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Assessment",
+    id: "112",
+    visits: [
+      {
+          label: "SCRN",
+          id: "991",
+          applies: true
+      },
+      {
+          label: "V1",
+          id: "992",
+          applies: true
+      },
+      {
+          label: "V2",
+          id: "993",
+          applies: true
+      },
+      {
+          label: "V3",
+          id: "994",
+          applies: false
+      },
+    ]
+  },
+  {
+    label: "Tumor Identification / Results New Lesion",
+    short_name: "TID",
+    rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
+    id: "113",
+    visits: [
+      {
+          label: "SCRN",
+          id: "991",
+          applies: true
+      },
+      {
+          label: "V1",
+          id: "992",
+          applies: false
+      },
+      {
+          label: "V2",
+          id: "993",
+          applies: true
+      },
+      {
+          label: "V3",
+          id: "994",
+          applies: true
+      },
+    ]
+  }
+]
+}
