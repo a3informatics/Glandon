@@ -21,3 +21,8 @@
 	isoC:label "Intervention"^^xsd:string ;
 	pr:parameterRdfType pr:Intervention ;
 .
+:6c1c328851412e95110c486bd84a712905888d7a
+	rdf:type pr:Parameter ;
+	isoC:label "Timepoint"^^xsd:string ;
+	pr:parameterRdfType pr:TimepointOffset ;
+.
