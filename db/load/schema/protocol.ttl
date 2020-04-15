@@ -248,6 +248,14 @@
   rdfs:range :Epoch ;
   skos:definition "Relationship from an Element to an Epoch."^^xsd:string ;
 .
+:containsTimepoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Contains Timepoint Relationship"^^xsd:string ;
+  rdfs:domain :Element ;
+  rdfs:range :Timepoint ;
+  skos:definition "Relationship from an Element to a Timepoint."^^xsd:string ;
+.
 :derivedFromEndpoint
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
