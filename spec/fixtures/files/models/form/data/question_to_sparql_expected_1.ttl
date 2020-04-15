@@ -1,0 +1,19 @@
+PREFIX bf: <http://www.assero.co.uk/BusinessForm#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> rdf:type bf:Question . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> isoC:label "INFORMATION NOT OBTAINED "^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:ordinal "1"^^xsd:integer . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:note ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:completion ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:datatype "boolean"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:format ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:mapping "NOT SUBMITTED"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1> bf:questionText "INFORMATION NOT OBTAINED "^^xsd:string . 
+}
