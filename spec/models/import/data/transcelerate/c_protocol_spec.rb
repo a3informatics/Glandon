@@ -234,7 +234,19 @@ describe "C - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      sbc1 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      sbc1.uri = sbc1.create_uri(sbc1.class.base_uri)
+      sbc2 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      sbc2.uri = sbc2.create_uri(sbc2.class.base_uri)
+      ass = Assessment.new(label: "BC Collection")
+      ass.add_no_save(bc, 1)
+      ass.add_no_save(bc, 2)
+      ass.set_initial("ASS BC C1")
+      sass1 = StudyAssessment.new(is_derived_from: ass.uri)
+      sass1.uri = sass1.create_uri(sass1.class.base_uri)
 
       # Visits
       visits = 
@@ -261,10 +273,10 @@ describe "C - Transcelerate Protocol" do
       end
       tps = 
       [
-        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri},
-        {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri},
-        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri},
-        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri},
+        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, has_planned: [sbc1.uri]},
+        {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, has_planned: []},
+        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri, has_planned: [sass1.uri]},
+        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, has_planned: [sbc1.uri, sbc2.uri]},
       ]
       tp_items = []
       tps.each_with_index do |v, index|
@@ -385,6 +397,12 @@ describe "C - Transcelerate Protocol" do
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
+
+      sbc1.to_sparql(sparql, true)
+      sbc2.to_sparql(sparql, true)
+      sass1.to_sparql(sparql, true)
+      ass.to_sparql(sparql, true)
+
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
     end

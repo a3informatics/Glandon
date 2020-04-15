@@ -1,5 +1,6 @@
 @prefix : <http://www.assero.co.uk/Protocol#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix en: <http://www.assero.co.uk/Enumerated#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -101,6 +102,24 @@
   rdfs:subClassOf bo:Component ;
   rdfs:label "Timepoint Offset"^^xsd:string ;
   skos:definition "The offset of the timepoint based on day 0."^^xsd:string ;
+.
+:StudyForm
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Study Form"^^xsd:string ;
+  skos:definition "A form used within a study"^^xsd:string ;
+.
+:StudyAssessment
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Study Assessment"^^xsd:string ;
+  skos:definition "An assessment used within a study"^^xsd:string ;
+.
+:StudyBiomedicalConcept
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Study Biomedical Concept"^^xsd:string ;
+  skos:definition "An Biomedical Concept used within a study"^^xsd:string ;
 .
 :implements
   rdf:type owl:ObjectProperty ;
@@ -216,6 +235,16 @@
   rdfs:range :Parameter ;
   skos:definition "Relationship from an objective or endtpoint to an parameter."^^xsd:string ;
 .
+:isDerivedFrom
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is Derived From Relationship"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :StudyAssessment :StudyForm :StudyBiomedicalConcept)
+    ] ;
+  rdfs:range isoT:AdministeredItem ;
+  skos:definition "Relationship from a derived item to its definition."^^xsd:string ;
+.
 :specifiesArm
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -279,6 +308,14 @@
   rdfs:domain :Timepoint ;
   rdfs:range :TimepointOffset ;
   skos:definition "Relationship from a timepoint to it offset."^^xsd:string ;
+.
+:hasPlanned
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Planned Relationship"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range isoC:Concept ;
+  skos:definition "Relationship from a timepoint to a planned assessment, BC, Form or other item."^^xsd:string ;
 .
 :fullText
   rdf:type owl:DatatypeProperty ;

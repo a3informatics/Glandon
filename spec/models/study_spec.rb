@@ -84,7 +84,16 @@ describe "Study" do
 
     before :all do
       load_files(schema_files, [])
-      load_test_file_into_triple_store("transcelerate.nq.gz")
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
+      load_data_file_into_triple_store("hackathon_tas.ttl")
+      load_data_file_into_triple_store("hackathon_indications.ttl")
+      load_data_file_into_triple_store("hackathon_endpoints.ttl")
+      load_data_file_into_triple_store("hackathon_parameters.ttl")
+      load_data_file_into_triple_store("hackathon_protocols.ttl")
+      load_data_file_into_triple_store("hackathon_bc_instances.ttl")
+      load_data_file_into_triple_store("hackathon_bc_templates.ttl")
     end
 
     it "find protocol" do
@@ -100,6 +109,7 @@ describe "Study" do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
       actual = study.soa
+byebug
       check_file_actual_expected(actual, sub_dir, "soa_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
@@ -107,7 +117,7 @@ describe "Study" do
       pr = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
-      actual = study.soa
+      actual = study.visits
       check_file_actual_expected(actual, sub_dir, "visits_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 

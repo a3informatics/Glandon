@@ -52,7 +52,7 @@ class Study < IsoManagedV2
         ?tp pr:atOffset ?o .
         ?o pr:windowOffset ?os .
         ?v isoC:label ?vl .
-        ?tp pr:hasPlanned ?x .
+        ?tp pr:hasPlanned/pr:isDerivedFrom ?x .
         ?x isoC:label ?xl .   
       } ORDER BY ?os
     }
@@ -62,7 +62,9 @@ class Study < IsoManagedV2
     triples.each do |entry|
       uri_s = entry[:x].to_s
       results[uri_s] = {label: entry[:xl], id: entry[:x].to_id, visits: visit_set.dup} if !results.key?(uri_s)
-      results[uri_s][:visits] << {label: entry[:vl], id: entry[:v].to_id} unless entry[:x].blank?
+      next if entry[:v].blank?
+      visit = results[uri_s][:visits].find{|x| x[:id] == entry[:v].to_id} 
+      visit[:applies] = true
     end
     results.map{|k,v| v}
   end
