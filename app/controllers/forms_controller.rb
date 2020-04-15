@@ -1,8 +1,12 @@
+require 'controller_helpers.rb'
+
 class FormsController < ApplicationController
-  
+
   before_action :authenticate_user!
-  
+
   C_CLASS_NAME = "FormsController"
+
+  include ControllerHelpers
 
   def new
     authorize Form
@@ -13,18 +17,15 @@ class FormsController < ApplicationController
     authorize Form
     @forms = Form.unique
     respond_to do |format|
-      format.html 
+      format.html
       format.json do
-        results = {}
-        results[:data] = []
-        @forms.each do |item|
-          results[:data] << item
-        end
-        render json: results
+        byebug
+        @forms = @forms.map{|x| x.reverse_merge!({history_path: "test"})}
+        render json: {data: @forms}, status: 200
       end
     end
   end
-  
+
   def history
     authorize Form
     @identifier = params[:identifier]
@@ -37,7 +38,7 @@ class FormsController < ApplicationController
     authorize Form, :new?
     @form = Form.new
   end
-  
+
   def placeholder_create
     authorize Form, :create?
     @form = Form.create_placeholder(the_params)
@@ -50,7 +51,7 @@ class FormsController < ApplicationController
       redirect_to placeholder_new_forms_path
     end
   end
-  
+
   def edit
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
@@ -106,7 +107,7 @@ class FormsController < ApplicationController
     managed_item[:label] = the_params[:label]
     @form = Form.create(operation)
     if @form.errors.empty?
-      @form.add_branch_parent(params[:form_id], params[:form_namespace]) 
+      @form.add_branch_parent(params[:form_id], params[:form_namespace])
       AuditTrail.create_item_event(current_user, @form, "Form branched from #{identifier}.")
       flash[:success] = 'Form was successfully created.'
       redirect_to forms_path
@@ -160,24 +161,24 @@ class FormsController < ApplicationController
     redirect_to request.referer
   end
 
-  def show 
+  def show
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
-  
-  def view 
+
+  def view
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
-  
+
   def export_ttl
     authorize Form
     @form = IsoManaged::find(params[:id], params[:namespace])
     send_data to_turtle(@form.triples), filename: "#{@form.owner_short_name}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
-  
+
   def export_json
     authorize Form
     @form = Form.find(params[:id], params[:namespace])

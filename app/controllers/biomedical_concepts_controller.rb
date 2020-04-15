@@ -33,8 +33,7 @@ class BiomedicalConceptsController < ApplicationController
         @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concepts_path({biomedical_concept:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
         render json: {data: @bcs}, status: 200
       end
-      format.html do
-      end
+      format.html 
     end
   end
 
