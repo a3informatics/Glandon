@@ -12,6 +12,8 @@
 function StudySchedule() {
   this.div = $("#soa-body");
   this.tab = $("#tab-soa");
+  this.soaUrl = soaUrl;
+  this.visitsUrl = visitsUrl;
 }
 
 
@@ -27,23 +29,33 @@ function StudySchedule() {
  */
 StudySchedule.prototype.show = function() {
   this.clear();
-  this.loadData();
+  this.loadData(this.soaUrl);
 }
-
 
 /**
  * Loads and processes schedule data from server
  *
+ * @param url [String] url for data fetching
  * @return [void]
  */
-StudySchedule.prototype.loadData = function() {
-  this.loading(true);
-
-  this.buildScheduleHTML(this.data());
-
-  this.loading(false);
+StudySchedule.prototype.loadData = function(url) {
+  this.executeRequest({
+    url: url,
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      var isVisitsData = url == this.visitsUrl;
+      // No Schedule data - get visits only
+      if (!isVisitsData && _.isEmpty(result.data))
+        this.loadData(this.visitsUrl);
+      // Process schedule / visits data
+      else {
+        this.buildScheduleHTML(result.data, isVisitsData);
+        this.loading(false);
+      }
+    }.bind(this)
+  })
 }
-
 
 /**
  * Empties Schedule's HTML contents
@@ -54,6 +66,7 @@ StudySchedule.prototype.clear = function() {
   this.div.find("table thead, table tbody").empty();
 }
 
+
 /**
  ************** HTML **************
 **/
@@ -63,41 +76,129 @@ StudySchedule.prototype.clear = function() {
  * Builds HTML schedule table
  *
  * @param data [Array of Objects]
+ * @param visitsOnly [Boolean] true if data is fetched from visitsUrl
  * @return [void]
  */
-StudySchedule.prototype.buildScheduleHTML = function(data) {
+StudySchedule.prototype.buildScheduleHTML = function(data, visitsOnly) {
   if(_.isEmpty(data) || _.isUndefined(data)) {
-    this.div.append("No data");
+    this.tableDataMsg("No Schedule data found.");
     return;
   }
 
   // Append Visits
+  this.headerHTML(visitsOnly ? data : data[0].visits);
+
+  if (visitsOnly) 
+    this.tableDataMsg("No Assessments found.");
+
+  else {
+    if(_.isEmpty(data[0].visits))
+      this.div.find("table thead tr").append("<th></th>");
+
+    // Append Assessments
+    $.each(data, function(i, asmnt) {
+      this.div.find("table tbody").append("<tr></tr>");
+      this.asmntHTML(i, asmnt);
+    }.bind(this));
+  }
+}
+
+/**
+ * Builds HTML for a single assessment table row
+ *
+ * @param index [Integer] index of the current Assessment iteration
+ * @param asmnt [Object] current Assessment data object
+ * @return [void]
+ */
+StudySchedule.prototype.asmntHTML = function(index, asmnt) {
+  var dataRow = this.div.find("table tbody tr").eq(index);
+  // Type badge
+  dataRow.append("<td>" +
+                    typeToColorIconBadge(asmnt.rdf_type, {ttip: true, size: "med"}) +
+                 "</td>");
+  // Label
+  dataRow.append("<td>" +
+                   "<span class='font-regular'>" + asmnt.short_name + "</span> " +
+                   "<br/>" + asmnt.label +
+                 "</td>");
+  // Visit matrix
+  $.each(asmnt.visits, function(i, visit){
+    dataRow.append("<td class='cen'>" +
+                      (visit.applies ? "<span class='icon-ok text-link'></span>" : "" ) +
+                   "</td>");
+  }.bind(this));
+  // No visit data message
+  if(_.isEmpty(asmnt.visits))
+    dataRow.append("<td><i>No Visits found</i></td>");
+}
+
+/**
+ * Builds HTML for the SoA table header based on visits data
+ *
+ * @param visitsData [Object Array] array of visits
+ * @return [void]
+ */
+StudySchedule.prototype.headerHTML = function(visitsData) {
   this.div.find("table thead").append("<tr></tr>");
   this.div.find("table thead tr").append("<th>Type</th>");
   this.div.find("table thead tr").append("<th>Assessment / Visit</th>");
 
-  $.each(data[0].visits, function(i, visit) {
-    this.div.find("table thead tr").append("<th><div class='bg-label'>" + visit.label + "</div></th>");
+  $.each(visitsData, function(i, visit) {
+    this.div
+      .find("table thead tr")
+      .append("<th>" +
+                "<div class='bg-label ttip'>" +
+                  "<span class='ttip-text shadow-small text-medium text-small'>" + visit.label + "</span>" +
+                  visit.short_name +
+                "</div>" +
+              "</th>");
   }.bind(this));
+}
 
-  // Append Assessments
-  $.each(data, function(i, asmnt) {
-    this.div.find("table tbody").append("<tr></tr>");
-    this.div.find("table tbody tr").eq(i).append("<td>" + typeToColorIconBadge(asmnt.rdf_type, {ttip: true, size: "med"}) + "</td>");
-    this.div.find("table tbody tr").eq(i).append("<td><span class='font-regular'>" + asmnt.short_name + "</span> <br/>" + asmnt.label + "</td>");
-    $.each(asmnt.visits, function(idx, visit){
-      if(visit.applies)
-        this.div.find("table tbody tr").eq(i).append("<td class='cen'><span class='icon-ok text-link'></span></td>");
-      else
-        this.div.find("table tbody tr").eq(i).append("<td></td>");
-    }.bind(this));
-  }.bind(this));
+/**
+ * Generates no data message in the table spanning its whole width
+ *
+ * @param text [String] text to be displayed
+ * @return [void]
+ */
+StudySchedule.prototype.tableDataMsg = function(text) {
+  this.div
+    .find("table tbody")
+    .append("<tr>" +
+              "<td class='cen' colspan='" + this.div.find("table thead th").length + "'>" + text + "</td>" +
+            "</tr>")
 }
 
 
 /**
  ************** Support **************
 **/
+
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudySchedule.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
 
 /**
  * Enable disable loading state
@@ -107,94 +208,4 @@ StudySchedule.prototype.buildScheduleHTML = function(data) {
  */
 StudySchedule.prototype.loading = function(enable) {
  this.tab.trigger("loading", [enable]);
-}
-
-
-StudySchedule.prototype.data = function() {
-return [
-  {
-    label: "Demographics",
-    short_name: "DEM",
-    rdf_type: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance",
-    id: "111",
-    visits: [
-      {
-          label: "SCRN",
-          id: "991",
-          applies: true
-      },
-      {
-          label: "V1",
-          id: "992",
-          applies: false
-      },
-      {
-          label: "V2",
-          id: "993",
-          applies: false
-      },
-      {
-          label: "V3",
-          id: "994",
-          applies: false
-      },
-    ]
-  },
-  {
-    label: "Cancer Diagnosis - Questions",
-    short_name: "CDQ",
-    rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Assessment",
-    id: "112",
-    visits: [
-      {
-          label: "SCRN",
-          id: "991",
-          applies: true
-      },
-      {
-          label: "V1",
-          id: "992",
-          applies: true
-      },
-      {
-          label: "V2",
-          id: "993",
-          applies: true
-      },
-      {
-          label: "V3",
-          id: "994",
-          applies: false
-      },
-    ]
-  },
-  {
-    label: "Tumor Identification / Results New Lesion",
-    short_name: "TID",
-    rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
-    id: "113",
-    visits: [
-      {
-          label: "SCRN",
-          id: "991",
-          applies: true
-      },
-      {
-          label: "V1",
-          id: "992",
-          applies: false
-      },
-      {
-          label: "V2",
-          id: "993",
-          applies: true
-      },
-      {
-          label: "V3",
-          id: "994",
-          applies: true
-      },
-    ]
-  }
-]
 }

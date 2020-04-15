@@ -1,6 +1,9 @@
 <%= javascript_include_tag "shared/studies/study_soa" %>
 <%= stylesheet_link_tag "shared/schedule" %>
 
+<%= javascript_tag "var soaUrl = '#{soa_study_path(@study)}',
+                        visitsUrl = '#{visits_study_path(@study)}';" %>
+
 <div class="text-xnormal font-light ci-card-title">
   Schedule of Assessments
 </div>
