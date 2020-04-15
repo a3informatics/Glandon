@@ -85,8 +85,9 @@ describe Form do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
     end
 
     it "file" do
@@ -108,8 +109,10 @@ describe Form do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl", "simple_form_data.ttl"]
+      #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl", "simple_form_data.ttl"]
+      data_files = ["ACME_FN000120_1.ttl", "simple_form_data.ttl"]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
     end
 
     # it "allows forms to be found" do
