@@ -1,4 +1,4 @@
-@prefix : <http://www.acme-pharma.com/HACKATHON/V1#> .
+@prefix : <http://www.transceleratebiopharmainc.com/CT/V1#> .
 @prefix th: <http://www.assero.co.uk/Thesaurus#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.acme-pharma.com/HACKATHON/V1>
+<http://www.transceleratebiopharmainc.com/CT/V1>
 	rdf:type owl:Ontology ;
 .
 :TH
@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TMC1 ;
 	th:isTopConceptReference :TH_TMC2 ;
@@ -36,18 +36,18 @@
 	th:isTopConceptReference :TH_TMC10 ;
 	th:isTopConceptReference :TH_TMC11 ;
 	th:isTopConceptReference :TH_TMC12 ;
-	th:isTopConcept <http://www.acme-pharma.com/H000001/V1#H000001> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000002/V1#H000002> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000003/V1#H000003> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000004/V1#H000004> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000005/V1#H000005> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000006/V1#H000006> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000007/V1#H000007> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000008/V1#H000008> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000009/V1#H000009> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000010/V1#H000010> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000011/V1#H000011> ;
-	th:isTopConcept <http://www.acme-pharma.com/H000012/V1#H000012> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000001/V1#H000001> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000002/V1#H000002> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000003/V1#H000003> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000004/V1#H000004> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000005/V1#H000005> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000006/V1#H000006> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000007/V1#H000007> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000008/V1#H000008> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000009/V1#H000009> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000010/V1#H000010> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000011/V1#H000011> ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000012/V1#H000012> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -59,15 +59,15 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
 :TH_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "HACKATHON"^^xsd:string ;
+	isoI:identifier "CT"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
 :TH_TMC1
 	rdf:type bo:TMcReference ;
@@ -75,7 +75,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000001/V1#H000001> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000001/V1#H000001> ;
 .
 :TH_TMC2
 	rdf:type bo:TMcReference ;
@@ -83,7 +83,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000002/V1#H000002> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000002/V1#H000002> ;
 .
 :TH_TMC3
 	rdf:type bo:TMcReference ;
@@ -91,7 +91,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000003/V1#H000003> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000003/V1#H000003> ;
 .
 :TH_TMC4
 	rdf:type bo:TMcReference ;
@@ -99,7 +99,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000004/V1#H000004> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000004/V1#H000004> ;
 .
 :TH_TMC5
 	rdf:type bo:TMcReference ;
@@ -107,7 +107,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000005/V1#H000005> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000005/V1#H000005> ;
 .
 :TH_TMC6
 	rdf:type bo:TMcReference ;
@@ -115,7 +115,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000006/V1#H000006> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000006/V1#H000006> ;
 .
 :TH_TMC7
 	rdf:type bo:TMcReference ;
@@ -123,7 +123,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000007/V1#H000007> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000007/V1#H000007> ;
 .
 :TH_TMC8
 	rdf:type bo:TMcReference ;
@@ -131,7 +131,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000008/V1#H000008> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000008/V1#H000008> ;
 .
 :TH_TMC9
 	rdf:type bo:TMcReference ;
@@ -139,7 +139,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000009/V1#H000009> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000009/V1#H000009> ;
 .
 :TH_TMC10
 	rdf:type bo:TMcReference ;
@@ -147,7 +147,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "10"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000010/V1#H000010> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000010/V1#H000010> ;
 .
 :TH_TMC11
 	rdf:type bo:TMcReference ;
@@ -155,7 +155,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "11"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000011/V1#H000011> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000011/V1#H000011> ;
 .
 :TH_TMC12
 	rdf:type bo:TMcReference ;
@@ -163,29 +163,29 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
-	bo:reference <http://www.acme-pharma.com/H000012/V1#H000012> ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000012/V1#H000012> ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Indication"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000001/V1#H000001_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000001/V1#H000001_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000001"^^xsd:string ;
 	th:notation "IND"^^xsd:string ;
 	th:definition "An indication"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/H000001/V1#H000001_HI000001> ;
-	th:narrower <http://www.acme-pharma.com/H000001/V1#H000001_HI000002> ;
-	th:narrower <http://www.acme-pharma.com/H000001/V1#H000001_HI000003> ;
-	th:narrower <http://www.acme-pharma.com/H000001/V1#H000001_HI000004> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000001> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000002> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000003> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000004> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7a2436fa32b60c93f3ae0214f7abc8af02c91c34> ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_RS>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -195,17 +195,17 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_SI>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000001"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_HI000001>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000001>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alzheimer's Disease"^^xsd:string ;
 	th:identifier "HI000001"^^xsd:string ;
@@ -218,7 +218,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Alzheimer's Disease"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_HI000002>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000002>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diabetes Mellitus"^^xsd:string ;
 	th:identifier "HI000002"^^xsd:string ;
@@ -231,7 +231,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Diabetes Mellitus"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_HI000003>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000003>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rheumatoid Arthritis"^^xsd:string ;
 	th:identifier "HI000003"^^xsd:string ;
@@ -244,7 +244,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Rheumatoid Arthritis"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000001/V1#H000001_HI000004>
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000004>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Influenza"^^xsd:string ;
 	th:identifier "HI000004"^^xsd:string ;
@@ -257,15 +257,15 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Influenza"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000002/V1#H000002>
+<http://www.transceleratebiopharmainc.com/H000002/V1#H000002>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000002/V1#H000002_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000002/V1#H000002_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000002/V1#H000002_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000002/V1#H000002_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000002"^^xsd:string ;
 	th:notation "EAST/SOUTHEAST ASIAN"^^xsd:string ;
@@ -273,7 +273,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d41ae79d2cddc21341231767d2e18a70974e9457> ;
 .
-<http://www.acme-pharma.com/H000002/V1#H000002_RS>
+<http://www.transceleratebiopharmainc.com/H000002/V1#H000002_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -283,39 +283,39 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000002/V1#H000002_SI>
+<http://www.transceleratebiopharmainc.com/H000002/V1#H000002_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000002"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
 <http://www.assero.co.uk/PT#d41ae79d2cddc21341231767d2e18a70974e9457>
 	rdf:type th:PreferredTerm ;
 	isoC:label "East/Southeast Asian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000003/V1#H000003>
+<http://www.transceleratebiopharmainc.com/H000003/V1#H000003>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000003/V1#H000003_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000003/V1#H000003_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000003/V1#H000003_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000003/V1#H000003_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000003"^^xsd:string ;
 	th:notation "ASIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam. (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/H000003/V1#H000003_HI000005> ;
-	th:narrower <http://www.acme-pharma.com/H000003/V1#H000003_HI000006> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000003/V1#H000003_HI000005> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000003/V1#H000003_HI000006> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#652670c84ed3d9d78167774063e04af717756ed3> ;
 .
-<http://www.acme-pharma.com/H000003/V1#H000003_RS>
+<http://www.transceleratebiopharmainc.com/H000003/V1#H000003_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -325,17 +325,17 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000003/V1#H000003_SI>
+<http://www.transceleratebiopharmainc.com/H000003/V1#H000003_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000003"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000003/V1#H000003_HI000005>
+<http://www.transceleratebiopharmainc.com/H000003/V1#H000003_HI000005>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
 	th:identifier "HI000005"^^xsd:string ;
@@ -344,7 +344,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d41ae79d2cddc21341231767d2e18a70974e9457> ;
 .
-<http://www.acme-pharma.com/H000003/V1#H000003_HI000006>
+<http://www.transceleratebiopharmainc.com/H000003/V1#H000003_HI000006>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
 	th:identifier "HI000006"^^xsd:string ;
@@ -357,15 +357,15 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Western Asian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000004/V1#H000004>
+<http://www.transceleratebiopharmainc.com/H000004/V1#H000004>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000004/V1#H000004_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000004/V1#H000004_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000004/V1#H000004_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000004/V1#H000004_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000004"^^xsd:string ;
 	th:notation "WESTERN ASIAN"^^xsd:string ;
@@ -373,7 +373,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7039f0a618e86f3e3fa23fd99654f7b01dc54477> ;
 .
-<http://www.acme-pharma.com/H000004/V1#H000004_RS>
+<http://www.transceleratebiopharmainc.com/H000004/V1#H000004_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -383,34 +383,34 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000004/V1#H000004_SI>
+<http://www.transceleratebiopharmainc.com/H000004/V1#H000004_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000004"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000005/V1#H000005>
+<http://www.transceleratebiopharmainc.com/H000005/V1#H000005>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000005/V1#H000005_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000005/V1#H000005_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000005/V1#H000005_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000005/V1#H000005_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000005"^^xsd:string ;
 	th:notation "AMERICAN INDIAN OR ALASKA NATIVE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment. (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/H000005/V1#H000005_HI000007> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000005/V1#H000005_HI000007> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7efb949c214cfde39eca86048d9cd80805b6ef66> ;
 .
-<http://www.acme-pharma.com/H000005/V1#H000005_RS>
+<http://www.transceleratebiopharmainc.com/H000005/V1#H000005_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -420,17 +420,17 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000005/V1#H000005_SI>
+<http://www.transceleratebiopharmainc.com/H000005/V1#H000005_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000005"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000005/V1#H000005_HI000007>
+<http://www.transceleratebiopharmainc.com/H000005/V1#H000005_HI000007>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
 	th:identifier "HI000007"^^xsd:string ;
@@ -443,15 +443,15 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Hispanic"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000006/V1#H000006>
+<http://www.transceleratebiopharmainc.com/H000006/V1#H000006>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000006/V1#H000006_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000006/V1#H000006_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000006/V1#H000006_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000006/V1#H000006_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000006"^^xsd:string ;
 	th:notation "HISPANIC"^^xsd:string ;
@@ -459,7 +459,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#04790fed22fa2f8c9274791cf963a575a884ed64> ;
 .
-<http://www.acme-pharma.com/H000006/V1#H000006_RS>
+<http://www.transceleratebiopharmainc.com/H000006/V1#H000006_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -469,34 +469,34 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000006/V1#H000006_SI>
+<http://www.transceleratebiopharmainc.com/H000006/V1#H000006_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000006"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000007/V1#H000007>
+<http://www.transceleratebiopharmainc.com/H000007/V1#H000007>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000007/V1#H000007_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000007/V1#H000007_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000007/V1#H000007_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000007/V1#H000007_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000007"^^xsd:string ;
 	th:notation "WHITE"^^xsd:string ;
 	th:definition "Denotes a person with European, Middle Eastern, or North African ancestral origin who identifies, or is identified, as White. (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/H000007/V1#H000007_HI000008> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000007/V1#H000007_HI000008> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#37619fc13053f82b7cb7da3d24ceb1598ab6d05c> ;
 .
-<http://www.acme-pharma.com/H000007/V1#H000007_RS>
+<http://www.transceleratebiopharmainc.com/H000007/V1#H000007_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -506,17 +506,17 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000007/V1#H000007_SI>
+<http://www.transceleratebiopharmainc.com/H000007/V1#H000007_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000007"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000007/V1#H000007_HI000008>
+<http://www.transceleratebiopharmainc.com/H000007/V1#H000007_HI000008>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
 	th:identifier "HI000008"^^xsd:string ;
@@ -529,15 +529,15 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Caucasian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/H000008/V1#H000008>
+<http://www.transceleratebiopharmainc.com/H000008/V1#H000008>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000008/V1#H000008_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000008/V1#H000008_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000008/V1#H000008_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000008/V1#H000008_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000008"^^xsd:string ;
 	th:notation "CAUCASIAN"^^xsd:string ;
@@ -545,7 +545,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6466951875569e41f8ae5e1157f9b43aa2faaeda> ;
 .
-<http://www.acme-pharma.com/H000008/V1#H000008_RS>
+<http://www.transceleratebiopharmainc.com/H000008/V1#H000008_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -555,25 +555,25 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000008/V1#H000008_SI>
+<http://www.transceleratebiopharmainc.com/H000008/V1#H000008_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000008"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000009/V1#H000009>
+<http://www.transceleratebiopharmainc.com/H000009/V1#H000009>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000009/V1#H000009_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000009/V1#H000009_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000009/V1#H000009_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000009/V1#H000009_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000009"^^xsd:string ;
 	th:notation "AFRICAN"^^xsd:string ;
@@ -581,7 +581,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#06722036c6ff1807a4a15172cec0ae0b15af3186> ;
 .
-<http://www.acme-pharma.com/H000009/V1#H000009_RS>
+<http://www.transceleratebiopharmainc.com/H000009/V1#H000009_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -591,25 +591,25 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000009/V1#H000009_SI>
+<http://www.transceleratebiopharmainc.com/H000009/V1#H000009_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000009"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000010/V1#H000010>
+<http://www.transceleratebiopharmainc.com/H000010/V1#H000010>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000010/V1#H000010_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000010/V1#H000010_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000010/V1#H000010_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000010/V1#H000010_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000010"^^xsd:string ;
 	th:notation "OTHER"^^xsd:string ;
@@ -617,7 +617,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6e6a6f2086bb5fe5dbfd17d8d5f502d48759834b> ;
 .
-<http://www.acme-pharma.com/H000010/V1#H000010_RS>
+<http://www.transceleratebiopharmainc.com/H000010/V1#H000010_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -627,34 +627,34 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000010/V1#H000010_SI>
+<http://www.transceleratebiopharmainc.com/H000010/V1#H000010_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000010"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000011/V1#H000011>
+<http://www.transceleratebiopharmainc.com/H000011/V1#H000011>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000011/V1#H000011_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000011/V1#H000011_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000011/V1#H000011_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000011/V1#H000011_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000011"^^xsd:string ;
 	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as 'Haitian' or 'Negro' can be used in addition to 'Black or African American.' (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/H000011/V1#H000011_HI000009> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000011/V1#H000011_HI000009> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3627dd5a7a283e2ebfd8369a8849768aae6143e8> ;
 .
-<http://www.acme-pharma.com/H000011/V1#H000011_RS>
+<http://www.transceleratebiopharmainc.com/H000011/V1#H000011_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -664,17 +664,17 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000011/V1#H000011_SI>
+<http://www.transceleratebiopharmainc.com/H000011/V1#H000011_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000011"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.acme-pharma.com/H000011/V1#H000011_HI000009>
+<http://www.transceleratebiopharmainc.com/H000011/V1#H000011_HI000009>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
 	th:identifier "HI000009"^^xsd:string ;
@@ -683,15 +683,15 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#06722036c6ff1807a4a15172cec0ae0b15af3186> ;
 .
-<http://www.acme-pharma.com/H000012/V1#H000012>
+<http://www.transceleratebiopharmainc.com/H000012/V1#H000012>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Not Set"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/H000012/V1#H000012_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/H000012/V1#H000012_SI> ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000012/V1#H000012_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000012/V1#H000012_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T07:53:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-15T08:09:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "H000012"^^xsd:string ;
 	th:notation "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER"^^xsd:string ;
@@ -699,7 +699,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c58b17c01a9528ef0306b466391b77758f8688ec> ;
 .
-<http://www.acme-pharma.com/H000012/V1#H000012_RS>
+<http://www.transceleratebiopharmainc.com/H000012/V1#H000012_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -709,13 +709,13 @@
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
 .
-<http://www.acme-pharma.com/H000012/V1#H000012_SI>
+<http://www.transceleratebiopharmainc.com/H000012/V1#H000012_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "H000012"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .

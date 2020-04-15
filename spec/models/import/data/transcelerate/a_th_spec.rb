@@ -119,7 +119,7 @@ describe "A - Transcelerate Thesaurus" do
         th.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: cl.uri, local_label: "", enabled: true, ordinal: index+1, optional: true})
         th.is_top_concept << cl.uri
       end
-      th.set_initial("HACKATHON")
+      th.set_initial("CT")
       th
     end
 
