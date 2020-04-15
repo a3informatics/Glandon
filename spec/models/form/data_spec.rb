@@ -96,7 +96,7 @@ describe Form do
       @f_1.to_sparql(sparql, true)
       @g_1.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data.ttl")
     end 
 
   end
@@ -108,9 +108,15 @@ describe Form do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl", "simple_form_data.ttl"]
       load_files(schema_files, data_files)
     end
+
+    # it "allows forms to be found" do
+    # byebug
+    #   form = Form.unique
+    #   expect(form.label).to eq("Disability Assessment For Dementia (DAD) (Pilot)")
+    # end
 
     it "allows a form to be found" do
       form = Form.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120"))
@@ -222,7 +228,109 @@ describe Form do
       @ci_1.to_sparql(sparql, true)
       @g_1.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data2.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data2.ttl")
+    end 
+
+  end
+
+  describe "general tests" do
+
+    def simple_form_3
+      @f_1 = Form.from_h({
+        label: "Disability Assessment For Dementia (DAD) (Pilot)"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+        @ng_2 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+  @q_1 = Form::Item::Question.from_h({
+          label: "INFORMATION NOT OBTAINED ",
+          completion: "",
+          mapping: "NOT SUBMITTED",
+          question_text: "INFORMATION NOT OBTAINED ",
+          optional: "false",
+          format: "",
+          ordinal: 1,
+          note: ""
+        })
+      @q_2 = Form::Item::Question.from_h({
+          label: "Clinician's initials ",
+          completion: "First/Middle/Last",
+          mapping: "NOT SUBMITTED",
+          question_text: "Clinician's initials ",
+          optional: "false",
+          format: "3",
+          ordinal: 2,
+          note: ""
+        })
+  #     @tl_1 = Form::Item::TextLabel.from_h({
+  #         label_text: "Label Text 1",
+  #         ordinal: 1
+  #       })
+  #     @tl_2 = Form::Item::TextLabel.from_h({
+  #       label_text: "Label Text 2",
+  #       ordinal: 2
+  #     })
+  #     @ph_1 = Form::Item::Placeholder.from_h({
+  #       free_text: "Free text",
+  #       ordinal: 1
+  #     })
+  #     @ph_2 = Form::Item::Placeholder.from_h({
+  #       free_text: "Free text 2",
+  #       ordinal: 2
+  #     })
+      @m_1 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSCAT=\"DISABILITY ASSESSMENT FOR DEMENTIA (DAD)\""
+      })
+
+      @ng_2.has_item << @q_1
+      @ng_2.has_item << @q_2
+      @ng_1.has_item << @m_1
+      @f_1.has_group << @ng_1
+      @f_1.has_group << @ng_2
+      @f_1.set_initial("Demographics")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "file" do
+      simple_form_3
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      @ng_2.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
+    end
+
+    it "allows forms to be found" do
+      form = Form.unique
+    byebug
     end 
 
   end
