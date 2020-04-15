@@ -10,7 +10,7 @@ defaults: &defaults
     child: 
       generated: 
         pattern: "HI[identifier]"
-        width: "8"
+        width: "6"
 
 development:
   <<: *defaults

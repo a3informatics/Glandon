@@ -51,6 +51,19 @@ class IsoConceptController < ApplicationController
     @close_path = request.referer
   end
 
+  def change_instructions
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    results = []
+    change_instructions = [concept.change_instructions]
+    change_instructions.each do |c|
+      next if c[:id] == nil
+      results << c.reverse_merge!({edit_path: edit_annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
+    end
+    add_ci_show_path(results)
+    render :json => {data: results}, :status => 200
+  end
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
@@ -127,6 +140,33 @@ class IsoConceptController < ApplicationController
   end
 
 private
+
+  def add_ci_show_path(results)
+    results.each do |ci|
+      ci.each do |type, content|
+        next if type == :id
+        next if type == :reference
+        next if type == :description
+        next if type == :edit_path
+        next if type == :destroy_path
+        content.each do |ref|
+          if !ref.key?(:child)
+            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: {context_id: ""}})
+          else
+            uc_params = link_params
+            uc_params[:parent_id] = ref[:parent][:id]
+            ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:child][:id], unmanaged_concept: uc_params})
+          end
+        end
+      end
+    end
+  end
+
+  def link_params
+    return {} if params.dig(:unmanaged_concept, :context_id).nil?
+    return {} if params.dig(:unmanaged_concept, :context_id).empty?
+    params.require(:unmanaged_concept).permit(:context_id)
+  end
 
   def get_klass(item)
     IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)

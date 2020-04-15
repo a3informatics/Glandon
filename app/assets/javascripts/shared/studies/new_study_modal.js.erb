@@ -31,9 +31,9 @@ NewStudyModal.prototype.setListeners = function() {
  * @return [void]
  */
 NewStudyModal.prototype.submitData = function() {
-  //
-  // if (!this.validate())
-  //   return;
+
+  if (!this.validate())
+    return;
 
   this.loading(true);
 
@@ -59,8 +59,7 @@ NewStudyModal.prototype.submitData = function() {
  * @return [Object] formatted request data
  */
 NewStudyModal.prototype.getData = function() {
-  var inputFields = this.modal.find("input, textarea");
-  // var inputFields = this.modal.find("input, select option:selected, textarea");
+  var inputFields = this.modal.find("input, select option:selected, textarea");
   var data = {study: {}};
 
   inputFields.each(function () {

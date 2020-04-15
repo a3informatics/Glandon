@@ -80,4 +80,21 @@ describe "Study" do
 
   end
 
+  describe "method tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_test_file_into_triple_store("transcelerate.nq.gz")
+    end
+
+    it "find protocol" do
+      pr = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
+      study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
+      study = Study.find_minimum(study.uri)
+      actual = study.protocol
+      expect(actual.uri).to eq(pr.uri)
+    end
+
+  end
+
 end

@@ -96,7 +96,7 @@
   color: white;
 }
 
-.btn.disabled{
+.btn.disabled, .clickable.disabled{
   opacity: .5;
   pointer-events: none;
 }
@@ -312,7 +312,7 @@
   color: $primary-color-medium !important;
 }
 
-button:focus, input[type="submit"]:focus, a.btn:focus, .ico-btn-sec:focus{
+button:focus, input[type="submit"]:focus, a.btn:focus, .ico-btn-sec:focus, .clickable:focus {
   outline: dotted grey 1px !important;
   outline-offset: 2px !important;
 }

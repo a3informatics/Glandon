@@ -17,7 +17,7 @@
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
 
 <% if policy(Thesaurus).edit? %>
-  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
   <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child', with_edit_tags: true} %>
   <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
 <% end %>

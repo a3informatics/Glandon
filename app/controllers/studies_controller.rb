@@ -12,7 +12,7 @@ class StudiesController < ApplicationController
 
   def index
     authorize Form
-    @protocols = Protocol.all
+    @protocols = Protocol.unique
   end
 
   def index_data
@@ -22,13 +22,16 @@ class StudiesController < ApplicationController
     render json: {data: studies}, status: 200
   end
 
-  def update
+  # def update
 
-  end
+  # end
 
   def create
     authorize Form, :create?
-    study = Study.create(the_params)
+    params = the_params.slice(:identifier, :label, :description)
+    protocol = Protocol.latest(identifier: the_params[:protocol_identifier], scope: IsoRegistrationAuthority.repository_scope)
+    params[:implements] = protocol.uri 
+    study = Study.create(params)
     if study.errors.empty?
       render json: {history_url: history_studies_path({study:{identifier: study.scoped_identifier, scope_id: study.has_identifier.has_scope.id}})}, status: 200
     else
@@ -56,14 +59,20 @@ class StudiesController < ApplicationController
 
   def build
     authorize Form, :edit?
-    @study = Study.find_with_properties(params[:id])
+    @study = Study.find_with_properties(protect_from_bad_id(params))
     @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
   end
+
+  def design
+    authorize Form, :edit?
+    study = Study.find_minimum(protect_from_bad_id(params))
+    render json: {data: study.protocol.design}    
+  end 
 
 private
 
   def the_params
-    params.require(:study).permit(:identifier, :label, :name, :protocol_id, :description, :scope_id, :count, :offset)
+    params.require(:study).permit(:identifier, :label, :description, :protocol_identifier, :scope_id, :count, :offset)
   end
 
   # Path for given action

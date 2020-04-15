@@ -25,7 +25,7 @@
 </div>
 
 <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'codelist', item: @thesaurus_concept} %>
-<%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @thesaurus_concept.identifier, item_id: @thesaurus_concept.id, item_notes_url: change_notes_iso_concept_path(@thesaurus_concept.id)} %>
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus_concept.identifier, item_id: @thesaurus_concept.id, item_notes_url: change_notes_iso_concept_path(@thesaurus_concept.id)} %>
 
 <div class="row">
   <div class="col-md-12">

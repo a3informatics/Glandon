@@ -1,0 +1,153 @@
+@prefix : <http://www.transceleratebiopharmainc.com/CT/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/CT/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Thesaurus Hackathon"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-08T13:10:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConcept <http://www.transceleratebiopharmainc.com/H000001/V1#H000001> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "CT"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:TH_TMC1
+	rdf:type bo:TMcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.transceleratebiopharmainc.com/H000001/V1#H000001> ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Indication"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-08T13:10:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "H000001"^^xsd:string ;
+	th:notation "IND"^^xsd:string ;
+	th:definition "An indication"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000011> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000012> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000013> ;
+	th:narrower <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000014> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7a2436fa32b60c93f3ae0214f7abc8af02c91c34> ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "H000001"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000011>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Alzheimer's Disease"^^xsd:string ;
+	th:identifier "HI000011"^^xsd:string ;
+	th:notation "AD"^^xsd:string ;
+	th:definition "The Alzheimer's Disease"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4a6c3dc3d93dbb7f2185e14c9cdf319c15f53e87> ;
+.
+<http://www.assero.co.uk/PT#4a6c3dc3d93dbb7f2185e14c9cdf319c15f53e87>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Alzheimer's Disease"^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000012>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Diabetes Mellitus"^^xsd:string ;
+	th:identifier "HI000012"^^xsd:string ;
+	th:notation "DMelli"^^xsd:string ;
+	th:definition "The Diabetes Mellitus"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cd2e8a608f6859ff59f38c486a5a2a94eb16ff5a> ;
+.
+<http://www.assero.co.uk/PT#cd2e8a608f6859ff59f38c486a5a2a94eb16ff5a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Diabetes Mellitus"^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000013>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Rheumatoid Arthritis"^^xsd:string ;
+	th:identifier "HI000013"^^xsd:string ;
+	th:notation "RArth"^^xsd:string ;
+	th:definition "The Rheumatoid Arthritis"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c701b48bcbb01d7f172026a6281b04e1493da510> ;
+.
+<http://www.assero.co.uk/PT#c701b48bcbb01d7f172026a6281b04e1493da510>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Rheumatoid Arthritis"^^xsd:string ;
+.
+<http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000014>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Influenza"^^xsd:string ;
+	th:identifier "HI000014"^^xsd:string ;
+	th:notation "INF"^^xsd:string ;
+	th:definition "The Influenza"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cb0b87622f8ad4a9782eef36fd915b946332a0b1> ;
+.
+<http://www.assero.co.uk/PT#cb0b87622f8ad4a9782eef36fd915b946332a0b1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Influenza"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#7a2436fa32b60c93f3ae0214f7abc8af02c91c34>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Indication"^^xsd:string ;
+.

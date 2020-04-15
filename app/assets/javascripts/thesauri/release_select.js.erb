@@ -151,8 +151,8 @@ ReleaseSelect.prototype.setEventListeners = function(){
   });
 
   // Define handlers for tabs switched
-  tabSwitchCallback = function(tab){
-    switch($(tab).attr("id")){
+  $(".tab-option").on("switch", function(e, id){
+    switch(id){
       case "tab-sponsor-cls":
         _this.loadTab(_this.tabs.sponsorClTab);
         break;
@@ -163,7 +163,7 @@ ReleaseSelect.prototype.setEventListeners = function(){
         _this.loadTab(_this.tabs.sponsorExtensionsTab);
         break;
     }
-  }
+  });
 }
 
 /**

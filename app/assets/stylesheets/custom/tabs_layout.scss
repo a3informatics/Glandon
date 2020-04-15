@@ -4,10 +4,28 @@
   padding-top: 6px;
 }
 
-.tabs-sel{
+.tabs-sel-wrap {
   width: 100%;
   display: flex;
-  direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid $grey-bright;
+}
+
+.tabs-sel-wrap .tabs-sel {
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 0;
+  display: block;
+  border: none;
+  width: auto;
+}
+
+.tabs-sel {
+  width: 100%;
+  display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   border-bottom: 1px solid $grey-bright;
@@ -55,6 +73,9 @@
 }
 
 .tab-wrap.closed{
+  width: 0%;
+  height: 0%;
+  overflow-y: hidden;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
@@ -82,4 +103,29 @@
   right: 0px!important;
   width: 100%;
   height: 100%;
+}
+
+.tab-option.with-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  font-size: $font-small;
+  min-width: 130px;
+}
+
+.tab-option.with-icon span[class^='icon-']{
+  color: white;
+  font-size: $font-normal;
+  margin-right: 8px;
+  border-radius: 50%;
+  padding: 5px 7px 7px 7px;
+  line-height: 18px;
+  vertical-align: top;
+}
+
+.tab-option.with-icon.small span[class^='icon-']{
+  font-size: $font-small;
+  line-height: 14px;
+  padding-top: 7px;
 }

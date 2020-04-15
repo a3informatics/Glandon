@@ -30,6 +30,7 @@
 //= require sidebar_handler
 //= require app-js-erb-extension
 //= require jquery-dateformat.min
+//= require underscore-min
 //= require title
 //= require shared/confirmation_dialog
 //= require shared/information_dialog
@@ -48,6 +49,7 @@ var C_TH_NEW = "http://www.assero.co.uk/Thesaurus#Thesaurus";
 var C_TH_CL = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
 var C_TH_SUBSET = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset";
 var C_TH_EXT = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension";
+var C_TH_CLI = "http://www.assero.co.uk/Thesaurus#UnmanagedConcept";
 
 var C_SI = "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier";
 var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
@@ -109,6 +111,7 @@ typeToString[C_TH_NEW] = "Terminology";
 typeToString[C_TH_CL] = "Code List";
 typeToString[C_TH_SUBSET] = "Subset";
 typeToString[C_TH_EXT] = "Extension";
+typeToString[C_TH_CLI] = "Code List Item";
 typeToString[C_SI] = "Scoped Identifier";
 typeToString[C_RS] = "Registration State";
 typeToString[C_TC_REF] = "Terminology Reference";

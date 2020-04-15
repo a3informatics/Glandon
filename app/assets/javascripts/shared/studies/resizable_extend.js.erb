@@ -1,0 +1,69 @@
+$(document).ready(function() {
+  $.ui.plugin.add("resizable", "alsoResizeReverse", {
+
+    start: function() {
+        var that = $(this).resizable( "instance" ),
+            o = that.options;
+
+        $(o.alsoResizeReverse).not(this).each(function() {
+            var el = $(this);
+            el.data("ui-resizable-alsoresizeReverse", {
+                width: el[0].getBoundingClientRect().width,
+                left: ((parseFloat(el.css("left"), 10) / 100) * $("#tl-wrapper")[0].getBoundingClientRect().width)
+            });
+        });
+    },
+
+    resize: function(event, ui) {
+        var that = $(this).resizable( "instance" ),
+            o = that.options,
+            os = that.originalSize,
+            op = that.originalPosition,
+            delta;
+
+        var activeElement = $(this),
+            activeAxis = activeElement.data('ui-resizable').axis,
+            targetElement, css,
+            style = {};
+
+        switch(activeAxis) {
+          case "w":
+            delta = { width: (that.size.width - os.width) || 0 }
+            targetElement = activeElement.prev(".epoch-block");
+            css = ["width"];
+            break;
+          case "e":
+            delta = { left: -(that.size.width - os.width) || 0,
+                      width: (that.size.width - os.width) || 0 }
+            targetElement = activeElement.next(".epoch-block");
+            css = ["left", "width"];
+            break;
+          default:
+            return;
+        }
+
+        if(targetElement == null || !targetElement.length)
+          return;
+
+        var start = targetElement.data("ui-resizable-alsoresize-reverse")
+
+        $.each(css, function(i, prop) {
+            var sum = (start[prop] || 0) - (delta[prop] || 0);
+            if (sum && sum >= 0) {
+                style[prop] = (sum || null);
+            }
+        });
+        targetElement.css(style);
+    },
+
+    stop: function() {
+        $(this).removeData("resizable-alsoresize-reverse");
+        $(".epoch-block").each(function() {
+          var l = ( 100 * (parseFloat($(this).position().left / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
+          var w = ( 100 * (parseFloat($(this).width() / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
+          $(this).css("left", l);
+          $(this).css("width", w);
+        });
+    }
+  });
+})

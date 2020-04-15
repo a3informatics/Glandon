@@ -87,6 +87,10 @@ body{
   background: $accent-color-3;
 }
 
+.bg-accent-purple{
+  background: $accent-purple;
+}
+
 /* Text & grey colors */
 .bg-grey-dark{
   background: $grey-dark;
@@ -191,6 +195,6 @@ body{
 }
 
 
-.clickable{
-  cursor: pointer;
+.clickable:hover{
+  cursor: pointer !important;
 }

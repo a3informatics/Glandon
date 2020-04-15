@@ -3,33 +3,85 @@ class Protocol < IsoManagedV2
   configure rdf_type: "http://www.assero.co.uk/Protocol#Protocol",
             uri_suffix: "PR"
 
-  object_property :study_phase, cardinality: :one, model_class: "OperationalReferenceV3"
-  object_property :study_type, cardinality: :one, model_class: "OperationalReferenceV3"
-  object_property :specifies, cardinality: :many, model_class: "Indication"
+  data_property :acronym
+  data_property :title
+  data_property :short_title
+  object_property :study_phase, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
+  object_property :study_type, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
+  object_property :intervention_model, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
+  object_property :masking, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
+  object_property :for_indication, cardinality: :many, model_class: "Indication"
   object_property :in_TA, cardinality: :one, model_class: "TherapeuticArea"
+  object_property :specifies_arm, cardinality: :many, model_class: "Arm"
+  object_property :specifies_epoch, cardinality: :many, model_class: "Epoch"
 
-  # List all Protocols
-  #
-  # @return [Array] Each hash contains {id, identifier, label, scope_id, owner_short_name}
-  def self.all
-    results = []
+  validates_with Validator::Field, attribute: :acronym, method: :valid_label?
+  validates_with Validator::Field, attribute: :title, method: :valid_label?
+  validates_with Validator::Field, attribute: :short_title, method: :valid_label?
+
+  validates :title, presence: true
+
+  def name_value
+    uri = self.uri.to_ref
     query_string = %Q{
-      SELECT DISTINCT ?e ?l ?i ?ns ?sn WHERE
+      SELECT DISTINCT ?a ?t ?st ?stp ?stt ?im ?m ?i ?ta WHERE
       {
-        ?e rdf:type #{self.rdf_type.to_ref} .
-        ?e isoC:label ?l .
-        ?e isoT:hasIdentifier ?si .
-        ?si isoI:identifier ?i .
-        ?si isoI:hasScope ?ns .
-        ?ns isoI:shortName ?sn .
+        #{uri} pr:title ?t .
+        OPTIONAL { #{uri} pr:acronym ?a }
+        OPTIONAL { #{uri} pr:short_title ?st }
+        #{uri} pr:studyPhase/bo:reference/isoC:label ?stp .
+        #{uri} pr:studyType/bo:reference/isoC:label ?stt .
+        #{uri} pr:interventionModel/bo:reference/isoC:label ?im .
+        #{uri} pr:masking/bo:reference/isoC:label ?m .
+        #{uri} pr:forIndication/isoC:label ?i .
+        OPTIONAL { #{uri} pr:inTA/isoC:label ?ta }
       }
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    triples = query_results.by_object_set([:e, :i, :l, :ns, :sn])
-    triples.each do |entry|
-      results << {id: entry[:e], identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
-    end
-    results
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:a, :t, :st, :stp, :stt, :im, :m, :i, :ta])
+    return [] if triples.empty?
+    entry = triples.first
+    result = 
+    [
+      {name: "Acronym", value: entry[:a]},
+      {name: "Title", value: entry[:t]}, 
+      {name: "Short Title", value: entry[:st]}, 
+      {name: "Study Phase", value: entry[:stp]}, 
+      {name: "Study Type", value: entry[:stt]}, 
+      {name: "Intervention", value: entry[:im]}, 
+      {name: "Masking", value: entry[:m]}, 
+      {name: "Indication", value: entry[:i]}, 
+      {name: "Therapeutic Area", value: entry[:ta]}
+    ]
   end
+
+  # Design. Get the design for the protocol
+  #
+  # @return [Array] Array of epochs and the associated arms and elemnts 
+  def design
+    results = {}
+    query_string = %Q{
+      SELECT DISTINCT ?e ?el ?a ?al ?ele ?elel WHERE
+      {
+        #{self.uri.to_ref} pr:specifiesEpoch ?e .
+        ?e pr:ordinal ?eo .
+        ?e isoC:label ?el .
+        ?e ^pr:inEpoch ?ele .         
+        ?ele isoC:label ?elel .
+        ?ele pr:inArm ?a .
+        ?a isoC:label ?al .
+        ?a pr:ordinal ?ao .
+      } ORDER BY ?eo ?ao
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:e, :el, :a, :al, :ele, :elel])
+    return [] if triples.empty?
+    triples.each do |entry|
+      uri_s = entry[:e].to_s
+      results[uri_s] = {label: entry[:el], id: entry[:e].to_id, arms: []} if !results.key?(uri_s)
+      results[uri_s][:arms] << {label: entry[:al], id: entry[:a].to_id, element: {label: entry[:elel], id: entry[:ele].to_id}}
+    end
+    results.map{|k,v| v}
+  end    
 
 end

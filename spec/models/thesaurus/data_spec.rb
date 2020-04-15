@@ -311,7 +311,7 @@ describe Thesaurus::ManagedConcept do
       cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
       tc_ = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow",
-          identifier: "A00001",
+          identifier: "S00001",
           definition: "A definition",
           notation: "ONCRSR"
         })
@@ -321,7 +321,7 @@ describe Thesaurus::ManagedConcept do
       tc_.add_tags_no_save([cs_1, cs_2])
       tc_a = Thesaurus::UnmanagedConcept.from_h({
           label: "Terminal 5",
-          identifier: "A000011",
+          identifier: "S000011",
           definition: "The 5th LHR Terminal",
           notation: "Organ to Heart Weight Ratio"
         })
@@ -332,26 +332,35 @@ describe Thesaurus::ManagedConcept do
       tc_a.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 5")
       tc_b = Thesaurus::UnmanagedConcept.from_h({
           label: "Terminal 1",
-          identifier: "A000012",
+          identifier: "S000012",
           definition: "The oldest LHR Terminal",
           notation: "T1"
         })
-      tc_b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
-      tc_b.add_tags_no_save([cs_3]) 
-      tc_.narrower << tc_a
-      tc_.narrower << tc_b
-      tc_.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
-      tc_.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")            
-      tc_.set_initial("A00001")
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal 1")
+      @tc_1b.add_tags_no_save([cs_3]) 
+      @tc_1c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Health Screening",
+          identifier: "S000013",
+          definition: "Health Screening Terminal",
+          notation: "SCREENING"
+        })
+      @tc_1c.preferred_term = Thesaurus::PreferredTerm.new(label:"Terminal HS")
+      @tc_1c.add_tags_no_save([cs_3]) 
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_1.narrower << @tc_1c
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")            
+      @tc_1.set_initial("S00001")
       @tc_2 = Thesaurus::ManagedConcept.new
-      @tc_2.identifier = "A00002"
+      @tc_2.identifier = "S00002"
       @tc_2.definition = "Copenhagen"
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
-      @tc_2.set_initial("A00002")
+      @tc_2.set_initial("S00002")
       @tc_3 = Thesaurus::ManagedConcept.from_h({
           label: "Epoch Extension",
-          identifier: "A00001E",
+          identifier: "S00001E",
           definition: "Extends Epoch",
           notation: "EPOCH"
         })
@@ -364,7 +373,7 @@ describe Thesaurus::ManagedConcept do
       @tc_3.set_initial(@tc_3.identifier)
       @tc_4 = Thesaurus::ManagedConcept.from_h({
           label: "Epoch Extension 2",
-          identifier: "A00002E",
+          identifier: "S00002E",
           definition: "Extends Epoch2",
           notation: "EPOCH"
         })

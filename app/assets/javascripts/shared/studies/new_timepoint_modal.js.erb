@@ -1,0 +1,100 @@
+/*
+* New Timepoint Modal
+*
+* Only in Study Build page
+*/
+
+/**
+ * New Timepoint Modal Constructor
+ *
+ * @param matrixRef [Object Instance] reference to the parent matrix instance
+ * @return [void]
+ */
+function NewTimepointModal(matrixRef) {
+  this.matrix = matrixRef;
+  this.div = $("#new-timepoint-modal");
+
+  this.setListeners();
+}
+
+
+/**
+ ************** General **************
+**/
+
+
+/**
+* Sets event listeners, handlers
+ *
+ * @return [void]
+ */
+NewTimepointModal.prototype.setListeners = function() {
+  var _this = this;
+
+  this.div.on("shown.bs.modal", this.initialize.bind(this));
+  this.div.on("hidden.bs.modal", this.reset.bind(this));
+
+  this.div.find("#nt_select_epoch_id, #nt_select_arm_id").on("change", function() {
+    try {
+      var color = JSON.parse($(this).find("option:selected").attr("data-color"));
+      $(this).attr("style", "border-color: " + _this.matrix.hslString(color) + " !important");
+    }
+    catch(e) {
+      $(this).attr("style", "");
+    }
+  });
+}
+
+/**
+ * Called when modal shown. Resets data, fills is defaults, sets listeners.
+ *
+ * @return [void]
+ */
+NewTimepointModal.prototype.initialize = function() {
+  // Add Epochs
+  $.each(this.matrix.data.epochs, function(i, epoch) {
+    this.div
+      .find("#nt_select_epoch_id")
+      .append(this.optionHTML(epoch.id, epoch.label, JSON.stringify(epoch.color)));
+  }.bind(this));
+
+  // Add Epochs
+  $.each(this.matrix.data.arms, function(i, arm) {
+    this.div
+      .find("#nt_select_arm_id")
+      .append(this.optionHTML(arm.id, arm.label, JSON.stringify(arm.color)));
+  }.bind(this));
+}
+
+/**
+ * Resets to initial state
+ *
+ * @return [void]
+ */
+NewTimepointModal.prototype.reset = function() {
+  this.div.find("input").val("");
+  this.div.find("#nt_select_epoch_id option, #nt_select_arm_id option")
+    .not("option:disabled")
+    .not("option[value='all']")
+    .remove();
+
+  this.div.find("select").attr("style", "");
+  this.div.find("select option:disabled").prop("selected", true);
+}
+
+
+/**
+ ************** Support **************
+**/
+
+
+/**
+ * Returns HTML for an option
+ *
+ * @return [void]
+ */
+NewTimepointModal.prototype.optionHTML = function(value, text, color) {
+  return "<option value='" + value + "' data-color='" + color + "'>" +
+            text +
+          "</option>";
+}

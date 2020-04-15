@@ -1,0 +1,58 @@
+$(document).ready(function() {
+  new StudyBuild();
+});
+
+/*
+* Study Build
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Build Constructor
+ *
+ * @return [void]
+ */
+function StudyBuild() {
+  this.initTabs();
+  this.setListeners();
+
+  // Start with a default tab opened
+  setTimeout(function() { this.tabs.content.header.click() }.bind(this), 5);
+}
+
+/**
+ * Initializes all tab handlers
+ *
+ * @return [void]
+ */
+StudyBuild.prototype.initTabs = function() {
+  var studyMatrix = new StudyMatrix();
+  var studyContent = new VerticalList("#study-content-table", protocolShowUrl);
+
+  this.tabs = {
+    timeline: {instance: studyMatrix, header: $("#tab-timeline")},
+    content: {instance: studyContent, header: $("#tab-content")},
+  }
+}
+
+/**
+ * Sets event listeners, handlers
+ *
+ * @return [void]
+ */
+StudyBuild.prototype.setListeners = function() {
+  $("#study-build-tabs .tab-option").on("switch", this.onTabSwitch.bind(this));
+}
+
+/**
+ * Tab switch handler
+ *
+ * @param e [Event] click event
+ * @param tabId [String] id of the clicked-on tab
+ * @return [void]
+ */
+StudyBuild.prototype.onTabSwitch = function(e, tabId) {
+  var tabName = tabId.split('-')[1];
+  this.tabs[tabName].instance.show();
+}

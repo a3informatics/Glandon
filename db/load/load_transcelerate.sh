@@ -14,6 +14,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/frame
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/complex_datatype.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/biomedical_concept.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/protocol.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@schema/enumerated.ttl" $FileEndPoint
 # Load Identification
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_transcelerate_identification.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems.ttl" $FileEndPoint
@@ -81,5 +82,11 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V60.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V61.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V62.ttl" $FileEndPoint
-# Load Sponsor Terminology
+# Data
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_thesaurus.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_tas.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_indications.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocols.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_templates.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_instances.ttl" $FileEndPoint
 set +x

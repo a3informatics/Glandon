@@ -29,13 +29,10 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <input type="text" autocomplete="false" name="name" placeholder="Study name" maxlength="100" id="ns_input_name" value=""></input>
-                </div>
-                <div class="form-group">
-                  <select name="protocol" class="form-control" id="ns_select_protocol" value="">
+                  <select name="protocol_identifier" class="form-control" id="ns_select_protocol" value="">
                      <option value="" disabled selected>Select protocol...</option>
                      <% @protocols.each do |p| %>
-                      <option value="<%= p.id %>"><%= p.label %></option>
+                      <option value="<%= p[:identifier] %>"><%= p[:label] %></option>
                      <% end %>
                   </select>
                 </div>
