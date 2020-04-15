@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "shared/form_modal" %>
 <%= javascript_include_tag "shared/studies/new_study_modal" %>
+<%= javascript_tag "var studyCreateUrl='#{studies_path}'" %>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-study-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
     <div class="modal-content">
@@ -53,3 +55,4 @@
     </div>
   </div>
 </div>
+<%= javascript_tag "new NewStudyModal();" %>

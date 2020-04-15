@@ -1,7 +1,10 @@
 <%= javascript_tag 'setPageTitle("Index: Studies")' %>
 
-<%= javascript_tag "var studiesIndexUrl = '#{index_data_studies_path}', studyCreateUrl='#{studies_path}'" %>
-<%= javascript_include_tag 'studies/index', 'shared/index_panel' %>
+<%= javascript_tag "var indexUrl = '#{index_data_studies_path}',
+                        strict_param = 'study',
+                        count = -1;" %>
+
+<%= javascript_include_tag 'shared/iso_managed/index_page', 'shared/index_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
 <% first_level_breadcrumb (:studies) %>

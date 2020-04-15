@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
-<%= javascript_include_tag 'biomedical_concepts/history' %>
+<%= javascript_include_tag 'shared/iso_managed/history_page' %>
 <%= javascript_tag "var history_data_path = '#{history_biomedical_concepts_path}',
  												url_rs_path = '#{iso_registration_states_v2_path("rs_id")}',
 												strict_params = 'biomedical_concept',

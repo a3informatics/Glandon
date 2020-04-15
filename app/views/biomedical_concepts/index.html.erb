@@ -1,6 +1,8 @@
-<%= javascript_include_tag 'biomedical_concepts/index', 'shared/index_panel' %>
+<%= javascript_include_tag 'shared/iso_managed/index_page', 'shared/index_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_tag "var bcsIndexUrl = '#{biomedical_concepts_path}';" %>
+<%= javascript_tag "var indexUrl = '#{biomedical_concepts_path}',
+                        strict_param = 'biomedical_concept',
+                        count = -1;" %>
 
 <% first_level_breadcrumb (:biomedical_concepts) %>
 
