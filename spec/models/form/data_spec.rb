@@ -11,7 +11,7 @@ describe Form do
     return "models/form/data"
   end
 
-  describe "general tests" do
+  describe "simple form data" do
 
     def simple_form_1
       @f_1 = Form.new
@@ -163,80 +163,80 @@ describe Form do
 
   end
 
-  describe "general tests" do
+  # describe "general tests" do
 
-    def simple_form_2
-      @f_1 = Form.new
-      @ng_1 = Form::Group::Normal.from_h({
-          label: "Question Group",
-          completion: "",
-          optional: "false",
-          repeating: "false",
-          ordinal: 1,
-          note: ""
-        })
-      @g_1 = Form::Group::Common.from_h({
-          label: "Question Common Group",
-          completion: "",
-          optional: "false",
-          ordinal: 1,
-          note: ""
-        })
-      @ci_1 = Form::Item::Common.from_h({
-          label: "Race",
-          completion: "Race must be self-reported by the subject (not judged by the site)",
-          optional: "false",
-          ordinal: 1,
-          note: ""
-        })
-      @bcp_1 = Form::Item::BcProperty.from_h({
-          label: "Bc property 1",
-          completion: "",
-          optional: "false",
-          ordinal: 1,
-          note: ""
-        })
-      @bcp_2 = Form::Item::BcProperty.from_h({
-          label: "Bc property 2",
-          completion: "",
-          optional: "false",
-          ordinal: 2,
-          note: ""
-        })
-      @ng_1.has_common << @g_1
-      @g_1.has_item << @ci_1
-      @ci_1.has_common_item << @bcp_1
-      @ci_1.has_common_item << @bcp_2
-      # @bcp_1.has_property << 
-      # @bcp_2.has_property << 
-      @f_1.has_group << @ng_1
-      @f_1.set_initial("Demographics")
-    end
+  #   def simple_form_2
+  #     @f_1 = Form.new
+  #     @ng_1 = Form::Group::Normal.from_h({
+  #         label: "Question Group",
+  #         completion: "",
+  #         optional: "false",
+  #         repeating: "false",
+  #         ordinal: 1,
+  #         note: ""
+  #       })
+  #     @g_1 = Form::Group::Common.from_h({
+  #         label: "Question Common Group",
+  #         completion: "",
+  #         optional: "false",
+  #         ordinal: 1,
+  #         note: ""
+  #       })
+  #     @ci_1 = Form::Item::Common.from_h({
+  #         label: "Race",
+  #         completion: "Race must be self-reported by the subject (not judged by the site)",
+  #         optional: "false",
+  #         ordinal: 1,
+  #         note: ""
+  #       })
+  #     @bcp_1 = Form::Item::BcProperty.from_h({
+  #         label: "Bc property 1",
+  #         completion: "",
+  #         optional: "false",
+  #         ordinal: 1,
+  #         note: ""
+  #       })
+  #     @bcp_2 = Form::Item::BcProperty.from_h({
+  #         label: "Bc property 2",
+  #         completion: "",
+  #         optional: "false",
+  #         ordinal: 2,
+  #         note: ""
+  #       })
+  #     @ng_1.has_common << @g_1
+  #     @g_1.has_item << @ci_1
+  #     @ci_1.has_common_item << @bcp_1
+  #     @ci_1.has_common_item << @bcp_2
+  #     # @bcp_1.has_property << 
+  #     # @bcp_2.has_property << 
+  #     @f_1.has_group << @ng_1
+  #     @f_1.set_initial("Demographics")
+  #   end
 
-    before :all  do
-      IsoHelpers.clear_cache
-    end
+  #   before :all  do
+  #     IsoHelpers.clear_cache
+  #   end
 
-    before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-    end
+  #   before :each do
+  #     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+  #     load_files(schema_files, data_files)
+  #   end
 
-    it "file" do
-      simple_form_2
-      sparql = Sparql::Update.new
-      sparql.default_namespace(@f_1.uri.namespace)
-      @f_1.to_sparql(sparql, true)
-      @ng_1.to_sparql(sparql, true)
-      @ci_1.to_sparql(sparql, true)
-      @g_1.to_sparql(sparql, true)
-      full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data2.ttl")
-    end 
+  #   it "file" do
+  #     simple_form_2
+  #     sparql = Sparql::Update.new
+  #     sparql.default_namespace(@f_1.uri.namespace)
+  #     @f_1.to_sparql(sparql, true)
+  #     @ng_1.to_sparql(sparql, true)
+  #     @ci_1.to_sparql(sparql, true)
+  #     @g_1.to_sparql(sparql, true)
+  #     full_path = sparql.to_file
+  #   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "simple_form_data2.ttl")
+  #   end 
 
-  end
+  # end
 
-  describe "general tests" do
+  describe "DAD" do
 
     def simple_form_3
       @f_1 = Form.from_h({
@@ -250,15 +250,103 @@ describe Form do
           ordinal: 1,
           note: ""
         })
-        @ng_2 = Form::Group::Normal.from_h({
+      @ng_2 = Form::Group::Normal.from_h({
           label: "",
           completion: "",
           optional: "false",
           repeating: "false",
-          ordinal: 1,
+          ordinal: 2,
           note: ""
         })
-  @q_1 = Form::Item::Question.from_h({
+      @ng_3 = Form::Group::Normal.from_h({
+          label: "HYGIENE",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @ng_3_ng_2 = Form::Group::Normal.from_h({
+          label: "1. Undertake to wash himself/herself or to take a bath or a shower",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2,
+          note: ""
+        })
+      @ng_4 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 4,
+          note: ""
+        })
+      @ng_5 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 5,
+          note: ""
+        })
+      @ng_6 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 6,
+          note: ""
+        })
+      @ng_7 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 7,
+          note: ""
+        })
+      @ng_8 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 8,
+          note: ""
+        })
+      @ng_9 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 9,
+          note: ""
+        })
+      @ng_10 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 10,
+          note: ""
+        })
+      @ng_11 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 11,
+          note: ""
+        })
+      @ng_12 = Form::Group::Normal.from_h({
+          label: "",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 12,
+          note: ""
+        })
+      @q_1 = Form::Item::Question.from_h({
           label: "INFORMATION NOT OBTAINED ",
           completion: "",
           mapping: "NOT SUBMITTED",
@@ -278,22 +366,6 @@ describe Form do
           ordinal: 2,
           note: ""
         })
-  #     @tl_1 = Form::Item::TextLabel.from_h({
-  #         label_text: "Label Text 1",
-  #         ordinal: 1
-  #       })
-  #     @tl_2 = Form::Item::TextLabel.from_h({
-  #       label_text: "Label Text 2",
-  #       ordinal: 2
-  #     })
-  #     @ph_1 = Form::Item::Placeholder.from_h({
-  #       free_text: "Free text",
-  #       ordinal: 1
-  #     })
-  #     @ph_2 = Form::Item::Placeholder.from_h({
-  #       free_text: "Free text 2",
-  #       ordinal: 2
-  #     })
       @m_1 = Form::Item::Mapping.from_h({
         label: "Mapping 1",
         completion: "",
@@ -302,13 +374,46 @@ describe Form do
         ordinal: 1,
         mapping: "QSCAT=\"DISABILITY ASSESSMENT FOR DEMENTIA (DAD)\""
       })
+      @m_2 = Form::Item::Mapping.from_h({
+        label: "Mapping 2",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSSCAT='HYGIENE\""
+      })
+      @m_3 = Form::Item::Mapping.from_h({
+        label: "Mapping 2",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM01\""
+      })
 
       @ng_2.has_item << @q_1
       @ng_2.has_item << @q_2
       @ng_1.has_item << @m_1
+      @ng_3.has_sub_group << @ng_3_ng_2
+      @ng_3.has_sub_group << @ng_3_ng_3
+      @ng_3.has_sub_group << @ng_3_ng_4
+      @ng_3.has_sub_group << @ng_3_ng_5
+      @ng_3.has_sub_group << @ng_3_ng_6
+      @ng_3.has_sub_group << @ng_3_ng_7
+      @ng_3.has_sub_group << @ng_3_ng_8
       @f_1.has_group << @ng_1
       @f_1.has_group << @ng_2
-      @f_1.set_initial("Demographics")
+      @f_1.has_group << @ng_3
+      @f_1.has_group << @ng_4
+      @f_1.has_group << @ng_5
+      @f_1.has_group << @ng_6
+      @f_1.has_group << @ng_7
+      @f_1.has_group << @ng_8
+      @f_1.has_group << @ng_9
+      @f_1.has_group << @ng_10
+      @f_1.has_group << @ng_11
+      @f_1.has_group << @ng_12
+      @f_1.set_initial("DAD")
     end
 
     before :all  do
@@ -316,8 +421,11 @@ describe Form do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      #load_files(schema_files, data_files)
+      data_files = ["ACME_FN000120_1.ttl", "simple_form_data.ttl"]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
     end
 
     it "file" do
@@ -328,7 +436,163 @@ describe Form do
       @ng_1.to_sparql(sparql, true)
       @ng_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
+    end
+
+    it "allows forms to be found" do
+      form = Form.unique
+    byebug
+    end 
+
+  end
+
+  describe "ACME_F LAB SAMPLES" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "F Laboratory Samples"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: "Sample",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @ng_1_ng_1 = Form::Group::Normal.from_h({
+          label: "Laboratory Sample - Not Done",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @ng_1_ng_5 = Form::Group::Normal.from_h({
+          label: "Laboratory Sample - Urine",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 5,
+          note: ""
+        })
+      @ng_1_ng_3 = Form::Group::Normal.from_h({
+          label: "Laboratory Sample - Blood",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @m_1 = Form::Item::Mapping.from_h({
+        label: "Mapping 6",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 4,
+        mapping: "LBTUBE=URINE"
+      })
+      @m_2 = Form::Item::Mapping.from_h({
+        label: "Mapping 5",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 2,
+        mapping: "LBTUBE=BLOOD"
+      })
+      @bcp_1 = Form::Item::BcProperty.from_h({
+        label: "Reason Not Done (--REASND)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_2 = Form::Item::BcProperty.from_h({
+        label: "Date Time (--DTC)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_3 = Form::Item::BcProperty.from_h({
+        label: "Reason Not Done (--REASND)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @bcp_4 = Form::Item::BcProperty.from_h({
+        label: "Specimen (--SPEC)",
+        completion: "",
+        optional: "false",
+        ordinal: 3,
+        note: ""
+      })
+      @bcp_5 = Form::Item::BcProperty.from_h({
+        label: "Date Time (--DTC)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_6 = Form::Item::BcProperty.from_h({
+        label: "Reason Not Done (--REASND)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @bcp_7 = Form::Item::BcProperty.from_h({
+        label: "Specimen (--SPEC)",
+        completion: "",
+        optional: "false",
+        ordinal: 3,
+        note: ""
+      })
+
+      @ng_1.has_item << @m_1
+      @ng_1.has_item << @m_2
+      @ng_1_ng_1.has_item << @bcp_1
+
+      @ng_1_ng_5.has_item << @bcp_2
+      @ng_1_ng_5.has_item << @bcp_3
+      @ng_1_ng_5.has_item << @bcp_4
+
+      @ng_1_ng_3.has_item << @bcp_5
+      @ng_1_ng_3.has_item << @bcp_6
+      @ng_1_ng_3.has_item << @bcp_7
+
+
+      @ng_1.has_sub_group << @ng_1_ng_1
+      @ng_1.has_sub_group << @ng_1_ng_5
+      @ng_1.has_sub_group << @ng_1_ng_3
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("SAMPLES")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      #load_files(schema_files, data_files)
+      data_files = ["ACME_FN000120_1.ttl", "ACME_F_LAB_SAMPLES.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      @ng_1_ng_1.to_sparql(sparql, true)
+      @ng_1_ng_3.to_sparql(sparql, true)
+      @ng_1_ng_5.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_LAB_SAMPLES.ttl")
     end
 
     it "allows forms to be found" do
