@@ -1,0 +1,33 @@
+PREFIX bf: <http://www.assero.co.uk/BusinessForm#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> rdf:type bf:Form . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoC:label "Disability Assessment For Dementia (DAD) (Pilot)"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FN000120-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FN000120-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:creationDate "2017-05-09T04:18:40-07:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:lastChangeDate "2017-05-09T06:55:01-07:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:note ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:completion ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G12> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G8> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G9> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G5> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G11> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G7> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G10> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G6> . 
+}

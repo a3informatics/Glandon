@@ -101,6 +101,59 @@ describe Form do
 
   end
 
+  describe "DAD_pilot_form" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "allows a form to be found" do
+      form = Form.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120"))
+      expect(form.label).to eq("Disability Assessment For Dementia (DAD) (Pilot)")
+    end
+
+    it "allows a group to be found" do
+      group = Form::Group::Normal.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G1"))
+      # expect(group.label).to eq("Disability Assessment For Dementia (DAD) (Pilot)")
+    end
+
+    it "allows a question to be found" do
+      question = Form::Item::Question.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1"))
+      expect(question.label).to eq("INFORMATION NOT OBTAINED ")
+      expect(question.question_text).to eq("INFORMATION NOT OBTAINED ")
+    end
+
+    it "allows a mapping to be found" do
+      mapping = Form::Item::Mapping.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G3_I1"))
+      expect(mapping.label).to eq("Mapping 2")
+      expect(mapping.mapping).to eq("QSSCAT='HYGIENE\"")
+    end
+
+    it "allows a form to be exported as SPARQL I" do
+      form = Form.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120"))
+      sparql = Sparql::Update.new
+      form.to_sparql(sparql, true)
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")
+    end
+
+    it "allows an item to be exported as SPARQL I" do
+      question = Form::Item::Question.find(Uri.new(uri:"http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FN000120_G2_I1"))
+      sparql = Sparql::Update.new
+      question.to_sparql(sparql, true)
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "question_to_sparql_expected_1.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "question_to_sparql_expected_1.ttl")
+    end
+
+
+
+  end
+
   describe "general tests" do
 
     def simple_form_2
