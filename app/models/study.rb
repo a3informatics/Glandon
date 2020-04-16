@@ -61,7 +61,7 @@ class Study < IsoManagedV2
     return [] if triples.empty?
     triples.each do |entry|
       uri_s = entry[:x].to_s
-      results[uri_s] = {label: entry[:xl], id: entry[:x].to_id, visits: visit_set.dup} if !results.key?(uri_s)
+      results[uri_s] = {label: entry[:xl], id: entry[:x].to_id, uri: entry[:x].to_s, visits: visit_set.dup} if !results.key?(uri_s)
       next if entry[:v].blank?
       visit = results[uri_s][:visits].find{|x| x[:id] == entry[:v].to_id} 
       visit[:applies] = true
