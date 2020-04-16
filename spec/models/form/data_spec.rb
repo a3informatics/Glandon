@@ -453,16 +453,12 @@ describe Form do
       @ng_1.has_item << @m_1
       @ng_1.has_item << @m_2
       @ng_1_ng_1.has_item << @bcp_1
-
       @ng_1_ng_5.has_item << @bcp_2
       @ng_1_ng_5.has_item << @bcp_3
       @ng_1_ng_5.has_item << @bcp_4
-
       @ng_1_ng_3.has_item << @bcp_5
       @ng_1_ng_3.has_item << @bcp_6
       @ng_1_ng_3.has_item << @bcp_7
-
-
       @ng_1.has_sub_group << @ng_1_ng_1
       @ng_1.has_sub_group << @ng_1_ng_5
       @ng_1.has_sub_group << @ng_1_ng_3
@@ -475,8 +471,6 @@ describe Form do
     end
 
     before :each do
-      #data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000120_1.ttl"]
-      #load_files(schema_files, data_files)
       data_files = ["ACME_FN000120_1.ttl", "ACME_F_LAB_SAMPLES.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
@@ -492,13 +486,152 @@ describe Form do
       @ng_1_ng_3.to_sparql(sparql, true)
       @ng_1_ng_5.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_LAB_SAMPLES.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_LAB_SAMPLES.ttl")
     end
 
-    it "allows forms to be found" do
-      form = Form.unique
-    byebug
-    end 
+  end
+
+    describe "ACME_F ECG" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "ECG Measurements"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: "Details - P Wave",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @ng_1_cg_1 = Form::Group::Common.from_h({
+          label: "Collection details",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      # @ng_1_ng_5 = Form::Group::Normal.from_h({
+      #     label: "Laboratory Sample - Urine",
+      #     completion: "",
+      #     optional: "false",
+      #     repeating: "false",
+      #     ordinal: 5,
+      #     note: ""
+      #   })
+      # @ng_1_ng_3 = Form::Group::Normal.from_h({
+      #     label: "Laboratory Sample - Blood",
+      #     completion: "",
+      #     optional: "false",
+      #     repeating: "false",
+      #     ordinal: 3,
+      #     note: ""
+      #   })
+      # @m_1 = Form::Item::Mapping.from_h({
+      #   label: "Mapping 6",
+      #   completion: "",
+      #   note: "",
+      #   optional: "false",
+      #   ordinal: 4,
+      #   mapping: "LBTUBE=URINE"
+      # })
+      # @m_2 = Form::Item::Mapping.from_h({
+      #   label: "Mapping 5",
+      #   completion: "",
+      #   note: "",
+      #   optional: "false",
+      #   ordinal: 2,
+      #   mapping: "LBTUBE=BLOOD"
+      # })
+      # @bcp_1 = Form::Item::BcProperty.from_h({
+      #   label: "Reason Not Done (--REASND)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 1,
+      #   note: ""
+      # })
+      # @bcp_2 = Form::Item::BcProperty.from_h({
+      #   label: "Date Time (--DTC)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 1,
+      #   note: ""
+      # })
+      # @bcp_3 = Form::Item::BcProperty.from_h({
+      #   label: "Reason Not Done (--REASND)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 2,
+      #   note: ""
+      # })
+      # @bcp_4 = Form::Item::BcProperty.from_h({
+      #   label: "Specimen (--SPEC)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 3,
+      #   note: ""
+      # })
+      # @bcp_5 = Form::Item::BcProperty.from_h({
+      #   label: "Date Time (--DTC)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 1,
+      #   note: ""
+      # })
+      # @bcp_6 = Form::Item::BcProperty.from_h({
+      #   label: "Reason Not Done (--REASND)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 2,
+      #   note: ""
+      # })
+      # @bcp_7 = Form::Item::BcProperty.from_h({
+      #   label: "Specimen (--SPEC)",
+      #   completion: "",
+      #   optional: "false",
+      #   ordinal: 3,
+      #   note: ""
+      # })
+
+      @ng_1.has_common << @ng_1_cg_1
+      # @ng_1.has_item << @m_2
+      # @ng_1_ng_1.has_item << @bcp_1
+      # @ng_1_ng_5.has_item << @bcp_2
+      # @ng_1_ng_5.has_item << @bcp_3
+      # @ng_1_ng_5.has_item << @bcp_4
+      # @ng_1_ng_3.has_item << @bcp_5
+      # @ng_1_ng_3.has_item << @bcp_6
+      # @ng_1_ng_3.has_item << @bcp_7
+      # @ng_1.has_sub_group << @ng_1_ng_1
+      # @ng_1.has_sub_group << @ng_1_ng_5
+      # @ng_1.has_sub_group << @ng_1_ng_3
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("ECG")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      @ng_1_ng_1.to_sparql(sparql, true)
+      @ng_1_ng_3.to_sparql(sparql, true)
+      @ng_1_ng_5.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_ECG.ttl")
+    end
 
   end
 
