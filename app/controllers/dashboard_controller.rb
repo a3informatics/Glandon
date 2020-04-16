@@ -17,18 +17,18 @@ class DashboardController < ApplicationController
     end
   end
 
-  def view
-  	authorize Dashboard
-    @dashboard = Dashboard.new
-  	@id = params[:id]
-    @namespace = params[:namespace]
-  end
+  # def view
+  # 	authorize Dashboard
+  #   @dashboard = Dashboard.new
+  # 	@id = params[:id]
+  #   @namespace = params[:namespace]
+  # end
 
-  def database
-  	authorize Dashboard
-    @triples = Dashboard.find(params[:id], params[:namespace])
-    render json: @triples
-  end
+  # def database
+  # 	authorize Dashboard
+  #   @triples = Dashboard.find(params[:id], params[:namespace])
+  #   render json: @triples
+  # end
 
 private
 

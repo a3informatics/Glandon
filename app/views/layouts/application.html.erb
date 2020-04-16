@@ -342,6 +342,7 @@
                     <ul class="nav">
                       <%= render partial: "shared/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_studies",
                         link_path: studies_path, link_text: "Studies", current_link: controller_name.to_s} %>
+                      <%= link_to "Triples", triple_store_path(Uri.new(uri: "http://www.transceleratebiopharmainc.com/TA_NSD/V1#TA").to_id) %> 
                     </ul>
                   </div>
                 <% end %>
