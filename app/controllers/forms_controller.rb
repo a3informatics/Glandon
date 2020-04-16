@@ -8,19 +8,13 @@ class FormsController < ApplicationController
 
   include ControllerHelpers
 
-  def new
-    authorize Form
-    @form = Form.new
-  end
-
   def index
     authorize Form
     @forms = Form.unique
     respond_to do |format|
       format.html
       format.json do
-        byebug
-        @forms = @forms.map{|x| x.reverse_merge!({history_path: "test"})}
+        @forms = @forms.map{|x| x.reverse_merge!({history_path: history_forms_path({form:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
         render json: {data: @forms}, status: 200
       end
     end
@@ -28,10 +22,27 @@ class FormsController < ApplicationController
 
   def history
     authorize Form
-    @identifier = params[:identifier]
-    @scope_id = params[:scope_id]
-    @forms = Form.history({identifier: params[:identifier], scope: IsoNamespace.find(params[:scope_id])})
-    redirect_to forms_path if @forms.count == 0
+    respond_to do |format|
+      format.json do
+        results = []
+        history_results = Form.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = Form.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = Form.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(Form, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+      format.html do
+        @close_path = request.referer
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+      end
+    end
+  end
+
+  def new
+    authorize Form
+    @form = Form.new
   end
 
   def placeholder_new
@@ -226,7 +237,19 @@ class FormsController < ApplicationController
 private
 
   def the_params
-    params.require(:form).permit(:namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
+    params.require(:form).permit(:namespace, :freeText, :identifier, :label, :scope_id, :children => {}, :bcs => [])
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return ""
+      when :edit
+        return ""
+      else
+        return ""
+    end
   end
 
 end

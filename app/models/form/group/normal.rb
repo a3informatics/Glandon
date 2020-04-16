@@ -1,7 +1,8 @@
 class Form::Group::Normal < Form::Group
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-            uri_suffix: "NG"
+            uri_suffix: "NG",
+            uri_property: :ordinal
 
   data_property :repeating
 
