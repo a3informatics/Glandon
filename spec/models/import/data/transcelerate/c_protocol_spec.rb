@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Transcelerate Data" do
+describe "C - Transcelerate Protocol" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -30,64 +30,6 @@ describe "Transcelerate Data" do
     delete_all_public_test_files
   end
 
-  describe "Terminology" do
-
-    it "Terminology" do
-      @th_1 = Thesaurus.new
-      @th_1.label = "Thesaurus Hackathon"
-      @tc_1 = Thesaurus::ManagedConcept.from_h({
-          label: "Indication",
-          identifier: "H000001",
-          definition: "An indication",
-          notation: "IND"
-        })
-      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"Indication")
-      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
-          label: "Alzheimer's Disease",
-          identifier: "HI000011",
-          definition: "The Alzheimer's Disease",
-          notation: "AD"
-        })
-      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label:"Alzheimer's Disease")
-      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
-          label: "Diabetes Mellitus",
-          identifier: "HI000012",
-          definition: "The Diabetes Mellitus",
-          notation: "DMelli"
-        })
-      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Diabetes Mellitus")
-      @tc_1c = Thesaurus::UnmanagedConcept.from_h({
-          label: "Rheumatoid Arthritis",
-          identifier: "HI000013",
-          definition: "The Rheumatoid Arthritis",
-          notation: "RArth"
-        })
-      @tc_1c.preferred_term = Thesaurus::PreferredTerm.new(label:"Rheumatoid Arthritis")
-      @tc_1d = Thesaurus::UnmanagedConcept.from_h({
-          label: "Influenza",
-          identifier: "HI000014",
-          definition: "The Influenza",
-          notation: "INF"
-        })
-      @tc_1d.preferred_term = Thesaurus::PreferredTerm.new(label:"Influenza")
-      @tc_1.narrower << @tc_1a
-      @tc_1.narrower << @tc_1b
-      @tc_1.narrower << @tc_1c 
-      @tc_1.narrower << @tc_1d 
-      @tc_1.set_initial(@tc_1.identifier)
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept << @tc_1.uri
-      @th_1.set_initial("CT")
-      sparql = Sparql::Update.new
-      sparql.default_namespace(@th_1.uri.namespace)
-      @th_1.to_sparql(sparql, true)
-      @tc_1.to_sparql(sparql, true)
-      full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_thesaurus.ttl")
-    end 
-
-  end
-
   describe "Parameters" do
 
     it "Parameter" do
@@ -97,10 +39,14 @@ describe "Transcelerate Data" do
       uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#Intervention")
       p_2 = Parameter.new(label: "Intervention", parameter_rdf_type: uri)
       p_2.uri = p_2.create_uri(p_2.class.base_uri)
+      uri = Uri.new(uri: "http://www.assero.co.uk/Protocol#TimepointOffset")
+      p_3 = Parameter.new(label: "Timepoint", parameter_rdf_type: uri)
+      p_3.uri = p_3.create_uri(p_3.class.base_uri)
       sparql = Sparql::Update.new
       sparql.default_namespace(p_1.uri.namespace)
       p_1.to_sparql(sparql, true)
       p_2.to_sparql(sparql, true)
+      p_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_parameters.ttl")
     end 
@@ -109,26 +55,116 @@ describe "Transcelerate Data" do
 
   describe "MDR Data" do
 
-    it "Objectives" do
-      obj_1 = "To assess the effect of [study intervention X] on the ADAS-Cog and CIBIC+ scores at Week [X] in participants with Mild to Moderate Alzheimer’s Disease"
-      obj_1 = "To evaluate the efficacy of [Study Intervention X] administered to individuals with Type 2 Diabetes Mellitus (T2DM)]"
-      obj_1 = "To assess the dose-dependent improvement in behavior. Improved scores on the [assessment] will indicate improvement in these areas"
-      obj_1 = "To document the safety profile of [StudyIntervention]."
-      obj_1 = "To assess the effect of [study intervention X] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"
-      obj_1 = "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"
+    it "End Points" do
+      endpoints = 
+      [
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to Week [[[Timepoint]]] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
+        },
+        {
+          label: "A label",         
+          full_text: "The change [absolute] in HbA1c from baseline to [[[Timepoint]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in continuous laboratory tests: Hepatic Function Panel"
+        },
+        {
+          label: "A label", 
+          full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in ECG parameter: QTcF"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
+        },
+        {
+          label: "A label", 
+          full_text: "The change from baseline to [[[Timepoint]]]] in the [[[BC]]]"
+        }
+      ]
+      items = []
+      endpoints.each_with_index do |ep, index|
+        item = Endpoint.new(ep)
+        item.set_initial("EP #{index+1}")
+        items << item
+      end
+      sparql = Sparql::Update.new
+      sparql.default_namespace(items.first.uri.namespace)
+      items.each {|x| x.to_sparql(sparql, true)}
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_endpoints.ttl")
     end
 
-    it "End Points" do
-      ep_1 = "The change from baseline to Week [X] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
-      ep_1 = "The change from baseline to Week [X] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
-      ep_1 = "The change [absolute] in HbA1c from baseline to [Week X]"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
-      ep_1 = "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
-      ep_1 = "The change from baseline to [Week X] in continuous laboratory tests: Hepatic Function Panel"
-      ep_1 = "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
-      ep_1 = "The change from baseline to [Week X] in ECG parameter: QTcF"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
-      ep_1 = "The change from baseline to Week [X] in the [assessment]"
+    it "Objectives" do
+      load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
+
+      enum_p = Enumerated.new(label: "Primary")
+      enum_p.create_uri(enum_p.class.base_uri)
+      enum_s = Enumerated.new(label: "Secondary")
+      enum_s.create_uri(enum_s.class.base_uri)
+      enum_ns = Enumerated.new(label: "Not Set")
+      enum_ns.create_uri(enum_ns.class.base_uri)
+
+      objectives = 
+      [
+        { 
+          label: "",
+          full_text: "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease",
+          objective_type: enum_ns.uri,
+          is_assessed_by: 
+          [
+            Uri.new(uri: "http://www.transceleratebiopharmainc.com/EP_1/V1#END"),
+            Uri.new(uri: "http://www.transceleratebiopharmainc.com/EP_2/V1#END")
+          ]
+        },
+        { 
+          label: "",
+          full_text: "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To document the safety profile of [[[Intervention]]].",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        },
+        { 
+          label: "",
+          full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas",
+          objective_type: enum_ns.uri,
+          is_assessed_by: []
+        } 
+      ] 
     end
 
     it "Indications" do
@@ -136,19 +172,19 @@ describe "Transcelerate Data" do
 
       # Indications
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/CT/V1#TH"))
-      tc_1 = Thesaurus::UnmanagedConcept.where(identifier: "HI000011")
+      tc_1 = Thesaurus::UnmanagedConcept.where(notation: "AD")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_1.first.uri, optional: false, ordinal: 1)
       i_1 = Indication.new(label: "Alzheimer's Disease", indication: op_ref)
       i_1.set_initial("IND ALZ")
-      tc_2 = Thesaurus::UnmanagedConcept.where(identifier: "HI000012")
+      tc_2 = Thesaurus::UnmanagedConcept.where(notation: "DMelli")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_2.first.uri, optional: false, ordinal: 1)
       i_2 = Indication.new(label: "Diabetes Mellitus", indication: op_ref)
       i_2.set_initial("IND DIA")
-      tc_3 = Thesaurus::UnmanagedConcept.where(identifier: "HI000013")
+      tc_3 = Thesaurus::UnmanagedConcept.where(notation: "RArth")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_3.first.uri, optional: false, ordinal: 1)
       i_3 = Indication.new(label: "Rheumatoid Arthritis", indication: op_ref)
       i_3.set_initial("IND RA")
-      tc_4 = Thesaurus::UnmanagedConcept.where(identifier: "HI000014")
+      tc_4 = Thesaurus::UnmanagedConcept.where(notation: "INF")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_4.first.uri, optional: false, ordinal: 1)
       i_4 = Indication.new(label: "Influenza", indication: op_ref)
       i_4.set_initial("IND INF")
@@ -197,7 +233,57 @@ describe "Transcelerate Data" do
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+      bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      sbc1 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      sbc1.uri = sbc1.create_uri(sbc1.class.base_uri)
+      sbc2 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      sbc2.uri = sbc2.create_uri(sbc2.class.base_uri)
+      ass = Assessment.new(label: "BC Collection")
+      ass.add_no_save(bc, 1)
+      ass.add_no_save(bc, 2)
+      ass.set_initial("ASS BC C1")
+      sass1 = StudyAssessment.new(is_derived_from: ass.uri)
+      sass1.uri = sass1.create_uri(sass1.class.base_uri)
+
+      # Visits
+      visits = 
+      [
+        {short_name: "BL", label: "Baseline"},
+        {short_name: "Wk8", label: "Week 8"},
+        {short_name: "Wk16", label: "Week 16"},
+        {short_name: "Wk24", label: "Week 24"}
+      ]
+      v_items = []
+      visits.each_with_index do |v, index|
+        item = Visit.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        v_items << item
+      end
+
+      # Timepoints
+      secs_per_week = 7*24*60*60
+      o_items = []
+      [0, 8, 16, 24].each_with_index do |v, index|
+        item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0)
+        item.uri = item.create_uri(item.class.base_uri)
+        o_items << item
+      end
+      tps = 
+      [
+        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, has_planned: [sbc1.uri]},
+        {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, has_planned: []},
+        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri, has_planned: [sass1.uri]},
+        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, has_planned: [sbc1.uri, sbc2.uri]},
+      ]
+      tp_items = []
+      tps.each_with_index do |v, index|
+        item = Timepoint.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        tp_items << item
+      end
 
       # Epochs & Arms
       e_1 = Epoch.new(label: "Screening", ordinal: 1)
@@ -210,17 +296,17 @@ describe "Transcelerate Data" do
       a_2.uri = a_2.create_uri(a_2.class.base_uri)
       a_3 = Arm.new(label: "Placebo", description: "Placebo", arm_type: "", ordinal: 3)
       a_3.uri = a_3.create_uri(a_3.class.base_uri)
-      el_1 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_1.uri)
+      el_1 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[0].uri])
       el_1.uri = el_1.create_uri(el_1.class.base_uri)
-      el_2 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_2.uri)
+      el_2 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
-      el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri)
+      el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[0].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
-      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri)
+      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri)
+      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri)
+      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
@@ -308,6 +394,15 @@ describe "Transcelerate Data" do
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
       p_5.to_sparql(sparql, true)
+      v_items.each {|x| x.to_sparql(sparql, true)}
+      tp_items.each {|x| x.to_sparql(sparql, true)}
+      o_items.each {|x| x.to_sparql(sparql, true)}
+
+      sbc1.to_sparql(sparql, true)
+      sbc2.to_sparql(sparql, true)
+      sass1.to_sparql(sparql, true)
+      ass.to_sparql(sparql, true)
+
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
     end

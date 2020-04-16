@@ -1,152 +1,168 @@
-class Form::Group < IsoConcept
+class Form::Group < IsoConceptV2
+
+  configure rdf_type: "http://www.assero.co.uk/BusinessForm#Group",
+            uri_suffix: "G",  
+            uri_unique: true
+
+  data_property :ordinal, default: 1
+  data_property :note
+  data_property :completion
+  data_property :optional, default: false
+
+  object_property :has_item, cardinality: :many, model_class: "Form::Item", children: true
+
+  validates_with Validator::Field, attribute: :ordinal, method: :valid_positive_integer?
+  validates_with Validator::Field, attribute: :note, method: :valid_markdown?
+  validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
+  validates :optional, inclusion: { in: [ true, false ] }
   
-  attr_accessor :children, :ordinal, :note, :optional, :completion
+  #attr_accessor :children, :ordinal, :note, :optional, :completion
   
-  # Constants
-  C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
-  C_CLASS_NAME = "Form::Group"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_RDF_TYPE = "Group"
-  C_CID_SUFFIX = "G"
+#   # Constants
+#   C_SCHEMA_PREFIX = Form::C_SCHEMA_PREFIX
+#   C_CLASS_NAME = "Form::Group"
+#   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+#   C_RDF_TYPE = "Group"
+#   C_CID_SUFFIX = "G"
   
-  # Initialize
-  #
-  # @param triples [hash] The raw triples keyed by subject
-  # @param id [string] The identifier for the concept being built from the triples
-  # @return [object] The new object
-  def initialize(triples=nil, id=nil)
-    self.ordinal = 0
-    self.note = ""
-    self.optional = false
-    self.completion = ""
-    self.children = Array.new
-    if triples.nil?
-      super
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-    else
-      super(triples, id)    
-    end
-  end
+#   # Initialize
+#   #
+#   # @param triples [hash] The raw triples keyed by subject
+#   # @param id [string] The identifier for the concept being built from the triples
+#   # @return [object] The new object
+#   def initialize(triples=nil, id=nil)
+#     self.ordinal = 0
+#     self.note = ""
+#     self.optional = false
+#     self.completion = ""
+#     self.children = Array.new
+#     if triples.nil?
+#       super
+#       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+#     else
+#       super(triples, id)    
+#     end
+#   end
 
-  # To JSON
-  #
-  # @return [hash] The object hash 
-  def to_json
-    json = super
-    json[:ordinal] = self.ordinal
-    json[:optional] = self.optional
-    json[:completion] = self.completion
-    json[:note] = self.note
-    json[:children] = Array.new
-    self.children.sort_by! {|u| u.ordinal}
-    self.children.each do |item|
-      json[:children] << item.to_json
-    end
-    return json
-  end
+#   # To JSON
+#   #
+#   # @return [hash] The object hash 
+#   def to_json
+#     json = super
+#     json[:ordinal] = self.ordinal
+#     json[:optional] = self.optional
+#     json[:completion] = self.completion
+#     json[:note] = self.note
+#     json[:children] = Array.new
+#     self.children.sort_by! {|u| u.ordinal}
+#     self.children.each do |item|
+#       json[:children] << item.to_json
+#     end
+#     return json
+#   end
 
-  # From JSON
-  #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = super(json)
-    object.ordinal = json[:ordinal]
-    object.optional = json[:optional]
-    object.completion = json[:completion]
-    object.note = json[:note]
-    if !json[:children].blank?
-      json[:children].each do |child|
-        if child[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
-          object.children << Form::Item::Placeholder.from_json(child)
-        elsif child[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
-          object.children << Form::Item::TextLabel.from_json(child)
-        elsif child[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
-          object.children << Form::Item::Question.from_json(child)
-        elsif child[:type] == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
-          object.children << Form::Item::Mapping.from_json(child)
-        elsif child[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
-          object.children << Form::Item::BcProperty.from_json(child)
-        end   
-      end
-    end
-    return object
-  end
+#   # From JSON
+#   #
+#   # @param json [hash] The hash of values for the object 
+#   # @return [object] The object
+#   def self.from_json(json)
+#     object = super(json)
+#     object.ordinal = json[:ordinal]
+#     object.optional = json[:optional]
+#     object.completion = json[:completion]
+#     object.note = json[:note]
+#     if !json[:children].blank?
+#       json[:children].each do |child|
+#         if child[:type] == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
+#           object.children << Form::Item::Placeholder.from_json(child)
+#         elsif child[:type] == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+#           object.children << Form::Item::TextLabel.from_json(child)
+#         elsif child[:type] == Form::Item::Question::C_RDF_TYPE_URI.to_s
+#           object.children << Form::Item::Question.from_json(child)
+#         elsif child[:type] == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
+#           object.children << Form::Item::Mapping.from_json(child)
+#         elsif child[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
+#           object.children << Form::Item::BcProperty.from_json(child)
+#         end   
+#       end
+#     end
+#     return object
+#   end
 
-  # To SPARQL
-  #
-  # @param parent_uri [object] URI object
-  # @param sparql [object] The SPARQL object
-  # @return [object] The URI
-  def to_sparql_v2(parent_uri, sparql)
-    self.namespace = parent_uri.namespace
-    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{self.ordinal}", :primitive_type => "positiveInteger"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
-    self.children.sort_by! {|u| u.ordinal}
-    self.children.each do |item|
-      ref_uri = item.to_sparql_v2(uri, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
-    end
-    return uri
-  end
+#   # To SPARQL
+#   #
+#   # @param parent_uri [object] URI object
+#   # @param sparql [object] The SPARQL object
+#   # @return [object] The URI
+#   def to_sparql_v2(parent_uri, sparql)
+#     self.namespace = parent_uri.namespace
+#     self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
+#     uri = super(sparql, C_SCHEMA_PREFIX)
+#     subject = {:uri => uri}
+#     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{self.ordinal}", :primitive_type => "positiveInteger"})
+#     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
+#     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
+#     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
+#     self.children.sort_by! {|u| u.ordinal}
+#     self.children.each do |item|
+#       ref_uri = item.to_sparql_v2(uri, sparql)
+#       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
+#     end
+#     return uri
+#   end
 
-  # To XML
-  #
-  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-  # @param [Nokogiri::Node] form_def the ODM FormDef node
-  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-  # @return [void]
-  def to_xml(metadata_version, form_def)
-    form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
-    item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
-    self.children.sort_by! {|u| u.ordinal}
-    self.children.each do |item|
-      item.to_xml(metadata_version, form_def, item_group_def)
-    end
-  end
+#   # To XML
+#   #
+#   # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+#   # @param [Nokogiri::Node] form_def the ODM FormDef node
+#   # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+#   # @return [void]
+#   def to_xml(metadata_version, form_def)
+#     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
+#     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+#     self.children.sort_by! {|u| u.ordinal}
+#     self.children.each do |item|
+#       item.to_xml(metadata_version, form_def, item_group_def)
+#     end
+#   end
 
-  # Check Valid
-  #
-  # @return [boolean] Returns true if valid, false otherwise.
-  def valid?
-    result = super
-    self.children.each do |child|
-      if !child.valid?
-        self.copy_errors(child, "Item, ordinal=#{child.ordinal}, error:")
-        result = false
-      end
-    end
-    result = result &&
-      FieldValidation::valid_markdown?(:completion, self.completion, self) &&
-      FieldValidation::valid_markdown?(:note, self.note, self) &&
-      FieldValidation::valid_boolean?(:optional, self.optional, self) &&
-      FieldValidation::valid_positive_integer?(:ordinal, self.ordinal, self)
-    return result
-  end
+#   # Check Valid
+#   #
+#   # @return [boolean] Returns true if valid, false otherwise.
+#   def valid?
+#     result = super
+#     self.children.each do |child|
+#       if !child.valid?
+#         self.copy_errors(child, "Item, ordinal=#{child.ordinal}, error:")
+#         result = false
+#       end
+#     end
+#     result = result &&
+#       FieldValidation::valid_markdown?(:completion, self.completion, self) &&
+#       FieldValidation::valid_markdown?(:note, self.note, self) &&
+#       FieldValidation::valid_boolean?(:optional, self.optional, self) &&
+#       FieldValidation::valid_positive_integer?(:ordinal, self.ordinal, self)
+#     return result
+#   end
 
-private
+# private
 
-  def self.children_from_triples(object, triples, id)
-    links = object.get_links_v2("bf", "hasItem")
-    links.each do |link|
-      rdf_type = object.get_link_object_type_v2(link)
-      if rdf_type == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
-        object.children += Form::Item::Placeholder.find_for_parent(triples, [link])
-      elsif rdf_type == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
-        object.children += Form::Item::TextLabel.find_for_parent(triples, [link])
-      elsif rdf_type == Form::Item::Question::C_RDF_TYPE_URI.to_s
-        object.children += Form::Item::Question.find_for_parent(triples, [link])
-      elsif rdf_type == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
-        object.children += Form::Item::Mapping.find_for_parent(triples, [link])
-      elsif rdf_type == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
-        object.children += Form::Item::BcProperty.find_for_parent(triples, [link])
-      end  
-    end
-  end
+#   def self.children_from_triples(object, triples, id)
+#     links = object.get_links_v2("bf", "hasItem")
+#     links.each do |link|
+#       rdf_type = object.get_link_object_type_v2(link)
+#       if rdf_type == Form::Item::Placeholder::C_RDF_TYPE_URI.to_s
+#         object.children += Form::Item::Placeholder.find_for_parent(triples, [link])
+#       elsif rdf_type == Form::Item::TextLabel::C_RDF_TYPE_URI.to_s
+#         object.children += Form::Item::TextLabel.find_for_parent(triples, [link])
+#       elsif rdf_type == Form::Item::Question::C_RDF_TYPE_URI.to_s
+#         object.children += Form::Item::Question.find_for_parent(triples, [link])
+#       elsif rdf_type == Form::Item::Mapping::C_RDF_TYPE_URI.to_s
+#         object.children += Form::Item::Mapping.find_for_parent(triples, [link])
+#       elsif rdf_type == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
+#         object.children += Form::Item::BcProperty.find_for_parent(triples, [link])
+#       end  
+#     end
+#   end
 
 end

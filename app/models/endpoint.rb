@@ -7,5 +7,4 @@ class Endpoint < IsoManagedV2
   object_property :has_multiple, cardinality: :many, model_class: "Endpoint"
   object_property :has_parameter, cardinality: :many, model_class: "Parameter"
 
-
 end

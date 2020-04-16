@@ -1,0 +1,214 @@
+@prefix : <http://www.transceleratebiopharmainc.com/DAD/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/DAD/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Disability Assessment For Dementia (DAD) (Pilot)"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-16T09:14:06+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :F_NG1 ;
+	bf:hasGroup :F_NG2 ;
+	bf:hasGroup :F_NG3 ;
+	bf:hasGroup :F_NG4 ;
+	bf:hasGroup :F_NG5 ;
+	bf:hasGroup :F_NG6 ;
+	bf:hasGroup :F_NG7 ;
+	bf:hasGroup :F_NG8 ;
+	bf:hasGroup :F_NG9 ;
+	bf:hasGroup :F_NG10 ;
+	bf:hasGroup :F_NG11 ;
+	bf:hasGroup :F_NG12 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "DAD"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:F_NG1
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG1_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSCAT=\"DISABILITY ASSESSMENT FOR DEMENTIA (DAD)\""^^xsd:string ;
+.
+:F_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG2_Q1 ;
+	bf:hasItem :F_NG2_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG2_Q1
+	rdf:type bf:Question ;
+	isoC:label "INFORMATION NOT OBTAINED "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "INFORMATION NOT OBTAINED "^^xsd:string ;
+.
+:F_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Clinician's initials "^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "First/Middle/Last"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "Clinician's initials "^^xsd:string ;
+.
+:F_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "HYGIENE"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG3_NG2 ;
+.
+:F_NG3_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "1. Undertake to wash himself/herself or to take a bath or a shower"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG7
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG8
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "9"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG10
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "10"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG11
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "11"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12
+	rdf:type bf:NormalGroup ;
+	isoC:label ""^^xsd:string ;
+	bf:ordinal "12"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:repeating "false"^^xsd:boolean ;
+.

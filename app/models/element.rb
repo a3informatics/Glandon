@@ -6,6 +6,6 @@ class Element < IsoConceptV2
 
   object_property :in_arm, cardinality: :one, model_class: "Arm"
   object_property :in_epoch, cardinality: :one, model_class: "Epoch"
-  #object_property :contains_timepoint, cardinality: :many, model_class: "Timepoint"
+  object_property :contains_timepoint, cardinality: :many, model_class: "Timepoint"
 
 end

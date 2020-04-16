@@ -1,43 +1,55 @@
+require 'controller_helpers.rb'
+
 class FormsController < ApplicationController
-  
+
   before_action :authenticate_user!
-  
+
   C_CLASS_NAME = "FormsController"
+
+  include ControllerHelpers
+
+  def index
+    authorize Form
+    @forms = Form.unique
+    respond_to do |format|
+      format.html
+      format.json do
+        @forms = @forms.map{|x| x.reverse_merge!({history_path: history_forms_path({form:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        render json: {data: @forms}, status: 200
+      end
+    end
+  end
+
+  def history
+    authorize Form
+    respond_to do |format|
+      format.json do
+        results = []
+        history_results = Form.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = Form.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = Form.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(Form, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+      format.html do
+        @close_path = request.referer
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+      end
+    end
+  end
 
   def new
     authorize Form
     @form = Form.new
   end
 
-  def index
-    authorize Form
-    @forms = Form.unique
-    respond_to do |format|
-      format.html 
-      format.json do
-        results = {}
-        results[:data] = []
-        @forms.each do |item|
-          results[:data] << item
-        end
-        render json: results
-      end
-    end
-  end
-  
-  def history
-    authorize Form
-    @identifier = params[:identifier]
-    @scope_id = params[:scope_id]
-    @forms = Form.history({identifier: params[:identifier], scope: IsoNamespace.find(params[:scope_id])})
-    redirect_to forms_path if @forms.count == 0
-  end
-
   def placeholder_new
     authorize Form, :new?
     @form = Form.new
   end
-  
+
   def placeholder_create
     authorize Form, :create?
     @form = Form.create_placeholder(the_params)
@@ -50,7 +62,7 @@ class FormsController < ApplicationController
       redirect_to placeholder_new_forms_path
     end
   end
-  
+
   def edit
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
@@ -106,7 +118,7 @@ class FormsController < ApplicationController
     managed_item[:label] = the_params[:label]
     @form = Form.create(operation)
     if @form.errors.empty?
-      @form.add_branch_parent(params[:form_id], params[:form_namespace]) 
+      @form.add_branch_parent(params[:form_id], params[:form_namespace])
       AuditTrail.create_item_event(current_user, @form, "Form branched from #{identifier}.")
       flash[:success] = 'Form was successfully created.'
       redirect_to forms_path
@@ -160,24 +172,24 @@ class FormsController < ApplicationController
     redirect_to request.referer
   end
 
-  def show 
+  def show
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
-  
-  def view 
+
+  def view
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
     @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
-  
+
   def export_ttl
     authorize Form
     @form = IsoManaged::find(params[:id], params[:namespace])
     send_data to_turtle(@form.triples), filename: "#{@form.owner_short_name}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
-  
+
   def export_json
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
@@ -225,7 +237,19 @@ class FormsController < ApplicationController
 private
 
   def the_params
-    params.require(:form).permit(:namespace, :freeText, :identifier, :label, :children => {}, :bcs => [])
+    params.require(:form).permit(:namespace, :freeText, :identifier, :label, :scope_id, :children => {}, :bcs => [])
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return ""
+      when :edit
+        return ""
+      else
+        return ""
+    end
   end
 
 end

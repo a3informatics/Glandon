@@ -378,6 +378,8 @@ Rails.application.routes.draw do
     member do
       get :build
       get :design
+      get :soa
+      get :visits
     end
     collection do
       get :index

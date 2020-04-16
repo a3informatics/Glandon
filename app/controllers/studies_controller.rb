@@ -40,7 +40,7 @@ class StudiesController < ApplicationController
   end
 
   def history
-    authorize Form, :view?
+    authorize Form, :show?
     @study = Study.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
     @identifier = the_params[:identifier]
     @scope_id = the_params[:scope_id]
@@ -67,6 +67,18 @@ class StudiesController < ApplicationController
     authorize Form, :edit?
     study = Study.find_minimum(protect_from_bad_id(params))
     render json: {data: study.protocol.design}    
+  end 
+
+  def soa
+    authorize Form, :show?
+    study = Study.find_minimum(protect_from_bad_id(params))
+    render json: {data: study.soa}    
+  end 
+
+  def visits
+    authorize Form, :show?
+    study = Study.find_minimum(protect_from_bad_id(params))
+    render json: {data: study.visits}    
   end 
 
 private

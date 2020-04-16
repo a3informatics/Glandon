@@ -1,6 +1,10 @@
+require 'controller_helpers.rb'
+
 class BiomedicalConceptsController < ApplicationController
 
   C_CLASS_NAME = "BiomedicalConceptsController"
+
+  include ControllerHelpers
 
   before_action :authenticate_user!
 
@@ -23,11 +27,13 @@ class BiomedicalConceptsController < ApplicationController
 
   def index
     authorize BiomedicalConcept
-    bcs = BiomedicalConceptInstance.unique
+    @bcs = BiomedicalConceptInstance.unique
     respond_to do |format|
       format.json do
-        render json: {data: bcs}, status: 200
+        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concepts_path({biomedical_concept:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        render json: {data: @bcs}, status: 200
       end
+      format.html 
     end
   end
 
@@ -45,12 +51,20 @@ class BiomedicalConceptsController < ApplicationController
 
   def history
     authorize BiomedicalConcept
-    @identifier = the_params[:identifier]
-    bc = BiomedicalConcept.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
     respond_to do |format|
       format.json do
-        bc = bc.map{|b| b.to_h}
-        render json: {data: bc}, status: 200
+        results = []
+        history_results = BiomedicalConceptInstance.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = BiomedicalConceptInstance.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = BiomedicalConceptInstance.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(BiomedicalConcept, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+      format.html do
+        @bc = BiomedicalConceptInstance.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+        @close_path = request.referer
       end
     end
   end
@@ -210,6 +224,18 @@ private
 
   def the_params
     params.require(:biomedical_concept).permit(:namespace, :uri, :identifier, :label, :scope_id, :bc_id, :bc_namespace, :bct_id, :bct_namespace)
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return ""
+      when :edit
+        return ""
+      else
+        return ""
+    end
   end
 
 end

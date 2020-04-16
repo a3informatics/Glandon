@@ -1,51 +1,24 @@
-<%= javascript_include_tag 'standard_datatable' %>
-<% index_label = "Biomedical Concepts" %>
-<% index_path = biomedical_concepts_path %>
-<% second_level_breadcrumb(:biomedical_concepts, @bc[0].scope.id, @identifier) %>
-<h3>History: <%= @identifier %></h3>
+<%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
+<%= javascript_include_tag 'shared/iso_managed/history_page' %>
+<%= javascript_tag "var history_data_path = '#{history_biomedical_concepts_path}',
+ 												url_rs_path = '#{iso_registration_states_v2_path("rs_id")}',
+												strict_params = 'biomedical_concept',
+												identifier = '#{@identifier}',
+												scope_id = '#{@scope_id}';" %>
+
+<% second_level_breadcrumb(:biomedical_concepts, @scope_id, @identifier) %>
+
 <div class="row">
-	<div class="col-md-12">
-		<h4>Item History</h4>
-		<table id="main" class="table table-striped table-bordered table-condensed">
-			<%= render partial: "shared/stdInstanceHeader" %>
-			<tbody>
-				<% current_item = get_current_item(@bc) %>
-				<% @bc.each do |item| %>
-					<%= render partial: "shared/stdInstanceRow", 
-						:locals => 
-							{
-								:item => item, 
-		  					:current_item => current_item, 
-		  					:showPath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }), 
-		  					:searchPath => "", 
-		  					:viewPath => "",
-		  					:editPath => edit_biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
-		  					:deletePath => biomedical_concept_path(:id => item.id, :biomedical_concept => {:namespace => item.namespace }),
-		  					:index_label => index_label,
-								:index_path => index_path,
-								:mi_class => BiomedicalConcept 
-		  				} %>
-				<% end %>				
-			</tbody>
-		</table>
-	</div>
+  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-biocon", item: @bc, header_title: "Item History", with_tags: false} do %>
+    <div class="actions-wrap">
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+	<% end %>
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<h4>Comment History</h4>
-		<table id="secondary" class="table table-striped table-bordered table-condensed">
-  		<%= render partial: "shared/commentHistoryHeader" %>
-  		<tbody>
-    		<% @bc.each do |item| %>
-    			<%= render partial: "shared/commentHistoryRow", 
-						:locals => { 
-							:item => item,
-							:index_label => index_label,
-							:index_path => index_path,
-							:mi_class => BiomedicalConcept
-						} %>  
-    		<% end %>
-  		</tbody>
-		</table>
+
+<div class="row centered">
+	<div class="col-md-11 card table-cardstyle">
+		<%= render partial: "shared/history_panel", locals: {title: "Version History of '#{@identifier}'"} %>
 	</div>
 </div>

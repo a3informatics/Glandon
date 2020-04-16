@@ -1,0 +1,29 @@
+@import "custom/vars.scss";
+
+table.schedule-table {
+  width: auto !important;
+  margin: 10px auto;
+  font-family: $font-light;
+}
+
+table.schedule-table tr {
+  border-bottom: 1px solid $grey-light;
+}
+
+table.schedule-table th, table.schedule-table td {
+  padding: 10px 10px;
+}
+
+table.schedule-table th .bg-label{
+  background: $accent-color-2-light;
+  color: white;
+  padding: 5px 20px;
+}
+
+table.schedule-table td.cen {
+  text-align: center;
+}
+
+table.schedule-table td .circular-badge span[class^="icon-"] {
+  // font-size: 11pt;
+}

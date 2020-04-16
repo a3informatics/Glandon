@@ -11,6 +11,12 @@
 <http://www.assero.co.uk/BiomedicalConcept>
   rdf:type owl:Ontology ;
 .
+:Assessment
+  rdf:type owl:Class ;
+  rdfs:label "Assessment"^^xsd:string ;
+  rdfs:subClassOf bo:Collection ;
+  skos:definition "A set of Biomedical Concepts forming a logical assessment."^^xsd:string ;
+.
 :BiomedicalConcept
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept"^^xsd:string ;

@@ -1,9 +1,6 @@
 module Version
 
-<<<<<<< HEAD
-  VERSION = '0.1.0, Base 2.38.0' 
-=======
-  VERSION = '2.38.3' 
->>>>>>> master
+  VERSION = '0.1.0, Base 2.38.3' 
+>>>>>>> origin/Hackathon
 
 end
