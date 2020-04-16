@@ -513,100 +513,49 @@ describe Form do
           ordinal: 1,
           note: ""
         })
-      # @ng_1_ng_5 = Form::Group::Normal.from_h({
-      #     label: "Laboratory Sample - Urine",
-      #     completion: "",
-      #     optional: "false",
-      #     repeating: "false",
-      #     ordinal: 5,
-      #     note: ""
-      #   })
-      # @ng_1_ng_3 = Form::Group::Normal.from_h({
-      #     label: "Laboratory Sample - Blood",
-      #     completion: "",
-      #     optional: "false",
-      #     repeating: "false",
-      #     ordinal: 3,
-      #     note: ""
-      #   })
-      # @m_1 = Form::Item::Mapping.from_h({
-      #   label: "Mapping 6",
-      #   completion: "",
-      #   note: "",
-      #   optional: "false",
-      #   ordinal: 4,
-      #   mapping: "LBTUBE=URINE"
-      # })
-      # @m_2 = Form::Item::Mapping.from_h({
-      #   label: "Mapping 5",
-      #   completion: "",
-      #   note: "",
-      #   optional: "false",
-      #   ordinal: 2,
-      #   mapping: "LBTUBE=BLOOD"
-      # })
-      # @bcp_1 = Form::Item::BcProperty.from_h({
-      #   label: "Reason Not Done (--REASND)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 1,
-      #   note: ""
-      # })
-      # @bcp_2 = Form::Item::BcProperty.from_h({
-      #   label: "Date Time (--DTC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 1,
-      #   note: ""
-      # })
-      # @bcp_3 = Form::Item::BcProperty.from_h({
-      #   label: "Reason Not Done (--REASND)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 2,
-      #   note: ""
-      # })
-      # @bcp_4 = Form::Item::BcProperty.from_h({
-      #   label: "Specimen (--SPEC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 3,
-      #   note: ""
-      # })
-      # @bcp_5 = Form::Item::BcProperty.from_h({
-      #   label: "Date Time (--DTC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 1,
-      #   note: ""
-      # })
-      # @bcp_6 = Form::Item::BcProperty.from_h({
-      #   label: "Reason Not Done (--REASND)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 2,
-      #   note: ""
-      # })
-      # @bcp_7 = Form::Item::BcProperty.from_h({
-      #   label: "Specimen (--SPEC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 3,
-      #   note: ""
-      # })
-
+      @ng_1_ng_2 = Form::Group::Normal.from_h({
+          label: "P Wave Amplitude, Aggregate" ,
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2 ,
+          note: ""
+        })
+      @ng_1_ng_3 = Form::Group::Normal.from_h({
+          label: "P Wave Duration, Aggregate",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @ci_1 = Form::Item::Common.from_h({
+        label: "Date Time (--DTC)",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1
+      })
+      @ci_2 = Form::Item::Common.from_h({
+        label: "Reason Not Done (--STAT)",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 2
+      })
+      @ci_3 = Form::Item::Common.from_h({
+        label: "Reason Not Done (--REASND)",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 3
+      })
       @ng_1.has_common << @ng_1_cg_1
-      # @ng_1.has_item << @m_2
-      # @ng_1_ng_1.has_item << @bcp_1
-      # @ng_1_ng_5.has_item << @bcp_2
-      # @ng_1_ng_5.has_item << @bcp_3
-      # @ng_1_ng_5.has_item << @bcp_4
-      # @ng_1_ng_3.has_item << @bcp_5
-      # @ng_1_ng_3.has_item << @bcp_6
-      # @ng_1_ng_3.has_item << @bcp_7
-      # @ng_1.has_sub_group << @ng_1_ng_1
-      # @ng_1.has_sub_group << @ng_1_ng_5
-      # @ng_1.has_sub_group << @ng_1_ng_3
+      @ng_1_cg_1.has_item << @ci_1
+      @ng_1_cg_1.has_item << @ci_2
+      @ng_1_cg_1.has_item << @ci_3
+      @ng_1.has_sub_group << @ng_1_ng_2
+      @ng_1.has_sub_group << @ng_1_ng_3
       @f_1.has_group << @ng_1
       @f_1.set_initial("ECG")
     end
@@ -626,9 +575,9 @@ describe Form do
       sparql.default_namespace(@f_1.uri.namespace)
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
-      @ng_1_ng_1.to_sparql(sparql, true)
+      @ng_1_cg_1.to_sparql(sparql, true)
+      @ng_1_ng_2.to_sparql(sparql, true)
       @ng_1_ng_3.to_sparql(sparql, true)
-      @ng_1_ng_5.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_ECG.ttl")
     end
