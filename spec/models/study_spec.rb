@@ -109,7 +109,7 @@ describe "Study" do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
       actual = study.soa
-      check_file_actual_expected(actual, sub_dir, "soa_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "soa_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "visits" do
@@ -117,7 +117,7 @@ describe "Study" do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
       actual = study.visits
-      check_file_actual_expected(actual, sub_dir, "visits_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "visits_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
