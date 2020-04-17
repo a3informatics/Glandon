@@ -386,7 +386,7 @@ Rails.application.routes.draw do
   resources :protocols, only: [:show]
   resources :arms, only: [] do
     member do
-      get :timepoint
+      get :timepoints
     end
   end
   resources :timepoints, only: [] do

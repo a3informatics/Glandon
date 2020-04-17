@@ -16,6 +16,8 @@ function Timepoint(data, matrixRef, timelineRef) {
   this.timeline = timelineRef;
   this.data = data;
   this.div = null;
+
+  this.linkToVisits();
 }
 
 
@@ -23,6 +25,18 @@ function Timepoint(data, matrixRef, timelineRef) {
  ************** General **************
 **/
 
+
+/**
+ * Links this TP to visits if any
+ *
+ * @return [void]
+ */
+Timepoint.prototype.linkToVisits = function() {
+  if(this.data.visit_id != ""){
+    var visit = this.matrix.getItem(this.data.visit_id, "visits");
+    visit.data.timepoints.push(this.data.id);
+  }
+}
 
 /**
  * Generates HTML for a single timepoint
