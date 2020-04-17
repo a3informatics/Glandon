@@ -9,7 +9,8 @@ class TimepointsController < ApplicationController
   def change_unit
     authorize Form, :edit?
     tp = Timepoint.find(protect_from_bad_id(params))
-    render json: {data: tp.set_unit(the_params[:unit])}, status: 200
+    tp.set_unit(the_params[:unit])
+    render json: {data: []}, status: 200
   end
 
 private

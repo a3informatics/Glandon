@@ -14,7 +14,8 @@ function StudyMatrix() {
   this.wrapper = $("#tab-timeline-body");
   this.div = this.wrapper.find("#study-matrix");
   this.processing = false;
-  this.refreshOnShow = true;
+  this.refreshOnShow = true
+  this.newTpModeActive = false;
 
   this.bcsSelector = new ItemsSelector({
     id: "1",
@@ -95,50 +96,52 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
-  // this.div.on("matrixloaded", function() { $(_.values(this.data.arms)[0].div).click() }.bind(this));
   this.div.on("matrixloaded", this.loadVisitsData.bind(this));
   this.div.on("visitsloaded", function() { $(".arm.bg-label")[0].click() });
 
-  this.wrapper.on("click", "#timeline-axis", function(event){
-    if (this.wrapper.hasClass("new-tp-mode")) {
-      this.wrapper.removeClass("new-tp-mode");
+  this.wrapper.on("click", "#timeline-axis", this.onAxisClick.bind(this));
 
-      var currentArm = this.getActiveArm();
-      currentArm.timeline.desaturate(false);
-      var armId = currentArm.id,
-          epochId, offset;
-      $.each(this.wrapper.find(".epoch-block"), function(i, e) {
-        if( ($(e).position().left < event.offsetX) && ($(e).position().left + $(e).width() > event.offsetX) ) {
-          epochId = $(e).attr("data-epoch-id");
-          var tlWidth = $("#tl-wrapper").width();
-          offset = Math.floor(event.offsetX / (tlWidth / (currentArm.timeline.maxOffset - currentArm.timeline.minOffset))) + currentArm.timeline.minOffset;
-          return false;
-        }
-      });
+  $("#new-timepoint").off("click").on("click", this.toggleNewTpMode.bind(this, true));
+}
 
-      if(epochId != null && offset != null) {
-        currentArm.timeline.loading(true);
+/**
+ * Gets data, makes request for new timepoint, handles callback
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.createNewTimepoint = function(event) {
+  var arm = this.getActiveArm().timeline,
+      armId = arm.armId,
+      epochId = arm.offsetClosestEpoch(event.offsetX),
+      offset = arm.offsetToDays(event.offsetX);
 
-        this.executeRequest({
-          url: addTimepointUrl.replace("armId", armId),
-          type: "POST",
-          data: {arm: {offset: offset, epoch_id: epochId}},
-          withLoading: false,
-          callback: function(result) {
-            currentArm.timeline.data.timepoints.push(new Timepoint(result.data, this, currentArm.timeline));
-            currentArm.timeline.render(currentArm.timeline.data.timepoints);
-            currentArm.timeline.loading(false);
+  if(epochId != null && offset != null) {
+    arm.loading(true);
 
-          }.bind(this)
-        });
-      }
-    }
-  }.bind(this));
+    this.executeRequest({
+      url: arm.tpAddUrl(),
+      type: "POST",
+      data: {arm: {offset: offset, epoch_id: epochId}},
+      withLoading: false,
+      callback: function(result) {
+        arm.data.timepoints.push(new Timepoint(result.data, this, arm));
+        arm.render(arm.data.timepoints);
+        arm.loading(false);
+      }.bind(this)
+    });
+  }
+}
 
-  $("#new-timepoint").off("click").on("click", function() {
-    this.getActiveArm().timeline.desaturate(true, 1);
-    this.wrapper.addClass("new-tp-mode");
-  }.bind(this));
+/**
+ * Event Handler of timeline axis click
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.onAxisClick = function(e) {
+  if (this.newTpModeActive) {
+    this.toggleNewTpMode(false);
+    this.createNewTimepoint(e);
+  }
 }
 
 /**
@@ -181,6 +184,28 @@ StudyMatrix.prototype.buildVisitsHTML = function(visits) {
     list.append(visit.buttonHTML());
   });
 }
+
+/**
+ * Toggle New TP mode enabled
+ *
+ * @param enable [Boolean] true / false - enable / disable mode
+ * @return [void]
+ */
+StudyMatrix.prototype.toggleNewTpMode = function(enable) {
+  this.newTpModeActive = enable;
+
+  if (enable){
+    this.getActiveArm().timeline.desaturate(true, 1);
+    this.wrapper.addClass("new-tp-mode");
+  }
+  else {
+    this.getActiveArm().timeline.desaturate(false);
+    this.wrapper.removeClass("new-tp-mode");
+  }
+
+  this.wrapper.find(".visit").toggleClass("disabled", enable);
+}
+
 
 
 /**
@@ -430,7 +455,6 @@ StudyMatrix.prototype.armLoading = function(armId, enable) {
   this.div.find(".bg-label").not($(arm.div)).toggleClass("disabled", enable);
   this.wrapper.closest(".tab-wrap").toggleClass("processing", enable);
 }
-
 
 /**
  * Loading state toggle

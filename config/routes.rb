@@ -392,7 +392,7 @@ Rails.application.routes.draw do
   end
   resources :timepoints, only: [] do
     member do
-      get :change_unit
+      post :change_unit
     end
   end
   resources :visits, only: [] do

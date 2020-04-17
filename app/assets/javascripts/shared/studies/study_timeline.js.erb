@@ -427,6 +427,15 @@ StudyTimeline.prototype.tpDataUrl = function() {
   return timepointsArmUrl.replace("armId", this.armId);
 }
 
+/**
+ * Get TP add url for this arm
+ *
+ * @return [String] url for timepoint add
+ */
+StudyTimeline.prototype.tpAddUrl = function() {
+  return addTimepointUrl.replace("armId", this.armId);
+}
+
 
 /**
  * Toggles desaturation overlay
@@ -472,4 +481,53 @@ StudyTimeline.prototype.loading = function(enable) {
  */
 StudyTimeline.prototype.bcLabel = function(bc) {
   return bc.label + " (" + (bc.identifier || bc.has_identifier.identifier) + ") v" + (bc.semantic_version || "0.1.0");
+}
+
+/**
+ * Converts x-axis offset to days offset relative to timepoints and timeline width
+ *
+ * @param offset [Int] X offset on the timeline
+ * @return [Int] Offset in days
+ */
+StudyTimeline.prototype.offsetToDays = function(offset) {
+  var width = $("#tl-wrapper").width(),
+      offset = Math.floor(offset / (width / (this.maxOffset - this.minOffset))) + this.minOffset;
+
+  return offset;
+}
+
+/**
+ * Finds closest epoch to an offset on the x axis
+ *
+ * @param offset [Int] X-axis offset to find epoch for
+ * @return [String] closest epoch element id / empty ""
+ */
+StudyTimeline.prototype.offsetClosestEpoch = function(offset) {
+  var tEpoch = null;
+
+  $(".epoch-block").each(function(i, e) {
+    var eLeft = $(e).position().left,
+        eRight = $(e).position().left + $(e).width();
+
+    if ((eLeft < offset) && (eRight > offset)) {
+      tEpoch = $(e);
+      return false;
+    }
+  });
+
+  if(tEpoch == "") {
+    $(".epoch-block").each(function(i, e) {
+      if (tEpoch == null)
+        tEpoch = $(e);
+      else {
+        var eLeft = $(e).position().left,
+            tELeft = $(tEpoch).position().left;
+
+        if (Math.abs(eLeft - offset) <= Math.abs(tELeft - offset))
+          tEpoch = $(e);
+      }
+    });
+  }
+
+  return tEpoch.attr("data-epoch-id");
 }

@@ -25,6 +25,31 @@ function Timepoint(data, matrixRef, timelineRef) {
  ************** General **************
 **/
 
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+Timepoint.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
 
 /**
  * Links this TP to visits if any
@@ -70,7 +95,9 @@ Timepoint.prototype.timepointHTML = function() {
  * @return [void]
  */
 Timepoint.prototype.updateTpEpoch = function() {
-  this.data.epoch_id = this.getClosestEpoch();
+  var tpOffset = $(this.div).position().left + (this.timeline.tpRadius / 2);
+  this.data.epoch_id = this.timeline.offsetClosestEpoch(tpOffset);
+
   var styles = this.timepointStyles();
 
   $(this.div).css("background-color", styles.color)
@@ -97,42 +124,6 @@ Timepoint.prototype.updateTpOffset = function() {
  */
 Timepoint.prototype.updateTpLabel = function() {
   $(this.div).find(".tp-label").text(this.timepointLabel());
-}
-
-/**
- * Updates TP data, CSS
- *
- * @return [void]
- */
-Timepoint.prototype.getClosestEpoch = function() {
-  var closestEpoch = null;
-  var tpMidPoint = $(this.div).position().left + (this.timeline.tpRadius / 2);
-
-  $(".epoch-block").each(function(i, e) {
-    var epochOffsetLeft = $(e).position().left;
-    var epochOffsetRight = $(e).position().left + $(e).width();
-
-    if ((epochOffsetLeft < tpMidPoint) && (epochOffsetRight > tpMidPoint)){
-      closestEpoch = $(e);
-      return false;
-    }
-  });
-
-  if(closestEpoch == null) {
-    $(".epoch-block").each(function(i, e) {
-      if (closestEpoch == null)
-        closestEpoch = $(e)
-      else {
-        var epochOffsetLeft = $(e).position().left;
-        var closestEpochOffsetLeft = $(closestEpoch).position().left;
-        if (Math.abs(epochOffsetLeft - tpMidPoint) <= Math.abs(closestEpochOffsetLeft - tpMidPoint)) {
-          closestEpoch = $(e);
-        }
-      }
-    });
-  }
-
-  return $(closestEpoch).attr("data-epoch-id");
 }
 
 /**
@@ -210,8 +201,9 @@ Timepoint.prototype.timepointStyles = function() {
 Timepoint.prototype.tpDialogListeners = function(e) {
   this.timeline.tpDialog.setListeners();
 
-  $(this.timeline.tpDialog.id).on("click", ".bg-label", this.timeline.removeBCFromTp.bind(this.timeline));
+  $(this.timeline.tpDialog.id).on("click", ".bg-label.bc", this.timeline.removeBCFromTp.bind(this.timeline));
   $(this.timeline.tpDialog.id).find("#add-bcs").on("click", this.timeline.addBCToTp.bind(this.timeline));
+  $(this.timeline.tpDialog.id).on("click", "a.unit", this.changeTpUnit.bind(this));
 }
 
 /**
@@ -251,7 +243,7 @@ Timepoint.prototype.tpDetailsHTML = function() {
   html +=     _.isEmpty(this.data.biomedical_concepts) ? "None" : "";
 
   $.each(this.data.biomedical_concepts, function(index, bc){
-    html +=   "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ this.timeline.bcLabel(bc) +"</span>";
+    html +=   "<span class='bg-label bc removable' data-id='"+ bc.id +"'>"+ this.timeline.bcLabel(bc) +"</span>";
   }.bind(this));
 
   html +=   "</div>";
@@ -271,10 +263,44 @@ Timepoint.prototype.tpUnitsHTML = function() {
   var units = ["Day", "Week", "Month"],
       html = "";
   $.each(units, function(i, unit){
-    var classes = "btn btn-xs light";
+    var classes = "btn btn-xs light unit";
     classes += (unit == this.data.unit ? " disabled" : "")
     html += "<a href='#' class='"+ classes +"'>"+ unit +"</a>";
   }.bind(this));
 
   return html;
+}
+
+/**
+ * Updates TP Unit, handles response
+ *
+ * @return [void]
+ */
+Timepoint.prototype.changeTpUnit = function(e) {
+  var unit = $(e.target).text();
+
+  this.executeRequest({
+    url: changeTpUnitUrl.replace("tpId", this.data.id),
+    type: "POST",
+    data: {timepoint: {unit: unit} },
+    callback: function(result) {
+      $(this.timeline.tpDialog.id).find("a.unit").removeClass("disabled");
+      $(e.target).addClass("disabled");
+      this.data.unit = unit;
+      this.updateTpLabel();
+      this.loading(false);
+    }.bind(this)
+  })
+}
+
+
+/**
+ * Loading state toggle
+ *
+ * @param enable [Boolean] enable or disable loading
+ * @return [void]
+ */
+Timepoint.prototype.loading = function(enable) {
+  this.timeline.tpDialog.loading(enable);
+  this.timeline.loading(enable);
 }
