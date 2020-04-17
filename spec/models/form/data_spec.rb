@@ -491,7 +491,7 @@ describe Form do
 
   end
 
-    describe "ACME_F ECG" do
+  describe "ACME_F ECG" do
 
     def simple_form_1
       @f_1 = Form.from_h({
@@ -580,6 +580,281 @@ describe Form do
       @ng_1_ng_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_ECG.ttl")
+    end
+
+  end
+
+  describe "ACME_F DEMOGRAPHICS" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "Demographics"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: "DEMOGRAPHICS",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @q_1 = Form::Item::Question.from_h({
+          label: "Age",
+          completion: "",
+          mapping: "AGE",
+          question_text: "Age (Years)",
+          optional: "false",
+          format: "3",
+          ordinal: 1,
+          note: "FDA Validation Rules and SDTM expected variable.\n\nIf the protocol calls for the collection of Birth date and derivation of Age then this item must be set in calculated and visible for the investigator."
+        })
+      @q_2 = Form::Item::Question.from_h({
+          label: "Birth Date",
+          completion: "",
+          mapping: "BRTHDTC",
+          question_text: "Date of Birth",
+          optional: "true",
+          format: "",
+          ordinal: 3,
+          note: ""
+        })
+      @q_3 = Form::Item::Question.from_h({
+          label: "SEX",
+          completion: "",
+          mapping: "SEX",
+          question_text: "Sex",
+          optional: "false",
+          format: "1",
+          ordinal: 4,
+          note: "When Rave PF URL is used together with the Lab Admin Module, then the values within Rave must be 1=M and 2=F."
+        })
+      # tc_1 = Thesaurus::UnmanagedConcept.from_h({
+      #     label: "Thesaurus Concept Reference",
+      #     identifier: "A000012",
+      #     definition: "The oldest LHR Terminal",
+      #     notation: "T1"
+      #   })
+      @q_4 = Form::Item::Question.from_h({
+          label: "Ethnicity",
+          completion: "",
+          mapping: "ETHNIC",
+          question_text: "Ethnicity",
+          optional: "true",
+          format: "22",
+          ordinal: 5,
+          note: "Optionally used depending on protocol specifications\nFDA requirement, missing variable must be justified in SDTM RG"
+        })
+      @q_5 = Form::Item::Question.from_h({
+          label: "Race",
+          completion: "If the subject is of mixed race, select the race that corresponds to the dominant ethnic group or to the ethnic group that the subject considers him/herself belonging to and ensure this correspondence with a note in the source documents.",
+          mapping: "RACE",
+          question_text: "Race",
+          optional: "true",
+          format: "41",
+          ordinal: 6,
+          note: "Optionally used depending on protocol specifications\nSDTM and FDA requirements.\n\nBLACK can be used instead of BLACK OR AFRICAN AMERICAN when collected outside US.\n\nFree text collected in SPECIFY field must set in RACEOTH variable, pre-printed term are set in RACE variable.\n\nThis item can be automatically populated by the system if only one race is planned to be used in the protocol"
+        })
+      @q_6 = Form::Item::Question.from_h({
+          label: "Other, specify",
+          completion: "If \"Other\" is selected (e.g. Mixture of 2 races), the \"specify\" field is used to collect the information. \n\nDo not record any variation on the predefined options.",
+          mapping: "SUPPDM.DMRACEOT",
+          question_text: "If Other, Specify",
+          optional: "true",
+          format: "200",
+          ordinal: 7,
+          note: "Missing values must be justified in SDTMRG.\n"
+        })
+      @m_1 = Form::Item::Mapping.from_h({
+        label: "Mapping 7",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 2,
+        mapping: "AGEU=YEARS"
+      })
+      @ng_1.has_item << @q_1
+      @ng_1.has_item << @m_1
+      @ng_1.has_item << @q_2
+      @ng_1.has_item << @q_3
+      @ng_1.has_item << @q_4
+      @ng_1.has_item << @q_5
+      @ng_1.has_item << @q_6
+      # @q_3.has_coded_value << 
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("ECG")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_F_DEMOGRAPHICS.ttl")
+    end
+
+  end
+
+  describe "ACME_VSTAINFLUENZA" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "Vital Signs - Therapeutic Area - Influenza"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: "Group",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @ng_1_ng_1= Form::Group::Normal.from_h({
+          label: "Heart Rate",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @bcp_1 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_2 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_2= Form::Group::Normal.from_h({
+          label: "Systolic Blood Pressure",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2,
+          note: ""
+        })
+      @bcp_3 = Form::Item::BcProperty.from_h({
+        label: "Body Position (--POS)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_4 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @bcp_5 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 3,
+        note: ""
+      })
+      @ng_1_ng_3= Form::Group::Normal.from_h({
+          label: "Diastolic Blood Pressure",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @bcp_6 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_7 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_4= Form::Group::Normal.from_h({
+          label: "Respiratory Rate",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 4,
+          note: ""
+        })
+      @bcp_8 = Form::Item::BcProperty.from_h({
+        label: "Date Time (--DTC)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_9 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+     
+      @ng_1.has_sub_group << @ng_1_ng_1
+      @ng_1.has_sub_group << @ng_1_ng_2
+      @ng_1.has_sub_group << @ng_1_ng_3
+      @ng_1.has_sub_group << @ng_1_ng_4
+      @ng_1_ng_1.has_item << @bcp_1
+      @ng_1_ng_1.has_item << @bcp_2
+      #@bcp_1.has_property << 
+      #@bcp_2.has_property << 
+      @ng_1_ng_2.has_item << @bcp_3
+      @ng_1_ng_2.has_item << @bcp_4
+      @ng_1_ng_2.has_item << @bcp_5
+      @ng_1_ng_3.has_item << @bcp_6
+      @ng_1_ng_3.has_item << @bcp_7
+      @ng_1_ng_4.has_item << @bcp_8
+      @ng_1_ng_4.has_item << @bcp_9
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("INFLUENZA")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      @ng_1_ng_1.to_sparql(sparql, true)
+      @ng_1_ng_2.to_sparql(sparql, true)
+      @ng_1_ng_3.to_sparql(sparql, true)
+      @ng_1_ng_4.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTAINFLUENZA.ttl")
     end
 
   end
