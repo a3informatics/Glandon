@@ -1,4 +1,4 @@
-@prefix : <http://www.transceleratebiopharmainc.com/Height/V1#> .
+@prefix : <http://www.transceleratebiopharmainc.com/HR-BP/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -10,7 +10,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.transceleratebiopharmainc.com/Height/V1>
+<http://www.transceleratebiopharmainc.com/HR-BP/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T10:20:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T10:21:25+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -42,7 +42,7 @@
 .
 :F_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "Height"^^xsd:string ;
+	isoI:identifier "HR-BP"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
