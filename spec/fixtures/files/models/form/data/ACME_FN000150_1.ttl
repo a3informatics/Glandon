@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T09:40:51+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T14:40:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -71,6 +71,7 @@
 	bf:format "1"^^xsd:string ;
 	bf:mapping "VSSTAT"^^xsd:string ;
 	bf:questionText " Completion Status"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66789/V4#C66789_C49484> ;
 .
 :F_NG1_Q3
 	rdf:type bf:Question ;
@@ -83,6 +84,8 @@
 	bf:format "5.1"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
 	bf:questionText "Height"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C49668> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V2#C66770_C48500> ;
 .
 :F_NG1_Q4
 	rdf:type bf:Question ;
