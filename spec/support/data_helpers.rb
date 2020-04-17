@@ -4,7 +4,7 @@ module DataHelpers
 
   include TripleStoreHelpers
 
-  @@ts = TripleStoreHelpers::TripleStore.new
+  @@ts = TripleStoreHelpers::TripleStoreAccess.new
 
   def schema_files
     [
