@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'jquery-ui.min.js'%>
 <%= javascript_include_tag "shared/context_dialog", "shared/studies/study_matrix",
-                            "shared/studies/study_timeline", "shared/items_selector/items_selector_modal" %>
+                            "shared/studies/study_timeline", "shared/studies/timepoint", "shared/items_selector/items_selector_modal" %>
 <%= stylesheet_link_tag "shared/studies/study_timeline", "jquery-ui.min.css" %>
 
 <div class="text-xnormal font-light ci-card-title">
@@ -16,7 +16,10 @@
   </div>
 
   <div id="btns-wrap">
-    <a href="#new-timepoint-modal" id='new-timepoint' class="btn medium light" data-toggle="modal">+ New Timepoint</a>
+    <a href="#" id='new-timepoint' class="btn medium light">+ New Timepoint</a>
+    <a href="#" id='new-visit' class="btn medium light">+ New Visit</a>
+    <a href="#" id='save-timeline' class="btn medium green">Save</a>
   </div>
+
 
 </div>

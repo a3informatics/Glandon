@@ -8,8 +8,8 @@ $(document).ready(function() {
         $(o.alsoResizeReverse).not(this).each(function() {
             var el = $(this);
             el.data("ui-resizable-alsoresizeReverse", {
-                width: el[0].getBoundingClientRect().width,
-                left: ((parseFloat(el.css("left"), 10) / 100) * $("#tl-wrapper")[0].getBoundingClientRect().width)
+                width: el.width(),
+                left: el.position().left
             });
         });
     },
@@ -53,17 +53,18 @@ $(document).ready(function() {
                 style[prop] = (sum || null);
             }
         });
-        targetElement.css(style);
+
+          targetElement.css(style);
     },
 
     stop: function() {
         $(this).removeData("resizable-alsoresize-reverse");
-        $(".epoch-block").each(function() {
-          var l = ( 100 * (parseFloat($(this).position().left / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
-          var w = ( 100 * (parseFloat($(this).width() / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
-          $(this).css("left", l);
-          $(this).css("width", w);
-        });
+        // $(".epoch-block").each(function() {
+        //   var l = ( 100 * (parseFloat($(this).position().left / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
+        //   var w = ( 100 * (parseFloat($(this).width() / parseFloat($("#tl-wrapper")[0].getBoundingClientRect().width))) ) + "%" ;
+        //   $(this).css("left", l);
+        //   $(this).css("width", w);
+        // });
     }
   });
 })

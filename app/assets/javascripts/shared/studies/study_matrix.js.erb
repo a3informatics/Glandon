@@ -25,7 +25,7 @@ function StudyMatrix() {
 
   this.createTPModal = new NewTimepointModal(this);
 
-  this.data = { epochs: [], arms: [], }
+  this.data = { epochs: {}, arms: {} }
 
   this.setListeners();
 }
@@ -95,7 +95,21 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
-  this.div.on("matrixloaded", function() { $(this.data.arms[0].div).click() }.bind(this));
+  this.div.on("matrixloaded", function() { $(_.values(this.data.arms)[0].div).click() }.bind(this));
+
+  $("#new-timepoint").off("click").on("click", function() {
+    // var arm = this.getActiveArm();
+    // arm.data.timepoints.push(new Timepoint({
+    //   id: "994",
+    //   epoch_id: "112x",
+    //   arms: ["210x"],
+    //   element_id: "214x",
+    //   unit: "Month",
+    //   biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
+    //   baseline: false,
+    //   offset: 56
+    // }, matrix, arm))
+  });
 }
 
 
@@ -125,7 +139,7 @@ StudyMatrix.prototype.processMatrixData = function(data) {
 
   // Initialize Epochs
   $.each(data, function(index, epoch) {
-    this.data.epochs.push(
+    this.data.epochs[epoch.id] =
       {
         type: "epoch",
         label: epoch.label,
@@ -133,17 +147,16 @@ StudyMatrix.prototype.processMatrixData = function(data) {
         color: this.generateColorShade(this.colorBases().red, index),
         arms: epoch.arms.map(function(a){ return a.id })
       }
-    );
 
     // Initialize Arms
     $.each(epoch.arms, function(idx, arm) {
       arm.element.type = "element";
-      var thisArm = this.getItem("id", arm.id, "arms");
+      var thisArm = this.getItem(arm.id, "arms");
 
       if (thisArm == null) {
         var studyTimeline = new StudyTimeline(arm.id, this);
 
-        this.data.arms.push(
+        this.data.arms[arm.id] =
           {
             type: "arm",
             label: arm.label,
@@ -152,7 +165,6 @@ StudyMatrix.prototype.processMatrixData = function(data) {
             elements: [arm.element],
             timeline: studyTimeline,
           }
-        );
       }
       else
         thisArm.elements.push(arm.element);
@@ -170,11 +182,12 @@ StudyMatrix.prototype.processMatrixData = function(data) {
 StudyMatrix.prototype.render = function() {
   this.div.empty();
 
+
   this.div.append("<table><tr>");
   this.div.find("table tr").append("<td>Arms/Epochs</td>");
 
   // Epochs row
-  $.each(this.data.epochs, function(i, epoch) {
+  $.each(_.values(this.data.epochs), function(i, epoch) {
 
     this.div.find("table tr").append("<td>" + this.matrixItemHTML(epoch) + "</td>");
     epoch.div = ".epoch[data-id='"+epoch.id+"']";
@@ -182,7 +195,7 @@ StudyMatrix.prototype.render = function() {
   }.bind(this));
 
   // Arms and Elements rows
-  $.each(this.data.arms, function(i, arm) {
+  $.each(_.values(this.data.arms), function(i, arm) {
 
     this.div.find("table").append("<tr>")
     this.div.find("table tr").eq(i+1).append("<td>" + this.matrixItemHTML(arm) + "</td>")
@@ -217,7 +230,7 @@ StudyMatrix.prototype.matrixItemClickStyle = function(target, selected) {
  * @return [void]
  */
 StudyMatrix.prototype.setMatrixItemCSS = function(target, enable) {
-  var dataItem = this.getItem("id", $(target).attr("data-id"));
+  var dataItem = this.getItem($(target).attr("data-id"));
 
   this.div.find(target).css("background-color", enable ? this.hslString(dataItem.color) : "");
   this.div.find(target).css("color", enable ? "white" : "");
@@ -262,7 +275,7 @@ StudyMatrix.prototype.onMatrixItemHover = function(e) {
  * @return [void]
  */
 StudyMatrix.prototype.onEpochClick = function(e) {
-  var epoch = this.getItem("id", $(e.target).attr("data-id"), "epochs");
+  var epoch = this.getItem($(e.target).attr("data-id"), "epochs");
   var activeArm = this.getActiveArm();
 
   // Deselected
@@ -284,7 +297,7 @@ StudyMatrix.prototype.onEpochClick = function(e) {
  * @return [void]
  */
 StudyMatrix.prototype.onArmClick = function(e) {
-  var arm = this.getItem("id", $(e.target).attr("data-id"), "arms");
+  var arm = this.getItem($(e.target).attr("data-id"), "arms");
   $(".bg-label.epoch.active").click();
 
   this.matrixItemClickStyle(".bg-label.active.arm", false);
@@ -298,40 +311,54 @@ StudyMatrix.prototype.onArmClick = function(e) {
  ************** Getters **************
 **/
 
-
 /**
  * Gets a data object by its property type
  *
- * @param propertyType [String] type of the property to compare
- * @param value [String] Any value, normally String
- * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
+ * @param id [String] Item ID
+ * @param type [String] type of data - epochs/arms, if null, will go through all
  * @return [Data Object] matched object, or null
  */
-StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
-  var object = null;
-
-  if(dataType != null) {
-    $.each(this.data[dataType], function(index, obj) {
-      if (obj[propertyType] == value) {
-        object = obj;
-        return false;
-      }
-    });
-  }
-  else {
-    $.each(this.data, function(type) {
-      $.each(this.data[type], function(index, obj) {
-        if (obj[propertyType] == value) {
-          object = obj;
-          return false;
-        }
-      });
-      return (object == null);
-    }.bind(this));
-  }
-
-  return object;
+StudyMatrix.prototype.getItem = function(id, type) {
+  if (!_.isNull(type) && !_.isUndefined(type))
+    return this.data[type][id];
+  else
+    return this.data.arms[id] || this.data.epochs[id];
 }
+
+
+// /**
+//  * Gets a data object by its property type
+//  *
+//  * @param propertyType [String] type of the property to compare
+//  * @param value [String] Any value, normally String
+//  * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
+//  * @return [Data Object] matched object, or null
+//  */
+// StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
+//   var object = null;
+//
+//   if(dataType != null) {
+//     $.each(this.data[dataType], function(index, obj) {
+//       if (obj[propertyType] == value) {
+//         object = obj;
+//         return false;
+//       }
+//     });
+//   }
+//   else {
+//     $.each(this.data, function(type) {
+//       $.each(this.data[type], function(index, obj) {
+//         if (obj[propertyType] == value) {
+//           object = obj;
+//           return false;
+//         }
+//       });
+//       return (object == null);
+//     }.bind(this));
+//   }
+//
+//   return object;
+// }
 
 /**
  * Find currently active arm object
@@ -339,7 +366,7 @@ StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
  * @return [Object] current arm object
  */
 StudyMatrix.prototype.getActiveArm = function() {
-  return this.getItem("id", this.div.find(".arm.active").attr("data-id"), "arms");
+  return this.getItem(this.div.find(".arm.active").attr("data-id"), "arms");
 }
 
 
@@ -356,7 +383,7 @@ StudyMatrix.prototype.getActiveArm = function() {
  * @return [void]
  */
 StudyMatrix.prototype.armLoading = function(armId, enable) {
-  var arm = this.getItem("id", armId, "arms");
+  var arm = this.getItem(armId, "arms");
   $(arm.div).toggleClass("loading", enable);
   this.div.find(".bg-label").not($(arm.div)).toggleClass("disabled", enable);
 }
@@ -379,7 +406,7 @@ StudyMatrix.prototype.loading = function(enable) {
  * @return [void]
  */
 StudyMatrix.prototype.clear = function() {
-  this.data = { epochs: [], arms: [] }
+  this.data = { epochs: {}, arms: {} }
 }
 
 /**

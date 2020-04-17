@@ -53,7 +53,7 @@
 // Timeline
 
 #study-timeline{
-  transition: opacity .5s;
+  transition: opacity 0.25s;
 }
 
 #study-timeline.fadein{
@@ -92,7 +92,7 @@
   white-space: nowrap;
 }
 
-#tl-wrapper .epoch-block {
+#tl-wrapper div.epoch-block {
   position: absolute;
   display: block;
   width: 100px;
