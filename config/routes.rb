@@ -134,13 +134,8 @@ Rails.application.routes.draw do
       put :update
     end
   end
-  resources :dashboard, only: [:index] do
-    collection do
-      get :view
-      get :database
-      get :admin
-    end
-  end
+  resources :dashboard, only: [:index]
+  resources :triple_store, only: [:show]
   resources :iso_concept_systems, only: [:index, :show, :destroy] do
     member do
       post :add
