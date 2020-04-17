@@ -395,6 +395,12 @@ Rails.application.routes.draw do
       get :change_unit
     end
   end
+  resources :visits, only: [] do
+    member do
+      get :add_timepoints
+      get :remove_timepoints
+    end
+  end
   resources :forms do
     collection do
       get :history

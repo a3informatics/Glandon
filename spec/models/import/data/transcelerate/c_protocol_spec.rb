@@ -267,7 +267,7 @@ describe "C - Transcelerate Protocol" do
       secs_per_week = 7*24*60*60
       o_items = []
       [0, 8, 16, 24].each_with_index do |v, index|
-        item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0, unit: "Weeks")
+        item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0, unit: "Week")
         item.uri = item.create_uri(item.class.base_uri)
         o_items << item
       end
