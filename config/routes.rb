@@ -387,6 +387,7 @@ Rails.application.routes.draw do
   resources :arms, only: [] do
     member do
       get :timepoints
+      post :add_timepoint
     end
   end
   resources :timepoints, only: [] do
