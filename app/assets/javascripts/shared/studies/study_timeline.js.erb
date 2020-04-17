@@ -21,7 +21,7 @@ function StudyTimeline(armId, matrixRef) {
   this.wrapper = $("#tab-timeline-body");
   this.div = this.wrapper.find("#study-timeline");
 
-  this.tpRadius = 30;
+  this.tpRadius = 24;
   this.tpDialog = new ContextDialog("0");
 
   this.data = { timepoints: [], renderTimepoints: [] }
@@ -108,11 +108,11 @@ StudyTimeline.prototype.minMaxOffsets = function() {
 StudyTimeline.prototype.interactionListeners = function() {
   var _this = this;
 
-  $(".epoch-block").resizable({
+  $(this.div).find(".epoch-block").resizable({
     handles: "w,e",
     containment: $("#tl-wrapper"),
     minWidth: 20,
-    alsoResizeReverse: $('.epoch-block'),
+    alsoResizeReverse: $(this.div).find('.epoch-block'),
     resize: function(ev, ui) {
       $.each(_this.data.renderTimepoints, function(i, timepoint) {
         timepoint.updateTpEpoch();
@@ -123,11 +123,11 @@ StudyTimeline.prototype.interactionListeners = function() {
     }.bind(this)
   });
 
-  $(_.first($(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-w").remove();
-  $(".epoch-block").find(".ui-resizable-handle.ui-resizable-e").remove();
+  $(_.first($(this.div).find(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-w").remove();
+  $(this.div).find(".epoch-block").find(".ui-resizable-handle.ui-resizable-e").remove();
 
 
-  $(".timepoint").draggable({
+  $(this.div).find(".timepoint").draggable({
     axis: "x",
     cancel: ".baseline",
     containment: [$("#tl-wrapper").offset().left - 40, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 20, 0],
@@ -141,9 +141,32 @@ StudyTimeline.prototype.interactionListeners = function() {
     }.bind(this),
     stop: function (e, ui) {
       this.render(this.data.renderTimepoints);
-      // var l = ( 100 * parseFloat($(this).position().left / parseFloat($("#tl-wrapper").width())) ) + "%" ;
-      // $(this).css("left", l);
     }.bind(this),
+  });
+
+  $(window).on("resize", function(){
+    $(this.div).find(".epoch-block").resizable("option", "containment", $("#tl-wrapper"));
+    $(this.div).find(".timepoint").draggable("option", "containment", [$("#tl-wrapper").offset().left - 40, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 20, 0]);
+  });
+
+  $(this.wrapper).find(".visit").draggable({
+    opacity: 0.9,
+    helper: "clone",
+    start: function(ev, ui) {
+      $(_this.wrapper).append("<div class='dark-overlay'></div>");
+    },
+    stop: function(ev, ui) {
+      $("body .dark-overlay").remove();
+    }
+  });
+
+  $(this.wrapper).find(".timepoint").droppable({
+    accept: ".visit",
+    drop: function(ev, ui) {
+      var timepointId = $(this).attr("data-id");
+      var visitId = ui.draggable.attr("data-id");
+      _this.matrix.getItem(visitId, "visits").addTimepoints([timepointId]);
+    }
   });
 }
 
@@ -172,6 +195,11 @@ StudyTimeline.prototype.render = function(timepointSet) {
   var epochs = this.matrix.data.epochs;
   $.each(_.values(epochs), function(index, epoch){
     wrap.append(this.epochHTML(epoch));
+  }.bind(this));
+
+  var visits = this.matrix.data.visits;
+  $.each(_.values(visits), function(index, visit){
+    wrap.append(visit.blockHTML());
   }.bind(this));
 
   setTimeout(function(){this.div.removeClass("fadein")}.bind(this), 1);
@@ -411,13 +439,13 @@ StudyTimeline.prototype.bcLabel = function(bc) {
 StudyTimeline.prototype.mockData = function() {
   this.ready = true;
   switch(this.armId){
-    case "210x":
+    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA=":
       return [
         {
           id: "991",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
-          visit_id: "001x",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjY2RlNzgyYmU4YjY3NTE0NGIxYzNhNDEzZDk1MmU1MDU4Y2E1M2QzOA==",
           element_id: "211x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -426,9 +454,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
-          visit_id: "002x",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjY2RlNzgyYmU4YjY3NTE0NGIxYzNhNDEzZDk1MmU1MDU4Y2E1M2QzOA==",
           element_id: "212x",
           unit: "Day",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -437,9 +465,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
-          visit_id: "002x",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjZTk2YTIxNDUyNzcxNzFhMGMzZjVkZWRkZWY0ZjQwMGMyZTY5MzEyMw==",
           element_id: "213x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -448,9 +476,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
-          visit_id: "003x",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjZTk2YTIxNDUyNzcxNzFhMGMzZjVkZWRkZWY0ZjQwMGMyZTY5MzEyMw==",
           element_id: "214x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -459,9 +487,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "995",
-          epoch_id: "112x",
-          arms: ["210x"],
-          visit_id: "003x",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "",
           element_id: "214x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"},
@@ -471,9 +499,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "996",
-          epoch_id: "116x",
-          arms: ["210x"],
-          visit_id: "",
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
+          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjMjJiMGYwYzhkNjIxOGNiYzllMTBhYjFiOTFjOWUxZjgwMGNiNGY4Mw==",
           element_id: "214x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
@@ -481,12 +509,13 @@ StudyTimeline.prototype.mockData = function() {
           offset: 126
         },
       ];
-    case "310x":
+    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y=":
       return [
         {
           id: "991",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
+          visit_id: "",
           element_id: "211x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
@@ -495,8 +524,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
+          visit_id: "",
           element_id: "212x",
           unit: "Day",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -505,8 +535,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
+          visit_id: "",
           element_id: "213x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
@@ -515,8 +546,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
+          visit_id: "",
           element_id: "214x",
           unit: "Month",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -524,12 +556,13 @@ StudyTimeline.prototype.mockData = function() {
           offset: 56
         },
       ];
-    case "410x":
+    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU=":
       return [
         {
           id: "990",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "211x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -538,8 +571,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "991",
-          epoch_id: "111x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "212x",
           unit: "Day",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -548,8 +582,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "212x",
           unit: "Day",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -558,8 +593,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "213x",
           unit: "Week",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
@@ -568,8 +604,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "214x",
           unit: "Month",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -578,8 +615,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "995",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "214x",
           unit: "Month",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
@@ -588,8 +626,9 @@ StudyTimeline.prototype.mockData = function() {
         },
         {
           id: "996",
-          epoch_id: "112x",
-          arms: ["210x"],
+          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
+          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
+          visit_id: "",
           element_id: "214x",
           unit: "Month",
           biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],

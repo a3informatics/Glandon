@@ -25,7 +25,7 @@ function StudyMatrix() {
 
   this.createTPModal = new NewTimepointModal(this);
 
-  this.data = { epochs: {}, arms: {} }
+  this.clear();
 
   this.setListeners();
 }
@@ -72,8 +72,8 @@ StudyMatrix.prototype.executeRequest = function(params) {
     data: params.data,
     context: this,
     success: function(result) {
-      this.loading(false);
       params.callback(result);
+      this.loading(false);
     },
     error: function (xhr, status, error) {
       handleAjaxError(xhr, status, error);
@@ -95,7 +95,8 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.epoch", this.onEpochClick.bind(this));
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
-  this.div.on("matrixloaded", function() { $(_.values(this.data.arms)[0].div).click() }.bind(this));
+  // this.div.on("matrixloaded", function() { $(_.values(this.data.arms)[0].div).click() }.bind(this));
+  this.div.on("matrixloaded", this.loadVisitsData.bind(this));
 
   $("#new-timepoint").off("click").on("click", function() {
     // var arm = this.getActiveArm();
@@ -112,6 +113,45 @@ StudyMatrix.prototype.setListeners = function() {
   });
 }
 
+/**
+ * Makes a request for visits data
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.loadVisitsData = function() {
+  this.executeRequest({
+    url: visitsUrl,
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      $.each(result.data, function(i, visit) {
+        this.data.visits[visit.id] = new Visit(visit, this);
+      }.bind(this));
+
+      this.buildVisitsHTML();
+      $(_.values(this.data.arms)[0].div).click();
+    }.bind(this)
+  })
+}
+
+/**
+ * Builds the HTML for list of visits
+ *
+ * @param visits [Array] visits data
+ * @return [void]
+ */
+StudyMatrix.prototype.buildVisitsHTML = function(visits) {
+  var list = this.wrapper.find("#visits-list");
+  list.empty();
+
+  if (this.data.visits.length == 0)
+    list.append("<i> No Visits data found.</i>");
+
+  $.each(this.data.visits, function(i, visit) {
+    list.append(visit.buttonHTML());
+  });
+}
+
 
 /**
  ************** Matrix **************
@@ -124,9 +164,14 @@ StudyMatrix.prototype.setListeners = function() {
  * @return [void]
  */
 StudyMatrix.prototype.initMatrix = function() {
-  // TODO: Build params: url, type, data
-  // TODO: call executeRequest with params, callback passed
-  this.matrixData(this.processMatrixData.bind(this));
+  this.executeRequest({
+    url: matrixUrl,
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      this.processMatrixData(result.data);
+    }.bind(this)
+  });
 }
 
 /**
@@ -406,7 +451,7 @@ StudyMatrix.prototype.loading = function(enable) {
  * @return [void]
  */
 StudyMatrix.prototype.clear = function() {
-  this.data = { epochs: {}, arms: {} }
+  this.data = { epochs: {}, arms: {}, visits: {} }
 }
 
 /**
@@ -446,74 +491,4 @@ StudyMatrix.prototype.colorBases = function() {
     red: {h: 0, s: 85, l: 80},
     green: {h: 140, s: 60, l: 70}
   };
-}
-
-StudyMatrix.prototype.matrixData = function(callback) {
-  var data = [
-    {
-      label: "Screening",
-      id: "111x",
-      arms: [
-        {
-          label: "High Dose",
-          id: "210x",
-          element: { label: "Screen", id: "211x"}
-        },
-        {
-          label: "Low Dose",
-          id: "310x",
-          element: { label: "Screen", id: "311x"}
-        },
-        {
-          label: "Placebo",
-          id: "410x",
-          element: { label: "Screen", id: "411x"}
-        },
-      ]
-    },
-    {
-      label: "Treatment",
-      id: "112x",
-      arms: [
-        {
-          label: "High Dose",
-          id: "210x",
-          element: { label: "High Dose", id: "212x"}
-        },
-        {
-          label: "Low Dose",
-          id: "310x",
-          element: { label: "Low Dose", id: "312x"}
-        },
-        {
-          label: "Placebo",
-          id: "410x",
-          element: { label: "Placebo", id: "412x"}
-        }
-      ]
-    },
-    {
-      label: "Follow-Up",
-      id: "116x",
-      arms: [
-        {
-          label: "High Dose",
-          id: "210x",
-          element: { label: "High Dose", id: "212x"}
-        },
-        {
-          label: "Low Dose",
-          id: "310x",
-          element: { label: "Low Dose", id: "312x"}
-        },
-        {
-          label: "Placebo",
-          id: "410x",
-          element: { label: "Placebo", id: "412x"}
-        }
-      ]
-    }
-  ];
-
-  callback(data);
 }
