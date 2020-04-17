@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -21,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T09:30:11+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T15:23:34+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -88,6 +89,14 @@
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP1_R0 ;
+.
+:F_NG1_NG3_BP1_R0
+	rdf:type bo:Reference ;
+	isoC:label "BC Property Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "0"^^xsd:positiveInteger ;
 .
 :F_NG1_NG3_BP2
 	rdf:type bf:BcProperty ;
@@ -96,4 +105,12 @@
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:hasProperty :F_NG1_NG3_BP2_R0 ;
+.
+:F_NG1_NG3_BP2_R0
+	rdf:type bo:Reference ;
+	isoC:label "BC Property Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "0"^^xsd:positiveInteger ;
 .

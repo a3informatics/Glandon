@@ -920,6 +920,15 @@ describe Form do
       @ng_1.has_sub_group << @ng_1_ng_1
       @ng_1_ng_1.has_item << @bcp_1
       @ng_1_ng_1.has_item << @bcp_2
+      @bcp_1.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      @bcp_2.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_2.has_coded_value <<
+      # @bcp_2.has_coded_value << 
+      # @bcp_2.has_coded_value << 
+      # @bcp_2.has_coded_value << 
+      # @bcp_2.has_coded_value << 
+      # @bcp_2.has_coded_value << 
+      # @bcp_2.has_coded_value << 
       @f_1.has_group << @ng_1
       @f_1.set_initial("CIBIC")
     end
@@ -940,8 +949,10 @@ describe Form do
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
       @ng_1_ng_1.to_sparql(sparql, true)
+      @bcp_1.to_sparql(sparql, true)
+      @bcp_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000130_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000130_1.ttl")
     end
 
   end
