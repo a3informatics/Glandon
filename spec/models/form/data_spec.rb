@@ -628,12 +628,6 @@ describe Form do
           ordinal: 4,
           note: "When Rave PF URL is used together with the Lab Admin Module, then the values within Rave must be 1=M and 2=F."
         })
-      # tc_1 = Thesaurus::UnmanagedConcept.from_h({
-      #     label: "Thesaurus Concept Reference",
-      #     identifier: "A000012",
-      #     definition: "The oldest LHR Terminal",
-      #     notation: "T1"
-      #   })
       @q_4 = Form::Item::Question.from_h({
           label: "Ethnicity",
           completion: "",
@@ -679,7 +673,18 @@ describe Form do
       @ng_1.has_item << @q_4
       @ng_1.has_item << @q_5
       @ng_1.has_item << @q_6
-      # @q_3.has_coded_value << 
+      # @q_3.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66731_C16576")
+      # @q_3.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66731_C20197")
+      # @q_4.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C17459")
+      # @q_4.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C41222")
+      # @q_4.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C43234")
+      # @q_4.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C17998")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41259")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41260")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C16352")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41219")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41261")
+      # @q_5.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V7#TH-ACME_CDISCEXTENSION_C128689X_OTHER")
       @f_1.has_group << @ng_1
       @f_1.set_initial("ECG")
     end
@@ -1520,6 +1525,7 @@ describe Form do
       @ng_1.has_item << @q_17
       @ng_1.has_item << @m_1
       @ng_1.has_item << @m_2
+      @q_13.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C71620/V6#C71620_C42535")
       @ng_1.has_common << @ng_1_cg_1
       @f_1.has_group << @ng_1
       @f_1.set_initial("AD")
@@ -1540,8 +1546,9 @@ describe Form do
       sparql.default_namespace(@f_1.uri.namespace)
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
+      @q_13.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000100_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000100_1.ttl")
     end
 
   end

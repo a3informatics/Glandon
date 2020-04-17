@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T10:44:41+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T15:51:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -231,6 +231,7 @@
 	bf:format "7"^^xsd:string ;
 	bf:mapping "QSORRESU"^^xsd:string ;
 	bf:questionText "10. Maze Solution - Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C42535> ;
 .
 :F_NG1_Q15
 	rdf:type bf:Question ;
