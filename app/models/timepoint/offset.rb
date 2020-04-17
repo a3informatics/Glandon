@@ -15,8 +15,16 @@ class Timepoint::Offset < IsoConceptV2
 
   validates :window_offset, presence: true
 
+  PERMITTED_UNITS = ["Day", "Week", "Month"]
+
   def as_days
     (self.window_offset / 86400).to_i
   end
 
+  def format_unit(unit)
+    str = unit.downcase.singularize.capitalize
+    return str if PERMITTED_UNITS.include?(str)
+    return PERMITTED_UNITS.first
+  end
+    
 end

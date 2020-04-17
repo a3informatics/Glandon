@@ -9,4 +9,10 @@ class Timepoint < IsoConceptV2
   object_property :in_visit, cardinality: :one, model_class: "Visit"
   object_property :has_planned, cardinality: :many, model_class: "IsoManagedV2"
 
+  def set_unit(unit)
+    offset = self.at_offset_objects
+    offset.unit = offset.format_unit(unit)
+    offset.save
+  end
+
 end
