@@ -2,7 +2,7 @@ class Timepoint < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Protocol#Timepoint",
             base_uri: "http://#{ENV["url_authority"]}/TP",
-            uri_unique: :label
+            uri_unique: true
   
   object_property :at_offset, cardinality: :one, model_class: "Timepoint::Offset"
   object_property :next_timepoint, cardinality: :one, model_class: "Timepoint"
