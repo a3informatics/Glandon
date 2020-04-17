@@ -420,3 +420,11 @@
   rdfs:range xsd:integer ;
   skos:definition "The offset for the timepoint window."^^xsd:string ;
 .
+:unit
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Unit"^^xsd:string ;
+  rdfs:domain :TimepointOffset ;
+  rdfs:range xsd:string ;
+  skos:definition "The desired unit for the offset."^^xsd:string ;
+.

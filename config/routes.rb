@@ -384,6 +384,11 @@ Rails.application.routes.draw do
     end
   end
   resources :protocols, only: [:show]
+  resources :arms, only: [] do
+    member do
+      get :timepoint
+    end
+  end
   resources :forms do
     collection do
       get :history
