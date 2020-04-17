@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T10:21:25+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T15:36:29+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -120,6 +120,8 @@
 	bf:format "3"^^xsd:string ;
 	bf:mapping "VSPOS"^^xsd:string ;
 	bf:questionText "Position"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bf:hasCodedValue <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
 .
 :F_NG2_Q5
 	rdf:type bf:Question ;
@@ -144,6 +146,7 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Heart Rate Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C49673> ;
 .
 :F_NG2_Q7
 	rdf:type bf:Question ;
@@ -180,4 +183,5 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit "^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C49670> ;
 .

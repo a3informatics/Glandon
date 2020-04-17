@@ -952,7 +952,7 @@ describe Form do
       @bcp_1.to_sparql(sparql, true)
       @bcp_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000130_1.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000130_1.ttl")
     end
 
   end
@@ -1260,6 +1260,10 @@ describe Form do
       @ng_2.has_item << @q_6
       @ng_2.has_item << @q_7
       @ng_2.has_item << @q_8
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C71148/V6#C71148_C62167")
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C71148/V6#C71148_C62166")
+      @q_5.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C71620/V6#C71620_C49673")
+      @q_8.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66770/V4#C66770_C49670")
       @f_1.has_group << @ng_1
       @f_1.has_group << @ng_2
       @f_1.set_initial("HR-BP")
@@ -1281,6 +1285,9 @@ describe Form do
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
       @ng_2.to_sparql(sparql, true)
+      @q_3.to_sparql(sparql, true)
+      @q_5.to_sparql(sparql, true)
+      @q_8.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000180_1.ttl")
     end
