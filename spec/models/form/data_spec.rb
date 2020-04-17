@@ -462,6 +462,15 @@ describe Form do
       @ng_1.has_sub_group << @ng_1_ng_1
       @ng_1.has_sub_group << @ng_1_ng_5
       @ng_1.has_sub_group << @ng_1_ng_3
+      # @bcp_1.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_2.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_3.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_4.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_4.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C13283")
+      # @bcp_5.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_6.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_7.has_property << OperationalReferenceV3.from_h({label: "BC Property Reference", local_label: "", enabled: true, ordinal: 0, optional: false})
+      # @bcp_7.has_coded_value << Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C12434")
       @f_1.has_group << @ng_1
       @f_1.set_initial("SAMPLES")
     end
