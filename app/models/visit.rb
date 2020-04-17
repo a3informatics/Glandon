@@ -6,4 +6,18 @@ class Visit < IsoConceptV2
   
   data_property :short_name
 
+  def add_timepoints(params)
+    params[timepoints].each do |timepoint|
+      timepoint.in_visit = self.uri
+      timepoint.save
+    end
+  end
+
+  def remove_timepoints(params)
+    params[timepoints].each do |timepoint|
+      timepoint.in_visit = nil
+      timepoint.save
+    end
+  end
+
 end
