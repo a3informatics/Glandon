@@ -859,4 +859,169 @@ describe Form do
 
   end
 
+  describe "CIBIC+" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "Clinician's Interview-Based Impression of Change (CIBIC+) (Pilot)"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: " ",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @q_1 = Form::Item::Question.from_h({
+          label: "Question 2",
+          completion: "",
+          mapping: "NOT SUBMITTED",
+          question_text: "INFORMATION NOT OBTAINED ",
+          optional: "false",
+          format: "",
+          ordinal: 1,
+          note: ""
+        })
+      @q_2 = Form::Item::Question.from_h({
+          label: "Question 3",
+          completion: "",
+          mapping: "NOT SUBMITTED",
+          question_text: "Clinician's initials ",
+          optional: "false",
+          format: "3",
+          ordinal: 2,
+          note: ""
+        })
+      @ng_1_ng_1= Form::Group::Normal.from_h({
+          label: "Clinician's Interview-Based Impression Of Change (CIBIC+)",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @bcp_1 = Form::Item::BcProperty.from_h({
+        label: "Date Time (--DTC)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_2 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1.has_item << @q_1
+      @ng_1.has_item << @q_1
+      @ng_1.has_sub_group << @ng_1_ng_1
+      @ng_1_ng_1.has_item << @bcp_1
+      @ng_1_ng_1.has_item << @bcp_2
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("CIBIC")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      @ng_1_ng_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000130_1.ttl")
+    end
+
+  end
+
+  describe "HEIGHT" do
+
+    def simple_form_1
+      @f_1 = Form.from_h({
+        label: "Height (Pilot)"
+      })
+      @ng_1 = Form::Group::Normal.from_h({
+          label: " ",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 1,
+          note: ""
+        })
+      @q_1 = Form::Item::Question.from_h({
+          label: "Completion status",
+          completion: "",
+          mapping: "VSSTAT",
+          question_text: " Completion Status",
+          optional: "false",
+          format: "1",
+          ordinal: 1,
+          note: ""
+        })
+      @ph_1 = Form::Item::Placeholder.from_h({
+        free_text: "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.",
+        ordinal: 2,
+        label: "Placeholder 2"
+      })
+      @q_2 = Form::Item::Question.from_h({
+          label: "Height",
+          completion: "",
+          mapping: "VSORRES",
+          question_text: "Height",
+          optional: "false",
+          format: "5.1",
+          ordinal: 3,
+          note: ""
+        })
+      @q_3 = Form::Item::Question.from_h({
+          label: "Unit",
+          completion: "",
+          mapping: "VSORRESU",
+          question_text: "Unit",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @ng_1.has_item << @q_1
+      @ng_1.has_item << @q_2
+      @ng_1.has_item << @q_3
+      @ng_1.has_item << @ph_1
+      @f_1.has_group << @ng_1
+      @f_1.set_initial("Height")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    end
+
+    it "file" do
+      simple_form_1
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@f_1.uri.namespace)
+      @f_1.to_sparql(sparql, true)
+      @ng_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000150_1.ttl")
+    end
+
+  end
+
 end
