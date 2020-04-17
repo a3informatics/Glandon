@@ -999,6 +999,9 @@ describe Form do
       @ng_1.has_item << @q_2
       @ng_1.has_item << @q_3
       @ng_1.has_item << @ph_1
+      @q_1.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789_C49484")
+      @q_2.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66770/V4#C66770_C49668")
+      @q_2.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66770/V2#C66770_C48500")
       @f_1.has_group << @ng_1
       @f_1.set_initial("Height")
     end
@@ -1018,6 +1021,8 @@ describe Form do
       sparql.default_namespace(@f_1.uri.namespace)
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
+      @q_1.to_sparql(sparql, true)
+      @q_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000150_1.ttl")
     end
@@ -1682,7 +1687,7 @@ describe Form do
           completion: "",
           optional: "false",
           repeating: "false",
-          ordinal: 2,
+          ordinal: 1,
           note: ""
         })
       @bcp_1 = Form::Item::BcProperty.from_h({
@@ -1699,57 +1704,167 @@ describe Form do
         ordinal: 2,
         note: ""
       })
-      # @bcp_3 = Form::Item::BcProperty.from_h({
-      #   label: "Result Units (--ORRESU)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 3,
-      #   note: ""
-      # })
       @ng_1_ng_2 = Form::Group::Normal.from_h({
           label: "Weight",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2,
+          note: ""
+        })
+      @bcp_3 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_4 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_3 = Form::Group::Normal.from_h({
+          label: "BMI",
           completion: "",
           optional: "false",
           repeating: "false",
           ordinal: 3,
           note: ""
         })
-      # @bcp_4 = Form::Item::BcProperty.from_h({
-      #   label: "Date Time (--DTC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 1,
-      #   note: ""
-      # })
-      # @bcp_5 = Form::Item::BcProperty.from_h({
-      #   label: "Result Value (--ORRES)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 2,
-      #   note: ""
-      # })
-      @ng_1_ng_3 = Form::Group::Normal.from_h({
-          label: "Race",
+      @bcp_5 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_6 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_4 = Form::Group::Normal.from_h({
+          label: "BMI",
           completion: "",
           optional: "false",
           repeating: "false",
           ordinal: 4,
           note: ""
         })
-      # @bcp_6 = Form::Item::BcProperty.from_h({
-      #   label: "Date Time (--DTC)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 1,
-      #   note: ""
-      # })
-      # @bcp_7 = Form::Item::BcProperty.from_h({
-      #   label: "Result Value (--ORRES)",
-      #   completion: "",
-      #   optional: "false",
-      #   ordinal: 2,
-      #   note: ""
-      # })
+      @bcp_7 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_8 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_5 = Form::Group::Normal.from_h({
+          label:  "Systolic Blood Pressure",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 5,
+          note: ""
+        })
+      @bcp_9 = Form::Item::BcProperty.from_h({
+        label: "Body Position (--POS)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_10 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @bcp_11 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 3,
+        note: ""
+      })
+      @ng_1_ng_6 = Form::Group::Normal.from_h({
+          label:  "Diastolic Blood Pressure",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 6,
+          note: ""
+        })
+      @bcp_12 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_13 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_7 = Form::Group::Normal.from_h({
+          label:  "Waist circumference",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 7,
+          note: ""
+        })
+      @bcp_14 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_15 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
+      @ng_1_ng_8 = Form::Group::Normal.from_h({
+          label:  "Hip circumference",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 8,
+          note: ""
+        })
+      @bcp_16 = Form::Item::BcProperty.from_h({
+        label: "Result Value (--ORRES)",
+        completion: "",
+        optional: "false",
+        ordinal: 1,
+        note: ""
+      })
+      @bcp_17 = Form::Item::BcProperty.from_h({
+        label: "Result Units (--ORRESU)",
+        completion: "",
+        optional: "false",
+        ordinal: 2,
+        note: ""
+      })
       @ng_1.has_sub_group << @ng_1_ng_1
       @ng_1.has_sub_group << @ng_1_ng_2
       @ng_1.has_sub_group << @ng_1_ng_3
@@ -1760,13 +1875,23 @@ describe Form do
       @ng_1.has_sub_group << @ng_1_ng_8
       @ng_1_ng_1.has_item << @bcp_1
       @ng_1_ng_1.has_item << @bcp_2
-      # @ng_1_ng_1.has_item << @bcp_3
-      # @ng_1_ng_2.has_item << @bcp_4
-      # @ng_1_ng_2.has_item << @bcp_5
-      # @ng_1_ng_3.has_item << @bcp_6
-      # @ng_1_ng_3.has_item << @bcp_7
+      @ng_1_ng_2.has_item << @bcp_3
+      @ng_1_ng_2.has_item << @bcp_4
+      @ng_1_ng_3.has_item << @bcp_5
+      @ng_1_ng_3.has_item << @bcp_6
+      @ng_1_ng_4.has_item << @bcp_7
+      @ng_1_ng_4.has_item << @bcp_8
+      @ng_1_ng_5.has_item << @bcp_9
+      @ng_1_ng_5.has_item << @bcp_10
+      @ng_1_ng_5.has_item << @bcp_11
+      @ng_1_ng_6.has_item << @bcp_12
+      @ng_1_ng_6.has_item << @bcp_13
+      @ng_1_ng_7.has_item << @bcp_14
+      @ng_1_ng_7.has_item << @bcp_15
+      @ng_1_ng_8.has_item << @bcp_16
+      @ng_1_ng_8.has_item << @bcp_17
       @f_1.has_group << @ng_1
-      @f_1.set_initial("DP")
+      @f_1.set_initial("Diabetes")
     end
 
     before :all  do
@@ -1784,12 +1909,16 @@ describe Form do
       sparql.default_namespace(@f_1.uri.namespace)
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
-      @ng_1_cg_1.to_sparql(sparql, true)
       @ng_1_ng_1.to_sparql(sparql, true)
       @ng_1_ng_2.to_sparql(sparql, true)
       @ng_1_ng_3.to_sparql(sparql, true)
+      @ng_1_ng_4.to_sparql(sparql, true)
+      @ng_1_ng_5.to_sparql(sparql, true)
+      @ng_1_ng_6.to_sparql(sparql, true)
+      @ng_1_ng_7.to_sparql(sparql, true)
+      @ng_1_ng_8.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FB000010_2.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTADIABETES_1.ttl")
     end
 
   end
