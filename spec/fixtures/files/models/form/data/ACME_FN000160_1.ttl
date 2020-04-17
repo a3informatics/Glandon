@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-17T10:09:18+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T15:02:33+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -124,4 +124,6 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C28252> ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C48531> ;
 .

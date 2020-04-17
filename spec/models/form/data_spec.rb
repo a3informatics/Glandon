@@ -1096,6 +1096,8 @@ describe Form do
       @ng_2.has_item << @q_2
       @ng_2.has_item << @ph_2
       @ng_2.has_item << @q_3
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66770/V4#C66770_C28252")
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C71620/V6#C71620_C48531")
       @f_1.has_group << @ng_1
       @f_1.has_group << @ng_2
       @f_1.set_initial("Weight")
@@ -1117,6 +1119,7 @@ describe Form do
       @f_1.to_sparql(sparql, true)
       @ng_1.to_sparql(sparql, true)
       @ng_2.to_sparql(sparql, true)
+      @q_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000160_1.ttl")
     end
