@@ -154,7 +154,7 @@ Timepoint.prototype.tpOffset = function() {
  * @return [Int] timepoint offset in %
  */
 Timepoint.prototype.timepointLabel = function() {
-  var value = this.data.offset;
+  var value = parseInt(this.data.offset);
   switch(this.data.unit) {
     case "Day":
       break;
@@ -242,6 +242,7 @@ Timepoint.prototype.tpDetailsHTML = function() {
   html +=   this.data.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
   html +=   "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
   html +=   "Arm: <span class='text-link'>"+ armName +"</span><br/>";
+  html +=   "Visit: <span class='text-link'>"+ (this.data.visit_id != "" ? this.matrix.data.visits[this.data.visit_id].data.label : "-") +"</span><br/>";
   html +=   "Offset (days): <span class='text-link'>"+ this.data.offset +"</span><br/>";
   html +=   "Unit: " + this.tpUnitsHTML() + "<br/>";
 

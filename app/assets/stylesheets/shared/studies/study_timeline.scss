@@ -104,7 +104,7 @@
   -moz-box-shadow: inset -3px 0px 0px 0px white;
   box-shadow: inset -3px 0px 0px 0px white;
   box-sizing: border-box;
-  opacity: .5;
+  opacity: .6;
 }
 
 #tl-wrapper .epoch-label {
@@ -143,12 +143,12 @@
 #tl-wrapper .timepoint.baseline::after {
   position: absolute;
   width: 100%;
-  font-size: 15px;
+  font-size: 13px;
   color: white;
   font-family: $font-bold;
   text-align: center;
   content: "B";
-  top: calc(50% - 10px);
+  top: calc(50% - 8px);
   left: 0%;
   z-index: 11;
 }
@@ -175,12 +175,12 @@
   font-family: $font-primary;
   font-size: 10px;
   text-align: center;
-  top: 35px;
+  top: 28px;
+  left: -2px;
   display: block;
   background: rgba(255,255,255,.7);
   padding: 3px;
 }
-
 
 #tl-wrapper div.visit-block {
   position: absolute;
@@ -228,6 +228,16 @@
   z-index: 500;
 }
 
+#tab-timeline-body .btns-wrap a {
+  margin-right: 12px;
+  transition: transform .2s;
+}
+
+#tab-timeline-body .btns-wrap a:hover {
+  transform: translateY(-5px);
+  z-index: 100;
+}
+
 body .dark-overlay {
   position: absolute;
   width: 100%;
@@ -237,4 +247,12 @@ body .dark-overlay {
   display: block;
   z-index: 9;
   backdrop-filter: saturate(0%);
+}
+
+.new-tp-mode #timeline-axis {
+  padding: 2px 0px;
+}
+
+.new-tp-mode #timeline-axis:hover {
+  cursor: crosshair;
 }

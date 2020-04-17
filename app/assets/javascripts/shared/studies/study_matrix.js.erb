@@ -63,7 +63,8 @@ StudyMatrix.prototype.refresh = function() {
  * @return [void]
  */
 StudyMatrix.prototype.executeRequest = function(params) {
-  this.loading(true);
+  if(params.withLoading)
+    this.loading(true);
 
   $.ajax({
     url: params.url,
@@ -73,7 +74,6 @@ StudyMatrix.prototype.executeRequest = function(params) {
     context: this,
     success: function(result) {
       params.callback(result);
-      this.loading(false);
     },
     error: function (xhr, status, error) {
       handleAjaxError(xhr, status, error);
@@ -97,20 +97,48 @@ StudyMatrix.prototype.setListeners = function() {
 
   // this.div.on("matrixloaded", function() { $(_.values(this.data.arms)[0].div).click() }.bind(this));
   this.div.on("matrixloaded", this.loadVisitsData.bind(this));
+  this.div.on("visitsloaded", function() { $(".arm.bg-label")[0].click() });
+
+  this.wrapper.on("click", "#timeline-axis", function(event){
+    if (this.wrapper.hasClass("new-tp-mode")) {
+      this.wrapper.removeClass("new-tp-mode");
+
+      var currentArm = this.getActiveArm();
+      currentArm.timeline.desaturate(false);
+      var armId = currentArm.id,
+          epochId, offset;
+      $.each(this.wrapper.find(".epoch-block"), function(i, e) {
+        if( ($(e).position().left < event.offsetX) && ($(e).position().left + $(e).width() > event.offsetX) ) {
+          epochId = $(e).attr("data-epoch-id");
+          var tlWidth = $("#tl-wrapper").width();
+          offset = Math.floor(event.offsetX / (tlWidth / (currentArm.timeline.maxOffset - currentArm.timeline.minOffset))) + currentArm.timeline.minOffset;
+          return false;
+        }
+      });
+
+      if(epochId != null && offset != null) {
+        currentArm.timeline.loading(true);
+
+        this.executeRequest({
+          url: addTimepointUrl.replace("armId", armId),
+          type: "POST",
+          data: {arm: {offset: offset, epoch_id: epochId}},
+          withLoading: false,
+          callback: function(result) {
+            currentArm.timeline.data.timepoints.push(new Timepoint(result.data, this, currentArm.timeline));
+            currentArm.timeline.render(currentArm.timeline.data.timepoints);
+            currentArm.timeline.loading(false);
+
+          }.bind(this)
+        });
+      }
+    }
+  }.bind(this));
 
   $("#new-timepoint").off("click").on("click", function() {
-    // var arm = this.getActiveArm();
-    // arm.data.timepoints.push(new Timepoint({
-    //   id: "994",
-    //   epoch_id: "112x",
-    //   arms: ["210x"],
-    //   element_id: "214x",
-    //   unit: "Month",
-    //   biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-    //   baseline: false,
-    //   offset: 56
-    // }, matrix, arm))
-  });
+    this.getActiveArm().timeline.desaturate(true, 1);
+    this.wrapper.addClass("new-tp-mode");
+  }.bind(this));
 }
 
 /**
@@ -123,13 +151,15 @@ StudyMatrix.prototype.loadVisitsData = function() {
     url: visitsUrl,
     type: "GET",
     data: {},
+    withLoading: true,
     callback: function(result) {
       $.each(result.data, function(i, visit) {
         this.data.visits[visit.id] = new Visit(visit, this);
       }.bind(this));
 
       this.buildVisitsHTML();
-      $(_.values(this.data.arms)[0].div).click();
+      this.loading(false);
+      this.div.trigger("visitsloaded", []);
     }.bind(this)
   })
 }
@@ -168,6 +198,7 @@ StudyMatrix.prototype.initMatrix = function() {
     url: matrixUrl,
     type: "GET",
     data: {},
+    withLoading: true,
     callback: function(result) {
       this.processMatrixData(result.data);
     }.bind(this)
@@ -370,41 +401,6 @@ StudyMatrix.prototype.getItem = function(id, type) {
     return this.data.arms[id] || this.data.epochs[id];
 }
 
-
-// /**
-//  * Gets a data object by its property type
-//  *
-//  * @param propertyType [String] type of the property to compare
-//  * @param value [String] Any value, normally String
-//  * @param dataType [String] type of data - epochs/arms/timepoints, if null, will go through all
-//  * @return [Data Object] matched object, or null
-//  */
-// StudyMatrix.prototype.getItem = function(propertyType, value, dataType) {
-//   var object = null;
-//
-//   if(dataType != null) {
-//     $.each(this.data[dataType], function(index, obj) {
-//       if (obj[propertyType] == value) {
-//         object = obj;
-//         return false;
-//       }
-//     });
-//   }
-//   else {
-//     $.each(this.data, function(type) {
-//       $.each(this.data[type], function(index, obj) {
-//         if (obj[propertyType] == value) {
-//           object = obj;
-//           return false;
-//         }
-//       });
-//       return (object == null);
-//     }.bind(this));
-//   }
-//
-//   return object;
-// }
-
 /**
  * Find currently active arm object
  *
@@ -429,8 +425,10 @@ StudyMatrix.prototype.getActiveArm = function() {
  */
 StudyMatrix.prototype.armLoading = function(armId, enable) {
   var arm = this.getItem(armId, "arms");
+
   $(arm.div).toggleClass("loading", enable);
   this.div.find(".bg-label").not($(arm.div)).toggleClass("disabled", enable);
+  this.wrapper.closest(".tab-wrap").toggleClass("processing", enable);
 }
 
 

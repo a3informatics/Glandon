@@ -53,17 +53,21 @@ StudyTimeline.prototype.show = function() {
 StudyTimeline.prototype.loadData = function() {
   this.loading(true);
 
-  // TODO: Ajax call for data
-  // TODO: this.ready = true;
+  this.matrix.executeRequest({
+    url: this.tpDataUrl(),
+    type: "GET",
+    data: {},
+    withLoading: false,
+    callback: function(result) {
+      $.each(result.data, function(i, timepoint) {
+        this.data.timepoints.push(new Timepoint(timepoint, this.matrix, this));
+      }.bind(this));
 
-  $.each(this.mockData(), function(i, timepoint) {
-    this.data.timepoints.push(new Timepoint(timepoint, this.matrix, this));
-  }.bind(this));
-
-  this.ready = true;
-
-  this.loading(false);
-  this.render(this.data.timepoints);
+      this.ready = true;
+      this.loading(false);
+      this.render(this.data.timepoints);
+    }.bind(this)
+  })
 }
 
 /**
@@ -150,13 +154,15 @@ StudyTimeline.prototype.interactionListeners = function() {
   });
 
   $(this.wrapper).find(".visit").draggable({
-    opacity: 0.9,
+    opacity: 0.8,
     helper: "clone",
+    revertDuration: 100,
+    revert: true,
     start: function(ev, ui) {
-      $(_this.wrapper).append("<div class='dark-overlay'></div>");
+      _this.desaturate(true);
     },
     stop: function(ev, ui) {
-      $("body .dark-overlay").remove();
+      _this.desaturate(false);
     }
   });
 
@@ -178,9 +184,7 @@ StudyTimeline.prototype.interactionListeners = function() {
  */
 StudyTimeline.prototype.render = function(timepointSet) {
   this.data.renderTimepoints = timepointSet;
-  this.div.empty();
-  this.tpDialog.clear();
-  this.minMaxOffsets();
+  this.clear();
   this.div.addClass("fadein");
 
   this.div.append("<div id='tl-wrapper'></div>");
@@ -415,6 +419,42 @@ StudyTimeline.prototype.findTimepoint = function(property, value) {
 }
 
 /**
+ * Get TP data url for this arm
+ *
+ * @return [String] url for data fetch
+ */
+StudyTimeline.prototype.tpDataUrl = function() {
+  return timepointsArmUrl.replace("armId", this.armId);
+}
+
+
+/**
+ * Toggles desaturation overlay
+ *
+ * @param enable [Boolean] true / false enable / disable overlay
+ * @param zIndex [Integer] optional
+ * @return [void]
+ */
+StudyTimeline.prototype.desaturate = function(enable, zIndex) {
+  if (enable)
+    $(this.wrapper).append("<div class='dark-overlay' style='z-index: "+ (zIndex || 9) +"'></div>");
+  else
+    $(".dark-overlay").remove();
+}
+
+/**
+ * Clears timeline
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.clear = function() {
+  this.div.empty();
+  this.tpDialog.clear();
+  this.minMaxOffsets();
+}
+
+
+/**
  * Sets event listeners and handlers
  *
  * @param enable [Boolean] enable or disable loading
@@ -432,210 +472,4 @@ StudyTimeline.prototype.loading = function(enable) {
  */
 StudyTimeline.prototype.bcLabel = function(bc) {
   return bc.label + " (" + (bc.identifier || bc.has_identifier.identifier) + ") v" + (bc.semantic_version || "0.1.0");
-}
-
-
-
-StudyTimeline.prototype.mockData = function() {
-  this.ready = true;
-  switch(this.armId){
-    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA=":
-      return [
-        {
-          id: "991",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjY2RlNzgyYmU4YjY3NTE0NGIxYzNhNDEzZDk1MmU1MDU4Y2E1M2QzOA==",
-          element_id: "211x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -14
-        },
-        {
-          id: "992",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjY2RlNzgyYmU4YjY3NTE0NGIxYzNhNDEzZDk1MmU1MDU4Y2E1M2QzOA==",
-          element_id: "212x",
-          unit: "Day",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjZTk2YTIxNDUyNzcxNzFhMGMzZjVkZWRkZWY0ZjQwMGMyZTY5MzEyMw==",
-          element_id: "213x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 56
-        },
-        {
-          id: "994",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjZTk2YTIxNDUyNzcxNzFhMGMzZjVkZWRkZWY0ZjQwMGMyZTY5MzEyMw==",
-          element_id: "214x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 84
-        },
-        {
-          id: "995",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "",
-          element_id: "214x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"},
-                                {identifier: "BC3", label: "Label 3", semantic_version: "1.2.1", id: "883"}],
-          baseline: false,
-          offset: 112
-        },
-        {
-          id: "996",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzI3N2NhMTFjMDg2ODgyMWE3NDc5NTFkYWQ3NWNhZGMyZWM3MmE1NTA="],
-          visit_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjMjJiMGYwYzhkNjIxOGNiYzllMTBhYjFiOTFjOWUxZjgwMGNiNGY4Mw==",
-          element_id: "214x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 126
-        },
-      ];
-    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y=":
-      return [
-        {
-          id: "991",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
-          visit_id: "",
-          element_id: "211x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: -14
-        },
-        {
-          id: "992",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
-          visit_id: "",
-          element_id: "212x",
-          unit: "Day",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
-          visit_id: "",
-          element_id: "213x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 28
-        },
-        {
-          id: "994",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzBhYzFkMjQ1MDM0YTY5M2U4MTYyY2Q1NDExZjY0MWUyYzVkOGMxM2Y="],
-          visit_id: "",
-          element_id: "214x",
-          unit: "Month",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 56
-        },
-      ];
-    case "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU=":
-      return [
-        {
-          id: "990",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "211x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -14
-        },
-        {
-          id: "991",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNTA3ODNhNzE3NjEzMmQ5NjUyYjBkYzhjZTE5N2VkNjdhOTdhODk2Yg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "212x",
-          unit: "Day",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -1
-        },
-        {
-          id: "992",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "212x",
-          unit: "Day",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "213x",
-          unit: "Week",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 28
-        },
-        {
-          id: "994",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "214x",
-          unit: "Month",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 56
-        },
-        {
-          id: "995",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "214x",
-          unit: "Month",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 112
-        },
-        {
-          id: "996",
-          epoch_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMjNjODU5ZjRmNzc3ZGM3MmFhMDI5ZGY2Njg2ZmNjZjVmYWVjMTFjZg==",
-          arms: ["aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE5YmY1NmI5NWM5NWE3ZmYxZjZiZmY4ZjA3YzA2YzkwNmU3NTAyMmU="],
-          visit_id: "",
-          element_id: "214x",
-          unit: "Month",
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 168
-        },
-      ];
-  }
-
 }

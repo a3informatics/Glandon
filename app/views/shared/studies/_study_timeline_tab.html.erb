@@ -4,6 +4,8 @@
 <%= stylesheet_link_tag "shared/studies/study_timeline", "jquery-ui.min.css" %>
 
 <%= javascript_tag "var matrixUrl = '#{design_study_path(@study)}',
+                        timepointsArmUrl = '#{timepoints_arm_path("armId")}',
+                        addTimepointUrl = '#{add_timepoint_arm_path("armId")}',
                         visitsUrl = '#{visits_study_path(@study)}';" %>
 
 <div class="text-xnormal font-light ci-card-title">
@@ -24,10 +26,19 @@
 
   <hr>
 
-  <div id="btns-wrap">
-    <a href="#" id='new-timepoint' class="btn medium light">+ New Timepoint</a>
-    <a href="#" id='new-visit' class="btn medium light">+ New Visit</a>
-    <a href="#" id='save-timeline' class="btn medium green">Save</a>
+  <div class="btns-wrap">
+    <a href="#" id='new-timepoint' class="ttip">
+      <img src="<%=image_path 'icons/new_timepoint_btn.svg'%>" width=40></img>
+      <span class="ttip-text ttip-table shadow-small text-small text-medium">New Timepoint</span>
+    </a>
+    <a href="#" id='new-visit' class="ttip">
+      <img src="<%=image_path 'icons/new_visit_btn.svg'%>" width=40></img>
+      <span class="ttip-text ttip-table shadow-small text-small text-medium">New Visit</span>
+    </a>
+    <a href="#" id='save-timeline' class="ttip">
+      <img src="<%=image_path 'icons/save_btn.svg'%>" width=40></img>
+      <span class="ttip-text ttip-table shadow-small text-small text-medium">Save Timepoints</span>
+    </a>
   </div>
 
 

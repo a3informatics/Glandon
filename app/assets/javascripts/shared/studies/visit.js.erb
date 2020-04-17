@@ -73,8 +73,10 @@ Visit.prototype.blockHTML = function() {
  */
 Visit.prototype.addTimepoints = function(timepoints) {
   $.each(timepoints, function(i, tpId){
-    if(!_.contains(this.data.timepoints, tpId))
+    // var timepoint = this.matrix.getActiveArm().timeline.findTimepoint("id", tpId)
+    if(!_.contains(this.data.timepoints, tpId)) {
       this.data.timepoints.push(tpId);
+    }
   }.bind(this))
 }
 
