@@ -25,6 +25,12 @@
   rdfs:label "Protocol"^^xsd:string ;
   skos:definition "A clinical protocol."^^xsd:string ;
 .
+:ProtocolTemplate
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Protocol"^^xsd:string ;
+  skos:definition "A clinical protocol."^^xsd:string ;
+.
 :TherapeuticArea
   rdf:type owl:Class ;
   rdfs:subClassOf bo:Component ;
@@ -249,7 +255,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Specifies Arm Relationship"^^xsd:string ;
-  rdfs:domain :Protocol ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Protocol :ProtocolTemplate)
+    ] ;
   rdfs:range :Arm ;
   skos:definition "Relationship from a Protocol to an Arm."^^xsd:string ;
 .
@@ -257,7 +265,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Specifies Epoch Relationship"^^xsd:string ;
-  rdfs:domain :Protocol ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Protocol :ProtocolTemplate)
+    ] ;
   rdfs:range :Epoch ;
   skos:definition "Relationship from a Protocol to an Epoch."^^xsd:string ;
 .
@@ -409,4 +419,12 @@
   rdfs:domain :TimepointOffset ;
   rdfs:range xsd:integer ;
   skos:definition "The offset for the timepoint window."^^xsd:string ;
+.
+:unit
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Unit"^^xsd:string ;
+  rdfs:domain :TimepointOffset ;
+  rdfs:range xsd:string ;
+  skos:definition "The desired unit for the offset."^^xsd:string ;
 .

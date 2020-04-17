@@ -82,6 +82,45 @@ class Protocol < IsoManagedV2
       results[uri_s][:arms] << {label: entry[:al], id: entry[:a].to_id, element: {label: entry[:elel], id: entry[:ele].to_id}}
     end
     results.map{|k,v| v}
-  end    
+  end 
 
+  def from_template(template)
+    items = {}
+    self.specifies_epoch = []
+    self.specifies_arm = []
+    elements = template.elements
+    query_string = %Q{
+      SELECT DISTINCT ?el ?ell ?a ?e WHERE
+      {
+        VALUES ?el { #{elements.map{|x| x.to_ref}.join(" ")} }
+        ?el pr:inArm ?a .
+        ?el pr:inEpoch ?e .
+        ?el isoC:label ?ell
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :pr])
+    triples = query_results.by_object_set([:el, :e, :a])
+    triples.each do |entry| 
+      new_arm = clone_if(Arm.find(entry[:a]), items)
+      new_epoch = clone_if(Epoch.find(entry[:e]), items)
+      new_el = Element.new(label: entry[:ell], in_epoch: new_epoch.uri, in_arm: new_arm.uri)
+      new_el.uri = new_el.create_uri(new_el.class.base_uri)
+      new_el.save
+      self.specifies_epoch_push(new_epoch.uri)
+      self.specifies_arm_push(new_arm.uri)
+    end
+    self.save
+  end       
+
+private
+
+  def clone_if(item, collection)
+    return collection[item.uri.to_s] if collection.key?(item.uri.to_s)
+    new_item = item.clone
+    new_item.uri = new_item.create_uri(new_item.class.base_uri)
+    new_item.save
+    collection[item.uri.to_s] = new_item
+    new_item
+  end
+    
 end
