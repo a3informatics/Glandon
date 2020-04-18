@@ -5,9 +5,15 @@
 <% first_level_breadcrumb (:triples) %>
 
 <div class="row">
-  <%= render partial: "shared/simple_header_tiny", :locals => {badge: "icon-triples",
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-triples",
     main_text: "Triples",
-    sub_text: "Viewing raw database content of: <span class='font-regular'>#{uri}</span>".html_safe } %>
+    sub_text: "Viewing raw database content of: <span class='font-regular'>#{uri}</span>".html_safe } do %>
+
+    <div class="btns-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+           icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
 </div>
 
 <div class="row centered">
