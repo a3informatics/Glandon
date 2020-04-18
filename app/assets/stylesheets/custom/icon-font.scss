@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.icon-protocol-template:before {
+  content: "\e960";
+}
+.icon-protocol:before {
+  content: "\e961";
+}
 .icon-triples:before {
   content: "\e95f";
 }
