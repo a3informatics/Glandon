@@ -23,7 +23,7 @@ class VisitsController < ApplicationController
 private
 
   def the_params
-    params.require(:visit).permit(:timepoints)
+    params.require(:visit).permit(:timepoints => [])
   end
 
 end
