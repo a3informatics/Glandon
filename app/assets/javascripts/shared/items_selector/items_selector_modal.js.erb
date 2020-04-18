@@ -503,6 +503,8 @@ ItemsSelector.prototype.columns = function (table, type) {
   switch(type) {
     case "bcs":
     case "pts":
+    case "forms":
+    case "asmts":
       // Remove Indicators column for BCs and PTs
       columns[3] = {visible: false, "render" : function (data, type, row, meta) {return "" }}
       break;
@@ -572,6 +574,28 @@ ItemsSelector.prototype.initializeTab = function(tabName) {
           urls: {history: miHistoryBcUrl, index: miIndexBcUrl},
         });
       break;
+    case "forms":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryFormUrl, index: miIndexFormUrl},
+        });
+      break;
+    case "asmnts":
+      this.tabs[tabName] = new MISelector(
+        {
+          type: tabName,
+          multiple: this.params.multiple,
+          columns: this.columns.bind(this),
+          parentPanel: this,
+          errorDiv: this.errorDiv,
+          urls: {history: miHistoryAsmntUrl, index: miIndexAsmntUrl},
+        });
+      break;
     case "pts":
       this.tabs[tabName] = new MISelector(
         {
@@ -599,6 +623,8 @@ ItemsSelector.prototype.paramsDefault = function(userParams) {
       cls: false,
       clitems: false,
       bcs: false,
+      forms: false,
+      asmnts: false,
       pts: false,
     });
 

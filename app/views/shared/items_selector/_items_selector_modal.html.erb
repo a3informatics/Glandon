@@ -40,6 +40,8 @@
               <div class="tab-option with-icon" id="tab-cls"><span class="icon-codelist bg-prim-bright"></span><span>Code Lists</span></div>
               <div class="tab-option with-icon" id="tab-clitems"><span class="icon-codelist-item bg-prim-bright"></span><span>Code List Items</span></div>
               <div class="tab-option with-icon" id="tab-bcs"><span class="icon-biocon bg-accent-purple"></span><span>Biomedical Concepts</span></div>
+              <div class="tab-option with-icon" id="tab-asmnts"><span class="icon-assessment bg-accent-purple-dark"></span><span>Assessments</span></div>
+              <div class="tab-option with-icon" id="tab-forms"><span class="icon-forms bg-accent-aqua"></span><span>Forms</span></div>
               <div class="tab-option with-icon" id="tab-pts"><span class="icon-protocol-template bg-prim-bright"></span><span>Protocol Templates</span></div>
             </div>
 
@@ -57,6 +59,14 @@
 
             <div class="tab-wrap closed" data-tab="tab-bcs">
               <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-bcs"} %>
+            </div>
+
+            <div class="tab-wrap closed" data-tab="tab-asmnts">
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-asmnts"} %>
+            </div>
+
+            <div class="tab-wrap closed" data-tab="tab-forms">
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-forms"} %>
             </div>
 
             <div class="tab-wrap closed" data-tab="tab-pts">

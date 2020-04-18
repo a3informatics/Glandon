@@ -13,7 +13,7 @@ class ProtocolTemplatesController < ApplicationController
     @pts = ProtocolTemplate.unique
     respond_to do |format|
       format.json do
-        @pts = @pts.map{|x| x.reverse_merge!({history_path: "history_path"})}
+        @pts = @pts.map{|x| x.reverse_merge!({history_path: history_protocol_templates_path({protocol_template:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
         render json: {data: @pts}, status: 200
       end
       format.html

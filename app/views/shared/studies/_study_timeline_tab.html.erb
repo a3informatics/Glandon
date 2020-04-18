@@ -6,7 +6,9 @@
 <%= javascript_tag "var matrixUrl = '#{design_study_path(@study)}',
                         timepointsArmUrl = '#{timepoints_arm_path("armId")}',
                         addTimepointUrl = '#{add_timepoint_arm_path("armId")}',
-                        changeTpUnitUrl = '#{change_unit_timepoint_path("tpId")}',
+                        tpAddManagedUrl = '#{add_managed_timepoint_path("tpId")}',
+                        tpRemoveManagedUrl = '#{remove_managed_timepoint_path("tpId")}',
+                        tpChangeUnit = '#{change_unit_timepoint_path("tpId")}',
                         visitAddTpUrl = '#{add_timepoints_visit_path("visitId")}',
                         visitRemoveTpUrl = '#{remove_timepoints_visit_path("visitId")}',
                         visitsUrl = '#{visits_study_path(@study)}';" %>

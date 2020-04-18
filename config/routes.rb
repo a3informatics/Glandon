@@ -398,6 +398,8 @@ Rails.application.routes.draw do
     member do
       get :timepoints
       post :add_timepoint
+      post :add_managed
+      post :remove_managed
     end
   end
   resources :timepoints, only: [] do
@@ -411,6 +413,12 @@ Rails.application.routes.draw do
     member do
       post :add_timepoints
       post :remove_timepoints
+    end
+  end
+  resources :assessments, only: [:show] do
+    collection do
+      get :index
+      get :history
     end
   end
   resources :forms do
