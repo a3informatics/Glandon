@@ -97,11 +97,25 @@ StudyMatrix.prototype.setListeners = function() {
   this.div.on("click", ".bg-label.arm", this.onArmClick.bind(this));
 
   this.div.on("matrixloaded", this.loadVisitsData.bind(this));
-  this.div.on("visitsloaded", function() { $(".arm.bg-label")[0].click() });
+  this.div.on("visitsloaded", function() {
+    if(this.hasData()) {
+      this.actionListeners();
+      $(".arm.bg-label")[0].click();
+    }
+  }.bind(this));
+}
 
-  this.wrapper.on("click", "#timeline-axis", this.onAxisClick.bind(this));
-
+/**
+ * Sets action event handlers dependent on presence of data
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.actionListeners = function() {
+  // New Timepoint
   $("#new-timepoint").off("click").on("click", this.toggleNewTpMode.bind(this, true));
+  this.wrapper.on("click", "#timeline-axis", this.onAxisClick.bind(this));
+  // New Visit
+  // Save Timepoints
 }
 
 /**
@@ -178,7 +192,7 @@ StudyMatrix.prototype.buildVisitsHTML = function(visits) {
   var list = this.wrapper.find("#visits-list");
   list.empty();
 
-  if (this.data.visits.length == 0)
+  if (_.isEmpty(this.data.visits))
     list.append("<i> No Visits data found.</i>");
 
   $.each(this.data.visits, function(i, visit) {
@@ -284,6 +298,12 @@ StudyMatrix.prototype.processMatrixData = function(data) {
 StudyMatrix.prototype.render = function() {
   this.div.empty();
 
+  // No data
+  if(!this.hasData()) {
+    this.div.append("Nothing to show yet.<br/><hr>")
+    this.div.trigger("matrixloaded", []);
+    return;
+  }
 
   this.div.append("<table><tr>");
   this.div.find("table tr").append("<td>Arms/Epochs</td>");
@@ -442,7 +462,14 @@ StudyMatrix.prototype.getActiveArm = function() {
  ************** Support **************
 **/
 
-
+/**
+ * True if epoch and arm data found
+ *
+ * @return [Boolean] false if no data yet
+ */
+StudyMatrix.prototype.hasData = function() {
+  return !(_.isEmpty(this.data.arms) || (_.isEmpty(this.data.epochs)));
+}
 
 /**
  * Disables any epoch selected
