@@ -93,10 +93,6 @@ describe "C - Transcelerate Protocol" do
         {
           label: "Endpoint 9", 
           full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
-        },
-        {
-          label: "Endpoint 10", 
-          full_text: "The change from baseline to [[[Timepoint]]]] in the [[[BC]]]"
         }
       ]
       items = []
@@ -183,24 +179,32 @@ describe "C - Transcelerate Protocol" do
 
     it "Indications" do
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_objectives.ttl")
+
+      obj1 = Objective.where(label: "Objective 1").first
+      obj2 = Objective.where(label: "Objective 2").first
+      obj3 = Objective.where(label: "Objective 3").first
+      obj4 = Objective.where(label: "Objective 4").first
+      obj5 = Objective.where(label: "Objective 5").first
+      obj6 = Objective.where(label: "Objective 6").first
 
       # Indications
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
       tc_1 = Thesaurus::UnmanagedConcept.where(notation: "AD")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_1.first.uri, optional: false, ordinal: 1)
-      i_1 = Indication.new(label: "Alzheimer's Disease", indication: op_ref)
+      i_1 = Indication.new(label: "Alzheimer's Disease", indication: op_ref, has_objective: [obj1.uri, obj3.uri, obj4.uri, obj5.uri, obj6.uri])
       i_1.set_initial("IND ALZ")
       tc_2 = Thesaurus::UnmanagedConcept.where(notation: "DMelli")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_2.first.uri, optional: false, ordinal: 1)
-      i_2 = Indication.new(label: "Diabetes Mellitus", indication: op_ref)
+      i_2 = Indication.new(label: "Diabetes Mellitus", indication: op_ref, has_objective: [obj2.uri])
       i_2.set_initial("IND DIA")
       tc_3 = Thesaurus::UnmanagedConcept.where(notation: "RArth")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_3.first.uri, optional: false, ordinal: 1)
-      i_3 = Indication.new(label: "Rheumatoid Arthritis", indication: op_ref)
+      i_3 = Indication.new(label: "Rheumatoid Arthritis", indication: op_ref, has_objective: [obj1.uri, obj2.uri])
       i_3.set_initial("IND RA")
       tc_4 = Thesaurus::UnmanagedConcept.where(notation: "INF")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_4.first.uri, optional: false, ordinal: 1)
-      i_4 = Indication.new(label: "Influenza", indication: op_ref)
+      i_4 = Indication.new(label: "Influenza", indication: op_ref, has_objective: [obj1.uri, obj2.uri, obj3.uri])
       i_4.set_initial("IND INF")
 
       # Generate
@@ -310,55 +314,64 @@ describe "C - Transcelerate Protocol" do
           label: "LY246708 EP1", 
           full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri]
+          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP2", 
-          full_text: "The change from baseline to Week Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
+          full_text: "The change from baseline to Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri]
+          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP3", 
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri]
+          secondary_timepoint: [tp_items[1].uri],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP4", 
           full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
           primary_timepoint: tp_items[4].uri,
-          secondary_timepoint: []
+          secondary_timepoint: [],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP5", 
           full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[2].uri]
+          secondary_timepoint: [tp_items[2].uri],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP6", 
           full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
           primary_timepoint: tp_items[1].uri,
-          secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri]
+          secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri],
+          derived_from: Endpoint.where(label: "Endpoint 1")
         },
         {
           label: "LY246708 EP7", 
           full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri]
+          secondary_timepoint: [tp_items[1].uri],
+          derived_from: Endpoint.where(label: "Endpoint 8")
         },
         {
           label: "LY246708 EP8", 
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri]
+          secondary_timepoint: [tp_items[1].uri],
+          derived_from: Endpoint.where(label: "Endpoint 9")
         },
         {
           label: "LY246708 EP9", 
           full_text: "The change from baseline to Week 8 in the DAD total score",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri]
+          secondary_timepoint: [tp_items[1].uri],
+          derived_from: Endpoint.where(label: "Endpoint 9")
         },
       ]
       ep_items = []
@@ -368,7 +381,7 @@ describe "C - Transcelerate Protocol" do
         ep_items << item
       end
 
-      # Objectivs
+      # Objectives
       enum_p = Enumerated.where(label: "Primary").first
       enum_s = Enumerated.where(label: "Secondary").first
       objectives = 
@@ -458,7 +471,8 @@ describe "C - Transcelerate Protocol" do
         short_title: "", acronym: "H2Q-MC-LZZT", 
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
-        specifies_epoch: [e_1.uri, e_2.uri], specifies_arm: [a_1.uri, a_2.uri, a_3.uri])
+        specifies_epoch: [e_1.uri, e_2.uri], specifies_arm: [a_1.uri, a_2.uri, a_3.uri],
+        specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
       p_1.set_initial("LY246708")
 
       tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]

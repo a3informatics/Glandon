@@ -22,9 +22,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T22:14:23+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication :IND_TUC1 ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB> ;
 .
 :IND_RS
 	rdf:type isoR:RegistrationState ;
@@ -64,9 +69,10 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T22:14:23+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;
@@ -106,9 +112,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T22:14:23+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;
@@ -148,9 +156,12 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T22:14:23+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;

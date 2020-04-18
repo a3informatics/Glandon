@@ -73,6 +73,7 @@ describe "Protocol" do
       load_data_file_into_triple_store("hackathon_bc_instances.ttl")
       load_data_file_into_triple_store("hackathon_bc_templates.ttl")
       load_data_file_into_triple_store("hackathon_protocol_templates.ttl")
+      load_data_file_into_triple_store("hackathon_objectives.ttl")
     end
 
     it "design" do
@@ -89,6 +90,14 @@ describe "Protocol" do
       pr.specifies_arm_objects
       pr.specifies_epoch_objects
       check_file_actual_expected(pr.to_h, sub_dir, "from_template_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "objectives and endpoints" do
+      pr = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
+      results = pr.objectives
+      check_file_actual_expected(results, sub_dir, "objectives_expected_1.yaml", equate_method: :hash_equal)
+      results = pr.endpoints
+      check_file_actual_expected(results, sub_dir, "endpoints_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end

@@ -14,6 +14,7 @@ class Protocol < IsoManagedV2
   object_property :in_ta, cardinality: :one, model_class: "TherapeuticArea"
   object_property :specifies_arm, cardinality: :many, model_class: "Arm"
   object_property :specifies_epoch, cardinality: :many, model_class: "Epoch"
+  object_property :specifies_objective, cardinality: :many, model_class: "ProtocolObjective"
 
   validates_with Validator::Field, attribute: :acronym, method: :valid_label?
   validates_with Validator::Field, attribute: :title, method: :valid_label?
@@ -82,6 +83,66 @@ class Protocol < IsoManagedV2
       results[uri_s][:arms] << {label: entry[:al], id: entry[:a].to_id, element: {label: entry[:elel], id: entry[:ele].to_id}}
     end
     results.map{|k,v| v}
+  end   
+
+  def objectives
+    results = {selected: [], not_selected: []}
+    query_string = %Q{
+      SELECT DISTINCT ?o ?ft ?ty ?s WHERE
+      {
+        {
+          { 
+            #{self.uri.to_ref} pr:forIndication/pr:hasObjective ?o 
+          } MINUS 
+          { 
+            #{self.uri.to_ref} pr:specifiesObjective/pr:derivedFrom ?o 
+          }
+          BIND ("not_selected" as ?s)
+        } UNION
+        {
+          #{self.uri.to_ref} pr:specifiesObjective ?o . 
+          BIND ("selected" as ?s)
+        }
+        ?o pr:fullText ?ft .
+        ?o pr:objectiveType/isoC:label ?ty
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:o, :ft, :ty])
+    triples.each do |entry|
+      results[entry[:s].to_sym] << {type: entry[:ty], text: entry[:ft]}
+    end
+    results
+  end 
+
+  def endpoints
+    results = {selected: [], not_selected: []}
+    query_string = %Q{
+      SELECT DISTINCT ?o ?ft ?ty ?s WHERE
+      {
+        {
+          { 
+            #{self.uri.to_ref} pr:forIndication/pr:hasObjective/pr:isAssessedBy ?o 
+          } MINUS 
+          { 
+            #{self.uri.to_ref} pr:specifiesObjective/pr:isAssessedBy/pr:derivedFrom ?o 
+          }
+          BIND ("not_selected" as ?s)
+        } UNION
+        {
+          #{self.uri.to_ref} pr:specifiesObjective/pr:isAssessedBy ?o . 
+          BIND ("selected" as ?s)
+        }
+        ?o pr:fullText ?ft .
+        ?o isoC:label ?ty
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
+    triples = query_results.by_object_set([:o, :ft, :ty])
+    triples.each do |entry|
+      results[entry[:s].to_sym] << {type: entry[:ty], text: entry[:ft]}
+    end
+    results
   end 
 
   def from_template(template)
