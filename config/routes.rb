@@ -397,8 +397,8 @@ Rails.application.routes.draw do
   end
   resources :visits, only: [] do
     member do
-      get :add_timepoints
-      get :remove_timepoints
+      post :add_timepoints
+      post :remove_timepoints
     end
   end
   resources :forms do
