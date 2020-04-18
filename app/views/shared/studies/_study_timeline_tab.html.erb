@@ -7,6 +7,8 @@
                         timepointsArmUrl = '#{timepoints_arm_path("armId")}',
                         addTimepointUrl = '#{add_timepoint_arm_path("armId")}',
                         changeTpUnitUrl = '#{change_unit_timepoint_path("tpId")}',
+                        visitAddTpUrl = '#{add_timepoints_visit_path("visitId")}',
+                        visitRemoveTpUrl = '#{remove_timepoints_visit_path("visitId")}',
                         visitsUrl = '#{visits_study_path(@study)}';" %>
 
 <div class="text-xnormal font-light ci-card-title">
@@ -21,7 +23,7 @@
   <div id="study-timeline">
   </div>
 
-  Visits (drag to a timepoint to attach):
+  Visits <i>(drag visit to a timepoint to attach/detach)</i>:
   <div id="visits-list" class="bg-labels-wrap">
   </div>
 
@@ -38,9 +40,8 @@
     </a>
     <a href="#" id='save-timeline' class="ttip">
       <img src="<%=image_path 'icons/save_btn.svg'%>" width=40></img>
-      <span class="ttip-text ttip-table shadow-small text-small text-medium">Save Timepoints</span>
+      <span class="ttip-text ttip-table shadow-small text-small text-medium">Save Location of Timepoints</span>
     </a>
   </div>
-
 
 </div>

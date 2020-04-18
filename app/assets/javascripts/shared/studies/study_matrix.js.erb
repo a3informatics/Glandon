@@ -124,6 +124,7 @@ StudyMatrix.prototype.createNewTimepoint = function(event) {
       data: {arm: {offset: offset, epoch_id: epochId}},
       withLoading: false,
       callback: function(result) {
+        this.disableFiltering();
         arm.data.timepoints.push(new Timepoint(result.data, this, arm));
         arm.render(arm.data.timepoints);
         arm.loading(false);
@@ -398,8 +399,9 @@ StudyMatrix.prototype.onEpochClick = function(e) {
  * @return [void]
  */
 StudyMatrix.prototype.onArmClick = function(e) {
+  this.disableFiltering();
+
   var arm = this.getItem($(e.target).attr("data-id"), "arms");
-  $(".bg-label.epoch.active").click();
 
   this.matrixItemClickStyle(".bg-label.active.arm", false);
   this.matrixItemClickStyle(e.target, true);
@@ -439,6 +441,17 @@ StudyMatrix.prototype.getActiveArm = function() {
 /**
  ************** Support **************
 **/
+
+
+
+/**
+ * Disables any epoch selected
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.disableFiltering = function() {
+  $(".bg-label.epoch.active").click();
+}
 
 
 /**
