@@ -170,7 +170,7 @@ Timepoint.prototype.openTpContextDialog = function() {
     element: $(this.div),
     title: "Time Point",
     subtitle: this.tpActionBtnsHTML(),
-    content: this.tpDetailsHTML()
+    content: this.tpDetailsHTML(),
   });
 
   this.tpDialogListeners();
@@ -194,6 +194,11 @@ Timepoint.prototype.timepointStyles = function() {
 
 
 /**
+ ************** Timepoint Details **************
+**/
+
+
+/**
  * Event listeners and handlers for a timepoint context dialog
  *
  * @return [void]
@@ -201,9 +206,15 @@ Timepoint.prototype.timepointStyles = function() {
 Timepoint.prototype.tpDialogListeners = function(e) {
   this.timeline.tpDialog.setListeners();
 
-  $(this.timeline.tpDialog.id).on("click", ".bg-label.bc", this.timeline.removeBCFromTp.bind(this.timeline));
-  $(this.timeline.tpDialog.id).find("#add-bcs").on("click", this.timeline.addBCToTp.bind(this.timeline));
-  $(this.timeline.tpDialog.id).on("click", "a.unit", this.changeTpUnit.bind(this));
+  $(this.timeline.tpDialog.id).off("click", ".bg-label.bc")
+    .on("click", ".bg-label.bc", this.removeItem.bind(this));
+
+  $(this.timeline.tpDialog.id).find("#add-tp-items")
+    .off("click")
+    .on("click", this.addItems.bind(this));
+
+  $(this.timeline.tpDialog.id).off("click", "a.unit")
+    .on("click", "a.unit", this.changeTpUnit.bind(this));
 }
 
 /**
@@ -232,22 +243,22 @@ Timepoint.prototype.tpDetailsHTML = function() {
             "</div>";
 
   html +=   this.data.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
+  html +=   "Offset (days): <span class='text-link'>"+ this.data.offset +"</span><br/>";
   html +=   "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
   html +=   "Arm: <span class='text-link'>"+ armName +"</span><br/>";
   html +=   "Visit: <span class='text-link'>"+ (this.data.visit_id != "" ? this.matrix.data.visits[this.data.visit_id].data.label : "-") +"</span><br/>";
-  html +=   "Offset (days): <span class='text-link'>"+ this.data.offset +"</span><br/>";
   html +=   "Unit: " + this.tpUnitsHTML() + "<br/>";
-
-  html +=   "Biomedical Concepts: (click to remove)";
+  html +=   "<hr>";
+  html +=   "Attached Assessments: (click to remove)";
   html +=   "<div class='bg-labels-wrap scroll-styled'>";
   html +=     _.isEmpty(this.data.biomedical_concepts) ? "None" : "";
 
   $.each(this.data.biomedical_concepts, function(index, bc){
-    html +=   "<span class='bg-label bc removable' data-id='"+ bc.id +"'>"+ this.timeline.bcLabel(bc) +"</span>";
+    html +=   "<span class='bg-label bc removable' data-id='"+ bc.id +"'>"+ this.itemLabel(bc) +"</span>";
   }.bind(this));
 
   html +=   "</div>";
-  html +=   "<button class='btn btn-xs green' id='add-bcs'>+ Add BCs</button>";
+  html +=   "<button class='btn btn-xs green' id='add-tp-items'>+ Add</button>";
   html += "</div>";
 
   return html;
@@ -280,7 +291,7 @@ Timepoint.prototype.changeTpUnit = function(e) {
   var unit = $(e.target).text();
 
   this.executeRequest({
-    url: changeTpUnitUrl.replace("tpId", this.data.id),
+    url: tpChangeUnit.replace("tpId", this.data.id),
     type: "POST",
     data: {timepoint: {unit: unit} },
     callback: function(result) {
@@ -293,6 +304,63 @@ Timepoint.prototype.changeTpUnit = function(e) {
   })
 }
 
+/**
+ * Remove a BC from a timepoint request, UI update
+ *
+ * @return [void]
+ */
+Timepoint.prototype.removeItem = function(e) {
+  var wrapper = $(e.currentTarget).closest(".timepoint-details");
+  var bcId = $(e.currentTarget).attr("data-id");
+
+  $(e.currentTarget).remove();
+}
+
+/**
+ * Show selector dialog, add BCs to a timepoint request, UI update
+ *
+ * @return [void]
+ */
+Timepoint.prototype.addItems = function(e) {
+  var _this = this;
+  var wrapper = $(e.currentTarget).closest(".timepoint-details");
+
+  this.matrix.bcsSelector.setCallback(function(selection) {
+    var objects = _.chain(selection)
+     .values()
+     .flatten()
+     .value();
+    var ids = objects.map(function(item) { return item.id });
+
+    this.executeRequest({
+      url: tpAddManagedUrl.replace("tpId", this.data.id),
+      type: "POST",
+      data: { timepoint: { managed_ids: ids} },
+      callback: function(result) {
+        $.each(objects, function(i, item){
+          this.data.biomedical_concepts.push(item);
+        }.bind(this));
+
+        this.loading(false);
+        this.openTpContextDialog();
+      }.bind(this)
+    })
+
+    // selection = _.extend()
+    // var ids = _.map()
+    // $.each(data.bcs, function(idx, bc) {
+    //   // TODO: Add server request to post data
+    //   // TODO: Handle server response on added BCs (re-draw the dialog)
+    //   wrapper.find(".bg-labels-wrap")
+    //     .append("<span class='bg-label removable' data-id='"+ bc.id +"'>"+
+    //               _this.bcLabel(bc) +
+    //             "</span>");
+    // });
+  }.bind(this))
+
+  this.matrix.bcsSelector.show();
+}
+
 
 /**
  * Loading state toggle
@@ -303,4 +371,14 @@ Timepoint.prototype.changeTpUnit = function(e) {
 Timepoint.prototype.loading = function(enable) {
   this.timeline.tpDialog.loading(enable);
   this.timeline.loading(enable);
+}
+
+/**
+ * Generates HTML for the axis
+ *
+ * @param [Object] Timepoints data object
+ * @return [String] Styled axis HTML
+ */
+Timepoint.prototype.itemLabel = function(item) {
+  return item.label + " (" + (item.identifier || item.has_identifier.identifier) + ") v" + (item.semantic_version || "0.1.0");
 }

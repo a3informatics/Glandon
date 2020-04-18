@@ -237,47 +237,6 @@ StudyTimeline.prototype.render = function(timepointSet) {
 }
 
 
-/**
- ************** Timepoint Details **************
-**/
-
-
-/**
- * Remove a BC from a timepoint request, UI update
- *
- * @return [void]
- */
-StudyTimeline.prototype.removeBCFromTp = function(e) {
-  var wrapper = $(e.currentTarget).closest(".timepoint-details");
-  var bcId = $(e.currentTarget).attr("data-id");
-
-  $(e.currentTarget).remove();
-}
-
-/**
- * Show selector dialog, add BCs to a timepoint request, UI update
- *
- * @return [void]
- */
-StudyTimeline.prototype.addBCToTp = function(e) {
-  var _this = this;
-  var wrapper = $(e.currentTarget).closest(".timepoint-details");
-
-  this.matrix.bcsSelector.setCallback(function(data) {
-    $.each(data.bcs, function(idx, bc) {
-      // TODO: Add server request to post data
-      // TODO: Handle server response on added BCs (re-draw the dialog)
-      wrapper.find(".bg-labels-wrap")
-        .append("<span class='bg-label removable' data-id='"+ bc.id +"'>"+
-                  _this.bcLabel(bc) +
-                "</span>");
-    });
-  })
-
-  this.matrix.bcsSelector.show();
-}
-
-
 
 /**
  ************** HTML **************
@@ -496,16 +455,6 @@ StudyTimeline.prototype.clear = function() {
  */
 StudyTimeline.prototype.loading = function(enable) {
   this.matrix.armLoading(this.armId, enable)
-}
-
-/**
- * Generates HTML for the axis
- *
- * @param [Object] Timepoints data object
- * @return [String] Styled axis HTML
- */
-StudyTimeline.prototype.bcLabel = function(bc) {
-  return bc.label + " (" + (bc.identifier || bc.has_identifier.identifier) + ") v" + (bc.semantic_version || "0.1.0");
 }
 
 /**

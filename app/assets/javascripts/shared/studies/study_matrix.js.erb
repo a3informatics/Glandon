@@ -20,8 +20,8 @@ function StudyMatrix() {
   this.bcsSelector = new ItemsSelector({
     id: "1",
     multiple: true,
-    types: {bcs:true},
-    description: "Pick one or more Biomedical Concepts to add to the Time Point.",
+    types: {bcs:true, forms: true, asmnts: true},
+    description: "Pick one or more Items to attach to the Time Point.",
   });
 
   this.createTPModal = new NewTimepointModal(this);

@@ -398,6 +398,8 @@ Rails.application.routes.draw do
     member do
       get :timepoints
       post :add_timepoint
+      post :add_managed
+      post :remove_managed
     end
   end
   resources :timepoints, only: [] do

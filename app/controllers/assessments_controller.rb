@@ -43,7 +43,7 @@ class AssessmentsController < ApplicationController
 private
 
   def the_params
-    params.require(:protocol_template).permit(:identifier, :scope_id, :offset, :count)
+    params.require(:assessment).permit(:identifier, :scope_id, :offset, :count)
   end
 
   # Path for given action
