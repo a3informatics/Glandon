@@ -92,6 +92,28 @@
   background: $grey-medium !important;
 }
 
+.btn.discrete {
+  background: transparent;
+  color: $grey-medium;
+  font-size: 9pt !important;
+}
+
+.btn.discrete:hover {
+  color: $grey-medium !important;
+  text-decoration: underline;
+}
+
+.btn.discrete:active {
+  color: $grey-medium !important;
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.btn.discrete:focus {
+  color: $grey-medium !important;
+  background: transparent !important;
+}
+
 .btn:focus{
   color: white;
 }
