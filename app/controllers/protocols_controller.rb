@@ -12,10 +12,18 @@ class ProtocolsController < ApplicationController
     render json: {data: protocol.name_value}, status: 200
   end
 
+  def from_template
+    authorize Form, :edit?
+    protocol = Protocol.find_minimum(protect_from_bad_id(params))
+    template = ProtocolTemplate.find_minimum(protect_from_bad_id(id: the_params[:template_id]))
+    protocol.from_template(template)
+    render json: {data: []}, status: 200
+  end
+
 private
 
   def the_params
-    params.require(:protocol).permit()
+    params.require(:protocol).permit(:template_id)
   end
 
   # # Path for given action

@@ -383,7 +383,17 @@ Rails.application.routes.draw do
       get :history_data
     end
   end
-  resources :protocols, only: [:show]
+  resources :protocols, only: [:show, :update] do
+    member do
+      post :from_template
+    end
+  end
+  resources :protocol_templates, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
   resources :arms, only: [] do
     member do
       get :timepoints
