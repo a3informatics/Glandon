@@ -310,10 +310,17 @@ Timepoint.prototype.changeTpUnit = function(e) {
  * @return [void]
  */
 Timepoint.prototype.removeItem = function(e) {
-  var wrapper = $(e.currentTarget).closest(".timepoint-details");
-  var bcId = $(e.currentTarget).attr("data-id");
+  var itemId = $(e.currentTarget).attr("data-id");
 
-  $(e.currentTarget).remove();
+  this.executeRequest({
+    url: tpRemoveManagedUrl.replace("tpId", this.data.id),
+    type: "POST",
+    data: { timepoint: { managed_ids: [itemId]} },
+    callback: function(result) {
+      $(e.currentTarget).remove();
+      this.loading(false);
+    }.bind(this)
+  });
 }
 
 /**
@@ -344,18 +351,7 @@ Timepoint.prototype.addItems = function(e) {
         this.loading(false);
         this.openTpContextDialog();
       }.bind(this)
-    })
-
-    // selection = _.extend()
-    // var ids = _.map()
-    // $.each(data.bcs, function(idx, bc) {
-    //   // TODO: Add server request to post data
-    //   // TODO: Handle server response on added BCs (re-draw the dialog)
-    //   wrapper.find(".bg-labels-wrap")
-    //     .append("<span class='bg-label removable' data-id='"+ bc.id +"'>"+
-    //               _this.bcLabel(bc) +
-    //             "</span>");
-    // });
+    });
   }.bind(this))
 
   this.matrix.bcsSelector.show();
