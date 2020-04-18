@@ -27,6 +27,7 @@ module ApplicationHelper
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
     studies: {link: "/studies", text: "Studies", icon: "icon-study"},
+    triples: {link: "#", text: "Triples", icon: "icon-triple"},
     items_generic: {link: "#", text: "Items", icon: "icon-multi"}
   }
 
