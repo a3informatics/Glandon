@@ -12,9 +12,9 @@
  * @return [void]
  */
 function Visit(data, matrixRef) {
+  this.id = data.id;
   this.matrix = matrixRef;
   this.data = data;
-  this.data.timepoints = [];
 }
 
 
@@ -64,20 +64,53 @@ Visit.prototype.blockHTML = function() {
          "</div>";
 }
 
-
 /**
- * Adds timepoints to this instance
+ * Add / remove timepoint in this visit instance
  *
- * @param timepoints [Array] timepoint ids
+ * @param timepoint [String] timepoint id
  * @return [void]
  */
-Visit.prototype.addTimepoints = function(timepoints) {
-  $.each(timepoints, function(i, tpId){
-    // var timepoint = this.matrix.getActiveArm().timeline.findTimepoint("id", tpId)
-    if(!_.contains(this.data.timepoints, tpId)) {
-      this.data.timepoints.push(tpId);
-    }
-  }.bind(this))
+Visit.prototype.updateTimepoint = function(timepointId) {
+  var adding = !_.contains(this.data.timepoints, timepointId);
+
+  this.matrix.getActiveArm().timeline.executeRequest({
+    url: this.updateTpUrl(adding),
+    type: "POST",
+    data: {visit: {timepoints: [timepointId]}},
+    callback: function(result) {
+
+      var timepoint = this.matrix.getActiveArm().timeline.findTimepoint("id", timepointId);
+
+      if(adding) {
+        this.data.timepoints.push(timepointId);
+        timepoint.data.visit_id = this.data.id;
+      }
+      else{
+        this.data.timepoints.splice(_.indexOf(this.data.timepoints, timepointId), 1);
+        timepoint.data.visit_id = "";
+      }
+
+      this.matrix.disableFiltering();
+      var timeline = this.matrix.getActiveArm().timeline;
+      timeline.loading(false);
+      timeline.render(timeline.data.timepoints);
+
+    }.bind(this)
+
+  });
+}
+
+/**
+ * Get url for this visit timepoints update (add/remove)
+ *
+ * @param adding [Boolean] if true, will return url for adding TPs
+ * @return [String] url pointing to this visit instance
+ */
+Visit.prototype.updateTpUrl = function(adding) {
+  if (adding)
+    return visitAddTpUrl.replace("visitId", this.id);
+
+  return visitRemoveTpUrl.replace("visitId", this.id);
 }
 
 /**

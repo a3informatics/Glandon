@@ -46,18 +46,40 @@ StudyTimeline.prototype.show = function() {
 }
 
 /**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyTimeline.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
  * Loads timeline data
  *
  * @return [void]
  */
 StudyTimeline.prototype.loadData = function() {
-  this.loading(true);
-
-  this.matrix.executeRequest({
+  this.executeRequest({
     url: this.tpDataUrl(),
     type: "GET",
     data: {},
-    withLoading: false,
     callback: function(result) {
       $.each(result.data, function(i, timepoint) {
         this.data.timepoints.push(new Timepoint(timepoint, this.matrix, this));
@@ -168,10 +190,13 @@ StudyTimeline.prototype.interactionListeners = function() {
 
   $(this.wrapper).find(".timepoint").droppable({
     accept: ".visit",
+    classes: {
+      "ui-droppable-hover": "ui-state-hover"
+    },
     drop: function(ev, ui) {
       var timepointId = $(this).attr("data-id");
       var visitId = ui.draggable.attr("data-id");
-      _this.matrix.getItem(visitId, "visits").addTimepoints([timepointId]);
+      _this.matrix.getItem(visitId, "visits").updateTimepoint(timepointId);
     }
   });
 }
@@ -515,7 +540,7 @@ StudyTimeline.prototype.offsetClosestEpoch = function(offset) {
     }
   });
 
-  if(tEpoch == "") {
+  if(tEpoch == null) {
     $(".epoch-block").each(function(i, e) {
       if (tEpoch == null)
         tEpoch = $(e);
