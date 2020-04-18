@@ -15,4 +15,31 @@ class Timepoint < IsoConceptV2
     offset.save
   end
 
+  def add_managed(ids)
+    results = []
+    ids.each do |id|
+      item = IsoManagedV2.find_minimum(id)
+      ref = nil
+      if item.rdf_type == Form.rdf_type
+        ref = StudyForm.create(label: item.label, is_derived_from: item.uri)
+      elsif item.rdf_type == Assessment.rdf_type
+        ref = StudyAssessment.create(label: item.label, is_derived_from: item.uri)
+      elsif item.rdf_type == BiomedicalConceptInstance.rdf_type
+        ref = StudyBiomedicalConcept.create(label: item.label, is_derived_from: item.uri)
+      end
+      next if ref.nil?
+      self.has_planned_push(ref)
+      results << ref
+    end
+    self.save
+    results.map{|x| x.id}
+  end
+
+  def remove_managed(ids)
+    ids.each do |id|
+      item = IsoConceptV2.find(id)
+      item.delete_with_links
+    end
+  end
+
 end

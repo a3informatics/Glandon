@@ -94,4 +94,5 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackath
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocols.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_bc_instances.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_bc_templates.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocol_templates.ttl" $FileEndPoint
 set +x

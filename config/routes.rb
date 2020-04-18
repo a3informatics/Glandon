@@ -393,6 +393,8 @@ Rails.application.routes.draw do
   resources :timepoints, only: [] do
     member do
       post :change_unit
+      post :add_managed
+      post :remove_managed
     end
   end
   resources :visits, only: [] do
