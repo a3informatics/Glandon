@@ -1,0 +1,109 @@
+/*
+* Study Design and Interventions tab
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Design and Interventions Constructor
+ *
+ * @return [void]
+ */
+function StudyDesign() {
+  this.div = $("#study-design");
+  this.tab = $("#tab-design");
+  this.picker = new ItemsSelector({
+      id: "2",
+      multiple: false,
+      types: {pts:true},
+      description: "Pick a Protocol Template for this study.",
+      callback: this.setProtocolTemplate.bind(this),
+    });
+
+  this.setListeners();
+}
+
+
+/**
+ ************** General **************
+**/
+
+/**
+ * Do nothing
+ *
+ * @return [void]
+ */
+StudyDesign.prototype.show = function() {
+
+}
+
+/**
+ * Sets event listeners, handlers
+ *
+ * @return [void]
+ */
+StudyDesign.prototype.setListeners = function() {
+  $("#select-template").on("click", this.picker.show.bind(this.picker));
+}
+
+/**
+ * Make request for protocol template update, handle response
+ *
+ * @return [void]
+ */
+StudyDesign.prototype.setProtocolTemplate = function(selection) {
+  var item = selection.pts[0];
+
+  this.executeRequest({
+    url: templateUpdateUrl,
+    type: "POST",
+    data: { protocol: { template_id: item.id } },
+    callback: function(result) {
+      $("#template-name").text(item.label);
+      $("#select-template")
+        .addClass("disabled")
+        .unbind();
+    }
+  })
+}
+
+
+/**
+ ************** Support **************
+**/
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyDesign.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+      this.loading(false);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
+ * Enable disable loading state
+ *
+ * @param enable [Boolean] true/false show/hide loading
+ * @return [void]
+ */
+StudyDesign.prototype.loading = function(enable) {
+ this.tab.trigger("loading", [enable]);
+}

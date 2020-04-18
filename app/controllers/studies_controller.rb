@@ -30,7 +30,7 @@ class StudiesController < ApplicationController
     authorize Form, :create?
     params = the_params.slice(:identifier, :label, :description)
     protocol = Protocol.latest(identifier: the_params[:protocol_identifier], scope: IsoRegistrationAuthority.repository_scope)
-    params[:implements] = protocol.uri 
+    params[:implements] = protocol.uri
     study = Study.create(params)
     if study.errors.empty?
       render json: {history_url: history_studies_path({study:{identifier: study.scoped_identifier, scope_id: study.has_identifier.has_scope.id}})}, status: 200
@@ -60,26 +60,27 @@ class StudiesController < ApplicationController
   def build
     authorize Form, :edit?
     @study = Study.find_with_properties(protect_from_bad_id(params))
+    @study_empty = @study.protocol.design.empty?
     @close_path = history_studies_path({study: {identifier: @study.scoped_identifier, scope_id: @study.scope}})
   end
 
   def design
     authorize Form, :edit?
     study = Study.find_minimum(protect_from_bad_id(params))
-    render json: {data: study.protocol.design}    
-  end 
+    render json: {data: study.protocol.design}
+  end
 
   def soa
     authorize Form, :show?
     study = Study.find_minimum(protect_from_bad_id(params))
-    render json: {data: study.soa}    
-  end 
+    render json: {data: study.soa}
+  end
 
   def visits
     authorize Form, :show?
     study = Study.find_minimum(protect_from_bad_id(params))
-    render json: {data: study.visits}    
-  end 
+    render json: {data: study.visits}
+  end
 
 private
 

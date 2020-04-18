@@ -30,12 +30,16 @@ StudyBuild.prototype.initTabs = function() {
   var studyContent = new VerticalList("#study-content-table", protocolShowUrl);
   var studyMatrix = new StudyMatrix();
   var studySchedule = new StudySchedule();
+  var studyDesign = (studyEmpty ? new StudyDesign() : null);
 
   this.tabs = {
-    content: {instance: studyContent, header: $("#tab-content")},
-    timeline: {instance: studyMatrix, header: $("#tab-timeline")},
-    soa: {instance: studySchedule, header: $("#tab-soa")}
+    content: {instance: studyContent, header: $("#tab-content"), enabled: true},
+    timeline: {instance: studyMatrix, header: $("#tab-timeline"), enabled: true},
+    soa: {instance: studySchedule, header: $("#tab-soa"), enabled: true},
+    design: {instance: studyDesign, header: $("#tab-design"), enabled: studyEmpty},
   }
+
+  this.tabs.design.header.toggleClass("disabled", !this.tabs.design.enabled);
 }
 
 /**
@@ -56,5 +60,6 @@ StudyBuild.prototype.setListeners = function() {
  */
 StudyBuild.prototype.onTabSwitch = function(e, tabId) {
   var tabName = tabId.split('-')[1];
-  this.tabs[tabName].instance.show();
+  if (this.tabs[tabName].enabled)
+    this.tabs[tabName].instance.show();
 }
