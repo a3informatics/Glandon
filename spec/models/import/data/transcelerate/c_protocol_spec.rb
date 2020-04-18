@@ -59,43 +59,43 @@ describe "C - Transcelerate Protocol" do
       endpoints = 
       [
         {
-          label: "A label", 
+          label: "Endpoint 1", 
           full_text: "The change from baseline to [[[Timepoint]]] in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score"
         },
         {
-          label: "A label", 
+          label: "Endpoint 2", 
           full_text: "The change from baseline to Week [[[Timepoint]]] in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)"
         },
         {
-          label: "A label",         
+          label: "Endpoint 3",         
           full_text: "The change [absolute] in HbA1c from baseline to [[[Timepoint]]]"
         },
         {
-          label: "A label", 
+          label: "Endpoint 4", 
           full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
         },
         {
-          label: "A label", 
+          label: "Endpoint 5", 
           full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the [x-week] study intervention period"
         },
         {
-          label: "A label", 
+          label: "Endpoint 6", 
           full_text: "The change from baseline to [[[Timepoint]]] in continuous laboratory tests: Hepatic Function Panel"
         },
         {
-          label: "A label", 
+          label: "Endpoint 7", 
           full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase"
         },
         {
-          label: "A label", 
+          label: "Endpoint 8", 
           full_text: "The change from baseline to [[[Timepoint]]] in ECG parameter: QTcF"
         },
         {
-          label: "A label", 
+          label: "Endpoint 9", 
           full_text: "The change from baseline to [[[Timepoint]]] in the [[[BC]]]"
         },
         {
-          label: "A label", 
+          label: "Endpoint 10", 
           full_text: "The change from baseline to [[[Timepoint]]]] in the [[[BC]]]"
         }
       ]
@@ -116,16 +116,16 @@ describe "C - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
 
       enum_p = Enumerated.new(label: "Primary")
-      enum_p.create_uri(enum_p.class.base_uri)
+      enum_p.uri = enum_p.create_uri(enum_p.class.base_uri)
       enum_s = Enumerated.new(label: "Secondary")
-      enum_s.create_uri(enum_s.class.base_uri)
+      enum_s.uri = enum_s.create_uri(enum_s.class.base_uri)
       enum_ns = Enumerated.new(label: "Not Set")
-      enum_ns.create_uri(enum_ns.class.base_uri)
+      enum_ns.uri = enum_ns.create_uri(enum_ns.class.base_uri)
 
       objectives = 
       [
         { 
-          label: "",
+          label: "Objective 1",
           full_text: "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease",
           objective_type: enum_ns.uri,
           is_assessed_by: 
@@ -135,43 +135,57 @@ describe "C - Transcelerate Protocol" do
           ]
         },
         { 
-          label: "",
+          label: "Objective 2",
           full_text: "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         },
         { 
-          label: "",
+          label: "Objective 3",
           full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         },
         { 
-          label: "",
+          label: "Objective 4",
           full_text: "To document the safety profile of [[[Intervention]]].",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         },
         { 
-          label: "",
+          label: "Objective 5",
           full_text: "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         },
         { 
-          label: "",
+          label: "Objective 6",
           full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas",
           objective_type: enum_ns.uri,
           is_assessed_by: []
         } 
       ] 
+      items = []
+      objectives.each_with_index do |ep, index|
+        item = Objective.new(ep)
+        item.set_initial("OBJ #{index+1}")
+        items << item
+      end
+      sparql = Sparql::Update.new
+      sparql.default_namespace(items.first.uri.namespace)
+      items.each {|x| x.to_sparql(sparql, true)}
+      enum_p.to_sparql(sparql, true)
+      enum_s.to_sparql(sparql, true)
+      enum_ns.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_objectives.ttl")
     end
 
     it "Indications" do
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
 
       # Indications
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/CT/V1#TH"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
       tc_1 = Thesaurus::UnmanagedConcept.where(notation: "AD")
       op_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc_1.first.uri, optional: false, ordinal: 1)
       i_1 = Indication.new(label: "Alzheimer's Disease", indication: op_ref)
@@ -230,29 +244,32 @@ describe "C - Transcelerate Protocol" do
     end
 
     it "Protocol" do
+      load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_objectives.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_thesaurus.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
-      bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      sbc1 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
-      sbc1.uri = sbc1.create_uri(sbc1.class.base_uri)
-      sbc2 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
-      sbc2.uri = sbc2.create_uri(sbc2.class.base_uri)
-      ass = Assessment.new(label: "BC Collection")
-      ass.add_no_save(bc, 1)
-      ass.add_no_save(bc, 2)
-      ass.set_initial("ASS BC C1")
-      sass1 = StudyAssessment.new(is_derived_from: ass.uri)
-      sass1.uri = sass1.create_uri(sass1.class.base_uri)
+      # bc = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      # sbc1 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      # sbc1.uri = sbc1.create_uri(sbc1.class.base_uri)
+      # sbc2 = StudyBiomedicalConcept.new(is_derived_from: bc.uri)
+      # sbc2.uri = sbc2.create_uri(sbc2.class.base_uri)
+      # ass = Assessment.new(label: "BC Collection")
+      # ass.add_no_save(bc, 1)
+      # ass.add_no_save(bc, 2)
+      # ass.set_initial("ASS BC C1")
+      # sass1 = StudyAssessment.new(is_derived_from: ass.uri)
+      # sass1.uri = sass1.create_uri(sass1.class.base_uri)
 
       # Visits
       visits = 
       [
         {short_name: "BL", label: "Baseline"},
         {short_name: "Wk8", label: "Week 8"},
+        {short_name: "Wk12", label: "Week 12"},
         {short_name: "Wk16", label: "Week 16"},
         {short_name: "Wk24", label: "Week 24"}
       ]
@@ -266,23 +283,137 @@ describe "C - Transcelerate Protocol" do
       # Timepoints
       secs_per_week = 7*24*60*60
       o_items = []
-      [0, 8, 16, 24].each_with_index do |v, index|
+      [0, 8, 12, 16, 24].each_with_index do |v, index|
         item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0, unit: "Week")
         item.uri = item.create_uri(item.class.base_uri)
         o_items << item
       end
       tps = 
       [
-        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, has_planned: [sbc1.uri]},
+        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, has_planned: []},
         {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, has_planned: []},
-        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri, has_planned: [sass1.uri]},
-        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, has_planned: [sbc1.uri, sbc2.uri]},
+        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri, has_planned: []},
+        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, has_planned: []},
+        {label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri, has_planned: []},
       ]
       tp_items = []
       tps.each_with_index do |v, index|
         item = Timepoint.new(v)
         item.uri = item.create_uri(item.class.base_uri)
         tp_items << item
+      end
+
+    # Endpoints
+      endpoints = 
+      [
+        {
+          label: "LY246708 EP1", 
+          full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri]
+        },
+        {
+          label: "LY246708 EP2", 
+          full_text: "The change from baseline to Week Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri]
+        },
+        {
+          label: "LY246708 EP3", 
+          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri]
+        },
+        {
+          label: "LY246708 EP4", 
+          full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
+          primary_timepoint: tp_items[4].uri,
+          secondary_timepoint: []
+        },
+        {
+          label: "LY246708 EP5", 
+          full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[2].uri]
+        },
+        {
+          label: "LY246708 EP6", 
+          full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
+          primary_timepoint: tp_items[1].uri,
+          secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri]
+        },
+        {
+          label: "LY246708 EP7", 
+          full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri]
+        },
+        {
+          label: "LY246708 EP8", 
+          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri]
+        },
+        {
+          label: "LY246708 EP9", 
+          full_text: "The change from baseline to Week 8 in the DAD total score",
+          primary_timepoint: tp_items[0].uri,
+          secondary_timepoint: [tp_items[1].uri]
+        },
+      ]
+      ep_items = []
+      endpoints.each_with_index do |v, index|
+        item = ProtocolEndpoint.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        ep_items << item
+      end
+
+      # Objectivs
+      enum_p = Enumerated.where(label: "Primary").first
+      enum_s = Enumerated.where(label: "Secondary").first
+      objectives = 
+      [
+        { 
+          label: "LY246708 OBJ1", 
+          full_text: "To assess the effect of Xanomeline Transdermal Therapeutic System (TTS) on the ADAS-Cog and CIBIC+ scores at Week 24 in participants with Mild to Moderate Alzheimer’s Disease",
+          objective_type: enum_p.uri,
+          is_assessed_by: [],
+          derived_from: Objective.where(label: "Objective 1").first
+        },
+        { 
+          label: "LY246708 OBJ2", 
+          full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas",
+          objective_type: enum_p.uri,
+          is_assessed_by: [],
+          derived_from: Objective.where(label: "Objective 3").first
+        },
+        { 
+          label: "LY246708 OBJ3", 
+          full_text: "To document the safety profile of the xanomeline TTS.",
+          objective_type: enum_s.uri,
+          is_assessed_by: [],
+          derived_from: Objective.where(label: "Objective 4").first
+        },
+        { 
+          label: "LY246708 OBJ4", 
+          full_text: "To assess the effect of xanomeline TTS on the measure of behavioral/neuropsychiatric symptoms in participants with  Alzheimer’s Disease",
+          objective_type: enum_s.uri,
+          is_assessed_by: [],
+          derived_from: Objective.where(label: "Objective 5").first
+        },
+        { 
+          label: "LY246708 OBJ5", 
+          full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas",
+          objective_type: enum_s.uri,
+          is_assessed_by: [],
+          derived_from: Objective.where(label: "Objective 6").first
+        }
+      ]
+      obj_items = []
+      objectives.each_with_index do |v, index|
+        item = ProtocolObjective.new(v)
+        item.uri = item.create_uri(item.class.base_uri)
+        obj_items << item
       end
 
       # Epochs & Arms
@@ -397,11 +528,13 @@ describe "C - Transcelerate Protocol" do
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
+      obj_items.each {|x| x.to_sparql(sparql, true)}
+      ep_items.each {|x| x.to_sparql(sparql, true)}
 
-      sbc1.to_sparql(sparql, true)
-      sbc2.to_sparql(sparql, true)
-      sass1.to_sparql(sparql, true)
-      ass.to_sparql(sparql, true)
+      # sbc1.to_sparql(sparql, true)
+      # sbc2.to_sparql(sparql, true)
+      # sass1.to_sparql(sparql, true)
+      # ass.to_sparql(sparql, true)
 
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")

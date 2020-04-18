@@ -89,6 +89,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackath
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_tas.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_indications.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_endpoints.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_objectives.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_parameters.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_protocols.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/hackathon_bc_instances.ttl" $FileEndPoint

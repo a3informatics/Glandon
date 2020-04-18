@@ -88,7 +88,7 @@ describe "Protocol" do
       pr = Protocol.find_with_properties(Uri.new(uri: "http://www.transceleratebiopharmainc.com/FLU001/V1#PR"))
       pr.specifies_arm_objects
       pr.specifies_epoch_objects
-      check_file_actual_expected(pr.to_h, sub_dir, "from_template_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(pr.to_h, sub_dir, "from_template_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

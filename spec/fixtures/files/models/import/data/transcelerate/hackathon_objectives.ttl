@@ -1,0 +1,227 @@
+@prefix : <http://www.transceleratebiopharmainc.com/OBJ_1/V1#> .
+@prefix pr: <http://www.assero.co.uk/Protocol#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/OBJ_1/V1>
+	rdf:type owl:Ontology ;
+.
+:OB
+	rdf:type pr:Objective ;
+	isoC:label "Objective 1"^^xsd:string ;
+	isoT:hasState :OB_RS ;
+	isoT:hasIdentifier :OB_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease"^^xsd:string ;
+	pr:isAssessedBy <http://www.transceleratebiopharmainc.com/EP_1/V1#END> ;
+	pr:isAssessedBy <http://www.transceleratebiopharmainc.com/EP_2/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+:OB_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:OB_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 1"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 2"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)"^^xsd:string ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 2"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 3"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas"^^xsd:string ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 3"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 4"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To document the safety profile of [[[Intervention]]]."^^xsd:string ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 4"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 5"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"^^xsd:string ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 5"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 6"^^xsd:string ;
+	isoT:hasState <http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-18T15:59:17+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"^^xsd:string ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+<http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 6"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+<http://www.assero.co.uk/ENUM#a9a96ec019494d5b8b041c1d2468061ae66e35d5>
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Primary"^^xsd:string ;
+.
+<http://www.assero.co.uk/ENUM#025de599ea0a6262eeb4ea073413e273d0ea875b>
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Secondary"^^xsd:string ;
+.
+<http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b>
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Not Set"^^xsd:string ;
+.
