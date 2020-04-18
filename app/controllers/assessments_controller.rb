@@ -1,8 +1,8 @@
 require 'controller_helpers.rb'
 
-class ProtocolTemplatesController < ApplicationController
+class AssessmentsController < ApplicationController
 
-  C_CLASS_NAME = "ProtocolTemplatesController"
+  C_CLASS_NAME = "AssessmentsController"
 
   include ControllerHelpers
 
@@ -10,11 +10,11 @@ class ProtocolTemplatesController < ApplicationController
 
   def index
     authorize Form
-    @pts = ProtocolTemplate.unique
+    @assessments = Assessment.unique
     respond_to do |format|
       format.json do
-        @pts = @pts.map{|x| x.reverse_merge!({history_path: history_protocol_templates_path({protocol_template:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        render json: {data: @pts}, status: 200
+        @assessments = @assessments.map{|x| x.reverse_merge!({history_path: history_assessments_path({protocol_template:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        render json: {data: @assessments}, status: 200
       end
       format.html
     end
@@ -25,14 +25,14 @@ class ProtocolTemplatesController < ApplicationController
     respond_to do |format|
       format.json do
         results = []
-        history_results = ProtocolTemplate.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = ProtocolTemplate.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        latest = ProtocolTemplate.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        history_results = Assessment.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = Assessment.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = Assessment.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         results = add_history_paths(Form, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
-        @pt = ProtocolTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        @assessment = Assessment.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
         @close_path = request.referer

@@ -413,6 +413,12 @@ Rails.application.routes.draw do
       post :remove_timepoints
     end
   end
+  resources :assessments, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
   resources :forms do
     collection do
       get :history
