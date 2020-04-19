@@ -14,7 +14,7 @@ class ProtocolsController < ApplicationController
 
   def from_template
     authorize Form, :edit?
-    protocol = Protocol.find_minimum(protect_from_bad_id(params))
+    protocol = Protocol.find_with_properties(protect_from_bad_id(params))
     template = ProtocolTemplate.find_minimum(protect_from_bad_id(id: the_params[:template_id]))
     protocol.from_template(template)
     render json: {data: []}, status: 200
