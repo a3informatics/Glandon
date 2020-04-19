@@ -63,6 +63,16 @@ class Arm < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:pr])
     return nil if query_results.empty?
     query_results.by_object(:el).first
-  end       
+  end      
+
+  def update_timepoints(params)
+    params.each do |timepoint|
+      uri = Uri.new(id: timepoint[:id])
+      tp = Timepoint.find(uri)
+      tp.at_offset_objects
+      tp.move(timepoint[:epoch_id])
+      tp.update_offset(timepoint[:offset])
+    end
+  end
 
 end

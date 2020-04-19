@@ -18,10 +18,17 @@ class ArmsController < ApplicationController
     render json: {data: arm.add_timepoint(the_params)}, status: 200
   end
 
+  def update_timepoints
+    authorize Form, :edit?
+    arm = Arm.find(protect_from_bad_id(params))    
+    arm.update_timepoints(the_params)
+    render json: {}, status: 200
+  end    
+
 private
 
   def the_params
-    params.require(:arm).permit(:offset, :epoch_id)
+    params.require(:arm).permit(:offset, :epoch_id, :tp_data => [])
   end
 
 end

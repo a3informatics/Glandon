@@ -60,4 +60,24 @@ class Timepoint < IsoConceptV2
     end
     results
   end
+
+  def move(params)
+    new_ep = Uri.new(id: params[:epoch_id])
+    query_string = %Q{
+      SELECT DISTINCT ?oel ?nel WHERE
+      {
+        #{self.uri.to_ref} ^pr:containsTimepoint ?oel .
+        #{new_ep.to_ref} ^pr:inEpoch ?nel
+        FILTER (?nel = ?oel)
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:pr])
+    return if query_results.empty?
+    triples = query_results.by_object_set([:nel, :oel])
+    new_el = Element.find(triples.first[:nel])
+    old_el = Element.find(triples.first[:oel])
+    old_el.delete_link(:contains_timepoint, self.uri)
+    new_el.add_link(:contains_timepoint, self.uri)
+  end
+
 end

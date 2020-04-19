@@ -27,4 +27,8 @@ class Timepoint::Offset < IsoConceptV2
     return PERMITTED_UNITS.first
   end
     
+  def update_offset(value)
+    self.window_offset = value.to_i * 86400
+    self.save
+  end
 end

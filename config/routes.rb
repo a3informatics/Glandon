@@ -400,6 +400,7 @@ Rails.application.routes.draw do
       post :add_timepoint
       post :add_managed
       post :remove_managed
+      post :update_timepoints
     end
   end
   resources :timepoints, only: [] do
