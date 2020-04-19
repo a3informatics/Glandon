@@ -4,6 +4,6 @@ class Indication < IsoManagedV2
             uri_suffix: "IND"
 
   object_property :indication, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
-  object_property :has_objective, cardinality: :one, model_class: "Objective"
+  object_property :has_objective, cardinality: :many, model_class: "Objective"
 
 end

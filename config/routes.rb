@@ -383,7 +383,46 @@ Rails.application.routes.draw do
       get :history_data
     end
   end
-  resources :protocols, only: [:show]
+  resources :protocols, only: [:show, :update] do
+    member do
+      post :from_template
+      get :objectives
+    end
+  end
+  resources :protocol_templates, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
+  resources :arms, only: [] do
+    member do
+      get :timepoints
+      post :add_timepoint
+      post :add_managed
+      post :remove_managed
+      post :update_timepoints
+    end
+  end
+  resources :timepoints, only: [] do
+    member do
+      post :change_unit
+      post :add_managed
+      post :remove_managed
+    end
+  end
+  resources :visits, only: [] do
+    member do
+      post :add_timepoints
+      post :remove_timepoints
+    end
+  end
+  resources :assessments, only: [:show] do
+    collection do
+      get :index
+      get :history
+    end
+  end
   resources :forms do
     collection do
       get :history

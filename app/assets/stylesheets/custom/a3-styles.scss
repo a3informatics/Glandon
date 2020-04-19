@@ -1,5 +1,9 @@
 @import "custom/vars.scss";
 
+.center {
+  text-align: center;
+}
+
 .row.centered{
    display: flex;
    flex-wrap: wrap;
@@ -147,6 +151,7 @@
 
 .bg-labels-wrap .bg-label {
   margin-top: 8px;
+  margin-right: 12px;
 }
 
 .bg-label.loading {
@@ -390,6 +395,13 @@
   min-height: 30px;
   line-height: 32px;
   font-size: 10pt;
+}
+
+.circular-badge.xsmall{
+  width: 15px;
+  min-width: 15px;
+  height: 15px;
+  min-height: 15px;
 }
 
 .circular-badge.tiny{

@@ -13,7 +13,7 @@ $(document).ready(function() {
 });
 
 // Loading event
-$(document).off("loading", ".tab-option").on("loading", ".tab-option", function(e, enable, disableOthers){
+$(document).off("loading", ".tab-option").on("loading", ".tab-option", function(e, enable, disableOthers) {
   var tab = $(".tab-wrap[data-tab='"+ $(this).attr("id")+"']");
 
   if (enable) {
@@ -26,5 +26,5 @@ $(document).off("loading", ".tab-option").on("loading", ".tab-option", function(
   }
 
   if (disableOthers != null && disableOthers)
-    $(this).siblings().toggleClass("disabled", enable);
+    $(this).siblings().not(".perm-disabled").toggleClass("disabled", enable);
 });

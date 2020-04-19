@@ -20,7 +20,7 @@
 */
 function MISelector(params) {
  this.params = params;
- this.div = $("#selector-" + params.type);
+ this.div = params.parentPanel.modal.find("#selector-" + params.type);
  this.parentPanel = params.parentPanel;
  this.initialized = false;
  this.cache = {};
@@ -328,6 +328,12 @@ MISelector.prototype.loadDataParams = function(c, o){
       return { thesauri: { count: c, offset: o } };
     case "bcs":
       return { biomedical_concept: { count: c, offset: o } };
+    case "forms":
+      return { form: { count: c, offset: o } };
+    case "asmnts":
+      return { assessment: { count: c, offset: o } };
+    case "pts":
+      return { protocol_template: { count: c, offset: o } };
   }
 }
 

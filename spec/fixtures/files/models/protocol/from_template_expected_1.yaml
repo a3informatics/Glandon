@@ -48,7 +48,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2016-01-01T00:00:00+00:00'
-:last_change_date: '2020-04-15T19:19:39+02:00'
+:last_change_date: '2020-04-17T19:04:05+02:00'
 :explanatory_comment: ''
 :acronym: MADE UP ACRONYM
 :title: A made up protocol title
@@ -58,18 +58,18 @@
 :intervention_model: 
 :masking: 
 :for_indication: []
-:in_TA: 
+:in_ta: 
 :specifies_arm:
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNI2QyNmI3MGZhLTU0ZDEtNGIyNS1hMjI0LWEwZjUzOWQ4ODY4NQ==
-  :uri: http://www.assero.co.uk/ARM#d26b70fa-54d1-4b25-a224-a0f539d88685
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNI2U1YjUzNTIxLTY5M2UtNDA0NS1iNmJkLTkxNzM2OWMxNTE2Mw==
+  :uri: http://www.assero.co.uk/ARM#e5b53521-693e-4045-b6bd-917369c15163
   :rdf_type: http://www.assero.co.uk/Protocol#Arm
   :label: B
   :tagged: []
   :description: ''
   :arm_type: ''
   :ordinal: 2
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNI2MxN2VmMjhlLTM1NGQtNDlmMi05ZGU4LWUzYTNhMzdiYTdmZg==
-  :uri: http://www.assero.co.uk/ARM#c17ef28e-354d-49f2-9de8-e3a3a37ba7ff
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzdlOTcxMzNhLTNhNDMtNGUyOS1hMmFlLTYxZGE2ZjE5MTdhZQ==
+  :uri: http://www.assero.co.uk/ARM#7e97133a-3a43-4e29-a2ae-61da6f1917ae
   :rdf_type: http://www.assero.co.uk/Protocol#Arm
   :label: A
   :tagged: []
@@ -77,21 +77,21 @@
   :arm_type: ''
   :ordinal: 1
 :specifies_epoch:
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjYWQxOWYxMGMtMTY3MC00MjAxLThlMGItZmM2NGNjMDY2N2Jk
-  :uri: http://www.assero.co.uk/EP#ad19f10c-1670-4201-8e0b-fc64cc0667bd
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjZjI3YmFiYjUtMzMyMS00NTU5LWFiYTItNGMwMjgyOTEyZjg4
+  :uri: http://www.assero.co.uk/EP#f27babb5-3321-4559-aba2-4c0282912f88
   :rdf_type: http://www.assero.co.uk/Protocol#Epoch
   :label: Treatment
   :tagged: []
   :ordinal: 2
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjYjFmODg2YjAtMDhmMS00ODMyLWFjZDQtODQzZjQyNmMxOTgw
-  :uri: http://www.assero.co.uk/EP#b1f886b0-08f1-4832-acd4-843f426c1980
-  :rdf_type: http://www.assero.co.uk/Protocol#Epoch
-  :label: Screening
-  :tagged: []
-  :ordinal: 1
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMWJiNWRjMzktNjFhYS00YWI0LThhOTAtYTE0OTdkZmNhYzUx
-  :uri: http://www.assero.co.uk/EP#1bb5dc39-61aa-4ab4-8a90-a1497dfcac51
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjZjM1ZmZjZTUtZDRiNS00MGQwLWE5ZWItMmI1OWZkZjFhNThk
+  :uri: http://www.assero.co.uk/EP#f35ffce5-d4b5-40d0-a9eb-2b59fdf1a58d
   :rdf_type: http://www.assero.co.uk/Protocol#Epoch
   :label: Follow Up
   :tagged: []
   :ordinal: 3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNzEyNjJlNGEtYWRiMi00YzIzLTlkNmQtMTQ1NDlhYzk5MDY1
+  :uri: http://www.assero.co.uk/EP#71262e4a-adb2-4c23-9d6d-14549ac99065
+  :rdf_type: http://www.assero.co.uk/Protocol#Epoch
+  :label: Screening
+  :tagged: []
+  :ordinal: 1

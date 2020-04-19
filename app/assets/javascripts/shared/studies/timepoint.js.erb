@@ -1,0 +1,401 @@
+/*
+* Timepoint
+*
+* Only in Study Build page
+*/
+
+/**
+ * Timepoint Constructor
+ *
+ * @param armId [String] id of the arm to which this instance belongs
+ * @param matrixRef [Object Instance] reference to the parent matrix instance
+ * @return [void]
+ */
+function Timepoint(data, matrixRef, timelineRef) {
+  this.matrix = matrixRef;
+  this.timeline = timelineRef;
+  this.data = data;
+  this.div = null;
+
+  this.linkToVisits();
+}
+
+
+/**
+ ************** General **************
+**/
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+Timepoint.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+
+/**
+ * Links this TP to visits if any
+ *
+ * @return [void]
+ */
+Timepoint.prototype.linkToVisits = function() {
+  if(this.data.visit_id != ""){
+    var visit = this.matrix.getItem(this.data.visit_id, "visits");
+    visit.data.timepoints.push(this.data.id);
+  }
+}
+
+/**
+ * Generates HTML for a single timepoint
+ *
+ * @return [String] formatted timepoint HTML
+ */
+Timepoint.prototype.timepointHTML = function() {
+  this.offsetLeft = this.tpOffset();
+  var tpOffset = "calc(" + this.offsetLeft + "%)";
+  var styles = this.timepointStyles();
+  var tpStyle = "left: " + tpOffset + "; " +
+                "background-color: " + styles.color + ";",
+      tpClass = "timepoint" + (this.data.baseline ? " baseline" : ""),
+      tpContents = "<span class='tp-badge' style='background: "+ styles.badgeColor +"'>"+
+                      this.data.biomedical_concepts.length +
+                   "</span>" +
+                   "<span class='tp-label'>"+
+                    this.timepointLabel() +
+                   "</span>";
+
+  this.div = ".timepoint[data-id='" + this.data.id + "']";
+
+  return "<div class='"+ tpClass +"' style='"+ tpStyle +"' tabindex='0' data-id='"+ this.data.id +"'>" +
+            tpContents +
+          "</div>";
+}
+
+/**
+ * Updates TP data, CSS
+ *
+ * @return [void]
+ */
+Timepoint.prototype.updateTpEpoch = function() {
+  var tpOffset = $(this.div).position().left + (this.timeline.tpRadius / 2);
+  var closestEpochId = this.timeline.offsetClosestEpoch(tpOffset);
+
+  if (closestEpochId == this.data.epoch_id)
+    return;
+
+  this.data.epoch_id = closestEpochId;
+
+  var styles = this.timepointStyles();
+
+  $(this.div).css("background-color", styles.color)
+  $(this.div).find(".tp-badge").css("background", styles.badgeColor);
+  this.tpChanged();
+}
+
+/**
+ * Updates TP data, CSS
+ *
+ * @return [void]
+ */
+Timepoint.prototype.updateTpOffset = function() {
+  var tlWidth = $("#tl-wrapper").width();
+  var tpMidPoint = ($(this.div).position().left);
+  var newOffset = Math.floor(tpMidPoint / (tlWidth / (this.timeline.maxOffset - this.timeline.minOffset))) + this.timeline.minOffset;
+
+  if (newOffset == this.data.offset)
+    return;
+
+  this.data.offset = newOffset;
+  this.updateTpLabel();
+  this.tpChanged();
+}
+
+/**
+ * Updates TP data, CSS
+ *
+ * @return [void]
+ */
+Timepoint.prototype.updateTpLabel = function() {
+  $(this.div).find(".tp-label").text(this.timepointLabel());
+}
+
+/**
+ * Call when offset of epoch changes
+ *
+ * @return [void]
+ */
+Timepoint.prototype.tpChanged = function() {
+  if(!_.contains(this.timeline.data.saveTimepoints, this))
+    this.timeline.data.saveTimepoints.push(this);
+}
+
+/**
+ * Calculates timepoint offset in % relative to max offset
+ *
+ * @return [Int] timepoint offset in %
+ */
+Timepoint.prototype.tpOffset = function() {
+  var result = ((this.data.offset - this.timeline.minOffset) * 100) / (this.timeline.maxOffset - this.timeline.minOffset);
+
+  if (isNaN(result))
+    return 0;
+  return Math.round(result * 100) / 100;
+}
+
+/**
+ * Builds a string time label for a timepoint
+ *
+ * @return [Int] timepoint offset in %
+ */
+Timepoint.prototype.timepointLabel = function() {
+  var value = parseInt(this.data.offset);
+  switch(this.data.unit) {
+    case "Day":
+      break;
+    case "Week":
+      value = value / 7;
+      break;
+    case "Month":
+      value = value / 30;
+      break;
+  }
+  return this.data.unit + " " + Math.floor(value);
+}
+
+/**
+ * Shows context dialog with timepoint details.
+ *
+ * @return [void]
+ */
+Timepoint.prototype.openTpContextDialog = function() {
+
+  this.timeline.tpDialog.show({
+    element: $(this.div),
+    title: "Time Point",
+    subtitle: this.tpActionBtnsHTML(),
+    content: this.tpDetailsHTML(),
+  });
+
+  this.tpDialogListeners();
+}
+
+/**
+ * Gets timepoints styles
+ *
+ * @return [void]
+ */
+Timepoint.prototype.timepointStyles = function() {
+  var epochColor = this.matrix.getItem(this.data.epoch_id, "epochs").color,
+      tpColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s + 10, l: epochColor.l}),
+      tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 40, l: epochColor.l - 22});
+
+  return {
+    color: tpColor,
+    badgeColor: tpBadgeBgColor
+  }
+}
+
+
+/**
+ ************** Timepoint Details **************
+**/
+
+
+/**
+ * Event listeners and handlers for a timepoint context dialog
+ *
+ * @return [void]
+ */
+Timepoint.prototype.tpDialogListeners = function(e) {
+  this.timeline.tpDialog.setListeners();
+
+  $(this.timeline.tpDialog.id).off("click", ".bg-label.bc")
+    .on("click", ".bg-label.bc", this.removeItem.bind(this));
+
+  $(this.timeline.tpDialog.id).find("#add-tp-items")
+    .off("click")
+    .on("click", this.addItems.bind(this));
+
+  $(this.timeline.tpDialog.id).off("click", "a.unit")
+    .on("click", "a.unit", this.changeTpUnit.bind(this));
+}
+
+/**
+ * Generates HTML action buttons to be shown in timepoint details dialog
+ *
+ * @param [Object] Timepoint data object
+ * @return [String] Action buttons HTML
+ */
+Timepoint.prototype.tpActionBtnsHTML = function() {
+  return  "<span class='text-accent-2 icon-trash clickable'></span>";
+}
+
+/**
+ * Generates HTML for timepoint details dialog
+ *
+ * @return [String] Timepoint details dialog formatted HTML
+ */
+Timepoint.prototype.tpDetailsHTML = function() {
+  var epochName = this.matrix.getItem(this.data.epoch_id, "epochs").label,
+      armName = this.matrix.getItem(this.timeline.armId, "arms").label,
+      html = "";
+
+  html += "<div class='timepoint-details' data-id='"+ this.data.id +"'>";
+  html +=   "<div class='font-regular text-normal'>" +
+              this.timepointLabel() +
+            "</div>";
+
+  html +=   this.data.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
+  html +=   "Offset (days): <span class='text-link'>"+ this.data.offset +"</span><br/>";
+  html +=   "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
+  html +=   "Arm: <span class='text-link'>"+ armName +"</span><br/>";
+  html +=   "Visit: <span class='text-link'>"+ (this.data.visit_id != "" ? this.matrix.data.visits[this.data.visit_id].data.label : "-") +"</span><br/>";
+  html +=   "Unit: " + this.tpUnitsHTML() + "<br/>";
+  html +=   "<hr>";
+  html +=   "Attached Assessments: (click to remove)";
+  html +=   "<div class='bg-labels-wrap scroll-styled'>";
+  html +=     _.isEmpty(this.data.biomedical_concepts) ? "None" : "";
+
+  $.each(this.data.biomedical_concepts, function(index, bc){
+    html +=   "<span class='bg-label bc removable' data-id='"+ bc.id +"'>"+ this.itemLabel(bc) +"</span>";
+  }.bind(this));
+
+  html +=   "</div>";
+  html +=   "<button class='btn btn-xs green' id='add-tp-items'>+ Add</button>";
+  html += "</div>";
+
+  return html;
+}
+
+/**
+ * Generates HTML action buttons to be shown in timepoint details dialog
+ *
+ * @param [Object] Timepoint data object
+ * @return [String] Action buttons HTML
+ */
+Timepoint.prototype.tpUnitsHTML = function() {
+  var units = ["Day", "Week", "Month"],
+      html = "";
+  $.each(units, function(i, unit){
+    var classes = "btn btn-xs light unit";
+    classes += (unit == this.data.unit ? " disabled" : "")
+    html += "<a href='#' class='"+ classes +"'>"+ unit +"</a>";
+  }.bind(this));
+
+  return html;
+}
+
+/**
+ * Updates TP Unit, handles response
+ *
+ * @return [void]
+ */
+Timepoint.prototype.changeTpUnit = function(e) {
+  var unit = $(e.target).text();
+
+  this.executeRequest({
+    url: tpChangeUnit.replace("tpId", this.data.id),
+    type: "POST",
+    data: {timepoint: {unit: unit} },
+    callback: function(result) {
+      $(this.timeline.tpDialog.id).find("a.unit").removeClass("disabled");
+      $(e.target).addClass("disabled");
+      this.data.unit = unit;
+      this.updateTpLabel();
+      this.loading(false);
+    }.bind(this)
+  })
+}
+
+/**
+ * Remove a BC from a timepoint request, UI update
+ *
+ * @return [void]
+ */
+Timepoint.prototype.removeItem = function(e) {
+  var itemId = $(e.currentTarget).attr("data-id");
+
+  this.executeRequest({
+    url: tpRemoveManagedUrl.replace("tpId", this.data.id),
+    type: "POST",
+    data: { timepoint: { managed_ids: [itemId]} },
+    callback: function(result) {
+      $(e.currentTarget).remove();
+      this.loading(false);
+    }.bind(this)
+  });
+}
+
+/**
+ * Show selector dialog, add BCs to a timepoint request, UI update
+ *
+ * @return [void]
+ */
+Timepoint.prototype.addItems = function(e) {
+  var _this = this;
+  var wrapper = $(e.currentTarget).closest(".timepoint-details");
+
+  this.matrix.bcsSelector.setCallback(function(selection) {
+    var objects = _.chain(selection)
+     .values()
+     .flatten()
+     .value();
+    var ids = objects.map(function(item) { return item.id });
+
+    this.executeRequest({
+      url: tpAddManagedUrl.replace("tpId", this.data.id),
+      type: "POST",
+      data: { timepoint: { managed_ids: ids} },
+      callback: function(result) {
+        $.each(objects, function(i, item){
+          this.data.biomedical_concepts.push(item);
+        }.bind(this));
+
+        this.loading(false);
+        this.openTpContextDialog();
+      }.bind(this)
+    });
+  }.bind(this))
+
+  this.matrix.bcsSelector.show();
+}
+
+
+/**
+ * Loading state toggle
+ *
+ * @param enable [Boolean] enable or disable loading
+ * @return [void]
+ */
+Timepoint.prototype.loading = function(enable) {
+  this.timeline.tpDialog.loading(enable);
+  this.timeline.loading(enable);
+}
+
+/**
+ * Generates HTML for the axis
+ *
+ * @param [Object] Timepoints data object
+ * @return [String] Styled axis HTML
+ */
+Timepoint.prototype.itemLabel = function(item) {
+  return item.label + " (" + (item.identifier || item.has_identifier.identifier) + ") v" + (item.semantic_version || "0.1.0");
+}

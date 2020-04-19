@@ -11,9 +11,9 @@ class Study < IsoManagedV2
   end
 
   def visits
-    results = []
+    results = {}
     query_string = %Q{
-      SELECT DISTINCT ?v ?vl ?vsn WHERE
+      SELECT DISTINCT ?v ?vl ?vsn ?tp WHERE
       {
         #{self.uri.to_ref} pr:implements ?p .
         ?p pr:specifiesEpoch ?e .
@@ -29,10 +29,13 @@ class Study < IsoManagedV2
       } ORDER BY ?os
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
-    triples = query_results.by_object_set([:v, :vl, :vsn])
+    triples = query_results.by_object_set([:v, :vl, :vsn, :tp])
     return [] if triples.empty?
-    triples.each {|entry| results << {id: entry[:v].to_id, uri: entry[:v].to_s, label: entry[:vl], short_name: entry[:vsn]}}
-    results
+    triples.each do |entry|
+      results[entry[:v].to_s] = {id: entry[:v].to_id, label: entry[:vl], short_name: entry[:vsn], timepoints: []} unless results.key?(entry[:v].to_s)
+      results[entry[:v].to_s][:timepoints] << entry[:tp].to_id
+    end
+    results.map{|k,v| v}
   end
 
   def soa
@@ -40,7 +43,7 @@ class Study < IsoManagedV2
     visit_set.each {|h| h[:applies] = false}
     results = {}
     query_string = %Q{
-      SELECT DISTINCT ?v ?vl ?x ?xl WHERE
+      SELECT DISTINCT ?v ?vl ?x ?xl ?xt ?xi WHERE
       {
         #{self.uri.to_ref} pr:implements ?p .
         ?p pr:specifiesEpoch ?e .
@@ -53,15 +56,18 @@ class Study < IsoManagedV2
         ?o pr:windowOffset ?os .
         ?v isoC:label ?vl .
         ?tp pr:hasPlanned/pr:isDerivedFrom ?x .
-        ?x isoC:label ?xl .   
+        ?x isoC:label ?xl . 
+        ?x isoT:hasIdentifier/isoI:identifier ?xi .  
+        ?x rdf:type ?xt .
       } ORDER BY ?os
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
-    triples = query_results.by_object_set([:v, :vl, :x, :xl])
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr, :isoT, :isoI])
+    triples = query_results.by_object_set([:v, :vl, :x, :xl, :xi, :xt])
     return [] if triples.empty?
     triples.each do |entry|
       uri_s = entry[:x].to_s
-      results[uri_s] = {label: entry[:xl], id: entry[:x].to_id, uri: entry[:x].to_s, visits: visit_set.dup} if !results.key?(uri_s)
+      dup_vs = Marshal.load(Marshal.dump(visit_set))
+      results[uri_s] = {label: entry[:xl], identifier: entry[:xi], id: entry[:x].to_id, rdf_type: entry[:xt].to_s, uri: entry[:x].to_s, visits: dup_vs} if !results.key?(uri_s)
       next if entry[:v].blank?
       visit = results[uri_s][:visits].find{|x| x[:id] == entry[:v].to_id} 
       visit[:applies] = true

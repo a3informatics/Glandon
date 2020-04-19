@@ -94,6 +94,10 @@ describe "Study" do
       load_data_file_into_triple_store("hackathon_protocols.ttl")
       load_data_file_into_triple_store("hackathon_bc_instances.ttl")
       load_data_file_into_triple_store("hackathon_bc_templates.ttl")
+      load_data_file_into_triple_store("hackathon_form_cibic.ttl")
+      load_data_file_into_triple_store("hackathon_form_dad.ttl")
+      load_data_file_into_triple_store("hackathon_form_lab_samples.ttl")
+      load_data_file_into_triple_store("hackathon_form_ecg.ttl")      
     end
 
     it "find protocol" do
@@ -109,7 +113,7 @@ describe "Study" do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
       actual = study.soa
-      check_file_actual_expected(actual, sub_dir, "soa_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "soa_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "visits" do
@@ -117,7 +121,7 @@ describe "Study" do
       study = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: pr.uri)
       study = Study.find_minimum(study.uri)
       actual = study.visits
-      check_file_actual_expected(actual, sub_dir, "visits_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "visits_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

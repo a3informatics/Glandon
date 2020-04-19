@@ -1,0 +1,107 @@
+/*
+* Study Objectives tab
+*
+* Only in Study Build page
+*/
+
+/**
+ * Study Objectives Constructor
+ *
+ * @return [void]
+ */
+function StudyObjectives() {
+  this.div = $("#study-objectives");
+  this.tab = $("#tab-objectives");
+  this.ready = false;
+}
+
+
+/**
+ ************** General **************
+**/
+
+/**
+ * Do nothing
+ *
+ * @return [void]
+ */
+StudyObjectives.prototype.show = function() {
+  if (!this.ready)
+    this.executeRequest({
+      url: objectivesUrl,
+      type: "GET",
+      data: {},
+      callback: function(result) {
+        this.buildHTML(result.data);
+        this.loading(false);
+        this.ready = true;
+      }.bind(this)
+    });
+}
+
+/**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyObjectives.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
+ * Build table HTML
+ *
+ * @param data [Object Array] Objective data
+ * @return [void]
+ */
+StudyObjectives.prototype.buildHTML = function(data) {
+  var table = this.div.find("table#objectives tbody");
+  table.empty();
+
+  $.each(data.selected, function(i, objective) {
+    var rowHTML = "";
+    rowHTML += "<tr><td>" + objective.text + "</td>";
+    rowHTML +=     "<td>" + objective.type + "</td>";
+    rowHTML +=     "<td class='center'><span class='icon-ok text-link'></span></td>";
+    rowHTML += "</tr>";
+    table.append(rowHTML);
+  });
+
+  $.each(data.not_selected, function(i, objective) {
+    var rowHTML = "";
+    rowHTML += "<tr><td>" + objective.text + "</td>";
+    rowHTML +=     "<td>" + objective.type + "</td>";
+    rowHTML +=     "<td class='center'><span class='icon-times text-accent-2'></span></td>";
+    rowHTML += "</tr>";
+    table.append(rowHTML);
+  });
+
+  if (_.isEmpty(data.selected) && _.isEmpty(data.not_selected))
+    table.append("<tr><td class='center' colspan=3>No Objectives data found.</td></tr>");
+}
+
+/**
+ * Enable disable loading state
+ *
+ * @param enable [Boolean] true/false show/hide loading
+ * @return [void]
+ */
+StudyObjectives.prototype.loading = function(enable) {
+  this.tab.trigger("loading", [enable]);
+}

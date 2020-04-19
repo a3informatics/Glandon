@@ -119,13 +119,13 @@ StudySchedule.prototype.asmntHTML = function(index, asmnt) {
 
   // Label
   dataRow.append("<td>" +
-                   "<span class='font-regular'>" + asmnt.short_name + "</span> " +
+                   "<span class='font-regular'>" + asmnt.identifier + "</span> " +
                    "<br/>" + asmnt.label +
                  "</td>");
   // Visit matrix
   $.each(asmnt.visits, function(i, visit){
     dataRow.append("<td class='cen'>" +
-                      (visit.applies ? "<span class='icon-ok text-link'></span>" : "" ) +
+                      (visit.applies ? "<span class='circular-badge xsmall' style='background: "+typeToBgColor(asmnt.rdf_type)+"'></span>" : "" ) +
                    "</td>");
   }.bind(this));
   // No visit data message

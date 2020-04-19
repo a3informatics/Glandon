@@ -15,16 +15,16 @@ function StudyTimeline(armId, matrixRef) {
   this.armId = armId;
   this.matrix = matrixRef;
   this.ready = false;
-  this.interactive = false;
+  this.interactive = true;
 
   this.tabName = "tab-timeline";
   this.wrapper = $("#tab-timeline-body");
   this.div = this.wrapper.find("#study-timeline");
 
-  this.tpRadius = 30;
+  this.tpRadius = 24;
   this.tpDialog = new ContextDialog("0");
 
-  this.data = { timepoints: [], renderTimepoints: [] }
+  this.data = { timepoints: [], renderTimepoints: [], saveTimepoints: [] }
 }
 
 
@@ -46,21 +46,50 @@ StudyTimeline.prototype.show = function() {
 }
 
 /**
+ * Executes an ajax request based on params. Invokes callback on success.
+ *
+ * @param params [Object] request parameters: url, type, data, callback(function)
+ * @return [void]
+ */
+StudyTimeline.prototype.executeRequest = function(params) {
+  this.loading(true);
+
+  $.ajax({
+    url: params.url,
+    type: params.type,
+    dataType: 'json',
+    data: params.data,
+    context: this,
+    success: function(result) {
+      params.callback(result);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+/**
  * Loads timeline data
  *
  * @return [void]
  */
 StudyTimeline.prototype.loadData = function() {
-  this.loading(true);
+  this.executeRequest({
+    url: this.tpDataUrl(),
+    type: "GET",
+    data: {},
+    callback: function(result) {
+      $.each(result.data, function(i, timepoint) {
+        this.data.timepoints.push(new Timepoint(timepoint, this.matrix, this));
+      }.bind(this));
 
-  // TODO: Ajax call for data
-  // TODO: this.ready = true;
-
-  this.data.timepoints = this.mockData();
-  this.ready = true;
-
-  this.loading(false);
-  this.render(this.data.timepoints);
+      this.ready = true;
+      this.loading(false);
+      this.render(this.data.timepoints);
+    }.bind(this)
+  })
 }
 
 /**
@@ -71,12 +100,42 @@ StudyTimeline.prototype.loadData = function() {
 StudyTimeline.prototype.setListeners = function() {
   this.div
     .off("dblclick", ".timepoint")
-    .on("dblclick", ".timepoint", this.openTpContextDialog.bind(this));
+    .on("dblclick", ".timepoint", function(e) {
+      this.findTimepoint("id", $(e.currentTarget).attr("data-id")).openTpContextDialog();
+    }.bind(this));
 
   if(this.interactive)
     this.interactionListeners();
+}
 
 
+/**
+ * Sets event listeners and handlers
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.minMaxOffsets = function() {
+  this.data.renderTimepoints.sort((a, b) => (a.data.offset > b.data.offset) ? 1 : -1)
+  var minOffset = 0,
+      maxOffset = 6;
+
+  if (_.isEmpty(this.data.renderTimepoints)) {
+    if (this.currentEpochFilter() != null) {
+      var currentEpochId = this.currentEpochFilter().attr("data-id");
+
+      var epochIndex = _.indexOf(_.values(this.matrix.data.epochs), this.matrix.getItem(currentEpochId, "epochs"));
+      minOffset += (maxOffset + 1) * epochIndex;
+      maxOffset += (maxOffset + 1) * epochIndex;
+    }
+  }
+  else {
+    maxOffset = Math.max.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
+    minOffset = Math.min.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
+    // Add 7 day buffer for the right edge of the timeline
+    maxOffset += 6;
+  }
+  this.maxOffset = maxOffset;
+  this.minOffset = minOffset;
 }
 
 /**
@@ -85,27 +144,74 @@ StudyTimeline.prototype.setListeners = function() {
  * @return [void]
  */
 StudyTimeline.prototype.interactionListeners = function() {
-  $(".epoch-block").resizable({
+  var _this = this;
+
+  $(this.div).find(".epoch-block").resizable({
     handles: "w,e",
     containment: $("#tl-wrapper"),
-    alsoResizeReverse: $('.epoch-block'),
+    minWidth: 20,
+    alsoResizeReverse: $(this.div).find('.epoch-block'),
+    resize: function(ev, ui) {
+      $.each(_this.data.renderTimepoints, function(i, timepoint) {
+        timepoint.updateTpEpoch();
+      });
+    },
+    stop: function(ev, ui){
+      this.render(this.data.renderTimepoints);
+      this.wrapper.find("#save-timeline").removeClass("disabled");
+    }.bind(this)
   });
 
-  $(_.first($(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-w").remove();
-  $(_.last($(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-e").remove();
+  $(_.first($(this.div).find(".epoch-block"))).find(".ui-resizable-handle.ui-resizable-w").remove();
+  $(this.div).find(".epoch-block").find(".ui-resizable-handle.ui-resizable-e").remove();
 
 
-  $(".timepoint").draggable({
+  $(this.div).find(".timepoint").draggable({
     axis: "x",
-    containment: $("#tl-wrapper"),
-    drag: function(event, ui) {
+    cancel: ".baseline",
+    containment: [$("#tl-wrapper").offset().left - 60, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 40, 0],
+    start: function (e, ui) {
+      this.minMaxOffsets();
+    }.bind(this),
+    drag: function(e, ui) {
+      var timepoint = this.findTimepoint("id", $(e.target).attr("data-id"));
+      timepoint.updateTpEpoch();
+      timepoint.updateTpOffset();
+    }.bind(this),
+    stop: function (e, ui) {
+      this.render(this.data.renderTimepoints);
+      this.wrapper.find("#save-timeline").removeClass("disabled");
+    }.bind(this),
+  });
 
+  $(window).on("resize", function(){
+    $(this.div).find(".epoch-block").resizable("option", "containment", $("#tl-wrapper"));
+    $(this.div).find(".timepoint").draggable("option", "containment", [$("#tl-wrapper").offset().left - 60, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 40, 0]);
+  });
+
+  $(this.wrapper).find(".visit").draggable({
+    opacity: 0.8,
+    helper: "clone",
+    revertDuration: 100,
+    revert: true,
+    start: function(ev, ui) {
+      _this.desaturate(true);
     },
-    stop: function () {
-      var l = ( 100 * parseFloat($(this).position().left / parseFloat($("#tl-wrapper").width())) ) + "%" ;
-      $(this).css("left", l);
+    stop: function(ev, ui) {
+      _this.desaturate(false);
+    }
+  });
+
+  $(this.wrapper).find(".timepoint").droppable({
+    accept: ".visit",
+    classes: {
+      "ui-droppable-hover": "ui-state-hover"
     },
-    start: function(event, ui){ }
+    drop: function(ev, ui) {
+      var timepointId = $(this).attr("data-id");
+      var visitId = ui.draggable.attr("data-id");
+      _this.matrix.getItem(visitId, "visits").updateTimepoint(timepointId);
+    }
   });
 }
 
@@ -117,8 +223,7 @@ StudyTimeline.prototype.interactionListeners = function() {
  */
 StudyTimeline.prototype.render = function(timepointSet) {
   this.data.renderTimepoints = timepointSet;
-  this.div.empty();
-  this.tpDialog.clear();
+  this.clear();
   this.div.addClass("fadein");
 
   this.div.append("<div id='tl-wrapper'></div>");
@@ -127,88 +232,25 @@ StudyTimeline.prototype.render = function(timepointSet) {
   wrap.append(this.axisHTML());
 
   $.each(timepointSet, function(index, timepoint) {
-    wrap.append(this.timepointHTML(timepoint));
+    wrap.append(timepoint.timepointHTML());
   }.bind(this));
 
   var epochs = this.matrix.data.epochs;
-  $.each(epochs, function(index, epoch){
+  $.each(_.values(epochs), function(index, epoch){
     wrap.append(this.epochHTML(epoch));
   }.bind(this));
+
+  var visits = this.matrix.data.visits;
+  $.each(_.values(visits), function(index, visit){
+    wrap.append(visit.blockHTML());
+  }.bind(this));
+
+  $(this.div).find("#timeline-axis #before").html("Day <br/>" + this.minOffset);
+  $(this.div).find("#timeline-axis #after").html("Day <br/>" + this.maxOffset);
 
   setTimeout(function(){this.div.removeClass("fadein")}.bind(this), 1);
 
   this.setListeners();
-}
-
-
-/**
- ************** Timepoint Details **************
-**/
-
-
-/**
- * Shows context dialog with timepoint details.
- *
- * @return [void]
- */
-StudyTimeline.prototype.openTpContextDialog = function(e) {
-  var timepointData = this.findTimepoint("id", $(e.currentTarget).attr("data-id"));
-
-  this.tpDialog.show({
-    element: $(e.currentTarget),
-    title: "Time Point",
-    subtitle: this.tpActionBtnsHTML(),
-    content: this.tpDetailsHTML(timepointData)
-  });
-
-  this.tpDialogListeners();
-}
-
-/**
- * Event listeners and handlers for a timepoint context dialog
- *
- * @return [void]
- */
-StudyTimeline.prototype.tpDialogListeners = function(e) {
-  this.tpDialog.setListeners();
-
-  $(this.tpDialog.id).on("click", ".bg-label", this.removeBCFromTp.bind(this));
-  $(this.tpDialog.id).find("#add-bcs").on("click", this.addBCToTp.bind(this));
-}
-
-/**
- * Remove a BC from a timepoint request, UI update
- *
- * @return [void]
- */
-StudyTimeline.prototype.removeBCFromTp = function(e) {
-  var wrapper = $(e.currentTarget).closest(".timepoint-details");
-  var bcId = $(e.currentTarget).attr("data-id");
-
-  $(e.currentTarget).remove();
-}
-
-/**
- * Show selector dialog, add BCs to a timepoint request, UI update
- *
- * @return [void]
- */
-StudyTimeline.prototype.addBCToTp = function(e) {
-  var _this = this;
-  var wrapper = $(e.currentTarget).closest(".timepoint-details");
-
-  this.matrix.bcsSelector.setCallback(function(data) {
-    $.each(data.bcs, function(idx, bc) {
-      // TODO: Add server request to post data
-      // TODO: Handle server response on added BCs (re-draw the dialog)
-      wrapper.find(".bg-labels-wrap")
-        .append("<span class='bg-label removable' data-id='"+ bc.id +"'>"+
-                  _this.bcLabel(bc) +
-                "</span>");
-    });
-  })
-
-  this.matrix.bcsSelector.show();
 }
 
 
@@ -224,46 +266,19 @@ StudyTimeline.prototype.addBCToTp = function(e) {
  * @return [String] Styled axis HTML
  */
 StudyTimeline.prototype.axisHTML = function() {
-  var arm = this.matrix.getItem("id", this.armId, "arms");
+  var arm = this.matrix.getItem(this.armId, "arms");
 
   var axisColor = this.matrix.hslString(arm.color),
       axisLabel = "<div class='axis-label' style='color: "+ axisColor +"'>" +
                     arm.label +
-                  "</div>";
+                  "</div>",
+      axisContent =   "<div id='before'></div><div id='after'></div>";
 
   return "<div id='timeline-axis' style='background-color: " + axisColor + "'>" +
-            axisLabel +
+            axisLabel + " " + axisContent +
          "</div>";
 }
 
-/**
- * Generates HTML for a single timepoint
- *
- * @param timepoint [Object] timepoint to generate HTML for
- * @return [String] formatted timepoint HTML
- */
-StudyTimeline.prototype.timepointHTML = function(timepoint) {
-  timepoint.offsetLeft = this.tpOffset(timepoint);
-
-  var tpOffset = "calc(" + timepoint.offsetLeft + "%)",
-      epochColor = this.matrix.getItem("id", timepoint.epoch_id, "epochs").color,
-      tpColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s + 10, l: epochColor.l}),
-      tpBadgeBgColor = this.matrix.hslString({h: epochColor.h, s: epochColor.s - 40, l: epochColor.l - 22});
-
-  var tpStyle = "left: " + tpOffset + "; " +
-                "background-color: " + tpColor + ";",
-      tpClass = "timepoint" + (timepoint.baseline ? " baseline" : ""),
-      tpContents = "<span class='tp-badge' style='background: "+ tpBadgeBgColor +"'>"+
-                      timepoint.biomedical_concepts.length +
-                   "</span>" +
-                   "<span class='tp-label'>"+
-                    this.timepointLabel(timepoint) +
-                   "</span>";
-
-  return "<div class='"+ tpClass +"' style='"+ tpStyle +"' tabindex='0' data-id='"+ timepoint.id +"'>" +
-            tpContents +
-          "</div>";
-}
 
 /**
  * Generates HTML for an epoch on the timeline
@@ -298,37 +313,46 @@ StudyTimeline.prototype.epochHTML = function(epoch) {
  * @param edgeTimepoints [Array] edge timepoints calculated by getEpochEdgeTps
  * @return [String] CSS Width string for an Epoch HTML / null if no epoch data
  */
-StudyTimeline.prototype.getEpochCSS = function(epoch, edgeTimepoints) {
+StudyTimeline.prototype.getEpochCSS = function(epoch) {
   var edgeTimepoints = this.getEpochEdgeTps(epoch);
-
-  // No timepoints in an epoch - do not render
-  if (_.isEmpty(edgeTimepoints))
-      return null;
 
   var epochBgColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l + 12 }),
       epochLabelColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l - 40 }),
       epochWidth, epochOffsetLeft;
 
-  // No next timepoint after epoch
-  if (_.isUndefined(edgeTimepoints[1])) {
-    var lastTimepoint = _.last(this.data.renderTimepoints);
+  // No timepoints in an epoch - do not render
+  if (_.isEmpty(edgeTimepoints)){
+    var epochFilter = this.currentEpochFilter();
 
-    // First and last timepoints are the same
-    if (lastTimepoint.id == edgeTimepoints[0].id)
-      epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "%)";
-    // First and last timepoints are not the same - find difference
-    else {
-      var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
-      epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"%)";
+    if (epochFilter != null && epochFilter.attr("data-id") == epoch.id) {
+      epochWidth = "100%;";
+      epochOffsetLeft = "0%";
     }
+    else
+      return null;
   }
   else {
-    // Difference between first epoch timepoint and first next epoch timepoint
-    var difference = edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft;
-    epochWidth = difference + "%";
-  }
+    // No next timepoint after epoch
+    if (_.isUndefined(edgeTimepoints[1])) {
+      var lastTimepoint = _.last(this.data.renderTimepoints);
 
-  epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "%)" || "0";
+      // First and last timepoints are the same
+      if (lastTimepoint.data.id == edgeTimepoints[0].id)
+        epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "%)";
+      // First and last timepoints are not the same - find difference
+      else {
+        var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
+        epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"%)";
+      }
+    }
+    else {
+      // Difference between first epoch timepoint and first next epoch timepoint
+      var difference = edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft;
+      epochWidth = difference + "%";
+    }
+
+    epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "%)" || "0";
+  }
 
   return {
     bgColor: epochBgColor,
@@ -346,7 +370,7 @@ StudyTimeline.prototype.getEpochCSS = function(epoch, edgeTimepoints) {
  * returns empty [] if no timepoints found
  */
 StudyTimeline.prototype.getEpochEdgeTps = function(epoch) {
-  var epochTimepoints = _.filter(this.data.renderTimepoints, function (tp) { return tp.epoch_id == epoch.id; }),
+  var epochTimepoints = _.filter(this.data.renderTimepoints, function (tp) { return tp.data.epoch_id == epoch.id; }),
       nextTimepointIndex = _.indexOf(this.data.renderTimepoints, _.last(epochTimepoints)) + 1;
       nextTimepoint = this.data.renderTimepoints[nextTimepointIndex];
 
@@ -357,71 +381,27 @@ StudyTimeline.prototype.getEpochEdgeTps = function(epoch) {
 }
 
 /**
- * Calculates timepoint offset in % relative to max offset
+ * Finds previous epoch
  *
- * @param timepoint [Object] timepoint to calculate offset for
- * @return [Int] timepoint offset in %
+ * @param epoch [Object] single epoch object
+ * @return
  */
-StudyTimeline.prototype.tpOffset = function(timepoint) {
-  var maxOffset = _.last(this.data.renderTimepoints).offset;
-  var minOffset = _.first(this.data.renderTimepoints).offset;
+StudyTimeline.prototype.getPreviousEpoch = function(epoch) {
+  var index = _.indexOf(_.values(this.matrix.data.epochs), epoch) - 1;
 
-  // Add 5% buffer for the right edge of the timeline
-  maxOffset += Math.abs((maxOffset - minOffset) * 0.05);
-
-  var result = ((timepoint.offset - minOffset) * 100) / (maxOffset - minOffset);
-
-  if (isNaN(result))
-    return 0;
-
-  return Math.round(result * 100) / 100;
-}
-
-
-/**
- * Generates HTML action buttons to be shown in timepoint details dialog
- *
- * @param [Object] Timepoint data object
- * @return [String] Action buttons HTML
- */
-StudyTimeline.prototype.tpActionBtnsHTML = function(timepoint) {
-  return  "<span class='text-link icon-edit clickable' style='margin-right: 10px;'></span>" +
-          "<span class='text-accent-2 icon-trash clickable'></span>";
+  return _.values(this.matrix.data.epochs)[index];
 }
 
 /**
- * Generates HTML for timepoint details dialog
+ * Finds next epoch
  *
- * @param [Object] Timepoint data object
- * @return [String] Timepoint details dialog formatted HTML
+ * @param epoch [Object] single epoch object
+ * @return
  */
-StudyTimeline.prototype.tpDetailsHTML = function(timepoint) {
-  var epochName = this.matrix.getItem("id", timepoint.epoch_id, "epochs").label,
-      armName = this.matrix.getItem("id", this.armId, "arms").label,
-      html = "";
+StudyTimeline.prototype.getNextEpoch = function(epoch) {
+  var index = _.indexOf(_.values(this.matrix.data.epochs), epoch) + 1;
 
-  html += "<div class='timepoint-details' data-id='"+ timepoint.id +"'>";
-  html +=   "<div class='font-regular text-normal'>" +
-              this.timepointLabel(timepoint) +
-            "</div>";
-
-  html +=   timepoint.baseline ? "<span class='text-accent-2'>Baseline</span><br/>" : "";
-  html +=   "Epoch: <span class='text-link'>"+ epochName +"</span><br/>";
-  html +=   "Arm: <span class='text-link'>"+ armName +"</span><br/>";
-
-  html +=   "Biomedical Concepts: (click to remove)";
-  html +=   "<div class='bg-labels-wrap scroll-styled'>";
-  html +=     _.isEmpty(timepoint.biomedical_concepts) ? "None" : "";
-
-  $.each(timepoint.biomedical_concepts, function(index, bc){
-    html +=   "<span class='bg-label removable' data-id='"+ bc.id +"'>"+ this.bcLabel(bc) +"</span>";
-  }.bind(this));
-
-  html +=   "</div>";
-  html +=   "<button class='btn btn-xs green' id='add-bcs'>+ Add BCs</button>";
-  html += "</div>";
-
-  return html;
+  return _.values(this.matrix.data.epochs)[index];
 }
 
 
@@ -438,7 +418,7 @@ StudyTimeline.prototype.tpDetailsHTML = function(timepoint) {
  * @return [Array] filtered array of this instance's timepoint data
  */
 StudyTimeline.prototype.filterTimepoints = function(paramType, value) {
-  return this.data.timepoints.filter( function(tp) { return tp[paramType] == value });
+  return this.data.timepoints.filter( function(tp) { return tp.data[paramType] == value });
 }
 
 /**
@@ -448,17 +428,94 @@ StudyTimeline.prototype.filterTimepoints = function(paramType, value) {
  * @param value [Anything] value to compare
  * @return [Object] first timepoint matching / null if not found
  */
-StudyTimeline.prototype.findTimepoint = function(property, value) {
+StudyTimeline.prototype.findTimepoint = function(property, value, comparator) {
   var result = null;
 
   $.each(this.data.timepoints, function(index, timepoint) {
-    if (timepoint[property] == value) {
+    if (timepoint.data[property] == value) {
       result = timepoint;
       return false;
     }
   });
 
   return result;
+}
+
+/**
+ * Verify that a new timepoint is at a valid location. Displays error if not verified
+ *
+ * @param epochId [String] id of the epoch in which the timepoint is going to be created
+ * @param offset [Int] offset in which the timepoint is going to be created
+ * @return [Boolean] true if verified
+ */
+StudyTimeline.prototype.timepointValid = function(epochId, offset) {
+  if (_.isEmpty(this.data.timepoints))
+    return true;
+
+  return true;
+}
+
+/**
+ * Get TP data url for this arm
+ *
+ * @return [String] url for data fetch
+ */
+StudyTimeline.prototype.tpDataUrl = function() {
+  return armTpsUrl.replace("armId", this.armId);
+}
+
+/**
+ * Get TP add url for this arm
+ *
+ * @return [String] url for timepoint add
+ */
+StudyTimeline.prototype.tpAddUrl = function() {
+  return armAddTpUrl.replace("armId", this.armId);
+}
+
+/**
+ * Get TP add url for this arm
+ *
+ * @return [String] url for timepoint add
+ */
+StudyTimeline.prototype.tpsSaveUrl = function() {
+  return armTpsSaveUrl.replace("armId", this.armId);
+}
+
+
+
+/**
+ * Toggles desaturation overlay
+ *
+ * @param enable [Boolean] true / false enable / disable overlay
+ * @param zIndex [Integer] optional
+ * @return [void]
+ */
+StudyTimeline.prototype.desaturate = function(enable, zIndex) {
+  if (enable)
+    $(this.wrapper).append("<div class='dark-overlay' style='z-index: "+ (zIndex || 9) +"'></div>");
+  else
+    $(".dark-overlay").remove();
+}
+
+/**
+ * Clears timeline
+ *
+ * @return [void]
+ */
+StudyTimeline.prototype.clear = function() {
+  this.div.empty();
+  this.tpDialog.clear();
+  this.minMaxOffsets();
+}
+
+/**
+ * Return active epoch filter button, or null if none active
+ *
+ * @return [JQuery Element] or Null
+ */
+StudyTimeline.prototype.currentEpochFilter = function() {
+  return $(".bg-label.epoch.active").length > 0 ? $(".bg-label.epoch.active") : null;
 }
 
 /**
@@ -472,227 +529,50 @@ StudyTimeline.prototype.loading = function(enable) {
 }
 
 /**
- * Generates HTML for the axis
+ * Converts x-axis offset to days offset relative to timepoints and timeline width
  *
- * @param [Object] Timepoints data object
- * @return [String] Styled axis HTML
+ * @param offset [Int] X offset on the timeline
+ * @return [Int] Offset in days
  */
-StudyTimeline.prototype.bcLabel = function(bc) {
-  return bc.label + " (" + (bc.identifier || bc.has_identifier.identifier) + ") v" + (bc.semantic_version || "0.1.0");
+StudyTimeline.prototype.offsetToDays = function(offset) {
+  var width = $("#tl-wrapper").width(),
+      offset = Math.floor(offset / (width / (this.maxOffset - this.minOffset))) + this.minOffset;
+
+  return offset;
 }
 
 /**
- * Builds a string time label for a timepoint
+ * Finds closest epoch to an offset on the x axis
  *
- * @param timepoint [Object] timepoint object to generate label for
- * @return [Int] timepoint offset in %
+ * @param offset [Int] X-axis offset to find epoch for
+ * @return [String] closest epoch element id / empty ""
  */
-StudyTimeline.prototype.timepointLabel = function(timepoint) {
-  return timepoint.unit + " " + timepoint.value;
-}
+StudyTimeline.prototype.offsetClosestEpoch = function(offset) {
+  var tEpoch = null;
 
+  $(".epoch-block").each(function(i, e) {
+    var eLeft = $(e).position().left,
+        eRight = $(e).position().left + $(e).width();
 
+    if ((eLeft < offset) && (eRight > offset)) {
+      tEpoch = $(e);
+      return false;
+    }
+  });
 
-StudyTimeline.prototype.mockData = function() {
-  this.ready = true;
-  switch(this.armId){
-    case "210x":
-      return [
-        {
-          id: "991",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
-          element_id: "211x",
-          unit: "Week",
-          value: -2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -2
-        },
-        {
-          id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "212x",
-          unit: "Day",
-          value: 0,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
-          element_id: "213x",
-          unit: "Week",
-          value: 8,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 8
-        },
-        {
-          id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Week",
-          value: 12,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 12
-        },
-        {
-          id: "995",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Week",
-          value: 16,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"},
-                                {identifier: "BC3", label: "Label 3", semantic_version: "1.2.1", id: "883"}],
-          baseline: false,
-          offset: 16
-        },
-        {
-          id: "996",
-          epoch_id: "116x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Week",
-          value: 18,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 18
-        },
-      ];
-    case "310x":
-      return [
-        {
-          id: "991",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
-          element_id: "211x",
-          unit: "Week",
-          value: -2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: -2
-        },
-        {
-          id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "212x",
-          unit: "Day",
-          value: 0,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
-          element_id: "213x",
-          unit: "Week",
-          value: 4,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 4
-        },
-        {
-          id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Month",
-          value: 2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 8
-        },
-      ];
-    case "410x":
-      return [
-        {
-          id: "990",
-          epoch_id: "111x",
-          arms: ["210x", "310x"],
-          element_id: "211x",
-          unit: "Week",
-          value: -2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -2
-        },
-        {
-          id: "991",
-          epoch_id: "111x",
-          arms: ["210x"],
-          element_id: "212x",
-          unit: "Day",
-          value: -2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: -0.2
-        },
-        {
-          id: "992",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "212x",
-          unit: "Day",
-          value: 0,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: true,
-          offset: 0
-        },
-        {
-          id: "993",
-          epoch_id: "112x",
-          arms: ["210x", "310x"],
-          element_id: "213x",
-          unit: "Week",
-          value: 4,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}, {identifier: "BC2", label: "Label 2", semantic_version: "1.2.0", id: "882"}],
-          baseline: false,
-          offset: 4
-        },
-        {
-          id: "994",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Month",
-          value: 2,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 8
-        },
-        {
-          id: "995",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Month",
-          value: 4,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 16
-        },
-        {
-          id: "996",
-          epoch_id: "112x",
-          arms: ["210x"],
-          element_id: "214x",
-          unit: "Month",
-          value: 6,
-          biomedical_concepts: [{identifier: "BC", label: "Label", semantic_version: "1.0.0", id: "881"}],
-          baseline: false,
-          offset: 24
-        },
-      ];
+  if(tEpoch == null) {
+    $(".epoch-block").each(function(i, e) {
+      if (tEpoch == null)
+        tEpoch = $(e);
+      else {
+        var eLeft = $(e).position().left,
+            tELeft = $(tEpoch).position().left;
+
+        if (Math.abs(eLeft - offset) <= Math.abs(tELeft - offset))
+          tEpoch = $(e);
+      }
+    });
   }
 
+  return _.isNull(tEpoch) ? null : tEpoch.attr("data-epoch-id");
 }

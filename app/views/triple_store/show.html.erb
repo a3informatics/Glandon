@@ -1,35 +1,51 @@
-<%= javascript_include_tag 'shared/iso_managed/index_page', 'shared/index_panel' %>
+<% uri = @triples.empty? ? "" : @triples.first[:subject] %>
+
+<%= javascript_tag "setPageTitle('Triples: #{uri}')" %>
+<%= javascript_include_tag 'standard_datatable' %>
+<% first_level_breadcrumb (:triples) %>
 
 <div class="row">
-  <% uri = @triples.empty? ? "" : @triples.first[:subject] %>
-  <%= render partial: "shared/simple_header_tiny", :locals => {badge: "icon-forms",
+  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-triples",
     main_text: "Triples",
-    sub_text: "View raw database content: #{uri}" } %>
+    sub_text: "Viewing raw database content of: <span class='font-regular'>#{uri}</span>".html_safe } do %>
+
+    <div class="btns-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+           icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
 </div>
 
-<div class="row">
-	<div class="table-width-wrapper">
-    <table id="index" class="table table-striped table-bordered table-condensed">
-      <thead>
-        <tr>
-          <th class="fit">Predicate</th>
-					<th class="fit">Object</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @triples.each do |triple| %>
-          <tr>
-            <td><%= triple[:predicate] %></td>
-            <td>
-              <% if triple[:object].start_with?("http") %>    
-                <%= link_to "#{triple[:object]}", triple_store_path(Uri.new(uri: triple[:object]).to_id) %> 
-              <% else %>    
-                <%= triple[:object] %>
-              <% end %>    
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-	</div>
+<div class="row centered">
+  <div class="col-md-11 card wide">
+    <div class="card-header">
+      Show
+    </div>
+    <div class="card-content table-cardstyle all-columns">
+    	<div class="table-width-wrapper">
+        <table id="main" class="table table-striped table-bordered table-condensed">
+          <thead>
+            <tr>
+              <th class="fit">Predicate</th>
+    					<th class="fit">Object</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @triples.each do |triple| %>
+              <tr>
+                <td><%= triple[:predicate] %></td>
+                <td>
+                  <% if triple[:object].start_with?("http") %>
+                    <%= link_to "#{triple[:object]}", triple_store_path(Uri.new(uri: triple[:object]).to_id) %>
+                  <% else %>
+                    <%= triple[:object] %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    	</div>
+    </div>
+  </div>
 </div>

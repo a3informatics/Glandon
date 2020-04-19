@@ -5,6 +5,12 @@
     children_cl_url = children_thesauri_managed_concept_path(id: "miClId")
     index_bc_url = biomedical_concepts_path
     history_bc_url = history_biomedical_concepts_path(biomedical_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_forms_url = forms_path
+    history_forms_url = history_forms_path(form: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_assessments_url = assessments_path
+    history_assessments_url = history_assessments_path(assessment: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_protocol_templates = protocol_templates_path
+    history_protocol_templates = history_protocol_templates_path(protocol_template: {identifier: "miHistoryId", scope_id: "miScopeId"})
 %>
 
 <%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
@@ -13,5 +19,11 @@
                         miHistoryClUrl = '#{history_cl_url}',
                         miChildrenClUrl = '#{children_cl_url}',
                         miIndexBcUrl = '#{index_bc_url}'
-                        miHistoryBcUrl = '#{history_bc_url}'; "
+                        miHistoryBcUrl = '#{history_bc_url}',
+                        miIndexFormUrl = '#{index_forms_url}'
+                        miHistoryFormUrl = '#{history_forms_url}',
+                        miIndexAsmntUrl = '#{index_assessments_url}'
+                        miHistoryAsmntUrl = '#{history_assessments_url}',
+                        miIndexPrtclTempUrl = '#{index_protocol_templates}',
+                        miHistoryPrtclTempUrl = '#{history_protocol_templates}';"
                         %>

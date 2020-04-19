@@ -27,3 +27,18 @@ table.schedule-table td.cen {
 table.schedule-table td .circular-badge span[class^="icon-"] {
   // font-size: 11pt;
 }
+
+table#objectives {
+  width: auto !important;
+  margin: 10px auto;
+  font-family: $font-light;
+  max-width: 900px;
+}
+
+table#objectives th, table#objectives td {
+  padding: 10px 10px;
+}
+
+table#objectives th {
+  font-family: $font-primary;
+}

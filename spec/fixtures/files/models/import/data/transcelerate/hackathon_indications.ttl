@@ -22,9 +22,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T17:39:11+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T17:18:55+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication :IND_TUC1 ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_4/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_5/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_6/V1#OB> ;
 .
 :IND_RS
 	rdf:type isoR:RegistrationState ;
@@ -53,7 +58,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C49558/V1#C49558_C49563> ;
-	bo:context <http://www.transceleratebiopharmainc.com/CT/V1#TH> ;
+	bo:context <http://www.s-cubed.dk/CT/V1#TH> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND>
@@ -64,9 +69,10 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T17:39:11+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T17:18:55+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_DIA/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;
@@ -94,8 +100,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000002> ;
-	bo:context <http://www.transceleratebiopharmainc.com/CT/V1#TH> ;
+	bo:reference <http://www.s-cubed.dk/H000001/V1#H000001_HI000002> ;
+	bo:context <http://www.s-cubed.dk/CT/V1#TH> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND>
@@ -106,9 +112,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T17:39:11+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T17:18:55+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_RA/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;
@@ -136,8 +144,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000003> ;
-	bo:context <http://www.transceleratebiopharmainc.com/CT/V1#TH> ;
+	bo:reference <http://www.s-cubed.dk/H000001/V1#H000001_HI000003> ;
+	bo:context <http://www.s-cubed.dk/CT/V1#TH> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND>
@@ -148,9 +156,12 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-15T17:39:11+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T17:18:55+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:indication <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND_TUC1> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_1/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_2/V1#OB> ;
+	pr:hasObjective <http://www.transceleratebiopharmainc.com/OBJ_3/V1#OB> ;
 .
 <http://www.transceleratebiopharmainc.com/IND_INF/V1#IND_RS>
 	rdf:type isoR:RegistrationState ;
@@ -178,7 +189,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.transceleratebiopharmainc.com/H000001/V1#H000001_HI000004> ;
-	bo:context <http://www.transceleratebiopharmainc.com/CT/V1#TH> ;
+	bo:reference <http://www.s-cubed.dk/H000001/V1#H000001_HI000004> ;
+	bo:context <http://www.s-cubed.dk/CT/V1#TH> ;
 	bo:localLabel ""^^xsd:string ;
 .

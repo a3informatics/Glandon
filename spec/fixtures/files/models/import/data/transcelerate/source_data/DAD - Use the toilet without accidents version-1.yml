@@ -1,0 +1,104 @@
+---
+- :label: "DAD - Use the toilet without accidents"
+  :identifier: "DAD C105183"
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by: 
+    :label: "Test"
+    :enabled: true
+    :complex_datatype: 
+     - 
+      :short_name: CD
+      :has_property: 
+      - 
+        :label: "code"
+        :bridg_path: "DefinedObservation.nameCode.CD.code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: ""
+        :has_coded_value: 
+        - 
+           :cl: H000003
+           :cli: HI000010
+           :term: "http://www.cdisc.org/C105130/V34#C105130_C105183"
+           :cl: "C105130"
+           :cli: "C105183"
+           :notation: "DAD0114"
+  :has_items: 
+  - :label: "Category Code"
+    :enabled: true
+    :complex_datatype: 
+    -
+      :short_name: CD
+      :has_property:
+      -
+        :label: "code"
+        :bridg_path: "DefinedObservation.categoryCode.CD.code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: ""
+        :has_coded_value: 
+        - 
+           :term: "http://www.cdisc.org/C100129/V34#C100129_C105165"
+           :cl: "C100129"
+           :cli: "C105165"
+           :notation: "DAD"
+  - :label: "Subcategory Code"
+    :enabled: true
+    :complex_datatype: 
+    -
+      :short_name: CD
+      :has_property:
+      -
+        :label: "code"
+        :bridg_path: "DefinedObservation.subcategoryCode.CD.code"
+        :question_text: ""
+        :prompt_text: ""
+        :format: ""
+        :has_coded_value: 
+        - 
+          :cl: H000003
+          :cli: HI000011
+  - :label: "Position"
+    :enabled: false
+  - :label: "Site Of Administration"
+    :enabled: false
+  - :label: "Laterality"
+    :enabled: false
+  - :label: "Method"
+    :enabled: false
+  - :label: "DateTime"
+    :enabled: 
+  - :label: "Not Done"
+    :enabled: false
+  - :label: "Reason Not Done"
+    :enabled: 
+  - :label: "Result"
+    :enabled: true
+    :complex_datatype: 
+    -
+      :short_name: CD
+      :has_property:
+      -
+        :label: "code"
+        :bridg_path: "PerformedClinicalResult.value.CD.code"
+        :question_text: "Use the toilet without accidents"
+        :prompt_text: "Use the toilet without accidents"
+        :format: ""
+        :has_coded_value: 
+        - 
+           :term: "http://www.cdisc.org/C66742/V4#C66742_C49488"
+           :cl: "C66742"
+           :cli: "C49488"
+           :notation: "Y"
+        - 
+           :term: "http://www.cdisc.org/C66742/V4#C66742_C49487"
+           :cl: "C66742"
+           :cli: "C49487"
+           :notation: "N"
+        - 
+           :term: "http://www.cdisc.org/C66742/V4#C66742_C48660"
+           :cl: "C66742"
+           :cli: "C48660"
+           :notation: "NA"
+  - :label: "Baseline"
+    :enabled: false

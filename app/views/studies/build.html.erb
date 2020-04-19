@@ -1,7 +1,10 @@
 <%= javascript_tag 'setPageTitle("Study build: '+@study.has_identifier.identifier+' ('+@study.semantic_version+')")' %>
 
 <%= javascript_include_tag "studies/build" %>
+<%= javascript_tag "var studyEmpty = #{@study_empty};" %>
 <% third_level_breadcrumb(:studies, @study, @close_path) %>
+
+
 <div class="row">
   <%= render layout: "shared/studies/study_header", :locals => {:item => @study, :badge => "icon-study"} do %>
     <div class="actions-wrap">
@@ -27,4 +30,5 @@
 </div>
 
 <%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>
+<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "2", with_refs: false} %>
 <%= render partial: "shared/studies/new_timepoint_modal" %>
