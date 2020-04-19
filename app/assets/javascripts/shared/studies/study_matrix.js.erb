@@ -140,6 +140,7 @@ StudyMatrix.prototype.saveTps = function() {
     callback: function(result) {
       this.loading(false);
       this.getActiveArm().timeline.data.saveTimepoints = [];
+      this.wrapper.find("#save-timeline").addClass("disabled")
       displaySuccess("Timeline saved.");
     }.bind(this)
   });
