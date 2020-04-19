@@ -1,0 +1,28 @@
+<%= javascript_include_tag "shared/studies/study_objectives" %>
+
+<%= javascript_tag "var objectivesUrl = '#{objectives_protocol_path(@study.protocol.id)}';" %>
+
+<div class="text-xnormal font-light ci-card-title">
+  Study Objectives
+</div>
+
+<div id="study-objectives" class="table-cardstyle all-columns">
+  <center>
+    <div class="font-light text-small text-medium">
+      The following is the list of available Study Objectives. The ones being used in this study are marked.
+    </div>
+  </center>
+  <br/>
+  <table id="objectives">
+    <thead>
+      <tr>
+        <th>Objective</th>
+        <th class="th-small">Type</th>
+        <th class="th-small">Used in Study</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+</div>
