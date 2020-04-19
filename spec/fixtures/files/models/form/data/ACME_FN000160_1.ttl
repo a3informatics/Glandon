@@ -1,0 +1,129 @@
+@prefix : <http://www.transceleratebiopharmainc.com/Weight/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/Weight/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label " Weight (Pilot)"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-17T15:02:33+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :F_NG1 ;
+	bf:hasGroup :F_NG2 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "Weight"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:F_NG1
+	rdf:type bf:NormalGroup ;
+	isoC:label " "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_PL1 ;
+	bf:hasItem :F_NG1_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG1_PL1
+	rdf:type bf:Placeholder ;
+	isoC:label "Placeholder 2"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:freeText "Tick in text field, if applicable"^^xsd:string ;
+.
+:F_NG1_Q2
+	rdf:type bf:Question ;
+	isoC:label " INFORMATION NOT OBTAINED"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "INFORMATION NOT OBTAINED"^^xsd:string ;
+.
+:F_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label " "^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG2_Q2 ;
+	bf:hasItem :F_NG2_PL1 ;
+	bf:hasItem :F_NG2_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label " Weight"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "5.1"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Weight"^^xsd:string ;
+.
+:F_NG2_PL1
+	rdf:type bf:Placeholder ;
+	isoC:label "Placeholder 3"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:freeText "Measure with shoes off. Round up or down to the nearest tenth kilogram or tenth pound."^^xsd:string ;
+.
+:F_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Unit"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "VSORRESU"^^xsd:string ;
+	bf:questionText "Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C28252> ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C48531> ;
+.
