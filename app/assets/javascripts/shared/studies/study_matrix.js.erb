@@ -111,11 +111,38 @@ StudyMatrix.prototype.setListeners = function() {
  * @return [void]
  */
 StudyMatrix.prototype.actionListeners = function() {
+  // Save Timepoints
+  $("#save-timeline").off("click").on("click", this.saveTps.bind(this, true));
   // New Timepoint
   $("#new-timepoint").off("click").on("click", this.toggleNewTpMode.bind(this, true));
   this.wrapper.on("click", "#timeline-axis", this.onAxisClick.bind(this));
   // New Visit
-  // Save Timepoints
+  // TODO
+}
+
+/**
+ * Gets data, makes request for new timepoint, handles callback
+ *
+ * @return [void]
+ */
+StudyMatrix.prototype.saveTps = function() {
+  var data = this.getActiveArm().timeline.data.saveTimepoints.map(function(tp) {
+    return { id: tp.data.id, epoch_id: tp.data.epoch_id, offset: tp.data.offset }
+  });
+
+  if(_.isEmpty(data))
+    return;
+
+  this.executeRequest({
+    url: this.getActiveArm().timeline.tpsSaveUrl(),
+    type: "POST",
+    data: { arm: { tp_data: data } },
+    callback: function(result) {
+      this.loading(false);
+      this.getActiveArm().timeline.data.saveTimepoints = [];
+      displaySuccess("Timeline saved.");
+    }.bind(this)
+  });
 }
 
 /**
@@ -131,7 +158,7 @@ StudyMatrix.prototype.createNewTimepoint = function(event) {
 
   if (!arm.timepointValid(epochId, offset))
     return;
-     
+
   if (epochId != null && offset != null) {
     arm.loading(true);
 

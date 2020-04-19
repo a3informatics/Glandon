@@ -24,7 +24,7 @@ function StudyTimeline(armId, matrixRef) {
   this.tpRadius = 24;
   this.tpDialog = new ContextDialog("0");
 
-  this.data = { timepoints: [], renderTimepoints: [] }
+  this.data = { timepoints: [], renderTimepoints: [], saveTimepoints: [] }
 }
 
 
@@ -156,6 +156,7 @@ StudyTimeline.prototype.interactionListeners = function() {
     },
     stop: function(ev, ui){
       this.render(this.data.renderTimepoints);
+      this.wrapper.find("#save-timeline").removeClass("disabled");
     }.bind(this)
   });
 
@@ -177,6 +178,7 @@ StudyTimeline.prototype.interactionListeners = function() {
     }.bind(this),
     stop: function (e, ui) {
       this.render(this.data.renderTimepoints);
+      this.wrapper.find("#save-timeline").removeClass("disabled");
     }.bind(this),
   });
 
@@ -445,7 +447,7 @@ StudyTimeline.prototype.timepointValid = function(epochId, offset) {
  * @return [String] url for data fetch
  */
 StudyTimeline.prototype.tpDataUrl = function() {
-  return timepointsArmUrl.replace("armId", this.armId);
+  return armTpsUrl.replace("armId", this.armId);
 }
 
 /**
@@ -454,8 +456,18 @@ StudyTimeline.prototype.tpDataUrl = function() {
  * @return [String] url for timepoint add
  */
 StudyTimeline.prototype.tpAddUrl = function() {
-  return addTimepointUrl.replace("armId", this.armId);
+  return armAddTpUrl.replace("armId", this.armId);
 }
+
+/**
+ * Get TP add url for this arm
+ *
+ * @return [String] url for timepoint add
+ */
+StudyTimeline.prototype.tpsSaveUrl = function() {
+  return armTpsSaveUrl.replace("armId", this.armId);
+}
+
 
 
 /**

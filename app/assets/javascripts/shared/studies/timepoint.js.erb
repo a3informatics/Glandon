@@ -96,12 +96,18 @@ Timepoint.prototype.timepointHTML = function() {
  */
 Timepoint.prototype.updateTpEpoch = function() {
   var tpOffset = $(this.div).position().left + (this.timeline.tpRadius / 2);
-  this.data.epoch_id = this.timeline.offsetClosestEpoch(tpOffset);
+  var closestEpochId = this.timeline.offsetClosestEpoch(tpOffset);
+
+  if (closestEpochId == this.data.epoch_id)
+    return;
+
+  this.data.epoch_id = closestEpochId;
 
   var styles = this.timepointStyles();
 
   $(this.div).css("background-color", styles.color)
   $(this.div).find(".tp-badge").css("background", styles.badgeColor);
+  this.tpChanged();
 }
 
 /**
@@ -112,9 +118,14 @@ Timepoint.prototype.updateTpEpoch = function() {
 Timepoint.prototype.updateTpOffset = function() {
   var tlWidth = $("#tl-wrapper").width();
   var tpMidPoint = ($(this.div).position().left);
+  var newOffset = Math.floor(tpMidPoint / (tlWidth / (this.timeline.maxOffset - this.timeline.minOffset))) + this.timeline.minOffset;
 
-  this.data.offset = Math.floor(tpMidPoint / (tlWidth / (this.timeline.maxOffset - this.timeline.minOffset))) + this.timeline.minOffset;
+  if (newOffset == this.data.offset)
+    return;
+
+  this.data.offset = newOffset;
   this.updateTpLabel();
+  this.tpChanged();
 }
 
 /**
@@ -124,6 +135,16 @@ Timepoint.prototype.updateTpOffset = function() {
  */
 Timepoint.prototype.updateTpLabel = function() {
   $(this.div).find(".tp-label").text(this.timepointLabel());
+}
+
+/**
+ * Call when offset of epoch changes
+ *
+ * @return [void]
+ */
+Timepoint.prototype.tpChanged = function() {
+  if(!_.contains(this.timeline.data.saveTimepoints, this))
+    this.timeline.data.saveTimepoints.push(this);
 }
 
 /**
