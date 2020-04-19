@@ -116,12 +116,22 @@ StudyTimeline.prototype.setListeners = function() {
  */
 StudyTimeline.prototype.minMaxOffsets = function() {
   this.data.renderTimepoints.sort((a, b) => (a.data.offset > b.data.offset) ? 1 : -1)
+  var minOffset = 0,
+      maxOffset = 6;
 
-  var maxOffset = Math.max.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
-  var minOffset = Math.min.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
-  // Add 5% buffer for the right edge of the timeline
-  maxOffset += 5;
-
+  if (_.isEmpty(this.data.renderTimepoints)) {
+    if (this.currentEpochFilter() != null) {
+        var epochIndex = _.indexOf(_.values(this.matrix.data.epochs), this.matrix.getItem(this.currentEpochFilter().attr("data-id"), "epochs"));
+        minOffset += (maxOffset + 1) * epochIndex;
+        maxOffset += (maxOffset + 1) * epochIndex;
+    }
+  }
+  else {
+    maxOffset = Math.max.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
+    minOffset = Math.min.apply(Math, this.data.renderTimepoints.map(function(t) { return t.data.offset; }));
+    // Add 7 day buffer for the right edge of the timeline
+    maxOffset += 6;
+  }
   this.maxOffset = maxOffset;
   this.minOffset = minOffset;
 }
@@ -156,7 +166,7 @@ StudyTimeline.prototype.interactionListeners = function() {
   $(this.div).find(".timepoint").draggable({
     axis: "x",
     cancel: ".baseline",
-    containment: [$("#tl-wrapper").offset().left - 40, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 20, 0],
+    containment: [$("#tl-wrapper").offset().left - 60, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 40, 0],
     start: function (e, ui) {
       this.minMaxOffsets();
     }.bind(this),
@@ -172,7 +182,7 @@ StudyTimeline.prototype.interactionListeners = function() {
 
   $(window).on("resize", function(){
     $(this.div).find(".epoch-block").resizable("option", "containment", $("#tl-wrapper"));
-    $(this.div).find(".timepoint").draggable("option", "containment", [$("#tl-wrapper").offset().left - 40, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 20, 0]);
+    $(this.div).find(".timepoint").draggable("option", "containment", [$("#tl-wrapper").offset().left - 60, 0, $("#tl-wrapper").offset().left + $("#tl-wrapper").width() + 40, 0]);
   });
 
   $(this.wrapper).find(".visit").draggable({
@@ -231,6 +241,9 @@ StudyTimeline.prototype.render = function(timepointSet) {
     wrap.append(visit.blockHTML());
   }.bind(this));
 
+  $(this.div).find("#timeline-axis #before").html("Day <br/>" + this.minOffset);
+  $(this.div).find("#timeline-axis #after").html("Day <br/>" + this.maxOffset);
+
   setTimeout(function(){this.div.removeClass("fadein")}.bind(this), 1);
 
   this.setListeners();
@@ -254,10 +267,11 @@ StudyTimeline.prototype.axisHTML = function() {
   var axisColor = this.matrix.hslString(arm.color),
       axisLabel = "<div class='axis-label' style='color: "+ axisColor +"'>" +
                     arm.label +
-                  "</div>";
+                  "</div>",
+      axisContent =   "<div id='before'></div><div id='after'></div>";
 
   return "<div id='timeline-axis' style='background-color: " + axisColor + "'>" +
-            axisLabel +
+            axisLabel + " " + axisContent +
          "</div>";
 }
 
@@ -298,34 +312,43 @@ StudyTimeline.prototype.epochHTML = function(epoch) {
 StudyTimeline.prototype.getEpochCSS = function(epoch) {
   var edgeTimepoints = this.getEpochEdgeTps(epoch);
 
-  // No timepoints in an epoch - do not render
-  if (_.isEmpty(edgeTimepoints))
-    return null;
-
   var epochBgColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l + 12 }),
       epochLabelColor = this.matrix.hslString({h: epoch.color.h, s: epoch.color.s - 10, l: epoch.color.l - 40 }),
       epochWidth, epochOffsetLeft;
 
-  // No next timepoint after epoch
-  if (_.isUndefined(edgeTimepoints[1])) {
-    var lastTimepoint = _.last(this.data.renderTimepoints);
+  // No timepoints in an epoch - do not render
+  if (_.isEmpty(edgeTimepoints)){
+    var epochFilter = this.currentEpochFilter();
 
-    // First and last timepoints are the same
-    if (lastTimepoint.data.id == edgeTimepoints[0].id)
-      epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "%)";
-    // First and last timepoints are not the same - find difference
-    else {
-      var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
-      epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"%)";
+    if (epochFilter != null && epochFilter.attr("data-id") == epoch.id) {
+      epochWidth = "100%;";
+      epochOffsetLeft = "0%";
     }
+    else
+      return null;
   }
   else {
-    // Difference between first epoch timepoint and first next epoch timepoint
-    var difference = edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft;
-    epochWidth = difference + "%";
-  }
+    // No next timepoint after epoch
+    if (_.isUndefined(edgeTimepoints[1])) {
+      var lastTimepoint = _.last(this.data.renderTimepoints);
 
-  epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "%)" || "0";
+      // First and last timepoints are the same
+      if (lastTimepoint.data.id == edgeTimepoints[0].id)
+        epochWidth = "calc(100% - " + lastTimepoint.offsetLeft + "%)";
+      // First and last timepoints are not the same - find difference
+      else {
+        var difference = lastTimepoint.offsetLeft - edgeTimepoints[0].offsetLeft;
+        epochWidth = "calc(100% - " + edgeTimepoints[0].offsetLeft +"%)";
+      }
+    }
+    else {
+      // Difference between first epoch timepoint and first next epoch timepoint
+      var difference = edgeTimepoints[1].offsetLeft - edgeTimepoints[0].offsetLeft;
+      epochWidth = difference + "%";
+    }
+
+    epochOffsetLeft = "calc(" + edgeTimepoints[0].offsetLeft + "%)" || "0";
+  }
 
   return {
     bgColor: epochBgColor,
@@ -360,9 +383,9 @@ StudyTimeline.prototype.getEpochEdgeTps = function(epoch) {
  * @return
  */
 StudyTimeline.prototype.getPreviousEpoch = function(epoch) {
-  var index = _.indexOf(epoch, _.values(this.data.epochs)) - 1;
+  var index = _.indexOf(epoch, _.values(this.matrix.data.epochs)) - 1;
 
-  return _.values(this.data.epochs)[index];
+  return _.values(this.matrix.data.epochs)[index];
 }
 
 
@@ -389,7 +412,7 @@ StudyTimeline.prototype.filterTimepoints = function(paramType, value) {
  * @param value [Anything] value to compare
  * @return [Object] first timepoint matching / null if not found
  */
-StudyTimeline.prototype.findTimepoint = function(property, value) {
+StudyTimeline.prototype.findTimepoint = function(property, value, comparator) {
   var result = null;
 
   $.each(this.data.timepoints, function(index, timepoint) {
@@ -400,6 +423,20 @@ StudyTimeline.prototype.findTimepoint = function(property, value) {
   });
 
   return result;
+}
+
+/**
+ * Verify that a new timepoint is at a valid location. Displays error if not verified
+ *
+ * @param epochId [String] id of the epoch in which the timepoint is going to be created
+ * @param offset [Int] offset in which the timepoint is going to be created
+ * @return [Boolean] true if verified
+ */
+StudyTimeline.prototype.timepointValid = function(epochId, offset) {
+  if (_.isEmpty(this.data.timepoints))
+    return true;
+
+  return true;
 }
 
 /**
@@ -446,6 +483,14 @@ StudyTimeline.prototype.clear = function() {
   this.minMaxOffsets();
 }
 
+/**
+ * Return active epoch filter button, or null if none active
+ *
+ * @return [JQuery Element] or Null
+ */
+StudyTimeline.prototype.currentEpochFilter = function() {
+  return $(".bg-label.epoch.active").length > 0 ? $(".bg-label.epoch.active") : null;
+}
 
 /**
  * Sets event listeners and handlers
@@ -503,5 +548,5 @@ StudyTimeline.prototype.offsetClosestEpoch = function(offset) {
     });
   }
 
-  return tEpoch.attr("data-epoch-id");
+  return _.isNull(tEpoch) ? null : tEpoch.attr("data-epoch-id");
 }

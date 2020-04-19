@@ -39,7 +39,7 @@ StudyBuild.prototype.initTabs = function() {
     design: {instance: studyDesign, header: $("#tab-design"), enabled: studyEmpty},
   }
 
-  this.tabs.design.header.toggleClass("disabled", !this.tabs.design.enabled);
+  this.tabs.design.header.toggleClass("disabled perm-disabled", !this.tabs.design.enabled);
 }
 
 /**

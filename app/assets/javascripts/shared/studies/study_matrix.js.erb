@@ -129,7 +129,10 @@ StudyMatrix.prototype.createNewTimepoint = function(event) {
       epochId = arm.offsetClosestEpoch(event.offsetX),
       offset = arm.offsetToDays(event.offsetX);
 
-  if(epochId != null && offset != null) {
+  if (!arm.timepointValid(epochId, offset))
+    return;
+     
+  if (epochId != null && offset != null) {
     arm.loading(true);
 
     this.executeRequest({
@@ -144,6 +147,9 @@ StudyMatrix.prototype.createNewTimepoint = function(event) {
         arm.loading(false);
       }.bind(this)
     });
+  }
+  else {
+    displayError("Select an Epoch to add the first timepoint.")
   }
 }
 

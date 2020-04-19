@@ -61,7 +61,7 @@ StudyDesign.prototype.setProtocolTemplate = function(selection) {
     callback: function(result) {
       $("#template-name").text(item.label);
       $("#select-template")
-        .addClass("disabled")
+        .addClass("disabled perm-disabled")
         .unbind();
     }
   })

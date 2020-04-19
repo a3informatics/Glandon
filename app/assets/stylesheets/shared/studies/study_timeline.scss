@@ -80,11 +80,29 @@
   z-index: 2;
 }
 
+#tl-wrapper #timeline-axis #before, #tl-wrapper #timeline-axis #after {
+  position: absolute;
+  display: block;
+  top: -40px;
+  color: $grey-light;
+  font-size: $font-tiny;
+  z-index: 2;
+  text-align: center;
+}
+
+#tl-wrapper #timeline-axis #before {
+  left: -25px;
+}
+
+#tl-wrapper #timeline-axis #after {
+  right: -25px;
+}
+
 #tl-wrapper #timeline-axis .axis-label {
   position: absolute;
   display: block;
   z-index: 2;
-  left: -40px;
+  left: -50px;
   bottom: -25px;
   transform: rotate(-90deg);
   transform-origin: 0% 0%;
