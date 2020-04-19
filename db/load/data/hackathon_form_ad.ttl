@@ -1,0 +1,309 @@
+@prefix : <http://www.transceleratebiopharmainc.com/F_AD/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/F_AD/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Alzheimer's Disease Assessment Scale - Cognition (Pilot)"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T09:31:13+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :F_NG1 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "F AD"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:F_NG1
+	rdf:type bf:NormalGroup ;
+	isoC:label " "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_Q1 ;
+	bf:hasItem :F_NG1_Q3 ;
+	bf:hasItem :F_NG1_Q4 ;
+	bf:hasItem :F_NG1_Q5 ;
+	bf:hasItem :F_NG1_Q6 ;
+	bf:hasItem :F_NG1_Q7 ;
+	bf:hasItem :F_NG1_Q8 ;
+	bf:hasItem :F_NG1_Q9 ;
+	bf:hasItem :F_NG1_Q10 ;
+	bf:hasItem :F_NG1_Q11 ;
+	bf:hasItem :F_NG1_Q12 ;
+	bf:hasItem :F_NG1_Q13 ;
+	bf:hasItem :F_NG1_Q14 ;
+	bf:hasItem :F_NG1_Q15 ;
+	bf:hasItem :F_NG1_Q16 ;
+	bf:hasItem :F_NG1_Q17 ;
+	bf:hasItem :F_NG1_Q18 ;
+	bf:hasItem :F_NG1_MA19 ;
+	bf:hasItem :F_NG1_MA20 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasCommon :F_NG1_CG ;
+.
+:F_NG1_Q1
+	rdf:type bf:Question ;
+	isoC:label "INFORMATION NOT OBTAINED "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "INFORMATION NOT OBTAINED "^^xsd:string ;
+.
+:F_NG1_Q3
+	rdf:type bf:Question ;
+	isoC:label "Clinician's initials "^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "First/Middle/Last"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "Clinician's initials "^^xsd:string ;
+.
+:F_NG1_Q4
+	rdf:type bf:Question ;
+	isoC:label "1. Word Recall Task"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText " 1. Word Recall Task (max = 10)"^^xsd:string ;
+.
+:F_NG1_Q5
+	rdf:type bf:Question ;
+	isoC:label "2. Naming Objects and Fingers"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "2. Naming Objects and Fingers (refer to 5 categories in manual) (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q6
+	rdf:type bf:Question ;
+	isoC:label "3. Delayed Word Recall"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "3. Delayed Word Recall (max = 10) "^^xsd:string ;
+.
+:F_NG1_Q7
+	rdf:type bf:Question ;
+	isoC:label "4. Commands"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "4. Commands (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q8
+	rdf:type bf:Question ;
+	isoC:label "5. Constructional Praxis"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "5. Constructional Praxis (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q9
+	rdf:type bf:Question ;
+	isoC:label "6. Ideational Praxis"^^xsd:string ;
+	bf:ordinal "9"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "6. Ideational Praxis (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q10
+	rdf:type bf:Question ;
+	isoC:label "7. Orientation"^^xsd:string ;
+	bf:ordinal "10"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "7. Orientation (max = 8)"^^xsd:string ;
+.
+:F_NG1_Q11
+	rdf:type bf:Question ;
+	isoC:label "8. Word Recognition"^^xsd:string ;
+	bf:ordinal "11"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "8. Word Recognition (max = 12)"^^xsd:string ;
+.
+:F_NG1_Q12
+	rdf:type bf:Question ;
+	isoC:label "9. Attention/Visual Search Task"^^xsd:string ;
+	bf:ordinal "12"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "9. Attention/Visual Search Task (max = 40)"^^xsd:string ;
+.
+:F_NG1_Q13
+	rdf:type bf:Question ;
+	isoC:label "10. Maze Solution"^^xsd:string ;
+	bf:ordinal "13"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "10. Maze Solution (max = 240)"^^xsd:string ;
+.
+:F_NG1_Q14
+	rdf:type bf:Question ;
+	isoC:label "Unit"^^xsd:string ;
+	bf:ordinal "14"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "7"^^xsd:string ;
+	bf:mapping "QSORRESU"^^xsd:string ;
+	bf:questionText "10. Maze Solution - Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C42535> ;
+.
+:F_NG1_Q15
+	rdf:type bf:Question ;
+	isoC:label "11. Spoken Language Ability"^^xsd:string ;
+	bf:ordinal "15"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "11. Spoken Language Ability (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q16
+	rdf:type bf:Question ;
+	isoC:label "12. Comprehension of Spoken Language"^^xsd:string ;
+	bf:ordinal "16"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "12. Comprehension of Spoken Language (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q17
+	rdf:type bf:Question ;
+	isoC:label "13. Word Finding Difficulty in Spontaneous Speech"^^xsd:string ;
+	bf:ordinal "17"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "13. Word Finding Difficulty in Spontaneous Speech (max = 5)"^^xsd:string ;
+.
+:F_NG1_Q18
+	rdf:type bf:Question ;
+	isoC:label "14. Recall of Test Instructions"^^xsd:string ;
+	bf:ordinal "18"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "14. Recall of Test Instructions (max = 5)"^^xsd:string ;
+.
+:F_NG1_MA19
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 18"^^xsd:string ;
+	bf:ordinal "19"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSCAT=ALZHEIMER'S DISEASE ASSESSMENT SCALE"^^xsd:string ;
+.
+:F_NG1_MA20
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 19"^^xsd:string ;
+	bf:ordinal "20"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD IN (ACITM01, ACITM02, ACITM03, ACITM04, ACITM05, ACITM06, ACITM07, ACITM08, ACITM09, ACITM10, ACITM11, ACITM12, ACITM13, ACITM14)"^^xsd:string ;
+.
+:F_NG1_CG
+	rdf:type bf:CommonGroup ;
+	isoC:label "Questionnaire"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+.

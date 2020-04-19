@@ -1,0 +1,187 @@
+@prefix : <http://www.transceleratebiopharmainc.com/F_HR_BP/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/F_HR_BP/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Heart rate and blood pressure (Pilot)"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T09:31:13+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :F_NG1 ;
+	bf:hasGroup :F_NG2 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "F HR BP"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:F_NG1
+	rdf:type bf:NormalGroup ;
+	isoC:label "Group"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_PL1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG1_PL1
+	rdf:type bf:Placeholder ;
+	isoC:label "Placeholder 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:freeText "Blood pressure and pulse must be taken after the patient has been lying down for 5 minutes (supine) and after standing for 1 minute (standing) and 3 minutes."^^xsd:string ;
+.
+:F_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "HEART RATE AND BLOOD PRESSURE"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG2_Q2 ;
+	bf:hasItem :F_NG2_MA4 ;
+	bf:hasItem :F_NG2_Q3 ;
+	bf:hasItem :F_NG2_Q5 ;
+	bf:hasItem :F_NG2_Q6 ;
+	bf:hasItem :F_NG2_Q7 ;
+	bf:hasItem :F_NG2_Q8 ;
+	bf:hasItem :F_NG2_Q9 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Time"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "VSTPT"^^xsd:string ;
+	bf:questionText "Reference Time (5 minutes)"^^xsd:string ;
+	isoC:label "Code"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "VSTPTNUM"^^xsd:string ;
+	bf:questionText "Timing Code"^^xsd:string ;
+.
+:F_NG2_MA4
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 5"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "VSTESTCD = PULSE"^^xsd:string ;
+.
+:F_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Position"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "VSPOS"^^xsd:string ;
+	bf:questionText "Position"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bf:hasCodedValue <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
+.
+:F_NG2_Q5
+	rdf:type bf:Question ;
+	isoC:label "HR"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Heart Rate"^^xsd:string ;
+.
+:F_NG2_Q6
+	rdf:type bf:Question ;
+	isoC:label "HR UNIT"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "VSORRESU"^^xsd:string ;
+	bf:questionText "Heart Rate Unit"^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C71620/V6#C71620_C49673> ;
+.
+:F_NG2_Q7
+	rdf:type bf:Question ;
+	isoC:label "Systolic BP"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Systolic BP"^^xsd:string ;
+.
+:F_NG2_Q8
+	rdf:type bf:Question ;
+	isoC:label "Diastolic BP"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Diastolic BP"^^xsd:string ;
+.
+:F_NG2_Q9
+	rdf:type bf:Question ;
+	isoC:label "BP Unit"^^xsd:string ;
+	bf:ordinal "9"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "VSORRESU"^^xsd:string ;
+	bf:questionText "Unit "^^xsd:string ;
+	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C49670> ;
+.
