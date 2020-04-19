@@ -71,7 +71,7 @@ class Arm < IsoConceptV2
       tp = Timepoint.find(uri)
       tp.at_offset_objects
       tp.move(timepoint[:epoch_id])
-      tp.update_offset(timepoint[:offset])
+      tp.at_offset.update_offset(timepoint[:offset])
     end
   end
 

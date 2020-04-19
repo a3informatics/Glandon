@@ -61,23 +61,24 @@ class Timepoint < IsoConceptV2
     results
   end
 
-  def move(params)
-    new_ep = Uri.new(id: params[:epoch_id])
+  def move(id)
+    curr_ep = epoch
+    new_ep = Epoch.find(Uri.new(id: id)) 
+    return if new_ep.uri == curr_ep.uri
+    curr_ep.remove_timepoint(self)
+    new_ep.add_timepoint(self)
+  end
+
+  def epoch
     query_string = %Q{
-      SELECT DISTINCT ?oel ?nel WHERE
+      SELECT DISTINCT ?ep WHERE
       {
-        #{self.uri.to_ref} ^pr:containsTimepoint ?oel .
-        #{new_ep.to_ref} ^pr:inEpoch ?nel
-        FILTER (?nel = ?oel)
+        #{self.uri.to_ref} ^pr:containsTimepoint/pr:inEpoch ?ep .
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:pr])
-    return if query_results.empty?
-    triples = query_results.by_object_set([:nel, :oel])
-    new_el = Element.find(triples.first[:nel])
-    old_el = Element.find(triples.first[:oel])
-    old_el.delete_link(:contains_timepoint, self.uri)
-    new_el.add_link(:contains_timepoint, self.uri)
+    triples = query_results.by_object(:ep)
+    Epoch.find(triples.first)
   end
 
 end
