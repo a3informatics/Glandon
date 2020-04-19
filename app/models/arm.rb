@@ -26,7 +26,9 @@ class Arm < IsoConceptV2
     triples = query_results.by_object_set([:el, :tp, :e, :v, :off])
     triples.each do |entry|
       offset = Timepoint::Offset.find(entry[:off]) 
-      results << {id: entry[:tp].to_id, epoch_id: entry[:e].to_id, element_id: entry[:el].to_id, visit_id: entry[:v].blank? ? "" : entry[:v].to_id, unit: offset.unit, biomedical_concepts: [], baseline: false, offset: offset.as_days}
+      result = {id: entry[:tp].to_id, epoch_id: entry[:e].to_id, element_id: entry[:el].to_id, visit_id: entry[:v].blank? ? "" : entry[:v].to_id, unit: offset.unit, biomedical_concepts: [], baseline: false, offset: offset.as_days}
+      result[:biomedical_concepts] = Timepoint.find(entry[:tp]).managed
+      results << result
     end
     results
   end       

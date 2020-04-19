@@ -42,4 +42,22 @@ class Timepoint < IsoConceptV2
     end
   end
 
+  def managed
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?mi ?i ?sv ?l WHERE
+      {
+        #{self.uri.to_ref} pr:hasPlanned/pr:isDerivedFrom ?mi .
+        ?mi isoC:label ?l .
+        ?mi isoT:hasIdentifier/isoI:identifier ?i .
+        ?mi isoT:hasIdentifier/isoI:semanticVersion ?sv . 
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:pr, :isoC, :isoT, :isoI])
+    triples = query_results.by_object_set([:mi, :i, :sv, :l])
+    triples.each do |entry|
+      results << {id: entry[:mi].to_id, label: entry[:l], identifier: entry[:i], semantic_version: entry[:sv]}
+    end
+    results
+  end
 end
