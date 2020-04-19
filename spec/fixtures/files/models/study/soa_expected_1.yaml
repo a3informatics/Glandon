@@ -1,41 +1,81 @@
 ---
-- :label: Height
-  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI
+- :label: Disability Assessment for Dementia (DAD)
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9BU1NfREFEL1YxI0FTUw==
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
+  :uri: http://www.transceleratebiopharmainc.com/ASS_DAD/V1#ASS
   :visits:
   - &1
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjY2RlNzgyYmU4YjY3NTE0NGIxYzNhNDEzZDk1MmU1MDU4Y2E1M2QzOA==
     :label: Baseline
     :short_name: BL
     :timepoints:
-    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjMWFlY2NiNDA1ODFlZTdkZjlkZWQ2M2YxNWEzMDU2OTUwMzYxZWJhNA==
+    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjMjE3YTVjMDAtZmE1ZC00NjBkLThiMTAtOTQ2YzNiMDA2MmQx
     :applies: true
   - &2
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjZTk2YTIxNDUyNzcxNzFhMGMzZjVkZWRkZWY0ZjQwMGMyZTY5MzEyMw==
     :label: Week 8
     :short_name: Wk8
     :timepoints:
-    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjMzI5NWZhZTE5NTFhNmE3ODRmZDNlYWM4ZjRlMDZiY2IzYzA4ZmRiZg==
-    :applies: false
+    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjYzlkNWI1ODAtZGY2Yi00Yzk2LTg4ZjEtZWIxZDZmMjRjZDM4
+    :applies: true
   - &3
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjNGQ3MTk2Y2NkNzZlZTdkNGIxOThjNDViODM3MTgwNTA4ZDkzZjYxZQ==
+    :label: Week 12
+    :short_name: Wk12
+    :timepoints:
+    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjM2YxZjVjMjUtOGY0Zi00ODVhLThmZTctZThhYmQ2OGUzMWE2
+    :applies: true
+  - &4
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjMjJiMGYwYzhkNjIxOGNiYzllMTBhYjFiOTFjOWUxZjgwMGNiNGY4Mw==
     :label: Week 16
     :short_name: Wk16
     :timepoints:
-    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjNWU2ZWYyZTI2MjFhODc0M2E4MzVjMTMwZjUyYjIyNmMzZGY3NzRhZA==
+    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjMWIzZDZlNTctYjVjNi00NDU5LWI0MzEtNDVjNTgzM2U4Y2Rm
     :applies: true
-  - &4
+  - &5
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVkkjNDA5YTJlNzlhMGI5NTQ1NjkyNjkwNTU2ODllYmU0MDUzYWRkNTI5Mg==
     :label: Week 24
     :short_name: Wk24
     :timepoints:
-    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjMzA5ZDQ0MThjMzU4MzdkMmRkNzVkYWRmYjkwYTYxYzIxNjVlZGQ3MA==
+    - aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFAjOGI1ODA0ZWUtNDIwYi00OWQ1LWFlZTEtOGI5NDIzMjkzNzg4
     :applies: true
-- :label: BC Collection
-  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9BU1NfQkNfQzEvVjEjQVNT
-  :uri: http://www.transceleratebiopharmainc.com/ASS_BC_C1/V1#ASS
+- :label: ECG Measurements
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GX0VDRy9WMSNG
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
+  :uri: http://www.transceleratebiopharmainc.com/F_ECG/V1#F
   :visits:
   - *1
   - *2
   - *3
   - *4
+  - *5
+- :label: Laboratory Samples
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GX0xBQl9TQU1QTEVTL1YxI0Y=
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
+  :uri: http://www.transceleratebiopharmainc.com/F_LAB_SAMPLES/V1#F
+  :visits:
+  - *1
+  - *2
+  - *3
+  - *4
+  - *5
+- :label: Disability Assessment For Dementia (DAD) (Pilot)
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GX0RBRC9WMSNG
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
+  :uri: http://www.transceleratebiopharmainc.com/F_DAD/V1#F
+  :visits:
+  - *1
+  - *2
+  - *3
+  - *4
+  - *5
+- :label: Clinician's Interview-Based Impression of Change (CIBIC+) (Pilot)
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GX0NJQklDL1YxI0Y=
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Form
+  :uri: http://www.transceleratebiopharmainc.com/F_CIBIC/V1#F
+  :visits:
+  - *1
+  - *2
+  - *3
+  - *4
+  - *5

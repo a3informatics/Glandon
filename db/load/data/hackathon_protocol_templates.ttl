@@ -13,87 +13,87 @@
 <http://www.assero.co.uk/IC>
 	rdf:type owl:Ontology ;
 .
-<http://www.assero.co.uk/EP#747807dc-6524-4a3b-9fc9-09b7f1fafd77>
+<http://www.assero.co.uk/EP#f5bb2477-4607-4a12-a713-d05bdc9d8117>
 	rdf:type pr:Epoch ;
 	isoC:label "Screening"^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#f028646e-1d59-43b6-b2fb-eed8456d1077>
+<http://www.assero.co.uk/EP#eebd3179-843f-428d-a488-7bd4e6243d69>
 	rdf:type pr:Epoch ;
 	isoC:label "Treatment 1"^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#bc9efa3d-f0ba-43fb-84e3-8999fe6eef88>
+<http://www.assero.co.uk/EP#523c01c8-aa75-49b3-9499-ec74d0dea067>
 	rdf:type pr:Epoch ;
 	isoC:label "Treatment 2"^^xsd:string ;
 	pr:ordinal "3"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#06991545-574f-4748-a7ba-f60a18bff582>
+<http://www.assero.co.uk/EP#3c23f7c6-dab8-4145-bf49-9789b7fdad6c>
 	rdf:type pr:Epoch ;
 	isoC:label "Follow Up"^^xsd:string ;
 	pr:ordinal "4"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0>
+<http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82>
 	rdf:type pr:Arm ;
 	isoC:label "AB"^^xsd:string ;
 	pr:description ""^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b>
+<http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee>
 	rdf:type pr:Arm ;
 	isoC:label "BA"^^xsd:string ;
 	pr:description ""^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ELE#af67c46e-d85b-42e6-9820-8626b9b81e89>
+<http://www.assero.co.uk/ELE#55a7adab-e7ef-433c-b78d-482df738dcd1>
 	rdf:type pr:Element ;
 	isoC:label "Screen"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#747807dc-6524-4a3b-9fc9-09b7f1fafd77> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#f5bb2477-4607-4a12-a713-d05bdc9d8117> ;
 .
-<http://www.assero.co.uk/ELE#4574a649-bec5-4661-9438-4f8f51589448>
+<http://www.assero.co.uk/ELE#ccb84577-6088-41a9-89a5-7a8797258e96>
 	rdf:type pr:Element ;
 	isoC:label "Screen"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#747807dc-6524-4a3b-9fc9-09b7f1fafd77> ;
+	pr:inArm <http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#f5bb2477-4607-4a12-a713-d05bdc9d8117> ;
 .
-<http://www.assero.co.uk/ELE#9126d03a-6bc8-4188-a1c3-c1f975edcfd7>
+<http://www.assero.co.uk/ELE#f7767142-af78-43a8-860d-0b30d0dede16>
 	rdf:type pr:Element ;
 	isoC:label "Treatment A"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#f028646e-1d59-43b6-b2fb-eed8456d1077> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#eebd3179-843f-428d-a488-7bd4e6243d69> ;
 .
-<http://www.assero.co.uk/ELE#a125666b-4ddf-408e-9b79-a4dc3ae822af>
+<http://www.assero.co.uk/ELE#bd72c38d-5a02-40d8-b5fa-833d449e4ec9>
 	rdf:type pr:Element ;
 	isoC:label "Treatment B"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#f028646e-1d59-43b6-b2fb-eed8456d1077> ;
+	pr:inArm <http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#eebd3179-843f-428d-a488-7bd4e6243d69> ;
 .
-<http://www.assero.co.uk/ELE#c7d0ef9b-be93-4c7e-a779-8e31bbe23441>
+<http://www.assero.co.uk/ELE#8780318f-202c-486c-a216-33b1bf04d878>
 	rdf:type pr:Element ;
 	isoC:label "Treatment B"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#bc9efa3d-f0ba-43fb-84e3-8999fe6eef88> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#523c01c8-aa75-49b3-9499-ec74d0dea067> ;
 .
-<http://www.assero.co.uk/ELE#bff258e1-bc41-488d-90ef-d27ebf8fb101>
+<http://www.assero.co.uk/ELE#04b13e00-07d2-4e4a-8236-89bdc2519bdc>
 	rdf:type pr:Element ;
 	isoC:label "Treatment A"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#bc9efa3d-f0ba-43fb-84e3-8999fe6eef88> ;
+	pr:inArm <http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#523c01c8-aa75-49b3-9499-ec74d0dea067> ;
 .
-<http://www.assero.co.uk/ELE#7357a206-770a-40e3-a390-e44d21a41a27>
+<http://www.assero.co.uk/ELE#921d050e-d482-4335-8999-9cd3bb8f585f>
 	rdf:type pr:Element ;
 	isoC:label "Follow-up"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#06991545-574f-4748-a7ba-f60a18bff582> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#3c23f7c6-dab8-4145-bf49-9789b7fdad6c> ;
 .
-<http://www.assero.co.uk/ELE#00f829a9-9357-4750-a10b-82c62f6d5f86>
+<http://www.assero.co.uk/ELE#6f92231a-c8f7-4f01-9828-6fea436478a0>
 	rdf:type pr:Element ;
 	isoC:label "Follow-up"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#06991545-574f-4748-a7ba-f60a18bff582> ;
+	pr:inArm <http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#3c23f7c6-dab8-4145-bf49-9789b7fdad6c> ;
 .
 <http://www.transceleratebiopharmainc.com/CROSS_4_EPOCH/V1#PRT>
 	rdf:type pr:ProtocolTemplate ;
@@ -103,14 +103,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-19T08:19:28+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T10:43:57+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#02fb0d83-2c8c-4a3a-befa-86439f9c6bf0> ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#345397d8-3641-4af3-a77c-ba03210b781b> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#747807dc-6524-4a3b-9fc9-09b7f1fafd77> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#f028646e-1d59-43b6-b2fb-eed8456d1077> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#bc9efa3d-f0ba-43fb-84e3-8999fe6eef88> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#06991545-574f-4748-a7ba-f60a18bff582> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#7a6f2d31-8bdc-4958-b856-4fc8ae8d6c82> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#d408cf69-82c4-4ee9-bb47-7c7ea61101ee> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#f5bb2477-4607-4a12-a713-d05bdc9d8117> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#eebd3179-843f-428d-a488-7bd4e6243d69> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#523c01c8-aa75-49b3-9499-ec74d0dea067> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#3c23f7c6-dab8-4145-bf49-9789b7fdad6c> ;
 .
 <http://www.transceleratebiopharmainc.com/CROSS_4_EPOCH/V1#PRT_RS>
 	rdf:type isoR:RegistrationState ;
@@ -132,70 +132,70 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
 .
-<http://www.assero.co.uk/EP#4ba849dc-f9cd-4683-a3f8-9fcacb096324>
+<http://www.assero.co.uk/EP#e7a20d68-be24-4697-9604-e4ba9275a22e>
 	rdf:type pr:Epoch ;
 	isoC:label "Screening"^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#747601b6-933a-42de-8c76-a45d5ccacc3d>
+<http://www.assero.co.uk/EP#f7b5302d-d132-44db-b0ca-3ceb02858c67>
 	rdf:type pr:Epoch ;
 	isoC:label "Treatment"^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#21623273-3bff-443c-a5d4-e719fae0de19>
+<http://www.assero.co.uk/EP#368e3697-06c6-499a-9497-c88b33cd0e60>
 	rdf:type pr:Epoch ;
 	isoC:label "Follow Up"^^xsd:string ;
 	pr:ordinal "3"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#3746655f-1870-4913-912d-e458ebdd0e71>
+<http://www.assero.co.uk/ARM#a10ea95f-d2c9-4bd4-b3aa-b02ae530718e>
 	rdf:type pr:Arm ;
 	isoC:label "A"^^xsd:string ;
 	pr:description ""^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#bdd890c6-a886-48a6-8fc0-29826c64d69b>
+<http://www.assero.co.uk/ARM#da58af97-dba5-450e-b71a-65362efe000a>
 	rdf:type pr:Arm ;
 	isoC:label "B"^^xsd:string ;
 	pr:description ""^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ELE#b4ae272d-f4a7-4a72-9453-74ca758ab0b7>
+<http://www.assero.co.uk/ELE#871a3c61-14f0-423c-9773-4e52c6f09c3c>
 	rdf:type pr:Element ;
 	isoC:label "Screen"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#3746655f-1870-4913-912d-e458ebdd0e71> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#4ba849dc-f9cd-4683-a3f8-9fcacb096324> ;
+	pr:inArm <http://www.assero.co.uk/ARM#a10ea95f-d2c9-4bd4-b3aa-b02ae530718e> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#e7a20d68-be24-4697-9604-e4ba9275a22e> ;
 .
-<http://www.assero.co.uk/ELE#e21a7a5b-c39c-4192-b2d0-72e35e4f66ef>
+<http://www.assero.co.uk/ELE#b05715b3-9bd4-4ca5-8314-e444b3fdd595>
 	rdf:type pr:Element ;
 	isoC:label "Screen"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#bdd890c6-a886-48a6-8fc0-29826c64d69b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#4ba849dc-f9cd-4683-a3f8-9fcacb096324> ;
+	pr:inArm <http://www.assero.co.uk/ARM#da58af97-dba5-450e-b71a-65362efe000a> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#e7a20d68-be24-4697-9604-e4ba9275a22e> ;
 .
-<http://www.assero.co.uk/ELE#126bd9c1-4126-4338-a171-cff2971e7f3e>
+<http://www.assero.co.uk/ELE#6236d319-310b-4b4e-b34d-02a330fbea36>
 	rdf:type pr:Element ;
 	isoC:label "Treatment A"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#3746655f-1870-4913-912d-e458ebdd0e71> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#747601b6-933a-42de-8c76-a45d5ccacc3d> ;
+	pr:inArm <http://www.assero.co.uk/ARM#a10ea95f-d2c9-4bd4-b3aa-b02ae530718e> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#f7b5302d-d132-44db-b0ca-3ceb02858c67> ;
 .
-<http://www.assero.co.uk/ELE#123ccd9e-cbff-4367-bf58-ce0d9216275c>
+<http://www.assero.co.uk/ELE#38f5844e-95ce-4565-9abe-c2041e57f28f>
 	rdf:type pr:Element ;
 	isoC:label "Treatment B"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#bdd890c6-a886-48a6-8fc0-29826c64d69b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#747601b6-933a-42de-8c76-a45d5ccacc3d> ;
+	pr:inArm <http://www.assero.co.uk/ARM#da58af97-dba5-450e-b71a-65362efe000a> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#f7b5302d-d132-44db-b0ca-3ceb02858c67> ;
 .
-<http://www.assero.co.uk/ELE#f1f3acdf-71cc-4111-b479-c233ea670fc1>
+<http://www.assero.co.uk/ELE#84d8a19d-06e1-4f88-bcf5-789b9aa2c5b4>
 	rdf:type pr:Element ;
 	isoC:label "Follow-up"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#3746655f-1870-4913-912d-e458ebdd0e71> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#21623273-3bff-443c-a5d4-e719fae0de19> ;
+	pr:inArm <http://www.assero.co.uk/ARM#a10ea95f-d2c9-4bd4-b3aa-b02ae530718e> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#368e3697-06c6-499a-9497-c88b33cd0e60> ;
 .
-<http://www.assero.co.uk/ELE#4320392a-123f-46ad-b36f-3a8f4ab9a7fb>
+<http://www.assero.co.uk/ELE#22e4820c-0a49-473c-a33f-f0e9e02a5604>
 	rdf:type pr:Element ;
 	isoC:label "Follow-up"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#bdd890c6-a886-48a6-8fc0-29826c64d69b> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#21623273-3bff-443c-a5d4-e719fae0de19> ;
+	pr:inArm <http://www.assero.co.uk/ARM#da58af97-dba5-450e-b71a-65362efe000a> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#368e3697-06c6-499a-9497-c88b33cd0e60> ;
 .
 <http://www.transceleratebiopharmainc.com/PARALLEL_SIMPLE/V1#PRT>
 	rdf:type pr:ProtocolTemplate ;
@@ -205,13 +205,13 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-19T08:19:28+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-19T10:43:57+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#3746655f-1870-4913-912d-e458ebdd0e71> ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#bdd890c6-a886-48a6-8fc0-29826c64d69b> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#4ba849dc-f9cd-4683-a3f8-9fcacb096324> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#747601b6-933a-42de-8c76-a45d5ccacc3d> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#21623273-3bff-443c-a5d4-e719fae0de19> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#a10ea95f-d2c9-4bd4-b3aa-b02ae530718e> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#da58af97-dba5-450e-b71a-65362efe000a> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#e7a20d68-be24-4697-9604-e4ba9275a22e> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#f7b5302d-d132-44db-b0ca-3ceb02858c67> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#368e3697-06c6-499a-9497-c88b33cd0e60> ;
 .
 <http://www.transceleratebiopharmainc.com/PARALLEL_SIMPLE/V1#PRT_RS>
 	rdf:type isoR:RegistrationState ;

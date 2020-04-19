@@ -94,6 +94,10 @@ describe "Study" do
       load_data_file_into_triple_store("hackathon_protocols.ttl")
       load_data_file_into_triple_store("hackathon_bc_instances.ttl")
       load_data_file_into_triple_store("hackathon_bc_templates.ttl")
+      load_data_file_into_triple_store("hackathon_form_cibic.ttl")
+      load_data_file_into_triple_store("hackathon_form_dad.ttl")
+      load_data_file_into_triple_store("hackathon_form_lab_samples.ttl")
+      load_data_file_into_triple_store("hackathon_form_ecg.ttl")      
     end
 
     it "find protocol" do

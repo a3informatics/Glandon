@@ -268,8 +268,7 @@ describe "C - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_form_cibic.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_form_dad.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_form_lab_samples.ttl")
-      load_local_file_into_triple_store(sub_dir, "hackathon_form_ecg.ttl")
-            
+      load_local_file_into_triple_store(sub_dir, "hackathon_form_ecg.ttl")      
 
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
       
@@ -301,7 +300,8 @@ describe "C - Transcelerate Protocol" do
         f3, f3, f4, f4          # 10 - 14
       ]
       mdr_items.each do |mdr_item|
-        sass = StudyAssessment.new(label: sass_item.label, is_derived_from: mdr_item.uri)
+        klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyAssessment
+        sass = klass.new(label: mdr_item.label, is_derived_from: mdr_item.uri)
         sass.uri = sass.create_uri(sass.class.base_uri)
         sass_items << sass
       end
@@ -351,7 +351,7 @@ describe "C - Transcelerate Protocol" do
         {
           label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri, 
           has_planned: [sass_items[5].uri, sass_items[9].uri]
-        },
+        }
       ]
       tp_items = []
       tps.each_with_index do |v, index|
@@ -508,11 +508,11 @@ describe "C - Transcelerate Protocol" do
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
       el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[0].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
-      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
+      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
+      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
+      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
@@ -601,11 +601,13 @@ describe "C - Transcelerate Protocol" do
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
       p_5.to_sparql(sparql, true)
+      ass1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
       obj_items.each {|x| x.to_sparql(sparql, true)}
       ep_items.each {|x| x.to_sparql(sparql, true)}
+      sass_items.each {|x| x.to_sparql(sparql, true)}
 
       # sbc1.to_sparql(sparql, true)
       # sbc2.to_sparql(sparql, true)
