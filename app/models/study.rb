@@ -43,7 +43,7 @@ class Study < IsoManagedV2
     visit_set.each {|h| h[:applies] = false}
     results = {}
     query_string = %Q{
-      SELECT DISTINCT ?v ?vl ?x ?xl ?xt WHERE
+      SELECT DISTINCT ?v ?vl ?x ?xl ?xt ?xi WHERE
       {
         #{self.uri.to_ref} pr:implements ?p .
         ?p pr:specifiesEpoch ?e .
@@ -56,16 +56,18 @@ class Study < IsoManagedV2
         ?o pr:windowOffset ?os .
         ?v isoC:label ?vl .
         ?tp pr:hasPlanned/pr:isDerivedFrom ?x .
-        ?x isoC:label ?xl .   
+        ?x isoC:label ?xl . 
+        ?x isoT:hasIdentifier/isoI:identifier ?xi .  
         ?x rdf:type ?xt .
       } ORDER BY ?os
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr])
-    triples = query_results.by_object_set([:v, :vl, :x, :xl, :xt])
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :isoC, :pr, :isoT, :isoI])
+    triples = query_results.by_object_set([:v, :vl, :x, :xl, :xi, :xt])
     return [] if triples.empty?
     triples.each do |entry|
       uri_s = entry[:x].to_s
-      results[uri_s] = {label: entry[:xl], id: entry[:x].to_id, rdf_type: entry[:xt].to_s, uri: entry[:x].to_s, visits: visit_set.dup} if !results.key?(uri_s)
+      dup_vs = Marshal.load(Marshal.dump(visit_set))
+      results[uri_s] = {label: entry[:xl], identifier: entry[:xi], id: entry[:x].to_id, rdf_type: entry[:xt].to_s, uri: entry[:x].to_s, visits: dup_vs} if !results.key?(uri_s)
       next if entry[:v].blank?
       visit = results[uri_s][:visits].find{|x| x[:id] == entry[:v].to_id} 
       visit[:applies] = true
