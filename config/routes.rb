@@ -386,6 +386,7 @@ Rails.application.routes.draw do
   resources :protocols, only: [:show, :update] do
     member do
       post :from_template
+      get :objectives
     end
   end
   resources :protocol_templates, only: [:show] do
