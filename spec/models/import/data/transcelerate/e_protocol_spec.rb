@@ -530,7 +530,7 @@ describe "C - Transcelerate Protocol" do
       ind = Indication.where(label: "Alzheimer's Disease")
       p_1 = Protocol.new(label: "LY246708", 
         title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.", 
-        short_title: "", acronym: "H2Q-MC-LZZT", 
+        short_title: "LY246708", acronym: "H2Q-MC-LZZT", 
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri], specifies_arm: [a_1.uri, a_2.uri, a_3.uri],
@@ -543,10 +543,10 @@ describe "C - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Metabolic")
       ind = Indication.where(label: "Diabetes Mellitus")
-      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+      p_2 = Protocol.new(label: "DS8500-A-U202", title: "A made up protocol title", short_title: "DS8500-A-U202", acronym: "MADE UP ACRONYM", 
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
-      p_2.set_initial("DS8500-A-U202")
+      p_2.set_initial("DS8500")
 
       tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
@@ -554,10 +554,10 @@ describe "C - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Inflammation")
       ind = Indication.where(label: "Rheumatoid Arthritis")
-      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+      p_3 = Protocol.new(label: "CPT_TALib-RA-BWE_V002", title: "A made up protocol title", short_title: "CPT_TALib-RA-BWE_V002", acronym: "MADE UP ACRONYM", 
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
-      p_3.set_initial("CPT_TALib-RA-BWE_V002")
+      p_3.set_initial("CPT TALIB RA BWE")
 
       tc = th.find_by_identifiers(["C66737", "C15602"])["C15602"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
@@ -565,22 +565,10 @@ describe "C - Transcelerate Protocol" do
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Vaccines")
       ind = Indication.where(label: "Influenza")
-      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "", acronym: "MADE UP ACRONYM", 
+      p_4 = Protocol.new(label: "FLU 001", title: "A made up protocol title", short_title: "FLU 001", acronym: "MADE UP ACRONYM", 
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref, 
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
       p_4.set_initial("FLU001")
-
-      tc = th.find_by_identifiers(["C66737", "C49686"])["C49686"]
-      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
-      tc = th.find_by_identifiers(["C99077", "C98722"])["C98722"]
-      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
-      ta = TherapeuticArea.where(label: "Nervous system disorders")
-      ind = Indication.where(label: "Alzheimer's Disease")
-      p_5 = Protocol.new(label: "CPT_TALib-Alzheimers-BWE_V003", title: "A made up protocol title", short_title: "", 
-        acronym: "MADE UP ACRONYM", 
-        in_ta: ta.first.uri, for_indication: [ind.first.uri],
-        study_type: type_ref, study_phase: phase_ref, masking: m_ref, intervention_model: im_ref)
-      p_5.set_initial("CPT_TALib-ALZ-BWE_V003")
 
       # Generate
       sparql = Sparql::Update.new
@@ -600,7 +588,6 @@ describe "C - Transcelerate Protocol" do
       p_2.to_sparql(sparql, true)
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
-      p_5.to_sparql(sparql, true)
       ass1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
@@ -608,11 +595,6 @@ describe "C - Transcelerate Protocol" do
       obj_items.each {|x| x.to_sparql(sparql, true)}
       ep_items.each {|x| x.to_sparql(sparql, true)}
       sass_items.each {|x| x.to_sparql(sparql, true)}
-
-      # sbc1.to_sparql(sparql, true)
-      # sbc2.to_sparql(sparql, true)
-      # sass1.to_sparql(sparql, true)
-      # ass.to_sparql(sparql, true)
 
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "hackathon_protocols.ttl")
