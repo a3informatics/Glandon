@@ -125,7 +125,7 @@ StudySchedule.prototype.asmntHTML = function(index, asmnt) {
   // Visit matrix
   $.each(asmnt.visits, function(i, visit){
     dataRow.append("<td class='cen'>" +
-                      (visit.applies ? "<span class='icon-ok text-link'></span>" : "" ) +
+                      (visit.applies ? "<span class='circular-badge xsmall' style='background: "+typeToBgColor(asmnt.rdf_type)+"'></span>" : "" ) +
                    "</td>");
   }.bind(this));
   // No visit data message

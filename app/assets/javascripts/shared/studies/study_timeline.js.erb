@@ -121,9 +121,11 @@ StudyTimeline.prototype.minMaxOffsets = function() {
 
   if (_.isEmpty(this.data.renderTimepoints)) {
     if (this.currentEpochFilter() != null) {
-        var epochIndex = _.indexOf(_.values(this.matrix.data.epochs), this.matrix.getItem(this.currentEpochFilter().attr("data-id"), "epochs"));
-        minOffset += (maxOffset + 1) * epochIndex;
-        maxOffset += (maxOffset + 1) * epochIndex;
+      var currentEpochId = this.currentEpochFilter().attr("data-id");
+
+      var epochIndex = _.indexOf(_.values(this.matrix.data.epochs), this.matrix.getItem(currentEpochId, "epochs"));
+      minOffset += (maxOffset + 1) * epochIndex;
+      maxOffset += (maxOffset + 1) * epochIndex;
     }
   }
   else {
@@ -385,7 +387,19 @@ StudyTimeline.prototype.getEpochEdgeTps = function(epoch) {
  * @return
  */
 StudyTimeline.prototype.getPreviousEpoch = function(epoch) {
-  var index = _.indexOf(epoch, _.values(this.matrix.data.epochs)) - 1;
+  var index = _.indexOf(_.values(this.matrix.data.epochs), epoch) - 1;
+
+  return _.values(this.matrix.data.epochs)[index];
+}
+
+/**
+ * Finds next epoch
+ *
+ * @param epoch [Object] single epoch object
+ * @return
+ */
+StudyTimeline.prototype.getNextEpoch = function(epoch) {
+  var index = _.indexOf(_.values(this.matrix.data.epochs), epoch) + 1;
 
   return _.values(this.matrix.data.epochs)[index];
 }
