@@ -265,8 +265,19 @@ describe "C - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_form_cibic.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_form_dad.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_form_lab_samples.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_form_ecg.ttl")
+            
+
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
       
+      f1 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_CIBIC/V1#F"))
+      f2 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_DAD/V1#F"))
+      f3 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_LAB_SAMPLES/V1#F"))
+      f4 = Form.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/F_ECG/V1#F"))
+
       bc1 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DAD_C105183/V1#BCI"))
       bc2 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DAD_C105181/V1#BCI"))
       bc3 = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DAD_C105171/V1#BCI"))
@@ -283,9 +294,14 @@ describe "C - Transcelerate Protocol" do
       ass1.set_initial("ASS DAD")
 
       sass_items = []
-      study_assessments = [ass1, ass1]
-      study_assessments.each do |sass_item|
-        sass = StudyAssessment.new(label: sass_item.label, is_derived_from: sass_item.uri)
+      mdr_items = 
+      [
+        ass1, ass1, f1, f1, f1, #  0 -  4
+        f1, f2, f2, f2, f2,     #  5 -  9
+        f3, f3, f4, f4          # 10 - 14
+      ]
+      mdr_items.each do |mdr_item|
+        sass = StudyAssessment.new(label: sass_item.label, is_derived_from: mdr_item.uri)
         sass.uri = sass.create_uri(sass.class.base_uri)
         sass_items << sass
       end
@@ -316,11 +332,26 @@ describe "C - Transcelerate Protocol" do
       end
       tps = 
       [
-        {label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, has_planned: [sass_items[0].uri]},
-        {label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, has_planned: [sass_items[1].uri]},
-        {label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri, has_planned: []},
-        {label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, has_planned: []},
-        {label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri, has_planned: []},
+        {
+          label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri, 
+          has_planned: [sass_items[0].uri, sass_items[2].uri, sass_items[6].uri, sass_items[10].uri, sass_items[12].uri]
+        },
+        {
+          label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri, 
+          has_planned: [sass_items[1].uri, sass_items[3].uri, sass_items[7].uri, sass_items[13].uri]
+        },
+        {
+          label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri,
+          has_planned: [sass_items[11].uri]
+        },
+        {
+          label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri, 
+          has_planned: [sass_items[4].uri, sass_items[8].uri]
+        },
+        {
+          label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri, 
+          has_planned: [sass_items[5].uri, sass_items[9].uri]
+        },
       ]
       tp_items = []
       tps.each_with_index do |v, index|
@@ -477,11 +508,11 @@ describe "C - Transcelerate Protocol" do
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
       el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[0].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
-      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
+      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
+      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
+      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri], tp_items[4].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
