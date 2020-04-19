@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "C - Transcelerate Protocol" do
+describe "E - Transcelerate Protocol" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -537,6 +537,8 @@ describe "C - Transcelerate Protocol" do
         specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
       p_1.set_initial("LY246708")
 
+      ta = TherapeuticArea.where(label: "Metabolic")
+      ind = Indication.where(label: "Diabetes Mellitus")
       tc = th.find_by_identifiers(["C66737", "C15600"])["C15600"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
