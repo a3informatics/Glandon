@@ -26,6 +26,12 @@ class ProtocolsController < ApplicationController
     render json: {data: protocol.objectives}, status: 200
   end
 
+  def endpoints
+    authorize Form, :show?
+    protocol = Protocol.find_minimum(protect_from_bad_id(params))
+    render json: {data: protocol.endpoints}, status: 200
+  end
+
 private
 
   def the_params
