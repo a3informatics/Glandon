@@ -219,7 +219,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Type Relationship"^^xsd:string ;
-  rdfs:domain :Objective ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :Objective :ProtocolObjective)
+    ] ;
   rdfs:range en:Enumerated ;
   skos:definition "Relationship from an objective to its type."^^xsd:string ;
 .
