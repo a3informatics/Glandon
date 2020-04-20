@@ -368,7 +368,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from: Endpoint.where(label: "Endpoint 1"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 1").first,
           is_derived_from: []
         },
         {
@@ -376,7 +376,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from: Endpoint.where(label: "Endpoint 2"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 2").first,
           is_derived_from: []
         },
         {
@@ -384,7 +384,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
-          derived_from: Endpoint.where(label: "Endpoint 9"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
           is_derived_from: []
         },
         {
@@ -392,7 +392,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
           primary_timepoint: tp_items[4].uri,
           secondary_timepoint: [],
-          derived_from: Endpoint.where(label: "Endpoint 5"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 5").first,
           is_derived_from: []
         },
         {
@@ -400,7 +400,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[2].uri],
-          derived_from: Endpoint.where(label: "Endpoint 6"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 6").first,
           is_derived_from: []
         },
         {
@@ -408,7 +408,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
           primary_timepoint: tp_items[1].uri,
           secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from: Endpoint.where(label: "Endpoint 7"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 7").first,
           is_derived_from: []
         },
         {
@@ -416,7 +416,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
-          derived_from: Endpoint.where(label: "Endpoint 8"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 8").first,
           is_derived_from: []
         },
         {
@@ -424,7 +424,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
-          derived_from: Endpoint.where(label: "Endpoint 9"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
           is_derived_from: []
         },
         {
@@ -432,7 +432,7 @@ describe "E - Transcelerate Protocol" do
           full_text: "The change from baseline to Week 8 in the DAD total score",
           primary_timepoint: tp_items[0].uri,
           secondary_timepoint: [tp_items[1].uri],
-          derived_from: Endpoint.where(label: "Endpoint 9"),
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
           is_derived_from: [sass_items[0].uri, sass_items[1].uri]
         },
       ]
@@ -452,36 +452,36 @@ describe "E - Transcelerate Protocol" do
           label: "LY246708 OBJ1", 
           full_text: "To assess the effect of Xanomeline Transdermal Therapeutic System (TTS) on the ADAS-Cog and CIBIC+ scores at Week 24 in participants with Mild to Moderate Alzheimer’s Disease",
           objective_type: enum_p.uri,
-          is_assessed_by: [],
-          derived_from: Objective.where(label: "Objective 1").first
+          is_assessed_by: [ep_items[0].uri, ep_items[1].uri],
+          derived_from_objective: Objective.where(label: "Objective 1").first
         },
         { 
           label: "LY246708 OBJ2", 
           full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas",
           objective_type: enum_p.uri,
-          is_assessed_by: [],
-          derived_from: Objective.where(label: "Objective 3").first
+          is_assessed_by: [ep_items[2].uri],
+          derived_from_objective: Objective.where(label: "Objective 3").first
         },
         { 
           label: "LY246708 OBJ3", 
           full_text: "To document the safety profile of the xanomeline TTS.",
           objective_type: enum_s.uri,
-          is_assessed_by: [],
-          derived_from: Objective.where(label: "Objective 4").first
+          is_assessed_by: [ep_items[3].uri, ep_items[4].uri, ep_items[5].uri, ep_items[6].uri],
+          derived_from_objective: Objective.where(label: "Objective 4").first
         },
         { 
           label: "LY246708 OBJ4", 
           full_text: "To assess the effect of xanomeline TTS on the measure of behavioral/neuropsychiatric symptoms in participants with  Alzheimer’s Disease",
           objective_type: enum_s.uri,
-          is_assessed_by: [],
-          derived_from: Objective.where(label: "Objective 5").first
+          is_assessed_by: [ep_items[7].uri],
+          derived_from_objective: Objective.where(label: "Objective 5").first
         },
         { 
           label: "LY246708 OBJ5", 
           full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas",
           objective_type: enum_s.uri,
-          is_assessed_by: [],
-          derived_from: Objective.where(label: "Objective 6").first
+          is_assessed_by: [ep_items[8].uri],
+          derived_from_objective: Objective.where(label: "Objective 6").first
         }
       ]
       obj_items = []

@@ -387,6 +387,7 @@ Rails.application.routes.draw do
     member do
       post :from_template
       get :objectives
+      get :endpoints
     end
   end
   resources :protocol_templates, only: [:show] do

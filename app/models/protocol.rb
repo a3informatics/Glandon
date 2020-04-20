@@ -95,7 +95,7 @@ class Protocol < IsoManagedV2
             #{self.uri.to_ref} pr:forIndication/pr:hasObjective ?o 
           } MINUS 
           { 
-            #{self.uri.to_ref} pr:specifiesObjective/pr:derivedFrom ?o 
+            #{self.uri.to_ref} pr:specifiesObjective/pr:derivedFromObjective ?o 
           }
           BIND ("not_selected" as ?s)
         } UNION
@@ -125,7 +125,7 @@ class Protocol < IsoManagedV2
             #{self.uri.to_ref} pr:forIndication/pr:hasObjective/pr:isAssessedBy ?o 
           } MINUS 
           { 
-            #{self.uri.to_ref} pr:specifiesObjective/pr:isAssessedBy/pr:derivedFrom ?o 
+            #{self.uri.to_ref} pr:specifiesObjective/pr:isAssessedBy/pr:derivedFromEndpoint ?o 
           }
           BIND ("not_selected" as ?s)
         } UNION

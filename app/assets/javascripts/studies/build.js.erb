@@ -32,6 +32,7 @@ StudyBuild.prototype.initTabs = function() {
   var studySchedule = new StudySchedule();
   var studyDesign = (studyEmpty ? new StudyDesign() : null);
   var studyObjectives = new StudyObjectives();
+  var studyEndpoints = new StudyEndpoints();
 
   this.tabs = {
     content: {instance: studyContent, header: $("#tab-content"), enabled: true},
@@ -39,6 +40,7 @@ StudyBuild.prototype.initTabs = function() {
     soa: {instance: studySchedule, header: $("#tab-soa"), enabled: true},
     design: {instance: studyDesign, header: $("#tab-design"), enabled: studyEmpty},
     objectives: {instance: studyObjectives, header: $("#tab-objetives"), enabled: true},
+    endpoints: {instance: studyEndpoints, header: $("#tab-endpoints"), enabled: true},
   }
 
   this.tabs.design.header.toggleClass("disabled perm-disabled", !this.tabs.design.enabled);

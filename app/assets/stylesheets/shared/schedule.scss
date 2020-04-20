@@ -28,17 +28,17 @@ table.schedule-table td .circular-badge span[class^="icon-"] {
   // font-size: 11pt;
 }
 
-table#objectives {
+table#objectives, table#endpoints {
   width: auto !important;
   margin: 10px auto;
   font-family: $font-light;
-  max-width: 900px;
+  max-width: 960px;
 }
 
-table#objectives th, table#objectives td {
+table#objectives th, table#objectives td, table#endpoints th, table#endpoints td {
   padding: 10px 10px;
 }
 
-table#objectives th {
+table#objectives th, table#endpoints th {
   font-family: $font-primary;
 }
