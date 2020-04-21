@@ -1,0 +1,106 @@
+---
+- :form:
+    :label: Height (Pilot)
+    :identifier: FN000150
+  :groups:
+  - :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :label: Completion status
+      :completion: ''
+      :note: ''
+      :optional: 'true'
+      :ordinal: '1'
+      :mapping: VSSTAT
+      :question_text: " Compltion Status"
+      :has_coded_value:
+      - "<http://www.cdisc.org/C66789/V4#C66789_C49484>"
+    - :label: Unit
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '4'
+      :mapping: VSORRESU
+      :question_text: Unit
+      :has_coded_value:
+      - "<http://www.cdisc.org/C66770/V2#C66770_C48500>"
+      - "<http://www.cdisc.org/C66770/V4#C66770_C49668>"
+    - :label: Height
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '3'
+      :mapping: VSORRES
+      :question_text: Height
+      :has_coded_value: []
+    - :label: Placeholder 2
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :free_text: Measure with shoes off. Round up or down to the nearest tenth inch
+        or tenth centimeter.
+    :sub_groups: []
+- :form:
+    :label: " Weight (Pilot)"
+    :identifier: FN000160
+  :groups:
+  - :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :label: Placeholder 2
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :free_text: Tick in text field, if applicable
+    - :label: " INFORMATION NOT OBTAINED"
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: NOT SUBMITTED
+      :question_text: INFORMATION NOT OBTAINED
+      :has_coded_value: []
+    :sub_groups: []
+  - :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '2'
+    :note: ''
+    :items:
+    - :label: " Weight"
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: VSORRES
+      :question_text: Weight
+      :has_coded_value: []
+    - :label: Unit
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '3'
+      :mapping: VSORRESU
+      :question_text: Unit
+      :has_coded_value:
+      - "<http://www.cdisc.org/C66770/V4#C66770_C28252>"
+      - "<http://www.cdisc.org/C71620/V6#C71620_C48531>"
+    - :label: Placeholder 3
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :free_text: Measure with shoes off. Round up or down to the nearest tenth kilogram
+        or tenth pound.
+    :sub_groups: []
