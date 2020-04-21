@@ -1,0 +1,125 @@
+$(document).ready(function() {
+  new UploadsSelector();
+});
+
+/*
+* Uploads Selector
+*/
+
+
+/**
+* Uploads Selector Constructor
+*
+* @return [void]
+*/
+function UploadsSelector() {
+  this.div = $("#uploads-body");
+  this.removeUrl = "";
+  this.removeAllUrl = "";
+  this.table = this.initTable();
+
+  this.setListeners();
+}
+
+/**
+ * Posts data to server, runs callbacks
+ * @param params [Object] request parameters, must contain url, type, data, callback
+ *
+ * @return [void]
+ */
+UploadsSelector.prototype.executeRequest = function (params) {
+  this.loading(true);
+
+	$.ajax({
+		url: params.url,
+		data: params.data,
+		type: params.type,
+		dataType: 'json',
+		context: this,
+		success: function(result){
+			params.callback();
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+      this.loading(false);
+		}
+	});
+}
+
+/**
+* Uploads Selector Constructor
+*
+* @return [void]
+*/
+UploadsSelector.prototype.setListeners = function() {
+  $("#select-all-files").on("click", function() {
+    this.table.rows().select();
+  }.bind(this));
+
+  $("#deselect-all-files").on("click", function() {
+    this.table.rows().deselect();
+  }.bind(this));
+
+  $("#remove-selected-files").on("click", this.removeItems.bind(this, false));
+}
+
+/**
+* Uploads Selector Constructor
+*
+* @return [void]
+*/
+UploadsSelector.prototype.removeItems = function(confirmed) {
+  if (!confirmed) {
+    new ConfirmationDialog(this.removeItems.bind(this, true), {dangerous: true}).show();
+    return;
+  }
+
+  var selectedFiles = this.table.rows({selected: true}),
+      requestUrl = selectedFiles.length == this.table.rows().length ? this.removeAllUrl : this.removeUrl,
+      data = selectedFiles.data().toArray().map(function(r) { return r[0] == "" ? r[1] : (r[1] + "." + r[0]) });
+
+  this.executeRequest({
+      url: requestUrl,
+      type: "POST",
+      data: { upload: { remove_files: data } },
+      callback: function(result){
+        selectedFiles.remove().draw();
+        this.loading(false);
+      }.bind(this)
+  });
+}
+
+/**
+* Uploads Selector Constructor
+*
+* @return [void]
+*/
+UploadsSelector.prototype.initTable = function() {
+  return $("#uploaded-files").DataTable({
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "processing": true,
+    "searching": false,
+    "paging": false,
+    "select": "multi",
+    "scrollY": 400,
+    "scrollCollapse": true,
+    "info": false,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No files found in the Uploads directory.",
+      "processing": generateSpinner("small")
+    },
+  });
+}
+
+/**
+* Toggle loading
+*
+* @param enable [Boolean] true/false - enables/disabled loading state
+* @return [void]
+*/
+UploadsSelector.prototype.loading = function(enable) {
+  this.table.processing(enable);
+  this.div.find(".btns-wrap .btn").toggleClass("disabled", enable)
+}

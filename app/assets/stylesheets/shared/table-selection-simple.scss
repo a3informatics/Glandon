@@ -1,0 +1,37 @@
+@import "custom/vars.scss";
+
+table.table-row-clickable tbody tr:hover {
+  cursor: pointer;
+  background: $row-highlight-background !important;
+}
+
+table.table-row-clickable tbody tr.selected td {
+  font-family: $font-primary;
+  color: $primary-color-light;
+}
+
+table.table-row-clickable tbody tr td:last-of-type,
+  table.table-row-clickable thead tr th:last-of-type{
+  padding-right: 30px;
+  position: relative;
+}
+
+table.table-row-clickable tbody tr td:last-of-type::after {
+  display: block;
+  position: absolute;
+  font-family: "icomoon";
+  content: "\e962";
+  color: $grey-light;
+  right: 10px;
+  top: calc(50% - 7pt);
+  font-size: 12pt;
+}
+
+table.table-row-clickable tbody tr.selected td:last-of-type::after {
+  content: "\e963";
+  color: $primary-color-light;
+}
+
+.dataTables_scrollBody table thead tr th{
+  border-bottom: none !important;
+}

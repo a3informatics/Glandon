@@ -1,4 +1,7 @@
 <%= javascript_tag 'setPageTitle("Upload")' %>
+
+<%= javascript_include_tag "uploads/index" %>
+<%= stylesheet_link_tag "shared/table-selection-simple", "shared/datatables_loading"  %>
 <% first_level_breadcrumb (:uploads) %>
 
 <div class="row">
@@ -6,14 +9,20 @@
 		main_text: "File Upload", sub_texts: "Find and transfer files to the server." } do %>
 	<% end %>
 </div>
-<div class="row centered">
-	<div class="col-md-9 card wide">
+
+<div id="uploads-body" class="row centered">
+	<div class="col-md-11 card wide">
 		<div class="card-header">
-			Upload from your computer
+			Upload
 		</div>
 		<div class="card-content">
+
+			<div class="text-xnormal text-link ci-card-title">
+				Upload files from your computer
+			</div>
+
 			<center>
-				<img src="<%= asset_path 'icons/upload_graphic' %>" width="150px" />
+				<img src="<%= asset_path 'icons/upload_graphic' %>" width="100px" />
 
 				<%= form_for @upload do |f| %>
 				  	<div class="form-wrap">
@@ -26,6 +35,38 @@
 					<%= f.submit "Start upload", class: "btn medium green" %>
 				<% end %>
 			</center>
+
+			<div class="text-xnormal text-link ci-card-title">
+				Files on the server
+			</div>
+
+			<div class="table-cardstyle all-columns table-width-wrapper narrow loading-destretch">
+				<table style="width:100%" id="uploaded-files" class="table table-condensed table-row-clickable">
+					<thead>
+						<tr>
+							<th class="fit"> File extension </th>
+							<th> File name </th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @public_files.each do |file| %>
+							<tr>
+								<td><%= file[:extension] %></td>
+								<td><%= file[:name] %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="btns-wrap">
+				<button id="select-all-files" class="btn medium light">Select All</button>
+				<button id="deselect-all-files" class="btn medium light">Deselect All</button>
+				<button id="remove-selected-files" class="btn medium red">
+					<span class="icon-trash text-white"></span>
+					Delete Selected
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

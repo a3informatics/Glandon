@@ -24,3 +24,9 @@ div.dataTables_wrapper div.dataTables_processing{
   margin-bottom: 0px;
   margin-left: -5px !important;
 }
+
+
+.loading-destretch div.dataTables_wrapper div.dataTables_processing{
+  top: 10% !important;
+  bottom: 10% !important;
+}
