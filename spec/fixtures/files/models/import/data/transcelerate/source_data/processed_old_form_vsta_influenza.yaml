@@ -1,0 +1,138 @@
+---
+- :form:
+    :label: Vital Signs - Therapeutic Area - Influenza
+    :identifier: VSTAINFLUENZA
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: Group
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Respiratory Rate
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000035_I11_DT1_P2
+        :has_coded_value:
+        - http://www.cdisc.org/C66770/V4#C66770_C49674
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000035_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Diastolic Blood Pressure
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P2
+        :has_coded_value:
+        - http://www.cdisc.org/C66770/V4#C66770_C49670
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000024_I8_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Systolic Blood Pressure
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P2
+        :has_coded_value:
+        - http://www.cdisc.org/C66770/V4#C66770_C49670
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I11_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Body Position (--POS)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I4_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C71148/V6#C71148_C62166
+        - http://www.cdisc.org/C71148/V6#C71148_C62167
+        - http://www.cdisc.org/C71148/V6#C71148_C62122
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Heart Rate
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P2
+        :has_coded_value:
+        - http://www.cdisc.org/C71620/V6#C71620_C49673
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000026_I11_DT1_P1
+        :has_coded_value: []
+      :groups: []

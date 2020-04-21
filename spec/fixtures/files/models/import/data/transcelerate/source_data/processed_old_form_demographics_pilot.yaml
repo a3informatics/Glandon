@@ -1,0 +1,163 @@
+---
+- :form:
+    :label: Demographics (Pilot)
+    :identifier: FB000010
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Sex
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I10_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66731/V4#C66731_C16576
+        - http://www.cdisc.org/C66731/V4#C66731_C20197
+        - http://www.cdisc.org/C66731/V4#C66731_C17998
+        - http://www.cdisc.org/C66731/V4#C66731_C45908
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Race
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I10_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE2
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE4
+        - http://www.cdisc.org/C74457/V10#C74457_C41219
+        - http://www.cdisc.org/C74457/V10#C74457_C41260
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE1
+        - http://www.cdisc.org/C74457/V49#C74457_C16352
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE6
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE3
+        - http://www.cdisc.org/C74457/V10#C74457_C41259
+        - http://www.cdisc.org/C74457/V10#C74457_C41261
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE5
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Date of Birth
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I10_DT1_P2
+        :has_coded_value:
+        - http://www.cdisc.org/C66781/V4#C66781_C29846
+        - http://www.cdisc.org/C66781/V4#C66781_C29848
+        - http://www.cdisc.org/C66781/V4#C66781_C25529
+        - http://www.cdisc.org/C66781/V4#C66781_C29844
+        - http://www.cdisc.org/C66781/V4#C66781_C25301
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I10_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+      :label: Common Group
+      :completion: ''
+      :optional: 'false'
+      :repeating: ''
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1
+      :groups: []

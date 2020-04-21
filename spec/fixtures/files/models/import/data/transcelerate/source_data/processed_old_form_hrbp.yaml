@@ -1,0 +1,115 @@
+---
+- :form:
+    :label: Heart rate and blood pressure (Pilot)
+    :identifier: FN000180
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: HEART RATE AND BLOOD PRESSURE
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '2'
+    :note: ''
+    :items:
+    - :type: :Question
+      :label: Position
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '3'
+      :mapping: VSPOS
+      :question_text: Position
+      :has_coded_value:
+      - http://www.cdisc.org/C71148/V6#C71148_C62167
+      - http://www.cdisc.org/C71148/V6#C71148_C62166
+    - :type: :Question
+      :label: BP Unit
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '9'
+      :mapping: VSORRESU
+      :question_text: 'Unit '
+      :has_coded_value:
+      - http://www.cdisc.org/C66770/V4#C66770_C49670
+    - :type: :Question
+      :label: Code
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: VSTPTNUM
+      :question_text: Timing Code
+      :has_coded_value: []
+    - :type: :Question
+      :label: Diastolic BP
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '8'
+      :mapping: VSORRES
+      :question_text: Diastolic BP
+      :has_coded_value: []
+    - :type: :Question
+      :label: Time
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: VSTPT
+      :question_text: Reference Time (5 minutes)
+      :has_coded_value: []
+    - :type: :Question
+      :label: Systolic BP
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '7'
+      :mapping: VSORRES
+      :question_text: Systolic BP
+      :has_coded_value: []
+    - :type: :Question
+      :label: HR UNIT
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '6'
+      :mapping: VSORRESU
+      :question_text: Heart Rate Unit
+      :has_coded_value:
+      - http://www.cdisc.org/C71620/V6#C71620_C49673
+    - :type: :Question
+      :label: HR
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '5'
+      :mapping: VSORRES
+      :question_text: Heart Rate
+      :has_coded_value: []
+    - :type: :Mapping
+      :label: Mapping 5
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '4'
+      :mapping: VSTESTCD = PULSE
+    :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: Group
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Placeholder
+      :label: Placeholder 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :free_text: Blood pressure and pulse must be taken after the patient has been
+        lying down for 5 minutes (supine) and after standing for 1 minute (standing)
+        and 3 minutes.
+    :groups: []

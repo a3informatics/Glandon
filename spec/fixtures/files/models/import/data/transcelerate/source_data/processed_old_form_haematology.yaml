@@ -1,0 +1,464 @@
+---
+- :form:
+    :label: Central Laboratory Haematology Analysis Results
+    :identifier: FB Haematology Analysis Results
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: Group
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Alanine Aminotransferase Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '8'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I12_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: HbA1c - Glycosylated Hemoglobin Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I12_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C111253
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C25613
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Aspartate Aminotransferase Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '7'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I12_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Alkaline Phosphatase Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '6'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I12_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Total Protein Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C42576
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C64783
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I12_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Albumin Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C42576
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C64783
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I12_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Total Bilirubin Measurement
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Clinically Significant (--CLSIG)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I12_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67015
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C48508
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I12_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+      :label: Time
+      :completion: ''
+      :optional: 'false'
+      :repeating: ''
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1
+      :groups: []

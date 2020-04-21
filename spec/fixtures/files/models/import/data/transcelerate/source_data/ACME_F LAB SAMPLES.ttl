@@ -1,0 +1,226 @@
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"F Laboratory Samples" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2020-04-15T08:06:34+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2020-04-15T08:07:16+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Sample" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Mapping> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Mapping 6" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I4> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"LBTUBE=URINE" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Mapping> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Mapping 5" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_I2> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"LBTUBE=BLOOD" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Laboratory Sample - Not Done" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Reason Not Done (--REASND)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEND_I10_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEND> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G1_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Laboratory Sample - Urine" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Reason Not Done (--REASND)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I10_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Specimen (--SPEC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I11_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C13283> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Urine" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Laboratory Sample - Blood" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Reason Not Done (--REASND)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I10_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Specimen (--SPEC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I11_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C12434> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Blood" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FLABSAMPLES_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"F LAB SAMPLES" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"0.1.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FLABSAMPLES-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Incomplete" . 

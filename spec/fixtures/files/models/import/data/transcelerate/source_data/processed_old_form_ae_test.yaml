@@ -1,0 +1,170 @@
+---
+- :form:
+    :label: My AE test form
+    :identifier: FB999997
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: Group
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'true'
+    :ordinal: '1'
+    :note: ''
+    :items: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Adverse Event
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Outcome (--OUT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '11'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I15_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66768/V4#C66768_C49494
+        - http://www.cdisc.org/C66768/V4#C66768_C49496
+        - http://www.cdisc.org/C66768/V4#C66768_C49495
+        - http://www.cdisc.org/C66768/V4#C66768_C48275
+        - http://www.cdisc.org/C66768/V4#C66768_C49498
+        - http://www.cdisc.org/C66768/V4#C66768_C17998
+      - :type: :BcProperty
+        :label: Action taken (--ACN)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '7'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I9_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66767/V4#C66767_C49502
+        - http://www.cdisc.org/C66767/V4#C66767_C49505
+        - http://www.cdisc.org/C66767/V4#C66767_C17998
+        - http://www.cdisc.org/C66767/V4#C66767_C49504
+        - http://www.cdisc.org/C66767/V4#C66767_C49503
+        - http://www.cdisc.org/C66767/V4#C66767_C49501
+        - http://www.cdisc.org/C66767/V4#C66767_C48660
+      - :type: :BcProperty
+        :label: Result Value (--TERM)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Relationship to Non-Study Treatment (--RELNST)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '10'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I14_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: End DateTime (--ENDTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '6'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I8_DT1_P2_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Start DateTime (--STDTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '5'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Pattern of Adverse Event (--PATT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I6_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Results in Death (--SDTH)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '13'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I17_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C17998
+      - :type: :BcProperty
+        :label: Causality (--REL)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '9'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I13_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_aerel_aerel_4
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_aerel_aerel_3
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_aerel_aerel_2
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_aerel_aerel_1
+      - :type: :BcProperty
+        :label: Serious Event (--SER)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I5_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C17998
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :BcProperty
+        :label: Involves Cancer (--SCAN)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '12'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I16_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :BcProperty
+        :label: Other Action Taken (--ACNOTH)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '8'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I10_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Severity (--SEV)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC001050_I4_DT1_P1
+        :has_coded_value:
+        - http://www.cdisc.org/C66769/V4#C66769_C41339
+        - http://www.cdisc.org/C66769/V4#C66769_C41338
+        - http://www.cdisc.org/C66769/V4#C66769_C41340
+      :groups: []

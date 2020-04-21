@@ -1,0 +1,120 @@
+---
+- :form:
+    :label: F Laboratory Samples
+    :identifier: F LAB SAMPLES
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: Sample
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 5
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: LBTUBE=BLOOD
+    - :type: :Mapping
+      :label: Mapping 6
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '4'
+      :mapping: LBTUBE=URINE
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Laboratory Sample - Not Done
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEND_I10_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Laboratory Sample - Blood
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Specimen (--SPEC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I11_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C12434
+      - :type: :BcProperty
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEBLOOD_I10_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Laboratory Sample - Urine
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Specimen (--SPEC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I11_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C78734_C13283
+      - :type: :BcProperty
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I10_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCLABSAMPLEURINE_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      :groups: []

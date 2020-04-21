@@ -1,0 +1,2297 @@
+---
+- :form:
+    :label: Disability Assessment For Dementia (DAD) (Pilot)
+    :identifier: FN000120
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: LEISURE AND HOUSEWORK
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '12'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='LEISURE AND HOUSEWORK"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 37.Take an interest in household chores that he/she used to perform
+        in the past
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM37"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 38. Plan and organize adequately household chores that he/she used to
+        perform in the past
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM38"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 40. Stay safely at home by himself/herself when needed
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '6'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM40"
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 39. Complete household chores adequately as he/she used to perform in
+        the past
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM39"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 36. Show an interest in leisure activity(ies)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM36"
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '2'
+    :note: ''
+    :items:
+    - :type: :Question
+      :label: 'INFORMATION NOT OBTAINED '
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: NOT SUBMITTED
+      :question_text: 'INFORMATION NOT OBTAINED '
+      :has_coded_value: []
+    - :type: :Question
+      :label: 'Clinician''s initials '
+      :completion: First/Middle/Last
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: NOT SUBMITTED
+      :question_text: 'Clinician''s initials '
+      :has_coded_value: []
+    :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: TELEPHONING
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '8'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='TELEPHONING"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 21. Attempt to telephone someone at a suitable time
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM21"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 23. Carry out an appropriate telephone conversation
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM23"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 22. Find and dial a telephone number correctly
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM22"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 24. Write and convey a telephone message adequately
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM24"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: HYGIENE
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '3'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 2
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='HYGIENE"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 6. Brush his/her teeth or care for his/her dentures appropriately
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '7'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM06"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 1. Undertake to wash himself/herself or to take a bath or a shower
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 2
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM01"
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 7. Care for his/her hair (wash and comb)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '8'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM07"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 3. Decide to care for his/her hair (wash and comb)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM03"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 2. Undertake to brush his/her teeth or care for his/her dentures
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM02"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 5.Wash and dry completely all parts of his/her body safely
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '6'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM05"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 4. Prepare the water, towels, and soap for washing, taking a bath, or
+        a shower
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM04"
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: GOING ON AN OUTING
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '9'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='GOING ON AN OUTING"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 29. Return from the store with the appropriate items
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '6'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM29"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 25. Undertake to go out (walk, visit, shop) at an appropriate time
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM25"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 27. Go out and reach a familiar destination without getting lost
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM27"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 26. Adequately organize an outing with respect to transportation, keys,
+        destination, weather, necessary money, shopping list
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM26"
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 28. Safely take the adequate mode of transportation (car, bus, taxi)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM28"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: DRESSING
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '4'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='DRESSING"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 9. Choose appropriate clothing (with regard to the occasion, neatness,
+        the weather, and color combination)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM09"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 10. Dress himself/herself in the appropriate order (undergarments, pant/dress,
+        shoes)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM10"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 12. Undress himself/herself completely
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '6'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM12"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 11. Dress himself/herself completely
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM11"
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 8.Undertake to dress himself/herself
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM08"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSCAT="DISABILITY ASSESSMENT FOR DEMENTIA (DAD)"
+    :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: CONTINENCE
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '5'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='CONTINENCE"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 14. Use the toilet without "accidents"
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM14"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 13. Decide to use the toilet at appropriate times
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM13"
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: MEDICATIONS
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '11'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='MEDICATIONS"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 34. Decide to take his/her medications at the correct time
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM34"
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 35. Take his/her medications as prescribed (according to the right dosage)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM35"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: MEAL PREPARATION
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '7'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='MEAL PREPARATION"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 18. Undertake to prepare a light meal or snack for himself/herself
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM18"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 19. Adequately plan a light meal or snack (ingredients, cookware)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM19"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 20. Prepare or cook a light meal or a snack safely
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM20"
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: FINANCE AND CORRESPONDENCE
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '10'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='FINANCE AND CORRESPONDENCE"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 30. Show an interest in his/her personal affairs such as his/her finances
+        and written correspondence
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM30"
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 31. Organize his/her finances to pay his/her bills (cheques, bankbook,
+        bills)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM31"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 32. Adequately organize his/her correspondence with respect to stationery,
+        address, stamps
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM32"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 33. Handle adequately his/her money (make change)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '5'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM33"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: EATING
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '6'
+    :note: ''
+    :items:
+    - :type: :Mapping
+      :label: Mapping 1
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: QSSCAT='EATING"
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 15. Decide that he/she needs to eat
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM15"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 16. Choose appropriate utensils and seasonings when eating
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM16"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: 17. Eat his/her meals at a normal pace and with appropriate manners
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '4'
+      :note: ''
+      :items:
+      - :type: :Mapping
+        :label: Mapping 1
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :mapping: QSTESTCD="DAITM17"
+      - :type: :Question
+        :label: Initiation
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :mapping: QSORRES
+        :question_text: Initiation
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+      - :type: :Question
+        :label: Planning & Organization
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :mapping: QSORRES
+        :question_text: Planning & Organization
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      - :type: :Question
+        :label: Effective Performance
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :mapping: QSORRES
+        :question_text: Effective Performance
+        :has_coded_value:
+        - http://www.cdisc.org/C66742/V4#C66742_C49488
+        - http://www.cdisc.org/C66742/V4#C66742_C49487
+        - http://www.cdisc.org/C66742/V4#C66742_C48660
+      :groups: []

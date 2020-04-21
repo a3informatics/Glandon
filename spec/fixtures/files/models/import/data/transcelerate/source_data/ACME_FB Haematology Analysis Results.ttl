@@ -1,0 +1,839 @@
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Central Laboratory Haematology Analysis Results" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2020-04-15T11:54:07+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2020-04-15T12:34:20+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Group" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasCommon> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#hasSubGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#CommonGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Time" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#CommonItem> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#hasCommonItem> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G1_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"HbA1c - Glycosylated Hemoglobin Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C25613> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Percentage" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C111253> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Millimole per Mole" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BCC64849> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G2_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Total Protein Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C64783> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Gram per Deciliter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C42576> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Kilogram per Cubic Meter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64858PROT> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G3_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Albumin Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C64783> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Gram per Deciliter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C42576> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Kilogram per Cubic Meter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64431ALB> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G4_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Total Bilirubin Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"5" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67015> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Milligram per Deciliter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C48508> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Micromole per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G5_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Alkaline Phosphatase Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"6" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Unit per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Microkatal per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G6_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Aspartate Aminotransferase Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"7" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Unit per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Microkatal per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64467AST> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G7_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Alanine Aminotransferase Measurement" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"8" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Date Time (--DTC)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I8_DT1_P1_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I1_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Value (--ORRES)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I12_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I2_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Result Units (--ORRESU)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I12_DT1_P2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67456> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Unit per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/CDISC/V53#CLI-C71620_C67397> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I3_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Microkatal per Liter" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#BcProperty> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Clinically Significant (--CLSIG)" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#hasProperty> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4> 			<http://www.assero.co.uk/BusinessForm#is_common> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#PReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Property Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#hasProperty> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT_I13_DT1_P1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"0" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_PR0> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_N> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Not Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#TcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Thesaurus Concept Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CLSIGNY_CLSIGNY_Y> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_I4_TCR2> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"Clinically Significant" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessOperational#BcReference> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"BC Reference" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> 			<http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64433ALT> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.assero.co.uk/BusinessOperational#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.assero.co.uk/BusinessOperational#enabled> 			"true" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.assero.co.uk/BusinessOperational#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBHaematologyAnalysisResults_G1_G8_BCR1> 			<http://www.assero.co.uk/BusinessOperational#local_label> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"FB Haematology Analysis Results" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"0.1.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBHaematologyAnalysisResults-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Incomplete" . 

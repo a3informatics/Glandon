@@ -182,24 +182,136 @@ describe Form do
           ordinal: 2,
           note: ""
         })
-      @ng_4 = Form::Group::Normal.from_h({
-          label: "",
+      @ng_3_ng_3 = Form::Group::Normal.from_h({
+          label: "2. Undertake to brush his/her teeth or care for his/her dentures",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @ng_3_ng_4 = Form::Group::Normal.from_h({
+          label: "3. Decide to care for his/her hair (wash and comb)",
           completion: "",
           optional: "false",
           repeating: "false",
           ordinal: 4,
           note: ""
         })
-      @ng_5 = Form::Group::Normal.from_h({
-          label: "",
+      @ng_3_ng_5 = Form::Group::Normal.from_h({
+          label: "4. Prepare the water, towels, and soap for washing, taking a bath, or a shower",
           completion: "",
           optional: "false",
           repeating: "false",
           ordinal: 5,
           note: ""
         })
+      @ng_3_ng_6 = Form::Group::Normal.from_h({
+          label: "5.Wash and dry completely all parts of his/her body safely",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 6,
+          note: ""
+        })
+      @ng_3_ng_7 = Form::Group::Normal.from_h({
+          label: "6. Brush his/her teeth or care for his/her dentures appropriately",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 7,
+          note: ""
+        })
+      @ng_3_ng_8 = Form::Group::Normal.from_h({
+          label: "7. Care for his/her hair (wash and comb)",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 8,
+          note: ""
+        })
+      @ng_4 = Form::Group::Normal.from_h({
+          label: "DRESSING",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 4,
+          note: ""
+        })
+      @ng_4_ng_2 = Form::Group::Normal.from_h({
+          label: "8.Undertake to dress himself/herself",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2,
+          note: ""
+        })
+      @ng_4_ng_3 = Form::Group::Normal.from_h({
+          label: "9. Choose appropriate clothing (with regard to the occasion, neatness, the weather, and color combination)",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @ng_4_ng_4 = Form::Group::Normal.from_h({
+          label: "10. Dress himself/herself in the appropriate order (undergarments, pant/dress, shoes)",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 4,
+          note: ""
+        })
+      @ng_4_ng_5 = Form::Group::Normal.from_h({
+          label: "11. Dress himself/herself completely",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 5,
+          note: ""
+        })
+      @ng_4_ng_6 = Form::Group::Normal.from_h({
+          label: "12. Undress himself/herself completely",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 6,
+          note: ""
+        })
+      @ng_5 = Form::Group::Normal.from_h({
+          label: "CONTINENCE",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 5,
+          note: ""
+        })
+      @ng_5_ng_2 = Form::Group::Normal.from_h({
+          label: "13. Decide to use the toilet at appropriate times",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 2,
+          note: ""
+        })
+      @ng_5_ng_3 = Form::Group::Normal.from_h({
+          label: "14. Use the toilet without \"accidents\"",
+          completion: "",
+          optional: "false",
+          repeating: "false",
+          ordinal: 3,
+          note: ""
+        })
+      @m_16 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSSCAT='CONTINENCE\""
+      })
       @ng_6 = Form::Group::Normal.from_h({
-          label: "",
+          label: "EATING",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -207,7 +319,7 @@ describe Form do
           note: ""
         })
       @ng_7 = Form::Group::Normal.from_h({
-          label: "",
+          label: "MEAL PREPARATION",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -215,7 +327,7 @@ describe Form do
           note: ""
         })
       @ng_8 = Form::Group::Normal.from_h({
-          label: "",
+          label: "TELEPHONING",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -223,7 +335,7 @@ describe Form do
           note: ""
         })
       @ng_9 = Form::Group::Normal.from_h({
-          label: "",
+          label: "GOING ON AN OUTING",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -231,7 +343,7 @@ describe Form do
           note: ""
         })
       @ng_10 = Form::Group::Normal.from_h({
-          label: "",
+          label: "FINANCE AND CORRESPONDENCE",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -239,7 +351,7 @@ describe Form do
           note: ""
         })
       @ng_11 = Form::Group::Normal.from_h({
-          label: "",
+          label: "MEDICATIONS",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -247,7 +359,7 @@ describe Form do
           note: ""
         })
       @ng_12 = Form::Group::Normal.from_h({
-          label: "",
+          label: "LEISURE AND HOUSEWORK",
           completion: "",
           optional: "false",
           repeating: "false",
@@ -298,17 +410,674 @@ describe Form do
         ordinal: 1,
         mapping: "QSTESTCD=\"DAITM01\""
       })
-
+      @q_3 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_4 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_5 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_4 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM02\""
+      })
+      @q_6 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_7 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_8 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_5 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM03\""
+      })
+      @q_9 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_10 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_11 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_6 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM04\""
+      })
+      @q_12 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_13 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_14 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_7 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM05\""
+      })
+      @q_15 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_16 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_17 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_8 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM06\""
+      })
+      @q_18 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_19 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_20 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_9 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM07\""
+      })
+      @q_21 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_22 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_23 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_10 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSSCAT='DRESSING\""
+      })
+      @m_11 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM08\""
+      })
+      @q_24 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_25 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_26 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_12 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM09\""
+      })
+      @q_27 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_28 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_29 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_13 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM10\""
+      })
+      @q_30 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_31 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_32 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_14 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM11\""
+      })
+      @q_33 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_34 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_35 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
+      @m_15 = Form::Item::Mapping.from_h({
+        label: "Mapping 1",
+        completion: "",
+        note: "",
+        optional: "false",
+        ordinal: 1,
+        mapping: "QSTESTCD=\"DAITM12\""
+      })
+      @q_36 = Form::Item::Question.from_h({
+          label: "Initiation",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Initiation",
+          optional: "false",
+          format: "20",
+          ordinal: 2,
+          note: ""
+        })
+      @q_37 = Form::Item::Question.from_h({
+          label: "Planning & Organization",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Planning & Organization",
+          optional: "false",
+          format: "20",
+          ordinal: 3,
+          note: ""
+        })
+      @q_38 = Form::Item::Question.from_h({
+          label: "Effective Performance",
+          completion: "",
+          mapping: "QSORRES",
+          question_text: "Effective Performance",
+          optional: "false",
+          format: "20",
+          ordinal: 4,
+          note: ""
+        })
       @ng_2.has_item << @q_1
       @ng_2.has_item << @q_2
       @ng_1.has_item << @m_1
+      @ng_3.has_item << @m_2
       @ng_3.has_sub_group << @ng_3_ng_2
-      # @ng_3.has_sub_group << @ng_3_ng_3
-      # @ng_3.has_sub_group << @ng_3_ng_4
-      # @ng_3.has_sub_group << @ng_3_ng_5
-      # @ng_3.has_sub_group << @ng_3_ng_6
-      # @ng_3.has_sub_group << @ng_3_ng_7
-      # @ng_3.has_sub_group << @ng_3_ng_8
+      @ng_3.has_sub_group << @ng_3_ng_3
+      @ng_3.has_sub_group << @ng_3_ng_4
+      @ng_3.has_sub_group << @ng_3_ng_5
+      @ng_3.has_sub_group << @ng_3_ng_6
+      @ng_3.has_sub_group << @ng_3_ng_7
+      @ng_3.has_sub_group << @ng_3_ng_8
+      @ng_3_ng_2.has_item << @m_3
+      @ng_3_ng_2.has_item << @q_3
+      @ng_3_ng_2.has_item << @q_4
+      @ng_3_ng_2.has_item << @q_5
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_3.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_4.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_4.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_4.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_5.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_5.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_5.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_3.has_item << @m_4
+      @ng_3_ng_3.has_item << @q_6
+      @ng_3_ng_3.has_item << @q_7
+      @ng_3_ng_3.has_item << @q_8
+      @q_6.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_6.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_6.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_7.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_7.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_7.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_8.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_8.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_8.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_4.has_item << @m_5
+      @ng_3_ng_4.has_item << @q_9
+      @ng_3_ng_4.has_item << @q_10
+      @ng_3_ng_4.has_item << @q_11
+      @q_9.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_9.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_9.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_10.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_10.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_10.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_11.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_11.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_11.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_5.has_item << @m_6
+      @ng_3_ng_5.has_item << @q_12
+      @ng_3_ng_5.has_item << @q_13
+      @ng_3_ng_5.has_item << @q_14
+      @q_12.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_12.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_12.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_13.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_13.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_13.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_14.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_14.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_14.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_6.has_item << @m_7
+      @ng_3_ng_6.has_item << @q_15
+      @ng_3_ng_6.has_item << @q_16
+      @ng_3_ng_6.has_item << @q_17
+      @q_15.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_15.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_15.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_16.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_16.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_16.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_17.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_17.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_17.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_7.has_item << @m_8
+      @ng_3_ng_7.has_item << @q_18
+      @ng_3_ng_7.has_item << @q_19
+      @ng_3_ng_7.has_item << @q_20
+      @q_18.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_18.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_18.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_19.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_19.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_19.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_20.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_20.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_20.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_3_ng_8.has_item << @m_9
+      @ng_3_ng_8.has_item << @q_21
+      @ng_3_ng_8.has_item << @q_22
+      @ng_3_ng_8.has_item << @q_23
+      @q_21.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_21.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_21.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_22.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_22.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_22.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_23.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_23.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_23.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @ng_4.has_item << @m_10
+      @ng_4.has_sub_group << @ng_4_ng_2
+      @ng_4.has_sub_group << @ng_4_ng_3
+      @ng_4.has_sub_group << @ng_4_ng_4
+      @ng_4.has_sub_group << @ng_4_ng_5
+      @ng_4.has_sub_group << @ng_4_ng_6
+      @ng_4_ng_2.has_item << @m_11
+      @ng_4_ng_2.has_item << @q_24
+      @ng_4_ng_2.has_item << @q_25
+      @ng_4_ng_2.has_item << @q_26
+      @q_24.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_24.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_24.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_25.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_25.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_25.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_26.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_26.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_26.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_4_ng_3.has_item << @m_12
+      @ng_4_ng_3.has_item << @q_27
+      @ng_4_ng_3.has_item << @q_28
+      @ng_4_ng_3.has_item << @q_29
+      @q_27.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_27.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_27.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_28.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_28.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_28.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_29.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_29.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_29.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_4_ng_4.has_item << @m_13
+      @ng_4_ng_4.has_item << @q_30
+      @ng_4_ng_4.has_item << @q_31
+      @ng_4_ng_4.has_item << @q_32
+      @q_30.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_30.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_30.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_31.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_31.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_31.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_32.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_32.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_32.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_4_ng_5.has_item << @m_14
+      @ng_4_ng_5.has_item << @q_33
+      @ng_4_ng_5.has_item << @q_34
+      @ng_4_ng_5.has_item << @q_35
+      @q_33.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_33.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_33.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_34.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_34.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_34.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_35.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_35.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_35.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_4_ng_6.has_item << @m_15
+      @ng_4_ng_6.has_item << @q_36
+      @ng_4_ng_6.has_item << @q_37
+      @ng_4_ng_6.has_item << @q_38
+      @q_36.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_36.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_36.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_37.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_37.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_37.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_38.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_38.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_38.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_5.has_item << @m_16
+      @ng_5.has_sub_group << @ng_5_ng_2
+      @ng_5.has_sub_group << @ng_5_ng_3
+
+      @ng_5_ng_2.has_item << @m_17
+      @ng_5_ng_2.has_item << @q_39
+      @ng_5_ng_2.has_item << @q_40
+      @ng_5_ng_2.has_item << @q_41
+      @q_39.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_39.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_39.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_40.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_40.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_40.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_41.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_41.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_41.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+      @ng_5_ng_3.has_item << @m_18
+      @ng_5_ng_3.has_item << @q_42
+      @ng_5_ng_3.has_item << @q_43
+      @ng_5_ng_3.has_item << @q_44
+      @q_42.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_42.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_42.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_43.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_43.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_43.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+      @q_44.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49488")
+      @q_44.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C49487")
+      @q_44.has_coded_value << Uri.new(uri: "http://www.cdisc.org/C66742/V4#C66742_C48660")
+
+
+
       @f_1.has_group << @ng_1
       @f_1.has_group << @ng_2
       @f_1.has_group << @ng_3
@@ -565,6 +1334,7 @@ describe Form do
       @ng_1_cg_1.has_item << @ci_3
       @ng_1.has_sub_group << @ng_1_ng_2
       @ng_1.has_sub_group << @ng_1_ng_3
+      @ci_1.has_property <<
       @f_1.has_group << @ng_1
       @f_1.set_initial("ECG")
     end

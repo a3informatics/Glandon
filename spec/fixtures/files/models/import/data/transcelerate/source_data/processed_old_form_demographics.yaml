@@ -1,0 +1,91 @@
+---
+- :form:
+    :label: Demographics
+    :identifier: F DEMOGRAPHICS
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: "<b>DEMOGRAPHICS</b>"
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Question
+      :label: Ethnicity
+      :completion: ''
+      :note: ''
+      :optional: 'true'
+      :ordinal: '5'
+      :mapping: ETHNIC
+      :question_text: Ethnicity
+      :has_coded_value:
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C41222
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C17459
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C43234
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66790_C17998
+    - :type: :Question
+      :label: SEX
+      :completion: ''
+      :note: When Rave PF URL is used together with the Lab Admin Module, then the
+        values within Rave must be 1=M and 2=F.
+      :optional: 'false'
+      :ordinal: '4'
+      :mapping: SEX
+      :question_text: Sex
+      :has_coded_value:
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66731_C16576
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66731_C20197
+    - :type: :Question
+      :label: Birth Date
+      :completion: ''
+      :note: ''
+      :optional: 'true'
+      :ordinal: '3'
+      :mapping: BRTHDTC
+      :question_text: Date of Birth
+      :has_coded_value: []
+    - :type: :Mapping
+      :label: Mapping 7
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: AGEU=YEARS
+    - :type: :Question
+      :label: Race
+      :completion: If the subject is of mixed race, select the race that corresponds
+        to the dominant ethnic group or to the ethnic group that the subject considers
+        him/herself belonging to and ensure this correspondence with a note in the
+        source documents.
+      :note: ''
+      :optional: 'true'
+      :ordinal: '6'
+      :mapping: RACE
+      :question_text: Race
+      :has_coded_value:
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41259
+      - http://www.assero.co.uk/MDRThesaurus/ACME/V7#TH-ACME_CDISCEXTENSION_C128689X_OTHER
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41261
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41219
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C16352
+      - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C128689_C41260
+    - :type: :Question
+      :label: Age
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: AGE
+      :question_text: Age (Years)
+      :has_coded_value: []
+    - :type: :Question
+      :label: Other, specify
+      :completion: ''
+      :note: ''
+      :optional: 'true'
+      :ordinal: '7'
+      :mapping: SUPPDM.DMRACEOT
+      :question_text: If Other, Specify
+      :has_coded_value: []
+    :groups: []

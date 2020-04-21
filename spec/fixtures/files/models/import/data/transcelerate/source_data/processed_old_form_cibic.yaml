@@ -1,0 +1,66 @@
+---
+- :form:
+    :label: Clinician's Interview-Based Impression of Change (CIBIC+) (Pilot)
+    :identifier: FB000130
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Question
+      :label: Question 3
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: NOT SUBMITTED
+      :question_text: 'Clinician''s initials '
+      :has_coded_value: []
+    - :type: :Question
+      :label: Question 2
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: NOT SUBMITTED
+      :question_text: 'INFORMATION NOT OBTAINED '
+      :has_coded_value: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: Clinician's Interview-Based Impression Of Change (CIBIC+)
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000200_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000200_I11_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC05
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC04
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC03
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC01
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC06
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC02
+        - http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC07
+      :groups: []

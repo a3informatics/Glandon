@@ -1,0 +1,371 @@
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Form> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.w3.org/2000/01/rdf-schema#label> "Demographics (Pilot)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Types#creationDate> "2017-09-07T01:40:43-07:00" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Types#lastChangeDate> "2017-09-20T02:00:00-07:00" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Types#changeDescription> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Types#explanatoryComment> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Types#origin> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Identification#hasIdentifier> <http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/ISO11179Registration#hasState> <http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.w3.org/2000/01/rdf-schema#label> " " .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#hasCommon> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#hasSubGroup> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#hasSubGroup> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#hasSubGroup> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#repeating> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#CommonGroup> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.w3.org/2000/01/rdf-schema#label> "Common Group" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#CommonItem> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Date Time (--DTC)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#hasCommonItem> <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#hasCommonItem> <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#hasCommonItem> <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G1_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.w3.org/2000/01/rdf-schema#label> "Date of Birth" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#repeating> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Date Time (--DTC)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1> <http://www.assero.co.uk/BusinessForm#is_common> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I1_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Result Value (--ORRES)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2> <http://www.assero.co.uk/BusinessForm#is_common> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I10_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I2_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.w3.org/2000/01/rdf-schema#label> "Result Units (--ORRESU)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3> <http://www.assero.co.uk/BusinessForm#is_common> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I10_DT1_P2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66781/V4#C66781_C25301> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "Day" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66781/V4#C66781_C25529> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.assero.co.uk/BusinessOperational#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR2> <http://www.assero.co.uk/BusinessOperational#local_label> "Hour" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66781/V4#C66781_C29844> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.assero.co.uk/BusinessOperational#ordinal> "3" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR3> <http://www.assero.co.uk/BusinessOperational#local_label> "Week" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66781/V4#C66781_C29846> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.assero.co.uk/BusinessOperational#ordinal> "4" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR4> <http://www.assero.co.uk/BusinessOperational#local_label> "Month" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66781/V4#C66781_C29848> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.assero.co.uk/BusinessOperational#ordinal> "5" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_I3_TCR5> <http://www.assero.co.uk/BusinessOperational#local_label> "Year" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#BcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.w3.org/2000/01/rdf-schema#label> "BC Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G2_BCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.w3.org/2000/01/rdf-schema#label> "Sex" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#repeating> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Date Time (--DTC)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1> <http://www.assero.co.uk/BusinessForm#is_common> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I1_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Result Value (--ORRES)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2> <http://www.assero.co.uk/BusinessForm#is_common> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I10_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66731/V4#C66731_C16576> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "Female" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66731/V4#C66731_C20197> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#local_label> "Male" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66731/V4#C66731_C45908> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#ordinal> "3" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#local_label> "Intersex" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C66731/V4#C66731_C17998> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#ordinal> "4" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#local_label> "Unknown" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#BcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.w3.org/2000/01/rdf-schema#label> "BC Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G3_BCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.w3.org/2000/01/rdf-schema#label> "Race" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#repeating> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4> <http://www.assero.co.uk/BusinessForm#ordinal> "4" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Date Time (--DTC)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1> <http://www.assero.co.uk/BusinessForm#is_common> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I8_DT1_P1_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I1_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#BcProperty> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Result Value (--ORRES)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasProperty> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#completion> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#note> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2> <http://www.assero.co.uk/BusinessForm#is_common> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#PReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.w3.org/2000/01/rdf-schema#label> "BC Property Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.assero.co.uk/BusinessOperational#hasProperty> <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I10_DT1_P1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.assero.co.uk/BusinessOperational#ordinal> "0" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_PR0> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C74457/V49#C74457_C16352> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "African American" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C74457/V10#C74457_C41219> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#ordinal> "2" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#local_label> "Native Hawaiian or Other Pacific Islander" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C74457/V10#C74457_C41259> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#ordinal> "3" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR3> <http://www.assero.co.uk/BusinessOperational#local_label> "American Indian or Alaska Native" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C74457/V10#C74457_C41260> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#ordinal> "4" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR4> <http://www.assero.co.uk/BusinessOperational#local_label> "Asian" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.cdisc.org/C74457/V10#C74457_C41261> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.assero.co.uk/BusinessOperational#ordinal> "5" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR5> <http://www.assero.co.uk/BusinessOperational#local_label> "White" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE1> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.assero.co.uk/BusinessOperational#ordinal> "6" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR6> <http://www.assero.co.uk/BusinessOperational#local_label> " Caucasian (European, Mediterranean, Middle Eastern)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE2> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.assero.co.uk/BusinessOperational#ordinal> "7" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR7> <http://www.assero.co.uk/BusinessOperational#local_label> " African Descent (Negro, Black) " .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE3> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.assero.co.uk/BusinessOperational#ordinal> "8" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR8> <http://www.assero.co.uk/BusinessOperational#local_label> " East/Southeast Asian (Burmese, Chinese, Japanese, Korean, Mongolian, Vietnamese) " .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE4> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.assero.co.uk/BusinessOperational#ordinal> "9" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR9> <http://www.assero.co.uk/BusinessOperational#local_label> "Western Asian (Pakistani, Indian Sub-continent)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE5> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.assero.co.uk/BusinessOperational#ordinal> "10" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR10> <http://www.assero.co.uk/BusinessOperational#local_label> "Hispanic (Mexican-American, Mexico, Central and South America)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE6> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.assero.co.uk/BusinessOperational#ordinal> "11" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_I2_TCR11> <http://www.assero.co.uk/BusinessOperational#local_label> "Other (Mixed-racial parentage, American Indian, Eskimo)" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#BcReference> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.w3.org/2000/01/rdf-schema#label> "BC Reference" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050> .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" .
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_FB000010_G1_G4_BCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "" .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Identification#hasScope> <http://www.assero.co.uk/MDRItems#NS-ACME> .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Identification#identifier> "FB000010" .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Identification#version> "2" .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Identification#semantic_version> "2.0.0" .
+<http://www.assero.co.uk/MDRItems#SI-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Identification#versionLabel> "" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Registration#RegistrationState> .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#byAuthority> <http://www.assero.co.uk/MDRItems#RA-123456789> .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#registrationStatus> "Standard" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#effectiveDate> "2017-09-27T22:07:47-07:00" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#untilDate> "2017-10-04T23:36:24-07:00" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#administrativeNote> "" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> "" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#administrativeStatus> "" .
+<http://www.assero.co.uk/MDRItems#RS-ACME_FB000010-2> <http://www.assero.co.uk/ISO11179Registration#previousState> "Qualified" .

@@ -1,0 +1,193 @@
+---
+- :form:
+    :label: Alzheimer's Disease Assessment Scale - Cognition (Pilot)
+    :identifier: FN000100
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'true'
+    :ordinal: '1'
+    :note: ''
+    :items:
+    - :type: :Question
+      :label: 1. Word Recall Task
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '4'
+      :mapping: QSORRES
+      :question_text: " 1. Word Recall Task (max = 10)"
+      :has_coded_value: []
+    - :type: :Question
+      :label: 11. Spoken Language Ability
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '15'
+      :mapping: QSORRES
+      :question_text: 11. Spoken Language Ability (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 6. Ideational Praxis
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '9'
+      :mapping: QSORRES
+      :question_text: 6. Ideational Praxis (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: Unit
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '14'
+      :mapping: QSORRESU
+      :question_text: 10. Maze Solution - Unit
+      :has_coded_value:
+      - http://www.cdisc.org/C71620/V6#C71620_C42535
+    - :type: :Question
+      :label: 'INFORMATION NOT OBTAINED '
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '1'
+      :mapping: NOT SUBMITTED
+      :question_text: 'INFORMATION NOT OBTAINED '
+      :has_coded_value: []
+    - :type: :Mapping
+      :label: Mapping 19
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '20'
+      :mapping: QSTESTCD IN (ACITM01, ACITM02, ACITM03, ACITM04, ACITM05, ACITM06,
+        ACITM07, ACITM08, ACITM09, ACITM10, ACITM11, ACITM12, ACITM13, ACITM14)
+    - :type: :Question
+      :label: 5. Constructional Praxis
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '8'
+      :mapping: QSORRES
+      :question_text: 5. Constructional Praxis (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 'Clinician''s initials '
+      :completion: First/Middle/Last
+      :note: ''
+      :optional: 'false'
+      :ordinal: '2'
+      :mapping: NOT SUBMITTED
+      :question_text: 'Clinician''s initials '
+      :has_coded_value: []
+    - :type: :Mapping
+      :label: Mapping 18
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '19'
+      :mapping: QSCAT=ALZHEIMER'S DISEASE ASSESSMENT SCALE
+    - :type: :Question
+      :label: 7. Orientation
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '10'
+      :mapping: QSORRES
+      :question_text: 7. Orientation (max = 8)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 12. Comprehension of Spoken Language
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '16'
+      :mapping: QSORRES
+      :question_text: 12. Comprehension of Spoken Language (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 8. Word Recognition
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '11'
+      :mapping: QSORRES
+      :question_text: 8. Word Recognition (max = 12)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 13. Word Finding Difficulty in Spontaneous Speech
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '17'
+      :mapping: QSORRES
+      :question_text: 13. Word Finding Difficulty in Spontaneous Speech (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 2. Naming Objects and Fingers
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '5'
+      :mapping: QSORRES
+      :question_text: 2. Naming Objects and Fingers (refer to 5 categories in manual)
+        (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 9. Attention/Visual Search Task
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '12'
+      :mapping: QSORRES
+      :question_text: 9. Attention/Visual Search Task (max = 40)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 3. Delayed Word Recall
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '6'
+      :mapping: QSORRES
+      :question_text: '3. Delayed Word Recall (max = 10) '
+      :has_coded_value: []
+    - :type: :Question
+      :label: 4. Commands
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '7'
+      :mapping: QSORRES
+      :question_text: 4. Commands (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 14. Recall of Test Instructions
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '18'
+      :mapping: QSORRES
+      :question_text: 14. Recall of Test Instructions (max = 5)
+      :has_coded_value: []
+    - :type: :Question
+      :label: 10. Maze Solution
+      :completion: ''
+      :note: ''
+      :optional: 'false'
+      :ordinal: '13'
+      :mapping: QSORRES
+      :question_text: 10. Maze Solution (max = 240)
+      :has_coded_value: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+      :label: Questionnaire
+      :completion: ''
+      :optional: 'false'
+      :repeating: ''
+      :ordinal: '3'
+      :note: ''
+      :items: []
+      :groups: []

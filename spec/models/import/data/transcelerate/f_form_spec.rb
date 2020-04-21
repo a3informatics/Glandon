@@ -6,7 +6,6 @@ describe Form do
   include PublicFileHelpers
   include SparqlHelpers
   include IsoHelpers
-  include ValidationHelpers
 
   def sub_dir
     return "models/import/data/transcelerate"
@@ -19,7 +18,6 @@ describe Form do
   before :all do
     IsoHelpers.clear_cache
     load_files(schema_files, [])
-    #load_cdisc_term_versions(1..62)
     load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
   end
 
@@ -35,68 +33,32 @@ describe Form do
                         ?f rdf:type <http://www.assero.co.uk/BusinessForm#Form> .
                         ?f <http://www.w3.org/2000/01/rdf-schema#label> ?l .
                         ?f <http://www.assero.co.uk/ISO11179Identification#hasIdentifier> ?hi .
-                        ?f <http://www.assero.co.uk/ISO11179Registration#hasState> ?hs .
                         ?hi <http://www.assero.co.uk/ISO11179Identification#identifier> ?i
                       }}
       query_results = Sparql::Query.new.query(query_string, "", [])
       query_results.by_object_set([:f, :l, :i])
     end
 
-    def query_group(form)
-      query_string = %Q{SELECT ?g ?t ?l  ?c ?n ?r ?o ?ordinal WHERE
+    def query_group(element)
+      query_string = %Q{SELECT ?f ?t ?l  ?c ?n ?r ?o ?ordinal WHERE
                       {
-                        #{form[:f].to_ref} <http://www.assero.co.uk/BusinessForm#hasGroup> ?g .
-                        ?g <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
-                        ?g <http://www.w3.org/2000/01/rdf-schema#label> ?l .
-                        ?g <http://www.assero.co.uk/BusinessForm#completion> ?c .
-                        ?g <http://www.assero.co.uk/BusinessForm#note> ?n .
-                        ?g <http://www.assero.co.uk/BusinessForm#repeating> ?r .
-                        ?g <http://www.assero.co.uk/BusinessForm#optional> ?o .
-                        ?g <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
+                        #{element[:f].to_ref} <http://www.assero.co.uk/BusinessForm#hasGroup>|<http://www.assero.co.uk/BusinessForm#hasSubGroup>|<http://www.assero.co.uk/BusinessForm#hasCommon> ?f .
+                        ?f <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
+                        ?f <http://www.w3.org/2000/01/rdf-schema#label> ?l .
+                        ?f <http://www.assero.co.uk/BusinessForm#completion> ?c .
+                        ?f <http://www.assero.co.uk/BusinessForm#note> ?n .
+                        OPTIONAL{?f <http://www.assero.co.uk/BusinessForm#repeating> ?r .}
+                        ?f <http://www.assero.co.uk/BusinessForm#optional> ?o .
+                        ?f <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
                       }}
       query_results = Sparql::Query.new.query(query_string, "", [])
-      query_results.by_object_set([:g, :t, :l, :c, :n, :r, :o, :ordinal])
-    end
-
-    def query_sub_group(group)
-      query_string = %Q{SELECT ?sg ?t ?l ?c ?n ?r ?o ?ordinal WHERE
-                      {
-                        #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasSubGroup> ?sg  .
-                        ?sg <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
-                        ?sg <http://www.w3.org/2000/01/rdf-schema#label> ?l .
-                        ?sg <http://www.assero.co.uk/BusinessForm#completion> ?c .
-                        ?sg <http://www.assero.co.uk/BusinessForm#note> ?n .
-                        ?sg <http://www.assero.co.uk/BusinessForm#repeating> ?r .
-                        ?sg <http://www.assero.co.uk/BusinessForm#optional> ?o .
-                        ?sg <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
-                      }}
-      query_results = Sparql::Query.new.query(query_string, "", [])
-      return [] if query_results.empty?
-      query_results.by_object_set([:sg, :t, :l, :c, :n, :r, :o, :ordinal])
-    end
-
-    def query_common(group)
-      query_string = %Q{SELECT ?g ?t ?l ?c ?n ?r ?o ?ordinal WHERE
-                      {
-                        #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasCommon> ?g  .
-                        ?g <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
-                        ?g <http://www.w3.org/2000/01/rdf-schema#label> ?l .
-                        ?g <http://www.assero.co.uk/BusinessForm#completion> ?c .
-                        ?g <http://www.assero.co.uk/BusinessForm#note> ?n .
-                        ?g <http://www.assero.co.uk/BusinessForm#repeating> ?r .
-                        ?g <http://www.assero.co.uk/BusinessForm#optional> ?o .
-                        ?g <http://www.assero.co.uk/BusinessForm#ordinal> ?ordinal .
-                      }}
-      query_results = Sparql::Query.new.query(query_string, "", [])
-      return [] if query_results.empty?
-      query_results.by_object_set([:g, :t, :l, :c, :n, :r, :o, :ordinal])
+      query_results.by_object_set([:f, :t, :l, :c, :n, :r, :o, :ordinal])
     end
 
     def query_items(group)
-      results = [{}]
-      query_string = %Q{SELECT ?i ?l ?c ?n ?o ?ordinal ?f ?mapping ?question_text  ?free_text ?common_item ?type WHERE
+      query_string = %Q{SELECT ?i ?l ?c ?n ?o ?ordinal ?f ?mapping ?question_text ?free_text ?common_item ?has_property ?type WHERE
                       {
-                        #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasItem> ?i .
+                        #{group[:f].to_ref} <http://www.assero.co.uk/BusinessForm#hasItem> ?i .
                         ?i <http://www.w3.org/2000/01/rdf-schema#label> ?l .
                         ?i <http://www.assero.co.uk/BusinessForm#completion> ?c .
                         ?i <http://www.assero.co.uk/BusinessForm#note> ?n .
@@ -117,8 +79,7 @@ describe Form do
                                   BIND ("Placeholder" as ?type)
                         }
                         OPTIONAL {
-                                  ?i <http://www.assero.co.uk/BusinessForm#has_property> ?has_property .
-                                  
+                                  ?i <http://www.assero.co.uk/BusinessForm#hasProperty> ?has_property .
                                   BIND ("BcProperty" as ?type)
                         }
                         OPTIONAL {
@@ -128,7 +89,7 @@ describe Form do
                        
                       }}
       query_results = Sparql::Query.new.query(query_string, "", [])
-      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :f, :mapping, :question_text, :free_text, :common_item, :type])
+      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :f, :mapping, :question_text, :free_text, :common_item, :has_property, :type])
     end
 
     def query_tc(item)
@@ -142,8 +103,43 @@ describe Form do
       return [] if query_results.empty?
       triples = query_results.by_object_set([:coded_value])
       triples.each do |x|
-        tc = x[:coded_value].to_ref
+        tc = x[:coded_value].to_s
         results << tc
+      end
+      results
+    end
+
+    def query_property(item)
+      results = []
+      query_string = %Q{SELECT ?property WHERE
+                      {
+                        #{item[:i].to_ref} <http://www.assero.co.uk/BusinessForm#hasProperty> ?pr .
+                        ?pr <http://www.assero.co.uk/BusinessOperational#hasProperty> ?property .
+
+                      }}
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      return [] if query_results.empty?
+      triples = query_results.by_object_set([:property])
+      triples.each do |x|
+        pr = x[:property].to_s
+        results << pr
+      end
+      results
+    end
+
+    def query_common_item(item)
+      results = []
+      query_string = %Q{SELECT ?common_item WHERE
+                      {
+                        #{item[:i].to_ref} <http://www.assero.co.uk/BusinessForm#hasCommonItem> ?common_item .
+
+                      }}
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      return [] if query_results.empty?
+      triples = query_results.by_object_set([:common_item])
+      triples.each do |x|
+        ci = x[:common_item].to_s
+        results << ci
       end
       results
     end
@@ -160,6 +156,7 @@ describe Form do
 
     def add_group(form, params)
         form[:groups] << {
+            type: params[:t].to_s,
             label: params[:l].empty? ? "" : params[:l],
             completion: params[:c].empty? ? "" : params[:c],
             optional: params[:o].empty? ? "" : params[:o],
@@ -167,21 +164,9 @@ describe Form do
             ordinal: params[:ordinal],
             note: params[:n].empty? ? "" : params[:n],
             items: [],
-            sub_groups: []
+            groups: []
             }
     end
-
-    # def add_sub_group(group, params)
-    #     group[:sub_groups] << {
-    #       label: params[:l].empty? ? "" : params[:l],
-    #       completion: params[:c].empty? ? "" : params[:c],
-    #       optional: params[:o].empty? ? "" : params[:o],
-    #       repeating: params[:r].empty? ? "" : params[:r],
-    #       ordinal: params[:ordinal],
-    #       note: params[:n].empty? ? "" : params[:n],
-    #       items: []
-    #     }
-    # end
 
     def add_item(group, param_set)
       return if param_set.empty?
@@ -189,6 +174,7 @@ describe Form do
         case params[:type].to_sym
               when :Question
                          item = {
+                          type: params[:type].to_sym,
                           label: params[:l].empty? ? "" : params[:l],
                           completion: params[:c].empty? ? "" : params[:c],
                           note: params[:n],
@@ -200,6 +186,7 @@ describe Form do
                           }
               when :Mapping
                        item = {
+                          type: params[:type].to_sym,
                           label: params[:l].empty? ? "" : params[:l],
                           completion: params[:c].empty? ? "" : params[:c],
                           note: params[:n],
@@ -209,12 +196,34 @@ describe Form do
                         }
               when :Placeholder
                       item =  {
+                          type: params[:type].to_sym,
                           label: params[:l].empty? ? "" : params[:l],
                           completion: params[:c].empty? ? "" : params[:c],
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
                           free_text: params[:free_text]
+                        }
+              when :BcProperty
+                      item =  {
+                          type: params[:type].to_sym,
+                          label: params[:l].empty? ? "" : params[:l],
+                          completion: params[:c].empty? ? "" : params[:c],
+                          note: params[:n],
+                          optional: params[:o],
+                          ordinal: params[:ordinal],
+                          has_property: query_property(params),
+                          has_coded_value: query_tc(params) 
+                        }
+              when :CommonItem
+                      item =  {
+                          type: params[:type].to_sym,
+                          label: params[:l].empty? ? "" : params[:l],
+                          completion: params[:c].empty? ? "" : params[:c],
+                          note: params[:n],
+                          optional: params[:o],
+                          ordinal: params[:ordinal],
+                          has_common_item: query_common_item(params)
                         }
         end
         group[:items] << item
@@ -225,7 +234,7 @@ describe Form do
     def load_old_files
       files = 
       [
-        "ACME_FN000150_1.ttl", "ACME_FN000160_1.ttl"
+        "ACME_FN000120_1.ttl"
       ]
       files.each {|f| load_local_file_into_triple_store(source_data_dir, f)}
     end
@@ -236,19 +245,19 @@ describe Form do
       forms = query_form
       forms.each do |form|
         f = add_form(form) 
-        query_group(form).each_with_index do |group, i|
+        groups = query_group(form)
+        groups.each_with_index do |group, i|
           g = add_group(f, group)
           add_item(g[i], query_items(group))
-          # if !query_sub_group(group).empty?
-          #   query_sub_group(group).each_with_index do |sub_group, i|
-          #     sg = add_sub_group(g[i], group)
-          #     add_item(sg[i], query_items(sub_group))
-          #   end
-          # end
+          sub_groups = query_group(group)
+          sub_groups.each_with_index do |sub_g, j|
+            sg = add_group(g[i], sub_g)
+            add_item(sg[j], query_items(sub_g))
+          end
         end
-        results << f 
-      end 
-      write_yaml_file(results, source_data_dir, "processed_old_forms.yaml")
+      results << f 
+      end
+      write_yaml_file(results, source_data_dir, "processed_old_form_dad.yaml")
     end
 
   end

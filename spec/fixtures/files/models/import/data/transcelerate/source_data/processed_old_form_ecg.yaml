@@ -1,0 +1,170 @@
+---
+- :form:
+    :label: ECG Measurements
+    :identifier: F ECG
+  :groups:
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: "<h3>Details - P Wave</h3>"
+    :completion: ''
+    :optional: 'false'
+    :repeating: 'false'
+    :ordinal: '1'
+    :note: ''
+    :items: []
+    :groups:
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: P Wave Duration, Aggregate
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '3'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I11_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Reason Not Done (--STAT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I9_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66789_C49484
+      - :type: :BcProperty
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I10_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I11_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C71620_C41140
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+      :label: P Wave Amplitude, Aggregate
+      :completion: ''
+      :optional: 'false'
+      :repeating: 'false'
+      :ordinal: '2'
+      :note: ''
+      :items:
+      - :type: :BcProperty
+        :label: Result Units (--ORRESU)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '5'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I11_DT1_P2
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C71620_C41140
+      - :type: :BcProperty
+        :label: Result Value (--ORRES)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '4'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I11_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I8_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I10_DT1_P1_DT1_P1
+        :has_coded_value: []
+      - :type: :BcProperty
+        :label: Reason Not Done (--STAT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_property:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I9_DT1_P1
+        :has_coded_value:
+        - http://www.assero.co.uk/MDRThesaurus/CDISC/V54#CLI-C66789_C49484
+      :groups: []
+    - :type: http://www.assero.co.uk/BusinessForm#CommonGroup
+      :label: Collection details
+      :completion: ''
+      :optional: 'false'
+      :repeating: ''
+      :ordinal: '1'
+      :note: ''
+      :items:
+      - :type: :CommonItem
+        :label: Date Time (--DTC)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '1'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I8_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I10_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I10_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Reason Not Done (--REASND)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '3'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I10_DT1_P1_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I10_DT1_P1_DT1_P1
+      - :type: :CommonItem
+        :label: Reason Not Done (--STAT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I9_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I9_DT1_P1
+      - :type: :CommonItem
+        :label: Reason Not Done (--STAT)
+        :completion: ''
+        :note: ''
+        :optional: 'false'
+        :ordinal: '2'
+        :has_common_item:
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117775PWDURAG_I9_DT1_P1
+        - http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BCC117777PWHTAG_I9_DT1_P1
+      :groups: []
