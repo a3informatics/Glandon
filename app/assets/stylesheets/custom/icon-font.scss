@@ -30,6 +30,42 @@
   justify-content: center;
 }
 
+.icon-sel-empty:before {
+  content: "\e962";
+}
+.icon-sel-filled:before {
+  content: "\e963";
+}
+.icon-protocol-template:before {
+  content: "\e960";
+}
+.icon-protocol:before {
+  content: "\e961";
+}
+.icon-triples:before {
+  content: "\e95f";
+}
+.icon-assessment:before {
+  content: "\e95e";
+}
+.icon-timepoint:before {
+  content: "\e95d";
+}
+.icon-build:before {
+  content: "\e95c";
+}
+.icon-study:before {
+  content: "\e95b";
+}
+.icon-selection:before {
+  content: "\e95a";
+}
+.icon-codelist-item:before {
+  content: "\e958";
+}
+.icon-instruction:before {
+  content: "\e959";
+}
 .icon-cloud:before {
   content: "\e957";
 }
