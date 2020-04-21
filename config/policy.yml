@@ -637,6 +637,14 @@ defaults: &defaults
       reader: false
       curator: false
       content_admin: true
+    destroy:
+      sys_admin: false
+      community_reader: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
   ImportPolicy:
     new:
       sys_admin: false

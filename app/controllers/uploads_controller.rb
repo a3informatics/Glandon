@@ -28,4 +28,34 @@ class UploadsController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    authorize Upload, :delete?
+    item = Upload.new
+    item.delete_multiple(the_params)
+    set_flash('Files succesfully deleted.')
+    redirect_to uploads_path
+  end
+
+  def destroy_all
+    authorize Upload, :delete?
+    item = Upload.new
+    item.delete_all
+    set_flash('All files deleted.')
+    redirect_to uploads_path
+  end
+
+private
+
+  def set_flash(msg)
+    if item.errors.empty? 
+      flash[:success] = msg
+    else
+      flash[:error] = item.error.full_messages.to_sentence
+    end
+  end
+
+  def the_params
+    params.require(:upload).permit(:files => [])
+  end
+
 end

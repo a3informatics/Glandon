@@ -284,7 +284,12 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :uploads
+  resources :uploads, :only => [:index, :create] do
+    collection do
+      delete :destroy_multiple
+      delete :destroy_all
+    end
+  end
 
   # Imports
   namespace :imports do
