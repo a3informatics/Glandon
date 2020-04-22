@@ -241,8 +241,8 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2016
       { api: true, size: -1 }, { api: true, size: 24291 }, { api: true, size: -1 }, { api: true, size: -1 },                                          # 2017
       { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2018
-      { api: true, size: 31267 }, { api: true, size: 31934 }, { api: true, size: -1 }, { api: true, size: 33397 },  
-      { api: true, size: 33397 }                                     # 2019
+      { api: true, size: 31267 }, { api: true, size: 31934 }, { api: true, size: -1 }, { api: true, size: 33397 },                                    # 2019
+      { api: true, size: 33765 }                                                                                                                      # 2020                      
     ]
   
     @version_to_tags_map =
@@ -1731,7 +1731,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C67153,  status: :no_change},     # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
-        {cl: :C71148,  status: :updated},       # POSITION
+        #{cl: :C71148,  status: :updated},       # POSITION
         {cl: :C71620,  status: :updated},       # UNIT
         {cl: :C74456,  status: :no_change},     # LOC
         {cl: :C76351,  status: :no_change},     # SKINCLAS
@@ -1742,13 +1742,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C128689, status: :no_change},     # RACEC
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
-        {cl: :C161625, status: :updated},       # BPR02TC 
+        #{cl: :C161625, status: :updated},       # BPR02TC 
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
-        {cl: :C163028, status: :no_change},     # D1FATS
-        {cl: :C165641, status: :created},       # Outcome Measure Attribute Terminology
-        {cl: :C165644, status: :created},       # POOLINT
-        {cl: :C165635, status: :created},       # BDSSC
-        {cl: :C165636, status: :created}        # BDSISC
+        {cl: :C163028, status: :no_change}
       ]
       check_cl_results(results, expected) 
       check_count(release_date)

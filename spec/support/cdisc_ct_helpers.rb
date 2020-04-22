@@ -20,7 +20,7 @@ module CdiscCtHelpers
   end
 
   def self.version_range
-    return (1..62)
+    return (1..63)
   end
 
 end
