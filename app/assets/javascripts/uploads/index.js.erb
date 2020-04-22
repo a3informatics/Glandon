@@ -14,8 +14,8 @@ $(document).ready(function() {
 */
 function UploadsSelector() {
   this.div = $("#uploads-body");
-  this.removeUrl = "";
-  this.removeAllUrl = "";
+  this.removeUrl = removeUploadsUrl;
+  this.removeAllUrl = removeAllUploadsUrl;
   this.table = this.initTable();
 
   this.setListeners();
@@ -74,16 +74,20 @@ UploadsSelector.prototype.removeItems = function(confirmed) {
     return;
   }
 
-  var selectedFiles = this.table.rows({selected: true}),
-      requestUrl = selectedFiles.length == this.table.rows().length ? this.removeAllUrl : this.removeUrl,
-      data = selectedFiles.data().toArray().map(function(r) { return r[0] == "" ? r[1] : (r[1] + "." + r[0]) });
+  var selected = this.table.rows({selected: true});
+
+  if (selected.count() == 0)
+    return;
+
+  var requestUrl = selected.count() == this.table.rows().count() ? this.removeAllUrl : this.removeUrl,
+      data = selected.data().toArray().map(function(r) { return r[0] == "" ? r[1] : (r[1] + "." + r[0]) });
 
   this.executeRequest({
       url: requestUrl,
-      type: "POST",
-      data: { upload: { remove_files: data } },
+      type: "DELETE",
+      data: { upload: { files: data } },
       callback: function(result){
-        selectedFiles.remove().draw();
+        selected.remove().draw();
         this.loading(false);
       }.bind(this)
   });

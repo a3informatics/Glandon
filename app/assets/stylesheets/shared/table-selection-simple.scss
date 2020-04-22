@@ -16,7 +16,7 @@ table.table-row-clickable tbody tr td:last-of-type,
   position: relative;
 }
 
-table.table-row-clickable tbody tr td:last-of-type::after {
+table.table-row-clickable tbody tr td:last-of-type:not(.dataTables_empty)::after {
   display: block;
   position: absolute;
   font-family: "icomoon";

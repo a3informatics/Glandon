@@ -1,7 +1,9 @@
 <%= javascript_tag 'setPageTitle("Upload")' %>
 
-<%= javascript_include_tag "uploads/index" %>
 <%= stylesheet_link_tag "shared/table-selection-simple", "shared/datatables_loading"  %>
+<%= javascript_include_tag "uploads/index" %>
+<%= javascript_tag "var removeUploadsUrl = '#{destroy_multiple_uploads_path}',
+												removeAllUploadsUrl = '#{destroy_all_uploads_path}';" %>
 <% first_level_breadcrumb (:uploads) %>
 
 <div class="row">
