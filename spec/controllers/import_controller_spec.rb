@@ -6,34 +6,40 @@ describe ImportsController do
   include PauseHelpers
 
   describe "import as content admin" do
-  	
+
     login_content_admin
-   
+
+    def sub_dir
+      return "controllers/import"
+    end
+
     before :each do
       clear_triple_store
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
 
       Import.delete_all
-      @b1 = Background.create(description: "job 1", complete: true, percentage: 100, status: "Doing something", started: Time.now, 
+      @b1 = Background.create(description: "job 1", complete: true, percentage: 100, status: "Doing something", started: Time.now,
         completed: Time.now)
-      @i1 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true, 
+      @i1 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true,
         background_id: @b1.id, token_id: nil, auto_load: false, identifier: "XXX", owner: "YYY", file_type: 0)
-      @i2 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true, 
+      @i2 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true,
         background_id: @b1.id, token_id: nil, auto_load: false, identifier: "XXX", owner: "YYY", file_type: 0)
-      @i3 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true, 
+      @i3 = Import.create(input_file: "", output_file: "", error_file: "", success_path: "", error_path: "", success: true,
         background_id: @b1.id, token_id: nil, auto_load: false, identifier: "XXX", owner: "YYY", file_type: 0)
     end
 
     after :each do
     end
-    
+
     it "index" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       expect(assigns(:items).count).to eq(3)
       expect(assigns(:items).map{|j| j.id}).to match_array([@i1.id, @i2.id, @i3.id])
       expect(response.code).to eq("200")
-      expect(response).to render_template("index")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      expect(x[:data].map{|j| j[:id]}).to match_array([@i1.id, @i2.id, @i3.id])
     end
 
     it "show" do
@@ -50,13 +56,13 @@ describe ImportsController do
       delete :destroy, {id: @i2.id}
       expect(Import.all.count).to eq(2)
       expect(Import.all.map{|j| j.id}).to match_array([@i1.id, @i3.id])
-      expect(response).to redirect_to(imports_path)
+      expect(response.code).to eq("200")
     end
 
     it "destroy_multiple all" do
       delete :destroy_multiple, {imports: {items: "all"}}
       expect(Import.all.count).to eq(0)
-      expect(response).to redirect_to(imports_path)
+      expect(response.code).to eq("200")
     end
 
     it "list" do
@@ -69,7 +75,7 @@ describe ImportsController do
   end
 
   describe "Reader User" do
-    
+
     login_reader
 
     it "index" do
@@ -87,10 +93,10 @@ describe ImportsController do
       expect(response).to redirect_to("/")
     end
 
-  end 
-    
+  end
+
   describe "Unauthorized User" do
-    
+
     it "index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")

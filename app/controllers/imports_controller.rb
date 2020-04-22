@@ -10,9 +10,9 @@ class ImportsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        items = Import.all
+        @items = Import.all
         results = []
-        items.each do |x|
+        @items.each do |x|
           item = x.as_json
           item[:import_path] = import_path(id: x[:id])
           item[:complete] = x.complete
