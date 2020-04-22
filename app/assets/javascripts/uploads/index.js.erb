@@ -2,8 +2,9 @@ $(document).ready(function() {
   new UploadsSelector();
 });
 
+
 /*
-* Uploads Selector
+************ Uplods Selector ************
 */
 
 
@@ -21,10 +22,16 @@ function UploadsSelector() {
   this.setListeners();
 }
 
+
+/*
+************ General ************
+*/
+
+
 /**
  * Posts data to server, runs callbacks
- * @param params [Object] request parameters, must contain url, type, data, callback
  *
+ * @param params [Object] request parameters, must contain url, type, data, callback
  * @return [void]
  */
 UploadsSelector.prototype.executeRequest = function (params) {
@@ -37,7 +44,7 @@ UploadsSelector.prototype.executeRequest = function (params) {
 		dataType: 'json',
 		context: this,
 		success: function(result){
-			params.callback();
+			params.callback(result);
 		},
 		error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
@@ -47,7 +54,7 @@ UploadsSelector.prototype.executeRequest = function (params) {
 }
 
 /**
-* Uploads Selector Constructor
+* Sets event listeners, handlers
 *
 * @return [void]
 */
@@ -64,8 +71,9 @@ UploadsSelector.prototype.setListeners = function() {
 }
 
 /**
-* Uploads Selector Constructor
+* Builds request to remove one or more uploads.
 *
+* @param confirmed [Boolean] set to true if ConfirmationDialog should be skipped
 * @return [void]
 */
 UploadsSelector.prototype.removeItems = function(confirmed) {
@@ -93,10 +101,27 @@ UploadsSelector.prototype.removeItems = function(confirmed) {
   });
 }
 
+
+/*
+************ Support ************
+*/
+
+
 /**
-* Uploads Selector Constructor
+* Toggle loading
 *
+* @param enable [Boolean] true/false - enables/disabled loading state
 * @return [void]
+*/
+UploadsSelector.prototype.loading = function(enable) {
+  this.table.processing(enable);
+  this.div.find(".btns-wrap .btn").toggleClass("disabled", enable)
+}
+
+/**
+* DataTable Initialize
+*
+* @return [DataTable Instance] Initialized Uploads DataTable
 */
 UploadsSelector.prototype.initTable = function() {
   return $("#uploaded-files").DataTable({
@@ -115,15 +140,4 @@ UploadsSelector.prototype.initTable = function() {
       "processing": generateSpinner("small")
     },
   });
-}
-
-/**
-* Toggle loading
-*
-* @param enable [Boolean] true/false - enables/disabled loading state
-* @return [void]
-*/
-UploadsSelector.prototype.loading = function(enable) {
-  this.table.processing(enable);
-  this.div.find(".btns-wrap .btn").toggleClass("disabled", enable)
 }
