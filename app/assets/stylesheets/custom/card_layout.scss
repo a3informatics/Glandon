@@ -230,6 +230,10 @@ a.card-item:hover, a.card-item:focus{
   pointer-events: none;
 }
 
+.table-cardstyle .dataTables_scrollBody table thead tr th{
+  border-bottom: none !important;
+}
+
 .table-invisible .dataTables_info, .table-invisible .dataTables_paginate{
   padding-top: 20px !important;
 }
