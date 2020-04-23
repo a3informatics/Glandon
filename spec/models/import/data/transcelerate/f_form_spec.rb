@@ -263,87 +263,104 @@ describe Form do
       write_yaml_file(results, source_data_dir, "processed_old_form_height.yaml")
     end
 
-    def sub_group(group)
-        group[:groups].each do |sub|
-          object_group = Form::Group::Normal.from_h({
-            label: group[:label],
-            completion: group[:completion],
-            optional: group[:optional],
-            repeating: group[:repeating],
-            ordinal: group[:ordinal],
-            note: group[:note]
-          })
-          group[:items].each do |item|
-            item_group = get_item(item)
-            group.has_item << @item_group
-          end
-          group.has_sub_group << object_group
-        end
-        sub_group(group[:groups]) if group[:groups].empty? #base case
+    def normal_group?(group)
+      return true if group[:type] == "http://www.assero.co.uk/BusinessForm#NormalGroup"
+      return false
     end
 
-    def get_item(params)
+    def new_normal_group(group)
+      Form::Group::Normal.from_h({
+        label: group[:label],
+        completion: group[:completion],
+        optional: group[:optional],
+        repeating: group[:repeating],
+        ordinal: group[:ordinal],
+        note: group[:note]
+      })
+    end
+
+    def new_common_group(group)
+      Form::Group::Common.from_h({
+        label: group[:label],
+        completion: group[:completion],
+        optional: group[:optional],
+        ordinal: group[:ordinal],
+        note: group[:note]
+      })
+    end  
+
+    # def sub_group(group)
+    #   group[:groups].each do |sub_group|
+    #     normal_group?(sub_group) ? new_normal_group(sub_group) : new_common_group(sub_group)
+    #     sub_group[:items].each do |item|
+    #       item_group = get_item(item)
+    #       group.has_item << item_group
+    #     end
+    #     #object_group.to_sparql(sparql, true)
+    #     group.has_sub_group << object_group
+    #   end
+    #   #sub_group(group[:groups]) if group[:groups].empty? #base case
+    # end
+
+    def new_item(params)
       item = {
-              type: params[:type].to_sym,
-              label: params[:l].empty? ? "" : params[:l],
-              completion: params[:c].empty? ? "" : params[:c],
-              note: params[:n],
-              optional: params[:o],
+              label: params[:label],
+              completion: params[:completion],
+              note: params[:note],
+              optional: params[:optional],
               ordinal: params[:ordinal],
-          }
+            }
       case params[:type].to_sym
       when :Question
                   item[:mapping] = params[:mapping]
                   item[:question_text] = params[:question_text]
-                  item[:has_coded_value].each_with_index do |ref, index|
-                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: ref, ordinal: index+1)
+                  params[:has_coded_value].each_with_index do |ref, index|
+                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
                   end
-                  # item[:has_coded_value] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_coded_value])
-                
+                  item = Form::Item::Question.from_h(item)     
       when :Mapping
                   item[:mapping] = params[:mapping]
+                  item = Form::Item::Mapping.from_h(item)
       when :Placeholder
                   item[:free_text] = params[:free_text]
+                  item = Form::Item::Placeholder.from_h(item)
       when :BcProperty
                   item[:has_property] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_property])
-                  item[:has_coded_value] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_coded_value]) 
-      # when :CommonItem
-      #             item[:has_common_item] = BcProperty.new()
-      #             op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
-      #             property.has_coded_value_push(op_ref) 
+                  params[:has_coded_value].each_with_index do |ref, index|
+                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
+                  end
+                  item = Form::Item::BcProperty.from_h(item) 
+      when :CommonItem
+                  item[:has_common_item] = BcProperty.new(has_property: params[:has_property])
+                  item = Form::Item::CommonItem.from_h(item) 
       end
       item
-    end 
-
-    def normal_group?(group)
-      return true if group[:type] == "http://www.assero.co.uk/BusinessForm#NormalGroup"
-      return false
     end  
 
     it "create forms" do
-    results = []
-    form = read_yaml_file(source_data_dir, "processed_old_form_height.yaml")
-    new_form = Form.new(label:form.first[:form][:label], identifier:form.first[:form][:identifier])
-    form.first[:groups].each do |group|
-      object_group = Form::Group::Normal.from_h({
-          label: group[:label],
-          completion: group[:completion],
-          optional: group[:optional],
-          repeating: group[:repeating],
-          ordinal: group[:ordinal],
-          note: group[:note]
-        })
-      new_form.has_group << object_group
-      sub_group(group) if !group[:groups].empty?
+      results = []
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_height.yaml")
+      old_form.each do |form|
+        new_form = Form.new(label:form[:form][:label])
+        form[:groups].each do |group|
+          byebug
+          new_group = new_normal_group(group)
+          group[:items].each do |item|
+              new_item = new_item(item)
+              new_group.has_item << new_item
+          end
+          sub_group(group) if !group[:groups].empty?
+          new_form.has_group << new_group
+        end
+        new_form.set_initial(form[:form][:identifier])
+        results << new_form
+      end
+      sparql = Sparql::Update.new
+      sparql.default_namespace(results.first.uri.namespace)
+      results.each{|x| x.to_sparql(sparql, true)}
+      full_path = sparql.to_file
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_height.ttl")
     end
-    new_form.set_initial("F_HEIGHT")
-    results << new_form
-    sparql = Sparql::Update.new
-    sparql.default_namespace(results.first.uri.namespace)
-    results.each{|x| x.to_sparql(sparql, true)}
-    full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_height.ttl")
-  end
 
   end
 

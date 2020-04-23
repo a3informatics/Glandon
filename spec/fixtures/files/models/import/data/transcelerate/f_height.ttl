@@ -1,16 +1,17 @@
-@prefix : <http://www.transceleratebiopharmainc.com/F_HEIGHT/V1#> .
+@prefix : <http://www.transceleratebiopharmainc.com/FN000150/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.transceleratebiopharmainc.com/F_HEIGHT/V1>
+<http://www.transceleratebiopharmainc.com/FN000150/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -21,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-22T15:14:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T10:32:43+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -41,7 +42,7 @@
 .
 :F_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "F_HEIGHT"^^xsd:string ;
+	isoI:identifier "FN000150"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
@@ -54,5 +55,74 @@
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_Q1 ;
+	bf:hasItem :F_NG1_Q4 ;
+	bf:hasItem :F_NG1_Q3 ;
+	bf:hasItem :F_NG1_PL2 ;
 	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG1_Q1
+	rdf:type bf:Question ;
+	isoC:label "Completion status"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "true"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "VSSTAT"^^xsd:string ;
+	bf:questionText " Compltion Status"^^xsd:string ;
+	bf:hasCodedValue :F_NG1_Q1_TUC1 ;
+.
+:F_NG1_Q1_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V4#C66789_C49484> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_Q4
+	rdf:type bf:Question ;
+	isoC:label "Unit"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "VSORRESU"^^xsd:string ;
+	bf:questionText "Unit"^^xsd:string ;
+	bf:hasCodedValue :F_NG1_Q4_TUC2 ;
+.
+:F_NG1_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C49668> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_Q3
+	rdf:type bf:Question ;
+	isoC:label "Height"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+	bf:questionText "Height"^^xsd:string ;
+.
+:F_NG1_PL2
+	rdf:type bf:Placeholder ;
+	isoC:label "Placeholder 2"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:freeText "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter."^^xsd:string ;
 .
