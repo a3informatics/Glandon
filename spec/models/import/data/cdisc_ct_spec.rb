@@ -1783,7 +1783,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       load_cdisc_term_versions(CdiscCtHelpers.version_range)
     end
 
-    it "code list by version" do
+    it "code list count by version" do
       query_string = %Q{
         SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
         {
@@ -1795,11 +1795,11 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         } GROUP BY ?s ?d ?v ORDER BY ?v
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-      result = query_results.by_object_set([:d, :v, :count])
+      result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
       check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal)
     end
 
-    it "code list items by version" do
+    it "code list items count by version" do
       query_string = %Q{
         SELECT ?s ?d ?v (COUNT(?item) as ?count) WHERE
         {
@@ -1811,7 +1811,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         } GROUP BY ?s ?d ?v ORDER BY ?v
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-      result = query_results.by_object_set([:d, :v, :count])
+      result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
       check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal)
     end
 
