@@ -122,18 +122,6 @@ ImportsIndex.prototype.removeItems = function(confirmed, e) {
 
 
 /**
-* True / false icon
-*
-* @param enable [Boolean] true/false - enables/disabled loading state
-* @return [void]
-*/
-ImportsIndex.prototype.tfIcon = function(value) {
-  return value ?
-      "<span class='icon-ok text-secondary-clr i-centered'></span>" :
-      "<span class='icon-times text-accent-2 i-centered'></span>"
-}
-
-/**
 * Toggle loading
 *
 * @param enable [Boolean] true/false - enables/disabled loading state
@@ -181,13 +169,13 @@ ImportsIndex.prototype.columns = function() {
     {"data": "identifier"},
     {"data": "input_file"},
     {"data": "complete",  "orderable": false, "render": function (data, type, row, meta) {
-      return this.tfIcon(data);
+      return trueFalseIcon(data, true);
     }.bind(this) },
     {"data": "success", "orderable": false, "render": function (data, type, row, meta) {
-      return this.tfIcon(data);
+      return trueFalseIcon(data, true);
     }.bind(this) },
     {"data": "auto_load", "orderable": false, "render": function (data, type, row, meta) {
-      return this.tfIcon(data);
+      return trueFalseIcon(data, true);
     }.bind(this) },
     {"render": function (data, type, row, meta) {
       return "<a href='" + row.import_path + "' class='btn btn-xs light'>Show</a>";

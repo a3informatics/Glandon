@@ -21,24 +21,26 @@
 		Index: Imports
 	</div>
 	<div class="card-content table-cardstyle">
-		<table id="main" style="width: 100%;" class="table table-striped table-bordered table-condensed">
-			<thead>
-		  	<tr>
-		    	<th class="fit">ID</th>
-	        <th>Owner</th>
-		    	<th>Identifier</th>
-	        <th>Input File</th>
-	        <th class="fit">Complete</th>
-		    	<th class="fit">Succesful</th>
-	        <th class="fit">Auto Load</th>
-	        <th class="fit ignore"></th>
-	        <th class="fit ignore"></th>
-		  	</tr>
-			</thead>
-			<tbody>
+		<div class="table-width-wrapper">
+			<table id="main" style="width: 100%;" class="table table-striped table-bordered table-condensed">
+				<thead>
+			  	<tr>
+			    	<th class="fit">ID</th>
+		        <th class="fit">Owner</th>
+			    	<th class="fit">Identifier</th>
+		        <th>Input File</th>
+		        <th class="fit">Complete</th>
+			    	<th class="fit">Succesful</th>
+		        <th class="fit">Auto Load</th>
+		        <th class="fit ignore"></th>
+		        <th class="fit ignore"></th>
+			  	</tr>
+				</thead>
+				<tbody>
 
-		  </tbody>
-		</table>
+			  </tbody>
+			</table>
+		</div>
 
 		<div class="btns-wrap">
 			<button id="clear_button" class="btn medium red" data-url="<%=destroy_multiple_imports_path({imports: {items: "all"}})%>">
