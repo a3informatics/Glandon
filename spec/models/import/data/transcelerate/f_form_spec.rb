@@ -263,10 +263,6 @@ describe Form do
     def sub_group(group, new_group)
       group[:groups].each do |sub_group|
         normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
-        # sub_group[:items].each do |item|
-        #   new_item = new_item(item)
-        #   sg.has_item << new_item
-        # end
         add_items(sub_group, sg)
         new_group.has_sub_group << sg
       end
@@ -320,10 +316,6 @@ describe Form do
           new_group = new_normal_group(group)
           new_form.has_group << new_group
           add_items(group, new_group)
-          # group[:items].each do |item|
-          #     new_item = new_item(item)
-          #     new_group.has_item << new_item
-          # end
           sub_group(group, new_group) if !group[:groups].empty?
         end
         new_form.set_initial(form[:form][:identifier])
