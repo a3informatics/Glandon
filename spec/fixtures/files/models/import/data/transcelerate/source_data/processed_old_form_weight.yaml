@@ -3,20 +3,23 @@
     :label: " Weight (Pilot)"
     :identifier: FN000160
   :groups:
-  - :label: " "
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
     :completion: ''
     :optional: 'false'
     :repeating: 'false'
     :ordinal: '1'
     :note: ''
     :items:
-    - :label: Placeholder 2
+    - :type: :Placeholder
+      :label: Placeholder 2
       :completion: ''
       :note: ''
       :optional: 'false'
       :ordinal: '1'
       :free_text: Tick in text field, if applicable
-    - :label: " INFORMATION NOT OBTAINED"
+    - :type: :Question
+      :label: " INFORMATION NOT OBTAINED"
       :completion: ''
       :note: ''
       :optional: 'false'
@@ -24,15 +27,17 @@
       :mapping: NOT SUBMITTED
       :question_text: INFORMATION NOT OBTAINED
       :has_coded_value: []
-    :sub_groups: []
-  - :label: " "
+    :groups: []
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
     :completion: ''
     :optional: 'false'
     :repeating: 'false'
     :ordinal: '2'
     :note: ''
     :items:
-    - :label: " Weight"
+    - :type: :Question
+      :label: " Weight"
       :completion: ''
       :note: ''
       :optional: 'false'
@@ -40,7 +45,8 @@
       :mapping: VSORRES
       :question_text: Weight
       :has_coded_value: []
-    - :label: Unit
+    - :type: :Question
+      :label: Unit
       :completion: ''
       :note: ''
       :optional: 'false'
@@ -48,13 +54,14 @@
       :mapping: VSORRESU
       :question_text: Unit
       :has_coded_value:
-      - "<http://www.cdisc.org/C66770/V4#C66770_C28252>"
-      - "<http://www.cdisc.org/C71620/V6#C71620_C48531>"
-    - :label: Placeholder 3
+      - http://www.cdisc.org/C66770/V4#C66770_C28252
+      - http://www.cdisc.org/C71620/V6#C71620_C48531
+    - :type: :Placeholder
+      :label: Placeholder 3
       :completion: ''
       :note: ''
       :optional: 'false'
       :ordinal: '1'
       :free_text: Measure with shoes off. Round up or down to the nearest tenth kilogram
         or tenth pound.
-    :sub_groups: []
+    :groups: []

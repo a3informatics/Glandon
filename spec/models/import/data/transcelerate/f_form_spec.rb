@@ -237,7 +237,7 @@ describe Form do
     def load_old_files
       files = 
       [
-        "ACME_FN000150_1.ttl"
+        "ACME_FN000160_1.ttl"
       ]
       files.each {|f| load_local_file_into_triple_store(source_data_dir, f)}
     end
@@ -260,7 +260,7 @@ describe Form do
         end
       results << f 
       end
-      write_yaml_file(results, source_data_dir, "processed_old_form_height.yaml")
+      write_yaml_file(results, source_data_dir, "processed_old_form_weight.yaml")
     end
 
     def normal_group?(group)
@@ -292,10 +292,8 @@ describe Form do
     def sub_group(group, new_group)
       group[:groups].each do |sub_group|
         normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
-        # add_items(sub_group)
         sub_group[:items].each do |item|
           new_item = new_item(item)
-        byebug
           sg.has_item << new_item
         end
         new_group.has_sub_group << sg
@@ -343,7 +341,7 @@ describe Form do
 
     it "create forms" do
       results = []
-      old_form = read_yaml_file(source_data_dir, "processed_old_form_ecg.yaml")
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_weight.yaml")
       old_form.each do |form|
         new_form = Form.new(label:form[:form][:label])
         form[:groups].each do |group|
@@ -355,7 +353,6 @@ describe Form do
           end
           sub_group(group, new_group) if !group[:groups].empty?
         end
-        byebug
         new_form.set_initial(form[:form][:identifier])
         results << new_form
       end
@@ -363,7 +360,7 @@ describe Form do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_ecg.ttl")
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_weight.ttl")
     end
 
   end
