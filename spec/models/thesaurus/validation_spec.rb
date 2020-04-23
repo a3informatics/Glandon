@@ -34,16 +34,16 @@ describe "Thesaurus::Validation" do
       child = Thesaurus::UnmanagedConcept.new(notation: "OTHER EVENT", preferred_term: pt)
       result = item.valid_child?(child)
       expect(result).to eq(false)
-      expect(child.errors.full_messages.to_sentence).to eq("Duplicate submission value 'OTHER EVENT'")
+      expect(child.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'OTHER EVENT'")
       pt = Thesaurus::PreferredTerm.new(label: "Protocol Milestone")
       child = Thesaurus::UnmanagedConcept.new(notation: "OTHER EVENT1", preferred_term: pt)
       result = item.valid_child?(child)
       expect(result).to eq(false)
-      expect(child.errors.full_messages.to_sentence).to eq("Duplicate preferred term 'Protocol Milestone'")
+      expect(child.errors.full_messages.to_sentence).to eq("Preferred term duplicate detected 'Protocol Milestone'")
       child = Thesaurus::UnmanagedConcept.new(notation: "OTHER EVENT", preferred_term: pt)
       result = item.valid_child?(child)
       expect(result).to eq(false)
-      expect(child.errors.full_messages.to_sentence).to eq("Duplicate submission value 'OTHER EVENT' and Duplicate preferred term 'Protocol Milestone'")
+      expect(child.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'OTHER EVENT' and Preferred term duplicate detected 'Protocol Milestone'")
     end
 
   end

@@ -24,6 +24,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
+  include Thesaurus::Validation
 
   # Valid Parent Child? Check this child in the context of the parent
   #

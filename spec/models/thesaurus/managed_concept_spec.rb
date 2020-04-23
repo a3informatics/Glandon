@@ -247,7 +247,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(1)
-      expect(new_object.errors.full_messages.to_sentence).to eq("Duplicate submission value 'T5'")
+      expect(new_object.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
     end
 
     it "allows a new child TC to be added, add_child_based_on" do

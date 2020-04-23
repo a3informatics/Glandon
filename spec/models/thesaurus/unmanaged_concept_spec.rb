@@ -766,7 +766,7 @@ describe "Thesaurus::UnmanagedConcept" do
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_tc = old_tc.update_with_clone({label: "New Airport", notation: "T1"}, parent) # Repeat notation
       expect(new_tc.errors.count).to eq(1)
-      expect(new_tc.errors.full_messages.to_sentence).to eq("Duplicate submission value 'T1'")
+      expect(new_tc.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T1'")
     end
 
     it "update multiple parent" do

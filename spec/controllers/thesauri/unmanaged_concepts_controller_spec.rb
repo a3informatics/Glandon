@@ -139,7 +139,7 @@ describe Thesauri::UnmanagedConceptsController do
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expected = [{name: "preferred_term", status: "Duplicate preferred term 'Terminal 5'"}]
+      expected = [{name: "preferred_term", status: "duplicate detected 'Terminal 5'"}]
       expect(JSON.parse(response.body).deep_symbolize_keys[:fieldErrors]).to eq(expected)
     end
 
@@ -347,7 +347,7 @@ describe Thesauri::UnmanagedConceptsController do
       token = Token.obtain(mc, @user)
       put :update_properties, {id: umc.id, edit: {parent_id: mc.id, notation: "T5"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      expect(actual[0]).to eq("Duplicate submission value 'T5'")
+      expect(actual[0]).to eq("Notation duplicate detected 'T5'")
       expect(AuditTrail.count).to eq(audit_count)
     end
 
@@ -359,7 +359,7 @@ describe Thesauri::UnmanagedConceptsController do
       token = Token.obtain(mc, @user)
       put :update_properties, {id: umc.id, edit: {parent_id: mc.id, preferred_term: "Terminal 5"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      expect(actual[0]).to eq("Duplicate preferred term 'Terminal 5'")
+      expect(actual[0]).to eq("Preferred term duplicate detected 'Terminal 5'")
       expect(AuditTrail.count).to eq(audit_count)
     end
 
