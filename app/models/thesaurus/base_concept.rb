@@ -1,3 +1,7 @@
+# Thesaurus base Concept. Common methods for thesaurus concept handling. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Thesaurus
 
   module BaseConcept
@@ -73,6 +77,7 @@ class Thesaurus
       child[:identifier] = Thesaurus::UnmanagedConcept.generated_identifier? ? Thesaurus::UnmanagedConcept.new_identifier : params[:identifier]
       child[:transaction] = transaction_begin
       child = Thesaurus::UnmanagedConcept.create(child, self)
+      self.valid_child?(child)
       return child if child.errors.any?
       self.add_link(:narrower, child.uri)
       transaction_execute

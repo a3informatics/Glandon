@@ -529,6 +529,18 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
+    it 'adds a child thesaurus concept, error' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(mc, @user)
+      post :add_child, {id: mc.id, managed_concept: {notation: "T5"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
     it "edit" do
       uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
