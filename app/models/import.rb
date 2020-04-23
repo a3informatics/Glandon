@@ -44,7 +44,7 @@ class Import < ActiveRecord::Base
   # Create. Create the import starting the execution of the background job.
   #
   # @params [Hash] params on optiona hash
-  # @option [String] :filename the input filename 
+  # @option [String] :filename the input filename
   # @option [Boolean] :autoload autoload the import if all checks and processing pass if true.
   # @option [String] :filetype the file_type as an integer string
   # @return [Void] no return.
@@ -52,16 +52,28 @@ class Import < ActiveRecord::Base
     job = Background.create
     klass = self.configuration[:parent_klass]
     update_params(params, klass, job)
-    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: params[:identifier], 
+    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: params[:identifier],
       owner: owner_short_name(klass), background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
-    job.start(self.description(params), "Starting ...") {self.import(params)} 
+    job.start(self.description(params), "Starting ...") {self.import(params)}
   rescue => e
     save_error_file({parent: self, managed_children:[]})
     job.exception("An exception was detected during the import processes.", e)
-  end  
-  
-  # Save Error File. Will save the errors in a YAML file as an array of errors 
+  end
+
+  # Show import data
+  #
+  # @return [Hash] import data, errors and job data
+  def show_data
+    import = self.as_json.symbolize_keys
+    import[:complete] = self.complete
+    job = Background.find(self.background_id).as_json.symbolize_keys
+    job[:started] = Timestamp.new(job[:started]).to_datetime
+    errors = self.load_error_file
+    {import: import, errors: errors, job: job}
+  end
+
+  # Save Error File. Will save the errors in a YAML file as an array of errors
   #
   # @param [Hash] objects a hash containing the object(s) being imported
   # @option objects [Object] :parent the parent object
@@ -69,11 +81,11 @@ class Import < ActiveRecord::Base
   # @return [Void] no return
   def save_error_file(objects)
     parent = merge_all_errors(objects)
-    self.update(output_file: "", error_file: ImportFileHelpers.save_errors(parent.errors.full_messages, 
+    self.update(output_file: "", error_file: ImportFileHelpers.save_errors(parent.errors.full_messages,
       "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
   end
 
-  # Load Error File. 
+  # Load Error File.
   #
   # @return [Array] array of error messages. Will be empty if no file or import a success.
   def load_error_file
@@ -94,15 +106,15 @@ class Import < ActiveRecord::Base
     sparql = Sparql::Update.new()
     sparql.default_namespace(parent.uri.namespace)
     parent.to_sparql(sparql, true)
-    objects[:managed_children].each do |c| 
+    objects[:managed_children].each do |c|
       c.to_sparql(sparql, true)
     end
-    objects[:tags].each do |c| 
+    objects[:tags].each do |c|
       sparql.add({uri: c[:subject]}, {prefix: :isoC, fragment: "tagged"}, {uri: c[:object]})
     end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
-    self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"), 
+    self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"),
       error_file: "", success: true, success_path: path)
   end
 
@@ -168,14 +180,14 @@ class Import < ActiveRecord::Base
   end
 
   # Configuration. Sets the parameters for the import, class version
-  # 
+  #
   # @return [Hash] the configuration hash
   def self.configuration
     {}
   end
 
   # # Configuration. Sets the parameters for the import, instance version
-  # # 
+  # #
   # # @return [Hash] the configuration hash
   # def configuration
   #   self.class.configuration
@@ -225,7 +237,7 @@ private
   def result_hash(object)
     return {parent: object, managed_children: []}
   end
-  
+
   # Merge all errors
   def merge_all_errors(objects)
     parent = objects[:parent]
