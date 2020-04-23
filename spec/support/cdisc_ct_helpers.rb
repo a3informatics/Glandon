@@ -23,4 +23,18 @@ module CdiscCtHelpers
     return (1..63)
   end
 
+  def self.cl_count_by_version(version)
+    query_string = %Q{
+      SELECT (COUNT(?item) as ?count) WHERE
+      {
+        ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:version #{version} .
+        ?s th:isTopConceptReference/bo:reference ?item .
+      } 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:count).first.to_i
+  end
+
 end
