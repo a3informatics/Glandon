@@ -33,6 +33,12 @@ describe ImportsController do
     end
 
     it "index" do
+      get :index
+      expect(response.code).to eq("200")
+      expect(response).to render_template("index")
+    end
+
+    it "index, json" do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       expect(assigns(:items).count).to eq(3)
@@ -43,13 +49,21 @@ describe ImportsController do
     end
 
     it "show" do
-      expect_any_instance_of(Import).to receive(:load_error_file).and_return(["XXX", "YYY"])
       get :show, {id: @i1.id}
       expect(assigns(:import).id).to eq(@i1.id)
-      expect(assigns(:job).id).to eq(@b1.id)
-      expect(assigns(:errors)).to match_array(["XXX", "YYY"])
       expect(response.code).to eq("200")
       expect(response).to render_template("show")
+    end
+
+    it "show, json" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show, {id: @i1.id}
+      expect(response.code).to eq("200")
+      x = JSON.parse(response.body).deep_symbolize_keys
+      expect(x[:data].keys).to match_array([:import, :job, :errors])
+      expect(x[:data][:import][:id]).to eq(@i1.id)
+      expect(x[:data][:job][:id]).to eq(@b1.id)
+      expect(x[:data][:job][:description]).to eq(@b1.description)
     end
 
     it "destroy" do

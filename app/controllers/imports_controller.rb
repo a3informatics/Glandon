@@ -25,8 +25,12 @@ class ImportsController < ApplicationController
 
   def show
     @import = Import.find(params[:id])
-    @job = Background.find(@import.background_id)
-    @errors = @import.load_error_file
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {data: @import.show_data}
+      end
+    end
   end
 
   def destroy

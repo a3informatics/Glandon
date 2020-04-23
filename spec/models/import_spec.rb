@@ -317,7 +317,7 @@ describe Import do
     object.save
 
 		import_data = object.show_data
-		expect(import_data.keys).to eq([:import, :errors, :job])
+		expect(import_data.keys).to match_array([:import, :errors, :job])
 		expect(import_data[:import][:id]).to eq(object.id)
 		expect(import_data[:job][:id]).to eq(job.id)
 		expect(import_data[:errors]).to eq([])
@@ -332,7 +332,7 @@ describe Import do
 		item.save_error_file({parent: worker, managed_children:[]})
 
 		import_data = item.show_data
-		expect(import_data.keys).to eq([:import, :errors, :job])
+		expect(import_data.keys).to match_array([:import, :errors, :job])
 		expect(import_data[:errors]).to eq(["Bad things happened!"])
 		expect(import_data[:job][:id]).to eq(item.background_id)
 		expect(import_data[:import][:id]).to eq(item.id)
