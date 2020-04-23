@@ -158,87 +158,51 @@ describe Form do
     end
 
     def add_group(form, params)
-        form[:groups] << {
-            type: params[:t].to_s,
-            label: params[:l].empty? ? "" : params[:l],
-            completion: params[:c].empty? ? "" : params[:c],
-            optional: params[:o].empty? ? "" : params[:o],
-            repeating: params[:r].empty? ? "" : params[:r],
-            ordinal: params[:ordinal],
-            note: params[:n].empty? ? "" : params[:n],
-            items: [],
-            groups: []
-            }
+      form[:groups] << {
+        type: params[:t].to_s,
+        label: params[:l].empty? ? "" : params[:l],
+        completion: params[:c].empty? ? "" : params[:c],
+        optional: params[:o].empty? ? "" : params[:o],
+        repeating: params[:r].empty? ? "" : params[:r],
+        ordinal: params[:ordinal],
+        note: params[:n].empty? ? "" : params[:n],
+        items: [],
+        groups: []
+      }
     end
 
     def add_item(group, param_set)
       return if param_set.empty?
       param_set.each do |params|
+        item = {
+              type: params[:type].to_sym,
+              label: params[:l],
+              completion: params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              }
         case params[:type].to_sym
-              when :Question
-                         item = {
-                          type: params[:type].to_sym,
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
-                          note: params[:n],
-                          optional: params[:o],
-                          ordinal: params[:ordinal],
-                          mapping: params[:mapping],
-                          question_text: params[:question_text],
-                          has_coded_value: query_tc(params)
-                          }
-              when :Mapping
-                       item = {
-                          type: params[:type].to_sym,
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
-                          note: params[:n],
-                          optional: params[:o],
-                          ordinal: params[:ordinal],
-                          mapping: params[:mapping]
-                        }
-              when :Placeholder
-                      item =  {
-                          type: params[:type].to_sym,
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
-                          note: params[:n],
-                          optional: params[:o],
-                          ordinal: params[:ordinal],
-                          free_text: params[:free_text]
-                        }
-              when :BcProperty
-                      item =  {
-                          type: params[:type].to_sym,
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
-                          note: params[:n],
-                          optional: params[:o],
-                          ordinal: params[:ordinal],
-                          has_property: query_property(params),
-                          has_coded_value: query_tc(params) 
-                        }
-              when :CommonItem
-                      item =  {
-                          type: params[:type].to_sym,
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
-                          note: params[:n],
-                          optional: params[:o],
-                          ordinal: params[:ordinal],
-                          has_common_item: query_common_item(params)
-                        }
+        when :Question
+                  item[:mapping] = params[:mapping]
+                  item[:question_text] = params[:question_text]
+                  item[:has_coded_value] = query_tc(params)
+        when :Mapping
+                  item[:mapping] = params[:mapping]
+        when :Placeholder
+                  item[:free_text] = params[:free_text]
+        when :BcProperty
+                    item[:has_property] = query_property(params),
+                    item[:has_coded_value] = query_tc(params) 
+        when :CommonItem
+                    item[:has_common_item] = query_common_item(params)
         end
         group[:items] << item
       end
-      
     end
 
     def load_old_files
-      files = 
-      [
-        "ACME_FN000160_1.ttl"
-      ]
+      files = ["ACME_FN000160_1.ttl"]
       files.each {|f| load_local_file_into_triple_store(source_data_dir, f)}
     end
 
@@ -287,15 +251,23 @@ describe Form do
         ordinal: group[:ordinal],
         note: group[:note]
       })
+    end
+
+    def add_items(group, new_group)
+      group[:items].each do |item|
+        new_item = new_item(item)
+        new_group.has_item << new_item
+      end
     end  
 
     def sub_group(group, new_group)
       group[:groups].each do |sub_group|
         normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
-        sub_group[:items].each do |item|
-          new_item = new_item(item)
-          sg.has_item << new_item
-        end
+        # sub_group[:items].each do |item|
+        #   new_item = new_item(item)
+        #   sg.has_item << new_item
+        # end
+        add_items(sub_group, sg)
         new_group.has_sub_group << sg
       end
     end
@@ -341,16 +313,17 @@ describe Form do
 
     it "create forms" do
       results = []
-      old_form = read_yaml_file(source_data_dir, "processed_old_form_weight.yaml")
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_alzheimers.yaml")
       old_form.each do |form|
         new_form = Form.new(label:form[:form][:label])
         form[:groups].each do |group|
           new_group = new_normal_group(group)
           new_form.has_group << new_group
-          group[:items].each do |item|
-              new_item = new_item(item)
-              new_group.has_item << new_item
-          end
+          add_items(group, new_group)
+          # group[:items].each do |item|
+          #     new_item = new_item(item)
+          #     new_group.has_item << new_item
+          # end
           sub_group(group, new_group) if !group[:groups].empty?
         end
         new_form.set_initial(form[:form][:identifier])
@@ -360,7 +333,7 @@ describe Form do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_weight.ttl")
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_alzheimers.ttl")
     end
 
   end
