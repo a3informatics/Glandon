@@ -39,10 +39,10 @@ describe Form do
       query_results.by_object_set([:f, :l, :i])
     end
 
-    def query_group(element)
+    def query_group(group)
       query_string = %Q{SELECT ?f ?t ?l  ?c ?n ?r ?o ?ordinal WHERE
                       {
-                        #{element[:f].to_ref} <http://www.assero.co.uk/BusinessForm#hasGroup>|<http://www.assero.co.uk/BusinessForm#hasSubGroup>|<http://www.assero.co.uk/BusinessForm#hasCommon> ?f .
+                        #{group[:f].to_ref} <http://www.assero.co.uk/BusinessForm#hasGroup>|<http://www.assero.co.uk/BusinessForm#hasSubGroup>|<http://www.assero.co.uk/BusinessForm#hasCommon> ?f .
                         ?f <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
                         ?f <http://www.w3.org/2000/01/rdf-schema#label> ?l .
                         ?f <http://www.assero.co.uk/BusinessForm#completion> ?c .
@@ -85,8 +85,11 @@ describe Form do
                         OPTIONAL {
                                   ?i <http://www.assero.co.uk/BusinessForm#hasCommonItem> ?common_item .
                                   BIND ("CommonItem" as ?type)
-                        } 
-                       
+                        }
+                        OPTIONAL {
+                                  ?i <http://www.assero.co.uk/BusinessForm#label_text> ?label_text .
+                                  BIND ("TextLabel" as ?type)
+                        }  
                       }}
       query_results = Sparql::Query.new.query(query_string, "", [])
       query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :f, :mapping, :question_text, :free_text, :common_item, :has_property, :type])
@@ -234,7 +237,7 @@ describe Form do
     def load_old_files
       files = 
       [
-        "ACME_FN000120_1.ttl"
+        "ACME_FN000150_1.ttl"
       ]
       files.each {|f| load_local_file_into_triple_store(source_data_dir, f)}
     end
@@ -257,8 +260,90 @@ describe Form do
         end
       results << f 
       end
-      write_yaml_file(results, source_data_dir, "processed_old_form_dad.yaml")
+      write_yaml_file(results, source_data_dir, "processed_old_form_height.yaml")
     end
+
+    def sub_group(group)
+        group[:groups].each do |sub|
+          object_group = Form::Group::Normal.from_h({
+            label: group[:label],
+            completion: group[:completion],
+            optional: group[:optional],
+            repeating: group[:repeating],
+            ordinal: group[:ordinal],
+            note: group[:note]
+          })
+          group[:items].each do |item|
+            item_group = get_item(item)
+            group.has_item << @item_group
+          end
+          group.has_sub_group << object_group
+        end
+        sub_group(group[:groups]) if group[:groups].empty? #base case
+    end
+
+    def get_item(params)
+      item = {
+              type: params[:type].to_sym,
+              label: params[:l].empty? ? "" : params[:l],
+              completion: params[:c].empty? ? "" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+          }
+      case params[:type].to_sym
+      when :Question
+                  item[:mapping] = params[:mapping]
+                  item[:question_text] = params[:question_text]
+                  item[:has_coded_value].each_with_index do |ref, index|
+                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: ref, ordinal: index+1)
+                  end
+                  # item[:has_coded_value] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_coded_value])
+                
+      when :Mapping
+                  item[:mapping] = params[:mapping]
+      when :Placeholder
+                  item[:free_text] = params[:free_text]
+      when :BcProperty
+                  item[:has_property] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_property])
+                  item[:has_coded_value] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_coded_value]) 
+      # when :CommonItem
+      #             item[:has_common_item] = BcProperty.new()
+      #             op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
+      #             property.has_coded_value_push(op_ref) 
+      end
+      item
+    end 
+
+    def normal_group?(group)
+      return true if group[:type] == "http://www.assero.co.uk/BusinessForm#NormalGroup"
+      return false
+    end  
+
+    it "create forms" do
+    results = []
+    form = read_yaml_file(source_data_dir, "processed_old_form_height.yaml")
+    new_form = Form.new(label:form.first[:form][:label], identifier:form.first[:form][:identifier])
+    form.first[:groups].each do |group|
+      object_group = Form::Group::Normal.from_h({
+          label: group[:label],
+          completion: group[:completion],
+          optional: group[:optional],
+          repeating: group[:repeating],
+          ordinal: group[:ordinal],
+          note: group[:note]
+        })
+      new_form.has_group << object_group
+      sub_group(group) if !group[:groups].empty?
+    end
+    new_form.set_initial("F_HEIGHT")
+    results << new_form
+    sparql = Sparql::Update.new
+    sparql.default_namespace(results.first.uri.namespace)
+    results.each{|x| x.to_sparql(sparql, true)}
+    full_path = sparql.to_file
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_height.ttl")
+  end
 
   end
 

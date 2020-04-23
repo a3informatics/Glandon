@@ -3,14 +3,16 @@
     :label: Height (Pilot)
     :identifier: FN000150
   :groups:
-  - :label: " "
+  - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+    :label: " "
     :completion: ''
     :optional: 'false'
     :repeating: 'false'
     :ordinal: '1'
     :note: ''
     :items:
-    - :label: Completion status
+    - :type: :Question
+      :label: Completion status
       :completion: ''
       :note: ''
       :optional: 'true'
@@ -18,8 +20,9 @@
       :mapping: VSSTAT
       :question_text: " Compltion Status"
       :has_coded_value:
-      - "<http://www.cdisc.org/C66789/V4#C66789_C49484>"
-    - :label: Unit
+      - http://www.cdisc.org/C66789/V4#C66789_C49484
+    - :type: :Question
+      :label: Unit
       :completion: ''
       :note: ''
       :optional: 'false'
@@ -27,9 +30,10 @@
       :mapping: VSORRESU
       :question_text: Unit
       :has_coded_value:
-      - "<http://www.cdisc.org/C66770/V2#C66770_C48500>"
-      - "<http://www.cdisc.org/C66770/V4#C66770_C49668>"
-    - :label: Height
+      - http://www.cdisc.org/C66770/V2#C66770_C48500
+      - http://www.cdisc.org/C66770/V4#C66770_C49668
+    - :type: :Question
+      :label: Height
       :completion: ''
       :note: ''
       :optional: 'false'
@@ -37,11 +41,12 @@
       :mapping: VSORRES
       :question_text: Height
       :has_coded_value: []
-    - :label: Placeholder 2
+    - :type: :Placeholder
+      :label: Placeholder 2
       :completion: ''
       :note: ''
       :optional: 'false'
       :ordinal: '2'
       :free_text: Measure with shoes off. Round up or down to the nearest tenth inch
         or tenth centimeter.
-    :sub_groups: []
+    :groups: []
