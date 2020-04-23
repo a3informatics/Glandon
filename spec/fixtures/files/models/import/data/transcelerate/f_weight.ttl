@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T14:38:06+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T16:42:47+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -116,7 +116,17 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit"^^xsd:string ;
+	bf:hasCodedValue :F_NG2_Q3_TUC1 ;
 	bf:hasCodedValue :F_NG2_Q3_TUC2 ;
+.
+:F_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C28252> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG2_Q3_TUC2
 	rdf:type bo:TucReference ;

@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T14:47:04+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T16:49:59+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -120,6 +120,12 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP2_R0 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC3 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC4 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC5 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC6 ;
 	bf:hasCodedValue :F_NG1_NG3_BP2_TUC7 ;
 .
 :F_NG1_NG3_BP2_R0
@@ -129,6 +135,60 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000200_I11_DT1_P1> ;
+.
+:F_NG1_NG3_BP2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC05> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC04> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC03> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC01> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC5
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC06> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC6
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_CBICResponses_CIBIC02> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_NG3_BP2_TUC7
 	rdf:type bo:TucReference ;

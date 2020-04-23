@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T14:46:25+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T16:49:16+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -80,6 +80,9 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP2_R0 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG3_BP2_TUC3 ;
 	bf:hasCodedValue :F_NG1_NG3_BP2_TUC4 ;
 .
 :F_NG1_NG3_BP2_R0
@@ -89,6 +92,33 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000040_I10_DT1_P1> ;
+.
+:F_NG1_NG3_BP2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C20197> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG3_BP2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C17998> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_NG3_BP2_TUC4
 	rdf:type bo:TucReference ;
@@ -135,6 +165,16 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG4_BP2_R0 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC3 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC4 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC5 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC6 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC7 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC8 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC9 ;
+	bf:hasCodedValue :F_NG1_NG4_BP2_TUC10 ;
 	bf:hasCodedValue :F_NG1_NG4_BP2_TUC11 ;
 .
 :F_NG1_NG4_BP2_R0
@@ -144,6 +184,96 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V2#BC-ACME_BC000050_I10_DT1_P1> ;
+.
+:F_NG1_NG4_BP2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE2> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE4> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC5
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE1> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC6
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V49#C74457_C16352> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC7
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE6> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC8
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "8"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_RaceSponsorDefined_RACE3> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC9
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "9"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG4_BP2_TUC10
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "10"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_NG4_BP2_TUC11
 	rdf:type bo:TucReference ;
@@ -191,6 +321,10 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP3_R0 ;
+	bf:hasCodedValue :F_NG1_NG2_BP3_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG2_BP3_TUC2 ;
+	bf:hasCodedValue :F_NG1_NG2_BP3_TUC3 ;
+	bf:hasCodedValue :F_NG1_NG2_BP3_TUC4 ;
 	bf:hasCodedValue :F_NG1_NG2_BP3_TUC5 ;
 .
 :F_NG1_NG2_BP3_R0
@@ -200,6 +334,42 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BC000030_I10_DT1_P2> ;
+.
+:F_NG1_NG2_BP3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66781/V4#C66781_C29846> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66781/V4#C66781_C29848> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66781/V4#C66781_C25529> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP3_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66781/V4#C66781_C29844> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_NG2_BP3_TUC5
 	rdf:type bo:TucReference ;

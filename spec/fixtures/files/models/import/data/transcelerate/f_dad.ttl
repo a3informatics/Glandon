@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T14:46:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T16:49:45+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -116,7 +116,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG3_Q2_TUC3 ;
+.
+:F_NG12_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -138,7 +158,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG3_Q3_TUC3 ;
+.
+:F_NG12_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -160,7 +200,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG3_Q4_TUC3 ;
+.
+:F_NG12_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -195,7 +255,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG4_Q2_TUC3 ;
+.
+:F_NG12_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -217,7 +297,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG4_Q3_TUC3 ;
+.
+:F_NG12_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -248,7 +348,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG4_Q4_TUC3 ;
+.
+:F_NG12_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -283,7 +403,17 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q4_TUC1 ;
 	bf:hasCodedValue :F_NG12_NG6_Q4_TUC2 ;
+.
+:F_NG12_NG6_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG6_Q4_TUC2
 	rdf:type bo:TucReference ;
@@ -314,7 +444,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG6_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG6_Q3_TUC3 ;
+.
+:F_NG12_NG6_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG6_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG6_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -336,7 +486,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG6_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG6_Q2_TUC3 ;
+.
+:F_NG12_NG6_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG6_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG6_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -371,7 +541,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG5_Q3_TUC3 ;
+.
+:F_NG12_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -393,7 +583,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG5_Q4_TUC3 ;
+.
+:F_NG12_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -424,7 +634,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG5_Q2_TUC3 ;
+.
+:F_NG12_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -459,7 +689,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG2_Q2_TUC3 ;
+.
+:F_NG12_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -481,7 +731,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG2_Q3_TUC3 ;
+.
+:F_NG12_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -503,7 +773,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG12_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG12_NG2_Q4_TUC3 ;
+.
+:F_NG12_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG12_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -614,7 +904,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG2_Q2_TUC3 ;
+.
+:F_NG8_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -636,7 +946,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG2_Q3_TUC3 ;
+.
+:F_NG8_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -658,7 +988,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG2_Q4_TUC3 ;
+.
+:F_NG8_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -693,7 +1043,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG4_Q3_TUC3 ;
+.
+:F_NG8_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -715,7 +1085,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG4_Q4_TUC3 ;
+.
+:F_NG8_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -746,7 +1136,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG4_Q2_TUC3 ;
+.
+:F_NG8_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -781,7 +1191,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG3_Q2_TUC3 ;
+.
+:F_NG8_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -803,7 +1233,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG3_Q3_TUC3 ;
+.
+:F_NG8_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -834,7 +1284,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG3_Q4_TUC3 ;
+.
+:F_NG8_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -869,7 +1339,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG5_Q4_TUC3 ;
+.
+:F_NG8_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -900,7 +1390,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG5_Q2_TUC3 ;
+.
+:F_NG8_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -922,7 +1432,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG8_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG8_NG5_Q3_TUC3 ;
+.
+:F_NG8_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG8_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -983,7 +1513,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG7_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG7_Q4_TUC3 ;
+.
+:F_NG3_NG7_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG7_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG7_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1014,7 +1564,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG7_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG7_Q2_TUC3 ;
+.
+:F_NG3_NG7_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG7_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG7_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1036,7 +1606,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG7_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG7_Q3_TUC3 ;
+.
+:F_NG3_NG7_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG7_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG7_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1071,7 +1661,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG2_Q2_TUC3 ;
+.
+:F_NG3_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1102,7 +1712,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG2_Q3_TUC3 ;
+.
+:F_NG3_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1124,7 +1754,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG2_Q4_TUC3 ;
+.
+:F_NG3_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1159,7 +1809,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG8_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG8_Q4_TUC3 ;
+.
+:F_NG3_NG8_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG8_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1190,7 +1860,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG8_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG8_Q2_TUC3 ;
+.
+:F_NG3_NG8_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG8_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1212,7 +1902,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG8_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG8_Q3_TUC3 ;
+.
+:F_NG3_NG8_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG8_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1256,7 +1966,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG4_Q2_TUC3 ;
+.
+:F_NG3_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1278,7 +2008,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG4_Q3_TUC3 ;
+.
+:F_NG3_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1300,7 +2050,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG4_Q4_TUC3 ;
+.
+:F_NG3_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1344,7 +2114,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG3_Q4_TUC3 ;
+.
+:F_NG3_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1366,7 +2156,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG3_Q3_TUC3 ;
+.
+:F_NG3_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1388,7 +2198,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG3_Q2_TUC3 ;
+.
+:F_NG3_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1423,7 +2253,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG6_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG6_Q3_TUC3 ;
+.
+:F_NG3_NG6_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG6_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1445,7 +2295,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG6_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG6_Q4_TUC3 ;
+.
+:F_NG3_NG6_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG6_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1476,7 +2346,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG6_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG6_Q2_TUC3 ;
+.
+:F_NG3_NG6_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG6_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1511,7 +2401,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG5_Q2_TUC3 ;
+.
+:F_NG3_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1533,7 +2443,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG5_Q3_TUC3 ;
+.
+:F_NG3_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1555,7 +2485,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG3_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG3_NG5_Q4_TUC3 ;
+.
+:F_NG3_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG3_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1623,7 +2573,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG6_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG6_Q4_TUC3 ;
+.
+:F_NG9_NG6_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG6_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG6_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1654,7 +2624,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG6_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG6_Q2_TUC3 ;
+.
+:F_NG9_NG6_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG6_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG6_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1676,7 +2666,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG6_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG6_Q3_TUC3 ;
+.
+:F_NG9_NG6_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG6_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG6_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1711,7 +2721,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG2_Q2_TUC3 ;
+.
+:F_NG9_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1733,7 +2763,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG2_Q3_TUC3 ;
+.
+:F_NG9_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1764,7 +2814,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG2_Q4_TUC3 ;
+.
+:F_NG9_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1799,7 +2869,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG4_Q4_TUC3 ;
+.
+:F_NG9_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1830,7 +2920,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG4_Q2_TUC3 ;
+.
+:F_NG9_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1852,7 +2962,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG4_Q3_TUC3 ;
+.
+:F_NG9_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1887,7 +3017,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG3_Q3_TUC3 ;
+.
+:F_NG9_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -1909,7 +3059,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG3_Q4_TUC3 ;
+.
+:F_NG9_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -1931,7 +3101,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG3_Q2_TUC3 ;
+.
+:F_NG9_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -1984,7 +3174,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG5_Q2_TUC3 ;
+.
+:F_NG9_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2006,7 +3216,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG5_Q3_TUC3 ;
+.
+:F_NG9_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2028,7 +3258,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG9_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG9_NG5_Q4_TUC3 ;
+.
+:F_NG9_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG9_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2087,7 +3337,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG3_Q2_TUC3 ;
+.
+:F_NG4_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2109,7 +3379,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG3_Q3_TUC3 ;
+.
+:F_NG4_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2140,7 +3430,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG3_Q4_TUC3 ;
+.
+:F_NG4_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2175,7 +3485,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG4_Q3_TUC3 ;
+.
+:F_NG4_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2197,7 +3527,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG4_Q4_TUC3 ;
+.
+:F_NG4_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2228,7 +3578,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG4_Q2_TUC3 ;
+.
+:F_NG4_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2272,7 +3642,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG6_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG6_Q2_TUC3 ;
+.
+:F_NG4_NG6_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG6_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2294,7 +3684,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG6_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG6_Q3_TUC3 ;
+.
+:F_NG4_NG6_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG6_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2316,7 +3726,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG6_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG6_Q4_TUC3 ;
+.
+:F_NG4_NG6_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG6_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2351,7 +3781,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG5_Q4_TUC3 ;
+.
+:F_NG4_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2373,7 +3823,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG5_Q2_TUC3 ;
+.
+:F_NG4_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2395,7 +3865,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG5_Q3_TUC3 ;
+.
+:F_NG4_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2448,7 +3938,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG2_Q2_TUC3 ;
+.
+:F_NG4_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2470,7 +3980,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG2_Q3_TUC3 ;
+.
+:F_NG4_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2492,7 +4022,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG4_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG4_NG2_Q4_TUC3 ;
+.
+:F_NG4_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG4_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2567,7 +4117,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG3_Q3_TUC3 ;
+.
+:F_NG5_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2589,7 +4159,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG3_Q4_TUC3 ;
+.
+:F_NG5_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2620,7 +4210,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG3_Q2_TUC3 ;
+.
+:F_NG5_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2655,7 +4265,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG2_Q2_TUC3 ;
+.
+:F_NG5_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2677,7 +4307,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG2_Q3_TUC3 ;
+.
+:F_NG5_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2699,7 +4349,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG5_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG5_NG2_Q4_TUC3 ;
+.
+:F_NG5_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG5_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2764,7 +4434,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG2_Q4_TUC3 ;
+.
+:F_NG11_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2786,7 +4476,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG2_Q2_TUC3 ;
+.
+:F_NG11_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2817,7 +4527,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG2_Q3_TUC3 ;
+.
+:F_NG11_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2852,7 +4582,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG3_Q3_TUC3 ;
+.
+:F_NG11_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -2874,7 +4624,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG3_Q2_TUC3 ;
+.
+:F_NG11_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2905,7 +4675,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG11_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG11_NG3_Q4_TUC3 ;
+.
+:F_NG11_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG11_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -2971,7 +4761,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG2_Q2_TUC3 ;
+.
+:F_NG7_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -2993,7 +4803,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG2_Q4_TUC3 ;
+.
+:F_NG7_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3015,7 +4845,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG2_Q3_TUC3 ;
+.
+:F_NG7_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3059,7 +4909,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG3_Q2_TUC3 ;
+.
+:F_NG7_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3081,7 +4951,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG3_Q3_TUC3 ;
+.
+:F_NG7_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3103,7 +4993,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG3_Q4_TUC3 ;
+.
+:F_NG7_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3138,7 +5048,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG4_Q2_TUC3 ;
+.
+:F_NG7_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3160,7 +5090,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG4_Q3_TUC3 ;
+.
+:F_NG7_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3182,7 +5132,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG7_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG7_NG4_Q4_TUC3 ;
+.
+:F_NG7_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG7_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3249,7 +5219,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG2_Q2_TUC3 ;
+.
+:F_NG10_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3271,7 +5261,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG2_Q3_TUC3 ;
+.
+:F_NG10_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3302,7 +5312,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG2_Q4_TUC3 ;
+.
+:F_NG10_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3337,7 +5367,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG3_Q3_TUC3 ;
+.
+:F_NG10_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3359,7 +5409,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG3_Q4_TUC3 ;
+.
+:F_NG10_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3390,7 +5460,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG3_Q2_TUC3 ;
+.
+:F_NG10_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3425,7 +5515,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG4_Q4_TUC3 ;
+.
+:F_NG10_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3456,7 +5566,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG4_Q2_TUC3 ;
+.
+:F_NG10_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3478,7 +5608,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG4_Q3_TUC3 ;
+.
+:F_NG10_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3522,7 +5672,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG5_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG5_Q2_TUC3 ;
+.
+:F_NG10_NG5_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG5_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3544,7 +5714,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG5_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG5_Q3_TUC3 ;
+.
+:F_NG10_NG5_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG5_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3566,7 +5756,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG10_NG5_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG10_NG5_Q4_TUC3 ;
+.
+:F_NG10_NG5_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG10_NG5_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3623,7 +5833,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG2_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG2_Q4_TUC3 ;
+.
+:F_NG6_NG2_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG2_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG2_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3654,7 +5884,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG2_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG2_Q2_TUC3 ;
+.
+:F_NG6_NG2_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG2_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG2_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3676,7 +5926,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG2_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG2_Q3_TUC3 ;
+.
+:F_NG6_NG2_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG2_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG2_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3720,7 +5990,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG3_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG3_Q2_TUC3 ;
+.
+:F_NG6_NG3_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG3_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3742,7 +6032,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG3_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG3_Q4_TUC3 ;
+.
+:F_NG6_NG3_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG3_Q4_TUC3
 	rdf:type bo:TucReference ;
@@ -3764,7 +6074,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG3_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG3_Q3_TUC3 ;
+.
+:F_NG6_NG3_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG3_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3808,7 +6138,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q2_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG4_Q2_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG4_Q2_TUC3 ;
+.
+:F_NG6_NG4_Q2_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4_Q2_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG4_Q2_TUC3
 	rdf:type bo:TucReference ;
@@ -3830,7 +6180,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q3_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG4_Q3_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG4_Q3_TUC3 ;
+.
+:F_NG6_NG4_Q3_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4_Q3_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG4_Q3_TUC3
 	rdf:type bo:TucReference ;
@@ -3852,7 +6222,27 @@
 	bf:format ""^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG6_NG4_Q4_TUC2 ;
 	bf:hasCodedValue :F_NG6_NG4_Q4_TUC3 ;
+.
+:F_NG6_NG4_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG6_NG4_Q4_TUC3
 	rdf:type bo:TucReference ;

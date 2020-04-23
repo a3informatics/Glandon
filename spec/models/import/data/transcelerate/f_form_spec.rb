@@ -280,8 +280,9 @@ describe Form do
       when :Question
                   item[:mapping] = params[:mapping]
                   item[:question_text] = params[:question_text]
+                  item[:has_coded_value] = []
                   params[:has_coded_value].each_with_index do |ref, index|
-                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
+                    item[:has_coded_value] << OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
                   end
                   item = Form::Item::Question.from_h(item)     
       when :Mapping
@@ -294,8 +295,9 @@ describe Form do
                   params[:has_property].each_with_index do |ref, index|
                     item[:has_property] = OperationalReferenceV3.new(ordinal: 0, reference: Uri.new(uri: ref))
                   end
+                  item[:has_coded_value] = []
                   params[:has_coded_value].each_with_index do |ref, index|
-                    item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
+                    item[:has_coded_value] << OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
                   end
                   item = Form::Item::BcProperty.from_h(item) 
       when :CommonItem
@@ -309,7 +311,7 @@ describe Form do
 
     it "create forms" do
       results = []
-      old_form = read_yaml_file(source_data_dir, "processed_old_form_alzheimers.yaml")
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_ae_test.yaml")
       old_form.each do |form|
         new_form = Form.new(label:form[:form][:label])
         form[:groups].each do |group|
@@ -325,7 +327,7 @@ describe Form do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_alzheimers.ttl")
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_ae_test.ttl")
     end
 
   end

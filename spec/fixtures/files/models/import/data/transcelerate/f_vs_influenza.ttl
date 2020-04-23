@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T14:41:10+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T16:44:16+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -235,6 +235,8 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP1_R0 ;
+	bf:hasCodedValue :F_NG1_NG2_BP1_TUC1 ;
+	bf:hasCodedValue :F_NG1_NG2_BP1_TUC2 ;
 	bf:hasCodedValue :F_NG1_NG2_BP1_TUC3 ;
 .
 :F_NG1_NG2_BP1_R0
@@ -244,6 +246,24 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V3#BC-ACME_BC000023_I4_DT1_P1> ;
+.
+:F_NG1_NG2_BP1_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_NG2_BP1_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_NG2_BP1_TUC3
 	rdf:type bo:TucReference ;
