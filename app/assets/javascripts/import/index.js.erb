@@ -42,6 +42,7 @@ ImportsIndex.prototype.executeRequest = function (params) {
 		url: params.url,
 		data: params.data,
 		type: params.type,
+    cache: false,
 		dataType: 'json',
 		context: this,
 		success: function(result){
