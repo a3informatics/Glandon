@@ -1,0 +1,3865 @@
+@prefix : <http://www.transceleratebiopharmainc.com/FN000120/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.transceleratebiopharmainc.com/FN000120/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Disability Assessment For Dementia (DAD) (Pilot)"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T14:46:53+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :F_NG12 ;
+	bf:hasGroup :F_NG2 ;
+	bf:hasGroup :F_NG8 ;
+	bf:hasGroup :F_NG3 ;
+	bf:hasGroup :F_NG9 ;
+	bf:hasGroup :F_NG4 ;
+	bf:hasGroup :F_NG1 ;
+	bf:hasGroup :F_NG5 ;
+	bf:hasGroup :F_NG11 ;
+	bf:hasGroup :F_NG7 ;
+	bf:hasGroup :F_NG10 ;
+	bf:hasGroup :F_NG6 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS079658684> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "FN000120"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#TRANSCELERATE> ;
+.
+:F_NG12
+	rdf:type bf:NormalGroup ;
+	isoC:label "LEISURE AND HOUSEWORK"^^xsd:string ;
+	bf:ordinal "12"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG12_NG3 ;
+	bf:hasSubGroup :F_NG12_NG4 ;
+	bf:hasSubGroup :F_NG12_NG6 ;
+	bf:hasSubGroup :F_NG12_NG5 ;
+	bf:hasSubGroup :F_NG12_NG2 ;
+.
+:F_NG12_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='LEISURE AND HOUSEWORK\""^^xsd:string ;
+.
+:F_NG12_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "37.Take an interest in household chores that he/she used to perform in the past"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_NG3_MA1 ;
+	bf:hasItem :F_NG12_NG3_Q2 ;
+	bf:hasItem :F_NG12_NG3_Q3 ;
+	bf:hasItem :F_NG12_NG3_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM37\""^^xsd:string ;
+.
+:F_NG12_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q2_TUC3 ;
+.
+:F_NG12_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q3_TUC3 ;
+.
+:F_NG12_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG3_Q4_TUC3 ;
+.
+:F_NG12_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "38. Plan and organize adequately household chores that he/she used to perform in the past"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_NG4_Q2 ;
+	bf:hasItem :F_NG12_NG4_Q3 ;
+	bf:hasItem :F_NG12_NG4_MA1 ;
+	bf:hasItem :F_NG12_NG4_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q2_TUC3 ;
+.
+:F_NG12_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q3_TUC3 ;
+.
+:F_NG12_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM38\""^^xsd:string ;
+.
+:F_NG12_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG4_Q4_TUC3 ;
+.
+:F_NG12_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label "40. Stay safely at home by himself/herself when needed"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_NG6_Q4 ;
+	bf:hasItem :F_NG12_NG6_MA1 ;
+	bf:hasItem :F_NG12_NG6_Q3 ;
+	bf:hasItem :F_NG12_NG6_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12_NG6_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q4_TUC2 ;
+.
+:F_NG12_NG6_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG6_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM40\""^^xsd:string ;
+.
+:F_NG12_NG6_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q3_TUC3 ;
+.
+:F_NG12_NG6_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG6_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG6_Q2_TUC3 ;
+.
+:F_NG12_NG6_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "39. Complete household chores adequately as he/she used to perform in the past"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_NG5_Q3 ;
+	bf:hasItem :F_NG12_NG5_Q4 ;
+	bf:hasItem :F_NG12_NG5_MA1 ;
+	bf:hasItem :F_NG12_NG5_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q3_TUC3 ;
+.
+:F_NG12_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q4_TUC3 ;
+.
+:F_NG12_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM39\""^^xsd:string ;
+.
+:F_NG12_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG5_Q2_TUC3 ;
+.
+:F_NG12_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "36. Show an interest in leisure activity(ies)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG12_NG2_Q2 ;
+	bf:hasItem :F_NG12_NG2_Q3 ;
+	bf:hasItem :F_NG12_NG2_Q4 ;
+	bf:hasItem :F_NG12_NG2_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG12_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q2_TUC3 ;
+.
+:F_NG12_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q3_TUC3 ;
+.
+:F_NG12_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG12_NG2_Q4_TUC3 ;
+.
+:F_NG12_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG12_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM36\""^^xsd:string ;
+.
+:F_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label " "^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG2_Q1 ;
+	bf:hasItem :F_NG2_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG2_Q1
+	rdf:type bf:Question ;
+	isoC:label "INFORMATION NOT OBTAINED "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "INFORMATION NOT OBTAINED "^^xsd:string ;
+.
+:F_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Clinician's initials "^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "First/Middle/Last"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "NOT SUBMITTED"^^xsd:string ;
+	bf:questionText "Clinician's initials "^^xsd:string ;
+.
+:F_NG8
+	rdf:type bf:NormalGroup ;
+	isoC:label "TELEPHONING"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG8_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG8_NG2 ;
+	bf:hasSubGroup :F_NG8_NG4 ;
+	bf:hasSubGroup :F_NG8_NG3 ;
+	bf:hasSubGroup :F_NG8_NG5 ;
+.
+:F_NG8_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='TELEPHONING\""^^xsd:string ;
+.
+:F_NG8_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "21. Attempt to telephone someone at a suitable time"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG8_NG2_MA1 ;
+	bf:hasItem :F_NG8_NG2_Q2 ;
+	bf:hasItem :F_NG8_NG2_Q3 ;
+	bf:hasItem :F_NG8_NG2_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG8_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM21\""^^xsd:string ;
+.
+:F_NG8_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q2_TUC3 ;
+.
+:F_NG8_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q3_TUC3 ;
+.
+:F_NG8_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG2_Q4_TUC3 ;
+.
+:F_NG8_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "23. Carry out an appropriate telephone conversation"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG8_NG4_Q3 ;
+	bf:hasItem :F_NG8_NG4_Q4 ;
+	bf:hasItem :F_NG8_NG4_MA1 ;
+	bf:hasItem :F_NG8_NG4_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG8_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q3_TUC3 ;
+.
+:F_NG8_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q4_TUC3 ;
+.
+:F_NG8_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM23\""^^xsd:string ;
+.
+:F_NG8_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG4_Q2_TUC3 ;
+.
+:F_NG8_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "22. Find and dial a telephone number correctly"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG8_NG3_Q2 ;
+	bf:hasItem :F_NG8_NG3_Q3 ;
+	bf:hasItem :F_NG8_NG3_MA1 ;
+	bf:hasItem :F_NG8_NG3_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG8_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q2_TUC3 ;
+.
+:F_NG8_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q3_TUC3 ;
+.
+:F_NG8_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM22\""^^xsd:string ;
+.
+:F_NG8_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG3_Q4_TUC3 ;
+.
+:F_NG8_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "24. Write and convey a telephone message adequately"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG8_NG5_Q4 ;
+	bf:hasItem :F_NG8_NG5_MA1 ;
+	bf:hasItem :F_NG8_NG5_Q2 ;
+	bf:hasItem :F_NG8_NG5_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG8_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q4_TUC3 ;
+.
+:F_NG8_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM24\""^^xsd:string ;
+.
+:F_NG8_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q2_TUC3 ;
+.
+:F_NG8_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG8_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG8_NG5_Q3_TUC3 ;
+.
+:F_NG8_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "HYGIENE"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG3_NG7 ;
+	bf:hasSubGroup :F_NG3_NG2 ;
+	bf:hasSubGroup :F_NG3_NG8 ;
+	bf:hasSubGroup :F_NG3_NG4 ;
+	bf:hasSubGroup :F_NG3_NG3 ;
+	bf:hasSubGroup :F_NG3_NG6 ;
+	bf:hasSubGroup :F_NG3_NG5 ;
+.
+:F_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 2"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='HYGIENE\""^^xsd:string ;
+.
+:F_NG3_NG7
+	rdf:type bf:NormalGroup ;
+	isoC:label "6. Brush his/her teeth or care for his/her dentures appropriately"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG7_Q4 ;
+	bf:hasItem :F_NG3_NG7_MA1 ;
+	bf:hasItem :F_NG3_NG7_Q2 ;
+	bf:hasItem :F_NG3_NG7_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG7_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q4_TUC3 ;
+.
+:F_NG3_NG7_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG7_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM06\""^^xsd:string ;
+.
+:F_NG3_NG7_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q2_TUC3 ;
+.
+:F_NG3_NG7_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG7_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG7_Q3_TUC3 ;
+.
+:F_NG3_NG7_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "1. Undertake to wash himself/herself or to take a bath or a shower"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG2_Q2 ;
+	bf:hasItem :F_NG3_NG2_MA1 ;
+	bf:hasItem :F_NG3_NG2_Q3 ;
+	bf:hasItem :F_NG3_NG2_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q2_TUC3 ;
+.
+:F_NG3_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 2"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM01\""^^xsd:string ;
+.
+:F_NG3_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q3_TUC3 ;
+.
+:F_NG3_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG2_Q4_TUC3 ;
+.
+:F_NG3_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8
+	rdf:type bf:NormalGroup ;
+	isoC:label "7. Care for his/her hair (wash and comb)"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG8_Q4 ;
+	bf:hasItem :F_NG3_NG8_MA1 ;
+	bf:hasItem :F_NG3_NG8_Q2 ;
+	bf:hasItem :F_NG3_NG8_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG8_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q4_TUC3 ;
+.
+:F_NG3_NG8_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM07\""^^xsd:string ;
+.
+:F_NG3_NG8_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q2_TUC3 ;
+.
+:F_NG3_NG8_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG8_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG8_Q3_TUC3 ;
+.
+:F_NG3_NG8_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "3. Decide to care for his/her hair (wash and comb)"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG4_MA1 ;
+	bf:hasItem :F_NG3_NG4_Q2 ;
+	bf:hasItem :F_NG3_NG4_Q3 ;
+	bf:hasItem :F_NG3_NG4_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM03\""^^xsd:string ;
+.
+:F_NG3_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q2_TUC3 ;
+.
+:F_NG3_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q3_TUC3 ;
+.
+:F_NG3_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG4_Q4_TUC3 ;
+.
+:F_NG3_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "2. Undertake to brush his/her teeth or care for his/her dentures"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG3_MA1 ;
+	bf:hasItem :F_NG3_NG3_Q4 ;
+	bf:hasItem :F_NG3_NG3_Q3 ;
+	bf:hasItem :F_NG3_NG3_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM02\""^^xsd:string ;
+.
+:F_NG3_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q4_TUC3 ;
+.
+:F_NG3_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q3_TUC3 ;
+.
+:F_NG3_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG3_Q2_TUC3 ;
+.
+:F_NG3_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label "5.Wash and dry completely all parts of his/her body safely"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG6_Q3 ;
+	bf:hasItem :F_NG3_NG6_Q4 ;
+	bf:hasItem :F_NG3_NG6_MA1 ;
+	bf:hasItem :F_NG3_NG6_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG6_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q3_TUC3 ;
+.
+:F_NG3_NG6_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q4_TUC3 ;
+.
+:F_NG3_NG6_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG6_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM05\""^^xsd:string ;
+.
+:F_NG3_NG6_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG6_Q2_TUC3 ;
+.
+:F_NG3_NG6_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "4. Prepare the water, towels, and soap for washing, taking a bath, or a shower"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG3_NG5_Q2 ;
+	bf:hasItem :F_NG3_NG5_Q3 ;
+	bf:hasItem :F_NG3_NG5_Q4 ;
+	bf:hasItem :F_NG3_NG5_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG3_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q2_TUC3 ;
+.
+:F_NG3_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q3_TUC3 ;
+.
+:F_NG3_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG3_NG5_Q4_TUC3 ;
+.
+:F_NG3_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG3_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM04\""^^xsd:string ;
+.
+:F_NG9
+	rdf:type bf:NormalGroup ;
+	isoC:label "GOING ON AN OUTING"^^xsd:string ;
+	bf:ordinal "9"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG9_NG6 ;
+	bf:hasSubGroup :F_NG9_NG2 ;
+	bf:hasSubGroup :F_NG9_NG4 ;
+	bf:hasSubGroup :F_NG9_NG3 ;
+	bf:hasSubGroup :F_NG9_NG5 ;
+.
+:F_NG9_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='GOING ON AN OUTING\""^^xsd:string ;
+.
+:F_NG9_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label "29. Return from the store with the appropriate items"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_NG6_Q4 ;
+	bf:hasItem :F_NG9_NG6_MA1 ;
+	bf:hasItem :F_NG9_NG6_Q2 ;
+	bf:hasItem :F_NG9_NG6_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9_NG6_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q4_TUC3 ;
+.
+:F_NG9_NG6_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG6_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM29\""^^xsd:string ;
+.
+:F_NG9_NG6_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q2_TUC3 ;
+.
+:F_NG9_NG6_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG6_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG6_Q3_TUC3 ;
+.
+:F_NG9_NG6_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "25. Undertake to go out (walk, visit, shop) at an appropriate time"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_NG2_Q2 ;
+	bf:hasItem :F_NG9_NG2_Q3 ;
+	bf:hasItem :F_NG9_NG2_MA1 ;
+	bf:hasItem :F_NG9_NG2_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q2_TUC3 ;
+.
+:F_NG9_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q3_TUC3 ;
+.
+:F_NG9_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM25\""^^xsd:string ;
+.
+:F_NG9_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG2_Q4_TUC3 ;
+.
+:F_NG9_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "27. Go out and reach a familiar destination without getting lost"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_NG4_Q4 ;
+	bf:hasItem :F_NG9_NG4_MA1 ;
+	bf:hasItem :F_NG9_NG4_Q2 ;
+	bf:hasItem :F_NG9_NG4_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q4_TUC3 ;
+.
+:F_NG9_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM27\""^^xsd:string ;
+.
+:F_NG9_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q2_TUC3 ;
+.
+:F_NG9_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG4_Q3_TUC3 ;
+.
+:F_NG9_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "26. Adequately organize an outing with respect to transportation, keys, destination, weather, necessary money, shopping list"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_NG3_Q3 ;
+	bf:hasItem :F_NG9_NG3_Q4 ;
+	bf:hasItem :F_NG9_NG3_Q2 ;
+	bf:hasItem :F_NG9_NG3_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q3_TUC3 ;
+.
+:F_NG9_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q4_TUC3 ;
+.
+:F_NG9_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG3_Q2_TUC3 ;
+.
+:F_NG9_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM26\""^^xsd:string ;
+.
+:F_NG9_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "28. Safely take the adequate mode of transportation (car, bus, taxi)"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG9_NG5_MA1 ;
+	bf:hasItem :F_NG9_NG5_Q2 ;
+	bf:hasItem :F_NG9_NG5_Q3 ;
+	bf:hasItem :F_NG9_NG5_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG9_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM28\""^^xsd:string ;
+.
+:F_NG9_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q2_TUC3 ;
+.
+:F_NG9_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q3_TUC3 ;
+.
+:F_NG9_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG9_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG9_NG5_Q4_TUC3 ;
+.
+:F_NG9_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "DRESSING"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG4_NG3 ;
+	bf:hasSubGroup :F_NG4_NG4 ;
+	bf:hasSubGroup :F_NG4_NG6 ;
+	bf:hasSubGroup :F_NG4_NG5 ;
+	bf:hasSubGroup :F_NG4_NG2 ;
+.
+:F_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='DRESSING\""^^xsd:string ;
+.
+:F_NG4_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "9. Choose appropriate clothing (with regard to the occasion, neatness, the weather, and color combination)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_NG3_Q2 ;
+	bf:hasItem :F_NG4_NG3_Q3 ;
+	bf:hasItem :F_NG4_NG3_MA1 ;
+	bf:hasItem :F_NG4_NG3_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q2_TUC3 ;
+.
+:F_NG4_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q3_TUC3 ;
+.
+:F_NG4_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM09\""^^xsd:string ;
+.
+:F_NG4_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG3_Q4_TUC3 ;
+.
+:F_NG4_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "10. Dress himself/herself in the appropriate order (undergarments, pant/dress, shoes)"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_NG4_Q3 ;
+	bf:hasItem :F_NG4_NG4_Q4 ;
+	bf:hasItem :F_NG4_NG4_MA1 ;
+	bf:hasItem :F_NG4_NG4_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q3_TUC3 ;
+.
+:F_NG4_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q4_TUC3 ;
+.
+:F_NG4_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM10\""^^xsd:string ;
+.
+:F_NG4_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG4_Q2_TUC3 ;
+.
+:F_NG4_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label "12. Undress himself/herself completely"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_NG6_MA1 ;
+	bf:hasItem :F_NG4_NG6_Q2 ;
+	bf:hasItem :F_NG4_NG6_Q3 ;
+	bf:hasItem :F_NG4_NG6_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4_NG6_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM12\""^^xsd:string ;
+.
+:F_NG4_NG6_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q2_TUC3 ;
+.
+:F_NG4_NG6_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q3_TUC3 ;
+.
+:F_NG4_NG6_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG6_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG6_Q4_TUC3 ;
+.
+:F_NG4_NG6_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "11. Dress himself/herself completely"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_NG5_Q4 ;
+	bf:hasItem :F_NG4_NG5_Q2 ;
+	bf:hasItem :F_NG4_NG5_Q3 ;
+	bf:hasItem :F_NG4_NG5_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q4_TUC3 ;
+.
+:F_NG4_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q2_TUC3 ;
+.
+:F_NG4_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG5_Q3_TUC3 ;
+.
+:F_NG4_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM11\""^^xsd:string ;
+.
+:F_NG4_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "8.Undertake to dress himself/herself"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG4_NG2_MA1 ;
+	bf:hasItem :F_NG4_NG2_Q2 ;
+	bf:hasItem :F_NG4_NG2_Q3 ;
+	bf:hasItem :F_NG4_NG2_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG4_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM08\""^^xsd:string ;
+.
+:F_NG4_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q2_TUC3 ;
+.
+:F_NG4_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q3_TUC3 ;
+.
+:F_NG4_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG4_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG4_NG2_Q4_TUC3 ;
+.
+:F_NG4_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1
+	rdf:type bf:NormalGroup ;
+	isoC:label " "^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG1_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSCAT=\"DISABILITY ASSESSMENT FOR DEMENTIA (DAD)\""^^xsd:string ;
+.
+:F_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "CONTINENCE"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG5_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG5_NG3 ;
+	bf:hasSubGroup :F_NG5_NG2 ;
+.
+:F_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='CONTINENCE\""^^xsd:string ;
+.
+:F_NG5_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "14. Use the toilet without \"accidents\""^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG5_NG3_Q3 ;
+	bf:hasItem :F_NG5_NG3_Q4 ;
+	bf:hasItem :F_NG5_NG3_MA1 ;
+	bf:hasItem :F_NG5_NG3_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG5_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q3_TUC3 ;
+.
+:F_NG5_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q4_TUC3 ;
+.
+:F_NG5_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM14\""^^xsd:string ;
+.
+:F_NG5_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG3_Q2_TUC3 ;
+.
+:F_NG5_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "13. Decide to use the toilet at appropriate times"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG5_NG2_Q2 ;
+	bf:hasItem :F_NG5_NG2_Q3 ;
+	bf:hasItem :F_NG5_NG2_Q4 ;
+	bf:hasItem :F_NG5_NG2_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG5_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q2_TUC3 ;
+.
+:F_NG5_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q3_TUC3 ;
+.
+:F_NG5_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG5_NG2_Q4_TUC3 ;
+.
+:F_NG5_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG5_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM13\""^^xsd:string ;
+.
+:F_NG11
+	rdf:type bf:NormalGroup ;
+	isoC:label "MEDICATIONS"^^xsd:string ;
+	bf:ordinal "11"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG11_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG11_NG2 ;
+	bf:hasSubGroup :F_NG11_NG3 ;
+.
+:F_NG11_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='MEDICATIONS\""^^xsd:string ;
+.
+:F_NG11_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "34. Decide to take his/her medications at the correct time"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG11_NG2_Q4 ;
+	bf:hasItem :F_NG11_NG2_Q2 ;
+	bf:hasItem :F_NG11_NG2_MA1 ;
+	bf:hasItem :F_NG11_NG2_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG11_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q4_TUC3 ;
+.
+:F_NG11_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q2_TUC3 ;
+.
+:F_NG11_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM34\""^^xsd:string ;
+.
+:F_NG11_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG2_Q3_TUC3 ;
+.
+:F_NG11_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "35. Take his/her medications as prescribed (according to the right dosage)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG11_NG3_Q3 ;
+	bf:hasItem :F_NG11_NG3_Q2 ;
+	bf:hasItem :F_NG11_NG3_MA1 ;
+	bf:hasItem :F_NG11_NG3_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG11_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q3_TUC3 ;
+.
+:F_NG11_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q2_TUC3 ;
+.
+:F_NG11_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG11_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM35\""^^xsd:string ;
+.
+:F_NG11_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG11_NG3_Q4_TUC3 ;
+.
+:F_NG11_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7
+	rdf:type bf:NormalGroup ;
+	isoC:label "MEAL PREPARATION"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG7_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG7_NG2 ;
+	bf:hasSubGroup :F_NG7_NG3 ;
+	bf:hasSubGroup :F_NG7_NG4 ;
+.
+:F_NG7_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='MEAL PREPARATION\""^^xsd:string ;
+.
+:F_NG7_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "18. Undertake to prepare a light meal or snack for himself/herself"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG7_NG2_MA1 ;
+	bf:hasItem :F_NG7_NG2_Q2 ;
+	bf:hasItem :F_NG7_NG2_Q4 ;
+	bf:hasItem :F_NG7_NG2_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG7_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM18\""^^xsd:string ;
+.
+:F_NG7_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q2_TUC3 ;
+.
+:F_NG7_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q4_TUC3 ;
+.
+:F_NG7_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG2_Q3_TUC3 ;
+.
+:F_NG7_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "19. Adequately plan a light meal or snack (ingredients, cookware)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG7_NG3_MA1 ;
+	bf:hasItem :F_NG7_NG3_Q2 ;
+	bf:hasItem :F_NG7_NG3_Q3 ;
+	bf:hasItem :F_NG7_NG3_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG7_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM19\""^^xsd:string ;
+.
+:F_NG7_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q2_TUC3 ;
+.
+:F_NG7_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q3_TUC3 ;
+.
+:F_NG7_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG3_Q4_TUC3 ;
+.
+:F_NG7_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "20. Prepare or cook a light meal or a snack safely"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG7_NG4_Q2 ;
+	bf:hasItem :F_NG7_NG4_Q3 ;
+	bf:hasItem :F_NG7_NG4_Q4 ;
+	bf:hasItem :F_NG7_NG4_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG7_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q2_TUC3 ;
+.
+:F_NG7_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q3_TUC3 ;
+.
+:F_NG7_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG7_NG4_Q4_TUC3 ;
+.
+:F_NG7_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG7_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM20\""^^xsd:string ;
+.
+:F_NG10
+	rdf:type bf:NormalGroup ;
+	isoC:label "FINANCE AND CORRESPONDENCE"^^xsd:string ;
+	bf:ordinal "10"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG10_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG10_NG2 ;
+	bf:hasSubGroup :F_NG10_NG3 ;
+	bf:hasSubGroup :F_NG10_NG4 ;
+	bf:hasSubGroup :F_NG10_NG5 ;
+.
+:F_NG10_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='FINANCE AND CORRESPONDENCE\""^^xsd:string ;
+.
+:F_NG10_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "30. Show an interest in his/her personal affairs such as his/her finances and written correspondence"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG10_NG2_Q2 ;
+	bf:hasItem :F_NG10_NG2_Q3 ;
+	bf:hasItem :F_NG10_NG2_MA1 ;
+	bf:hasItem :F_NG10_NG2_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG10_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q2_TUC3 ;
+.
+:F_NG10_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q3_TUC3 ;
+.
+:F_NG10_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM30\""^^xsd:string ;
+.
+:F_NG10_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG2_Q4_TUC3 ;
+.
+:F_NG10_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "31. Organize his/her finances to pay his/her bills (cheques, bankbook, bills)"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG10_NG3_Q3 ;
+	bf:hasItem :F_NG10_NG3_Q4 ;
+	bf:hasItem :F_NG10_NG3_MA1 ;
+	bf:hasItem :F_NG10_NG3_Q2 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG10_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q3_TUC3 ;
+.
+:F_NG10_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q4_TUC3 ;
+.
+:F_NG10_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM31\""^^xsd:string ;
+.
+:F_NG10_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG3_Q2_TUC3 ;
+.
+:F_NG10_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "32. Adequately organize his/her correspondence with respect to stationery, address, stamps"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG10_NG4_Q4 ;
+	bf:hasItem :F_NG10_NG4_MA1 ;
+	bf:hasItem :F_NG10_NG4_Q2 ;
+	bf:hasItem :F_NG10_NG4_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG10_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q4_TUC3 ;
+.
+:F_NG10_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM32\""^^xsd:string ;
+.
+:F_NG10_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q2_TUC3 ;
+.
+:F_NG10_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG4_Q3_TUC3 ;
+.
+:F_NG10_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5
+	rdf:type bf:NormalGroup ;
+	isoC:label "33. Handle adequately his/her money (make change)"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG10_NG5_MA1 ;
+	bf:hasItem :F_NG10_NG5_Q2 ;
+	bf:hasItem :F_NG10_NG5_Q3 ;
+	bf:hasItem :F_NG10_NG5_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG10_NG5_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM33\""^^xsd:string ;
+.
+:F_NG10_NG5_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q2_TUC3 ;
+.
+:F_NG10_NG5_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q3_TUC3 ;
+.
+:F_NG10_NG5_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG10_NG5_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG10_NG5_Q4_TUC3 ;
+.
+:F_NG10_NG5_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6
+	rdf:type bf:NormalGroup ;
+	isoC:label "EATING"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG6_MA1 ;
+	bf:repeating "false"^^xsd:boolean ;
+	bf:hasSubGroup :F_NG6_NG2 ;
+	bf:hasSubGroup :F_NG6_NG3 ;
+	bf:hasSubGroup :F_NG6_NG4 ;
+.
+:F_NG6_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSSCAT='EATING\""^^xsd:string ;
+.
+:F_NG6_NG2
+	rdf:type bf:NormalGroup ;
+	isoC:label "15. Decide that he/she needs to eat"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG6_NG2_Q4 ;
+	bf:hasItem :F_NG6_NG2_MA1 ;
+	bf:hasItem :F_NG6_NG2_Q2 ;
+	bf:hasItem :F_NG6_NG2_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG6_NG2_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q4_TUC3 ;
+.
+:F_NG6_NG2_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG2_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM15\""^^xsd:string ;
+.
+:F_NG6_NG2_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q2_TUC3 ;
+.
+:F_NG6_NG2_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG2_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG2_Q3_TUC3 ;
+.
+:F_NG6_NG2_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3
+	rdf:type bf:NormalGroup ;
+	isoC:label "16. Choose appropriate utensils and seasonings when eating"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG6_NG3_MA1 ;
+	bf:hasItem :F_NG6_NG3_Q2 ;
+	bf:hasItem :F_NG6_NG3_Q4 ;
+	bf:hasItem :F_NG6_NG3_Q3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG6_NG3_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM16\""^^xsd:string ;
+.
+:F_NG6_NG3_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q2_TUC3 ;
+.
+:F_NG6_NG3_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q4_TUC3 ;
+.
+:F_NG6_NG3_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG3_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG3_Q3_TUC3 ;
+.
+:F_NG6_NG3_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4
+	rdf:type bf:NormalGroup ;
+	isoC:label "17. Eat his/her meals at a normal pace and with appropriate manners"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG6_NG4_MA1 ;
+	bf:hasItem :F_NG6_NG4_Q2 ;
+	bf:hasItem :F_NG6_NG4_Q3 ;
+	bf:hasItem :F_NG6_NG4_Q4 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F_NG6_NG4_MA1
+	rdf:type bf:Mapping ;
+	isoC:label "Mapping 1"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:mapping "QSTESTCD=\"DAITM17\""^^xsd:string ;
+.
+:F_NG6_NG4_Q2
+	rdf:type bf:Question ;
+	isoC:label "Initiation"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Initiation"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q2_TUC3 ;
+.
+:F_NG6_NG4_Q2_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4_Q3
+	rdf:type bf:Question ;
+	isoC:label "Planning & Organization"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Planning & Organization"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q3_TUC3 ;
+.
+:F_NG6_NG4_Q3_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG6_NG4_Q4
+	rdf:type bf:Question ;
+	isoC:label "Effective Performance"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype ""^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "QSORRES"^^xsd:string ;
+	bf:questionText "Effective Performance"^^xsd:string ;
+	bf:hasCodedValue :F_NG6_NG4_Q4_TUC3 ;
+.
+:F_NG6_NG4_Q4_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bo:localLabel ""^^xsd:string ;
+.
