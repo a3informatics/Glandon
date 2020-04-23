@@ -289,18 +289,18 @@ describe Form do
       })
     end  
 
-    # def sub_group(group)
-    #   group[:groups].each do |sub_group|
-    #     normal_group?(sub_group) ? new_normal_group(sub_group) : new_common_group(sub_group)
-    #     sub_group[:items].each do |item|
-    #       item_group = get_item(item)
-    #       group.has_item << item_group
-    #     end
-    #     #object_group.to_sparql(sparql, true)
-    #     group.has_sub_group << object_group
-    #   end
-    #   #sub_group(group[:groups]) if group[:groups].empty? #base case
-    # end
+    def sub_group(group, new_group)
+      group[:groups].each do |sub_group|
+        normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
+        # add_items(sub_group)
+        sub_group[:items].each do |item|
+          new_item = new_item(item)
+        byebug
+          sg.has_item << new_item
+        end
+        new_group.has_sub_group << sg
+      end
+    end
 
     def new_item(params)
       item = {
@@ -325,33 +325,37 @@ describe Form do
                   item[:free_text] = params[:free_text]
                   item = Form::Item::Placeholder.from_h(item)
       when :BcProperty
-                  item[:has_property] = OperationalReferenceV3.new(ordinal: 0, reference: params[:has_property])
+                  params[:has_property].each_with_index do |ref, index|
+                    item[:has_property] = OperationalReferenceV3.new(ordinal: 0, reference: Uri.new(uri: ref))
+                  end
                   params[:has_coded_value].each_with_index do |ref, index|
                     item[:has_coded_value] = OperationalReferenceV3::TucReference.new(reference: Uri.new(uri: ref), ordinal: index+1)
                   end
                   item = Form::Item::BcProperty.from_h(item) 
       when :CommonItem
-                  item[:has_common_item] = BcProperty.new(has_property: params[:has_property])
-                  item = Form::Item::CommonItem.from_h(item) 
+                  params[:has_common_item].each_with_index do |ref, index|
+                    item[:has_common_item] = OperationalReferenceV3.new(ordinal: 0, reference: Uri.new(uri: ref))
+                  end
+                  item = Form::Item::Common.from_h(item) 
       end
       item
     end  
 
     it "create forms" do
       results = []
-      old_form = read_yaml_file(source_data_dir, "processed_old_form_height.yaml")
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_ecg.yaml")
       old_form.each do |form|
         new_form = Form.new(label:form[:form][:label])
         form[:groups].each do |group|
-          byebug
           new_group = new_normal_group(group)
+          new_form.has_group << new_group
           group[:items].each do |item|
               new_item = new_item(item)
               new_group.has_item << new_item
           end
-          sub_group(group) if !group[:groups].empty?
-          new_form.has_group << new_group
+          sub_group(group, new_group) if !group[:groups].empty?
         end
+        byebug
         new_form.set_initial(form[:form][:identifier])
         results << new_form
       end
@@ -359,7 +363,7 @@ describe Form do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_height.ttl")
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_ecg.ttl")
     end
 
   end
