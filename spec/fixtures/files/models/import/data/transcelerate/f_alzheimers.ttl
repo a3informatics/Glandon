@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T16:50:14+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-23T21:32:08+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -75,7 +75,7 @@
 	bf:hasItem :F_NG1_Q18 ;
 	bf:hasItem :F_NG1_Q13 ;
 	bf:repeating "true"^^xsd:boolean ;
-	bf:hasSubGroup :F_NG1_CG ;
+	bf:hasCommon :F_NG1_CG ;
 .
 :F_NG1_Q4
 	rdf:type bf:Question ;

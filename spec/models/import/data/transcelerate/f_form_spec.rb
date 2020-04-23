@@ -264,7 +264,8 @@ describe Form do
       group[:groups].each do |sub_group|
         normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
         add_items(sub_group, sg)
-        new_group.has_sub_group << sg
+        normal_group?(sub_group) ? new_group.has_sub_group << sg : new_group.has_common << sg
+        #new_group.has_sub_group << sg
       end
     end
 
@@ -311,7 +312,7 @@ describe Form do
 
     it "create forms" do
       results = []
-      old_form = read_yaml_file(source_data_dir, "processed_old_form_ae_test.yaml")
+      old_form = read_yaml_file(source_data_dir, "processed_old_form_alzheimers.yaml")
       old_form.each do |form|
         new_form = Form.new(label:form[:form][:label])
         form[:groups].each do |group|
@@ -327,7 +328,7 @@ describe Form do
       sparql.default_namespace(results.first.uri.namespace)
       results.each{|x| x.to_sparql(sparql, true)}
       full_path = sparql.to_file
-      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_ae_test.ttl")
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "f_alzheimers.ttl")
     end
 
   end
