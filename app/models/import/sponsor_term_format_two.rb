@@ -7,8 +7,8 @@ class Import::SponsorTermFormatTwo < Import
   include Import::Utility
   include Import::STFOClasses
 
-  C_V1 = "01/01/1900".to_datetime 
-  C_V2 = "01/01/2100".to_datetime 
+  C_V1 = "01/01/1900".to_datetime
+  C_V2 = "01/01/2100".to_datetime
   C_FORMAT_MAP = [
     {range: (C_V1...C_V2), sheet: :version_1}]
   C_DEFAULT = :version_1
@@ -27,16 +27,16 @@ class Import::SponsorTermFormatTwo < Import
     objects = self.errors.empty? ? process_results : {parent: self, managed_children: []}
     object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
     # @todo we need to unlock the import.
-    params[:job].end("Complete")   
+    params[:job].end("Complete")
   rescue => e
     msg = "An exception was detected during the import processes."
     save_exception(e, msg)
     params[:job].exception(msg, e)
-  end 
+  end
   handle_asynchronously :import unless Rails.env.test?
 
   # Configuration. Sets the parameters for the import
-  # 
+  #
   # @return [Hash] the configuration hash
   def configuration
     {
@@ -75,12 +75,12 @@ class Import::SponsorTermFormatTwo < Import
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
     self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"),
-      error_file: "", success: true, success_path: "thesauri/managed_concept")
+      error_file: "", success: true, success_path: "/thesauri/managed_concepts")
   end
 
 private
 
-  # Merge the parent sets. 
+  # Merge the parent sets.
   def merge_reader_data(readers)
     readers.each do |reader|
       reader.engine.parent_set.each do |k, v|
@@ -95,10 +95,10 @@ private
     ordinal = 1
     filtered = []
     date = Time.now.strftime('%Y-%m-%d')
-    @parent_set.each do |key, parent| 
+    @parent_set.each do |key, parent|
       child_amendments(parent)
-      parent.set_import(identifier: Thesaurus::ManagedConcept.new_identifier, label: parent.label, 
-        semantic_version: SemanticVersion.first, version_label: "", 
+      parent.set_import(identifier: Thesaurus::ManagedConcept.new_identifier, label: parent.label,
+        semantic_version: SemanticVersion.first, version_label: "",
         version: IsoScopedIdentifierV2.first_version, date: date, ordinal: ordinal)
       filtered << parent
       ordinal += 1
@@ -107,7 +107,7 @@ private
   end
 
   def child_amendments(parent)
-    parent.narrower.each do |c| 
+    parent.narrower.each do |c|
       c.identifier = Thesaurus::UnmanagedConcept.new_identifier
       c.label = c.preferred_term.label
     end
