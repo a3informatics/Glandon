@@ -2074,6 +2074,164 @@ defaults: &defaults
           - 
             label: "INACTIVE_F"
             actions: []
+    sponsor_term_format_two: 
+      sheets: 
+        version_1:
+          selection:
+            first: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path: 
+                    - "Process"
+                    - "Scope"
+                map:
+                  Harmonized: 
+                    - Global
+                  Study: 
+                    - Study
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+          columns: 
+          - 
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          - 
+            label: "CODELIST_CODE"
+            actions: []
+          - 
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+          - 
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          - 
+            label: "CODE"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+                map: {}
+          - 
+            label: "SUBMISSION_VALUE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 
+                    - 8
+                    - 12
+          - 
+            label: "DECODE"
+            actions: 
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          - 
+            label: "SYNONYM"
+            actions: 
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+          - 
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          - 
+            label: "DATA_TYPE"
+            actions: []
+          - 
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
+          - 
+            label: "DISPLAY_ORDER"
+            actions: []
+          - 
+            label: "RANK"
+            actions: []
     cdisc_library_api:
       base_href: "https://library.cdisc.org/api/"
       ct:
