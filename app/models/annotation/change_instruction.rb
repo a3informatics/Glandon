@@ -154,17 +154,21 @@ class Annotation::ChangeInstruction < Annotation
   # @option params [String] :current the current ids references to add
   # @return [Annotation::ChangeNote] the change note, may contain errors.
   def add_references(params)
+    tx = transaction_begin
     if !params[:previous].nil?
-      params[:previous].each do |p|  
-        self.previous_push(add_op_reference(Uri.new(id: p), self.previous.count))
+      base = self.previous.count
+      params[:previous].each_with_index do |p, index|  
+        self.previous_push(add_op_reference(Uri.new(id: p), base + index + 1, tx))
       end
     end
     if !params[:current].nil?
-      params[:current].each do |c|
-        self.current_push(add_op_reference(Uri.new(id: c), self.current.count+10000))
+      base = self.current.count
+      params[:current].each_with_index do |c, index|
+        self.current_push(add_op_reference(Uri.new(id: c), base + index + 1, tx))
       end
     end
     self.save
+    transaction_execute
     self
   end
 
@@ -178,8 +182,8 @@ class Annotation::ChangeInstruction < Annotation
 
 private
   
-  def add_op_reference(uri, index)
-    OperationalReferenceV3.create({reference: uri, context: nil, ordinal: index + 1}, self)
+  def add_op_reference(uri, ordinal, tx)
+    OperationalReferenceV3.create({reference: uri, context: nil, ordinal: ordinal, transaction: tx}, self)
   end
   
   def add_reference(collection, ct, reference)
