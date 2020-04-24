@@ -96,7 +96,7 @@ private
     filtered = []
     date = Time.now.strftime('%Y-%m-%d')
     @parent_set.each do |key, parent| 
-      child_identifiers(parent)
+      child_amendments(parent)
       parent.set_import(identifier: Thesaurus::ManagedConcept.new_identifier, label: parent.label, 
         semantic_version: SemanticVersion.first, version_label: "", 
         version: IsoScopedIdentifierV2.first_version, date: date, ordinal: ordinal)
@@ -106,8 +106,11 @@ private
     {parent: self, managed_children: filtered, tags: []}
   end
 
-  def child_identifiers(parent)
-    parent.narrower.each {|c| c.identifier = Thesaurus::UnmanagedConcept.new_identifier}
+  def child_amendments(parent)
+    parent.narrower.each do |c| 
+      c.identifier = Thesaurus::UnmanagedConcept.new_identifier
+      c.label = c.preferred_term.label
+    end
   end
 
 end
