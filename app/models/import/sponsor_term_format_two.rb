@@ -68,7 +68,6 @@ class Import::SponsorTermFormatTwo < Import
   # @option objects [Object] :children array of children objects, may be empty
   # @return [Void] no return
   def save_load_file(objects)
-byebug
     sparql = Sparql::Update.new()
     objects[:managed_children].each do |c|
       c.to_sparql(sparql, true)
