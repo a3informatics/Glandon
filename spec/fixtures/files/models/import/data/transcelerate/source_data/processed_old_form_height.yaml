@@ -17,6 +17,7 @@
       :note: ''
       :optional: 'true'
       :ordinal: '1'
+      :format: '1'
       :mapping: VSSTAT
       :question_text: " Compltion Status"
       :has_coded_value:
@@ -27,6 +28,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '4'
+      :format: '20'
       :mapping: VSORRESU
       :question_text: Unit
       :has_coded_value:
@@ -38,6 +40,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '3'
+      :format: '5.1'
       :mapping: VSORRES
       :question_text: Height
       :has_coded_value: []

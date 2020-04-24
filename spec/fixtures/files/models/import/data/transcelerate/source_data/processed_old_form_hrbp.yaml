@@ -17,6 +17,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '3'
+      :format: '3'
       :mapping: VSPOS
       :question_text: Position
       :has_coded_value:
@@ -28,6 +29,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '9'
+      :format: '20'
       :mapping: VSORRESU
       :question_text: 'Unit '
       :has_coded_value:
@@ -38,6 +40,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '2'
+      :format: '3'
       :mapping: VSTPTNUM
       :question_text: Timing Code
       :has_coded_value: []
@@ -47,6 +50,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '8'
+      :format: '3'
       :mapping: VSORRES
       :question_text: Diastolic BP
       :has_coded_value: []
@@ -56,6 +60,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '1'
+      :format: ''
       :mapping: VSTPT
       :question_text: Reference Time (5 minutes)
       :has_coded_value: []
@@ -65,6 +70,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '7'
+      :format: '3'
       :mapping: VSORRES
       :question_text: Systolic BP
       :has_coded_value: []
@@ -74,6 +80,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '6'
+      :format: '20'
       :mapping: VSORRESU
       :question_text: Heart Rate Unit
       :has_coded_value:
@@ -84,6 +91,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '5'
+      :format: '3'
       :mapping: VSORRES
       :question_text: Heart Rate
       :has_coded_value: []

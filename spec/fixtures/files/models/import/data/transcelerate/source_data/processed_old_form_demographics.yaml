@@ -17,6 +17,7 @@
       :note: ''
       :optional: 'true'
       :ordinal: '5'
+      :format: '22'
       :mapping: ETHNIC
       :question_text: Ethnicity
       :has_coded_value:
@@ -31,6 +32,7 @@
         values within Rave must be 1=M and 2=F.
       :optional: 'false'
       :ordinal: '4'
+      :format: '1'
       :mapping: SEX
       :question_text: Sex
       :has_coded_value:
@@ -42,6 +44,7 @@
       :note: ''
       :optional: 'true'
       :ordinal: '3'
+      :format: ''
       :mapping: BRTHDTC
       :question_text: Date of Birth
       :has_coded_value: []
@@ -61,6 +64,7 @@
       :note: ''
       :optional: 'true'
       :ordinal: '6'
+      :format: '41'
       :mapping: RACE
       :question_text: Race
       :has_coded_value:
@@ -76,6 +80,7 @@
       :note: ''
       :optional: 'false'
       :ordinal: '1'
+      :format: '3'
       :mapping: AGE
       :question_text: Age (Years)
       :has_coded_value: []
@@ -85,6 +90,7 @@
       :note: ''
       :optional: 'true'
       :ordinal: '7'
+      :format: '200'
       :mapping: SUPPDM.DMRACEOT
       :question_text: If Other, Specify
       :has_coded_value: []

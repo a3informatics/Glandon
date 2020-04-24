@@ -184,6 +184,7 @@ describe Form do
               }
         case params[:type].to_sym
         when :Question
+                  item[:format] = params[:f]
                   item[:mapping] = params[:mapping]
                   item[:question_text] = params[:question_text]
                   item[:has_coded_value] = query_tc(params)
@@ -192,7 +193,7 @@ describe Form do
         when :Placeholder
                   item[:free_text] = params[:free_text]
         when :BcProperty
-                    item[:has_property] = query_property(params),
+                    item[:has_property] = query_property(params)
                     item[:has_coded_value] = query_tc(params) 
         when :CommonItem
                     item[:has_common_item] = query_common_item(params)
@@ -265,7 +266,6 @@ describe Form do
         normal_group?(sub_group) ? sg = new_normal_group(sub_group) : sg = new_common_group(sub_group)
         add_items(sub_group, sg)
         normal_group?(sub_group) ? new_group.has_sub_group << sg : new_group.has_common << sg
-        #new_group.has_sub_group << sg
       end
     end
 
