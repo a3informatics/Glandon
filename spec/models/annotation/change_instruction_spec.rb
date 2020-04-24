@@ -133,12 +133,12 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002")
+    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001")
     op_ref2 = Annotation::ChangeInstruction.find(op_ref2.to_id)
     item.remove_reference(type: "current", concept_id: uri4.to_id)
     item = Annotation::ChangeInstruction.find(item.id)
-    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in Annotation::ChangeInstruction.")
-    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in OperationalReferenceV3.")
+    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001 in OperationalReferenceV3.")
   end
 
   it "adds and removes references" do
@@ -159,12 +159,12 @@ describe Annotation::ChangeInstruction do
     expect{OperationalReferenceV3.find(op_ref.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R1 in OperationalReferenceV3.")
     item.add_references(previous: [uri2.to_id, uri3.to_id], current: [uri4.to_id, uri1.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002")
+    op_ref2 = Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001")
     op_ref2 = Annotation::ChangeInstruction.find(op_ref2.to_id)
     item.remove_reference(type: "current", concept_id: uri1.to_id)
     item = Annotation::ChangeInstruction.find(item.id)
-    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in Annotation::ChangeInstruction.")
-    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10002 in OperationalReferenceV3.")
+    expect{Annotation::ChangeInstruction.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001 in Annotation::ChangeInstruction.")
+    expect{OperationalReferenceV3.find(op_ref2.uri.to_id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-3456_R10001 in OperationalReferenceV3.")
   end
 
   it "change instructions links I" do
@@ -228,10 +228,10 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri3.to_id], current: [])
     item = Annotation::ChangeInstruction.find(item.id)
-    or_1 = OperationalReferenceV3.find(Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10001"))
+    or_1 = OperationalReferenceV3.find(Uri.new(uri: "http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10000"))
     item.delete
     expect{Annotation::ChangeInstruction.find(item.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-4567 in Annotation::ChangeInstruction.")
-    expect{Annotation::ChangeInstruction.find(or_1.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10001 in Annotation::ChangeInstruction.")
+    expect{Annotation::ChangeInstruction.find(or_1.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CHIN#1234-5678-9012-4567_R10000 in Annotation::ChangeInstruction.")
   end  
   
 end
