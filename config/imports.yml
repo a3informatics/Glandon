@@ -36,12 +36,12 @@ defaults: &defaults
     #   description: This facilty allows for a form to be imported from an ODM XML file.
     #   link_text: "Import Form from ODM"
     #   link_path: "/imports/crfs/new?imports[file_type]=1"
-    # term_excel:
-    #   title: Import Terminology - EXCEL
-    #   background: true
-    #   description: This facilty allows for a form to be imported from an MS Excel file.
-    #   link_text: "Import Terminology from Excel"
-    #   link_path: "/imports/terms/new?imports[file_type]=0"
+    term_excel:
+      title: Import Terminology - Excl
+      background: true
+      description: This facilty allows for a draft code list to be imported from an MS Excel file.
+      link_text: "Import Terminology from Excel"
+      link_path: "/imports/sponsor_term_format_two/new?imports[file_type]=0"
     # term_odm:
     #   title: Import Terminology - ODM
     #   background: true

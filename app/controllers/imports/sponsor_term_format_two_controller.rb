@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Imports::TermsController < Imports::BaseController
+class Imports::SponsorTermFormatTwoController < Imports::BaseController
 
   def new
     # @th = []
