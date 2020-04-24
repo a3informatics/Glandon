@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T16:42:47+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-24T07:24:05+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -101,7 +101,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "5.1"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
 	bf:questionText "Weight"^^xsd:string ;
 .
@@ -113,7 +113,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit"^^xsd:string ;
 	bf:hasCodedValue :F_NG2_Q3_TUC1 ;

@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T21:32:08+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-24T07:24:58+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -85,7 +85,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText " 1. Word Recall Task (max = 10)"^^xsd:string ;
 .
@@ -97,7 +97,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "11. Spoken Language Ability (max = 5)"^^xsd:string ;
 .
@@ -109,7 +109,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "6. Ideational Praxis (max = 5)"^^xsd:string ;
 .
@@ -121,7 +121,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "7"^^xsd:string ;
 	bf:mapping "QSORRESU"^^xsd:string ;
 	bf:questionText "10. Maze Solution - Unit"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q14_TUC1 ;
@@ -164,7 +164,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "5. Constructional Praxis (max = 5)"^^xsd:string ;
 .
@@ -176,7 +176,7 @@
 	bf:completion "First/Middle/Last"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
 	bf:mapping "NOT SUBMITTED"^^xsd:string ;
 	bf:questionText "Clinician's initials "^^xsd:string ;
 .
@@ -197,7 +197,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "7. Orientation (max = 8)"^^xsd:string ;
 .
@@ -209,7 +209,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "12. Comprehension of Spoken Language (max = 5)"^^xsd:string ;
 .
@@ -221,7 +221,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "8. Word Recognition (max = 12)"^^xsd:string ;
 .
@@ -233,7 +233,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "13. Word Finding Difficulty in Spontaneous Speech (max = 5)"^^xsd:string ;
 .
@@ -245,7 +245,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "2. Naming Objects and Fingers (refer to 5 categories in manual) (max = 5)"^^xsd:string ;
 .
@@ -257,7 +257,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "9. Attention/Visual Search Task (max = 40)"^^xsd:string ;
 .
@@ -269,7 +269,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "2"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "3. Delayed Word Recall (max = 10) "^^xsd:string ;
 .
@@ -281,7 +281,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "4. Commands (max = 5)"^^xsd:string ;
 .
@@ -293,7 +293,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "14. Recall of Test Instructions (max = 5)"^^xsd:string ;
 .
@@ -305,7 +305,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "10. Maze Solution (max = 240)"^^xsd:string ;
 .

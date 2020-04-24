@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T16:48:38+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-24T07:19:30+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -56,6 +56,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasCommon :F_NG1_CG ;
 	bf:hasSubGroup :F_NG1_NG8 ;
 	bf:hasSubGroup :F_NG1_NG2 ;
 	bf:hasSubGroup :F_NG1_NG7 ;
@@ -63,7 +64,32 @@
 	bf:hasSubGroup :F_NG1_NG3 ;
 	bf:hasSubGroup :F_NG1_NG4 ;
 	bf:hasSubGroup :F_NG1_NG5 ;
-	bf:hasSubGroup :F_NG1_CG ;
+.
+:F_NG1_CG
+	rdf:type bf:CommonGroup ;
+	isoC:label "Time"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_CG_COI1 ;
+.
+:F_NG1_CG_COI1
+	rdf:type bf:CommonItem ;
+	isoC:label "Date Time (--DTC)"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasCommonItem :F_NG1_CG_COI1_R0 ;
+.
+:F_NG1_CG_COI1_R0
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "0"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1> ;
 .
 :F_NG1_NG8
 	rdf:type bf:NormalGroup ;
@@ -911,30 +937,4 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "0"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC38037BILI_I8_DT1_P1_DT1_P1> ;
-.
-:F_NG1_CG
-	rdf:type bf:CommonGroup ;
-	isoC:label "Time"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :F_NG1_CG_COI1 ;
-.
-:F_NG1_CG_COI1
-	rdf:type bf:CommonItem ;
-	isoC:label "Date Time (--DTC)"^^xsd:string ;
-	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
-	bf:optional "false"^^xsd:boolean ;
-	bf:hasCommonItem :F_NG1_CG_COI1_R0 ;
-.
-:F_NG1_CG_COI1_R0
-	rdf:type bo:Reference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "false"^^xsd:boolean ;
-	bo:ordinal "0"^^xsd:positiveInteger ;
-	bo:reference <http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_BCC64432ALP_I8_DT1_P1_DT1_P1> ;
 .

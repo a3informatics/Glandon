@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T16:49:32+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-24T07:26:30+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -72,7 +72,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "22"^^xsd:string ;
 	bf:mapping "ETHNIC"^^xsd:string ;
 	bf:questionText "Ethnicity"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q5_TUC1 ;
@@ -124,7 +124,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "SEX"^^xsd:string ;
 	bf:questionText "Sex"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q4_TUC1 ;
@@ -177,7 +177,7 @@
 	bf:completion "If the subject is of mixed race, select the race that corresponds to the dominant ethnic group or to the ethnic group that the subject considers him/herself belonging to and ensure this correspondence with a note in the source documents."^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "41"^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
 	bf:questionText "Race"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q6_TUC1 ;
@@ -249,7 +249,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "3"^^xsd:string ;
 	bf:mapping "AGE"^^xsd:string ;
 	bf:questionText "Age (Years)"^^xsd:string ;
 .
@@ -261,7 +261,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "200"^^xsd:string ;
 	bf:mapping "SUPPDM.DMRACEOT"^^xsd:string ;
 	bf:questionText "If Other, Specify"^^xsd:string ;
 .

@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-23T16:48:18+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-24T07:26:50+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -69,7 +69,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "1"^^xsd:string ;
 	bf:mapping "VSSTAT"^^xsd:string ;
 	bf:questionText " Compltion Status"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q1_TUC1 ;
@@ -91,7 +91,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit"^^xsd:string ;
 	bf:hasCodedValue :F_NG1_Q4_TUC1 ;
@@ -123,7 +123,7 @@
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype ""^^xsd:string ;
-	bf:format ""^^xsd:string ;
+	bf:format "5.1"^^xsd:string ;
 	bf:mapping "VSORRES"^^xsd:string ;
 	bf:questionText "Height"^^xsd:string ;
 .
