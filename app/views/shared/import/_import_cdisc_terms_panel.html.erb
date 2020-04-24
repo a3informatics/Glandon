@@ -29,7 +29,7 @@
       <% if @file_type != 3 %>
         <div class="row">
             <div class="col-md-12 form-wrap">
-              <%= label_tag :files, "File:", class: "font-light" %>
+              <%= label_tag :files, "Select one or more files to import (Cmd + Click for multiple):", class: "font-light" %>
               <%= select_tag("imports[files][]", options_for_select(@files), multiple: multiple, class: "form-control scroll-styled", :size => 12) %>
             </div>
         </div>

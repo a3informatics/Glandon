@@ -150,7 +150,7 @@ describe "Imports", :type => :feature do
       wait_for_ajax 10
       expect_page "Identifier: CT, Owner: CDISC"
       expect_page "No errors were detected with the import."
-      click_on "Go to history"
+      click_on "Show imported item(s)"
       wait_for_ajax 20
       ui_check_table_cell("history", 1, 1, "47.0.0")
       ui_check_table_cell("history", 1, 6, "2018-11-22")

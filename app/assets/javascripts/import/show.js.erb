@@ -88,7 +88,7 @@ ImportShow.prototype.renderData = function(data) {
     if (data.import.success){
       $("#import-info #import-alerts").append(alertSuccess("No errors were detected with the import."));
       if (data.import.auto_load)
-        $("#import-info #import-alerts").append("<a href='"+data.import.success_path+"' class='btn medium light'>Go to history</a>");
+        $("#import-info #import-alerts").append("<a href='"+data.import.success_path+"' class='btn medium light'>Show imported item(s)</a>");
       else
         $("#import-info #import-alerts").append(alertWarning("Auto load was not set so the item was not imported."))
     }
