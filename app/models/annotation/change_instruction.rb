@@ -164,7 +164,7 @@ class Annotation::ChangeInstruction < Annotation
     if !params[:current].nil?
       base = self.current.count
       params[:current].each_with_index do |c, index|
-        self.current_push(add_op_reference(Uri.new(id: c), base + index + 1, tx))
+        self.current_push(add_op_reference(Uri.new(id: c), base + index + 10000, tx))
       end
     end
     self.save
