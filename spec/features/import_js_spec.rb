@@ -93,6 +93,10 @@ describe "Imports", :type => :feature do
 
   describe "Import CDISC Terminology, Content Admin User", :type => :feature do
 
+    def sub_dir
+      return "features/import/cdisc_term"
+    end
+
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -208,6 +212,57 @@ describe "Imports", :type => :feature do
       wait_for_ajax 20
       expect_page "Identifier: CT, Owner: CDISC"
       expect_page "Errors were detected during the processing of the import file. See the error table."
+    end
+
+  end
+
+
+  describe "Import Sponsor Terminology, Content Admin User", :type => :feature do
+
+    def sub_dir
+      return "features/import/sponsor_term_format_two"
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      Token.destroy_all
+      Import.delete_all
+      clear_downloads
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "import_input_1.xlsx", "test")
+      ua_create
+    end
+
+    after :all do
+      ua_destroy
+      Import.delete_all
+      delete_all_public_test_files
+    end
+
+    before :each do
+      ua_content_admin_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "Import a CDISC Terminology (Excel), auto-load, success", js: true do
+      click_navbar_import
+      expect_page 'Import Centre'
+      click_on 'Import Terminology from Excel'
+      expect_page 'Import Sponsor Code List using Excel'
+      import_check_file_count 1
+      import_select_files ["import_input_1"]
+      find(".material-switch").click
+      click_on "Start Import"
+      wait_for_ajax 10
+      expect_page "Owner: ACME"
+      expect_page "No errors were detected with the import."
+      click_on "Show imported item(s)"
+      wait_for_ajax 20
+      expect_page "Index: Code Lists"
     end
 
   end
