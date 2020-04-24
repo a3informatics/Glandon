@@ -73,6 +73,7 @@ describe "Import::SponsorTermFormatTwo" do
     params = {files: [full_path], job: @job}
     result = @object.import(params)
     filename = "sponsor_term_format_two_#{@object.id}_errors.yml"
+  byebug
     public_file_does_not_exist?("test", filename)
     filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
