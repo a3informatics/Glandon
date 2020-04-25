@@ -236,6 +236,20 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
+    it "allows a new child TC to be added, error" do
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T5"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(1)
+      expect(new_object.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
+    end
+
     it "allows a new child TC to be added, add_child_based_on" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)

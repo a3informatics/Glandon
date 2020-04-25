@@ -1,3 +1,7 @@
+# Thesaurus UNmanaged Concept. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept",
@@ -15,17 +19,35 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
+  validate :valid_parent_child?
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
+  include Thesaurus::Validation
 
+  # Valid Parent Child? Check this child in the context of the parent
+  #
+  # @return [Boolean] true if valid, false otherwise
+  def valid_parent_child?
+    return true if @parent_for_validation.nil? # Don't validate if we don't know about a parent
+    @parent_for_validation.valid_child?(self)
+  end
+
+  # Create. Create an object
+  #
+  # @param [Hash] params the parameters
+  # @param [Object] parent the parent object
+  # @return [Thesaurus::UnmanagedConcept] the resulting object
   def self.create(params, parent)
     params[:parent_uri] = parent.uri
     super(params)
   end
   
+  # Delete or Unlink. Delete or Unlink child
+  #
+  # @param [Object] parent_object the parent object
+  # @return [Void] no return
   def delete_or_unlink(parent_object)
     #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
     if multiple_parents?
@@ -42,6 +64,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   # @param [Object] parent_object the parent object
   # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
   def update_with_clone(params, parent_object)
+    @parent_for_validation = parent_object
     if multiple_parents?
       object = self.clone
       object.uri = object.create_uri(parent_object.uri)
