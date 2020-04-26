@@ -77,7 +77,7 @@ class Thesaurus
       child[:identifier] = Thesaurus::UnmanagedConcept.generated_identifier? ? Thesaurus::UnmanagedConcept.new_identifier : params[:identifier]
       child[:transaction] = transaction_begin
       child = Thesaurus::UnmanagedConcept.create(child, self)
-      self.valid_child?(child)
+      self.valid_child?(child) # Errors placed into child.
       return child if child.errors.any?
       self.add_link(:narrower, child.uri)
       transaction_execute
@@ -91,26 +91,23 @@ class Thesaurus
     def add_children_based_on(object)
       pt = object.preferred_term_objects
       synonyms = object.synonym_objects
-      sparql = Sparql::Update.new
-      sparql.default_namespace(self.uri.namespace)
-      # @todo only supports generated identifiers currently
+      tx = transaction_begin
       synonyms.each do |syn|
-        child = Thesaurus::UnmanagedConcept.from_h({
-          # uri: Thesaurus::UnmanagedConcept.generate_uri(self),
+        child = Thesaurus::UnmanagedConcept.create({
           identifier: Thesaurus::UnmanagedConcept.new_identifier,
           notation: syn.label,
-          label: pt.label ,
-          preferred_term: pt,
+          label: syn.label ,
+          preferred_term: Thesaurus::PreferredTerm.where_only_or_create(syn.label),
           synonym: synonyms,
           definition: object.definition,
-          tagged: object.tagged 
-        })
-        child.generate_uri(self.uri)
-        child.to_sparql(sparql)
-        sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: child.uri})
+          tagged: object.tagged,
+          transaction: tx
+        }, self)
+        self.valid_child?(child) # Errors placed into child.
+        return [child] if child.errors.any?
+        self.add_link(:narrower, child.uri)
       end
-      filename = sparql.to_file
-      sparql.create
+      transaction_execute
       self.narrower_objects
     end
 
