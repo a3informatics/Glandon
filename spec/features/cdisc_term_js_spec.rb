@@ -401,6 +401,8 @@ describe "CDISC Term", :type => :feature do
       clear_downloads
       click_see_changes_all_versions
       wait_for_ajax(10)
+      click_link 'fb_bs_button'
+      wait_for_ajax(10)
       ui_table_search("changes", 'TANN02TN')
       find(:xpath, "//tr[contains(.,'TANN02TN')]/td/a", :text => 'Changes').click
       wait_for_ajax(5)
