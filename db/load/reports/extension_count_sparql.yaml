@@ -38,7 +38,8 @@
   PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
   SELECT ?clln ?clc ?clsn ?cle ?cld (COUNT(DISTINCT ?cli) as ?tcount) (COUNT(DISTINCT ?o) as ?ext) (round((?ext*1000.0)/?tcount)*0.1 as ?pct)
     WHERE { VALUES ?s {[[[parameter_1]]]}
-    ?s th:isTopConceptReference/bo:reference ?cl . 
+    ?s th:isTopConceptReference/bo:reference ?cl .
+    ?cl th:extends ?x .
     ?cl th:identifier ?clc . 
     ?cl th:notation ?clsn . 
     ?cl th:extensible ?cle . 
@@ -46,7 +47,6 @@
     ?cl th:preferredTerm/isoC:label ?clln . 
     ?cl th:narrower ?cli . 
     ?cli th:identifier ?code .
-    ?cl th:extends ?x .
-    {?cl th:narrower ?o} MINUS {?x th:narrower ?o} .
+    {?cl th:narrower ?o} MINUS {?x th:narrower ?o} . 
   } GROUP BY ?clln ?clc ?clsn ?cle ?cld ORDER BY ?clc'
 :type: Ad Hoc Report Definition

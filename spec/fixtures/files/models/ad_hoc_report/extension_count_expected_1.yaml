@@ -1,0 +1,432 @@
+---
+:columns:
+- - Code List Preferred Term
+- - Code List Code
+- - Code List Submission Value
+- - Definition
+- - Total number of Items
+- - Number of extended items
+- - Percentage
+:data:
+- - Category of Questionnaire
+  - C100129
+  - QSCAT
+  - A grouping of observations within the Questionnaire domain.
+  - '1'
+  - '114'
+  - '11400.0'
+- - Relationship to Subject
+  - C100130
+  - RELSUB
+  - The relationship of a person to a study subject.
+  - '1'
+  - '55'
+  - '5500.0'
+- - Findings About Test Code
+  - C101832
+  - FATESTCD
+  - Terminology relevant to the test codes that describe findings about an event or
+    intervention.
+  - '53'
+  - '54'
+  - '101.9'
+- - Findings About Test Name
+  - C101833
+  - FATEST
+  - Terminology relevant to the test names that describe findings about an event or
+    intervention.
+  - '53'
+  - '54'
+  - '101.9'
+- - Cardiovascular Test Name
+  - C101846
+  - CVTEST
+  - A terminology codelist to describe the test name for a physiological examination
+    of the cardiovascular system.
+  - '33'
+  - '46'
+  - '139.4'
+- - Cardiovascular Test Code
+  - C101847
+  - CVTESTCD
+  - A terminology codelist to describe the test code for a physiological examination
+    of the cardiovascular system.
+  - '33'
+  - '46'
+  - '139.4'
+- - Laboratory Test Standard Character Result
+  - C102580
+  - LBSTRESC
+  - Terminology relevant to the standardized results, in character format, for laboratory
+    tests.
+  - '14'
+  - '21'
+  - '150.0'
+- - Subject Characteristic Test Name
+  - C103330
+  - SCTEST
+  - The test name representing each subject characteristic.
+  - '2'
+  - '24'
+  - '1200.0'
+- - Reproductive System Findings Test Name
+  - C106478
+  - RPTEST
+  - A terminology codelist for the physiological test names related to the male and
+    female reproductive systems.
+  - '3'
+  - '19'
+  - '633.3'
+- - Reproductive System Findings Test Code
+  - C106479
+  - RPTESTCD
+  - A terminology codelist for the physiological test codes related to the male and
+    female reproductive systems.
+  - '3'
+  - '19'
+  - '633.3'
+- - Respiratory Test Code
+  - C111106
+  - RETESTCD
+  - A terminology codelist based on the test codes for physiological findings related
+    to the respiratory system, including the organs that are involved in breathing
+    such as the nose, throat, larynx, trachea, bronchi and lungs.
+  - '5'
+  - '47'
+  - '940.0'
+- - Respiratory Test Name
+  - C111107
+  - RETEST
+  - A terminology codelist based on the test names for physiological findings related
+    to the respiratory system, including the organs that are involved in breathing
+    such as the nose, throat, larynx, trachea, bronchi and lungs.
+  - '5'
+  - '47'
+  - '940.0'
+- - Skin Response Test Name
+  - C112023
+  - SRTEST
+  - A terminology codelist based on the test names for dermal responses to antigens.
+  - '1'
+  - '9'
+  - '900.0'
+- - Skin Response Test Code
+  - C112024
+  - SRTESTCD
+  - A terminology codelist based on the test codes for dermal responses to antigens.
+  - '1'
+  - '9'
+  - '900.0'
+- - Morphology Test Name
+  - C114116
+  - MOTEST
+  - A terminology codelist based on the test names for macroscopic assessments that
+    are seen by the naked eye or observed via procedures such as imaging modalities,
+    endoscopy, or other technologies.
+  - '4'
+  - '38'
+  - '950.0'
+- - Morphology Test Code
+  - C114117
+  - MOTESTCD
+  - A terminology codelist based on the test codes for macroscopic assessments that
+    are seen by the naked eye or observed via procedures such as imaging modalities,
+    endoscopy, or other technologies.
+  - '4'
+  - '38'
+  - '950.0'
+- - Category of Functional Test
+  - C115304
+  - FTCAT
+  - A grouping of observations within the Functional Test domain.
+  - '1'
+  - '9'
+  - '900.0'
+- - Nervous System Physiology Test Name
+  - C116103
+  - NVTEST
+  - Terminology relevant to the test names that describe nervous system physiology
+    findings.
+  - '1'
+  - '5'
+  - '500.0'
+- - Nervous System Physiology Test Code
+  - C116104
+  - NVTESTCD
+  - Terminology relevant to the test codes that describe nervous system physiology
+    findings.
+  - '1'
+  - '5'
+  - '500.0'
+- - Pharmacogenomics Findings Test Name
+  - C116105
+  - PFTEST
+  - Terminology relevant to the test names that describe pharmacogenomics findings.
+  - '1'
+  - '2'
+  - '200.0'
+- - Pharmacogenomics Findings Test Code
+  - C116106
+  - PFTESTCD
+  - Terminology relevant to the test codes that describe pharmacogenomics findings.
+  - '1'
+  - '2'
+  - '200.0'
+- - Death Details Test Name
+  - C116107
+  - DDTEST
+  - Terminology relevant to the death detail assessment name.
+  - '6'
+  - '8'
+  - '133.3'
+- - Death Details Test Code
+  - C116108
+  - DDTESTCD
+  - Terminology relevant to the death detail assessment short name.
+  - '6'
+  - '8'
+  - '133.3'
+- - Ophthalmic Exam Test Name
+  - C117742
+  - OETEST
+  - Terminology relevant to the test names that describe findings from ophthalmic
+    examinations.
+  - '3'
+  - '9'
+  - '300.0'
+- - Ophthalmic Exam Test Code
+  - C117743
+  - OETESTCD
+  - Terminology relevant to the test codes that describe findings from ophthalmic
+    examinations.
+  - '3'
+  - '9'
+  - '300.0'
+- - Category of Clinical Classification
+  - C118971
+  - CCCAT
+  - A grouping of observations within the Clinical Classification domain.
+  - '3'
+  - '12'
+  - '400.0'
+- - Immunogenicity Specimen Assessments Test Code
+  - C120525
+  - ISTESTCD
+  - Terminology relevant to the immunogenicity specimen test codes of the CDISC Study
+    Data Tabulation Model.
+  - '50'
+  - '53'
+  - '106.0'
+- - Immunogenicity Specimen Assessments Test Name
+  - C120526
+  - ISTEST
+  - Terminology relevant to the immunogenicity specimen test names of the CDISC Study
+    Data Tabulation Model.
+  - '50'
+  - '53'
+  - '106.0'
+- - Completion/Reason for Non-Completion
+  - C66727
+  - NCOMPLT
+  - The status of the subject's completion of the study or a segment of the study,
+    or the reason the subject discontinued the study or segment of the study.
+  - '10'
+  - '32'
+  - '320.0'
+- - SDTM Domain Abbreviation
+  - C66734
+  - DOMAIN
+  - A unique, 2-character domain code used in the regulatory submission process. The
+    domain abbreviation is used consistently throughout the submission, i.e. in the
+    dataset name, as the value of the domain variable within the dataset, and as a
+    prefix for most variable names in the dataset. (CDISC Glossary)
+  - '1'
+  - '85'
+  - '8500.0'
+- - Vital Signs Test Code
+  - C66741
+  - VSTESTCD
+  - The test code given to the test that analyzes a particular set of vital signs
+    including temperature, respiratory rate, heart rate, and blood pressure.
+  - '2'
+  - '30'
+  - '1500.0'
+- - Vital Signs Test Name
+  - C67153
+  - VSTEST
+  - The test name given to the test that analyzes a particular set of vital signs
+    including temperature, respiratory rate, heart rate, and blood pressure.
+  - '2'
+  - '30'
+  - '1500.0'
+- - Frequency
+  - C71113
+  - FREQ
+  - The terminology that includes terms pertaining to frequency within CDISC.
+  - '3'
+  - '75'
+  - '2500.0'
+- - Position
+  - C71148
+  - POSITION
+  - Terminology codelist used with Body Position within CDISC.
+  - '1'
+  - '16'
+  - '1600.0'
+- - ECG Test Name
+  - C71152
+  - EGTEST
+  - Terminology codelist used with ECG Test Names within CDISC.
+  - '10'
+  - '141'
+  - '1410.0'
+- - ECG Test Code
+  - C71153
+  - EGTESTCD
+  - Terminology codelist used with ECG Tests within CDISC.
+  - '10'
+  - '141'
+  - '1410.0'
+- - Anatomical Location
+  - C74456
+  - LOC
+  - Terminology codelist used for anatomical location within CDISC.
+  - '33'
+  - '784'
+  - '2375.8'
+- - Race
+  - C74457
+  - RACE
+  - Terminology codelist used to identify the race of an individual within the Clinical
+    Data Interchange Standards Consortium Study Data Tabulation Model.
+  - '1'
+  - '6'
+  - '600.0'
+- - Subject Characteristic Test Code
+  - C74559
+  - SCTESTCD
+  - The test code representing each subject characteristic.
+  - '2'
+  - '24'
+  - '1200.0'
+- - Drug Accountability Test Name
+  - C78731
+  - DATEST
+  - The name of the test for the drug accountability assessment.
+  - '1'
+  - '3'
+  - '300.0'
+- - Drug Accountability Test Code
+  - C78732
+  - DATESTCD
+  - The short name, or code, of the test for the drug accountability assessment.
+  - '1'
+  - '3'
+  - '300.0'
+- - Specimen Condition
+  - C78733
+  - SPECCOND
+  - The physical state or quality of a biological specimen.
+  - '27'
+  - '41'
+  - '151.9'
+- - Specimen Type
+  - C78734
+  - SPECTYPE
+  - The name and description of a biological specimen.
+  - '9'
+  - '87'
+  - '966.7'
+- - Derivation Type
+  - C81224
+  - DTYPE
+  - 'Derivation Type: Analysis value derivation method.'
+  - '8'
+  - '25'
+  - '312.5'
+- - Method
+  - C85492
+  - METHOD
+  - Method is any technique or procedure (an action) that determines how an observation
+    or clinical finding was made.
+  - '88'
+  - '306'
+  - '347.7'
+- - Microscopic Findings Test Name
+  - C89973
+  - MITEST
+  - Terminology for the test names concerned with the findings from a specimen that
+    are visible by microscopic analysis.
+  - '8'
+  - '14'
+  - '175.0'
+- - Microscopic Findings Test Code
+  - C89974
+  - MITESTCD
+  - Terminology for the test codes concerned with the findings from a specimen that
+    are visible by microscopic analysis.
+  - '8'
+  - '14'
+  - '175.0'
+- - Tumor or Lesion Properties Test Name
+  - C96778
+  - TRTEST
+  - Terminology relevant to the test names that describe the assessment or measurement
+    of a tumor, lesion or site of disease.
+  - '2'
+  - '39'
+  - '1950.0'
+- - Tumor or Lesion Properties Test Code
+  - C96779
+  - TRTESTCD
+  - Terminology relevant to the test codes that describe the assessment or measurement
+    of a tumor, lesion or site of disease.
+  - '2'
+  - '39'
+  - '1950.0'
+- - Tumor Response Assessment Test Name
+  - C96781
+  - RSTEST
+  - Terminology relevant to the test names that describe an assessment of tumor response
+    to treatment or therapy.
+  - '4'
+  - '10'
+  - '250.0'
+- - Tumor Response Assessment Test Code
+  - C96782
+  - RSTESTCD
+  - Terminology relevant to the test codes that describe an assessment of tumor response
+    to treatment or therapy.
+  - '4'
+  - '10'
+  - '250.0'
+- - Tumor Identification Test Name
+  - C96783
+  - TUTEST
+  - Terminology relevant to the test names that describe tumor assessments for identification
+    purposes.
+  - '1'
+  - '8'
+  - '800.0'
+- - Tumor Identification Test Code
+  - C96784
+  - TUTESTCD
+  - Terminology relevant to the test codes that describe tumor assessments for identification
+    purposes.
+  - '1'
+  - '8'
+  - '800.0'
+- - Tumor Response Result
+  - C96785
+  - RSSTRESC
+  - The result of an assessment of tumor response to treatment or therapy.
+  - '7'
+  - '17'
+  - '242.9'
+- - Epoch
+  - C99079
+  - EPOCH
+  - The name of the EPOCH.
+  - '20'
+  - '28'
+  - '140.0'
