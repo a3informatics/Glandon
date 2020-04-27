@@ -110,15 +110,14 @@ ConfirmationDialog.prototype.toggleProcessing = function(enable) {
  * @return [Object] Default values combined with user options that were set
  */
 ConfirmationDialog.prototype.defaultOptions = function(userOptions) {
-  var options = {
-    title: userOptions.title == null ? "Are you sure you want to proceed?" : userOptions.title,
-    subtitle: userOptions.subtitle == null ? "You cannot undo this operation." : userOptions.subtitle,
-    positiveButton: userOptions.positiveButton == null ? "Yes" : userOptions.positiveButton,
-    negativeButton: userOptions.negativeButton == null ? "No" : userOptions.negativeButton,
-    dangerous: userOptions.dangerous == null ? false : userOptions.dangerous,
-    withLoading: userOptions.withLoading == null ? false : userOptions.withLoading
-  }
-  return options;
+  return _.defaults(userOptions, {
+    title: "Are you sure you want to proceed?",
+    subtitle: "You cannot undo this operation.",
+    positiveButton: "Yes",
+    negativeButton: "No",
+    dangerous: false,
+    withLoading: false
+  });
 }
 
 /**

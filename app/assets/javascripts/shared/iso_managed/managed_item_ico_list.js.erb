@@ -92,7 +92,7 @@ ManagedItemIconList.prototype.columns = function () {
       "data": "rdf_type",
       "render": function (data, type, row, meta) {
         if (type == "display")
-					return typeToColorIcon(data, {size: "med", owner: row.owner});
+					return typeToColorIconBadge(data, {size: "med", owner: row.owner});
         else
 					return typeToString[data];
 			}

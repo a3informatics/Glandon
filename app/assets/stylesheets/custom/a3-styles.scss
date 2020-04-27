@@ -137,6 +137,50 @@
   display: inline-block;
 }
 
+.label-styled{
+  padding-right: 14px;
+  border-bottom: 2px solid $secondary-color-light;
+  display: inline-block;
+}
+
+.label-w-margin{
+  margin-top: 6px;
+}
+
+// Removable
+
+.removable{
+  transition: box-shadow .2s;
+}
+
+.removable:hover{
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px $accent-color-2-light !important;
+  position: relative;
+}
+
+.removable:hover::after{
+  position: absolute;
+  font-family: 'icomoon';
+  content: "\e932";
+  font-size: 12pt;
+  color: $accent-color-2;
+  top: -11px;
+  right: -9px;
+}
+
+// Highlightable
+
+.highlightable{
+  transition: box-shadow .2s;
+}
+
+.highlightable:hover{
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px $primary-color-bright !important;
+  position: relative;
+}
+
 // ICO HEADERS used in the community version dashboard
 .ico-header{
   width: 55%;
@@ -164,6 +208,29 @@
 
 .ico-header:hover .ico{
   transform: scale(1.1);
+}
+
+// MODALS
+
+.modal-lg.small-screen {
+  width: 50%;
+}
+
+.modal-lg.medium-screen {
+  width: 60%;
+}
+
+.modal-lg.wide-screen {
+  width: 85%;
+}
+
+.modal-lg.full-screen {
+  width: 95%;
+}
+
+.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body,
+  .modal-lg.small-screen .modal-body, .modal-lg.medium-screen .modal-body {
+  padding: 20px 20px;
 }
 
 // LIST WRAP (CDISC_TERMS)
@@ -417,6 +484,11 @@
   color: white !important;
 }
 
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+  border-color: $secondary-color-light !important;
+  outline: none !important;
+}
+
 //
 .boxed-title{
   padding: 6px 20px;
@@ -431,6 +503,7 @@
 .content-editable{
   padding: 4px 8px;
   transition: background-color .3s;
+  position: relative;
 }
 
 .content-editable:hover{
@@ -441,6 +514,18 @@
 .content-editable:focus{
   outline: 1px solid $primary-color-bright;
   background-color: white;
+}
+
+.content-editable.with-icon::after {
+  display: inline-block;
+  font-family: 'icomoon';
+  content: "\e931";
+  color: #c4c4c4;
+  margin: 0px 5px;
+  font-size: 10pt;
+  position: absolute;
+  right: -25px;
+  top: 10%;
 }
 
 
@@ -515,6 +600,11 @@
 
 img.modal-img{
   width: 120px;
+  margin: 10px 0px;
+}
+
+img.modal-img.large{
+  width: 160px;
   margin: 10px 0px;
 }
 

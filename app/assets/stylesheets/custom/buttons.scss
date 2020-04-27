@@ -96,7 +96,7 @@
   color: white;
 }
 
-.btn.disabled{
+.btn.disabled, .clickable.disabled{
   opacity: .5;
   pointer-events: none;
 }

@@ -1,0 +1,239 @@
+@import "custom/vars.scss";
+
+
+// Change Notes
+
+#change-notes-modal-error, #add-cn-button{
+  margin: 4px 0px;
+}
+
+.card-item.note{
+  min-width: 300px;
+  max-width: 560px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+  padding: 15px;
+  cursor: default;
+  color: $grey-medium;
+}
+
+.card-item.note.active{
+  box-shadow: inset 0px 0px 0px 3px $primary-color-light;
+}
+
+.card-item.note.inactive{
+  opacity: .5;
+  pointer-events: none;
+}
+
+.note-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-footer{
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-body{
+  margin-top: 10px;
+  width: 100%;
+}
+
+.note-body hr{
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.note-body .note-body-item{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.note-delete-button{
+  font-size: $font-small;
+  color: $grey-light;
+  cursor: pointer;
+}
+
+.note-delete-button:hover{
+  color: $accent-color-2;
+}
+
+.note-save-button, .note-edit-cancel-button{
+  display: inline-block;
+  transition: transform .3s;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.note-edit-cancel-button span:last-of-type{
+  color: $grey-light;
+}
+
+.note-save-button:hover, .note-edit-cancel-button:hover{
+  transform: translateY(-4px);
+}
+
+.card-item.note .content-editable{
+  display: inline-block;
+  word-break: break-all;
+  margin-right: 5px;
+}
+
+.card-item.note .content-editable:hover{
+  position: relative;
+}
+
+.card-item.note.active .content-editable:hover::after{
+  display: none;
+}
+
+.card-item.note .content-editable:hover::after{
+  position: absolute;
+  font-family: 'icomoon' !important;
+  content: "\e931";
+  color: $content-editable-color-dark;
+  right: -17px;
+  top: 4px;
+}
+
+.note-footer button{
+  border: none;
+}
+
+
+// LIST CHANGE NOTES
+
+td.note-cell {
+  color: $primary-color-light;
+}
+
+// Change instructions
+
+#change-instructions-error, #add-ci-button{
+  margin: 8px 0px;
+}
+
+#change-instructions-modal table {
+  min-height: 50px;
+}
+
+.change-instruction {
+  max-width: 700px;
+  display: block;
+  background: white;
+  margin: 10px auto;
+  box-shadow: inset 0 0 0 4px $primary-color-brightest;
+  transition: box-shadow 0.3s;
+  border-radius: 10px;
+}
+
+.change-instruction.wide {
+  max-width: 900px;
+}
+
+.change-instruction.success {
+  box-shadow: inset 0 0 0 6px $secondary-color-bright;
+}
+
+.change-instruction .ci-header, .change-instruction .ci-body {
+  color: $grey-medium;
+  width: 100%;
+  min-height: 40px;
+  padding: 14px 24px;
+}
+
+.change-instruction .ci-header div:first-of-type {
+  float: left;
+}
+
+.change-instruction .ci-header div:last-of-type {
+  float: right;
+}
+
+.change-instruction .ci-header .actions > * {
+  margin-left: 10px;
+}
+
+.change-instruction .ci-body hr{
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.change-instruction .items-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  max-height: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.change-instruction a.bg-label {
+  width: 100%;
+  color: $grey-medium;
+  font-size: 10pt;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.change-instruction a:hover, .change-instruction a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.change-instruction .bg-label > span {
+  display: inline-block;
+  padding: 7px 10px 8px 5px;
+}
+
+.change-instruction .bg-label > span:nth-of-type(2){
+  flex-grow: 2;
+  padding-bottom: 7px;
+}
+
+.change-instruction .content-editable{
+  display: inline-block;
+  word-break: break-all;
+  margin-right: 20px;
+}
+
+.change-instruction .content-editable:focus{
+  cursor: initial !important;
+}
+
+.change-instruction .add-links{
+  display: block;
+  margin: 6px auto 0px auto;
+}
+
+.change-instruction.processing {
+  position: relative;
+}
+
+.change-instruction.processing .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: rgba(255, 255, 255, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-instruction .icon-ok.disabled {
+  color: $grey-light;
+}

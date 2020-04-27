@@ -33,6 +33,8 @@
           icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
         <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
           icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !@tc.supporting_edit? } %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-instructions-modal", id: "ci-modal-button",
+          icon: "icon-instruction", text: "Change instructions", dt_toggle: "modal", disabled: false } %>
       <% end %>
     <% end %>
     </div>
@@ -40,8 +42,10 @@
 </div>
 
 <% if policy(Thesaurus).edit? && @tc.supporting_edit? %>
-  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
 <% end %>
+
+<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id} %>
 
 <% if @has_children %>
   <div class="row">

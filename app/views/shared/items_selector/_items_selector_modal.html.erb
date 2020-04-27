@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag 'shared/datatables_loading', 'custom/tabs_layout', 'shared/managed_children_select' %>
+<%= javascript_include_tag 'shared/tags', 'shared/tabs_layout' %>
+<%= javascript_include_tag 'shared/items_selector/items_selector_modal', 'shared/items_selector/managed_item_selector', 'shared/items_selector/unmanaged_item_selector' %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="selector-modal-<%= id %>">
+  <div class="modal-dialog modal-lg full-screen" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="circular-badge small bg-prim-light" style="margin-right: 6px;">
+            <span class="icon-selection text-white"></span>
+          </span>
+          Select Item(s)
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+
+      <div class="modal-body font-light spinner-spread">
+        <div class="table-cardstyle table-minimal all-columns">
+
+          <div id="selector-modal-error"></div>
+
+          <div class="text-centered" id="im-select-modal-description"><%= local_assigns.fetch :description, "To proceed, select one or more items." %></div>
+
+          <hr>
+
+          <div class="font-light flex-total-center selection-info">
+            Selected: <span class="bg-label" id="selected-info"></span>
+            <button id="view-selection" class="btn btn-xs light">View</button>
+            <button id="clear-selection" class="btn btn-xs grey">Clear</button>
+          </div>
+          <br/>
+
+          <div class="tabs-layout text-small" id="selector-type-tabs">
+
+            <div class="tabs-sel">
+              <div class="tab-option with-icon" id="tab-thesauri"><span class="icon-terminology bg-prim-light"></span><span>Terminologies</span></div>
+              <div class="tab-option with-icon" id="tab-cls"><span class="icon-codelist bg-prim-bright"></span><span>Code Lists</span></div>
+              <div class="tab-option with-icon" id="tab-clitems"><span class="icon-codelist-item bg-prim-bright"></span><span>Code List Items</span></div>
+            </div>
+
+            <div class="tab-wrap closed" data-tab="tab-thesauri">
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-thesauri"} %>
+            </div>
+
+            <div class="tab-wrap closed" data-tab="tab-cls">
+              <%= render partial: "shared/items_selector/managed_item_selector", locals: {id: "selector-cls"} %>
+            </div>
+
+            <div class="tab-wrap closed" data-tab="tab-clitems">
+              <%= render partial: "shared/items_selector/unmanaged_item_selector", locals: {id: "selector-clitems"} %>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" id="selector-modal-close" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn medium green disabled" id="selector-modal-submit">Submit and proceed</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/js_urls" %>
