@@ -158,7 +158,7 @@ describe IsoConceptController do
       uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
       uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
       tc = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955"))
-      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-8901")
       item = Annotation::ChangeInstruction.create
       item.update(description: "D", reference: "R", semantic: "S")
       item = Annotation::ChangeInstruction.find(item.id)

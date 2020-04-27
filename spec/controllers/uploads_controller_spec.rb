@@ -32,8 +32,9 @@ describe UploadsController do
     end
 
     it 'delete all' do
-      delete :delete_all
-      expect(response).to redirect_to("/uploads")
+      delete :destroy_all
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
   end
