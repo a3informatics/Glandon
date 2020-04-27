@@ -11,17 +11,17 @@
 <http://www.assero.co.uk/BusinessOperational>
 	rdf:type owl:Ontology ;
 .
-<http://www.cdisc.org/CT/V59#TH_CI1>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V59#TH_CI1_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC2> ;
 	ba:ordinal "1"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V59#TH_CI1_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC1> ;
 .
-<http://www.cdisc.org/CT/V59#TH_CI1_TUC2>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -31,7 +31,7 @@
 	:context <http://www.cdisc.org/CT/V59#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V59#TH_CI1_TUC1>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
