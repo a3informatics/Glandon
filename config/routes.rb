@@ -304,12 +304,12 @@ Rails.application.routes.draw do
     # resources :adam_models, :only => [:new, :create]
     # resources :adam_igs, :only => [:new, :create]
     resources :cdisc_terms, :only => [:new, :create]
-    # resources :change_instructions, :only => [:new, :create]
-    # resources :crfs, :only => [:new, :create] do
-    #   collection do
-    #     get :items
-    #   end
-    # end
+    resources :change_instructions, :only => [:new, :create]
+    resources :crfs, :only => [:new, :create] do
+      collection do
+        get :items
+      end
+    end
     resources :sponsor_term_format_two, :only => [:new, :create]
   end
   resources :imports, :only => [:index, :show, :destroy] do # Make sure this is after the namespace to avoid the :index/:show clash
