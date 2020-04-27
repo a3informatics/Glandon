@@ -1,24 +1,24 @@
 defaults: &defaults
   imports: &default_imports
-    # cdisc_adam_ig: 
+    # cdisc_adam_ig:
     #   title: CDISC ADaM IG Import - Excel
     #   background: true
     #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
     #   link_text: "Import CDISC ADaM IG"
     #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
-    cdisc_term: 
+    cdisc_term:
       title: CDISC Terminology Import - Excel
       background: true
       description: This facilty allows for the CDISC Terminology to be imported from one or more MS Excel files.
       link_text: "Import CDISC Term (Excel)"
       link_path: "/imports/cdisc_terms/new?imports[file_type]=0"
-    cdisc_term_api: 
+    cdisc_term_api:
       title: CDISC Terminology Import - API
       background: true
       description: This facilty allows for the CDISC Terminology to be imported usig the CDISC API.
       link_text: "Import CDISC Term (API)"
       link_path: "/imports/cdisc_terms/new?imports[file_type]=3"
-    # cdisc_change_instructions: 
+    # cdisc_change_instructions:
     #   title: CDISC Terminology Change Instructions - Excel
     #   background: true
     #   description: This facilty allows for the CDISC Terminology change instructions to be imported from one or more MS Excel files.
@@ -36,12 +36,12 @@ defaults: &defaults
     #   description: This facilty allows for a form to be imported from an ODM XML file.
     #   link_text: "Import Form from ODM"
     #   link_path: "/imports/crfs/new?imports[file_type]=1"
-    # term_excel:
-    #   title: Import Terminology - EXCEL
-    #   background: true
-    #   description: This facilty allows for a form to be imported from an MS Excel file.
-    #   link_text: "Import Terminology from Excel"
-    #   link_path: "/imports/terms/new?imports[file_type]=0"
+    term_excel:
+      title: Import Terminology - Excel
+      background: true
+      description: This facilty allows for a draft code list to be imported from an MS Excel file.
+      link_text: "Import Terminology from Excel"
+      link_path: "/imports/sponsor_term_format_two/new?imports[file_type]=0"
     # term_odm:
     #   title: Import Terminology - ODM
     #   background: true
@@ -49,8 +49,8 @@ defaults: &defaults
     #   link_text: "Import Terminology from ODM"
     #   link_path: "/imports/terms/new?imports[file_type]=1"
   processing: &default_processing
-    cdisc_change_instructions: 
-      sheets: 
+    cdisc_change_instructions:
+      sheets:
         main:
           selection:
             first: true
@@ -78,44 +78,44 @@ defaults: &defaults
             condition:
               method: column_affirmative?
               column: 12
-          columns: 
-          - 
+          columns:
+          -
             label: "Release Date"
             actions: []
-          - 
+          -
             label: "Request Code"
             actions: []
-          - 
+          -
             label: "Change Type"
             actions: []
-          - 
+          -
             label: "NCI Code"
             actions: []
-          - 
+          -
             label: "CDISC Term Type"
             actions: []
-          - 
+          -
             label: "CDISC Codelist (Short Name)"
             actions: []
-          - 
+          -
             label: "CDISC Codelist (Long Name)"
             actions: []
-          - 
+          -
             label: "Change Summary"
             actions: []
-          - 
+          -
             label: "Original"
             actions: []
-          - 
+          -
             label: "New"
             actions: []
-          - 
+          -
             label: "Change Implementation Instructions"
             actions: []
-          - 
+          -
             label: "Use"
             actions: []
-          - 
+          -
             label: "Prev Codelist"
             actions:
               -
@@ -123,7 +123,7 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-                additional: 
+                additional:
                   token: ","
               -
                 method: create_item
@@ -135,9 +135,9 @@ defaults: &defaults
                 object: parent
                 property: previous_parent
                 can_be_empty: false
-                additional: 
+                additional:
                   token: ","
-          - 
+          -
             label: "Prev Term"
             actions:
               -
@@ -146,16 +146,16 @@ defaults: &defaults
                 klass: NA
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: previous_children
                 can_be_empty: true
-                additional: 
+                additional:
                   token: ","
-          - 
+          -
             label: "New Codelists"
             actions:
               -
@@ -163,15 +163,15 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-                additional: 
+                additional:
                   token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: current_parent
-                additional: 
+                additional:
                   token: ","
-          - 
+          -
             label: "New Terms"
             actions:
               -
@@ -180,18 +180,18 @@ defaults: &defaults
                 klass: NA
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: current_children
                 can_be_empty: true
-                additional: 
+                additional:
                   token: ","
-          - 
+          -
             label: "Comment"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
@@ -202,25 +202,25 @@ defaults: &defaults
                 method: check_valid
                 object: parent
                 map: {}
-    cdisc_adam_ig: 
-      sheets: 
+    cdisc_adam_ig:
+      sheets:
         main:
           selection:
             label: ADaM-IG
           sheet:
             actions: []
-            header_row: 
+            header_row:
               - "Data Structure Name"
               - "Dataset Name"
               - "Variable Group"
-              - "Variable Name" 
+              - "Variable Name"
               - "Variable Label"
               - "Type"
               - "Codelist/Controlled Terms"
               - "Core"
               - "CDISC Notes"
-          columns: 
-          - 
+          columns:
+          -
             label: "Data Structure Name"
             actions:
               -
@@ -237,14 +237,14 @@ defaults: &defaults
                 map:
                   SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
                   BASIC DATA STRUCTURE: Basic Data Structure
-          - 
+          -
             label: "Dataset Name"
             actions: []
-          - 
+          -
             label: "Variable Group"
             actions: []
-          - 
-            label: "Variable Name" 
+          -
+            label: "Variable Name"
             actions:
               -
                 method: create_child
@@ -261,7 +261,7 @@ defaults: &defaults
                 object: child
                 property: name
                 map: {}
-          - 
+          -
             label: "Variable Label"
             actions:
               -
@@ -269,7 +269,7 @@ defaults: &defaults
                 object: child
                 property: label
                 map: {}
-          - 
+          -
             label: "Type"
             actions:
               -
@@ -279,10 +279,10 @@ defaults: &defaults
                 map:
                   Char: Character
                   Num: Numeric
-          - 
+          -
             label: "Codelist/Controlled Terms"
             actions:
-              - 
+              -
                 method: ct_reference
                 object: child
                 property: ct
@@ -292,7 +292,7 @@ defaults: &defaults
                 object: child
                 property: ct_notes
                 map: {}
-          - 
+          -
             label: "Core"
             actions:
               -
@@ -303,7 +303,7 @@ defaults: &defaults
                   Req: Required
                   Perm: Permissible
                   Cond: Conditional
-          - 
+          -
             label: "CDISC Notes"
             actions:
               -
@@ -311,8 +311,8 @@ defaults: &defaults
                 object: child
                 property: notes
                 map: {}
-    cdisc_term: 
-      sheets: 
+    cdisc_term:
+      sheets:
         version_1:
           selection:
             label: SDTM
@@ -321,43 +321,43 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "CDISC"
                 map:
-                  ADaM: 
+                  ADaM:
                     - ADaM
-                  CDASH: 
+                  CDASH:
                     - CDASH
-                  SDTM: 
-                    - SDTM  
-                  Protocol: 
+                  SDTM:
+                    - SDTM
+                  Protocol:
                     - Protocol
-                  SEND: 
+                  SEND:
                     - SEND
-                  "QS T": 
+                  "QS T":
                     - QS
                     - SDTM
-                  "QS-FT T": 
+                  "QS-FT T":
                     - QS-FT
                     - SDTM
-                  COA: 
+                  COA:
                     - COA
                     - SDTM
-                  QRS: 
+                  QRS:
                     - QRS
                     - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
-              - "Codelist Name" 
-              - "CDISC Value" 
+              - "Codelist Name"
+              - "CDISC Value"
               - "NCI Preferred Term"
               - "CDISC Definition"
               - "CDISC Synonym(s) (where applicable)"
               - "Pre-release/ Production"
-          columns: 
-          - 
+          columns:
+          -
             label: "Code"
             actions:
               -
@@ -370,7 +370,7 @@ defaults: &defaults
                 object: parent
                 klass: CdiscCl
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -378,13 +378,13 @@ defaults: &defaults
                 object: parent
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: set_tags
                 object: parent
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -392,7 +392,7 @@ defaults: &defaults
                 object: child
                 klass: CdiscCli
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -400,16 +400,16 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
                 method: set_tags
                 object: child
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "Codelist Code"
             actions:
               -
@@ -417,31 +417,31 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-          - 
+          -
             label: "Codelist Extensible (Yes/No)"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
-          - 
-            label: "Codelist Name" 
+          -
+            label: "Codelist Name"
             actions:
               -
                 method: set_property
                 object: parent
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
-          - 
+          -
             label: "CDISC Value"
             actions:
               -
@@ -449,7 +449,7 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -457,10 +457,10 @@ defaults: &defaults
                 object: child
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "NCI Preferred Term"
             actions:
               -
@@ -469,7 +469,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -478,7 +478,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -487,10 +487,10 @@ defaults: &defaults
                 property: label
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "CDISC Definition"
             actions:
               -
@@ -498,7 +498,7 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -506,7 +506,7 @@ defaults: &defaults
                 object: child
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
           -
@@ -518,9 +518,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -529,9 +529,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
           -
@@ -545,29 +545,29 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "CDISC"
                 map:
-                  ADaM: 
+                  ADaM:
                     - ADaM
-                  CDASH: 
+                  CDASH:
                     - CDASH
-                  SDTM: 
-                    - SDTM  
-                  Protocol: 
+                  SDTM:
+                    - SDTM
+                  Protocol:
                     - Protocol
-                  SEND: 
+                  SEND:
                     - SEND
-                  "QS T": 
+                  "QS T":
                     - QS
                     - SDTM
-                  "QS-FT T": 
+                  "QS-FT T":
                     - QS-FT
                     - SDTM
-                  COA: 
+                  COA:
                     - COA
                     - SDTM
-                  QRS: 
+                  QRS:
                     - QRS
                     - SDTM
             header_row:
@@ -575,15 +575,15 @@ defaults: &defaults
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
               - "Codelist Name"
-              - "CDISC Submission Value" 
+              - "CDISC Submission Value"
               - "CDISC Preferred Term"
               - "CDISC Synonym(s)"
               - "CDISC Definition"
               - "NCI Preferred Term"
               - "Pre-release/ Production"
               - "Notes (Reference for CDISC PT)"
-          columns: 
-          - 
+          columns:
+          -
             label: "Code"
             actions:
               -
@@ -596,7 +596,7 @@ defaults: &defaults
                 object: parent
                 klass: CdiscCl
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -604,13 +604,13 @@ defaults: &defaults
                 object: parent
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: set_tags
                 object: parent
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -618,7 +618,7 @@ defaults: &defaults
                 object: child
                 klass: CdiscCli
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -626,16 +626,16 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
                 method: set_tags
                 object: child
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "Codelist Code"
             actions:
               -
@@ -643,31 +643,31 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-          - 
+          -
             label: "Codelist Extensible (Yes/No)"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
-          - 
-            label: "Codelist Name" 
+          -
+            label: "Codelist Name"
             actions:
               -
                 method: set_property
                 object: parent
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
-          - 
+          -
             label: "CDISC Submission Value"
             actions:
               -
@@ -675,7 +675,7 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -683,10 +683,10 @@ defaults: &defaults
                 object: child
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "CDISC Preferred Term"
             actions: []
           -
@@ -698,9 +698,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -709,12 +709,12 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "CDISC Definition"
             actions:
               -
@@ -722,7 +722,7 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -730,10 +730,10 @@ defaults: &defaults
                 object: child
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "NCI Preferred Term"
             actions:
               -
@@ -742,7 +742,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -751,7 +751,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -760,7 +760,7 @@ defaults: &defaults
                 property: label
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
           -
@@ -777,36 +777,36 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "CDISC"
                 map:
-                  ADaM: 
+                  ADaM:
                     - ADaM
-                  CDASH: 
+                  CDASH:
                     - CDASH
-                  SDTM: 
-                    - SDTM  
-                  Protocol: 
+                  SDTM:
+                    - SDTM
+                  Protocol:
                     - Protocol
-                  SEND: 
+                  SEND:
                     - SEND
-                  "QS T": 
+                  "QS T":
                     - QS
                     - SDTM
-                  "QS-FT T": 
+                  "QS-FT T":
                     - QS-FT
                     - SDTM
-                  COA: 
+                  COA:
                     - COA
                     - SDTM
-                  QRS: 
+                  QRS:
                     - QRS
                     - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
-              - "Codelist Name" 
+              - "Codelist Name"
               - "CDISC Submission Value"
               - "CDISC Preferred Term"
               - "CDISC Synonym(s)"
@@ -814,8 +814,8 @@ defaults: &defaults
               - "NCI Preferred Term"
               - "Pre-release/ Production"
               - "Notes (Reference for CDISC PT)"
-          columns: 
-          - 
+          columns:
+          -
             label: "Code"
             actions:
               -
@@ -828,7 +828,7 @@ defaults: &defaults
                 object: parent
                 klass: CdiscCl
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -836,13 +836,13 @@ defaults: &defaults
                 object: parent
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: set_tags
                 object: parent
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -850,7 +850,7 @@ defaults: &defaults
                 object: child
                 klass: CdiscCli
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -858,16 +858,16 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
                 method: set_tags
                 object: child
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "Codelist Code"
             actions:
               -
@@ -875,34 +875,34 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "Codelist Extensible (Yes/No)"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
-            label: "Codelist Name" 
+          -
+            label: "Codelist Name"
             actions:
               -
                 method: set_property
                 object: parent
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Submission Value"
             actions:
               -
@@ -910,7 +910,7 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -918,10 +918,10 @@ defaults: &defaults
                 object: child
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Preferred Term"
             actions: []
           -
@@ -933,9 +933,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -944,12 +944,12 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Definition"
             actions:
               -
@@ -957,7 +957,7 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -965,10 +965,10 @@ defaults: &defaults
                 object: child
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "NCI Preferred Term"
             actions:
               -
@@ -977,7 +977,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -986,7 +986,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
               -
@@ -995,7 +995,7 @@ defaults: &defaults
                 property: label
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
           -
@@ -1012,43 +1012,43 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "CDISC"
                 map:
-                  ADaM: 
+                  ADaM:
                     - ADaM
-                  CDASH: 
+                  CDASH:
                     - CDASH
-                  SDTM: 
-                    - SDTM  
-                  Protocol: 
+                  SDTM:
+                    - SDTM
+                  Protocol:
                     - Protocol
-                  SEND: 
+                  SEND:
                     - SEND
-                  "QS T": 
+                  "QS T":
                     - QS
                     - SDTM
-                  "QS-FT T": 
+                  "QS-FT T":
                     - QS-FT
                     - SDTM
-                  COA: 
+                  COA:
                     - COA
                     - SDTM
-                  QRS: 
+                  QRS:
                     - QRS
                     - SDTM
             header_row:
               - "Code"
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
-              - "Codelist Name" 
+              - "Codelist Name"
               - "CDISC Submission Value"
               - "CDISC Preferred Term"
               - "CDISC Synonym(s)"
               - "CDISC Definition"
               - "NCI Preferred Term"
-          columns: 
-          - 
+          columns:
+          -
             label: "Code"
             actions:
               -
@@ -1061,7 +1061,7 @@ defaults: &defaults
                 object: parent
                 klass: CdiscCl
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -1069,13 +1069,13 @@ defaults: &defaults
                 object: parent
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
                 method: set_tags
                 object: parent
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 3
               -
@@ -1083,7 +1083,7 @@ defaults: &defaults
                 object: child
                 klass: CdiscCli
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
@@ -1091,16 +1091,16 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
               -
                 method: set_tags
                 object: child
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: "Codelist Code"
             actions:
               -
@@ -1108,34 +1108,34 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "Codelist Extensible (Yes/No)"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
-            label: "Codelist Name" 
+          -
+            label: "Codelist Name"
             actions:
               -
                 method: set_property
                 object: parent
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Submission Value"
             actions:
               -
@@ -1143,7 +1143,7 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1151,10 +1151,10 @@ defaults: &defaults
                 object: child
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Preferred Term"
             actions: []
           -
@@ -1166,9 +1166,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1177,12 +1177,12 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Definition"
             actions:
               -
@@ -1190,7 +1190,7 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1198,10 +1198,10 @@ defaults: &defaults
                 object: child
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "NCI Preferred Term"
             actions:
               -
@@ -1210,7 +1210,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1219,7 +1219,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
               -
@@ -1228,7 +1228,7 @@ defaults: &defaults
                 property: label
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
         version_5:
@@ -1239,29 +1239,29 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "CDISC"
                 map:
-                  ADaM: 
+                  ADaM:
                     - ADaM
-                  CDASH: 
+                  CDASH:
                     - CDASH
-                  SDTM: 
-                    - SDTM  
-                  Protocol: 
+                  SDTM:
+                    - SDTM
+                  Protocol:
                     - Protocol
-                  SEND: 
+                  SEND:
                     - SEND
-                  "QS T": 
+                  "QS T":
                     - QS
                     - SDTM
-                  "QS-FT T": 
+                  "QS-FT T":
                     - QS-FT
                     - SDTM
-                  COA: 
+                  COA:
                     - COA
                     - SDTM
-                  QRS: 
+                  QRS:
                     - QRS
                     - SDTM
                   "Def-XML":
@@ -1270,13 +1270,13 @@ defaults: &defaults
               - "Code"
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
-              - "Codelist Name" 
+              - "Codelist Name"
               - "CDISC Submission Value"
               - "CDISC Synonym(s)"
               - "CDISC Definition"
               - "NCI Preferred Term"
-          columns: 
-          - 
+          columns:
+          -
             label: "Code"
             actions:
               -
@@ -1289,7 +1289,7 @@ defaults: &defaults
                 object: parent
                 klass: CdiscCl
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1297,13 +1297,13 @@ defaults: &defaults
                 object: parent
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
                 method: set_tags
                 object: parent
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1311,7 +1311,7 @@ defaults: &defaults
                 object: child
                 klass: CdiscCli
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
               -
@@ -1319,16 +1319,16 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
               -
                 method: set_tags
                 object: child
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "Codelist Code"
             actions:
               -
@@ -1336,35 +1336,35 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "Codelist Extensible (Yes/No)"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
                   "NA": false
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
-            label: "Codelist Name" 
+          -
+            label: "Codelist Name"
             actions:
               -
                 method: set_property
                 object: parent
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Submission Value"
             actions:
               -
@@ -1372,7 +1372,7 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1380,7 +1380,7 @@ defaults: &defaults
                 object: child
                 property: notation
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
           -
@@ -1392,9 +1392,9 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1403,12 +1403,12 @@ defaults: &defaults
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "CDISC Definition"
             actions:
               -
@@ -1416,7 +1416,7 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1424,10 +1424,10 @@ defaults: &defaults
                 object: child
                 property: definition
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-          - 
+          -
             label: "NCI Preferred Term"
             actions:
               -
@@ -1436,7 +1436,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 2
               -
@@ -1445,7 +1445,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
               -
@@ -1454,11 +1454,11 @@ defaults: &defaults
                 property: label
                 can_be_empty: false
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 2
-    sponsor_term_format_one: 
-      sheets: 
+    sponsor_term_format_one:
+      sheets:
         version_2:
           selection:
             first: true
@@ -1467,13 +1467,13 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "Process"
                     - "Scope"
                 map:
-                  Harmonized: 
+                  Harmonized:
                     - Global
-                  Study: 
+                  Study:
                     - Study
             header_row:
               - "CODELIST_LONG_NAME"
@@ -1496,8 +1496,8 @@ defaults: &defaults
               - "INACTIVE_F"
               # - "STUDY_USE"
               # - "GLOBAL_USE"
-          columns: 
-          - 
+          columns:
+          -
             label: "CODELIST_SHORT_NAME"
             actions:
               -
@@ -1510,20 +1510,20 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-          - 
+          -
             label: "CODELIST_CODE"
             actions:
               -
                 method: regex?
                 object: NA
-                additional: 
+                additional:
                   regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
               -
                 method: set_property
                 object: parent
                 property: identifier
                 map: {}
-          - 
+          -
             label: "CODELIST_LONG_NAME"
             actions:
               -
@@ -1539,15 +1539,15 @@ defaults: &defaults
                 map: {}
           -
             label: "CODELIST_EXTENSIBLE"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-          - 
+          -
             label: "CODELIST_DEFINITION"
             actions:
               -
@@ -1555,13 +1555,13 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-          - 
+          -
             label: "CODE"
-            actions: 
+            actions:
               -
                 method: regex?
                 object: NA
-                additional: 
+                additional:
                   regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
               -
                 method: create_child
@@ -1573,9 +1573,9 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-          - 
+          -
             label: "SUBMISSION_VALUE"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: child
@@ -1586,9 +1586,9 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
-                  column: 
+                  column:
                     - 8
                     - 12
               -
@@ -1596,14 +1596,14 @@ defaults: &defaults
                 object: child
                 property: label
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
-                  column: 
+                  column:
                     - 8
                     - 12
-          - 
+          -
             label: "DECODE"
-            actions: 
+            actions:
               -
                 method: create_shared
                 object: child
@@ -1616,22 +1616,22 @@ defaults: &defaults
                 property: label
                 can_be_empty: true
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
-                  column: 
+                  column:
                     - 12
-          - 
+          -
             label: "SYNONYM"
-            actions: 
+            actions:
               -
                 method: tokenize_and_create_shared
                 object: child
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-          - 
+          -
             label: "CODE_DEFINITION"
             actions:
               -
@@ -1641,10 +1641,10 @@ defaults: &defaults
                 map: {}
                 additional:
                   default: "Not defined."
-          - 
+          -
             label: "DATA_TYPE"
             actions: []
-          - 
+          -
             label: "CRF_DISPLAY_VALUE"
             actions:
               -
@@ -1653,7 +1653,7 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: true
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 8
               -
@@ -1662,18 +1662,18 @@ defaults: &defaults
                 property: label
                 can_be_empty: true
                 map: {}
-                condition: 
+                condition:
                   method: column_not_blank?
                   column: 12
-          - 
+          -
             label: "DISPLAY_ORDER"
             actions:  []
-          - 
+          -
             label: "RANK"
             actions: []
-          - 
+          -
             label: "DC_STAGE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -1682,7 +1682,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Stage
               -
                 method: set_column_tag
@@ -1692,11 +1692,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Stage
-          - 
+          -
             label: "SDTM_STAGE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -1705,7 +1705,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Stage
               -
                 method: set_column_tag
@@ -1715,11 +1715,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
-                    - Stage          
-          - 
+                    - Process
+                    - Stage
+          -
             label: "ADAM_STAGE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -1728,7 +1728,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Stage
               -
                 method: set_column_tag
@@ -1738,14 +1738,14 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
-                    - Stage       
-          - 
+                    - Process
+                    - Stage
+          -
             label: "INACTIVE_F"
             actions: []
-          # - 
+          # -
           #   label: "STUDY_USE"
-          #   actions: 
+          #   actions:
           #     -
           #       method: set_column_tag
           #       object: child
@@ -1754,11 +1754,11 @@ defaults: &defaults
           #         "Y": "Study"
           #       additional:
           #         path:
-          #           - Process 
+          #           - Process
           #           - Scope
-          # - 
+          # -
           #   label: "GLOBAL_USE"
-          #   actions: 
+          #   actions:
           #     -
           #       method: set_column_tag
           #       object: child
@@ -1768,7 +1768,7 @@ defaults: &defaults
           #         "N": ""
           #       additional:
           #         path:
-          #           - Process 
+          #           - Process
           #           - Scope
         version_3:
           selection:
@@ -1778,13 +1778,13 @@ defaults: &defaults
               -
                 method: tag_from_sheet_name
                 additional:
-                  path: 
+                  path:
                     - "Process"
                     - "Scope"
                 map:
-                  Harmonized: 
+                  Harmonized:
                     - Global
-                  Study: 
+                  Study:
                     - Study
             header_row:
               - "CODELIST_LONG_NAME"
@@ -1807,8 +1807,8 @@ defaults: &defaults
               - "ED_USE"
               - "STUDY_USE"
               - "INACTIVE_F"
-          columns: 
-          - 
+          columns:
+          -
             label: "CODELIST_SHORT_NAME"
             actions:
               -
@@ -1821,20 +1821,20 @@ defaults: &defaults
                 object: parent
                 property: notation
                 map: {}
-          - 
+          -
             label: "CODELIST_CODE"
             actions:
               -
                 method: regex?
                 object: NA
-                additional: 
+                additional:
                   regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
               -
                 method: set_property
                 object: parent
                 property: identifier
                 map: {}
-          - 
+          -
             label: "CODELIST_LONG_NAME"
             actions:
               -
@@ -1849,15 +1849,15 @@ defaults: &defaults
                 map: {}
           -
             label: "CODELIST_EXTENSIBLE"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: parent
                 property: extensible
-                map: 
+                map:
                   "Yes": true
                   "No": false
-          - 
+          -
             label: "CODELIST_DEFINITION"
             actions:
               -
@@ -1865,13 +1865,13 @@ defaults: &defaults
                 object: parent
                 property: definition
                 map: {}
-          - 
+          -
             label: "CODE"
-            actions: 
+            actions:
               -
                 method: regex?
                 object: NA
-                additional: 
+                additional:
                   regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
               -
                 method: create_child
@@ -1883,9 +1883,9 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
-          - 
+          -
             label: "SUBMISSION_VALUE"
-            actions: 
+            actions:
               -
                 method: set_property
                 object: child
@@ -1896,32 +1896,32 @@ defaults: &defaults
                 object: child
                 property: preferred_term
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
-                  column: 
+                  column:
                     - 8
                     - 12
-          - 
+          -
             label: "DECODE"
-            actions: 
+            actions:
               -
                 method: create_shared
                 object: child
                 property: preferred_term
                 can_be_empty: true
                 map: {}
-          - 
+          -
             label: "SYNONYM"
-            actions: 
+            actions:
               -
                 method: tokenize_and_create_shared
                 object: child
                 property: synonym
                 can_be_empty: true
                 map: {}
-                additional: 
+                additional:
                   token: ";"
-          - 
+          -
             label: "CODE_DEFINITION"
             actions:
               -
@@ -1931,10 +1931,10 @@ defaults: &defaults
                 map: {}
                 additional:
                   default: "Not defined."
-          - 
+          -
             label: "DATA_TYPE"
             actions: []
-          - 
+          -
             label: "CRF_DISPLAY_VALUE"
             actions:
               -
@@ -1943,18 +1943,18 @@ defaults: &defaults
                 property: preferred_term
                 can_be_empty: true
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 8
-          - 
+          -
             label: "DISPLAY_ORDER"
             actions: []
-          - 
+          -
             label: "RANK"
             actions: []
-          - 
+          -
             label: "CRFGL_USE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -1963,7 +1963,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
               -
                 method: set_column_tag
@@ -1973,11 +1973,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
-          - 
+          -
             label: "SDTM_USE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -1986,7 +1986,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
               -
                 method: set_column_tag
@@ -1996,11 +1996,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
-          - 
+          -
             label: "ADAM_USE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -2009,7 +2009,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
               -
                 method: set_column_tag
@@ -2019,11 +2019,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
-          - 
+          -
             label: "ED_USE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -2033,7 +2033,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
               -
                 method: set_column_tag
@@ -2044,11 +2044,11 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
-          - 
+          -
             label: "STUDY_USE"
-            actions: 
+            actions:
               -
                 method: set_column_tag
                 object: parent
@@ -2058,7 +2058,7 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
               -
                 method: set_column_tag
@@ -2069,10 +2069,168 @@ defaults: &defaults
                   "N": ""
                 additional:
                   path:
-                    - Process 
+                    - Process
                     - Use
-          - 
+          -
             label: "INACTIVE_F"
+            actions: []
+    sponsor_term_format_two:
+      sheets:
+        version_1:
+          selection:
+            first: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                additional:
+                  path:
+                    - "Process"
+                    - "Scope"
+                map:
+                  Harmonized:
+                    - Global
+                  Study:
+                    - Study
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+          columns:
+          -
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Import::STFOClasses::STFOCodeList
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          -
+            label: "CODELIST_CODE"
+            actions: []
+          -
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map:
+                  "Yes": true
+                  "No": false
+          -
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          -
+            label: "CODE"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: Import::STFOClasses::STFOCodeListItem
+                map: {}
+          -
+            label: "SUBMISSION_VALUE"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                map: {}
+                condition:
+                  method: column_blank?
+                  column:
+                    - 8
+                    - 12
+          -
+            label: "DECODE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          -
+            label: "SYNONYM"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional:
+                  token: ";"
+          -
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          -
+            label: "DATA_TYPE"
+            actions: []
+          -
+            label: "CRF_DISPLAY_VALUE"
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+                condition:
+                  method: column_blank?
+                  column: 8
+          -
+            label: "DISPLAY_ORDER"
+            actions: []
+          -
+            label: "RANK"
             actions: []
     cdisc_library_api:
       base_href: "https://library.cdisc.org/api/"
@@ -2080,58 +2238,58 @@ defaults: &defaults
         products:
           ADaM:
             label: ADaM
-            tags: 
+            tags:
               - ADaM
             from: 2010-05-03
             to: 2100-01-01
           CDASH:
             label: CDASH
-            tags: 
+            tags:
               - CDASH
             from: 2010-05-03
             to: 2100-01-01
           SDTM:
-            label: SDTM  
-            tags: 
+            label: SDTM
+            tags:
               - SDTM
             from: 2007-03-06
             to: 2100-01-01
           Protocol:
             label: Protocol
-            tags: 
+            tags:
               - Protocol
             from: 2017-06-30
             to: 2100-01-01
           SEND:
             label: SEND
-            tags: 
+            tags:
               - SEND
             from: 2011-06-10
             to: 2100-01-01
           "QS-FT":
             label: QS-FT
-            tags:                     
+            tags:
               - QS-FT
               - SDTM
             from: 2011-06-10
             to: 2014-10-06
           QRS:
             label: QRS
-            tags:                     
+            tags:
               - QRS
               - SDTM
             from: 2015-06-26
             to: 2015-09-25
           COA:
             label: COA
-            tags:                     
+            tags:
               - COA
               - SDTM
             from: 2014-12-19
             to: 2015-03-27
           Define:
             label: Define-XML
-            tags: 
+            tags:
               - Define-XML
             from: 2019-12-20
             to: 2100-01-01
@@ -2139,10 +2297,10 @@ defaults: &defaults
 development:
   <<: *defaults
 
-production: 
+production:
   <<: *defaults
-  
-test: 
+
+test:
   imports:
     <<: *default_imports
     test_1:
@@ -2160,7 +2318,7 @@ test:
   processing:
     <<: *default_processing
     test_1:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             label: Sheet1
@@ -2171,8 +2329,8 @@ test:
               - "CT"
               - "DATATYPE"
               - "CORE"
-          columns: 
-          - 
+          columns:
+          -
             label: "PARENT"
             actions:
               -
@@ -2189,7 +2347,7 @@ test:
                 map:
                   P1: Parent One
                   P2: Parent Two
-          - 
+          -
             label: CHILD
             actions:
               -
@@ -2207,10 +2365,10 @@ test:
                 object: child
                 property: label
                 map: {}
-          - 
+          -
             label: CT
             actions:
-              - 
+              -
                 method: ct_reference
                 object: child
                 property: ct
@@ -2220,7 +2378,7 @@ test:
                 object: child
                 property: ct_notes
                 map: {}
-          - 
+          -
             label: DATATYPE
             actions:
               -
@@ -2230,7 +2388,7 @@ test:
                 map:
                   CHAR: Character
                   NUM: Numeric
-          - 
+          -
             label: CORE
             actions:
               -
@@ -2242,7 +2400,7 @@ test:
                   P: Permissible
                   E: Conditional
     test_2:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             label: Sheet1
@@ -2253,8 +2411,8 @@ test:
               - "CT"
               - "DATATYPE"
               - "CORE"
-          columns: 
-          - 
+          columns:
+          -
             label: "PARENT"
             actions:
               -
@@ -2271,7 +2429,7 @@ test:
                 map:
                   X1: Parent One
                   X2: Parent Two
-          - 
+          -
             label: CHILD
             actions:
               -
@@ -2289,10 +2447,10 @@ test:
                 object: child
                 property: label
                 map: {}
-          - 
+          -
             label: CT
             actions:
-              - 
+              -
                 method: ct_reference
                 object: child
                 property: ct
@@ -2302,7 +2460,7 @@ test:
                 object: child
                 property: ct_notes
                 map: {}
-          - 
+          -
             label: DATATYPE
             actions:
               -
@@ -2312,7 +2470,7 @@ test:
                 map:
                   CHAR: Character
                   NUM: Numeric
-          - 
+          -
             label: CORE
             actions:
               -
@@ -2324,7 +2482,7 @@ test:
                   P: Permissible
                   E: Conditional
     test_3:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             label: hee # Note short name
@@ -2335,8 +2493,8 @@ test:
               - "CT"
               - "DATATYPE"
               - "CORE"
-          columns: 
-          - 
+          columns:
+          -
             label: "PARENT"
             actions:
               -
@@ -2353,7 +2511,7 @@ test:
                 map:
                   P1: Parent One
                   P2: Parent Two
-          - 
+          -
             label: CHILD
             actions:
               -
@@ -2371,10 +2529,10 @@ test:
                 object: child
                 property: label
                 map: {}
-          - 
+          -
             label: CT
             actions:
-              - 
+              -
                 method: ct_reference
                 object: child
                 property: ct
@@ -2384,10 +2542,10 @@ test:
                 object: child
                 property: ct_notes
                 map: {}
-                condition: 
+                condition:
                   method: column_blank?
                   column: 3
-          - 
+          -
             label: DATATYPE
             actions:
               -
@@ -2397,7 +2555,7 @@ test:
                 map:
                   CHAR: Character
                   NUM: Numeric
-          - 
+          -
             label: CORE
             actions:
               -
@@ -2409,46 +2567,46 @@ test:
                   P: Permissible
                   E: Conditional
     test_4:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             label: hee # Note short name
-          sheet: 
+          sheet:
             header_row: []
-          columns: [] 
+          columns: []
     test_5:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             date: true
-          sheet: 
+          sheet:
             header_row: []
-          columns: [] 
+          columns: []
     test_6:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             first: true
-          sheet: 
+          sheet:
             header_row: []
-          columns: [] 
+          columns: []
     test_7:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             wrong: method
-          sheet: 
+          sheet:
             header_row: []
-          columns: [] 
+          columns: []
     test_8:
-      sheets: 
+      sheets:
         sheet_1:
           selection:
             label: Sheet1
           row:
             condition:
               method: column_affirmative?
-              column: 3 
-          sheet: 
+              column: 3
+          sheet:
             header_row: []
-          columns: [] 
+          columns: []

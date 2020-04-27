@@ -36,11 +36,11 @@ describe Import do
   end
 
   class Other
-  
+
     def self.owner
       return Owner.new
     end
-  
+
     def self.identifier
       "XXX"
     end
@@ -48,7 +48,7 @@ describe Import do
   end
 
   class ImportTest < Import
-    
+
     def import(params)
     end
 
@@ -71,7 +71,7 @@ describe Import do
   end
 
   class ImportTest2 < Import
-    
+
     def import(params)
     end
 
@@ -94,7 +94,7 @@ describe Import do
   end
 
   class Worker
-  
+
     extend ActiveModel::Naming
 
     attr_reader   :errors
@@ -102,7 +102,7 @@ describe Import do
     def initialize
       @errors = ActiveModel::Errors.new(self)
     end
-  
+
   end
 
   before :each do
@@ -153,12 +153,12 @@ describe Import do
   it "returns configuration" do
     expect(Import.configuration).to eq({})
   end
-  
+
   it "generates the import list" do
     results = Import.list
     check_file_actual_expected(results, sub_dir, "import_list_1.yaml", equate_method: :hash_equal)
   end
-  
+
   it "creates an import I" do
     item = ImportTest.new
     params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3"}
@@ -174,9 +174,9 @@ describe Import do
     compare_import_hash(result, expected)
     background = Background.find(item.background_id)
     expect(background.description).to eq("Import of Something from ODM. Identifier: AAA, Owner: OWNER")
-    expect(background.complete).to eq(false)    
+    expect(background.complete).to eq(false)
   end
-  
+
   it "creates an import II" do
     item = ImportTest2.new
     params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3", date: "2018-11-11"}
@@ -192,7 +192,7 @@ describe Import do
     compare_import_hash(result, expected)
     background = Background.find(item.background_id)
     expect(background.description).to eq("Import of Something from ODM. Identifier: AAA, Owner: OWNER")
-    expect(background.complete).to eq(false)    
+    expect(background.complete).to eq(false)
   end
 
   it "creates an import, exception" do
@@ -205,10 +205,10 @@ describe Import do
   #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_2.yaml")
     expected = read_yaml_file(sub_dir, "create_import_2.yaml")
     compare_import_hash(result, expected, error_file: true)
-    background = Background.find(item.background_id)  
-    expect(background.complete).to eq(true)  
+    background = Background.find(item.background_id)
+    expect(background.complete).to eq(true)
   end
-  
+
   it "saves the error file" do
     worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
@@ -289,7 +289,7 @@ describe Import do
   it "indicates if the background job is complete" do
     item = simple_import
     expect(item.complete).to eq(true)
-    background = Background.find(item.background_id)  
+    background = Background.find(item.background_id)
     background.complete = false
     background.save
     expect(item.complete).to eq(false)
@@ -307,5 +307,35 @@ describe Import do
     item.file_type = :als
     expect(item.file_type_humanize).to eq("ALS")
   end
+
+	it "Show data hash" do
+		object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
+    job = Background.new
+		job.complete = true
+    job.save
+    object.background_id = job.id
+    object.save
+
+		import_data = object.show_data
+		expect(import_data.keys).to match_array([:import, :errors, :job])
+		expect(import_data[:import][:id]).to eq(object.id)
+		expect(import_data[:job][:id]).to eq(job.id)
+		expect(import_data[:errors]).to eq([])
+		expect(import_data[:import][:complete]).to eq(true)
+		expect(import_data[:job][:complete]).to eq(true)
+	end
+
+	it "Show data hash, errors" do
+		worker = Worker.new
+    worker.errors.add(:base, "Bad things happened!")
+		item = simple_import
+		item.save_error_file({parent: worker, managed_children:[]})
+
+		import_data = item.show_data
+		expect(import_data.keys).to match_array([:import, :errors, :job])
+		expect(import_data[:errors]).to eq(["Bad things happened!"])
+		expect(import_data[:job][:id]).to eq(item.background_id)
+		expect(import_data[:import][:id]).to eq(item.id)
+	end
 
 end

@@ -516,3 +516,12 @@ function refreshOnBackPressed(){
   if (performance.navigation.type == 2)
     location.reload();
 }
+
+// Generate true/false icon
+function trueFalseIcon(value, centered) {
+  var icoClass = centered == true ? "i-centered" : "";
+
+  return value ?
+      "<span class='icon-ok text-secondary-clr "+ icoClass +"'></span>" :
+      "<span class='icon-times text-accent-2 "+ icoClass +"'></span>"
+}

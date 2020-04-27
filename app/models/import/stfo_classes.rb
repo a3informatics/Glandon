@@ -21,6 +21,10 @@ module Import::STFOClasses
       Import::STFOClasses::STFOCodeList
     end
 
+    def self.identifier
+      "CT"
+    end
+
   end
 
   class STFOCodeList < Thesaurus::ManagedConcept  

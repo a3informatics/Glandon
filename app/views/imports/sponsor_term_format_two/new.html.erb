@@ -1,0 +1,19 @@
+<%= javascript_tag 'setPageTitle("Import Sponsor Code List")' %>
+<% first_level_breadcrumb (:imports) %>
+
+<%= javascript_include_tag 'standard_datatable', 'import/terms/new', 'shared/import/term_files_panel', 'shared/import/items_panel' %>
+<%= javascript_tag "var file_type = \"#{@file_type}\";" %>
+
+<div class="row">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
+		main_text: "Import Centre", sub_texts: "Sponsor Code List Import" } do %>
+
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",
+  			icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+    <%= render partial: "shared/import/import_sponsor_terms_panel", locals: {create_path: imports_sponsor_term_format_two_index_path, title: "Import Sponsor Code List using Excel", multiple: false} %>
+</div>

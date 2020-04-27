@@ -31,6 +31,11 @@ describe UploadsController do
       expect(response).to redirect_to("/uploads")
     end
 
+    it 'delete all' do
+      delete :delete_all
+      expect(response).to redirect_to("/uploads")
+    end
+
   end
 
   describe "Unauthorized User" do
