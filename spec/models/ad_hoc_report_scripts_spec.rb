@@ -4,17 +4,18 @@ RSpec.describe AdHocReport, type: :model do
   
   include DataHelpers
   include PublicFileHelpers
+  include CdiscCtHelpers
 
 	def sub_dir
     return "models/ad_hoc_report"
   end
 
-  describe "Main Tests" do
+  describe "Simple Reports" do
 
     before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..62)    
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)   
     AdHocReport.delete_all
     delete_all_public_files
   end
@@ -62,12 +63,14 @@ RSpec.describe AdHocReport, type: :model do
 
   end
 
-  describe "Sponsor Tests" do
+  describe "Sponsor Extension Tests" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_sponsor_format_one_2-6.ttl", "thesaurus_sponsor_format_one_3-0.ttl" ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      #load_cdisc_term_versions(1..58)    
+      load_cdisc_term_versions(CdiscCtHelpers.version_range)
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl") 
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl") 
       AdHocReport.delete_all
       delete_all_public_files
     end
@@ -83,9 +86,9 @@ RSpec.describe AdHocReport, type: :model do
       report.background_id = job.id
       report.sparql_file = "extension_count_sparql.yaml"
       report.results_file = "extension_count_results_1.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH").to_id])}
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("extension_count_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
 
@@ -96,9 +99,9 @@ RSpec.describe AdHocReport, type: :model do
       report.background_id = job.id
       report.sparql_file = "extension_count_sparql.yaml"
       report.results_file = "extension_count_results_2.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.s-cubed.dk/Q1_2020/V1#TH").to_id])}
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("extension_count_results_2.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
   
   end

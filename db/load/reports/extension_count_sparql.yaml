@@ -15,7 +15,7 @@
     :label: Definition
   :tcount:
     :label: Total number of Items
-  :ext:
+  :ecount:
     :label: Number of extended items
   :pct:
     :label: Percentage
@@ -36,17 +36,27 @@
   PREFIX is: <http://purl.org/ontology/is/core#> 
   PREFIX iso: <http://purl.org/iso25964/skos-thes#>
   PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
-  SELECT ?clln ?clc ?clsn ?cle ?cld (COUNT(DISTINCT ?cli) as ?tcount) (COUNT(DISTINCT ?o) as ?ext) (round((?ext*1000.0)/?tcount)*0.1 as ?pct)
-    WHERE { VALUES ?s {[[[parameter_1]]]}
-    ?s th:isTopConceptReference/bo:reference ?cl .
-    ?cl th:extends ?x .
-    ?cl th:identifier ?clc . 
-    ?cl th:notation ?clsn . 
-    ?cl th:extensible ?cle . 
-    ?cl th:definition ?cld . 
-    ?cl th:preferredTerm/isoC:label ?clln . 
-    ?cl th:narrower ?cli . 
-    ?cli th:identifier ?code .
-    {?cl th:narrower ?o} MINUS {?x th:narrower ?o} . 
-  } GROUP BY ?clln ?clc ?clsn ?cle ?cld ORDER BY ?clc'
+  SELECT ?clln ?clc ?clsn ?cle ?cld ?ecount ?tcount (round((?ecount*1000.0)/?tcount)*0.1 as ?pct) WHERE
+{
+  ?cl th:identifier ?clc . 
+  ?cl th:notation ?clsn . 
+  ?cl th:extensible ?cle . 
+  ?cl th:definition ?cld . 
+  ?cl th:preferredTerm/isoC:label ?clln .   
+  {
+    SELECT ?cl ?ecount (COUNT(DISTINCT ?cli) as ?tcount) WHERE
+    {
+      ?cl th:narrower ?cli
+      {
+        SELECT ?cl (COUNT(DISTINCT ?o) as ?ecount) WHERE
+        {
+          VALUES ?s {[[[parameter_1]]]}
+          ?s th:isTopConceptReference/bo:reference ?cl .
+          ?cl th:extends ?x .
+          {?cl th:narrower ?o} MINUS {?x th:narrower ?o} . 
+        } GROUP BY ?cl
+      }
+    } GROUP BY ?cl ?ecount
+  }
+} GROUP BY ?tcount ?ecount ?clln ?clc ?clsn ?cle ?cld ORDER BY ?clc'
 :type: Ad Hoc Report Definition
