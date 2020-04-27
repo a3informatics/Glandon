@@ -24,6 +24,7 @@ describe Annotations::ChangeInstructionsController do
 
     it "create change instruction" do
       request.env['HTTP_ACCEPT'] = "application/json"
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
       post :create
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -61,6 +62,7 @@ describe Annotations::ChangeInstructionsController do
     it "returns the change instructions links" do
       uri1 = Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955")
       uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
       item = Annotation::ChangeInstruction.create
       item.update(description: "D", reference: "R", semantic: "S")
       item = Annotation::ChangeInstruction.find(item.id)
@@ -75,6 +77,7 @@ describe Annotations::ChangeInstructionsController do
     end
 
     it "returns the change instructions links" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
       item = Annotation::ChangeInstruction.create
       item.update(description: "D", reference: "R", semantic: "S")
       item = Annotation::ChangeInstruction.find(item.id)
