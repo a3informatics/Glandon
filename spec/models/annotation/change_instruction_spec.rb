@@ -19,7 +19,7 @@ describe Annotation::ChangeInstruction do
   before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
     load_files(schema_files, data_files)
-    load_versions(1..49)
+    load_versions(1..56)
   end
 
   it "will initialize an object" do
@@ -63,11 +63,11 @@ describe Annotation::ChangeInstruction do
     check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
   end
 
-  it "updates a change instruction, fields" do
+  it "updates a change instruction, description, reference and semantic" do
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeInstruction.create
     item.update(description: "D", reference: "R", semantic: "S")
-    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "adds references I" do
@@ -79,7 +79,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_1.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "adds references II" do
@@ -92,7 +92,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_2.yaml", equate_method: :hash_equal)
   end
 
   it "adds references III" do
@@ -107,7 +107,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_3.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_3.yaml", equate_method: :hash_equal)
   end
 
   it "adds references IV" do
@@ -120,7 +120,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id, uri3.to_id, uri4.to_id], current: [])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_4.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "add_references_expected_4.yaml", equate_method: :hash_equal)
   end 
 
   it "get data, CL" do
@@ -133,7 +133,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.get_data, sub_dir, "get_data.yaml")
+    check_file_actual_expected(item.get_data, sub_dir, "get_data.yaml", equate_method: :hash_equal)
   end
 
   it "get data CLI" do
@@ -144,7 +144,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [uri1.to_id], current: [uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.get_data, sub_dir, "get_data_2.yaml")
+    check_file_actual_expected(item.get_data, sub_dir, "get_data_2.yaml", equate_method: :hash_equal)
   end
 
   it "get data CLI II" do
@@ -154,7 +154,7 @@ describe Annotation::ChangeInstruction do
     item = Annotation::ChangeInstruction.find(item.id)
     item.add_references(previous: [], current: [uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
-    check_file_actual_expected(item.get_data, sub_dir, "get_data_3.yaml")
+    check_file_actual_expected(item.get_data, sub_dir, "get_data_3.yaml", equate_method: :hash_equal)
   end      
 
 
@@ -241,18 +241,18 @@ describe Annotation::ChangeInstruction do
     check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_3.yaml", equate_method: :hash_equal)
   end  
 
-  it "change instructions links IV" do
-    uri1 = Uri.new(uri: "http://www.cdisc.org/CT/V30#TH")
-    uri2 = Uri.new(uri: "http://www.cdisc.org/CT/V37#TH")
-    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
-    item = Annotation::ChangeInstruction.create
-    item.update(description: "D", reference: "R", semantic: "S")
-    item = Annotation::ChangeInstruction.find(item.id)
-    item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
-    item = Annotation::ChangeInstruction.find(item.id)
-    results = item.get_data
-    check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_4.yaml", equate_method: :hash_equal)
-  end       
+  # it "change instructions links IV (PENDING: Not yet implemented)" do
+  #   uri1 = Uri.new(uri: "http://www.cdisc.org/CT/V30#TH")
+  #   uri2 = Uri.new(uri: "http://www.cdisc.org/CT/V37#TH")
+  #   allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
+  #   item = Annotation::ChangeInstruction.create
+  #   item.update(description: "D", reference: "R", semantic: "S")
+  #   item = Annotation::ChangeInstruction.find(item.id)
+  #   item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
+  #   item = Annotation::ChangeInstruction.find(item.id)
+  #   results = item.get_data
+  #   check_file_actual_expected(results, sub_dir, "change_instructions_links_expected_4.yaml", equate_method: :hash_equal)
+  # end       
 
   it "deletes a change instruction" do
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
