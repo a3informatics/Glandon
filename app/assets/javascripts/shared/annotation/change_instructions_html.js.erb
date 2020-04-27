@@ -72,9 +72,10 @@ CIHtml.prototype.linksList = function (data, opts) {
  * @return [String] formatted HTML
  */
 CIHtml.prototype.listItem = function(link, type, opts) {
+  var itemId = link.child != null ? link.child.id : link.parent.id;
   var html = "<a href='" + (opts.withHref ? link.show_path : "#") + "' " +
                 "class='bg-label " + opts.class + "' " +
-                "data-id='" + link.parent.id + "' data-type='" + type + "'>";
+                "data-id='" + itemId + "' data-type='" + type + "'>";
   html +=         typeToColorIcon(link.parent.rdf_type || link.child.rdf_type, {ttip: true});
   html +=         "<span>" + this.linkText(link) + "</span>";
   html +=         this.linkIcon(type, opts);
