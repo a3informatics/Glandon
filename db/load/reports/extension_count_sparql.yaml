@@ -1,0 +1,52 @@
+---
+:parameters:
+  -
+    :name: "Terminology"
+    :description: "The terminology for which the code lists are required."
+    :type: :thesauri
+:columns:
+  :clln:
+    :label: Code List Preferred Term
+  :clc:
+    :label: Code List Code
+  :clsn:
+    :label: Code List Submission Value
+  :cld:
+    :label: Definition
+  :tcount:
+    :label: Total number of Items
+  :ext:
+    :label: Number of extended items
+  :pct:
+    :label: Percentage
+:label: Count of extened items in extension code list
+:query: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX th: <http://www.assero.co.uk/Thesaurus#> 
+  PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+  PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+  PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+  PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+  PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+  PREFIX is: <http://purl.org/ontology/is/core#> 
+  PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+  PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+  SELECT ?clln ?clc ?clsn ?cle ?cld (COUNT(DISTINCT ?cli) as ?tcount) (COUNT(DISTINCT ?o) as ?ext) (round((?ext*1000.0)/?tcount)*0.1 as ?pct)
+    WHERE { VALUES ?s {[[[parameter_1]]]}
+    ?s th:isTopConceptReference/bo:reference ?cl .
+    ?cl th:extends ?x .
+    ?cl th:identifier ?clc . 
+    ?cl th:notation ?clsn . 
+    ?cl th:extensible ?cle . 
+    ?cl th:definition ?cld . 
+    ?cl th:preferredTerm/isoC:label ?clln . 
+    ?cl th:narrower ?cli . 
+    ?cli th:identifier ?code .
+    {?cl th:narrower ?o} MINUS {?x th:narrower ?o} . 
+  } GROUP BY ?clln ?clc ?clsn ?cle ?cld ORDER BY ?clc'
+:type: Ad Hoc Report Definition
