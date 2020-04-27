@@ -179,7 +179,7 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_current_path(root_path)
     end
 
-    it "Change instruction modal - edit link, show link, remove, FAILS BECAUSE OF A BUG", js:true do
+    it "Change instruction modal - edit link, show link, remove", js:true do
       click_navbar_code_lists
       wait_for_ajax(20)
       ui_table_search("index", "QSCAT")
@@ -290,7 +290,7 @@ describe "Change Instructions", :type => :feature do
       end
     end
 
-    it "allows to create, show a change instruction, FAILS BECAUSE OF A BUG", js:true do
+    it "allows to create, show a change instruction", js:true do
       click_navbar_code_lists
       wait_for_ajax(20)
       ui_table_search("index", "PKUWKG")
