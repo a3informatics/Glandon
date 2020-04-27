@@ -55,7 +55,7 @@ class IsoConceptController < ApplicationController
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
     results = []
-    change_instructions = [concept.change_instructions]
+    change_instructions = concept.change_instructions
     change_instructions.each do |c|
       next if c[:id] == nil
       results << c.reverse_merge!({edit_path: edit_annotations_change_instruction_path(c[:id]),destroy_path: annotations_change_instruction_path(c[:id])})
