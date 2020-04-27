@@ -640,8 +640,8 @@ describe Thesaurus do
       check_file_actual_expected(source.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       item = Thesaurus.find_full(uri1)
       item.is_top_concept_objects
-      expect(item.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
       expect(item.is_top_concept_reference.count).to eq(3)
+      expect(item.is_top_concept_reference.map{|x| x.reference.to_s}.include?(result.uri.to_s)).to eq(true)
       check_file_actual_expected(item.is_top_concept.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_1.yaml", equate_method: :hash_equal)
     end
 
