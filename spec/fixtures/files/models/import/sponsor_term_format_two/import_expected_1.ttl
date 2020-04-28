@@ -20,8 +20,8 @@
 	isoT:hasIdentifier :NP001000P_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-28T17:03:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "NP001000P"^^xsd:string ;
 	th:notation "MFES01TN"^^xsd:string ;
@@ -47,13 +47,13 @@
 .
 :NP001000P_RS
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
@@ -284,8 +284,8 @@
 	isoT:hasIdentifier <http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-28T17:03:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "NP001001P"^^xsd:string ;
 	th:notation "MFES01TC"^^xsd:string ;
@@ -311,13 +311,13 @@
 .
 <http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
