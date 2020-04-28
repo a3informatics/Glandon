@@ -7,6 +7,7 @@ describe Import::ChangeInstruction do
   include PublicFileHelpers
   include SparqlHelpers
   include CdiscCtHelpers
+  include SecureRandomHelpers
 
 	def sub_dir
     return "models/import/data/cdisc/ct/changes"
@@ -27,6 +28,7 @@ describe Import::ChangeInstruction do
   def load(filenames, ct_version, create_file)
     files = []
     simple_setup
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct", filenames[index])}
     params = 
     {

@@ -1,0 +1,187 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
+:uri: http://www.acme-pharma.com/A00001/V1#A00001
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: London Heathrow
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9SUw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9TSQ==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: A00001
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-12-15T20:50:53+01:00'
+:explanatory_comment: ''
+:identifier: A00001
+:notation: LHR
+:definition: A definition
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDEy
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_A000012
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal 1
+  :tagged: []
+  :identifier: A000012
+  :notation: T1
+  :definition: The oldest LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYWRkZmRhZDNiZjYzZWUwMzhiNmYxYTQ3MDlkMjc1ZmEzMDczMjAwNA==
+    :uri: http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 1
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDEx
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_A000011
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal 5
+  :tagged: []
+  :identifier: A000011
+  :notation: T5
+  :definition: The 5th LHR Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMjYzNTdkZTkyODBiOGIxZGYwMDQ5YjY5MjNkMWJjMTlhZDNmMzc3Yw==
+    :uri: http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Terminal 5
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2EzOWQ5MDBkMjVlNTRhZDVmNjFkZmFjZjIzMDc3NDEzY2E0OWNmNWQ=
+    :uri: http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: T5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzg0OTUxZDZmMTNmMGRiN2FhNGIzNTFkMWM4YWZhYjI5YTgxNzMyMDE=
+    :uri: http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: BA Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2FmNmNmN2NlZTc5NjBiYjFmOGUzMzQwOWFkMzE2NTA4ZTViNGExNjY=
+    :uri: http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: British Airways Terminal
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2FmODRiMzdhZmEzYzNkODNiMDY4YzA3MmQxMjZmNzg3MzU1MzMwNmY=
+    :uri: http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Terminal Five
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU2Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Unknown
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: NC00000456C
+  :notation: Unknown
+  :definition: Not known, not observed, not recorded, or refused. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYmM3ODE5YjM0ZmY4NzU3MDc0NWZiZTQ2MWUzNmExNmY4MGU1NjJjZQ==
+    :uri: http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Unknown
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2JjNzgxOWIzNGZmODc1NzA3NDVmYmU0NjFlMzZhMTZmODBlNTYyY2U=
+    :uri: http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Unknown
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2IyYzdjMGNhYTEwYTBjY2E1ZWE3ZDY5ZTU0MDE4YWUwYzAzODlkZDY=
+    :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: U
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU3Qw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000457C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: U
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: NC00000457C
+  :notation: U
+  :definition: Not known, not observed, not recorded, or refused. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjJjN2MwY2FhMTBhMGNjYTVlYTdkNjllNTQwMThhZTBjMDM4OWRkNg==
+    :uri: http://www.assero.co.uk/PT#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: U
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2JjNzgxOWIzNGZmODc1NzA3NDVmYmU0NjFlMzZhMTZmODBlNTYyY2U=
+    :uri: http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Unknown
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2IyYzdjMGNhYTEwYTBjY2E1ZWE3ZDY5ZTU0MDE4YWUwYzAzODlkZDY=
+    :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: U
+    :tagged: []
+:extends: 
+:subsets: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjODExMTM0YzdlOTY4ZmFkNDkzNTAzZWY0YmI4NThjNDY3N2MyOWY4YQ==
+  :uri: http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: London Heathrow
+  :tagged: []
+:synonym:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzc5YzRlZTJhODc5NGVkOTI2MzY3N2JhZTY0ZWEwMWE2ZTliYjY0NzI=
+  :uri: http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: Heathrow
+  :tagged: []
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2U0NjI2YWE3MzdjN2E2MTExYjg1M2JhNGVhZjRlZTE1OTliZmI3YjM=
+  :uri: http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: LHR
+  :tagged: []
+:is_ordered: 

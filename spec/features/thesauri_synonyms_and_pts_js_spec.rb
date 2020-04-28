@@ -404,6 +404,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'NC00001004C'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\t"
+      editor_table_click(1,2)
+      editor_table_fill_in "DTE_Field_notation", "Submission12\t"
       click_link "Return"
       expect(page).to have_content 'NP000015P' 
       wait_for_ajax_long
@@ -411,6 +413,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NP000015P'
       click_button 'New'
+      wait_for_ajax_long
       expect(page).to have_content 'NC00001005C'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"

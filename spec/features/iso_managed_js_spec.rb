@@ -104,8 +104,8 @@ describe "ISO Managed JS", :type => :feature do
       expect(div.text(:all)).to eq("I am the origin")
       fill_in "iso_managed_origin", with: "£±£±"
       expect(page).to have_content 'Please enter valid markdown.'
-      #pause
       ui_set_focus("iso_managed_explanatoryComment")
+      wait_for_ajax
       div = page.find("#generic_markdown")
       expect(div.text(:all)).to eq("I am a comment")
       ui_set_focus("iso_managed_changeDescription")

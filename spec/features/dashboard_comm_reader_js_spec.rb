@@ -50,8 +50,9 @@ describe "Community Dashboard JS", :type => :feature do
       click_browse_every_version
       expect(page).to have_content 'Item History'
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '2019-06-28 Release'
-      expect(page).to have_content '2017-09-29 Release'
+      dates = CdiscCtHelpers.date_version_map
+      expect(page).to have_content "#{dates.last} Release"
+      expect(page).to have_content "#{dates[-10]} Release"
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -84,9 +85,11 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows access to CDISC show (latest)", js: true do
       click_show_latest_version
       wait_for_ajax(20)
+      dates = CdiscCtHelpers.date_version_map
+      count = CdiscCtHelpers.cl_count_by_version(dates.count)
       expect(page).to have_content "Controlled Terminology"
-      expect(page).to have_content "62.0.0"
-      ui_check_table_info("children_table", 1, 10, 926)
+      expect(page).to have_content "#{dates.count}.0.0"
+      ui_check_table_info("children_table", 1, 10, count)
       click_link 'Home'
       check_on_commumity_dashboard
     end

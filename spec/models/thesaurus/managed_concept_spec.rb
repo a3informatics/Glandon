@@ -155,9 +155,7 @@ describe "Thesaurus::ManagedConcept" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      #NameValue.destroy_all
-      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      load_cdisc_term_versions(1..5)
       nv_destroy
       nv_create(parent: "123", child: "456")
     end
@@ -236,16 +234,45 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
-    it "allows a new child TC to be added, add_child_based_on" do
+    it "allows a new child TC to be added, error" do
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T5"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(1)
+      expect(new_object.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
+    end
+
+    it "allows a new child TC to be added, add_child_based_on, errors" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       children = tc.add_children_based_on(uc)
+      expect(children.first.errors.count).to eq(1)
+      expect(children.first.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.narrower.count).to eq(6)
+      expect(tc.narrower.count).to eq(2)
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml")
+      # tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      # check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml")
+    end
+
+    it "allows a new child TC to be added, add_child_based_on" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.cdisc.org/C66790/V4#C66790_C17998"))
+      children = tc.add_children_based_on(uc)
+      expect(children.first.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_5.yaml")
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_6.yaml")
     end
 
     it "prevents a duplicate TC being added" do

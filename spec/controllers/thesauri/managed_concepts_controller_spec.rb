@@ -464,18 +464,6 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it 'adds childrens synonyms to managed concept' do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      token = Token.obtain(mc, @user)
-      post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_1.yaml", equate_method: :hash_equal)
-    end
-
     it 'adds a child thesaurus concept, no audit' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
@@ -527,6 +515,31 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("422")
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+
+    it 'adds childrens synonyms to managed concept' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
+      token = Token.obtain(mc, @user)
+      post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds childrens synonyms to managed concept, error' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      token = Token.obtain(mc, @user)
+      post :add_children_synonyms, {id: mc.id, managed_concept: {reference_id: uc.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "edit" do

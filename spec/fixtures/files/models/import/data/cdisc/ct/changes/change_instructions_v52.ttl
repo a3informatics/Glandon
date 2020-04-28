@@ -11,20 +11,20 @@
 <http://www.assero.co.uk/BusinessOperational>
 	rdf:type owl:Ontology ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC2> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC3> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC4> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI1_TMC5> ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC4> ;
+	ba:current <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC5> ;
 	ba:ordinal "1"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI1_TMC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1_TMC2>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC2>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -33,7 +33,7 @@
 	:reference <http://www.cdisc.org/C135683/V52#C135683> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1_TMC3>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC3>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -42,7 +42,7 @@
 	:reference <http://www.cdisc.org/C135684/V52#C135684> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1_TMC4>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC4>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -51,7 +51,7 @@
 	:reference <http://www.cdisc.org/C135685/V52#C135685> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1_TMC5>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC5>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -60,7 +60,7 @@
 	:reference <http://www.cdisc.org/C135686/V52#C135686> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI1_TMC1>
+<http://www.assero.co.uk/CHIN#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC1>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -69,20 +69,20 @@
 	:reference <http://www.cdisc.org/C100150/V47#C100150> ;
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "This codelist is retired, please use new CGI GUY terminology (codelists C135683 and C135684) which is the original CGI developed by Guy W. For disease-specific CGI, please use the Generic Version of CGI (codelists C135685 and C135686)."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC2> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC3> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC4> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI2_TMC5> ;
+	ba:current <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC4> ;
+	ba:current <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC5> ;
 	ba:ordinal "2"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI2_TMC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2_TMC2>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC2>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -91,7 +91,7 @@
 	:reference <http://www.cdisc.org/C135683/V52#C135683> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2_TMC3>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC3>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -100,7 +100,7 @@
 	:reference <http://www.cdisc.org/C135684/V52#C135684> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2_TMC4>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC4>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -109,7 +109,7 @@
 	:reference <http://www.cdisc.org/C135685/V52#C135685> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2_TMC5>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC5>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -118,7 +118,7 @@
 	:reference <http://www.cdisc.org/C135686/V52#C135686> ;
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI2_TMC1>
+<http://www.assero.co.uk/CHIN#4646b47a-4ae4-4f21-b5e2-565815c8cded_TMC1>
 	rdf:type :TMcReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -127,18 +127,18 @@
 	:reference <http://www.cdisc.org/C100149/V47#C100149> ;
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI3>
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI3_TUC2> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI3_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC3> ;
 	ba:ordinal "3"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI3_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI3_TUC2>
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -148,7 +148,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI3_TUC3>
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -158,7 +158,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI3_TUC1>
+<http://www.assero.co.uk/CHIN#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -168,17 +168,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI4>
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI4_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC2> ;
 	ba:ordinal "4"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI4_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI4_TUC2>
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -188,7 +188,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI4_TUC1>
+<http://www.assero.co.uk/CHIN#b76597f7-972f-40f4-bed7-e134725cf296_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -198,17 +198,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI5>
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI5_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC2> ;
 	ba:ordinal "5"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI5_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI5_TUC2>
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -218,7 +218,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI5_TUC1>
+<http://www.assero.co.uk/CHIN#36d01a04-97fa-4ae9-8f40-9f266a6cdc06_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -228,17 +228,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI6>
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI6_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2> ;
 	ba:ordinal "6"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI6_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI6_TUC2>
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -248,7 +248,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI6_TUC1>
+<http://www.assero.co.uk/CHIN#0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -258,18 +258,18 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI7>
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "This term should be used when one does not know whether the LVEF value is obtained by visual estimation or calculation. Otherwise, please use the more granular and specific LVEF terms that are also added in this package. The new terms are: Left Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction, Calculated."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI7_TUC2> ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI7_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC3> ;
 	ba:ordinal "7"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI7_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI7_TUC2>
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -279,7 +279,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI7_TUC3>
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -289,7 +289,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI7_TUC1>
+<http://www.assero.co.uk/CHIN#7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -299,17 +299,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI8>
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM. This measurement is also typically performed with an echocardiography view of \"apical 4-chamber view\"."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI8_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2> ;
 	ba:ordinal "8"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI8_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI8_TUC2>
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -319,7 +319,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI8_TUC1>
+<http://www.assero.co.uk/CHIN#c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -329,17 +329,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI9>
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI9_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2> ;
 	ba:ordinal "9"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI9_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI9_TUC2>
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -349,7 +349,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI9_TUC1>
+<http://www.assero.co.uk/CHIN#f9fe7128-4b63-482d-9a11-62250e24fe0c_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -359,17 +359,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI10>
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT VENTRICLE."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI10_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC2> ;
 	ba:ordinal "10"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI10_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI10_TUC2>
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -379,7 +379,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI10_TUC1>
+<http://www.assero.co.uk/CHIN#f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -389,17 +389,17 @@
 	:context <http://www.cdisc.org/CT/V51#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI11>
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
 	ba:reference ""^^xsd:string ;
 	ba:description "Term being added into correct codelist, ONCRSCAT. This term was incorrectly published in the wrong codelist (ONCRSR)."^^xsd:string ;
-	ba:current <http://www.cdisc.org/CT/V52#TH_CI11_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2> ;
 	ba:ordinal "11"^^xsd: ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.cdisc.org/CT/V52#TH_CI11_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1> ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI11_TUC2>
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -409,7 +409,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.cdisc.org/CT/V52#TH_CI11_TUC1>
+<http://www.assero.co.uk/CHIN#4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;

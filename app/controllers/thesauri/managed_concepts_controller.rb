@@ -194,10 +194,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     token = Token.find_token(tc, current_user)
     if !token.nil?
-      AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
       uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
       children = tc.add_children_based_on(uc)
-      render :json => {data: "" }, :status => 200
+      if children.first.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        render :json => {data: "" }, :status => 200
+      else
+        render :json => {:errors => children.first.errors.full_messages}, :status => 422
+      end
     else
       render :json => {:errors => [token_timeout_message]}, :status => 422
     end

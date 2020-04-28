@@ -21,6 +21,14 @@ describe "Thesaurus Submission" do
     delete_all_public_test_files
   end
 
+  # ---------- IMPORTANT SWITCHES ----------
+  
+  def set_write_file
+    false
+  end
+
+  # ----------------------------------------
+
   def load_version(version)
     load_data_file_into_triple_store("cdisc/ct/CT_V#{version}.ttl")
   end
@@ -64,7 +72,7 @@ describe "Thesaurus Submission" do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
       actual = ct.submission(1)
       next_result = check_submission(actual, expected.find{|x| x[:version] == version})
-      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equate_method: :hash_equal, write_file: set_write_file)
       result = result && next_result
     end
     expect(result).to be(true)

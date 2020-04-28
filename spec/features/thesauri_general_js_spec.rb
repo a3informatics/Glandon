@@ -538,6 +538,42 @@ describe "Thesaurus", :type => :feature do
       click_link 'Return'
     end
 
+    it "Checks duplicate notation", js: true do
+      click_navbar_code_lists
+      expect(page).to have_content 'Index: Code Lists'
+      cl_identifier = ui_new_code_list
+      context_menu_element('history', 4, cl_identifier, :edit)
+      wait_for_ajax_long
+      click_button 'New'
+      wait_for_ajax_long
+#      expect(page).to have_content 'NC000010001C'
+      editor_table_click(1,2)
+      #editor_table_fill_in "DTE_Field_label", "Label text 31\t"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 999C\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "The PT 999C\n"
+      editor_table_click(1,4)
+      editor_table_fill_in "DTE_Field_synonym", "Same as 999C\n"
+      editor_table_click(1,5)
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 999C!\n"
+      #fill_in 'Identifier', with: 'A00032'
+      click_button 'New'
+      wait_for_ajax_long
+#      expect(page).to have_content 'NC00001002C'
+      editor_table_click(2,2)
+      #editor_table_fill_in "DTE_Field_label", "Label text 32\t"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 1000C\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "The PT 1000C\n"
+      editor_table_click(2,4)
+      editor_table_fill_in "DTE_Field_synonym", "Same as 1000C\n"
+      editor_table_click(2,5)
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 1000C!\n"
+
+      editor_table_click(2,2)
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 999C\t"
+      expect(page).to have_content("duplicate detected 'SUBMISSION 999C'")
+      click_link 'Return'
+    end
+
     #View option disabled
     # it "allows a thesaurus to be viewed, sponsor", js: true do
     #   click_navbar_terminology

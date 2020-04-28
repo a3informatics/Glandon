@@ -1,3 +1,7 @@
+# Thesaurus Managed Concept. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Thesaurus::ManagedConcept < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#ManagedConcept",
@@ -18,7 +22,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
@@ -26,6 +29,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Extensions
   include Thesaurus::Subsets
   include Thesaurus::Upgrade
+  include Thesaurus::Validation
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
@@ -545,10 +549,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
-  def valid_collection?
-    notations = self.narrower.map{|x| x.notations}
-    notations.uniq.length == notations.length
-  end
+  # def valid_collection?
+  #   notations = self.narrower.map{|x| x.notations}
+  #   notations.uniq.length == notations.length
+  # end
 
   def create_extension
     source = Thesaurus::ManagedConcept.find_full(self.id)

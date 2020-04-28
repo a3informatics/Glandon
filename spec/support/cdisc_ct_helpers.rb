@@ -14,12 +14,27 @@ module CdiscCtHelpers
       "2016-03-25", "2016-06-24", "2016-09-30", "2016-12-16",               # 47
       "2017-03-31", "2017-06-30", "2017-09-29", "2017-12-22",               # 51
       "2018-03-30", "2018-06-29", "2018-09-28", "2018-12-21",               # 55
-      "2019-03-29", "2019-06-28", "2019-09-27", "2019-12-20"                # 59
+      "2019-03-29", "2019-06-28", "2019-09-27", "2019-12-20",               # 59
+      "2020-03-27"                                                          # 63
     ]
   end
 
   def self.version_range
-    return (1..62)
+    return (1..63)
+  end
+
+  def self.cl_count_by_version(version)
+    query_string = %Q{
+      SELECT (COUNT(?item) as ?count) WHERE
+      {
+        ?s rdf:type #{Thesaurus.rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:version #{version} .
+        ?s th:isTopConceptReference/bo:reference ?item .
+      } 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:count).first.to_i
   end
 
 end

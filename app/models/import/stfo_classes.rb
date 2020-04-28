@@ -21,6 +21,10 @@ module Import::STFOClasses
       Import::STFOClasses::STFOCodeList
     end
 
+    def self.identifier
+      "CT"
+    end
+
   end
 
   class STFOCodeList < Thesaurus::ManagedConcept  
@@ -298,6 +302,8 @@ module Import::STFOClasses
     end
 
     def find_referenced(ct, identifier, child, fixes)
+      result = override(ct, identifier, child, fixes)
+      return result if !result.nil?
       result = exact_match(ct, identifier)
       return result if !result.nil?
       options = ct.find_identifier(identifier)
@@ -323,7 +329,7 @@ module Import::STFOClasses
       else
         option = matching_notation(child, options)
         return option if !option.nil?
-        uri = fixes.fix(self.identifier, identifier)
+        uri = fixes.qualify(self.identifier, identifier)
         if !uri.nil?
           result = Thesaurus::UnmanagedConcept.find_children(uri)
           add_warning("Fix notation mismatch, fix '#{result.notation}' '#{result.identifier}' versus reqd '#{child.notation}' '#{child.identifier}', identifier '#{self.identifier}'.") if result.notation != child.notation       
@@ -336,6 +342,10 @@ module Import::STFOClasses
     rescue => e
       add_error("Exception in find_referenced: #{e}, identifier '#{self.identifier}'.")
       nil
+    end
+
+    def override(ct, identifier, child, fixes)
+      return child if fixes.override?(self.identifier, child.identifier)
     end
 
     def exact_match(ct, identifier)
