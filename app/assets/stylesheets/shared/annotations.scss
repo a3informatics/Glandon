@@ -237,3 +237,7 @@ td.note-cell {
 .change-instruction .icon-ok.disabled {
   color: $grey-light;
 }
+
+.change-instruction #save-ci {
+  display: none;
+}
