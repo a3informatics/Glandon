@@ -1,4 +1,4 @@
-@prefix : <#> .
+@prefix : <http://www.s-cubed.dk/NP001000P/V1#> .
 @prefix th: <http://www.assero.co.uk/Thesaurus#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -10,42 +10,42 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<>
+<http://www.s-cubed.dk/NP001000P/V1>
 	rdf:type owl:Ontology ;
 .
-<http://www.s-cubed.dk/NP001000P/V1>
+:NP001000P
 	rdf:type th:ManagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Name"^^xsd:string ;
-	isoT:hasState <http://www.s-cubed.dk/NP001000P/V1#RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP001000P/V1#SI> ;
+	isoT:hasState :NP001000P_RS ;
+	isoT:hasIdentifier :NP001000P_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-04-24T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-24T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:creationDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier ""^^xsd:string ;
+	th:identifier "NP001000P"^^xsd:string ;
 	th:notation "MFES01TN"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 test name."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010000C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010001C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010002C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010003C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010004C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010005C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010006C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010007C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010008C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010009C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010010C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010011C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010012C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010013C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010014C> ;
-	th:narrower <http://www.s-cubed.dk/NP001000P/V1#NC00010015C> ;
+	th:narrower :NP001000P_NC00010000C ;
+	th:narrower :NP001000P_NC00010001C ;
+	th:narrower :NP001000P_NC00010002C ;
+	th:narrower :NP001000P_NC00010003C ;
+	th:narrower :NP001000P_NC00010004C ;
+	th:narrower :NP001000P_NC00010005C ;
+	th:narrower :NP001000P_NC00010006C ;
+	th:narrower :NP001000P_NC00010007C ;
+	th:narrower :NP001000P_NC00010008C ;
+	th:narrower :NP001000P_NC00010009C ;
+	th:narrower :NP001000P_NC00010010C ;
+	th:narrower :NP001000P_NC00010011C ;
+	th:narrower :NP001000P_NC00010012C ;
+	th:narrower :NP001000P_NC00010013C ;
+	th:narrower :NP001000P_NC00010014C ;
+	th:narrower :NP001000P_NC00010015C ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e156b404592ad11ee3dd3084c141fc2b36a5710a> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#RS>
+:NP001000P_RS
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -57,7 +57,7 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#SI>
+:NP001000P_SI
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "NP001000P"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
@@ -65,7 +65,7 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010000C>
+:NP001000P_NC00010000C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0"^^xsd:string ;
 	th:identifier "NC00010000C"^^xsd:string ;
@@ -78,7 +78,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010001C>
+:NP001000P_NC00010001C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Prepare a simple meal"^^xsd:string ;
 	th:identifier "NC00010001C"^^xsd:string ;
@@ -91,7 +91,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Prepare a simple meal"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010002C>
+:NP001000P_NC00010002C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Take a bath or a shower"^^xsd:string ;
 	th:identifier "NC00010002C"^^xsd:string ;
@@ -104,7 +104,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Take a bath or a shower"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010003C>
+:NP001000P_NC00010003C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Get in/out of a chair"^^xsd:string ;
 	th:identifier "NC00010003C"^^xsd:string ;
@@ -117,7 +117,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Get in/out of a chair"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010004C>
+:NP001000P_NC00010004C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Get in/out of bed"^^xsd:string ;
 	th:identifier "NC00010004C"^^xsd:string ;
@@ -130,7 +130,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Get in/out of bed"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010005C>
+:NP001000P_NC00010005C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Answer the door or telephone"^^xsd:string ;
 	th:identifier "NC00010005C"^^xsd:string ;
@@ -143,7 +143,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Answer the door or telephone"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010006C>
+:NP001000P_NC00010006C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Walk around the inside of your house"^^xsd:string ;
 	th:identifier "NC00010006C"^^xsd:string ;
@@ -156,7 +156,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Walk around the inside of your house"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010007C>
+:NP001000P_NC00010007C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reach into cabinets or closet"^^xsd:string ;
 	th:identifier "NC00010007C"^^xsd:string ;
@@ -169,7 +169,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Reach into cabinets or closet"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010008C>
+:NP001000P_NC00010008C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Light housekeeping"^^xsd:string ;
 	th:identifier "NC00010008C"^^xsd:string ;
@@ -182,7 +182,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Light housekeeping"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010009C>
+:NP001000P_NC00010009C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Simple shopping"^^xsd:string ;
 	th:identifier "NC00010009C"^^xsd:string ;
@@ -195,7 +195,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Simple shopping"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010010C>
+:NP001000P_NC00010010C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Using public transport"^^xsd:string ;
 	th:identifier "NC00010010C"^^xsd:string ;
@@ -208,7 +208,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Using public transport"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010011C>
+:NP001000P_NC00010011C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Crossing roads"^^xsd:string ;
 	th:identifier "NC00010011C"^^xsd:string ;
@@ -221,7 +221,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Crossing roads"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010012C>
+:NP001000P_NC00010012C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Light gardening or hanging out the washing"^^xsd:string ;
 	th:identifier "NC00010012C"^^xsd:string ;
@@ -234,7 +234,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Light gardening or hanging out the washing"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010013C>
+:NP001000P_NC00010013C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Using front or rear steps at home"^^xsd:string ;
 	th:identifier "NC00010013C"^^xsd:string ;
@@ -247,7 +247,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Using front or rear steps at home"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010014C>
+:NP001000P_NC00010014C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
 	th:identifier "NC00010014C"^^xsd:string ;
@@ -260,7 +260,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001000P/V1#NC00010015C>
+:NP001000P_NC00010015C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Average"^^xsd:string ;
 	th:identifier "NC00010015C"^^xsd:string ;
@@ -277,39 +277,39 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Name"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Code"^^xsd:string ;
-	isoT:hasState <http://www.s-cubed.dk/NP001001P/V1#RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP001001P/V1#SI> ;
+	isoT:hasState <http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-04-24T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-24T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:creationDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-28T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier ""^^xsd:string ;
+	th:identifier "NP001001P"^^xsd:string ;
 	th:notation "MFES01TC"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 test code."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010016C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010017C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010018C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010019C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010020C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010021C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010022C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010023C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010024C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010025C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010026C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010027C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010028C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010029C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010030C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NC00010031C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010016C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010017C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010018C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010019C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010020C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010021C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010022C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010023C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010024C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010025C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010026C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010027C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010028C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010029C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010030C> ;
+	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010031C> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8c953fc8887cc7f86dfbb692f4f1c18bec47db8b> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#RS>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -321,7 +321,7 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#SI>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "NP001001P"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
@@ -329,7 +329,7 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010016C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010016C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get Dressed and Undressed"^^xsd:string ;
 	th:identifier "NC00010016C"^^xsd:string ;
@@ -342,7 +342,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Get Dressed and Undressed"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010017C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010017C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Prepare a Simple Meal"^^xsd:string ;
 	th:identifier "NC00010017C"^^xsd:string ;
@@ -355,7 +355,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Prepare a Simple Meal"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010018C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010018C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Take a Bath or a Shower"^^xsd:string ;
 	th:identifier "NC00010018C"^^xsd:string ;
@@ -368,7 +368,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Take a Bath or a Shower"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010019C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010019C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get In/Out of a Chair"^^xsd:string ;
 	th:identifier "NC00010019C"^^xsd:string ;
@@ -381,7 +381,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Get In/Out of a Chair"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010020C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010020C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get In/Out of Bed"^^xsd:string ;
 	th:identifier "NC00010020C"^^xsd:string ;
@@ -394,7 +394,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Get In/Out of Bed"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010021C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010021C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Answer the Door or Telephone"^^xsd:string ;
 	th:identifier "NC00010021C"^^xsd:string ;
@@ -407,7 +407,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Answer the Door or Telephone"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010022C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010022C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Walk Around Inside Your House"^^xsd:string ;
 	th:identifier "NC00010022C"^^xsd:string ;
@@ -420,7 +420,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Walk Around Inside Your House"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010023C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010023C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
 	th:identifier "NC00010023C"^^xsd:string ;
@@ -433,7 +433,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010024C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010024C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Light Housekeeping"^^xsd:string ;
 	th:identifier "NC00010024C"^^xsd:string ;
@@ -446,7 +446,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Light Housekeeping"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010025C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010025C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Simple Shopping"^^xsd:string ;
 	th:identifier "NC00010025C"^^xsd:string ;
@@ -459,7 +459,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Simple Shopping"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010026C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010026C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Using Public Transport"^^xsd:string ;
 	th:identifier "NC00010026C"^^xsd:string ;
@@ -472,7 +472,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Using Public Transport"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010027C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010027C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Crossing Roads"^^xsd:string ;
 	th:identifier "NC00010027C"^^xsd:string ;
@@ -485,7 +485,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Crossing Roads"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010028C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010028C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
 	th:identifier "NC00010028C"^^xsd:string ;
@@ -498,7 +498,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010029C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010029C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
 	th:identifier "NC00010029C"^^xsd:string ;
@@ -511,7 +511,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010030C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010030C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
 	th:identifier "NC00010030C"^^xsd:string ;
@@ -520,7 +520,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NC00010031C>
+<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010031C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Average"^^xsd:string ;
 	th:identifier "NC00010031C"^^xsd:string ;

@@ -69,6 +69,7 @@ class Import::SponsorTermFormatTwo < Import
   # @return [Void] no return
   def save_load_file(objects)
     sparql = Sparql::Update.new()
+    sparql.default_namespace(objects[:managed_children].first.uri.namespace)
     objects[:managed_children].each do |c|
       c.to_sparql(sparql, true)
     end
@@ -96,17 +97,19 @@ private
     filtered = []
     date = Time.now.strftime('%Y-%m-%d')
     @parent_set.each do |key, parent|
-      child_amendments(parent)
-      parent.set_import(identifier: Thesaurus::ManagedConcept.new_identifier, label: parent.label,
+      parent_child_tweaks(parent)
+      parent.set_import(identifier: parent.identifier, label: parent.label,
         semantic_version: SemanticVersion.first, version_label: "",
         version: IsoScopedIdentifierV2.first_version, date: date, ordinal: ordinal)
       filtered << parent
       ordinal += 1
     end
+    self.errors.add(:base, "Did not find any items to import") if filtered.empty?
     {parent: self, managed_children: filtered, tags: []}
   end
 
-  def child_amendments(parent)
+  def parent_child_tweaks(parent)
+    parent.identifier = Thesaurus::ManagedConcept.new_identifier
     parent.narrower.each do |c|
       c.identifier = Thesaurus::UnmanagedConcept.new_identifier
       c.label = c.preferred_term.label
