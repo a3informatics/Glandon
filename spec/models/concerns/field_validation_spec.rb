@@ -466,7 +466,7 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
-  it "checks an invalid label, @" do
+  it "checks an invalid label, ±" do
     object = IsoConcept.new
     expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()±", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")

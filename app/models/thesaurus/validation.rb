@@ -17,8 +17,21 @@ class Thesaurus
       valid1 && valid2
     end
 
+    # Valid Children? Check that the children are valid in the context of the parent item.
+    #
+    # @return [Boolean] true if valid, false otherwise
+    def valid_children?
+      nt = self.narrower.map{|x| x.notation}.find_all_duplicates
+      pt = self.narrower.map{|x| x.preferred_term.label}.find_all_duplicates
+      return true if nt.empty? && pt.empty?
+      self.errors.add(:notation, "duplicates detected #{nt.map{|x| "'#{x}'"}.join(", ")}") if nt.any?
+      self.errors.add(:preferred_term, "duplicates detected #{pt.map{|x| "'#{x}'"}.join(", ")}") if pt.any?
+      false
+    end
+
 private
 
+    #
     # Duplicate Notation?
     def duplicate_notation?(child)
       return false unless notations(child).include?(child.notation)

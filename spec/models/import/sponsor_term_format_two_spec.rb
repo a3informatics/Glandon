@@ -96,6 +96,19 @@ describe "Import::SponsorTermFormatTwo" do
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, no errors, version 1, errors" do
+    full_path = test_file_path(sub_dir, "import_input_3.xlsx")
+    params = {files: [full_path], job: @job}
+    result = @object.import(params)
+    filename = "sponsor_term_format_two_#{@object.id}_errors.yml"
+    public_file_exists?("test", filename)
+    actual = read_public_yaml_file("test", filename)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_errors_expected_3.yaml")
+    check_file_actual_expected(actual, sub_dir, "import_errors_expected_3.yaml")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
   it "import, exception" do
     expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")

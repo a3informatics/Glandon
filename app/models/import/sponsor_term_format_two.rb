@@ -98,9 +98,8 @@ private
     date = Time.now.strftime('%Y-%m-%d')
     @parent_set.each do |key, parent|
       parent_child_tweaks(parent)
-      parent.set_import(identifier: parent.identifier, label: parent.label,
-        semantic_version: SemanticVersion.first, version_label: "",
-        version: IsoScopedIdentifierV2.first_version, date: date, ordinal: ordinal)
+      parent.set_initial(parent.identifier)
+      parent_child_valid?(parent)
       filtered << parent
       ordinal += 1
     end
@@ -108,12 +107,32 @@ private
     {parent: self, managed_children: filtered, tags: []}
   end
 
+  # Tweak parent and child. Set identifiers and labels
   def parent_child_tweaks(parent)
     parent.identifier = Thesaurus::ManagedConcept.new_identifier
     parent.narrower.each do |c|
       c.identifier = Thesaurus::UnmanagedConcept.new_identifier
       c.label = c.preferred_term.label
     end
+  end
+
+  # Check valid
+  def parent_child_valid?(parent)
+    result = true
+    parent.narrower.each do |c| 
+      next if c.valid?
+      result = false
+      merge_errors(c, parent)
+    end
+    result = result && parent.valid? # Parent valid
+    result = result && parent.valid_children? # Parent valid
+    result
+  end
+
+  # Merge errors
+  def merge_errors(from, to)
+    return if from.errors.empty?
+    from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.identifier}: #{msg}"}
   end
 
 end
