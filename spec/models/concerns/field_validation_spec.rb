@@ -575,14 +575,8 @@ describe FieldValidation do
 
   it "checks valid file, xxx" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_files?(:test, "xxx", object)).to eq(true)
+    expect(FieldValidation.valid_files?(:test, ["xxx"], object)).to eq(true)
     expect(object.errors.count).to eq(0)
-  end
-
-  it "checks an invalid file, \"\"" do
-    object = IsoConcept.new
-    expect(FieldValidation.valid_files?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
   end
 
   it "checks an invalid file, nil" do
@@ -595,6 +589,30 @@ describe FieldValidation do
     object = IsoConcept.new
     expect(FieldValidation.valid_files?(:test, [], object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
+  end
+
+  it "checks valid file, xxx" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, ["xxx"], object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks invalid file, xxx, yyy" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, ["xxx", "yyy"], object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test more than one file is specified")
+  end
+
+  it "checks an invalid file, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, no file specified")
+  end
+
+  it "checks an invalid file, []" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, [], object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, no file specified")
   end
 
   it "checks for a date time" do

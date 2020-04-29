@@ -407,7 +407,7 @@ module FieldValidation
   # Valid Files
   #
   # @param symbol [String] The item being checked
-  # @param value [String] The value being checked
+  # @param value [Array] The array being checked
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_files?(symbol, value, object)
@@ -419,7 +419,25 @@ module FieldValidation
     end
   end
 
-    # Valid Generic URI
+  # Valid File
+  #
+  # @param symbol [String] The item being checked
+  # @param value [Array] The array being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_file?(symbol, value, object)
+    if value.blank? 
+      object.errors.add(symbol, "is empty, no file specified")
+      return false
+    elsif value.count > 1 
+      object.errors.add(symbol, "more than one file is specified")
+      return false
+    else
+      return true
+    end
+  end
+
+  # Valid Generic URI
   #
   # @param symbol [String] The item being checked
   # @param value [String] The value being checked

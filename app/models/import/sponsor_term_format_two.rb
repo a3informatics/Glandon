@@ -20,10 +20,12 @@ class Import::SponsorTermFormatTwo < Import
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
+    #params[:job].running("Running ...", 0)
     @tags = []
     @parent_set = {}
     readers = read_all_sources(params)
     merge_reader_data(readers)
+    #params[:job].running("File loaded", 50)
     objects = self.errors.empty? ? process_results : {parent: self, managed_children: []}
     object_errors?(objects) ? save_error_file(objects) : save_load_file(objects)
     # @todo we need to unlock the import.
@@ -48,6 +50,18 @@ class Import::SponsorTermFormatTwo < Import
       version_label: :date,
       label: "Controlled Terminology"
     }
+  end
+
+  # Raw Params Valid. Check the import parameters.
+  #
+  # @params [Hash] params a hash of parameters
+  # @option params [String] :type the import type
+  # @option params [String] :files, at least one file
+  # @return [Errors] active record errors class
+  def self.params_valid?(params)
+    object = self.new
+    FieldValidation::valid_file?(:files, params[:files], object) if !self.api?(params)
+    return object
   end
 
   # Get the format
@@ -122,7 +136,7 @@ private
     parent.narrower.each do |c| 
       next if c.valid?
       result = false
-      merge_errors(c, parent)
+      merge_child_errors(c, parent)
     end
     result = result && parent.valid? # Parent valid
     result = result && parent.valid_children? # Parent valid
@@ -130,7 +144,7 @@ private
   end
 
   # Merge errors
-  def merge_errors(from, to)
+  def merge_child_errors(from, to)
     return if from.errors.empty?
     from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.identifier}: #{msg}"}
   end

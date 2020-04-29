@@ -57,6 +57,14 @@ describe Imports::SponsorTermFormatTwoController do
       expect(response.body).to eq("{\"data\":[]}")
     end
 
+    it "create, json request, multiple files" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/something'
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :create, {imports: {identifier: "AAA", files: [@file_1, @file_2]}}
+      expect(response).to redirect_to("/something")
+      expect(flash[:error]).to match(/Files more than one file is specified/)
+    end
+
     it "create, http request" do
       id = 1
       expect_any_instance_of(Import::SponsorTermFormatTwo).to receive(:create) do |arg|
@@ -65,6 +73,13 @@ describe Imports::SponsorTermFormatTwoController do
       end
       post :create, {imports: {identifier: "AAA", files: [@file_1]}}
       expect(response).to redirect_to(import_path(id))
+    end
+
+    it "create, http request, multiple files" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/something'
+      post :create, {imports: {identifier: "AAA", files: [@file_1, @file_2]}}
+      expect(response).to redirect_to("/something")
+      expect(flash[:error]).to match(/Files more than one file is specified/)
     end
 
   end
