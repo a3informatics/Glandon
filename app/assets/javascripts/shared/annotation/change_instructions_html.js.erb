@@ -15,17 +15,25 @@ function CIHtml() { }
  * Generates HTML for a single Change Instruction (index)
  *
  * @param data [Object] Change Instruction data object
+ * @param editable [Boolean] true if should render edit and remove buttons
  * @return [String] formatted HTML
  */
 CIHtml.prototype.changeInstruction = function (data) {
+  var cdiscOwned = data.owner.toLowerCase() == "cdisc";
   var html = "";
 
-  html += "<div class='change-instruction shadow-small' data-id='"+data.id+"'>";
+  html += "<div class='change-instruction shadow-small " + (cdiscOwned ? "cdisc" : "") + "' data-id='"+data.id+"'>";
   html +=   "<div class='ci-header'>";
   html +=     "<div class='icon-instruction text-link text-large'></div>";
-  html +=     "<div class='actions'><a href='"+data.edit_path+"' class='icon-edit text-link'></a>" +
-                "<a href='#' class='icon-trash text-accent-2'></a></div>";
-  html +=   "</div>";
+  html +=  "<div class='actions'>"
+
+  if (data.edit)
+    html +=    "<a href='"+data.edit_path+"' class='icon-edit text-link'></a>" +
+                "<a href='#' class='icon-trash text-accent-2'></a>";
+  else if(cdiscOwned)
+    html +=    "<i>Owned by CDISC</i>";
+
+  html +=   "</div></div>";
   html +=   "<div class='ci-body'>";
   html +=     "<div>Reference: " +
                 (data.reference == "" ? "Not set" : data.reference) + "</div>";

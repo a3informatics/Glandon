@@ -45,7 +45,6 @@ function CIEditor() {
 CIEditor.prototype.setListeners = function () {
   $(".change-instruction").on("focusin focusout", ".content-editable", this.onContentEdit.bind(this));
   $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
-  $(".change-instruction").on("click", "#save-ci", this.save.bind(this));
   $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
   $(".change-instruction").on("click", ".add-links", this.openSelector.bind(this));
   $(".change-instruction").on("click", ".removable", this.destroyLink.bind(this));
@@ -114,7 +113,6 @@ CIEditor.prototype.save = function () {
       }
     },
     callback: function(result) {
-      this.setSaveable(false);
       this.processing(false);
       this.success();
     }.bind(this)
@@ -265,7 +263,6 @@ CIEditor.prototype.clear = function () {
   $("#reference").text("");
   $("#description").text("");
   $(".items-list").empty();
-  this.setSaveable(false);
 }
 
 /**
@@ -310,16 +307,6 @@ CIEditor.prototype.handleEmptyLists = function () {
     if ($(this).html() == "")
       $(this).html("<div class='text-small text-light'><i>Empty</i></div>");
   });
-}
-
-/**
- * Change saveable state enabled / disabled
- *
- * @param canSave [Boolean] true if should enable save button
- * @return [void]
- */
-CIEditor.prototype.setSaveable = function (canSave) {
-  $("#save-ci").toggleClass("disabled", !canSave);
 }
 
 /**
