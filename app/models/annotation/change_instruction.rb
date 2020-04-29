@@ -65,8 +65,11 @@ SELECT ?r ?parent ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type 
 {         
   #{self.uri.to_ref} ba:description ?desc .           
   #{self.uri.to_ref} ba:reference ?reference .         
-  #{self.uri.to_ref} ba:byAuthority/isoR:raNamespace/isoI:shortName ?owner .         
-  BIND ( EXISTS {#{self.uri.to_ref} ba:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}} as ?edit)
+  OPTIONAL 
+  {
+    #{self.uri.to_ref} ba:byAuthority/isoR:raNamespace/isoI:shortName ?owner .         
+    BIND ( EXISTS {#{self.uri.to_ref} ba:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}} as ?edit)
+  }
   OPTIONAL 
   {
     {             
