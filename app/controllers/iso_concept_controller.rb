@@ -151,15 +151,26 @@ private
         next if type == :edit
         content.each do |ref|
           if !ref.key?(:child)
-            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: {context_id: ""}})
+            object = Thesaurus::ManagedConcept.find_with_properties(ref[:parent][:id])
+            ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: {context_id: latest_parent(object)}})
           else
+            object = Thesaurus::ManagedConcept.find_with_properties(ref[:parent][:id])
             uc_params = link_params
+            if uc_params.empty?
+              uc_params[:context_id] = latest_parent(object)
+            end
             uc_params[:parent_id] = ref[:parent][:id]
             ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:child][:id], unmanaged_concept: uc_params})
           end
         end
       end
     end
+  end
+
+  def latest_parent(object)
+    object.current_and_latest_parent.last[:uri].to_id
+  rescue => e
+    return ""
   end
 
   def link_params
