@@ -5,7 +5,8 @@
 <%= stylesheet_link_tag 'shared/annotations', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'shared/annotation/change_instructions_modal', 'shared/annotation/change_instructions_html' %>
 <%= javascript_tag "var listCIsUrl = '#{change_instructions_iso_concept_path(id: item_id)}',
-                        ciBaseUrl = '#{annotations_change_instructions_path}';" %>
+                        ciBaseUrl = '#{annotations_change_instructions_path}',
+                        ciCanEdit = #{local_assigns.fetch(:can_edit, false)};" %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="change-instructions-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
@@ -25,10 +26,12 @@
               <tbody></tbody>
             </table>
           <hr/>
-          <button class="btn medium green" id="add-ci-button">
-            + Create new
-          </button>
-          <div class="text-small"><i> A blank Change Instruction will be created. It will not be attached to this item by default.</i></div>
+          <% if local_assigns.fetch(:can_edit , false) %>
+            <button class="btn medium green" id="add-ci-button">
+              + Create new
+            </button>
+            <div class="text-small"><i> A blank Change Instruction will be created. It will not be attached to this item by default.</i></div>
+          <% end %>
         </center>
       </div>
       <div class="modal-footer">

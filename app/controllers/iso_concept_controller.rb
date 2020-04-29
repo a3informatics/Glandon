@@ -147,6 +147,8 @@ private
         next if type == :description
         next if type == :edit_path
         next if type == :destroy_path
+        next if type == :owner
+        next if type == :edit
         content.each do |ref|
           if !ref.key?(:child)
             ref[:show_path] = thesauri_managed_concept_path({id: ref[:parent][:id], managed_concept: {context_id: ""}})

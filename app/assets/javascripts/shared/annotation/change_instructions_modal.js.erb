@@ -13,6 +13,7 @@ $(document).ready(function() {
 * @return [void]
 */
 function CIListModal() {
+ this.canUserEdit = ciCanEdit;
  this.modal = $("#change-instructions-modal");
  this.errorDiv = this.modal.find("#change-instructions-error");
  this.htmlHelper = new CIHtml();
@@ -34,8 +35,11 @@ function CIListModal() {
  */
 CIListModal.prototype.setListeners = function () {
   this.modal.on("shown.bs.modal", function() { if (!this.ready) this.loadData(); }.bind(this));
-  this.modal.find("#change-instructions-table tbody").on("click", ".icon-trash", this.destroy.bind(this, true));
-  this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
+
+  if (this.canEdit) {
+    this.modal.find("#change-instructions-table tbody").on("click", ".icon-trash", this.destroy.bind(this, true));
+    this.modal.find("#add-ci-button").on("click", this.createNew.bind(this));
+  }
 }
 
 /**
@@ -73,7 +77,6 @@ CIListModal.prototype.loadData = function () {
     type: "GET",
     withTable: true,
     callback: function (result) {
-      console.log(result)
       $.each(result.data, function(i, item){
         this.table.row.add(item);
       }.bind(this));
@@ -136,6 +139,16 @@ CIListModal.prototype.destroy = function (confirm, e) {
 
 
 /**
+ * Checks if user policy annotation edit allowed and if the instance can be edited
+ *
+ * @param rowData [Object] CI data object
+ * @return [Boolean] edit allowed / not allowed
+ */
+CIListModal.prototype.canEdit = function(rowData) {
+  return this.canUserEdit && rowData.edit;
+}
+
+/**
  * Enables / disables processing state
  *
  * @param enable [Boolean] enable / disable - true / false
@@ -160,6 +173,7 @@ CIListModal.prototype.column = function() {
       data: "id",
       orderable: false,
       render: function (data, type, row, meta) {
+        row.edit = this.canEdit(row);
         return (type == "display" ? this.htmlHelper.changeInstruction(row) : "");
       }.bind(this)
     }];

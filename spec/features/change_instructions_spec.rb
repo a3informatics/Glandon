@@ -36,7 +36,7 @@ describe "Change Instructions", :type => :feature do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_v47.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..60)
     NameValue.destroy_all
@@ -122,7 +122,7 @@ describe "Change Instructions", :type => :feature do
       wait_for_ajax 10
       check_no_errors
       fill_in_field("description", "Description of the Change Instruction")
-      find("#save-ci").click
+      find('#description').native.send_keys(:return)
       wait_for_ajax 10
       check_no_errors
 
@@ -281,10 +281,12 @@ describe "Change Instructions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C128683')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 5, "56.0.0", :show)
-      wait_for_ajax(20)
+      wait_for_ajax(10)
+      find(:xpath, "//tr[contains(.,'C85754')]/td/a").click
+      wait_for_ajax(10)
       context_menu_element_header(:change_instructions)
       in_modal do
-        expect(page).to have_content("Change Instructions for C128683")
+        expect(page).to have_content("Change Instructions for C85754")
         expect(page).to have_content("No Change Instructions were found.")
         click_button "Close"
       end
@@ -326,6 +328,66 @@ describe "Change Instructions", :type => :feature do
       context_menu_element_header(:change_instructions)
       in_modal do
         check_link("current", "icon-codelist-item", "nmol/kg")
+        click_on "Close"
+      end
+    end
+
+    it "allows to display CDISC change instruction, edit disabled (REQ-MDR-PT-020)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax 20
+      ui_table_search("history", "2016-03-25")
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      wait_for_ajax 20
+      ui_child_search("C67154")
+      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
+      wait_for_ajax 20
+      ui_child_search("C125949")
+      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        expect(page).to have_content "This concept will replace C61019"
+        check_link("previous", "icon-codelist-item", "Blood Urea Nitrogen (C61019)")
+        check_link("current", "icon-codelist-item", "Urea Nitrogen (C125949)")
+        expect(find("#change-instructions-modal")).not_to have_css(".icon-edit")
+        expect(find("#change-instructions-modal")).not_to have_css(".icon-times")
+        find(:xpath, "//a[contains(.,'Blood Urea Nitrogen (C61019)')]").click
+      end
+      wait_for_ajax 10
+      expect(page).to have_content "A measurement of the urea nitrogen in a blood specimen."
+    end
+
+  end
+
+  describe "Community User, read-only", :type => :feature do
+
+    before :each do
+      ua_community_reader_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows to display CDISC change instruction, create and edit disabled", js:true do
+      click_browse_every_version
+      wait_for_ajax 20
+      ui_table_search("history", "2016-03-25")
+      context_menu_element('history', 5, '2016-03-25 Release', :show)
+      wait_for_ajax 20
+      ui_child_search("C67154")
+      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
+      wait_for_ajax 20
+      ui_child_search("C125949")
+      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        expect(page).to have_content "This concept will replace C61019"
+        check_link("previous", "icon-codelist-item", "Blood Urea Nitrogen (C61019)")
+        check_link("current", "icon-codelist-item", "Urea Nitrogen (C125949)")
+        expect(find("#change-instructions-modal")).not_to have_css(".icon-edit")
+        expect(find("#change-instructions-modal")).not_to have_css(".icon-times")
+        # expect(find("#change-instructions-modal")).to have_content("Owned by CDISC")
+        expect(page).not_to have_css("#add-ci-button")
         click_on "Close"
       end
     end
