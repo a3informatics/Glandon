@@ -21,6 +21,8 @@ class Import::SponsorTermFormatTwo < Import
   # @return [Void] no return value
   def import(params)
     #params[:job].running("Running ...", 0)
+    @parent_identifier = 1
+    @child_identifier = 1
     @tags = []
     @parent_set = {}
     readers = read_all_sources(params)
@@ -107,27 +109,80 @@ private
 
   # Process the results
   def process_results
-    ordinal = 1
+    results = validation_pass
+    return results if failed_validation?(results)
+    final_pass
+  end
+
+  # Process the results
+  def validation_pass
+    return {parent: self, managed_children: [], tags: []} if empty_set?
     filtered = []
-    date = Time.now.strftime('%Y-%m-%d')
     @parent_set.each do |key, parent|
-      parent_child_tweaks(parent)
+      parent_child_tweaks(parent, false)
       parent.set_initial(parent.identifier)
       parent_child_valid?(parent)
       filtered << parent
-      ordinal += 1
     end
-    self.errors.add(:base, "Did not find any items to import") if filtered.empty?
+    {parent: self, managed_children: filtered, tags: []}
+  end
+
+  # Empty set, i.e. nothing to process
+  def empty_set?
+    return false if @parent_set.any?
+    self.errors.add(:base, "Did not find any items to import")
+    true
+  end
+    
+  # Empty set, i.e. nothing to process
+  def failed_validation?(results)
+    return true if results[:parent].errors.any?
+    results[:managed_children].each {|x| return true if x.errors.any?}
+    false
+  end
+    
+  # Process the results
+  def final_pass
+    filtered = []
+    @parent_set.each do |key, parent|
+      parent_child_tweaks(parent)
+      parent.set_initial(parent.identifier)
+      filtered << parent
+    end
     {parent: self, managed_children: filtered, tags: []}
   end
 
   # Tweak parent and child. Set identifiers and labels
-  def parent_child_tweaks(parent)
-    parent.identifier = Thesaurus::ManagedConcept.new_identifier
+  def parent_child_tweaks(parent, final_pass=true)
+    parent.identifier = parent_identifier(parent.identifier, final_pass) 
     parent.narrower.each do |c|
-      c.identifier = Thesaurus::UnmanagedConcept.new_identifier
+      c.identifier = child_identifier(c.identifier, final_pass) 
       c.label = c.preferred_term.label
     end
+  end
+
+  # Parent Identifier
+  def parent_identifier(identifier, final_pass=true)
+    final_pass && self.auto_load ? Thesaurus::ManagedConcept.new_identifier : local_parent_identifier(identifier)
+  end
+
+  # Child Identifier
+  def child_identifier(identifier, final_pass=true)
+    final_pass && self.auto_load ? Thesaurus::UnmanagedConcept.new_identifier : local_child_identifier(identifier)
+  end
+
+  # Local Parent Identifier
+  def local_parent_identifier(identifier)
+    return identifier unless identifier.blank?
+    @parent_identifier += 1
+    "P#{@parent_identifier}"
+  end
+
+  # Local Child Identifier
+  def local_child_identifier(identifier)
+    return identifier unless identifier.blank?
+    @child_identifier += 1
+    "C#{@child_identifier}"
   end
 
   # Check valid
