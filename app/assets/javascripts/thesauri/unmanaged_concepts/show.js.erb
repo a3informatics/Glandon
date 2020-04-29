@@ -1,8 +1,8 @@
 $(document).ready( function() {
-  var lp = new LinksPanel(syn_url, syn_panel_id, syn_panel_title);
-  var pp = new LinksPanel(pt_url, pt_panel_id, pt_panel_title);
-  var ci = new CiPanel(ci_url, ci_panel_id, ci_panel_title);
-  if (url_path !== "") {
+  var synonymsPanel = new LinksPanel(synonymsUrl, "synonyms-panel", "Shared Synonyms");
+  var ptsPanel = new LinksPanel(ptsUrl, "pts-panel", "Shared Preferred Terms");
+
+  if (childrenUrl !== "") {
     var columns = [
       {"data" : "identifier"},
       {"data" : "notation"},
@@ -11,6 +11,6 @@ $(document).ready( function() {
       {"data" : "extensible"},
       {"data" : "definition"}
     ];
-    var cp = new ChildrenPanel(url_path, 20, columns);
+    var cp = new ChildrenPanel(childrenUrl, 20, columns);
   }
 });
