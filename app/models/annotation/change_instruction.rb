@@ -58,174 +58,104 @@ class Annotation::ChangeInstruction < Annotation
   # Get data. 
   #
   # @return [Annotation::ChangeInstruction] the change instruction and the associated references
-  # def get_data
-  #     results = {id: nil, reference: nil, description: nil, previous: [], current: []}
-  #     query_string = %Q{
-  #     SELECT ?r ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE
-  #     {
-  #       #{self.uri.to_ref} ba:description ?desc .
-  #       #{self.uri.to_ref} ba:reference ?reference .
-  #       OPTIONAL {
-  #         {
-  #           #{self.uri.to_ref} (ba:current/bo:reference) ?r .
-  #           BIND ("current" as ?t)
-  #         } UNION
-  #         {
-  #           #{self.uri.to_ref} (ba:previous/bo:reference) ?r .
-  #           BIND ("previous" as ?t)
-  #         }
-  #         OPTIONAL {
-  #           ?r rdf:type th:ManagedConcept .
-  #           ?r rdf:type ?rdf_type .
-  #           ?r th:notation ?p_n .
-  #           ?r th:identifier ?p_id .
-  #           ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
-  #            BIND ("ManagedConcept" as ?type)
-  #         }
-  #         OPTIONAL {
-  #           ?r rdf:type th:UnmanagedConcept .
-  #           ?r rdf:type ?rdf_type .
-  #           ?r th:identifier ?c_id .
-  #           ?r th:notation ?c_n .
-  #           BIND ("UnmanagedConcept" as ?type)
-  #           ?r ^th:narrower ?parent .
-  #           ?parent th:notation ?p_n .
-  #           ?parent th:identifier ?p_id .
-  #           ?parent isoT:hasIdentifier/isoI:version ?v.
-  #           ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
-  #           {
-  #             SELECT (max(?lv) AS ?v) WHERE
-  #                 {
-  #                   #{self.uri.to_ref} (ba:current/bo:reference) ?r.
-  #                   ?r ^th:narrower ?par .
-  #                   ?par isoT:hasIdentifier/isoI:version ?lv.
-  #                 } 
-  #           }
-  #         }
-  #         OPTIONAL {
-  #           ?r rdf:type th:Thesaurus .
-  #           ?r rdf:type ?rdf_type .
-  #           ?r isoT:hasIdentifier/isoI:identifier ?p_id .
-  #           ?r isoC:label ?p_n .
-  #           ?r isoT:hasIdentifier/isoI:semanticVersion ?sv
-  #           BIND ("Thesaurus" as ?type)
-  #         }
-  #       }
-  #     }}
-  #     query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
-  #     triples = query_results.by_object_set([:r, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type])
-  #     triples.each do |x|
-  #       results[:description] = x[:desc] if results[:description].nil?
-  #       results[:reference] = x[:reference] if results[:reference].nil?
-  #       results[:id] = self.uri.to_id if results[:id].nil?
-  #       case x[:type].to_sym
-  #         when :ManagedConcept
-  #           results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
-  #         when :UnmanagedConcept
-  #           results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
-  #         # when :Thesaurus
-  #         #   results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], label: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
-  #       end
-  #     end
-  #     results
-  # end
-
-    # Get data. 
-  #
-  # @return [Annotation::ChangeInstruction] the change instruction and the associated references
   def get_data
-      results = {id: nil, reference: nil, description: nil, previous: [], current: []}
-      query_string = %Q{
-          
-SELECT ?r ?parent ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type WHERE       
+    results = {id: nil, reference: nil, description: nil, previous: [], current: []}
+    query_string = %Q{         
+SELECT ?r ?parent ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type ?owner ?edit WHERE       
 {         
- #{self.uri.to_ref} ba:description ?desc .           
- #{self.uri.to_ref} ba:reference ?reference .         
-  OPTIONAL {
+  #{self.uri.to_ref} ba:description ?desc .           
+  #{self.uri.to_ref} ba:reference ?reference .         
+  #{self.uri.to_ref} ba:byAuthority/isoR:raNamespace/isoI:shortName ?owner .         
+  BIND ( EXISTS {#{self.uri.to_ref} ba:byAuthority #{IsoRegistrationAuthority.owner.uri.to_ref}} as ?edit)
+  OPTIONAL 
+  {
     {             
       #{self.uri.to_ref} (ba:current/bo:reference) ?r .             
       BIND ("current" as ?t)
-      OPTIONAL {             
-      ?r rdf:type th:ManagedConcept .             
-      ?r rdf:type ?rdf_type .             
-      ?r th:notation ?p_n .             
-      ?r th:identifier ?p_id .             
-      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv              
-      BIND ("ManagedConcept" as ?type)           
-    }           
-    OPTIONAL {             
-      ?r rdf:type th:UnmanagedConcept .             
-      ?r rdf:type ?rdf_type .             
-      ?r th:identifier ?c_id .             
-      ?r th:notation ?c_n .             
-      BIND ("UnmanagedConcept" as ?type)             
-      ?r ^th:narrower ?parent .             
-      ?parent th:notation ?p_n .             
-      ?parent th:identifier ?p_id .             
-      ?parent isoT:hasIdentifier/isoI:version ?v.             
-      ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
-      {
-              SELECT (max(?lv) AS ?v) WHERE
-                  {
-                #{self.uri.to_ref} (ba:current/bo:reference) ?r.
-                ?r ^th:narrower ?par .
-                    ?par isoT:hasIdentifier/isoI:version ?lv.
-                  } 
-            }
-              
-    }
+      OPTIONAL 
+      {             
+        ?r rdf:type th:ManagedConcept .             
+        ?r rdf:type ?rdf_type .             
+        ?r th:notation ?p_n .             
+        ?r th:identifier ?p_id .             
+        ?r isoT:hasIdentifier/isoI:semanticVersion ?sv              
+        BIND ("ManagedConcept" as ?type)           
+      }           
+      OPTIONAL 
+      {             
+        ?r rdf:type th:UnmanagedConcept .             
+        ?r rdf:type ?rdf_type .             
+        ?r th:identifier ?c_id .             
+        ?r th:notation ?c_n .             
+        BIND ("UnmanagedConcept" as ?type)             
+        ?r ^th:narrower ?parent .             
+        ?parent th:notation ?p_n .             
+        ?parent th:identifier ?p_id .             
+        ?parent isoT:hasIdentifier/isoI:version ?v.             
+        ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
+        {
+          SELECT (max(?lv) AS ?v) WHERE
+          {
+            #{self.uri.to_ref} (ba:current/bo:reference) ?r.
+            ?r ^th:narrower ?par .
+            ?par isoT:hasIdentifier/isoI:version ?lv.
+          } 
+        }        
+      }
     } 
-    UNION           {             
+    UNION           
+    {             
       #{self.uri.to_ref} (ba:previous/bo:reference) ?r .             
       BIND ("previous" as ?t)
-      OPTIONAL {             
-      ?r rdf:type th:ManagedConcept .             
-      ?r rdf:type ?rdf_type .             
-      ?r th:notation ?p_n .             
-      ?r th:identifier ?p_id .             
-      ?r isoT:hasIdentifier/isoI:semanticVersion ?sv              
-      BIND ("ManagedConcept" as ?type)           
+      OPTIONAL 
+      {             
+        ?r rdf:type th:ManagedConcept .             
+        ?r rdf:type ?rdf_type .             
+        ?r th:notation ?p_n .             
+        ?r th:identifier ?p_id .             
+        ?r isoT:hasIdentifier/isoI:semanticVersion ?sv              
+        BIND ("ManagedConcept" as ?type)           
+      }           
+      OPTIONAL 
+      {             
+        ?r rdf:type th:UnmanagedConcept .             
+        ?r rdf:type ?rdf_type .             
+        ?r th:identifier ?c_id .             
+        ?r th:notation ?c_n .             
+        BIND ("UnmanagedConcept" as ?type)             
+        ?r ^th:narrower ?parent .             
+        ?parent th:notation ?p_n .             
+        ?parent th:identifier ?p_id .             
+        ?parent isoT:hasIdentifier/isoI:version ?v.             
+        ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
+        {
+          SELECT (max(?lv) AS ?v) WHERE
+          {
+            #{self.uri.to_ref} (ba:previous/bo:reference) ?r.
+            ?r ^th:narrower ?par .
+            ?par isoT:hasIdentifier/isoI:version ?lv.
+          } 
+        }
+      }
     }           
-    OPTIONAL {             
-      ?r rdf:type th:UnmanagedConcept .             
-      ?r rdf:type ?rdf_type .             
-      ?r th:identifier ?c_id .             
-      ?r th:notation ?c_n .             
-      BIND ("UnmanagedConcept" as ?type)             
-      ?r ^th:narrower ?parent .             
-      ?parent th:notation ?p_n .             
-      ?parent th:identifier ?p_id .             
-      ?parent isoT:hasIdentifier/isoI:version ?v.             
-      ?parent isoT:hasIdentifier/isoI:semanticVersion ?sv
-      {
-              SELECT (max(?lv) AS ?v) WHERE
-                  {
-                #{self.uri.to_ref} (ba:previous/bo:reference) ?r.
-                ?r ^th:narrower ?par .
-                    ?par isoT:hasIdentifier/isoI:version ?lv.
-                  } 
-            }
-              
-    }
-    }           
-               
-
   }       
 }}
-      query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoT, :isoI, :isoC])
-      triples = query_results.by_object_set([:r, :parent, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type])
-      triples.each do |x|
-        results[:description] = x[:desc] if results[:description].nil?
-        results[:reference] = x[:reference] if results[:reference].nil?
-        results[:id] = self.uri.to_id if results[:id].nil?
-        case x[:type].to_sym
-          when :ManagedConcept
-            results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
-          when :UnmanagedConcept
-            results[x[:t].to_sym] << {parent: {id: x[:parent].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {id: x[:r].to_id, identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
-        end
+    query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoR, :isoT, :isoI, :isoC])
+    triples = query_results.by_object_set([:r, :parent, :desc, :reference, :p_id, :sv, :c_id, :p_n, :c_n, :t, :type, :rdf_type, :owner, :edit])
+    triples.each do |x|
+      results[:description] = x[:desc] if results[:description].nil?
+      results[:reference] = x[:reference] if results[:reference].nil?
+      results[:owner] = x[:owner]
+      results[:edit] = x[:edit].to_bool
+      results[:id] = self.uri.to_id if results[:id].nil?
+      case x[:type].to_sym
+        when :ManagedConcept
+          results[x[:t].to_sym] << {parent: {id: x[:r].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv], rdf_type: x[:rdf_type].to_s}}
+        when :UnmanagedConcept
+          results[x[:t].to_sym] << {parent: {id: x[:parent].to_id ,identifier: x[:p_id], notation: x[:p_n], semantic_version: x[:sv]}, child: {id: x[:r].to_id, identifier: x[:c_id], notation: x[:c_n], rdf_type: x[:rdf_type].to_s}}
       end
-      results
+    end
+    results
   end
 
   # Remove reference

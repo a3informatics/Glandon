@@ -1,4 +1,4 @@
-class IsoConceptPolicy < ApplicationPolicy
+class AnnotationPolicy < ApplicationPolicy
 
   # Initialize. Add in the extra methods
   #

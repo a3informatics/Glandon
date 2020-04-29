@@ -2,8 +2,6 @@ class IsoConceptController < ApplicationController
 
   before_action :authenticate_user!
 
-  C_CLASS_NAME = "IsoConceptController"
-
   def show
     authorize IsoConcept
     @concept = IsoConcept.find(params[:id], params[:namespace], false)

@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe IsoConceptPolicy do
+describe AnnotationPolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, iso_concept) }
-  let (:iso_concept) { IsoConceptV2.new }
+  subject { described_class.new(user, annotation) }
+  let (:annotation) { Annotation.new }
 
   before :all do
     ua_create
@@ -27,7 +27,7 @@ describe IsoConceptPolicy do
     end
 
     it "denies access" do
-      deny_list [:edit]
+      deny_list [:edit, :destroy, :create]
     end
 
   end
@@ -37,7 +37,7 @@ describe IsoConceptPolicy do
     let (:user) { @user_tc }
 
     it "allows access" do
-      allow_list [:show, :edit]
+      allow_list [:show, :create, :edit, :destroy]
     end
 
     it "denies access" do
@@ -55,7 +55,7 @@ describe IsoConceptPolicy do
     end
 
     it "denies access" do
-      deny_list [:edit]
+      deny_list [:edit, :destroy, :create]
     end
 
   end
@@ -65,7 +65,7 @@ describe IsoConceptPolicy do
     let (:user) { @user_c }
 
     it "allows access" do
-      allow_list [:show, :edit]
+      allow_list [:show, :create, :edit, :destroy]
     end
 
     it "denies access" do
@@ -79,7 +79,7 @@ describe IsoConceptPolicy do
     let (:user) { @user_ca }
 
     it "allows access" do
-      allow_list [:show, :edit]
+      allow_list [:show, :create, :edit, :destroy]
     end
 
     it "denies access" do
@@ -100,7 +100,7 @@ describe IsoConceptPolicy do
 
     it "denies access" do
       @user_sa.remove_role :reader # Just for this test
-      deny_list [:show, :edit]
+      deny_list [:show, :create, :edit, :destroy]
       @user_sa.add_role :reader
     end
 
