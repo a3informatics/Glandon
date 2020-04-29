@@ -2,10 +2,8 @@ class Annotations::ChangeInstructionsController < ApplicationController
 
   before_action :authenticate_user!
 
-  C_CLASS_NAME = self.name
-
   def show
-    authorize IsoConcept, :show?
+    authorize Annotation
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     if change_instruction.errors.empty?
       render json: {data: change_instruction.get_data}, status: 200
@@ -15,7 +13,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def create
-    authorize IsoConcept, :create?
+    authorize Annotation
     change_instruction = Annotation::ChangeInstruction.create
     if change_instruction.errors.empty?
       render json: {edit_path: edit_annotations_change_instruction_path(change_instruction.id)}, status: 200
@@ -25,7 +23,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def edit
-    authorize IsoConcept, :edit?
+    authorize Annotation
     @close_path = request.referer
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     @base_url = annotations_change_instruction_path(id: params[:id])
@@ -34,7 +32,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def update
-    authorize IsoConcept, :edit?
+    authorize Annotation, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.update(the_params)
     status = change_instruction.errors.empty? ? 200 : 400
@@ -42,7 +40,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def add_references
-    authorize IsoConcept, :edit?
+    authorize Annotation, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction = change_instruction.add_references(the_params)
     if change_instruction.errors.empty?
@@ -53,7 +51,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def remove_reference
-    authorize IsoConcept, :edit?
+    authorize Annotation, :edit?
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.remove_reference(the_params)
     status = change_instruction.errors.empty? ? 200 : 400
@@ -61,7 +59,7 @@ class Annotations::ChangeInstructionsController < ApplicationController
   end
 
   def destroy
-    authorize IsoConcept, :edit?
+    authorize Annotation
     change_instruction = Annotation::ChangeInstruction.find(params[:id])
     change_instruction.delete
     status = change_instruction.errors.empty? ? 200 : 400

@@ -45,7 +45,6 @@ function CIEditor() {
 CIEditor.prototype.setListeners = function () {
   $(".change-instruction").on("focusin focusout", ".content-editable", this.onContentEdit.bind(this));
   $(".change-instruction").on("keydown", ".content-editable", this.onKeyPress.bind(this));
-  $(".change-instruction").on("click", "#save-ci", this.save.bind(this));
   $(".change-instruction").on("click", "#delete-ci", this.destroy.bind(this, false));
   $(".change-instruction").on("click", ".add-links", this.openSelector.bind(this));
   $(".change-instruction").on("click", ".removable", this.destroyLink.bind(this));
@@ -114,7 +113,6 @@ CIEditor.prototype.save = function () {
       }
     },
     callback: function(result) {
-      $("#save-ci").addClass("disabled");
       this.processing(false);
       this.success();
     }.bind(this)
@@ -175,7 +173,6 @@ CIEditor.prototype.destroyLink = function (e) {
  * @return [void]
  */
 CIEditor.prototype.addLinks = function (linkType, selection) {
-
   var data = {
     change_instruction: {
       current: [],
@@ -206,13 +203,14 @@ CIEditor.prototype.addLinks = function (linkType, selection) {
 CIEditor.prototype.onContentEdit = function (e) {
   switch(e.type) {
     case "focusin":
-      $("#save-ci").removeClass("disabled");
+      this.setSaveable(true);
       $(".content-editable")
         .removeClass("with-icon")
         .not($(e.currentTarget))
         .addClass("with-icon");
       break;
     case "focusout":
+      this.save();
       $(".content-editable")
         .addClass("with-icon");
       break;
@@ -230,7 +228,7 @@ CIEditor.prototype.onKeyPress = function (e) {
     case 13:
       e.preventDefault();
       $(e.currentTarget).blur();
-      $("#save-ci")[0].click();
+      this.save();
       break;
     case 27:
       $(e.currentTarget).blur();
@@ -265,7 +263,6 @@ CIEditor.prototype.clear = function () {
   $("#reference").text("");
   $("#description").text("");
   $(".items-list").empty();
-  $("#save-ci").addClass("disabled");
 }
 
 /**

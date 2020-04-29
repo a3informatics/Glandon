@@ -8,9 +8,10 @@ describe Annotation::ChangeInstruction do
   def sub_dir
     return "models/annotation/cross_reference"
   end
-    def load_versions(range)
-      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
-    end
+  
+  def load_versions(range)
+    range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+  end
 
   before :all  do
     IsoHelpers.clear_cache
@@ -19,6 +20,7 @@ describe Annotation::ChangeInstruction do
   before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
     load_versions(1..56)
   end
 
@@ -155,10 +157,13 @@ describe Annotation::ChangeInstruction do
     item.add_references(previous: [], current: [uri4.to_id])
     item = Annotation::ChangeInstruction.find(item.id)
     check_file_actual_expected(item.get_data, sub_dir, "get_data_3.yaml", equate_method: :hash_equal)
-  end      
+  end
 
-
-  
+  it "get data CDISC" do
+    uri = Uri.new(uri: "http://www.cdisc.org/CT/V47#TH_CI1")
+    item = Annotation::ChangeInstruction.find(uri)
+    check_file_actual_expected(item.get_data, sub_dir, "get_data_4.yaml", equate_method: :hash_equal)
+  end
 
   it "removes reference" do
     uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
