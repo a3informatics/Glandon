@@ -1,4 +1,4 @@
-@prefix : <http://www.s-cubed.dk/NP001000P/V1#> .
+@prefix : <http://www.s-cubed.dk/NP001002P/V1#> .
 @prefix th: <http://www.assero.co.uk/Thesaurus#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -10,42 +10,42 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/NP001000P/V1>
+<http://www.s-cubed.dk/NP001002P/V1>
 	rdf:type owl:Ontology ;
 .
-:NP001000P
+:NP001002P
 	rdf:type th:ManagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Name"^^xsd:string ;
-	isoT:hasState :NP001000P_RS ;
-	isoT:hasIdentifier :NP001000P_SI ;
+	isoT:hasState :NP001002P_RS ;
+	isoT:hasIdentifier :NP001002P_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-29T17:04:18+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-29T18:24:03+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "NP001000P"^^xsd:string ;
+	th:identifier "NP001002P"^^xsd:string ;
 	th:notation "MFES01TN"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 test name."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower :NP001000P_NC00010000C ;
-	th:narrower :NP001000P_NC00010001C ;
-	th:narrower :NP001000P_NC00010002C ;
-	th:narrower :NP001000P_NC00010003C ;
-	th:narrower :NP001000P_NC00010004C ;
-	th:narrower :NP001000P_NC00010005C ;
-	th:narrower :NP001000P_NC00010006C ;
-	th:narrower :NP001000P_NC00010007C ;
-	th:narrower :NP001000P_NC00010008C ;
-	th:narrower :NP001000P_NC00010009C ;
-	th:narrower :NP001000P_NC00010010C ;
-	th:narrower :NP001000P_NC00010011C ;
-	th:narrower :NP001000P_NC00010012C ;
-	th:narrower :NP001000P_NC00010013C ;
-	th:narrower :NP001000P_NC00010014C ;
-	th:narrower :NP001000P_NC00010015C ;
+	th:narrower :NP001002P_NC00010032C ;
+	th:narrower :NP001002P_NC00010033C ;
+	th:narrower :NP001002P_NC00010034C ;
+	th:narrower :NP001002P_NC00010035C ;
+	th:narrower :NP001002P_NC00010036C ;
+	th:narrower :NP001002P_NC00010037C ;
+	th:narrower :NP001002P_NC00010038C ;
+	th:narrower :NP001002P_NC00010039C ;
+	th:narrower :NP001002P_NC00010040C ;
+	th:narrower :NP001002P_NC00010041C ;
+	th:narrower :NP001002P_NC00010042C ;
+	th:narrower :NP001002P_NC00010043C ;
+	th:narrower :NP001002P_NC00010044C ;
+	th:narrower :NP001002P_NC00010045C ;
+	th:narrower :NP001002P_NC00010046C ;
+	th:narrower :NP001002P_NC00010047C ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e156b404592ad11ee3dd3084c141fc2b36a5710a> ;
 .
-:NP001000P_RS
+:NP001002P_RS
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -57,259 +57,191 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-:NP001000P_SI
+:NP001002P_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "NP001000P"^^xsd:string ;
+	isoI:identifier "NP001002P"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NP001000P_NC00010000C
+:NP001002P_NC00010032C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0"^^xsd:string ;
-	th:identifier "NC00010000C"^^xsd:string ;
+	th:identifier "NC00010032C"^^xsd:string ;
 	th:notation "MFES01-Get Dressed and Undressed"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get dressed and undressed."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#32b6ba10be1fa0ccd8f33dc65a0da3d8e7b5034b> ;
 .
-<http://www.assero.co.uk/PT#32b6ba10be1fa0ccd8f33dc65a0da3d8e7b5034b>
-	rdf:type th:PreferredTerm ;
-	isoC:label "The Modified Falls Efficacy Scale US English V1.0"^^xsd:string ;
-.
-:NP001000P_NC00010001C
+:NP001002P_NC00010033C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Prepare a simple meal"^^xsd:string ;
-	th:identifier "NC00010001C"^^xsd:string ;
+	th:identifier "NC00010033C"^^xsd:string ;
 	th:notation "MFES01-Prepare a Simple Meal"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Prepare a simple meal."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#46690359119d273dd8c2f1486e1252a591662af8> ;
 .
-<http://www.assero.co.uk/PT#46690359119d273dd8c2f1486e1252a591662af8>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Prepare a simple meal"^^xsd:string ;
-.
-:NP001000P_NC00010002C
+:NP001002P_NC00010034C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Take a bath or a shower"^^xsd:string ;
-	th:identifier "NC00010002C"^^xsd:string ;
+	th:identifier "NC00010034C"^^xsd:string ;
 	th:notation "MFES01-Take a Bath or a Shower"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Take a bath or a shower."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#04a977ccee166a877eaa1ba1889f15299970940c> ;
 .
-<http://www.assero.co.uk/PT#04a977ccee166a877eaa1ba1889f15299970940c>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Take a bath or a shower"^^xsd:string ;
-.
-:NP001000P_NC00010003C
+:NP001002P_NC00010035C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Get in/out of a chair"^^xsd:string ;
-	th:identifier "NC00010003C"^^xsd:string ;
+	th:identifier "NC00010035C"^^xsd:string ;
 	th:notation "MFES01-Get In/Out of a Chair"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of a chair."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#ae4cdfe3cbb679c856f13d49232f069d77d22251> ;
 .
-<http://www.assero.co.uk/PT#ae4cdfe3cbb679c856f13d49232f069d77d22251>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Get in/out of a chair"^^xsd:string ;
-.
-:NP001000P_NC00010004C
+:NP001002P_NC00010036C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Get in/out of bed"^^xsd:string ;
-	th:identifier "NC00010004C"^^xsd:string ;
+	th:identifier "NC00010036C"^^xsd:string ;
 	th:notation "MFES01-Get In/Out of Bed"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of bed."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6dd872676b309e1833de4b1d6379a1458ff424d5> ;
 .
-<http://www.assero.co.uk/PT#6dd872676b309e1833de4b1d6379a1458ff424d5>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Get in/out of bed"^^xsd:string ;
-.
-:NP001000P_NC00010005C
+:NP001002P_NC00010037C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Answer the door or telephone"^^xsd:string ;
-	th:identifier "NC00010005C"^^xsd:string ;
+	th:identifier "NC00010037C"^^xsd:string ;
 	th:notation "MFES01-Answer the Door or Telephone"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Answer the door or telephone."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0bda2f38607ec748b5fcaadee2a9dd876800c71c> ;
 .
-<http://www.assero.co.uk/PT#0bda2f38607ec748b5fcaadee2a9dd876800c71c>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Answer the door or telephone"^^xsd:string ;
-.
-:NP001000P_NC00010006C
+:NP001002P_NC00010038C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Walk around the inside of your house"^^xsd:string ;
-	th:identifier "NC00010006C"^^xsd:string ;
+	th:identifier "NC00010038C"^^xsd:string ;
 	th:notation "MFES01-Walk Around Inside Your House"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Walk around the inside of your house."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0bd5ec8b1f049613223226942d6f232f6aba3bf6> ;
 .
-<http://www.assero.co.uk/PT#0bd5ec8b1f049613223226942d6f232f6aba3bf6>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Walk around the inside of your house"^^xsd:string ;
-.
-:NP001000P_NC00010007C
+:NP001002P_NC00010039C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reach into cabinets or closet"^^xsd:string ;
-	th:identifier "NC00010007C"^^xsd:string ;
+	th:identifier "NC00010039C"^^xsd:string ;
 	th:notation "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Reach into cabinets or closet."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6088c60430fefcb1c7f7305b6deba7d9f1804aab> ;
 .
-<http://www.assero.co.uk/PT#6088c60430fefcb1c7f7305b6deba7d9f1804aab>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Reach into cabinets or closet"^^xsd:string ;
-.
-:NP001000P_NC00010008C
+:NP001002P_NC00010040C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Light housekeeping"^^xsd:string ;
-	th:identifier "NC00010008C"^^xsd:string ;
+	th:identifier "NC00010040C"^^xsd:string ;
 	th:notation "MFES01-Light Housekeeping"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light housekeeping."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#f2e93b412063aca8cf0a79384d792ccc49a28aa0> ;
 .
-<http://www.assero.co.uk/PT#f2e93b412063aca8cf0a79384d792ccc49a28aa0>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Light housekeeping"^^xsd:string ;
-.
-:NP001000P_NC00010009C
+:NP001002P_NC00010041C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Simple shopping"^^xsd:string ;
-	th:identifier "NC00010009C"^^xsd:string ;
+	th:identifier "NC00010041C"^^xsd:string ;
 	th:notation "MFES01-Simple Shopping"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Simple shopping."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#dca3844c2c020ea3b918967adc040681b39be36e> ;
 .
-<http://www.assero.co.uk/PT#dca3844c2c020ea3b918967adc040681b39be36e>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Simple shopping"^^xsd:string ;
-.
-:NP001000P_NC00010010C
+:NP001002P_NC00010042C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Using public transport"^^xsd:string ;
-	th:identifier "NC00010010C"^^xsd:string ;
+	th:identifier "NC00010042C"^^xsd:string ;
 	th:notation "MFES01-Using Public Transport"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using public transport."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d4dca2d1ed399b352299c1985f8a09e19440919c> ;
 .
-<http://www.assero.co.uk/PT#d4dca2d1ed399b352299c1985f8a09e19440919c>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Using public transport"^^xsd:string ;
-.
-:NP001000P_NC00010011C
+:NP001002P_NC00010043C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Crossing roads"^^xsd:string ;
-	th:identifier "NC00010011C"^^xsd:string ;
+	th:identifier "NC00010043C"^^xsd:string ;
 	th:notation "MFES01-Crossing Roads"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Crossing roads."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#64a9bb0b5ae567a8d5c6326b4b2a3a8d1ba8dde8> ;
 .
-<http://www.assero.co.uk/PT#64a9bb0b5ae567a8d5c6326b4b2a3a8d1ba8dde8>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Crossing roads"^^xsd:string ;
-.
-:NP001000P_NC00010012C
+:NP001002P_NC00010044C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Light gardening or hanging out the washing"^^xsd:string ;
-	th:identifier "NC00010012C"^^xsd:string ;
+	th:identifier "NC00010044C"^^xsd:string ;
 	th:notation "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light gardening or hanging out the washing."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8dfbb508153112e9ce70b265956ea64176aac489> ;
 .
-<http://www.assero.co.uk/PT#8dfbb508153112e9ce70b265956ea64176aac489>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Light gardening or hanging out the washing"^^xsd:string ;
-.
-:NP001000P_NC00010013C
+:NP001002P_NC00010045C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Using front or rear steps at home"^^xsd:string ;
-	th:identifier "NC00010013C"^^xsd:string ;
+	th:identifier "NC00010045C"^^xsd:string ;
 	th:notation "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using front or rear steps at home."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7c9379282bf93b08f5034373db7d412127227e67> ;
 .
-<http://www.assero.co.uk/PT#7c9379282bf93b08f5034373db7d412127227e67>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Using front or rear steps at home"^^xsd:string ;
-.
-:NP001000P_NC00010014C
+:NP001002P_NC00010046C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
-	th:identifier "NC00010014C"^^xsd:string ;
+	th:identifier "NC00010046C"^^xsd:string ;
 	th:notation "MFES01-Score/Item Rated"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Score/Item Rated."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba> ;
 .
-<http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
-.
-:NP001000P_NC00010015C
+:NP001002P_NC00010047C
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Average"^^xsd:string ;
-	th:identifier "NC00010015C"^^xsd:string ;
+	th:identifier "NC00010047C"^^xsd:string ;
 	th:notation "MFES01-Average"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Average."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#432ad76ba4d7bd61f8b3126d4b0d1ba9f46bb988> ;
 .
-<http://www.assero.co.uk/PT#432ad76ba4d7bd61f8b3126d4b0d1ba9f46bb988>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Average"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#e156b404592ad11ee3dd3084c141fc2b36a5710a>
-	rdf:type th:PreferredTerm ;
-	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Name"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P>
 	rdf:type th:ManagedConcept ;
 	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Code"^^xsd:string ;
-	isoT:hasState <http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS> ;
-	isoT:hasIdentifier <http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI> ;
+	isoT:hasState <http://www.s-cubed.dk/NP001003P/V1#NP001003P_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/NP001003P/V1#NP001003P_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-04-29T17:04:18+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-04-29T18:24:03+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "NP001001P"^^xsd:string ;
+	th:identifier "NP001003P"^^xsd:string ;
 	th:notation "MFES01TC"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 test code."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010016C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010017C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010018C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010019C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010020C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010021C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010022C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010023C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010024C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010025C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010026C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010027C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010028C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010029C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010030C> ;
-	th:narrower <http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010031C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010048C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010049C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010050C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010051C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010052C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010053C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010054C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010055C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010056C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010057C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010058C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010059C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010060C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010061C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010062C> ;
+	th:narrower <http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010063C> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8c953fc8887cc7f86dfbb692f4f1c18bec47db8b> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_RS>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -321,215 +253,155 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_SI>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "NP001001P"^^xsd:string ;
+	isoI:identifier "NP001003P"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010016C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010048C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get Dressed and Undressed"^^xsd:string ;
-	th:identifier "NC00010016C"^^xsd:string ;
+	th:identifier "NC00010048C"^^xsd:string ;
 	th:notation "MFES0101"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get dressed and undressed."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8258719452e36e877b8a89416ff8dfec482efb05> ;
 .
-<http://www.assero.co.uk/PT#8258719452e36e877b8a89416ff8dfec482efb05>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Get Dressed and Undressed"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010017C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010049C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Prepare a Simple Meal"^^xsd:string ;
-	th:identifier "NC00010017C"^^xsd:string ;
+	th:identifier "NC00010049C"^^xsd:string ;
 	th:notation "MFES0102"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Prepare a simple meal."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#acfd7a7e2e39d30eaa9604af593c6638d354c493> ;
 .
-<http://www.assero.co.uk/PT#acfd7a7e2e39d30eaa9604af593c6638d354c493>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Prepare a Simple Meal"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010018C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010050C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Take a Bath or a Shower"^^xsd:string ;
-	th:identifier "NC00010018C"^^xsd:string ;
+	th:identifier "NC00010050C"^^xsd:string ;
 	th:notation "MFES0103"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Take a bath or a shower."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#48b342e8353ce2ede5f660a26726dfaca0c1165a> ;
 .
-<http://www.assero.co.uk/PT#48b342e8353ce2ede5f660a26726dfaca0c1165a>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Take a Bath or a Shower"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010019C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010051C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get In/Out of a Chair"^^xsd:string ;
-	th:identifier "NC00010019C"^^xsd:string ;
+	th:identifier "NC00010051C"^^xsd:string ;
 	th:notation "MFES0104"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of a chair."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b07f5471be5acb540757c9fee272bffb040f5f57> ;
 .
-<http://www.assero.co.uk/PT#b07f5471be5acb540757c9fee272bffb040f5f57>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Get In/Out of a Chair"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010020C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010052C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Get In/Out of Bed"^^xsd:string ;
-	th:identifier "NC00010020C"^^xsd:string ;
+	th:identifier "NC00010052C"^^xsd:string ;
 	th:notation "MFES0105"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Get in/out of bed."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9a48dde80e3638c4d5f6c3a9dafbc54b39a25545> ;
 .
-<http://www.assero.co.uk/PT#9a48dde80e3638c4d5f6c3a9dafbc54b39a25545>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Get In/Out of Bed"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010021C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010053C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Answer the Door or Telephone"^^xsd:string ;
-	th:identifier "NC00010021C"^^xsd:string ;
+	th:identifier "NC00010053C"^^xsd:string ;
 	th:notation "MFES0106"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Answer the door or telephone."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2f3a335dbf215f71b11ba95aecf8c5779944b4ad> ;
 .
-<http://www.assero.co.uk/PT#2f3a335dbf215f71b11ba95aecf8c5779944b4ad>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Answer the Door or Telephone"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010022C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010054C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Walk Around Inside Your House"^^xsd:string ;
-	th:identifier "NC00010022C"^^xsd:string ;
+	th:identifier "NC00010054C"^^xsd:string ;
 	th:notation "MFES0107"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Walk around the inside of your house."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#bc533fdd441ab809f55618d36d6b3732ef33fb26> ;
 .
-<http://www.assero.co.uk/PT#bc533fdd441ab809f55618d36d6b3732ef33fb26>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Walk Around Inside Your House"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010023C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010055C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
-	th:identifier "NC00010023C"^^xsd:string ;
+	th:identifier "NC00010055C"^^xsd:string ;
 	th:notation "MFES0108"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Reach into cabinets or closet."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3c959aeb3117cc1d2362e09201f31f0e5ebcd966> ;
 .
-<http://www.assero.co.uk/PT#3c959aeb3117cc1d2362e09201f31f0e5ebcd966>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Reach Into Cabinets or Closet"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010024C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010056C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Light Housekeeping"^^xsd:string ;
-	th:identifier "NC00010024C"^^xsd:string ;
+	th:identifier "NC00010056C"^^xsd:string ;
 	th:notation "MFES0109"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light housekeeping."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#89ba0efe46c4d2f63148109a9f1752d09c4e56a9> ;
 .
-<http://www.assero.co.uk/PT#89ba0efe46c4d2f63148109a9f1752d09c4e56a9>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Light Housekeeping"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010025C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010057C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Simple Shopping"^^xsd:string ;
-	th:identifier "NC00010025C"^^xsd:string ;
+	th:identifier "NC00010057C"^^xsd:string ;
 	th:notation "MFES0110"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Simple shopping."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#36f0907995bc5d2d8eb13d98fc4f86f1fe3fd94d> ;
 .
-<http://www.assero.co.uk/PT#36f0907995bc5d2d8eb13d98fc4f86f1fe3fd94d>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Simple Shopping"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010026C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010058C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Using Public Transport"^^xsd:string ;
-	th:identifier "NC00010026C"^^xsd:string ;
+	th:identifier "NC00010058C"^^xsd:string ;
 	th:notation "MFES0111"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using public transport."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c854efbce4fd5a8cb02655029377f2cea96c3301> ;
 .
-<http://www.assero.co.uk/PT#c854efbce4fd5a8cb02655029377f2cea96c3301>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Using Public Transport"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010027C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010059C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Crossing Roads"^^xsd:string ;
-	th:identifier "NC00010027C"^^xsd:string ;
+	th:identifier "NC00010059C"^^xsd:string ;
 	th:notation "MFES0112"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Crossing roads."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9095826495eae55d05f9ba42d986556343647443> ;
 .
-<http://www.assero.co.uk/PT#9095826495eae55d05f9ba42d986556343647443>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Crossing Roads"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010028C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010060C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
-	th:identifier "NC00010028C"^^xsd:string ;
+	th:identifier "NC00010060C"^^xsd:string ;
 	th:notation "MFES0113"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Light gardening or hanging out the washing."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#66528db5e863c8d3555f9fa76a39335b0f4a1d3f> ;
 .
-<http://www.assero.co.uk/PT#66528db5e863c8d3555f9fa76a39335b0f4a1d3f>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Gardening or Hanging Out Washing"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010029C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010061C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
-	th:identifier "NC00010029C"^^xsd:string ;
+	th:identifier "NC00010061C"^^xsd:string ;
 	th:notation "MFES0114"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Using front or rear steps at home."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6259c84bbf08119b38dc7755d1f533f03c75d757> ;
 .
-<http://www.assero.co.uk/PT#6259c84bbf08119b38dc7755d1f533f03c75d757>
-	rdf:type th:PreferredTerm ;
-	isoC:label "MFES01-Using Front or Rear Steps at Home"^^xsd:string ;
-.
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010030C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010062C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Score/Item Rated"^^xsd:string ;
-	th:identifier "NC00010030C"^^xsd:string ;
+	th:identifier "NC00010062C"^^xsd:string ;
 	th:notation "MFES0115"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Score/Item Rated."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5e6c65447ca4ea0abe21a0f7207266b6adedb5ba> ;
 .
-<http://www.s-cubed.dk/NP001001P/V1#NP001001P_NC00010031C>
+<http://www.s-cubed.dk/NP001003P/V1#NP001003P_NC00010063C>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "MFES01-Average"^^xsd:string ;
-	th:identifier "NC00010031C"^^xsd:string ;
+	th:identifier "NC00010063C"^^xsd:string ;
 	th:notation "MFES0116"^^xsd:string ;
 	th:definition "The Modified Falls Efficacy Scale US English V1.0 - Average."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#432ad76ba4d7bd61f8b3126d4b0d1ba9f46bb988> ;
-.
-<http://www.assero.co.uk/PT#8c953fc8887cc7f86dfbb692f4f1c18bec47db8b>
-	rdf:type th:PreferredTerm ;
-	isoC:label "The Modified Falls Efficacy Scale US English V1.0 Questionnaire Test Code"^^xsd:string ;
 .

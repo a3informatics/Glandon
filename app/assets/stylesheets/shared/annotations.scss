@@ -141,8 +141,12 @@ td.note-cell {
   max-width: 900px;
 }
 
+.change-instruction.cdisc {
+  box-shadow: inset 0 0 0 4px $accent-color-1;
+}
+
 .change-instruction.success {
-  box-shadow: inset 0 0 0 6px $secondary-color-bright;
+  box-shadow: inset 0 0 0 6px $secondary-color-bright !important;
 }
 
 .change-instruction .ci-header, .change-instruction .ci-body {

@@ -26,9 +26,9 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
   end
 
   def new_term_modal(identifier, label)
-    # Leave this sleep here. Seems there is an issue with the modal and fade 
+    # Leave this sleep here. Seems there is an issue with the modal and fade
     # that causes inconsistent entry of text using fill_in.
-    sleep 2 
+    sleep 2
     fill_in 'thesauri_identifier', with: identifier
     fill_in 'thesauri_label', with: label
     click_button 'Submit'
@@ -123,8 +123,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       ui_check_table_info("children_table", 1, 4, 4)
       find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Synonyms'
-      expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a/div/div", :text => 'FREQ (C71113)')
-      expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a/div/div", :text => 'XDOSFRQ (C78745)')
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'FREQ (C71113)')
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'XDOSFRQ (C78745)')
     end
 
     # Needs code list edit added
@@ -184,7 +184,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000010P' 
+      expect(page).to have_content 'NP000010P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000010P', :edit)
       wait_for_ajax_long
@@ -207,7 +207,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000011P' 
+      expect(page).to have_content 'NP000011P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000011P', :edit)
       wait_for_ajax_long
@@ -256,7 +256,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000012P' 
+      expect(page).to have_content 'NP000012P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000012P', :edit)
       wait_for_ajax_long
@@ -306,7 +306,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000013P' 
+      expect(page).to have_content 'NP000013P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000013P', :edit)
       wait_for_ajax_long
@@ -349,7 +349,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000014P' 
+      expect(page).to have_content 'NP000014P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000014P', :edit)
       wait_for_ajax_long
@@ -395,7 +395,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000015P' 
+      expect(page).to have_content 'NP000015P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000015P', :edit)
       wait_for_ajax_long
@@ -407,7 +407,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       editor_table_click(1,2)
       editor_table_fill_in "DTE_Field_notation", "Submission12\t"
       click_link "Return"
-      expect(page).to have_content 'NP000015P' 
+      expect(page).to have_content 'NP000015P'
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000015P', :edit)
       wait_for_ajax_long
@@ -424,7 +424,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_link "Return"
     end
 
-    
+
     it "allows Synonyms to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax_long
@@ -479,13 +479,13 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
       wait_for_ajax(20)
       expect(page).to have_content 'Shared Preferred Terms'
-      find(:xpath, "//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)').click
+      find(:xpath, "//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'UNIT (C71620)').click
       wait_for_ajax_long
       expect(page).to have_content 'Shared Preferred Terms'
-      find(:xpath, "//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'PKUNIT (C85494)').click
+      find(:xpath, "//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'PKUNIT (C85494)').click
       wait_for_ajax_long
       expect(page).to have_content 'Shared Preferred Terms'
-      expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
     end
 
     it "allows to display code lists and code list items with the same synonym (REQ-MDR-PT-020)", js:true do
@@ -506,40 +506,13 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       ui_child_search("C125949")
       find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Synonyms'
-      find(:xpath, "//*[@id='linkspanel']/div/div/div/a/div/div[2]", :text => 'LBTESTCD (C65047)').click
+      find(:xpath, "//*[@id='synonyms-panel']/div/div/div/a/div/div[2]", :text => 'LBTESTCD (C65047)').click
       wait_for_ajax_long
       expect(page).to have_content 'Shared Synonyms'
-      find(:xpath, "//*[@id='linkspanel']/div/div/div/a/div/div[2]", :text => 'LBTEST (C67154)').click
+      find(:xpath, "//*[@id='synonyms-panel']/div/div/div/a/div/div[2]", :text => 'LBTEST (C67154)').click
       wait_for_ajax_long
       expect(page).to have_content 'Shared Synonyms'
-      expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'LBTESTCD (C65047)')
-    end
-
-    it "allows to display code lists and code list items, change instruction  (REQ-MDR-PT-020)", js:true do
-      click_navbar_cdisc_terminology
-      wait_for_ajax_long
-      expect(page).to have_content 'History'
-      expect(page).to have_content 'Controlled Terminology'
-      context_menu_element('history', 5, '2016-03-25 Release', :show)
-      expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '47.0.0'
-      expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 572)
-      ui_child_search("C67154")
-      find(:xpath, "//tr[contains(.,'C67154')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Definition: Terminology used for laboratory test names of the CDISC Study Data Tabulation Model.'
-      expect(page).to have_content 'C67154'
-      wait_for_ajax_long
-      ui_child_search("C125949")
-      find(:xpath, "//tr[contains(.,'Urea')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Change Instruction'
-      find(:xpath, " //*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)').click
-      wait_for_ajax_long
-      expect(page).to have_content 'Change Instruction'
-      find(:xpath, "//*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)').click
-      wait_for_ajax_long
-      expect(page).to have_content 'Shared Synonyms'
-      expect(page).to have_xpath("//*[@id='cipanel']/div/div/div/a/div/div[3]/div[1]", :text => 'LBTEST (C67154)')
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a/div/div", :text => 'LBTESTCD (C65047)')
     end
 
     #tags
@@ -630,8 +603,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
       wait_for_ajax_long
       expect(page).to have_content 'Preferred term: Unknown'
-      expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a", count: 14)
-      expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a", count: 28)
+      expect(page).to have_xpath("//div[@id='pts-panel']/div/div/div/a", count: 14)
+      expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a", count: 28)
     end
 
     it "checks for correct display of no shared PTs or Synonyms found, unmanaged concepts", js:true do

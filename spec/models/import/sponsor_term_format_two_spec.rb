@@ -19,6 +19,7 @@ describe "Import::SponsorTermFormatTwo" do
     @job = Background.new
     @job.save
     @object.background_id = @job.id
+    @object.auto_load = true
     @object.save
   end
 
@@ -116,6 +117,33 @@ describe "Import::SponsorTermFormatTwo" do
     params = {files: [full_path], job: @job}
     @object.import(params)
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
+  end
+
+  it "import, no errors, version 1, short I" do
+    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
+    params = {files: [full_path], job: @job}
+    result = @object.import(params)
+    filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4a.ttl")
+    check_ttl_fix_v2(filename, "import_expected_4a.ttl", {last_change_date: true})
+    delete_data_file(sub_dir, filename)
+    setup
+    @object.auto_load = false
+    @object.save
+    result = @object.import(params)
+    filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4b.ttl")
+    check_ttl_fix_v2(filename, "import_expected_4b.ttl", {last_change_date: true})
+    delete_data_file(sub_dir, filename)
+    setup
+    result = @object.import(params)
+    filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4c.ttl")
+    check_ttl_fix_v2(filename, "import_expected_4c.ttl", {last_change_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
 end
