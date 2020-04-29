@@ -36,6 +36,7 @@ describe "Import::SponsorTermFormatTwo" do
     nv_create(parent: "1000", child: "10000")
     Import.destroy_all
     delete_all_public_test_files
+    clear_stfo_objects
     setup
   end
 

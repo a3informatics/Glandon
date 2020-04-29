@@ -249,6 +249,10 @@ module DataHelpers
     CdiscTerm.class_variable_set(:@@cdisc_namespace, nil)
   end
 
+  def clear_stfo_objects
+    Import::SponsorTermFormatOne::STFOThesaurus.class_variable_set(:@@owner_ra, nil)
+  end
+
   def clear_all_edit_locks
     Token.delete_all
   end
