@@ -217,17 +217,7 @@ describe "Change Instructions", :type => :feature do
       click_on "Return"
 
       #Show items links
-      wait_for_ajax(20)
-      context_menu_element_header(:change_instructions)
-      in_modal do
-        check_link("previous", "icon-codelist", "QSCAT").click
-      end
-      wait_for_ajax 10
-      expect(page).to have_content("C100129")
-      expect(page).to have_content("Code Lists Items")
-      page.go_back
-
-      wait_for_ajax(20)
+          wait_for_ajax(20)
       context_menu_element_header(:change_instructions)
       in_modal do
         check_link("current", "icon-codelist-item", "C100132").click
@@ -236,6 +226,15 @@ describe "Change Instructions", :type => :feature do
       expect(page).to have_content("ADCMZ02")
       expect(page).to have_content("Shared Synonyms")
       page.go_back
+
+      wait_for_ajax(20)
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        check_link("previous", "icon-codelist", "QSCAT").click
+      end
+      wait_for_ajax 10
+      expect(page).to have_content("C100129")
+      expect(page).to have_content("Code Lists Items")
 
       #Edit CI link
       wait_for_ajax(20)
