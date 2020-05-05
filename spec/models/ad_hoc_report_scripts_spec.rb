@@ -106,7 +106,7 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
-    describe "CI Export Tests" do
+    describe "Change Instructions Export Tests" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
@@ -160,7 +160,7 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "change_instructions_export_results_3.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V53#TH").to_id])}
       results = AdHocReportFiles.read("change_instructions_export_results_3.yaml")
-      check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_3.yaml", equate_method: :hash_equal)
     end
   
   end

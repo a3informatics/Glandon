@@ -43,13 +43,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX iso: <http://purl.org/iso25964/skos-thes#>
-PREFIX ba: <http://www.assero.co.uk/Annotations#>
 SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?reference ?description WHERE       
 {
   VALUES ?th {[[[parameter_1]]]}
   {
-    OPTIONAL{  
-      ?ci (ba:current/bo:context) ?th .  
+      OPTIONAL{?ci (ba:current/bo:context) ?th .}
+      OPTIONAL{?ci (ba:previous/bo:context) ?th .}  
       ?ci rdf:type ba:ChangeInstruction .
       ?ci ba:reference ?reference .
       ?ci ba:description ?description .
@@ -96,10 +95,6 @@ SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?refe
         ?parent2 th:identifier ?pident .
         ?parent2 th:notation ?pnotat .
       }
-
-     
-    }
-    
   } 
 }'
 :type: Ad Hoc Report Definition
