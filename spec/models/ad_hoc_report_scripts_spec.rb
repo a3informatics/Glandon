@@ -115,10 +115,10 @@ RSpec.describe AdHocReport, type: :model do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_versions(1..62)
+      load_versions(1..48)
       load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
-      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v52.ttl")
-      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v53.ttl")
+      #load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v52.ttl")
+      #load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v53.ttl")
       AdHocReport.delete_all
       delete_all_public_files
     end
