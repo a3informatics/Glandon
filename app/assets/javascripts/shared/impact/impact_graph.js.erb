@@ -18,7 +18,7 @@ function ImpactGraph(dataUrl, noGraph, useCache) {
   this.data = null;
   this.processing = false;
   this.activeAjaxes = 0;
-  this.noGraph = noGraph;
+  this.noGraph = (noGraph == null ? false : noGraph);;
   this.useCache = (useCache == null ? true : useCache);
 
   this.itemList = new ManagedItemIconList("No affected items found.");

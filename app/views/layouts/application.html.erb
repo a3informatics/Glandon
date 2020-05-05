@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <meta name="description" content="">
     <meta name="author" content="">
     <%= favicon_link_tag %>
 
   	<title><%= "#{APP_CONFIG['application_name']}" %></title>
+
     <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
 
@@ -20,19 +21,12 @@
   	<% end %>
 
     <%= stylesheet_link_tag 'print', :media => 'print'%>
-    <%= stylesheet_link_tag 'custom/custom_navbar', 'custom/custom_sidebar', media: 'all' %>
 
-    <% if Rails.env != "test" %>
-      <%= javascript_include_tag 'locked_items' %>
-    <% end %>
+    <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
 
-    <!-- <script src="https://kit.fontawesome.com/45fbf30bd8.js"></script> -->
     <%= csrf_meta_tags %>
 
-    <!-- Convert controller name in the current context to the menu category title to which it belongs  -->
     <% menu_category_title = controller_to_menu %>
-
-    <!-- Declare menu categories as vars  -->
     <% c_sysadmin, c_impexp, c_util, c_term, c_biocon, c_forms, c_sdtm, c_adam =
       "System Admin", "Import/Export", "Utilities", "Terminology", "Biomedical Concepts", "Forms", "SDTM", "ADaM"%>
 

@@ -37,7 +37,6 @@ D3GraphV2.prototype.draw = function(graph) {
     .linkDistance(this.linkDist)
     .linkStrength(0.05)
     .size([this.width, this.height]);
-
   // Make main SVG
   this.svg = d3.select(this.d3Div).append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")

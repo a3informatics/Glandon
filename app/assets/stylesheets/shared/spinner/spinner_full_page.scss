@@ -1,0 +1,27 @@
+@import "shared/vars.scss";
+@import 'shared/spinner/spinner_animated.scss';
+
+body {
+  position: relative;
+}
+
+.fp-spinner-wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background: rgba(255,255,255,0.7);
+  align-items: center;
+  justify-content: center;
+}
+
+.fp-spinner-msg{
+  color: $grey-medium;
+  font-family: $font-primary;
+  font-size: $font-normal;
+  display: block;
+  margin: 0;
+  text-align: center;
+}

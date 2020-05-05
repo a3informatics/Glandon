@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Terminology Compare")' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alph_slider', 'thesauri/compare'%>
-<%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+<%= stylesheet_link_tag 'shared/alphabetical_filter','shared/timeline_cdisc', media: 'all' %>
 
 <%= javascript_tag "var compare_path = '#{compare_data_thesauri_path(id: @th, thesauri: {thesaurus_id: @other_th})}';" %>
 

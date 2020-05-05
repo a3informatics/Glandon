@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Edit: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
 <%= javascript_include_tag 'thesauri/managed_concepts/edit_extension' %>
 <%= javascript_include_tag 'shared/timer', 'unload_v2' %>
-<%= stylesheet_link_tag 'custom/context_menu', 'homes' %>
+<%= stylesheet_link_tag 'homes' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
                         extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',

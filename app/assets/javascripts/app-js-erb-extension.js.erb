@@ -58,7 +58,7 @@ function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout
   var w = window.open();
   w.document.title = 'A3 MDR';
 
-  var style = "<link rel=\"stylesheet\" type=\"text/css\" href=\""+$(location).attr('protocol')+"//"+$(location).attr('host')+"<%= asset_path('custom/full_page_spinner') %>\">";
+  var style = "<link rel=\"stylesheet\" type=\"text/css\" href=\""+$(location).attr('protocol')+"//"+$(location).attr('host')+"<%= asset_path('shared/spinner/spinner_full_page') %>\">";
   var spinner = generateFullPageSpinner(loading_message);
 
   $(w.document).find("head").append(style);

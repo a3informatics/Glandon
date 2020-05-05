@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Tags")' %>
-<%= stylesheet_link_tag 'shared/datatables_loading', 'custom/wide_header_card'%>
+<%= stylesheet_link_tag 'shared/datatables_loading', 'shared/layouts/header_card'%>
 <%= javascript_include_tag 'iso_concept_systems/index', 'managed_tags_panel_v2' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
