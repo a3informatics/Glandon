@@ -47,8 +47,8 @@ SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?refe
 {
   VALUES ?th {[[[parameter_1]]]}
   {
-      OPTIONAL{?ci (ba:current/bo:context) ?th .}
-      OPTIONAL{?ci (ba:previous/bo:context) ?th .}  
+     {
+      ?ci (ba:current/bo:context) ?th .  
       ?ci rdf:type ba:ChangeInstruction .
       ?ci ba:reference ?reference .
       ?ci ba:description ?description .
@@ -67,12 +67,11 @@ SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?refe
       {
         ?pr rdf:type th:UnmanagedConcept . 
         ?ci (ba:previous/bo:context) ?term .
-        ?pr ^th:narrower ?parent .
-        ?term th:isTopConceptReference/bo:reference ?parent .                                                
+        ?term th:isTopConceptReference/bo:reference ?parent .
+        ?pr ^th:narrower ?parent .                                                
         ?parent isoT:hasIdentifier/isoI:version ?rpv.
         ?parent th:identifier ?pid .
         ?parent th:notation ?pnot .
-
       }
       ?ci ba:current ?current .
       ?current bo:reference ?cr .
@@ -95,6 +94,56 @@ SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?refe
         ?parent2 th:identifier ?pident .
         ?parent2 th:notation ?pnotat .
       }
+    }
+    UNION
+    {
+      ?ci (ba:previous/bo:context) ?th .  
+      ?ci rdf:type ba:ChangeInstruction .
+      ?ci ba:reference ?reference .
+      ?ci ba:description ?description .
+      ?ci ba:previous ?previous .
+      ?previous bo:reference ?pr .
+      ?pr th:identifier ?rpi .
+      ?pr th:notation ?rpsv .
+      OPTIONAL 
+      {             
+        ?pr rdf:type th:ManagedConcept .               
+        ?pr isoT:hasIdentifier/isoI:version ?rpv.
+        BIND (" " as ?pid)
+        BIND (" " as ?pnot)
+      }           
+      OPTIONAL 
+      {
+        ?pr rdf:type th:UnmanagedConcept . 
+        ?ci (ba:previous/bo:context) ?term .
+        ?term th:isTopConceptReference/bo:reference ?parent .
+        ?pr ^th:narrower ?parent .                                                
+        ?parent isoT:hasIdentifier/isoI:version ?rpv.
+        ?parent th:identifier ?pid .
+        ?parent th:notation ?pnot .
+      }
+      ?ci ba:current ?current .
+      ?current bo:reference ?cr .
+      ?cr th:identifier ?rci .
+      ?cr th:notation ?rcsv .
+      OPTIONAL 
+      {             
+        ?cr rdf:type th:ManagedConcept .               
+        ?cr isoT:hasIdentifier/isoI:version ?rcv .
+        BIND (" " as ?pident)
+        BIND (" " as ?pnotat)
+      }           
+      OPTIONAL 
+      {
+        ?cr rdf:type th:UnmanagedConcept . 
+        ?ci (ba:current/bo:context) ?term2 .
+        ?cr ^th:narrower ?parent2 .
+        ?term2 th:isTopConceptReference/bo:reference ?parent2 .                                      
+        ?parent2 isoT:hasIdentifier/isoI:version ?rcv.
+        ?parent2 th:identifier ?pident .
+        ?parent2 th:notation ?pnotat .
+      }
+    }
   } 
 }'
 :type: Ad Hoc Report Definition
