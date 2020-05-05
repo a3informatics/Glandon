@@ -1,0 +1,286 @@
+---
+:columns:
+- - CL Code
+- - CL Submission Value
+- - Previous Reference Identifier
+- - Previous Reference Submission Value
+- - Previous Reference Version
+- - CL Code
+- - CL Submission Value
+- - Current Reference Identifier
+- - Current Reference Submission Value
+- - Current Reference Version
+- - Reference
+- - Description
+:data:
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135375
+  - LVEF_E
+  - '52'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135374
+  - LVEF_C
+  - '52'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - C101846
+  - CVTEST
+  - C99977
+  - Left Ventricular Dimension, End-Systole
+  - '51'
+  - C101846
+  - CVTEST
+  - C127576
+  - Minor Axis Cross-sec Diameter, EVS
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101846
+  - CVTEST
+  - C99976
+  - Left Ventricle Dimension, End-Diastole
+  - '51'
+  - C101846
+  - CVTEST
+  - C127575
+  - Minor Axis Cross-sec Diameter, EVD
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C96785
+  - ONCRSR
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '51'
+  - C124298
+  - ONCRSCAT
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '52'
+  - ''
+  - Term being added into correct codelist, ONCRSCAT. This term was incorrectly published
+    in the wrong codelist (ONCRSR).
+- - C101846
+  - CVTEST
+  - C99970
+  - Left Atrium Dimension
+  - '51'
+  - C101846
+  - CVTEST
+  - C135377
+  - Major Axis Cross-sec. Diameter
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - C101847
+  - CVTESTCD
+  - C99976
+  - LVDMNED
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C127575
+  - MNDIAEVD
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101847
+  - CVTESTCD
+  - C99977
+  - LVDMNES
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C127576
+  - MNDIAEVS
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135375
+  - Left Ventricular Ejection Fraction, Est
+  - '52'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135374
+  - Left Ventricular Ejection Fraction, Cal
+  - '52'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99970
+  - LADMN
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135377
+  - MJDIA
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
