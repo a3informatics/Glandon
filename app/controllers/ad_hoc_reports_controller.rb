@@ -17,6 +17,10 @@ class AdHocReportsController < ApplicationController
 
   def create
     authorize AdHocReport
+    if the_params[:files].empty?
+      redirect_to request.referer
+      flash[:error] = "No files selected" and return
+    end
     report = AdHocReport.create_report(the_params)
     if report.errors.blank?
       AuditTrail.create_event(current_user, "Ad-hoc report '#{report.label}' created.")
@@ -73,6 +77,7 @@ class AdHocReportsController < ApplicationController
 private
 
   def the_params
+    return {files: []} if params.dig(:ad_hoc_report).nil?
     params.require(:ad_hoc_report).permit(:files => [])
   end
 

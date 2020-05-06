@@ -30,7 +30,7 @@ describe AdHocReportsController do
       delete_all_public_test_files
       delete_all_public_report_files
     end
-    
+
     it "lists all the reports" do
       get :index
       expect(assigns(:items).count).to eq(3)
@@ -40,6 +40,13 @@ describe AdHocReportsController do
     it "initiates creation of a new report" do
       get :new
       expect(response).to render_template("new")
+    end
+
+    it "create a new report, no file selected" do
+      request.env['HTTP_REFERER'] = '/ad_hoc_reports/index'
+      post :create
+      expect(response).to redirect_to("/ad_hoc_reports/index")
+      expect(flash[:error]).to be_present
     end
 
     it "allows a new report to be created, missing file" do
@@ -148,7 +155,7 @@ describe AdHocReportsController do
       delete_all_public_test_files
       delete_all_public_report_files
     end
-    
+
     it "lists all the reports" do
       get :index
       expect(assigns(:items).count).to eq(3)
@@ -245,7 +252,7 @@ describe AdHocReportsController do
       delete_all_public_test_files
       delete_all_public_report_files
     end
-    
+
     it "prevents a reader listing all the reports" do
       get :index
       expect(response).to redirect_to("/")
