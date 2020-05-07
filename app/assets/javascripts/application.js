@@ -19,6 +19,7 @@
 //= require buttons.bootstrap
 //= require dataTables.select
 //= require dataTables.editor.min
+//= require dataTables.keyTable.min
 //= require dataTables.rowReorder.min
 //= require editor.bootstrap.min
 //= require jquery.validate
