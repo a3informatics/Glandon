@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'iso_managed_select_panel', 'biomedical_concept_template_new', 'field_validation' %>
+<%= javascript_include_tag 'iso_managed_select_panel', 'biomedical_concepts/bc_template_new', 'field_validation' %>
 <% breadcrumb ([id_to_type(:biomedical_concepts), {link: "#", text: "New"}]) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>

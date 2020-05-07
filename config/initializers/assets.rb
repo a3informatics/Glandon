@@ -23,8 +23,8 @@ Rails.application.config.assets.version = '1.0'
   dashboard_viewer dashboard_index
   ad_hoc_report_results
   markdown_editor
-  background_index
-	biomedical_concepts_editor biomedical_concept_template_new
+  backgrounds/index
+	biomedical_concepts/editor biomedical_concepts/bc_template_new
 	thesauri_editor thesauri_viewer thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel
   form_placeholder_new form_editor form_viewer form_show form_utility

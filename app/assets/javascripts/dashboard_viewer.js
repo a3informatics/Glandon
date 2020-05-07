@@ -1,16 +1,16 @@
 $(document).ready(function() {
-  
+
   var subjectId = document.getElementById("subjectId")
   var subjectNs = document.getElementById("subjectNs")
-          
+
   var triplesReload = false;
   var triplesTable;
-  
+
   var historyCount;
   var historyCurrent;
   var historyCurrentRow;
   var mainTable;
-  
+
   // Initialise
   mainTable = $('#main').DataTable();
   mainTable.clear();
@@ -31,7 +31,7 @@ $(document).ready(function() {
           d.id = subjectId.value,
           d.namespace = subjectNs.value
         },
-        "dataSrc": ""  
+        "dataSrc": ""
       },
       "bProcessing": true,
       "columns": [
@@ -55,11 +55,11 @@ $(document).ready(function() {
       triplesTable.ajax.reload();
     }
     // Add the history
-    addHistory(subjectId.value, subjectNs.value); 
+    addHistory(subjectId.value, subjectNs.value);
   });
 
   $('#graph_button').click(function() {
-    linkTo("/iso_concept/graph", subjectNs.value, subjectId.value) 
+    // linkTo("/iso_concept/graph", subjectNs.value, subjectId.value) 
   });
 
   /*
@@ -74,7 +74,7 @@ $(document).ready(function() {
       triplesTable.ajax.reload();
 
       // Add the history
-      addHistory(data.link_id, data.link_namespace);      
+      addHistory(data.link_id, data.link_namespace);
     }
   });
 

@@ -4,7 +4,7 @@
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 
-<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging' %>
+<%= javascript_include_tag 'd3', 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging' %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";
                     var tagsUrls = {dataUrl: '#{tags_full_iso_concept_path(@iso_concept)}',
                                     addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',

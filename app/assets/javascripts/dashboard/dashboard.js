@@ -9,7 +9,7 @@ $(document).ready(function () {
   }, 5000);
 
   // Sets the datetime in the header
-  $("#datetime").html(dateString());
+  $("#datetime").html(currentDateString());
 
   // Initializes each panel data
   $.each(user_dashboard_layout_settings.split(', '), function(i, e){

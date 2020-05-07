@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    'd3_graph', 'spinner' %>
-<%= javascript_include_tag 'd3_graph', 'colour', 'spinner' %>
+<%= javascript_include_tag 'd3', 'd3_graph', 'colour', 'spinner' %>
 <%= javascript_include_tag 'iso_managed_list_panel', 'impact_analysis_graph_panel', 'impact_analysis', 'iso_concept_impact', 'thesaurus_concept_list_panel' %>
 <h3>Impact Analysis: <%= @item.label %></h3>
 <div>
@@ -17,7 +17,7 @@
         <span class="glyphicon glyphicon-refresh"></span>
       </button>
       <button type="button" id="close" class="btn ">Close</button>
-		</div>	
+		</div>
   </div>
   <div class="col-md-5">
 		<%= render partial: "shared/impact_graph_panel" %>
