@@ -8,13 +8,13 @@
  *
  * @return [void]
  */
-function DashboardPanel(id, url, safe_parameter) {
+function DashboardPanel(id, url, parameter) {
   var _this = this;
 
 
   this.url = url;
   this.id = "#"+id;
-  this.safe_param = safe_parameter;
+  this.param = parameter;
 
   this.init();
 }
@@ -69,8 +69,8 @@ DashboardPanel.prototype.generateURL = function(data){
   var _this = this;
   var query_string = 'identifier='+ data.identifier +'&scope_id=' + data.scope_id;
 
-  if(_this.safe_param !== "") {
-    query_string = _this.safe_param + '[identifier]=' + data.identifier + '&' + _this.safe_param + '[scope_id]=' + data.scope_id
+  if(_this.param !== "") {
+    query_string = _this.param + '[identifier]=' + data.identifier + '&' + _this.param + '[scope_id]=' + data.scope_id
   }
   return _this.url + '/history?' + query_string;
 }

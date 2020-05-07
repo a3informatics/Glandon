@@ -1,15 +1,15 @@
 /*
 * Study Version Editor: SOA Forms
-* 
+*
 * Requires:
-* 
+*
 * ims_list_table_div [Div] the table Div
 * ims_list_table [Table] the table
 * ims_all_table_div [Div] the table Div
 * ims_all_table [Table] the table
 * ims_add_button [Button] the add item
 * ims_list_all_button [Button] toggle between list (released) and all items
-* ims_history_button [Button] history of item 
+* ims_history_button [Button] history of item
 * ims_list_path [Hidden Field] list url
 * ims_all_path [Hidden Field] all url
 */
@@ -29,7 +29,7 @@ function IsoManagedSelect(callBackRef) {
   this.toggle(false);
 
   var _this = this;
-  
+
   $('#ims_list_table tbody').on('click', 'tr', function () {
     _this.listTableClick(this);
   });
@@ -63,7 +63,7 @@ IsoManagedSelect.prototype.getList = function () {
       "dataType": 'json',
       "bProcessing": true,
       "language": {
-        "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+        "processing": generateSpinner("small")
       },
       error: function(xhr,status,error){
         handleAjaxError(xhr, status, error);
@@ -78,7 +78,7 @@ IsoManagedSelect.prototype.getList = function () {
   } else {
     listTable.ajax.reload();
   }
-} 
+}
 
 IsoManagedSelect.prototype.getAll = function () {
   if (!this.allTableReload) {
@@ -91,7 +91,7 @@ IsoManagedSelect.prototype.getAll = function () {
       "dataType": 'json',
       "bProcessing": true,
       "language": {
-        "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+        "processing": generateSpinner("small")
       },
       error: function(xhr,status,error){
         handleAjaxError(xhr, status, error);
@@ -106,7 +106,7 @@ IsoManagedSelect.prototype.getAll = function () {
   } else {
     allTable.ajax.reload();
   }
-} 
+}
 
 IsoManagedSelect.prototype.buttonEnable = function () {
   this.buttonState(false);

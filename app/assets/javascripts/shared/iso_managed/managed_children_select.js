@@ -74,6 +74,7 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 		data: this.loadDataParams(this.count, offset),
 		type: 'GET',
 		dataType: 'json',
+		cache: false,
 		context: this,
 		success: function (result) {
 

@@ -13,7 +13,7 @@ colours[C_TEXTLABEL] = "gold";
 colours[C_MAPPING] = "gold";
 colours[C_COMMON_ITEM] = "gold";
 
-// BCs  
+// BCs
 colours[C_BC] = "crimson";
 colours[C_BC_DATATYPE] = "crimson";
 colours[C_BC_ITEM] = "crimson";

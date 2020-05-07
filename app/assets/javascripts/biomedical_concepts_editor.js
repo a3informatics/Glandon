@@ -18,7 +18,7 @@ var C_MAX_COUNT = 8;
 var C_NULL = -1;
 
 $(document).ready(function() {
-  
+
   bceBcTable = $('#bc_table').DataTable( {
     "ajax": {
       "url": "/biomedical_concepts/editable",
@@ -30,7 +30,7 @@ $(document).ready(function() {
     dataType: 'json',
     "bProcessing": true,
     "language": {
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "processing": generateSpinner("small")
     },
     "columns": [
       {"data" : "scoped_identifier.identifier", "width" : "50%"},
@@ -133,7 +133,7 @@ $(document).ready(function() {
   });
 
 });
-  
+
 function bceCreateRest() {
   var identifier = $('#biomedical_concept_identifier').val();
   var label = $('#biomedical_concept_label').val();
@@ -155,7 +155,7 @@ function bceCreateRest() {
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);
     }
-  }); 
+  });
 }
 
 function bceInit() {
@@ -175,18 +175,18 @@ function bceInit() {
   bceHideTempTable();
   bceHideEditorTable();
   bceEnableDisablePreviousNext();
-  bceEmptyProperty = 
+  bceEmptyProperty =
   {
-    "type": C_BC_PROP, 
-    "id": "", 
-    "namespace": "", 
-    "label": "", 
-    "question_text": "", 
-    "prompt_text": "", 
-    "enabled": "", 
+    "type": C_BC_PROP,
+    "id": "",
+    "namespace": "",
+    "label": "",
+    "question_text": "",
+    "prompt_text": "",
+    "enabled": "",
     "collect": "",
     "format": "",
-    "simple_datatype": ""      
+    "simple_datatype": ""
   };
   tfeInit();
   tfeSetCallBacks(bceComplete, bceUpDown, bceUpDown);
@@ -206,8 +206,8 @@ function bceComplete(count, row) {
   } else {
     var refs = tfeToRefs();
     type = "POST";
-    data = { "property": { "namespace": rowData.namespace, "tc_refs": refs }};    
-  }      
+    data = { "property": { "namespace": rowData.namespace, "tc_refs": refs }};
+  }
   $.ajax({
     url: "/biomedical_concepts/properties/" + rowData.id + "/term",
     type: type,
@@ -218,7 +218,7 @@ function bceComplete(count, row) {
       displayError("An error has occurred updating the terminology for a Biomedical Concept.");
     },
     success: function(result) {
-      bceEditorTable.row(row).data(result.data[0]);    
+      bceEditorTable.row(row).data(result.data[0]);
       bceEditorTable.draw();
       bceGetBc(bceCurrentIndex, false);
     }
@@ -232,7 +232,7 @@ function bceLoaded(data) {
     uri = toUri(bceBcs[i].namespace, bceBcs[i].id);
     if (new_uri === uri) {
       return true;
-    }  
+    }
   }
   return false;
 }
@@ -260,7 +260,7 @@ function bceCloseBc(index) {
   }
   bceHidePanels();
   bceHideTimers();
-  //bceCurrentIndex = C_NULL; 
+  //bceCurrentIndex = C_NULL;
   bceBcs.splice(bcIndex, 1);
   bcePanelIndexMap = {}
   if (bceBcs.length > 0) {
@@ -330,10 +330,10 @@ function bceShowCurrentBc() {
   } else {
     bceEditorTable.ajax.url(bceBcUrl()).load();
   }
-  $(".bc-panel").removeClass("panel-success"); 
+  $(".bc-panel").removeClass("panel-success");
   $("#bc_panel_" + panelId).addClass("panel-success");
   tfeDisable();
-  tfeClear();  
+  tfeClear();
 }
 
 function bceAddBc(id, namespace, lockReqd) {
@@ -358,7 +358,7 @@ function bceAddBc(id, namespace, lockReqd) {
     bceCreateBcRecord(id, namespace, bcIndex, uiIndex, C_NULL);
     bcePanelMove();
   }
-  if (ok) {    
+  if (ok) {
     bceGetBc(bcIndex, lockReqd);
     bceShowBcCount();
     bceShowCurrentBc();
@@ -374,7 +374,7 @@ function bceCreateBcRecord(id, namespace, bcIndex, uiIndex, panelId) {
 function bceGetBc(index, lockReqd) {
   var url;
   if (lockReqd) {
-    url = "/biomedical_concepts/" + bceBcs[index].id + "/edit_lock";    
+    url = "/biomedical_concepts/" + bceBcs[index].id + "/edit_lock";
   } else {
     url = "/biomedical_concepts/" + bceBcs[index].id + "/show_full";
   }
@@ -400,7 +400,7 @@ function bceGetBc(index, lockReqd) {
       bceBcs[index].identifier = bc.identifier;
       bceSetToken(index);
       ttAddToken(bceBcs[index].uiIndex);
-      bceShowPanel(index) 
+      bceShowPanel(index)
       bceBcTree(index);
     }
   });
@@ -416,7 +416,7 @@ function bceEditorTableInit() {
     },
     table: "#editor_table",
     idSrc: "id",
-    fields: 
+    fields:
     [
       {
           label: "Question Text",
@@ -440,7 +440,7 @@ function bceEditorTableInit() {
       }
     ]
   });
- 
+
   bceEditorTable = $('#editor_table').DataTable({
     pageLength: 15,
     lengthMenu: [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]],
@@ -456,21 +456,21 @@ function bceEditorTableInit() {
       { data: "alias" },
       { data: "question_text" },
       { data: "prompt_text" },
-      { data: "enabled", render: function(data, type, full, meta) { 
+      { data: "enabled", render: function(data, type, full, meta) {
         if (data) {
           return "<span class=\"glyphicon glyphicon-ok text-success\"/>";
         } else {
           return "<span class=\"glyphicon glyphicon-remove text-danger\"/>";
         }
       }},
-      { data: "collect", render: function(data, type, full, meta) { 
+      { data: "collect", render: function(data, type, full, meta) {
         if (data) {
           return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>";
         } else {
           return "<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>";
         }
       }},
-      { data: "simple_datatype", render: function(data, type, full, meta) { 
+      { data: "simple_datatype", render: function(data, type, full, meta) {
         if (full.coded) {
           return data + " [coded]";
         } else {
@@ -478,14 +478,14 @@ function bceEditorTableInit() {
         }
       }},
       { data: "format" },
-      { data: "children", "render": function(data, type, full, meta) { 
+      { data: "children", "render": function(data, type, full, meta) {
         if (full.enabled && full.coded) {
           return bceFormatTerminology(full.children);
         } else {
           return ""
         }
       }},
-      { data: null, "render": function(data, type, full, meta) { 
+      { data: null, "render": function(data, type, full, meta) {
         if (full.enabled && full.coded) {
           return '<button class="btn  btn-xs">T</button>';
         } else {
@@ -517,7 +517,7 @@ function bceEditorTableInit() {
     } else if (col === 8) {
       if (rowData.enabled && rowData.coded) {
         tfeEnable(rowData.alias, row);
-        tfeLoad(rowData.children);  
+        tfeLoad(rowData.children);
       }
     } else if (col === 5 || col === 7) {
     } else {
@@ -626,7 +626,7 @@ function bceGetToken(index) {
 }
 
 function bceShowBcCount() {
-  $('#bc_timer_count').html(bceBcs.length);  
+  $('#bc_timer_count').html(bceBcs.length);
 }
 
 // Null function for page unload. Nothing to do
@@ -685,7 +685,7 @@ function bceSetD3(index, sourceNode, d3ParentNode) {
       }
     } else if (sourceNode.type === C_TC_REF) {
       getThesaurusConcept(newNode, bceTcCallBack);
-    } 
+    }
   }
 }
 

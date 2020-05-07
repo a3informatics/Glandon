@@ -28,7 +28,7 @@ IsoManagedListOldPanel.prototype.load = function () {
     "pageLength": 5,
     "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
     "language": {
-        "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+        "processing": generateSpinner("small")
       },
     "columns": [
       {"data" : "identifier", "width" : "30%"},

@@ -98,6 +98,7 @@ HistoryPanel.prototype.add = function (offset) {
     data: data,
     type: 'GET',
     dataType: 'json',
+    cache: false,
     success: function(result) {
     	for (i=0; i<result.data.length; i++) {
         var row = _this.historyTable.row.add(result.data[i]);

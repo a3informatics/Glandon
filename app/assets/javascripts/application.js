@@ -28,7 +28,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require sidebar_handler
-//= require app-js-erb-extension
+//= require spinner_helpers
 //= require jquery-dateformat.min
 //= require underscore-min
 //= require title

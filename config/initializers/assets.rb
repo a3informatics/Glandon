@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-%w( colour unload print ajax_requests rspec_helper panel_collapse
+%w( colour unload  ajax_requests rspec_helper panel_collapse
   token_timer spinner
   field_validation
   iso_concept_graph iso_concept_impact
@@ -33,9 +33,11 @@ Rails.application.config.assets.version = '1.0'
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
-Rails.application.config.assets.precompile += %w( shared/import/crf_files_panel.js shared/import/items_panel.js )
-Rails.application.config.assets.precompile += %w( shared/datatables_loading.css )
-Rails.application.config.assets.precompile += %w( concerns/check_box.css )
+
+Rails.application.config.assets.precompile += %w( shared/datatables_loading.css concerns/spinner-component.css)
+Rails.application.config.assets.precompile += %w( homes.css print.css d3_graph.css d3_tree_rect.css d3_tree.css tags.css)
+
+Rails.application.config.assets.precompile += %w( import/crfs/new.js import/terms/new.js )
 Rails.application.config.assets.precompile += %w( import/crfs/new.js import/terms/new.js )
 Rails.application.config.assets.precompile += %w( shared/history_panel.js )
 Rails.application.config.assets.precompile += %w( shared/iso_managed/managed_children_panel.js shared/iso_managed/children_panel.js shared/iso_managed/comments_panel.js)
@@ -49,5 +51,4 @@ Rails.application.config.assets.precompile += %w( thesauri/unmanaged_concepts/sh
 Rails.application.config.assets.precompile += %w( iso_managed/edit_tags.js )
 Rails.application.config.assets.precompile += %w( iso_concept_systems/index.js )
 Rails.application.config.assets.precompile += %w( shared/thesauri/links_panel.js)
-Rails.application.config.assets.precompile += %w( shared/thesauri/links_panel.css )
 Rails.application.config.assets.precompile += %w( shared/thesauri/modal_panel.js)

@@ -13,7 +13,7 @@ function ImportItemsPanel(callback, list_url, create_url) {
   $('#items_panel_div').hide();
   $('#items_table_spinner_div').hide();
   $('#items_table_div').hide();
-  
+
   var _this = this;
 
   $('#import_button').click(function() {
@@ -31,11 +31,11 @@ function ImportItemsPanel(callback, list_url, create_url) {
   });
 
   $('#import_index_button').click(function() {
-    window.location.href = "<%= Rails.application.routes.url_helpers.imports_path %>";
+    window.location.href = "Rails.application.routes.url_helpers.imports_path";
   });
 
 }
- 
+
 ImportItemsPanel.prototype.refresh = function(uri, filename) {
   $('#imports_filename').text(filename);
   this.uri = uri;

@@ -1,6 +1,6 @@
 /*
 * Managed Item Panel
-* 
+*
 * Requires:
 * managed_item_table [Table] the managed item table
 */
@@ -30,7 +30,7 @@ function IsoManagedListPanel() {
     "processing": true,
     "scroller": true,
     "language": {
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "processing": generateSpinner("small")
     }
   });
 }

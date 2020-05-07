@@ -3,8 +3,6 @@
 *
 *
 */
-refreshOnBackPressed();
-
 $(document).ready(function(){
   var releaseSelect = new ReleaseSelect();
   var unload = new Unload(false);

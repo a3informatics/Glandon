@@ -10,5 +10,6 @@ $(document).ready( function() {
     {"data" : "definition"},
     {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}}
   ];
+
   var mcp = new ManagedChildrenPanel(url_path, 1000, columns);
 });

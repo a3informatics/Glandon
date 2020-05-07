@@ -1,10 +1,10 @@
 function ImportCrfFilesPanel() {
-  this.iip = new ImportItemsPanel(this.status, 
-    "<%= Rails.application.routes.url_helpers.items_imports_crfs_path %>", 
-    "<%= Rails.application.routes.url_helpers.imports_crfs_path %>");
-  
+  this.iip = new ImportItemsPanel(this.status,
+    "",
+    "");
+
   var _this = this;
-  
+
   $('#list_button').click(function() {
     var filename = $('#imports_files_').val();
     if (filename === null){
@@ -13,7 +13,7 @@ function ImportCrfFilesPanel() {
       _this.iip.refresh("", filename);
     }
   });
- 
+
 }
 
 ImportCrfFilesPanel.prototype.status = function(operating) {

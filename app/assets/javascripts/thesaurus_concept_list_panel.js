@@ -1,6 +1,6 @@
 /*
 * Thesaurus Concept Panel
-* 
+*
 * Requires:
 * thesaurus_concept_table [Table] the terminology table
 */
@@ -21,18 +21,18 @@ function ThesaurusConceptListPanel() {
       {"data" : "identifier"},
       {"data" : "notation"},
       {"data" : "preferredTerm"},
-      {"data" : "synonym"},      
+      {"data" : "synonym"},
       {"data" : "definition"},
       {"render" : function (data, type, row, meta) {
         return '<a href="/cdisc_clis/changes?id=' + row.id + '" class="btn  btn-xs">Changes</a>';
-      }}     
+      }}
     ],
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
     "scroller": true,
     "language": {
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "processing": generateSpinner("small")
     }
   });
 }

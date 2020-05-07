@@ -19,7 +19,7 @@ var feInitializeTimeoutCount;
 $(document).ready(function() {
 
   $("#saving").prop("disabled", true);
-  
+
   // Set up the form validation
   validatorDefaults ();
   $('#main_form').validate({
@@ -44,7 +44,7 @@ $(document).ready(function() {
         "Label Text Text": {required: false, markdown: true},
         "Code List Label": {required: true, label: true },
         "Common Label": {required: true, label: true },
-        "Mapping": {required: true, mapping: true }        
+        "Mapping": {required: true, mapping: true }
     },
     submitHandler: function(form) {
       saveNode();
@@ -82,7 +82,7 @@ $(document).ready(function() {
     "bProcessing": true,
     "language": {
       "infoFiltered": "",
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "processing": generateSpinner("small")
     },
     "columns": [
       {"data" : "scoped_identifier.identifier", "width" : "50%"},
@@ -94,7 +94,7 @@ $(document).ready(function() {
     notepadTable = $('#notepad_table').DataTable( {
       "ajax": {
         "url": "/notepads/index_term",
-        "dataSrc": "data"  
+        "dataSrc": "data"
       },
       "bProcessing": true,
       "pagingType": "full",
@@ -102,28 +102,27 @@ $(document).ready(function() {
       "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
       "language": {
         "infoFiltered": "",
-        "processing": "<img src='<%= asset_path('processing.gif') %>'>"
       },
       "columns": [
         {"data" : "identifier", "width" : "30%"},
         {"data" : "useful_1", "width" : "70%"}
       ]
     });
-    notepadTableReload = true;    
+    notepadTableReload = true;
   }*/
 
   // Initialize everything.
   initData();
   //initialNotepadLoad();
   displayNode(rootNode);
-  
+
   // Set window resize.
   window.addEventListener("resize", d3eReDisplay);
 
   // Start timeout timer
   ttAddToken("1");
 
-  /* 
+  /*
    * Notepad functions
    */
   /*$('#notepad_refresh').click(function() {
@@ -178,7 +177,7 @@ $(document).ready(function() {
   */
   $('.node-up-action').click(function() {
     treeNodeUp();
-  }); 
+  });
 
   $('.node-down-action').click(function() {
     treeNodeDown();
@@ -227,7 +226,7 @@ $(document).ready(function() {
       var node = addCommonGroup(d3eGetCurrent());
       displayNode(node);
     }
-  }); 
+  });
 
   $('#groupAddBc').click(function() {
     var currentNode = d3eGetCurrent()
@@ -238,23 +237,23 @@ $(document).ready(function() {
     } else {
       addBc(currentNode);
     }
-  }); 
+  });
 
   $('#groupAddQuestion').click(function() {
     treeNodeAdd(addQuestion);
-  }); 
+  });
 
   $('#groupAddMapping').click(function() {
     treeNodeAdd(addMapping);
-  }); 
+  });
 
   $('#groupAddPlaceholder').click(function() {
     treeNodeAdd(addPlaceholder);
-  }); 
+  });
 
   $('#groupAddLabelText').click(function() {
     treeNodeAdd(addLabelText);
-  }); 
+  });
 
   /*
   * Common Panel Actions
@@ -296,7 +295,7 @@ $(document).ready(function() {
       var node = makeCommon(currentNode);
       displayNode(node);
     }
-  }); 
+  });
 
   $('#itemRestore').click(function() {
     var currentNode = d3eGetCurrent()
@@ -306,7 +305,7 @@ $(document).ready(function() {
       restoreCommon(currentNode);
       treeNodeDelete(false);
     }
-  }); 
+  });
 
   /*
   * Code List Panel Actions
@@ -319,7 +318,7 @@ $(document).ready(function() {
       $('#clLocalLabel').val(d3CurrentNode.data.subject_data.label);
     }
   });
-  
+
   /*
    * Function to handle click on the BC selection table.
    */
@@ -346,7 +345,7 @@ $(document).ready(function() {
     varClCurrentRow = row;
   });*/
 
-  /* 
+  /*
   * Function to handle the terminology button clicks.
   */
   /*$('#deleteTerm').click(function() {
@@ -357,7 +356,7 @@ $(document).ready(function() {
       var clData = questionClTable.row(varClCurrentRow).data();
       var node = d3FindData(clData.key);
       if (node !== null) {
-        var parent = node.parent; 
+        var parent = node.parent;
         d3eDeleteNode(node);
         questionClTable.row(varClCurrentRow).remove();
         varClCurrentRow = null;
@@ -383,7 +382,7 @@ $(document).ready(function() {
       displayWarning("You need to select a completion instruction field.");
     } else {
       var text = markdownElement.value;
-      getMarkdown(document.getElementById("genericCompletion"), text, markdownCallback);  
+      getMarkdown(document.getElementById("genericCompletion"), text, markdownCallback);
     }
   });
 
@@ -458,7 +457,7 @@ function clEnableDisable (value, coded) {
     $("#questionFormat").prop('disabled', false);
     //$("#notepad_add").prop('disabled', true);
     //$("#deleteTerm").prop('disabled', true);
-    tfeDisable();    
+    tfeDisable();
   } else {
     $("#questionFormat").prop('disabled', true);
     //$("#notepad_add").prop('disabled', true);
@@ -549,7 +548,7 @@ function selectCl() {
 }
 
 //function showNotepad() {
-  //$("#notepad_panel").removeClass('hidden');  
+  //$("#notepad_panel").removeClass('hidden');
 //}
 
 //function hideNotepad() {
@@ -586,7 +585,7 @@ function saveRest() {
   if (currentSave !== previousSave) {
     spAddSpinner("#saving");
     form = formDefinition.managed_item;
-    data = { "namespace": form['namespace'], "form": formDefinition };  
+    data = { "namespace": form['namespace'], "form": formDefinition };
     $.ajax({
       url: "/forms/" + form['id'],
       type: 'PUT',
@@ -632,7 +631,7 @@ function treeNodeDelete(checkChildren) {
     } else {
       var node = d3eDeleteNode(currentNode);
       displayNode(node);
-    } 
+    }
   }
 }
 
@@ -667,7 +666,7 @@ function treeNodeDown() {
 }
 
 /*
- * Functions to display the various panels. 
+ * Functions to display the various panels.
  */
 function displayForm(node) {
   $('#formLabel').val(node.data.label);
@@ -868,7 +867,7 @@ function makeCommon(node) {
             if (commonMatch(node, item)) {
               commonD3Nodes.push(item);
             }
-          }  
+          }
         }
       }
     }
@@ -878,7 +877,7 @@ function makeCommon(node) {
         returnD3Node = d3CommonItem;
         for (var k=0; k<commonD3Nodes.length; k++) {
           refFromCommon(d3CommonItem, commonD3Nodes[k]);
-        } 
+        }
       } else {
         displayWarning("No common items matched.");
       }
@@ -905,7 +904,7 @@ function commonMatch(commonD3Node, d3Node) {
       for (var i=0; i<commonD3Node.save.length; i++) {
         var commonChild = commonD3Node.save[i].data;
         var otherChild = d3Node.save[i].data;
-        if (commonChild.subject_data.id !== commonChild.subject_data.id || 
+        if (commonChild.subject_data.id !== commonChild.subject_data.id ||
           commonChild.subject_data.namespace !== commonChild.subject_data.namespace) {
           return false;
         }
@@ -1022,7 +1021,7 @@ function findKeyFromId(id) {
 
 function removeKeyFromId(id) {
   if (idKeyMap.hasOwnProperty(id)) {
-    delete idKeyMap[id]; 
+    delete idKeyMap[id];
   }
 }
 
@@ -1030,67 +1029,67 @@ function removeKeyFromId(id) {
 * New blank object functions
 */
 function newFormGroup(nullVar) {
-  return { 
-    type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, optional: false, repeating: false, 
+  return {
+    type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, optional: false, repeating: false,
     note: "", completion: "", bc_ref: {}, children: [] };
 }
 
 function newCommonGroup(nullVar) {
   return {
-    type: C_COMMON_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_COMMON_GROUP, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, repeating: false, completion: "", note: "", children: [] };
 }
 
 function newCommonItem(nullVar) {
   return {
-    type: C_COMMON_ITEM, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_COMMON_ITEM, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, completion: "", note: "", bridg_path: "", item_refs: [], children: [] };
 }
 
 function newQuestion(nullVar) {
   return {
-    type: C_QUESTION, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_QUESTION, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, completion: "", note: "", free_text: "", label_text: "", datatype: "string",
     format: "20", question_text: "", pText: "", mapping: "",
-    children: [] 
+    children: []
   };
 }
 
 function newMapping(nullVar) {
   return {
-    type: C_MAPPING, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_MAPPING, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, completion: "", note: "", mapping: "",
-    children: [] 
+    children: []
   };
 }
 
 function newPlaceholder(nullVar) {
   return {
-    type: C_PLACEHOLDER, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_PLACEHOLDER, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, completion: "", note: "", free_text: "", label_text: "",datatype: "",
     format: "", question_text: "", pText: "", mapping: "",
-    children: [] 
+    children: []
   };
 }
 
 function newLabelText(nullVar) {
   return {
-    type: C_TEXTLABEL, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_TEXTLABEL, label: "", id: "", namespace: "", ordinal: 0,
     optional: false, completion: "", note: "", free_text: "", label_text: "",datatype: "",
     format: "", question_text: "", pText: "", mapping: "",
-    children: [] 
+    children: []
   };
 }
 
 function newBCGroup(bc) {
   return {
-    type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0, 
-    repeating: false, optional: false, completion: "", note: "", 
-    bc_ref: 
-      { 
-        enabled: true, 
+    type: C_NORMAL_GROUP, label: "", id: "", namespace: "", ordinal: 0,
+    repeating: false, optional: false, completion: "", note: "",
+    bc_ref:
+      {
+        enabled: true,
         optional: false,
-        ordinal: 0, 
+        ordinal: 0,
         local_label: "",
         subject_ref: {id: bc.id, namespace: bc.namespace},
         subject_data: bc
@@ -1100,24 +1099,24 @@ function newBCGroup(bc) {
 
 function newBCProperty(property) {
   return {
-    type: C_BC_QUESTION, label: "", id: "", namespace: "", ordinal: 0, 
+    type: C_BC_QUESTION, label: "", id: "", namespace: "", ordinal: 0,
     is_common: false, optional: false, completion: "", note: "",
-    property_ref: 
-      { 
-        enabled: true, 
+    property_ref:
+      {
+        enabled: true,
         optional: false,
-        ordinal: 0, 
+        ordinal: 0,
         local_label: "",
         subject_ref: {id: property.id, namespace: property.namespace},
         subject_data: property
       },
-    children: [] 
+    children: []
   };
 }
 
 function newBCPropertyCli(cli) {
   return {
-    type: C_TC_REF, label: cli.label, id: "", namespace: "", ordinal: 0, 
+    type: C_TC_REF, label: cli.label, id: "", namespace: "", ordinal: 0,
     local_label: cli.local_label, enabled: true, optional: false,
     subject_ref: {id: cli.subject_ref.id, namespace: cli.subject_ref.namespace}
   };
@@ -1125,8 +1124,8 @@ function newBCPropertyCli(cli) {
 
 function newQuestionCli(cli) {
   return {
-    type: C_TC_REF, label: cli.subject_data.label, id: "", namespace: "", ordinal: 0, 
-    local_label: cli.subject_data.label, enabled: true, optional: false, 
+    type: C_TC_REF, label: cli.subject_data.label, id: "", namespace: "", ordinal: 0,
+    local_label: cli.subject_data.label, enabled: true, optional: false,
     subject_ref: cli.subject_ref,
     subject_data: cli.subject_data
   };
@@ -1198,7 +1197,7 @@ function addBc(d3ParentNode) {
           for (var j=0; j<property.children.length; j++) {
             var tcRef = property.children[j];
             var tcRefD3Node = addD3Node(propertyD3Node, C_TC_REF, tcRef.local_label, newBCPropertyCli, tcRef, true, false);
-            tcRefD3Node.enabled = true    
+            tcRefD3Node.enabled = true
             d3eAddData(propertyD3Node, tcRefD3Node.data, true);
             getReference(tcRefD3Node);
           }
@@ -1250,7 +1249,7 @@ function addD3Node(d3ParentNode, type, label, newFunction, functionData, atEnd, 
   }
   var sNode = newFunction(functionData);
   sNode.label = text
-  var d3Node = d3eAddNode(d3ParentNode, text, type, true, sNode, atEnd);   
+  var d3Node = d3eAddNode(d3ParentNode, text, type, true, sNode, atEnd);
   return d3Node
 }
 
@@ -1289,15 +1288,15 @@ function feTermCallBack(count, node) {
       d3eAddData(currentD3Node, tcRefD3Node.data, true);
     }
     displayNode(currentD3Node);
-  }  
+  }
 }
 
 function feMoveUp(node) {
-  feTermCallBack(1, node) 
+  feTermCallBack(1, node)
 }
 
 function feMoveDown(node) {
-  feTermCallBack(1, node) 
+  feTermCallBack(1, node)
 }
 
 function feEmpty(node) {
@@ -1319,7 +1318,7 @@ function initData () {
   bcCurrentRow = null;
   //notepadTableReload = false;
   //notepadData = null;
-  //notepadRow = null; 
+  //notepadRow = null;
   //varClCurrent = null;
   //varClCurrentRow = null;
   feInitializeTimeoutCount = 0;
@@ -1349,7 +1348,7 @@ function feUpdateSave () {
       feInitializeTimeoutCount++;
       return;
     }
-  } 
+  }
   previousSave = JSON.stringify(formDefinition);
 }
 
@@ -1411,7 +1410,7 @@ function saveNode() {
     saveCommonItem(d3Node);
   } else if (d3Node.type === C_TC_REF) {
     saveCl(d3Node)
-  } 
+  }
   saveRest();
 }
 
@@ -1456,7 +1455,7 @@ function displayNode(d3Node) {
   } else if (d3Node.type === C_TC_REF) {
     selectCl();
     displayCl(d3Node);
-  } 
+  }
 }
 
 /*
@@ -1476,7 +1475,7 @@ function getReference(d3Node) {
     if (d3Node.data.item_refs.length > 0) {
       getBcPropertyCommon(d3Node, bcPropertyResultCommon)
     }
-  } 
+  }
 }
 
 /*

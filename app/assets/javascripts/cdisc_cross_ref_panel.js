@@ -1,8 +1,8 @@
 /*
 * CDISC Cross Ref Panel
-* 
+*
 * Requires:
-* 
+*
 * cr_table [Table] the table
 */
 
@@ -22,21 +22,21 @@ function CdiscCrossRefPanel(id, namespace, direction) {
       	for (i=0; i<row.cross_references.length; i++) {
       		var item = row.cross_references[i];
       		if (item.parentIdentifier === "") {
-  	    		text += '<a href="/cdisc_clis/' + item.id + '?namespace=' + item.namespace + 
+  	    		text += '<a href="/cdisc_clis/' + item.id + '?namespace=' + item.namespace +
   	    			'" class="btn  btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
       		} else {
-  	    		text += '<a href="/cdisc_cls/' + item.id + '?namespace=' + item.namespace + 
+  	    		text += '<a href="/cdisc_cls/' + item.id + '?namespace=' + item.namespace +
   	    			'" class="btn  btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
       		}
       	}
       	return text;
-      }}   
+      }}
     ],
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
     "language": {
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "processing": generateSpinner("small")
     }
   });
 }
