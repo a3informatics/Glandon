@@ -3,7 +3,6 @@
  *
  * Requires:
  * managed-item-icon-table [Table]
- * include JS file 'shared/tags'
  */
 
 /**

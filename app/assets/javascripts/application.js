@@ -28,6 +28,7 @@
 //= require jquery-dateformat.min
 //= require underscore-min
 //= require title
+//= require shared/icons_tags_helpers
 //= require shared/confirmation_dialog
 //= require shared/information_dialog
 

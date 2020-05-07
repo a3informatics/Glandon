@@ -3,7 +3,6 @@
  *
  * Requires:
  * managed-items-select-modal [Partial]
- * JS shared/tags must be included in page
  */
 
 /**

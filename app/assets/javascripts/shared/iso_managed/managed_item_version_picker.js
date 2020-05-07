@@ -3,7 +3,6 @@
  *
  * Requires:
  * managed-item-version-picker (modal) [Partial]
- * JS shared/tags must be included in page
  */
 
 /**

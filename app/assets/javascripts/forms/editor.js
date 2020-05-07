@@ -1473,7 +1473,7 @@ function getReference(d3Node) {
     getBcProperty(d3Node, bcPropertyResult)
   } else if (d3Node.type === C_COMMON_ITEM) {
     if (d3Node.data.item_refs.length > 0) {
-      getBcPropertyCommon(d3Node, bcPropertyResultCommon)
+      getBcPropertyCommon(d3Node, bcPropertyResultCommon);
     }
   }
 }

@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    'd3_tree', 'spinner' %>
-<%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests', 'd3_editor', 'unload', 'field_validation', 'token_timer', 'spinner' %>
+<%= javascript_include_tag 'd3', 'd3_tree', 'sdtm_user_domains/editor', 'ajax_requests', 'd3_editor', 'unload', 'field_validation', 'token_timer', 'spinner' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

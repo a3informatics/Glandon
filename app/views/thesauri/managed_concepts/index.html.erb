@@ -2,7 +2,7 @@
 
 <%= javascript_tag "var indexCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}'" %>
 <%= javascript_tag "var createCLUrl = '#{thesauri_managed_concepts_path}'" %>
-<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/tags', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
 <% first_level_breadcrumb (:code_lists) %>

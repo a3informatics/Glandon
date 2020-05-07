@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag    'd3_tree', 'panel_collapse', 'spinner' %>
-<%= javascript_include_tag 'd3_tree', 'form_editor', 'ajax_requests', 'form_utility', 'd3_editor', 'unload', 'field_validation' %>
-<%= javascript_include_tag 'token_timer', 'panel_collapse', 'spinner', 'shared/tags', 'thesauri_field_editor' %>
+<%= javascript_include_tag 'd3', 'd3_tree', 'forms/editor', 'ajax_requests', 'forms/form_utility', 'd3_editor', 'unload', 'field_validation' %>
+<%= javascript_include_tag 'token_timer', 'panel_collapse', 'spinner', 'thesauri_field_editor' %>
 <% third_level_managed_item_breadcrumb(@form, "Forms", forms_path, @close_path, "Edit:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>

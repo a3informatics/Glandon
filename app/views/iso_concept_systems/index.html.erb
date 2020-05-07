@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Tags")' %>
 <%= stylesheet_link_tag 'shared/datatables_loading', 'shared/layouts/header_card'%>
-<%= javascript_include_tag 'd3', 'iso_concept_systems/index', 'managed_tags_panel_v2' %>
+<%= javascript_include_tag 'd3', 'iso_concept_systems/index', 'iso_concept_systems/managed_tags_panel_v2' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>

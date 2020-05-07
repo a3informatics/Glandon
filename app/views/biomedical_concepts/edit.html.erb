@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag    'd3_tree', 'biomedical_concepts/editor', 'panel_collapse', 'spinner' %>
-<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'biomedical_concepts/editor', 'unload', 'field_validation', 'token_timer' %>
-<%= javascript_include_tag 'panel_collapse', 'shared/tags', 'thesauri_field_editor', 'spinner', 'ajax_requests' %>
+<%= javascript_include_tag 'd3', 'd3_tree', 'd3_editor_new', 'biomedical_concepts/editor', 'unload', 'field_validation', 'token_timer' %>
+<%= javascript_include_tag 'panel_collapse', 'thesauri_field_editor', 'spinner', 'ajax_requests' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

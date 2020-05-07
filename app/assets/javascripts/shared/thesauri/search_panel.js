@@ -2,10 +2,6 @@
 * Search Panel. Panel used to search terminologies. Paginated.
 */
 
-/*
-* Requires: JavaScript 'shared/tags' included in the view
-*/
-
 /**
 * SearchPanel Constructor
 *

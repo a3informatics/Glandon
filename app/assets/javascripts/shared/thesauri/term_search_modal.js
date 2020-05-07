@@ -2,10 +2,6 @@
 * Extends 'Search Panel'. Modal used to search terminologies and select Code List Items. Paginated.
 */
 
-/*
-* Requires: JavaScript 'shared/tags' in the view
-*/
-
 TermSearchModal.prototype = Object.create(SearchPanel.prototype);
 
 /**

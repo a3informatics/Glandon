@@ -16,8 +16,8 @@
 
 <%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/datatables_loading', 'shared/table_select', 'shared/show_more', 'shared/timeline_cdisc' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
-<%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_slider', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
-                           'shared/show_more_js', 'thesauri/release_select', 'shared/timer', 'unload' %>
+<%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_cdisc', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
+                           'shared/show_more', 'thesauri/release_select', 'shared/timer', 'unload' %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>

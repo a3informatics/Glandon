@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'form_show', 'ajax_requests', 'form_utility', 'iso_managed_attributes'%>
+<%= javascript_include_tag 'forms/show', 'ajax_requests', 'forms/form_utility', 'iso_managed/iso_managed_attributes'%>
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 <script id="jsonData" type="text/json">
     <%= raw @form.to_operation.to_json %>

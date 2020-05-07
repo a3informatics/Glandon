@@ -2,7 +2,7 @@
 * Iso Concept Tagging
 *
 * Requires: tag_panel [div] (find in edit_tags.html.erb),
-*           shared/tags.js.erb and iso_concept_systems/tags.scss to be included in page
+*           iso_concept_systems/tags.scss to be included in page
 */
 
 /**

@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'shared/datatables_loading', 'shared/table_select' %>
-<%= javascript_include_tag 'shared/tags', 'shared/iso_managed/managed_items_select_modal' %>
+<%= javascript_include_tag 'shared/iso_managed/managed_items_select_modal' %>
 <%= javascript_tag "var miType = '#{type.to_s}'" %>
 <%= javascript_tag "var selectMultiple = #{(local_assigns.fetch :select_multiple, true)}" %>
 
