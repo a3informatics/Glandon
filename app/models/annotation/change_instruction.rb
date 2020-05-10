@@ -27,7 +27,9 @@ class Annotation::ChangeInstruction < Annotation
     ci
   end
 
-  # Delete. Delete the change instruction and the associated references.
+  # Delete. 
+  # 
+  # Delete the change instruction and the associated references.
   def delete
     query_string = %Q{
       DELETE 
@@ -55,7 +57,7 @@ class Annotation::ChangeInstruction < Annotation
       partial_update(query_string, [:ba])
   end
 
-  # Get data. 
+  # Get data. Get information about a Change Instruction and the associated references (Identifier, notation, semantic version)
   #
   # @return [Annotation::ChangeInstruction] the change instruction and the associated references
   def get_data
@@ -161,7 +163,7 @@ SELECT ?r ?parent ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type 
     results
   end
 
-  # Remove reference
+  # Remove reference. Remove a reference associated with a Change Instruction.
   #
   # @param [Hash] params the parameters hash
   # @option params [String] :type current or previous
@@ -181,7 +183,7 @@ SELECT ?r ?parent ?desc ?reference ?p_n ?p_id ?sv ?c_n ?c_id ?t ?type ?rdf_type 
     1
   end
 
-  # Add references
+  # Add references. Add references to a Change Instruction.
   #
   # @param [Hash] params the parameters hash
   # @option params [String] :previous the previous ids references to add
