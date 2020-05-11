@@ -15,6 +15,109 @@
 :data:
 - - C67154
   - LBTEST
+  - C61019
+  - Blood Urea Nitrogen
+  - '46'
+  - C67154
+  - LBTEST
+  - C125949
+  - Urea Nitrogen
+  - '54'
+  - ''
+  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
+    This concept will replace C61019.
+- - C67154
+  - LBTEST
+  - C74753
+  - BUN/Creatinine
+  - '46'
+  - C67154
+  - LBTEST
+  - C125950
+  - Urea Nitrogen/Creatinine
+  - '54'
+  - ''
+  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
+    This concept will replace C74753.
+- - C65047
+  - LBTESTCD
+  - C61019
+  - BUN
+  - '46'
+  - C65047
+  - LBTESTCD
+  - C125949
+  - UREAN
+  - '54'
+  - ''
+  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
+    This concept will replace C61019.
+- - C65047
+  - LBTESTCD
+  - C74753
+  - BUNCREAT
+  - '46'
+  - C65047
+  - LBTESTCD
+  - C125950
+  - UREANCRT
+  - '54'
+  - ''
+  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
+    This concept will replace C74753.
+- - C88025
+  - NEOPLASM
+  - C27477
+  - GIANT CELL TUMOR, BENIGN
+  - '46'
+  - C88025
+  - NEOPLASM
+  - C121932
+  - GIANT CELL TUMOR, BENIGN
+  - '54'
+  - ''
+  - The nomenclature has been updated and now the original mapping is obsolete. This
+    concept will replace C27477.
+- - C88025
+  - NEOPLASM
+  - C72074
+  - CARCINOID TUMOR, MALIGNANT
+  - '46'
+  - C88025
+  - NEOPLASM
+  - C126087
+  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
+  - '54'
+  - ''
+  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
+    publication.
+- - C88025
+  - NEOPLASM
+  - C3773
+  - CARCINOMA, NEUROENDOCRINE CELL, MALIGNANT
+  - '46'
+  - C88025
+  - NEOPLASM
+  - C126087
+  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
+  - '54'
+  - ''
+  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
+    publication.
+- - C88025
+  - NEOPLASM
+  - C64118
+  - MESENCHYMAL TUMOR, MALIGNANT
+  - '46'
+  - C88025
+  - NEOPLASM
+  - C126088
+  - RENAL MESENCHYMAL TUMOR, MALIGNANT
+  - '54'
+  - ''
+  - This concept will replace C64118, which has been removed with the 2016-03-25 publication.
+- - C67154
+  - LBTEST
   - C117855
   - Ret. Mean Corpuscular Hemoglobin
   - '52'
@@ -126,7 +229,7 @@
   - ONCRTSCD
   - C132458
   - TMRESP
-  - '53'
+  - '54'
   - ''
   - C123628 has been retired. Please use the existing term TMRESP (C132458)
 - - C128687
@@ -198,7 +301,7 @@
   - CVTESTCD
   - C135376
   - MEANBP_E
-  - '53'
+  - '54'
   - ''
   - Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium
     (or other chambers of the heart).
@@ -271,7 +374,7 @@
   - ONCRTS
   - C132458
   - Tumor Marker Response
-  - '53'
+  - '54'
   - ''
   - C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)
 - - C74456
@@ -283,7 +386,7 @@
   - LOC
   - C12506
   - TOOTH
-  - '53'
+  - '54'
   - ''
   - Replaces C33794 in this codelist.
 - - C128687
@@ -325,7 +428,7 @@
   - CVTEST
   - C135376
   - Mean Blood Pressure, Estimated
-  - '53'
+  - '54'
   - ''
   - Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium
     (or other chambers of the heart).
@@ -428,7 +531,7 @@
   - LBTESTCD
   - C139074
   - RDWR
-  - '53'
+  - '54'
   - ''
   - Replacing C114218 in this codelist.
 - - C128687
@@ -694,7 +797,7 @@
   - LBTEST
   - C139074
   - Ret Volume Distribution Width
-  - '53'
+  - '54'
   - ''
   - Replacing C114218 in this codelist.
 - - C128687
@@ -847,3 +950,222 @@
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135375
+  - LVEF_E
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135374
+  - LVEF_C
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - C96785
+  - ONCRSR
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '51'
+  - C124298
+  - ONCRSCAT
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '54'
+  - ''
+  - Term being added into correct codelist, ONCRSCAT. This term was incorrectly published
+    in the wrong codelist (ONCRSR).
+- - C101846
+  - CVTEST
+  - C99970
+  - Left Atrium Dimension
+  - '51'
+  - C101846
+  - CVTEST
+  - C135377
+  - Major Axis Cross-sec. Diameter
+  - '54'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135375
+  - Left Ventricular Ejection Fraction, Est
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135374
+  - Left Ventricular Ejection Fraction, Cal
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99970
+  - LADMN
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135377
+  - MJDIA
+  - '54'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).

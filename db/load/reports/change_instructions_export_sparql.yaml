@@ -45,105 +45,61 @@ PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX iso: <http://purl.org/iso25964/skos-thes#>
 SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?reference ?description WHERE       
 {
-  VALUES ?th {[[[parameter_1]]]}
-  {
-     {
-      ?ci (ba:current/bo:context) ?th .  
-      ?ci rdf:type ba:ChangeInstruction .
-      ?ci ba:reference ?reference .
-      ?ci ba:description ?description .
-      ?ci ba:previous ?previous .
-      ?previous bo:reference ?pr .
-      ?pr th:identifier ?rpi .
-      ?pr th:notation ?rpsv .
-      OPTIONAL 
-      {             
-        ?pr rdf:type th:ManagedConcept .               
-        ?pr isoT:hasIdentifier/isoI:version ?rpv.
+    VALUES ?th {[[[parameter_1]]]} 
+    ?ci rdf:type ba:ChangeInstruction .
+    ?ci (ba:current/bo:reference) ?current .
+    ?ci (ba:previous/bo:reference) ?previous .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference/th:narrower ?current} AS ?a) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference ?current} AS ?b) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference/th:narrower ?previous} AS ?c) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference ?previous} AS ?d) .
+    FILTER (?a||?b||?c||?d)
+    ?ci ba:reference ?reference .
+    ?ci ba:description ?description .
+    ?current th:notation ?rcsv .             
+    ?current th:identifier ?rci . 
+    ?previous th:notation ?rpsv .             
+    ?previous th:identifier ?rpi .
+    OPTIONAL{
+        ?previous rdf:type th:ManagedConcept .                                     
+          ?previous isoT:hasIdentifier/isoI:version ?rpv.
         BIND (" " as ?pid)
-        BIND (" " as ?pnot)
-      }           
-      OPTIONAL 
-      {
-        ?pr rdf:type th:UnmanagedConcept . 
-        ?ci (ba:previous/bo:context) ?term .
-        ?term th:isTopConceptReference/bo:reference ?parent .
-        ?pr ^th:narrower ?parent .                                                
-        ?parent isoT:hasIdentifier/isoI:version ?rpv.
-        ?parent th:identifier ?pid .
-        ?parent th:notation ?pnot .
-      }
-      ?ci ba:current ?current .
-      ?current bo:reference ?cr .
-      ?cr th:identifier ?rci .
-      ?cr th:notation ?rcsv .
-      OPTIONAL 
-      {             
-        ?cr rdf:type th:ManagedConcept .               
-        ?cr isoT:hasIdentifier/isoI:version ?rcv .
+          BIND (" " as ?pnot)}
+    OPTIONAL{ 
+          ?current rdf:type th:ManagedConcept .                                   
+          ?current isoT:hasIdentifier/isoI:version ?rcv
         BIND (" " as ?pident)
-        BIND (" " as ?pnotat)
-      }           
-      OPTIONAL 
-      {
-        ?cr rdf:type th:UnmanagedConcept . 
-        ?ci (ba:current/bo:context) ?term2 .
-        ?cr ^th:narrower ?parent2 .
-        ?term2 th:isTopConceptReference/bo:reference ?parent2 .                                      
-        ?parent2 isoT:hasIdentifier/isoI:version ?rcv.
-        ?parent2 th:identifier ?pident .
-        ?parent2 th:notation ?pnotat .
+          BIND (" " as ?pnotat)}  
+    OPTIONAL{
+        ?previous rdf:type th:UnmanagedConcept .                                                 
+        ?previous ^th:narrower ?cl .             
+        ?cl th:notation ?pnot .             
+        ?cl th:identifier ?pid . 
+      ?cl isoT:hasIdentifier/isoI:version ?rpv.
+        {
+          SELECT ?previous (max(?ver) AS ?rpv) WHERE
+          { 
+            ?ci (ba:previous/bo:reference) ?previous.
+            ?previous ^th:narrower ?p .
+            ?p isoT:hasIdentifier/isoI:version ?ver.
+          } group by ?previous
+        }
       }
-    }
-    UNION
-    {
-      ?ci (ba:previous/bo:context) ?th .  
-      ?ci rdf:type ba:ChangeInstruction .
-      ?ci ba:reference ?reference .
-      ?ci ba:description ?description .
-      ?ci ba:previous ?previous .
-      ?previous bo:reference ?pr .
-      ?pr th:identifier ?rpi .
-      ?pr th:notation ?rpsv .
-      OPTIONAL 
-      {             
-        ?pr rdf:type th:ManagedConcept .               
-        ?pr isoT:hasIdentifier/isoI:version ?rpv.
-        BIND (" " as ?pid)
-        BIND (" " as ?pnot)
-      }           
-      OPTIONAL 
+      OPTIONAL
       {
-        ?pr rdf:type th:UnmanagedConcept . 
-        ?ci (ba:previous/bo:context) ?term .
-        ?term th:isTopConceptReference/bo:reference ?parent .
-        ?pr ^th:narrower ?parent .                                                
-        ?parent isoT:hasIdentifier/isoI:version ?rpv.
-        ?parent th:identifier ?pid .
-        ?parent th:notation ?pnot .
-      }
-      ?ci ba:current ?current .
-      ?current bo:reference ?cr .
-      ?cr th:identifier ?rci .
-      ?cr th:notation ?rcsv .
-      OPTIONAL 
-      {             
-        ?cr rdf:type th:ManagedConcept .               
-        ?cr isoT:hasIdentifier/isoI:version ?rcv .
-        BIND (" " as ?pident)
-        BIND (" " as ?pnotat)
-      }           
-      OPTIONAL 
-      {
-        ?cr rdf:type th:UnmanagedConcept . 
-        ?ci (ba:current/bo:context) ?term2 .
-        ?cr ^th:narrower ?parent2 .
-        ?term2 th:isTopConceptReference/bo:reference ?parent2 .                                      
-        ?parent2 isoT:hasIdentifier/isoI:version ?rcv.
-        ?parent2 th:identifier ?pident .
-        ?parent2 th:notation ?pnotat .
-      }
-    }
-  } 
+      ?current rdf:type th:UnmanagedConcept .                                                
+        ?current ^th:narrower ?father .             
+        ?father th:notation ?pnotat .             
+        ?father th:identifier ?pident .
+      ?father isoT:hasIdentifier/isoI:version ?rcv.
+        {
+          SELECT ?current (MAX(?vv) AS ?rcv) WHERE
+          { 
+            ?ci (ba:current/bo:reference) ?current.
+            ?current ^th:narrower ?fa .
+            ?fa isoT:hasIdentifier/isoI:version ?vv.
+          } group by ?current
+        }
+      }    
 }'
 :type: Ad Hoc Report Definition

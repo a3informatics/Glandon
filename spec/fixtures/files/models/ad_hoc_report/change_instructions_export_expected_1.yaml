@@ -22,7 +22,7 @@
   - LBTEST
   - C125949
   - Urea Nitrogen
-  - '47'
+  - '54'
   - ''
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C61019.
@@ -35,7 +35,7 @@
   - LBTEST
   - C125950
   - Urea Nitrogen/Creatinine
-  - '47'
+  - '54'
   - ''
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C74753.
@@ -48,7 +48,7 @@
   - LBTESTCD
   - C125949
   - UREAN
-  - '47'
+  - '54'
   - ''
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C61019.
@@ -61,7 +61,7 @@
   - LBTESTCD
   - C125950
   - UREANCRT
-  - '47'
+  - '54'
   - ''
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C74753.
@@ -74,7 +74,7 @@
   - NEOPLASM
   - C121932
   - GIANT CELL TUMOR, BENIGN
-  - '47'
+  - '54'
   - ''
   - The nomenclature has been updated and now the original mapping is obsolete. This
     concept will replace C27477.
@@ -87,7 +87,7 @@
   - NEOPLASM
   - C126087
   - NEUROENDOCRINE CELL TUMOR, MALIGNANT
-  - '47'
+  - '54'
   - ''
   - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
     publication.
@@ -100,7 +100,7 @@
   - NEOPLASM
   - C126087
   - NEUROENDOCRINE CELL TUMOR, MALIGNANT
-  - '47'
+  - '54'
   - ''
   - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
     publication.
@@ -113,7 +113,7 @@
   - NEOPLASM
   - C126088
   - RENAL MESENCHYMAL TUMOR, MALIGNANT
-  - '47'
+  - '54'
   - ''
   - This concept will replace C64118, which has been removed with the 2016-03-25 publication.
 - - C88025
@@ -622,3 +622,321 @@
   - '47'
   - ''
   - Creatinine belongs in test/parm name. Please use pg/mg (C67396) in its place.
+- - C96782
+  - ONCRTSCD
+  - C123628
+  - TUAGRESP
+  - '52'
+  - C96782
+  - ONCRTSCD
+  - C132458
+  - TMRESP
+  - '54'
+  - ''
+  - C123628 has been retired. Please use the existing term TMRESP (C132458)
+- - C96781
+  - ONCRTS
+  - C123628
+  - Tumor Antigen Response
+  - '52'
+  - C96781
+  - ONCRTS
+  - C132458
+  - Tumor Marker Response
+  - '54'
+  - ''
+  - C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)
+- - C74456
+  - LOC
+  - C33794
+  - ODONTOGENIC TISSUE
+  - '51'
+  - C74456
+  - LOC
+  - C12506
+  - TOOTH
+  - '54'
+  - ''
+  - Replaces C33794 in this codelist.
+- - C65047
+  - LBTESTCD
+  - C114218
+  - RETICDW
+  - '52'
+  - C65047
+  - LBTESTCD
+  - C139074
+  - RDWR
+  - '54'
+  - ''
+  - Replacing C114218 in this codelist.
+- - C67154
+  - LBTEST
+  - C114218
+  - Reticulocyte Distribution Width
+  - '52'
+  - C67154
+  - LBTEST
+  - C139074
+  - Ret Volume Distribution Width
+  - '54'
+  - ''
+  - Replacing C114218 in this codelist.
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135375
+  - LVEF_E
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135374
+  - LVEF_C
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - C101846
+  - CVTEST
+  - C99977
+  - Left Ventricular Dimension, End-Systole
+  - '51'
+  - C101846
+  - CVTEST
+  - C127576
+  - Minor Axis Cross-sec Diameter, EVS
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101846
+  - CVTEST
+  - C99976
+  - Left Ventricle Dimension, End-Diastole
+  - '51'
+  - C101846
+  - CVTEST
+  - C127575
+  - Minor Axis Cross-sec Diameter, EVD
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101846
+  - CVTEST
+  - C99970
+  - Left Atrium Dimension
+  - '51'
+  - C101846
+  - CVTEST
+  - C135377
+  - Major Axis Cross-sec. Diameter
+  - '54'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - C101847
+  - CVTESTCD
+  - C99976
+  - LVDMNED
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C127575
+  - MNDIAEVD
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVD
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101847
+  - CVTESTCD
+  - C99977
+  - LVDMNES
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C127576
+  - MNDIAEVS
+  - '52'
+  - ''
+  - Remove term from codelist._x000D_Please use Minor Axis Cross-sec Diameter, EVS
+    with a LOC = HEART, LEFT VENTRICLE.
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135375
+  - Left Ventricular Ejection Fraction, Est
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '51'
+  - C101846
+  - CVTEST
+  - C135374
+  - Left Ventricular Ejection Fraction, Cal
+  - '54'
+  - ''
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
+- - C101847
+  - CVTESTCD
+  - C99970
+  - LADMN
+  - '51'
+  - C101847
+  - CVTESTCD
+  - C135377
+  - MJDIA
+  - '54'
+  - ''
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '47'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '52'
+  - ''
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
