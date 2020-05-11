@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
   var html;
   var json;
   var rootNode;
@@ -29,7 +29,7 @@ $(document).ready(function() {
   // Init any data. Draw the tree
   initData();
 
-  // Initialise the secondary table  
+  // Initialise the secondary table
   secondaryTable = $('#secondary').DataTable({
     ajax: {
       url: "/iso_managed/" + mi.id + "/branches",
@@ -44,7 +44,7 @@ $(document).ready(function() {
     },
     processsing: true,
     language: {
-      processing: "<img src='<%= asset_path('processing.gif') %>'>"
+      processing: generateSpinner("small")
     },
     pageLength: pageLength,
     lengthMenu: pageSettings,
@@ -60,11 +60,11 @@ $(document).ready(function() {
       }}
     ]
   });
-  
+
   /*
   * Init function
   */
-  function initData () { 
+  function initData () {
     html = $("#jsonData").html();
     json = $.parseJSON(html);
     mi = json.managed_item;
@@ -108,7 +108,7 @@ $(document).ready(function() {
   */
   function buildRow(sNode, ordianl) {
     var d3Node = {};
-    var optional = false 
+    var optional = false
     if (sNode.hasOwnProperty('note')) {
       getMarkdown(sNode, sNode.note, noteCallback);
     } else {
@@ -182,7 +182,7 @@ $(document).ready(function() {
     var parentSNode = sNode.parent;
     var index = mainTable.row('#' + parentSNode.id);
     if(index.length > 0) {
-      parentSNode.terminology = parentSNode.terminology + result.notation + " [" + result.identifier + "]" + "<br/>" 
+      parentSNode.terminology = parentSNode.terminology + result.notation + " [" + result.identifier + "]" + "<br/>"
       mainTable.row(index[0]).data(parentSNode)
     }
   }
@@ -206,5 +206,5 @@ $(document).ready(function() {
       mainTable.row(index[0]).data(sNode);
     }
   }
-  
+
 });
