@@ -7,7 +7,7 @@
   <div class="col-md-12">
     <h3>New: Biomedical Concept</h3>
 	</div>
-</div>	
+</div>
 <%= form_for BiomedicalConcept.new, :html => { id: "main_form" } do |f| %>
 	<div class="row">
 		<div class="col-md-8">
@@ -16,7 +16,7 @@
 				  <div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Details</h3>
-						</div>	
+						</div>
 						<div class="panel-body">
 							<div class="form-group">
 					    	<%= f.label :identifier, "Identifier:" %><br/>
@@ -30,24 +30,20 @@
            			<%= label_tag :template, "Template:" %><br />
           			<input id="biomedical_concept_template" type="text" class="form-control" value="Not selected" disabled="disabled">
          			</div>
-   						<%= f.hidden_field :uri, value: "" %>						
+   						<%= f.hidden_field :uri, value: "" %>
 						</div>
 					</div>
 					<%= f.submit "Create", class: "btn  " %>
-					<%= render partial: "shared/close_button", locals: { path: biomedical_concepts_path } %>
 				</div>
 				<div class="col-md-8">
-					<%= render partial: "shared/iso_managed/iso_managed_select_panel", 
-						locals: { 
+					<%= render partial: "shared/iso_managed/select_panel",
+						locals: {
 							title: "Select Template",
 							list_path: list_biomedical_concept_templates_path,
 							all_path: all_biomedical_concept_templates_path
-						} %>  
+						} %>
 				</div>
 			</div>
 		</div>
 	</div>
 <% end %>
-
-
-

@@ -18,7 +18,7 @@
 		sub_texts: "Today is <span id='datetime'></span>. <br> <span id='notif-info'>You have 0 new notifications.</span>".html_safe} do %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#dashboardModal", id: "edit_dashboard",
 				icon: "icon-edit", btn_text: "Customize", dt_toggle: "modal", disabled: false } %>
-			<%= render partial: "shared/edit_dashboard"%>
+			<%= render partial: "shared/dashboard/edit_dashboard"%>
 	<% end %>
 </div>
 

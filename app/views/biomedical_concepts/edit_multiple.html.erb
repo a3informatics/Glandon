@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag    'd3_tree', 'biomedical_concepts/editor', 'panel_collapse', 'spinner' %>
-<%= javascript_include_tag 'd3', 'd3_tree', 'd3_editor_new', 'biomedical_concepts/editor', 'unload', 'field_validation', 'token_timer' %>
+<%= stylesheet_link_tag    'shared/d3/d3_tree', 'biomedical_concepts/editor', 'panel_collapse', 'spinner' %>
+<%= javascript_include_tag 'd3', 'shared/d3/d3_tree', 'shared/d3/d3_editor_new', 'biomedical_concepts/editor', 'unload', 'field_validation', 'token_timer' %>
 <%= javascript_include_tag 'panel_collapse', 'thesauri_field_editor', 'spinner', 'ajax_requests' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
@@ -10,7 +10,7 @@
     <h3>Edit Multiple Biomedical Concepts</h3>
   </div>
 </div>
-<%= render partial: "shared/biomedicalConceptEditor" %>
+<%= render partial: "shared/biomedical_concepts/editor" %>
 <% empty_string = "" %>
 <input type="hidden" id="token_1" value="<%= empty_string %>">
 <input type="hidden" id="token_2" value="<%= empty_string %>">

@@ -23,7 +23,6 @@ describe "Dashboard", :type => :feature do
 	  expect(page).to have_link("main_nav_at")
     expect(page).to have_link("main_nav_bj")
 	  expect(page).to_not have_link("main_nav_u")
-	  expect(page).to_not have_link("main_nav_im")
 	  expect(page).to_not have_link("main_nav_ahr")
     expect(page).to_not have_link("main_nav_ics")
     expect(page).to_not have_link("main_nav_ma")
@@ -43,7 +42,6 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_css("#main_nav_d")
 	  expect(page).to have_link("main_nav_u")
 	  expect(page).to have_link("main_nav_bj")
-	  expect(page).to have_link("main_nav_im")
 	  expect(page).to have_link("main_nav_at")
 	  expect(page).to have_link("main_nav_ahr")
     expect(page).to have_link("main_nav_ics")
@@ -62,7 +60,6 @@ describe "Dashboard", :type => :feature do
   it "displays the menu, curator (REQ-MDR-UD-060)" do
     ua_curator_login
     expect(page).to have_css("#main_nav_d")
-	  expect(page).to have_link("main_nav_im")
 	  expect(page).to have_link("main_nav_ahr")
 	  expect(page).to have_link("main_nav_ics")
     expect(page).to have_link("main_nav_ma")
@@ -122,7 +119,6 @@ describe "Dashboard", :type => :feature do
   it "displays the menu, terminology curator (REQ-MDR-UD-060)" do
     ua_term_curator_login
     expect(page).to have_css("#main_nav_d")
-    expect(page).to have_link("main_nav_im")
     expect(page).to have_link("main_nav_te")
     expect(page).to have_link("main_nav_ct")
     expect(page).to_not have_link("main_nav_ics")

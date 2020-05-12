@@ -446,10 +446,6 @@ module UiHelpers
 		ui_navbar_click('main_nav_ira')
 	end
 
-	def click_navbar_manitems
-		ui_navbar_click('main_nav_im')
-	end
-
 	def click_navbar_at
 		ui_navbar_click('main_nav_at')
 	end

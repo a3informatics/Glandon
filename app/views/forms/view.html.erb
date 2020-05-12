@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag    'd3_tree' %>
-<%= javascript_include_tag 'd3', 'd3_tree', 'd3_editor', 'forms/form_viewer', 'ajax_requests', 'forms/form_utility' %>
+<%= stylesheet_link_tag    'shared/d3/d3_tree' %>
+<%= javascript_include_tag 'd3', 'shared/d3/d3_tree', 'shared/d3/d3_editor', 'forms/form_viewer', 'ajax_requests', 'forms/form_utility' %>
 <% third_level_breadcrumb(:forms,@form, @close_path) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
