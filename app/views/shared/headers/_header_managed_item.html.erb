@@ -12,9 +12,9 @@
         <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
         <div class="text-large"> <%= item.label %> </div>
         <div class="font-light">
-            <%= render partial: "shared/headers/_icon_tooltip", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
-            <%= render partial: "shared/headers/_icon_tooltip", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
-            <%= render partial: "shared/headers/_icon_tooltip", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
+            <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
+            <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
+            <%= render partial: "shared/headers/icon_tooltip", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
         <% if (local_assigns.fetch :with_tags, true) %>
           <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
@@ -28,4 +28,4 @@
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".bg-label");' %>
+<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".tags.bg-label");' %>
