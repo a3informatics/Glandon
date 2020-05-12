@@ -27,6 +27,20 @@ describe Sparql::Query::Results do
     expect(result.ask?).to eq(false)
 	end
 
+  it "allows for single subject results, error" do
+    results = Sparql::Query::Results.new(@xml)
+    expect{results.single_subject}.to raise_error(Errors::ApplicationLogicError, "Multiple entries found for single subject query.")
+  end
+
+  it "allows for single subject results" do
+    results = Sparql::Query::Results.new(read_text_file_2(sub_dir, "xml_5.xml"))
+    result = results.single_subject
+  write_yaml_file(result, sub_dir, "single_subject_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "single_subject_expected_1.yaml")
+    expect(result).to triples_equal(expected)
+    expect(results.ask?).to eq(false)
+  end
+
   it "allows for the results to be presented by subject, default" do
     results = Sparql::Query::Results.new(@xml)
     result = results.by_subject

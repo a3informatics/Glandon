@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="s"/>
+    <variable name="p"/>
+    <variable name="o"/>
+    <variable name="e"/>
+  </head>
+  <results>
+    <result>
+      <binding name="s">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+      </binding>
+      <binding name="o">
+        <uri>http://www.assero.co.uk/Thesaurus#ManagedConcept</uri>
+      </binding>
+      <binding name="e">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.assero.co.uk/ISO11179Types#creationDate</uri>
+      </binding>
+      <binding name="o">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-05-31 00:00:00 +0200</literal>
+      </binding>
+      <binding name="e">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.assero.co.uk/ISO11179Types#lastChangeDate</uri>
+      </binding>
+      <binding name="o">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#dateTime">2007-05-31 00:00:00 +0200</literal>
+      </binding>
+      <binding name="e">
+        <uri>http://www.cdisc.org/C67153/V4#C67153</uri>
+      </binding>
+    </result>
+  </results>
+</sparql>

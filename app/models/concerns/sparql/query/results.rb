@@ -50,12 +50,17 @@ module Sparql
         @results.empty?
       end
 
+      # Subject Map. Extract subject mapping to another variable
+      #
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :other the other column name. Defaults to :e
+      # @result [Hash] a hash of by subject of the other variable
       def subject_map(args={})
         triples = Hash.new {|h,k| h[k] = []}
         s_var = args.key?(:subject) ? args[:subject] : :s 
         e_var = args.key?(:other) ? args[:other] : :e
         @results.map{|x| triples[x.column(s_var).value.to_s] = x.column(e_var).value}
-        #@results.map{|x| triples[x[s_var].to_s] = x[e_var]}
         return triples
       end
 
@@ -72,8 +77,21 @@ module Sparql
         p_var = args.key?(:predicate) ? args[:predicate] : :p
         o_var = args.key?(:object) ? args[:object] : :o 
         @results.map{|x| triples[x.column(s_var).value.to_s] << {subject: x.column(s_var).value, predicate: x.column(p_var).value, object: x.column(o_var).value}}
-        #@results.map{|x| triples[x[s_var].to_s] << {subject: x[s_var], predicate: x[p_var], object: x[o_var]}}
         return triples
+      end
+
+      # Single Subject. Extract results by the single subject URI from the node set
+      #
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :predicate the predicate column name. Defaults to :p
+      # @option args [String|Symbol] :object the object column name. Defaults to :o
+      # @result [Hash] a hash of [subject, predicate, object] hash records
+      def single_subject(args={})
+        triples = by_subject(args)
+        return nil if triples.empty?
+        return triples if triples.count == 1
+        Errors.application_error(self.class.name, __method__.to_s, "Multiple entries found for single subject query.")
       end
 
       # By Object. Extract results as single array of object
