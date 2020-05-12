@@ -10,7 +10,7 @@
 <% second_level_breadcrumb(:thesauri, @ct.scope.id, @ct.has_identifier.identifier, "Changes: ") %>
 
 <div class="row">
-  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Changes across versions"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Changes across versions"} do %>
     <div class="actions-wrap">
       <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",

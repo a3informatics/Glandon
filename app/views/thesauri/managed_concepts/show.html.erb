@@ -30,7 +30,7 @@
 <%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit?} %>
 
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
         id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>

@@ -14,7 +14,7 @@
       parent: @parent, context_id: @context_id}%>
 
 <div class="row">
-    <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
+    <%= render layout: "shared/headers/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
       <div class="actions-wrap">
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: iso_concept_systems_path, id: "manage_tags",
           icon: "icon-tag", btn_text: "Manage all tags", dt_toggle: "", disabled: false } %>

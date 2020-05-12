@@ -4,7 +4,7 @@
 <% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "Results"}]) %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
 		main_text: "Ad-Hoc Reports", sub_texts: "Report: <span class='font-regular'> #{@report.label} </span>".html_safe } do %>
 
 		<div class="actions-wrap" role="group" aria-label="First group">

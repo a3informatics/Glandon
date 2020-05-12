@@ -7,7 +7,7 @@
                         upgradeBaseUrl = '#{upgrade_thesauri_managed_concept_path(id: "clId", upgrade: {sponsor_th_id: @thesaurus.id})}';" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-upgrade",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-upgrade",
     main_text: "Upgrade Code Lists <span class='font-light text-medium'>#{@thesaurus.scoped_identifier} v#{@thesaurus.semantic_version}</span>".html_safe,
     sub_text: "Baseline CDISC CT: #{@base_cdisc_th.version_label}. New version: #{@ref_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">

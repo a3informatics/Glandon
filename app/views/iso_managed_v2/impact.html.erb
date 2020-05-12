@@ -6,7 +6,7 @@
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-impact",
     main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">

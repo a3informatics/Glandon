@@ -6,7 +6,7 @@
 <%= javascript_tag "var compare_path = '#{compare_data_thesauri_path(id: @th, thesauri: {thesaurus_id: @other_th})}';" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-compare",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-compare",
     main_text: "Compare Terminologies",
     sub_text: "Changes between
     <span class='font-regular text-link'>#{@th.scoped_identifier} v#{@th.semantic_version}</span> and

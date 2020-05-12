@@ -1,14 +1,14 @@
 <%
   case type
     when "Thesaurus"
-      header_path = "shared/iso_managed/managed_header_card"
+      header_path = "shared/headers/header_managed_item"
       locals = {item: @item, badge: "icon-terminology", with_tags: with_tags}
     when "Thesaurus::ManagedConcept"
-      header_path = "shared/iso_managed/managed_header_card_cl"
+      header_path = "shared/headers/header_codelist"
       @item.synonyms_and_preferred_terms
       locals = {item: @item, badge: "CL", with_tags: with_tags}
     when "Thesaurus::UnmanagedConcept"
-      header_path = "shared/thesauri/unmanaged_header_card"
+      header_path = "shared/headers/header_unmanaged_item"
       @item.synonyms_and_preferred_terms
       locals = {item: @item, badge: "CI", with_tags: with_tags}
   end %>

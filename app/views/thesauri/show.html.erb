@@ -3,7 +3,7 @@
 <%= javascript_tag "var url_path = '#{thesauri_path(@ct)}';" %>
 <% third_level_breadcrumb(:thesauri, @ct, @close_path) %>
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @ct, :badge => "icon-terminology"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @ct, :badge => "icon-terminology"} do %>
     <div class="actions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>

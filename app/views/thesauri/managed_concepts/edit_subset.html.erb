@@ -12,7 +12,7 @@
                         removeAllFromSubsetUrl = '#{remove_all_thesauri_subset_path(@subset)}',
                         moveAfterSubsetUrl = '#{move_after_thesauri_subset_path(@subset)}'; "%>
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>

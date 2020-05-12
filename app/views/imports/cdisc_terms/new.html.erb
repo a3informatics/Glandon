@@ -3,7 +3,7 @@
 <% type = @file_type == 0 ? "Excel" : "API" %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-import", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-import", header_title: "",
 		main_text: "Import Centre", sub_texts: "CDISC Terminology Import" } do %>
 
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: list_imports_path, id: "close",

@@ -2,7 +2,7 @@
 <% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "New"}]) %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
 		main_text: "Ad-Hoc Reports", sub_texts: "Add a new Ad-Hoc Report." } do %>
 
 		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",

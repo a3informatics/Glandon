@@ -11,7 +11,7 @@
 	 {:title => "Current Roles", :value => current_user.role_list_stripped},
 	 {:title => "Login Count", :value => current_user.sign_in_count}]%>
 
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-settings", header_title: "Preferences",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-settings", header_title: "Preferences",
 		main_text: current_user.name, sub_texts: s_texts} do %>
   <% end %>
 </div>

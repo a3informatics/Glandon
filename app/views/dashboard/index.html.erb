@@ -13,7 +13,7 @@
 <% welcome_msg = current_user.sign_in_count == 1 ? "Welcome to A3 MDR, " : "Hello, " %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: current_user.name[0], header_title: "Dashboard",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: current_user.name[0], header_title: "Dashboard",
 		main_text: welcome_msg+current_user.name.split(' ').first+".",
 		sub_texts: "Today is <span id='datetime'></span>. <br> <span id='notif-info'>You have 0 new notifications.</span>".html_safe} do %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#dashboardModal", id: "edit_dashboard",
