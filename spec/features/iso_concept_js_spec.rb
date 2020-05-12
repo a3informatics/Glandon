@@ -30,6 +30,6 @@ describe "ISO Concept JS", :type => :feature do
       ua_logoff
     end
 
-
+  end
 
 end
