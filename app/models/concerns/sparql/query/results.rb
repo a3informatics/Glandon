@@ -86,12 +86,25 @@ module Sparql
       # @option args [String|Symbol] :subject the subject column name. Default to :s
       # @option args [String|Symbol] :predicate the predicate column name. Defaults to :p
       # @option args [String|Symbol] :object the object column name. Defaults to :o
-      # @result [Hash] a hash of [subject, predicate, object] hash records
+      # @result [Hash] a hash of [subject, predicate, object] hash records or nil if nothing found.
       def single_subject(args={})
         triples = by_subject(args)
         return nil if triples.empty?
         return triples if triples.count == 1
         Errors.application_error(self.class.name, __method__.to_s, "Multiple entries found for single subject query.")
+      end
+
+      # Single Subject As. Extract results by the single subject URI from the node set and return as instance.
+      #
+      # @param [Class] klass the klass desired.
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :predicate the predicate column name. Defaults to :p
+      # @option args [String|Symbol] :object the object column name. Defaults to :o
+      # @result [Object] the resulting object, nil if multiple found.
+      def single_subject_as(klass, args={})
+        triples = single_subject(args)
+        triples.nil? ? nil : klass.from_results(Uri.new(uri: triples.keys.first), triples[triples.keys.first])
       end
 
       # By Object. Extract results as single array of object

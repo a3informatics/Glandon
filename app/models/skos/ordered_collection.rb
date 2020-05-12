@@ -28,9 +28,7 @@ module SKOS::OrderedCollection
         ?s ?p ?o
       }
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    triples = query_results.single_subject
-    triples.nil? ? nil : target_klass.from_results(Uri.new(uri: triples.keys.first), triples)
+    Sparql::Query.new.query(query_string, "", [:th]).single_subject_as(target_klass)
   end
 
   # Parent. Find the parent of the ordered collection
@@ -44,9 +42,7 @@ module SKOS::OrderedCollection
         ?s ?p ?o
       }
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    triples = query_results.single_subject
-    triples.nil? ? nil : parent_klass.from_results(Uri.new(uri: triples.keys.first), triples)
+    Sparql::Query.new.query(query_string, "", [:th]).single_subject_as(target_klass)
   end
 
   # Remove. Remove a subset member of the Subset
@@ -54,30 +50,29 @@ module SKOS::OrderedCollection
   # @param subset_member_id [String] the identifier of the subset member to be removed
   def remove(subset_member_id)
     sm = member_klass.find(subset_member_id)
-    mc = self.find_mc
+    mc = parent
     prev_sm = sm.previous_member
     delete_link_clauses = []
     add_link_clause = ""
     if prev_sm.nil?
-      delete_link_clauses << "#{self.uri.to_ref} th:members #{sm.uri.to_ref} ."
+      delete_link_clauses << "#{self.uri.to_ref} th:members #{sm.uri.to_ref}"
       add_link_clause = "#{self.uri.to_ref} th:members #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     else
-      delete_link_clauses << "#{prev_sm.uri.to_ref} th:member_next #{sm.uri.to_ref} ."
+      delete_link_clauses << "#{prev_sm.uri.to_ref} th:member_next #{sm.uri.to_ref}"
       add_link_clause = "#{prev_sm.uri.to_ref} th:member_next #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     end
-    delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.uri.to_ref} ."
+    delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.to_ref}"
     query_string = %Q{
+    DELETE DATA
     {
-      DELETE DATA
-      {
-        #{delete_link_clauses}
-      }
-      INSERT DATA
-      {
-        #{add_link_clauses} 
-      }
-      DELETE {?s ?p ?o} WHERE { #{sm.uri.to_ref} ?p ?o . BIND (#{sm.uri.to_ref} as ?s) }
-    }}
+      #{delete_link_clauses.join(" .\n")}
+    };
+    INSERT DATA
+    {
+      #{add_link_clause} 
+    };
+    DELETE {?s ?p ?o} WHERE { #{sm.uri.to_ref} ?p ?o . BIND (#{sm.uri.to_ref} as ?s) }
+    }
     results = Sparql::Update.new.sparql_update(query_string, "", [:th])
   end
 
