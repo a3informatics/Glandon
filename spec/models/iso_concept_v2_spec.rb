@@ -267,14 +267,14 @@ describe "IsoConceptV2" do
       uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
       item_1 = IsoConceptV2.find(uri)
       results = item_1.indicators
-      check_file_actual_expected(results, sub_dir, "indicators_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "indicators_expected_1.yaml")
     end
 
     it "Gets indicators, CLI" do
       uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
       item_1 = IsoConceptV2.find(uri)
       results = item_1.indicators
-      check_file_actual_expected(results, sub_dir, "indicators_expected_2.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "indicators_expected_2.yaml")
     end
 
   end
