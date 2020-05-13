@@ -76,6 +76,13 @@ class IsoConceptController < ApplicationController
     render :json => {data: change_note.to_h, errors: change_note.errors.full_messages}, :status => status
   end
 
+  def indicators
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    results = concept.indicators
+    render :json => { data: results }, :status => 200
+  end
+
   def graph
     authorize IsoConcept, :show?
     concept = IsoConcept.find(params[:id], params[:namespace])
