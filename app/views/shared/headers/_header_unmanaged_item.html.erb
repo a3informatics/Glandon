@@ -22,8 +22,9 @@
           <% end %>
         <% end %>
       </div>
-      <div class="h-inner-wrap">
+      <div class="h-inner-wrap indicators-wrap">
         <%= yield %>
+        <%= render partial: "shared/headers/indicators", locals: {id: item.id, wrap_el: ".h-inner-wrap.indicators-wrap"} %>
       </div>
     </div>
   </div>

@@ -407,6 +407,8 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
 .indicator .ttip-text{
   color: $grey-medium;
   font-size: $font-small;
+  right: calc(0% + 18px);
+  top: -15px;
 }
 
 .indicator.icon-current{

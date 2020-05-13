@@ -66,7 +66,7 @@ function indicatorMap(indicator) {
       "version_count": {icon: "icon-multi", ttip: "Item has %n% versions"},
       "subset": {icon: "icon-subset", ttip: "Item is a subset"},
       "subsetted": {icon: "icon-subsetted", ttip: "Item is subsetted"},
-      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change note(s) <br/> and %i% change instruction(s)"}
+      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change notes <br/> and %i% change instructions"}
     }
 
   return indMap[indicator];
@@ -87,8 +87,11 @@ function formatIndicators(indicators) {
         break;
       case "annotations":
         if (iValue.change_notes > 0 || iValue.change_instructions > 0)
-          iText = indicatorMap(iName).ttip.replace("%n%", iValue.change_notes)
-                                          .replace("%i%", iValue.change_instructions)
+          iText = indicatorMap(iName).ttip
+            .replace("%n%", iValue.change_notes)
+            .replace("%i%", iValue.change_instructions)
+            .replace("notes", iValue.change_notes ? "note" : "notes")
+            .replace("instructions", iValue.change_instructions ? "instruction" : "instructions")
         break;
       default:
         iText = iValue ? indicatorMap(iName).ttip : null;
@@ -104,7 +107,7 @@ function formatIndicators(indicators) {
 // Single indicator HTML
 function indicatorHTML(icon, ttipText) {
   return "<span class='"+ icon +" indicator ttip'>" +
-            "<span class='ttip-text ttip-table left shadow-small'>" +
+            "<span class='ttip-text shadow-small'>" +
               ttipText +
             "</span>" +
           "</span>";
@@ -137,6 +140,31 @@ function formatIndicatorsString(indicators){
 function filterIndicators(indicators, params) {
   if (params.withoutVersions) {
     return _.omit(indicators, 'version_count');
+  }
+}
+
+// Loads indicator data into header's targetElement for an IsoConcept from the server (based on url)
+function loadItemIndicators(url, targetElement) {
+  indicatorsProcessing(true);
+
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json",
+    success: function(result) {
+      indicatorsProcessing(false);
+      $(targetElement).html(formatIndicators(result.data.indicators));
+    },
+    error: function() {
+      handleAjaxError(xhr, status, error);
+      indicatorsProcessing(false);
+    }
+  })
+
+  function indicatorsProcessing(enable) {
+    $(targetElement).toggleClass("shiny-processing", enable)
+                    .css("width", enable ? "100px" : "auto")
+                    .css("height", enable ? "25px" : "auto");
   }
 }
 

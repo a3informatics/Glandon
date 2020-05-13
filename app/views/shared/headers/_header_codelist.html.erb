@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'shared/layouts/header_card', media: 'all' %>
+<%= stylesheet_link_tag 'shared/layouts/header_card' %>
 
 <div id="imh_header" class="col-md-12 card">
   <div class="card-content">
@@ -31,11 +31,11 @@
           <% end %>
         <% end %>
       </div>
-      <div class="h-inner-wrap">
+      <div class="h-inner-wrap indicators-wrap">
         <%= yield %>
+        <%= render partial: "shared/headers/indicators", locals: {id: item.id, wrap_el: ".h-inner-wrap.indicators-wrap"} %>
       </div>
     </div>
   </div>
 </div>
-<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".bg-label");' %>
 <%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".tags.bg-label");' %>

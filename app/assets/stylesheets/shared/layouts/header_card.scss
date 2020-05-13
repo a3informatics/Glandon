@@ -108,3 +108,25 @@
     line-height: 30px;
   }
 }
+
+// Header indicators
+
+.indicators-wrap .indicators{
+  white-space: nowrap;
+}
+
+.h-inner-wrap .actions-wrap{
+  width: auto;
+}
+
+.h-inner-wrap.indicators-wrap{
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media (max-width: 1300px){
+  .h-inner-wrap.indicators-wrap {
+    width: 100%;
+    flex-direction: row;
+  }
+}
