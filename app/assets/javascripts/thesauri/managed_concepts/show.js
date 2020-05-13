@@ -5,7 +5,7 @@ $(document).ready( function() {
     var extensionCreate = new ExtensionCreate(isExtended, isExtending);
     var thesauriSelect = new ThesauriSelect(tcId, extensionCreate.createExtensionCallback.bind(extensionCreate));
     var subsetsIndex = new IndexSubsets(tcId);
-    
+
     var startExtend = function(){
       thesauriSelect.setCallback(extensionCreate.createExtensionCallback.bind(extensionCreate));
       thesauriSelect.resetUi();
@@ -32,7 +32,7 @@ $(document).ready( function() {
     {"data" : "synonym"},
     {"data" : "definition"},
     {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}},
-    { "data": "indicators", "width": "90px", "render" : function (data, type, row, meta) {
+    { "data": "indicators", "width": "40px", "render" : function (data, type, row, meta) {
         data = filterIndicators(data, {withoutVersions: true});
         return type === "display" ? formatIndicators(data) : formatIndicatorsString(data);
     }}

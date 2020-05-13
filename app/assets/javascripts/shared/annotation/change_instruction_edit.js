@@ -203,7 +203,6 @@ CIEditor.prototype.addLinks = function (linkType, selection) {
 CIEditor.prototype.onContentEdit = function (e) {
   switch(e.type) {
     case "focusin":
-      this.setSaveable(true);
       $(".content-editable")
         .removeClass("with-icon")
         .not($(e.currentTarget))
