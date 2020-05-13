@@ -154,7 +154,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   #
   # @return [Array] array of hashes containing the indicators
   def indicators
-    results =[]
+    results = {}
     query_string = %Q{
       SELECT DISTINCT ?i ?eo ?ei ?so ?si ?type (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) WHERE
       {
@@ -191,7 +191,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         when :UnmanagedConcept
           indicators = { annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       end
-      results << {indicators: indicators}
+      results[:indicators] = indicators
     end
     results
   end
