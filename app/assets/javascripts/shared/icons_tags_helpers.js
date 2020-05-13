@@ -66,7 +66,7 @@ function indicatorMap(indicator) {
       "version_count": {icon: "icon-multi", ttip: "Item has %n% versions"},
       "subset": {icon: "icon-subset", ttip: "Item is a subset"},
       "subsetted": {icon: "icon-subsetted", ttip: "Item is subsetted"},
-      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% Change Note(s) and %i% Change Instruction(s)"}
+      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change note(s) <br/> and %i% change instruction(s)"}
     }
 
   return indMap[indicator];
@@ -131,6 +131,13 @@ function formatIndicatorsString(indicators){
   });
 
   return output;
+}
+
+// Various filtering options can be added to params
+function filterIndicators(indicators, params) {
+  if (params.withoutVersions) {
+    return _.omit(indicators, 'version_count');
+  }
 }
 
 /**
