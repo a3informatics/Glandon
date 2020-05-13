@@ -10,17 +10,83 @@
  *
  * @return [void]
  */
-function ManagedChildrenPanel(url, count, columns) {
-  var _this = this;
+function ManagedChildrenPanel(url, count, columns, strongParam) {
   this.url = url;
   this.count = count;
-  this.columns = columns;
-  this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
-  this.childrenTable = $('#children_table').DataTable( {
+  this.strongParam = strongParam;
+  this.childrenTable = this.initTable(columns);
+
+  this.add(0);
+}
+
+/**
+ * Load data to table (paginated)
+ *
+ * @param offset [Integer] current batch offset
+ * @return [void]
+ */
+ManagedChildrenPanel.prototype.add = function (offset) {
+  this.childrenTable.processing(true);
+
+  $.ajax({
+    url: this.url,
+    data: this.getData(offset),
+    type: 'GET',
+    dataType: 'json',
+    context: this,
+    success: function(result) {
+      $.each(result.data, function(i, item) {
+        this.childrenTable.row.add(item);
+      }.bind(this));
+
+      this.childrenTable.draw();
+
+      if (result.count >= this.count)
+        this.add(result.offset + this.count)
+      else
+        this.childrenTable.processing(false);
+    },
+    error: function(xhr,status,error) {
+      handleAjaxError(xhr, status, error);
+      this.childrenTable.processing(false);
+    }
+  });
+}
+
+/**
+ * Data helper
+ *
+ * @param offset [Integer] current offset
+ * @return [Object] count, offset data object with strong param set
+ */
+ManagedChildrenPanel.prototype.getData = function (offset) {
+  var data = {}
+
+  data[this.strongParam] = {
+    count: this.count,
+    offset: offset
+  }
+
+  return data;
+}
+
+/**
+ * Adds column rendering Show button, initializes DataTable
+ *
+ * @param columns [Array] column definitions
+ * @return [DataTable Instance] initialized managed children table
+ */
+ManagedChildrenPanel.prototype.initTable = function (columns) {
+  columns.push({
+    "render" : function (data, type, row, meta) {
+      return this.linkButton(row.show_path, "Show");
+    }.bind(this)});
+
+  return $('#children_table').DataTable({
     "order": [[ 0, "desc" ]],
-    "columns": _this.columns,
-    "pageLength": pageLength, // Gloabl setting
-    "lengthMenu": pageSettings, // Gloabl setting
+    "columns": columns,
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "autoWidth": false,
     "processing": true,
     "language": {
@@ -29,58 +95,19 @@ function ManagedChildrenPanel(url, count, columns) {
       "processing": generateSpinner("small")
     }
   });
-  this.add(0);
 }
 
 /**
- * Add item to table
+ * HTML Helper for Show button
  *
- * @param [String] uri the uri of the item being added
- * @param [Integer] key a unique reference
- * @return [void]
+ * @param path [String] Show path URL
+ * @param text [String] Button text
+ * @return [String] formatted button (link) HTML
  */
-ManagedChildrenPanel.prototype.add = function (offset) {
-  var _this = this;
-  _this.childrenTable.processing(true);
-  $.ajax({
-    url: _this.url,
-    data: {"count": _this.count, "offset": offset},
-    type: 'GET',
-    dataType: 'json',
-    success: function(result) {
-      for (i=0; i<result.data.length; i++) {
-        var row = _this.childrenTable.row.add(result.data[i]);
-      }
-      _this.childrenTable.draw();
-      if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count)
-      } else {
-        _this.childrenTable.processing(false);
-      }
-    },
-    error: function(xhr,status,error){
-      handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
-    }
-  });
-}
-//
-// ManagedChildrenPanel.prototype.extensibleConvert = function(extensible) {
-//     return "<span class='i-centered icon-extend"+(extensible ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>";
-// }
-
-// ManagedChildrenPanel.prototype.synonymList = function(entry) {
-//   var items = [];
-//   $.each(entry.synonym, function(i, value) {
-//     items.push(value.label);
-//   });
-//   entry.synonym_list = items.join("; ");
-// }
-
 ManagedChildrenPanel.prototype.linkButton = function (path, text) {
   if (path === "") {
-    return "&nbsp;"
+    return ""
   } else {
-    return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
+    return '<a href="' + path + '" class="btn btn-xs">' + text + '</a>';
   }
 }

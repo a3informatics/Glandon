@@ -1,8 +1,8 @@
 <%= javascript_include_tag 'shared/iso_managed/managed_children_panel' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <h3 class="card-header"><%= title %></h3>
-<div class="card-content">
-  <table id="children_table" class="table table-striped table-bordered table-condensed">
+<div class="card-content table-cardstyle">
+  <table id="children_table" class="table striped">
     <thead>
       <tr>
         <th class="fit">Identifier</th>
@@ -12,6 +12,7 @@
         <th class="fit">Extensible</th>
         <th>Definition</th>
         <th>Tag(s)</th>
+        <th class="ignore fit"></th>
         <th class="fit"></th>
       </tr>
     </thead>
