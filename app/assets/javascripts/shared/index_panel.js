@@ -91,19 +91,15 @@ IndexPanel.prototype.loadData = function (offset) {
  * @return [DataTables Columns Definitions] formatted columns with indicators, button
  */
 IndexPanel.prototype.initColumns = function(columns){
-  var _this = this;
-
 	columns.push(
-    { "data": "indicators",
-      "width": "80px",
+    { "data": "indicators", "width": "90px",
       "render" : function (data, type, row, meta) {
-        if(type == "display") return formatIndicators(data);
-        else return formatIndicatorsString(data);
+        return type === "display" ? formatIndicators(data) : formatIndicatorsString(data);
     }},
     { "className": "text-right",
       "render" : function (data, type, row, meta) {
-        return _this.historyButtonHTML(row.history_path);
-    }}
+        return this.historyButtonHTML(row.history_path);
+    }.bind(this)}
     );
 
 	return columns;

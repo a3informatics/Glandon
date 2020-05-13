@@ -1,10 +1,11 @@
 refreshOnBackPressed();
 
 $(document).ready( function() {
-  if(can_edit){
-    var extensionCreate = new ExtensionCreate(is_extended, is_extending);
-    var thesauriSelect = new ThesauriSelect(tc_id, extensionCreate.createExtensionCallback.bind(extensionCreate));
-    var subsetsIndex = new IndexSubsets(tc_id);
+  if (canEdit) {
+    var extensionCreate = new ExtensionCreate(isExtended, isExtending);
+    var thesauriSelect = new ThesauriSelect(tcId, extensionCreate.createExtensionCallback.bind(extensionCreate));
+    var subsetsIndex = new IndexSubsets(tcId);
+    
     var startExtend = function(){
       thesauriSelect.setCallback(extensionCreate.createExtensionCallback.bind(extensionCreate));
       thesauriSelect.resetUi();
@@ -12,7 +13,7 @@ $(document).ready( function() {
     };
 
     $("#extend").click(function(){
-      if (can_extend_unextensible && !can_be_extended)
+      if (canExtendUnextensible && !canBeExtended)
           new ConfirmationDialog(function(){ startExtend() },{subtitle: "Are you sure you want to extend an Non-Extensible code list?", dangerous: true}).show();
       else
         startExtend();
@@ -30,8 +31,12 @@ $(document).ready( function() {
     {"data" : "preferred_term"},
     {"data" : "synonym"},
     {"data" : "definition"},
-    {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}}
+    {"data" : "tags", "render": function (data, type, row, meta) { return colorCodeTagsBadge(data);}},
+    { "data": "indicators", "width": "90px", "render" : function (data, type, row, meta) {
+        data = filterIndicators(data, {withoutVersions: true});
+        return type === "display" ? formatIndicators(data) : formatIndicatorsString(data);
+    }}
   ];
-  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id);
+  var cp = new ChildrenPanel(dataUrl, 1000, columns);
 
 });

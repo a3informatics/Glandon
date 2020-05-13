@@ -10,19 +10,67 @@
  *
  * @return [void]
  */
-function ChildrenPanel(url, count, columns, tc_id) {
-  var _this = this;
+function ChildrenPanel(url, count, columns) {
   this.url = url;
-  this.tc_id = tc_id;
   this.count = count;
-  this.columns = columns;
-  this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
+  this.childrenTable = this.initTable(columns);
 
-  this.childrenTable = $('#children_table').DataTable( {
+  this.add(0);
+}
+
+/**
+ * Load data to table (paginated)
+ *
+ * @param offset [Integer] current batch offset
+ * @return [void]
+ */
+ChildrenPanel.prototype.add = function (offset) {
+  this.childrenTable.processing(true);
+
+  $.ajax({
+    url: this.url,
+    data: {"count": this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    context: this,
+    success: function(result) {
+      $.each(result.data, function(i, item) {
+        this.childrenTable.row.add(item);
+      }.bind(this));
+
+      this.childrenTable.draw();
+      this.childrenTable.columns.adjust();
+
+      if (result.count >= this.count)
+        this.add(result.offset + this.count);
+      else
+        this.childrenTable.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      this.childrenTable.processing(false);
+    }
+  });
+
+}
+
+/**
+ * Adds column rendering Show button, initializes DataTable
+ *
+ * @param columns [Array] column definitions
+ * @return [DataTable Instance] initialized managed children table
+ */
+ChildrenPanel.prototype.initTable = function(columns) {
+  columns.push({
+    "render" : function (data, type, row, meta) {
+      return this.linkButton(row.show_path, "Show");
+    }.bind(this)});
+
+  return $('#children_table').DataTable({
     "order": [[ 0, "desc" ]],
-    "columns": _this.columns,
-    "pageLength": pageLength, // Global setting
-    "lengthMenu": pageSettings, // Global setting
+    "columns": columns,
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
     "processing": true,
     "autoWidth": false,
     "language": {
@@ -31,69 +79,29 @@ function ChildrenPanel(url, count, columns, tc_id) {
       "processing": generateSpinner("small")
     }
   });
-
-  this.add(0);
 }
 
 /**
- * Add item to table
- *
- * @param [Integer] the offset to retrieve
- * @return [void]
- */
-ChildrenPanel.prototype.add = function (offset) {
-  var _this = this;
-  _this.childrenTable.processing(true);
-  $.ajax({
-    url: _this.url,
-    data: {"count": _this.count, "offset": offset},
-    type: 'GET',
-    dataType: 'json',
-    success: function(result) {
-      var show_delete = false
-      for (i=0; i<result.data.length; i++) {
-        var row = _this.childrenTable.row.add(result.data[i]);
-      }
-      _this.childrenTable.draw();
-      _this.childrenTable.columns.adjust();
-
-      if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count);
-      } else {
-        _this.childrenTable.processing(false);
-      }
-    },
-    error: function(xhr,status,error){
-      handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
-    }
-  });
-
-}
-
-/**
- * Refresh table
+ * Clear data and refresh table
  *
  * @return [void]
  */
 ChildrenPanel.prototype.refresh = function() {
-  var _this = this;
-  _this.childrenTable.clear();
-  _this.add(0);
+  this.childrenTable.clear();
+  this.add(0);
 }
 
-ChildrenPanel.prototype.synonymList = function(entry) {
-  var items = [];
-  $.each(entry.synonym, function(i, value) {
-    items.push(value.label);
-  });
-  entry.synonym_list = items.join("; ");
-}
-
+/**
+ * HTML Helper for Show button
+ *
+ * @param path [String] Show path URL
+ * @param text [String] Button text
+ * @return [String] formatted button (link) HTML
+ */
 ChildrenPanel.prototype.linkButton = function (path, text) {
   if (path === "") {
-    return "&nbsp;"
+    return ""
   } else {
-    return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
+    return '<a href="' + path + '" class="btn btn-xs">' + text + '</a>';
   }
 }

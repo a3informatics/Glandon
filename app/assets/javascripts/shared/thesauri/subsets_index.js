@@ -11,39 +11,17 @@
 */
 function IndexSubsets(id) {
   this.id = id;
-  this.modalTable = null;
-  var counter = 0;
-
-  this.columns = [
-    {"data" : "identifier"},
-    {"data" : "notation"},
-    {"data" : "label"},
-    {"data" : "definition"},
-    {className: "text-right", "render" : function (data, type, row, meta) {
-      var id = "con-menu-" + counter;
-      var menu_items =
-      [
-        { link_path: row["show_path"], disabled: false, icon: "icon-view", text: "Show" },
-        { link_path: row["edit_path"], disabled: row["edit_path"] == "", icon: "icon-edit", text: "Edit" }
-      ];
-      counter ++;
-      return generateContextMenu(id, menu_items, null, "left");
-      }
-    }
-  ];
-  this.initTable();
-  var _this = this;
+  this.modalTable = this.initTable();
 
   // Get selected th callback
   $('#new_subset').click(function() {
     $('#subsets-index-modal').modal('hide');
     setTimeout(function(){ $('#th-select-modal').modal('show'); }, 600);
-
   });
 
   $('#subsets-index-modal').on('shown.bs.modal', function () {
-    _this.modalTable.columns.adjust();
-  });
+    this.modalTable.columns.adjust();
+  }.bind(this));
 }
 
 /**
@@ -51,17 +29,15 @@ function IndexSubsets(id) {
  * @return [void]
  */
 IndexSubsets.prototype.initTable = function() {
-  var _this = this;
-
-  var loading_html = generateSpinner("medium");
-
-  _this.modalTable = $('#subsets-index-table').DataTable( {
+  return $('#subsets-index-table').DataTable( {
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
+    "columns": this.columns(),
     "processing": true,
+    "orderCellsTop": true,
     "ajax": {
-      "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
-      "data": {"context_id": context_id},
+      "url": "/thesauri/managed_concepts/"+this.id+"/find_subsets",
+      "data": {"context_id": contextId},
       "error": function (xhr, error, code) {
         handleAjaxError(xhr, status, error);
       }
@@ -73,8 +49,6 @@ IndexSubsets.prototype.initTable = function() {
       "emptyTable": "No subsets found.",
       "processing": generateSpinner("medium"),
     },
-    "columns": _this.columns,
-    "orderCellsTop": true,
   });
 };
 
@@ -115,4 +89,25 @@ IndexSubsets.prototype.createSubsetThesaurus = function(data) {
       location.href = result.edit_path;
     }
   });
+}
+
+IndexSubsets.prototype.columns = function() {
+  counter = 0;
+
+  return [
+    {"data" : "identifier"},
+    {"data" : "notation"},
+    {"data" : "label"},
+    {"data" : "definition"},
+    {className: "text-right", "render" : function (data, type, row, meta) {
+      var id = "con-menu-" + counter;
+      var menuItems =
+      [
+        { link_path: row["show_path"], disabled: false, icon: "icon-view", text: "Show" },
+        { link_path: row["edit_path"], disabled: row["edit_path"] == "", icon: "icon-edit", text: "Edit" }
+      ];
+      counter ++;
+      return generateContextMenu(id, menuItems, null, "left");
+    }}
+  ];
 }

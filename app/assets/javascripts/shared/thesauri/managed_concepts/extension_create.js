@@ -1,16 +1,16 @@
-function ExtensionCreate(is_extended, is_extending) {
-  this.is_extended = is_extended;
-  this.is_extending = is_extending;
+function ExtensionCreate(isExtended, isExtending) {
+  this.isExtended = isExtended;
+  this.isExtending = isExtending;
 
   this.initUI();
 }
 
 ExtensionCreate.prototype.initUI = function() {
-  if (this.is_extending) {
+  if (this.isExtending) {
        $("#extend").hide();
        $("#extension").hide();
        $("#extending").show();
-   } else if (this.is_extended) {
+   } else if (this.isExtended) {
        $("#extend").hide();
        $("#extending").hide();
    } else {
