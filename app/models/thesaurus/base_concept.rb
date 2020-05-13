@@ -137,9 +137,9 @@ class Thesaurus
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
         {
-          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t WHERE
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t ?ci ?cn WHERE
           {
             VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             {
@@ -147,6 +147,8 @@ class Thesaurus
               ?s th:notation ?n .
               ?s th:definition ?d .
               ?s th:extensible ?e .
+              OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s .?ci rdf:type ba:ChangeInstruction .}
+              OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
               BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
@@ -154,11 +156,11 @@ class Thesaurus
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
-        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ORDER BY ?i
+        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ?countci ?countcn ORDER BY ?i
       }
-      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :ba])
       query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       end
       results
     end
