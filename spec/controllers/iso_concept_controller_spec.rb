@@ -170,6 +170,38 @@ describe IsoConceptController do
       check_file_actual_expected(actual, sub_dir, "change_instructions_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "get change instructions III, context id" do
+      uri1 = Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955")
+      tc = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/C74456/V37#C74456_C32955"))
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-8901")
+      item = Annotation::ChangeInstruction.create
+      item.update(description: "D", reference: "R", semantic: "S")
+      item = Annotation::ChangeInstruction.find(item.id)
+      item.add_references(previous: [uri1.to_id], current: [])
+      item = Annotation::ChangeInstruction.find(item.id)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :change_instructions, id: tc.id, iso_concept: {context_id: "random_context_id"}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "change_instructions_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "get indicators" do
+      uri1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+      uri3 = Uri.new(uri: "http://www.cdisc.org/C96779/V37#C96779")
+      tc = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779"))
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
+      item = Annotation::ChangeInstruction.create
+      item.update(description: "D", reference: "R", semantic: "S")
+      item = Annotation::ChangeInstruction.find(item.id)
+      item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
+      item = Annotation::ChangeInstruction.find(item.id)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :indicators, id: tc.id
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "indicators_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Authorized User, Curator" do

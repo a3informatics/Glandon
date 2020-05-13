@@ -250,6 +250,35 @@ describe "IsoConceptV2" do
 
   end
 
+  describe "indicators" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..26)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    it "Gets indicators, CL" do
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
+      item_1 = IsoConceptV2.find(uri)
+      results = item_1.indicators
+      check_file_actual_expected(results, sub_dir, "indicators_expected_1.yaml", write_file: true)
+    end
+
+    it "Gets indicators, CLI" do
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
+      item_1 = IsoConceptV2.find(uri)
+      results = item_1.indicators
+      check_file_actual_expected(results, sub_dir, "indicators_expected_2.yaml", write_file: true)
+    end
+
+  end
+
   describe "Change Notes" do
 
     before :all  do
