@@ -26,13 +26,6 @@ describe IsoNamespacesController do
       expect(response).to render_template("index")
     end
 
-    it "new namespace" do
-      namespace = IsoNamespace.new
-      get :new
-      expect(assigns(:namespace).to_h).to eq(namespace.to_h)
-      expect(response).to render_template("new")
-    end
-
     it 'creates namespace' do
       expect(IsoNamespace.all.count).to eq(2)
       post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }

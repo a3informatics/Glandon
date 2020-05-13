@@ -256,7 +256,6 @@ describe "Thesauri Release Select", :type => :feature do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
-      Token.delete_all
       ua_create
       IsoRegistrationAuthority.clear_scopes
     end
