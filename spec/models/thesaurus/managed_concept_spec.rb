@@ -1604,7 +1604,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "sets" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
     end
@@ -1624,6 +1624,11 @@ describe "Thesaurus::ManagedConcept" do
     it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_4.yaml")
     end
 
   end

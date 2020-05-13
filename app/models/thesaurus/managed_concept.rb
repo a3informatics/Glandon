@@ -477,11 +477,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
     results =[]
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count
+      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
         (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys)
         (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
-        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count WHERE
+        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
         {
           ?s rdf:type th:ManagedConcept .
           ?s isoT:hasIdentifier/isoI:version ?v .
@@ -499,6 +499,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
           BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+          OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s . ?ci rdf:type ba:ChangeInstruction }
+          OPTIONAL {?cn (ba:current/bo:reference) ?s . ?cn rdf:type ba:ChangeNote }
           #{filter_clause}
           ?s th:identifier ?i .
           ?s th:notation ?n .
@@ -510,11 +512,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           OPTIONAL {?s th:synonym/isoC:label ?sy }
           OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ?countci ?countcn ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
     query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
-      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       results << {identifier: x[:i], notation: x[:n], label: x[:l], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
     end
