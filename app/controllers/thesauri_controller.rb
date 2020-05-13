@@ -166,6 +166,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :show?
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_indicators_paginated(the_params)
+    children = children.map {|c| c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: ct.id}})})}
     render :json => { data: children }, :status => 200
   end
 
