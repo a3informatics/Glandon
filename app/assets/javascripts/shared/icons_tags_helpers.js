@@ -151,6 +151,7 @@ function loadItemIndicators(url, targetElement) {
     url: url,
     type: "GET",
     dataType: "json",
+    cache: false,
     success: function(result) {
       indicatorsProcessing(false);
       $(targetElement).html(formatIndicators(result.data.indicators));
