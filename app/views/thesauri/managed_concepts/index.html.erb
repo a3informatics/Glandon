@@ -6,6 +6,14 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
 <% first_level_breadcrumb (:code_lists) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-codelist",
+    main_text: "Code Lists", sub_text: "Browse all Code Lists in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
 <div class="row">
 	<div class="col-md-12 card wide">
       <div class="card-header">Index: Code Lists</div>
