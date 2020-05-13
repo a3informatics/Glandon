@@ -58,8 +58,8 @@ module SKOS::OrderedCollection
       delete_link_clauses << "#{self.uri.to_ref} th:members #{sm.uri.to_ref}"
       add_link_clause = "#{self.uri.to_ref} th:members #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     else
-      delete_link_clauses << "#{prev_sm.uri.to_ref} th:member_next #{sm.uri.to_ref}"
-      add_link_clause = "#{prev_sm.uri.to_ref} th:member_next #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
+      delete_link_clauses << "#{prev_sm.uri.to_ref} th:memberNext #{sm.uri.to_ref}"
+      add_link_clause = "#{prev_sm.uri.to_ref} th:memberNext #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     end
     delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.to_ref}"
     query_string = %Q{
@@ -71,8 +71,11 @@ module SKOS::OrderedCollection
     {
       #{add_link_clause} 
     };
-    DELETE {?s ?p ?o} WHERE { #{sm.uri.to_ref} ?p ?o . BIND (#{sm.uri.to_ref} as ?s) }
-    }
+    DELETE {?s ?p ?o} WHERE 
+    { 
+      #{sm.uri.to_ref} ?p ?o . 
+      BIND (#{sm.uri.to_ref} as ?s) 
+    }}
     results = Sparql::Update.new.sparql_update(query_string, "", [:th])
   end
 
@@ -189,7 +192,7 @@ module SKOS::OrderedCollection
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th])
       result_set = query_results.by_object_set([:m, :s, :ordinal])
-      objects = target_klass.children_set(result_set.map{|x| x[:s]})
+      objects = parent_klass.children_set(result_set.map{|x| x[:s]})
       uri_map = result_set.map {|x| [x[:s].to_s, x] }.to_h
       objects.each do |object| 
         object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
@@ -252,48 +255,75 @@ module SKOS::OrderedCollection
   #
   # @param this_id [String] the id of the subset member to be moved after
   # @param to_after_id [String] the id of the subset member to which the subset member moves after
-  def move_after(this_id, to_after_id = nil)
+  def move_after(this_id, to_after_id=nil)
     query_string = ""
-    this = Uri.new(id: this_member_id)
+    this = Uri.new(id: this_id)
     if to_after_id.nil?
       # Moving to front of the list
       query_string = %Q{
         DELETE 
         {
-          #{self.uri.to_ref} th:members ?first.
+          #{self.uri.to_ref} th:members ?first .
           #{this.to_ref} th:memberNext ?next .
+          ?previous th:memberNext #{this.to_ref} .
         }
         INSERT
         {
-          #{self.uri.to_ref} th:members ?current.
-          ?previous th:members ?next.
+          #{self.uri.to_ref} th:members #{this.to_ref} .
+          #{this.to_ref} th:memberNext ?first .
+          ?previous th:memberNext ?next .
         }
         WHERE 
         {
           #{self.uri.to_ref} th:members ?first .
-          #{this.to_ref} th:memberNext ?next .
-          #{this.to_ref} ^th:memberNext ?previous .
+          OPTIONAL {#{this.to_ref} th:memberNext ?next}
+          OPTIONAL {#{this.to_ref} ^th:memberNext ?previous}
         }
       }
-    else
-      after = Uri.new(id: this_after_member_id)
+    elsif self.members == this
+      # Moving from front of the list
+      after = Uri.new(id: to_after_id)
       query_string = %Q{
         DELETE 
         {
-          #{current.uri.to_ref} th:memberNext ?next .
+          #{self.uri.to_ref} th:members ?first .
+          #{this.to_ref} th:memberNext ?next .
           #{after.to_ref} th:memberNext ?new_next . 
         }
         INSERT
         {
-          ?previous th:members ?next.
-          #{after.to_ref} th:memberNext ?current . 
+          #{self.uri.to_ref} th:members ?next .
+          #{after.to_ref} th:memberNext #{this.to_ref} . 
           #{this.to_ref} th:memberNext ?new_next . 
         }
         WHERE 
         {
-          #{after.to_ref} th:memberNext ?new_next .
+          #{self.uri.to_ref} th:members #{this.to_ref} .
+          OPTIONAL {#{after.to_ref} th:memberNext ?new_next}
+          OPTIONAL {#{this.to_ref} th:memberNext ?next}
+        }
+      }
+    else
+      # Moving from other postion
+      after = Uri.new(id: to_after_id)
+      query_string = %Q{
+        DELETE 
+        {
           #{this.to_ref} th:memberNext ?next .
-          #{this.to_ref} ^th:memberNext ?previous .
+          #{after.to_ref} th:memberNext ?new_next . 
+          ?previous th:memberNext #{this.to_ref} .
+        }
+        INSERT
+        {
+          ?previous th:memberNext ?next.
+          #{after.to_ref} th:memberNext #{this.to_ref} . 
+          #{this.to_ref} th:memberNext ?new_next . 
+        }
+        WHERE 
+        {
+          OPTIONAL {#{after.to_ref} th:memberNext ?new_next}
+          OPTIONAL {#{this.to_ref} th:memberNext ?next}
+          OPTIONAL {#{this.to_ref} ^th:memberNext ?previous}
         }
       }
     end
