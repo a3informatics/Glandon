@@ -160,7 +160,8 @@ class Thesaurus
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :ba])
       query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+        indicators = {annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id, indicators: indicators}
       end
       results
     end
