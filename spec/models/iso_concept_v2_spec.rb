@@ -349,6 +349,56 @@ describe "IsoConceptV2" do
 
   end
 
+
+  describe "Change Instructions" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..33)
+    end
+
+    it "change instructions, Iso Concept V2 with Change Notes and CI attached" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+      tc = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779"))
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      tc.add_change_note(user_reference: "xxx1", reference: "ref 1", description: "description 1", context_id: uri_2.to_id)
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3400")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:10:00+01:00 2000"))
+      tc.add_change_note(user_reference: "xxx2", reference: "ref 2", description: "description 2", context_id: uri_2.to_id)
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
+      item = Annotation::ChangeInstruction.create
+      item.update(description: "D", reference: "R", semantic: "S")
+      item = Annotation::ChangeInstruction.find(item.id)
+      item.add_references(previous: [uri_1.to_id], current: [uri_2.to_id])
+      item = Annotation::ChangeInstruction.find(item.id)
+      actual = tc.change_instructions
+      check_file_actual_expected(actual, sub_dir, "change_instructions_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "Change instructions, Iso Concept V2 with CI attached" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779")
+      tc = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/C96779/V26#C96779"))
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-4567")
+      item = Annotation::ChangeInstruction.create
+      item.update(description: "D", reference: "R", semantic: "S")
+      item = Annotation::ChangeInstruction.find(item.id)
+      item.add_references(previous: [uri_1.to_id], current: [uri_2.to_id])
+      item = Annotation::ChangeInstruction.find(item.id)
+      actual = tc.change_instructions
+      check_file_actual_expected(actual, sub_dir, "change_instructions_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+
   describe "Clone" do
 
     before :all  do

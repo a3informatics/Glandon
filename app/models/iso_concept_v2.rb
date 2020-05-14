@@ -118,6 +118,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 SELECT DISTINCT ?s ?p ?o WHERE {
   #{self.uri.to_ref} ^bo:reference ?or .
   ?or ^ba:current ?s .
+  ?s rdf:type ba:ChangeNote . 
   ?s ?p ?o
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
@@ -127,21 +128,25 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     result
   end
 
+  # Change Instructions
+  #
+  # @return [Array] set of Annotation::ChangeInstructions items
   def change_instructions
       results = []
       query_string = %Q{SELECT DISTINCT ?ci WHERE {         
           OPTIONAL{               
             {             
-              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .                 
+              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+              ?ci rdf:type ba:ChangeInstruction .                 
             } UNION           
             {             
-              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .                   
+              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+              ?ci rdf:type ba:ChangeInstruction .                   
             }       
           }       
         }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
       triples = query_results.by_object(:ci)
-        # return if triples.empty?
         triples.each do |x|
           results << Annotation::ChangeInstruction.find(x).get_data
         end
