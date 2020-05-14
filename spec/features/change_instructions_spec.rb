@@ -260,6 +260,61 @@ describe "Change Instructions", :type => :feature do
       end
     end
 
+    it "allows both change instructions and change notes to be present on an item (bug fix)", js:true do
+      # Add CN
+      click_navbar_code_lists
+      identifier = ui_new_code_list
+      wait_for_ajax 20
+      context_menu_element("history", 5, identifier, :show)
+      wait_for_ajax 20
+      context_menu_element_header(:change_notes)
+      in_modal do
+        click_button "+ Add new"
+        fill_in_field("cn-new-text", "CN TEST")
+        page.find("#save-cn-new-button").click
+        wait_for_ajax 20
+        click_on "Close"
+      end
+      # Add CI
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        click_button "+ Create new"
+        wait_for_ajax 10
+      end
+      wait_for_ajax 10
+
+      fill_in_field("description", "CI TEST")
+      find('#description').native.send_keys(:return)
+      wait_for_ajax 10
+
+      find("#add-previous").click
+      in_modal do
+        ui_table_search("index", identifier)
+        ui_selector_item_click("index", identifier)
+        ui_selector_item_click("history", "0.1.0")
+        click_on "Submit and proceed"
+      end
+      wait_for_ajax 10
+
+      click_on "Return"
+      page.driver.browser.navigate.refresh
+
+      # Check
+      wait_for_ajax 20
+      context_menu_element_header(:change_notes)
+      in_modal do
+        ui_check_no_flash_message_present
+        expect(page.find("#cn-0-text").text).to eq("CN TEST")
+        click_on "Close"
+      end
+      context_menu_element_header(:change_instructions)
+      in_modal do
+        ui_check_no_flash_message_present
+        expect(page).to have_content("CI TEST")
+        click_on "Close"
+      end
+    end
+
   end
 
 
