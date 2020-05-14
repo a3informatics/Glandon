@@ -8,10 +8,14 @@ describe "Thesauri Clone", :type => :feature do
   include UiHelpers
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
-    load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..20)
-    load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
+    load_files(schema_files, [])
+    load_cdisc_term_versions(1..62)
+    load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+
     ua_create
   end
 
@@ -33,13 +37,13 @@ describe "Thesauri Clone", :type => :feature do
       click_navbar_terminology
       wait_for_ajax 10
       expect(page).to have_content "Index: Terminology"
-      find(:xpath, "//tr[contains(.,'SPONSOR TEST')]/td/a").click
+      find(:xpath, "//tr[contains(.,'2019 Release 1')]/td/a").click
       wait_for_ajax 20
-      expect(page).to have_content 'Version History of \'SPONSORTHTEST2\''
+      expect(page).to have_content 'Version History of \'2019 R1\''
       Capybara.ignore_hidden_elements = false
       expect(page).to have_link("Clone")
       Capybara.ignore_hidden_elements = true
-      context_menu_element('history', 8, 'SPONSOR TEST', :clone)
+      context_menu_element('history', 8, '2019 Release 1', :clone)
       sleep 1
       expect(page).to have_content "Clone Terminology"
       fill_in 'thesauri_identifier', with: "CLONETERM"
@@ -53,22 +57,22 @@ describe "Thesauri Clone", :type => :feature do
       context_menu_element('history', 8, 'CLONETERM', :show)
       wait_for_ajax 20
       expect(page).to have_content 'Cloned Terminology'
-      expect(page).to have_content '0.1.0'
-      ui_check_table_info("children_table", 1, 5, 5)
-      ui_check_table_cell("children_table", 2, 2, "ACN_01")
+      expect(page).to have_content '0.1.0' 
+      ui_check_table_info("children_table", 1, 10, 803)
+      ui_check_table_cell("children_table", 2, 2, "UNIT_05")
     end
 
     it "does not allow to special characters in a cloned terminology", js: true do
       click_navbar_terminology
       wait_for_ajax 10
       expect(page).to have_content "Index: Terminology"
-      find(:xpath, "//tr[contains(.,'SPONSOR TEST')]/td/a").click
+      find(:xpath, "//tr[contains(.,'2019 Release 1')]/td/a").click
       wait_for_ajax 20
-      expect(page).to have_content 'Version History of \'SPONSORTHTEST2\''
+      expect(page).to have_content 'Version History of \'2019 R1\''
       Capybara.ignore_hidden_elements = false
       expect(page).to have_link("Clone")
       Capybara.ignore_hidden_elements = true
-      context_menu_element('history', 8, 'SPONSOR TEST', :clone)
+      context_menu_element('history', 8, '2019 R1', :clone)
       sleep 1
       expect(page).to have_content "Clone Terminology"
       fill_in 'thesauri_identifier', with: "!€&(=!)"
