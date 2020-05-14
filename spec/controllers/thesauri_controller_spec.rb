@@ -241,7 +241,7 @@ describe ThesauriController do
     it "children" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :children, {id: ct.id}
+      post :children, {id: ct.id, thesauri: {offset: 0, count: 35}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -408,7 +408,7 @@ describe ThesauriController do
     it "children, subsets" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/SUBSETPK#TH123"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :children, {id: ct.id}
+      post :children, {id: ct.id, thesauri: {offset: 0, count: 10}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
