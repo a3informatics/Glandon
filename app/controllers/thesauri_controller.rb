@@ -153,13 +153,13 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :edit?
     results = []
     ct = Thesaurus.find_minimum(params[:id])
-    children = ct.managed_children_pagination({offset: "0", count: "10000"})
+    children = ct.managed_children_pagination(the_params)
     children.each {|c|
       item = Thesaurus::ManagedConcept.find_minimum(c[:id])
       results << c.reverse_merge!({edit_path: item.subset? ? edit_subset_thesauri_managed_concept_path(item, source_mc: item.subsets_links.to_id, context_id: ct.id) : edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
       delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})
     }
-    render :json => { data: results }, :status => 200
+    render :json => { count: results.count, offset: the_params[:offset].to_i, data: results }, :status => 200
   end
 
   def children_with_indicators
@@ -167,7 +167,7 @@ class ThesauriController < ApplicationController
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_indicators_paginated(the_params)
     children = children.map {|c| c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: ct.id}})})}
-    render :json => { data: children }, :status => 200
+    render :json => { count: children.count, offset: the_params[:offset].to_i, data: children }, :status => 200
   end
 
   def add_child

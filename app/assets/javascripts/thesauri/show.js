@@ -15,5 +15,5 @@ $(document).ready( function() {
     }}
   ];
 
-  var mcp = new ManagedChildrenPanel(url_path, 1000, columns, "thesauri");
+  var mcp = new ManagedChildrenPanel(url_path, 5000, columns, "thesauri");
 });
