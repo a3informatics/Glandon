@@ -1,0 +1,92 @@
+// FORMS
+.form-wrap input, .form-wrap textarea, .form-wrap select{
+  min-width: 170px;
+  font-size: $font-small;
+  font-family: $font-light;
+  color: $grey-medium;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  margin: 6px 0;
+  padding: 6px;
+  background: transparent;
+}
+
+.form-wrap input{
+  min-width: 170px;
+  border: 0px;
+  border-bottom: 2px solid $primary-color-bright;
+}
+
+.form-wrap.wide input{
+  min-width: 250px;
+}
+
+.form-wrap input.narrow{
+  min-width: initial;
+  width: 100px;
+}
+
+.form-wrap select{
+  border: 2px solid $primary-color-bright;
+}
+
+.form-wrap textarea{
+  min-width: 250px;
+  border: 1px solid $grey-bright;
+  border-bottom: 2px solid $primary-color-bright;
+}
+
+.form-wrap .checkbox input[type="checkbox"] {
+  min-width: 0px;
+  border-bottom: 0px;
+  position: relative;
+}
+
+.form-wrap input::placeholder, .form-wrap textarea::placeholder{
+  color: $grey-light;
+}
+
+.form-wrap .checkbox label {
+  padding-left: 5px;
+}
+
+.form-wrap input[type="file"] {
+  border: none;
+}
+
+.form-wrap input[type="file"].cen{
+  width: 250px;
+  padding-left: 50px;
+}
+
+.form-wrap.hor{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-wrap.hor .form-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-wrap.hor label, .form-wrap.hor select, .form-wrap.hor input{
+  margin-left: 15px;
+}
+
+.form-wrap input:read-only{
+  background: #f5f5f5;
+}
+
+.form-wrap select option{
+  padding: 4px 10px;
+}
+
+.form-wrap select option:checked{
+  background: linear-gradient($primary-color-bright, $primary-color-bright);
+  background-color: $primary-color-bright !important; /* for IE */
+  color: white !important;
+}

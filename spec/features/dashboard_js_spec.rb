@@ -37,49 +37,6 @@ describe "Dashboard JS", :type => :feature do
 
   describe "Reader User", :type => :feature do
 
-    it "allows the triples to be viewed (REQ-MDR-UD-NONE)", js: true do
-      ua_reader_login
-      click_navbar_bc
-      expect(page).to have_content 'Index: Biomedical Concepts'
-      ui_main_search("C16358")
-      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC C16358'
-      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
-      expect(page).to have_content 'Triple Store View'
-      expect(page).to have_field('subjectNs', disabled: true)
-      expect(page).to have_field('subjectId', disabled: true)
-      expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
-      expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'
-      triples_search("BC_C16358-1")
-      find(:xpath, "//tr[contains(.,'mdrItems:SI-ACME_BC_C16358-1')]/td", :text => 'Show').click
-      expect(page).to have_content 'Triple Store View'
-      expect(page).to have_field('subjectNs', disabled: true)
-      expect(page).to have_field('subjectId', disabled: true)
-      expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRItems'
-      expect(find('#subjectId').value).to eq 'SI-ACME_BC_C16358-1'
-      find(:xpath, "//table[@id='main']/tbody/tr/td", :text => /\A1\z/).click
-      click_button 'View'
-      expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'
-      click_link 'Close'
-      expect(current_path).to eq("/dashboard")
-    end
-
-    it "allows the graph to be viewed (REQ-MDR-UD-NONE)", js: true do
-      ua_reader_login
-      click_navbar_bc
-      expect(page).to have_content 'Index: Biomedical Concepts'
-      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC C16358'
-      find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
-      expect(page).to have_content 'Triple Store View'
-      expect(page).to have_field('subjectNs', disabled: true)
-      expect(page).to have_field('subjectId', disabled: true)
-      expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
-      expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'
-      click_button 'Gr+'
-      expect(page).to have_content 'Graph:'
-    end
-
     it "allows the dashboard to be viewed, header (REQ-MDR-UD-NONE)", js: true do
       ua_reader_login
       expect(page).to have_content 'Dashboard'

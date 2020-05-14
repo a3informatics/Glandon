@@ -2,7 +2,7 @@
 <% first_level_breadcrumb(:dashboard) %>
 <%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor',  'dashboard/dashboard_panel'%>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
+<%= stylesheet_link_tag 'dashboard/dashboard', 'dashboard/edit_dashboard' %>
 
 <% usr_layout_settings = (current_user.read_setting :dashboard_layout).value %>
 <% usr_layout_settings = usr_layout_settings.split(', ').select{|x| user_policy_dashboard_panels.key?(x)} %>
@@ -18,7 +18,7 @@
 		sub_texts: "Today is <span id='datetime'></span>. <br> <span id='notif-info'>You have 0 new notifications.</span>".html_safe} do %>
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#dashboardModal", id: "edit_dashboard",
 				icon: "icon-edit", btn_text: "Customize", dt_toggle: "modal", disabled: false } %>
-			<%= render partial: "shared/edit_dashboard"%>
+			<%= render partial: "shared/dashboard/edit_dashboard"%>
 	<% end %>
 </div>
 

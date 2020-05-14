@@ -7,13 +7,10 @@
 @import "select.bootstrap.min";
 @import "editor.bootstrap.min";
 @import "rowReorder.bootstrap.min";
-@import "custom/globals";
-@import "custom/icon-font";
-@import "custom/a3-styles";
-@import "custom/buttons";
-@import "custom/card_layout";
-@import "custom/spinner-css-anim";
-@import "shared/confirmation_dialog";
+// A3 Custom 
+@import "a3-styles";
+@import "shared/globals";
+@import "font/icon_font";
 
 // For adding white space at top of rows
 .top-buffer { margin-top:20px; }
