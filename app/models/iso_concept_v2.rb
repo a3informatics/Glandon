@@ -127,6 +127,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     result
   end
 
+  # Change Instructions
+  #
+  # @return [Array] set of Annotation::ChangeInstructions items
   def change_instructions
       results = []
       query_string = %Q{SELECT DISTINCT ?ci WHERE {         
@@ -141,7 +144,6 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
       triples = query_results.by_object(:ci)
-        # return if triples.empty?
         triples.each do |x|
           results << Annotation::ChangeInstruction.find(x).get_data
         end

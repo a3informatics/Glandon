@@ -1,0 +1,105 @@
+---
+:parameters:
+  - 
+    :name: "Terminology"
+    :description: "The terminology for which the change instructions are required."
+    :type: :thesauri
+:columns:
+  :pid:
+    :label: CL Code
+  :pnot:
+    :label: CL Submission Value
+  :rpi:
+    :label: Previous Reference Identifier
+  :rpsv:
+    :label: Previous Reference Submission Value
+  :rpv:
+    :label: Previous Reference Version
+  :pident:
+    :label: CL Code
+  :pnotat:
+    :label: CL Submission Value
+  :rci:
+    :label: Current Reference Identifier
+  :rcsv:
+    :label: Current Reference Submission Value
+  :rcv:
+    :label: Current Reference Version
+  :reference:
+    :label: Reference
+  :description:
+    :label: Description
+:label: Change Instructions Export
+:query: 'PREFIX ba: <http://www.assero.co.uk/Annotations#>
+PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#> 
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#> 
+PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX iso: <http://purl.org/iso25964/skos-thes#>
+SELECT DISTINCT ?pid ?pnot ?rpi ?rpsv ?rpv ?pident ?pnotat ?rci ?rcsv ?rcv ?reference ?description WHERE       
+{
+    VALUES ?th {[[[parameter_1]]]} 
+    ?ci rdf:type ba:ChangeInstruction .
+    ?ci (ba:current/bo:reference) ?current .
+    ?ci (ba:previous/bo:reference) ?previous .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference/th:narrower ?current} AS ?a) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference ?current} AS ?b) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference/th:narrower ?previous} AS ?c) .
+    BIND (EXISTS {?th th:isTopConceptReference/bo:reference ?previous} AS ?d) .
+    FILTER (?a||?b||?c||?d)
+    ?ci ba:reference ?reference .
+    ?ci ba:description ?description .
+    ?current th:notation ?rcsv .             
+    ?current th:identifier ?rci . 
+    ?previous th:notation ?rpsv .             
+    ?previous th:identifier ?rpi .
+    OPTIONAL{
+        ?previous rdf:type th:ManagedConcept .                                     
+          ?previous isoT:hasIdentifier/isoI:version ?rpv.
+        BIND (" " as ?pid)
+          BIND (" " as ?pnot)}
+    OPTIONAL{ 
+          ?current rdf:type th:ManagedConcept .                                   
+          ?current isoT:hasIdentifier/isoI:version ?rcv
+        BIND (" " as ?pident)
+          BIND (" " as ?pnotat)}  
+    OPTIONAL{
+        ?previous rdf:type th:UnmanagedConcept .                                                 
+        ?previous ^th:narrower ?cl .             
+        ?cl th:notation ?pnot .             
+        ?cl th:identifier ?pid . 
+      ?cl isoT:hasIdentifier/isoI:version ?rpv.
+        {
+          SELECT ?previous (max(?ver) AS ?rpv) WHERE
+          { 
+            ?ci (ba:previous/bo:reference) ?previous.
+            ?previous ^th:narrower ?p .
+            ?p isoT:hasIdentifier/isoI:version ?ver.
+          } group by ?previous
+        }
+      }
+      OPTIONAL
+      {
+      ?current rdf:type th:UnmanagedConcept .                                                
+        ?current ^th:narrower ?father .             
+        ?father th:notation ?pnotat .             
+        ?father th:identifier ?pident .
+      ?father isoT:hasIdentifier/isoI:version ?rcv.
+        {
+          SELECT ?current (MAX(?vv) AS ?rcv) WHERE
+          { 
+            ?ci (ba:current/bo:reference) ?current.
+            ?current ^th:narrower ?fa .
+            ?fa isoT:hasIdentifier/isoI:version ?vv.
+          } group by ?current
+        }
+      }    
+}'
+:type: Ad Hoc Report Definition
