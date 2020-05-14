@@ -135,7 +135,7 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_head("children_table", 4, "Synonym(s)")
       ui_check_table_head("children_table", 5, "Definition")
       ui_check_table_head("children_table", 6, "Tag(s)")
-      expect(page).to have_xpath("//*[@id='children_table']/thead/tr/th", count: 7)
+      expect(page).to have_xpath("//*[@id='children_table']/thead/tr/th", count: 8)
     end
 
     #CDISC CLI show
