@@ -29,14 +29,6 @@ describe IsoRegistrationAuthoritiesController do
       expect(response).to render_template("index")
     end
 
-    it "new registration authority" do
-      ra = IsoRegistrationAuthority.new
-      namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
-      get :new
-      expect(assigns(:namespaces)).to eq(namespaces)
-      expect(response).to render_template("new")
-    end
-
     it 'creates registration authority' do
       namespaces = IsoNamespace.all
       post :create, iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }

@@ -37,17 +37,6 @@ describe IsoConceptController do
       expect(response.body).to eq(concept.to_json.to_json)
     end
 
-    it "displays a graph" do
-      result =
-      {
-        uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2",
-        rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
-        label: "Height (BC_C25347)"
-      }
-      get :graph, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
-      expect(assigns(:result)).to eq(result)
-    end
-
     it "returns the graph links for a concept" do
       get :graph_links, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       hash = check_good_json_response(response)

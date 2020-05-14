@@ -28,13 +28,6 @@ describe DashboardController do
       expect(response).to render_template("index")
     end
 
-    it "displays triples" do
-      get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
-      expect(assigns(:id)).to eq("BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value")
-      expect(assigns(:namespace)).to eq("http://www.assero.co.uk/MDRBCs/V1")
-      expect(response).to render_template("view")
-    end
-
     it "gets more triples from the database" do
       get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response.content_type).to eq("application/json")
@@ -80,13 +73,6 @@ describe DashboardController do
     it "index, redirects to CDISC term" do
       get :index
       expect(response).to redirect_to thesauri_index_path
-    end
-
-		it "displays triples" do
-      get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
-      expect(assigns(:id)).to eq("BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value")
-      expect(assigns(:namespace)).to eq("http://www.assero.co.uk/MDRBCs/V1")
-      expect(response).to render_template("view")
     end
 
     it "gets more triples from the database" do
