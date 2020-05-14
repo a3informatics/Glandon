@@ -147,13 +147,6 @@ describe IsoManagedController do
       expect(response.body).to eq(results.to_json.to_s)
     end
 
-    it "allows impact to be assessed" do
-      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
-      expect(assigns(:start_path)).to eq(impact_start_iso_managed_index_path)
-      expect(assigns(:item).to_json).to eq(item.to_json)
-    end
-
     it "destroy" do
       @request.env['HTTP_REFERER'] = 'http://test.host/managed_item'
       audit_count = AuditTrail.count
