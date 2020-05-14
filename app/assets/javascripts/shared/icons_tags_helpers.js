@@ -90,8 +90,8 @@ function formatIndicators(indicators) {
           iText = indicatorMap(iName).ttip
             .replace("%n%", iValue.change_notes)
             .replace("%i%", iValue.change_instructions)
-            .replace("notes", iValue.change_notes ? "note" : "notes")
-            .replace("instructions", iValue.change_instructions ? "instruction" : "instructions")
+            .replace("notes", iValue.change_notes === 1 ? "note" : "notes")
+            .replace("instructions", iValue.change_instructions === 1 ? "instruction" : "instructions")
         break;
       default:
         iText = iValue ? indicatorMap(iName).ttip : null;
