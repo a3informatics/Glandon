@@ -150,9 +150,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
 
 
-  # Indicators
+  # Indicators. Get the indicators for the item.
   #
-  # @return [Array] array of hashes containing the indicators
+  # @return [Hash] Hash containing the indicators
   def indicators
     results = {}
     query_string = %Q{

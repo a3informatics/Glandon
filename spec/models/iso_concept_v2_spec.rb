@@ -277,6 +277,34 @@ describe "IsoConceptV2" do
       check_file_actual_expected(results, sub_dir, "indicators_expected_2.yaml")
     end
 
+    it "Gets indicators, CL" do
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
+      item_1 = IsoConceptV2.find(uri)
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/CID")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      item_1.add_change_note(user_reference: "xxx1", reference: "ref 1", description: "description 1", context_id: uri_2.to_id)
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3400")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:10:00+01:00 2000"))
+      item_1.add_change_note(user_reference: "xxx2", reference: "ref 2", description: "description 2", context_id: uri_2.to_id)
+      results = item_1.indicators
+      check_file_actual_expected(results, sub_dir, "indicators_expected_3.yaml")
+    end
+
+    it "Gets indicators, CLI" do
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
+      item_1 = IsoConceptV2.find(uri)
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/CID")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      item_1.add_change_note(user_reference: "xxx1", reference: "ref 1", description: "description 1", context_id: uri_2.to_id)
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3400")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:10:00+01:00 2000"))
+      item_1.add_change_note(user_reference: "xxx2", reference: "ref 2", description: "description 2", context_id: uri_2.to_id)
+      results = item_1.indicators
+      check_file_actual_expected(results, sub_dir, "indicators_expected_4.yaml")
+    end
+
   end
 
   describe "Change Notes" do

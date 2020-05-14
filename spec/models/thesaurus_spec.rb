@@ -473,6 +473,20 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml")
     end
 
+    it "get children with indicators CI and CN, V1 all items III" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C66787/V2#C66787"), "1")
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C67154/V2#C67154")
+      item = ct.add_extension(uri2.to_id)
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/CID")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      item.add_change_note(user_reference: "xxx1", reference: "ref 1", description: "description 1", context_id: uri_2.to_id)
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(35)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml", write_file: true)
+    end
+
     it "get children with indicators, speed" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       timer_start
