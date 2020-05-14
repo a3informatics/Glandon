@@ -1,0 +1,60 @@
+@prefix : <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/Thesaurus>
+  rdf:type owl:Ontology ;
+.
+# Replace old triples
+:Subset
+  skos:definition "The head of the list by which a code list is ordered."^^xsd:string ;
+.
+:SubsetMember
+  rdfs:label "Subset Member"^^xsd:string ;
+  skos:definition "Ordered list member"^^xsd:string ;
+.
+# New triples
+:RankedCollection
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Rank"^^xsd:string ;
+  rdfs:subClassOf skos:OrderedCollection ;
+  skos:definition "The head of the collection by which a code list is ranked."^^xsd:string ;
+.
+:RankedMember
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Rank Member"^^xsd:string ;
+  rdfs:subClassOf rdf:List ;
+  skos:definition "Rank list member"^^xsd:string ;
+.
+:isOrdered
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is ordered relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :Subset ;
+  skos:definition "A relationship linking a managed concept with its ordering information."^^xsd:string ;
+.
+:isRanked
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is ranked relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :RankedCollection ;
+  skos:definition "A relationship linking a managed concept with its ranking information."^^xsd:string ;
+.
+:rank
+  rdf:type owl:DatatypeProperty  ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Rank"^^xsd:string ;
+  rdfs:domain :RankedMember ;
+  rdfs:range xsd:integer ;
+  skos:definition "The rank value."^^xsd:string ;
+.

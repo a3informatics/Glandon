@@ -1,4 +1,4 @@
-# Managed Concepts Extensions
+# Managed Concepts Subsets
 #
 # @author Dave Iberson-Hurst
 # @since 2.34.0

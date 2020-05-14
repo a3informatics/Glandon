@@ -18,6 +18,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+  object_property :is_ranked, cardinality: :one, model_class: "Thesaurus::Rank"
 
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
@@ -30,6 +31,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Subsets
   include Thesaurus::Upgrade
   include Thesaurus::Validation
+  include Thesaurus::Ranked
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
