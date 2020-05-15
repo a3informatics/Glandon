@@ -473,8 +473,8 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_3.yaml")
     end
 
-    it "get children with indicators CI and CN, V1 all items" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+    it "get children with indicators CI and CN, V3 all items" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C66787/V2#C66787"), "1")
       uri2 = Uri.new(uri: "http://www.cdisc.org/C67154/V2#C67154")
       item = ct.add_extension(uri2.to_id)
@@ -488,7 +488,7 @@ describe Thesaurus do
       ci.add_references(previous: [uri2.to_id], current: [])
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(35)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml")
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "get children with indicators, speed" do

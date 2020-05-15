@@ -1,29 +1,4 @@
 ---
-- :identifier: C49647
-  :notation: TCNTRL
-  :preferred_term: CDISC SDTM Control Type Terminology
-  :synonym: Control Type; TCNTRL; Type of Control
-  :state: Standard
-  :extensible: true
-  :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
-    (placebo, no treatment, dose-response, active), external (historical, published
-    literature).
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjQ3L1YyI0M0OTY0Nw==
-  :semantic_version: 2.0.0
-  :tags: SDTM
-  :indicators:
-    :current: false
-    :extended: false
-    :extends: false
-    :version_count: 2
-    :subset: false
-    :subsetted: false
-    :annotations:
-      :change_notes: 0
-      :change_instructions: 0
-  :owner: CDISC
-  :scoped_identifier: C49647
-  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C65047
   :notation: LBTESTCD
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Code
@@ -305,8 +280,8 @@
     of people to measure whether the treatment actually benefits patients, and whether
     its benefits exceed its risks; and Phase IV takes place after the drug or treatment
     has been licensed and marketed. (NCI)'
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1YyI0M2NjczNw==
-  :semantic_version: 2.0.0
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1YzI0M2NjczNw==
+  :semantic_version: 3.0.0
   :tags: SDTM
   :indicators:
     :current: false
@@ -608,6 +583,31 @@
       :change_instructions: 0
   :owner: CDISC
   :scoped_identifier: C66784
+  :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+- :identifier: C66785
+  :notation: TCNTRL
+  :preferred_term: CDISC SDTM Control Type Terminology
+  :synonym: Control Type; TCNTRL; Type of Control
+  :state: Standard
+  :extensible: true
+  :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
+    (placebo, no treatment, dose-response, active), external (historical, published
+    literature).
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1YzI0M2Njc4NQ==
+  :semantic_version: 3.0.0
+  :tags: SDTM
+  :indicators:
+    :current: false
+    :extended: false
+    :extends: false
+    :version_count: 5
+    :subset: false
+    :subsetted: false
+    :annotations:
+      :change_notes: 0
+      :change_instructions: 0
+  :owner: CDISC
+  :scoped_identifier: C66785
   :scope_id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
 - :identifier: C66786
   :notation: COUNTRY
