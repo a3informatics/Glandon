@@ -229,25 +229,25 @@ module UiHelpers
 
 	# Indicators
   def ui_check_table_row_indicators(table_id, row, col, indicators)
-		Capybara.ignore_hidden_elements = false
 		within("##{table_id}") do
+			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
 				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", count: indicators.length())
 				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
 			end
+			Capybara.ignore_hidden_elements = true
 		end
-		Capybara.ignore_hidden_elements = true
   end
 
 	def ui_check_indicators(parent, indicators)
-		Capybara.ignore_hidden_elements = false
 		within(parent) do
+			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
 				expect(page).to have_xpath("./span", count: indicators.length())
 				expect(page).to have_xpath("./span", text: "#{i}", count: 1)
 			end
+			Capybara.ignore_hidden_elements = true
 		end
-		Capybara.ignore_hidden_elements = true
 	end
 
   # Flash
