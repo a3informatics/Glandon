@@ -3,7 +3,7 @@ module FieldValidation
   C_CLASS_NAME = "FieldValidation"
   C_ALPHA_NUMERICS = "a-zA-Z0-9"
   C_ALPHA_NUMERICS_SPACE = "#{C_ALPHA_NUMERICS} "
-  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*+@=:;&|<>"
+  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*+@=:;&|<>%^"
   C_TC_PART = "[#{C_ALPHA_NUMERICS}]+"
   C_IDENTIFIER = "[#{C_ALPHA_NUMERICS_SPACE}]+"
   C_MARKDOWN = "[#{C_FREE_TEXT}\r\n]*"
@@ -11,7 +11,7 @@ module FieldValidation
   C_TERM_PROPERTY = "[#{C_FREE_TEXT}]*"
   C_QUESTION = "[#{C_FREE_TEXT}]*"
   C_LABEL = "[#{C_FREE_TEXT}]*"
-  C_SUBMISSION = "[#{C_FREE_TEXT}^]*" # Free text plus ^
+  C_SUBMISSION = "[#{C_FREE_TEXT}]*" 
   C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
   C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
   C_MAPPING = "[#{C_FREE_TEXT}]*"
