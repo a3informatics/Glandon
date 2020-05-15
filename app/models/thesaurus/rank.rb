@@ -8,7 +8,7 @@ class Thesaurus::Rank < IsoConceptV2
             base_uri: "http://#{ENV["url_authority"]}/TRC",
             uri_unique: true
 
-  object_property :members, cardinality: :one, model_class: "Thesaurus::RankedMember"
+  object_property :members, cardinality: :one, model_class: "Thesaurus::RankMember"
 
   include SKOS::OrderedCollection
 

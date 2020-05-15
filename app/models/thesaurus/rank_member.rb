@@ -10,7 +10,7 @@ class Thesaurus::RankMember < IsoConceptV2
 
   data_property :rank
   object_property :item, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", read_exclude: true
-  object_property :member_next, cardinality: :one, model_class: "Thesaurus::SubsetMember"
+  object_property :member_next, cardinality: :one, model_class: "Thesaurus::RankMember"
 
   include SKOS::Member
 
