@@ -488,7 +488,7 @@ describe Thesaurus do
       ci.add_references(previous: [uri2.to_id], current: [])
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(35)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_4.yaml")
     end
 
     it "get children with indicators, speed" do
