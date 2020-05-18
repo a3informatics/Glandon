@@ -315,6 +315,12 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks a valid long name, ^%ALongName1234567890.!?,_ -()" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "^%ALongName1234567890.!?,_ -()", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks an invalid long name, \"\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_long_name?(:test, "", object)).to eq(false)
@@ -395,6 +401,12 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks an valid submission value, % ^ " do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "^% % % ^ ", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid SDTM format value, MedDRA" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_format_value?(:test, "MedDRA", object)).to eq(true)
@@ -462,13 +474,25 @@ describe FieldValidation do
 
   it "checks a valid label, Specials" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()", object)).to eq(true)
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()%", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid label, Specials ^" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()^", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid label, Specials % and ^" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()^%", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
   it "checks an invalid label, ±" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()±", object)).to eq(false)
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()%^±", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
@@ -502,13 +526,13 @@ describe FieldValidation do
 
   it "checks a valid question, Specials" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>", object)).to eq(true)
+    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>%^", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
   it "checks an invalid question, Specials and £" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>£", object)).to eq(false)
+    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>^%£", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
@@ -537,7 +561,7 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("")
   end
 
-  it "checks a valid question, \"\\n\"" do
+  it "checks an invalid question, \"\\n\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_question?(:test, "\n", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
@@ -679,6 +703,12 @@ describe FieldValidation do
   it "checks valid markdown" do
     object = IsoConcept.new
     expect(FieldValidation.valid_markdown?(:test, "This is some\r\n * markup", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks valid markdown, contains % and ^" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_markdown?(:test, "This is some\r\n * %markup%", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
