@@ -1,12 +1,12 @@
 <%= javascript_tag 'setPageTitle("Terminology Compare")' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
-<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alph_slider', 'thesauri/compare'%>
-<%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/alphabetical_filter', 'thesauri/compare'%>
+<%= stylesheet_link_tag 'shared/alphabetical_filter','shared/timeline_cdisc', media: 'all' %>
 
 <%= javascript_tag "var compare_path = '#{compare_data_thesauri_path(id: @th, thesauri: {thesaurus_id: @other_th})}';" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-compare",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-compare",
     main_text: "Compare Terminologies",
     sub_text: "Changes between
     <span class='font-regular text-link'>#{@th.scoped_identifier} v#{@th.semantic_version}</span> and

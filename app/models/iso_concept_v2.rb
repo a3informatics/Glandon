@@ -118,6 +118,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 SELECT DISTINCT ?s ?p ?o WHERE {
   #{self.uri.to_ref} ^bo:reference ?or .
   ?or ^ba:current ?s .
+  ?s rdf:type ba:ChangeNote . 
   ?s ?p ?o
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
@@ -127,26 +128,78 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     result
   end
 
+  # Change Instructions
+  #
+  # @return [Array] set of Annotation::ChangeInstructions items
   def change_instructions
       results = []
       query_string = %Q{SELECT DISTINCT ?ci WHERE {         
           OPTIONAL{               
             {             
-              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .                 
+              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+              ?ci rdf:type ba:ChangeInstruction .                 
             } UNION           
             {             
-              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .                   
+              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+              ?ci rdf:type ba:ChangeInstruction .                   
             }       
           }       
         }}
       query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
       triples = query_results.by_object(:ci)
-        # return if triples.empty?
         triples.each do |x|
           results << Annotation::ChangeInstruction.find(x).get_data
         end
       results
     end
+
+
+
+  # Indicators. Get the indicators for the item.
+  #
+  # @return [Hash] Hash containing the indicators
+  def indicators
+    results = {}
+    query_string = %Q{
+      SELECT DISTINCT ?i ?eo ?ei ?so ?si ?type (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) WHERE
+      {
+        OPTIONAL{
+            #{self.uri.to_ref} rdf:type th:ManagedConcept .
+            BIND (EXISTS {#{self.uri.to_ref} th:extends ?xe1} as ?eo)
+            BIND (EXISTS {#{self.uri.to_ref} th:subsets ?xs1} as ?so)
+            BIND (EXISTS {#{self.uri.to_ref} ^th:extends ?xe2} as ?ei)
+            BIND (EXISTS {#{self.uri.to_ref} ^th:subsets ?xs2} as ?si)
+            OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) #{self.uri.to_ref} . ?ci rdf:type ba:ChangeInstruction }
+            OPTIONAL {?cn (ba:current/bo:reference) #{self.uri.to_ref} . ?cn rdf:type ba:ChangeNote }
+            #{self.uri.to_ref} th:identifier ?i .
+            BIND ("ManagedConcept" as ?type)
+          }
+        
+        OPTIONAL{
+            #{self.uri.to_ref} rdf:type th:UnmanagedConcept .                     
+            OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) #{self.uri.to_ref} . ?ci rdf:type ba:ChangeInstruction }           
+            OPTIONAL {?cn (ba:current/bo:reference) #{self.uri.to_ref} . ?cn rdf:type ba:ChangeNote }           
+            #{self.uri.to_ref} th:identifier ?i .           
+            BIND ("UnmanagedConcept" as ?type)
+            BIND ("" as ?eo)
+            BIND ("" as ?ei)
+            BIND ("" as ?so)
+            BIND ("" as ?si)
+          }
+      } GROUP BY ?i ?eo ?ei ?so ?si ?countci ?countcn ?type ORDER BY ?i 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
+    query_results.by_object_set([:i, :eo, :ei, :so, :si, :countcn, :countci, :type]).each do |x|
+      case x[:type].to_sym
+        when :ManagedConcept
+          indicators = { extended: x[:ei].to_bool, extends: x[:eo].to_bool, subsetted: x[:si].to_bool, subset: x[:so].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+        when :UnmanagedConcept
+          indicators = { annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+      end
+      results[:indicators] = indicators
+    end
+    results
+  end
 
   # Tag labels. Get the ordered tag labels for the items
   #

@@ -10,28 +10,26 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require d3
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require morris.min
-//= require raphael
 //= require dataTables.buttons
 //= require buttons.bootstrap
 //= require dataTables.select
-//= require dataTables.keyTable.min
 //= require dataTables.editor.min
+//= require dataTables.keyTable.min
 //= require dataTables.rowReorder.min
 //= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require sidebar_handler
-//= require app-js-erb-extension
+//= require spinner_helpers
 //= require jquery-dateformat.min
 //= require underscore-min
 //= require title
+//= require shared/icons_tags_helpers
 //= require shared/confirmation_dialog
 //= require shared/information_dialog
 
@@ -327,24 +325,6 @@ function pad(n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-/*
-* Path function
-*/
-function getPath(rdfType) {
-  if (rdfType == C_FORM) {
-    return "/forms/";
-  } else if (rdfType == C_BC) {
-    return "/biomedical_concepts/";
-  } else if (rdfType == C_BCT) {
-    return "/biomedical_concept_templates/";
-  } else if (rdfType == C_USERDOMAIN) {
-    return "/sdtm_user_domains/"
-  } else if (rdfType == C_TH) {
-    return "/thesauri/"
-  } else {
-    return ""
-  }
-}
 
 /*
 * Improved Path function for Strong parameters
@@ -382,13 +362,6 @@ function getPathStrongV2(rdfType, id, namespace) {
   } else {
     return ""
   }
-}
-
-/*
-* Link to
-*/
-function linkTo(path, namespace, id) {
-  window.location.href = path + "?id=" + id + "&namespace=" + namespace
 }
 
 /*
@@ -438,7 +411,7 @@ function toggleText(el, oTxt, rTxt){
   el.html(~el.html().indexOf(oTxt) ? el.html().replace(oTxt, rTxt) :  el.html().replace(rTxt, oTxt));
 }
 
-
+// Returns true if browser is IE
 function isIE() {
   ua = navigator.userAgent;
   /* MSIE used to detect old browsers and Trident used to newer ones*/
@@ -447,15 +420,7 @@ function isIE() {
   return is_ie;
 }
 
-function isSafari(){
-  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-}
-
-function dateString(){
-  var date = new Date().getTime();
-  return $.format.date(date, "ddd, MMMM D, yyyy")
-}
-
+// Returns initials of the passed string
 function getStringInitials(str) {
   var initials = "";
   var words = str.split(' ');
@@ -463,7 +428,7 @@ function getStringInitials(str) {
     initials += this.substring(0,1).toUpperCase();
   });
   return initials;
-};
+}
 
 /**
  * Generates styled HTML for datetime
@@ -479,6 +444,7 @@ function dateTimeHTML(date) {
           '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
 }
 
+// Disable / enable any table controls for the user
 function toggleTableActive(tableId, enable) {
   if(enable)
     $(tableId).removeClass("table-disabled");
@@ -486,23 +452,10 @@ function toggleTableActive(tableId, enable) {
     $(tableId).addClass("table-disabled");
 }
 
-function redirectPost(url, param, object){
-  var form = "<form action='"+url+"' method='POST'>";
-
-  $.each(object, function(k, v) {
-    if(v instanceof Array){
-      $.each(v, function(i, e){
-        form += "<input type='text' name='"+param+"["+k+"][]' value='"+ e +"' />";
-      })
-    }
-    else
-      form += "<input type='text' name='"+param+"["+k+"]' value='"+ v +"' />";
-  })
-
-  form += "</form>";
-  form = $(form);
-  $(document.body).append(form);
-  $(form).submit();
+// Returns current date as e.g. Mon, January 1st, 2000
+function currentDateString(){
+  var date = new Date().getTime();
+  return $.format.date(date, "ddd, MMMM D, yyyy")
 }
 
 // Returns a Date object set to dateString values (format must be YYYY-MM-DD)
@@ -515,13 +468,4 @@ function parseDateString(dateString){
 function refreshOnBackPressed(){
   if (performance.navigation.type == 2)
     location.reload();
-}
-
-// Generate true/false icon
-function trueFalseIcon(value, centered) {
-  var icoClass = centered == true ? "i-centered" : "";
-
-  return value ?
-      "<span class='icon-ok text-secondary-clr "+ icoClass +"'></span>" :
-      "<span class='icon-times text-accent-2 "+ icoClass +"'></span>"
 }

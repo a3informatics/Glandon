@@ -106,4 +106,63 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
+    describe "Change Instructions Export Tests" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_versions(1..54)
+      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
+      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v52.ttl")
+      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v53.ttl")
+      AdHocReport.delete_all
+      delete_all_public_files
+    end
+
+    after :all do
+      delete_all_public_files
+    end
+
+    it "executes a change instructions export report V47" do
+      copy_report_to_public_files("change_instructions_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "change_instructions_export_sparql.yaml"
+      report.results_file = "change_instructions_export_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V47#TH").to_id])}
+      results = AdHocReportFiles.read("change_instructions_export_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "executes a change instructions export report V52 " do
+      copy_report_to_public_files("change_instructions_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "change_instructions_export_sparql.yaml"
+      report.results_file = "change_instructions_export_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V52#TH").to_id])}
+      results = AdHocReportFiles.read("change_instructions_export_results_2.yaml")
+      check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "executes a change instructions export report V53 " do
+      copy_report_to_public_files("change_instructions_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "change_instructions_export_sparql.yaml"
+      report.results_file = "change_instructions_export_results_3.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V53#TH").to_id])}
+      results = AdHocReportFiles.read("change_instructions_export_results_3.yaml")
+      check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_3.yaml", equate_method: :hash_equal)
+    end
+  
+  end
+
 end

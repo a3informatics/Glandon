@@ -1,0 +1,41 @@
+// SCROLLBARS
+.page-scroll-styled::-webkit-scrollbar, .list-wrap::-webkit-scrollbar,
+.card-content::-webkit-scrollbar, .dataTables_scrollBody::-webkit-scrollbar, .scroll-styled::-webkit-scrollbar {
+  width: 10px;
+}
+
+.page-scroll-styled::-webkit-scrollbar-track {
+  background-color: $grey-bright;
+}
+
+.page-scroll-styled::-webkit-scrollbar-thumb {
+  background-color: #e8e8e8;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-track, .list-wrap::-webkit-scrollbar-track,
+.card-content::-webkit-scrollbar-track, .scroll-styled::-webkit-scrollbar-track{
+  background: white;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb, .list-wrap::-webkit-scrollbar-thumb,
+.card-content::-webkit-scrollbar-thumb, .scroll-styled::-webkit-scrollbar-thumb{
+  background-color: $grey-bright;
+}
+
+@media (max-width: 768px){
+  .page-scroll-styled::-webkit-scrollbar-thumb, .page-scroll-styled::-webkit-scrollbar-track,
+  .page-scroll-styled::-webkit-scrollbar{
+    display: none;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body{
+    scrollbar-base-color: $grey-bright;
+    scrollbar-face-color: #e8e8e8;
+    scrollbar-track-color: $grey-bright;
+    scrollbar-arrow-color: #e8e8e8;
+    scrollbar-shadow-color: $grey-bright;
+    scrollbar-dark-shadow-color: $grey-bright;
+  }
+}

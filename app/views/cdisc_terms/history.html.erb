@@ -1,5 +1,4 @@
 <%= javascript_tag 'setPageTitle("CDISC Terminology History")' %>
-<%= stylesheet_link_tag 'custom/context_menu', media: 'all' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_include_tag 'cdisc_term/history' %>
 <%= javascript_tag "var url_path = '#{history_cdisc_terms_path}';" %>
@@ -13,7 +12,7 @@
 	}
 </style>
 <div class="row">
-  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>
+  <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>
     <div class="actions-wrap">
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
 				icon: "icon-changes", btn_text: "View Changes", dt_toggle: "", disabled: false } %>

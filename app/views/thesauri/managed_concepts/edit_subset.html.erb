@@ -3,7 +3,7 @@
 
 <%= javascript_include_tag 'thesauri/managed_concepts/edit_subset', 'shared/timer', 'unload',
     'shared/thesauri/managed_concepts/subset_source_children_panel', 'shared/thesauri/managed_concepts/subset_edit_children_panel' %>
-<%= stylesheet_link_tag 'custom/edit_subset', 'shared/managed_children_select', 'shared/datatables_loading' %>
+<%= stylesheet_link_tag 'thesauri/managed_concepts/edit_subset', 'shared/table_select', 'shared/datatables_loading' %>
 
 <%= javascript_tag "var clChildrenUrl = '#{children_thesauri_managed_concept_path({id: @source_mc})}',
                         subsetChildrenUrl = '#{list_children_thesauri_subset_path(@subset)}',
@@ -12,7 +12,7 @@
                         removeAllFromSubsetUrl = '#{remove_all_thesauri_subset_path(@subset)}',
                         moveAfterSubsetUrl = '#{move_after_thesauri_subset_path(@subset)}'; "%>
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>

@@ -5,7 +5,7 @@
 <%= javascript_tag "var children = #{@tc.children?};" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <div class="row">
-  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => nil, :badge => "CI"} do %>
+  <%= render layout: "shared/headers/header_unmanaged_item", :locals => {:item => @tc, :context => nil, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
       <!-- RETURN BUTTON -->

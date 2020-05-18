@@ -1,0 +1,50 @@
+@import "shared/vars";
+
+.stats-wrap{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stats-block{
+  display: inline-block;
+  width: calc(50% - 20px);
+  min-width: 150px;
+  margin: 8px;
+}
+
+.stats-block.large{
+  width: calc(100% - 20px);
+}
+
+.stats-block.large .list-wrap{
+  height: 180px;
+}
+
+.stats-wrap .list-wrap{
+  height: 96px;
+}
+
+.stats-wrap .list-wrap .list-item{
+  font-family: $font-light;
+  font-size: $font-small;
+  border-bottom: 1px solid $grey-bright;
+  padding: 4px;
+}
+
+.stats-wrap .list-wrap .list-item.lvl-1{
+  font-family: $font-bold;
+}
+
+.stats-wrap .list-wrap .list-item.lvl-2{
+  padding-left: 12px;
+}
+
+.stats-wrap .stats-title{
+  font-size: $font-normal;
+  border-bottom: 1px solid $primary-color-bright;
+  color: $primary-color-light;
+  margin-bottom: 4px;
+}

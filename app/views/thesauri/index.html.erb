@@ -3,6 +3,14 @@
 <%= javascript_tag "var searchMultiUrl = '#{search_multiple_thesauri_index_path}',
 												searchUrl = '#{search_thesauri_path(id: "thId")}'" %>
 <% first_level_breadcrumb (:thesauri) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-terminology",
+    main_text: "Terminologies", sub_text: "Browse all Terminologies in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
 <div class="row">
 	<div class="col-md-12 card wide">
       <div class="card-header">Index: Terminology</div>

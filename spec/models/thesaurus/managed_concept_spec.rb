@@ -940,7 +940,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -1025,6 +1025,12 @@ describe "Thesaurus::ManagedConcept" do
       item.add_extensions([ext.uri, ext2.uri])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml")
+    end
+
+    it "normal, CI CN Indicators" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      results = tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_11.yaml")
     end
 
   end
@@ -1604,7 +1610,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "sets" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
     end
@@ -1624,6 +1630,11 @@ describe "Thesaurus::ManagedConcept" do
     it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_4.yaml")
     end
 
   end

@@ -4,11 +4,11 @@
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 
-<%= javascript_include_tag 'shared/tags', 'thesauri/search_multiple' %>
+<%= javascript_include_tag 'thesauri/search_multiple' %>
 <%= javascript_tag "var url_path = '#{@search_url}';" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-terminology",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-terminology",
     main_text: "<span class='text-medium font-light'>Search</span> #{@search_type}".html_safe,
     sub_text: "Searching in the pre-selected set of Terminologies." } do %>
       <div class="btns-wrap">

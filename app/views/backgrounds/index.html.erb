@@ -1,10 +1,10 @@
 <%= javascript_tag 'setPageTitle("Background jobs")' %>
-<%= javascript_include_tag 'background_index', 'standard_datatable'%>
+<%= javascript_include_tag 'backgrounds/index', 'standard_datatable'%>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <% first_level_breadcrumb (:backgrounds) %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-jobs", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-jobs", header_title: "",
 		main_text: "Background Jobs", sub_texts: "List of active and past background jobs." } do %>
 	<% end %>
 </div>

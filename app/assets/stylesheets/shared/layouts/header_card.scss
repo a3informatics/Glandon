@@ -1,0 +1,132 @@
+@import "shared/vars.scss";
+
+.h-outside-wrap{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.h-inner-wrap{
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 16px;
+  color: $grey-medium;
+}
+
+.h-inner-wrap.centered{
+  align-items: center;
+}
+
+.h-inner-wrap:first-of-type{
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.h-inner-wrap.mid{
+  flex-grow: 2;
+}
+
+.icotext{
+  margin: 0 6px;
+}
+
+.ttip-ico{
+  color: $primary-color-light;
+  font-size: 13pt;
+}
+
+.definition-label{
+  max-width: 700px;
+  text-align: justify;
+}
+
+.timer{
+  margin: 0 10px;
+  font-family: $font-light;
+  color: $grey-medium;
+}
+
+@media (max-width: 768px){
+  .h-inner-wrap{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
+.header-title{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 4px 18px;
+  display: inline-block;
+  color: white;
+  background: $primary-color-bright;
+  font-family: $font-light;
+}
+
+.rb{
+  padding: 0;
+  flex-direction: row;
+}
+
+.h-outside-wrap .icon-context-menu{
+  margin-top: 3px;
+}
+
+.h-outside-wrap .icon-context-menu::before{
+  content: "\e937";
+}
+
+// Mobile view fix
+@media (max-width: 768px){
+  .header-title{
+    margin: 5px auto;
+  }
+
+  .rb{
+    flex-direction: column !important;
+  }
+}
+
+// Fix of icon positioning in the buttons in the header for IE and EDGE
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.ico-btn-sec .circular-badge{
+  @include ieandedge {
+    line-height: 30px;
+  }
+}
+
+// Header indicators
+
+.indicators-wrap .indicators{
+  white-space: nowrap;
+}
+
+.h-inner-wrap .actions-wrap{
+  width: auto;
+}
+
+.h-inner-wrap.indicators-wrap{
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media (max-width: 1300px){
+  .h-inner-wrap.indicators-wrap {
+    width: 100%;
+    flex-direction: row;
+  }
+}

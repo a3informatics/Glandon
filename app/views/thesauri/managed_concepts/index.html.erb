@@ -2,10 +2,18 @@
 
 <%= javascript_tag "var indexCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}'" %>
 <%= javascript_tag "var createCLUrl = '#{thesauri_managed_concepts_path}'" %>
-<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/tags', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
 <% first_level_breadcrumb (:code_lists) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-codelist",
+    main_text: "Code Lists", sub_text: "Browse all Code Lists in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
 <div class="row">
 	<div class="col-md-12 card wide">
       <div class="card-header">Index: Code Lists</div>
@@ -13,7 +21,8 @@
 			<div class="half-blocks-wrap">
 				<div class="font-light half-block">
 					Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Code Lists.
-					Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'.
+					Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'. <br/>
+					<span class="font-regular">The properties and indicators for each Code List reflect its latest version.</span>
 				</div>
 				<div class="actions-wrap half-block">
 					<% if policy(Thesaurus::ManagedConcept).new? %>

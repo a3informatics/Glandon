@@ -1,12 +1,12 @@
 <%= javascript_tag 'setPageTitle("Impact Analysis: '+@managed_item.scoped_identifier+' ('+@managed_item.semantic_version+')")' %>
 <% third_level_breadcrumb(:thesauri, @managed_item, @close_path) %>
-<%= stylesheet_link_tag 'custom/tabs_layout', 'custom/impact', 'shared/datatables_loading' %>
-<%= javascript_include_tag  'shared/tags', 'iso_managed/impact', 'shared/tabs_layout' %>
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'iso_managed/impact', 'shared/datatables_loading' %>
+<%= javascript_include_tag  'd3', 'iso_managed/impact', 'shared/tabs_layout' %>
 
 <%= javascript_tag "var cdiscChangesUrl = '#{changes_impact_thesauri_path(@ref_cdisc_th, thesauri: {thesaurus_id: @new_cdisc_th.id, sponsor_th_id: @managed_item.id})}'" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-impact",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-impact",
     main_text: "Impact Analysis <span class='font-light text-medium'>#{@managed_item.scoped_identifier} v#{@managed_item.semantic_version}</span>".html_safe,
     sub_text: "CDISC CT update from: #{@ref_cdisc_th.version_label} - to: #{@new_cdisc_th.version_label}." } do %>
       <div class="btns-wrap">

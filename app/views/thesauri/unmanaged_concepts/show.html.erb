@@ -12,7 +12,7 @@
     thesauri_managed_concept_path({id: @parent, managed_concept: {context_id: @context_id}}), "Show") %>
 
 <div class="row">
-  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
+  <%= render layout: "shared/headers/header_unmanaged_item", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
     <div class="actions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>

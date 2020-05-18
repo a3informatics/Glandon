@@ -7,7 +7,7 @@ describe IsoManagedController do
   include DownloadHelpers
 
   describe "Curator User" do
-    
+
     login_curator
 
     def sub_dir
@@ -15,13 +15,13 @@ describe IsoManagedController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", 
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl",
         "iso_managed_data_3.ttl", "form_example_vs_baseline.ttl", "form_example_general.ttl", "form_example_dm1_branch.ttl", "BC.ttl", "BCT.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)
     end
 
-    it "index of items" #do 
+    it "index of items" #do
     #   get :index
     # #Xwrite_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
     #   expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
@@ -29,17 +29,17 @@ describe IsoManagedController do
     #   expect(response).to render_template("index")
     # end
 
-    it "updates a managed item" do 
-      post :update, 
-        { 
-          id: "F-ACME_TEST", 
-          iso_managed: 
-          { 
-            referer: 'http://test.host/iso_managed', 
-            namespace:"http://www.assero.co.uk/MDRForms/ACME/V1", 
-            :explanatoryComment => "New comment",  
-            :changeDescription => "Description", 
-            :origin => "Origin" 
+    it "updates a managed item" do
+      post :update,
+        {
+          id: "F-ACME_TEST",
+          iso_managed:
+          {
+            referer: 'http://test.host/iso_managed',
+            namespace:"http://www.assero.co.uk/MDRForms/ACME/V1",
+            :explanatoryComment => "New comment",
+            :changeDescription => "Description",
+            :origin => "Origin"
           }
         }
       managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -47,19 +47,6 @@ describe IsoManagedController do
       expect(managed_item.changeDescription).to eq("Description")
       expect(managed_item.origin).to eq("Origin")
       expect(response).to redirect_to('http://test.host/iso_managed')
-    end
-
-    it "return the status of a managed item" do
-      @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
-      expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
-      expect(assigns(:registration_state).to_json).to eq(managed_item.registrationState.to_json)
-      expect(assigns(:scoped_identifier).to_json).to eq(managed_item.scopedIdentifier.to_json)
-      expect(assigns(:current_id)).to eq("test")
-      expect(assigns(:owner)).to eq(true)
-      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
-      expect(response).to render_template("status")
     end
 
     it "allows a managed item to be edited" do
@@ -74,7 +61,7 @@ describe IsoManagedController do
     it "allows a managed item tags to be edited"
     it "allows a managed item to be found by tag"
     it "returns the tags for a managed item"
-    
+
     #it "shows a managed item" do
     #  concept = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     #  get :show, {id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
@@ -87,23 +74,23 @@ describe IsoManagedController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show, {id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq(concept.to_json.to_json)
     end
 
     it "displays a graph" # do
-    #   result = 
-    #   { 
+    #   result =
+    #   {
     #     uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1",
     #     rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
     #     label: "Vital Signs Baseline"
     #   }
     #   get :graph, {id: "F-ACME_VSBASELINE1", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
     #   expect(assigns(:result)).to eq(result)
-    # end  
+    # end
 
     it "returns the graph links for a managed item" # do
-    #   results = 
+    #   results =
     #   [
     #     {
     #       uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347",
@@ -160,36 +147,6 @@ describe IsoManagedController do
       expect(response.body).to eq(results.to_json.to_s)
     end
 
-    it "allows impact to be assessed" do
-      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
-      expect(assigns(:start_path)).to eq(impact_start_iso_managed_index_path)
-      expect(assigns(:item).to_json).to eq(item.to_json)
-    end
-
-    it "allows impact to be assessed, start" do
-      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
-      expect(response.code).to eq("200")
-      expect(response.content_type).to eq("application/json")
-      hash = JSON.parse(response.body, symbolize_names: true)
-      expect(hash.length).to eql(1)
-      expect(hash[0]).to eql(item.uri.to_s)
-    end
-
-    it "allows impact to be assessed, next" # do
-    #   item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   get :impact_next, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
-    #   expect(response.code).to eq("200")
-    #   expect(response.content_type).to eq("application/json")
-    #   hash = JSON.parse(response.body, symbolize_names: true)
-    # #Xwrite_yaml_file(hash, sub_dir, "iso_managed_impact_next.yaml")
-    #   results = read_yaml_file(sub_dir, "iso_managed_impact_next.yaml")
-    #   expect(hash).to hash_equal(results)
-    # end
-
     it "destroy" do
       @request.env['HTTP_REFERER'] = 'http://test.host/managed_item'
       audit_count = AuditTrail.count
@@ -203,9 +160,9 @@ describe IsoManagedController do
 
     it "comments" do
       params = {identifier: "XXX", scope_id: "1234" }
-      expected_base = 
+      expected_base =
       [
-        {uri: Uri.new(uri: "http://test.host/managed_item#1"), a: "x", b: "y"}, 
+        {uri: Uri.new(uri: "http://test.host/managed_item#1"), a: "x", b: "y"},
         {uri: Uri.new(uri: "http://test.host/managed_item#2"), a: "x1", b: "y1"}
       ]
       request.env['HTTP_ACCEPT'] = "application/json"
@@ -213,7 +170,7 @@ describe IsoManagedController do
       expect(IsoManagedV2).to receive(:comments).with({identifier: params[:identifier], scope: an_instance_of(IsoNamespace)}).and_return(expected_base)
       get :comments, { iso_managed: params}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expected = expected_base
       expected[0][:uri] = expected[0][:uri].to_s
       expected[0][:edit_path] = "/iso_managed/1/edit?iso_managed%5Bnamespace%5D=http%3A%2F%2Ftest.host%2Fmanaged_item"
@@ -228,7 +185,7 @@ describe IsoManagedController do
   end
 
   describe "Content Admin User" do
-    
+
     login_content_admin
 
     def sub_dir
@@ -236,7 +193,7 @@ describe IsoManagedController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", 
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl",
         "iso_managed_data_3.ttl", "form_example_vs_baseline.ttl", "form_example_general.ttl", "form_example_dm1_branch.ttl", "BC.ttl", "BCT.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)
@@ -258,14 +215,14 @@ describe IsoManagedController do
   end
 
   describe "Unauthorized User" do
-    
+
     it "index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "update"
-    
+
     it "status" do
       get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")
@@ -282,7 +239,7 @@ describe IsoManagedController do
     it "add_tag"
     it "delete_tag"
     it "tags"
-    
+
     it "branches" do
       get :branches, {id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response).to redirect_to("/users/sign_in")
@@ -295,7 +252,7 @@ describe IsoManagedController do
 
     it "graph"
     it "graph_links"
-    
+
     it "impact" do
       get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
@@ -305,12 +262,12 @@ describe IsoManagedController do
       get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
     end
-    
+
     it "impact_next" do
       get :impact_next, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
     end
-    
+
     it "destroy" do
       delete :destroy, { :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response).to redirect_to("/users/sign_in")

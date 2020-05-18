@@ -293,7 +293,7 @@ module ApplicationHelper
     user_role_panel_list
   end
 
-  def thesaurus_accent_color (owner_name)
+  def item_accent_color (owner_name)
     if owner_name.upcase.include? "CDISC"
       return "bg-accent-1"
     else
@@ -301,7 +301,7 @@ module ApplicationHelper
     end
   end
 
-  def thesaurus_accent_text_color (owner_name)
+  def item_accent_text_color (owner_name)
     if owner_name.upcase.include? "CDISC"
       return "text-accent-1"
     else

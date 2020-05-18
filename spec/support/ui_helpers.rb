@@ -222,20 +222,33 @@ module UiHelpers
     expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total} entries")
   end
 
-	# check table cell, start with text
-  def ui_check_table_row_indicators(table_id, row, col, indicators)
-		Capybara.ignore_hidden_elements = false
-		indicators.each do |i|
-			expect(page).to have_xpath("//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span", count: indicators.length())
-			expect(page).to have_xpath("//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
-		end
-		Capybara.ignore_hidden_elements = true
-  end
-
 	def ui_check_table_button_class(table_id, row, col, classname)
     find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span")[:class].include?(classname)
   end
 
+
+	# Indicators
+  def ui_check_table_row_indicators(table_id, row, col, indicators)
+		within("##{table_id}") do
+			Capybara.ignore_hidden_elements = false
+			indicators.each do |i|
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", count: indicators.length())
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
+			end
+			Capybara.ignore_hidden_elements = true
+		end
+  end
+
+	def ui_check_indicators(parent, indicators)
+		within(parent) do
+			Capybara.ignore_hidden_elements = false
+			indicators.each do |i|
+				expect(page).to have_xpath("./span", count: indicators.length())
+				expect(page).to have_xpath("./span", text: "#{i}", count: 1)
+			end
+			Capybara.ignore_hidden_elements = true
+		end
+	end
 
   # Flash
   def ui_check_no_flash_message_present
@@ -444,10 +457,6 @@ module UiHelpers
 
 	def click_navbar_regauthorities
 		ui_navbar_click('main_nav_ira')
-	end
-
-	def click_navbar_manitems
-		ui_navbar_click('main_nav_im')
 	end
 
 	def click_navbar_at

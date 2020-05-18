@@ -1,13 +1,13 @@
 <%= javascript_tag 'setPageTitle("Edit Change Instruction")' %>
 <%= stylesheet_link_tag 'shared/annotations' %>
 <%= javascript_include_tag 'shared/annotation/change_instruction_edit', 'shared/annotation/change_instructions_html',
-                            'shared/tags', 'shared/information_dialog' %>
+                            'shared/information_dialog' %>
 <%= javascript_tag "var ciBaseUrl = '#{@base_url}',
                         ciAddRefsUrl = '#{@add_refs_url}',
                         ciRemoveRefsUrl = '#{@remove_ref_url}';" %>
 
 <div class="row">
-  <%= render layout: "shared/simple_header_tiny", :locals => {badge: "icon-instruction",
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-instruction",
     main_text: "Change Instruction <span class='font-light text-medium'>Edit</span>".html_safe,
     sub_text: "Modify instruction's fields or item links." } do %>
       <div class="btns-wrap">

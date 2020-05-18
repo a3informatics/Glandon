@@ -2,13 +2,13 @@
 <%= javascript_tag "var url_release = '#{update_semantic_version_iso_managed_v2_path(@managed_item)}' " %>
 <%= javascript_include_tag 'iso_managed/status' %>
 <%= javascript_include_tag 'shared/timer', 'unload_v2' %>
-<%= stylesheet_link_tag "custom/status_page" %>
+<%= stylesheet_link_tag "iso_managed/status" %>
 <% has_state = @managed_item.has_state %>
 <% state = has_state.registration_status %>
 <% next_state = IsoRegistrationStateV2.next_state(state) %>
 
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
     :header_title => "Item management" } do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",

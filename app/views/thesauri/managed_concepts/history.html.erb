@@ -8,7 +8,7 @@
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
 <% @close_path = thesauri_managed_concepts_path %>
 <div class="row">
-	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
+	<%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
     <div class="actions-wrap">
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>

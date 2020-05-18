@@ -32,7 +32,7 @@
      {:title => "Days ago", :value => last_si.nil? ? "Not logged in yet!" : time_ago_in_words(last_si.strftime("%F"))}]%>
 
 
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-users", header_title: "Set user roles for:",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-users", header_title: "Set user roles for:",
 		main_text: @user.name, sub_texts: s_texts} do %>
 
 		<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: users_path, id: "close",

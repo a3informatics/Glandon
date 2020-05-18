@@ -1,17 +1,15 @@
 <%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
 <%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
-<%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 
-<%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
-                        tc_id = '#{@tc.id}',
-                        context_id = '#{@context_id}',
-                        is_extended = #{@is_extended},
-                        is_extending = #{@is_extending},
-                        can_extend_unextensible = #{@can_extend_unextensible},
-                        can_be_extended = #{@can_be_extended},
-                        context_id = '#{@context_id}',
-                        can_edit = #{policy(Thesaurus).edit?};" %>
+<%= javascript_tag "var dataUrl = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
+                        tcId = '#{@tc.id}',
+                        contextId = '#{@context_id}',
+                        isExtended = #{@is_extended},
+                        isExtending = #{@is_extending},
+                        canExtendUnextensible = #{@can_extend_unextensible},
+                        canBeExtended = #{@can_be_extended},
+                        canEdit = #{policy(Thesaurus).edit?};" %>
 
 <% item_editable = policy(Thesaurus).edit? && @tc.supporting_edit? %>
 
@@ -31,7 +29,7 @@
 <%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit?} %>
 
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
         id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>

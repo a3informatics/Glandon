@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Ad-Hoc Reports")' %>
-<%= javascript_include_tag 'standard_datatable', 'ad_hoc_report_index' %>
+<%= javascript_include_tag 'standard_datatable', 'ad_hoc_reports/index' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -8,7 +8,7 @@
 <%= javascript_tag "var startParamReportUrl = '#{run_start_ad_hoc_report_path(id: "reportId", ad_hoc_report: {query_params: ["reportParam"]})}'" %>
 
 <div class="row">
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-document", header_title: "",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
 		main_text: "Ad-Hoc Reports", sub_texts: "View, manage and run your Ad-Hoc reports." } do %>
 	<% end %>
 </div>
