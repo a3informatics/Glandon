@@ -219,6 +219,10 @@ Rails.application.routes.draw do
         patch :update_properties
         get :upgrade_data
         put :upgrade
+        post :add_rank
+        delete :remove_rank
+        put :update_rank
+        get :get_ranked_children
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
