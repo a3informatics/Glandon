@@ -453,6 +453,31 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: subset_tcs}
   end
 
+  def add_rank
+    authorize Thesaurus, :edit?
+    rank = Thesaurus::Rank.find(params[:id])
+    render json: { }, status: 200
+  end
+
+  def update_rank
+    authorize Thesaurus, :edit?
+    rank = Thesaurus::Rank.find(params[:id])
+    render json: { }, status: 200
+  end
+
+  def get_ranked_children
+    authorize Thesaurus, :edit?
+    rank = Thesaurus::Rank.find(params[:id])
+    results = []
+    render :json => { data: results }, :status => 200
+  end
+
+  def remove_rank
+    authorize Thesaurus, :edit?
+    rank = Thesaurus::Rank.find(params[:id])
+    render json: { }, status: 200
+  end
+
 private
 
   # Read a Thesaurus Concept
