@@ -1,4 +1,4 @@
-# Thesaurus Subset
+# Thesaurus Rank
 #
 # @author Dave Iberson-Hurst
 # @since 2.40.0

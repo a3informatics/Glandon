@@ -9,7 +9,7 @@ class Thesaurus
     # Ranked? Is this item ranked
     #
     # @result [Boolean] return true if this instance is ranked
-    def subset?
+    def ranked?
       !self.is_ranked_links.nil?
     end
 
