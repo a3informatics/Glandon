@@ -458,13 +458,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     rank = tc.add_rank
     actual_rank = Thesaurus::Rank.find(rank.uri)
-    #redirect_to request.referrer
+
     if actual_rank.errors.empty?
-      flash[:success] = 'Rank enabled.'
+      render json: { }, :status => 200
     else
-      flash[:error] = rank.errors.full_messages.to_sentence
+      render :json => {:errors => ["Something went wrong while enabling Rank"]}, :status => 422
     end
-    redirect_to request.referrer
   end
 
   def update_rank
