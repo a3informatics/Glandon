@@ -648,6 +648,31 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "rank" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "create rank" do
+      request.env['HTTP_REFERER'] = 'http://test.host/'
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
+      post :add_rank, {id: tc.id}
+      expect(response).to redirect_to("/")
+    end
+
+  end
+
   describe "extensions" do
 
     login_curator

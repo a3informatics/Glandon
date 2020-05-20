@@ -584,6 +584,34 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     new_mc
   end
 
+  # Add Rank
+  #
+  # @return [Thesaurus::Rank] the new rank
+  def add_rank
+    rank_members = []
+    sparql = Sparql::Update.new
+    mc = Thesaurus::ManagedConcept.find_minimum(self.id)
+    children = children_query(mc)
+    rank = Thesaurus::Rank.create(parent_uri: mc.uri)
+    sparql.default_namespace(rank.uri.namespace)
+    mc.add_link(:is_ranked, rank.uri)
+    children.each_with_index do |item, index|
+      member = Thesaurus::RankMember.new(item: Uri.new(id: item[:uri].to_id), rank: index +1)
+      member.uri = member.create_uri(mc.uri)
+      rank_members << member
+      member.to_sparql(sparql)
+      sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})
+    end
+    last_sm = rank.last
+    rank_members[0..-2].each_with_index do |sm, index|
+      sparql.add({uri: rank_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members[index+1].uri})
+    end
+    last_sm.nil? ? sparql.add({uri: rank.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: rank_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members.first.uri})
+    #filename = sparql.to_file
+    sparql.create
+    rank
+  end
+
   # Change Notes Paginated
   #
   # @return [Array] an array of record results
@@ -841,6 +869,23 @@ private
     "{ \n" +
     "  #{self.uri.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .  \n" +
     "}"
+  end
+
+  # Get children query.
+  def children_query(mc)
+    results =[]
+    query_string = %Q{
+      SELECT DISTINCT ?s ?i WHERE
+      {
+        #{mc.uri.to_ref} (th:narrower) ?s .
+        ?s th:identifier ?i .
+      } GROUP BY ?i ?s ORDER BY desc (?i)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    query_results.by_object_set([:i, :s]).each do |x|
+      results << {identifier: x[:i], uri: x[:s]}
+    end
+    results
   end
 
 end

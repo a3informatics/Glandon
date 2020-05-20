@@ -1504,6 +1504,25 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "rank" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "creates rank" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+  end
+
   describe "Clone and New Version" do
 
     before :all do

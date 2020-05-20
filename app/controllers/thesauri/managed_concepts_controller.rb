@@ -454,14 +454,23 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   def add_rank
-    authorize Thesaurus, :edit?
-    rank = Thesaurus::Rank.find(params[:id])
-    render json: { }, status: 200
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = tc.add_rank
+    actual_rank = Thesaurus::Rank.find(rank.uri)
+    #redirect_to request.referrer
+    if actual_rank.errors.empty?
+      flash[:success] = 'Rank enabled.'
+    else
+      flash[:error] = rank.errors.full_messages.to_sentence
+    end
+    redirect_to request.referrer
   end
 
   def update_rank
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
+    #rank = rank.update(the_params[:member_id], the_params[:rank])
     render json: { }, status: 200
   end
 
@@ -469,12 +478,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
     results = []
+    #results = rank.get_ranked_children
     render :json => { data: results }, :status => 200
   end
 
   def remove_rank
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
+    #rank.remove
     render json: { }, status: 200
   end
 
@@ -542,6 +553,10 @@ private
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
   end
+
+  # def rank_params
+  #   params.require(:managed_concept).permit(:cli_ids => [])
+  # end
 
   def set_params
     params.require(:managed_concept).permit(:type, :offset, :count)
