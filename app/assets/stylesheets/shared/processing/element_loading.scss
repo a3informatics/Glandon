@@ -1,0 +1,21 @@
+.el-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.el-loading::after {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: -8px;
+  right: -10px;
+  display: block;
+  content: " ";
+  background: url(image_path('loading_inline.gif')) no-repeat;
+  background-size: 16px;
+}
+
+a.option.el-loading::after{
+  top: 25%;
+  right: 10px;
+}
