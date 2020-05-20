@@ -52,6 +52,7 @@ end
     shared/thesauri/search_panel shared/thesauri/subsets_index shared/thesauri/term_search_modal shared/thesauri/thesauri_select shared/thesauri/upgrade_panel
     shared/thesauri/managed_concepts/edit_extension_panel shared/thesauri/managed_concepts/extension_create shared/thesauri/managed_concepts/new_button
     shared/thesauri/managed_concepts/subset_edit_children_panel shared/thesauri/managed_concepts/subset_source_children_panel
+    shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
     shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/history_panel shared/icons_tags_helpers shared/index_panel shared/information_dialog
     shared/list_change_notes_panel shared/show_more shared/tabs_layout shared/timer
