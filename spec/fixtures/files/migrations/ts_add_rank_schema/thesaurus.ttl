@@ -1,5 +1,3 @@
-# Thesaurus Schema
-
 @prefix : <http://www.assero.co.uk/Thesaurus#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
@@ -43,14 +41,14 @@
   rdfs:subClassOf isoC:Concept ;
   rdfs:label "Subset"^^xsd:string ;
   rdfs:subClassOf skos:OrderedCollection ;
-  skos:definition "The head of the list by which a code list is ordered."^^xsd:string ;
+  skos:definition "Thesaurus Concept"^^xsd:string ;
 .
 :SubsetMember
   rdf:type owl:Class ;
   rdfs:subClassOf isoC:Concept ;
-  rdfs:label "Subset Member"^^xsd:string ;
+  rdfs:label "Subset"^^xsd:string ;
   rdfs:subClassOf rdf:List ;
-  skos:definition "Ordered list member"^^xsd:string ;
+  skos:definition "Thesaurus Concept"^^xsd:string ;
 .
 :PreferredTerm
   rdf:type owl:Class ;
