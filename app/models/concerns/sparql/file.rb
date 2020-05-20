@@ -8,7 +8,11 @@ module Sparql
 
     include Sparql::CRUD
 
-    # Execute upload
+    # Upload. Uplod a file to the DB
+    #
+    # @param [String] file the full path for the file to be uploaded
+    # @raise [Errors::CreateError] raised if upload not a success
+    # @return [Void] no return
     def upload(file)
       response = send_file(file)
       if !response.success?
@@ -22,5 +26,3 @@ module Sparql
   end
 
 end
-
-    
