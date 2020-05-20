@@ -26,12 +26,19 @@
           icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: false, target: "_blank" } %>
         <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
           icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+        <% if @subset_mc.ranked? %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#rank-items-modal", id: "edit-ranks-button",
+            icon: "icon-rank", text: "Edit ranks", dt_toggle: "modal", disabled: false } %>
+        <% else %>
+          <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => {item: @subset_mc} %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
 
   <%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: "subset", item: @subset_mc} %>
   <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @subset_mc.identifier, item_id: @subset_mc.id, item_notes_url: change_notes_iso_concept_path(@subset_mc.id)} %>
+  <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @subset_mc} %>
 
 </div>
 <div class="row">
