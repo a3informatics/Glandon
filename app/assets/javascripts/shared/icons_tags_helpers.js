@@ -156,7 +156,7 @@ function loadItemIndicators(url, targetElement) {
       indicatorsProcessing(false);
       $(targetElement).html(formatIndicators(result.data.indicators));
     },
-    error: function() {
+    error: function(xhr, status, error) {
       handleAjaxError(xhr, status, error);
       indicatorsProcessing(false);
     }
