@@ -588,25 +588,26 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Thesaurus::Rank] the new rank
   def add_rank
-    rank_members = []
     sparql = Sparql::Update.new
     mc = Thesaurus::ManagedConcept.find_minimum(self.id)
-    children = children_query(mc)
     rank = Thesaurus::Rank.create(parent_uri: mc.uri)
     sparql.default_namespace(rank.uri.namespace)
     mc.add_link(:is_ranked, rank.uri)
-    children.each_with_index do |item, index|
-      member = Thesaurus::RankMember.new(item: Uri.new(id: item[:uri].to_id), rank: index +1)
-      member.uri = member.create_uri(mc.uri)
-      rank_members << member
-      member.to_sparql(sparql)
-      sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})
+    children = children_query(mc)
+    if !children.empty?
+      rank_members = []
+      children.each_with_index do |item, index|
+        member = Thesaurus::RankMember.new(item: Uri.new(id: item[:uri].to_id), rank: index +1)
+        member.uri = member.create_uri(mc.uri)
+        rank_members << member
+        member.to_sparql(sparql)
+      end
+      rank_members[0..-2].each_with_index do |sm, index|
+        sparql.add({uri: rank_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members[index+1].uri})
+      end
+      last_sm = rank.last
+      last_sm.nil? ? sparql.add({uri: rank.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: rank_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members.first.uri})
     end
-    last_sm = rank.last
-    rank_members[0..-2].each_with_index do |sm, index|
-      sparql.add({uri: rank_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members[index+1].uri})
-    end
-    last_sm.nil? ? sparql.add({uri: rank.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: rank_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members.first.uri})
     #filename = sparql.to_file
     sparql.create
     rank

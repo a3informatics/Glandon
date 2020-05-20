@@ -1521,6 +1521,17 @@ describe "Thesaurus::ManagedConcept" do
       expect(actual_tc.is_ranked).to eq(actual_rank.uri)
     end
 
+    it "creates rank, empty cl" do
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      expect(actual_rank.members).to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
   end
 
   describe "Clone and New Version" do
