@@ -43,19 +43,7 @@ describe "Import::SponsorTermFormatOne" do
     puts colourize("Rank - Db=#{rank_a - db_a}", "blue")
   end
 
-  it "2.6 rank extension", :speed => 'slow' do
-    results = []
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    code_lists = read_yaml_file(sub_dir, "rank_2-6.yaml")
-    code_lists.each do |code_list|
-      cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
-      next unless cl_valid?(cl)
-      results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
-    end
-    create_ranks(results)
-  end
-
-  def create_ranks(results)
+  def create_ranks(results, version)
     sparql = Sparql::Update.new
     sparql.default_namespace(Thesaurus::Rank.base_uri)
     results.each do |result|
@@ -75,7 +63,7 @@ describe "Import::SponsorTermFormatOne" do
       result[:items].each {|cli| cli[:object].to_sparql(sparql)}
     end
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_2-6.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
   end
 
   def match_cl_items(cl, code_list)
@@ -108,15 +96,15 @@ describe "Import::SponsorTermFormatOne" do
     cl.each do |x|
       y = x.class.find_with_properties(x.uri)
       puts colourize("      Checking #{x.identifier}, #{y.owner_short_name}", "red")
-      return y if y.owned?
-      saved_cl << y
+      #return y if y.owned?
+      saved_cl << y if y.owned?
     end
-    saved_cl.each do |x|
-      puts colourize("      Checking #{x.identifier}, #{x.label}", "red")
-      return nil if long_name == x.label
+    if saved_cl.empty?
+      puts colourize("    ***** None found *****", "red")
+      return nil 
+    else
+      saved_cl.sort_by{|x| x.version}.last
     end
-    puts colourize("    ***** None found *****", "red")
-    return nil
   end
 
   def match_cli(cl, item)
@@ -140,6 +128,58 @@ describe "Import::SponsorTermFormatOne" do
     false
   rescue => e
     byebug
+  end
+
+  it "2.6 rank extension", :speed => 'slow' do
+    results = []
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    code_lists = read_yaml_file(sub_dir, "rank_V2-6.yaml")
+    code_lists.each do |code_list|
+      cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
+      next unless cl_valid?(cl)
+      results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
+    end
+    create_ranks(results, "2-6")
+  end
+
+  it "3.0 rank extension", :speed => 'slow' do
+    results = []
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    code_lists = read_yaml_file(sub_dir, "rank_V3-0.yaml")
+    code_lists.each do |code_list|
+      cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
+      next unless cl_valid?(cl)
+      results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
+    end
+    create_ranks(results, "3-0")
+  end
+
+  def ranked
+    query_string = %Q{
+      SELECT ?cl ?item ?rank WHERE 
+      {
+        ?m th:rank ?rank .
+        ?m th:item ?item .
+        {
+          SELECT ?cl ?m WHERE 
+          {
+            ?cl th:isRanked ?list .
+            ?list th:members/th:memberNext* ?mid . 
+            ?mid th:memberNext* ?m .
+          } GROUP BY ?cl ?m
+        }
+      } ORDER BY ?cl ?rank
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th]) 
+    query_results.by_object_set([:cl, :item, :rank]).map{|x| {code_list: x[:cl].to_s, item: x[:item].to_s, rank: x[:rank]}}
+  end
+
+  it "QC check", :speed => 'slow' do
+    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    results = ranked
+    check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
 end
