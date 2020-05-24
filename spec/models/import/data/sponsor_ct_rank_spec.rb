@@ -39,8 +39,8 @@ describe "Import::SponsorTermFormatOne" do
   def matching_identifiers(db_cli, rank_cli)
     db_a = db_cli.map{|x| x.identifier}
     rank_a = rank_cli.map{|x| x[:code]}
-    puts colourize("Db - Rank=#{db_a - rank_a}", "blue")
-    puts colourize("Rank - Db=#{rank_a - db_a}", "blue")
+    #puts colourize("Db - Rank=#{db_a - rank_a}", "blue")
+    #puts colourize("Rank - Db=#{rank_a - db_a}", "blue")
   end
 
   def create_ranks(results, version)
@@ -63,17 +63,17 @@ describe "Import::SponsorTermFormatOne" do
       result[:items].each {|cli| cli[:object].to_sparql(sparql)}
     end
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
+  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
   end
 
   def match_cl_items(cl, code_list)
     results = []
-    puts colourize("    #{cl.identifier}", "blue")
+    #puts colourize("    #{cl.identifier}", "blue")
     cl.narrower_objects
     items = code_list[:items].sort_by{|x| x[:rank]}
     matching_identifiers(cl.narrower, items)
     items.each do |item|
-      puts colourize("      Looking for #{item[:code]}", "blue")
+      #puts colourize("      Looking for #{item[:code]}", "blue")
       cli = match_cli(cl, item)
       return [] unless cli_valid?(cli)
       results << {cli: cli.uri, rank: item[:rank]}
@@ -81,8 +81,8 @@ describe "Import::SponsorTermFormatOne" do
     results
   end
 
-  def cl_valid?(cl)
-    puts colourize("***** CL not found! *****", "red") if cl.nil?
+  def cl_valid?(cl_notation, cl_label, cl)
+    puts colourize("CL '#{cl_notation}', '#{cl_label}' not found!", "red") if cl.nil?
     !cl.nil?
   end
 
@@ -91,16 +91,20 @@ describe "Import::SponsorTermFormatOne" do
     puts colourize("CL looking for '#{notation}' & '#{long_name}'", "blue")
     cl = Thesaurus::ManagedConcept.where(notation: notation)
     return nil if cl.count == 0
-    return cl.first if cl.count == 1
-    puts colourize("    Multiple found", "red")
+    if cl.count == 1
+      x = cl.first
+      y = x.class.find_with_properties(x.uri)
+      return y.owned? ? y : nil
+    end
+    #puts colourize("    Multiple found", "red")
     cl.each do |x|
       y = x.class.find_with_properties(x.uri)
-      puts colourize("      Checking #{x.identifier}, #{y.owner_short_name}", "red")
+      #puts colourize("      Checking #{x.identifier}, #{y.owner_short_name}", "red")
       #return y if y.owned?
       saved_cl << y if y.owned?
     end
     if saved_cl.empty?
-      puts colourize("    ***** None found *****", "red")
+      #puts colourize("    ***** None found *****", "red")
       return nil 
     else
       saved_cl.sort_by{|x| x.version}.last
@@ -130,28 +134,32 @@ describe "Import::SponsorTermFormatOne" do
     byebug
   end
 
-  it "2.6 rank extension", :speed => 'slow' do
+  def process_code_lists(code_lists)
     results = []
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    code_lists = read_yaml_file(sub_dir, "rank_V2-6.yaml")
     code_lists.each do |code_list|
       cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
-      next unless cl_valid?(cl)
+      next unless cl_valid?(code_list[:codelist_short_name], code_list[:codelist_long_name], cl)
       results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
     end
+    results
+  end
+
+  it "2.6 rank extension", :speed => 'slow' do
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
+    code_lists = config[:codelists]
+    ignore = config[:ignore]
+    results = process_code_lists(code_lists)
     create_ranks(results, "2-6")
   end
 
   it "3.0 rank extension", :speed => 'slow' do
-    results = []
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
-    code_lists = read_yaml_file(sub_dir, "rank_V3-0.yaml")
-    code_lists.each do |code_list|
-      cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
-      next unless cl_valid?(cl)
-      results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
-    end
+    config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
+    code_lists = config[:codelists]
+    ignore = config[:ignore]
+    results = process_code_lists(code_lists)
     create_ranks(results, "3-0")
   end
 
