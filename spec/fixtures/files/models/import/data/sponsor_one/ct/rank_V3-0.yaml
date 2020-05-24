@@ -1,871 +1,873 @@
 ---
-- :codelist_long_name: Action Taken with Study Treatment
-  :codelist_short_name: ACN
-  :codelist_code: C66767
-  :items:
-  - :code: C49504
-    :submission_value: DOSE NOT CHANGED
-    :rank: '1'
-  - :code: C49505
-    :submission_value: DOSE REDUCED
-    :rank: '2'
-  - :code: C49501
-    :submission_value: DRUG INTERRUPTED
-    :rank: '3'
-  - :code: C49502
-    :submission_value: DRUG WITHDRAWN
-    :rank: '4'
-  - :code: C49503
-    :submission_value: DOSE INCREASED
-    :rank: '5'
-  - :code: SC78728
-    :submission_value: MULTIPLE
-    :rank: '6'
-  - :code: C17998
-    :submission_value: UNKNOWN
-    :rank: '7'
-  - :code: C48660
-    :submission_value: NOT APPLICABLE
-    :rank: '8'
-- :codelist_long_name: Action Taken with Study Treatment Collected
-  :codelist_short_name: ACNC
-  :codelist_code: SN000730
-  :items:
-  - :code: SC49504
-    :submission_value: DOSE NOT CHANGED
-    :rank: '1'
-  - :code: SC49505
-    :submission_value: DOSE REDUCED
-    :rank: '2'
-  - :code: SC49501
-    :submission_value: DRUG INTERRUPTED
-    :rank: '3'
-  - :code: SC49502
-    :submission_value: DRUG WITHDRAWN
-    :rank: '4'
-  - :code: SC49503
-    :submission_value: DOSE INCREASED
-    :rank: '5'
-  - :code: S000010
-    :submission_value: DOSE DELAYED
-    :rank: '6'
-  - :code: S000011
-    :submission_value: DOSE DELAYED AND REDUCED
-    :rank: '7'
-  - :code: S011612
-    :submission_value: DISCONTINUATION OF STUDY VACCINATION
-    :rank: '8'
-  - :code: SC48660
-    :submission_value: NOT APPLICABLE
-    :rank: '9'
-- :codelist_long_name: Action Taken with Study Treatment Numeric
-  :codelist_short_name: ACNN
-  :codelist_code: SN000005
-  :items:
-  - :code: S000029
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S000030
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S000031
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S000032
-    :submission_value: '4'
-    :rank: '4'
-  - :code: S000033
-    :submission_value: '5'
-    :rank: '5'
-  - :code: S000034
-    :submission_value: '6'
-    :rank: '6'
-  - :code: S000035
-    :submission_value: '7'
-    :rank: '7'
-  - :code: S000036
-    :submission_value: '8'
-    :rank: '8'
-  - :code: S003958
-    :submission_value: '9'
-    :rank: '9'
-  - :code: S000012
-    :submission_value: '10'
-    :rank: '10'
-- :codelist_long_name: Age Group (EudraCT)
-  :codelist_short_name: AGEGRPE
-  :codelist_code: SN000018
-  :items:
-  - :code: S000113
-    :submission_value: IN UTERO
-    :rank: '1'
-  - :code: S000117
-    :submission_value: PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
-    :rank: '2'
-  - :code: S000115
-    :submission_value: NEWBORNS (0-27 DAYS)
-    :rank: '3'
-  - :code: S000114
-    :submission_value: INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
-    :rank: '4'
-  - :code: S000110
-    :submission_value: CHILDREN (2-11 YEARS)
-    :rank: '5'
-  - :code: S000109
-    :submission_value: ADOLESCENTS (12-17 YEARS)
-    :rank: '6'
-  - :code: S000111
-    :submission_value: FROM 18 - 64 YEARS
-    :rank: '7'
-  - :code: S000112
-    :submission_value: FROM 65 - 84 YEARS
-    :rank: '8'
-  - :code: S009907
-    :submission_value: 85 YEARS AND OVER
-    :rank: '9'
-- :codelist_long_name: Age Group (Pediatric)
-  :codelist_short_name: AGEGRPP
-  :codelist_code: SN000020
-  :items:
-  - :code: S000142
-    :submission_value: NEONATES
-    :rank: '1'
-  - :code: S000141
-    :submission_value: INFANTS
-    :rank: '2'
-  - :code: S000144
-    :submission_value: YOUNGER CHILDREN
-    :rank: '3'
-  - :code: S000143
-    :submission_value: OLDER CHILDREN
-    :rank: '4'
-  - :code: S000140
-    :submission_value: ADOLESCENTS
-    :rank: '5'
-- :codelist_long_name: Age Group (Pediatric) Numeric
-  :codelist_short_name: AGEGRPPN
-  :codelist_code: SN000021
-  :items:
-  - :code: S000145
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S000127
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S000132
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S000146
-    :submission_value: '4'
-    :rank: '4'
-  - :code: S000147
-    :submission_value: '5'
-    :rank: '5'
-- :codelist_long_name: Child-Pugh Classification Clinical Classification Test Results for Ascites
-  :codelist_short_name: CPS0102R
-  :codelist_code: SN001260
-  :items:
-  - :code: S000243
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001739
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001745
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: >-
-    Child-Pugh Classification Clinical Classification Test Results for
-    Encephalopathy Grade
-  :codelist_short_name: CPS0101R
-  :codelist_code: SN001259
-  :items:
-  - :code: S000244
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001740
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001746
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: >-
-    Child-Pugh Classification Clinical Classification Test Results for
-    Prothrombin Time International Normalized Ratio
-  :codelist_short_name: CPS0106R
-  :codelist_code: SN001264
-  :items:
-  - :code: S000245
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001741
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001747
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: >-
-    Child-Pugh Classification Clinical Classification Test Results for
-    Prothrombin Time Sec Prolonged
-  :codelist_short_name: CPS0105R
-  :codelist_code: SN001263
-  :items:
-  - :code: S000246
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001742
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001748
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: >-
-    Child-Pugh Classification Clinical Classification Test Results for Serum
-    Albumin
-  :codelist_short_name: CPS0104R
-  :codelist_code: SN001262
-  :items:
-  - :code: S000247
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001743
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001749
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: >-
-    Child-Pugh Classification Clinical Classification Test Results for Serum
-    Bilirubin
-  :codelist_short_name: CPS0103R
-  :codelist_code: SN001261
-  :items: 
-  - :code: S000248
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S001744
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S001750
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: Common Terminology Criteria for Adverse Events
-  :codelist_short_name: TOXGR
-  :codelist_code: SN001030
-  :items:
-  - :code: S011594
-    :submission_value: '0'
-    :rank: '1'
-  - :code: S011595
-    :submission_value: '1'
-    :rank: '2'
-  - :code: S011596
-    :submission_value: '2'
-    :rank: '3'
-  - :code: S011597
-    :submission_value: '3'
-    :rank: '4'
-  - :code: S011598
-    :submission_value: '4'
-    :rank: '5'
-  - :code: S011599
-    :submission_value: '5'
-    :rank: '6'
-- :codelist_long_name: Common Terminology Criteria for Adverse Events Abbreviated
-  :codelist_short_name: TOXGRA
-  :codelist_code: SN001073
-  :items:
-  - :code: S003307
-    :submission_value: GRADE 0
-    :rank: '1'
-  - :code: S030801
-    :submission_value: GRADE 1
-    :rank: '2'
-  - :code: S003309
-    :submission_value: GRADE 2
-    :rank: '3'
-  - :code: S003310
-    :submission_value: GRADE 3
-    :rank: '4'
-  - :code: S003311
-    :submission_value: GRADE 4
-    :rank: '5'
-  - :code: S030802
-    :submission_value: GRADE 5
-    :rank: '6'
-- :codelist_long_name: Common Terminology Criteria for Adverse Events Numeric
-  :codelist_short_name: TOXGRN
-  :codelist_code: SN001072
-  :items:
-  - :code: S011600
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S011601
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S011602
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S011603
-    :submission_value: '4'
-    :rank: '4'
-  - :code: S011604
-    :submission_value: '5'
-    :rank: '5'
-  - :code: S011605
-    :submission_value: '6'
-    :rank: '6'
-- :codelist_long_name: Common Terminology Criteria for Adverse Events Subset 01
-  :codelist_short_name: TOXGR_01
-  :codelist_code: SN001030
-  :items:
-  - :code: S011595
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S011596
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S011597
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S011598
-    :submission_value: '4'
-    :rank: '4'
-  - :code: S011599
-    :submission_value: '5'
-    :rank: '5'
-- :codelist_long_name: Completion/Reason for Non-Completion Numeric
-  :codelist_short_name: NCOMPLTN
-  :codelist_code: SN001020
-  :items:
-  - :code: S009928
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S009929
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S009930
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S009931
-    :submission_value: '4'
-    :rank: '4'
-  - :code: S009932
-    :submission_value: '5'
-    :rank: '5'
-  - :code: S009933
-    :submission_value: '6'
-    :rank: '6'
-  - :code: S009934
-    :submission_value: '7'
-    :rank: '7'
-  - :code: S009935
-    :submission_value: '8'
-    :rank: '8'
-  - :code: S009936
-    :submission_value: '9'
-    :rank: '9'
-- :codelist_long_name: Diagnosis of Cerebrovascular Event
-  :codelist_short_name: CECEDIAG
-  :codelist_code: SN001915
-  :items:
-  - :code: S004908
-    :submission_value: TRANSIENT ISCHEMIC ATTACK
-    :rank: '1'
-  - :code: SC95802
-    :submission_value: ISCHEMIC STROKE
-    :rank: '2'
-  - :code: S001617
-    :submission_value: ISCHEMIC STROKE WITH HEMORRHAGIC CONVERSION
-    :rank: '3'
-  - :code: SC95803
-    :submission_value: HEMORRHAGIC STROKE
-    :rank: '4'
-  - :code: S030800
-    :submission_value: UNDETERMINED TYPE OF STROKE
-    :rank: '5'
-  - :code: S004909
-    :submission_value: TRAUMATIC SUBDURAL HEMATOMA
-    :rank: '6'
-  - :code: S004907
-    :submission_value: NON TRAUMATIC SUBDURAL HEMATOMA
-    :rank: '7'
-  - :code: S001630
-    :submission_value: NO CEREBROVASCULAR EVENT
-    :rank: '8'
-- :codelist_long_name: Eastern Cooperative Oncology Group Performance Status Questionnaire Results
-  :codelist_short_name: ECOG1R
-  :codelist_code: SN000193
-  :items:
-  - :code: S002088
-    :submission_value: '0'
-    :rank: '1'
-  - :code: S002089
-    :submission_value: '1'
-    :rank: '2'
-  - :code: S002084
-    :submission_value: '2'
-    :rank: '3'
-  - :code: S002085
-    :submission_value: '3'
-    :rank: '4'
-  - :code: S002086
-    :submission_value: '4'
-    :rank: '5'
-  - :code: S000214
-    :submission_value: '5'
-    :rank: '6'
-- :codelist_long_name: >-
-    Eastern Cooperative Oncology Group Performance Status Questionnaire Results
-    Subset 01
-  :codelist_short_name: ECOG1R_01
-  :codelist_code: SN000193
-  :items:
-  - :code: S002088
-    :submission_value: '0'
-    :rank: '1'
-  - :code: S002089
-    :submission_value: '1'
-    :rank: '2'
-  - :code: S002084
-    :submission_value: '2'
-    :rank: '3'
-  - :code: S002085
-    :submission_value: '3'
-    :rank: '4'
-  - :code: S002086
-    :submission_value: '4'
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Five Level Scale Questionnaire
-    Results for Question Type 1
-  :codelist_short_name: EQ5D021R
-  :codelist_code: SN000155
-  :items:
-  - :code: S012915
-    :submission_value: I HAVE NO PROBLEMS WALKING
-    :rank: '1'
-  - :code: S012916
-    :submission_value: I HAVE SLIGHT PROBLEMS WALKING
-    :rank: '2'
-  - :code: S012917
-    :submission_value: I HAVE MODERATE PROBLEMS WALKING
-    :rank: '3'
-  - :code: S012918
-    :submission_value: I HAVE SEVERE PROBLEMS WALKING
-    :rank: '4'
-  - :code: S012919
-    :submission_value: I AM UNABLE TO WALK
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Five Level Scale Questionnaire
-    Results for Question Type 2
-  :codelist_short_name: EQ5D022R
-  :codelist_code: SN000156
-  :items: 
-  - :code: S012920
-    :submission_value: I HAVE NO PROBLEMS WASHING OR DRESSING MYSELF
-    :rank: '1'
-  - :code: S012921
-    :submission_value: I HAVE SLIGHT PROBLEMS WASHING OR DRESSING MYSELF
-    :rank: '2'
-  - :code: S012922
-    :submission_value: I HAVE MODERATE PROBLEMS WASHING OR DRESSING MYSELF
-    :rank: '3'
-  - :code: S012923
-    :submission_value: I HAVE SEVERE PROBLEMS WASHING OR DRESSING MYSELF
-    :rank: '4'
-  - :code: S012905
-    :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Five Level Scale Questionnaire
-    Results for Question Type 3
-  :codelist_short_name: EQ5D023R
-  :codelist_code: SN000157
-  :items:
-  - :code: S012924
-    :submission_value: I HAVE NO PROBLEMS DOING MY USUAL ACTIVITIES
-    :rank: '1'
-  - :code: S012925
-    :submission_value: I HAVE SLIGHT PROBLEMS DOING MY USUAL ACTIVITIES
-    :rank: '2'
-  - :code: S012926
-    :submission_value: I HAVE MODERATE PROBLEMS DOING MY USUAL ACTIVITIES
-    :rank: '3'
-  - :code: S012927
-    :submission_value: I HAVE SEVERE PROBLEMS DOING MY USUAL ACTIVITIES
-    :rank: '4'
-  - :code: S012928
-    :submission_value: I AM UNABLE TO DO MY USUAL ACTIVITIES
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Five Level Scale Questionnaire
-    Results for Question Type 4
-  :codelist_short_name: EQ5D024R
-  :codelist_code: SN000158
-  :items:
-  - :code: S012909
-    :submission_value: I HAVE NO PAIN OR DISCOMFORT
-    :rank: '1'
-  - :code: S012929
-    :submission_value: I HAVE SLIGHT PAIN OR DISCOMFORT
-    :rank: '2'
-  - :code: S012910
-    :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
-    :rank: '3'
-  - :code: S012930
-    :submission_value: I HAVE SEVERE PAIN OR DISCOMFORT
-    :rank: '4'
-  - :code: S012911
-    :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Five Level Scale Questionnaire
-    Results for Question Type 5
-  :codelist_short_name: EQ5D025R
-  :codelist_code: SN000159
-  :items:
-  - :code: S012912
-    :submission_value: I AM NOT ANXIOUS OR DEPRESSED
-    :rank: '1'
-  - :code: S012931
-    :submission_value: I AM SLIGHTLY ANXIOUS OR DEPRESSED
-    :rank: '2'
-  - :code: S012913
-    :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
-    :rank: '3'
-  - :code: S012932
-    :submission_value: I AM SEVERELY ANXIOUS OR DEPRESSED
-    :rank: '4'
-  - :code: S012914
-    :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
-    :rank: '5'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Three Level Scale Questionnaire
-    Results for Question Type 1
-  :codelist_short_name: EQ5D011R
-  :codelist_code: SN000919
-  :items:
-  - :code: S012900
-    :submission_value: I HAVE NO PROBLEMS IN WALKING ABOUT
-    :rank: '1'
-  - :code: S012901
-    :submission_value: I HAVE SOME PROBLEMS IN WALKING ABOUT
-    :rank: '2'
-  - :code: S012902
-    :submission_value: I AM CONFINED TO BED
-    :rank: '3'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Three Level Scale Questionnaire
-    Results for Question Type 2
-  :codelist_short_name: EQ5D012R
-  :codelist_code: SN000920
-  :items:
-  - :code: S012903
-    :submission_value: I HAVE NO PROBLEMS WITH SELF-CARE
-    :rank: '1'
-  - :code: S012904
-    :submission_value: I HAVE SOME PROBLEMS WASHING OR DRESSING MYSELF
-    :rank: '2'
-  - :code: S012905
-    :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
-    :rank: '3'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Three Level Scale Questionnaire
-    Results for Question Type 3
-  :codelist_short_name: EQ5D013R
-  :codelist_code: SN000921
-  :items:
-  - :code: S012906
-    :submission_value: I HAVE NO PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
-    :rank: '1'
-  - :code: S012907
-    :submission_value: I HAVE SOME PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
-    :rank: '2'
-  - :code: S012908
-    :submission_value: I AM UNABLE TO PERFORM MY USUAL ACTIVITIES
-    :rank: '3'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Three Level Scale Questionnaire
-    Results for Question Type 4
-  :codelist_short_name: EQ5D014R
-  :codelist_code: SN000922
-  :items:
-  - :code: S012909
-    :submission_value: I HAVE NO PAIN OR DISCOMFORT
-    :rank: '1'
-  - :code: S012910
-    :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
-    :rank: '2'
-  - :code: S012911
-    :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
-    :rank: '3'
-- :codelist_long_name: >-
-    European Quality of Life Five Dimension Three Level Scale Questionnaire
-    Results for Question Type 5
-  :codelist_short_name: EQ5D015R
-  :codelist_code: SN000923
-  :items:
-  - :code: S012912
-    :submission_value: I AM NOT ANXIOUS OR DEPRESSED
-    :rank: '1'
-  - :code: S012913
-    :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
-    :rank: '2'
-  - :code: S012914
-    :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
-    :rank: '3'
-- :codelist_long_name: Investigator Assessment Reason Not Done of Blood Measurement
-  :codelist_short_name: INVASSND
-  :codelist_code: SN000737
-  :items:
-  - :code: S006241
-    :submission_value: BLOOD MEASUREMENT ERROR
-    :rank: '1'
-  - :code: S006242
-    :submission_value: MEDICAL DEVICE CALIBRATION ISSUE
-    :rank: '2'
-  - :code: S006243
-    :submission_value: UNEXPECTED
-    :rank: '3'
-  - :code: S006244
-    :submission_value: DUPLICATE
-    :rank: '4'
-  - :code: S006245
-    :submission_value: COMMUNICATION OR TRANSMISSION ISSUE ASSOCIATED WITH MEDICAL DEVICE
-    :rank: '5'
-  - :code: SC17649
-    :submission_value: OTHER
-    :rank: '6'
-- :codelist_long_name: >-
-    Kurtzke Functional Systems Scores Questionnaire Test Results for Check Box
-    Questions
-  :codelist_short_name: KFSS19R
-  :codelist_code: SN001226
-  :items:
-  - :code: S012755
-    :submission_value: CHECKED
-    :rank: '1'
-  - :code: S012756
-    :submission_value: 'NOT CHECKED '
-    :rank: '2'
-- :codelist_long_name: Normalized Identifier
-  :codelist_short_name: NORMED
-  :codelist_code: SN000393
-  :items:
-  - :code: S008888
-    :submission_value: NO WORSENING AS COMPARED TO THE BASELINE PCSA STATUS
-    :rank: '1'
-  - :code: S008884
-    :submission_value: RETURNED TO BASELINE PCSA STATUS BEFORE LAST IMP DOSE
-    :rank: '2'
-  - :code: S008885
-    :submission_value: RETURNED TO BASELINE PCSA STATUS AFTER LAST IMP DOSE
-    :rank: '3'
-  - :code: S008887
-    :submission_value: NEVER RETURNED TO BASELINE PCSA STATUS
-    :rank: '4'
-  - :code: S008886
-    :submission_value: NO ASSESSMENT AFTER THE WORST ON-TREATMENT VALUE
-    :rank: '5'
-- :codelist_long_name: Normalized Identifier Numeric
-  :codelist_short_name: NORMEDN
-  :codelist_code: SN000394
-  :items:
-  - :code: S003126
-    :submission_value: '0'
-    :rank: '1'
-  - :code: S003130
-    :submission_value: '1'
-    :rank: '2'
-  - :code: S003129
-    :submission_value: '2'
-    :rank: '3'
-  - :code: S003127
-    :submission_value: '3'
-    :rank: '4'
-  - :code: S003128
-    :submission_value: '4'
-    :rank: '5'
-- :codelist_long_name: Outcome of Event
-  :codelist_short_name: OUT
-  :codelist_code: C66768
-  :items:
-  - :code: C49498
-    :submission_value: RECOVERED/RESOLVED
-    :rank: '1'
-  - :code: C49495
-    :submission_value: RECOVERED/RESOLVED WITH SEQUELAE
-    :rank: '2'
-  - :code: C49496
-    :submission_value: RECOVERING/RESOLVING
-    :rank: '3'
-  - :code: C49494
-    :submission_value: NOT RECOVERED/NOT RESOLVED
-    :rank: '4'
-  - :code: C48275
-    :submission_value: FATAL
-    :rank: '5'
-  - :code: C17998
-    :submission_value: UNKNOWN
-    :rank: '6'
-- :codelist_long_name: Outcome of Event Numeric
-  :codelist_short_name: OUTN
-  :codelist_code: SN000407
-  :items:
-  - :code: S009912
-    :submission_value: '1'
-    :rank: '5'
-  - :code: S009913
-    :submission_value: '2'
-    :rank: '4'
-  - :code: S003153
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S009914
-    :submission_value: '4'
-    :rank: '2'
-  - :code: S009915
-    :submission_value: '5'
-    :rank: '1'
-  - :code: S003156
-    :submission_value: '6'
-    :rank: '6'
-- :codelist_long_name: Patient-Oriented Eczema Measure Questionnaire Test Results
-  :codelist_short_name: POEM9R
-  :codelist_code: SN000924
-  :items:
-  - :code: S008577
-    :submission_value: '0'
-    :rank: '1'
-  - :code: S008578
-    :submission_value: '1'
-    :rank: '2'
-  - :code: S008579
-    :submission_value: '2'
-    :rank: '3'
-  - :code: S008580
-    :submission_value: '3'
-    :rank: '4'
-  - :code: S008581
-    :submission_value: '4'
-    :rank: '5'
-- :codelist_long_name: Relationship to Study Treatment
-  :codelist_short_name: AERELA
-  :codelist_code: SN000012
-  :items:
-  - :code: S000090
-    :submission_value: NOT RELATED
-    :rank: '1'
-  - :code: S000094
-    :submission_value: UNLIKELY RELATED
-    :rank: '2'
-  - :code: S000092
-    :submission_value: POSSIBLY RELATED
-    :rank: '3'
-  - :code: S000093
-    :submission_value: RELATED
-    :rank: '4'
-- :codelist_long_name: Relationship to Study Treatment Numeric
-  :codelist_short_name: AERELAN
-  :codelist_code: SN000013
-  :items:
-  - :code: S000095
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S000097
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S000098
-    :submission_value: '3'
-    :rank: '3'
-  - :code: S000099
-    :submission_value: '4'
-    :rank: '4'
-- :codelist_long_name: Relationship to Study Treatment Subset 01
-  :codelist_short_name: AERELA_01
-  :codelist_code: SN000012
-  :items:
-  - :code: S000093
-    :submission_value: RELATED
-    :rank: '2'
-  - :code: S000090
-    :submission_value: NOT RELATED
-    :rank: '1'
-- :codelist_long_name: Severity/Intensity Scale for Adverse Events
-  :codelist_short_name: AESEV
-  :codelist_code: C66769
-  :items:
-  - :code: C41338
-    :submission_value: MILD
-    :rank: '1'
-  - :code: C41339
-    :submission_value: MODERATE
-    :rank: '2'
-  - :code: C41340
-    :submission_value: SEVERE
-    :rank: '3'
-- :codelist_long_name: Severity/Intensity Scale for Adverse Events Numeric
-  :codelist_short_name: AESEVN
-  :codelist_code: SN000015
-  :items:
-  - :code: S000100
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S000101
-    :submission_value: '2'
-    :rank: '2'
-  - :code: S000102
-    :submission_value: '3'
-    :rank: '3'
-- :codelist_long_name: Shift from Baseline
-  :codelist_short_name: SHIFT
-  :codelist_code: SN000548
-  :items:
-  - :code: S005180
-    :submission_value: <LLN TO >ULN
-    :rank: '1'
-  - :code: S003274
-    :submission_value: '>ULN TO <LLN'
-    :rank: '2'
-- :codelist_long_name: Shift from Baseline Numeric
-  :codelist_short_name: SHIFTN
-  :codelist_code: SN000551
-  :items:
-  - :code: S000230
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S005180
-    :submission_value: '3'
-    :rank: '2'
-- :codelist_long_name: Shift of Normality from Baseline
-  :codelist_short_name: SHIFT2
-  :codelist_code: SN000549
-  :items:
-  - :code: S008890
-    :submission_value: ABNORMAL TO NORMAL
-    :rank: '1'
-  - :code: S008889
-    :submission_value: NORMAL/MISSING TO ABNORMAL
-    :rank: '2'
-- :codelist_long_name: Shift of Normality from Baseline Numeric
-  :codelist_short_name: SHIFT2N
-  :codelist_code: SN000550
-  :items:
-  - :code: S000229
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S003276
-    :submission_value: '2'
-    :rank: '2'
-- :codelist_long_name: Standard Medical Query Search Strategy Numeric
-  :codelist_short_name: SMQSCPN
-  :codelist_code: SN000556
-  :items:
-  - :code: S000225
-    :submission_value: '1'
-    :rank: '1'
-  - :code: S003278
-    :submission_value: '2'
-    :rank: '2'
+:ignore:
+:codelists:
+  - :codelist_long_name: Action Taken with Study Treatment
+    :codelist_short_name: ACN
+    :codelist_code: C66767
+    :items:
+    - :code: C49504
+      :submission_value: DOSE NOT CHANGED
+      :rank: '1'
+    - :code: C49505
+      :submission_value: DOSE REDUCED
+      :rank: '2'
+    - :code: C49501
+      :submission_value: DRUG INTERRUPTED
+      :rank: '3'
+    - :code: C49502
+      :submission_value: DRUG WITHDRAWN
+      :rank: '4'
+    - :code: C49503
+      :submission_value: DOSE INCREASED
+      :rank: '5'
+    - :code: SC78728
+      :submission_value: MULTIPLE
+      :rank: '6'
+    - :code: C17998
+      :submission_value: UNKNOWN
+      :rank: '7'
+    - :code: C48660
+      :submission_value: NOT APPLICABLE
+      :rank: '8'
+  - :codelist_long_name: Action Taken with Study Treatment Collected
+    :codelist_short_name: ACNC
+    :codelist_code: SN000730
+    :items:
+    - :code: SC49504
+      :submission_value: DOSE NOT CHANGED
+      :rank: '1'
+    - :code: SC49505
+      :submission_value: DOSE REDUCED
+      :rank: '2'
+    - :code: SC49501
+      :submission_value: DRUG INTERRUPTED
+      :rank: '3'
+    - :code: SC49502
+      :submission_value: DRUG WITHDRAWN
+      :rank: '4'
+    - :code: SC49503
+      :submission_value: DOSE INCREASED
+      :rank: '5'
+    - :code: S000010
+      :submission_value: DOSE DELAYED
+      :rank: '6'
+    - :code: S000011
+      :submission_value: DOSE DELAYED AND REDUCED
+      :rank: '7'
+    - :code: S011612
+      :submission_value: DISCONTINUATION OF STUDY VACCINATION
+      :rank: '8'
+    - :code: SC48660
+      :submission_value: NOT APPLICABLE
+      :rank: '9'
+  - :codelist_long_name: Action Taken with Study Treatment Numeric
+    :codelist_short_name: ACNN
+    :codelist_code: SN000005
+    :items:
+    - :code: S000029
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S000030
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S000031
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S000032
+      :submission_value: '4'
+      :rank: '4'
+    - :code: S000033
+      :submission_value: '5'
+      :rank: '5'
+    - :code: S000034
+      :submission_value: '6'
+      :rank: '6'
+    - :code: S000035
+      :submission_value: '7'
+      :rank: '7'
+    - :code: S000036
+      :submission_value: '8'
+      :rank: '8'
+    - :code: S003958
+      :submission_value: '9'
+      :rank: '9'
+    - :code: S000012
+      :submission_value: '10'
+      :rank: '10'
+  - :codelist_long_name: Age Group (EudraCT)
+    :codelist_short_name: AGEGRPE
+    :codelist_code: SN000018
+    :items:
+    - :code: S000113
+      :submission_value: IN UTERO
+      :rank: '1'
+    - :code: S000117
+      :submission_value: PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
+      :rank: '2'
+    - :code: S000115
+      :submission_value: NEWBORNS (0-27 DAYS)
+      :rank: '3'
+    - :code: S000114
+      :submission_value: INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
+      :rank: '4'
+    - :code: S000110
+      :submission_value: CHILDREN (2-11 YEARS)
+      :rank: '5'
+    - :code: S000109
+      :submission_value: ADOLESCENTS (12-17 YEARS)
+      :rank: '6'
+    - :code: S000111
+      :submission_value: FROM 18 - 64 YEARS
+      :rank: '7'
+    - :code: S000112
+      :submission_value: FROM 65 - 84 YEARS
+      :rank: '8'
+    - :code: S009907
+      :submission_value: 85 YEARS AND OVER
+      :rank: '9'
+  - :codelist_long_name: Age Group (Pediatric)
+    :codelist_short_name: AGEGRPP
+    :codelist_code: SN000020
+    :items:
+    - :code: S000142
+      :submission_value: NEONATES
+      :rank: '1'
+    - :code: S000141
+      :submission_value: INFANTS
+      :rank: '2'
+    - :code: S000144
+      :submission_value: YOUNGER CHILDREN
+      :rank: '3'
+    - :code: S000143
+      :submission_value: OLDER CHILDREN
+      :rank: '4'
+    - :code: S000140
+      :submission_value: ADOLESCENTS
+      :rank: '5'
+  - :codelist_long_name: Age Group (Pediatric) Numeric
+    :codelist_short_name: AGEGRPPN
+    :codelist_code: SN000021
+    :items:
+    - :code: S000145
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S000127
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S000132
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S000146
+      :submission_value: '4'
+      :rank: '4'
+    - :code: S000147
+      :submission_value: '5'
+      :rank: '5'
+  - :codelist_long_name: Child-Pugh Classification Clinical Classification Test Results for Ascites
+    :codelist_short_name: CPS0102R
+    :codelist_code: SN001260
+    :items:
+    - :code: S000243
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001739
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001745
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: >-
+      Child-Pugh Classification Clinical Classification Test Results for
+      Encephalopathy Grade
+    :codelist_short_name: CPS0101R
+    :codelist_code: SN001259
+    :items:
+    - :code: S000244
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001740
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001746
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: >-
+      Child-Pugh Classification Clinical Classification Test Results for
+      Prothrombin Time International Normalized Ratio
+    :codelist_short_name: CPS0106R
+    :codelist_code: SN001264
+    :items:
+    - :code: S000245
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001741
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001747
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: >-
+      Child-Pugh Classification Clinical Classification Test Results for
+      Prothrombin Time Sec Prolonged
+    :codelist_short_name: CPS0105R
+    :codelist_code: SN001263
+    :items:
+    - :code: S000246
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001742
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001748
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: >-
+      Child-Pugh Classification Clinical Classification Test Results for Serum
+      Albumin
+    :codelist_short_name: CPS0104R
+    :codelist_code: SN001262
+    :items:
+    - :code: S000247
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001743
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001749
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: >-
+      Child-Pugh Classification Clinical Classification Test Results for Serum
+      Bilirubin
+    :codelist_short_name: CPS0103R
+    :codelist_code: SN001261
+    :items: 
+    - :code: S000248
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S001744
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S001750
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: Common Terminology Criteria for Adverse Events
+    :codelist_short_name: TOXGR
+    :codelist_code: SN001030
+    :items:
+    - :code: S011594
+      :submission_value: '0'
+      :rank: '1'
+    - :code: S011595
+      :submission_value: '1'
+      :rank: '2'
+    - :code: S011596
+      :submission_value: '2'
+      :rank: '3'
+    - :code: S011597
+      :submission_value: '3'
+      :rank: '4'
+    - :code: S011598
+      :submission_value: '4'
+      :rank: '5'
+    - :code: S011599
+      :submission_value: '5'
+      :rank: '6'
+  - :codelist_long_name: Common Terminology Criteria for Adverse Events Abbreviated
+    :codelist_short_name: TOXGRA
+    :codelist_code: SN001073
+    :items:
+    - :code: S003307
+      :submission_value: GRADE 0
+      :rank: '1'
+    - :code: S030801
+      :submission_value: GRADE 1
+      :rank: '2'
+    - :code: S003309
+      :submission_value: GRADE 2
+      :rank: '3'
+    - :code: S003310
+      :submission_value: GRADE 3
+      :rank: '4'
+    - :code: S003311
+      :submission_value: GRADE 4
+      :rank: '5'
+    - :code: S030802
+      :submission_value: GRADE 5
+      :rank: '6'
+  - :codelist_long_name: Common Terminology Criteria for Adverse Events Numeric
+    :codelist_short_name: TOXGRN
+    :codelist_code: SN001072
+    :items:
+    - :code: S011600
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S011601
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S011602
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S011603
+      :submission_value: '4'
+      :rank: '4'
+    - :code: S011604
+      :submission_value: '5'
+      :rank: '5'
+    - :code: S011605
+      :submission_value: '6'
+      :rank: '6'
+  - :codelist_long_name: Common Terminology Criteria for Adverse Events Subset 01
+    :codelist_short_name: TOXGR_01
+    :codelist_code: SN001030
+    :items:
+    - :code: S011595
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S011596
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S011597
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S011598
+      :submission_value: '4'
+      :rank: '4'
+    - :code: S011599
+      :submission_value: '5'
+      :rank: '5'
+  - :codelist_long_name: Completion/Reason for Non-Completion Numeric
+    :codelist_short_name: NCOMPLTN
+    :codelist_code: SN001020
+    :items:
+    - :code: S009928
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S009929
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S009930
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S009931
+      :submission_value: '4'
+      :rank: '4'
+    - :code: S009932
+      :submission_value: '5'
+      :rank: '5'
+    - :code: S009933
+      :submission_value: '6'
+      :rank: '6'
+    - :code: S009934
+      :submission_value: '7'
+      :rank: '7'
+    - :code: S009935
+      :submission_value: '8'
+      :rank: '8'
+    - :code: S009936
+      :submission_value: '9'
+      :rank: '9'
+  - :codelist_long_name: Diagnosis of Cerebrovascular Event
+    :codelist_short_name: CECEDIAG
+    :codelist_code: SN001915
+    :items:
+    - :code: S004908
+      :submission_value: TRANSIENT ISCHEMIC ATTACK
+      :rank: '1'
+    - :code: SC95802
+      :submission_value: ISCHEMIC STROKE
+      :rank: '2'
+    - :code: S001617
+      :submission_value: ISCHEMIC STROKE WITH HEMORRHAGIC CONVERSION
+      :rank: '3'
+    - :code: SC95803
+      :submission_value: HEMORRHAGIC STROKE
+      :rank: '4'
+    - :code: S030800
+      :submission_value: UNDETERMINED TYPE OF STROKE
+      :rank: '5'
+    - :code: S004909
+      :submission_value: TRAUMATIC SUBDURAL HEMATOMA
+      :rank: '6'
+    - :code: S004907
+      :submission_value: NON TRAUMATIC SUBDURAL HEMATOMA
+      :rank: '7'
+    - :code: S001630
+      :submission_value: NO CEREBROVASCULAR EVENT
+      :rank: '8'
+  - :codelist_long_name: Eastern Cooperative Oncology Group Performance Status Questionnaire Results
+    :codelist_short_name: ECOG1R
+    :codelist_code: SN000193
+    :items:
+    - :code: S002088
+      :submission_value: '0'
+      :rank: '1'
+    - :code: S002089
+      :submission_value: '1'
+      :rank: '2'
+    - :code: S002084
+      :submission_value: '2'
+      :rank: '3'
+    - :code: S002085
+      :submission_value: '3'
+      :rank: '4'
+    - :code: S002086
+      :submission_value: '4'
+      :rank: '5'
+    - :code: S000214
+      :submission_value: '5'
+      :rank: '6'
+  - :codelist_long_name: >-
+      Eastern Cooperative Oncology Group Performance Status Questionnaire Results
+      Subset 01
+    :codelist_short_name: ECOG1R_01
+    :codelist_code: SN000193
+    :items:
+    - :code: S002088
+      :submission_value: '0'
+      :rank: '1'
+    - :code: S002089
+      :submission_value: '1'
+      :rank: '2'
+    - :code: S002084
+      :submission_value: '2'
+      :rank: '3'
+    - :code: S002085
+      :submission_value: '3'
+      :rank: '4'
+    - :code: S002086
+      :submission_value: '4'
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Five Level Scale Questionnaire
+      Results for Question Type 1
+    :codelist_short_name: EQ5D021R
+    :codelist_code: SN000155
+    :items:
+    - :code: S012915
+      :submission_value: I HAVE NO PROBLEMS WALKING
+      :rank: '1'
+    - :code: S012916
+      :submission_value: I HAVE SLIGHT PROBLEMS WALKING
+      :rank: '2'
+    - :code: S012917
+      :submission_value: I HAVE MODERATE PROBLEMS WALKING
+      :rank: '3'
+    - :code: S012918
+      :submission_value: I HAVE SEVERE PROBLEMS WALKING
+      :rank: '4'
+    - :code: S012919
+      :submission_value: I AM UNABLE TO WALK
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Five Level Scale Questionnaire
+      Results for Question Type 2
+    :codelist_short_name: EQ5D022R
+    :codelist_code: SN000156
+    :items: 
+    - :code: S012920
+      :submission_value: I HAVE NO PROBLEMS WASHING OR DRESSING MYSELF
+      :rank: '1'
+    - :code: S012921
+      :submission_value: I HAVE SLIGHT PROBLEMS WASHING OR DRESSING MYSELF
+      :rank: '2'
+    - :code: S012922
+      :submission_value: I HAVE MODERATE PROBLEMS WASHING OR DRESSING MYSELF
+      :rank: '3'
+    - :code: S012923
+      :submission_value: I HAVE SEVERE PROBLEMS WASHING OR DRESSING MYSELF
+      :rank: '4'
+    - :code: S012905
+      :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Five Level Scale Questionnaire
+      Results for Question Type 3
+    :codelist_short_name: EQ5D023R
+    :codelist_code: SN000157
+    :items:
+    - :code: S012924
+      :submission_value: I HAVE NO PROBLEMS DOING MY USUAL ACTIVITIES
+      :rank: '1'
+    - :code: S012925
+      :submission_value: I HAVE SLIGHT PROBLEMS DOING MY USUAL ACTIVITIES
+      :rank: '2'
+    - :code: S012926
+      :submission_value: I HAVE MODERATE PROBLEMS DOING MY USUAL ACTIVITIES
+      :rank: '3'
+    - :code: S012927
+      :submission_value: I HAVE SEVERE PROBLEMS DOING MY USUAL ACTIVITIES
+      :rank: '4'
+    - :code: S012928
+      :submission_value: I AM UNABLE TO DO MY USUAL ACTIVITIES
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Five Level Scale Questionnaire
+      Results for Question Type 4
+    :codelist_short_name: EQ5D024R
+    :codelist_code: SN000158
+    :items:
+    - :code: S012909
+      :submission_value: I HAVE NO PAIN OR DISCOMFORT
+      :rank: '1'
+    - :code: S012929
+      :submission_value: I HAVE SLIGHT PAIN OR DISCOMFORT
+      :rank: '2'
+    - :code: S012910
+      :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
+      :rank: '3'
+    - :code: S012930
+      :submission_value: I HAVE SEVERE PAIN OR DISCOMFORT
+      :rank: '4'
+    - :code: S012911
+      :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Five Level Scale Questionnaire
+      Results for Question Type 5
+    :codelist_short_name: EQ5D025R
+    :codelist_code: SN000159
+    :items:
+    - :code: S012912
+      :submission_value: I AM NOT ANXIOUS OR DEPRESSED
+      :rank: '1'
+    - :code: S012931
+      :submission_value: I AM SLIGHTLY ANXIOUS OR DEPRESSED
+      :rank: '2'
+    - :code: S012913
+      :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
+      :rank: '3'
+    - :code: S012932
+      :submission_value: I AM SEVERELY ANXIOUS OR DEPRESSED
+      :rank: '4'
+    - :code: S012914
+      :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
+      :rank: '5'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Three Level Scale Questionnaire
+      Results for Question Type 1
+    :codelist_short_name: EQ5D011R
+    :codelist_code: SN000919
+    :items:
+    - :code: S012900
+      :submission_value: I HAVE NO PROBLEMS IN WALKING ABOUT
+      :rank: '1'
+    - :code: S012901
+      :submission_value: I HAVE SOME PROBLEMS IN WALKING ABOUT
+      :rank: '2'
+    - :code: S012902
+      :submission_value: I AM CONFINED TO BED
+      :rank: '3'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Three Level Scale Questionnaire
+      Results for Question Type 2
+    :codelist_short_name: EQ5D012R
+    :codelist_code: SN000920
+    :items:
+    - :code: S012903
+      :submission_value: I HAVE NO PROBLEMS WITH SELF-CARE
+      :rank: '1'
+    - :code: S012904
+      :submission_value: I HAVE SOME PROBLEMS WASHING OR DRESSING MYSELF
+      :rank: '2'
+    - :code: S012905
+      :submission_value: I AM UNABLE TO WASH OR DRESS MYSELF
+      :rank: '3'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Three Level Scale Questionnaire
+      Results for Question Type 3
+    :codelist_short_name: EQ5D013R
+    :codelist_code: SN000921
+    :items:
+    - :code: S012906
+      :submission_value: I HAVE NO PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
+      :rank: '1'
+    - :code: S012907
+      :submission_value: I HAVE SOME PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
+      :rank: '2'
+    - :code: S012908
+      :submission_value: I AM UNABLE TO PERFORM MY USUAL ACTIVITIES
+      :rank: '3'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Three Level Scale Questionnaire
+      Results for Question Type 4
+    :codelist_short_name: EQ5D014R
+    :codelist_code: SN000922
+    :items:
+    - :code: S012909
+      :submission_value: I HAVE NO PAIN OR DISCOMFORT
+      :rank: '1'
+    - :code: S012910
+      :submission_value: I HAVE MODERATE PAIN OR DISCOMFORT
+      :rank: '2'
+    - :code: S012911
+      :submission_value: I HAVE EXTREME PAIN OR DISCOMFORT
+      :rank: '3'
+  - :codelist_long_name: >-
+      European Quality of Life Five Dimension Three Level Scale Questionnaire
+      Results for Question Type 5
+    :codelist_short_name: EQ5D015R
+    :codelist_code: SN000923
+    :items:
+    - :code: S012912
+      :submission_value: I AM NOT ANXIOUS OR DEPRESSED
+      :rank: '1'
+    - :code: S012913
+      :submission_value: I AM MODERATELY ANXIOUS OR DEPRESSED
+      :rank: '2'
+    - :code: S012914
+      :submission_value: I AM EXTREMELY ANXIOUS OR DEPRESSED
+      :rank: '3'
+  - :codelist_long_name: Investigator Assessment Reason Not Done of Blood Measurement
+    :codelist_short_name: INVASSND
+    :codelist_code: SN000737
+    :items:
+    - :code: S006241
+      :submission_value: BLOOD MEASUREMENT ERROR
+      :rank: '1'
+    - :code: S006242
+      :submission_value: MEDICAL DEVICE CALIBRATION ISSUE
+      :rank: '2'
+    - :code: S006243
+      :submission_value: UNEXPECTED
+      :rank: '3'
+    - :code: S006244
+      :submission_value: DUPLICATE
+      :rank: '4'
+    - :code: S006245
+      :submission_value: COMMUNICATION OR TRANSMISSION ISSUE ASSOCIATED WITH MEDICAL DEVICE
+      :rank: '5'
+    - :code: SC17649
+      :submission_value: OTHER
+      :rank: '6'
+  - :codelist_long_name: >-
+      Kurtzke Functional Systems Scores Questionnaire Test Results for Check Box
+      Questions
+    :codelist_short_name: KFSS19R
+    :codelist_code: SN001226
+    :items:
+    - :code: S012755
+      :submission_value: CHECKED
+      :rank: '1'
+    - :code: S012756
+      :submission_value: 'NOT CHECKED '
+      :rank: '2'
+  - :codelist_long_name: Normalized Identifier
+    :codelist_short_name: NORMED
+    :codelist_code: SN000393
+    :items:
+    - :code: S008888
+      :submission_value: NO WORSENING AS COMPARED TO THE BASELINE PCSA STATUS
+      :rank: '1'
+    - :code: S008884
+      :submission_value: RETURNED TO BASELINE PCSA STATUS BEFORE LAST IMP DOSE
+      :rank: '2'
+    - :code: S008885
+      :submission_value: RETURNED TO BASELINE PCSA STATUS AFTER LAST IMP DOSE
+      :rank: '3'
+    - :code: S008887
+      :submission_value: NEVER RETURNED TO BASELINE PCSA STATUS
+      :rank: '4'
+    - :code: S008886
+      :submission_value: NO ASSESSMENT AFTER THE WORST ON-TREATMENT VALUE
+      :rank: '5'
+  - :codelist_long_name: Normalized Identifier Numeric
+    :codelist_short_name: NORMEDN
+    :codelist_code: SN000394
+    :items:
+    - :code: S003126
+      :submission_value: '0'
+      :rank: '1'
+    - :code: S003130
+      :submission_value: '1'
+      :rank: '2'
+    - :code: S003129
+      :submission_value: '2'
+      :rank: '3'
+    - :code: S003127
+      :submission_value: '3'
+      :rank: '4'
+    - :code: S003128
+      :submission_value: '4'
+      :rank: '5'
+  - :codelist_long_name: Outcome of Event
+    :codelist_short_name: OUT
+    :codelist_code: C66768
+    :items:
+    - :code: C49498
+      :submission_value: RECOVERED/RESOLVED
+      :rank: '1'
+    - :code: C49495
+      :submission_value: RECOVERED/RESOLVED WITH SEQUELAE
+      :rank: '2'
+    - :code: C49496
+      :submission_value: RECOVERING/RESOLVING
+      :rank: '3'
+    - :code: C49494
+      :submission_value: NOT RECOVERED/NOT RESOLVED
+      :rank: '4'
+    - :code: C48275
+      :submission_value: FATAL
+      :rank: '5'
+    - :code: C17998
+      :submission_value: UNKNOWN
+      :rank: '6'
+  - :codelist_long_name: Outcome of Event Numeric
+    :codelist_short_name: OUTN
+    :codelist_code: SN000407
+    :items:
+    - :code: S009912
+      :submission_value: '1'
+      :rank: '5'
+    - :code: S009913
+      :submission_value: '2'
+      :rank: '4'
+    - :code: S003153
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S009914
+      :submission_value: '4'
+      :rank: '2'
+    - :code: S009915
+      :submission_value: '5'
+      :rank: '1'
+    - :code: S003156
+      :submission_value: '6'
+      :rank: '6'
+  - :codelist_long_name: Patient-Oriented Eczema Measure Questionnaire Test Results
+    :codelist_short_name: POEM9R
+    :codelist_code: SN000924
+    :items:
+    - :code: S008577
+      :submission_value: '0'
+      :rank: '1'
+    - :code: S008578
+      :submission_value: '1'
+      :rank: '2'
+    - :code: S008579
+      :submission_value: '2'
+      :rank: '3'
+    - :code: S008580
+      :submission_value: '3'
+      :rank: '4'
+    - :code: S008581
+      :submission_value: '4'
+      :rank: '5'
+  - :codelist_long_name: Relationship to Study Treatment
+    :codelist_short_name: AERELA
+    :codelist_code: SN000012
+    :items:
+    - :code: S000090
+      :submission_value: NOT RELATED
+      :rank: '1'
+    - :code: S000094
+      :submission_value: UNLIKELY RELATED
+      :rank: '2'
+    - :code: S000092
+      :submission_value: POSSIBLY RELATED
+      :rank: '3'
+    - :code: S000093
+      :submission_value: RELATED
+      :rank: '4'
+  - :codelist_long_name: Relationship to Study Treatment Numeric
+    :codelist_short_name: AERELAN
+    :codelist_code: SN000013
+    :items:
+    - :code: S000095
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S000097
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S000098
+      :submission_value: '3'
+      :rank: '3'
+    - :code: S000099
+      :submission_value: '4'
+      :rank: '4'
+  - :codelist_long_name: Relationship to Study Treatment Subset 01
+    :codelist_short_name: AERELA_01
+    :codelist_code: SN000012
+    :items:
+    - :code: S000093
+      :submission_value: RELATED
+      :rank: '2'
+    - :code: S000090
+      :submission_value: NOT RELATED
+      :rank: '1'
+  - :codelist_long_name: Severity/Intensity Scale for Adverse Events
+    :codelist_short_name: AESEV
+    :codelist_code: C66769
+    :items:
+    - :code: C41338
+      :submission_value: MILD
+      :rank: '1'
+    - :code: C41339
+      :submission_value: MODERATE
+      :rank: '2'
+    - :code: C41340
+      :submission_value: SEVERE
+      :rank: '3'
+  - :codelist_long_name: Severity/Intensity Scale for Adverse Events Numeric
+    :codelist_short_name: AESEVN
+    :codelist_code: SN000015
+    :items:
+    - :code: S000100
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S000101
+      :submission_value: '2'
+      :rank: '2'
+    - :code: S000102
+      :submission_value: '3'
+      :rank: '3'
+  - :codelist_long_name: Shift from Baseline
+    :codelist_short_name: SHIFT
+    :codelist_code: SN000548
+    :items:
+    - :code: S005180
+      :submission_value: <LLN TO >ULN
+      :rank: '1'
+    - :code: S003274
+      :submission_value: '>ULN TO <LLN'
+      :rank: '2'
+  - :codelist_long_name: Shift from Baseline Numeric
+    :codelist_short_name: SHIFTN
+    :codelist_code: SN000551
+    :items:
+    - :code: S000230
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S005180
+      :submission_value: '3'
+      :rank: '2'
+  - :codelist_long_name: Shift of Normality from Baseline
+    :codelist_short_name: SHIFT2
+    :codelist_code: SN000549
+    :items:
+    - :code: S008890
+      :submission_value: ABNORMAL TO NORMAL
+      :rank: '1'
+    - :code: S008889
+      :submission_value: NORMAL/MISSING TO ABNORMAL
+      :rank: '2'
+  - :codelist_long_name: Shift of Normality from Baseline Numeric
+    :codelist_short_name: SHIFT2N
+    :codelist_code: SN000550
+    :items:
+    - :code: S000229
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S003276
+      :submission_value: '2'
+      :rank: '2'
+  - :codelist_long_name: Standard Medical Query Search Strategy Numeric
+    :codelist_short_name: SMQSCPN
+    :codelist_code: SN000556
+    :items:
+    - :code: S000225
+      :submission_value: '1'
+      :rank: '1'
+    - :code: S003278
+      :submission_value: '2'
+      :rank: '2'
