@@ -63,7 +63,7 @@ describe "Import::SponsorTermFormatOne" do
       result[:items].each {|cli| cli[:object].to_sparql(sparql)}
     end
     full_path = sparql.to_file
-  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
   end
 
   def match_cl_items(cl, code_list)
@@ -134,9 +134,10 @@ describe "Import::SponsorTermFormatOne" do
     byebug
   end
 
-  def process_code_lists(code_lists)
+  def process_code_lists(code_lists, ignore)
     results = []
     code_lists.each do |code_list|
+      next if ignore.include?(code_list[:codelist_short_name])
       cl = match_cl(code_list[:codelist_short_name], code_list[:codelist_long_name])
       next unless cl_valid?(code_list[:codelist_short_name], code_list[:codelist_long_name], cl)
       results << {cl: cl.uri, items: match_cl_items(cl, code_list)}
@@ -149,7 +150,7 @@ describe "Import::SponsorTermFormatOne" do
     config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
-    results = process_code_lists(code_lists)
+    results = process_code_lists(code_lists, ignore)
     create_ranks(results, "2-6")
   end
 
@@ -159,7 +160,7 @@ describe "Import::SponsorTermFormatOne" do
     config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
-    results = process_code_lists(code_lists)
+    results = process_code_lists(code_lists, ignore)
     create_ranks(results, "3-0")
   end
 
@@ -184,10 +185,17 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "QC check", :speed => 'slow' do
+    check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
     results = ranked
-    check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal)
+    results.each do |result|
+      key = "#{result[:code_list]}.#{result[:item]}"
+      check_hash[key] << result[:rank]
+      puts colourize("Duplicate found. '#{result[:code_list]}', '#{result[:item]}' = [#{check_hash[key]}]", "red") if check_hash[key].count > 1
+    end
+    check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end
