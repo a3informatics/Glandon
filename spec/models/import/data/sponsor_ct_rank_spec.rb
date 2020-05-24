@@ -185,17 +185,18 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "QC check", :speed => 'slow' do
+    write_file = false
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
     results = ranked
-    check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal)
     results.each do |result|
       key = "#{result[:code_list]}.#{result[:item]}"
       check_hash[key] << result[:rank]
       puts colourize("Duplicate found. '#{result[:code_list]}', '#{result[:item]}' = [#{check_hash[key]}]", "red") if check_hash[key].count > 1
     end
-    check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
+    check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
 end

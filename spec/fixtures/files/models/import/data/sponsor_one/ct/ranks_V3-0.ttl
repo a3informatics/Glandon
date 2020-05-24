@@ -11,1766 +11,1171 @@
 	rdf:type owl:Ontology ;
 .
 <http://www.sanofi.com/C66767/V2#C66767>
-	th:isRanked :776a20a1-8d55-41e9-92f6-353ad1e737b3 ;
+	th:isRanked :8ee10fd9-8e87-4221-982b-43fd3bee385b ;
 .
-:776a20a1-8d55-41e9-92f6-353ad1e737b3
+:8ee10fd9-8e87-4221-982b-43fd3bee385b
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#5c7b9399-6fd1-4448-9743-103f1ffd463d> ;
+	th:members <http://www.assero.co.uk/TRM#da6999a3-776c-4aed-bfaf-4352049ba884> ;
 .
-<http://www.assero.co.uk/TRM#5c7b9399-6fd1-4448-9743-103f1ffd463d>
+<http://www.assero.co.uk/TRM#da6999a3-776c-4aed-bfaf-4352049ba884>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:memberNext <http://www.assero.co.uk/TRM#bb821d90-6057-454c-a4be-d4942e5fdd38> ;
+	th:memberNext <http://www.assero.co.uk/TRM#da03e630-872a-49eb-ba72-00e82d747838> ;
 .
-<http://www.assero.co.uk/TRM#bb821d90-6057-454c-a4be-d4942e5fdd38>
+<http://www.assero.co.uk/TRM#da03e630-872a-49eb-ba72-00e82d747838>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cf28b6eb-62b7-4a5e-b024-938fc6c9e492> ;
+	th:memberNext <http://www.assero.co.uk/TRM#8bc45222-f0f7-4037-b40b-21159a312d95> ;
 .
-<http://www.assero.co.uk/TRM#cf28b6eb-62b7-4a5e-b024-938fc6c9e492>
+<http://www.assero.co.uk/TRM#8bc45222-f0f7-4037-b40b-21159a312d95>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2561ce15-9393-4143-8325-1f7b4a3b8cf9> ;
+	th:memberNext <http://www.assero.co.uk/TRM#d27996c8-d858-4176-933c-9c851f1cc533> ;
 .
-<http://www.assero.co.uk/TRM#2561ce15-9393-4143-8325-1f7b4a3b8cf9>
+<http://www.assero.co.uk/TRM#d27996c8-d858-4176-933c-9c851f1cc533>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:memberNext <http://www.assero.co.uk/TRM#255901a7-09fb-43b6-ba7a-540bbc25f9bc> ;
+	th:memberNext <http://www.assero.co.uk/TRM#543b1f75-c761-47f7-ba25-4cededccbbb3> ;
 .
-<http://www.assero.co.uk/TRM#255901a7-09fb-43b6-ba7a-540bbc25f9bc>
+<http://www.assero.co.uk/TRM#543b1f75-c761-47f7-ba25-4cededccbbb3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ecee0f04-88b9-41f2-b96e-73698aeaf574> ;
+	th:memberNext <http://www.assero.co.uk/TRM#731cc750-eb68-4199-9ba8-0ab11b69afc3> ;
 .
-<http://www.assero.co.uk/TRM#ecee0f04-88b9-41f2-b96e-73698aeaf574>
+<http://www.assero.co.uk/TRM#731cc750-eb68-4199-9ba8-0ab11b69afc3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C99075/V33#C99075_C78728> ;
-	th:memberNext <http://www.assero.co.uk/TRM#34da019c-2013-4f38-bc08-b99ddd626a44> ;
+	th:memberNext <http://www.assero.co.uk/TRM#42a0f77b-9f31-47aa-8c36-654a69b2ecb9> ;
 .
-<http://www.assero.co.uk/TRM#34da019c-2013-4f38-bc08-b99ddd626a44>
+<http://www.assero.co.uk/TRM#42a0f77b-9f31-47aa-8c36-654a69b2ecb9>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "7"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C17998> ;
-	th:memberNext <http://www.assero.co.uk/TRM#292a18c1-95a8-456b-9450-f3fc83ccf80b> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b98dacdd-22d3-4ecd-a20e-55d0bed42c63> ;
 .
-<http://www.assero.co.uk/TRM#292a18c1-95a8-456b-9450-f3fc83ccf80b>
+<http://www.assero.co.uk/TRM#b98dacdd-22d3-4ecd-a20e-55d0bed42c63>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "8"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 .
 <http://www.sanofi.com/SN000730/V2#SN000730>
-	th:isRanked :bc86ecb1-e17a-4bd8-8630-23b9095bca99 ;
+	th:isRanked :fa864254-3de1-498d-be94-469988d5a06b ;
 .
-:bc86ecb1-e17a-4bd8-8630-23b9095bca99
+:fa864254-3de1-498d-be94-469988d5a06b
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#e55c2d9c-8589-4948-a50f-bef893200c5b> ;
+	th:members <http://www.assero.co.uk/TRM#a1be4e1b-d543-4b70-8b23-2cd986090480> ;
 .
-<http://www.assero.co.uk/TRM#e55c2d9c-8589-4948-a50f-bef893200c5b>
+<http://www.assero.co.uk/TRM#a1be4e1b-d543-4b70-8b23-2cd986090480>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49504> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8c93a40d-9b87-4d59-9b36-3f63b27ffbc7> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5f740ff1-1c2b-4dbb-a6d9-7a32d46b0a73> ;
 .
-<http://www.assero.co.uk/TRM#8c93a40d-9b87-4d59-9b36-3f63b27ffbc7>
+<http://www.assero.co.uk/TRM#5f740ff1-1c2b-4dbb-a6d9-7a32d46b0a73>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49505> ;
-	th:memberNext <http://www.assero.co.uk/TRM#a3386a0d-3473-4023-8930-e9f16d7b0c46> ;
+	th:memberNext <http://www.assero.co.uk/TRM#7a79187e-d20d-4497-9c5c-9735440eda67> ;
 .
-<http://www.assero.co.uk/TRM#a3386a0d-3473-4023-8930-e9f16d7b0c46>
+<http://www.assero.co.uk/TRM#7a79187e-d20d-4497-9c5c-9735440eda67>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49501> ;
-	th:memberNext <http://www.assero.co.uk/TRM#54aba862-07e1-4b5a-8312-0e47a77e22d6> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ece8a099-0985-4c9f-b8f1-d7e037470390> ;
 .
-<http://www.assero.co.uk/TRM#54aba862-07e1-4b5a-8312-0e47a77e22d6>
+<http://www.assero.co.uk/TRM#ece8a099-0985-4c9f-b8f1-d7e037470390>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49502> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0a9d5770-7596-412b-a257-08283f7b1c00> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f31753aa-a5b1-4dd5-84ec-76d50d1cc294> ;
 .
-<http://www.assero.co.uk/TRM#0a9d5770-7596-412b-a257-08283f7b1c00>
+<http://www.assero.co.uk/TRM#f31753aa-a5b1-4dd5-84ec-76d50d1cc294>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V4#C66767_C49503> ;
-	th:memberNext <http://www.assero.co.uk/TRM#78a6878f-e5af-4d53-a10b-a7eae4a03cc8> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ecc2a8c5-e6bf-482f-b121-a70aef4093c4> ;
 .
-<http://www.assero.co.uk/TRM#78a6878f-e5af-4d53-a10b-a7eae4a03cc8>
+<http://www.assero.co.uk/TRM#ecc2a8c5-e6bf-482f-b121-a70aef4093c4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000730/V1#SN000730_S000010> ;
-	th:memberNext <http://www.assero.co.uk/TRM#575b6b03-36e9-489d-88d8-23bb05a91cf3> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3785f8ae-a156-4b10-b245-5902cd2e779c> ;
 .
-<http://www.assero.co.uk/TRM#575b6b03-36e9-489d-88d8-23bb05a91cf3>
+<http://www.assero.co.uk/TRM#3785f8ae-a156-4b10-b245-5902cd2e779c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "7"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000730/V1#SN000730_S000011> ;
-	th:memberNext <http://www.assero.co.uk/TRM#87317e2b-43d3-4040-9d13-35548ee24a38> ;
+	th:memberNext <http://www.assero.co.uk/TRM#11ef194e-82fc-4efc-a348-28804ad16c05> ;
 .
-<http://www.assero.co.uk/TRM#87317e2b-43d3-4040-9d13-35548ee24a38>
+<http://www.assero.co.uk/TRM#11ef194e-82fc-4efc-a348-28804ad16c05>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "8"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000730/V2#SN000730_S011612> ;
-	th:memberNext <http://www.assero.co.uk/TRM#724ec732-83ef-4d93-b03d-16bc548b4605> ;
+	th:memberNext <http://www.assero.co.uk/TRM#31ec5a84-1127-4aeb-b472-3777901d0140> ;
 .
-<http://www.assero.co.uk/TRM#724ec732-83ef-4d93-b03d-16bc548b4605>
+<http://www.assero.co.uk/TRM#31ec5a84-1127-4aeb-b472-3777901d0140>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "9"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C66767/V28#C66767_C48660> ;
 .
 <http://www.sanofi.com/SN000005/V2#SN000005>
-	th:isRanked :6c7542ce-bf8b-4f28-840c-5b981b7b4582 ;
+	th:isRanked :f0aa5155-ad8f-453b-9014-2cb93cd08f81 ;
 .
-:6c7542ce-bf8b-4f28-840c-5b981b7b4582
+:f0aa5155-ad8f-453b-9014-2cb93cd08f81
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#57c17511-5824-4d0b-b855-853733cb27e7> ;
+	th:members <http://www.assero.co.uk/TRM#859bd0e9-96fd-4032-8d48-34bf8b5db37a> ;
 .
-<http://www.assero.co.uk/TRM#57c17511-5824-4d0b-b855-853733cb27e7>
+<http://www.assero.co.uk/TRM#859bd0e9-96fd-4032-8d48-34bf8b5db37a>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000029> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7de75fe4-ab33-4f96-90d3-c35008e81d3a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#47b0b0d4-cad8-4e64-a8c5-5788d782fac0> ;
 .
-<http://www.assero.co.uk/TRM#7de75fe4-ab33-4f96-90d3-c35008e81d3a>
+<http://www.assero.co.uk/TRM#47b0b0d4-cad8-4e64-a8c5-5788d782fac0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "10"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000012> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8ed5ad96-c870-457c-a4d7-33ab829d761c> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b33bd04b-6c67-462d-8af3-82982ab4b790> ;
 .
-<http://www.assero.co.uk/TRM#8ed5ad96-c870-457c-a4d7-33ab829d761c>
+<http://www.assero.co.uk/TRM#b33bd04b-6c67-462d-8af3-82982ab4b790>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000030> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d9c2ac7f-b2da-4221-8628-796a912d944a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5235f2af-f752-4452-9c45-1652c9dbe5c4> ;
 .
-<http://www.assero.co.uk/TRM#d9c2ac7f-b2da-4221-8628-796a912d944a>
+<http://www.assero.co.uk/TRM#5235f2af-f752-4452-9c45-1652c9dbe5c4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000031> ;
-	th:memberNext <http://www.assero.co.uk/TRM#e7554002-9ab8-44c1-98a8-19b969a5b7d4> ;
+	th:memberNext <http://www.assero.co.uk/TRM#418962f6-1d63-49cc-addd-518be7cba08b> ;
 .
-<http://www.assero.co.uk/TRM#e7554002-9ab8-44c1-98a8-19b969a5b7d4>
+<http://www.assero.co.uk/TRM#418962f6-1d63-49cc-addd-518be7cba08b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000032> ;
-	th:memberNext <http://www.assero.co.uk/TRM#6751bfe8-1b1d-4793-b484-ec030531c13c> ;
+	th:memberNext <http://www.assero.co.uk/TRM#dec6dc66-19be-4794-8824-455da8531dd8> ;
 .
-<http://www.assero.co.uk/TRM#6751bfe8-1b1d-4793-b484-ec030531c13c>
+<http://www.assero.co.uk/TRM#dec6dc66-19be-4794-8824-455da8531dd8>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V2#SN000005_S000033> ;
-	th:memberNext <http://www.assero.co.uk/TRM#3143e640-5d46-4c58-a0aa-b50b70699ac2> ;
+	th:memberNext <http://www.assero.co.uk/TRM#62b096a6-3b86-48ba-9522-63d510c05faf> ;
 .
-<http://www.assero.co.uk/TRM#3143e640-5d46-4c58-a0aa-b50b70699ac2>
+<http://www.assero.co.uk/TRM#62b096a6-3b86-48ba-9522-63d510c05faf>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000034> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c7b8b1f0-ba3d-4f52-a1db-2f00d99b443d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#0d124b01-df36-4226-8ce9-07c1a870309c> ;
 .
-<http://www.assero.co.uk/TRM#c7b8b1f0-ba3d-4f52-a1db-2f00d99b443d>
+<http://www.assero.co.uk/TRM#0d124b01-df36-4226-8ce9-07c1a870309c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "7"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000035> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7a9293b0-4f24-44c5-96a3-c8ef4db4ecda> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3962b5ea-b4c1-4bb2-8892-4174be11651f> ;
 .
-<http://www.assero.co.uk/TRM#7a9293b0-4f24-44c5-96a3-c8ef4db4ecda>
+<http://www.assero.co.uk/TRM#3962b5ea-b4c1-4bb2-8892-4174be11651f>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "8"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S000036> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0355ebcb-97c5-46b7-9610-413a66d54e8a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5a73c76b-ae81-4334-802c-b74f6ec5a773> ;
 .
-<http://www.assero.co.uk/TRM#0355ebcb-97c5-46b7-9610-413a66d54e8a>
+<http://www.assero.co.uk/TRM#5a73c76b-ae81-4334-802c-b74f6ec5a773>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "9"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000005/V1#SN000005_S003958> ;
 .
-<http://www.sanofi.com/SN000018/V1#SN000018>
-	th:isRanked :fff260e7-5ccc-44eb-9f09-bd172f01f4b6 ;
-.
-:fff260e7-5ccc-44eb-9f09-bd172f01f4b6
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#af3da333-9701-4348-9be3-80d2340e7980> ;
-.
-<http://www.assero.co.uk/TRM#af3da333-9701-4348-9be3-80d2340e7980>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000113> ;
-	th:memberNext <http://www.assero.co.uk/TRM#6738a8d9-7e57-4297-8012-ccde74252c78> ;
-.
-<http://www.assero.co.uk/TRM#6738a8d9-7e57-4297-8012-ccde74252c78>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000117> ;
-	th:memberNext <http://www.assero.co.uk/TRM#476176ad-f329-4c05-9cdc-8320dcfe34b2> ;
-.
-<http://www.assero.co.uk/TRM#476176ad-f329-4c05-9cdc-8320dcfe34b2>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000115> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d3a84b11-f455-4cac-a275-4dce5ffc8d21> ;
-.
-<http://www.assero.co.uk/TRM#d3a84b11-f455-4cac-a275-4dce5ffc8d21>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000114> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f4029878-d613-4366-9417-7090b5bc9caf> ;
-.
-<http://www.assero.co.uk/TRM#f4029878-d613-4366-9417-7090b5bc9caf>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000110> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c2a14415-bc4d-4cb9-b67a-cf3675841cf8> ;
-.
-<http://www.assero.co.uk/TRM#c2a14415-bc4d-4cb9-b67a-cf3675841cf8>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "6"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000109> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2dd4051f-2d36-4bf4-abb4-c469b87b7684> ;
-.
-<http://www.assero.co.uk/TRM#2dd4051f-2d36-4bf4-abb4-c469b87b7684>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "7"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000111> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7da2da13-53ea-47c5-9e22-eabc33987f9f> ;
-.
-<http://www.assero.co.uk/TRM#7da2da13-53ea-47c5-9e22-eabc33987f9f>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "8"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S000112> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f4bc39f7-1c10-439a-bc79-4186315e688c> ;
-.
-<http://www.assero.co.uk/TRM#f4bc39f7-1c10-439a-bc79-4186315e688c>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "9"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000018/V1#SN000018_S009907> ;
-.
-<http://www.sanofi.com/SN000020/V1#SN000020>
-	th:isRanked :fcc2dcbe-d73c-41fc-b240-362711bafd15 ;
-.
-:fcc2dcbe-d73c-41fc-b240-362711bafd15
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#7b652c64-8e45-43e9-a973-bfa08b6d2aec> ;
-.
-<http://www.assero.co.uk/TRM#7b652c64-8e45-43e9-a973-bfa08b6d2aec>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000020/V1#SN000020_S000142> ;
-	th:memberNext <http://www.assero.co.uk/TRM#e8d3cfc4-43bb-46c4-8fd3-a64eb13cc1b0> ;
-.
-<http://www.assero.co.uk/TRM#e8d3cfc4-43bb-46c4-8fd3-a64eb13cc1b0>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000020/V1#SN000020_S000141> ;
-	th:memberNext <http://www.assero.co.uk/TRM#a173c153-b7f8-495b-92e2-4cdc7c520dd6> ;
-.
-<http://www.assero.co.uk/TRM#a173c153-b7f8-495b-92e2-4cdc7c520dd6>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000020/V1#SN000020_S000144> ;
-	th:memberNext <http://www.assero.co.uk/TRM#75968e01-fe32-4a0d-8b64-a19ea2cb8de5> ;
-.
-<http://www.assero.co.uk/TRM#75968e01-fe32-4a0d-8b64-a19ea2cb8de5>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000020/V1#SN000020_S000143> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ec3858bf-64c2-44fd-84d6-b0dafae3cc49> ;
-.
-<http://www.assero.co.uk/TRM#ec3858bf-64c2-44fd-84d6-b0dafae3cc49>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000020/V1#SN000020_S000140> ;
-.
-<http://www.sanofi.com/SN000021/V1#SN000021>
-	th:isRanked :b25321dc-96d1-4b65-9c2b-9e37cdf7971a ;
-.
-:b25321dc-96d1-4b65-9c2b-9e37cdf7971a
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#983b5b84-d707-4f93-88fc-b5e7cfa2868f> ;
-.
-<http://www.assero.co.uk/TRM#983b5b84-d707-4f93-88fc-b5e7cfa2868f>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000021/V1#SN000021_S000145> ;
-	th:memberNext <http://www.assero.co.uk/TRM#849f4dfe-2ee4-439f-8b51-a2a689576fa8> ;
-.
-<http://www.assero.co.uk/TRM#849f4dfe-2ee4-439f-8b51-a2a689576fa8>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000021/V1#SN000021_S000127> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f1e25bf4-bd28-43d4-8e9e-12d1e8494d21> ;
-.
-<http://www.assero.co.uk/TRM#f1e25bf4-bd28-43d4-8e9e-12d1e8494d21>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000021/V1#SN000021_S000132> ;
-	th:memberNext <http://www.assero.co.uk/TRM#bb84d731-7fb7-41ba-9b81-98fbda9997fd> ;
-.
-<http://www.assero.co.uk/TRM#bb84d731-7fb7-41ba-9b81-98fbda9997fd>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000021/V1#SN000021_S000146> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4166c932-1cb4-404f-bfc7-0a78a40e96ac> ;
-.
-<http://www.assero.co.uk/TRM#4166c932-1cb4-404f-bfc7-0a78a40e96ac>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000021/V1#SN000021_S000147> ;
-.
 <http://www.sanofi.com/SN001260/V1#SN001260>
-	th:isRanked :237a55c8-3bf6-41f5-bad8-ba5b6b76fbbf ;
+	th:isRanked :71f5d0a5-72d3-412c-afbd-5332ec88e1ec ;
 .
-:237a55c8-3bf6-41f5-bad8-ba5b6b76fbbf
+:71f5d0a5-72d3-412c-afbd-5332ec88e1ec
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#fec4cdd3-5a3c-4f3c-9dab-57ef40ab9ebd> ;
+	th:members <http://www.assero.co.uk/TRM#853bc54b-4144-4a9e-892a-151aa0942e72> ;
 .
-<http://www.assero.co.uk/TRM#fec4cdd3-5a3c-4f3c-9dab-57ef40ab9ebd>
+<http://www.assero.co.uk/TRM#853bc54b-4144-4a9e-892a-151aa0942e72>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001260/V1#SN001260_S000243> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0829b9e3-e7eb-42ca-b28a-760e510e3214> ;
+	th:memberNext <http://www.assero.co.uk/TRM#0f205421-3bcf-41a8-8db1-74d2ae581720> ;
 .
-<http://www.assero.co.uk/TRM#0829b9e3-e7eb-42ca-b28a-760e510e3214>
+<http://www.assero.co.uk/TRM#0f205421-3bcf-41a8-8db1-74d2ae581720>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001260/V1#SN001260_S001739> ;
-	th:memberNext <http://www.assero.co.uk/TRM#a5b18f9e-dbc3-4110-8bf6-e97fc04cfe45> ;
+	th:memberNext <http://www.assero.co.uk/TRM#c9589d6d-388f-4de9-944d-f4b8bad703c7> ;
 .
-<http://www.assero.co.uk/TRM#a5b18f9e-dbc3-4110-8bf6-e97fc04cfe45>
+<http://www.assero.co.uk/TRM#c9589d6d-388f-4de9-944d-f4b8bad703c7>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001260/V1#SN001260_S001745> ;
 .
 <http://www.sanofi.com/SN001259/V1#SN001259>
-	th:isRanked :3e050322-8291-4783-a688-2a909c2ae2ef ;
+	th:isRanked :741e4de1-4192-4546-babd-985b5ef890ca ;
 .
-:3e050322-8291-4783-a688-2a909c2ae2ef
+:741e4de1-4192-4546-babd-985b5ef890ca
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#7afa2c51-7edc-4789-8bc5-680db775de81> ;
+	th:members <http://www.assero.co.uk/TRM#b657ac58-af20-4576-9387-8da1d8bc3088> ;
 .
-<http://www.assero.co.uk/TRM#7afa2c51-7edc-4789-8bc5-680db775de81>
+<http://www.assero.co.uk/TRM#b657ac58-af20-4576-9387-8da1d8bc3088>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001259/V1#SN001259_S000244> ;
-	th:memberNext <http://www.assero.co.uk/TRM#308c6193-11e9-479d-9b23-c57cdde87e83> ;
+	th:memberNext <http://www.assero.co.uk/TRM#35aa468a-2e9b-4eb7-87ec-3d0d7c7c8b81> ;
 .
-<http://www.assero.co.uk/TRM#308c6193-11e9-479d-9b23-c57cdde87e83>
+<http://www.assero.co.uk/TRM#35aa468a-2e9b-4eb7-87ec-3d0d7c7c8b81>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001259/V1#SN001259_S001740> ;
-	th:memberNext <http://www.assero.co.uk/TRM#59305713-dc0c-4071-9e06-5886d8b8b70c> ;
+	th:memberNext <http://www.assero.co.uk/TRM#486d4ca4-9b34-4d21-8468-7c1a65be5002> ;
 .
-<http://www.assero.co.uk/TRM#59305713-dc0c-4071-9e06-5886d8b8b70c>
+<http://www.assero.co.uk/TRM#486d4ca4-9b34-4d21-8468-7c1a65be5002>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001259/V1#SN001259_S001746> ;
 .
 <http://www.sanofi.com/SN001264/V1#SN001264>
-	th:isRanked :625055dd-f7be-4328-9b17-9057251071c4 ;
+	th:isRanked :36657452-c51c-4c78-9afc-1396aad84d70 ;
 .
-:625055dd-f7be-4328-9b17-9057251071c4
+:36657452-c51c-4c78-9afc-1396aad84d70
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#c38d6480-5f87-42b6-abce-0f0ba953b8fd> ;
+	th:members <http://www.assero.co.uk/TRM#66f41819-8043-498e-93d0-45064d7e8ef9> ;
 .
-<http://www.assero.co.uk/TRM#c38d6480-5f87-42b6-abce-0f0ba953b8fd>
+<http://www.assero.co.uk/TRM#66f41819-8043-498e-93d0-45064d7e8ef9>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001264/V1#SN001264_S000245> ;
-	th:memberNext <http://www.assero.co.uk/TRM#10180935-2aa1-4a94-be23-4a36ac898ae5> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bdd96f0c-7e8c-4a17-ab81-dcfeda81db5c> ;
 .
-<http://www.assero.co.uk/TRM#10180935-2aa1-4a94-be23-4a36ac898ae5>
+<http://www.assero.co.uk/TRM#bdd96f0c-7e8c-4a17-ab81-dcfeda81db5c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001264/V1#SN001264_S001741> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2fc10d67-c8cd-4d36-b348-d5221c9aa477> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b9b05b4b-c1c7-41fd-b718-6970bcf0315b> ;
 .
-<http://www.assero.co.uk/TRM#2fc10d67-c8cd-4d36-b348-d5221c9aa477>
+<http://www.assero.co.uk/TRM#b9b05b4b-c1c7-41fd-b718-6970bcf0315b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001264/V1#SN001264_S001747> ;
 .
 <http://www.sanofi.com/SN001263/V1#SN001263>
-	th:isRanked :016d918a-5c23-41b7-854b-c71ecbd1916e ;
+	th:isRanked :47b3ca79-daa0-4234-a43c-a3e8c420a71e ;
 .
-:016d918a-5c23-41b7-854b-c71ecbd1916e
+:47b3ca79-daa0-4234-a43c-a3e8c420a71e
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#a8b08a85-4984-4ffd-8965-f33e13e8a8a1> ;
+	th:members <http://www.assero.co.uk/TRM#93b5d9eb-9a8a-474e-b4b4-199c95b08a8c> ;
 .
-<http://www.assero.co.uk/TRM#a8b08a85-4984-4ffd-8965-f33e13e8a8a1>
+<http://www.assero.co.uk/TRM#93b5d9eb-9a8a-474e-b4b4-199c95b08a8c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001263/V1#SN001263_S000246> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cb4754a8-04ef-4a64-88e8-d1a004680241> ;
+	th:memberNext <http://www.assero.co.uk/TRM#0b2d5e96-bcb2-4b6c-9a28-1f60ad3a38b3> ;
 .
-<http://www.assero.co.uk/TRM#cb4754a8-04ef-4a64-88e8-d1a004680241>
+<http://www.assero.co.uk/TRM#0b2d5e96-bcb2-4b6c-9a28-1f60ad3a38b3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001263/V1#SN001263_S001742> ;
-	th:memberNext <http://www.assero.co.uk/TRM#aa8d380e-f7a5-43b6-a1f5-25f91e3cfb41> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ab80fa07-9ef4-4ffe-9091-891bbdbbb8fa> ;
 .
-<http://www.assero.co.uk/TRM#aa8d380e-f7a5-43b6-a1f5-25f91e3cfb41>
+<http://www.assero.co.uk/TRM#ab80fa07-9ef4-4ffe-9091-891bbdbbb8fa>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001263/V1#SN001263_S001748> ;
 .
 <http://www.sanofi.com/SN001262/V1#SN001262>
-	th:isRanked :e057c0fd-218c-4c19-8794-0d38a3105e54 ;
+	th:isRanked :eb322108-77e9-4bd5-867e-9af9580186a8 ;
 .
-:e057c0fd-218c-4c19-8794-0d38a3105e54
+:eb322108-77e9-4bd5-867e-9af9580186a8
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#98c41c43-1e40-4c97-83ac-27285bf2b031> ;
+	th:members <http://www.assero.co.uk/TRM#93b22c36-7252-4d4e-858d-03bd538f88d0> ;
 .
-<http://www.assero.co.uk/TRM#98c41c43-1e40-4c97-83ac-27285bf2b031>
+<http://www.assero.co.uk/TRM#93b22c36-7252-4d4e-858d-03bd538f88d0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001262/V1#SN001262_S000247> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cea553b2-c65c-4bc1-a521-a8e518b31424> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f5c2ddb6-4a66-4c9b-be80-96dcf55d2842> ;
 .
-<http://www.assero.co.uk/TRM#cea553b2-c65c-4bc1-a521-a8e518b31424>
+<http://www.assero.co.uk/TRM#f5c2ddb6-4a66-4c9b-be80-96dcf55d2842>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001262/V1#SN001262_S001743> ;
-	th:memberNext <http://www.assero.co.uk/TRM#74d85243-5a54-49a1-82ed-74bff83bd073> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4bb842f5-ec96-4079-ab3e-9eb499506536> ;
 .
-<http://www.assero.co.uk/TRM#74d85243-5a54-49a1-82ed-74bff83bd073>
+<http://www.assero.co.uk/TRM#4bb842f5-ec96-4079-ab3e-9eb499506536>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001262/V1#SN001262_S001749> ;
 .
 <http://www.sanofi.com/SN001261/V1#SN001261>
-	th:isRanked :6f9b88bf-dd5c-414e-8368-3e220ba9474f ;
+	th:isRanked :bb24e277-3a2d-47a4-ba13-5be6cdea225c ;
 .
-:6f9b88bf-dd5c-414e-8368-3e220ba9474f
+:bb24e277-3a2d-47a4-ba13-5be6cdea225c
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#8a40f808-1689-439a-8efa-b1a7089334af> ;
+	th:members <http://www.assero.co.uk/TRM#aab8ac11-4195-43d2-b55c-da4466dc363e> ;
 .
-<http://www.assero.co.uk/TRM#8a40f808-1689-439a-8efa-b1a7089334af>
+<http://www.assero.co.uk/TRM#aab8ac11-4195-43d2-b55c-da4466dc363e>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001261/V1#SN001261_S000248> ;
-	th:memberNext <http://www.assero.co.uk/TRM#3468615b-f398-40b9-abd5-b42ede6b9547> ;
+	th:memberNext <http://www.assero.co.uk/TRM#97f033ef-d80b-4f11-aefa-032fbba7d174> ;
 .
-<http://www.assero.co.uk/TRM#3468615b-f398-40b9-abd5-b42ede6b9547>
+<http://www.assero.co.uk/TRM#97f033ef-d80b-4f11-aefa-032fbba7d174>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001261/V1#SN001261_S001744> ;
-	th:memberNext <http://www.assero.co.uk/TRM#b68d2a38-1cae-4186-be89-be8ef474a75f> ;
+	th:memberNext <http://www.assero.co.uk/TRM#7e9b50f5-619a-497f-8a85-21cd30a55fee> ;
 .
-<http://www.assero.co.uk/TRM#b68d2a38-1cae-4186-be89-be8ef474a75f>
+<http://www.assero.co.uk/TRM#7e9b50f5-619a-497f-8a85-21cd30a55fee>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001261/V1#SN001261_S001750> ;
 .
 <http://www.sanofi.com/SN001030/V2#SN001030>
-	th:isRanked :efab5d06-0034-4f9c-9bbb-1d8390538368 ;
+	th:isRanked :b4387129-2d69-489e-97a6-cf7e1c6149fb ;
 .
-:efab5d06-0034-4f9c-9bbb-1d8390538368
+:b4387129-2d69-489e-97a6-cf7e1c6149fb
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#e6301999-c054-466c-91fc-52723b76157c> ;
+	th:members <http://www.assero.co.uk/TRM#9c2aa103-47c6-426a-8113-3a72d1246499> ;
 .
-<http://www.assero.co.uk/TRM#e6301999-c054-466c-91fc-52723b76157c>
+<http://www.assero.co.uk/TRM#9c2aa103-47c6-426a-8113-3a72d1246499>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001030/V2#SN001030_S011594> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4b3f8e37-6f24-43f4-95a2-df09797c649a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#234d44f9-a817-45bb-8764-81dc8d37496d> ;
 .
-<http://www.assero.co.uk/TRM#4b3f8e37-6f24-43f4-95a2-df09797c649a>
+<http://www.assero.co.uk/TRM#234d44f9-a817-45bb-8764-81dc8d37496d>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011595> ;
-	th:memberNext <http://www.assero.co.uk/TRM#fdd8abb0-782f-44b1-84d5-43048e5dd307> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f6256645-b299-4067-94c4-e7097c331cca> ;
 .
-<http://www.assero.co.uk/TRM#fdd8abb0-782f-44b1-84d5-43048e5dd307>
+<http://www.assero.co.uk/TRM#f6256645-b299-4067-94c4-e7097c331cca>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011596> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2fbd92ae-5085-4c18-8282-743cb3e2fe1d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#949769e9-7ab8-4e1d-8d9d-d833b1808d4b> ;
 .
-<http://www.assero.co.uk/TRM#2fbd92ae-5085-4c18-8282-743cb3e2fe1d>
+<http://www.assero.co.uk/TRM#949769e9-7ab8-4e1d-8d9d-d833b1808d4b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011597> ;
-	th:memberNext <http://www.assero.co.uk/TRM#908dff21-6830-412d-a7c3-66d0847aa204> ;
+	th:memberNext <http://www.assero.co.uk/TRM#40015253-937b-442d-822f-6fbccccb5cbd> ;
 .
-<http://www.assero.co.uk/TRM#908dff21-6830-412d-a7c3-66d0847aa204>
+<http://www.assero.co.uk/TRM#40015253-937b-442d-822f-6fbccccb5cbd>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011598> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ab20ce8e-e580-49d1-bc9d-20dc718940c0> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f6195ce2-5348-4e22-ba68-2b61e844276c> ;
 .
-<http://www.assero.co.uk/TRM#ab20ce8e-e580-49d1-bc9d-20dc718940c0>
+<http://www.assero.co.uk/TRM#f6195ce2-5348-4e22-ba68-2b61e844276c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011599> ;
 .
-<http://www.sanofi.com/SN001073/V1#SN001073>
-	th:isRanked :7e369905-7905-4651-9f86-e0b85f02c499 ;
-.
-:7e369905-7905-4651-9f86-e0b85f02c499
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#96b7343e-3010-4325-90fd-50555653589d> ;
-.
-<http://www.assero.co.uk/TRM#96b7343e-3010-4325-90fd-50555653589d>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S003307> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ae7eb945-281a-48b0-9d88-79a5be4a5e2c> ;
-.
-<http://www.assero.co.uk/TRM#ae7eb945-281a-48b0-9d88-79a5be4a5e2c>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S030801> ;
-	th:memberNext <http://www.assero.co.uk/TRM#5f65792e-a1c1-4277-9a20-cdf6f9e15627> ;
-.
-<http://www.assero.co.uk/TRM#5f65792e-a1c1-4277-9a20-cdf6f9e15627>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S003309> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d127f039-0036-41d2-b51f-bea446f9ea83> ;
-.
-<http://www.assero.co.uk/TRM#d127f039-0036-41d2-b51f-bea446f9ea83>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S003310> ;
-	th:memberNext <http://www.assero.co.uk/TRM#68c89ee6-e977-4274-989b-300b87e76b1a> ;
-.
-<http://www.assero.co.uk/TRM#68c89ee6-e977-4274-989b-300b87e76b1a>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S003311> ;
-	th:memberNext <http://www.assero.co.uk/TRM#77732ced-2f21-46b5-9cde-4dacda81e358> ;
-.
-<http://www.assero.co.uk/TRM#77732ced-2f21-46b5-9cde-4dacda81e358>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "6"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN001073/V1#SN001073_S030802> ;
-.
 <http://www.sanofi.com/SN001072/V2#SN001072>
-	th:isRanked :d4d7feac-ea38-4ab3-8e82-e5337950db45 ;
+	th:isRanked :d38f4241-7c9c-4915-8190-9e861d76c565 ;
 .
-:d4d7feac-ea38-4ab3-8e82-e5337950db45
+:d38f4241-7c9c-4915-8190-9e861d76c565
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#a0c995aa-b6bc-45a5-bc20-25fdf03928f6> ;
+	th:members <http://www.assero.co.uk/TRM#35f061c7-6aaf-4450-aa7c-8bf182072e2d> ;
 .
-<http://www.assero.co.uk/TRM#a0c995aa-b6bc-45a5-bc20-25fdf03928f6>
+<http://www.assero.co.uk/TRM#35f061c7-6aaf-4450-aa7c-8bf182072e2d>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011600> ;
-	th:memberNext <http://www.assero.co.uk/TRM#92f99f79-eeb5-443a-b359-e4eb6cf947e6> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a4057dad-2bcd-47c7-90f9-5a2d011183f6> ;
 .
-<http://www.assero.co.uk/TRM#92f99f79-eeb5-443a-b359-e4eb6cf947e6>
+<http://www.assero.co.uk/TRM#a4057dad-2bcd-47c7-90f9-5a2d011183f6>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011601> ;
-	th:memberNext <http://www.assero.co.uk/TRM#3b8f2b21-ba2d-4df8-a668-bd3538c34a0a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#77311cdf-5c3f-4053-bb53-b12aa78a55a0> ;
 .
-<http://www.assero.co.uk/TRM#3b8f2b21-ba2d-4df8-a668-bd3538c34a0a>
+<http://www.assero.co.uk/TRM#77311cdf-5c3f-4053-bb53-b12aa78a55a0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011602> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d10c53fa-3df6-4033-a774-7f489004f09d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ba50b432-cf4a-47af-aa88-9411c0087c24> ;
 .
-<http://www.assero.co.uk/TRM#d10c53fa-3df6-4033-a774-7f489004f09d>
+<http://www.assero.co.uk/TRM#ba50b432-cf4a-47af-aa88-9411c0087c24>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011603> ;
-	th:memberNext <http://www.assero.co.uk/TRM#660ab9ea-101b-4da2-9a56-3becbfa791ca> ;
+	th:memberNext <http://www.assero.co.uk/TRM#7253c071-8e2a-455b-b64d-c8c06077e694> ;
 .
-<http://www.assero.co.uk/TRM#660ab9ea-101b-4da2-9a56-3becbfa791ca>
+<http://www.assero.co.uk/TRM#7253c071-8e2a-455b-b64d-c8c06077e694>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011604> ;
-	th:memberNext <http://www.assero.co.uk/TRM#5e156585-5bb4-407f-b920-9a4e15fd0bc9> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bb1a3237-7bdc-461d-acd2-a535c672671a> ;
 .
-<http://www.assero.co.uk/TRM#5e156585-5bb4-407f-b920-9a4e15fd0bc9>
+<http://www.assero.co.uk/TRM#bb1a3237-7bdc-461d-acd2-a535c672671a>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001072/V2#SN001072_S011605> ;
 .
 <http://www.sanofi.com/SN003017/V2#SN003017>
-	th:isRanked :1a0a27c4-2f90-4f33-b261-383477960b4b ;
+	th:isRanked :cd0ab687-3ab0-4057-b6e4-f975432b7a34 ;
 .
-:1a0a27c4-2f90-4f33-b261-383477960b4b
+:cd0ab687-3ab0-4057-b6e4-f975432b7a34
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#543147ab-4e25-4f3c-b49b-33c93f4b7798> ;
+	th:members <http://www.assero.co.uk/TRM#9020cad0-7178-41ce-835d-1ee6aa93b914> ;
 .
-<http://www.assero.co.uk/TRM#543147ab-4e25-4f3c-b49b-33c93f4b7798>
+<http://www.assero.co.uk/TRM#9020cad0-7178-41ce-835d-1ee6aa93b914>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011595> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ba642d59-3261-4e43-a575-cc1fb4d4c885> ;
+	th:memberNext <http://www.assero.co.uk/TRM#6f1dc6ed-e02b-45c6-80df-678f68f32d2b> ;
 .
-<http://www.assero.co.uk/TRM#ba642d59-3261-4e43-a575-cc1fb4d4c885>
+<http://www.assero.co.uk/TRM#6f1dc6ed-e02b-45c6-80df-678f68f32d2b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011596> ;
-	th:memberNext <http://www.assero.co.uk/TRM#763d6e40-55e6-47f9-96c9-ca5f7fa45ef1> ;
+	th:memberNext <http://www.assero.co.uk/TRM#2a70830e-fff1-4409-bc64-a0e79002c1e4> ;
 .
-<http://www.assero.co.uk/TRM#763d6e40-55e6-47f9-96c9-ca5f7fa45ef1>
+<http://www.assero.co.uk/TRM#2a70830e-fff1-4409-bc64-a0e79002c1e4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011597> ;
-	th:memberNext <http://www.assero.co.uk/TRM#68956d38-0b73-4a2a-8b54-0f09a7c81a31> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a3b91570-5d61-4b19-9749-77f70a5f0f61> ;
 .
-<http://www.assero.co.uk/TRM#68956d38-0b73-4a2a-8b54-0f09a7c81a31>
+<http://www.assero.co.uk/TRM#a3b91570-5d61-4b19-9749-77f70a5f0f61>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011598> ;
-	th:memberNext <http://www.assero.co.uk/TRM#89963558-79aa-4fcb-a596-f876e9559445> ;
+	th:memberNext <http://www.assero.co.uk/TRM#af9aa24f-1f27-4204-b4cc-1d6829b4e17b> ;
 .
-<http://www.assero.co.uk/TRM#89963558-79aa-4fcb-a596-f876e9559445>
+<http://www.assero.co.uk/TRM#af9aa24f-1f27-4204-b4cc-1d6829b4e17b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN003017/V2#SN003017_S011599> ;
 .
 <http://www.sanofi.com/SN001020/V2#SN001020>
-	th:isRanked :bd4e038e-688a-42a2-b702-c971effa4a3b ;
+	th:isRanked :781a083c-ed42-4018-aafc-88aedf6f5557 ;
 .
-:bd4e038e-688a-42a2-b702-c971effa4a3b
+:781a083c-ed42-4018-aafc-88aedf6f5557
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#05e62aeb-5c72-4c4d-a5c5-0f8bd374d250> ;
+	th:members <http://www.assero.co.uk/TRM#0a747246-afde-46a8-949a-41a1b3ade6a1> ;
 .
-<http://www.assero.co.uk/TRM#05e62aeb-5c72-4c4d-a5c5-0f8bd374d250>
+<http://www.assero.co.uk/TRM#0a747246-afde-46a8-949a-41a1b3ade6a1>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009928> ;
-	th:memberNext <http://www.assero.co.uk/TRM#557aa673-ef9b-49ed-81bb-52bec8bd910b> ;
+	th:memberNext <http://www.assero.co.uk/TRM#41031a3b-c26e-4891-a763-77561fbfdd36> ;
 .
-<http://www.assero.co.uk/TRM#557aa673-ef9b-49ed-81bb-52bec8bd910b>
+<http://www.assero.co.uk/TRM#41031a3b-c26e-4891-a763-77561fbfdd36>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009929> ;
-	th:memberNext <http://www.assero.co.uk/TRM#28e46251-cdcc-4d7f-bee2-3aa9383a8be6> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b51be258-1f3d-4d49-b517-7338f598a23f> ;
 .
-<http://www.assero.co.uk/TRM#28e46251-cdcc-4d7f-bee2-3aa9383a8be6>
+<http://www.assero.co.uk/TRM#b51be258-1f3d-4d49-b517-7338f598a23f>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009930> ;
-	th:memberNext <http://www.assero.co.uk/TRM#434fa108-6410-41c9-8aa7-d7bd6928140d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#8b8b3e75-9c1a-4cf1-8492-e60bc9355df8> ;
 .
-<http://www.assero.co.uk/TRM#434fa108-6410-41c9-8aa7-d7bd6928140d>
+<http://www.assero.co.uk/TRM#8b8b3e75-9c1a-4cf1-8492-e60bc9355df8>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009931> ;
-	th:memberNext <http://www.assero.co.uk/TRM#20fce5d9-b4ac-4c72-af48-f5be19689d09> ;
+	th:memberNext <http://www.assero.co.uk/TRM#d177f7f4-083d-454a-8796-b465b599c98a> ;
 .
-<http://www.assero.co.uk/TRM#20fce5d9-b4ac-4c72-af48-f5be19689d09>
+<http://www.assero.co.uk/TRM#d177f7f4-083d-454a-8796-b465b599c98a>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V2#SN001020_S009932> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f43e563c-c385-4190-a9cd-e665a5db1fd7> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a39e2679-52d7-43e5-80b2-9294893e6adc> ;
 .
-<http://www.assero.co.uk/TRM#f43e563c-c385-4190-a9cd-e665a5db1fd7>
+<http://www.assero.co.uk/TRM#a39e2679-52d7-43e5-80b2-9294893e6adc>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009933> ;
-	th:memberNext <http://www.assero.co.uk/TRM#fa207075-87fc-4b85-b6c7-a742edf98b70> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b4b760d5-033c-4a4d-8a52-bef3e6873cb8> ;
 .
-<http://www.assero.co.uk/TRM#fa207075-87fc-4b85-b6c7-a742edf98b70>
+<http://www.assero.co.uk/TRM#b4b760d5-033c-4a4d-8a52-bef3e6873cb8>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "7"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009934> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2f70b58b-f877-4367-b5e6-c98543af2c20> ;
+	th:memberNext <http://www.assero.co.uk/TRM#551d5231-ec30-47e8-8b8b-a1b5c865a6fc> ;
 .
-<http://www.assero.co.uk/TRM#2f70b58b-f877-4367-b5e6-c98543af2c20>
+<http://www.assero.co.uk/TRM#551d5231-ec30-47e8-8b8b-a1b5c865a6fc>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "8"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V1#SN001020_S009935> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ea90dad6-dece-40f3-bfd8-b6be62065cb1> ;
+	th:memberNext <http://www.assero.co.uk/TRM#b55c3f4e-dab3-49f2-857b-8d26cec62a01> ;
 .
-<http://www.assero.co.uk/TRM#ea90dad6-dece-40f3-bfd8-b6be62065cb1>
+<http://www.assero.co.uk/TRM#b55c3f4e-dab3-49f2-857b-8d26cec62a01>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "9"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001020/V2#SN001020_S009936> ;
 .
 <http://www.sanofi.com/SN001915/V2#SN001915>
-	th:isRanked :e701df73-76f2-4a78-ad2a-91f54b4667cd ;
+	th:isRanked :e542ca7a-f2c8-4bf4-b5e2-e8e5af56fa58 ;
 .
-:e701df73-76f2-4a78-ad2a-91f54b4667cd
+:e542ca7a-f2c8-4bf4-b5e2-e8e5af56fa58
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#dc13336d-d3c7-451a-9bce-de22c2aebd53> ;
+	th:members <http://www.assero.co.uk/TRM#aaaec9c0-51a1-45b5-be4e-de4939ff423e> ;
 .
-<http://www.assero.co.uk/TRM#dc13336d-d3c7-451a-9bce-de22c2aebd53>
+<http://www.assero.co.uk/TRM#aaaec9c0-51a1-45b5-be4e-de4939ff423e>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V1#SN001915_S004908> ;
-	th:memberNext <http://www.assero.co.uk/TRM#09df7547-664f-4cc4-8973-fbf31584d130> ;
+	th:memberNext <http://www.assero.co.uk/TRM#1e05b908-6013-44fe-97b8-6ba0bf8f8564> ;
 .
-<http://www.assero.co.uk/TRM#09df7547-664f-4cc4-8973-fbf31584d130>
+<http://www.assero.co.uk/TRM#1e05b908-6013-44fe-97b8-6ba0bf8f8564>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C119016/V42#C119016_C95802> ;
-	th:memberNext <http://www.assero.co.uk/TRM#111e83c7-9b7a-42cc-a393-0a0107a29a46> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3f4a6a5e-64e4-4153-9587-70a9daed4e95> ;
 .
-<http://www.assero.co.uk/TRM#111e83c7-9b7a-42cc-a393-0a0107a29a46>
+<http://www.assero.co.uk/TRM#3f4a6a5e-64e4-4153-9587-70a9daed4e95>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V1#SN001915_S001617> ;
-	th:memberNext <http://www.assero.co.uk/TRM#bca69f3b-3d8f-4846-84b8-3e201e2a7209> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5a157e29-ea04-4158-89bb-98721234760d> ;
 .
-<http://www.assero.co.uk/TRM#bca69f3b-3d8f-4846-84b8-3e201e2a7209>
+<http://www.assero.co.uk/TRM#5a157e29-ea04-4158-89bb-98721234760d>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.cdisc.org/C119016/V42#C119016_C95803> ;
-	th:memberNext <http://www.assero.co.uk/TRM#57f3bfb4-c7df-4762-9171-f2d170e194c1> ;
+	th:memberNext <http://www.assero.co.uk/TRM#97dbb85f-412c-4ef5-ad49-5aa8b8614873> ;
 .
-<http://www.assero.co.uk/TRM#57f3bfb4-c7df-4762-9171-f2d170e194c1>
+<http://www.assero.co.uk/TRM#97dbb85f-412c-4ef5-ad49-5aa8b8614873>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V1#SN001915_S030800> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c5e124cc-5285-4d2c-a88a-8a7086be8211> ;
+	th:memberNext <http://www.assero.co.uk/TRM#259a4dbf-8ea8-45bd-84b7-bbc6f3cbe2f9> ;
 .
-<http://www.assero.co.uk/TRM#c5e124cc-5285-4d2c-a88a-8a7086be8211>
+<http://www.assero.co.uk/TRM#259a4dbf-8ea8-45bd-84b7-bbc6f3cbe2f9>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "6"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V2#SN001915_S004909> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4b6871d5-bc42-4239-b660-2f0e78ef902a> ;
+	th:memberNext <http://www.assero.co.uk/TRM#02f8ae73-835f-413b-b634-b6f97471d188> ;
 .
-<http://www.assero.co.uk/TRM#4b6871d5-bc42-4239-b660-2f0e78ef902a>
+<http://www.assero.co.uk/TRM#02f8ae73-835f-413b-b634-b6f97471d188>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "7"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V1#SN001915_S004907> ;
-	th:memberNext <http://www.assero.co.uk/TRM#107cea9d-1ffe-46a0-acf9-78b4138e2b8e> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ae0883eb-a840-466f-826e-0acaba8a70a5> ;
 .
-<http://www.assero.co.uk/TRM#107cea9d-1ffe-46a0-acf9-78b4138e2b8e>
+<http://www.assero.co.uk/TRM#ae0883eb-a840-466f-826e-0acaba8a70a5>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "8"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001915/V2#SN001915_S001630> ;
 .
-<http://www.sanofi.com/SN000193/V1#SN000193>
-	th:isRanked :307581cc-308e-4d34-8933-6704bf4fbeab ;
-.
-:307581cc-308e-4d34-8933-6704bf4fbeab
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#afa97e75-9d4c-445a-9ef2-6a3a49e8219f> ;
-.
-<http://www.assero.co.uk/TRM#afa97e75-9d4c-445a-9ef2-6a3a49e8219f>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002088> ;
-	th:memberNext <http://www.assero.co.uk/TRM#dba965d0-8f4b-4e6c-b51b-c730942d1a14> ;
-.
-<http://www.assero.co.uk/TRM#dba965d0-8f4b-4e6c-b51b-c730942d1a14>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002089> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ded2a445-7372-4351-ade7-85cfe4f9a350> ;
-.
-<http://www.assero.co.uk/TRM#ded2a445-7372-4351-ade7-85cfe4f9a350>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002084> ;
-	th:memberNext <http://www.assero.co.uk/TRM#5af1f4eb-6101-4eb0-93cd-59d029a6f06d> ;
-.
-<http://www.assero.co.uk/TRM#5af1f4eb-6101-4eb0-93cd-59d029a6f06d>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002085> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c610cd28-6422-4f30-8b08-d920556911c7> ;
-.
-<http://www.assero.co.uk/TRM#c610cd28-6422-4f30-8b08-d920556911c7>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002086> ;
-	th:memberNext <http://www.assero.co.uk/TRM#73c8b7f1-b09b-40f3-8ca2-575b7d67843e> ;
-.
-<http://www.assero.co.uk/TRM#73c8b7f1-b09b-40f3-8ca2-575b7d67843e>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "6"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S000214> ;
-.
 <http://www.sanofi.com/SN003034/V2#SN003034>
-	th:isRanked :57b15151-f5af-4e26-a09b-5f8314611d29 ;
+	th:isRanked :2df5877a-0c12-4857-af49-a14c02729731 ;
 .
-:57b15151-f5af-4e26-a09b-5f8314611d29
+:2df5877a-0c12-4857-af49-a14c02729731
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#3a8fec11-750e-489a-b157-6d0498dd3756> ;
+	th:members <http://www.assero.co.uk/TRM#c0674ba5-4f5a-4170-8b7f-c0a2cb4ad407> ;
 .
-<http://www.assero.co.uk/TRM#3a8fec11-750e-489a-b157-6d0498dd3756>
+<http://www.assero.co.uk/TRM#c0674ba5-4f5a-4170-8b7f-c0a2cb4ad407>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002088> ;
-	th:memberNext <http://www.assero.co.uk/TRM#3d41d383-6f01-44ce-b9d2-14887025d9b2> ;
+	th:memberNext <http://www.assero.co.uk/TRM#d2e1eb7d-1e04-43e4-8545-7e35737c1a03> ;
 .
-<http://www.assero.co.uk/TRM#3d41d383-6f01-44ce-b9d2-14887025d9b2>
+<http://www.assero.co.uk/TRM#d2e1eb7d-1e04-43e4-8545-7e35737c1a03>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002089> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c0ea2dd8-2e3a-4b91-9bf9-edf0a64f6380> ;
+	th:memberNext <http://www.assero.co.uk/TRM#91dba580-79af-49ac-8385-01c58f28d81f> ;
 .
-<http://www.assero.co.uk/TRM#c0ea2dd8-2e3a-4b91-9bf9-edf0a64f6380>
+<http://www.assero.co.uk/TRM#91dba580-79af-49ac-8385-01c58f28d81f>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002084> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0889f233-1ceb-4234-abca-5fd7abb57088> ;
+	th:memberNext <http://www.assero.co.uk/TRM#fdcbc7cf-a68f-4dac-a4a5-3047c01d9937> ;
 .
-<http://www.assero.co.uk/TRM#0889f233-1ceb-4234-abca-5fd7abb57088>
+<http://www.assero.co.uk/TRM#fdcbc7cf-a68f-4dac-a4a5-3047c01d9937>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002085> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0dceee36-4e56-4fd8-ad84-41d30f0bb935> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3de836a1-626a-4971-9434-860644c3b186> ;
 .
-<http://www.assero.co.uk/TRM#0dceee36-4e56-4fd8-ad84-41d30f0bb935>
+<http://www.assero.co.uk/TRM#3de836a1-626a-4971-9434-860644c3b186>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000193/V1#SN000193_S002086> ;
 .
 <http://www.sanofi.com/SN000155/V1#SN000155>
-	th:isRanked :7ce7d09f-be13-4f91-8930-28adb61c5bb8 ;
+	th:isRanked :72dfc28f-fe2d-48d8-b49f-5fbcc85df92f ;
 .
-:7ce7d09f-be13-4f91-8930-28adb61c5bb8
+:72dfc28f-fe2d-48d8-b49f-5fbcc85df92f
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#fc6d6ba5-2fd9-4298-8c6a-978098871220> ;
+	th:members <http://www.assero.co.uk/TRM#b8f769cf-6bce-4e14-b241-0afeaef8ead0> ;
 .
-<http://www.assero.co.uk/TRM#fc6d6ba5-2fd9-4298-8c6a-978098871220>
+<http://www.assero.co.uk/TRM#b8f769cf-6bce-4e14-b241-0afeaef8ead0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000155/V1#SN000155_S012915> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8d684ff4-816f-42c8-bb52-a62cca66d486> ;
+	th:memberNext <http://www.assero.co.uk/TRM#cd1d1970-0bc7-4e92-b108-5ccf47f3c0ed> ;
 .
-<http://www.assero.co.uk/TRM#8d684ff4-816f-42c8-bb52-a62cca66d486>
+<http://www.assero.co.uk/TRM#cd1d1970-0bc7-4e92-b108-5ccf47f3c0ed>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000155/V1#SN000155_S012916> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8d6dfa9c-a77b-40db-9a9d-054685170ed5> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5cef7a9d-09b7-4671-80c4-580a229dcc62> ;
 .
-<http://www.assero.co.uk/TRM#8d6dfa9c-a77b-40db-9a9d-054685170ed5>
+<http://www.assero.co.uk/TRM#5cef7a9d-09b7-4671-80c4-580a229dcc62>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000155/V1#SN000155_S012917> ;
-	th:memberNext <http://www.assero.co.uk/TRM#5123335b-b8bd-43a2-8227-9b23abaf4071> ;
+	th:memberNext <http://www.assero.co.uk/TRM#dec4ca46-6b0f-40e8-9adb-14198c887701> ;
 .
-<http://www.assero.co.uk/TRM#5123335b-b8bd-43a2-8227-9b23abaf4071>
+<http://www.assero.co.uk/TRM#dec4ca46-6b0f-40e8-9adb-14198c887701>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000155/V1#SN000155_S012918> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d857edc2-423c-4910-9fa5-69d6cee6a91c> ;
+	th:memberNext <http://www.assero.co.uk/TRM#335fa960-abbf-4e76-8c38-f76e30b5c4f3> ;
 .
-<http://www.assero.co.uk/TRM#d857edc2-423c-4910-9fa5-69d6cee6a91c>
+<http://www.assero.co.uk/TRM#335fa960-abbf-4e76-8c38-f76e30b5c4f3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000155/V1#SN000155_S012919> ;
 .
 <http://www.sanofi.com/SN000156/V1#SN000156>
-	th:isRanked :3a015c02-8095-4646-9829-c52525e2543e ;
+	th:isRanked :ed9079d4-28b2-4613-963d-5f850e85ff17 ;
 .
-:3a015c02-8095-4646-9829-c52525e2543e
+:ed9079d4-28b2-4613-963d-5f850e85ff17
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#4694516f-84c1-4afd-9714-771389a59bce> ;
+	th:members <http://www.assero.co.uk/TRM#ebeddd27-b6b2-4b7d-aa44-357f1f511008> ;
 .
-<http://www.assero.co.uk/TRM#4694516f-84c1-4afd-9714-771389a59bce>
+<http://www.assero.co.uk/TRM#ebeddd27-b6b2-4b7d-aa44-357f1f511008>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000156/V1#SN000156_S012920> ;
-	th:memberNext <http://www.assero.co.uk/TRM#dd4d364d-bdc4-4126-be18-06e09f5e8e6e> ;
+	th:memberNext <http://www.assero.co.uk/TRM#7f181a66-a5ca-4f84-af34-2bd3e17de0d3> ;
 .
-<http://www.assero.co.uk/TRM#dd4d364d-bdc4-4126-be18-06e09f5e8e6e>
+<http://www.assero.co.uk/TRM#7f181a66-a5ca-4f84-af34-2bd3e17de0d3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000156/V1#SN000156_S012921> ;
-	th:memberNext <http://www.assero.co.uk/TRM#149e8aa3-56f6-476b-a0ed-dbf7ca2b114e> ;
+	th:memberNext <http://www.assero.co.uk/TRM#cbad0d9f-187f-4304-9073-67ea5b049f6b> ;
 .
-<http://www.assero.co.uk/TRM#149e8aa3-56f6-476b-a0ed-dbf7ca2b114e>
+<http://www.assero.co.uk/TRM#cbad0d9f-187f-4304-9073-67ea5b049f6b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000156/V1#SN000156_S012922> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8639a1e6-ef03-4078-b432-e95d2e690e3c> ;
+	th:memberNext <http://www.assero.co.uk/TRM#676704ec-2556-4337-b340-7a3c8ed6050d> ;
 .
-<http://www.assero.co.uk/TRM#8639a1e6-ef03-4078-b432-e95d2e690e3c>
+<http://www.assero.co.uk/TRM#676704ec-2556-4337-b340-7a3c8ed6050d>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000156/V1#SN000156_S012923> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cc28fd8b-0e12-4d30-b611-d4c1710a5fe3> ;
+	th:memberNext <http://www.assero.co.uk/TRM#eaeae7c4-d52f-49ac-87df-a3de0349cb2b> ;
 .
-<http://www.assero.co.uk/TRM#cc28fd8b-0e12-4d30-b611-d4c1710a5fe3>
+<http://www.assero.co.uk/TRM#eaeae7c4-d52f-49ac-87df-a3de0349cb2b>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000156/V1#SN000156_S012905> ;
 .
 <http://www.sanofi.com/SN000157/V1#SN000157>
-	th:isRanked :939dcf40-68bf-4032-9a8e-d5520944ee2e ;
+	th:isRanked :4bc17566-1abe-4361-aa30-d2588f7fc113 ;
 .
-:939dcf40-68bf-4032-9a8e-d5520944ee2e
+:4bc17566-1abe-4361-aa30-d2588f7fc113
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#38485298-6876-40a1-921f-de4cea6c8a17> ;
+	th:members <http://www.assero.co.uk/TRM#2aeda6f5-a9a5-4dd3-b325-0173e2167a50> ;
 .
-<http://www.assero.co.uk/TRM#38485298-6876-40a1-921f-de4cea6c8a17>
+<http://www.assero.co.uk/TRM#2aeda6f5-a9a5-4dd3-b325-0173e2167a50>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000157/V1#SN000157_S012924> ;
-	th:memberNext <http://www.assero.co.uk/TRM#40f44b68-9d92-4150-b034-19afc402fb56> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a91c08d8-9d95-4e5f-93a5-ae277061bc46> ;
 .
-<http://www.assero.co.uk/TRM#40f44b68-9d92-4150-b034-19afc402fb56>
+<http://www.assero.co.uk/TRM#a91c08d8-9d95-4e5f-93a5-ae277061bc46>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000157/V1#SN000157_S012925> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4fcc7945-09b9-4939-aab6-53ad2205c7d0> ;
+	th:memberNext <http://www.assero.co.uk/TRM#2a8f031b-056d-48d0-9d28-162b2eb27827> ;
 .
-<http://www.assero.co.uk/TRM#4fcc7945-09b9-4939-aab6-53ad2205c7d0>
+<http://www.assero.co.uk/TRM#2a8f031b-056d-48d0-9d28-162b2eb27827>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000157/V1#SN000157_S012926> ;
-	th:memberNext <http://www.assero.co.uk/TRM#367154dc-8b67-44cd-8124-b87efb7f4028> ;
+	th:memberNext <http://www.assero.co.uk/TRM#1d4a9c25-7862-41ed-a891-0ba1a62765a0> ;
 .
-<http://www.assero.co.uk/TRM#367154dc-8b67-44cd-8124-b87efb7f4028>
+<http://www.assero.co.uk/TRM#1d4a9c25-7862-41ed-a891-0ba1a62765a0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000157/V1#SN000157_S012927> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ca28f19b-80ea-4a55-a1e1-f9f00f6f0ac5> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4b634ead-e055-4c63-b212-d445440ea7e9> ;
 .
-<http://www.assero.co.uk/TRM#ca28f19b-80ea-4a55-a1e1-f9f00f6f0ac5>
+<http://www.assero.co.uk/TRM#4b634ead-e055-4c63-b212-d445440ea7e9>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000157/V1#SN000157_S012928> ;
 .
 <http://www.sanofi.com/SN000158/V1#SN000158>
-	th:isRanked :f607b14c-9397-474f-9f13-99504526cc3a ;
+	th:isRanked :a83aef5c-4bb3-49f0-a455-117060dd45a3 ;
 .
-:f607b14c-9397-474f-9f13-99504526cc3a
+:a83aef5c-4bb3-49f0-a455-117060dd45a3
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#61b591cf-0799-4c6e-94d2-5e74eb3fc11a> ;
+	th:members <http://www.assero.co.uk/TRM#be6dd9ee-631c-470e-a9ab-818b3ee65480> ;
 .
-<http://www.assero.co.uk/TRM#61b591cf-0799-4c6e-94d2-5e74eb3fc11a>
+<http://www.assero.co.uk/TRM#be6dd9ee-631c-470e-a9ab-818b3ee65480>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000158/V1#SN000158_S012909> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7577ea21-7f75-4460-9d88-4cf2cd5c25f8> ;
+	th:memberNext <http://www.assero.co.uk/TRM#edb89243-d3de-4071-882b-6e2f43f33aac> ;
 .
-<http://www.assero.co.uk/TRM#7577ea21-7f75-4460-9d88-4cf2cd5c25f8>
+<http://www.assero.co.uk/TRM#edb89243-d3de-4071-882b-6e2f43f33aac>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000158/V1#SN000158_S012929> ;
-	th:memberNext <http://www.assero.co.uk/TRM#caf0a0e0-cee3-497b-bebf-ed0498e023ae> ;
+	th:memberNext <http://www.assero.co.uk/TRM#17857207-0b5f-4e61-a92a-c48965f70755> ;
 .
-<http://www.assero.co.uk/TRM#caf0a0e0-cee3-497b-bebf-ed0498e023ae>
+<http://www.assero.co.uk/TRM#17857207-0b5f-4e61-a92a-c48965f70755>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000158/V1#SN000158_S012910> ;
-	th:memberNext <http://www.assero.co.uk/TRM#30984052-0b75-4c06-acf9-3ed044f611b3> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4161bcf2-205e-4f09-bfea-bf16ac36bbb1> ;
 .
-<http://www.assero.co.uk/TRM#30984052-0b75-4c06-acf9-3ed044f611b3>
+<http://www.assero.co.uk/TRM#4161bcf2-205e-4f09-bfea-bf16ac36bbb1>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000158/V1#SN000158_S012930> ;
-	th:memberNext <http://www.assero.co.uk/TRM#a3925e9f-4148-4317-b8db-b33570e45468> ;
+	th:memberNext <http://www.assero.co.uk/TRM#3f08a4da-fd29-40ca-acde-39ce2e2a942a> ;
 .
-<http://www.assero.co.uk/TRM#a3925e9f-4148-4317-b8db-b33570e45468>
+<http://www.assero.co.uk/TRM#3f08a4da-fd29-40ca-acde-39ce2e2a942a>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000158/V1#SN000158_S012911> ;
 .
 <http://www.sanofi.com/SN000159/V1#SN000159>
-	th:isRanked :d8610702-8d85-4564-8fa7-73b6bd85ffee ;
+	th:isRanked :e31c81a4-3753-4376-b97d-b3f7eb3bc55e ;
 .
-:d8610702-8d85-4564-8fa7-73b6bd85ffee
+:e31c81a4-3753-4376-b97d-b3f7eb3bc55e
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#008eaf29-ac59-465d-8982-b9889d63ef24> ;
+	th:members <http://www.assero.co.uk/TRM#202328a9-3558-4f83-bcf6-a5ce95afff08> ;
 .
-<http://www.assero.co.uk/TRM#008eaf29-ac59-465d-8982-b9889d63ef24>
+<http://www.assero.co.uk/TRM#202328a9-3558-4f83-bcf6-a5ce95afff08>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000159/V1#SN000159_S012912> ;
-	th:memberNext <http://www.assero.co.uk/TRM#383ecb97-4a69-4629-b561-21e28834ada5> ;
+	th:memberNext <http://www.assero.co.uk/TRM#aead86ad-84f7-46ad-8778-5f43be6cbe17> ;
 .
-<http://www.assero.co.uk/TRM#383ecb97-4a69-4629-b561-21e28834ada5>
+<http://www.assero.co.uk/TRM#aead86ad-84f7-46ad-8778-5f43be6cbe17>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000159/V1#SN000159_S012931> ;
-	th:memberNext <http://www.assero.co.uk/TRM#82ffa16b-e7ff-4955-9d8d-097f0b624737> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bf59252a-15b6-41d3-9806-0c72c3927ca1> ;
 .
-<http://www.assero.co.uk/TRM#82ffa16b-e7ff-4955-9d8d-097f0b624737>
+<http://www.assero.co.uk/TRM#bf59252a-15b6-41d3-9806-0c72c3927ca1>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000159/V1#SN000159_S012913> ;
-	th:memberNext <http://www.assero.co.uk/TRM#54a5100b-6184-4a46-9aab-978f1dcdb802> ;
+	th:memberNext <http://www.assero.co.uk/TRM#692039d3-31cb-4db6-8f44-29719bff17dd> ;
 .
-<http://www.assero.co.uk/TRM#54a5100b-6184-4a46-9aab-978f1dcdb802>
+<http://www.assero.co.uk/TRM#692039d3-31cb-4db6-8f44-29719bff17dd>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000159/V1#SN000159_S012932> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ad846861-6072-4f3f-86d4-39807b05e211> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ffb1d607-633e-4d3e-a513-e5e06c6c2506> ;
 .
-<http://www.assero.co.uk/TRM#ad846861-6072-4f3f-86d4-39807b05e211>
+<http://www.assero.co.uk/TRM#ffb1d607-633e-4d3e-a513-e5e06c6c2506>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000159/V1#SN000159_S012914> ;
 .
 <http://www.sanofi.com/SN000919/V2#SN000919>
-	th:isRanked :1667ad8e-f04f-4945-83d2-06e07954f7a2 ;
+	th:isRanked :9f8b0c20-67bd-4038-bd93-883f1192f512 ;
 .
-:1667ad8e-f04f-4945-83d2-06e07954f7a2
+:9f8b0c20-67bd-4038-bd93-883f1192f512
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#aff41806-ef93-4c6b-8871-6eb7a2ff57a7> ;
+	th:members <http://www.assero.co.uk/TRM#1e8b6d12-8424-454a-8761-5027c281dca4> ;
 .
-<http://www.assero.co.uk/TRM#aff41806-ef93-4c6b-8871-6eb7a2ff57a7>
+<http://www.assero.co.uk/TRM#1e8b6d12-8424-454a-8761-5027c281dca4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000919/V2#SN000919_S012900> ;
-	th:memberNext <http://www.assero.co.uk/TRM#6741e8cf-8307-4d34-80a6-18c18680f4ad> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4b258b2d-c8b5-4e61-bdb7-e601f99e9eda> ;
 .
-<http://www.assero.co.uk/TRM#6741e8cf-8307-4d34-80a6-18c18680f4ad>
+<http://www.assero.co.uk/TRM#4b258b2d-c8b5-4e61-bdb7-e601f99e9eda>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000919/V2#SN000919_S012901> ;
-	th:memberNext <http://www.assero.co.uk/TRM#674feeb9-ead6-4f8a-9b5b-117dbcd06dba> ;
+	th:memberNext <http://www.assero.co.uk/TRM#5cb090bb-5532-4d4a-84b5-94e89e23ff0a> ;
 .
-<http://www.assero.co.uk/TRM#674feeb9-ead6-4f8a-9b5b-117dbcd06dba>
+<http://www.assero.co.uk/TRM#5cb090bb-5532-4d4a-84b5-94e89e23ff0a>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000919/V2#SN000919_S012902> ;
 .
 <http://www.sanofi.com/SN000920/V2#SN000920>
-	th:isRanked :868d7d4c-c478-4fbd-afbb-5d9afb7c17ef ;
+	th:isRanked :3306932d-74d3-44f4-a1b2-c70aa61c0e3e ;
 .
-:868d7d4c-c478-4fbd-afbb-5d9afb7c17ef
+:3306932d-74d3-44f4-a1b2-c70aa61c0e3e
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#c768c230-bdf4-4009-815b-31d2b37b87ca> ;
+	th:members <http://www.assero.co.uk/TRM#a30e8fbd-fc51-40fd-867f-64ac6c9ccff8> ;
 .
-<http://www.assero.co.uk/TRM#c768c230-bdf4-4009-815b-31d2b37b87ca>
+<http://www.assero.co.uk/TRM#a30e8fbd-fc51-40fd-867f-64ac6c9ccff8>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000920/V2#SN000920_S012903> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4ed6132d-a586-4530-8827-f7279983f5a3> ;
+	th:memberNext <http://www.assero.co.uk/TRM#163343e7-1ab9-4981-a7f6-96141fec5821> ;
 .
-<http://www.assero.co.uk/TRM#4ed6132d-a586-4530-8827-f7279983f5a3>
+<http://www.assero.co.uk/TRM#163343e7-1ab9-4981-a7f6-96141fec5821>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000920/V2#SN000920_S012904> ;
-	th:memberNext <http://www.assero.co.uk/TRM#9f795f17-a9c3-4c36-9cdf-dd4dc49626a8> ;
+	th:memberNext <http://www.assero.co.uk/TRM#d944b6f3-82ba-4f02-91fb-e31ac67a6ac4> ;
 .
-<http://www.assero.co.uk/TRM#9f795f17-a9c3-4c36-9cdf-dd4dc49626a8>
+<http://www.assero.co.uk/TRM#d944b6f3-82ba-4f02-91fb-e31ac67a6ac4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000920/V2#SN000920_S012905> ;
 .
 <http://www.sanofi.com/SN000921/V2#SN000921>
-	th:isRanked :3630b029-23cc-43a9-a7d1-c983dce6eaf8 ;
+	th:isRanked :04f6c8bb-ea9a-4158-9e0d-f70020f91357 ;
 .
-:3630b029-23cc-43a9-a7d1-c983dce6eaf8
+:04f6c8bb-ea9a-4158-9e0d-f70020f91357
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#60e87f9f-6a87-4c4c-a17e-4793b417e923> ;
+	th:members <http://www.assero.co.uk/TRM#cf4aabdd-0382-4a46-a154-eecd8c359864> ;
 .
-<http://www.assero.co.uk/TRM#60e87f9f-6a87-4c4c-a17e-4793b417e923>
+<http://www.assero.co.uk/TRM#cf4aabdd-0382-4a46-a154-eecd8c359864>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000921/V2#SN000921_S012906> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d3f434cc-cc4a-48f2-b26a-e8daaa614ed6> ;
+	th:memberNext <http://www.assero.co.uk/TRM#c0480c73-f852-4fb1-b16f-d92c94555c2c> ;
 .
-<http://www.assero.co.uk/TRM#d3f434cc-cc4a-48f2-b26a-e8daaa614ed6>
+<http://www.assero.co.uk/TRM#c0480c73-f852-4fb1-b16f-d92c94555c2c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000921/V2#SN000921_S012907> ;
-	th:memberNext <http://www.assero.co.uk/TRM#9c5a87d6-c3e6-4e20-b7e3-435ac6a45c96> ;
+	th:memberNext <http://www.assero.co.uk/TRM#909bde7c-50ca-4e83-a6b0-1e272b373f49> ;
 .
-<http://www.assero.co.uk/TRM#9c5a87d6-c3e6-4e20-b7e3-435ac6a45c96>
+<http://www.assero.co.uk/TRM#909bde7c-50ca-4e83-a6b0-1e272b373f49>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000921/V2#SN000921_S012908> ;
 .
 <http://www.sanofi.com/SN000922/V2#SN000922>
-	th:isRanked :0ca6463d-fda8-4987-b48b-2be4d40f4d52 ;
+	th:isRanked :ea2edec6-0fdc-4b66-8bf0-389c9225c286 ;
 .
-:0ca6463d-fda8-4987-b48b-2be4d40f4d52
+:ea2edec6-0fdc-4b66-8bf0-389c9225c286
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#4ff49857-1e11-4c55-88de-fc9ea07a5a80> ;
+	th:members <http://www.assero.co.uk/TRM#d538fad7-838c-4990-8fbe-2b57c8dd65a2> ;
 .
-<http://www.assero.co.uk/TRM#4ff49857-1e11-4c55-88de-fc9ea07a5a80>
+<http://www.assero.co.uk/TRM#d538fad7-838c-4990-8fbe-2b57c8dd65a2>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000922/V2#SN000922_S012909> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0e95d89d-e771-4930-a42b-7195881f80ce> ;
+	th:memberNext <http://www.assero.co.uk/TRM#ce0d0516-fc67-433b-849a-942a459de698> ;
 .
-<http://www.assero.co.uk/TRM#0e95d89d-e771-4930-a42b-7195881f80ce>
+<http://www.assero.co.uk/TRM#ce0d0516-fc67-433b-849a-942a459de698>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000922/V2#SN000922_S012910> ;
-	th:memberNext <http://www.assero.co.uk/TRM#07ac845f-7fb4-4495-92b0-a2467a09aac9> ;
+	th:memberNext <http://www.assero.co.uk/TRM#cd328bad-3cc6-4581-b297-7789ef65f3a9> ;
 .
-<http://www.assero.co.uk/TRM#07ac845f-7fb4-4495-92b0-a2467a09aac9>
+<http://www.assero.co.uk/TRM#cd328bad-3cc6-4581-b297-7789ef65f3a9>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000922/V2#SN000922_S012911> ;
 .
 <http://www.sanofi.com/SN000923/V2#SN000923>
-	th:isRanked :a714fb81-aee7-4374-91ec-73d2477873cb ;
+	th:isRanked :e91c20b1-769e-4f7b-a3b4-da009b6a3569 ;
 .
-:a714fb81-aee7-4374-91ec-73d2477873cb
+:e91c20b1-769e-4f7b-a3b4-da009b6a3569
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#ea19ce3e-a706-4ca1-bb83-1e11d804cb44> ;
+	th:members <http://www.assero.co.uk/TRM#7f9d2f5e-21e0-47fa-ac62-f6166415ef59> ;
 .
-<http://www.assero.co.uk/TRM#ea19ce3e-a706-4ca1-bb83-1e11d804cb44>
+<http://www.assero.co.uk/TRM#7f9d2f5e-21e0-47fa-ac62-f6166415ef59>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000923/V2#SN000923_S012912> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f4461abb-08a2-4435-8fd6-a5dcd01d8e39> ;
+	th:memberNext <http://www.assero.co.uk/TRM#bd251622-2823-473e-bc0f-5b8af6f44337> ;
 .
-<http://www.assero.co.uk/TRM#f4461abb-08a2-4435-8fd6-a5dcd01d8e39>
+<http://www.assero.co.uk/TRM#bd251622-2823-473e-bc0f-5b8af6f44337>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000923/V2#SN000923_S012913> ;
-	th:memberNext <http://www.assero.co.uk/TRM#c8957b21-30f6-40e1-8ed6-8ccd35256be3> ;
+	th:memberNext <http://www.assero.co.uk/TRM#f4616394-b975-4b33-bab3-85b18936c928> ;
 .
-<http://www.assero.co.uk/TRM#c8957b21-30f6-40e1-8ed6-8ccd35256be3>
+<http://www.assero.co.uk/TRM#f4616394-b975-4b33-bab3-85b18936c928>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000923/V2#SN000923_S012914> ;
 .
-<http://www.sanofi.com/SN000737/V1#SN000737>
-	th:isRanked :4826c7ca-8805-479e-9301-d94bf40b1b71 ;
-.
-:4826c7ca-8805-479e-9301-d94bf40b1b71
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#37247cf5-e78e-48b2-83be-63977a254b3f> ;
-.
-<http://www.assero.co.uk/TRM#37247cf5-e78e-48b2-83be-63977a254b3f>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000737/V1#SN000737_S006241> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4b2b9e7a-bd4b-4d5b-9a5b-dbef68864553> ;
-.
-<http://www.assero.co.uk/TRM#4b2b9e7a-bd4b-4d5b-9a5b-dbef68864553>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000737/V1#SN000737_S006242> ;
-	th:memberNext <http://www.assero.co.uk/TRM#5f3a8135-327e-49a9-9ff9-c12b40ee9cd1> ;
-.
-<http://www.assero.co.uk/TRM#5f3a8135-327e-49a9-9ff9-c12b40ee9cd1>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000737/V1#SN000737_S006243> ;
-	th:memberNext <http://www.assero.co.uk/TRM#2d852317-3e2f-4476-96c2-da03eae8e8d2> ;
-.
-<http://www.assero.co.uk/TRM#2d852317-3e2f-4476-96c2-da03eae8e8d2>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000737/V1#SN000737_S006244> ;
-	th:memberNext <http://www.assero.co.uk/TRM#bc6283d1-93c6-4149-9734-0a6a4b626093> ;
-.
-<http://www.assero.co.uk/TRM#bc6283d1-93c6-4149-9734-0a6a4b626093>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000737/V1#SN000737_S006245> ;
-	th:memberNext <http://www.assero.co.uk/TRM#90d7a80c-ac4d-42b7-9ebc-42fc8e2735f6> ;
-.
-<http://www.assero.co.uk/TRM#90d7a80c-ac4d-42b7-9ebc-42fc8e2735f6>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "6"^^xsd:integer ;
-	th:item <http://www.cdisc.org/C66727/V4#C66727_C17649> ;
-.
 <http://www.sanofi.com/SN001226/V1#SN001226>
-	th:isRanked :bc61800f-0395-48be-8777-abcaa6f66817 ;
+	th:isRanked :0746e99e-6a9b-43a0-9046-3c4cbc2d87c1 ;
 .
-:bc61800f-0395-48be-8777-abcaa6f66817
+:0746e99e-6a9b-43a0-9046-3c4cbc2d87c1
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#e7e88d44-3d42-46a6-bbb5-ebe38892ebc9> ;
+	th:members <http://www.assero.co.uk/TRM#3b825008-c5cc-4fe8-b669-055f53392426> ;
 .
-<http://www.assero.co.uk/TRM#e7e88d44-3d42-46a6-bbb5-ebe38892ebc9>
+<http://www.assero.co.uk/TRM#3b825008-c5cc-4fe8-b669-055f53392426>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001226/V1#SN001226_S012755> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cdff1678-05b6-40cb-aa5b-8e708a18cfb5> ;
+	th:memberNext <http://www.assero.co.uk/TRM#64208c26-7a7f-4c75-ab14-d7b4ec10cf17> ;
 .
-<http://www.assero.co.uk/TRM#cdff1678-05b6-40cb-aa5b-8e708a18cfb5>
+<http://www.assero.co.uk/TRM#64208c26-7a7f-4c75-ab14-d7b4ec10cf17>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN001226/V1#SN001226_S012756> ;
 .
 <http://www.sanofi.com/SN000393/V2#SN000393>
-	th:isRanked :143c18ab-eea7-4f1f-8789-acb6432587de ;
+	th:isRanked :05c1ec36-5d1c-46bb-a125-2fbfafd4fa51 ;
 .
-:143c18ab-eea7-4f1f-8789-acb6432587de
+:05c1ec36-5d1c-46bb-a125-2fbfafd4fa51
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#c2306a50-b4d0-4a79-a0ae-6fa17997071f> ;
+	th:members <http://www.assero.co.uk/TRM#0b6f54f4-8237-4833-a62e-0957f86ba586> ;
 .
-<http://www.assero.co.uk/TRM#c2306a50-b4d0-4a79-a0ae-6fa17997071f>
+<http://www.assero.co.uk/TRM#0b6f54f4-8237-4833-a62e-0957f86ba586>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000393/V1#SN000393_S008888> ;
-	th:memberNext <http://www.assero.co.uk/TRM#56520559-d0ee-4de9-ae72-15ee9395b0be> ;
+	th:memberNext <http://www.assero.co.uk/TRM#815de20c-ffff-470a-aac4-de5fb82cc642> ;
 .
-<http://www.assero.co.uk/TRM#56520559-d0ee-4de9-ae72-15ee9395b0be>
+<http://www.assero.co.uk/TRM#815de20c-ffff-470a-aac4-de5fb82cc642>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000393/V1#SN000393_S008884> ;
-	th:memberNext <http://www.assero.co.uk/TRM#05d75be3-846b-4b26-ae43-ba50d267a75d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#059c813c-ef52-4154-90b4-af040e0f22d3> ;
 .
-<http://www.assero.co.uk/TRM#05d75be3-846b-4b26-ae43-ba50d267a75d>
+<http://www.assero.co.uk/TRM#059c813c-ef52-4154-90b4-af040e0f22d3>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000393/V1#SN000393_S008885> ;
-	th:memberNext <http://www.assero.co.uk/TRM#a62d4a94-6d9f-4f2a-b79f-04acd2915f8d> ;
+	th:memberNext <http://www.assero.co.uk/TRM#9c653c67-399c-46c1-be64-c7d1f2d13b9c> ;
 .
-<http://www.assero.co.uk/TRM#a62d4a94-6d9f-4f2a-b79f-04acd2915f8d>
+<http://www.assero.co.uk/TRM#9c653c67-399c-46c1-be64-c7d1f2d13b9c>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000393/V2#SN000393_S008887> ;
-	th:memberNext <http://www.assero.co.uk/TRM#4ea52b7b-3607-405f-9153-571f2d28b4eb> ;
+	th:memberNext <http://www.assero.co.uk/TRM#62904b77-72d7-4124-82a9-9cbd0ff1ee94> ;
 .
-<http://www.assero.co.uk/TRM#4ea52b7b-3607-405f-9153-571f2d28b4eb>
+<http://www.assero.co.uk/TRM#62904b77-72d7-4124-82a9-9cbd0ff1ee94>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000393/V1#SN000393_S008886> ;
 .
 <http://www.sanofi.com/SN000394/V2#SN000394>
-	th:isRanked :97df7398-0154-4504-9f3d-af89b6d4ddab ;
+	th:isRanked :6e6e722a-f505-4732-80cc-d88073d2ef9f ;
 .
-:97df7398-0154-4504-9f3d-af89b6d4ddab
+:6e6e722a-f505-4732-80cc-d88073d2ef9f
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#40e9d523-f2e5-4005-825b-6a8be5112d6a> ;
+	th:members <http://www.assero.co.uk/TRM#16d19f0d-cf6a-4390-aa2c-bde5d7a9da7d> ;
 .
-<http://www.assero.co.uk/TRM#40e9d523-f2e5-4005-825b-6a8be5112d6a>
+<http://www.assero.co.uk/TRM#16d19f0d-cf6a-4390-aa2c-bde5d7a9da7d>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000394/V1#SN000394_S003126> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f05bfb35-e9c5-416f-b806-cec23f47dcae> ;
+	th:memberNext <http://www.assero.co.uk/TRM#a6f741a2-a7ac-4d9a-847e-303104e5f5ab> ;
 .
-<http://www.assero.co.uk/TRM#f05bfb35-e9c5-416f-b806-cec23f47dcae>
+<http://www.assero.co.uk/TRM#a6f741a2-a7ac-4d9a-847e-303104e5f5ab>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000394/V1#SN000394_S003130> ;
-	th:memberNext <http://www.assero.co.uk/TRM#95d66946-2ad0-4d22-97f6-2dba8d1edc08> ;
+	th:memberNext <http://www.assero.co.uk/TRM#4c3d81da-1017-4861-a149-0c15c3fad3d7> ;
 .
-<http://www.assero.co.uk/TRM#95d66946-2ad0-4d22-97f6-2dba8d1edc08>
+<http://www.assero.co.uk/TRM#4c3d81da-1017-4861-a149-0c15c3fad3d7>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "3"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000394/V1#SN000394_S003129> ;
-	th:memberNext <http://www.assero.co.uk/TRM#9e631dfb-efda-44f1-a17f-5739c7599431> ;
+	th:memberNext <http://www.assero.co.uk/TRM#2674bbbc-6261-4b4f-8d35-9e8d626be8a0> ;
 .
-<http://www.assero.co.uk/TRM#9e631dfb-efda-44f1-a17f-5739c7599431>
+<http://www.assero.co.uk/TRM#2674bbbc-6261-4b4f-8d35-9e8d626be8a0>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "4"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000394/V2#SN000394_S003127> ;
-	th:memberNext <http://www.assero.co.uk/TRM#24c168a2-9cf6-4356-969b-e38d210356f8> ;
+	th:memberNext <http://www.assero.co.uk/TRM#c30a4bdd-50cb-4fb3-8ff5-b1dfbd5872d4> ;
 .
-<http://www.assero.co.uk/TRM#24c168a2-9cf6-4356-969b-e38d210356f8>
+<http://www.assero.co.uk/TRM#c30a4bdd-50cb-4fb3-8ff5-b1dfbd5872d4>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "5"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000394/V1#SN000394_S003128> ;
 .
-<http://www.sanofi.com/SN000407/V1#SN000407>
-	th:isRanked :ec2bc738-676a-44cb-b8ed-4e5438ca3390 ;
-.
-:ec2bc738-676a-44cb-b8ed-4e5438ca3390
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#3ea6373b-5b54-4e42-8ff5-2d935d885124> ;
-.
-<http://www.assero.co.uk/TRM#3ea6373b-5b54-4e42-8ff5-2d935d885124>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S009915> ;
-	th:memberNext <http://www.assero.co.uk/TRM#16dba416-8538-4079-a09c-f7d68adeacbb> ;
-.
-<http://www.assero.co.uk/TRM#16dba416-8538-4079-a09c-f7d68adeacbb>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S009914> ;
-	th:memberNext <http://www.assero.co.uk/TRM#0b0bc9ca-01b8-45af-8b9f-f23a6df58a27> ;
-.
-<http://www.assero.co.uk/TRM#0b0bc9ca-01b8-45af-8b9f-f23a6df58a27>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S003153> ;
-	th:memberNext <http://www.assero.co.uk/TRM#d3f227d9-f757-4c2d-85a6-4426fd2dbe9c> ;
-.
-<http://www.assero.co.uk/TRM#d3f227d9-f757-4c2d-85a6-4426fd2dbe9c>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S009913> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7413c4fe-c04b-44d9-83d7-8479154fce55> ;
-.
-<http://www.assero.co.uk/TRM#7413c4fe-c04b-44d9-83d7-8479154fce55>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S009912> ;
-	th:memberNext <http://www.assero.co.uk/TRM#7b0ba15c-7811-48ef-961d-507e883416be> ;
-.
-<http://www.assero.co.uk/TRM#7b0ba15c-7811-48ef-961d-507e883416be>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "6"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000407/V1#SN000407_S003156> ;
-.
-<http://www.sanofi.com/SN000924/V1#SN000924>
-	th:isRanked :87f9dd21-ee74-4866-af4a-3ecadad75d59 ;
-.
-:87f9dd21-ee74-4866-af4a-3ecadad75d59
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#968411d1-0f4c-41ad-99f0-2d4ebffeab90> ;
-.
-<http://www.assero.co.uk/TRM#968411d1-0f4c-41ad-99f0-2d4ebffeab90>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000924/V1#SN000924_S008577> ;
-	th:memberNext <http://www.assero.co.uk/TRM#f1f0607c-193d-4e60-9dd7-f4234e721fa8> ;
-.
-<http://www.assero.co.uk/TRM#f1f0607c-193d-4e60-9dd7-f4234e721fa8>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000924/V1#SN000924_S008578> ;
-	th:memberNext <http://www.assero.co.uk/TRM#741d0df7-408e-4a4b-b08f-658cc6fde767> ;
-.
-<http://www.assero.co.uk/TRM#741d0df7-408e-4a4b-b08f-658cc6fde767>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000924/V1#SN000924_S008579> ;
-	th:memberNext <http://www.assero.co.uk/TRM#356b602e-034e-4d9b-9bd9-9718235cb9eb> ;
-.
-<http://www.assero.co.uk/TRM#356b602e-034e-4d9b-9bd9-9718235cb9eb>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000924/V1#SN000924_S008580> ;
-	th:memberNext <http://www.assero.co.uk/TRM#1ac786db-db35-4431-9bc1-d5eb6ac73e3f> ;
-.
-<http://www.assero.co.uk/TRM#1ac786db-db35-4431-9bc1-d5eb6ac73e3f>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "5"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000924/V1#SN000924_S008581> ;
-.
-<http://www.sanofi.com/SN000012/V1#SN000012>
-	th:isRanked :1a09132a-7d51-4446-9d5b-96c0c18b0f08 ;
-.
-:1a09132a-7d51-4446-9d5b-96c0c18b0f08
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#776d7307-2e39-42e4-8087-6cf8948fedcd> ;
-.
-<http://www.assero.co.uk/TRM#776d7307-2e39-42e4-8087-6cf8948fedcd>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000090> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ac76f642-8c19-471f-b82f-ae4732a1d9be> ;
-.
-<http://www.assero.co.uk/TRM#ac76f642-8c19-471f-b82f-ae4732a1d9be>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000094> ;
-	th:memberNext <http://www.assero.co.uk/TRM#55cb096a-b790-4e7b-8516-d767e0727689> ;
-.
-<http://www.assero.co.uk/TRM#55cb096a-b790-4e7b-8516-d767e0727689>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000092> ;
-	th:memberNext <http://www.assero.co.uk/TRM#bb89edb9-e200-4c69-8588-ef1e31e269ba> ;
-.
-<http://www.assero.co.uk/TRM#bb89edb9-e200-4c69-8588-ef1e31e269ba>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000093> ;
-.
-<http://www.sanofi.com/SN000013/V1#SN000013>
-	th:isRanked :6ed10fd4-7608-4c50-880c-00ec81f887a8 ;
-.
-:6ed10fd4-7608-4c50-880c-00ec81f887a8
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#56bd8f81-2823-49bf-885b-d92a2361e550> ;
-.
-<http://www.assero.co.uk/TRM#56bd8f81-2823-49bf-885b-d92a2361e550>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000013/V1#SN000013_S000095> ;
-	th:memberNext <http://www.assero.co.uk/TRM#076cea91-f68a-488f-98ce-f697a4cc9596> ;
-.
-<http://www.assero.co.uk/TRM#076cea91-f68a-488f-98ce-f697a4cc9596>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000013/V1#SN000013_S000097> ;
-	th:memberNext <http://www.assero.co.uk/TRM#8c780a06-e94d-4fc4-9267-a4b3aaacd7e8> ;
-.
-<http://www.assero.co.uk/TRM#8c780a06-e94d-4fc4-9267-a4b3aaacd7e8>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000013/V1#SN000013_S000098> ;
-	th:memberNext <http://www.assero.co.uk/TRM#cb08e388-e9e0-41b9-952b-890908cdd8c3> ;
-.
-<http://www.assero.co.uk/TRM#cb08e388-e9e0-41b9-952b-890908cdd8c3>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "4"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000013/V1#SN000013_S000099> ;
-.
 <http://www.sanofi.com/SN003068/V2#SN003068>
-	th:isRanked :e4570de9-1de6-4160-b74f-17a240ef6f90 ;
+	th:isRanked :dbb342ee-1dcb-4960-ae7e-b1b91d41eaf1 ;
 .
-:e4570de9-1de6-4160-b74f-17a240ef6f90
+:dbb342ee-1dcb-4960-ae7e-b1b91d41eaf1
 	rdf:type th:RankedCollection ;
 	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#634957da-e878-4fa7-80f8-8f617d383449> ;
+	th:members <http://www.assero.co.uk/TRM#93b37aa9-49ac-41ea-8cf5-c4dd144c0eae> ;
 .
-<http://www.assero.co.uk/TRM#634957da-e878-4fa7-80f8-8f617d383449>
+<http://www.assero.co.uk/TRM#93b37aa9-49ac-41ea-8cf5-c4dd144c0eae>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "1"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000090> ;
-	th:memberNext <http://www.assero.co.uk/TRM#6bce3792-aded-4a62-b4bc-d91406199b80> ;
+	th:memberNext <http://www.assero.co.uk/TRM#fdeed787-a567-46f9-bea0-94c406c07a31> ;
 .
-<http://www.assero.co.uk/TRM#6bce3792-aded-4a62-b4bc-d91406199b80>
+<http://www.assero.co.uk/TRM#fdeed787-a567-46f9-bea0-94c406c07a31>
 	rdf:type th:RankedMember ;
 	isoC:label ""^^xsd:string ;
 	th:rank "2"^^xsd:integer ;
 	th:item <http://www.sanofi.com/SN000012/V1#SN000012_S000093> ;
-.
-<http://www.sanofi.com/SN000015/V1#SN000015>
-	th:isRanked :d256d9ac-8f43-4f61-a6ee-ccc4e0b77d9f ;
-.
-:d256d9ac-8f43-4f61-a6ee-ccc4e0b77d9f
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#4a728299-ccf2-4912-9d5b-77992e6c52e8> ;
-.
-<http://www.assero.co.uk/TRM#4a728299-ccf2-4912-9d5b-77992e6c52e8>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000015/V1#SN000015_S000100> ;
-	th:memberNext <http://www.assero.co.uk/TRM#08183b72-4780-4c60-9e85-0f00f60d0f3d> ;
-.
-<http://www.assero.co.uk/TRM#08183b72-4780-4c60-9e85-0f00f60d0f3d>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000015/V1#SN000015_S000101> ;
-	th:memberNext <http://www.assero.co.uk/TRM#6c2df314-aad6-4e33-a7c3-25afd2c8cf95> ;
-.
-<http://www.assero.co.uk/TRM#6c2df314-aad6-4e33-a7c3-25afd2c8cf95>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "3"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000015/V1#SN000015_S000102> ;
-.
-<http://www.sanofi.com/SN000548/V1#SN000548>
-	th:isRanked :3581b6bf-f31e-4e8a-a5dd-520fe56f16d1 ;
-.
-:3581b6bf-f31e-4e8a-a5dd-520fe56f16d1
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#332ec1a9-06e2-43da-adce-813bbf2a8dbc> ;
-.
-<http://www.assero.co.uk/TRM#332ec1a9-06e2-43da-adce-813bbf2a8dbc>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000548/V1#SN000548_S005180> ;
-	th:memberNext <http://www.assero.co.uk/TRM#b172c824-d081-4979-9485-929dcf733a1e> ;
-.
-<http://www.assero.co.uk/TRM#b172c824-d081-4979-9485-929dcf733a1e>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000548/V1#SN000548_S003274> ;
-.
-<http://www.sanofi.com/SN000551/V1#SN000551>
-	th:isRanked :aed617f0-9679-4c23-974a-79c101898d29 ;
-.
-:aed617f0-9679-4c23-974a-79c101898d29
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#6932a594-caf0-4d68-b4ea-1d48c8dc6db4> ;
-.
-<http://www.assero.co.uk/TRM#6932a594-caf0-4d68-b4ea-1d48c8dc6db4>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000551/V1#SN000551_S000230> ;
-	th:memberNext <http://www.assero.co.uk/TRM#529ac01d-ac7a-47cb-8ada-5a1732e05253> ;
-.
-<http://www.assero.co.uk/TRM#529ac01d-ac7a-47cb-8ada-5a1732e05253>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000551/V1#SN000551_S005180> ;
-.
-<http://www.sanofi.com/SN000549/V1#SN000549>
-	th:isRanked :a1ebfd63-420b-41cd-9bce-af63f9d4d70e ;
-.
-:a1ebfd63-420b-41cd-9bce-af63f9d4d70e
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#4ac2b2ae-e1bf-43f6-8467-b9e674cf0a8b> ;
-.
-<http://www.assero.co.uk/TRM#4ac2b2ae-e1bf-43f6-8467-b9e674cf0a8b>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000549/V1#SN000549_S008890> ;
-	th:memberNext <http://www.assero.co.uk/TRM#30a7d03e-6c19-4361-9603-d505ab723617> ;
-.
-<http://www.assero.co.uk/TRM#30a7d03e-6c19-4361-9603-d505ab723617>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000549/V1#SN000549_S008889> ;
-.
-<http://www.sanofi.com/SN000550/V1#SN000550>
-	th:isRanked :aa81d5cf-48f2-48c4-aa6a-7de30808e69e ;
-.
-:aa81d5cf-48f2-48c4-aa6a-7de30808e69e
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#9947d0fa-cfc8-46e0-95b5-244c0577ac88> ;
-.
-<http://www.assero.co.uk/TRM#9947d0fa-cfc8-46e0-95b5-244c0577ac88>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000550/V1#SN000550_S000229> ;
-	th:memberNext <http://www.assero.co.uk/TRM#e347080c-1818-4c17-bbf5-1e81c6fd66d9> ;
-.
-<http://www.assero.co.uk/TRM#e347080c-1818-4c17-bbf5-1e81c6fd66d9>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000550/V1#SN000550_S003276> ;
-.
-<http://www.sanofi.com/SN000556/V1#SN000556>
-	th:isRanked :f7dec9fa-9769-4ebc-a6df-cf4a38e405ba ;
-.
-:f7dec9fa-9769-4ebc-a6df-cf4a38e405ba
-	rdf:type th:RankedCollection ;
-	isoC:label ""^^xsd:string ;
-	th:members <http://www.assero.co.uk/TRM#b0dd5a38-0faa-4dff-b613-a56062f8beaf> ;
-.
-<http://www.assero.co.uk/TRM#b0dd5a38-0faa-4dff-b613-a56062f8beaf>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "1"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000556/V1#SN000556_S000225> ;
-	th:memberNext <http://www.assero.co.uk/TRM#ebdeae01-9382-476f-b818-4245f9925503> ;
-.
-<http://www.assero.co.uk/TRM#ebdeae01-9382-476f-b818-4245f9925503>
-	rdf:type th:RankedMember ;
-	isoC:label ""^^xsd:string ;
-	th:rank "2"^^xsd:integer ;
-	th:item <http://www.sanofi.com/SN000556/V1#SN000556_S003278> ;
 .
