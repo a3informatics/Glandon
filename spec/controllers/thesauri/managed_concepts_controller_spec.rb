@@ -665,10 +665,11 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "create rank" do
-      request.env['HTTP_REFERER'] = 'http://test.host/'
+      request.env['HTTP_ACCEPT'] = "application/json"
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
       post :add_rank, {id: tc.id}
-      expect(response).to redirect_to("/")
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
   end

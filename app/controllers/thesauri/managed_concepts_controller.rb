@@ -553,9 +553,9 @@ private
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
   end
 
-  # def rank_params
-  #   params.require(:managed_concept).permit(:cli_ids => [])
-  # end
+  def rank_params
+     params.require(:managed_concept).permit(:children_ranks => [])
+  end
 
   def set_params
     params.require(:managed_concept).permit(:type, :offset, :count)
