@@ -473,11 +473,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: { }, status: 200
   end
 
-  def get_ranked_children
+  def children_ranked
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     results = []
-    results = tc.get_ranked_children({offset: "0", count: "10000"})
+    results = tc.children_pagination({offset: "0", count: "10000"})
     render json: {data: results, offset: params[:offset] , count: results.count }, status: 200
   end
 

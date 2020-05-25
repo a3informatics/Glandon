@@ -693,7 +693,7 @@ describe Thesauri::ManagedConceptsController do
     it "get ranked children" do
       request.env['HTTP_ACCEPT'] = "application/json"
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
-      get :get_ranked_children, {id: tc.id, offset: 0, count: 17}
+      get :children_ranked, {id: tc.id, offset: 0, count: 17}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
