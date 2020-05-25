@@ -48,22 +48,21 @@ class Thesaurus::Rank < IsoConceptV2
   #
   # @param cli [String] the id of the cli to be updated
   # @param rank [Integer] the rank to be asigned to the cli
-  # def update(params)
-  # byebug
-  #   params.each do |x|
-  #     cli = Uri.new(id: x[:cli_id])
-  #     update_query = %Q{ 
-  #       DELETE 
-  #         { ?member th:rank ?rank . }
-  #       INSERT
-  #         { ?member th:rank #{x[:rank]} . }
-  #       WHERE 
-  #         { ?member th:item #{cli.to_ref} . }
-  #     }
-  #     Sparql::Update.new.sparql_update(update_query, "", [:th])
-  #     #partial_update(update_query, [:th])
-  #   end
-  # end
+  def update(params)
+    params.each do |x|
+      cli = Uri.new(id: x[:cli_id])
+      update_query = %Q{ 
+        DELETE 
+          { ?member th:rank ?rank . }
+        INSERT
+          { ?member th:rank #{x[:rank]} . }
+        WHERE 
+          { ?member th:item #{cli.to_ref} .
+            ?member th:rank ?rank . }
+      }
+      partial_update(update_query, [:th])
+    end
+  end
 
 private
 

@@ -469,7 +469,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def update_rank
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
-    rank = rank.update(rank_params[:children_ranks])
+    rank.update(rank_params[:children_ranks])
     render json: { }, status: 200
   end
 
@@ -554,7 +554,7 @@ private
   end
 
   def rank_params
-     params.require(:managed_concept).permit(:children_ranks => [])
+     params.require(:managed_concept).permit(children_ranks: [:cli_id, :rank])
   end
 
   def set_params
