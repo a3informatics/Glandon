@@ -469,7 +469,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def update_rank
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
-    #rank = rank.update(the_params[:member_id], the_params[:rank])
+    rank = rank.update(rank_params[:children_ranks])
     render json: { }, status: 200
   end
 
@@ -484,7 +484,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def remove_rank
     authorize Thesaurus, :edit?
     rank = Thesaurus::Rank.find(params[:id])
-    #rank.remove
+    rank.remove_all
     render json: { }, status: 200
   end
 
