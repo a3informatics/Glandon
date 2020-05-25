@@ -555,7 +555,7 @@ private
   end
 
   def rank_params
-     params.require(:managed_concept).permit(children_ranks: [:cli_id, :rank])
+     params.require(:managed_concept).permit(:children_ranks => [:cli_id, :rank])
   end
 
   def set_params

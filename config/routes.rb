@@ -222,7 +222,7 @@ Rails.application.routes.draw do
         post :add_rank
         delete :remove_rank
         put :update_rank
-        get :get_ranked_children
+        get :children_ranked
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do

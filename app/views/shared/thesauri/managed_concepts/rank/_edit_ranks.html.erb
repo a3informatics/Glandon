@@ -1,4 +1,7 @@
 <%= javascript_include_tag 'shared/thesauri/managed_concepts/rank/edit_ranks' %>
+<%= javascript_tag "var rankedChildrenUrl = '#{children_ranked_thesauri_managed_concept_path(item)}',
+                        rankRemoveUrl = '#{remove_rank_thesauri_managed_concept_path(item)}',
+                        rankSaveUrl = '#{update_rank_thesauri_managed_concept_path(item)}';"%>
 
 <div class="modal fade bd-example-modal-lg edit-properties" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="rank-items-modal">
   <div class="modal-dialog modal-lg wide-screen" role="document">
@@ -8,11 +11,11 @@
           <span class="icon-rank text-link" style="margin-right:10px;"></span>
           Rank Code List Items (<%= item.identifier %>)
         </span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" id="close-modal-button"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="table-width-wrapper table-cardstyle all-columns">
+          <div class="col-sm-12 table-cardstyle all-columns loading-destretch">
             <div class="errors"></div>
 
             <%= render partial: "shared/help_dialogs/rank_help" %>
@@ -28,10 +31,10 @@
                   <th class="fit"><span class="text-link">Rank</span></th>
                   <th class="fit">Identifer</th>
                   <th class="fit">Submission Value</th>
-                  <th>Preferred Term</th>
-                  <th>Synonyms</th>
+                  <th class="th-medium">Preferred Term</th>
+                  <th class="th-medium">Synonyms</th>
                   <th>Definition</th>
-                  <th>Tag(s)</th>
+                  <th class="th-medium">Tag(s)</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,7 +44,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn medium light" id="close-modal-button" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="btn medium light" id="close-modal-button">
           Close
         </button>
         <button type="button" class="btn medium red ttip" id="remove-rank-button">

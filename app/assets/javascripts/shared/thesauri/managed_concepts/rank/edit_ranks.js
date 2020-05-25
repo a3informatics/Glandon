@@ -13,6 +13,7 @@ function RankModal(lockCallback) {
  this.errorDiv = this.modal.find(".errors");
  this.rankTable = this.initTable();
  this.lockCallback = lockCallback;
+ this.data = {};
 
 
  this.setListeners();
@@ -30,8 +31,16 @@ function RankModal(lockCallback) {
  * @return [void]
  */
 RankModal.prototype.onShow = function() {
-  this.rankTable.columns.adjust();
   this.loadData();
+}
+
+/**
+ * Hides modal
+ *
+ * @return [void]
+ */
+RankModal.prototype.dismiss = function() {
+  this.modal.modal("hide");
 }
 
 /**
@@ -41,26 +50,21 @@ RankModal.prototype.onShow = function() {
  */
 RankModal.prototype.loadData = function() {
   this.rankTable.clear().draw();
-  //
-  // this.executeRequest({
-  //   url: this.dataUrl,
-  //   type: "GET",
-  //   data: {},
-  //   callback: function(data) {
-  //     $.each(data.data, function(i, item){
-  //       this.rankTable.row.add(item);
-  //     }.bind(this))
-  //
-  //     this.rankTable.draw();
-  //   }.bind(this)
-  // });
+  this.data = {};
 
-  var data = {"data":[{"rank": 0, "identifier":"S000288","notation":"sdasfsfr","preferred_term":"Asdasdasd","synonym":"","tags":"","extensible":false,"definition":"Not Set","delete":false,"single_parent":true,"uri":"http://www.s-cubed.dk/SN000320/V1#SN000320_S000288","id":"aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIwX1MwMDAyODg=","indicators":{"annotations":{"change_notes":0,"change_instructions":0}},"edit_path":"","delete_path":"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIwX1MwMDAyODg=?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIw"},{"rank": 1, "identifier":"S000292","notation":"Not Set","preferred_term":"Not Set","synonym":"","tags":"","extensible":false,"definition":"Not Set","delete":false,"single_parent":true,"uri":"http://www.s-cubed.dk/SN000320/V1#SN000320_S000292","id":"aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIwX1MwMDAyOTI=","indicators":{"annotations":{"change_notes":0,"change_instructions":0}},"edit_path":"","delete_path":"/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIwX1MwMDAyOTI=?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5zLWN1YmVkLmRrL1NOMDAwMzIwL1YxI1NOMDAwMzIw"}]}
+  this.executeRequest({
+    url: rankedChildrenUrl,
+    type: "GET",
+    data: {},
+    callback: function(data) {
+      $.each(data.data, function(i, item){
+        this.rankTable.row.add(item);
+      }.bind(this))
 
-  $.each(data.data, function(i, item){
-      this.rankTable.row.add(item);
-  }.bind(this))
-  this.rankTable.draw();
+      this.rankTable.draw();
+      this.rankTable.columns.adjust();
+    }.bind(this)
+  });
 
 }
 
@@ -106,6 +110,48 @@ RankModal.prototype.autoRank = function() {
   });
 }
 
+/**
+ * Remove Rank
+ *
+ * @param confirmRequired [Boolean] true if a confirmation dialog should appear
+ * @return [void]
+ */
+RankModal.prototype.save = function() {
+  var rankData  = this.getDataArray();
+
+  if(_.isEmpty(rankData))
+    return;
+
+  this.executeRequest({
+    url: rankSaveUrl,
+    data: JSON.stringify({ managed_concept: {children_ranks: this.getDataArray()} }),
+    type: "PUT",
+    callback: function(r) {
+      this.data = {};
+      displayAlertsInElement(alertSuccess("Ranks saved."), this.modal.find(".errors"));
+    }.bind(this)
+  })
+}
+
+/**
+ * Close Rank Modal
+ *
+ * @param confirmRequired [Boolean] true if a confirmation dialog should appear
+ * @return [void]
+ */
+RankModal.prototype.close = function(confirmRequired) {
+  if (!_.isEmpty(this.data) && confirmRequired) {
+    new ConfirmationDialog(this.close.bind(this, false), {
+      dangerous: true,
+      title: "Are you sure you want to close this dialog?",
+      subtitle: "You have unsaved changes."
+    }).show();
+
+    return;
+  }
+
+  this.modal.modal("hide");
+}
 
 /**
  * Remove Rank
@@ -119,7 +165,15 @@ RankModal.prototype.removeRank = function(confirmRequired) {
     return;
   }
 
-  // Remove
+  this.executeRequest({
+    url: rankRemoveUrl,
+    data: {},
+    type: "DELETE",
+    callback: function(r) {
+      this.dismiss();
+      location.reload();
+    }.bind(this)
+  })
 }
 
 /**
@@ -128,11 +182,14 @@ RankModal.prototype.removeRank = function(confirmRequired) {
  * @return [void]
  */
 RankModal.prototype.setListeners = function() {
-  this.modal.on("shown.bs.modal", this.onShow.bind(this));
+  this.modal.on("show.bs.modal", this.loadData.bind(this));
+  this.modal.on("shown.bs.modal", this.rankTable.columns.adjust);
   this.modal.on("focusin", "#rank-table tbody td .content-editable", this.onRankInteract.bind(this));
   this.modal.on("focusout keydown", "#rank-table tbody td .rank-input", this.onRankInteract.bind(this));
   this.modal.on("click", "#auto-rank-btn", this.autoRank.bind(this));
+  this.modal.on("click", "#submit-button", this.save.bind(this));
   this.modal.on("click", "#remove-rank-button", this.removeRank.bind(this, true));
+  this.modal.on("click", "#close-modal-button", this.close.bind(this, true));
   this.modal.on("click", "#rank-help", function() { new InformationDialog({div: $("#information-dialog-rank")}).show(); })
 }
 
@@ -148,7 +205,9 @@ RankModal.prototype.setListeners = function() {
  */
 RankModal.prototype.processing = function(enable) {
   this.rankTable.processing(enable);
-  this.modal.find("btn").toggleClass("disabled", enable);
+  this.modal.find(".btn, .clickable")
+            .not("#close-modal-button")
+            .toggleClass("disabled", enable);
 }
 
 /**
@@ -163,6 +222,17 @@ RankModal.prototype.focusAndSelect = function(el) {
   }, 0)
 }
 
+/**
+ * Sets event listeners, handlers
+ *
+ * @return [void]
+ */
+RankModal.prototype.getDataArray = function() {
+  return Object.keys(this.data).map(function(key) {
+    return { cli_id: key, rank: this.data[key] }
+  }.bind(this));
+}
+
 
 /**
  * Sets event listeners, handlers
@@ -171,6 +241,7 @@ RankModal.prototype.focusAndSelect = function(el) {
  */
 RankModal.prototype.updateRank = function(row, value) {
   row.data().rank = value;
+  this.data[row.data().id] = value;
   return row;
 }
 
@@ -191,7 +262,7 @@ RankModal.prototype.updateRankHTML = function(el, type) {
       el.parent().empty().append(this.rankHTML(el.html(), type));
       break;
   }
-  this.rankTable.draw();
+  this.rankTable.columns.adjust();
 }
 
 /**
@@ -202,9 +273,9 @@ RankModal.prototype.updateRankHTML = function(el, type) {
 RankModal.prototype.rankHTML = function(rank, type) {
   switch(type){
     case "display":
-      return "<span tabindex='0' class='content-editable with-icon font-regular text-link'>" + rank + "</span>";
+      return "<span tabindex='0' class='content-editable with-icon font-regular text-link text-normal no-break'>" + rank + "</span>";
     case "editing":
-      return "<input type='number' class='rank-input' step='1' style='width: 40px;' value='"+ rank +"'/>";
+      return "<input type='number' class='rank-input text-normal' step='1' style='width: 40px;' value='"+ rank +"'/>";
   }
 }
 
@@ -222,9 +293,10 @@ RankModal.prototype.executeRequest = function(params) {
     type: params.type,
     data: params.data,
     dataType: "json",
+    contentType: "application/json",
     context: this,
     success: function (result) {
-			this.callback(result);
+			params.callback(result);
       this.processing(false);
 		},
 		error: function (xhr, status, error) {
@@ -250,7 +322,7 @@ RankModal.prototype.columns = function() {
     { data: "preferred_term" },
     { data: "synonym" },
     { data: "definition" },
-    {"data": "tags", "render": function (data, type, row, meta) {
+    { data: "tags", "render": function (data, type, row, meta) {
         return type === "display" ? colorCodeTagsBadge(data) : data;
     }},
   ]
@@ -265,7 +337,7 @@ RankModal.prototype.initTable = function() {
   return this.modal.find("#rank-table").DataTable({
     pageLength: pageLength,
     lengthMenu: pageSettings,
-    order: [[ 1, 'asc' ]],
+    order: [[ 1, 'desc' ]],
     columns: this.columns(),
     processing: true,
     paging: false,

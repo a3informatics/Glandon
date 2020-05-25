@@ -376,6 +376,11 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
   top: 10%;
 }
 
+.content-editable.no-break{
+  white-space: nowrap;
+  margin-right: 15px;
+}
+
 // BLOCK LAYOUT
 
 .half-blocks-wrap{
