@@ -1532,6 +1532,17 @@ describe "Thesaurus::ManagedConcept" do
       expect(actual_tc.is_ranked).to eq(actual_rank.uri)
     end
 
+    it "get ranked children" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      results = actual_tc.get_ranked_children(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "get_ranked_children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Clone and New Version" do

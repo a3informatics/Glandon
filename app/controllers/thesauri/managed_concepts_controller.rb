@@ -458,7 +458,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     rank = tc.add_rank
     actual_rank = Thesaurus::Rank.find(rank.uri)
-
     if actual_rank.errors.empty?
       render json: { }, :status => 200
     else
@@ -468,22 +467,24 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def update_rank
     authorize Thesaurus, :edit?
-    rank = Thesaurus::Rank.find(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = Thesaurus::Rank.find(tc.is_ranked_links)
     rank.update(rank_params[:children_ranks])
     render json: { }, status: 200
   end
 
   def get_ranked_children
     authorize Thesaurus, :edit?
-    rank = Thesaurus::Rank.find(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     results = []
-    #results = rank.get_ranked_children
-    render :json => { data: results }, :status => 200
+    results = tc.get_ranked_children({offset: "0", count: "10000"})
+    render json: {data: results, offset: params[:offset] , count: results.count }, status: 200
   end
 
   def remove_rank
     authorize Thesaurus, :edit?
-    rank = Thesaurus::Rank.find(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = Thesaurus::Rank.find(tc.is_ranked_links)
     rank.remove_all
     render json: { }, status: 200
   end
