@@ -106,6 +106,22 @@ RankModal.prototype.autoRank = function() {
   });
 }
 
+
+/**
+ * Remove Rank
+ *
+ * @param confirmRequired [Boolean] true if a confirmation dialog should appear
+ * @return [void]
+ */
+RankModal.prototype.removeRank = function(confirmRequired) {
+  if (confirmRequired) {
+    new ConfirmationDialog(this.removeRank.bind(this, false), {dangerous: true}).show();
+    return;
+  }
+
+  // Remove
+}
+
 /**
  * Sets event listeners, handlers
  *
@@ -116,11 +132,24 @@ RankModal.prototype.setListeners = function() {
   this.modal.on("focusin", "#rank-table tbody td .content-editable", this.onRankInteract.bind(this));
   this.modal.on("focusout keydown", "#rank-table tbody td .rank-input", this.onRankInteract.bind(this));
   this.modal.on("click", "#auto-rank-btn", this.autoRank.bind(this));
+  this.modal.on("click", "#remove-rank-button", this.removeRank.bind(this, true));
+  this.modal.on("click", "#rank-help", function() { new InformationDialog({div: $("#information-dialog-rank")}).show(); })
 }
 
 /**
  ****** Support ******
 **/
+
+/**
+ * Enables or disables processing on the modal
+ *
+ * @param enable [Boolean] Processing enable / disable == true / false
+ * @return [void]
+ */
+RankModal.prototype.processing = function(enable) {
+  this.rankTable.processing(enable);
+  this.modal.find("btn").toggleClass("disabled", enable);
+}
 
 /**
  * Sets event listeners, handlers
@@ -133,6 +162,7 @@ RankModal.prototype.focusAndSelect = function(el) {
     $(el).select();
   }, 0)
 }
+
 
 /**
  * Sets event listeners, handlers

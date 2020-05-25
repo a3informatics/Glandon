@@ -15,16 +15,12 @@
           <div class="table-width-wrapper table-cardstyle all-columns">
             <div class="errors"></div>
 
-            <div class="font-light">
-              To assign / change Rank value, click on the respective cell. Use the <i>Tab</i> key to traverse the cells quickly. <br/>
-              To automatically assign Ranks (1 to N) for items in the order in which they are currently displayed, click the <span class="font-regular text-link">Auto-Rank</span> button. <br/>
-              <i>(This will overwrite current Ranks. It will not be saved until you press the Save changes button)</i><br/>
-              <span class="font-regular">Don't forget to Save your changes when you're done editing</span>.
+            <%= render partial: "shared/help_dialogs/rank_help" %>
 
-              <center>
-                <button class="btn medium light" id="auto-rank-btn">Auto-Rank by order</button>
-              </center>
-            </div>
+            <center>
+              <button class="btn medium light" id="auto-rank-btn">Auto-Rank by order</button>
+              <span id="rank-help" class="icon-help text-small clickable text-light ttip"><span class="ttip-text text-medium shadow-small">Help</span></span>
+            </center>
 
             <table id="rank-table" class="table" cellspacing="0" width="100%">
               <thead>
