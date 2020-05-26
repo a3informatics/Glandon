@@ -190,7 +190,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results
   end
 
-  def create_extension_no_e(tc)
+  def set_extension_no_e(tc)
     source = Thesaurus::ManagedConcept.find_full(tc.id)
     source.narrower_links
     object = source.clone
@@ -199,8 +199,8 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     object.set_initial(object.identifier)
     object.has_state.registration_status = IsoRegistrationStateV2.released_state
     object.has_state.previous_state = IsoRegistrationStateV2.released_state
-    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-    object.add_link(:extends, source.uri)
+    return nil unless object.valid?(:create) && object.create_permitted?
+    object.extends = source.uri
     object
   end
 
@@ -252,7 +252,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
       results = ct.find_by_identifiers([identifier])
   puts "URI: #{results[identifier]}"
       tc = Thesaurus::ManagedConcept.find_minimum(results[identifier])
-      new_object = create_extension_no_e(tc)
+      new_object = set_extension_no_e(tc)
       new_object.to_sparql(sparql, true)
     end
     full_path = sparql.to_file
@@ -276,7 +276,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results = []
     ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
       uri = ct.find_by_identifiers([identifier])[identifier]
-      tc = Thesaurus::ManagedConcept.find(uri).to_h
+      tc = Thesaurus::ManagedConcept.find_full(uri).to_h
       results << tc
     end
     check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
