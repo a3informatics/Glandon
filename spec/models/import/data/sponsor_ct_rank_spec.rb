@@ -197,6 +197,8 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     object.identifier = "#{source.scoped_identifier}"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
+    object.has_state.registration_status = IsoRegistrationStateV2.released_state
+    object.has_state.previous_state = IsoRegistrationStateV2.released_state
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object.add_link(:extends, source.uri)
     object
