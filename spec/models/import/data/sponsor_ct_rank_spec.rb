@@ -145,25 +145,6 @@ describe "Import::SponsorTermFormatOne" do
     results
   end
 
-  it "2.6 rank extension", :speed => 'slow' do
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
-    code_lists = config[:codelists]
-    ignore = config[:ignore]
-    results = process_code_lists(code_lists, ignore)
-    create_ranks(results, "2-6")
-  end
-
-  it "3.0 rank extension", :speed => 'slow' do
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
-    config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
-    code_lists = config[:codelists]
-    ignore = config[:ignore]
-    results = process_code_lists(code_lists, ignore)
-    create_ranks(results, "3-0")
-  end
-
   def ranked
     query_string = %Q{
       SELECT ?cl ?item ?rank WHERE 
@@ -184,7 +165,51 @@ describe "Import::SponsorTermFormatOne" do
     query_results.by_object_set([:cl, :item, :rank]).map{|x| {code_list: x[:cl].to_s, item: x[:item].to_s, rank: x[:rank]}}
   end
 
-  it "QC check", :speed => 'slow' do
+  def check_ranks(code_lists)
+    results = []
+    code_lists.each do |identifier|
+      cls = Thesaurus::ManagedConcept.where(identifier: identifier)
+      owned = []
+      cls.each do |x|
+        y = x.class.find_with_properties(x.uri)
+        next unless y.owned? 
+        owned << y
+      end
+      owned.each do |cl|
+puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
+        #expect(cl.ranked?).to eq(true)
+        ranks = cl.children_pagination({offset: "0", count: "10000"}).map{|x| {identifier: x[:identifier], notation: x[:notation], rank: x[:rank].to_i}}
+        results << {
+          identifier: cl.identifier, 
+          semantic_version: cl.semantic_version, 
+          ranked: cl.ranked?,
+          children: ranks.sort_by{|x| x[:rank]}
+        }
+      end
+    end
+    results
+  end
+
+  it "2.6 rank extension", :speed => 'slow' do
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
+    code_lists = config[:codelists]
+    ignore = config[:ignore]
+    results = process_code_lists(code_lists, ignore)
+    create_ranks(results, "2-6")
+  end
+
+  it "3.0 rank extension", :speed => 'slow' do
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
+    code_lists = config[:codelists]
+    ignore = config[:ignore]
+    results = process_code_lists(code_lists, ignore)
+    create_ranks(results, "3-0")
+  end
+
+  it "QC check I, Duplicates", :speed => 'slow' do
     write_file = false
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
@@ -197,6 +222,21 @@ describe "Import::SponsorTermFormatOne" do
     end
     check_file_actual_expected(results, sub_dir, "ranked_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
     check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
+  end
+
+  it "QC check II, CLs as Expected", :speed => 'slow' do
+    write_file = true
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    code_lists = []
+    ["rank_V2-6.yaml", "rank_V3-0.yaml"].each_with_index do |file|
+      config = read_yaml_file(sub_dir, file)
+      code_lists = code_lists + config[:codelists].map{|x| x[:codelist_code]}
+    end
+    results = check_ranks(code_lists.uniq!)
+    check_file_actual_expected(results, sub_dir, "children_ranked_expected.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
 end

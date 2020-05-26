@@ -1,0 +1,1205 @@
+---
+- :identifier: C66767
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :rank: 1
+  - :identifier: C49505
+    :notation: DOSE REDUCED
+    :rank: 2
+  - :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :rank: 3
+  - :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :rank: 4
+  - :identifier: C49503
+    :notation: DOSE INCREASED
+    :rank: 5
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 6
+  - :identifier: C17998
+    :notation: UNKNOWN
+    :rank: 7
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 8
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 9
+- :identifier: C66767
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :rank: 1
+  - :identifier: C49505
+    :notation: DOSE REDUCED
+    :rank: 2
+  - :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :rank: 3
+  - :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :rank: 4
+  - :identifier: C49503
+    :notation: DOSE INCREASED
+    :rank: 5
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 6
+  - :identifier: C17998
+    :notation: UNKNOWN
+    :rank: 7
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 8
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 9
+- :identifier: SN000730
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :rank: 1
+  - :identifier: C49505
+    :notation: DOSE REDUCED
+    :rank: 2
+  - :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :rank: 3
+  - :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :rank: 4
+  - :identifier: C49503
+    :notation: DOSE INCREASED
+    :rank: 5
+  - :identifier: S000010
+    :notation: DOSE DELAYED
+    :rank: 6
+  - :identifier: S000011
+    :notation: DOSE DELAYED AND REDUCED
+    :rank: 7
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 8
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 9
+- :identifier: SN000730
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: C49504
+    :notation: DOSE NOT CHANGED
+    :rank: 1
+  - :identifier: C49505
+    :notation: DOSE REDUCED
+    :rank: 2
+  - :identifier: C49501
+    :notation: DRUG INTERRUPTED
+    :rank: 3
+  - :identifier: C49502
+    :notation: DRUG WITHDRAWN
+    :rank: 4
+  - :identifier: C49503
+    :notation: DOSE INCREASED
+    :rank: 5
+  - :identifier: S000010
+    :notation: DOSE DELAYED
+    :rank: 6
+  - :identifier: S000011
+    :notation: DOSE DELAYED AND REDUCED
+    :rank: 7
+  - :identifier: S011612
+    :notation: DISCONTINUATION OF STUDY VACCINATION
+    :rank: 8
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 8
+  - :identifier: C48660
+    :notation: NOT APPLICABLE
+    :rank: 9
+- :identifier: SN000005
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000029
+    :notation: '1'
+    :rank: 1
+  - :identifier: S000030
+    :notation: '2'
+    :rank: 2
+  - :identifier: S000031
+    :notation: '3'
+    :rank: 3
+  - :identifier: S000032
+    :notation: '4'
+    :rank: 4
+  - :identifier: S000033
+    :notation: '5'
+    :rank: 5
+  - :identifier: S000034
+    :notation: '6'
+    :rank: 6
+  - :identifier: S000035
+    :notation: '7'
+    :rank: 7
+  - :identifier: S000036
+    :notation: '8'
+    :rank: 8
+  - :identifier: S003958
+    :notation: '9'
+    :rank: 9
+  - :identifier: S000012
+    :notation: '10'
+    :rank: 10
+- :identifier: SN000005
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000029
+    :notation: '1'
+    :rank: 1
+  - :identifier: S000030
+    :notation: '2'
+    :rank: 2
+  - :identifier: S000031
+    :notation: '3'
+    :rank: 3
+  - :identifier: S000032
+    :notation: '4'
+    :rank: 4
+  - :identifier: S000033
+    :notation: '5'
+    :rank: 5
+  - :identifier: S000034
+    :notation: '6'
+    :rank: 6
+  - :identifier: S000035
+    :notation: '7'
+    :rank: 7
+  - :identifier: S000036
+    :notation: '8'
+    :rank: 8
+  - :identifier: S003958
+    :notation: '9'
+    :rank: 9
+  - :identifier: S000012
+    :notation: '10'
+    :rank: 10
+- :identifier: SN000018
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000113
+    :notation: IN UTERO
+    :rank: 1
+  - :identifier: S000117
+    :notation: PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
+    :rank: 2
+  - :identifier: S000115
+    :notation: NEWBORNS (0-27 DAYS)
+    :rank: 3
+  - :identifier: S000114
+    :notation: INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
+    :rank: 4
+  - :identifier: S000110
+    :notation: CHILDREN (2-11 YEARS)
+    :rank: 5
+  - :identifier: S000109
+    :notation: ADOLESCENTS (12-17 YEARS)
+    :rank: 6
+  - :identifier: S000111
+    :notation: FROM 18 - 64 YEARS
+    :rank: 7
+  - :identifier: S000112
+    :notation: FROM 65 - 84 YEARS
+    :rank: 8
+  - :identifier: S009907
+    :notation: 85 YEARS AND OVER
+    :rank: 9
+- :identifier: SN000020
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000142
+    :notation: NEONATES
+    :rank: 1
+  - :identifier: S000141
+    :notation: INFANTS
+    :rank: 2
+  - :identifier: S000144
+    :notation: YOUNGER CHILDREN
+    :rank: 3
+  - :identifier: S000143
+    :notation: OLDER CHILDREN
+    :rank: 4
+  - :identifier: S000140
+    :notation: ADOLESCENTS
+    :rank: 5
+- :identifier: SN000021
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000145
+    :notation: '1'
+    :rank: 1
+  - :identifier: S000127
+    :notation: '2'
+    :rank: 2
+  - :identifier: S000132
+    :notation: '3'
+    :rank: 3
+  - :identifier: S000146
+    :notation: '4'
+    :rank: 4
+  - :identifier: S000147
+    :notation: '5'
+    :rank: 5
+- :identifier: SN000082
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000243
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001739
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001745
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000081
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000244
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001740
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001746
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000085
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000246
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001742
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001748
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000084
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000247
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001743
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001749
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000083
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000248
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001744
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001750
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000086
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000245
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001741
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001747
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001030
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: C75533
+    :notation: '0'
+    :rank: 1
+  - :identifier: C84263
+    :notation: '1'
+    :rank: 2
+  - :identifier: C84264
+    :notation: '2'
+    :rank: 3
+  - :identifier: C84265
+    :notation: '3'
+    :rank: 4
+  - :identifier: C84266
+    :notation: '4'
+    :rank: 5
+  - :identifier: C48275
+    :notation: '5'
+    :rank: 6
+- :identifier: SN001030
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S011595
+    :notation: '1'
+    :rank: 1
+  - :identifier: S011594
+    :notation: '0'
+    :rank: 1
+  - :identifier: S011595
+    :notation: '1'
+    :rank: 2
+  - :identifier: S011596
+    :notation: '2'
+    :rank: 2
+  - :identifier: S011597
+    :notation: '3'
+    :rank: 3
+  - :identifier: S011596
+    :notation: '2'
+    :rank: 3
+  - :identifier: S011597
+    :notation: '3'
+    :rank: 4
+  - :identifier: S011598
+    :notation: '4'
+    :rank: 4
+  - :identifier: S011598
+    :notation: '4'
+    :rank: 5
+  - :identifier: S011599
+    :notation: '5'
+    :rank: 5
+  - :identifier: S011599
+    :notation: '5'
+    :rank: 6
+- :identifier: SN001073
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S003307
+    :notation: GRADE 0
+    :rank: 1
+  - :identifier: S030801
+    :notation: GRADE 1
+    :rank: 2
+  - :identifier: S003309
+    :notation: GRADE 2
+    :rank: 3
+  - :identifier: S003310
+    :notation: GRADE 3
+    :rank: 4
+  - :identifier: S003311
+    :notation: GRADE 4
+    :rank: 5
+  - :identifier: S030802
+    :notation: GRADE 5
+    :rank: 6
+- :identifier: SN001072
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: C75533
+    :notation: '0'
+    :rank: 1
+  - :identifier: C84263
+    :notation: '1'
+    :rank: 2
+  - :identifier: C84264
+    :notation: '2'
+    :rank: 3
+  - :identifier: C84265
+    :notation: '3'
+    :rank: 4
+  - :identifier: C84266
+    :notation: '4'
+    :rank: 5
+  - :identifier: C48275
+    :notation: '5'
+    :rank: 6
+- :identifier: SN001072
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S011600
+    :notation: '1'
+    :rank: 1
+  - :identifier: S011601
+    :notation: '2'
+    :rank: 2
+  - :identifier: S011602
+    :notation: '3'
+    :rank: 3
+  - :identifier: S011603
+    :notation: '4'
+    :rank: 4
+  - :identifier: S011604
+    :notation: '5'
+    :rank: 5
+  - :identifier: S011605
+    :notation: '6'
+    :rank: 6
+- :identifier: SN001020
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S009928
+    :notation: '1'
+    :rank: 1
+  - :identifier: S009929
+    :notation: '2'
+    :rank: 2
+  - :identifier: S009930
+    :notation: '3'
+    :rank: 3
+  - :identifier: S009931
+    :notation: '4'
+    :rank: 4
+  - :identifier: S009932
+    :notation: '5'
+    :rank: 5
+  - :identifier: S009933
+    :notation: '6'
+    :rank: 6
+  - :identifier: S009934
+    :notation: '7'
+    :rank: 7
+  - :identifier: S009935
+    :notation: '8'
+    :rank: 8
+  - :identifier: S009936
+    :notation: '9'
+    :rank: 9
+- :identifier: SN001020
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S009928
+    :notation: '1'
+    :rank: 1
+  - :identifier: S009929
+    :notation: '2'
+    :rank: 2
+  - :identifier: S009930
+    :notation: '3'
+    :rank: 3
+  - :identifier: S009931
+    :notation: '4'
+    :rank: 4
+  - :identifier: S009932
+    :notation: '5'
+    :rank: 5
+  - :identifier: S009933
+    :notation: '6'
+    :rank: 6
+  - :identifier: S009934
+    :notation: '7'
+    :rank: 7
+  - :identifier: S009935
+    :notation: '8'
+    :rank: 8
+  - :identifier: S009936
+    :notation: '9'
+    :rank: 9
+- :identifier: SN001915
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S004908
+    :notation: TRANSIENT ISCHEMIC ATTACK
+    :rank: 1
+  - :identifier: C95802
+    :notation: ISCHEMIC STROKE
+    :rank: 2
+  - :identifier: S001617
+    :notation: ISCHEMIC STROKE WITH HEMORRHAGIC CONVERSION
+    :rank: 3
+  - :identifier: C95803
+    :notation: HEMORRHAGIC STROKE
+    :rank: 4
+  - :identifier: S030800
+    :notation: UNDETERMINED TYPE OF STROKE
+    :rank: 5
+  - :identifier: S004909
+    :notation: TRAUMATIC SUBDURAL HEMATOMA
+    :rank: 6
+  - :identifier: S004907
+    :notation: NON TRAUMATIC SUBDURAL HEMATOMA
+    :rank: 7
+  - :identifier: S001630
+    :notation: NO CEREBROVASCULAR EVENT
+    :rank: 8
+- :identifier: SN001915
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S004908
+    :notation: TRANSIENT ISCHEMIC ATTACK
+    :rank: 1
+  - :identifier: C95802
+    :notation: ISCHEMIC STROKE
+    :rank: 2
+  - :identifier: S001617
+    :notation: ISCHEMIC STROKE WITH HEMORRHAGIC CONVERSION
+    :rank: 3
+  - :identifier: C95803
+    :notation: HEMORRHAGIC STROKE
+    :rank: 4
+  - :identifier: S030800
+    :notation: UNDETERMINED TYPE OF STROKE
+    :rank: 5
+  - :identifier: S004909
+    :notation: TRAUMATIC SUBDURAL HEMATOMA
+    :rank: 6
+  - :identifier: S004907
+    :notation: NON TRAUMATIC SUBDURAL HEMATOMA
+    :rank: 7
+  - :identifier: S001630
+    :notation: NO CEREBROVASCULAR EVENT
+    :rank: 8
+- :identifier: SN000193
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S002088
+    :notation: '0'
+    :rank: 1
+  - :identifier: S002089
+    :notation: '1'
+    :rank: 2
+  - :identifier: S002084
+    :notation: '2'
+    :rank: 3
+  - :identifier: S002085
+    :notation: '3'
+    :rank: 4
+  - :identifier: S002086
+    :notation: '4'
+    :rank: 5
+  - :identifier: S000214
+    :notation: '5'
+    :rank: 6
+- :identifier: SN000919
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008548
+    :notation: '1'
+    :rank: 1
+  - :identifier: S008549
+    :notation: '2'
+    :rank: 2
+  - :identifier: S008550
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000919
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012900
+    :notation: I HAVE NO PROBLEMS IN WALKING ABOUT
+    :rank: 1
+  - :identifier: S012901
+    :notation: I HAVE SOME PROBLEMS IN WALKING ABOUT
+    :rank: 2
+  - :identifier: S012902
+    :notation: I AM CONFINED TO BED
+    :rank: 3
+- :identifier: SN000920
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S002125
+    :notation: '1'
+    :rank: 1
+  - :identifier: S008551
+    :notation: '2'
+    :rank: 2
+  - :identifier: S008552
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000920
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012903
+    :notation: I HAVE NO PROBLEMS WITH SELF-CARE
+    :rank: 1
+  - :identifier: S012904
+    :notation: I HAVE SOME PROBLEMS WASHING OR DRESSING MYSELF
+    :rank: 2
+  - :identifier: S012905
+    :notation: I AM UNABLE TO WASH OR DRESS MYSELF
+    :rank: 3
+- :identifier: SN000921
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008553
+    :notation: '1'
+    :rank: 1
+  - :identifier: S008554
+    :notation: '2'
+    :rank: 2
+  - :identifier: S008555
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000921
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012906
+    :notation: I HAVE NO PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
+    :rank: 1
+  - :identifier: S012907
+    :notation: I HAVE SOME PROBLEMS WITH PERFORMING MY USUAL ACTIVITIES
+    :rank: 2
+  - :identifier: S012908
+    :notation: I AM UNABLE TO PERFORM MY USUAL ACTIVITIES
+    :rank: 3
+- :identifier: SN000922
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S002122
+    :notation: '1'
+    :rank: 1
+  - :identifier: S008556
+    :notation: '2'
+    :rank: 2
+  - :identifier: S008557
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000922
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012909
+    :notation: I HAVE NO PAIN OR DISCOMFORT
+    :rank: 1
+  - :identifier: S012910
+    :notation: I HAVE MODERATE PAIN OR DISCOMFORT
+    :rank: 2
+  - :identifier: S012911
+    :notation: I HAVE EXTREME PAIN OR DISCOMFORT
+    :rank: 3
+- :identifier: SN000923
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S002121
+    :notation: '1'
+    :rank: 1
+  - :identifier: S008558
+    :notation: '2'
+    :rank: 2
+  - :identifier: S008559
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000923
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012912
+    :notation: I AM NOT ANXIOUS OR DEPRESSED
+    :rank: 1
+  - :identifier: S012913
+    :notation: I AM MODERATELY ANXIOUS OR DEPRESSED
+    :rank: 2
+  - :identifier: S012914
+    :notation: I AM EXTREMELY ANXIOUS OR DEPRESSED
+    :rank: 3
+- :identifier: SN000737
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S006241
+    :notation: BLOOD MEASUREMENT ERROR
+    :rank: 1
+  - :identifier: S006242
+    :notation: MEDICAL DEVICE CALIBRATION ISSUE
+    :rank: 2
+  - :identifier: S006243
+    :notation: UNEXPECTED
+    :rank: 3
+  - :identifier: S006244
+    :notation: DUPLICATE
+    :rank: 4
+  - :identifier: S006245
+    :notation: COMMUNICATION OR TRANSMISSION ISSUE ASSOCIATED WITH MEDICAL DEVICE
+    :rank: 5
+  - :identifier: C17649
+    :notation: OTHER
+    :rank: 6
+- :identifier: SN000393
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008888
+    :notation: NO WORSENING AS COMPARED TO THE BASELINE PCSA STATUS
+    :rank: 1
+  - :identifier: S008884
+    :notation: RETURNED TO BASELINE PCSA STATUS BEFORE LAST IMP DOSE
+    :rank: 2
+  - :identifier: S008885
+    :notation: RETURNED TO BASELINE PCSA STATUS AFTER LAST IMP DOSE
+    :rank: 3
+  - :identifier: S008887
+    :notation: NEVER RETURNED TO BASELINE PCSA STATUS
+    :rank: 4
+  - :identifier: S008886
+    :notation: NO ASSESSMENT AFTER THE WORST ON-TREATMENT VALUE
+    :rank: 5
+- :identifier: SN000393
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008888
+    :notation: NO WORSENING AS COMPARED TO THE BASELINE PCSA STATUS
+    :rank: 1
+  - :identifier: S008884
+    :notation: RETURNED TO BASELINE PCSA STATUS BEFORE LAST IMP DOSE
+    :rank: 2
+  - :identifier: S008885
+    :notation: RETURNED TO BASELINE PCSA STATUS AFTER LAST IMP DOSE
+    :rank: 3
+  - :identifier: S008887
+    :notation: NEVER RETURNED TO BASELINE PCSA STATUS
+    :rank: 4
+  - :identifier: S008886
+    :notation: NO ASSESSMENT AFTER THE WORST ON-TREATMENT VALUE
+    :rank: 5
+- :identifier: SN000394
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S003126
+    :notation: '0'
+    :rank: 1
+  - :identifier: S003130
+    :notation: '1'
+    :rank: 2
+  - :identifier: S003129
+    :notation: '2'
+    :rank: 3
+  - :identifier: S003127
+    :notation: '3'
+    :rank: 4
+  - :identifier: S003128
+    :notation: '4'
+    :rank: 5
+- :identifier: SN000394
+  :semantic_version: 2.0.0
+  :ranked: true
+  :children:
+  - :identifier: S003126
+    :notation: '0'
+    :rank: 1
+  - :identifier: S003130
+    :notation: '1'
+    :rank: 2
+  - :identifier: S003129
+    :notation: '2'
+    :rank: 3
+  - :identifier: S003127
+    :notation: '3'
+    :rank: 4
+  - :identifier: S003128
+    :notation: '4'
+    :rank: 5
+- :identifier: SN000407
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S009915
+    :notation: '5'
+    :rank: 1
+  - :identifier: S009914
+    :notation: '4'
+    :rank: 2
+  - :identifier: S003153
+    :notation: '3'
+    :rank: 3
+  - :identifier: S009913
+    :notation: '2'
+    :rank: 4
+  - :identifier: S009912
+    :notation: '1'
+    :rank: 5
+  - :identifier: S003156
+    :notation: '6'
+    :rank: 6
+- :identifier: SN000924
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008577
+    :notation: '0'
+    :rank: 1
+  - :identifier: S008578
+    :notation: '1'
+    :rank: 2
+  - :identifier: S008579
+    :notation: '2'
+    :rank: 3
+  - :identifier: S008580
+    :notation: '3'
+    :rank: 4
+  - :identifier: S008581
+    :notation: '4'
+    :rank: 5
+- :identifier: C74457
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: C41261
+    :notation: WHITE
+    :rank: 1
+  - :identifier: C16352
+    :notation: BLACK OR AFRICAN AMERICAN
+    :rank: 2
+  - :identifier: C41260
+    :notation: ASIAN
+    :rank: 3
+  - :identifier: C41219
+    :notation: NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
+    :rank: 4
+  - :identifier: C41259
+    :notation: AMERICAN INDIAN OR ALASKA NATIVE
+    :rank: 5
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 6
+- :identifier: C74457
+  :semantic_version: 2.0.0
+  :ranked: false
+  :children:
+  - :identifier: C16352
+    :notation: BLACK OR AFRICAN AMERICAN
+    :rank: 0
+  - :identifier: C41261
+    :notation: WHITE
+    :rank: 1
+  - :identifier: C41260
+    :notation: ASIAN
+    :rank: 3
+  - :identifier: C41219
+    :notation: NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
+    :rank: 4
+  - :identifier: C41259
+    :notation: AMERICAN INDIAN OR ALASKA NATIVE
+    :rank: 5
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 6
+- :identifier: SN000012
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000090
+    :notation: NOT RELATED
+    :rank: 1
+  - :identifier: S000093
+    :notation: RELATED
+    :rank: 2
+  - :identifier: S000094
+    :notation: UNLIKELY RELATED
+    :rank: 2
+  - :identifier: S000092
+    :notation: POSSIBLY RELATED
+    :rank: 3
+  - :identifier: S000093
+    :notation: RELATED
+    :rank: 4
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 6
+- :identifier: SN000013
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000095
+    :notation: '1'
+    :rank: 1
+  - :identifier: S000097
+    :notation: '2'
+    :rank: 2
+  - :identifier: S000098
+    :notation: '3'
+    :rank: 3
+  - :identifier: S000099
+    :notation: '4'
+    :rank: 4
+- :identifier: SN000015
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000100
+    :notation: '1'
+    :rank: 1
+  - :identifier: S000101
+    :notation: '2'
+    :rank: 2
+  - :identifier: S000102
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000548
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S005180
+    :notation: "<LLN TO >ULN"
+    :rank: 1
+  - :identifier: S003274
+    :notation: ">ULN TO <LLN"
+    :rank: 2
+- :identifier: SN000551
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000230
+    :notation: '1'
+    :rank: 1
+  - :identifier: S005180
+    :notation: '3'
+    :rank: 2
+- :identifier: SN000549
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S008890
+    :notation: ABNORMAL TO NORMAL
+    :rank: 1
+  - :identifier: S008889
+    :notation: NORMAL/MISSING TO ABNORMAL
+    :rank: 2
+- :identifier: SN000550
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000229
+    :notation: '1'
+    :rank: 1
+  - :identifier: S003276
+    :notation: '2'
+    :rank: 2
+- :identifier: SN000556
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000225
+    :notation: '1'
+    :rank: 1
+  - :identifier: S003278
+    :notation: '2'
+    :rank: 2
+- :identifier: SN001260
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000243
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001739
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001745
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001259
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000244
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001740
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001746
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001264
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000245
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001741
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001747
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001263
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000246
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001742
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001748
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001262
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000247
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001743
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001749
+    :notation: '3'
+    :rank: 3
+- :identifier: SN001261
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S000248
+    :notation: '1'
+    :rank: 1
+  - :identifier: S001744
+    :notation: '2'
+    :rank: 2
+  - :identifier: S001750
+    :notation: '3'
+    :rank: 3
+- :identifier: SN000155
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012915
+    :notation: I HAVE NO PROBLEMS WALKING
+    :rank: 1
+  - :identifier: S012916
+    :notation: I HAVE SLIGHT PROBLEMS WALKING
+    :rank: 2
+  - :identifier: S012917
+    :notation: I HAVE MODERATE PROBLEMS WALKING
+    :rank: 3
+  - :identifier: S012918
+    :notation: I HAVE SEVERE PROBLEMS WALKING
+    :rank: 4
+  - :identifier: S012919
+    :notation: I AM UNABLE TO WALK
+    :rank: 5
+- :identifier: SN000156
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012920
+    :notation: I HAVE NO PROBLEMS WASHING OR DRESSING MYSELF
+    :rank: 1
+  - :identifier: S012921
+    :notation: I HAVE SLIGHT PROBLEMS WASHING OR DRESSING MYSELF
+    :rank: 2
+  - :identifier: S012922
+    :notation: I HAVE MODERATE PROBLEMS WASHING OR DRESSING MYSELF
+    :rank: 3
+  - :identifier: S012923
+    :notation: I HAVE SEVERE PROBLEMS WASHING OR DRESSING MYSELF
+    :rank: 4
+  - :identifier: S012905
+    :notation: I AM UNABLE TO WASH OR DRESS MYSELF
+    :rank: 5
+- :identifier: SN000157
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012924
+    :notation: I HAVE NO PROBLEMS DOING MY USUAL ACTIVITIES
+    :rank: 1
+  - :identifier: S012925
+    :notation: I HAVE SLIGHT PROBLEMS DOING MY USUAL ACTIVITIES
+    :rank: 2
+  - :identifier: S012926
+    :notation: I HAVE MODERATE PROBLEMS DOING MY USUAL ACTIVITIES
+    :rank: 3
+  - :identifier: S012927
+    :notation: I HAVE SEVERE PROBLEMS DOING MY USUAL ACTIVITIES
+    :rank: 4
+  - :identifier: S012928
+    :notation: I AM UNABLE TO DO MY USUAL ACTIVITIES
+    :rank: 5
+- :identifier: SN000158
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012909
+    :notation: I HAVE NO PAIN OR DISCOMFORT
+    :rank: 1
+  - :identifier: S012929
+    :notation: I HAVE SLIGHT PAIN OR DISCOMFORT
+    :rank: 2
+  - :identifier: S012910
+    :notation: I HAVE MODERATE PAIN OR DISCOMFORT
+    :rank: 3
+  - :identifier: S012930
+    :notation: I HAVE SEVERE PAIN OR DISCOMFORT
+    :rank: 4
+  - :identifier: S012911
+    :notation: I HAVE EXTREME PAIN OR DISCOMFORT
+    :rank: 5
+- :identifier: SN000159
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012912
+    :notation: I AM NOT ANXIOUS OR DEPRESSED
+    :rank: 1
+  - :identifier: S012931
+    :notation: I AM SLIGHTLY ANXIOUS OR DEPRESSED
+    :rank: 2
+  - :identifier: S012913
+    :notation: I AM MODERATELY ANXIOUS OR DEPRESSED
+    :rank: 3
+  - :identifier: S012932
+    :notation: I AM SEVERELY ANXIOUS OR DEPRESSED
+    :rank: 4
+  - :identifier: S012914
+    :notation: I AM EXTREMELY ANXIOUS OR DEPRESSED
+    :rank: 5
+- :identifier: SN001226
+  :semantic_version: 1.0.0
+  :ranked: true
+  :children:
+  - :identifier: S012755
+    :notation: CHECKED
+    :rank: 1
+  - :identifier: S012756
+    :notation: NOT CHECKED
+    :rank: 2
