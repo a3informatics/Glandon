@@ -190,8 +190,99 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results
   end
 
-  it "2.6 rank extension", :speed => 'slow' do
+  def create_extension_no_e(tc)
+    source = Thesaurus::ManagedConcept.find_full(tc.id)
+    source.narrower_links
+    object = source.clone
+    object.identifier = "#{source.scoped_identifier}"
+    object.extensible = false # Make sure we cannot extend the extension
+    object.set_initial(object.identifier)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object.add_link(:extends, source.uri)
+    object
+  end
+
+  def update_ct_refs
+    sparql = Sparql::Update.new
+    sparql_update = %Q{
+      DELETE
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> 
+      }      
+      INSERT 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66784/V1#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C87162/V1#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s1 bo:reference <http://www.sanofi.com/C66784/V1#C66784> .
+        ?s2 bo:reference <http://www.sanofi.com/C87162/V1#C87162> .
+        ?s3 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
+      }
+      WHERE 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s1 .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s2 .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s3 .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s4 .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769>
+      }      
+    }
+    sparql.sparql_update(sparql_update, "", [:th, :bo])
+  end
+
+  it "contructs new extensions", :speed => 'slow' do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+    sparql = Sparql::Update.new
+    sparql.default_namespace(ct.uri.namespace)
+    ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
+      results = ct.find_by_identifiers([identifier])
+  puts "URI: #{results[identifier]}"
+      tc = Thesaurus::ManagedConcept.find_minimum(results[identifier])
+      new_object = create_extension_no_e(tc)
+      new_object.to_sparql(sparql, true)
+    end
+    full_path = sparql.to_file
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
+  end
+
+  it "checks new migration v2.6", :speed => 'slow' do
+    write_file = true
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
+    count = triple_store.triple_count
+    cl_count = count_cl(ct)
+    cli_count = count_cli(ct)
+    cli_distinct_count = count_distinct_cli(ct)
+    update_ct_refs
+    expect(triple_store.triple_count).to eq(count)
+    expect(count_cl(ct)).to eq(cl_count)
+    expect(count_cli(ct)).to eq(cli_count)
+    expect(count_distinct_cli(ct)).to eq(cli_distinct_count)
+    results = []
+    ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
+      uri = ct.find_by_identifiers([identifier])[identifier]
+      results << Thesaurus::ManagedConcept.find(uri).to_h
+    end
+    check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
+  end
+
+  it "rank extension v2.6", :speed => 'slow' do
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    update_ct_refs
     config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -199,7 +290,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     create_ranks(results, "2-6")
   end
 
-  it "3.0 rank extension", :speed => 'slow' do
+  it "rank extension v3.0", :speed => 'slow' do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
@@ -225,7 +316,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
   end
 
   it "QC check II, CLs as Expected", :speed => 'slow' do
-    write_file = true
+    write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
