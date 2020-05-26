@@ -161,7 +161,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   def indicators
     results = {}
     query_string = %Q{
-      SELECT DISTINCT ?i ?eo ?ei ?so ?si ?type (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) WHERE
+      SELECT DISTINCT ?i ?eo ?ei ?so ?si ?ranked ?type (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) WHERE
       {
         OPTIONAL{
             #{self.uri.to_ref} rdf:type th:ManagedConcept .
@@ -169,6 +169,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
             BIND (EXISTS {#{self.uri.to_ref} th:subsets ?xs1} as ?so)
             BIND (EXISTS {#{self.uri.to_ref} ^th:extends ?xe2} as ?ei)
             BIND (EXISTS {#{self.uri.to_ref} ^th:subsets ?xs2} as ?si)
+            BIND (EXISTS {#{self.uri.to_ref} th:isRanked ?xr1} as ?ranked)
             OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) #{self.uri.to_ref} . ?ci rdf:type ba:ChangeInstruction }
             OPTIONAL {?cn (ba:current/bo:reference) #{self.uri.to_ref} . ?cn rdf:type ba:ChangeNote }
             #{self.uri.to_ref} th:identifier ?i .
@@ -185,14 +186,15 @@ SELECT DISTINCT ?s ?p ?o WHERE {
             BIND ("" as ?ei)
             BIND ("" as ?so)
             BIND ("" as ?si)
+            BIND ("" as ?ranked)
           }
       } GROUP BY ?i ?eo ?ei ?so ?si ?countci ?countcn ?type ORDER BY ?i 
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
-    query_results.by_object_set([:i, :eo, :ei, :so, :si, :countcn, :countci, :type]).each do |x|
+    query_results.by_object_set([:i, :eo, :ei, :so, :si, :ranked, :countcn, :countci, :type]).each do |x|
       case x[:type].to_sym
         when :ManagedConcept
-          indicators = { extended: x[:ei].to_bool, extends: x[:eo].to_bool, subsetted: x[:si].to_bool, subset: x[:so].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+          indicators = { extended: x[:ei].to_bool, extends: x[:eo].to_bool, subsetted: x[:si].to_bool, subset: x[:so].to_bool, ranked: x[:ranked].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
         when :UnmanagedConcept
           indicators = { annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       end
