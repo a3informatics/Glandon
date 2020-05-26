@@ -1506,7 +1506,7 @@ describe "Thesaurus::ManagedConcept" do
 
   describe "rank" do
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
@@ -1541,6 +1541,13 @@ describe "Thesaurus::ManagedConcept" do
       expect(actual_tc.is_ranked).to eq(actual_rank.uri)
       results = actual_tc.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "get_ranked_children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "rank indicator" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = tc.add_rank
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "rank_indicator_expected_1.yaml")
     end
 
   end
