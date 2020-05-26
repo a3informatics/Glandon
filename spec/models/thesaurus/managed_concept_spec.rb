@@ -1612,6 +1612,26 @@ describe "Thesaurus::ManagedConcept" do
       #check_file_actual_expected(actual_rank_member.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "delete rank" do
+      rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri_1)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc.is_ranked = rank
+      tc.save
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      actual_rank = Thesaurus::Rank.find(rank.uri)
+      expect(tc.is_ranked).to eq(actual_rank.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+      expect{Thesaurus::Rank.find(actual_rank.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8 in Thesaurus::Rank.")
+    end
+
 
 
     

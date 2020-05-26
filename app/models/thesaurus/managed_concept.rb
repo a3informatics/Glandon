@@ -778,6 +778,7 @@ private
 
   # Delete with all child items (extensions, subset and child code list items)
   def delete_with(parent_object=nil)
+    delete_rank(self) if self.ranked?
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
@@ -888,6 +889,13 @@ private
       results << {identifier: x[:i], uri: x[:s]}
     end
     results
+  end
+
+  # Delete rank.
+  def delete_rank(mc)
+    rank_uri = mc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_all
   end
 
 end
