@@ -150,7 +150,7 @@ class Thesaurus
               ?s th:extensible ?e .
               OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s .?ci rdf:type ba:ChangeInstruction .}
               OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
-              OPTIONAL {?s ^(th:item) ?rank_member . ?rank_member th:rank ?rank }
+              OPTIONAL {?s ^(th:item) ?rank_member . #{self.uri.to_ref} th:isRanked/th:members/th:memberNext* ?rank_member . ?rank_member th:rank ?rank }
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
               BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}

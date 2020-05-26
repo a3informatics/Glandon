@@ -27,9 +27,6 @@
   - :identifier: C48660
     :notation: NOT APPLICABLE
     :rank: 8
-  - :identifier: C48660
-    :notation: NOT APPLICABLE
-    :rank: 9
 - :identifier: C66767
   :semantic_version: 2.0.0
   :ranked: true
@@ -58,9 +55,6 @@
   - :identifier: C48660
     :notation: NOT APPLICABLE
     :rank: 8
-  - :identifier: C48660
-    :notation: NOT APPLICABLE
-    :rank: 9
 - :identifier: SN000730
   :semantic_version: 1.0.0
   :ranked: true
@@ -89,9 +83,6 @@
   - :identifier: C48660
     :notation: NOT APPLICABLE
     :rank: 8
-  - :identifier: C48660
-    :notation: NOT APPLICABLE
-    :rank: 9
 - :identifier: SN000730
   :semantic_version: 2.0.0
   :ranked: true
@@ -119,9 +110,6 @@
     :rank: 7
   - :identifier: S011612
     :notation: DISCONTINUATION OF STUDY VACCINATION
-    :rank: 8
-  - :identifier: C48660
-    :notation: NOT APPLICABLE
     :rank: 8
   - :identifier: C48660
     :notation: NOT APPLICABLE
@@ -367,9 +355,6 @@
   :semantic_version: 2.0.0
   :ranked: true
   :children:
-  - :identifier: S011595
-    :notation: '1'
-    :rank: 1
   - :identifier: S011594
     :notation: '0'
     :rank: 1
@@ -378,24 +363,12 @@
     :rank: 2
   - :identifier: S011596
     :notation: '2'
-    :rank: 2
-  - :identifier: S011597
-    :notation: '3'
-    :rank: 3
-  - :identifier: S011596
-    :notation: '2'
     :rank: 3
   - :identifier: S011597
     :notation: '3'
     :rank: 4
   - :identifier: S011598
     :notation: '4'
-    :rank: 4
-  - :identifier: S011598
-    :notation: '4'
-    :rank: 5
-  - :identifier: S011599
-    :notation: '5'
     :rank: 5
   - :identifier: S011599
     :notation: '5'
@@ -465,6 +438,47 @@
     :rank: 5
   - :identifier: S011605
     :notation: '6'
+    :rank: 6
+- :identifier: C66784
+  :semantic_version: 0.1.0
+  :ranked: true
+  :children:
+  - :identifier: C41338
+    :notation: '1'
+    :rank: 1
+  - :identifier: C41339
+    :notation: '2'
+    :rank: 2
+  - :identifier: C41340
+    :notation: '3'
+    :rank: 3
+  - :identifier: C41337
+    :notation: '4'
+    :rank: 4
+  - :identifier: C48275
+    :notation: '5'
+    :rank: 5
+- :identifier: C87162
+  :semantic_version: 0.1.0
+  :ranked: true
+  :children:
+  - :identifier: C75533
+    :notation: '0'
+    :rank: 1
+  - :identifier: C84263
+    :notation: '1'
+    :rank: 2
+  - :identifier: C84264
+    :notation: '2'
+    :rank: 3
+  - :identifier: C84265
+    :notation: '3'
+    :rank: 4
+  - :identifier: C84266
+    :notation: '4'
+    :rank: 5
+  - :identifier: C48275
+    :notation: '5'
     :rank: 6
 - :identifier: SN001020
   :semantic_version: 1.0.0
@@ -834,6 +848,28 @@
   - :identifier: S003128
     :notation: '4'
     :rank: 5
+- :identifier: C66768
+  :semantic_version: 0.1.0
+  :ranked: true
+  :children:
+  - :identifier: C49498
+    :notation: RECOVERED/RESOLVED
+    :rank: 1
+  - :identifier: C49495
+    :notation: RECOVERED/RESOLVED WITH SEQUELAE
+    :rank: 2
+  - :identifier: C49496
+    :notation: RECOVERING/RESOLVING
+    :rank: 3
+  - :identifier: C49494
+    :notation: NOT RECOVERED/NOT RESOLVED
+    :rank: 4
+  - :identifier: C48275
+    :notation: FATAL
+    :rank: 5
+  - :identifier: C17998
+    :notation: UNKNOWN
+    :rank: 6
 - :identifier: SN000407
   :semantic_version: 1.0.0
   :ranked: true
@@ -904,31 +940,31 @@
   - :identifier: C16352
     :notation: BLACK OR AFRICAN AMERICAN
     :rank: 0
-  - :identifier: C41261
-    :notation: WHITE
-    :rank: 1
-  - :identifier: C41260
-    :notation: ASIAN
-    :rank: 3
   - :identifier: C41219
     :notation: NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
-    :rank: 4
+    :rank: 0
   - :identifier: C41259
     :notation: AMERICAN INDIAN OR ALASKA NATIVE
-    :rank: 5
+    :rank: 0
+  - :identifier: C41260
+    :notation: ASIAN
+    :rank: 0
+  - :identifier: C41261
+    :notation: WHITE
+    :rank: 0
   - :identifier: C78728
     :notation: MULTIPLE
-    :rank: 6
+    :rank: 0
 - :identifier: SN000012
   :semantic_version: 1.0.0
   :ranked: true
   :children:
+  - :identifier: C78728
+    :notation: MULTIPLE
+    :rank: 0
   - :identifier: S000090
     :notation: NOT RELATED
     :rank: 1
-  - :identifier: S000093
-    :notation: RELATED
-    :rank: 2
   - :identifier: S000094
     :notation: UNLIKELY RELATED
     :rank: 2
@@ -938,9 +974,6 @@
   - :identifier: S000093
     :notation: RELATED
     :rank: 4
-  - :identifier: C78728
-    :notation: MULTIPLE
-    :rank: 6
 - :identifier: SN000013
   :semantic_version: 1.0.0
   :ranked: true
@@ -957,6 +990,19 @@
   - :identifier: S000099
     :notation: '4'
     :rank: 4
+- :identifier: C66769
+  :semantic_version: 0.1.0
+  :ranked: true
+  :children:
+  - :identifier: C41338
+    :notation: MILD
+    :rank: 1
+  - :identifier: C41339
+    :notation: MODERATE
+    :rank: 2
+  - :identifier: C41340
+    :notation: SEVERE
+    :rank: 3
 - :identifier: SN000015
   :semantic_version: 1.0.0
   :ranked: true

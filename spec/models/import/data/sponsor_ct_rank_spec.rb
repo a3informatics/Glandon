@@ -63,7 +63,7 @@ describe "Import::SponsorTermFormatOne" do
       result[:items].each {|cli| cli[:object].to_sparql(sparql)}
     end
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ranks_V#{version}.ttl")
   end
 
   def match_cl_items(cl, code_list)
@@ -254,11 +254,11 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
       new_object.to_sparql(sparql, true)
     end
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
   end
 
   it "checks new migration v2.6", :speed => 'slow' do
-    write_file = true
+    write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
@@ -274,7 +274,8 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results = []
     ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
       uri = ct.find_by_identifiers([identifier])[identifier]
-      results << Thesaurus::ManagedConcept.find(uri).to_h
+      tc = Thesaurus::ManagedConcept.find(uri).to_h
+      results << tc
     end
     check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
@@ -293,6 +294,8 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
   it "rank extension v3.0", :speed => 'slow' do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    update_ct_refs
     config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -305,6 +308,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    update_ct_refs
     results = ranked
     results.each do |result|
       key = "#{result[:code_list]}.#{result[:item]}"
@@ -321,6 +325,8 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    update_ct_refs
     code_lists = []
     ["rank_V2-6.yaml", "rank_V3-0.yaml"].each_with_index do |file|
       config = read_yaml_file(sub_dir, file)
