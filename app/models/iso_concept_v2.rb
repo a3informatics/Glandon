@@ -188,7 +188,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
             BIND ("" as ?si)
             BIND ("" as ?ranked)
           }
-      } GROUP BY ?i ?eo ?ei ?so ?si ?countci ?countcn ?type ORDER BY ?i 
+      } GROUP BY ?i ?eo ?ei ?so ?si ?ranked ?countci ?countcn ?type ORDER BY ?i 
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
     query_results.by_object_set([:i, :eo, :ei, :so, :si, :ranked, :countcn, :countci, :type]).each do |x|
