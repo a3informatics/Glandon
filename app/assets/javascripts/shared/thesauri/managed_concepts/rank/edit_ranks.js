@@ -194,7 +194,7 @@ RankModal.prototype.setListeners = function() {
   this.modal.on("focusout keydown", "#rank-table tbody td .rank-input", this.onRankInteract.bind(this));
   // Buttons
   this.modal.on("click", "#auto-rank-btn",this.autoRank.bind(this));
-  this.modal.on("click", "#submit-button", this.save.bind(this));
+  this.modal.on("click", "#save-rank-button", this.save.bind(this));
   this.modal.on("click", "#remove-rank-button", this.removeRank.bind(this, true));
   this.modal.on("click", "#close-modal-button", this.close.bind(this, true));
   this.modal.on("click", "#rank-help", function() { new InformationDialog({div: $("#information-dialog-rank")}).show(); })

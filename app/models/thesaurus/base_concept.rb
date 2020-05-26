@@ -80,6 +80,7 @@ class Thesaurus
       self.valid_child?(child) # Errors placed into child.
       return child if child.errors.any?
       self.add_link(:narrower, child.uri)
+      set_rank(self, child) if self.ranked?
       transaction_execute
       child
     end
@@ -344,6 +345,32 @@ class Thesaurus
     end
 
   private
+
+    # Set Rank. 
+  #
+  # @param mc [String] the id of the cli to be updated
+  # @param child [Integer] the rank to be asigned to the cli
+  def set_rank(mc, child)
+    rank = mc.is_ranked
+    query_string = %Q{
+      SELECT (max(?rank) as ?maxrank) WHERE {
+        #{rank.to_ref} (th:members/th:memberNext*) ?s .
+        ?s th:rank ?rank .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    max_rank = query_results.by_object(:maxrank)
+    max_rank.empty? ? max_rank = 0 : max_rank = max_rank[0].to_i
+    sparql = Sparql::Update.new
+    sparql.default_namespace(rank.namespace)
+    member = Thesaurus::RankMember.new(item: Uri.new(id: child.uri.to_id), rank: max_rank + 1)
+    member.uri = member.create_uri(mc.uri)
+    member.to_sparql(sparql)
+    last_sm = Thesaurus::Rank.find(rank).last
+    last_sm.nil? ? sparql.add({uri: rank}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: member.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: member.uri})
+    #filename = sparql.to_file
+    sparql.create
+  end
 
     # Generic Find Links. Find all items within the context that share synonyms or preferred terms
     #

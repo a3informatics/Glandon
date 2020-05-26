@@ -594,6 +594,8 @@ module UiHelpers
 			run: "Run",
 			results: "Results",
       upgrade: "Upgrade Code Lists",
+			enable_rank: "Enable rank",
+			edit_ranks: "Edit ranks"
     }
 	end
 
@@ -691,8 +693,12 @@ module UiHelpers
 
 	# Confirmation Dialog
 	def ui_confirmation_dialog(confirm)
+		ui_confirmation_dialog_with_message(confirm, "Are you sure you want to proceed?")
+	end
+
+	def ui_confirmation_dialog_with_message(confirm, message)
 		sleep 0.5
-		expect(page).to have_content("Are you sure you want to proceed?")
+		expect(page).to have_content(message)
 		if confirm
 			click_button "Yes"
 		else
@@ -809,6 +815,14 @@ module UiHelpers
 	def ui_selector_item_click(table, text)
 		find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]").click
 		wait_for_ajax 20
+	end
+
+	# Modals
+	def ui_in_modal
+		sleep 1
+		wait_for_ajax 20
+		yield
+		sleep 1
 	end
 
 private

@@ -1510,6 +1510,7 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
+      load_local_file_into_triple_store(sub_dir, "rank_input_1.ttl")
     end
 
     it "creates rank" do
@@ -1549,6 +1550,91 @@ describe "Thesaurus::ManagedConcept" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "rank_indicator_expected_1.yaml")
     end
+
+    it "creates rank, empty cl" do
+      params =
+      {
+        definition: "The Queen's Terminal",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T2"
+      }
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      # expect(actual_rank.members).to be(nil)
+      # expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      #tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_cli = actual_tc.add_child(params)
+      # expect(new_object.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_1a.yaml", write_file: true)
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_1b.yaml", write_file: true)
+    end
+
+    it "creates rank, existent cl" do
+      params =
+      {
+        definition: "A definition",
+        identifier: "A00099",
+        label: "A label",
+        notation: "A99"
+      }
+      mc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      new_cli = actual_tc.add_child(params)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_2a.yaml", write_file: true)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml", write_file: true)
+
+      second_member = Thesaurus::RankMember.find(tc.is_ranked.members.member_next)
+      expect(second_member.rank).to eq(2)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      expect(third_member.rank).to eq(3)
+      expect(third_member.member_next).to eq(nil)
+
+      #actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      #check_file_actual_expected(actual_rank, sub_dir, "set_rank_expected_2c.yaml", write_file: true)
+      #rank_member_uri_1 = Uri.new(uri: ""http://www.assero.co.uk/TRM#77ec6b4f-e78b-4543-a761-bb37e371ac71"")
+      #rank_member = Thesaurus::RankMember.find(rank_member_uri_1)
+      #rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      #rank = Thesaurus::Rank.find(rank_uri_1)
+      #rank.update([{cli_id:Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C87054").to_id, rank: 2}])
+      #actual_rank = Thesaurus::Rank.find(rank_uri_1)
+      #actual_rank_member = Thesaurus::RankMember.find(rank_member_uri_1)
+      #check_file_actual_expected(actual_rank_member.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "delete rank" do
+      rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri_1)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc.is_ranked = rank
+      tc.save
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      actual_rank = Thesaurus::Rank.find(rank.uri)
+      expect(tc.is_ranked).to eq(actual_rank.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+      expect{Thesaurus::Rank.find(actual_rank.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8 in Thesaurus::Rank.")
+    end
+
+
+
+    
 
   end
 
