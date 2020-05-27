@@ -12,7 +12,7 @@ describe "Thesaurus::Rank" do
 
   describe "rank" do
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
@@ -91,7 +91,7 @@ describe "Thesaurus::Rank" do
       tc.save
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
       expect(tc.is_ranked).to eq(rank.uri)
-      rank.remove_member(rank_member)
+      rank.remove_member(rank_member.uri)
       expect{Thesaurus::RankMember.find(rank_member.uri)}.to raise_error(Errors::NotFoundError,
         "Failed to find http://www.assero.co.uk/TRM#b55166df-4fd1-4569-8600-f1d7176d607f in Thesaurus::RankMember.")
       prev_member = Thesaurus::RankMember.find(Uri.new(uri:"http://www.assero.co.uk/TRM#ec2d44c9-a18f-4900-b803-9584805559d2"))

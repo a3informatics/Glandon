@@ -385,6 +385,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def add_extensions(uris)
     transaction = transaction_begin
     uris.each {|x| add_link(:narrower, x)}
+    set_rank_extension(uris, self) if self.ranked?
     transaction_execute
   end
 
@@ -896,6 +897,14 @@ private
     rank_uri = mc.is_ranked
     rank = Thesaurus::Rank.find(rank_uri)
     rank.remove_all
+  end
+
+  # Set rank.
+  def set_rank_extension(uris, mc)
+    uris.each do |item|
+      child = Thesaurus::UnmanagedConcept.find(item)
+      set_rank(mc, child)
+    end
   end
 
 end
