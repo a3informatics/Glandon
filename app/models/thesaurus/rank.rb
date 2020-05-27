@@ -61,8 +61,7 @@ class Thesaurus::Rank < IsoConceptV2
   #
   # @param rank_member_id [String] the identifier of the rank member to be removed
   def remove_member(rank_member)
-    #sm = member_klass.find(rank_member.to_id)
-    sm = rank_member
+    sm = member_klass.find(rank_member)
     mc = parent
     prev_sm = sm.previous_member
     delete_link_clauses = []
@@ -74,7 +73,6 @@ class Thesaurus::Rank < IsoConceptV2
       delete_link_clauses << "#{prev_sm.uri.to_ref} th:memberNext #{sm.uri.to_ref}"
       add_link_clause = "#{prev_sm.uri.to_ref} th:memberNext #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
     end
-    #delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.to_ref}"
     query_string = %Q{
     DELETE DATA
     {
@@ -116,7 +114,7 @@ class Thesaurus::Rank < IsoConceptV2
 private
 
   def member_klass
-    Thesaurus::RankedMember
+    Thesaurus::RankMember
   end
 
   def parent_klass

@@ -50,6 +50,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   # @return [Void] no return
   def delete_or_unlink(parent_object)
     #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
+    delete_rank_member(self, parent_object) if parent_object.ranked?
     if multiple_parents?
       parent_object.delete_link(:narrower, self.uri)
       1
@@ -320,6 +321,25 @@ private
     "{ \n" +     
     "  #{self.uri.to_ref} ^th:narrower ?s .  \n" +
     "}"
+  end
+
+  # 
+  def rank_member_query(parent_uc)
+    query_string = %Q{
+    SELECT DISTINCT ?s WHERE
+    {
+      #{self.uri.to_ref} ^th:item ?s . 
+      #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
+    }}
+    results = Sparql::Query.new.query(query_string, "", [:th])
+    return results.by_object(:s)
+  end
+
+  # Delete rank member.
+  def delete_rank_member(uc, parent_uc)
+    rank_uri = parent_uc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_member(rank_member_query(parent_uc).first)
   end
 
 end

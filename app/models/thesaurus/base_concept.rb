@@ -80,7 +80,7 @@ class Thesaurus
       self.valid_child?(child) # Errors placed into child.
       return child if child.errors.any?
       self.add_link(:narrower, child.uri)
-      set_rank(self, child) if self.ranked?
+      set_rank(self, child) if self.class.name == "Thesaurus::ManagedConcept" && self.ranked?
       transaction_execute
       child
     end
