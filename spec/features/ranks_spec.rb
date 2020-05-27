@@ -259,8 +259,8 @@ describe "Rank", :type => :feature do
       context_menu_element_header :edit_ranks
       ui_in_modal do
         expect(page).to have_content "Rank Code List Items (C88025)"
-        check_rank("C122371", "323")
-        check_rank("C102111", "324")
+        check_rank("C102111", "325")
+        check_rank("C122371", "324")
         click_on "Close"
       end
 
