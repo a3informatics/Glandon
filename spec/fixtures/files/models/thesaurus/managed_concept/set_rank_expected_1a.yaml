@@ -1,0 +1,116 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUA==
+:uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Not Set
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9SUw==
+  :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9TSQ==
+  :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: NP000123P
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2020-05-27T08:05:30+02:00'
+:last_change_date: '2020-05-27T08:05:30+02:00'
+:explanatory_comment: ''
+:identifier: NP000123P
+:notation: Not Set
+:definition: Not Set
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9OQzAwMDAwNDU2Qw==
+  :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_NC00000456C
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Terminal T
+  :tagged: []
+  :identifier: NC00000456C
+  :notation: TT
+  :definition: The Queen's Terminal
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZDcxZWFiNjMyM2I3YzMxZTk0Y2RkMGQ2NWE3N2RmZjA0ZGE3OTc0Yg==
+    :uri: http://www.assero.co.uk/PT#d71eab6323b7c31e94cdd0d65a77dff04da7974b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Not Set
+    :tagged: []
+  :synonym: []
+:extends: 
+:subsets: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZDcxZWFiNjMyM2I3YzMxZTk0Y2RkMGQ2NWE3N2RmZjA0ZGE3OTc0Yg==
+  :uri: http://www.assero.co.uk/PT#d71eab6323b7c31e94cdd0d65a77dff04da7974b
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: Not Set
+  :tagged: []
+:synonym: []
+:is_ordered: 
+:is_ranked:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFJDI2YzNWI4ZTIxLTZjNDgtNDViNi1iNWM2LWJkOGZlMzgyNzBlZQ==
+  :uri: http://www.assero.co.uk/TRC#f35b8e21-6c48-45b6-b5c6-bd8fe38270ee
+  :rdf_type: http://www.assero.co.uk/Thesaurus#RankedCollection
+  :label: ''
+  :tagged: []
+  :members:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFJNIzBkNjBmZDVmLTE3MWItNDhjOC04NDNkLTAyZjIwZWU1YjQyMA==
+    :uri: http://www.assero.co.uk/TRM#0d60fd5f-171b-48c8-843d-02f20ee5b420
+    :rdf_type: http://www.assero.co.uk/Thesaurus#RankedMember
+    :label: ''
+    :tagged: []
+    :rank: 1
+    :item:
+      :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTlAwMDAxMjNQL1YxI05QMDAwMTIzUF9OQzAwMDAwNDU2Qw==
+      :uri: http://www.acme-pharma.com/NP000123P/V1#NP000123P_NC00000456C
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Terminal T
+      :tagged: []
+      :identifier: NC00000456C
+      :notation: TT
+      :definition: The Queen's Terminal
+      :extensible: false
+      :narrower: []
+      :preferred_term:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZDcxZWFiNjMyM2I3YzMxZTk0Y2RkMGQ2NWE3N2RmZjA0ZGE3OTc0Yg==
+        :uri: http://www.assero.co.uk/PT#d71eab6323b7c31e94cdd0d65a77dff04da7974b
+        :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+        :label: Not Set
+        :tagged: []
+      :synonym: []
+    :member_next: 

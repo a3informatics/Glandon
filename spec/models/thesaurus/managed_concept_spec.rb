@@ -1551,13 +1551,13 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "rank_indicator_expected_1.yaml")
     end
 
-    it "creates rank, empty cl" do
+    it "creates rank, empty cl, add first child" do
       params =
       {
         definition: "The Queen's Terminal",
-        identifier: "A00014",
-        label: "Terminal 2",
-        notation: "T2"
+        identifier: "C00001",
+        label: "Terminal T",
+        notation: "TT"
       }
       ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
       mc = ct.add_child({})
@@ -1565,18 +1565,14 @@ describe "Thesaurus::ManagedConcept" do
       new_rank = mc.add_rank
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       actual_tc = Thesaurus::ManagedConcept.find(mc.id)
-      # expect(actual_rank.members).to be(nil)
-      # expect(actual_tc.is_ranked).to eq(actual_rank.uri)
-      #tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       new_cli = actual_tc.add_child(params)
-      # expect(new_object.errors.count).to eq(0)
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_1a.yaml", write_file: true)
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_1b.yaml", write_file: true)
+      tc = Thesaurus::ManagedConcept.find_full(mc.id)
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_1a.yaml")
+      uc = Thesaurus::UnmanagedConcept.find_children(new_cli.id)
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_1b.yaml")
     end
 
-    it "creates rank, existent cl" do
+    it "creates rank, existent cl, add child" do
       params =
       {
         definition: "A definition",
@@ -1593,23 +1589,11 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_2a.yaml", write_file: true)
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
       check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml", write_file: true)
-
       second_member = Thesaurus::RankMember.find(tc.is_ranked.members.member_next)
       expect(second_member.rank).to eq(2)
       third_member = Thesaurus::RankMember.find(second_member.member_next)
       expect(third_member.rank).to eq(3)
       expect(third_member.member_next).to eq(nil)
-
-      #actual_rank = Thesaurus::Rank.find(new_rank.uri)
-      #check_file_actual_expected(actual_rank, sub_dir, "set_rank_expected_2c.yaml", write_file: true)
-      #rank_member_uri_1 = Uri.new(uri: ""http://www.assero.co.uk/TRM#77ec6b4f-e78b-4543-a761-bb37e371ac71"")
-      #rank_member = Thesaurus::RankMember.find(rank_member_uri_1)
-      #rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
-      #rank = Thesaurus::Rank.find(rank_uri_1)
-      #rank.update([{cli_id:Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C87054").to_id, rank: 2}])
-      #actual_rank = Thesaurus::Rank.find(rank_uri_1)
-      #actual_rank_member = Thesaurus::RankMember.find(rank_member_uri_1)
-      #check_file_actual_expected(actual_rank_member.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "delete rank" do
