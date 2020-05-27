@@ -43,6 +43,55 @@ class Thesaurus::Rank < IsoConceptV2
     partial_update(query_string, [:th])
   end
 
+  # Parent. Find the parent of the Rank
+  #
+  # @return [Object] the parent object
+  def parent
+    objects = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?p ?o WHERE {
+        #{self.uri.to_ref} (^th:isRanked) ?s .
+        ?s ?p ?o
+      }
+    }
+    Sparql::Query.new.query(query_string, "", [:th]).single_subject_as(target_klass)
+  end
+
+  # Remove. Remove a rank member of the Rank
+  #
+  # @param rank_member_id [String] the identifier of the rank member to be removed
+  def remove_member(rank_member)
+    #sm = member_klass.find(rank_member.to_id)
+    sm = rank_member
+    mc = parent
+    prev_sm = sm.previous_member
+    delete_link_clauses = []
+    add_link_clause = ""
+    if prev_sm.nil?
+      delete_link_clauses << "#{self.uri.to_ref} th:members #{sm.uri.to_ref}"
+      add_link_clause = "#{self.uri.to_ref} th:members #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
+    else
+      delete_link_clauses << "#{prev_sm.uri.to_ref} th:memberNext #{sm.uri.to_ref}"
+      add_link_clause = "#{prev_sm.uri.to_ref} th:memberNext #{sm.next_member.uri.to_ref} ." unless sm.next_member.nil?
+    end
+    #delete_link_clauses << "#{mc.uri.to_ref} th:narrower #{sm.item.to_ref}"
+    query_string = %Q{
+    DELETE DATA
+    {
+      #{delete_link_clauses.join(" .\n")}
+    };
+    INSERT DATA
+    {
+      #{add_link_clause} 
+    };
+    DELETE {?s ?p ?o} WHERE 
+    { 
+      #{sm.uri.to_ref} ?p ?o . 
+      BIND (#{sm.uri.to_ref} as ?s) 
+    }}
+    results = Sparql::Update.new.sparql_update(query_string, "", [:th])
+  end
+
 
   # Update. 
   #

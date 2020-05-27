@@ -81,6 +81,24 @@ describe "Thesaurus::Rank" do
       expect(actual_tc.is_ranked).to be(nil)
     end
 
+    it "remove member" do
+      rank_member_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRM#b55166df-4fd1-4569-8600-f1d7176d607f")
+      rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri_1)
+      rank_member = Thesaurus::Rank.find(rank_member_uri_1)
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      tc.is_ranked = rank
+      tc.save
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(tc.is_ranked).to eq(rank.uri)
+      rank.remove_member(rank_member)
+      expect{Thesaurus::RankMember.find(rank_member.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TRM#b55166df-4fd1-4569-8600-f1d7176d607f in Thesaurus::RankMember.")
+      prev_member = Thesaurus::RankMember.find(Uri.new(uri:"http://www.assero.co.uk/TRM#ec2d44c9-a18f-4900-b803-9584805559d2"))
+      next_member = Thesaurus::RankMember.find(Uri.new(uri:"http://www.assero.co.uk/TRM#6b3a2b03-b092-46be-bbff-de9e1d444178"))
+      expect(prev_member.member_next).to eq(next_member.uri)
+    end
+
   end
 
 end
