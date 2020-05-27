@@ -989,12 +989,17 @@ describe "Thesaurus::UnmanagedConcept" do
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      rank_members = Thesaurus::RankMember.find(actual_rank.members)
+      expect(rank_members.member_next).not_to eq(nil)
       result = tc.delete_or_unlink(parent)
       expect(result).to eq(1)
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError,
         "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")
       expect(triple_store.check_uris(uri_check_set)).to be(true)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      rank_members = Thesaurus::RankMember.find(actual_rank.members)
+      expect(rank_members.member_next).to eq(nil)
     end
 
     it "does not allow a TC to be destroyed if it has children" # do
