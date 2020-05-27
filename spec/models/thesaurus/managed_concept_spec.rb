@@ -1586,14 +1586,63 @@ describe "Thesaurus::ManagedConcept" do
       actual_tc = Thesaurus::ManagedConcept.find(mc.id)
       new_cli = actual_tc.add_child(params)
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_2a.yaml", write_file: true)
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "set_rank_expected_2a.yaml")
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml", write_file: true)
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml")
       second_member = Thesaurus::RankMember.find(tc.is_ranked.members.member_next)
       expect(second_member.rank).to eq(2)
       third_member = Thesaurus::RankMember.find(second_member.member_next)
       expect(third_member.rank).to eq(3)
       expect(third_member.member_next).to eq(nil)
+    end
+
+    it "set rank, ranked extension, add extensions" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Bristol",
+          identifier: "A00003",
+          definition: "A definition",
+          notation: "BRS"
+        })
+      tc_1.set_initial("A00003")
+      tc_1.save
+      tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Exeter",
+          identifier: "A00004",
+          definition: "A definition",
+          notation: "EXT"
+        })
+      tc_2.set_initial("A00004")
+      tc_2.save
+      tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "Birmingham",
+          identifier: "A00005",
+          definition: "A definition",
+          notation: "BXM"
+        })
+      tc_3.set_initial("A00005")
+      tc_3.save
+      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      tc.add_extensions([tc_3.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(5)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      fourth_member = Thesaurus::RankMember.find(third_member.member_next)
+      fifth_member = Thesaurus::RankMember.find(fourth_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      expect(third_member.rank).to eq(3)
+      expect(fourth_member.rank).to eq(4)
+      expect(fifth_member.rank).to eq(5)
+      expect(fifth_member.member_next).to eq(nil)
     end
 
     it "delete rank" do
