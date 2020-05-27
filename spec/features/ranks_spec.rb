@@ -35,10 +35,12 @@ describe "Rank", :type => :feature do
     ua_destroy
   end
 
+  # Returns xpath to a rank input field in the table
   def rank_xpath(identifier, target)
     "//table[@id='rank-table']/tbody/tr[contains(.,'#{identifier}')]/td[1]/#{target}"
   end
 
+  # Sets a rank value to a CLI by identifier (rank modal has to be open)
   def set_rank(identifier, rank)
     find(:xpath, rank_xpath(identifier, "span")).click
     input = find(:xpath, rank_xpath(identifier, "input"))
@@ -46,10 +48,12 @@ describe "Rank", :type => :feature do
     input.native.send_keys(:return)
   end
 
+  # Checks a rank value by CLI identifier (rank modal has to be open)
   def check_rank(identifier, rank)
     expect(find(:xpath, rank_xpath(identifier, "span")).text).to eq(rank)
   end
 
+  # Navigates to an edit page of a code list identifier and version
   def go_to_edit(identifier, version)
     click_navbar_code_lists
     wait_for_ajax 20
@@ -60,10 +64,18 @@ describe "Rank", :type => :feature do
     wait_for_ajax 20
   end
 
+  # Removes a rank from CL by URI and removes the CL version itself
+  def clear_rank(uri)
+    tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: uri))
+    rank = Thesaurus::Rank.find(tc.is_ranked_links)
+    rank.remove_all
+    tc.delete_or_unlink
+  end
+
   describe "Rank Code Lists, Curator user", :type => :feature do
 
     it "allows to enable rank on a code list", js: true do
-      go_to_edit("SC124301", "1.0.0")
+      go_to_edit("SC105133", "1.0.0")
       context_menu_element_header_present? :enable_rank
       context_menu_element_header :enable_rank
       wait_for_ajax 10
@@ -72,9 +84,11 @@ describe "Rank", :type => :feature do
 
       context_menu_element_header :edit_ranks
       ui_in_modal do
-        expect(page).to have_content "Rank Code List Items (SC124301)"
+        expect(page).to have_content "Rank Code List Items (SC105133)"
         click_on "Close"
       end
+
+      clear_rank "http://www.sanofi.com/SC105133/V2#SC105133"
     end
 
     it "allows to edit and save ranks on a code list", js: true do
@@ -115,20 +129,79 @@ describe "Rank", :type => :feature do
         check_rank("SC105262", "-13")
         click_on "Close"
       end
+
+      clear_rank "http://www.sanofi.com/SC105133/V2#SC105133"
     end
 
     it "warns user when closing with unsaved progress", js: true do
-      go_to_edit("SC124307", "1.0.0")
+      go_to_edit("SC105133", "1.0.0")
       context_menu_element_header :enable_rank
       wait_for_ajax 10
       context_menu_element_header :edit_ranks
       ui_in_modal do
-        set_rank("SC15843", "1234")
+        set_rank("SC105266", "1234")
         click_on "Close"
         ui_confirmation_dialog_with_message(true, "You have unsaved changes")
       end
-      expect(page).not_to have_content "Rank Code List Items (SC124307)"
+      expect(page).not_to have_content "Rank Code List Items (SC105133)"
+
+      clear_rank "http://www.sanofi.com/SC105133/V2#SC105133"
     end
+
+    it "allows to add new children to an already ranked code list", js: true do
+      go_to_edit("SC105133", "1.0.0")
+      context_menu_element_header :enable_rank
+      wait_for_ajax 10
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        check_rank("SC105266", "1")
+        click_on "Close"
+      end
+
+      click_on "New"
+      wait_for_ajax 10
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        check_rank("SC105266", "1")
+        check_rank("NC00000999C", "7")
+        click_on "Close"
+      end
+
+      clear_rank "http://www.sanofi.com/SC105133/V2#SC105133"
+    end
+
+    it "allows to Auto-rank a code list", js: true do
+      go_to_edit("SC105133", "1.0.0")
+      context_menu_element_header :enable_rank
+      wait_for_ajax 10
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        find(:xpath, "//div[@id='rank-table_wrapper']//th[contains(.,'Preferred Term')]").click
+        click_on "Auto-Rank by order"
+        sleep 1
+        click_on "Save changes"
+        wait_for_ajax 20
+        expect(page).to have_content "Ranks saved"
+        click_on "Close"
+      end
+
+      page.driver.browser.navigate.refresh
+      wait_for_ajax 20
+
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        check_rank("SC105262", "1")
+        check_rank("SC105265", "2")
+        check_rank("SC105264", "3")
+        check_rank("SC105263", "4")
+        check_rank("SC105261", "5")
+        check_rank("SC105266", "6")
+        click_on "Close"
+      end
+
+      clear_rank "http://www.sanofi.com/SC105133/V2#SC105133"
+    end
+
 
     it "allows to disable rank on a code list", js: true do
       go_to_edit("SC100169", "1.0.0")
@@ -141,26 +214,6 @@ describe "Rank", :type => :feature do
       end
       expect(page).not_to have_content "Rank Code List Items (SC100169)"
       context_menu_element_header_present? :enable_rank
-    end
-
-    it "allows to add new children to ranked code list", js: true do
-      go_to_edit("SC111347", "1.0.0")
-      context_menu_element_header :enable_rank
-      wait_for_ajax 10
-      context_menu_element_header :edit_ranks
-      ui_in_modal do
-        check_rank("SC111520", "1")
-        click_on "Close"
-      end
-
-      click_on "New"
-      wait_for_ajax 10
-      context_menu_element_header :edit_ranks
-      ui_in_modal do
-        check_rank("SC111520", "1")
-        check_rank("NC00000999C", "2")
-        click_on "Close"
-      end
     end
 
   end
@@ -181,6 +234,37 @@ describe "Rank", :type => :feature do
         check_rank("C98794", "3")
         click_on "Close"
       end
+
+      clear_rank "http://www.sanofi.com/C88025/V2#C88025"
+    end
+
+    it "allows to add items to an already ranked extension", js: true do
+      go_to_edit("C88025", "1.0.0")
+      context_menu_element_header :enable_rank
+      wait_for_ajax 10
+
+      click_link 'Add items'
+      ui_in_modal do
+        page.find("#select-all-latest").click
+        click_button "Submit and proceed"
+      end
+      ui_in_modal do
+        ui_term_column_search(:code_list, "C100129")
+        find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
+        find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
+        click_button 'Add items'
+        wait_for_ajax(10)
+      end
+
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        expect(page).to have_content "Rank Code List Items (C88025)"
+        check_rank("C122371", "323")
+        check_rank("C102111", "324")
+        click_on "Close"
+      end
+
+      clear_rank "http://www.sanofi.com/C88025/V2#C88025"
     end
 
   end
@@ -201,6 +285,29 @@ describe "Rank", :type => :feature do
         check_rank("C48660", "2")
         click_on "Close"
       end
+
+      clear_rank "http://www.sanofi.com/SN003001/V2#SN003001"
+    end
+
+    it "allows to add items to an already ranked subset", js: true do
+      go_to_edit("SN003001", "1.0.0")
+      context_menu_element_header :enable_rank
+      wait_for_ajax 10
+
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C49501')]").click
+      wait_for_ajax 10
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[contains(.,'C17998')]").click
+      wait_for_ajax 10
+
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        expect(page).to have_content "Rank Code List Items (SN003001)"
+        check_rank("C49501", "3")
+        check_rank("C17998", "4")
+        click_on "Close"
+      end
+
+      clear_rank "http://www.sanofi.com/SN003001/V2#SN003001"
     end
 
   end

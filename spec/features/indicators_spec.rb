@@ -86,6 +86,48 @@ describe "Indicators", :type => :feature do
       ci.delete
     end
 
+    it "Current Version", js:true do
+      # Prepare
+      ct = Thesaurus.create({identifier: "TST", label: "Test Terminology"})
+      ct.make_current
+      ct.save
+      # Check Indicator
+      click_navbar_terminology
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'TST')]").click
+      wait_for_ajax 10
+      ui_check_table_row_indicators("history", 1, 8, ["Current version"])
+    end
+
+    it "Rank", js:true do
+      # Prepare Rank
+      click_navbar_code_lists
+      wait_for_ajax 20
+      ui_table_search("index", "A00001")
+      find(:xpath, "//tr[contains(.,'A00001')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2("history", "A00001", :edit)
+      wait_for_ajax 10
+      context_menu_element_header(:enable_rank)
+      wait_for_ajax 10
+      # Check Indicators
+        # Terminology Show
+      click_navbar_terminology
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'AIRPORTS')]").click
+      wait_for_ajax 10
+      context_menu_element_v2("history", "0.1.0", :show)
+      wait_for_ajax 10
+      ui_check_table_row_indicators("children_table", 1, 8, ["3 change instructions", "ranked"])
+
+        # Code Lists Index
+      click_navbar_code_lists
+      wait_for_ajax 20
+      ui_table_search("index", "A00001")
+      ui_check_table_row_indicators("index", 1, 5, ["3 change instructions", "ranked"])
+
+    end
+
   end
 
   def ci_prepare
