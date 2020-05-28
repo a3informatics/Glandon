@@ -17,7 +17,7 @@ describe "Thesaurus::Ranked" do
 
     it "check thesaurus schema migration one" do
       result = triple_store.subject_triples(Uri.new(uri:"http://www.assero.co.uk/Thesaurus#Subset"))
-      check_file_actual_expected(result, sub_dir, "schema_expected_1.yaml", write_file: true)
+      check_file_actual_expected(result, sub_dir, "schema_expected_1.yaml")
     end
 
   end
