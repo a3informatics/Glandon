@@ -111,6 +111,18 @@ class Thesaurus::Rank < IsoConceptV2
     end
   end
 
+  # Given a parent and a child, retrieves its rank member node. 
+  def member(uc, parent_uc)
+    query_string = %Q{
+    SELECT DISTINCT ?s WHERE
+    {
+      #{uc.uri.to_ref} ^th:item ?s . 
+      #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
+    }}
+    results = Sparql::Query.new.query(query_string, "", [:th])
+    return results.by_object(:s)
+  end
+
 private
 
   def member_klass

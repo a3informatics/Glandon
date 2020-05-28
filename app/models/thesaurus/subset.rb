@@ -25,6 +25,14 @@ class Thesaurus::Subset < IsoConceptV2
     end
   end
 
+  # Delete rank member.
+  def delete_rank_member(uc, parent_uc)
+    uc = Thesaurus::UnmanagedConcept.find(uc)
+    rank_uri = parent_uc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_member(rank.member(uc, parent_uc).first)
+  end
+
 private
 
   # Set Rank. 

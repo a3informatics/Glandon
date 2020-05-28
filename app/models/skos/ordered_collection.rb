@@ -76,6 +76,7 @@ module SKOS::OrderedCollection
       #{sm.uri.to_ref} ?p ?o . 
       BIND (#{sm.uri.to_ref} as ?s) 
     }}
+    delete_rank_member(sm.item, mc) if mc.ranked?
     results = Sparql::Update.new.sparql_update(query_string, "", [:th])
   end
 

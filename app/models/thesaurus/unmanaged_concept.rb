@@ -323,23 +323,23 @@ private
     "}"
   end
 
-  # 
-  def rank_member_query(parent_uc)
-    query_string = %Q{
-    SELECT DISTINCT ?s WHERE
-    {
-      #{self.uri.to_ref} ^th:item ?s . 
-      #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
-    }}
-    results = Sparql::Query.new.query(query_string, "", [:th])
-    return results.by_object(:s)
-  end
+  # # Given a parent and a child, retrieves its rank member node. 
+  # def rank_member_query(uc, parent_uc)
+  #   query_string = %Q{
+  #   SELECT DISTINCT ?s WHERE
+  #   {
+  #     #{uc.uri.to_ref} ^th:item ?s . 
+  #     #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
+  #   }}
+  #   results = Sparql::Query.new.query(query_string, "", [:th])
+  #   return results.by_object(:s)
+  # end
 
   # Delete rank member.
   def delete_rank_member(uc, parent_uc)
     rank_uri = parent_uc.is_ranked
     rank = Thesaurus::Rank.find(rank_uri)
-    rank.remove_member(rank_member_query(parent_uc).first)
+    rank.remove_member(rank.member(uc, parent_uc).first)
   end
 
 end
