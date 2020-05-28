@@ -30,7 +30,7 @@ describe "Thesaurus::Rank" do
       check_file_actual_expected(actual_rank_member.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "update rank" do
+    it "update rank II" do
       params = [{cli_id: Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C84372").to_id, rank: 3},{cli_id: Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C87054").to_id, rank: 4}]
       rank_member_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRM#cfaf817d-6abf-4b60-8096-8a0594f0efbf")
       rank_member_1 = Thesaurus::RankMember.find(rank_member_uri_1)
@@ -46,7 +46,7 @@ describe "Thesaurus::Rank" do
       check_file_actual_expected(actual_rank_member_2.to_h, sub_dir, "update_expected_2b.yaml", equate_method: :hash_equal)
     end
 
-    it "update rank" do
+    it "update rank III" do
       params = [{cli_id: Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C84372").to_id, rank: 1},{cli_id: Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C87054").to_id, rank: 2}]
       rank_member_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRM#cfaf817d-6abf-4b60-8096-8a0594f0efbf")
       rank_member_1 = Thesaurus::RankMember.find(rank_member_uri_1)
