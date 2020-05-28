@@ -1651,6 +1651,24 @@ describe "Thesaurus::ManagedConcept" do
       expect(fifth_member.member_next).to eq(nil)
     end
 
+    it "set rank, ranked subset, add items" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+    end
+
     it "delete rank" do
       rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
       rank = Thesaurus::Rank.find(rank_uri_1)

@@ -17,7 +17,41 @@ class Thesaurus::Subset < IsoConceptV2
     parent
   end
 
+  # Set ranks.
+  def set_ranks(uris, mc)
+    uris.each do |item|
+      child = Thesaurus::UnmanagedConcept.find(item)
+      set_rank(mc, child)
+    end
+  end
+
 private
+
+  # Set Rank. 
+  #
+  # @param mc [String] the id of the cli to be updated
+  # @param child [Integer] the rank to be asigned to the cli
+  def set_rank(mc, child)
+    rank = mc.is_ranked
+    query_string = %Q{
+      SELECT (max(?rank) as ?maxrank) WHERE {
+        #{rank.to_ref} (th:members/th:memberNext*) ?s .
+        ?s th:rank ?rank .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    max_rank = query_results.by_object(:maxrank)
+    max_rank.empty? ? max_rank = 0 : max_rank = max_rank[0].to_i
+    sparql = Sparql::Update.new
+    sparql.default_namespace(rank.namespace)
+    member = Thesaurus::RankMember.new(item: Uri.new(id: child.uri.to_id), rank: max_rank + 1)
+    member.uri = member.create_uri(mc.uri)
+    member.to_sparql(sparql)
+    last_sm = Thesaurus::Rank.find(rank).last
+    last_sm.nil? ? sparql.add({uri: rank}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: member.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: member.uri})
+    #filename = sparql.to_file
+    sparql.create
+  end
 
   def member_klass
     Thesaurus::SubsetMember
