@@ -57,27 +57,6 @@
   skin to sunlight.
 :extensible: true
 :narrower:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTY5
-  :uri: http://www.cdisc.org/C76351/V10#C76351_C74569
-  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-  :label: Fitzpatrick Skin Type I
-  :tagged:
-  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-  :identifier: C74569
-  :notation: TYPE1
-  :definition: 'Individuals who never tan and always sunburn if exposed to any appreciable
-    amount of sunlight, primarily red headed individuals and lightly complected blondes.
-    (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin
-    types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
-  :extensible: false
-  :narrower: []
-  :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTdlNTc5M2E2ODA0NmEyZjdiMTAxMTMwMjA4NTc5MWQ2NjBkMTM2Yg==
-    :uri: http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b
-    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-    :label: Fitzpatrick Skin Type I
-    :tagged: []
-  :synonym: []
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcw
   :uri: http://www.cdisc.org/C76351/V10#C76351_C74570
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -180,6 +159,27 @@
     :label: Fitzpatrick Skin Type IV
     :tagged: []
   :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTY5
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74569
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type I
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74569
+  :notation: TYPE1
+  :definition: 'Individuals who never tan and always sunburn if exposed to any appreciable
+    amount of sunlight, primarily red headed individuals and lightly complected blondes.
+    (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin
+    types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTdlNTc5M2E2ODA0NmEyZjdiMTAxMTMwMjA4NTc5MWQ2NjBkMTM2Yg==
+    :uri: http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Fitzpatrick Skin Type I
+    :tagged: []
+  :synonym: []
 :extends: 
 :subsets: 
 :preferred_term:
@@ -195,3 +195,4 @@
   :label: Skin Classification
   :tagged: []
 :is_ordered: 
+:is_ranked: 
