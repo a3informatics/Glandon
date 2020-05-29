@@ -6,7 +6,7 @@ class TsAddRankSchema < ActiveRecord::Migration
     puts "Load extension ..."
     step = 1
     full_path = Rails.root.join "db/load/schema/thesaurus_extension_one.ttl"
-    sparql = Sparql::File.new.upload(full_path)
+    sparql = Sparql::Upload.new.send(full_path)
 
     # Thesaurus schema fix triples. Will only happen if file load raised no errors
     puts "Load fixes ..."

@@ -94,7 +94,7 @@ describe 'triple store add rank schema' do
     check_old
 
     # Run migration
-    expect_any_instance_of(Sparql::File).to receive(:upload).and_raise("ERROR")
+    expect_any_instance_of(Sparql::Upload).to receive(:send).and_raise("ERROR")
     migration = TsAddRankSchema.new
     expect{migration.change}.to raise_error(Errors::UpdateError, /Migration error, step: 1/)
       
