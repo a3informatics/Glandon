@@ -37,7 +37,7 @@ describe "Cdisc Term Reader" do
     check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_2.yaml", equate_method: :hash_equal)
   end
 
-  it "process engine, protocol 2019-09-27 for comparison" do
+  it "process engine, protocol 2019-09-27 for comparison", :has_errors => 'skip' do
     full_path = test_file_path(sub_dir, "read_input_3.xlsx")
     object = Excel.new(full_path) 
     object.execute(import_type: :cdisc_term, format: :version_5)
@@ -46,7 +46,7 @@ describe "Cdisc Term Reader" do
     check_file_actual_expected(result, sub_dir, "execute_expected_2.yaml", equate_method: :hash_equal)
   end
 
-  it "process engine, sdtm 2019-09-27 for comparison" do
+  it "process engine, sdtm 2019-09-27 for comparison", :has_errors => 'skip' do
     full_path = test_file_path(sub_dir, "read_input_4.xlsx")
     object = Excel.new(full_path) 
     object.execute(import_type: :cdisc_term, format: :version_5)
@@ -55,7 +55,7 @@ describe "Cdisc Term Reader" do
     check_file_actual_expected(result, sub_dir, "execute_expected_3.yaml", equate_method: :hash_equal)
   end
 
-  it "process engine, send 2019-09-27 for comparison" do
+  it "process engine, send 2019-09-27 for comparison", :has_errors => 'skip' do
     full_path = test_file_path(sub_dir, "read_input_5.xlsx")
     object = Excel.new(full_path) 
     object.execute(import_type: :cdisc_term, format: :version_5)
