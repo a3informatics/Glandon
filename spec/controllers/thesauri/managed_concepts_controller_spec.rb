@@ -648,6 +648,59 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "rank" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      load_local_file_into_triple_store("models/thesaurus/rank", "rank_input_1.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "create rank" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
+      post :add_rank, {id: tc.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it "update rank" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
+      content = {cli_id: Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741_C87054").to_id, rank: 2}
+      put :update_rank, {id: tc.id, managed_concept: {children_ranks: [content]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it "remove rank" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
+      rank = Thesaurus::Rank.find(Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8"))
+      delete :remove_rank, {id: tc.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it "get ranked children" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V20#C66741"))
+      get :children_ranked, {id: tc.id, offset: 0, count: 17}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+  end
+
   describe "extensions" do
 
     login_curator

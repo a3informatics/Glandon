@@ -421,12 +421,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     # Get the final result
     tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
+      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?o ?rs ?ext ?sub ?eo ?so ?ranked ?sv ?sci ?ns ?count ?current (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
       (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys)
       (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt)
       WHERE\n
       {
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ?ci ?cn
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?rs ?ext ?sub ?eo ?so ?ranked ?sv ?sci ?ns ?count ?current ?ci ?cn
         WHERE
         {
           {
@@ -461,12 +461,13 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?x } AS ?ext )
           BIND (EXISTS {?s ^th:subsets ?x } AS ?sub )
+          BIND (EXISTS {?s th:isRanked ?xr1} as ?ranked)
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?sv ?sci ?ns ?count ?current ?countci ?countcn ORDER BY ?i LIMIT #{count} OFFSET #{offset}
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?rs ?ext ?sub ?eo ?so ?ranked ?sv ?sci ?ns ?count ?current ?countci ?countcn ORDER BY ?i LIMIT #{count} OFFSET #{offset}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :isoR, :ba])
-    query_results.by_object_set([:s, :i, :n, :d, :pt, :e, :o, :rs, :ext, :sub, :eo, :so, :sv, :sci, :ns, :count, :current, :sys, :gt ]).each do |x|
-      indicators = {current: x[:current].to_bool, extended: x[:ext].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subset: x[:so].to_bool, subsetted: x[:sub].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+    query_results.by_object_set([:s, :i, :n, :d, :pt, :e, :o, :rs, :ext, :sub, :eo, :so, :ranked, :sv, :sci, :ns, :count, :current, :sys, :gt ]).each do |x|
+      indicators = {current: x[:current].to_bool, extended: x[:ext].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subset: x[:so].to_bool, subsetted: x[:sub].to_bool, ranked: x[:ranked].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], state: x[:rs], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, semantic_version: x[:sv], tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id }
     end

@@ -453,6 +453,42 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: subset_tcs}
   end
 
+  def add_rank
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = tc.add_rank
+    actual_rank = Thesaurus::Rank.find(rank.uri)
+    if actual_rank.errors.empty?
+      render json: { }, :status => 200
+    else
+      render :json => {:errors => ["Something went wrong while enabling Rank"]}, :status => 422
+    end
+  end
+
+  def update_rank
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = Thesaurus::Rank.find(tc.is_ranked_links)
+    rank.update(rank_params[:children_ranks])
+    render json: { }, status: 200
+  end
+
+  def children_ranked
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    results = []
+    results = tc.children_pagination({offset: "0", count: "10000"})
+    render json: {data: results, offset: params[:offset] , count: results.count }, status: 200
+  end
+
+  def remove_rank
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    rank = Thesaurus::Rank.find(tc.is_ranked_links)
+    rank.remove_all
+    render json: { }, status: 200
+  end
+
 private
 
   # Read a Thesaurus Concept
@@ -516,6 +552,10 @@ private
 
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
+  end
+
+  def rank_params
+     params.require(:managed_concept).permit(:children_ranks => [:cli_id, :rank])
   end
 
   def set_params

@@ -65,19 +65,6 @@ describe "Import::SponsorTermFormatOne" do
     restore_installation(:thesauri)
   end
 
-  def count_cl(th)
-    query_string = %Q{
-      SELECT (COUNT(DISTINCT ?s) as ?count) WHERE 
-      {
-        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
-    result = query_results.by_object(:count).first.to_i
-    puts colourize("Total CL count=#{result}", "blue")
-    result
-  end
-
   def cl_identifiers(th)
     query_string = %Q{
       SELECT DISTINCT ?identifier ?label WHERE 
@@ -103,44 +90,6 @@ describe "Import::SponsorTermFormatOne" do
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo]) 
     query_results.by_object_set([:notation, :identifier])
-  end
-
-  def count_cli(th)
-    query_string = %Q{
-      SELECT (COUNT(?s) as ?count) WHERE 
-      {
-        #{th.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower ?s
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
-    result = query_results.by_object(:count).first.to_i
-    puts colourize("Total CLI count=#{result}", "blue")
-    result
-  end
-  
-  def count_distinct_cli(th)
-    query_string = %Q{
-      SELECT (COUNT(DISTINCT ?s) as ?count) WHERE 
-      {
-        #{th.uri.to_ref} th:isTopConceptReference/bo:reference/th:narrower ?s
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
-    result = query_results.by_object(:count).first.to_i
-    puts colourize("Total Distinct CLI count=#{result}", "blue")
-    result
-  end
-  
-  def cl_list(th)
-    query_string = %Q{
-      SELECT ?cid WHERE 
-      {
-        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
-        ?s th:identifier ?cid .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
-    query_results.by_object_set([:cid]).map{|x| x[:cid]}
   end
 
   def cl_info(th, key)

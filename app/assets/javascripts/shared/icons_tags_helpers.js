@@ -66,7 +66,8 @@ function indicatorMap(indicator) {
       "version_count": {icon: "icon-multi", ttip: "Item has %n% versions"},
       "subset": {icon: "icon-subset", ttip: "Item is a subset"},
       "subsetted": {icon: "icon-subsetted", ttip: "Item is subsetted"},
-      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change notes <br/> and %i% change instructions"}
+      "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change notes <br/> and %i% change instructions"},
+      "ranked": {icon: "icon-rank", ttip: "Item is ranked"}
     }
 
   return indMap[indicator];
@@ -156,7 +157,7 @@ function loadItemIndicators(url, targetElement) {
       indicatorsProcessing(false);
       $(targetElement).html(formatIndicators(result.data.indicators));
     },
-    error: function() {
+    error: function(xhr, status, error) {
       handleAjaxError(xhr, status, error);
       indicatorsProcessing(false);
     }

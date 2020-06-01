@@ -1,0 +1,119 @@
+@prefix : <http://www.assero.co.uk/TRC#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/TRC>
+  rdf:type owl:Ontology ;
+.
+<http://www.assero.co.uk/TRM#cfaf817d-6abf-4b60-8096-8a0594f0efbf>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "1"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V20#C66741_C87054> ;
+  th:memberNext <http://www.assero.co.uk/TRM#9ca1d4b4-fad4-45f2-9321-a33788698352> ;
+.
+<http://www.assero.co.uk/TRM#9ca1d4b4-fad4-45f2-9321-a33788698352>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "2"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V20#C66741_C84372> ;
+  th:memberNext <http://www.assero.co.uk/TRM#bef70881-ec40-411f-bee7-2097e9640a40> ;
+.
+<http://www.assero.co.uk/TRM#bef70881-ec40-411f-bee7-2097e9640a40>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "3"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C49680> ;
+  th:memberNext <http://www.assero.co.uk/TRM#79bac8b9-e228-4f1b-bce4-a21fd9e70b42> ;
+.
+<http://www.assero.co.uk/TRM#79bac8b9-e228-4f1b-bce4-a21fd9e70b42>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "4"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C49679> ;
+  th:memberNext <http://www.assero.co.uk/TRM#9b6c9a4f-7d16-4ebb-8117-93306d907fd1> ;
+.
+<http://www.assero.co.uk/TRM#9b6c9a4f-7d16-4ebb-8117-93306d907fd1>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "5"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C49678> ;
+  th:memberNext <http://www.assero.co.uk/TRM#fa3cba58-1615-4ec9-b32a-24cd29ae0424> ;
+.
+<http://www.assero.co.uk/TRM#fa3cba58-1615-4ec9-b32a-24cd29ae0424>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "6"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C49677> ;
+  th:memberNext <http://www.assero.co.uk/TRM#0bf07334-68d6-421c-a2f0-969ea67645ff> ;
+.
+<http://www.assero.co.uk/TRM#0bf07334-68d6-421c-a2f0-969ea67645ff>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "7"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C49676> ;
+  th:memberNext <http://www.assero.co.uk/TRM#3b51caca-5247-49d3-aebb-2d05ae4bb7ac> ;
+.
+<http://www.assero.co.uk/TRM#3b51caca-5247-49d3-aebb-2d05ae4bb7ac>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "8"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C25347> ;
+  th:memberNext <http://www.assero.co.uk/TRM#1f09188f-e27d-403a-9219-05441a9e6c7f> ;
+.
+<http://www.assero.co.uk/TRM#1f09188f-e27d-403a-9219-05441a9e6c7f>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "9"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C25299> ;
+  th:memberNext <http://www.assero.co.uk/TRM#ec2d44c9-a18f-4900-b803-9584805559d2> ;
+.
+<http://www.assero.co.uk/TRM#ec2d44c9-a18f-4900-b803-9584805559d2>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "10"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C25298> ;
+  th:memberNext <http://www.assero.co.uk/TRM#b55166df-4fd1-4569-8600-f1d7176d607f> ;
+.
+<http://www.assero.co.uk/TRM#b55166df-4fd1-4569-8600-f1d7176d607f>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "11"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C25208> ;
+  th:memberNext <http://www.assero.co.uk/TRM#6b3a2b03-b092-46be-bbff-de9e1d444178> ;
+.
+<http://www.assero.co.uk/TRM#6b3a2b03-b092-46be-bbff-de9e1d444178>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "12"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C25206> ;
+  th:memberNext <http://www.assero.co.uk/TRM#9abc95ba-32f2-432d-9dfa-bb89d15ae1fe> ;
+.
+<http://www.assero.co.uk/TRM#9abc95ba-32f2-432d-9dfa-bb89d15ae1fe>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "13"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V16#C66741_C25157> ;
+  th:memberNext <http://www.assero.co.uk/TRM#90e45f09-9306-4b53-b942-4cd7e9aa4c15> ;
+.
+<http://www.assero.co.uk/TRM#90e45f09-9306-4b53-b942-4cd7e9aa4c15>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "14"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C16358> ;
+  th:memberNext <http://www.assero.co.uk/TRM#140dc2d4-3863-48af-a445-3ff4f7c371f2> ;
+.
+<http://www.assero.co.uk/TRM#140dc2d4-3863-48af-a445-3ff4f7c371f2>
+  rdf:type th:RankedMember ;
+  isoC:label ""^^xsd:string ;
+  th:rank "15"^^xsd:integer ;
+  th:item <http://www.cdisc.org/C66741/V4#C66741_C12472> ;
+.
+:e0c80ddd-2f1c-4832-885e-9283e87d6bd8
+  th:members <http://www.assero.co.uk/TRM#cfaf817d-6abf-4b60-8096-8a0594f0efbf> ;
+.

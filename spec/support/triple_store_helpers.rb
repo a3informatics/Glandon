@@ -43,7 +43,7 @@ module TripleStoreHelpers
       }
       query_results = Sparql::Query.new.query(query_string, "", []) 
       result = query_results.by_object(:count).first.to_i
-  puts colourize("Total count=#{result}", "blue")
+      puts colourize("Total count=#{result}", "blue")
       result
     end
 
@@ -53,8 +53,19 @@ module TripleStoreHelpers
       }
       query_results = Sparql::Query.new.query(query_string, "", []) 
       result = query_results.ask?
-  puts colourize("Present #{subject}=#{result}", "blue")
+      puts colourize("Present #{subject}=#{result}", "blue")
       result
+    end
+
+    def subject_triples(subject)
+      query_string = %Q{
+        SELECT ?p ?o { #{subject.to_ref} ?p ?o }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", []) 
+      results = query_results.by_object_set([:p, :o])
+      puts colourize("Subject #{subject}", "blue")
+      results.each{|x| puts colourize("  #{x[:p]}, #{x[:o]}", "blue")}
+      results
     end
 
     def check_uris(set)

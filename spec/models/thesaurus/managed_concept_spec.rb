@@ -1504,6 +1504,259 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "rank" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      load_local_file_into_triple_store(sub_dir, "rank_input_1.ttl")
+    end
+
+    it "creates rank" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "creates rank, empty cl" do
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      expect(actual_rank.members).to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "get ranked children" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      results = actual_tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "get_ranked_children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "rank indicator" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = tc.add_rank
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "rank_indicator_expected_1.yaml")
+    end
+
+    it "creates rank, empty cl, add first child" do
+      params =
+      {
+        definition: "The Queen's Terminal",
+        identifier: "C00001",
+        label: "Terminal T",
+        notation: "TT"
+      }
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      expect(actual_rank.members).to eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      new_cli = actual_tc.add_child(params)
+      uc = Thesaurus::UnmanagedConcept.find_children(new_cli.id)
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_1b.yaml", equate_method: :hash_equal)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      expect(actual_rank.members).to_not eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "creates rank, existent cl, add child" do
+      params =
+      {
+        definition: "A definition",
+        identifier: "A00099",
+        label: "A label",
+        notation: "A99"
+      }
+      mc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      new_cli = actual_tc.add_child(params)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml", equate_method: :hash_equal)
+      tc = Thesaurus::ManagedConcept.find(mc.id)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      expect(actual_rank.members).to_not eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(second_member.rank).to eq(2)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      expect(third_member.rank).to eq(3)
+      expect(third_member.member_next).to eq(nil)
+    end
+
+    it "set rank, ranked extension, add extensions" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Bristol",
+          identifier: "A00003",
+          definition: "A definition",
+          notation: "BRS"
+        })
+      tc_1.set_initial("A00003")
+      tc_1.save
+      tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Exeter",
+          identifier: "A00004",
+          definition: "A definition",
+          notation: "EXT"
+        })
+      tc_2.set_initial("A00004")
+      tc_2.save
+      tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "Birmingham",
+          identifier: "A00005",
+          definition: "A definition",
+          notation: "BXM"
+        })
+      tc_3.set_initial("A00005")
+      tc_3.save
+      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      tc.add_extensions([tc_3.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(5)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      fourth_member = Thesaurus::RankMember.find(third_member.member_next)
+      fifth_member = Thesaurus::RankMember.find(fourth_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      expect(third_member.rank).to eq(3)
+      expect(fourth_member.rank).to eq(4)
+      expect(fifth_member.rank).to eq(5)
+      expect(fifth_member.member_next).to eq(nil)
+    end
+
+    it "set rank, ranked subset, add items" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+    end
+
+    it "remove rank member, last position, ranked subset" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(subset.members)
+      sm_2 = Thesaurus::SubsetMember.find(sm_1.member_next)
+      result = subset.remove(sm_2.uri.to_id)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(sm_1.uri)
+      expect(subset.members).to eq(sm_1.uri)
+      expect(sm_1.member_next).to eq(nil)
+      expect{Thesaurus::SubsetMember.find(sm_2.uri)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_2.uri} in Thesaurus::SubsetMember.")
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      expect(first_member.rank).to eq(1)
+      expect(first_member.member_next).to eq(nil)
+    end
+
+    it "remove rank member, first position, ranked subset" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(subset.members)
+      sm_2 = Thesaurus::SubsetMember.find(sm_1.member_next)
+      result = subset.remove(sm_1.uri.to_id)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_2 = Thesaurus::SubsetMember.find(sm_2.uri)
+      expect(subset.members).to eq(sm_2.uri)
+      expect(sm_2.member_next).to eq(nil)
+      expect{Thesaurus::SubsetMember.find(sm_1.uri)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_1.uri} in Thesaurus::SubsetMember.")
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      expect(first_member.rank).to eq(2)
+      expect(first_member.member_next).to eq(nil) 
+    end
+
+    it "delete rank" do
+      rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri_1)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc.is_ranked = rank
+      tc.save
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      actual_rank = Thesaurus::Rank.find(rank.uri)
+      expect(tc.is_ranked).to eq(actual_rank.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+      expect{Thesaurus::Rank.find(actual_rank.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8 in Thesaurus::Rank.")
+    end
+
+
+
+    
+
+  end
+
   describe "Clone and New Version" do
 
     before :all do

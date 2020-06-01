@@ -18,6 +18,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+  object_property :is_ranked, cardinality: :one, model_class: "Thesaurus::Rank"
 
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
@@ -30,6 +31,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Subsets
   include Thesaurus::Upgrade
   include Thesaurus::Validation
+  include Thesaurus::Ranked
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
@@ -383,6 +385,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def add_extensions(uris)
     transaction = transaction_begin
     uris.each {|x| add_link(:narrower, x)}
+    set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
 
@@ -477,11 +480,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
     results =[]
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
+      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
         (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys)
         (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
-        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
+        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
         {
           ?s rdf:type th:ManagedConcept .
           ?s isoT:hasIdentifier/isoI:version ?v .
@@ -499,6 +502,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
           BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+          BIND (EXISTS {?s th:isRanked ?xr1} as ?ranked)
           OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s . ?ci rdf:type ba:ChangeInstruction }
           OPTIONAL {?cn (ba:current/bo:reference) ?s . ?cn rdf:type ba:ChangeNote }
           #{filter_clause}
@@ -512,11 +516,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
           OPTIONAL {?s th:synonym/isoC:label ?sy }
           OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ?countci ?countcn ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?countci ?countcn ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
-    query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
-      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+    query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :ranked, :sci, :ns, :count]).each do |x|
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool, ranked: x[:ranked].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
       results << {identifier: x[:i], notation: x[:n], label: x[:l], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
     end
@@ -580,6 +584,35 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     new_mc.add_link(:subsets, source_mc.uri)
     transaction_execute
     new_mc
+  end
+
+  # Add Rank
+  #
+  # @return [Thesaurus::Rank] the new rank
+  def add_rank
+    sparql = Sparql::Update.new
+    mc = Thesaurus::ManagedConcept.find_minimum(self.id)
+    rank = Thesaurus::Rank.create(parent_uri: mc.uri)
+    sparql.default_namespace(rank.uri.namespace)
+    mc.add_link(:is_ranked, rank.uri)
+    children = children_query(mc)
+    if !children.empty?
+      rank_members = []
+      children.each_with_index do |item, index|
+        member = Thesaurus::RankMember.new(item: Uri.new(id: item[:uri].to_id), rank: index +1)
+        member.uri = member.create_uri(mc.uri)
+        rank_members << member
+        member.to_sparql(sparql)
+      end
+      rank_members[0..-2].each_with_index do |sm, index|
+        sparql.add({uri: rank_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members[index+1].uri})
+      end
+      last_sm = rank.last
+      last_sm.nil? ? sparql.add({uri: rank.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: rank_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members.first.uri})
+    end
+    #filename = sparql.to_file
+    sparql.create
+    rank
   end
 
   # Change Notes Paginated
@@ -746,6 +779,7 @@ private
 
   # Delete with all child items (extensions, subset and child code list items)
   def delete_with(parent_object=nil)
+    delete_rank(self) if self.ranked?
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
     parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
@@ -839,6 +873,38 @@ private
     "{ \n" +
     "  #{self.uri.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .  \n" +
     "}"
+  end
+
+  # Get children query.
+  def children_query(mc)
+    results =[]
+    query_string = %Q{
+      SELECT DISTINCT ?s ?i WHERE
+      {
+        #{mc.uri.to_ref} (th:narrower) ?s .
+        ?s th:identifier ?i .
+      } GROUP BY ?i ?s ORDER BY desc (?i)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    query_results.by_object_set([:i, :s]).each do |x|
+      results << {identifier: x[:i], uri: x[:s]}
+    end
+    results
+  end
+
+  # Delete rank.
+  def delete_rank(mc)
+    rank_uri = mc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_all
+  end
+
+  # Set ranks.
+  def set_ranks(uris, mc)
+    uris.each do |item|
+      child = Thesaurus::UnmanagedConcept.find(item)
+      set_rank(mc, child)
+    end
   end
 
 end

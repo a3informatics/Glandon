@@ -80,6 +80,7 @@ class Thesaurus
       self.valid_child?(child) # Errors placed into child.
       return child if child.errors.any?
       self.add_link(:narrower, child.uri)
+      set_rank(self, child) if self.class.name == "Thesaurus::ManagedConcept" && self.ranked?
       transaction_execute
       child
     end
@@ -137,9 +138,9 @@ class Thesaurus
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?rank (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
         {
-          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t ?ci ?cn WHERE
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t ?ci ?cn ?rank WHERE
           {
             VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             {
@@ -149,6 +150,7 @@ class Thesaurus
               ?s th:extensible ?e .
               OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s .?ci rdf:type ba:ChangeInstruction .}
               OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
+              OPTIONAL {?s ^(th:item) ?rank_member . #{self.uri.to_ref} th:isRanked/th:members/th:memberNext* ?rank_member . ?rank_member th:rank ?rank }
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
               BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
@@ -156,12 +158,12 @@ class Thesaurus
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
-        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ?countci ?countcn ORDER BY ?i
+        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :ba])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt]).each do |x|
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt, :rank]).each do |x|
         indicators = {annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id, indicators: indicators}
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, single_parent: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id,rank: x[:rank], indicators: indicators}
       end
       results
     end
@@ -343,6 +345,32 @@ class Thesaurus
     end
 
   private
+
+    # Set Rank. 
+  #
+  # @param mc [String] the id of the cli to be updated
+  # @param child [Integer] the rank to be asigned to the cli
+  def set_rank(mc, child)
+    rank = mc.is_ranked
+    query_string = %Q{
+      SELECT (max(?rank) as ?maxrank) WHERE {
+        #{rank.to_ref} (th:members/th:memberNext*) ?s .
+        ?s th:rank ?rank .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    max_rank = query_results.by_object(:maxrank)
+    max_rank.empty? ? max_rank = 0 : max_rank = max_rank[0].to_i
+    sparql = Sparql::Update.new
+    sparql.default_namespace(rank.namespace)
+    member = Thesaurus::RankMember.new(item: Uri.new(id: child.uri.to_id), rank: max_rank + 1)
+    member.uri = member.create_uri(mc.uri)
+    member.to_sparql(sparql)
+    last_sm = Thesaurus::Rank.find(rank).last
+    last_sm.nil? ? sparql.add({uri: rank}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: member.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: member.uri})
+    #filename = sparql.to_file
+    sparql.create
+  end
 
     # Generic Find Links. Find all items within the context that share synonyms or preferred terms
     #

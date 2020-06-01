@@ -1,0 +1,39 @@
+---
+http://www.cdisc.org/C67153/V4#C67153:
+- :subject: !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: C67153/V4
+    fragment: C67153
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.w3.org
+    path: 1999/02/22-rdf-syntax-ns
+    fragment: type
+  :object: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: Thesaurus
+    fragment: ManagedConcept
+- :subject: !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: C67153/V4
+    fragment: C67153
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: creationDate
+  :object: '2007-05-31 00:00:00 +0200'
+- :subject: !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: C67153/V4
+    fragment: C67153
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: lastChangeDate
+  :object: '2007-05-31 00:00:00 +0200'

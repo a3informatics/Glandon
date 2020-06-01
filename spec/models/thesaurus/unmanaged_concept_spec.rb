@@ -958,6 +958,50 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(triple_store.check_uris(uri_check_set)).to be(true)
     end
 
+    it "allows a TC to be destroyed, parent ranked" do
+      uri_check_set =
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000012"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true}
+      ]
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = parent.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      rank_members = Thesaurus::RankMember.find(actual_rank.members)
+      expect(rank_members.member_next).not_to eq(nil)
+      result = tc.delete_or_unlink(parent)
+      expect(result).to eq(1)
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      rank_members = Thesaurus::RankMember.find(actual_rank.members)
+      expect(rank_members.member_next).to eq(nil)
+    end
+
     it "does not allow a TC to be destroyed if it has children" # do
     #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     #   params =

@@ -8,6 +8,10 @@ describe CDISCLibraryAPIReader::Engine do
     return "models/concerns/cdisc_library_api_reader/engine"
   end
 
+  def other_dir
+    return "models/concerns/excel/cdisc_term_reader"
+  end
+
 	before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
     load_files(schema_files, data_files)
@@ -25,8 +29,8 @@ describe CDISCLibraryAPIReader::Engine do
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/protocolct-2019-09-27")
     result = object.parent_set.map{|k,v| v.to_h}
-    check_file_actual_expected(result, sub_dir, "process_expected_1.yaml", equate_method: :hash_equal)
-    check_file_actual_expected(result, sub_dir, "process_check_1.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
+    check_file_actual_expected(result, sub_dir, "process_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(result, other_dir, "execute_expected_2.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
   it "process sdtm", :speed => 'slow' do
@@ -35,7 +39,7 @@ describe CDISCLibraryAPIReader::Engine do
     object.process("/mdr/ct/packages/sdtmct-2019-09-27")
     result = object.parent_set.map{|k,v| v.to_h}
     check_file_actual_expected(result, sub_dir, "process_expected_2.yaml", equate_method: :hash_equal)
-    check_file_actual_expected(result, sub_dir, "process_check_2.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
+    check_file_actual_expected(result, other_dir, "execute_expected_3.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
   it "process send", :speed => 'slow' do
@@ -44,7 +48,7 @@ describe CDISCLibraryAPIReader::Engine do
     object.process("/mdr/ct/packages/sendct-2019-09-27")
     result = object.parent_set.map{|k,v| v.to_h}
     check_file_actual_expected(result, sub_dir, "process_expected_3.yaml", equate_method: :hash_equal)
-    check_file_actual_expected(result, sub_dir, "process_check_3.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
+    check_file_actual_expected(result, other_dir, "execute_expected_4.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
   it "process adam", :speed => 'slow' do
@@ -53,7 +57,7 @@ describe CDISCLibraryAPIReader::Engine do
     object.process("/mdr/ct/packages/adamct-2019-03-29")
     result = object.parent_set.map{|k,v| v.to_h}
     check_file_actual_expected(result, sub_dir, "process_expected_4.yaml", equate_method: :hash_equal)
-    check_file_actual_expected(result, sub_dir, "process_check_4.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
+    check_file_actual_expected(result, other_dir, "execute_expected_5.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
   it "process cdash" do
@@ -61,8 +65,8 @@ describe CDISCLibraryAPIReader::Engine do
     object = CDISCLibraryAPIReader::Engine.new(parent) 
     object.process("/mdr/ct/packages/cdashct-2019-06-28")
     result = object.parent_set.map{|k,v| v.to_h}
-    check_file_actual_expected(result, sub_dir, "process_expected_5.yaml", equate_method: :hash_equal)
-    check_file_actual_expected(result, sub_dir, "process_check_5.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
+    check_file_actual_expected(result, sub_dir, "process_expected_5.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(result, other_dir, "execute_expected_6.yaml", equate_method: :hash_equal) # Results file from equivalent Excel import.
   end
 
 end

@@ -4,7 +4,8 @@ $(document).ready( function() {
 
   var subsetEditPanel = new SubsetEditChildrenPanel(urls, 1000, lockCallback);
   var sourceChildrenPanel = new SubsetSourceChildrenPanel(clChildrenUrl, 1000, subsetEditPanel, lockCallback);
-  
+  var rankModal = new RankModal(lockCallback);
+
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
   var unload = new Unload(false);
 

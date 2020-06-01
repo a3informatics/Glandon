@@ -75,3 +75,8 @@ function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout
     }
   }, durationInSec * 1000);
 }
+
+// Enable / disable the .el-loading css class on an element
+function elementLoadingInline(target, enable) {
+  $(target).toggleClass("el-loading", enable);
+}

@@ -13,6 +13,7 @@
 @import "shared/ttip";
 @import "shared/confirmation_dialog";
 @import "shared/processing/spinner_animated";
+@import "shared/processing/element_loading";
 
 .row.centered{
    display: flex;
@@ -330,8 +331,10 @@
   margin: 5px auto;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus,
+ textarea:focus, select:focus {
   border-color: $secondary-color-light !important;
+  border-style: solid;
   outline: none !important;
 }
 
@@ -369,8 +372,13 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
   margin: 0px 5px;
   font-size: 10pt;
   position: absolute;
-  right: -25px;
+  right: -20px;
   top: 10%;
+}
+
+.content-editable.no-break{
+  white-space: nowrap;
+  margin-right: 15px;
 }
 
 // BLOCK LAYOUT
