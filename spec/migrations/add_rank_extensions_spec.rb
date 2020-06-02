@@ -18,7 +18,9 @@ describe 'triple store add rank extensions' do
     load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
     load_cdisc_term_versions(1..62)
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-    @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    @ct_26 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
+    @ct_30 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH"))
   end
 
   def check_triple(triples, predicate, value)
@@ -32,9 +34,9 @@ describe 'triple store add rank extensions' do
     end
   end
 
-  def check_against(expected)
-    ["C66784", "C87162", "C66768", "C66769"].each_with_index do |identifier, index|
-      results = @ct.find_by_identifiers([identifier])
+  def check_against(list, expected, ct)
+    list.each_with_index do |identifier, index|
+      results = ct.find_by_identifiers([identifier])
   puts "URI: #{results[identifier]}"
       expect(results[identifier]).to eq(expected[index])
     end
@@ -48,7 +50,13 @@ describe 'triple store add rank extensions' do
       Uri.new(uri: "http://www.cdisc.org/C66768/V28#C66768"),
       Uri.new(uri: "http://www.cdisc.org/C66769/V17#C66769")
     ]
-    check_against(expected)
+    check_against(["C66784", "C87162", "C66768", "C66769"], expected, @ct_26)
+    expected = 
+    [
+      Uri.new(uri: "http://www.cdisc.org/C66768/V28#C66768"),
+      Uri.new(uri: "http://www.cdisc.org/C66769/V17#C66769")
+    ]
+    check_against(["C66768", "C66769"], expected, @ct_30)
   end
 
   def check_new
@@ -59,14 +67,20 @@ describe 'triple store add rank extensions' do
       Uri.new(uri: "http://www.sanofi.com/C66768/V1#C66768"),
       Uri.new(uri: "http://www.sanofi.com/C66769/V1#C66769")
     ]
-    check_against(expected)
+    check_against(["C66784", "C87162", "C66768", "C66769"], expected, @ct_26)
+    expected = 
+    [
+      Uri.new(uri: "http://www.sanofi.com/C66768/V1#C66768"),
+      Uri.new(uri: "http://www.sanofi.com/C66769/V1#C66769")
+    ]
+    check_against(["C66768", "C66769"], expected, @ct_30)
   end
 
   it 'add rank extensions' do
     # Definitions, check triple store count
     expected = 152 # Number of extra triples
     base = triple_store.triple_count
-    expect(base).to eq(1267891)
+    expect(base).to eq(1349794)
 
     # Old triples check
     check_old
@@ -84,7 +98,7 @@ describe 'triple store add rank extensions' do
   it 'add rank extensions, exception upload' do
     # Definitions, check triple store count
     base = triple_store.triple_count
-    expect(base).to eq(1267891)
+    expect(base).to eq(1349794)
 
     # Old triples check
     check_old
@@ -103,7 +117,7 @@ describe 'triple store add rank extensions' do
     # Definitions, check triple store count
     expected = 152 # Number of extra triples
     base = triple_store.triple_count
-    expect(base).to eq(1267891)
+    expect(base).to eq(1349794)
 
     # Old triples check
     check_old

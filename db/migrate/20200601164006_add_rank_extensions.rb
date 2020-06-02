@@ -22,7 +22,11 @@ class AddRankExtensions < ActiveRecord::Migration
         ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
         ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
         ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
-        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> 
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769> 
       }      
       INSERT 
       {
@@ -33,7 +37,11 @@ class AddRankExtensions < ActiveRecord::Migration
         ?s1 bo:reference <http://www.sanofi.com/C66784/V1#C66784> .
         ?s2 bo:reference <http://www.sanofi.com/C87162/V1#C87162> .
         ?s3 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
-        ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
+        ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s5 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s6 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
       }
       WHERE 
       {
@@ -44,8 +52,12 @@ class AddRankExtensions < ActiveRecord::Migration
         <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s3 .
         ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
         <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s4 .
-        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769>
-      }      
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s5 .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s6 .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769>
+      }         
     }
     sparql.sparql_update(sparql_update, "", [:th, :bo])
     puts "Migration succesful"
