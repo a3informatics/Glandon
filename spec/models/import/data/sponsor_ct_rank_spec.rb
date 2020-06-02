@@ -215,7 +215,7 @@ describe "Import::SponsorTermFormatOne" do
     object
   end
 
-  def update_ct_refs
+  def update_26_ct_refs
     sparql = Sparql::Update.new
     sparql_update = %Q{
       DELETE
@@ -255,6 +255,58 @@ describe "Import::SponsorTermFormatOne" do
     sparql.sparql_update(sparql_update, "", [:th, :bo])
   end
 
+  def update_30_ct_refs
+    sparql = Sparql::Update.new
+    sparql_update = %Q{
+      DELETE
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769> 
+      }      
+      INSERT 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66784/V1#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C87162/V1#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s1 bo:reference <http://www.sanofi.com/C66784/V1#C66784> .
+        ?s2 bo:reference <http://www.sanofi.com/C87162/V1#C87162> .
+        ?s3 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s5 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s6 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
+      }
+      WHERE 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s1 .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s2 .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s3 .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s4 .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s5 .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s6 .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769>
+      }      
+    }
+    sparql.sparql_update(sparql_update, "", [:th, :bo])
+  end
+
   it "contructs new extensions", :speed => 'slow' do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     sparql = Sparql::Update.new
@@ -279,7 +331,7 @@ describe "Import::SponsorTermFormatOne" do
     cl_count = count_cl(ct)
     cli_count = count_cli(ct)
     cli_distinct_count = count_distinct_cli(ct)
-    update_ct_refs
+    update_26_ct_refs
     expect(triple_store.triple_count).to eq(count)
     expect(count_cl(ct)).to eq(cl_count)
     expect(count_cli(ct)).to eq(cli_count)
@@ -296,7 +348,7 @@ describe "Import::SponsorTermFormatOne" do
   it "rank extension v2.6", :speed => 'slow' do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_26_ct_refs
     config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -308,7 +360,7 @@ describe "Import::SponsorTermFormatOne" do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_30_ct_refs
     config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -321,7 +373,7 @@ describe "Import::SponsorTermFormatOne" do
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
-    update_ct_refs
+    update_30_ct_refs
     results = ranked
     results.each do |result|
       key = "#{result[:code_list]}.#{result[:item]}"
@@ -339,7 +391,7 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_30_ct_refs
     code_lists = []
     ["rank_V2-6.yaml", "rank_V3-0.yaml"].each_with_index do |file|
       config = read_yaml_file(sub_dir, file)
@@ -356,13 +408,14 @@ describe "Import::SponsorTermFormatOne" do
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_30_ct_refs
     code_lists = []
     results = {}
     {"rank_V2-6.yaml" => "http://www.sanofi.com/2019_R1/V1#TH", "rank_V3-0.yaml" => "http://www.sanofi.com/2020_R1/V1#TH"}.each do |file, uri|
       config = read_yaml_file(sub_dir, file)
       code_lists = config[:codelists].map{|x| x[:codelist_code]}
-      results[uri] = check_cls(code_lists, Uri.new(uri: uri))
+      results[uri] = check_cls(code_lists, Uri.new(uri: uri)).map{|x| x.to_s}
+      expect(code_lists.count).to eq(results[uri].count)
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal, write_file: write_file)
   end
