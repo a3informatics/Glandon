@@ -53,7 +53,7 @@ describe "Upgrade", :type => :feature do
       expect(page).to have_content 'Baseline CDISC CT: 2017-09-29 Release. New version: 2018-12-21 Release.'
       wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
-      wait_for_ajax 20
+      wait_for_ajax 30
       expect(page).to have_content 'Upgrade affected items'
       expect(page).to have_content 'EPOCH (NP000123P)'
       expect(page).to have_content 'EPOCH (C99079)'
@@ -67,7 +67,7 @@ describe "Upgrade", :type => :feature do
       page.go_back
       wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
-      wait_for_ajax 10
+      wait_for_ajax 30
       find(:xpath, "//tr[contains(.,'Extension')]/td/button").click
       wait_for_ajax 10
       expect(page).to have_content "Item was successfully upgraded"
