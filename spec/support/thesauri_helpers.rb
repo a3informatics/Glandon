@@ -51,6 +51,17 @@ module ThesauriHelpers
     query_results.by_object_set([:cid]).map{|x| x[:cid]}
   end
 
+  def cl_list_uri(th)
+    query_string = %Q{
+      SELECT ?s WHERE 
+      {
+        #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
+    query_results.by_object(:s)
+  end
+
   def check_thesaurus_concept_actual_expected(actual, sub_dir, filename, args={})
     synonyms = []
     write_file = args[:write_file] ? args[:write_file] : false

@@ -176,8 +176,6 @@ describe "Import::SponsorTermFormatOne" do
         owned << y
       end
       owned.each do |cl|
-puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
-        #expect(cl.ranked?).to eq(true)
         ranks = cl.children_pagination({offset: "0", count: "10000"}).map{|x| {identifier: x[:identifier], notation: x[:notation], rank: x[:rank].to_i}}
         results << {
           identifier: cl.identifier, 
@@ -186,6 +184,19 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
           children: ranks.sort_by{|x| x[:rank]}
         }
       end
+    end
+    results
+  end
+
+  def check_cls(code_lists, uri)
+    puts colourize("\n\nCT: #{uri}\n", "blue")
+    results = []
+    ct = Thesaurus.find_minimum(uri)
+    code_lists.each do |identifier|
+      cls = ct.find_by_identifiers([identifier])
+      cl = Thesaurus::ManagedConcept.find_minimum(cls[identifier])
+      results << cl.uri if cl.owned? 
+      puts colourize("CL: #{cl.uri}", cl.owned? ? "blue" : "red")
     end
     results
   end
@@ -338,4 +349,22 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     check_file_actual_expected(results, sub_dir, "children_ranked_expected.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
+  it "QC check III, URIs as Expected", :speed => 'slow' do
+    write_file = false
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    update_ct_refs
+    code_lists = []
+    results = {}
+    {"rank_V2-6.yaml" => "http://www.sanofi.com/2019_R1/V1#TH", "rank_V3-0.yaml" => "http://www.sanofi.com/2020_R1/V1#TH"}.each do |file, uri|
+      config = read_yaml_file(sub_dir, file)
+      code_lists = config[:codelists].map{|x| x[:codelist_code]}
+      results[uri] = check_cls(code_lists, Uri.new(uri: uri))
+    end
+    check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal, write_file: write_file)
+  end
+  
 end
