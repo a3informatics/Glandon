@@ -307,7 +307,7 @@ describe "Import::SponsorTermFormatOne" do
     sparql.sparql_update(sparql_update, "", [:th, :bo])
   end
 
-  it "contructs new extensions", :speed => 'slow' do
+  it "contructs new extensions" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     sparql = Sparql::Update.new
     sparql.default_namespace(ct.uri.namespace)
@@ -322,7 +322,7 @@ describe "Import::SponsorTermFormatOne" do
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
   end
 
-  it "checks new migration v2.6", :speed => 'slow' do
+  it "checks new migration v2.6" do
     write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
@@ -345,7 +345,7 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
-  it "rank extension v2.6", :speed => 'slow' do
+  it "rank extension v2.6" do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
     update_26_ct_refs
@@ -356,7 +356,7 @@ describe "Import::SponsorTermFormatOne" do
     create_ranks(results, "2-6")
   end
 
-  it "rank extension v3.0", :speed => 'slow' do
+  it "rank extension v3.0" do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
@@ -368,7 +368,7 @@ describe "Import::SponsorTermFormatOne" do
     create_ranks(results, "3-0")
   end
 
-  it "QC check I, Duplicates", :speed => 'slow' do
+  it "QC check I, Duplicates" do
     write_file = false
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
@@ -384,7 +384,7 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
-  it "QC check II, CLs as Expected", :speed => 'slow' do
+  it "QC check II, CLs as Expected" do
     write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
@@ -401,8 +401,10 @@ describe "Import::SponsorTermFormatOne" do
     check_file_actual_expected(results, sub_dir, "children_ranked_expected.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
-  it "QC check III, URIs as Expected", :speed => 'slow' do
+  it "QC check III, URIs as Expected" do
     write_file = false
+    uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
+    uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
@@ -411,13 +413,40 @@ describe "Import::SponsorTermFormatOne" do
     update_30_ct_refs
     code_lists = []
     results = {}
-    {"rank_V2-6.yaml" => "http://www.sanofi.com/2019_R1/V1#TH", "rank_V3-0.yaml" => "http://www.sanofi.com/2020_R1/V1#TH"}.each do |file, uri|
+    {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30}.each do |file, uri|
       config = read_yaml_file(sub_dir, file)
       code_lists = config[:codelists].map{|x| x[:codelist_code]}
-      results[uri] = check_cls(code_lists, Uri.new(uri: uri)).map{|x| x.to_s}
-      expect(code_lists.count).to eq(results[uri].count)
+      results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
+      expect(code_lists.count).to eq(results[uri.to_s].count)
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal, write_file: write_file)
+    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+      triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
+      expect(triples.count).to eq(data[:count])
+    end
+  end
+
+  it "QC check IV, new load files" do
+    uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
+    uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    code_lists = []
+    results = {}
+    {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30}.each do |file, uri|
+      config = read_yaml_file(sub_dir, file)
+      code_lists = config[:codelists].map{|x| x[:codelist_code]}
+      results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
+      expect(code_lists.count).to eq(results[uri.to_s].count)
+    end
+    check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal) # Previous test results
+    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+      triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
+      expect(triples.count).to eq(data[:count])
+    end
   end
   
 end

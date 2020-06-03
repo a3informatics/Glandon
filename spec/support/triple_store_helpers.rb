@@ -68,6 +68,27 @@ module TripleStoreHelpers
       results
     end
 
+    def subject_triples_tree(subject)
+      query_string = %Q{
+        SELECT DISTINCT?s ?p ?o WHERE
+        {
+          {
+            #{subject.to_ref} (:|!:)* ?s .
+            ?s ?p ?o 
+          }
+          UNION
+          {
+            #{subject.to_ref} ?p ?o
+            BIND (#{subject.to_ref} as ?s)
+          }
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, subject.namespace, []) 
+      results = query_results.by_object_set([:s, :p, :o])
+      puts colourize("Subject #{subject}, count=#{results.count}", "blue")
+      results
+    end
+
     def check_uris(set)
       overall_result = true
       set.each do |entry|
