@@ -19,7 +19,7 @@ describe IsoConceptSystems::NodesController do
 
     it "allows a node to be added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
+      post :add, params:{:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
       result = IsoConceptSystem::Node.find_children(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
       actual = result.to_h
       expected = read_yaml_file(sub_dir, "concept_system_2.yaml")
@@ -33,7 +33,7 @@ describe IsoConceptSystems::NodesController do
 
     it "prevents an invalid node being added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
+      post :add, params:{:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")
@@ -41,7 +41,7 @@ describe IsoConceptSystems::NodesController do
 
     it "prevents an invalid node being added, empty fields" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "", :description => ""}}
+      post :add, params:{:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "", :description => ""}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")
       expect(response.body).to eq("{\"errors\":[\"Pref label is empty\",\"Description contains invalid characters or is empty\"]}")
@@ -51,7 +51,7 @@ describe IsoConceptSystems::NodesController do
       request.env['HTTP_ACCEPT'] = "application/json"
       parent_node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
       node = parent_node.add({label: "A label", description: "A new system"})
-      delete :destroy, :id => node.id
+      delete :destroy, params:{:id => node.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
@@ -59,7 +59,7 @@ describe IsoConceptSystems::NodesController do
     it "prevents a node being destroyed if it has children" do
       request.env['HTTP_ACCEPT'] = "application/json"
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
-      delete :destroy, {:id => node.id}
+      delete :destroy, params:{:id => node.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("500")
       expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or the tag or a child tag is currently in use.\"]}")
@@ -68,7 +68,7 @@ describe IsoConceptSystems::NodesController do
     it "prevents a node being destroyed if it the root" do
       request.env['HTTP_ACCEPT'] = "application/json"
       node = IsoConceptSystem.root
-      delete :destroy, {:id => node.id}
+      delete :destroy, params:{:id => node.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("500")
       expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")
@@ -77,7 +77,7 @@ describe IsoConceptSystems::NodesController do
     it "update a node" do
       request.env['HTTP_ACCEPT'] = "application/json"
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
-      post :update, {:id => node.id, :iso_concept_systems_node => {:label => "Updated Label", :description => "Updated Description"}}
+      post :update, params:{:id => node.id, :iso_concept_systems_node => {:label => "Updated Label", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
@@ -85,7 +85,7 @@ describe IsoConceptSystems::NodesController do
     it "update a node, errors" do
       request.env['HTTP_ACCEPT'] = "application/json"
       node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
-      post :update, {:id => node.id, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
+      post :update, params:{:id => node.id, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")
       expect(response.body).to eq("{\"errors\":[\"Pref label contains invalid characters\"]}")
@@ -96,7 +96,7 @@ describe IsoConceptSystems::NodesController do
   describe "Unauthorized User" do
 
     it "add a concept" do
-      post :add, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1", :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
+      post :add, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1", :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
       expect(response).to redirect_to("/users/sign_in")
     end
 

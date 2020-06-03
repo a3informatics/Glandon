@@ -64,29 +64,29 @@ describe SdtmUserDomainsController do
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :sdtm_user_domain => { :identifier => "DM Domain", :scope_id => ra.ra_namespace.id }}
+      get :history, params:{ :sdtm_user_domain => { :identifier => "DM Domain", :scope_id => ra.ra_namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :sdtm_user_domain => { :identifier => "DM Domainx", :scope_id => ra.ra_namespace.id }}
+      get :history, params:{ :sdtm_user_domain => { :identifier => "DM Domainx", :scope_id => ra.ra_namespace.id }}
       expect(response).to redirect_to("/sdtm_user_domains")
     end
 
     it "allows the domain to be viewed" do
-      get :show, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :show, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to render_template("show")
     end
 
     it "initiates the cloning of an IG domain" do
-      get :clone_ig, { :sdtm_user_domain => { :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
+      get :clone_ig, params:{ :sdtm_user_domain => { :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
       expect(response).to render_template("clone_ig")
     end
 
     it "clones an IG domian" do
       params = 
-      { 
+      params:{ 
         :sdtm_user_domain => 
         { 
           :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", 
@@ -101,7 +101,7 @@ describe SdtmUserDomainsController do
 
     it "prevents the cloning of the same domain, duplicate identifier" do
       params = 
-      { 
+      params:{ 
         :sdtm_user_domain => 
         { 
           :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", 
@@ -123,7 +123,7 @@ describe SdtmUserDomainsController do
       domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      params = { :id => "D-ACME_DSDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      params = params:{ :id => "D-ACME_DSDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -137,7 +137,7 @@ describe SdtmUserDomainsController do
       domain.notes = "@@@£±£±"
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      params = { :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      params = params:{ :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
@@ -149,7 +149,7 @@ describe SdtmUserDomainsController do
     it "allows a domain to be updated, already locked" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      put :update, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      put :update, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
     #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_locked.txt")
@@ -158,7 +158,7 @@ describe SdtmUserDomainsController do
     end
     
     it "edit, no next version" do
-      get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :edit, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       result = assigns(:sdtm_user_domain)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
@@ -168,7 +168,7 @@ describe SdtmUserDomainsController do
     end
 
     it "edit domain, next version" do
-      get :edit, { id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :edit, params:{ id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       result = assigns(:sdtm_user_domain)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
@@ -181,7 +181,7 @@ describe SdtmUserDomainsController do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :edit, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_user_domains")
     end
@@ -194,7 +194,7 @@ describe SdtmUserDomainsController do
       new_form.namespace = "http://www.assero.co.uk/MDRSdtmUD/ACME/V2" # Note the V4, the expected new version.
       new_form.registrationState.registrationAuthority = IsoRegistrationAuthority.owner
       new_token = Token.obtain(new_form, @lock_user)
-      get :edit, { id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :edit, params:{ id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_user_domains")
     end
@@ -217,7 +217,7 @@ describe SdtmUserDomainsController do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      get :add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :add, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_user_domains")
     end
@@ -226,7 +226,7 @@ describe SdtmUserDomainsController do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       bc_count = domain.bc_refs.count
       @token = Token.obtain(domain, @user)
-      post :update_add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
+      post :update_add, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
         :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }}
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       expect(domain.bc_refs.count).to eq(bc_count + 1)
@@ -236,14 +236,14 @@ describe SdtmUserDomainsController do
     it "initiates the add update operation, already locked" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      post :update_add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
+      post :update_add, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
         :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("http://test.host/sdtm_user_domains/D-ACME_DMDomain?sdtm_user_domain%5Bnamespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmUD%2FACME%2FV1")
     end
 
     it "initiates the remove operation" do
-      get :remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       result = assigns(:sdtm_user_domain)
       bcs = assigns(:bcs)
       token = assigns(:token)
@@ -257,7 +257,7 @@ describe SdtmUserDomainsController do
       @request.env['HTTP_REFERER'] = 'http://test.host/sdtm_user_domains'
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      get :remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_user_domains")
     end
@@ -266,7 +266,7 @@ describe SdtmUserDomainsController do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       bc_count = domain.bc_refs.count
       @token = Token.obtain(domain, @user)
-      post :update_remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
+      post :update_remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
         :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }}
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       expect(domain.bc_refs.count).to eq(bc_count - 1)
@@ -276,7 +276,7 @@ describe SdtmUserDomainsController do
     it "initiates the remove update operation, already locked" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @lock_user)
-      post :update_remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
+      post :update_remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", 
         :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("http://test.host/sdtm_user_domains/D-ACME_DMDomain?sdtm_user_domain%5Bnamespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmUD%2FACME%2FV1")
@@ -287,7 +287,7 @@ describe SdtmUserDomainsController do
       audit_count = AuditTrail.count
       bc_count = SdtmUserDomain.all.count
       token_count = Token.all.count
-      delete :destroy, { :id => "D-ACME_EGDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      delete :destroy, params:{ :id => "D-ACME_EGDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(SdtmUserDomain.all.count).to eq(bc_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
@@ -295,7 +295,7 @@ describe SdtmUserDomainsController do
 
     it "allows the sub-classifications to be found, some found" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :sub_classifications, { sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_QUALIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      get :sub_classifications, params:{ sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_QUALIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       result = JSON.parse(response.body)
@@ -307,7 +307,7 @@ describe SdtmUserDomainsController do
     
     it "allows the sub-classifications to be found, none found" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :sub_classifications, { sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_IDENTIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      get :sub_classifications, params:{ sdtm_user_domain: { classification_id: "M-CDISC_SDTMMODEL_C_IDENTIFIER", classification_namespace: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_sub_classifications_2.txt")
@@ -317,22 +317,22 @@ describe SdtmUserDomainsController do
     
     it "exports TTL" do
       # @todo Needs improving
-      get :export_ttl, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :export_ttl, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
     it "exports JSON" do
       # @todo Needs improving
-      get :export_json, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :export_json, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
     it "exports XPT" do
       # @todo Needs improving
-      get :export_xpt_metadata, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :export_xpt_metadata, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
     it "full_report" do
       request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :full_report, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :full_report, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response.content_type).to eq("application/pdf")
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"ACME_DM Domain.pdf\"")
       expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
@@ -349,37 +349,37 @@ describe SdtmUserDomainsController do
     end
 
     it "edits an domain" do
-      get :edit, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :edit, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
     
     it "initiates the cloning of a domain" do
-      get :clone_ig, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :clone_ig, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
     it "clones a domain" do
-      post :clone_ig_create, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      post :clone_ig_create, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
     it "initiates adding a BC" do
-      get :add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :add, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
     it "adding a BC" do
-      post :update_add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      post :update_add, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
     it "initiates removing a BC" do
-      get :remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      get :remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
     it "removing a BC" do
-      post :update_remove, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      post :update_remove, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 
@@ -388,7 +388,7 @@ describe SdtmUserDomainsController do
     it "update"
 
     it "destroy" do
-      delete :destroy, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      delete :destroy, params:{ :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response).to redirect_to("/")
     end
 

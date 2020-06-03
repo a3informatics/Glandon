@@ -20,7 +20,7 @@ describe IsoRegistrationStatesController do
     it 'makes an item current' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       rs = IsoRegistrationState.all.first
-      post :current, { old_id: "", new_id: rs.id}
+      post :current, params:{ old_id: "", new_id: rs.id}
       rs = IsoRegistrationState.all.first
       expect(rs.current).to eq(true)
       expect(response).to redirect_to("/registration_states")
@@ -50,7 +50,7 @@ describe IsoRegistrationStatesController do
     it 'updates an item' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       mi = IsoManaged.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      post :update, { id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace, 
+      post :update, params:{ id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace, 
         registrationStatus: "Retired"  , previousState: "Standard"  , administrativeNote: "X1", unresolvedIssue: "X2"  }}
       mi = IsoManaged.find(mi.id, mi.namespace)
       updated_rs = mi.registrationState
@@ -68,7 +68,7 @@ describe IsoRegistrationStatesController do
     it 'prevents updates with invalid data' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       mi = IsoManaged.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      post :update, { id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace,
+      post :update, params:{ id: "#{mi.registrationState.id}", iso_registration_state: { mi_id: mi.id, mi_namespace: mi.namespace,
         registrationStatus: "X", previousState: "Standard"  , administrativeNote: "X1", unresolvedIssue: "X2"  }}
       new_mi = IsoManaged.find(mi.id, mi.namespace)
       new_rs = new_mi.registrationState
@@ -79,7 +79,7 @@ describe IsoRegistrationStatesController do
     it 'makes an item current' do
       @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
       rs = IsoRegistrationState.all.first
-      post :current, { old_id: "", new_id: rs.id}
+      post :current, params:{ old_id: "", new_id: rs.id}
       updated_rs = IsoRegistrationState.find(rs.id)
       expect(updated_rs.current).to eq(true)
       expect(response).to redirect_to("/registration_states")
@@ -90,10 +90,10 @@ describe IsoRegistrationStatesController do
       rs1 = IsoRegistrationState.all[0]
       rs2 = IsoRegistrationState.all[1]
       rs2.registrationStatus = "Standard"
-      post :current, { old_id: "", new_id: rs1.id}
+      post :current, params:{ old_id: "", new_id: rs1.id}
       updated_rs1 = IsoRegistrationState.find(rs1.id)
       expect(updated_rs1.current).to eq(true)
-      post :current, { old_id: rs1.id, new_id: rs2.id}
+      post :current, params:{ old_id: rs1.id, new_id: rs2.id}
       updated_rs1 = IsoRegistrationState.find(rs1.id)
       updated_rs2 = IsoRegistrationState.find(rs2.id)
       expect(updated_rs1.current).to eq(false)
@@ -108,7 +108,7 @@ describe IsoRegistrationStatesController do
     login_sys_admin
 
     it 'makes a registration state current' do
-      post :current, { old_id: "", new_id: "X"}
+      post :current, params:{ old_id: "", new_id: "X"}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -119,7 +119,7 @@ describe IsoRegistrationStatesController do
   describe "Not logged in" do
     
     it 'makes a registration state current' do
-      post :current, { old_id: "", new_id: "X"}
+      post :current, params:{ old_id: "", new_id: "X"}
       expect(response).to redirect_to("/users/sign_in")
     end
 

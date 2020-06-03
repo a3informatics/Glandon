@@ -35,7 +35,7 @@ describe SdtmIgsController do
 
     it "show" do
       params = 
-      { 
+      params:{ 
         :id => "IG-CDISC_SDTMIG", 
         sdtm_ig: 
         {
@@ -47,11 +47,11 @@ describe SdtmIgsController do
     end
 
     it "allows for a SDTM Model to be exported as JSON" do
-      get :export_json, { :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
+      get :export_json, params:{ :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
     end
 
     it "allows for a SDTM Model to be exported as TTL" do
-      get :export_ttl, { :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
+      get :export_ttl, params:{ :id => "IG-CDISC_SDTMIG", sdtm_ig: { :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
     end
 
     it "prevents access to the import view"  do
@@ -95,7 +95,7 @@ describe SdtmIgsController do
     it "allows a SDTM IG to be created" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
-      {
+      params:{
         :sdtm_ig => 
         { 
           :version => "4",
@@ -112,7 +112,7 @@ describe SdtmIgsController do
     it "allows a SDTM Model to be created, error version" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
-      {
+      params:{
         :sdtm_ig => 
         { 
           :version => "aa", 

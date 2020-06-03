@@ -32,21 +32,21 @@ describe SdtmModelDomainsController do
       params = 
       { 
         :id => "M-CDISC_SDTMMODELTRIALDESIGN", 
-        sdtm_model_domain: 
+        params:{sdtm_model_domain: 
         {
           :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" 
         }
-      }
+      }}
       get :show, params
       expect(response).to render_template("show")
     end
 
     it "allows for a SDTM Model Domain to be exported as JSON" do
-      get :export_json, { :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
+      get :export_json, params:{ :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
     end
 
     it "allows for a SDTM Model Domain to be exported as TTL" do
-      get :export_ttl, { :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
+      get :export_ttl, params:{ :id => "M-CDISC_SDTMMODEL_TRIAL_DESIGN", sdtm_model_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" }}
     end
 
   end

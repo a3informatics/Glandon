@@ -10,7 +10,7 @@ describe Users::SessionsController do
       user1 = User.create :email => "fred@example.com", :password => C_PASSWORD 
       request.env['devise.mapping'] = Devise.mappings[:user]
       audit_count = AuditTrail.count
-      post :create, :user => {:email => 'fred@example.com', :password => C_PASSWORD}
+      post :create, params:{:user => {:email => 'fred@example.com', :password => C_PASSWORD}}
       expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
@@ -18,7 +18,7 @@ describe Users::SessionsController do
       user1 = User.create :email => "fred@example.com", :password => "#{C_PASSWORD}X" 
       request.env['devise.mapping'] = Devise.mappings[:user]
       audit_count = AuditTrail.count
-      post :create, :user => {:email => 'fred@example.com', :password => C_PASSWORD}
+      post :create, params:{:user => {:email => 'fred@example.com', :password => C_PASSWORD}}
       expect(AuditTrail.count).to eq(audit_count)
     end
 

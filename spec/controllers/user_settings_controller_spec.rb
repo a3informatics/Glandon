@@ -18,14 +18,14 @@ describe UserSettingsController do
     end
 
     it "updates user" do
-      put :update, {id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
+      put :update, params:{id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
       expect(@user.read_setting(:paper_size).value).to eq("Letter")
       expect(response).to redirect_to("/user_settings")
     end
 
     it "updates user, json" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      put :update, {id: @user.id, :user_settings => {:name => "dashboard_layout", :value => "terminologies, stats"}}
+      put :update, params:{id: @user.id, :user_settings => {:name => "dashboard_layout", :value => "terminologies, stats"}}
       expect(@user.read_setting(:dashboard_layout).value).to eq("terminologies, stats")
       expect(response.status).to eq(200)
     end
@@ -43,7 +43,7 @@ describe UserSettingsController do
     end
 
     it "prevents access, update" do
-      put :update, {id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
+      put :update, params:{id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
       expect(@user.read_setting(:paper_size).value).to eq("Letter")
       expect(response).to redirect_to("/user_settings")
     end
@@ -59,7 +59,7 @@ describe UserSettingsController do
 
     it 'updates user' do
       user = ua_add_user email: "fred@example.com"
-      put :update, {id: user.id, :user_settings => {:name => :paper_size, :value => "LETTER"}}
+      put :update, params:{id: user.id, :user_settings => {:name => :paper_size, :value => "LETTER"}}
       expect(response).to redirect_to("/users/sign_in")
     end
 
@@ -76,7 +76,7 @@ describe UserSettingsController do
     end
 
     it "updates user" do
-      put :update, {id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
+      put :update, params:{id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
       expect(@user.read_setting(:paper_size).value).to eq("Letter")
       expect(response).to redirect_to("/user_settings")
     end

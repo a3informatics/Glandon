@@ -66,7 +66,7 @@ describe TokensController do
     end
 
     it "will release a token, HTTP" do
-      post :release, :id => @token1.id
+      post :release, params:{:id => @token1.id}
       tokens = Token.all
       expected =
       [
@@ -89,7 +89,7 @@ describe TokensController do
 
     it "will release a token, JSON" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :release, :id => @token2.id
+      post :release, params:{:id => @token2.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
@@ -116,7 +116,7 @@ describe TokensController do
     it "provides the token status" do
       request.env['HTTP_ACCEPT'] = "application/json"
       remaining = @token1.remaining
-      post :status, :id => @token1.id
+      post :status, params:{:id => @token1.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       result = JSON.parse(response.body)
@@ -134,13 +134,13 @@ describe TokensController do
     end
 
     it "status" do
-      post :status, :id => 6
+      post :status, params:{:id => 6}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "extend token" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extend_token, :id => 6
+      post :extend_token, params:{:id => 6}
       expect(response.status).to eq(401)
     end
 
@@ -188,7 +188,7 @@ describe TokensController do
     it "allows the staus of a token to be obtained" do
       request.env['HTTP_ACCEPT'] = "application/json"
       remaining = @token1.remaining
-      post :status, :id => @token1.id
+      post :status, params:{:id => @token1.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       result = JSON.parse(response.body)
@@ -198,7 +198,7 @@ describe TokensController do
 
     it "allows the staus of a token to be obtained, no token" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :status, :id => 6
+      post :status, params:{:id => 6}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       result = JSON.parse(response.body)
@@ -208,7 +208,7 @@ describe TokensController do
 
     it "allows the token to be extended, no token" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extend_token, :id => 6
+      post :extend_token, params:{:id => 6}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
@@ -216,7 +216,7 @@ describe TokensController do
 
     it "allows the token to be extended" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extend_token, :id => @token1.id
+      post :extend_token, params:{:id => @token1.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
@@ -225,7 +225,7 @@ describe TokensController do
 
     it "allows the token to be extended, no token" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extend_token, :id => 6
+      post :extend_token, params:{:id => 6}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{}")

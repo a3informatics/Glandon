@@ -32,21 +32,21 @@ describe SdtmIgDomainsController do
       params = 
       { 
         :id => "IG-CDISC_SDTMIGRS", 
-        sdtm_ig_domain: 
+        params:{sdtm_ig_domain: 
         {
           :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" 
         }
-      }
+      }}
       get :show, params
       expect(response).to render_template("show")
     end
 
     it "allows for a SDTM Model to be exported as JSON" do
-      get :export_json, { :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
+      get :export_json, params:{ :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
     end
 
     it "allows for a SDTM Model to be exported as TTL" do
-      get :export_ttl, { :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
+      get :export_ttl, params:{ :id => "IG-CDISC_SDTMIGRS", sdtm_ig_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" }}
     end
 
   end

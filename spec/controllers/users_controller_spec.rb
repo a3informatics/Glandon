@@ -30,7 +30,7 @@ describe UsersController do
       user2 = ua_add_user email: "sid@example.com"
       user3 = ua_add_user email: "boris@example.com"
       count = User.all.count
-      post :create, user: { email: "new1@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#", name: "New" }
+      post :create, params:{user: { email: "new1@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#", name: "New" }}
       expect(User.all.count).to eq(count + 1)
       expect(flash[:success]).to be_present
       expect(response).to redirect_to("/users")
@@ -41,7 +41,7 @@ describe UsersController do
       user2 = ua_add_user email: "sid@example.com"
       user3 = ua_add_user email: "boris@example.com"
       count = User.all.count
-      post :create, user: { email: "new2@example.com", password: "Change", password_confirmation: "Change", name: "New"  }
+      post :create, params:{user: { email: "new2@example.com", password: "Change", password_confirmation: "Change", name: "New"  }}
       expect(User.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/users")
@@ -53,7 +53,7 @@ describe UsersController do
       user3 = ua_add_user email: "boris@example.com"
       user4 = ua_add_user email: "new@example.com"
       count = User.all.count
-      delete :destroy, :id => user4.id
+      delete :destroy, params:{:id => user4.id}
       expect(User.all.count).to eq(count - 1)
     end
 
@@ -62,7 +62,7 @@ describe UsersController do
       user2 = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
       user = User.find_by(:email => "tst_user2@example.com")
       count = User.all.count
-      delete :destroy, :id => user.id
+      delete :destroy, params:{:id => user.id}
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You cannot delete tst_user2@example.com. User has logged in!/)
       expect(User.all.count).to eq(count)
@@ -73,7 +73,7 @@ describe UsersController do
       user2 = ua_add_user email: "sid@example.com"
       user3 = ua_add_user email: "boris@example.com"
       user = User.find_by(:email => "sid@example.com")
-      get :edit, :id => user.id
+      get :edit, params:{:id => user.id}
       expect(response).to render_template("edit")
     end
 
@@ -85,7 +85,7 @@ describe UsersController do
       role_r = Role.where(name: "reader").first
       role_cr = Role.where(name: "curator").first
       role_ca = Role.where(name: "content_admin").first
-      put :update, {id: user2.id, :user => {role_ids: ["#{role_sa.id}", "#{role_r.id}", "#{role_cr.id}", "#{role_ca.id}"]}}
+      put :update, params:{id: user2.id, :user => {role_ids: ["#{role_sa.id}", "#{role_r.id}", "#{role_cr.id}", "#{role_ca.id}"]}}
       user = User.find_by(:email => "sid@example.com")
       expect(user.has_role? :sys_admin).to eq(true)
       expect(user.has_role? :reader).to eq(true)
@@ -98,7 +98,7 @@ describe UsersController do
       user1 = User.create :email => "fred@example.com", :password => "Changeme1#", name: "x"
       user = User.find_by(:email => "fred@example.com")
       expect(user.name).to eq("x")
-      put :update_name, {id: user.id, :user => {name: "Updated Name"}}
+      put :update_name, params:{id: user.id, :user => {name: "Updated Name"}}
       user = User.find_by(:email => "fred@example.com")
       expect(user.name).to eq("Updated Name")
       expect(response).to redirect_to("/user_settings")
@@ -107,7 +107,7 @@ describe UsersController do
     it "locks user" do
       user = User.create :email => "fred@example.com", :password => "Changeme1#"
       expect(user.is_active?).to eq(true)
-      put :lock, {id: user.id}
+      put :lock, params:{id: user.id}
       expect(flash[:success]).to be_present
       user = User.find_by(:email => "fred@example.com")
       expect(user.is_active).to eq(false)
@@ -116,7 +116,7 @@ describe UsersController do
 
     it "unlocks user" do
       user = User.create :email => "fred@example.com", :password => "Changeme1#"
-      put :unlock, {id: user.id}
+      put :unlock, params:{id: user.id}
       expect(flash[:success]).to be_present
       user = User.find_by(:email => "fred@example.com")
       expect(user.is_active).to eq(true)
@@ -132,7 +132,7 @@ describe UsersController do
 
     it "prevents removing last sys admin user role" do
       current_user = User.find_by(:email => "base@example.com")
-      put :update, {id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+      put :update, params:{id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You cannot remove the last system administrator.*/)
 
@@ -143,7 +143,7 @@ describe UsersController do
       admin_user = ua_add_user(email: "admin@example.com", role: :sys_admin)
       expect(admin_user.role_list_stripped).to eq("Reader, System Admin")
 
-      put :update, {id: admin_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+      put :update, params:{id: admin_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
 
       admin_user = User.find_by(:email => "admin@example.com")
       expect(admin_user.role_list_stripped).to eq("Curator")
@@ -157,7 +157,7 @@ describe UsersController do
       expect(admin_user.role_list_stripped).to eq("System Admin")
       expect(curator_user.role_list_stripped).to eq("Curator, Reader")
 
-      put :update, {id: curator_user.id, :user => {role_ids: ["#{Role.to_id(:reader)}"]}}
+      put :update, params:{id: curator_user.id, :user => {role_ids: ["#{Role.to_id(:reader)}"]}}
 
       curator_user = User.find_by(:email => "curator@example.com")
       expect(curator_user.role_list_stripped).to eq("Reader")
@@ -165,17 +165,17 @@ describe UsersController do
     end
 
     it "assigns user a default name if none is provided" do
-      post :create, user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}
+      post :create, params:{user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}}
       user = User.find_by(email: "user@example.com")
       expect(user.name).to eq("Anonymous")
     end
 
     it "prohibits the user from changing the name to an empty string" do
-      post :create, user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}
+      post :create, params:{user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}}
       user = User.find_by(email: "user@example.com")
       expect(user.name).to eq("Anonymous")
 
-      post :update_name, {id: user.id, :user => {name: ""}}
+      post :update_name, params:{id: user.id, :user => {name: ""}}
 
       user = User.find_by(email: "user@example.com")
       expect(user.name).to eq("Anonymous")
@@ -202,14 +202,14 @@ describe UsersController do
     end
 
     it 'creates namespace' do
-      post :create, user: { email: "new2@example.com", password: "Changeme1#", password_confirmation: "Changeme1#" }
+      post :create, params:{user: { email: "new2@example.com", password: "Changeme1#", password_confirmation: "Changeme1#" }}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it 'deletes user' do
-      delete :destroy, :id => 1
+      delete :destroy, params:{:id => 1}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -217,7 +217,7 @@ describe UsersController do
 
     it "edits user" do
       user1 = ua_add_user email: "fred@example.com"
-      get :edit, :id => user1.id
+      get :edit, params:{:id => user1.id}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -225,7 +225,7 @@ describe UsersController do
 
     it "updates user" do
       user1 = ua_add_user email: "fred@example.com"
-      put :update, {id: user1.id, :user => {role_ids: ["1", "2", "3", "4"]}}
+      put :update, params:{id: user1.id, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -246,22 +246,22 @@ describe UsersController do
     end
 
     it 'creates scoped_identifier' do
-      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }
+      post :create, params:{user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it 'deletes user' do
-      delete :destroy, :id => 1
+      delete :destroy, params:{:id => 1}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "edits user" do
-      get :edit, :id => 1
+      get :edit, params:{:id => 1}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "updates user" do
-      put :update, {id: 1, :user => {role_ids: ["1", "2", "3", "4"]}}
+      put :update, params:{id: 1, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/users/sign_in")
     end
 

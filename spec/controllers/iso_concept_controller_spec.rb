@@ -31,14 +31,14 @@ describe IsoConceptController do
     it "show concept as JSON" do
       concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq(concept.to_json.to_json)
     end
 
     it "returns the graph links for a concept" do
-      get :graph_links, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
+      get :graph_links, params:{id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       hash = check_good_json_response(response)
     #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
       results = read_yaml_file(sub_dir, "graph_links_example_1.yaml")
@@ -88,7 +88,7 @@ describe IsoConceptController do
     it "gets tags" do
       item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :tags, id: item.id
+      get :tags, params:{id: item.id}
       actual = check_good_json_response(response)
       expect(actual).to eq(["SDTM"])
     end
@@ -96,7 +96,7 @@ describe IsoConceptController do
     it "gets tags full" do
       item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :tags_full, id: item.id
+      get :tags_full, params:{id: item.id}
       actual = check_good_json_response(response)
       expect(actual).to eq([{:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzIwNzBlNzE0LTNmNWItNDVkNC1iMWEzLTVmZjVkNThjYmNlOQ==", :label=>"SDTM"}])
     end
@@ -106,7 +106,7 @@ describe IsoConceptController do
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
       item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add_change_note, {id: item.id, iso_concept: {description: "sssss", reference: "ref"}}
+      post :add_change_note, params:{id: item.id, iso_concept: {description: "sssss", reference: "ref"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_change_note_expected_1.yaml")
     end
@@ -120,7 +120,7 @@ describe IsoConceptController do
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 13:00:00+01:00 2000"))
       item.add_change_note(description: "desc2", reference: "ref2", user_reference: "a@b.com")
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :change_notes, id: item.id
+      get :change_notes, params:{id: item.id}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "change_notes_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -137,7 +137,7 @@ describe IsoConceptController do
       item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :change_instructions, id: tc.id
+      get :change_instructions, params:{id: tc.id}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "change_instructions_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -154,7 +154,7 @@ describe IsoConceptController do
       item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :change_instructions, id: tc.id
+      get :change_instructions, params:{id: tc.id}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "change_instructions_expected_2.yaml", equate_method: :hash_equal)
     end
@@ -169,7 +169,7 @@ describe IsoConceptController do
       item.add_references(previous: [uri1.to_id], current: [])
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :change_instructions, id: tc.id, iso_concept: {context_id: "random_context_id"}
+      get :change_instructions, params:{id: tc.id, iso_concept: {context_id: "random_context_id"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "change_instructions_expected_3.yaml", equate_method: :hash_equal)
     end
@@ -186,7 +186,7 @@ describe IsoConceptController do
       item.add_references(previous: [uri1.to_id], current: [uri2.to_id, uri3.to_id])
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :indicators, id: tc.id
+      get :indicators, params:{id: tc.id}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "indicators_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -216,7 +216,7 @@ describe IsoConceptController do
       item.save
       tag = IsoConceptSystem.path(["CDISC", "SDTM"])
       request.env['HTTP_ACCEPT'] = "application/json"
-      put :add_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
+      put :add_tag, params:{id: item.id, iso_concept: {tag_id: tag.id}}
       actual = check_good_json_response(response)
     end
 
@@ -229,7 +229,7 @@ describe IsoConceptController do
       item.save
       tag = IsoConceptSystem.path(["CDISC", "SDTM"])
       request.env['HTTP_ACCEPT'] = "application/json"
-      put :remove_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
+      put :remove_tag, params:{id: item.id, iso_concept: {tag_id: tag.id}}
       actual = check_good_json_response(response)
     end
 
@@ -241,7 +241,7 @@ describe IsoConceptController do
       expect(IsoConceptV2).to receive(:find).and_return(item)
       expect(item).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#Thesaurus")
       expect(Thesaurus).to receive(:find_with_properties).and_return(Thesaurus.new)
-      get :edit_tags, {id: item.uri.to_id}
+      get :edit_tags, params:{id: item.uri.to_id}
       expect(response).to render_template("edit_tags")
     end
 
@@ -255,7 +255,7 @@ describe IsoConceptController do
       expect(IsoConceptV2).to receive(:rdf_type_to_klass).and_return(Thesaurus::UnmanagedConcept)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
-      get :edit_tags, {id: item.uri.to_id, iso_concept: {parent_id: "xxx", context_id: "12345"}}
+      get :edit_tags, params:{id: item.uri.to_id, iso_concept: {parent_id: "xxx", context_id: "12345"}}
       expect(assigns(:context_id)).to eq("12345")
       expect(response).to render_template("edit_tags")
     end
@@ -265,17 +265,17 @@ describe IsoConceptController do
   describe "Unauthorized User" do
 
     it "show a concept" do
-      get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "add a tag" do
-      put :add_tag, id: "AAA"
+      put :add_tag, params:{id: "AAA"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "delete a tag" do
-      put :remove_tag, id: "AAA"
+      put :remove_tag, params:{id: "AAA"}
       expect(response).to redirect_to("/users/sign_in")
     end
 

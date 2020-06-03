@@ -24,7 +24,7 @@ describe IsoScopedIdentifiersController do
       count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
-      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label" }}
+      patch :update, params:{ id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
       expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(updated_scoped_identifier.versionLabel).to eq("update to label")
@@ -36,7 +36,7 @@ describe IsoScopedIdentifiersController do
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
       vl = scoped_identifier.versionLabel
-      patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
+      patch :update, params:{ id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
       expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(updated_scoped_identifier.versionLabel).to eq(vl)
@@ -50,7 +50,7 @@ describe IsoScopedIdentifiersController do
     login_sys_admin
 
     it 'update' do
-      patch :update, id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+      patch :update, params:{id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -61,7 +61,7 @@ describe IsoScopedIdentifiersController do
   describe "Not logged in" do
     
     it "update" do
-      patch :update, id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+      patch :update, params:{id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 

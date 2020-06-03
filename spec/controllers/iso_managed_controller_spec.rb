@@ -31,7 +31,7 @@ describe IsoManagedController do
 
     it "updates a managed item" do
       post :update,
-        {
+        params:{
           id: "F-ACME_TEST",
           iso_managed:
           {
@@ -52,7 +52,7 @@ describe IsoManagedController do
     it "allows a managed item to be edited" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      get :edit, {id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      get :edit, params:{id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
       expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
       expect(response).to render_template("edit")
@@ -72,7 +72,7 @@ describe IsoManagedController do
     it "shows a managed item, JSON" do
       concept = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, {id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
+      get :show, params:{id: "F-ACME_TEST", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq(concept.to_json.to_json)
@@ -141,7 +141,7 @@ describe IsoManagedController do
 
     it "returns the branches for an item" do
       results = { data: [] }
-      get :branches, {id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      get :branches, params:{id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq(results.to_json.to_s)
@@ -152,7 +152,7 @@ describe IsoManagedController do
       audit_count = AuditTrail.count
       mi_count = IsoManaged.all.count
       token_count = Token.all.count
-      delete :destroy, { :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      delete :destroy, params:{ :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(IsoManaged.all.count).to eq(mi_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
@@ -168,7 +168,7 @@ describe IsoManagedController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(IsoNamespace).to receive(:find).with("1234").and_return(IsoNamespace.new)
       expect(IsoManagedV2).to receive(:comments).with({identifier: params[:identifier], scope: an_instance_of(IsoNamespace)}).and_return(expected_base)
-      get :comments, { iso_managed: params}
+      get :comments, params:{ iso_managed: params}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expected = expected_base
@@ -206,7 +206,7 @@ describe IsoManagedController do
       allow_any_instance_of(IsoManaged).to receive(:owner_short_name).and_return("ACME")
       allow(controller).to receive(:to_turtle).with("triples").and_return("content")
       expect(ExportFileHelpers).to receive(:save).with("content", "ACME_BC C25298_1.ttl").and_return("filepath/a")
-      get :export, { :id => uri.to_id }
+      get :export, params:{ :id => uri.to_id }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"file_path\":\"filepath/a\"}")
@@ -224,13 +224,13 @@ describe IsoManagedController do
     it "update"
 
     it "status" do
-      get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
+      get :status, params:{ id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "changes"
     it "edit" do
-       get :edit, {id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+       get :edit, params:{id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
@@ -241,12 +241,12 @@ describe IsoManagedController do
     it "tags"
 
     it "branches" do
-      get :branches, {id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      get :branches, params:{id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "show an managed item" do
-      get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      get :show, params:{id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
@@ -254,27 +254,27 @@ describe IsoManagedController do
     it "graph_links"
 
     it "impact" do
-      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      get :impact, params:{ id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "impact_start" do
-      get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      get :impact_start, params:{ id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "impact_next" do
-      get :impact_next, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      get :impact_next, params:{ id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "destroy" do
-      delete :destroy, { :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      delete :destroy, params:{ :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "export" do
-      get :export, {id: "XXXXXXX"} # Used new ID, can be anything
+      get :export, params:{id: "XXXXXXX"} # Used new ID, can be anything
       expect(response).to redirect_to("/users/sign_in")
     end
 

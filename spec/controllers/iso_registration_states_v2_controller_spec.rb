@@ -18,7 +18,7 @@ describe IsoRegistrationStatesV2Controller do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_T2")
       mi = IsoManagedV2.find_minimum(uri_1)
       expect(mi.has_state.multiple_edit).to eq(false)
-      put :update, { id: mi.id, iso_registration_state: { multiple_edit: true }}  
+      put :update, params:{ id: mi.id, iso_registration_state: { multiple_edit: true }}  
       mi = IsoManagedV2.find_minimum(uri_1)
       expect(mi.has_state.multiple_edit).to eq(true)
       expect(response.content_type).to eq("application/json")

@@ -31,7 +31,7 @@ describe Imports::SponsorTermFormatTwoController do
     end
 
     it "new, no files" do
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to eq([])
       expect(response.code).to eq("200")
@@ -40,7 +40,7 @@ describe Imports::SponsorTermFormatTwoController do
 
     it "new, files" do
       test_files
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to match_array([@file_1, @file_2])
       expect(response.code).to eq("200")
@@ -51,7 +51,7 @@ describe Imports::SponsorTermFormatTwoController do
     it "create, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect_any_instance_of(Import::SponsorTermFormatTwo).to receive(:create)
-      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":[]}")
@@ -60,7 +60,7 @@ describe Imports::SponsorTermFormatTwoController do
     it "create, json request, multiple files" do
       @request.env['HTTP_REFERER'] = 'http://test.host/something'
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :create, {imports: {identifier: "AAA", files: [@file_1, @file_2]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1, @file_2]}}
       expect(response).to redirect_to("/something")
       expect(flash[:error]).to match(/Files more than one file is specified/)
     end
@@ -71,13 +71,13 @@ describe Imports::SponsorTermFormatTwoController do
         arg.id = id
         arg.save
       end
-      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1]}}
       expect(response).to redirect_to(import_path(id))
     end
 
     it "create, http request, multiple files" do
       @request.env['HTTP_REFERER'] = 'http://test.host/something'
-      post :create, {imports: {identifier: "AAA", files: [@file_1, @file_2]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1, @file_2]}}
       expect(response).to redirect_to("/something")
       expect(flash[:error]).to match(/Files more than one file is specified/)
     end
@@ -94,7 +94,7 @@ describe Imports::SponsorTermFormatTwoController do
     end
 
     it "create" do
-      delete :create, {imports: {identifier: "AAA", filename: @file_1}}
+      delete :create, params:{imports: {identifier: "AAA", filename: @file_1}}
       expect(response).to redirect_to("/")
     end
 

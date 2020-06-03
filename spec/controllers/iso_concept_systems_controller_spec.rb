@@ -52,7 +52,7 @@ describe IsoConceptSystemsController do
 
     it "returns a concept system tree" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      get :show, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id}
     #Xwrite_yaml_file(JSON.parse(response.body).deep_symbolize_keys[:data], sub_dir, "iso_concept_system_controller.yaml")
       expected = read_yaml_file(sub_dir, "iso_concept_system_controller.yaml")
       expect(response.content_type).to eq("application/json")
@@ -62,7 +62,7 @@ describe IsoConceptSystemsController do
 
     it "allows a node to be added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id, :iso_concept_system => {:label => "New Node Label", :description => "New Node Description"}}
+      post :add, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id, :iso_concept_system => {:label => "New Node Label", :description => "New Node Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
       expect(response.body).to eq("{\"errors\":[]}")    
@@ -70,7 +70,7 @@ describe IsoConceptSystemsController do
 
     it "prevents an invalid node being added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id, :iso_concept_system => {:label => "New Label", :description => "New Description±"}}
+      post :add, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id, :iso_concept_system => {:label => "New Label", :description => "New Description±"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")    
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")    
@@ -78,7 +78,7 @@ describe IsoConceptSystemsController do
 
     it "prevents the root node being deleted" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      post :destroy, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id}
       expect(response.code).to eq("200")    
       expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")    
     end
@@ -93,17 +93,17 @@ describe IsoConceptSystemsController do
     end
 
     it "show a concept" do
-      get :show, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      get :show, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "add a concept" do
-      post :add, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      post :add, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "delete root concept" do
-      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      post :destroy, params:{id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id}
       expect(response).to redirect_to("/users/sign_in")
     end
 

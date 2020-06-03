@@ -31,25 +31,25 @@ describe IsoRegistrationAuthoritiesController do
 
     it 'creates registration authority' do
       namespaces = IsoNamespace.all
-      post :create, iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }
+      post :create, params:{iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }}
       expect(IsoRegistrationAuthority.all.count).to eq(3)
     end
 
     it 'deletes registration authority' do
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      delete :destroy, :id => IsoRegistrationAuthority.all.first.id
+      delete :destroy, params:{:id => IsoRegistrationAuthority.all.first.id}
       expect(IsoRegistrationAuthority.all.count).to eq(1)
     end
 
     it "deletes registration authority, not found" do
       namespaces = IsoNamespace.all
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      post :create, iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }
+      post :create, params:{iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }}
       expect(IsoRegistrationAuthority.all.count).to eq(3)
       ra = IsoRegistrationAuthority.where(organization_identifier:"222233334")
-      delete :destroy, :id => ra.first.id
+      delete :destroy, params:{:id => ra.first.id}
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      delete :destroy, :id => ra.first.id
+      delete :destroy, params:{:id => ra.first.id}
       expect(flash[:error]).to be_present
       expect(IsoRegistrationAuthority.all.count).to eq(2)
     end
@@ -58,7 +58,7 @@ describe IsoRegistrationAuthoritiesController do
       ra = IsoRegistrationAuthority.all.first
       IsoHelpers.mark_as_used(ra.uri)
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      delete :destroy, :id => ra.id
+      delete :destroy, params:{:id => ra.id}
       expect(IsoRegistrationAuthority.all.count).to eq(2)
       expect(flash[:error]).to be_present
     end
@@ -85,7 +85,7 @@ describe IsoRegistrationAuthoritiesController do
 
     it 'creates namespace' do
       namespaces = IsoNamespace.all
-      post :create, iso_registration_authority: { :namespaceId => namespaces[0].id, :number => "222233334" }
+      post :create, params:{iso_registration_authority: { :namespaceId => namespaces[0].id, :number => "222233334" }}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -107,7 +107,7 @@ describe IsoRegistrationAuthoritiesController do
 
     it 'creates namespace' do
       namespaces = IsoNamespace.all
-      post :create, iso_registration_authority: { :namespaceId => namespaces[0].id, :number => "222233334" }
+      post :create, params:{iso_registration_authority: { :namespaceId => namespaces[0].id, :number => "222233334" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 

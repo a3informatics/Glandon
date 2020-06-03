@@ -35,7 +35,7 @@ describe SdtmModelsController do
 
     it "show" do
       params = 
-      { 
+      params:{ 
         :id => "M-CDISC_SDTMMODEL", 
         sdtm_model: 
         {
@@ -47,11 +47,11 @@ describe SdtmModelsController do
     end
 
     it "allows for a SDTM Model to be exported as JSON" do
-      get :export_json, { :id => "M-CDISC_SDTMMODEL", :sdtm_model => { :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      get :export_json, params:{ :id => "M-CDISC_SDTMMODEL", :sdtm_model => { :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
     end
 
     it "allows for a SDTM Model to be expoerted as TTL" do
-      get :export_ttl, { :id => "M-CDISC_SDTMMODEL", :sdtm_model => { :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
+      get :export_ttl, params:{ :id => "M-CDISC_SDTMMODEL", :sdtm_model => { :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
     end
 
     it "prevents access to the import view"  do
@@ -60,7 +60,7 @@ describe SdtmModelsController do
     end
 
     it "prevents access to creation of a SDTM Model" do
-      post :create, {} # id needs to be there but doesn't do anything
+      post :create, params:{} # id needs to be there but doesn't do anything
       expect(response).to redirect_to("/")
     end
 
@@ -76,7 +76,7 @@ describe SdtmModelsController do
     end
 
     it "prevents access to creation of a SDTM Model" do
-      post :create, {} # id needs to be there but doesn't do anything
+      post :create, params:{} # id needs to be there but doesn't do anything
       expect(response).to redirect_to("/")
     end
     
@@ -95,7 +95,7 @@ describe SdtmModelsController do
     it "allows a SDTM Model to be created" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
-      {
+      params:{
         :sdtm_model => 
         { 
           :version => "4",
@@ -111,7 +111,7 @@ describe SdtmModelsController do
     it "allows a SDTm Model to be created, error version" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
       params = 
-      {
+      params:{
         :sdtm_model => 
         { 
           :version => "aa", 

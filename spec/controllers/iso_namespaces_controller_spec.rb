@@ -28,16 +28,16 @@ describe IsoNamespacesController do
 
     it 'creates namespace' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
       expect(IsoNamespace.all.count).to eq(3)
       expect(response).to redirect_to("/iso_namespaces")
     end
 
     it 'fails to create an existing namespace' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }
+      post :create, params:{iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }}
       expect(IsoNamespace.all.count).to eq(3)
-      post :create, iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }
+      post :create, params:{iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }}
       expect(IsoNamespace.all.count).to eq(3)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/iso_namespaces")
@@ -45,29 +45,29 @@ describe IsoNamespacesController do
 
     it 'deletes namespace, used, not deleted' do
       ns = IsoNamespace.find_by_short_name("AAA")
-      delete :destroy, :id => ns.id
+      delete :destroy, params:{:id => ns.id}
       expect(flash[:error]).to be_present
       expect(IsoNamespace.all.count).to eq(2)
     end
 
     it 'deletes namespace, not found' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
       expect(IsoNamespace.all.count).to eq(3)
       ns = IsoNamespace.find_by_short_name("XXX")
-      delete :destroy, :id => ns.id
+      delete :destroy, params:{:id => ns.id}
       expect(IsoNamespace.all.count).to eq(2)
-      delete :destroy, :id => ns.id # Delete again! Should fail.
+      delete :destroy, params:{:id => ns.id} # Delete again! Should fail.
       expect(flash[:error]).to be_present
       expect(IsoNamespace.all.count).to eq(2)
     end
 
     it 'deletes namespace, not used, deleted' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }
+      post :create, params:{iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }}
       expect(IsoNamespace.all.count).to eq(3)
       ns = IsoNamespace.find_by_short_name("XXX")
-      delete :destroy, :id => ns.id
+      delete :destroy, params:{:id => ns.id}
       expect(IsoNamespace.all.count).to eq(2)
     end
 
@@ -92,7 +92,7 @@ describe IsoNamespacesController do
     end
 
     it 'creates namespace' do
-      post :create, iso_namespace: { name: "XXX Pharma", shortName: "XXX" }
+      post :create, params:{iso_namespace: { name: "XXX Pharma", shortName: "XXX" }}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -113,7 +113,7 @@ describe IsoNamespacesController do
     end
 
     it 'creates namespace' do
-      post :create, iso_namespace: { name: "XXX Pharma", shortName: "XXX" }
+      post :create, params:{iso_namespace: { name: "XXX Pharma", shortName: "XXX" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 

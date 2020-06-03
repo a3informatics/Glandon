@@ -19,7 +19,7 @@ describe IsoScopedIdentifiersV2Controller do
 
     it 'updates a scoped identifier' do
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
-      patch :update, { id: @object.id, iso_scoped_identifier: { version_label: "update to label" }}
+      patch :update, params:{ id: @object.id, iso_scoped_identifier: { version_label: "update to label" }}
       updated_scoped_identifier = IsoScopedIdentifierV2.find(@object.id)
       expect(updated_scoped_identifier.version_label).to eq("update to label")
       expect(response).to redirect_to("/iso_scoped_identifiers")
@@ -28,7 +28,7 @@ describe IsoScopedIdentifiersV2Controller do
     it 'fails to update a scoped identifier, invalid version label' do
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       vl = @object.version_label
-      patch :update, { id: @object.id, iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
+      patch :update, params:{ id: @object.id, iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
       updated_scoped_identifier = IsoScopedIdentifierV2.find(@object.id)
       expect(updated_scoped_identifier.version_label).to eq(vl)
       expect(response).to redirect_to("/iso_scoped_identifiers")
@@ -41,7 +41,7 @@ describe IsoScopedIdentifiersV2Controller do
     login_sys_admin
 
     it 'update' do
-      patch :update, id: "XXX", iso_scoped_identifier: { version_label: "XXX" }
+      patch :update, params:{id: "XXX", iso_scoped_identifier: { version_label: "XXX" }}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -52,7 +52,7 @@ describe IsoScopedIdentifiersV2Controller do
   describe "Not logged in" do
     
     it "update" do
-      patch :update, id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+      patch :update, params:{id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 

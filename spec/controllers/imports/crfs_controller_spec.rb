@@ -29,7 +29,7 @@ describe Imports::CrfsController do
     end
 
     it "new, no files" do
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to eq([])
       expect(response.code).to eq("200")
@@ -38,7 +38,7 @@ describe Imports::CrfsController do
 
     it "new, files" do
       test_files
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to match_array([@file_1, @file_2])
       expect(response.code).to eq("200")
@@ -52,7 +52,7 @@ describe Imports::CrfsController do
       expected = [{something: "X"}, {something: "Y"}]
       expect_any_instance_of(Import::Crf).to receive(:list).and_return(expected)
       expected.each {|x| x[:filename] = @file_1}
-      get :items, {imports: {file_type: 1, files: [@file_1]}}
+      get :items, params:{imports: {file_type: 1, files: [@file_1]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":#{expected.to_json}}")
@@ -60,7 +60,7 @@ describe Imports::CrfsController do
 
     it "items" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :items, {imports: {}}
+      get :items, params:{imports: {}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":[]}")
@@ -69,7 +69,7 @@ describe Imports::CrfsController do
     it "create, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect_any_instance_of(Import::Crf).to receive(:create)
-      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":[]}")
@@ -81,7 +81,7 @@ describe Imports::CrfsController do
         arg.id = id
         arg.save
       end
-      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
+      post :create, params:{imports: {identifier: "AAA", files: [@file_1]}}
       expect(response).to redirect_to(import_path(id))
     end
 
@@ -102,7 +102,7 @@ describe Imports::CrfsController do
     end
 
     it "create" do
-      delete :create, {imports: {identifier: "AAA", filename: @file_1}}
+      delete :create, params:{imports: {identifier: "AAA", filename: @file_1}}
       expect(response).to redirect_to("/")
     end
 

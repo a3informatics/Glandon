@@ -22,12 +22,12 @@ describe UploadsController do
     it 'uploads file' do
       file = Hash.new
       file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
-      post :create, :upload => file
+      post :create, params:{:upload => file}
       expect(response).to redirect_to("/uploads")
     end
 
     it 'upload, file nil' do
-      post :create, :upload => nil
+      post :create, params:{:upload => nil}
       expect(response).to redirect_to("/uploads")
     end
 
