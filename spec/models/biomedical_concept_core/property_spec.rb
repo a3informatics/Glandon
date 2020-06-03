@@ -63,7 +63,7 @@ describe BiomedicalConceptCore::Property do
 
   it "does not validate an invalid object - Question Text" do
     result = BiomedicalConceptCore::Property.new
-    result.question_text = "Draft 123^^^"
+    result.question_text = "Draft 123€"
     result.prompt_text = "Draft 123"
     result.enabled = false
     result.collect = true
@@ -77,7 +77,7 @@ describe BiomedicalConceptCore::Property do
   it "does not validate an invalid object - Prompt Text" do
     result = BiomedicalConceptCore::Property.new
     result.question_text = "Draft 123"
-    result.prompt_text = "Draft 123^^^"
+    result.prompt_text = "Draft 123€"
     result.enabled = false
     result.collect = true
     result.format = "5.2"
