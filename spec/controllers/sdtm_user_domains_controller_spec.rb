@@ -85,32 +85,12 @@ describe SdtmUserDomainsController do
     end
 
     it "clones an IG domian" do
-      params = 
-      params:{ 
-        :sdtm_user_domain => 
-        { 
-          :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", 
-          :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3",
-          :label => "Clone EG",
-          :prefix => "EG"
-        }
-      }
-      post :clone_ig_create, params
+      post :clone_ig_create, params:{ :sdtm_user_domain => { :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3",:label => "Clone EG",:prefix => "EG"}}
       expect(response).to redirect_to("/sdtm_user_domains")
     end
 
     it "prevents the cloning of the same domain, duplicate identifier" do
-      params = 
-      params:{ 
-        :sdtm_user_domain => 
-        { 
-          :sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", 
-          :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3",
-          :label => "Clone EG",
-          :prefix => "EG"
-        }
-      }
-      post :clone_ig_create, params
+      post :clone_ig_create, params:{:sdtm_user_domain => {:sdtm_ig_domain_id => "IG-CDISC_SDTMIGEG", :sdtm_ig_domain_namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3",:label => "Clone EG",:prefix => "EG"}}
       url = "http://test.host/sdtm_user_domains/clone_ig?" +
         "sdtm_user_domain%5Bsdtm_ig_domain_id%5D=IG-CDISC_SDTMIGEG&" +
         "sdtm_user_domain%5Bsdtm_ig_domain_namespace%5D=http%3A%2F%2Fwww.assero.co.uk%2FMDRSdtmIgD%2FCDISC%2FV3"
@@ -123,8 +103,7 @@ describe SdtmUserDomainsController do
       domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      params = params:{ :id => "D-ACME_DSDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      put :update, params.merge(format: :json)
+      put :update, params:{ :id => "D-ACME_DSDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       new_domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
@@ -137,8 +116,7 @@ describe SdtmUserDomainsController do
       domain.notes = "@@@£±£±"
       token = Token.obtain(domain, @user)
       data = domain.to_operation
-      params = params:{ :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      put :update, params.merge(format: :json)
+      put :update, params:{ :id => "D-ACME_DMDomain", :data => data, :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
     #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_error.txt")

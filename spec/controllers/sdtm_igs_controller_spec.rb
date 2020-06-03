@@ -34,15 +34,7 @@ describe SdtmIgsController do
     end
 
     it "show" do
-      params = 
-      params:{ 
-        :id => "IG-CDISC_SDTMIG", 
-        sdtm_ig: 
-        {
-          :namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" 
-        }
-      }
-      get :show, params
+      get :show, params:{ :id => "IG-CDISC_SDTMIG", sdtm_ig: {:namespace => "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3" }}
       expect(response).to render_template("show")
     end
 
@@ -94,25 +86,18 @@ describe SdtmIgsController do
 
     it "allows a SDTM IG to be created" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-      params = 
-      params:{
-        :sdtm_ig => 
-        { 
+      post :create, params:{:sdtm_ig => { 
           :version => "4",
           :version_label => "2.0",
           :date => "2017-10-14", 
           :files => ["#{filename}"],
-          :model_uri => "http://www.model.com/sdtm"
-        }
-      }
-      post :create, params
+          :model_uri => "http://www.model.com/sdtm"}}
       expect(response).to redirect_to("/backgrounds")
     end
     
     it "allows a SDTM Model to be created, error version" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-      params = 
-      params:{
+      post :create,       params:{
         :sdtm_ig => 
         { 
           :version => "aa", 
@@ -122,7 +107,6 @@ describe SdtmIgsController do
           :model_uri => "http://www.model.com/sdtm"
         }
       }
-      post :create, params
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_igs/history")
     end

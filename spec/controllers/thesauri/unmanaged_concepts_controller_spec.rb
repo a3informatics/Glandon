@@ -30,7 +30,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:supporting_edit?).and_return(false)
-      get :show, {id: "aaa", unmanaged_concept: {context_id: "bbb", parent_id: "ppp"}}
+      get :show, params:{id: "aaa", unmanaged_concept: {context_id: "bbb", parent_id: "ppp"}}
       expect(assigns(:context_id)).to eq("bbb")
       expect(assigns(:has_children)).to eq(false)
       expect(response).to render_template("show")
@@ -49,7 +49,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(ct).to receive(:tag_labels).and_return([])
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children_pagination).and_return([{id: "1"}, {id: "2"}])
-      get :show_data, {id: "aaa", offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
+      get :show_data, params:{id: "aaa", offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -61,7 +61,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes_count).and_return(5)
-      get :changes, id: "aaa"
+      get :changes, params:{id: "aaa"}
       expect(response).to render_template("changes")
     end
 
@@ -70,7 +70,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes).and_return({a: "1", b: "2"})
-      get :changes_data, id: "aaa"
+      get :changes_data, params:{id: "aaa"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
@@ -81,7 +81,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:differences).and_return({a: "1", b: "2"})
-      get :differences, id: "aaa"
+      get :differences, params:{id: "aaa"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
@@ -99,7 +99,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
       token = Token.obtain(mtc, @user)
-      put :update, {id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
+      put :update, params:{id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
       expect(response.code).to eq("200")
       expect(response.content_type).to eq("application/json")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -120,7 +120,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(Thesaurus::UnmanagedConcept).to receive(:find_children).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
-      put :update, {id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
+      put :update, params:{id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
       expected = [{name: "notation", status: "Notation fake error"}, {name: "identifier", status: "Identifier fake error"}]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -135,7 +135,7 @@ describe Thesauri::UnmanagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {notation: "T4"}})
       token = Token.obtain(mc, @user)
-      put :update, {id: umc.id, edit: {parent_id: mc.id, preferred_term: "Terminal 5"}}
+      put :update, params:{id: umc.id, edit: {parent_id: mc.id, preferred_term: "Terminal 5"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -157,7 +157,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete_or_unlink).and_return(1)
-      put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
+      put :destroy, params:{id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
       expected = []
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -175,7 +175,7 @@ describe Thesauri::UnmanagedConceptsController do
       mtc = Thesaurus::ManagedConcept.create
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
-      put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
+      put :destroy, params:{id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
       expected = ["The changes were not saved as the edit lock timed out."]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
@@ -203,7 +203,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :synonym_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
+      get :synonym_links, params:{id: tc.id, unmanaged_concept: {context_id: th.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -230,7 +230,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :synonym_links, {id: tc.id, unmanaged_concept: {
+      get :synonym_links, params:{id: tc.id, unmanaged_concept: {
       }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -257,7 +257,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :synonym_links, {id: tc.id, unmanaged_concept: {}}
+      get :synonym_links, params:{id: tc.id, unmanaged_concept: {}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -283,7 +283,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :preferred_term_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
+      get :preferred_term_links, params:{id: tc.id, unmanaged_concept: {context_id: th.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -309,7 +309,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :preferred_term_links, {id: tc.id, unmanaged_concept: {}}
+      get :preferred_term_links, params:{id: tc.id, unmanaged_concept: {}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -321,7 +321,7 @@ describe Thesauri::UnmanagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {identifier: "SERVERIDENTIFER"}})
       token = Token.obtain(mc, @user)
-      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, synonym: "syn1; syn2"}}
+      put :update_properties, params:{id: umc.id, edit: {parent_id: mc.id, synonym: "syn1; syn2"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data][0]
       expect(actual[:synonym]).to eq("syn1; syn2")
       expect(AuditTrail.count).to eq(audit_count+1)
@@ -333,7 +333,7 @@ describe Thesauri::UnmanagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {identifier: "SERVERIDENTIFER"}})
       token = Token.obtain(mc, @user)
-      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, definition: "\#€=/*-/"}}
+      put :update_properties, params:{id: umc.id, edit: {parent_id: mc.id, definition: "\#€=/*-/"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(actual[0]).to eq("Definition contains invalid characters")
       expect(AuditTrail.count).to eq(audit_count)
@@ -345,7 +345,7 @@ describe Thesauri::UnmanagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {notation: "T4"}})
       token = Token.obtain(mc, @user)
-      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, notation: "T5"}}
+      put :update_properties, params:{id: umc.id, edit: {parent_id: mc.id, notation: "T5"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(actual[0]).to eq("Notation duplicate detected 'T5'")
       expect(AuditTrail.count).to eq(audit_count)
@@ -357,7 +357,7 @@ describe Thesauri::UnmanagedConceptsController do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {notation: "T4"}})
       token = Token.obtain(mc, @user)
-      put :update_properties, {id: umc.id, edit: {parent_id: mc.id, preferred_term: "Terminal 5"}}
+      put :update_properties, params:{id: umc.id, edit: {parent_id: mc.id, preferred_term: "Terminal 5"}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(actual[0]).to eq("Preferred term duplicate detected 'Terminal 5'")
       expect(AuditTrail.count).to eq(audit_count)
@@ -402,7 +402,7 @@ describe Thesauri::UnmanagedConceptsController do
           :current=>[]
       }
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :change_instruction_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
+      get :change_instruction_links, params:{id: tc.id, unmanaged_concept: {context_id: th.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to hash_equal(expected)

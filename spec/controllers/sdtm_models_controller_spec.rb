@@ -34,15 +34,7 @@ describe SdtmModelsController do
     end
 
     it "show" do
-      params = 
-      params:{ 
-        :id => "M-CDISC_SDTMMODEL", 
-        sdtm_model: 
-        {
-          :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" 
-        }
-      }
-      get :show, params
+      get :show, params:{ :id => "M-CDISC_SDTMMODEL", sdtm_model: {:namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3" }}
       expect(response).to render_template("show")
     end
 
@@ -94,33 +86,13 @@ describe SdtmModelsController do
 
     it "allows a SDTM Model to be created" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-      params = 
-      params:{
-        :sdtm_model => 
-        { 
-          :version => "4",
-          :version_label => "2.0",
-          :date => "2017-10-14", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
+      post :create, params:{:sdtm_model => { :version => "4",:version_label => "2.0",:date => "2017-10-14", :files => ["#{filename}"]}}
       expect(response).to redirect_to("/backgrounds")
     end
     
     it "allows a SDTm Model to be created, error version" do
       filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
-      params = 
-      params:{
-        :sdtm_model => 
-        { 
-          :version => "aa", 
-          :version_label => "2.0",
-          :date => "2016-12-13", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
+      post :create, params:{:sdtm_model => { :version => "aa", :version_label => "2.0",:date => "2016-12-13", :files => ["#{filename}"]}}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/sdtm_models/history")
     end
