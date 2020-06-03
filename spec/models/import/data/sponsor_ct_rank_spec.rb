@@ -431,9 +431,9 @@ describe "Import::SponsorTermFormatOne" do
     uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
-    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
-    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
-    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
     code_lists = []
     results = {}
     {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30}.each do |file, uri|
