@@ -99,6 +99,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem "teaspoon-mocha"
   gem 'puma', '~> 3.7'
+  gem 'rails-controller-testing'
 end
 
 group :test do
