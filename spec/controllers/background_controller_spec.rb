@@ -33,7 +33,7 @@ describe BackgroundsController do
 
     it "destroy" do
       expect(Background.all.count).to eq(3)
-      delete :destroy, {id: @b2.id}
+      delete :destroy, params:{id: @b2.id}
       expect(Background.all.count).to eq(2)
       expect(Background.all.map{|j| j.id}).to match_array([@b1.id, @b3.id])
       expect(response).to redirect_to(backgrounds_path)
@@ -42,7 +42,7 @@ describe BackgroundsController do
     it "destroy, child import exists" do
       import = Import.create(background_id: @b2.id)
       expect(Background.all.count).to eq(3)
-      delete :destroy, {id: @b2.id}
+      delete :destroy, params:{id: @b2.id}
       expect(Background.all.count).to eq(3)
       expect(Background.all.map{|j| j.id}).to match_array([@b1.id, @b2.id, @b3.id])
       expect(response).to redirect_to(backgrounds_path)
@@ -50,7 +50,7 @@ describe BackgroundsController do
 
     it "destroy_multiple all" do
       expect(Background.all.count).to eq(3)
-      delete :destroy_multiple, {backgrounds: {items: "all"}}
+      delete :destroy_multiple, params:{backgrounds: {items: "all"}}
       expect(Background.all.count).to eq(0)
       expect(response).to redirect_to(backgrounds_path)
     end
@@ -58,7 +58,7 @@ describe BackgroundsController do
     it "destroy_multiple all, child import exists" do
       import = Import.create(background_id: @b2.id)
       expect(Background.all.count).to eq(3)
-      delete :destroy_multiple, {backgrounds: {items: "all"}}
+      delete :destroy_multiple, params:{backgrounds: {items: "all"}}
       expect(Background.all.count).to eq(1)
       expect(Background.all.map{|j| j.id}).to match_array([@b2.id])
       expect(response).to redirect_to(backgrounds_path)
@@ -66,7 +66,7 @@ describe BackgroundsController do
 
     it "destroy_multiple completed" do
       expect(Background.all.count).to eq(3)
-      delete :destroy_multiple, {backgrounds: {items: "completed"}}
+      delete :destroy_multiple, params:{backgrounds: {items: "completed"}}
       expect(Background.all.count).to eq(2)
       expect(Background.all.map{|j| j.id}).to match_array([@b2.id, @b3.id])
       expect(response).to redirect_to(backgrounds_path)
@@ -75,7 +75,7 @@ describe BackgroundsController do
     it "destroy_multiple completed, child import exists" do
       import = Import.create(background_id: @b1.id)
       expect(Background.all.count).to eq(3)
-      delete :destroy_multiple, {backgrounds: {items: "completed"}}
+      delete :destroy_multiple, params:{backgrounds: {items: "completed"}}
       expect(Background.all.count).to eq(3)
       expect(Background.all.map{|j| j.id}).to match_array([@b1.id, @b2.id, @b3.id])
       expect(response).to redirect_to(backgrounds_path)
@@ -93,7 +93,7 @@ describe BackgroundsController do
     end
 
     it "destroy" do
-      delete :destroy, {id: 1}
+      delete :destroy, params:{id: 1}
       expect(response).to redirect_to("/")
     end
 
@@ -112,7 +112,7 @@ describe BackgroundsController do
     end
 
     it "destroy" do
-      delete :destroy, {id: 1}
+      delete :destroy, params:{id: 1}
       expect(response).to redirect_to("/users/sign_in")
     end
 

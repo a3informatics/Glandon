@@ -49,7 +49,7 @@ describe ImportsController do
     end
 
     it "show" do
-      get :show, {id: @i1.id}
+      get :show, params:{id: @i1.id}
       expect(assigns(:import).id).to eq(@i1.id)
       expect(response.code).to eq("200")
       expect(response).to render_template("show")
@@ -57,7 +57,7 @@ describe ImportsController do
 
     it "show, json" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, {id: @i1.id}
+      get :show, params:{id: @i1.id}
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
       expect(x[:data].keys).to match_array([:import, :job, :errors])
@@ -67,14 +67,14 @@ describe ImportsController do
     end
 
     it "destroy" do
-      delete :destroy, {id: @i2.id}
+      delete :destroy, params:{id: @i2.id}
       expect(Import.all.count).to eq(2)
       expect(Import.all.map{|j| j.id}).to match_array([@i1.id, @i3.id])
       expect(response.code).to eq("200")
     end
 
     it "destroy_multiple all" do
-      delete :destroy_multiple, {imports: {items: "all"}}
+      delete :destroy_multiple, params:{imports: {items: "all"}}
       expect(Import.all.count).to eq(0)
       expect(response.code).to eq("200")
     end
@@ -98,7 +98,7 @@ describe ImportsController do
     end
 
     it "destroy" do
-      delete :destroy, {id: 1}
+      delete :destroy, params:{id: 1}
       expect(response).to redirect_to("/")
     end
 
@@ -117,7 +117,7 @@ describe ImportsController do
     end
 
     it "destroy" do
-      delete :destroy, {id: 1}
+      delete :destroy, params:{id: 1}
       expect(response).to redirect_to("/users/sign_in")
     end
 

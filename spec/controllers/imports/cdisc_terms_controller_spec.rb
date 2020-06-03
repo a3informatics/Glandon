@@ -32,7 +32,7 @@ describe Imports::CdiscTermsController do
     end
 
     it "new, no files" do
-      get :new, {imports: {file_type: "2"}}
+      get :new, params:{imports: {file_type: "2"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to eq([])
       expect(response.code).to eq("200")
@@ -41,7 +41,7 @@ describe Imports::CdiscTermsController do
 
     it "new, files" do
       test_files
-      get :new, {imports: {file_type: "2"}}
+      get :new, params:{imports: {file_type: "2"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to match_array([@file_1, @file_2])
       expect(response.code).to eq("200")
@@ -52,7 +52,7 @@ describe Imports::CdiscTermsController do
     it "create, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect_any_instance_of(Import::CdiscTerm).to receive(:create)
-      post :create, {imports: {version: 3, semantic_version: "3.0.0", date:"2010-01-01", files: [@file_1, @file_2]}}
+      post :create, params:{imports: {version: 3, semantic_version: "3.0.0", date:"2010-01-01", files: [@file_1, @file_2]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":[]}")
@@ -64,7 +64,7 @@ describe Imports::CdiscTermsController do
         arg.id = id
         arg.save
       end
-      post :create, {imports: {version: 3, semantic_version: "3.0.0", date:"2010-01-01", files: [@file_1, @file_2]}}
+      post :create, params:{imports: {version: 3, semantic_version: "3.0.0", date:"2010-01-01", files: [@file_1, @file_2]}}
       expect(response).to redirect_to(import_path(id))
     end
 
@@ -80,7 +80,7 @@ describe Imports::CdiscTermsController do
     end
 
     it "create" do
-      delete :create, {imports: {identifier: "AAA", filename: @file_1}}
+      delete :create, params:{imports: {identifier: "AAA", filename: @file_1}}
       expect(response).to redirect_to("/")
     end
 

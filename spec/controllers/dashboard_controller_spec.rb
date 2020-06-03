@@ -29,7 +29,7 @@ describe DashboardController do
     end
 
     it "gets more triples from the database" do
-      get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :database, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       hash = JSON.parse(response.body, symbolize_names: true)
@@ -51,14 +51,14 @@ describe DashboardController do
     end
 
     it "prevents access, view" do
-      get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :view, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it "prevents access database action" do
-      get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :database, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -76,7 +76,7 @@ describe DashboardController do
     end
 
     it "gets more triples from the database" do
-      get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :database, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       hash = JSON.parse(response.body, symbolize_names: true)
@@ -105,14 +105,14 @@ describe DashboardController do
     login_no_role
 
   	it "displays triples" do
-      get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :view, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
     it "gets more triples from the database" do
-      get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :database, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -128,12 +128,12 @@ describe DashboardController do
     end
 
     it "prevents access, view" do
-      get :view, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :view, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "prevents access database action" do
-      get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
+      get :database, params:{id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
       expect(response).to redirect_to("/users/sign_in")
     end
 

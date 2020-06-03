@@ -34,7 +34,7 @@ describe ExportsController do
     it "start" do
       file = Hash.new
       file['datafile'] = fixture_file_upload(upload_path(sub_dir, "upload.txt"), 'text/html')
-      get :start, { export: { export_list_path: "XXX" } }
+      get :start, params:{ export: { export_list_path: "XXX" } }
       expect(assigns(:list_path)).to eq("XXX")
       expect(response).to render_template("start")
     end
@@ -64,7 +64,7 @@ describe ExportsController do
     end
 
     it "download" do
-      get :download, { export: { file_path: test_file_path(sub_dir, "download.ttl") } }
+      get :download, params:{ export: { file_path: test_file_path(sub_dir, "download.ttl") } }
       allow_any_instance_of(ExportsController).to receive(:send_data).and_return(:success)
     end
 

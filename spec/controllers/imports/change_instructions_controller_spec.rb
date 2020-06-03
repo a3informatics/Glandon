@@ -32,7 +32,7 @@ describe Imports::ChangeInstructionsController do
     end
 
     it "new, no files" do
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to eq([])
       expect(assigns(:history).count).to eq(2)
@@ -43,7 +43,7 @@ describe Imports::ChangeInstructionsController do
 
     it "new, files" do
       test_files
-      get :new, {imports: {file_type: "1"}}
+      get :new, params:{imports: {file_type: "1"}}
       expect(assigns(:model)).to_not be_nil
       expect(assigns(:files)).to match_array([@file_1, @file_2])
       expect(assigns(:history).count).to eq(2)
@@ -54,7 +54,7 @@ describe Imports::ChangeInstructionsController do
 
     it "allows a cross reference to be created, empty file" do
       request.env['HTTP_REFERER'] = 'http://example.com'
-      post :create, {imports: { current_id: Uri.new(uri: "http://www.cdisc.org/CT/V2#TH") }}
+      post :create, params:{imports: { current_id: Uri.new(uri: "http://www.cdisc.org/CT/V2#TH") }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to('http://example.com')
     end
@@ -63,7 +63,7 @@ describe Imports::ChangeInstructionsController do
       request.env['HTTP_REFERER'] = 'http://example.com'
       copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
       filename = public_path("upload", "create_cross_reference_1.xlsx")
-      post :create, {imports: { current_id: "", files: ["#{filename}"] }}
+      post :create, params:{imports: { current_id: "", files: ["#{filename}"] }}
       expect(flash[:error]).to be_present
       expect(response).to redirect_to('http://example.com')
     end
@@ -77,7 +77,7 @@ describe Imports::ChangeInstructionsController do
         arg.id = id
         arg.save
       end
-      post :create, {imports: { current_id: uri.to_id, files: ["#{filename}"] }}
+      post :create, params:{imports: { current_id: uri.to_id, files: ["#{filename}"] }}
       expect(response).to redirect_to(import_path(id))
     end
 
@@ -93,7 +93,7 @@ describe Imports::ChangeInstructionsController do
     end
 
     it "create" do
-      delete :create, {imports: {identifier: "AAA", filename: @file_1}}
+      delete :create, params:{imports: {identifier: "AAA", filename: @file_1}}
       expect(response).to redirect_to("/")
     end
 

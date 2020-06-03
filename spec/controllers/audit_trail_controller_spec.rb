@@ -48,7 +48,7 @@ describe AuditTrailController do
 
     it "search audit trail - event user" do
       user = User.find_by(:email => "base@example.com")
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"4"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"4"}}
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
@@ -58,7 +58,7 @@ describe AuditTrailController do
 
     it "search audit trail - event create" do
       user = User.find_by(:email => "base@example.com")
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"1"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"1"}}
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
@@ -68,7 +68,7 @@ describe AuditTrailController do
 
     it "search audit trail - event delete" do
       user = User.find_by(:email => "base@example.com")
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"3"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"3"}}
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
@@ -78,7 +78,7 @@ describe AuditTrailController do
 
     it "search audit trail - owner" do
       user = User.find_by(:email => "base@example.com")
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"CDISC", :identifier => "", :event =>"0"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"CDISC", :identifier => "", :event =>"0"}}
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
@@ -88,7 +88,7 @@ describe AuditTrailController do
 
     it "search audit trail - identifier" do
       user = User.find_by(:email => "base@example.com")
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T3", :event =>"0"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T3", :event =>"0"}}
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
@@ -148,7 +148,7 @@ describe AuditTrailController do
 
     it 'search' do
       user = User.create :email => "fred@example.com", :password => "changeme" 
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T10", :event =>"0"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T10", :event =>"0"}}
       expect(response).to redirect_to("/")
       user.destroy
     end
@@ -164,7 +164,7 @@ describe AuditTrailController do
 
     it 'search' do
       user = User.create :email => "fred@example.com", :password => "changeme" 
-      put :search, {id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T10", :event =>"0"}}
+      put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "T10", :event =>"0"}}
       expect(response).to redirect_to("/users/sign_in")
       user.destroy
     end

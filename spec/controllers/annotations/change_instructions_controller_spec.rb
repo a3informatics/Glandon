@@ -40,7 +40,7 @@ describe Annotations::ChangeInstructionsController do
       uri4 = Uri.new(uri: "http://www.cdisc.org/C96779/V40#C96779")
       item = Annotation::ChangeInstruction.create
       item = Annotation::ChangeInstruction.find(item.id)
-      put :add_references, {:id => item.id, :change_instruction => {previous: [uri2.to_id], current: [uri3.to_id, uri4.to_id]}}
+      put :add_references, params:{:id => item.id, :change_instruction => {previous: [uri2.to_id], current: [uri3.to_id, uri4.to_id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
@@ -54,7 +54,7 @@ describe Annotations::ChangeInstructionsController do
       item = Annotation::ChangeInstruction.create
       item = Annotation::ChangeInstruction.find(item.id)
       item.add_references(previous: [uri1.to_id, uri2.to_id], current: [uri3.to_id, uri4.to_id])
-      put :remove_reference, {:id => item.id, :change_instruction => {concept_id: uri3.to_id, type: "current"}}
+      put :remove_reference, params:{:id => item.id, :change_instruction => {concept_id: uri3.to_id, type: "current"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
@@ -69,7 +69,7 @@ describe Annotations::ChangeInstructionsController do
       item.add_references(previous: [uri1.to_id], current: [uri2.to_id])
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, {id: item.id}
+      get :show, params:{id: item.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -82,7 +82,7 @@ describe Annotations::ChangeInstructionsController do
       item.update(description: "D", reference: "R", semantic: "S")
       item = Annotation::ChangeInstruction.find(item.id)
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, {id: item.id}
+      get :show, params:{id: item.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]

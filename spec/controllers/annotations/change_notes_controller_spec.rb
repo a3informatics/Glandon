@@ -21,7 +21,7 @@ describe Annotations::ChangeNotesController do
     it "update a change note" do
       request.env['HTTP_ACCEPT'] = "application/json"
       item = create_change_note("UR", "D", "R", "1234-5678-9012-3456")
-      put :update, {:id => item.id, :change_note => {:reference => "Updated Ref", :description => "Updated Description"}}
+      put :update, params:{:id => item.id, :change_note => {:reference => "Updated Ref", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -31,7 +31,7 @@ describe Annotations::ChangeNotesController do
     it "update a node, errors" do
       request.env['HTTP_ACCEPT'] = "application/json"
       item = create_change_note("UR", "D", "R", "1234-5678-9012-3456")
-      put :update, {:id => item.id, :change_note => {:reference => "Updated Ref±±±", :description => "Updated Description"}}
+      put :update, params:{:id => item.id, :change_note => {:reference => "Updated Ref±±±", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -48,7 +48,7 @@ describe Annotations::ChangeNotesController do
       or_1 = OperationalReferenceV3.create({reference: nil, context: nil}, cn_1)
       cn_1.current_push(or_1)
       cn_1.save
-      delete :destroy, :id => cn_1.id
+      delete :destroy, params:{:id => cn_1.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect{Annotation::ChangeNote.find(cn_1.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CN#1234-5678-9012-3456 in Annotation::ChangeNote.")
@@ -59,12 +59,12 @@ describe Annotations::ChangeNotesController do
   describe "Unauthorized User" do
 
     it "add a change note" do
-      put :update, {id: "aaa"}
+      put :update, params:{id: "aaa"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "destroy a change note" do
-      put :destroy, {id: "aaa"}
+      put :destroy, params:{id: "aaa"}
       expect(response).to redirect_to("/users/sign_in")
     end
 

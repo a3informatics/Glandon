@@ -52,7 +52,7 @@ describe AdHocReportsController do
     it "allows a new report to be created, missing file" do
       count = AdHocReport.all.count
       filename = public_path("upload", "filname_root.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       expect(flash[:error]).to be_present
       expect(AdHocReport.all.count).to eq(count)
       expect(response).to redirect_to("http://test.host/ad_hoc_reports/new")
@@ -65,7 +65,7 @@ describe AdHocReportsController do
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       count = AdHocReport.all.count
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       expect(flash[:success]).to be_present
       expect(AdHocReport.all.count).to eq(count + 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
@@ -77,9 +77,9 @@ describe AdHocReportsController do
       delete_all_public_report_files
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []}}
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []}}
       expect(response).to render_template("results")
     end
 
@@ -88,10 +88,10 @@ describe AdHocReportsController do
       delete_all_public_report_files
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
-      get :run_progress, { id: report.id }
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []} }
+      get :run_progress, params:{ id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"running\":false}")
     end
@@ -101,11 +101,11 @@ describe AdHocReportsController do
       delete_all_public_report_files
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
-      get :run_progress, { id: report.id }
-      get :run_results, { id: report.id }
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []} }
+      get :run_progress, params:{ id: report.id }
+      get :run_results, params:{ id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
     end
@@ -115,9 +115,9 @@ describe AdHocReportsController do
       delete_all_public_report_files
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
       filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
-      post :create, { ad_hoc_report: { files: [filename] }}
+      post :create, params:{ ad_hoc_report: { files: [filename] }}
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :results, { id: report.id }
+      get :results, params:{ id: report.id }
       found_report = assigns(:report)
       columns = assigns(:columns)
       expect(found_report.id).to eq(report.id)
@@ -129,7 +129,7 @@ describe AdHocReportsController do
       @request.env['HTTP_REFERER'] = 'http://test.host/ad_hoc_reports'
       audit_count = AuditTrail.count
       count = AdHocReport.all.count
-      post :destroy, { id: @ahr2.id }
+      post :destroy, params:{ id: @ahr2.id }
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(AdHocReport.all.count).to eq(count - 1)
       expect(response).to redirect_to("http://test.host/ad_hoc_reports")
@@ -176,7 +176,7 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []} }
       expect(response).to render_template("results")
     end
 
@@ -189,8 +189,8 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
-      get :run_progress, { id: report.id  }
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []} }
+      get :run_progress, params:{ id: report.id  }
       expect(response.code).to eq("200")
     end
 
@@ -203,8 +203,8 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :run_start, { id: report.id, ad_hoc_report: {query_params: []} }
-      get :run_results, { id: report.id }
+      get :run_start, params:{ id: report.id, ad_hoc_report: {query_params: []} }
+      get :run_results, params:{ id: report.id }
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"columns\":[[\"URI\"],[\"Identifier\"],[\"Label\"]],\"data\":[]}")
     end
@@ -219,7 +219,7 @@ describe AdHocReportsController do
       files << filename
       AdHocReport.create_report({files: files}) # Create directly as user cannot
       report = AdHocReport.where(:label => "Ad Hoc Report 1").first
-      get :results, { id: report.id }
+      get :results, params:{ id: report.id }
       found_report = assigns(:report)
       columns = assigns(:columns)
       expect(found_report.id).to eq(report.id)
@@ -228,7 +228,7 @@ describe AdHocReportsController do
     end
 
      it "prevents a report to be deleted" do
-      post :destroy, { id: @ahr3.id }
+      post :destroy, params:{ id: @ahr3.id }
       expect(response).to redirect_to("/")
     end
 
@@ -264,22 +264,22 @@ describe AdHocReportsController do
     end
 
     it "prevents a reader running a report" do
-      get :run_start, { id: 1 }
+      get :run_start, params:{ id: 1 }
       expect(response).to redirect_to("/")
     end
 
     it "prevents a reader seeing a running report" do
-      get :run_progress, { id: 1 }
+      get :run_progress, params:{ id: 1 }
       expect(response).to redirect_to("/")
     end
 
     it "prevents a reader to see report results" do
-      get :run_results, { id: 1 }
+      get :run_results, params:{ id: 1 }
       expect(response).to redirect_to("/")
     end
 
     it "prevents a reader seeing the results of a report" do
-      get :results, { id: 1 }
+      get :results, params:{ id: 1 }
       expect(response).to redirect_to("/")
     end
 
@@ -298,22 +298,22 @@ describe AdHocReportsController do
     end
 
     it "prevents unauthorized access to running a report" do
-      get :run_start, { id: 1 }
+      get :run_start, params:{ id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "prevents unauthorized access to seeing a running report" do
-      get :run_progress, { id: 1 }
+      get :run_progress, params:{ id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "prevents unauthorized access to report results" do
-      get :run_results, { id: 1 }
+      get :run_results, params:{ id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "prevents unauthorized access to seeing the results of a report" do
-      get :results, { id: 1 }
+      get :results, params:{ id: 1 }
       expect(response).to redirect_to("/users/sign_in")
     end
 
