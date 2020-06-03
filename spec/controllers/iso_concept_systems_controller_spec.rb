@@ -14,20 +14,7 @@ describe IsoConceptSystemsController do
 
     before :all do
       clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -53,22 +40,7 @@ describe IsoConceptSystemsController do
 
     before :all do
       clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Basic.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Data.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
       load_files(schema_files, data_files)
     end
 
@@ -104,6 +76,13 @@ describe IsoConceptSystemsController do
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")    
     end
 
+    it "prevents the root node being deleted" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      expect(response.code).to eq("200")    
+      expect(response.body).to eq("{\"errors\":[\"You are not permitted to delete the root tag\"]}")    
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -114,14 +93,20 @@ describe IsoConceptSystemsController do
     end
 
     it "show a concept" do
-      get :show, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      get :show, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
       expect(response).to redirect_to("/users/sign_in")
     end
 
     it "add a concept" do
-      post :add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      post :add, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
       expect(response).to redirect_to("/users/sign_in")
     end
+
+    it "delete root concept" do
+      post :destroy, id: Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C").to_id
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
   end
 
 end

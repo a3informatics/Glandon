@@ -1,0 +1,206 @@
+// TABLES
+
+.table-cardstyle th{
+  vertical-align: middle;
+  color: $grey-medium;
+  font-size: $font-small;
+}
+
+.table-cardstyle th:last-child, th.ignore{
+  color: transparent;
+  pointer-events: none;
+}
+
+.table-cardstyle.all-columns th:last-child{
+  color: $grey-medium;
+  pointer-events: all;
+}
+
+.table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr,
+.table-invisible .table, .table-invisible td, .table-invisible th, .table-invisible tr{
+  border: 0px !important;
+  background: transparent !important;
+}
+
+.table-cardstyle td{
+  vertical-align: middle !important;
+  font-family: $font-light;
+}
+
+.table-cardstyle td, .table-cardstyle th{
+  border-bottom: 1px solid $grey-light !important;
+}
+
+.table-cardstyle td, .table-invisible td{
+  height: 45px !important;
+}
+
+.table-cardstyle tr.selected{
+  color: $secondary-color-medium !important;
+}
+
+.table-cardstyle .row-sponsor td:first-of-type, .table-cardstyle .row-cdisc td:first-of-type{
+  position: relative;
+  padding-left: 16px;
+}
+
+.table-cardstyle .row-sponsor td:first-of-type::before, .table-cardstyle .row-cdisc td:first-of-type::before{
+  position: absolute;
+  display: block;
+  content: " ";
+  width: 7px;
+  height: 7px;
+  left: 3px;
+  top: calc(50% - 4px);
+  border-radius: 50%;
+}
+
+.table-cardstyle .row-sponsor td:first-of-type::before{
+  background: $primary-color-light;
+}
+
+.table-cardstyle .row-cdisc td:first-of-type::before{
+  background: $accent-color-1;
+}
+
+.table-cardstyle .dataTables_info, .table-cardstyle .dataTables_paginate,
+  .table-cardstyle .dataTables_length, .table-cardstyle .dataTables_filter{
+  font-family: $font-light;
+}
+
+.table-cardstyle .dataTables_empty{
+  pointer-events: none;
+}
+
+.table-cardstyle .dataTables_scrollBody table thead tr th{
+  border-bottom: none !important;
+}
+
+.table-invisible .dataTables_info, .table-invisible .dataTables_paginate{
+  padding-top: 20px !important;
+}
+
+.table-invisible .dataTables_info{
+  display: none;
+}
+
+.table-invisible .dataTables_info, .table-invisible .dataTables_paginate,
+  .table-invisible .dataTables_length, .table-invisible .dataTables_filter{
+  font-family: $font-light;
+}
+
+.small-search .dataTables_filter label{
+  font-size: $font-small;
+}
+
+.small-search .dataTables_filter input[type="search"]{
+  height: 25px;
+}
+
+.table-invisible .dataTables_scrollBody{
+  padding: 0 6px;
+}
+
+table th.th-medium{
+  min-width: 160px;
+}
+
+table th.th-small{
+  min-width: 120px;
+}
+
+table th.th-xsmall{
+  min-width: 80px;
+}
+
+.table-cardstyle .col-sm-12{
+  width: 100%;
+}
+
+.table-cardstyle.table-minimal .dataTables_wrapper div:nth-of-type(odd) div[class^="col-sm"]{
+  font-size: 9pt;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.table-cardstyle .striped tbody tr:nth-of-type(even){
+  background: #f9f9f9 !important;
+}
+
+.table-row-clickable.striped tbody tr:nth-of-type(even):hover{
+  background: #f5f5f5 !important;
+}
+
+// Width Wrapper
+.table-width-wrapper{
+  width: 100%;
+  padding: 0 10%;
+  justify-content: center;
+}
+
+.table-width-wrapper.narrow{
+  padding: 0 15%;
+}
+
+.table-width-wrapper.xnarrow{
+  padding: 0 25%;
+}
+
+
+@media (max-width: 768px){
+  .table-width-wrapper{
+    padding: 0 !important;
+  }
+}
+
+// IE and Edge Fixes
+
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+.table-cardstyle tbody tr td:first-of-type::before {
+  @include ieandedge {
+    display: none !important;
+  }
+}
+
+.table-cardstyle tbody tr td:first-of-type {
+  @include ieandedge {
+    overflow: hidden;
+    padding-left: 2px !important;
+  }
+}
+
+.table-cardstyle tbody tr.row-sponsor td:first-of-type,
+.table-cardstyle tbody tr.y td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $primary-color-medium;
+  }
+}
+
+.table-cardstyle tbody tr.row-cdisc td:first-of-type,
+.table-cardstyle tbody tr.y td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $accent-color-1-dark;
+  }
+}
+
+.table-cardstyle tbody tr.r td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $accent-color-2;
+  }
+}
+
+.table-cardstyle table.table-row-clickable tbody tr.selected {
+  background-color: #fafafa !important;
+}

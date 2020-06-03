@@ -41,7 +41,7 @@ describe AlsExcel do
 		expect(object.errors.count).to eq(0)
 	end
 
-  it "gets form, DM example - FINDING MULTIPLE AGEU ENTRIES" do
+  it "gets form, DM example - WILL CURRENTLY FAIL - Finding multiple AGEU entries" do
     full_path = test_file_path(sub_dir, "als_1.xlsx")
     object = AlsExcel.new(full_path)
     item = object.form("DM_ALL")
@@ -144,7 +144,7 @@ describe AlsExcel do
     item = object.form("DM")
     expect(object.errors.count).to eq(0)
     result = item.to_json
-  write_yaml_file(result, sub_dir, "form_expected_6.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_6.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_6.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]

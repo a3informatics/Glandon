@@ -12,8 +12,6 @@ describe IsoManaged do
     
 	before :all do
     IsoHelpers.clear_cache
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
-      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl" ]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_parent.ttl", "iso_managed_branch.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..59)
@@ -23,7 +21,7 @@ describe IsoManaged do
     # load_schema_file_into_triple_store("ISO11179Registration.ttl")
     # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     # load_schema_file_into_triple_store("ISO25964.ttl")
-    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("business_operational.ttl")
     # load_schema_file_into_triple_store("BusinessForm.ttl")
     # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     # load_test_file_into_triple_store("iso_namespace_real.ttl")

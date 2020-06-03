@@ -1,5 +1,5 @@
 <%= javascript_include_tag 'standard_datatable' %>
-<% second_level_breadcrumb("CDISC SDTM IGs", history_sdtm_igs_path, "V#{@sdtm_ig.semantic_version}") %>
+<% second_level_breadcrumb(:sdtm_igs, @sdtm_ig.scope.id, @sdtm_ig.identifier) %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @sdtm_ig} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -43,7 +43,7 @@
 			    <td><%= item.owner %></td>
 			    <td><%= item.semantic_version %></td>
 			    <td><%= item.versionLabel %></td>
-	    		<td><%= link_to "Show", sdtm_ig_domain_path(:id => item.id, :sdtm_ig_domain => { :namespace => item.namespace }), :class => "btn btn-primary btn-xs" %></td>
+	    		<td><%= link_to "Show", sdtm_ig_domain_path(:id => item.id, :sdtm_ig_domain => { :namespace => item.namespace }), :class => "btn  btn-xs" %></td>
 	  		</tr>
 	  		<% end %>
 		</tbody>

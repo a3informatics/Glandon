@@ -1,0 +1,111 @@
+<%= javascript_tag 'setPageTitle("Release select: '+@thesaurus.has_identifier.identifier+' ('+@thesaurus.semantic_version+')")' %>
+<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
+
+<% show_text, hide_text =  "Show CDISC version selector", "Hide CDISC version selector" %>
+<%= javascript_tag "var showHideTexts = ['#{show_text}', '#{hide_text}'];" %>
+
+<%= javascript_tag "var cdiscCLUrl = '#{children_with_indicators_thesauri_path("th_id")}',
+                        sponsorCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}',
+                        referenceThUrl = '#{reference_thesauri_path(@thesaurus)}';
+                    var overviewUrls = {
+                      dataUrl: '#{children_with_indicators_thesauri_path(@thesaurus)}',
+                      selectChildrenURL: '#{select_children_thesauri_path(@thesaurus)}',
+                      changeChildVersionURL: '#{change_child_version_thesauri_path(@thesaurus)}',
+                      deselectChildrenUrl: '#{deselect_children_thesauri_path(@thesaurus)}',
+                      deselectAllChildrenUrl: '#{deselect_all_children_thesauri_path(@thesaurus)}' };" %>
+
+<%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/datatables_loading', 'shared/table_select', 'shared/show_more', 'shared/timeline_cdisc' %>
+<%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_cdisc', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
+                           'shared/show_more', 'thesauri/release_select', 'shared/timer', 'unload' %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
+        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty?, target: "_blank" } %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+        <% if !@ref_thesaurus.nil? && !@base_cdisc_th.nil? %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: upgrade_thesauri_path(@thesaurus), id: "upgrade",
+            icon: "icon-upgrade", text: "Upgrade Code Lists", dt_toggle: "", disabled: false } %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/managed_item_version_picker", :locals => {type: :code_lists, history_url: history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"}) } %>
+  <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @thesaurus.has_identifier.identifier, item_id: @thesaurus.id, item_notes_url: change_notes_iso_concept_path(@thesaurus.id)} %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 card wide">
+    <div class="card-header">
+      Find & Select Code Lists
+    </div>
+    <div class="card-content card-with-tabs spinner-spread">
+      <div class="tabs-layout" id="release-select-tabs">
+
+        <div class="tabs-sel">
+          <div class="tab-option active" id="tab-cdisc-cls"><div>CDISC CLs</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-cls"><div>Sponsor CLs</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-subsets"><div>Sponsor Subsets</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-extensions"><div>Sponsor Extensions</div></div>
+          <div class="tab-option disabled" id="tab-selection-overview"><div><%=@thesaurus.label %></div></div>
+        </div>
+
+        <div class="tab-wrap" data-tab="tab-cdisc-cls">
+          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-cdisc-cls"} do %>
+            <div class="text-centered font-light"> CDISC version used:
+              <span id="cdisc-version-label" class="bg-label"><%= @ref_thesaurus.nil? ? "None" : @ref_thesaurus.version_label.split(' ')[0]%></span>
+            </div><br/>
+            <%= render layout: "shared/show_more", :locals => {:size => "small", :show_text => show_text, :centered => "centered"} do %>
+              <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
+                title_text: "Select CDISC Terminology version by dragging the slider (must be a later version):",
+                start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
+                button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit selected version</button>".html_safe }%>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-sponsor-cls">
+          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-cls"} do %>
+            <div class="font-light">When you select a Code List for your release here, its <span class="font-regular"> latest </span> version will be picked. <br/>
+              You can manually change this version in the '<%= @thesaurus.label %>' tab.</div>
+          <% end %>
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-sponsor-subsets">
+          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-subsets"} do %>
+            <div class="font-light">When you select a Code List for your release here, its <span class="font-regular"> latest </span> version will be picked. <br/>
+              You can manually change this version in the '<%= @thesaurus.label %>' tab.</div>
+          <% end %>
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-sponsor-extensions">
+          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-extensions"} do %>
+            <div class="font-light">When you select a Code List for your release here, its <span class="font-regular"> latest </span> version will be picked. <br/>
+              You can manually change this version in the '<%= @thesaurus.label %>' tab.</div>
+          <% end %>
+        </div>
+
+        <div class="tab-wrap closed" data-tab="tab-selection-overview">
+          <%= render layout: "shared/thesauri/release_select_overview_tab", :locals => {id: "table-selection-overview"} do %>
+            <div class="font-light">This is the overview of the selection of code lists you have made so far. <br/>
+            To exclude an item from your Thesaurus, click on <span class="icon-times text-accent-2 text-tiny"></span>.
+            To manually pick a version of a sponsor code list, click on <span class="icon-edit text-link text-tiny"></span>.</div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="edit_lock_token" value="<%= @token.id %>">
+  <input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
+</div>

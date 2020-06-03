@@ -18,21 +18,15 @@ describe IsoRegistrationAuthoritiesController do
     login_curator
 
     it "index registration authorities" do
-      ras = IsoRegistrationAuthority.all.each {|ra| ra.ra_namespace_objects}
+      ras = IsoRegistrationAuthority.all.each {|ra| ra.ra_namespace_objects}.sort_by{|x| x.organization_identifier}
+      namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
       get :index
       expected_ras = assigns(:registrationAuthorities).map{|x| x.to_h}
       actual_ras = ras.map{|x| x.to_h}
-      expect(expected_ras).to eq(actual_ras)
-      expect(assigns(:owner).to_h).to eq(ras[0].to_h)
-      expect(response).to render_template("index")
-    end
-
-    it "new registration authority" do
-      ra = IsoRegistrationAuthority.new
-      namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
-      get :new
+      expect(expected_ras).to hash_equal(actual_ras)
+      expect(assigns(:owner).to_h).to eq(ras.last.to_h)
       expect(assigns(:namespaces)).to eq(namespaces)
-      expect(response).to render_template("new")
+      expect(response).to render_template("index")
     end
 
     it 'creates registration authority' do

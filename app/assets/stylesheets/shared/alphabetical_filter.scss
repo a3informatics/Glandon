@@ -1,0 +1,126 @@
+@import "shared/vars.scss";
+// FILTER
+
+.filter-wrap{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-light;
+}
+
+.filter-expandable{
+  height: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: height .3s;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.filter-expandable.collapsed{
+  height: 0px;
+}
+
+.alph-slider-wrap{
+  margin-top: 10px;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.alph-slider{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: $grey-bright;
+  outline: none;
+  position: absolute;
+}
+
+.alph-slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $primary-color-medium;
+  cursor: pointer;
+}
+
+.alph-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $primary-color-medium;
+  cursor: pointer;
+}
+
+.alph-slider-sides{
+  color: $grey-light;
+  position: absolute;
+  z-index: 1;
+}
+
+.alph-slider-sides:first-of-type{
+  left: -20px;
+}
+
+.alph-slider-sides:last-of-type{
+  right: -20px;
+}
+
+// IE AND EDGE FIXES
+
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.alph-slider{
+  @include ieandedge {
+    height: auto;
+    background: none;
+    padding: 5px 0px;
+  }
+}
+
+::-ms-fill-lower, ::-ms-fill-upper {
+  @include ieandedge {
+    background: $grey-bright;
+    color: transparent;
+  }
+}
+
+::-ms-thumb {
+  @include ieandedge {
+    background: $primary-color-medium;
+    border: 0;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+::-ms-track{
+  @include ieandedge {
+    color: transparent;
+    border: 0;
+  }
+}
+
+::-ms-tooltip {
+  @include ieandedge {
+    display: none;
+  }
+}

@@ -79,7 +79,7 @@ describe Background do
 	    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
 	    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 	    # load_schema_file_into_triple_store("ISO25964.ttl")
-	    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+	    # load_schema_file_into_triple_store("business_operational.ttl")
 	    # load_schema_file_into_triple_store("BusinessDomain.ttl")
 	    # load_schema_file_into_triple_store("CDISCTerm.ttl")
 	    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
@@ -131,18 +131,18 @@ describe Background do
 	  #   expect(results).to eq(expected)
 	  # end
 
-	  it "ad-hoc report" do
-	    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "test")
-	    job = Background.create
-	    report = AdHocReport.new
-	    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
-	    report.results_file = "ad_hoc_report_test_1_results.yaml"
-	    job.ad_hoc_report(report)
-	    results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
-	  #write_yaml_file(results, sub_dir, "ad_hoc_report_expected.yaml")
-	    expected = read_yaml_file(sub_dir, "ad_hoc_report_expected.yaml")
-	    expect(results).to eq(expected)
-	  end 
+	  # it "ad-hoc report" do
+	  #   copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "test")
+	  #   job = Background.create
+	  #   report = AdHocReport.new
+	  #   report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+	  #   report.results_file = "ad_hoc_report_test_1_results.yaml"
+	  #   job.ad_hoc_report(report)
+	  #   results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
+	  # #write_yaml_file(results, sub_dir, "ad_hoc_report_expected.yaml")
+	  #   expected = read_yaml_file(sub_dir, "ad_hoc_report_expected.yaml")
+	  #   expect(results).to eq(expected)
+	  # end 
 
 	  # it "imports a cdisc terminology" do
 	  #   job = Background.create
@@ -261,7 +261,7 @@ describe Background do
 	#     load_schema_file_into_triple_store("ISO11179Registration.ttl")
 	#     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 	#     load_schema_file_into_triple_store("ISO25964.ttl")
-	#     load_schema_file_into_triple_store("BusinessOperational.ttl")
+	#     load_schema_file_into_triple_store("business_operational.ttl")
 	#     load_schema_file_into_triple_store("BusinessDomain.ttl")
 	#     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
  #      load_test_file_into_triple_store("iso_namespace_real.ttl")

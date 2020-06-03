@@ -1,3 +1,7 @@
+# Thesaurus Managed Concept. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Thesaurus::ManagedConcept < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#ManagedConcept",
@@ -7,65 +11,27 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   data_property :identifier
   data_property :notation
   data_property :definition
-  data_property :extensible
+  data_property :extensible, default: false
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
-  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
-  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
+  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
+  object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+  object_property :is_ranked, cardinality: :one, model_class: "Thesaurus::Rank"
 
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  validates_with Validator::Uniqueness, attribute: :identifier, on: :create
-
-  # config =
-  # {
-  #   relationships:
-  #   [
-  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref,
-  #     Thesaurus::Synonym.rdf_type.to_ref,
-  #     Thesaurus::PreferredTerm.rdf_type.to_ref,
-  #     Thesaurus::Subset.rdf_type.to_ref
-  #   ]
-  # }
-  # self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
-
-  # Extended? Is this item extended
-  #
-  # @result [Boolean] return true if extended
-  def extended?
-    !extended_by.nil?
-  end
-
-  # Extended By. Get the URI of the extension item if it exists.
-  #
-  # @result [Uri] the Uri or nil if not present.
-  def extended_by
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
-  end
-
-  # Extension? Is this item extending another managed concept
-  #
-  # @result [Boolean] return true if extending another
-  def extension?
-    !extension_of.nil?
-  end
-
-  # Extension Of. Get the URI of the item being extended, if it exists.
-  #
-  # @result [Uri] the Uri or nil if not present.
-  def extension_of
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:extends ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
-  end
+  include Thesaurus::Extensions
+  include Thesaurus::Subsets
+  include Thesaurus::Upgrade
+  include Thesaurus::Validation
+  include Thesaurus::Ranked
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
@@ -73,8 +39,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
-    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, 
-      :creation_date, :last_change_date, :explanatory_comment, :tagged]})
+    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
+      :creation_date, :last_change_date, :explanatory_comment, :tagged, :extends, :subsets]})
     replace_children_if_no_change(previous)
     return self
   end
@@ -108,9 +74,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       uri = Uri.new(uri: "http://www.temp.com/") # Temporary nasty
       this_child.uri = uri
       other_child.uri = uri
-      record = this_child.difference_record(this_child.simple_to_h, other_child.simple_to_h)    
+      record = this_child.difference_record(this_child.simple_to_h, other_child.simple_to_h)
       msg = "When merging #{self.identifier} a difference was detected in child #{identifier}\n#{record.map {|k, v| "#{k}: #{v[:previous]} -> #{v[:current]}" if v[:status] != :no_change}.compact.join("\n")}"
-      errors.add(:base, msg) 
+      errors.add(:base, msg)
       ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     end
     missing_ids.each do |identifier|
@@ -318,9 +284,20 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: actual_versions, items: final_results}
   end
 
+  # Changes_summary_impact. Based on changes_summary. Deletes items that have not changed
+  #
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
+  # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_summary_impact(last, actual_versions)
+    csi = changes_summary(last, actual_versions)
+    csi[:items].delete_if {|k,v| v[:status][-1] == {status: :no_change} }
+    csi
+  end
+
   # Differences_summary
   #
-  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection 
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
   # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
   def differences_summary (last, actual_versions)
@@ -408,6 +385,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def add_extensions(uris)
     transaction = transaction_begin
     uris.each {|x| add_link(:narrower, x)}
+    set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
 
@@ -415,10 +393,138 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @param uris [Array] set of uris of the items to be deleted
   # @return [Void] no return
-  def delete_extensions(uris)
-    transaction = transaction_begin
-    uris.each {|x| delete_link(:narrower, x)}
-    transaction_execute
+  # def delete_extensions(uris)
+  #   transaction = transaction_begin
+  #   uris.each {|x| delete_link(:narrower, x)}
+  #   transaction_execute
+  # end
+
+  # Create. Create a managed concept
+  #
+  # @return [Object] the created object. May contain errors if unsuccesful.
+  def self.create
+    child = Thesaurus::ManagedConcept.empty_concept
+    # Following is a check to ensure only generated identifiers for the current implementation.
+    Errors.application_error(self.name, "create", "Not configured to generate a code list identifier.") unless Thesaurus::ManagedConcept.generated_identifier?
+    child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
+    super(child)
+  end
+
+  # Clone. Clone the object taking care over the type of concept
+  #
+  # @return [Thesaurus::ManagedConcept] a clone of the object
+  def clone
+    self.narrower_links
+    self.preferred_term_links
+    self.synonym_links
+    if self.subset?
+      self.is_ordered_objects
+      self.is_ordered = self.is_ordered.clone
+      self.subsets_links
+    elsif self.extension?
+      self.extends_links
+    end
+    object = super
+  end
+
+  # Delete or Unlink. Delete the managed concept. Processing depends on the type of the concept.
+  #
+  # @return [Void] no return
+  def delete_or_unlink(parent_object=nil)
+    self.children_objects
+    if parent_object.nil? && no_parents?
+      # No parent specified and no parents linked to this item, delete
+      delete_with
+    elsif parent_object.nil?
+      # No parent specified and parents, do nothing, as we cannot
+      self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
+      0
+    elsif multiple_parents?
+      # Deselect from quoted parent
+      parent_object.deselect_children({id_set: [self.uri.to_id]})
+      1
+    elsif self.children? && !self.extension? && !self.subset?
+      # Parent specified, not extension or subset but children present. Dont delete.
+      self.errors.add(:base, "The code list cannot be deleted as there are children present.") # error, children present for normal code list
+      0
+    else
+      # Parent specified, no children, delete
+      delete_with(parent_object)
+    end
+  end
+
+  # Set With Indicators Paginated
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :type the type, either :all, :normal, :subsets, :extensions.
+  #   note that :all does not filter on owner while the others filter on the repository owner.
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @return [Array] array of hashes containing the child data
+  def self.set_with_indicators_paginated(params)
+    owner = ::IsoRegistrationAuthority.repository_scope.uri.to_ref
+    filter_clause = "FILTER (?so = false && ?eo = false)"
+    owner_clause = "?x isoT:hasIdentifier/isoI:hasScope #{owner} . BIND (#{owner} as ?ns)"
+    case params[:type].to_sym
+      when :all
+        filter_clause = ""
+        owner_clause = "?x isoT:hasIdentifier/isoI:hasScope ?ns ."
+      when :normal
+        # default
+      when :subsets
+        filter_clause = "FILTER (?so = true && ?eo = false)"
+      when :extensions
+        filter_clause = "FILTER (?eo = true && ?so = false)"
+      else
+        # default
+    end
+    results =[]
+    query_string = %Q{
+      SELECT DISTINCT ?s ?i ?n ?d ?l ?pt ?e ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn)
+        (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys)
+        (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
+      {
+        SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
+        {
+          ?s rdf:type th:ManagedConcept .
+          ?s isoT:hasIdentifier/isoI:version ?v .
+          ?s isoT:hasIdentifier/isoI:identifier ?sci .
+          {
+            SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE
+            {
+              ?x rdf:type th:ManagedConcept .
+              ?x isoT:hasIdentifier/isoI:version ?lv .
+              ?x isoT:hasIdentifier/isoI:identifier ?sci .
+              #{owner_clause}
+            } group by ?sci ?ns
+          }
+          BIND (EXISTS {?s th:extends ?xe1} as ?eo)
+          BIND (EXISTS {?s th:subsets ?xs1} as ?so)
+          BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
+          BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+          BIND (EXISTS {?s th:isRanked ?xr1} as ?ranked)
+          OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s . ?ci rdf:type ba:ChangeInstruction }
+          OPTIONAL {?cn (ba:current/bo:reference) ?s . ?cn rdf:type ba:ChangeNote }
+          #{filter_clause}
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?s th:definition ?d .
+          ?s th:extensible ?e .
+          ?s isoC:label ?l . 
+          ?s th:preferredTerm/isoC:label ?pt .
+          ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+          OPTIONAL {?s th:synonym/isoC:label ?sy }
+          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
+        } ORDER BY ?i ?sy ?t
+      } GROUP BY ?i ?n ?d ?l ?pt ?e ?s ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?countci ?countcn ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI, :ba])
+    query_results.by_object_set([:i, :n, :d, :e, :l, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :ranked, :sci, :ns, :count]).each do |x|
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool, ranked: x[:ranked].to_bool, annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
+      results << {identifier: x[:i], notation: x[:n], label: x[:l], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool,
+        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
+    end
+    results
   end
 
   # To CSV. The code list as a set of CSV record with a header.
@@ -449,6 +555,209 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
+  # def valid_collection?
+  #   notations = self.narrower.map{|x| x.notations}
+  #   notations.uniq.length == notations.length
+  # end
+
+  def create_extension
+    source = Thesaurus::ManagedConcept.find_full(self.id)
+    source.narrower_links
+    object = source.clone
+    object.identifier = "#{source.scoped_identifier}E"
+    object.extensible = false # Make sure we cannot extend the extension
+    object.set_initial(object.identifier)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object.add_link(:extends, source.uri)
+    object
+  end
+
+  # Create Subset
+  #
+  # @return [Thesaurus::ManagedConcept] the new subset
+  def create_subset
+    source_mc = Thesaurus::ManagedConcept.find_minimum(self.id)
+    transaction_begin
+    new_mc = Thesaurus::ManagedConcept.create
+    subset = Thesaurus::Subset.create(parent_uri: new_mc.uri)
+    new_mc.add_link(:is_ordered, subset.uri)
+    new_mc.add_link(:subsets, source_mc.uri)
+    transaction_execute
+    new_mc
+  end
+
+  # Add Rank
+  #
+  # @return [Thesaurus::Rank] the new rank
+  def add_rank
+    sparql = Sparql::Update.new
+    mc = Thesaurus::ManagedConcept.find_minimum(self.id)
+    rank = Thesaurus::Rank.create(parent_uri: mc.uri)
+    sparql.default_namespace(rank.uri.namespace)
+    mc.add_link(:is_ranked, rank.uri)
+    children = children_query(mc)
+    if !children.empty?
+      rank_members = []
+      children.each_with_index do |item, index|
+        member = Thesaurus::RankMember.new(item: Uri.new(id: item[:uri].to_id), rank: index +1)
+        member.uri = member.create_uri(mc.uri)
+        rank_members << member
+        member.to_sparql(sparql)
+      end
+      rank_members[0..-2].each_with_index do |sm, index|
+        sparql.add({uri: rank_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members[index+1].uri})
+      end
+      last_sm = rank.last
+      last_sm.nil? ? sparql.add({uri: rank.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: rank_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: rank_members.first.uri})
+    end
+    #filename = sparql.to_file
+    sparql.create
+    rank
+  end
+
+  # Change Notes Paginated
+  #
+  # @return [Array] an array of record results
+  def change_notes_paginated(params)
+    results = []
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    query_string = %Q{
+      SELECT ?s ?e ?d ?r ?txt ?i ?n ?l WHERE {
+        {
+        #{self.uri.to_ref} th:identifier ?i .
+        #{self.uri.to_ref} th:notation ?n .
+        #{self.uri.to_ref} isoC:label ?l .
+        #{self.uri.to_ref} ^(ba:current/bo:reference) ?s .
+        ?s ba:userReference ?e .
+        ?s ba:timestamp ?d .
+        ?s ba:reference ?r .
+        ?s ba:description ?txt .
+        }
+        UNION
+        {
+        #{self.uri.to_ref} th:narrower ?c .
+        ?c ^(ba:current/bo:reference) ?s .
+        ?s ba:userReference ?e .
+        ?s ba:timestamp ?d .
+        ?s ba:reference ?r .
+        ?s ba:description ?txt .
+        ?c th:identifier ?i .
+        ?c th:notation ?n .
+        ?c isoC:label ?l .
+        }
+    } ORDER BY (?i) LIMIT #{count} OFFSET #{offset}
+  }
+
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :ba])
+    query_results.by_object_set([:s, :e, :d, :r, :txt, :i, :n, :l]).each do |x|
+      results << { cl_identifier: x[:i], cl_notation: x[:n], cl_label: x[:l], user_reference: x[:e], timestamp: x[:d].to_time_with_default.iso8601, reference: x[:r], description: x[:txt] }
+    end
+    results
+  end
+
+  # Impact. It finds the impact of a specific changed CDISC Code List on a specific sponsor Thesaurus 
+  def impact(sponsor)
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension WHERE      
+      {   
+        BIND (#{self.uri.to_ref} as ?source)
+          {
+            BIND (#{sponsor.uri.to_ref} as ?s) .
+            ?s th:isTopConceptReference/bo:reference ?source  .
+            ?s rdf:type ?t .
+            BIND ("" as ?n) .
+          } 
+          UNION
+          {
+            ?source th:narrower/^th:narrower ?s  .
+            FILTER (STR(?source) != STR(?s)) .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+          UNION
+          {
+            ?source ^th:subsets ?s  .
+            #{sponsor.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+        ?s isoC:label ?l .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
+        BIND (EXISTS {?s th:extends ?y} as ?extension ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo, :isoC])
+    query_results.by_object_set([:s, :t, :l, :i, :n, :o, :subset, :extension]).each do |x|
+      if x[:subset].to_bool
+         type = x[:t].to_s + "#Subset"
+      elsif x[:extension].to_bool
+        type = x[:t].to_s + "#Extension"
+      else 
+        type = x[:t].to_s
+      end
+      results << {uri: x[:s].to_s, id: x[:s].to_id, real_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], rdf_type: type}
+    end
+    results
+  end
+
+  # Upgrade Impact. 
+  #
+  # @param th [Thesaurus] the sponsor thesaurus being upgraded
+  # @return [Array] array of results
+  def upgrade_impact(th)
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?t ?l ?i ?n ?o ?subset ?extension WHERE      
+      {   
+        BIND (#{self.uri.to_ref} as ?source)
+          {
+            ?source th:narrower/^th:narrower ?s  .
+            FILTER (STR(?source) != STR(?s)) .
+            #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+          UNION
+          {
+            ?source ^th:subsets ?s  .
+            #{th.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+            ?s rdf:type ?t .
+            ?s th:notation ?n .
+          }
+        ?s isoC:label ?l .
+        ?s isoT:hasIdentifier/isoI:identifier ?i .
+        ?s isoT:hasIdentifier/isoI:hasScope #{IsoRegistrationAuthority.repository_scope.uri.to_ref} .
+        ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+        BIND (EXISTS {?s th:subsets ?x} as ?subset ) .
+        BIND (EXISTS {?s th:extends ?y} as ?extension ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :isoT, :isoI, :bo, :isoC])
+    query_results.by_object_set([:s, :t, :l, :i, :n, :o, :subset, :extension]).each do |x|
+      if x[:subset].to_bool
+         type = x[:t].to_s + "#Subset"
+      elsif x[:extension].to_bool
+        type = x[:t].to_s + "#Extension"
+      else 
+        type = x[:t].to_s
+      end
+      results << {uri: x[:s].to_s, id: x[:s].to_id, real_type: x[:t].to_s, label: x[:l], identifier: x[:i], notation: x[:n], owner: x[:o], rdf_type: type}
+    end
+    results
+  end
+
+  # Audit Type. Text for the type to be used in an audit message
+  #
+  # @return [String] the type for the audit message
+  def audit_type
+    "Code list"
+  end
+
 private
 
   # Class for a difference result
@@ -468,6 +777,28 @@ private
 
   end
 
+  # Delete with all child items (extensions, subset and child code list items)
+  def delete_with(parent_object=nil)
+    delete_rank(self) if self.ranked?
+    parts = []
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}"
+    parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
+    parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
+    parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
+    if !parent_object.nil?
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} .
+        BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
+      parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }"
+    end
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+  puts "*****\n#{query_string}\n*****"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th, :bo])
+    1
+  end
+
+  # Are children are the same
   def children_are_the_same?(this_child, other_child)
     result = this_child.diff?(other_child, {ignore: [:tagged]})
     return false if result
@@ -475,7 +806,9 @@ private
     return true
   end
 
+  # Was the item deleted from CT version. Only used for CDISC CT
   def deleted_from_ct_version(last_item)
+    return {deleted: false, ct: nil} if self.owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
@@ -485,12 +818,15 @@ private
     {deleted: item_was_deleted, ct: ct}
   end
 
+  # Deleted from CT. Only used for CDISC CT
   def deleted_from_ct?(last_item)
+    return false if self.owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
   end
 
+  # Thesaurus set
   def thesarus_set(last_item)
     query_string = %Q{
       SELECT ?s WHERE {
@@ -503,11 +839,12 @@ private
     query_results.by_object(:s)
   end
 
+  # Different from self
   def diff_self?(other)
-    return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 
+    return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date,
       :explanatory_comment, :narrower, :extends, :subsets, :tagged]})
     msg = "When merging #{self.identifier} a difference was detected in the item"
-    self.errors.add(:base, msg) 
+    self.errors.add(:base, msg)
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     true
   end
@@ -521,6 +858,7 @@ private
     end
   end
 
+  # Add additional tags
   def add_child_additional_tags(previous, set)
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
@@ -531,11 +869,42 @@ private
 
   # Find parent query. Used by BaseConcept
   def parent_query
-    "SELECT DISTINCT ?i WHERE \n" +
+    "SELECT DISTINCT ?s WHERE \n" +
     "{ \n" +
-    "  ?s th:narrower #{self.uri.to_ref} .  \n" +
-    "  ?s th:identifier ?i . \n" +
+    "  #{self.uri.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .  \n" +
     "}"
+  end
+
+  # Get children query.
+  def children_query(mc)
+    results =[]
+    query_string = %Q{
+      SELECT DISTINCT ?s ?i WHERE
+      {
+        #{mc.uri.to_ref} (th:narrower) ?s .
+        ?s th:identifier ?i .
+      } GROUP BY ?i ?s ORDER BY desc (?i)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    query_results.by_object_set([:i, :s]).each do |x|
+      results << {identifier: x[:i], uri: x[:s]}
+    end
+    results
+  end
+
+  # Delete rank.
+  def delete_rank(mc)
+    rank_uri = mc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_all
+  end
+
+  # Set ranks.
+  def set_ranks(uris, mc)
+    uris.each do |item|
+      child = Thesaurus::UnmanagedConcept.find(item)
+      set_rank(mc, child)
+    end
   end
 
 end

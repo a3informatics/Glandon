@@ -46,12 +46,14 @@ private
 
   # Get the API key
   def self.api_key
-    return ENV["SEMANTIC_DB_API_KEY"]
+    #return ENV["SEMANTIC_DB_API_KEY"]
+    EnvironmentVariable.read("SEMANTIC_DB_API_KEY")
   end
 
   # Het the API password
   def self.api_secret
-    return ENV["SEMANTIC_DB_API_SECRET"]
+    #return ENV["SEMANTIC_DB_API_SECRET"]
+    EnvironmentVariable.read("SEMANTIC_DB_API_SECRET")
   end
    
 end

@@ -11,8 +11,6 @@ describe 'sdtm_igs/import.html.erb', :type => :view do
   end
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
-      "thesaurus.ttl", "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessDomain.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
     clear_iso_concept_object

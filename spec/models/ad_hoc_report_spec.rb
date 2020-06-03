@@ -6,17 +6,23 @@ RSpec.describe AdHocReport, type: :model do
   include PublicFileHelpers
 
 	def sub_dir
-    return "models"
+    return "models/ad_hoc_report"
   end
 
   before :all do
-    clear_triple_store
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..2)    
     AdHocReport.delete_all
     delete_all_public_files
   end
 
+  after :all do
+    delete_all_public_files
+  end
+
   it "creates a report" do
-  	copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "upload")
+  	copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
     files = []
     files << filename
@@ -27,7 +33,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a duplicate report being created" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
     files = []
     files << filename
@@ -37,7 +43,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_1_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_1_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_1_sparql.yaml")
     files = []
     files << filename
@@ -47,7 +53,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_2_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_2_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_2_sparql.yaml")
     files = []
     files << filename
@@ -57,7 +63,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_3_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_3_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_3_sparql.yaml")
     files = []
     files << filename
@@ -67,7 +73,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_4_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_4_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_4_sparql.yaml")
     files = []
     files << filename
@@ -77,7 +83,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_5_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_5_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_5_sparql.yaml")
     files = []
     files << filename
@@ -96,7 +102,7 @@ RSpec.describe AdHocReport, type: :model do
   end
 
   it "stops a report being created, syntax error" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_err_6_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_6_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_err_6_sparql.yaml")
     files = []
     files << filename
@@ -105,17 +111,34 @@ RSpec.describe AdHocReport, type: :model do
     expect(item.errors.count).to eq(1)
   end
 
-  it "will run a report" do
+  it "reports the parameters, empty" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
     report = AdHocReport.new
-    report.sparql_file = "ad_hoc_report_1_sparql.yaml"
-    report.results_file = "ad_hoc_report_1_results.yaml"
-    report.run
+    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+    expect(report.parameters?).to eq(false)
+  end
+
+  it "reports the parameters, present" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_2_sparql.yaml", "test")
+    report = AdHocReport.new
+    report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
+    expect(report.parameters?).to eq(true)
+    expect(report.parameters).to eq([{description: "The terminology for which the report is required.", name: "Terminology", type: :thesauri}])
+    expect(report.parameter).to eq({description: "The terminology for which the report is required.", name: "Terminology", type: :thesauri})
+  end
+
+  it "will run a report, no params" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
+    report = AdHocReport.new
+    expect(report).to receive(:execute).and_return(true)
+    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+    report.results_file = "ad_hoc_report_test_1_results.yaml"
+    report.run({})
     expect(report.last_run).to be_within(1.second).of Time.now
     expect(report.background_id).not_to eq(-1)
     expect(report.active).to be(true)
     results = AdHocReportFiles.read(report.results_file)
-    expected = {:columns=>[["URI"], ["Identifier"], ["Label"]], :data=>[]}
-    expect(results).to eq(expected)
+    check_file_actual_expected(results, sub_dir, "run_expected_1.yaml")
     delete_public_file("reports", "ad_hoc_report_1_results.yaml")
   end
 
@@ -140,23 +163,22 @@ RSpec.describe AdHocReport, type: :model do
 
   it "will return the column definitions" do
     report = AdHocReport.new
-    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "test")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
     report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
     expected = {"?a"=>{:label=>"URI", :type=>"uri"}, "?b"=>{:label=>"Identifier", :type=>"literal"}, "?c"=>{:label=>"Label", :type=>"literal"}}
-    result = report.columns
-    expect(result).to eq(expected)
+    results = report.columns
+    check_file_actual_expected(results, sub_dir, "columns_expected_1.yaml")
   end
 
   it "will return the column definitions, fail" do
     report = AdHocReport.new
     report.sparql_file = "ad_hoc_report_test_1_sparql_xxx.yaml"
     expected = {}
-    result = report.columns
-    expect(result).to eq(expected)
+    expect{report.columns}.to raise_error(Errors::ApplicationLogicError, "Error reading ad hoc report definition file.")
   end
 
   it "will output the report results in CSV format" do
-    copy_file_to_public_files("models", "ad_hoc_report_test_1_results.yaml", "test")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_results.yaml", "test")
     report = AdHocReport.new
     report.results_file = "ad_hoc_report_test_1_results.yaml"
     result = report.to_csv
@@ -177,14 +199,14 @@ RSpec.describe AdHocReport, type: :model do
   it "deletes a report" do
     delete_all_public_report_files
     delete_all_public_test_files
-    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "upload")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "upload")
     filename = public_path("upload", "ad_hoc_report_test_1_sparql.yaml")
     files = []
     files << filename
     item = AdHocReport.create_report({files: files})
     expect(item.errors.count).to eq(0)
     expect(public_file_exists?("test", "ad_hoc_report_1_sparql.yaml")).to eq(true)
-    copy_file_to_public_files("models", "ad_hoc_report_1_results.yaml", "test")
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_1_results.yaml", "test")
     expect(public_file_exists?("test", "ad_hoc_report_1_results.yaml")).to eq(true)
     count = AdHocReport.all.count
     item.destroy_report
@@ -193,4 +215,32 @@ RSpec.describe AdHocReport, type: :model do
     expect(public_file_does_not_exist?("test", "ad_hoc_report_1_results.yaml")).to eq(true)
   end
 
+  it "executes a report, no params" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_1_sparql.yaml", "test")
+    job = Background.create
+    report = AdHocReport.new
+    report.background_id = job.id
+    report.sparql_file = "ad_hoc_report_test_1_sparql.yaml"
+    report.results_file = "ad_hoc_report_test_1_results.yaml"
+    job.start("Rspec test", "Starting...") {report.execute({})}
+    results = AdHocReportFiles.read("ad_hoc_report_test_1_results.yaml")
+    check_file_actual_expected(results, sub_dir, "execute_expected_1.yaml")
+  end 
+
+  it "executes a report, params" do
+    copy_file_to_public_files(sub_dir, "ad_hoc_report_test_2_sparql.yaml", "test")
+    job = Background.create
+    report = AdHocReport.new
+    report.background_id = job.id
+    report.sparql_file = "ad_hoc_report_test_2_sparql.yaml"
+    report.results_file = "ad_hoc_report_test_2_results.yaml"
+    job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V1#TH").to_id])}
+    results = AdHocReportFiles.read("ad_hoc_report_test_2_results.yaml")
+    check_file_actual_expected(results, sub_dir, "execute_expected_2.yaml")
+  end 
+
+  it "simple test" do
+    report = read_yaml_file(sub_dir, "simple_test.yaml")
+  end
+  
 end

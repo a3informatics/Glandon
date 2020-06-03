@@ -16,7 +16,7 @@ describe SdtmUserDomain do
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
+    load_schema_file_into_triple_store("business_operational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
@@ -73,7 +73,7 @@ describe SdtmUserDomain do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XX", :label => "Clone VS as XX"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected.yaml")  
+  #Xwrite_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected.yaml")  
     expected = read_yaml_file(sub_dir, "clone_ig_expected.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601
@@ -84,7 +84,7 @@ describe SdtmUserDomain do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGAE", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XY", :label => "Clone AE as XY"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
+  #Xwrite_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
     expected = read_yaml_file(sub_dir, "clone_ig_expected_2.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601

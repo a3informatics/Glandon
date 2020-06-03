@@ -1,3 +1,5 @@
+require 'controller_helpers.rb'
+
 # Imports Base Controller. The core controller for imports
 #
 # @author Dave Iberson-Hurst
@@ -55,6 +57,7 @@ private
   end
 
   def check_params
+    return if Import.api?(the_params)
     the_params[:files].reject!(&:blank?)
   end
 

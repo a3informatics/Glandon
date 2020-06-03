@@ -21,12 +21,41 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 1 }, on: :update
 
+  # This method is called by Devise to check for "active" state of the User
+  def active_for_authentication?
+    super && self.is_active?
+  end
+
+  # If the method 'active_for_authentication?' returns false, 
+  # method 'inactive_message' is invoked, user will receive notification for being inactive.
+  def inactive_message
+    is_active? ? super : :locked
+  end
+
+  # Locks user updating is_active column to false
+  def lock
+    update_attributes(is_active: false) unless !is_active
+  end
+
+  # Unlocks user updating is_active column to false
+  def unlock
+    update_attributes(is_active: true) unless is_active
+  end
+
+  def is_active
+    return true if self.is_active?
+    return false
+  end
+
   # Set any extra items we need when a user is created
   def set_extra
   	# Set the reader default role.
+    self.is_active = true
     self.add_role :reader
-    return if !self.name.blank?
-    self.name = "Anonymous"
+    # Set default name if not provided
+    if self.name.blank?
+      self.name = "Anonymous"
+    end
     self.save
   end
 
@@ -52,6 +81,26 @@ class User < ApplicationRecord
   def is_only_community?
     return true if self.role_ids.count == 1 && self.has_role?(:community_reader)
     return false
+  end
+
+  # User logged in
+  #
+  # @return [Boolean] returns true if user have logged in 
+  def logged_in?
+    return true if self.current_sign_in_at != nil
+    return false
+  end
+
+  # Counts users logins by domain
+  #
+  # @return [hash] Hash with the domain as the key and the number of users created with that domain as the value. Example: {"total"=>7, "example.com"=>2, "sanofi.com"=>3, "merck.com"=>1, "s-cubed.com"=>1}
+  def self.users_by_domain
+    raw = self.all.select('id', 'email').as_json
+    raw = raw.map{ |k, v| k['email'] }.map{ |user| user.sub /^.*@/, '' }
+    result = {}
+    result = raw.group_by{|e| e}.map{|k, v| [k, v.length]}.to_h
+    result["total"] = self.all.count
+    return result
   end
 
   # User roles as an array of strings

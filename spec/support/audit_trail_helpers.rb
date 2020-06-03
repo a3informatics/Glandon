@@ -5,8 +5,8 @@ module AuditTrailHelpers
     items.each_with_index { |x,i| puts "i=#{i}, item=#{x.to_json}" }
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
     expected = CSV.read(test_file_path(sub_dir, filename)).map {|a| Hash[ keys.zip(a) ]}
+    expect(items.count).to eq(expected.count - 1)
     items.each_with_index do |item, index|
-      #expect(Timestamp.new(item.date_time).to_datetime).to eq(expected[index + 1]["datetime"]) # Timestamps will not match
       expect(item.user).to eq(expected[index + 1]["user"])
       expect(item.owner).to eq(expected[index + 1]["owner"])
       expect(item.identifier).to eq(expected[index + 1]["identifier"])

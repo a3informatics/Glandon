@@ -1,0 +1,54 @@
+<%= javascript_tag 'setPageTitle("Edit: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
+
+<%= stylesheet_link_tag 'homes' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/edit_extension', 'shared/timer', 'unload_v2' %>
+<%= javascript_tag "var showDataUrl = '#{show_data_thesauri_managed_concept_path(@tc, managed_concept: {context_id: @context_id})}',
+                        extensionUrl = '#{extensions_thesauri_managed_concept_path(@tc)}',
+                        searchUrl = '#{search_multiple_thesauri_index_path(thesauri: {filter: "current"})}',
+                        newChildUrl ='#{add_child_thesauri_managed_concept_path(@tc)}',
+                        newChildFromSynUrl ='#{add_children_synonyms_thesauri_managed_concept_path(@tc)}',
+                        destroyChildUrl ='#{thesauri_unmanaged_concept_path("umcid")}',
+                        extensionId = '#{@tc.id}',
+                        is_extended = false,
+                        is_extending = #{@is_extending},
+                        contextId = '#{@context_id}';"%>
+
+<% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
+
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'child', with_edit_tags: true} %>
+<%= render partial: "shared/thesauri/edit_properties_modal", :locals => {modal_id: 'extension', item: @tc} %>
+<%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
+        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", id: "edit-properties-button",
+            icon: "icon-edit", text: "Edit properties", dt_toggle: "", disabled: false } %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: false, target: "_blank" } %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+          <% if @tc.ranked? %>
+            <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#rank-items-modal", id: "edit-ranks-button",
+              icon: "icon-rank", text: "Edit ranks", dt_toggle: "modal", disabled: false } %>
+          <% else %>
+            <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => {item: @tc} %>
+          <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-12 card wide">
+    <%= render partial: "shared/iso_managed/edit_extension_panel" %>
+  </div>
+</div>
+<input type="hidden" id="edit_lock_token" value="<%= @token.id %>">
+<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">

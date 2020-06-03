@@ -109,14 +109,14 @@ module Fuseki
       end
 
       # Define the base URI method. Class level
-      if opts[:base_uri]
+      if opts.key?(:base_uri)
         define_singleton_method :base_uri do
           Uri.new(uri: opts[:base_uri])
         end
       end
 
       # Define the key method. Class level
-      if opts[:key_property]
+      if opts.key?(:key_property)
         define_singleton_method :key_property do
           return opts[:key_property]
         end
@@ -124,35 +124,23 @@ module Fuseki
 
       # Define the cache method
       define_singleton_method :cache? do
-        opts[:cache] ? opts[:cache] : false
-      end
-
-      # Define URI creation method for the class
-      define_singleton_method :create_uri do |parent|
-        result = Uri.new(uri: parent.to_s) 
-        if opts[:uri_unique]
-          result = Uri.new(namespace: base_uri.namespace, fragment: SecureRandom.uuid)
-          #result.replace_fragment(SecureRandom.uuid)
-        elsif opts[:uri_suffix] 
-          result.extend_fragment(opts[:uri_suffix])
-        end
-        result
+        opts.key?(:cache) ? opts[:cache] : false
       end
 
       # Define instance method for creating a URI.
       define_method :create_uri do |parent|
         result = Uri.new(uri: parent.to_s) 
-        if opts[:uri_unique]
+        if opts.key?(:uri_unique)
           if opts[:uri_unique].is_a?(TrueClass)
             result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
           else
             result = Uri.new(namespace: self.class.base_uri.namespace, fragment: Digest::SHA1.hexdigest(self.send(opts[:uri_unique])))
           end
-        elsif opts[:uri_suffix] && opts[:uri_property] 
+        elsif opts.key?(:uri_suffix) && opts.key?(:uri_property)
           result.extend_fragment("#{opts[:uri_suffix]}#{self.send(opts[:uri_property])}")
-        elsif opts[:uri_suffix] 
+        elsif opts.key?(:uri_suffix)
           result.extend_fragment(opts[:uri_suffix])
-        elsif opts[:uri_property] 
+        elsif opts.key?(:uri_property) 
           result.extend_fragment(self.send(opts[:uri_property]))
         end
         result
@@ -177,6 +165,12 @@ module Fuseki
       opts[:delete_exclude] = opts.key?(:delete_exclude)
       opts[:base_type] = ""
       add_to_resources(name, opts)
+
+      if opts[:cardinality] != :one 
+        define_method("#{name}_push") do |value|
+          @properties.property(name.to_sym).set(value)
+        end
+      end
 
       define_method "#{name}_links" do
         generic_links(name)
@@ -242,8 +236,7 @@ module Fuseki
         read_exclude: false, 
         delete_exclude: false 
       }
-  #byebug if options[:base_type].nil?
-      options[:default] = opts[:default] ? opts[:default] : ""
+      options[:default] = opts.key?(:default) ? opts[:default] : default_typed(options[:base_type])
       add_to_resources(name, options)
     end
 
@@ -251,8 +244,9 @@ module Fuseki
     # 
     # @param type [Symbol] the path type
     # @param stack [Array] the stack of klasses processed. Used to prevent circular paths
+    # @param parent_predicate [String] the set of predicates from the parent. Will be prepended to this predicate
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def managed_paths(type, stack=[])
+    def managed_paths(type, stack=[], parent_predicate="")
       top = true if stack.empty?
       result = []
       predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[type]}}
@@ -262,8 +256,9 @@ module Fuseki
         klass = predicate[:model_class]
         next if stack.include?(klass)
         stack.push(klass)
-        children = klass.managed_paths(type, stack)
-        children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
+        predicate_ref = "#{predicate[:predicate].to_ref}"
+        top ? result << "#{predicate_ref}" : result << "#{parent_predicate}/#{predicate_ref}"
+        result += klass.managed_paths(type, stack, top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}")
       end
       result
     end
@@ -282,12 +277,11 @@ module Fuseki
     def add_to_resources(name, opts)
 
       define_method("#{name}=") do |value|
-        instance_variable_set("@#{name}", value)
-        @new_record = true
+        @properties.property(name.to_sym).set_raw(value)
       end
 
       define_method("#{name}") do 
-        instance_variable_get("@#{name}")
+        @properties.property(name.to_sym).get
       end
       
       @resources ||= {}
@@ -318,6 +312,23 @@ module Fuseki
         Fuseki::Base.instance_variable_set(:@type_map, {})
       end
       Fuseki::Base.instance_variable_get(:@type_map)[rdf_type] = self
+    end
+
+    # Set a simple typed value
+    def default_typed(base_type)
+      if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
+        ""
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
+        true
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
+        "".to_time_with_default
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
+        0
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
+        1
+      else
+        ""
+      end
     end
 
   end

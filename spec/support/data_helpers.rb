@@ -1,19 +1,31 @@
+require Rails.root.join('spec/support/triple_store_helpers.rb')
+
 module DataHelpers
+
+  include TripleStoreHelpers
+
+  @@ts = TripleStoreHelpers::TripleStore.new
 
   def schema_files
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
-      "BusinessOperational.ttl", "thesaurus.ttl", "cross_reference.ttl",
-      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl"
+      "business_operational.ttl", "thesaurus.ttl", "annotations.ttl",
+      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl",
+      "thesaurus_extension_one.ttl"
     ]
   end
 
+  def triple_store
+    @@ts
+  end
+  
   def load_files(schema_files, test_files)
     clear_triple_store
     schema_files.each {|f| load_schema_file_into_triple_store(f)}
     test_files.each {|f| load_test_file_into_triple_store(f)}
     test_query # Make sure any loading has finished.
     load_schema
+    IsoRegistrationAuthority.clear_scopes
   end
   
   def load_schema
@@ -27,11 +39,11 @@ module DataHelpers
     i = 0
     begin
       i += 1
-      query_string = "SELECT ?o WHERE {<http://www.assero.co.uk/ISO11179Identification#Namespace> <http://www.w3.org/2000/01/rdf-schema#label> ?o}"
-      triples = Sparql::Query.new.query(query_string, "", []) 
-      raise if triples.results.empty?
-      raise if triples.results.first.column(:o).value != "Namespace"
-      #raise if triples.results.first[:o] != "Namespace"
+      #query_string = "SELECT ?o WHERE {<http://www.assero.co.uk/ISO11179Identification#Namespace> <http://www.w3.org/2000/01/rdf-schema#label> ?o}"
+      #triples = Sparql::Query.new.query(query_string, "", []) 
+      #raise if triples.results.empty?
+      #raise if triples.results.first.column(:o).value != "Namespace"
+      @@ts.check_load
     rescue
       sleep 1
       puts colourize("***** !!!!! DB Check Failed, Attempt #{i} !!!!! *****", "red")
@@ -55,8 +67,9 @@ module DataHelpers
 		#sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
     #  "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
     #  "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
-    sparql_query = "CLEAR DEFAULT"
-  	CRUD.update(sparql_query)
+    #sparql_query = "CLEAR DEFAULT"
+  	#CRUD.update(sparql_query)
+    @@ts.clear    
   end
 
   def load_local_file_into_triple_store(sub_dir, filename)
@@ -237,6 +250,10 @@ module DataHelpers
     CdiscTerm.class_variable_set(:@@cdisc_namespace, nil)
   end
 
+  def clear_stfo_objects
+    Import::SponsorTermFormatOne::STFOThesaurus.class_variable_set(:@@owner_ra, nil)
+  end
+
   def clear_all_edit_locks
     Token.delete_all
   end
@@ -249,8 +266,6 @@ module DataHelpers
     return Rails.root.join "db/load/#{sub_dir}/#{filename}"
   end
   
-private
-
   def set_path(sub_dir, filename)
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end

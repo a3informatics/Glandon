@@ -10,7 +10,7 @@ describe IsoConceptSystem do
     return "models/import/data/base/cs"
   end
 
-  describe "Create Tags" do
+  describe "Baseline Create Tags" do
 
     before :all do
       data_files = []
@@ -22,7 +22,7 @@ describe IsoConceptSystem do
       delete_all_public_test_files
     end
 
-    it "allows a child object to be added" do
+    it "Baseline Tags" do
       cs = IsoConceptSystem.root
       cdisc = cs.add({label: "CDISC", description: "CDISC related tags"})
       sdtm = cdisc.add({label: "SDTM", description: "SDTM related information."})
@@ -44,7 +44,35 @@ describe IsoConceptSystem do
       cdisc.to_sparql(sparql, true)
       cdisc.narrower.each {|x| x.to_sparql(sparql, true)}
       file = sparql.to_file
-      copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems.ttl")
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems.ttl")
+    end
+
+  end
+
+  describe "Migration One" do
+
+    before :all do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "migration 1, add define.xml" do
+      cs = IsoConceptSystem.root
+      cdisc = IsoConceptSystem.path(["CDISC"])
+      define = cdisc.add({label: "Define-XML", description: "Define.xml related information."})
+      
+      sparql = Sparql::Update.new
+      sparql.default_namespace(cs.uri.namespace)
+      define.to_sparql(sparql, true)
+      sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: define.uri})
+      file = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_1.ttl")
     end
 
   end

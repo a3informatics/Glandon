@@ -1,0 +1,832 @@
+--- |
+  Status,Code,Codelist Name,CDISC Submission Value
+  created,C141663,4 Stair Ascend Functional Test Test Code,A4STR1TC
+  created,C141662,4 Stair Ascend Functional Test Test Name,A4STR1TN
+  created,C115388,6 Minute Walk Functional Test Test Code,SIXMW1TC
+  created,C115387,6 Minute Walk Functional Test Test Name,SIXMW1TN
+  created,C141655,AJCC TNM Staging System 7th Edition Clinical Classification Test Code,AJCC1TC
+  created,C141654,AJCC TNM Staging System 7th Edition Clinical Classification Test Name,AJCC1TN
+  created,C135012,AJCC Tumor Grade Response,AJCCGRD
+  created,C124668,ASSIGN Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Code,ASSG01TC
+  created,C124667,ASSIGN Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Name,ASSG01TN
+  created,C147538,ATLAS Clinical Classification Test Code,ATLAS1TC
+  created,C147537,ATLAS Clinical Classification Test Name,ATLAS1TN
+  created,C120985,Acute Physiology and Chronic Health Evaluation II Clinical Classification Test Code,APCH1TC
+  created,C120984,Acute Physiology and Chronic Health Evaluation II Clinical Classification Test Name,APCH1TN
+  created,C132311,Administration Technique Response,ADTNQRS
+  created,C112435,Airway Questionnaire 20 Questionnaire Test Code,AQ01TC
+  created,C112434,Airway Questionnaire 20 Questionnaire Test Name,AQ01TN
+  created,C119062,Alcohol Use Disorder Identification Test-Consumption Questions Questionnaire Test Code,ADTC01TC
+  created,C119061,Alcohol Use Disorder Identification Test-Consumption Questions Questionnaire Test Name,ADTC01TN
+  created,C119060,Alcohol Use Disorder Identification Test: Self-Report Version Questionnaire Test Code,ADT01TC
+  created,C119059,Alcohol Use Disorder Identification Test: Self-Report Version Questionnaire Test Name,ADT01TN
+  created,C117745,Analysis Purpose,ANLPURP
+  created,C117744,Analysis Reason,ANLREAS
+  created,C120521,Anti-Viral Outcome of Treatment,AVOUTTRT
+  created,C125741,Arizona Sexual Experiences Scale - Female Questionnaire Test Code,ASEX01TC
+  created,C125740,Arizona Sexual Experiences Scale - Female Questionnaire Test Name,ASEX01TN
+  created,C125743,Arizona Sexual Experiences Scale - Male Questionnaire Test Code,ASEX02TC
+  created,C125742,Arizona Sexual Experiences Scale - Male Questionnaire Test Name,ASEX02TN
+  created,C142179,Arm Null Reason,ARMNULRS
+  created,C132313,Asthma Findings About Test Code,ASFATSCD
+  created,C132312,Asthma Findings About Test Name,ASFATS
+  created,C124666,Atherosclerotic Cardiovascular Disease 10-Year Risk Estimator Clinical Classification Test Code,ASCVD1TC
+  created,C124665,Atherosclerotic Cardiovascular Disease 10-Year Risk Estimator Clinical Classification Test Name,ASCVD1TN
+  created,C125923,BRIDG Activity Mood,BRDGMOOD
+  created,C135680,Baby Eating Behaviour Questionnaire Concurrent Version Questionnaire Test Code,BEBQ01TC
+  created,C135679,Baby Eating Behaviour Questionnaire Concurrent Version Questionnaire Test Name,BEBQ01TN
+  created,C135682,Baby Eating Behaviour Questionnaire Retrospective Version Questionnaire Test Code,BEBQ02TC
+  created,C135681,Baby Eating Behaviour Questionnaire Retrospective Version Questionnaire Test Name,BEBQ02TN
+  created,C124300,Biospecimen Characteristics Test Code,BSTESTCD
+  created,C124299,Biospecimen Characteristics Test Name,BSTEST
+  created,C124297,Biospecimen Events Dictionary Derived Term,BEDECOD
+  created,C113852,Bladder Control Scale Questionnaire Test Code,BLCS01TC
+  created,C113851,Bladder Control Scale Questionnaire Test Name,BLCS01TN
+  created,C113846,Borg CR10 Scale Questionnaire Test Code,BCR101TC
+  created,C113845,Borg CR10 Scale Questionnaire Test Name,BCR101TN
+  created,C113854,Bowel Control Scale Questionnaire Test Code,BWCS01TC
+  created,C113853,Bowel Control Scale Questionnaire Test Name,BWCS01TN
+  created,C120983,Brief Assessment of Cognition in Schizophrenia Functional Test Test Code,BACS1TC
+  created,C120982,Brief Assessment of Cognition in Schizophrenia Functional Test Test Name,BACS1TN
+  created,C130239,Brooke Upper Extremity Rating Scale Clinical Classification Test Code,BUERS1TC
+  created,C130238,Brooke Upper Extremity Rating Scale Clinical Classification Test Name,BUERS1TN
+  created,C150812,CDAD Findings About Test Code,CDFATSCD
+  created,C150813,CDAD Findings About Test Name,CDFATS
+  created,C124678,CDC Classification System for HIV-Infected Adults and Adolescents Clinical Classification Test Code,CHIVC1TC
+  created,C124677,CDC Classification System for HIV-Infected Adults and Adolescents Clinical Classification Test Name,CHIVC1TN
+  created,C122007,COPD Findings About Test Code,CPFATSCD
+  created,C122006,COPD Findings About Test Name,CPFATS
+  created,C119016,Cardiovascular Findings About Results,CVFARS
+  created,C119015,Cardiovascular Findings About Test Code,CVFATSCD
+  created,C119014,Cardiovascular Findings About Test Name,CVFATS
+  created,C127263,Case Finding,CASEFIND
+  created,C118971,Category of Clinical Classification,CCCAT
+  created,C111109,Category of Device Events,DECAT
+  created,C115304,Category of Functional Test,FTCAT
+  created,C124298,Category of Oncology Response Assessment,ONCRSCAT
+  created,C120989,Child-Pugh Classification Clinical Classification Test Code,CPS01TC
+  created,C120988,Child-Pugh Classification Clinical Classification Test Name,CPS01TN
+  created,C154447,"Children's Depression Rating Scale, Revised Clinical Classification Test Code",CDRS01TC
+  created,C154446,"Children's Depression Rating Scale, Revised Clinical Classification Test Name",CDRS01TN
+  created,C120979,Chronic Respiratory Questionnaire Self-Administered Standardized Format First Administration Version Questionnaire Test Code,CRQ01TC
+  created,C120978,Chronic Respiratory Questionnaire Self-Administered Standardized Format First Administration Version Questionnaire Test Name,CRQ01TN
+  created,C120981,Chronic Respiratory Questionnaire Self-Administered Standardized Format Follow-Up Administration Version Questionnaire Test Code,CRQ02TC
+  created,C120980,Chronic Respiratory Questionnaire Self-Administered Standardized Format Follow-Up Administration Version Questionnaire Test Name,CRQ02TN
+  created,C120529,Chronicity,CHRNCTY
+  created,C119066,Clinical COPD Questionnaire 1 Week Version Questionnaire Test Code,CCQ02TC
+  created,C119065,Clinical COPD Questionnaire 1 Week Version Questionnaire Test Name,CCQ02TN
+  created,C119064,Clinical COPD Questionnaire 24 Hour Version Questionnaire Test Code,CCQ01TC
+  created,C119063,Clinical COPD Questionnaire 24 Hour Version Questionnaire Test Name,CCQ01TN
+  created,C135686,Clinical Global Impression Generic Modification Version Questionnaire Test Code,CGI02TC
+  created,C135685,Clinical Global Impression Generic Modification Version Questionnaire Test Name,CGI02TN
+  created,C135684,Clinical Global Impression Questionnaire Test Code,CGGUY1TC
+  created,C135683,Clinical Global Impression Questionnaire Test Name,CGGUY1TN
+  created,C142191,Clinical Study Attribute Terminology,Clinical Study Attribute Terminology
+  created,C139020,Clinical Trial Attribute Terminology,Clinical Trial Attribute Terminology
+  created,C111336,Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire Test Code,CSS06TC
+  created,C111335,Columbia-Suicide Severity Rating Scale Children's Baseline Questionnaire Test Name,CSS06TN
+  created,C111338,Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire Test Code,CSS07TC
+  created,C111337,Columbia-Suicide Severity Rating Scale Children's Baseline/Screening Questionnaire Test Name,CSS07TN
+  created,C111340,Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire Test Code,CSS08TC
+  created,C111339,Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire Test Name,CSS08TN
+  created,C117989,Columbia-Suicide Severity Rating Scale Lifetime/Recent Version Questionnaire Test Code,CSS11TC
+  created,C117988,Columbia-Suicide Severity Rating Scale Lifetime/Recent Version Questionnaire Test Name,CSS11TN
+  created,C113848,Columbia-Suicide Severity Rating Scale Pediatric/Cognitively Impaired Lifetime/Recent Questionnaire Test Code,CSS10TC
+  created,C113847,Columbia-Suicide Severity Rating Scale Pediatric/Cognitively Impaired Lifetime/Recent Questionnaire Test Name,CSS10TN
+  created,C111342,Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Code,CSS09TC
+  created,C111341,Columbia-Suicide Severity Rating Scale Screening Questionnaire Test Name,CSS09TN
+  created,C132519,Combat Exposure Scale Questionnaire Test Code,CES01TC
+  created,C132518,Combat Exposure Scale Questionnaire Test Name,CES01TN
+  created,C127257,Contact Role for Clinical Study,CONROL
+  created,C150766,Controlled Oral Word Association Test Functional Test Test Code,COWAT1TC
+  created,C150765,Controlled Oral Word Association Test Functional Test Test Name,COWAT1TN
+  created,C119076,Coronary Artery Dissection NHLBI Grade Clinical Classification Test Code,CADG01TC
+  created,C119075,Coronary Artery Dissection NHLBI Grade Clinical Classification Test Name,CADG01TN
+  created,C119018,Coronary Artery Dissection NHLBI Grade Responses,CADGRS
+  created,C119074,Coronary Thrombus TIMI Grade Clinical Classification Test Code,TIMG01TC
+  created,C119073,Coronary Thrombus TIMI Grade Clinical Classification Test Name,TIMG01TN
+  created,C119017,Coronary Thrombus TIMI Grade Responses,CTTIMIRS
+  created,C117987,Craig Handicap Assessment and Reporting Technique - Short Form Interview Version Questionnaire Test Code,CHSF1TC
+  created,C117986,Craig Handicap Assessment and Reporting Technique - Short Form Interview Version Questionnaire Test Name,CHSF1TN
+  created,C119068,Craig Handicap Assessment and Reporting Technique - Short Form Paper Version Questionnaire Test Code,CHSF2TC
+  created,C119067,Craig Handicap Assessment and Reporting Technique - Short Form Paper Version Questionnaire Test Name,CHSF2TN
+  created,C127264,Culture Medium Type,CLTMDTYP
+  created,C141673,Deployment Risk and Resilience Inventory-2 Questionnaire Test Code,DRRI1TC
+  created,C141672,Deployment Risk and Resilience Inventory-2 Questionnaire Test Name,DRRI1TN
+  created,C119070,Dermatology Life Quality Index Questionnaire Test Code,DLQI1TC
+  created,C119069,Dermatology Life Quality Index Questionnaire Test Name,DLQI1TN
+  created,C141661,Descend 4 Stairs Functional Test Test Code,D4STR1TC
+  created,C141660,Descend 4 Stairs Functional Test Test Name,D4STR1TN
+  created,C111110,Device Events Action Taken with Device,DEACNDEV
+  created,C111111,Device Properties Test Code,DOTESTCD
+  created,C111112,Device Properties Test Name,DOTEST
+  created,C112037,Device Tracking and Disposition Event Dictionary Derived Term,DTDECOD
+  created,C129938,Device-In-Use Response,DURS
+  created,C129940,Diabetic Kidney Disease Findings About Test Code,DKFATSCD
+  created,C129939,Diabetic Kidney Disease Findings About Test Name,DKFATS
+  created,C115402,Disability Rating Scale Questionnaire Test Code,DRS01TC
+  created,C115401,Disability Rating Scale Questionnaire Test Name,DRS01TN
+  created,C127268,Disease Presentation Type,DSPRTYP
+  created,C112437,Disease Steps Questionnaire Test Code,DS01TC
+  created,C112436,Disease Steps Questionnaire Test Name,DS01TN
+  created,C120530,Distribution,DSTRBN
+  created,C139018,Duchenne Muscular Dystrophy Findings About Test Code,DMFATSCD
+  created,C139019,Duchenne Muscular Dystrophy Findings About Test Name,DMFATS
+  created,C132316,Ebola Virus Findings About Test Code,EBFATSCD
+  created,C132315,Ebola Virus Findings About Test Name,EBFATS
+  created,C132521,Edinburgh Postnatal Depression Scale Questionnaire Test Code,EPDS01TC
+  created,C132520,Edinburgh Postnatal Depression Scale Questionnaire Test Name,EPDS01TN
+  created,C150768,Emotion Recognition Functional Test Test Code,EMO1TC
+  created,C150767,Emotion Recognition Functional Test Test Name,EMO1TN
+  created,C111108,Employment Status,EMPSTAT
+  created,C127262,Environmental Setting,SETTING
+  created,C128690,Ethnicity As Collected,ETHNICC
+  created,C101817,European Quality of Life Five Dimension Five Level Scale Questionnaire Test Code,EQ5D02TC
+  created,C101818,European Quality of Life Five Dimension Five Level Scale Questionnaire Test Name,EQ5D02TN
+  created,C100136,European Quality of Life Five Dimension Three Level Scale Questionnaire Test Code,EQ5D01TC
+  created,C100135,European Quality of Life Five Dimension Three Level Scale Questionnaire Test Name,EQ5D01TN
+  created,C123653,Exacerbations of Chronic Pulmonary Disease Tool Patient-Reported Outcome Questionnaire Test Code,EXACT1TC
+  created,C123652,Exacerbations of Chronic Pulmonary Disease Tool Patient-Reported Outcome Questionnaire Test Name,EXACT1TN
+  created,C125745,Expanded Disability Rating Scale - Postacute Interview Caregiver Version Questionnaire Test Code,ED1TC
+  created,C125744,Expanded Disability Rating Scale - Postacute Interview Caregiver Version Questionnaire Test Name,ED1TN
+  created,C125747,Expanded Disability Rating Scale - Postacute Interview Survivor Version Questionnaire Test Code,ED2TC
+  created,C125746,Expanded Disability Rating Scale - Postacute Interview Survivor Version Questionnaire Test Name,ED2TN
+  created,C115404,Extended Glasgow Outcome Scale Questionnaire Test Code,GOSE1TC
+  created,C115403,Extended Glasgow Outcome Scale Questionnaire Test Name,GOSE1TN
+  created,C117991,Extrapyramidal Symptom Rating Scale-Abbreviated Clinical Classification Test Code,ESRSA1TC
+  created,C117990,Extrapyramidal Symptom Rating Scale-Abbreviated Clinical Classification Test Name,ESRSA1TN
+  created,C113850,Fatigue Severity Scale Questionnaire Test Code,FSS01TC
+  created,C113849,Fatigue Severity Scale Questionnaire Test Name,FSS01TN
+  created,C124311,Fetal Measurement Test Code,FMTESTCD
+  created,C124312,Fetal Measurement Test Name,FMTEST
+  created,C124310,Fetal Pathology Findings Result,FXFINDRS
+  created,C124313,Fetal Pathology Findings Result Category,FXRESCAT
+  created,C124314,Fetal Pathology Findings Test Code,FXTESTCD
+  created,C124315,Fetal Pathology Findings Test Name,FXTEST
+  created,C124670,Framingham Heart Study Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Code,FCVD1TC
+  created,C124669,Framingham Heart Study Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Name,FCVD1TN
+  created,C111344,Functional Activities Questionnaire Test Code,FAQ01TC
+  created,C111343,Functional Activities Questionnaire Test Name,FAQ01TN
+  created,C111346,Functional Activities Questionnaire-NACC Version Questionnaire Test Code,FAQ02TC
+  created,C111345,Functional Activities Questionnaire-NACC Version Questionnaire Test Name,FAQ02TN
+  created,C150780,Functional Assessment of Cancer Functional Assessment of Cancer Therapy/Gynecologic Oncology Group-Neurotoxicity Version 4 Questionnaire Test Code,FAC057TC
+  created,C150778,Functional Assessment of Cancer Therapy-Biologic Response Modifiers Version 4 Questionnaire Test Code,FAC062TC
+  created,C150777,Functional Assessment of Cancer Therapy-Biologic Response Modifiers Version 4 Questionnaire Test Name,FAC062TN
+  created,C154453,Functional Assessment of Cancer Therapy-Bladder Version 4 Questionnaire Test Code,FAC006TC
+  created,C154452,Functional Assessment of Cancer Therapy-Bladder Version 4 Questionnaire Test Name,FAC006TN
+  created,C147540,Functional Assessment of Cancer Therapy-Bone Marrow Transplant Version 4 Questionnaire Test Code,FAC061TC
+  created,C147539,Functional Assessment of Cancer Therapy-Bone Marrow Transplant Version 4 Questionnaire Test Name,FAC061TN
+  created,C138221,Functional Assessment of Cancer Therapy-Brain Symptom Index Questionnaire Test Code,FAC029TC
+  created,C138220,Functional Assessment of Cancer Therapy-Brain Symptom Index Questionnaire Test Name,FAC029TN
+  created,C129094,Functional Assessment of Cancer Therapy-Breast Version 4 Questionnaire Test Code,FAC005TC
+  created,C129093,Functional Assessment of Cancer Therapy-Breast Version 4 Questionnaire Test Name,FAC005TN
+  created,C150774,Functional Assessment of Cancer Therapy-Colorectal Version 4 Questionnaire Test Code,FAC008TC
+  created,C150773,Functional Assessment of Cancer Therapy-Colorectal Version 4 Questionnaire Test Name,FAC008TN
+  created,C130255,Functional Assessment of Cancer Therapy-Hepatobiliary Version 4 Questionnaire Test Code,FAC015TC
+  created,C130254,Functional Assessment of Cancer Therapy-Hepatobiliary Version 4 Questionnaire Test Name,FAC015TN
+  created,C138223,Functional Assessment of Cancer Therapy-Kidney Symptom Index-15 Questionnaire Test Code,FAC039TC
+  created,C138222,Functional Assessment of Cancer Therapy-Kidney Symptom Index-15 Questionnaire Test Name,FAC039TN
+  created,C150784,Functional Assessment of Cancer Therapy-Kidney Symptom Index-Disease-Related Symptoms Version 4 Questionnaire Test Code,FAC041TC
+  created,C150783,Functional Assessment of Cancer Therapy-Kidney Symptom Index-Disease-Related Symptoms Version 4 Questionnaire Test Name,FAC041TN
+  created,C130253,Functional Assessment of Cancer Therapy-Leukemia Version 4 Questionnaire Test Code,FAC017TC
+  created,C130252,Functional Assessment of Cancer Therapy-Leukemia Version 4 Questionnaire Test Name,FAC017TN
+  created,C138225,Functional Assessment of Cancer Therapy-Lung Symptom Index Questionnaire Test Code,FAC043TC
+  created,C138224,Functional Assessment of Cancer Therapy-Lung Symptom Index Questionnaire Test Name,FAC043TN
+  created,C150782,Functional Assessment of Cancer Therapy-Lung Version 4 Questionnaire Test Code,FAC016TC
+  created,C150781,Functional Assessment of Cancer Therapy-Lung Version 4 Questionnaire Test Name,FAC016TN
+  created,C130257,Functional Assessment of Cancer Therapy-Lymphoma Version 4 Questionnaire Test Code,FAC018TC
+  created,C130256,Functional Assessment of Cancer Therapy-Lymphoma Version 4 Questionnaire Test Name,FAC018TN
+  created,C129096,Functional Assessment of Cancer Therapy-Ovarian Symptom Index Questionnaire Test Code,FAC049TC
+  created,C129095,Functional Assessment of Cancer Therapy-Ovarian Symptom Index Questionnaire Test Name,FAC049TN
+  created,C150776,Functional Assessment of Cancer Therapy-Taxane Version 4 Questionnaire Test Code,FAC063TC
+  created,C150775,Functional Assessment of Cancer Therapy-Taxane Version 4 Questionnaire Test Name,FAC063TN
+  created,C150779,Functional Assessment of Cancer Therapy/Gynecologic Oncology Group-Neurotoxicity Version 4 Questionnaire Test Name,FAC057TN
+  created,C147542,Functional Assessment of Chronic Illness Therapy-Dyspnea 10 Item Short Form Questionnaire Test Code,FAC084TC
+  created,C147541,Functional Assessment of Chronic Illness Therapy-Dyspnea 10 Item Short Form Questionnaire Test Name,FAC084TN
+  created,C154451,Functional Assessment of Chronic Illness Therapy-Dyspnea Scale 33 Item Bank Questionnaire Test Code,FAC100TC
+  created,C154450,Functional Assessment of Chronic Illness Therapy-Dyspnea Scale 33 Item Bank Questionnaire Test Name,FAC100TN
+  created,C147544,Functional Assessment of Chronic Illness Therapy-Fatigue 13-Item Scale Version 4 Questionnaire Test Code,FAC070TC
+  created,C147543,Functional Assessment of Chronic Illness Therapy-Fatigue 13-Item Scale Version 4 Questionnaire Test Name,FAC070TN
+  created,C129088,Functional Assessment of Chronic Illness Therapy-Fatigue Version 4 Questionnaire Test Code,FAC071TC
+  created,C129087,Functional Assessment of Chronic Illness Therapy-Fatigue Version 4 Questionnaire Test Name,FAC071TN
+  created,C112441,Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test Code,FAMS01TC
+  created,C112440,Functional Assessment of Multiple Sclerosis Version 4 Questionnaire Test Name,FAMS01TN
+  created,C128682,Gastrointestinal Test Code,GASTROCD
+  created,C128681,Gastrointestinal Test Name,GASTRO
+  created,C132317,Genetic Region of Interest Type,GENRTYP
+  created,C111114,Genetic Sample Type,GENSMP
+  created,C124682,Glasgow Coma Scale NINDS Version Clinical Classification Test Code,GCS01TC
+  created,C124681,Glasgow Coma Scale NINDS Version Clinical Classification Test Name,GCS01TN
+  created,C117737,Graft Type,GRAFTTYP
+  created,C138213,HAS-BLED Bleeding Risk Score Clinical Classification Test Code,HSB01TC
+  created,C138212,HAS-BLED Bleeding Risk Score Clinical Classification Test Name,HSB01TN
+  created,C130245,Hamilton Depression Rating Scale - 24 Item Clinical Classification Test Code,HAMD3TC
+  created,C130244,Hamilton Depression Rating Scale - 24 Item Clinical Classification Test Name,HAMD3TN
+  created,C130243,Hamilton Depression Rating Scale - 6 Clinician Version Clinical Classification Test Code,HAMD4TC
+  created,C130242,Hamilton Depression Rating Scale - 6 Clinician Version Clinical Classification Test Name,HAMD4TN
+  created,C130259,Hamilton Depression Rating Scale - 6 Self-Report Questionnaire Test Code,HAMDS1TC
+  created,C130258,Hamilton Depression Rating Scale - 6 Self-Report Questionnaire Test Name,HAMDS1TN
+  created,C115390,Hauser Ambulation Index Functional Test Test Code,HAI01TC
+  created,C115389,Hauser Ambulation Index Functional Test Test Name,HAI01TN
+  created,C132523,Health Assessment Questionnaire Disability Index Without Pain Visual Analog Scale Questionnaire Test Code,HAQ02TC
+  created,C132522,Health Assessment Questionnaire Disability Index Without Pain Visual Analog Scale Questionnaire Test Name,HAQ02TN
+  created,C120522,Holter ECG Results,HESTRESC
+  created,C120523,Holter ECG Test Code,HETESTCD
+  created,C120524,Holter ECG Test Name,HETEST
+  created,C120525,Immunogenicity Specimen Assessments Test Code,ISTESTCD
+  created,C120526,Immunogenicity Specimen Assessments Test Name,ISTEST
+  created,C113856,Impact of Visual Impairment Scale Questionnaire Test Code,IVIS01TC
+  created,C113855,Impact of Visual Impairment Scale Questionnaire Test Name,IVIS01TN
+  created,C124317,Implantation Findings Result,ICFINDRS
+  created,C124316,Implantation Findings Result Category,ICRESCAT
+  created,C124318,Implantation Findings Test Code,ICTESTCD
+  created,C124319,Implantation Findings Test Name,ICTEST
+  created,C141665,International Physical Activity Questionnaire (August 2002) Short Last 7 Days Self-Administered Format Questionnaire Test Code,IPAQ04TC
+  created,C141664,International Physical Activity Questionnaire (August 2002) Short Last 7 Days Self-Administered Format Questionnaire Test Name,IPAQ04TN
+  created,C141671,International Physical Activity Questionnaire (August 2002) Short Last 7 Days Telephone Format Questionnaire Test Code,IPAQ01TC
+  created,C141670,International Physical Activity Questionnaire (August 2002) Short Last 7 Days Telephone Format Questionnaire Test Name,IPAQ01TN
+  created,C141669,International Physical Activity Questionnaire (November 2002) Long Last 7 Days Telephone Format Questionnaire Test Code,IPAQ02TC
+  created,C141668,International Physical Activity Questionnaire (November 2002) Long Last 7 Days Telephone Format Questionnaire Test Name,IPAQ02TN
+  created,C141667,International Physical Activity Questionnaire (October 2002) Long Last 7 Days Self-Administered Format Questionnaire Test Code,IPAQ03TC
+  created,C141666,International Physical Activity Questionnaire (October 2002) Long Last 7 Days Self-Administered Format Questionnaire Test Name,IPAQ03TN
+  created,C130247,Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification Test Code,IDSC1TC
+  created,C130246,Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification Test Name,IDSC1TN
+  created,C130261,Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Code,IDSR1TC
+  created,C130260,Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Name,IDSR1TN
+  created,C124684,JFK Coma Recovery Scale-Revised Clinical Classification Test Code,CRSR01TC
+  created,C124683,JFK Coma Recovery Scale-Revised Clinical Classification Test Name,CRSR01TN
+  created,C130251,Kidney Donor Profile Index Clinical Classification Test Code,KDPI01TC
+  created,C130250,Kidney Donor Profile Index Clinical Classification Test Name,KDPI01TN
+  created,C112439,Kurtzke Expanded Disability Status Scale Questionnaire Test Code,EDSS01TC
+  created,C112438,Kurtzke Expanded Disability Status Scale Questionnaire Test Name,EDSS01TN
+  created,C112443,Kurtzke Functional Systems Scores Questionnaire Test Code,KFSS1TC
+  created,C112442,Kurtzke Functional Systems Scores Questionnaire Test Name,KFSS1TN
+  created,C138215,Lansky Play-Performance Status Scale Clinical Classification Test Code,LPPSS1TC
+  created,C138214,Lansky Play-Performance Status Scale Clinical Classification Test Name,LPPSS1TN
+  created,C135690,Life Events Checklist for DSM-5 Standard Version Questionnaire Test Code,LEC01TC
+  created,C135689,Life Events Checklist for DSM-5 Standard Version Questionnaire Test Name,LEC01TN
+  created,C154687,Lung Cancer Findings About Test Code,LUFATSCD
+  created,C154688,Lung Cancer Findings About Test Name,LUFATS
+  created,C132320,Malaria Findings About Test Code,MRFATSCD
+  created,C132319,Malaria Findings About Test Name,MRFATS
+  created,C115406,Mayo-Portland Adaptability Inventory-4 Questionnaire Test Code,MPAI1TC
+  created,C115405,Mayo-Portland Adaptability Inventory-4 Questionnaire Test Name,MPAI1TN
+  created,C124301,Medical History Event Date Type,MHEDTTYP
+  created,C128688,Microbiology Susceptibility Test Code,MSTESTCD
+  created,C128687,Microbiology Susceptibility Test Name,MSTEST
+  created,C120527,Microbiology Test Code,MBTESTCD
+  created,C120528,Microbiology Test Name,MBTEST
+  created,C125922,Microscopic Findings Test Details,MIFTSDTL
+  created,C150770,Mini-Mental State Examination 2 Standard Version Functional Test Test Code,MMS2TC
+  created,C150769,Mini-Mental State Examination 2 Standard Version Functional Test Test Name,MMS2TN
+  created,C100142,Mini-Mental State Examination Functional Test Test Code,MMS1TC
+  created,C100141,Mini-Mental State Examination Functional Test Test Name,MMS1TN
+  created,C127265,Mode of Disease Transmission,MODTRN
+  created,C120991,Model for End Stage Liver Disease Clinical Classification Test Code,MELD01TC
+  created,C120990,Model for End Stage Liver Disease Clinical Classification Test Name,MELD01TN
+  created,C113858,Modified Fatigue Impact Scale Questionnaire Test Code,MFIS01TC
+  created,C113857,Modified Fatigue Impact Scale Questionnaire Test Name,MFIS01TN
+  created,C112445,Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Code,MHIS01TC
+  created,C112444,Modified Hachinski Ischemic Scale-NACC Version Questionnaire Test Name,MHIS01TN
+  created,C111348,Modified Rankin Scale Questionnaire Test Code,MRS01TC
+  created,C111347,Modified Rankin Scale Questionnaire Test Name,MRS01TN
+  created,C117741,Multiple Sclerosis Findings About Test Code,MSFATSCD
+  created,C117740,Multiple Sclerosis Findings About Test Name,MSFATS
+  created,C113860,Multiple Sclerosis Quality of Life-54 Instrument Questionnaire Test Code,MSQL1TC
+  created,C113859,Multiple Sclerosis Quality of Life-54 Instrument Questionnaire Test Name,MSQL1TN
+  created,C127269,Musculoskeletal System Finding Test Code,MUSCTSCD
+  created,C127270,Musculoskeletal System Finding Test Name,MUSCTS
+  created,C129092,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Bladder Symptom Index-18 Version 2 Questionnaire Test Code,FAC028TC
+  created,C129091,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Bladder Symptom Index-18 Version 2 Questionnaire Test Name,FAC028TN
+  created,C150786,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Brain Symptom Index-24 Version 2 Questionnaire Test Code,FAC030TC
+  created,C150785,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Brain Symptom Index-24 Version 2 Questionnaire Test Name,FAC030TN
+  created,C150788,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Head & Neck Symptom Index-22 Version 2 Questionnaire Test Code,FAC036TC
+  created,C150787,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Head & Neck Symptom Index-22 Version 2 Questionnaire Test Name,FAC036TN
+  created,C129090,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Kidney Symptom Index-19 Version 2 Questionnaire Test Code,FAC042TC
+  created,C129089,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Kidney Symptom Index-19 Version 2 Questionnaire Test Name,FAC042TN
+  created,C129098,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Ovarian Symptom Index-18 Version 2 Questionnaire Test Code,FAC050TC
+  created,C129097,National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Ovarian Symptom Index-18 Version 2 Questionnaire Test Name,FAC050TN
+  created,C112453,National Eye Institute Visual Functioning Questionnaire - 25 Version 2000 Interviewer-Administered Format Questionnaire Test Code,VFQ1TC
+  created,C112452,National Eye Institute Visual Functioning Questionnaire - 25 Version 2000 Interviewer-Administered Format Questionnaire Test Name,VFQ1TN
+  created,C112455,National Eye Institute Visual Functioning Questionnaire - 25 Version 2000 Self-Administered Format Questionnaire Test Code,VFQ2TC
+  created,C112454,National Eye Institute Visual Functioning Questionnaire - 25 Version 2000 Self-Administered Format Questionnaire Test Name,VFQ2TN
+  created,C120993,Negative Symptom Assessment-16 Clinical Classification Test Code,NSA01TC
+  created,C120992,Negative Symptom Assessment-16 Clinical Classification Test Name,NSA01TN
+  created,C116104,Nervous System Findings Test Code,NVTESTCD
+  created,C116103,Nervous System Findings Test Name,NVTEST
+  created,C115392,Nine-Hole Peg Test Functional Test Test Code,NHPT01TC
+  created,C115391,Nine-Hole Peg Test Functional Test Test Name,NHPT01TN
+  created,C120531,Non-Neoplastic Finding Type,NONNEO
+  created,C154455,Non-Small Cell Lung Cancer Symptom Assessment Questionnaire v1.0 Questionnaire Test Code,NSCLC1TC
+  created,C154454,Non-Small Cell Lung Cancer Symptom Assessment Questionnaire v1.0 Questionnaire Test Name,NSCLC1TN
+  created,C124320,Nonclinical DART Sex,NCDSEX
+  created,C124321,Nonclinical DART Trial Phases,NCDPHASE
+  created,C132517,North Star Ambulatory Assessment Clinical Classification Test Code,NSAA1TC
+  created,C132516,North Star Ambulatory Assessment Clinical Classification Test Name,NSAA1TN
+  created,C150810,Null Flavor Reason,NULLFLAV
+  created,C154685,Nutrition Findings About Test Code,NTFATSCD
+  created,C154686,Nutrition Findings About Test Name,NTFATS
+  created,C127258,Observational Study Biospecimen Retention,OBSSBSR
+  created,C127259,Observational Study Model,OBSSMO
+  created,C127260,Observational Study Sampling Method,OBSSSM
+  created,C127261,Observational Study Time Perspective,OBSSTP
+  created,C117743,Ophthalmic Exam Test Code,OETESTCD
+  created,C117742,Ophthalmic Exam Test Name,OETEST
+  created,C119013,Ophthalmic Focus of Study Specific Interest,OEFOCUS
+  created,C150811,Other Disposition Event Response,OTHEVENT
+  created,C128685,PK Units of Measure - Dose mg,PKUDMG
+  created,C128686,PK Units of Measure - Dose ug,PKUDUG
+  created,C128684,PK Units of Measure - Weight g,PKUWG
+  created,C128683,PK Units of Measure - Weight kg,PKUWKG
+  created,C115394,Paced Auditory Serial Addition Test Functional Test Test Code,PASAT1TC
+  created,C115393,Paced Auditory Serial Addition Test Functional Test Test Name,PASAT1TN
+  created,C150772,Paced Tapping Functional Test Test Code,PTAP1TC
+  created,C150771,Paced Tapping Functional Test Test Name,PTAP1TN
+  created,C112447,Patient Determined Disease Steps Questionnaire Test Code,PDDS01TC
+  created,C112446,Patient Determined Disease Steps Questionnaire Test Name,PDDS01TN
+  created,C135688,Patient Global Impression Generic Modification Version Questionnaire Test Code,PGI01TC
+  created,C135687,Patient Global Impression Generic Modification Version Questionnaire Test Name,PGI01TN
+  created,C125749,Patient Health Questionnaire Screener Version Questionnaire Test Code,PHQ03TC
+  created,C125748,Patient Health Questionnaire Screener Version Questionnaire Test Name,PHQ03TN
+  created,C147546,Pediatric Functional Assessment of Chronic Illness Therapy-Fatigue Questionnaire Test Code,FAC099TC
+  created,C147545,Pediatric Functional Assessment of Chronic Illness Therapy-Fatigue Questionnaire Test Name,FAC099TN
+  created,C135696,"Pediatric Outcomes Data Collection Instrument, Adolescent Parent-Reported Version Questionnaire Test Code",PODCI2TC
+  created,C135695,"Pediatric Outcomes Data Collection Instrument, Adolescent Parent-Reported Version Questionnaire Test Name",PODCI2TN
+  created,C135698,"Pediatric Outcomes Data Collection Instrument, Adolescent Self-Reported Version Questionnaire Test Code",PODCI3TC
+  created,C135697,"Pediatric Outcomes Data Collection Instrument, Adolescent Self-Reported Version Questionnaire Test Name",PODCI3TN
+  created,C135694,"Pediatric Outcomes Data Collection Instrument, Pediatric Parent-Reported Version Questionnaire Test Code",PODCI1TC
+  created,C135693,"Pediatric Outcomes Data Collection Instrument, Pediatric Parent-Reported Version Questionnaire Test Name",PODCI1TN
+  created,C138231,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Parent Report Questionnaire Test Code,PQL15TC
+  created,C138230,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Parent Report Questionnaire Test Name,PQL15TN
+  created,C138227,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Questionnaire Test Code,PQL14TC
+  created,C138226,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Child Questionnaire Test Name,PQL14TN
+  created,C138233,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Parent Report Questionnaire Test Code,PQL13TC
+  created,C138232,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Parent Report Questionnaire Test Name,PQL13TN
+  created,C138239,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Questionnaire Test Code,PQL12TC
+  created,C138238,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Teen Questionnaire Test Name,PQL12TN
+  created,C138229,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Toddler Parent Report Questionnaire Test Code,PQL18TC
+  created,C138228,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Toddler Parent Report Questionnaire Test Name,PQL18TN
+  created,C138235,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Parent Report Questionnaire Test Code,PQL11TC
+  created,C138234,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Parent Report Questionnaire Test Name,PQL11TN
+  created,C138241,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Questionnaire Test Code,PQL10TC
+  created,C138240,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Adult Questionnaire Test Name,PQL10TN
+  created,C138237,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Parent Report Questionnaire Test Code,PQL17TC
+  created,C138236,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Parent Report Questionnaire Test Name,PQL17TN
+  created,C138243,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Questionnaire Test Code,PQL16TC
+  created,C138242,Pediatric Quality of Life Neuromuscular Module Acute Version 3 Young Child Questionnaire Test Name,PQL16TN
+  created,C138249,Pediatric Quality of Life Neuromuscular Module Version 3 Child Parent Report Questionnaire Test Code,PQL06TC
+  created,C138248,Pediatric Quality of Life Neuromuscular Module Version 3 Child Parent Report Questionnaire Test Name,PQL06TN
+  created,C138245,Pediatric Quality of Life Neuromuscular Module Version 3 Child Questionnaire Test Code,PQL05TC
+  created,C138244,Pediatric Quality of Life Neuromuscular Module Version 3 Child Questionnaire Test Name,PQL05TN
+  created,C138251,Pediatric Quality of Life Neuromuscular Module Version 3 Teen Parent Report Questionnaire Test Code,PQL04TC
+  created,C138250,Pediatric Quality of Life Neuromuscular Module Version 3 Teen Parent Report Questionnaire Test Name,PQL04TN
+  created,C138257,Pediatric Quality of Life Neuromuscular Module Version 3 Teen Questionnaire Test Code,PQL03TC
+  created,C138256,Pediatric Quality of Life Neuromuscular Module Version 3 Teen Questionnaire Test Name,PQL03TN
+  created,C138247,Pediatric Quality of Life Neuromuscular Module Version 3 Toddler Parent Report Questionnaire Test Code,PQL09TC
+  created,C138246,Pediatric Quality of Life Neuromuscular Module Version 3 Toddler Parent Report Questionnaire Test Name,PQL09TN
+  created,C138253,Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Parent Report Questionnaire Test Code,PQL02TC
+  created,C138252,Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Parent Report Questionnaire Test Name,PQL02TN
+  created,C138259,Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Questionnaire Test Code,PQL01TC
+  created,C138258,Pediatric Quality of Life Neuromuscular Module Version 3 Young Adult Questionnaire Test Name,PQL01TN
+  created,C138255,Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Parent Report Questionnaire Test Code,PQL08TC
+  created,C138254,Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Parent Report Questionnaire Test Name,PQL08TN
+  created,C138261,Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Questionnaire Test Code,PQL07TC
+  created,C138260,Pediatric Quality of Life Neuromuscular Module Version 3 Young Child Questionnaire Test Name,PQL07TN
+  created,C138217,Performance of the Upper Limb Module for DMD Version 1.2 Functional Test Test Code,PUL01TC
+  created,C138216,Performance of the Upper Limb Module for DMD Version 1.2 Functional Test Test Name,PUL01TN
+  created,C138219,Performance of the Upper Limb Module for DMD Version 2.0 Functional Test Test Code,PUL02TC
+  created,C138218,Performance of the Upper Limb Module for DMD Version 2.0 Functional Test Test Name,PUL02TN
+  created,C114119,Pharmacogenomics Biomarker Medical Statement,PBSTMT
+  created,C116106,Pharmacogenomics Findings Test Code,PFTESTCD
+  created,C116105,Pharmacogenomics Findings Test Name,PFTEST
+  created,C135010,Pharmacogenomics/Genetics Methods and Supporting Information Test Code,PGTSTCD
+  created,C135011,Pharmacogenomics/Genetics Methods and Supporting Information Test Name,PGTST
+  created,C132308,Physical Address Attribute Terminology,Physical Address Attribute Terminology
+  created,C154684,Planned Pharmacologic Target Mode of Action Response,PPTMDARS
+  created,C124686,Positive and Negative Syndrome Scale Clinical Classification Test Code,PANSS1TC
+  created,C124685,Positive and Negative Syndrome Scale Clinical Classification Test Name,PANSS1TN
+  created,C124323,Pregnancy Findings Result,PYFINDRS
+  created,C124322,Pregnancy Findings Result Category,PYRESCAT
+  created,C124324,Pregnancy Findings Test Code,PYTESTCD
+  created,C124325,Pregnancy Findings Test Name,PYTEST
+  created,C154681,Protocol Contact Role Response,Protocol Contact Role Response
+  created,C132310,Protocol Entity Terminology,Protocol Entity Terminology
+  created,C114118,Protocol Milestone,PROTMLST
+  created,C135678,Psoriasis Area and Severity Index Clinical Classification Test Code,PASI01TC
+  created,C135677,Psoriasis Area and Severity Index Clinical Classification Test Name,PASI01TN
+  created,C130267,Quality Of Life Enjoyment And Satisfaction Questionnaire - Short Form Test Code,QLES2TC
+  created,C130266,Quality Of Life Enjoyment And Satisfaction Questionnaire - Short Form Test Name,QLES2TN
+  created,C130265,Quality Of Life Enjoyment And Satisfaction Questionnaire Test Code,QLES1TC
+  created,C130264,Quality Of Life Enjoyment And Satisfaction Questionnaire Test Name,QLES1TN
+  created,C130249,Quick Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification Test Code,QIDSC1TC
+  created,C130248,Quick Inventory of Depressive Symptomatology Clinician-Rated Version Clinical Classification Test Name,QIDSC1TN
+  created,C130263,Quick Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Code,QIDSR1TC
+  created,C130262,Quick Inventory of Depressive Symptomatology Self-Report Version Questionnaire Test Name,QIDSR1TN
+  created,C113862,RAND 36-Item Health Survey 1.0 Questionnaire Test Code,R3601TC
+  created,C113861,RAND 36-Item Health Survey 1.0 Questionnaire Test Name,R3601TN
+  created,C135700,RAND Social Support Survey Instrument Questionnaire Test Code,RSSS01TC
+  created,C135699,RAND Social Support Survey Instrument Questionnaire Test Name,RSSS01TN
+  created,C128689,Race As Collected,RACEC
+  created,C147069,Randomization Type Response,Randomization Type Response
+  created,C111106,Respiratory Test Code,RETESTCD
+  created,C111107,Respiratory Test Name,RETEST
+  created,C123655,Rey Auditory Verbal Learning Test Functional Test Test Code,AVL02TC
+  created,C123654,Rey Auditory Verbal Learning Test Functional Test Test Name,AVL02TN
+  created,C124672,Reynolds Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Code,RCVD01TC
+  created,C124671,Reynolds Cardiovascular Disease 10-Year Risk Score Clinical Classification Test Name,RCVD01TN
+  created,C141659,Rising From Floor Functional Test Test Code,RISEF1TC
+  created,C141658,Rising From Floor Functional Test Test Name,RISEF1TN
+  created,C119072,Rivermead Post Concussion Symptoms Questionnaire Questionnaire Test Code,RPQ01TC
+  created,C119071,Rivermead Post Concussion Symptoms Questionnaire Questionnaire Test Name,RPQ01TN
+  created,C116108,SDTM Death Diagnosis and Details Test Code,DTHDXCD
+  created,C116107,SDTM Death Diagnosis and Details Test Name,DTHDX
+  created,C132263,SDTM Microscopic Findings Test Code,MITSCD
+  created,C132262,SDTM Microscopic Findings Test Name,MITS
+  created,C116111,SDTM Species,SPCIES
+  created,C120532,SEND Cardiovascular Test Code,SCVTSTCD
+  created,C120533,SEND Cardiovascular Test Name,SCVTST
+  created,C111113,SEND Domain Abbreviation,SDOMAIN
+  created,C120534,SEND Respiratory Test Code,SRETSTCD
+  created,C120535,SEND Respiratory Test Name,SRETST
+  created,C115408,Satisfaction With Life Scale Questionnaire Test Code,SWLS01TC
+  created,C115407,Satisfaction With Life Scale Questionnaire Test Name,SWLS01TN
+  created,C124302,Schizophrenia Findings About Test Code,SZFATSCD
+  created,C124303,Schizophrenia Findings About Test Name,SZFATS
+  created,C111350,Sheehan Disability Scale Questionnaire Test Code,SDS01TC
+  created,C111349,Sheehan Disability Scale Questionnaire Test Name,SDS01TN
+  created,C112024,Skin Response Test Code,SRTESTCD
+  created,C112023,Skin Response Test Name,SRTEST
+  created,C132314,Specimen Collection Method,CLMETH
+  created,C112449,St. George's Respiratory Questionnaire Past 3 Months Version Questionnaire Test Code,SGRQ01TC
+  created,C112448,St. George's Respiratory Questionnaire Past 3 Months Version Questionnaire Test Name,SGRQ01TN
+  created,C112451,St. George's Respiratory Questionnaire Past 4 Weeks Version Questionnaire Test Code,SGRQ02TC
+  created,C112450,St. George's Respiratory Questionnaire Past 4 Weeks Version Questionnaire Test Name,SGRQ02TN
+  created,C119080,Stent Thrombosis Coronary ARC Grade Clinical Classification Test Code,STCG01TC
+  created,C119079,Stent Thrombosis Coronary ARC Grade Clinical Classification Test Name,STCG01TN
+  created,C119020,"Stent Thrombosis, Coronary ARC Grade Responses",STCARCRS
+  created,C119019,"Stent Thrombosis, Coronary, ARC Timing Responses",STCTIMRS
+  created,C154682,Study Contact Information Attribute Terminology,Study Contact Information Attribute Terminology
+  created,C147066,Study Design Attribute Terminology,Study Design Attribute Terminology
+  created,C132309,Study Protocol Attribute Terminology,Study Protocol Attribute Terminology
+  created,C147067,Study Purpose Response,Study Purpose Response
+  created,C147068,Subject Allocation Response,Subject Allocation Response
+  created,C124304,Subject Status Response,SSTATRS
+  created,C124305,Subject Status Test Code,SSTESTCD
+  created,C124306,Subject Status Test Name,SSTEST
+  created,C124296,Subject Trial Status,SBJTSTAT
+  created,C150790,Suicidal Ideation Questionnaire Test Code,SIQ01TC
+  created,C150789,Suicidal Ideation Questionnaire Test Name,SIQ01TN
+  created,C150792,Suicidal Ideation Questionnaire-JR Questionnaire Test Code,SIQ02TC
+  created,C150791,Suicidal Ideation Questionnaire-JR Questionnaire Test Name,SIQ02TN
+  created,C115396,Symbol Digit Modalities Test Functional Test Test Code,SDMT01TC
+  created,C115395,Symbol Digit Modalities Test Functional Test Test Name,SDMT01TN
+  created,C154457,Symptoms of Major Depressive Disorder Scale v1.0 Questionnaire Test Code,SMDDS1TC
+  created,C154456,Symptoms of Major Depressive Disorder Scale v1.0 Questionnaire Test Name,SMDDS1TN
+  created,C124662,Tanner Scale Boy Clinical Classification Test Code,TANN02TC
+  created,C124661,Tanner Scale Boy Clinical Classification Test Name,TANN02TN
+  created,C124664,Tanner Scale Girl Clinical Classification Test Code,TANN01TC
+  created,C124663,Tanner Scale Girl Clinical Classification Test Name,TANN01TN
+  created,C141657,Ten Meter Walk/Run Functional Test Test Code,TENMW1TC
+  created,C141656,Ten Meter Walk/Run Functional Test Test Name,TENMW1TN
+  created,C120987,"The Body-Mass Index, Airflow Obstruction, Dyspnea, and Exercise Capacity Index Clinical Classification Test Code",BODE01TC
+  created,C120986,"The Body-Mass Index, Airflow Obstruction, Dyspnea, and Exercise Capacity Index Clinical Classification Test Name",BODE01TN
+  created,C127350,The Expanded Prostate Cancer Index Composite Short Form Questionnaire Test Code,EPIC1TC
+  created,C127349,The Expanded Prostate Cancer Index Composite Short Form Questionnaire Test Name,EPIC1TN
+  created,C127352,The Expanded Prostate Cancer Index Composite for Clinical Practice Questionnaire Test Code,EPIC2TC
+  created,C127351,The Expanded Prostate Cancer Index Composite for Clinical Practice Questionnaire Test Name,EPIC2TN
+  created,C127354,The Functional Assessment of Cancer Therapy-General Version 4 Questionnaire Test Code,FAC001TC
+  created,C127353,The Functional Assessment of Cancer Therapy-General Version 4 Questionnaire Test Name,FAC001TN
+  created,C127358,The Functional Assessment of Cancer Therapy-Prostate Version 4 Questionnaire Test Code,FAC023TC
+  created,C127357,The Functional Assessment of Cancer Therapy-Prostate Version 4 Questionnaire Test Name,FAC023TN
+  created,C127356,The National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Prostate Symptom Index 17 Version 2 Questionnaire Test Code,FAC052TC
+  created,C127355,The National Comprehensive Cancer Network/Functional Assessment of Cancer Therapy-Prostate Symptom Index 17 Version 2 Questionnaire Test Name,FAC052TN
+  created,C135692,The PTSD Checklist for DSM-5 Questionnaire Test Code,PCL01TC
+  created,C135691,The PTSD Checklist for DSM-5 Questionnaire Test Name,PCL01TN
+  created,C127360,The Prostate Cancer Specific Quality of Life Instrument Questionnaire Test Code,PROS01TC
+  created,C127359,The Prostate Cancer Specific Quality of Life Instrument Questionnaire Test Name,PROS01TN
+  created,C115398,Timed 25-Foot Walk Test Functional Test Test Code,T25FW1TC
+  created,C115397,Timed 25-Foot Walk Test Functional Test Test Name,T25FW1TN
+  created,C115400,Timed Up and Go Test Functional Test Test Code,TUG01TC
+  created,C115399,Timed Up and Go Test Functional Test Test Name,TUG01TN
+  created,C124688,Trail Making Test Functional Test Test Code,TMT01TC
+  created,C124687,Trail Making Test Functional Test Test Name,TMT01TN
+  created,C147548,Trauma Symptom Checklist for Children Questionnaire Test Code,TSCC01TC
+  created,C147547,Trauma Symptom Checklist for Children Questionnaire Test Name,TSCC01TN
+  created,C147550,Trauma Symptom Checklist for Young Children Questionnaire Test Code,TSCYC1TC
+  created,C147549,Trauma Symptom Checklist for Young Children Questionnaire Test Name,TSCYC1TN
+  created,C124307,Treatment Intent,TRTINTNT
+  created,C132525,Treatment Satisfaction Questionnaire for Medication Version 1.4 Questionnaire Test Code,TSQM01TC
+  created,C132524,Treatment Satisfaction Questionnaire for Medication Version 1.4 Questionnaire Test Name,TSQM01TN
+  created,C124308,Treatment Setting,TRTSET
+  created,C127266,Tuberculosis Findings About Test Code,TBFATSCD
+  created,C127267,Tuberculosis Findings About Test Name,TBFATS
+  created,C123650,Tumor or Lesion Identification Test Results,TUIDRS
+  created,C124309,Tumor or Lesion Properties Test Result,TRPROPRS
+  created,C154449,Unified Huntington's Disease Rating Scale '99 Clinical Classification Test Code,UHDR1TC
+  created,C154448,Unified Huntington's Disease Rating Scale '99 Clinical Classification Test Name,UHDR1TN
+  created,C129942,Urinary System Test Code,URNSTSCD
+  created,C129941,Urinary System Test Name,URNSTS
+  created,C142187,Vaccines Findings About Test Code,VNFATSCD
+  created,C142189,Vaccines Findings About Test Name,VNFATS
+  created,C141653,Veterans Administration Lung Study Group Clinical Classification Test Code,VALG01TC
+  created,C141652,Veterans Administration Lung Study Group Clinical Classification Test Name,VALG01TN
+  created,C130241,Vignos Lower Extremity Rating Scale Clinical Classification Test Code,VLERS1TC
+  created,C130240,Vignos Lower Extremity Rating Scale Clinical Classification Test Name,VLERS1TN
+  created,C124674,WHO Clinical Staging of HIV/AIDS for Adults and Adolescents Clinical Classification Test Code,WHIVS1TC
+  created,C124673,WHO Clinical Staging of HIV/AIDS for Adults and Adolescents Clinical Classification Test Name,WHIVS1TN
+  created,C124676,WHO Clinical Staging of HIV/AIDS for Children Clinical Classification Test Code,WHIVS2TC
+  created,C124675,WHO Clinical Staging of HIV/AIDS for Children Clinical Classification Test Name,WHIVS2TN
+  created,C117746,West Haven Hepatic Encephalopathy Grade,HEPENCGR
+  created,C124680,West Haven Hepatic Encephalopathy Grade Clinical Classification Test Code,WHEG01TC
+  created,C124679,West Haven Hepatic Encephalopathy Grade Clinical Classification Test Name,WHEG01TN
+  created,C132321,Within Normal Limits Results,NORMRS
+  created,C130281,World Health Organization Disability Assessment Schedule 2.0 - 12 + 24-Item Interviewer Questionnaire Test Code,WD4TC
+  created,C130280,World Health Organization Disability Assessment Schedule 2.0 - 12 + 24-Item Interviewer Questionnaire Test Name,WD4TN
+  created,C130275,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Interviewer Questionnaire Test Code,WD1TC
+  created,C130274,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Interviewer Questionnaire Test Name,WD1TN
+  created,C130277,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Proxy Questionnaire Test Code,WD2TC
+  created,C130276,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Proxy Questionnaire Test Name,WD2TN
+  created,C130279,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Self Questionnaire Test Code,WD3TC
+  created,C130278,World Health Organization Disability Assessment Schedule 2.0 - 12-Item Self Questionnaire Test Name,WD3TN
+  created,C130269,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Interviewer Questionnaire Test Code,WD5TC
+  created,C130268,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Interviewer Questionnaire Test Name,WD5TN
+  created,C130271,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Proxy Questionnaire Test Code,WD6TC
+  created,C130270,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Proxy Questionnaire Test Name,WD6TN
+  created,C130273,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Self Questionnaire Test Code,WD7TC
+  created,C130272,World Health Organization Disability Assessment Schedule 2.0 - 36-Item Self Questionnaire Test Name,WD7TN
+  updated,C101807,ADNI AVLT Test Name,AVLT TEST
+  updated,C101808,ADNI AVLT Test Code,AVLT TESTCD
+  updated,C101805,Abnormal Involuntary Movement Scale Test Name,AIMS TEST
+  updated,C101806,Abnormal Involuntary Movement Scale Test Code,AIMS TESTCD
+  updated,C66767,Action Taken with Study Treatment,ACN
+  updated,C101865,Acute Coronary Syndrome Presentation Category,ACSPCAT
+  updated,C66781,Age Unit,AGEU
+  updated,C100132,Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Code,ADAS-Cog CDISC Version TESTCD
+  updated,C100131,Alzheimer's Disease Assessment Scale - Cognitive CDISC Version Test Name,ADAS-Cog CDISC Version TEST
+  updated,C106651,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory MCI Version Questionnaire Test Code,ADCS-ADL MCI TESTCD
+  updated,C106650,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory MCI Version Questionnaire Test Name,ADCS-ADL MCI TEST
+  updated,C105140,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory Questionnaire Test Code,ADCS-ADL TESTCD
+  updated,C105139,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory Questionnaire Test Name,ADCS-ADL TEST
+  updated,C106653,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory Severe Dementia Version Questionnaire Test Code,ADCS-ADL Severe Dementia TESTCD
+  updated,C106652,Alzheimer's Disease Cooperative Study-Activities of Daily Living Inventory Severe Dementia Version Questionnaire Test Name,ADCS-ADL Severe Dementia TEST
+  updated,C103459,Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Code,ADCS-CGIC TESTCD
+  updated,C103458,Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Name,ADCS-CGIC TEST
+  updated,C74456,Anatomical Location,LOC
+  updated,C101809,Barnes Akathisia Rating Scale Test Name,BARS TEST
+  updated,C101810,Barnes Akathisia Rating Scale Test Code,BARS TESTCD
+  updated,C106655,Baseline Dyspnea Index Questionnaire Test Code,BDI TESTCD
+  updated,C106654,Baseline Dyspnea Index Questionnaire Test Name,BDI TEST
+  updated,C88026,Body System,BODSYS
+  updated,C89960,Body Weight Gain Test Code,BGTESTCD
+  updated,C89959,Body Weight Gain Test Name,BGTEST
+  updated,C89962,Body Weight Test Code,BWTESTCD
+  updated,C89961,Body Weight Test Name,BWTEST
+  updated,C100162,Brief Pain Inventory Test Code,BPI TESTCD
+  updated,C100161,Brief Pain Inventory Test Name,BPI TEST
+  updated,C100164,Brief Pain Inventory Short Form Test Code,BPI Short Form TESTCD
+  updated,C100163,Brief Pain Inventory Short Form Test Name,BPI Short Form TEST
+  updated,C100134,Brief Psychiatric Rating Scale-A Test Code,BPRS-A TESTCD
+  updated,C100133,Brief Psychiatric Rating Scale-A Test Name,BPRS-A TEST
+  updated,C101859,Cardiac Procedure Indication,CVPRCIND
+  updated,C101847,Cardiovascular Test Code,CVEXAMCD
+  updated,C101846,Cardiovascular Test Name,CVEXAM
+  updated,C89963,Category for Clinical Observation,CLCAT
+  updated,C74558,Category for Disposition Event,DSCAT
+  updated,C100129,Questionnaire Category,QSCAT
+  updated,C101811,Clinical Dementia Rating Test Name,CDR TEST
+  updated,C101812,Clinical Dementia Rating Test Code,CDR TESTCD
+  updated,C101813,Clinical Opiate Withdrawal Scale Test Name,COWS TEST
+  updated,C101814,Clinical Opiate Withdrawal Scale Test Code,COWS TESTCD
+  updated,C106659,Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire Test Code,C-SSRS Already Enrolled Subjects TESTCD
+  updated,C106658,Columbia-Suicide Severity Rating Scale Already Enrolled Subjects Questionnaire Test Name,C-SSRS Already Enrolled Subjects TEST
+  updated,C100168,Columbia-Suicidality Severity Rating Scale Baseline Test Code,C-SSRS Baseline TESTCD
+  updated,C100167,Columbia-Suicidality Severity Rating Scale Baseline Test Name,C-SSRS Baseline TEST
+  updated,C105132,Columbia-Suicidality Severity Rating Scale Baseline/Screening Version Phase 1 Study Questionnaire Test Code,C-SSRS Baseline/Screening Version Phase 1 Study TESTCD
+  updated,C105131,Columbia-Suicidality Severity Rating Scale Baseline/Screening Version Phase 1 Study Questionnaire Test Name,C-SSRS Baseline/Screening Version Phase 1 Study TEST
+  updated,C106661,Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire Test Code,C-SSRS Baseline/Screening Version TESTCD
+  updated,C106660,Columbia-Suicide Severity Rating Scale Baseline/Screening Version Questionnaire Test Name,C-SSRS Baseline/Screening Version TEST
+  updated,C103461,Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire Test Code,C-SSRS Since Last Visit TESTCD
+  updated,C103460,Columbia-Suicidality Severity Rating Scale Since Last Visit Questionnaire Test Name,C-SSRS Since Last Visit TEST
+  updated,C66727,Completion/Reason for Non-Completion,NCOMPLT
+  updated,C78418,Concomitant Medication Dose Form,CMDOSFRM
+  updated,C78417,Concomitant Medication Dose Units,CMDOSU
+  updated,C78419,Concomitant Medication Dosing Frequency per Interval,CMDOSFRQ
+  updated,C78420,Concomitant Medication Route of Administration,CMROUTE
+  updated,C101838,Consensus Cardiac Classification System Test Code,CCRCLSCD
+  updated,C101837,Consensus Cardiac Classification System Test Name,CCRCLS
+  updated,C66785,Control Type,TCNTRL
+  updated,C101843,Coronary Artery Disease Presentation,CADPRSN
+  updated,C101860,Coronary Artery Dominance,CARTDOM
+  updated,C101850,Coronary Vessel Disease Extent,CVSLDEXT
+  updated,C66786,Country,COUNTRY
+  updated,C100158,Current Opioid Misuse Measure Test Code,COMM TESTCD
+  updated,C100157,Current Opioid Misuse Measure Test Name,COMM TEST
+  updated,C81224,Derivation Type,DTYPE
+  updated,C106480,Device Identifier Long Name,DIPARM
+  updated,C106481,Device Identifier Short Name,DIPARMCD
+  updated,C106483,Device-In-Use Test Code,DUTESTCD
+  updated,C106482,Device-In-Use Test Name,DUTEST
+  updated,C101857,Diabetes Therapy,DIABTHPY
+  updated,C66787,Diagnosis Group,TDIGRP
+  updated,C99074,Directionality,DIR
+  updated,C105130,Disability Assessment for Dementia Questionnaire Test Code,DAD TESTCD
+  updated,C105129,Disability Assessment for Dementia Questionnaire Test Name,DAD TEST
+  updated,C101863,Discharge Disposition,DISCHDX
+  updated,C78732,Drug Accountability Test Code,DATESTCD
+  updated,C78731,Drug Accountability Test Name,DATEST
+  updated,C102577,Drug Resistance Status,DRSTAT
+  updated,C90013,ECG Lead,EGLEAD
+  updated,C78422,ECG Original Units,EGORRESU
+  updated,C71150,ECG Result,EGSTRESC
+  updated,C71153,ECG Test Code,EGTESTCD
+  updated,C71151,ECG Test Method,EGMETHOD
+  updated,C71152,ECG Test Name,EGTEST
+  updated,C101815,Eastern Cooperative Oncology Group Performance Status Test Name,ECOG TEST
+  updated,C101816,Eastern Cooperative Oncology Group Performance Status Test Code,ECOG TESTCD
+  updated,C99079,Epoch,EPOCH
+  updated,C103463,Epworth Sleepiness Scale Questionnaire Test Code,ESS TESTCD
+  updated,C103462,Epworth Sleepiness Scale Questionnaire Test Name,ESS TEST
+  updated,C66790,Ethnic Group,ETHNIC
+  updated,C78735,Evaluator,EVAL
+  updated,C78426,Exposure Dose Form,EXDOSFRM
+  updated,C78745,Exposure Dosing Frequency per Interval,EXDOSFRQ
+  updated,C78425,Exposure Route of Administration,EXROUTE
+  updated,C100154,Faces Pain Scale - Revised Test Code,FPSR TESTCD
+  updated,C100153,Faces Pain Scale - Revised Test Name,FPSR TEST
+  updated,C76351,Skin Classification,SKINCLAS
+  updated,C71113,Frequency,FREQ
+  updated,C105138,General Clinical Global Impressions Questionnaire Test Code,GCGI TESTCD
+  updated,C105137,General Clinical Global Impressions Questionnaire Test Name,GCGI TEST
+  updated,C103329,General Observation Class,GNRLOBSC
+  updated,C103467,Generalized Anxiety Disorder - 7 Questionnaire Test Code,GAD-7 TESTCD
+  updated,C103466,Generalized Anxiety Disorder - 7 Questionnaire Test Name,GAD-7 TEST
+  updated,C106663,Geriatric Depression Scale Questionnaire Test Code,GDS TESTCD
+  updated,C106662,Geriatric Depression Scale Questionnaire Test Name,GDS TEST
+  updated,C106665,Geriatric Depression Scale Short Form Questionnaire Test Code,GDS SHORT FORM TESTCD
+  updated,C106664,Geriatric Depression Scale Short Form Questionnaire Test Name,GDS SHORT FORM TEST
+  updated,C101819,Hamilton Anxiety Rating Scale Test Name,HAMA TEST
+  updated,C101820,Hamilton Anxiety Rating Scale Test Code,HAMA TESTCD
+  updated,C100138,Hamilton Depression Rating Scale - 17 Item Test Code,HAMD 17 TESTCD
+  updated,C100137,Hamilton Depression Rating Scale - 17 Item Test Name,HAMD 17 TEST
+  updated,C101821,Hamilton Depression Rating Scale 21-Item Test Name,HAMD 21 TEST
+  updated,C101822,Hamilton Depression Rating Scale 21-Item Test Code,HAMD 21 TESTCD
+  updated,C106667,Health Assessment Questionnaire Disability Index Test Code,HAQ-DI TESTCD
+  updated,C106666,Health Assessment Questionnaire Disability Index Test Name,HAQ-DI TEST
+  updated,C103469,Hospital Anxiety and Depression Scale Questionnaire Test Code,HADS TESTCD
+  updated,C103468,Hospital Anxiety and Depression Scale Questionnaire Test Name,HADS TEST
+  updated,C103471,International Index of Erectile Function Questionnaire Test Code,IIEF TESTCD
+  updated,C103470,International Index of Erectile Function Questionnaire Test Name,IIEF TEST
+  updated,C99076,Intervention Model,INTMODEL
+  updated,C99078,Intervention Type,INTTYPE
+  updated,C100170,Karnofsky Performance Status Scale Test Code,KPS Scale TESTCD
+  updated,C100169,Karnofsky Performance Status Scale Test Name,KPS Scale TEST
+  updated,C101840,Killip Class Responses,KILLIPC
+  updated,C65047,Laboratory Test Code,LBTESTCD
+  updated,C67154,Laboratory Test Name,LBTEST
+  updated,C102580,Laboratory Test Standard Character Result,LBSTRESC
+  updated,C99073,Laterality,LAT
+  updated,C89972,Macroscopic Findings Test Code,MATESTCD
+  updated,C89971,Macroscopic Findings Test Name,MATEST
+  updated,C76348,Marital Status,MARISTAT
+  updated,C96777,Medical Evaluator,MEDEVAL
+  updated,C85492,Method,METHOD
+  updated,C89975,Method of Termination,MTHTRM
+  updated,C100152,Michigan Neuropathy Screening Instrument Test Code,MNSI TESTCD
+  updated,C100151,Michigan Neuropathy Screening Instrument Test Name,MNSI TEST
+  updated,C85495,Microbiology Susceptibility Testing Result Category,MSRESCAT
+  updated,C85491,Microorganism,MICROORG
+  updated,C106669,Modified Medical Research Council Dyspnea Scale Questionnaire Test Code,MMRC TESTCD
+  updated,C106668,Modified Medical Research Council Dyspnea Scale Questionnaire Test Name,MMRC TEST
+  updated,C100140,Movement Disorder Society UPDRS Test Code,MDS-UPDRS TESTCD
+  updated,C100139,Movement Disorder Society UPDRS Test Name,MDS-UPDRS TEST
+  updated,C88025,Neoplasm Type,NEOPLASM
+  updated,C103473,Neuropathic Pain Scale Questionnaire Test Code,NPS TESTCD
+  updated,C103472,Neuropathic Pain Scale Questionnaire Test Name,NPS TEST
+  updated,C100144,Neuropsychiatric Inventory Test Code,NPI TESTCD
+  updated,C100143,Neuropsychiatric Inventory Test Name,NPI TEST
+  updated,C101839,New York Heart Association Class Responses,NYHAC
+  updated,C66742,No Yes Response,NY
+  updated,C101834,Normal Abnormal Response,NORMABNM
+  updated,C96785,Tumor Response Result,RSSTRESC
+  updated,C96782,Tumor Response Assessment Test Code,RSTESTCD
+  updated,C96781,Tumor Response Assessment Test Name,RSTEST
+  updated,C89977,Organ Measurement Test Code,OMTESTCD
+  updated,C89976,Organ Measurement Test Name,OMTEST
+  updated,C66768,Outcome of Event,OUT
+  updated,C85493,PK Parameters,PKPARM
+  updated,C85839,PK Parameters Code,PKPARMCD
+  updated,C85494,PK Parameter Units of Measure,PKUNIT
+  updated,C105134,Pain Intensity Questionnaire Test Code,PI TESTCD
+  updated,C105133,Pain Intensity Questionnaire Test Name,PI TEST
+  updated,C105136,Pain Relief Questionnaire Test Code,PR TESTCD
+  updated,C105135,Pain Relief Questionnaire Test Name,PR TEST
+  updated,C103483,Patient Health Questionnaire - 15 Item Test Code,PHQ-15 TESTCD
+  updated,C103482,Patient Health Questionnaire - 15 Item Test Name,PHQ-15 TEST
+  updated,C103481,Patient Health Questionnaire - 9 Item Test Code,PHQ-9 TESTCD
+  updated,C103480,Patient Health Questionnaire - 9 Item Test Name,PHQ-9 TEST
+  updated,C66726,Pharmaceutical Dosage Form,FRM
+  updated,C99075,Portion/Totality,PORTOT
+  updated,C71148,Position,POSITION
+  updated,C101858,Procedure,PROCEDUR
+  updated,C74457,Race,RACE
+  updated,C101864,Reason CS/LV Lead Not Implanted,CSLVLNIM
+  updated,C66728,Relation to Reference Period,STENRF
+  updated,C100130,Relationship to Subject,RELSUB
+  updated,C106479,Reproductive System Findings Test Code,RPTESTCD
+  updated,C106478,Reproductive System Findings Test Name,RPTEST
+  updated,C103465,Revised Fibromyalgia Impact Questionnaire Test Code,FIQR TESTCD
+  updated,C103464,Revised Fibromyalgia Impact Questionnaire Test Name,FIQR TEST
+  updated,C101848,Risk Assessment,RSKASMT
+  updated,C100166,Roland Morris Disability Questionnaire Test Code,RDQ TESTCD
+  updated,C100165,Roland Morris Disability Questionnaire Test Name,RDQ TEST
+  updated,C66729,Route of Administration,ROUTE
+  updated,C66734,Domain Abbreviation,DOMAIN
+  updated,C90012,SEND ECG Category,EGCATSND
+  updated,C89982,SEND Implementation Guide Version,SNDIGVER
+  updated,C89974,Microscopic Findings Test Code,MITESTCD
+  updated,C89973,Microscopic Findings Test Name,MITEST
+  updated,C90000,Severity,SEV
+  updated,C90003,Study Type,SSTYP
+  updated,C89981,SEND Subject Characteristics Test Code,SBCCDSND
+  updated,C89980,SEND Subject Characteristics Test Name,SBCSND
+  updated,C90009,SEND Trial Summary Parameter Test Code,STSPRMCD
+  updated,C90007,SEND Trial Summary Parameter Test Name,STSPRM
+  updated,C100160,Screener and Opioid Assessment for Patients with Pain - Revised Test Code,SOAPP-R TESTCD
+  updated,C100159,Screener and Opioid Assessment for Patients with Pain - Revised Test Name,SOAPP-R TEST
+  updated,C66731,Sex,SEX
+  updated,C66732,Sex of Participants,SEXPOP
+  updated,C100156,Short-Form McGill Pain Questionnaire-2 Test Code,Short-Form MPQ-2 TESTCD
+  updated,C100155,Short-Form McGill Pain Questionnaire-2 Test Name,Short-Form MPQ-2 TEST
+  updated,C66733,Size,SIZE
+  updated,C74561,Skin Type,SKINTYP
+  updated,C77808,Species,SPECIES
+  updated,C77529,Specimen,SPEC
+  updated,C78733,Specimen Condition,SPECCOND
+  updated,C78734,Specimen Type,SPECTYPE
+  updated,C106671,St. George's Respiratory Questionnaire for COPD Patients Test Code,SGRQ-C TESTCD
+  updated,C106670,St. George's Respiratory Questionnaire for COPD Patients Test Name,SGRQ-C TEST
+  updated,C89968,Standardized Disposition Term,DSDECOD
+  updated,C77530,Strain/Substrain,STRAIN
+  updated,C89967,Study Design,DESIGN
+  updated,C99077,Study Type,STYPE
+  updated,C74559,Subject Characteristic Test Code,SCTESTCD
+  updated,C103330,Subject Characteristic Test Name,SCTEST
+  updated,C101828,Subjective Opiate Withdrawal Scale Test Name,SOWS Subjective TEST
+  updated,C101829,Subjective Opiate Withdrawal Scale Test Code,SOWS Subjective TESTCD
+  updated,C101852,Sudden Death Syndrome Type,SDTHSDTP
+  updated,C103485,Symptom Impact Questionnaire Test Code,SIQR TESTCD
+  updated,C103484,Symptom Impact Questionnaire Test Name,SIQR TEST
+  updated,C101841,TIMI Flow Responses,TIMIFLOW
+  updated,C103479,The Oswestry Disability Index Version 2.1a Questionnaire Test Code,ODI v2.1A TESTCD
+  updated,C103478,The Oswestry Disability Index Version 2.1a Questionnaire Test Name,ODI v2.1A TEST
+  updated,C103475,The Overactive Bladder Questionnaire Test Code,OAB-Q TESTCD
+  updated,C103474,The Overactive Bladder Questionnaire Test Name,OAB-Q TEST
+  updated,C103477,The Overactive Bladder Questionnaire Short Form Test Code,OAB-Q Short Form TESTCD
+  updated,C103476,The Overactive Bladder Questionnaire Short Form Test Name,OAB-Q Short Form TEST
+  updated,C78428,Total Volume Administration Unit,EXVOLTU
+  updated,C106657,Transition Dyspnea Index Questionnaire Test Code,TDI TESTCD
+  updated,C106656,Transition Dyspnea Index Questionnaire Test Name,TDI TEST
+  updated,C66735,Trial Blinding Schema,TBLIND
+  updated,C66736,Trial Indication Type,TINDTP
+  updated,C66737,Trial Phase,TPHASE
+  updated,C66738,Trial Summary Parameter Test Code,TSPARMCD
+  updated,C67152,Trial Summary Parameter Test Name,TSPARM
+  updated,C66739,Trial Type,TTYPE
+  updated,C96784,Tumor Identification Test Code,TUTESTCD
+  updated,C96783,Tumor Identification Test Name,TUTEST
+  updated,C96779,Oncology Tumor Properties Test Code,TRTESTCD
+  updated,C96778,Oncology Tumor Properties Test Name,TRTEST
+  updated,C100148,Unified Parkinson's Disease Rating Scale Test Code,UPDRS TESTCD
+  updated,C100147,Unified Parkinson's Disease Rating Scale Test Name,UPDRS TEST
+  updated,C71620,Unit,UNIT
+  updated,C78427,Unit for the Duration of Treatment Interruption,EXINTPU
+  updated,C78429,Unit of Measure for Flow Rate,EXFLRTU
+  updated,C78423,Units for Exposure,EXDOSU
+  updated,C78430,Units for Planned Exposure,EXPDOSEU
+  updated,C66770,Units for Vital Signs Results,VSRESU
+  updated,C103489,Urgency Perception Scale Questionnaire Test Code,UPS TESTCD
+  updated,C103488,Urgency Perception Scale Questionnaire Test Name,UPS TEST
+  updated,C66741,Vital Signs Test Code,VSTESTCD
+  updated,C67153,Vital Signs Test Name,VSTEST
+  updated,C100176,Work Productivity and Activity Impairment Questionnaire - Specific Health Problem V2.0 Test Code,WPAI-SHP TESTCD
+  updated,C100175,Work Productivity and Activity Impairment Questionnaire - Specific Health Problem V2.0 Test Name,WPAI-SHP TEST
+  deleted,C101853,Cardiac Valvular Regurgitation Severity,CVLVRSEV
+  deleted,C101854,Cardiac Valvular Stenosis Severity,CVLSTSEV
+  deleted,C100150,Clinical Global Impression Test Code,CGI TESTCD
+  deleted,C100149,Clinical Global Impression Test Name,CGI TEST
+  deleted,C66784,Common Terminology Criteria for Adverse Events V3.0,TOXGRV3
+  deleted,C87162,Common Terminology Criteria for Adverse Events V4.0,TOXGRV4
+  deleted,C102588,Contact Setting,SETCON
+  deleted,C102576,Directly Observed Therapy Location,DOBSTLOC
+  deleted,C101832,Findings About Test Code,FATESTCD
+  deleted,C101833,Findings About Test Name,FATEST
+  deleted,C100146,Parkinson's Disease Quality of Life Test Code,PDQUALIF TESTCD
+  deleted,C100145,Parkinson's Disease Quality of Life Test Name,PDQUALIF TEST
+  deleted,C102586,Reason Treatment Not Administered,RSTRTNA
+  deleted,C103487,Short Opiate Withdrawal Scale Questionnaire Test Code,SOWS Short TESTCD
+  deleted,C103486,Short Opiate Withdrawal Scale Questionnaire Test Name,SOWS Short TEST
+  deleted,C102589,Treatment Episode,TRTEPSD
+  deleted,C102585,Treatment Failure Reason,REASTRTF
+  deleted,C96780,Tumor Identification Results,TUMIDENT
+  deleted,C101831,Young Mania Rating Scale Test Code,YMRS TESTCD
+  deleted,C101830,Young Mania Rating Scale Test Name,YMRS TEST

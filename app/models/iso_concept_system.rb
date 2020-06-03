@@ -16,12 +16,19 @@ class IsoConceptSystem < Fuseki::Base
 
   include IsoConceptSystem::Core
 
+  # Root? Is this the root node
+  #
+  # @return [Boolean] true if root node, false otherwise
+  def root?
+    self.pref_label == C_ROOT_LABEL && self.description == C_ROOT_DESC
+  end
+
   # Root. Get the root node or create if not present
   #
   # @raise [Errors::ApplicationError] if object not created.
   # @return [IsoConceptSystem] The new object created if no exception raised
   def self.root
-    result = where_only_or_create({pref_label: C_ROOT_LABEL}, {uri: create_uri(base_uri), pref_label: C_ROOT_LABEL, description: C_ROOT_DESC})
+    result = where_only_or_create({pref_label: C_ROOT_LABEL}, {pref_label: C_ROOT_LABEL, description: C_ROOT_DESC})
     Errors.application_error(self.name, __method__.to_s, "Errors creating the tag root node. #{result.errors.full_messages.to_sentence}") if result.errors.any?
     result
   end
@@ -48,11 +55,44 @@ class IsoConceptSystem < Fuseki::Base
     end
   end
 
+  # Delete. Cannot delete the root node.
+  #
+  # @return [Integer] count of items deleted, will be 0.
+  def delete
+    self.errors.add(:base, "You are not permitted to delete the root tag")
+    0
+  end
+
+  # Find All. 
+  def find_all
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {
+  { 
+    {
+      #{self.uri.to_ref} ?p ?o .
+      BIND (#{self.uri.to_ref} as ?s)
+    } UNION
+    {
+      #{self.uri.to_ref} isoC:isTopConcept/isoC:narrower* ?s .
+      ?s ?p ?o
+    }
+  }
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    self.class.from_results_recurse(self.uri, query_results.by_subject)
+  end
+
   # Child Property. The child property
   #
   # @return [Symbol] the :is_top_concept property
   def children_property
     :is_top_concept
+  end
+
+  # Tags separator. 
+  # @return [String] a character that separates tags
+  def self.tag_separator 
+    ";"
   end
 
 end

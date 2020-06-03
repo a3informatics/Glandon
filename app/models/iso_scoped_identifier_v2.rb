@@ -114,19 +114,60 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return results.by_object.first.to_i + 1
   end
 
-  # Create
+  # ---------
+  # Test Only  
+  # ---------
+  if Rails.env.test?
+    
+    # Create
+    #
+    # @param attributes [Hash] the set of properties
+    # @return [IsoNamespace] the object. Contains errors if it fails
+    def self.create(attributes)
+      identifier = attributes[:identifier].gsub(/[^0-9A-Za-z]/, '-')
+      uri = Uri.new(namespace: base_uri.namespace, fragment: "")
+      uri.extend_path("#{attributes[:has_scope].short_name}/#{identifier}")
+      attributes[:uri] = uri
+      super
+    end 
+
+  end
+
+  # Update Version
   #
-  # @param attributes [Hash] the set of properties
-  # @return [IsoNamespace] the object. Contains errors if it fails
-  def self.create(attributes)
-    identifier = attributes[:identifier].gsub(/[^0-9A-Za-z]/, '-')
-    uri = Uri.new(namespace: base_uri.namespace, fragment: "")
-    uri.extend_path("#{attributes[:has_scope].short_name}/#{identifier}")
-    attributes[:uri] = uri
-    super
-  end 
+  # @params [Hash] params the parameters
+  # @option params [String] :version_label the version label
+  # @option params [String] :semantic_version the semantic version
+  # @raise [Exceptions::UpdateError] if an error occurs during the update
+  # @return null
+  def update_version(params)
+    self.version_label = params[:version_label] if params.key?(:version_label)  
+    self.semantic_version = params[:semantic_version] if params.key?(:semantic_version)  
+    partial_update(update_query(params), [:isoI]) if valid?(:update)
+  end
 
 private
+
+  # The update query
+  def update_query(params)
+    %Q{
+      DELETE
+      {
+       #{self.uri.to_ref} isoI:versionLabel ?a .
+       #{self.uri.to_ref} isoI:semanticVersion ?b .
+      }
+      INSERT
+      {
+       #{self.uri.to_ref} isoI:versionLabel \"#{self.version_label}\"^^xsd:string .
+       #{self.uri.to_ref} isoI:semanticVersion \"#{self.semantic_version}\"^^xsd:string .
+      }
+      WHERE
+      {
+       #{self.uri.to_ref} isoI:versionLabel ?a .
+       #{self.uri.to_ref} isoI:semanticVersion ?b .
+      }
+    }
+  end
 
   def self.exists_query(identifier, scope)
     "SELECT ?s WHERE \n" +

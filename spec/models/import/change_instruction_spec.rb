@@ -7,6 +7,7 @@ describe Import::ChangeInstruction do
   include PublicFileHelpers
   include SparqlHelpers
   include CdiscCtHelpers
+  include SecureRandomHelpers
 
 	def sub_dir
     return "models/import/change_instruction"
@@ -51,9 +52,8 @@ describe Import::ChangeInstruction do
       parent_klass: Import::ChangeInstruction::Instruction,
       import_type: :cdisc_change_instructions,
       reader_klass: Excel,
-      sheet_name: :format
+      format: :format
     }
-    expect(Import::ChangeInstruction.configuration).to eq(expected)
     object = Import::ChangeInstruction.new
     expect(object.configuration).to eq(expected)
   end
@@ -89,6 +89,7 @@ describe Import::ChangeInstruction do
 
   it "Import simple" do
     simple_setup
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
     params = 
     {
@@ -165,6 +166,7 @@ describe Import::ChangeInstruction do
 
   it "Import full example" do
     simple_setup
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     full_path = test_file_path(sub_dir, "import_input_4.xlsx")
     params = 
     {

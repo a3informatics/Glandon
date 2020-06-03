@@ -1,43 +1,65 @@
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
-<%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
-<%= javascript_tag "var tc_id = '#{@tc.id}';" %>
-<%= javascript_tag "var is_extended = #{@is_extended};" %>
-<%= javascript_tag "var is_extending = #{@is_extending};" %>
-<%= javascript_tag "var context_id = '#{@context_id}';" %>
-<%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
-<%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
+<%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/thesauri/managed_concepts/extension_create' %>
+
+<%= javascript_tag "var dataUrl = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}',
+                        tcId = '#{@tc.id}',
+                        contextId = '#{@context_id}',
+                        isExtended = #{@is_extended},
+                        isExtending = #{@is_extending},
+                        canExtendUnextensible = #{@can_extend_unextensible},
+                        canBeExtended = #{@can_be_extended},
+                        canEdit = #{policy(Thesaurus).edit?};" %>
+
+<% item_editable = policy(Thesaurus).edit? && @tc.supporting_edit? %>
+
+<% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
+
+<% if policy(Thesaurus).edit? %>
+  <%= javascript_tag "var createExtensionUrl = '#{create_extension_thesauri_managed_concept_path(@tc)}',
+                          createExtensionInThUrl = '#{extension_thesauri_index_path}',
+                          createSubsetUrl = '#{create_subset_thesauri_managed_concept_path(@tc)}',
+                          createSubsetInThUrl = '#{add_subset_thesauri_path}';" %>
+
+  <%= render partial: "shared/thesauri/thesauri_select" %>
+  <%= render partial: "shared/thesauri/subsets_index" %>
+<% end %>
+
+<%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} if item_editable %>
+<%= render partial: "shared/annotation/change_instructions/change_instructions_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, can_edit: policy(Annotation).edit?} %>
 
 <div class="row">
-  <!-- RENDER CARD CONTENTS -->
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
-    <!-- BUTTONS WRAP -->
+  <%= render layout: "shared/headers/header_codelist", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
-        icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
-      <!-- BUTTON EXPORT CSV -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc),
-        id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
-
-      <% if policy(Thesaurus).edit? %>
-        <!-- EXTEND BUTTONS -->
-        <% class_list = @can_be_extended ? e_disabled = false : e_disabled = true %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#tableModal", id: "extend",
-          icon: e_disabled ? "icon-extend-disabled ":"icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>
-        <%= render partial: "shared/thesauri/thesauri_select" %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @is_extended_path, id: "extension",
-          icon: "icon-extend", btn_text: "Extension", dt_toggle: "", disabled: false} %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @is_extending_path, id: "extending",
-          icon: "icon-extend", btn_text: "Extending", dt_toggle: "", disabled: false} %>
-      <% end %>
-
-      <!-- RETURN BUTTON -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
+        id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc), icon: "icon-file",
+           id: "export-csv", text: "Export CSV", dt_toggle: "", disabled: false } %>
+        <% if policy(Thesaurus).edit? %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#subsets-index-modal", icon: "icon-subset",
+            id: "btn-subsets", text: "Subsets", dt_toggle: "modal", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#", icon: !@can_be_extended || !@can_extend_unextensible ? "icon-extend-disabled ":"icon-extend",id: "extend", text: "Extend", dt_toggle: "modal", disabled:  !@can_be_extended && !@can_extend_unextensible } %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extended_path, icon: "icon-extend",
+            id: "extension", text: "Extension", dt_toggle: "", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extending_path, icon: "icon-extend",
+            id: "extending", text: "Extending", dt_toggle: "", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", dt_toggle: "", disabled: @edit_tags_path.empty? } %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: !item_editable } %>
+        <% end %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-instructions-modal", id: "ci-modal-button",
+          icon: "icon-instruction", text: "Change instructions", dt_toggle: "modal", disabled: false } %>
+      <% end %>
     </div>
   <% end %>
 </div>
+
 <div class="row">
-  <div class="col-md-12 card">
+  <div class="col-md-12 card wide">
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>

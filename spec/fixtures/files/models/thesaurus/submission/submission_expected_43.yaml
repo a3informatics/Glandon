@@ -2,12 +2,24 @@
 :versions:
 - '2015-03-27'
 :items:
+  :C90007_C90422:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwNDIy
+    :key: C90007_C90422
+    :label: Method Of Identification
+    :notation: Method of Identification
+    :identifier: C90422
+    :parent_identifier: C90007
+    :status:
+    - :status: :updated
+      :notation: Method of Identification
+      :previous: Method Of Identification
   :C78733_C78725:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc4NzMzL1Y0MyNDNzg3MzNfQzc4NzI1
     :key: C78733_C78725
     :label: Autolized Specimen
     :notation: AUTOLYZED
     :identifier: C78725
+    :parent_identifier: C78733
     :status:
     - :status: :updated
       :notation: AUTOLYZED
@@ -18,6 +30,7 @@
     :label: Time of Maximum Observed Excretion Rate
     :notation: Midpoint of Interval of Maximum ER
     :identifier: C85823
+    :parent_identifier: C85493
     :status:
     - :status: :updated
       :notation: Midpoint of Interval of Maximum ER
@@ -28,6 +41,7 @@
     :label: Collection Interval Midpoint
     :notation: ERTLST
     :identifier: C85580
+    :parent_identifier: C85839
     :status:
     - :status: :updated
       :notation: ERTLST
@@ -38,26 +52,18 @@
     :label: Method of Termination of Life
     :notation: Method of Termination
     :identifier: C90423
+    :parent_identifier: C90007
     :status:
     - :status: :updated
       :notation: Method of Termination
       :previous: Method Of Termination
-  :C90007_C90422:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwNDIy
-    :key: C90007_C90422
-    :label: Method Of Identification
-    :notation: Method of Identification
-    :identifier: C90422
-    :status:
-    - :status: :updated
-      :notation: Method of Identification
-      :previous: Method Of Identification
   :C90007_C49696:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzQ5Njk2
     :key: C90007_C49696
     :label: Sex of Study Group
     :notation: Sex of Participants
     :identifier: C49696
+    :parent_identifier: C90007
     :status:
     - :status: :updated
       :notation: Sex of Participants
@@ -68,6 +74,7 @@
     :label: Start Date Time Of Dose Interval
     :notation: Start Date/Time of Dose Interval
     :identifier: C90459
+    :parent_identifier: C90007
     :status:
     - :status: :updated
       :notation: Start Date/Time of Dose Interval
@@ -78,6 +85,7 @@
     :label: Class of Trial Agent
     :notation: Class of Compound
     :identifier: C90372
+    :parent_identifier: C90007
     :status:
     - :status: :updated
       :notation: Class of Compound
@@ -88,6 +96,7 @@
     :label: End Date Time Of Dose Interval
     :notation: End Date/Time of Dose Interval
     :identifier: C90379
+    :parent_identifier: C90007
     :status:
     - :status: :updated
       :notation: End Date/Time of Dose Interval
@@ -98,6 +107,7 @@
     :label: Collection Interval Midpoint
     :notation: Midpoint of Interval of Last Nonzero ER
     :identifier: C85580
+    :parent_identifier: C85493
     :status:
     - :status: :updated
       :notation: Midpoint of Interval of Last Nonzero ER
@@ -108,6 +118,7 @@
     :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
     :notation: IC95S
     :identifier: C116251
+    :parent_identifier: C116110
     :status:
     - :status: :updated
       :notation: IC95S
@@ -118,6 +129,7 @@
     :label: Half Maximal Inhibitory Concentration Subject Result Measurement
     :notation: IC50S
     :identifier: C116247
+    :parent_identifier: C116110
     :status:
     - :status: :updated
       :notation: IC50S
@@ -128,6 +140,7 @@
     :label: Platelet Derived Growth Factor Isoform AB Measurement
     :notation: Platelet Derived Growth Factor IsoformAB
     :identifier: C116208
+    :parent_identifier: C67154
     :status:
     - :status: :updated
       :notation: Platelet Derived Growth Factor IsoformAB
@@ -138,6 +151,7 @@
     :label: Half Maximal Inhibitory Concentration Subject Result Measurement
     :notation: IC50 Subject Result
     :identifier: C116247
+    :parent_identifier: C116109
     :status:
     - :status: :updated
       :notation: IC50 Subject Result
@@ -148,6 +162,7 @@
     :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
     :notation: IC95 Subject Result
     :identifier: C116251
+    :parent_identifier: C116109
     :status:
     - :status: :updated
       :notation: IC95 Subject Result

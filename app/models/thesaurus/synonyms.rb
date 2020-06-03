@@ -12,11 +12,11 @@ class Thesaurus
 
     module ClassMethods
 
-    # Synonym_separator. 
-    # @return [String] a character that separates synonyms
-    def synonym_separator 
-      ";"
-    end
+      # Synonym_separator. 
+      # @return [String] a character that separates synonyms
+      def synonym_separator 
+        ";"
+      end
 
     end
 
@@ -26,6 +26,7 @@ class Thesaurus
     # @param params [String] the set of synonyms as a ";" separated list
     # @return [Array] array of URIs of the existing or new synonyms
     def where_only_or_create_synonyms(synonyms)
+      return [] if synonyms.blank?
       synonym_parts = synonyms.split(self.class.synonym_separator).map(&:strip) # Split and strip any white space
       results = []
       objects = []
@@ -43,7 +44,7 @@ class Thesaurus
       end
       objects.map{|x| present[x.label] = x}
       synonym_parts.each do |synonym|
-        object = present.key?(synonym) ? present[synonym] : Thesaurus::Synonym.create({uri: Thesaurus::Synonym.create_uri(Thesaurus::Synonym.base_uri), label: synonym})
+        object = present.key?(synonym) ? present[synonym] : Thesaurus::Synonym.create(label: synonym)
         results << object
       end
       results

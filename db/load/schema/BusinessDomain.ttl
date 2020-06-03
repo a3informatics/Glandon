@@ -24,7 +24,7 @@
 .
 :Column
   rdf:type owl:Class ;
-  rdfs:label "Item"^^xsd:string ;
+  rdfs:label "Column"^^xsd:string ;
   rdfs:subClassOf :Item ;
   rdfs:subClassOf isoC:Concept ;
   skos:definition "Column within a tabulation."^^xsd:string ;

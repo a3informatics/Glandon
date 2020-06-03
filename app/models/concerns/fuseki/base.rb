@@ -11,6 +11,8 @@ module Fuseki
 
   class Base
     
+    C_RDF_TYPE = Uri.new(namespace: Uri.namespaces.namespace_from_prefix(:rdf), fragment: "type")
+
     include ActiveModel::Naming
     include ActiveModel::Conversion
     include ActiveModel::Validations
@@ -19,6 +21,7 @@ module Fuseki
     attr_accessor :uri
 
     validates :uri, presence: true
+    validates_with Validator::UniqueUri, attribute: :uri, on: :create
 
     extend Schema
     extend Resource
@@ -40,7 +43,7 @@ module Fuseki
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       @properties.each do |property| 
         value = attributes.key?(property.name) ? attributes[property.name] : property.default_value
-        property.set_default(value)
+        property.set_raw(value) # Will cause to_be_saved to be set true (i.e. new record)
       end
     end
 

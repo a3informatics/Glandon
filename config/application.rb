@@ -40,7 +40,7 @@ module Glandon
         end
     end
 
-    # Other configurations
+    # Generic configurations
     config.metadata = config_for(:metadata).deep_symbolize_keys
     config.bridg_sdtm = config_for(:bridg_sdtm)
     config.iso_registration_state = config_for(:iso_registration_state)
@@ -48,8 +48,11 @@ module Glandon
     config.policy = config_for(:policy)
     config.imports = config_for(:imports).deep_symbolize_keys
     config.namespaces = config_for(:namespaces).deep_symbolize_keys
-    config.thesauri = config_for(:thesauri).deep_symbolize_keys
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    # Installation specific verisons
+    installation_path = "installations/#{ENV["installation"]}"
+    config.thesauri = config_for("#{installation_path}/#{:thesauri}").deep_symbolize_keys
 
     # Rspec additions
     config.generators do |g|

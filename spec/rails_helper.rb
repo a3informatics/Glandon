@@ -93,16 +93,18 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  # Optional new statement to access devtools
-  #options = Selenium::WebDriver::Chrome::Options.new(args: %w(--auto-open-devtools-for-tabs --window-size=2400,2400)) 
-  options.add_preference(:download, {
-    prompt_for_download: false,
-    default_directory: DownloadHelpers::PATH
-  })
+  # Download. The options method has stopped working. Use profile as temp fix (but deprecated)
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  profile["download.default_directory"] = DownloadHelpers::PATH
+  # options = Selenium::WebDriver::Chrome::Options.new
+  # options.add_preference(:download, {
+  #   prompt_for_download: false,
+  #   default_directory: DownloadHelpers::PATH
+  # })
   client = Selenium::WebDriver::Remote::Http::Default.new
   client.timeout = 120
-	Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
+	Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :profile => profile)
+  #Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
 end
 
 Capybara.javascript_driver = :chrome

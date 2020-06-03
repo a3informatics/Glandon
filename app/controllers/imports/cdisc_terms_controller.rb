@@ -8,7 +8,7 @@ class Imports::CdiscTermsController < Imports::BaseController
   end
 
   def create
-    model = CdiscTerm.import_params_valid?(the_params)
+    model = Import.params_valid?(the_params)
     if model.errors.empty?
       super
     else
@@ -20,7 +20,7 @@ class Imports::CdiscTermsController < Imports::BaseController
 private
 
   def the_params
-    super([:version, :semantic_version, :date])
+    super([:version, :semantic_version, :date, :file_type])
   end
 
 end

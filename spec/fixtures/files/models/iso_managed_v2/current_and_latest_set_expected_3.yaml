@@ -1,0 +1,24 @@
+---
+ACME.CDISC EXT:
+- :current:
+    :uri: !ruby/object:Uri
+      scheme: http
+      authority: www.assero.co.uk
+      path: MDRThesaurus/ACME/V1
+      fragment: TH-SPONSOR_CT-1
+    :version: 1
+- :latest:
+    :uri: !ruby/object:Uri
+      scheme: http
+      authority: www.assero.co.uk
+      path: MDRThesaurus/ACME/V1
+      fragment: TH-SPONSOR_CT-1
+    :version: 1
+CDISC.CT:
+- :latest:
+    :uri: !ruby/object:Uri
+      scheme: http
+      authority: www.cdisc.org
+      path: CT/V10
+      fragment: TH
+    :version: 10

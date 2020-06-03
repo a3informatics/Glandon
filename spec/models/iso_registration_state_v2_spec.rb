@@ -40,6 +40,7 @@ describe "IsoRegistrationStateV2" do
     expect(object.unresolved_issue).to eq("")
     expect(object.administrative_status).to eq("")
     expect(object.previous_state).to eq("Not_Set")
+    expect(object.multiple_edit).to eq(false)
   end
 
   it "validates a valid object" do
@@ -177,6 +178,34 @@ describe "IsoRegistrationStateV2" do
     result.registration_status = "Standard"
     expect(result.has_been_released_state?).to eq(false)
   end
+
+  it "allows the item state to be checked for is or has been in release state, Incomplete" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Incomplete"
+    expect(result.is_or_has_been_released?).to eq(false)
+  end
+
+  it "allows the item state to be checked for is or has been in release state, standard" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Standard"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
+
+    it "allows the item state to be checked for is or has been in release state, retired" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Retired"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
+
+    it "allows the item state to be checked for is or has been in release state, superseeded" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Superseded"
+    expect(result.is_or_has_been_released?).to eq(true)
+  end
   
   it "allows the edit state to be determined for an editable item" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
@@ -215,6 +244,19 @@ describe "IsoRegistrationStateV2" do
     result = IsoRegistrationStateV2.find(uri)
     expect(result.new_version?).to eq(true)
   end
+
+  it "determines if the release can be updated, Standard" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    expect(result.update_release?).to eq(false)
+  end
+
+  it "determines if the release can be updated, Qualified" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Qualified"
+    expect(result.update_release?).to eq(true)
+  end
   
   it "determines if the item can be current" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
@@ -242,11 +284,32 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Qualified",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     result = IsoRegistrationStateV2.find(uri)
     expect(result.to_h).to eq(expected)
   end
+
+  # it "allows to delete multiple_edit flag property from hash " do
+  #   uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+  #       expected = 
+  #   {
+  #     :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
+  #     :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
+  #     :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
+  #     :registration_status => "Standard",
+  #     :administrative_note => "", 
+  #     :effective_date=> "2016-01-01T00:00:00+00:00",
+  #     :until_date => "2016-01-01T00:00:00+00:00",
+  #     :unresolved_issue => "", 
+  #     :administrative_status => "", 
+  #     :previous_state => "Qualified",
+  #     :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+  #   }
+  #   result = IsoRegistrationStateV2.find(uri)
+  #   expect(result.to_h).to eq(expected)
+  # end
 
   it "does not find an unknown id" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1x")
@@ -269,7 +332,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-3", 
@@ -282,7 +346,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_2-2", 
@@ -295,7 +360,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-5", 
@@ -308,7 +374,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-4", 
@@ -321,7 +388,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV1-5",
@@ -334,7 +402,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV2-5",
@@ -347,7 +416,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       }
     ]
     results = IsoRegistrationStateV2.all
@@ -373,7 +443,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Incomplete",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       }
     result = IsoRegistrationStateV2.create(identifier: "NEW", registration_status: "Incomplete", previous_state: "Incomplete", by_authority: ra)
     expect(result.to_h).to eq(expected)
@@ -405,6 +476,14 @@ describe "IsoRegistrationStateV2" do
     object.update
     object = IsoRegistrationStateV2.find(uri)
     expect(object.administrative_note).to eq("X1")
+  end
+
+  it "allows for an object to update multiple edit flag" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_3-4")
+    object = IsoRegistrationStateV2.find_children(uri)
+    object.update(multiple_edit: true)
+    object = IsoRegistrationStateV2.find(uri)
+    expect(object.multiple_edit).to eq(true)
   end
   
   it "allows for an object to be updated, effective date unchanged"
@@ -466,7 +545,8 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Incomplete",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     expected = input.except(:identifier)
     expected[:uri] = {} # Will be empty until saved.
@@ -490,7 +570,8 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Qualified",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     expect(object.to_h).to eq(expected)
   end
@@ -541,5 +622,18 @@ describe "IsoRegistrationStateV2" do
     expect(rs.uri.to_s).to eq("http://www.assero.co.uk/ID/1#RS")
   end
 
+  it "returns the set of states" do
+    actual = IsoRegistrationStateV2.states
+    check_file_actual_expected(actual, sub_dir, "states_expected_1.yaml", equate_method: :match_array)
+  end
+
+  it "returns the previous states" do
+    actual = IsoRegistrationStateV2.previous_states("Incomplete")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_1.yaml", equate_method: :match_array)
+    actual = IsoRegistrationStateV2.previous_states("Standard")
+    check_file_actual_expected(actual, sub_dir, "previous_states_expected_2.yaml", equate_method: :match_array)
+  end
+      
+      
 end
   

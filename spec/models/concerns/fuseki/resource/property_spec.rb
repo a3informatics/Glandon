@@ -28,6 +28,21 @@ describe Fuseki::Resource::Property do
   end
 
   it "allows for simple update" do
+    ref_0 = TestFRP.new
+    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: "string"})
+    expect(item.name).to eq(:fred)
+    expect(item.instance_name).to eq(:@fred)
+    expect(item.klass).to eq(TestFRP)
+    expect(item.cardinality).to eq(:one)
+    expect(item.predicate).to eq("XXX")
+    expect(item.object?).to eq(false)
+    expect(item.array?).to eq(false)
+    expect(item.default_value).to eq("1")
+    item.set_value("XXX")
+    expect(item.get).to eq("XXX")
+    item.clear
+    expect(item.get).to eq("")
+    
     ref_1 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_1, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: ""})
     expect(item.name).to eq(:fred)
@@ -107,6 +122,26 @@ describe Fuseki::Resource::Property do
 
   it "schema predicate name" do
     expect(Fuseki::Resource::Property.schema_predicate_name("this_is_a")).to eq("thisIsA")
+  end
+
+  it "saved and to be saved" do
+    ref = IsoNamespace.new
+
+    sparql = Sparql::Update.new
+    item = ref.properties.property(:name)
+    item.set_simple("value")
+    expect(item.get).to eq("value")
+    expect(item.to_be_saved?).to eq(true)
+    item.to_triples(sparql, Uri.new(uri: "http://www.example.com/c#parent"))
+    expect(sparql.to_triples).to eq("<http://www.example.com/c#parent> isoI:name \"value\"^^xsd:string . \n")
+    item.saved
+    expect(item.to_be_saved?).to eq(false)
+    
+    sparql = Sparql::Update.new
+    ref.name = "updated name"
+    expect(ref.properties.property(:name).to_be_saved?).to eq(true)
+    ref.properties.property(:name).to_triples(sparql, Uri.new(uri: "http://www.example.com/c#parent"))
+    expect(sparql.to_triples).to eq("<http://www.example.com/c#parent> isoI:name \"updated name\"^^xsd:string . \n")
   end
 
 end

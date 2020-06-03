@@ -43,19 +43,21 @@ class Thesaurus
         %Q{
           SELECT DISTINCT ?s ?p ?o ?e WHERE
           {
-            VALUES ?th { #{uris.map{|x| x.to_ref}.join(" ")} }
-            ?th th:isTopConceptReference/bo:reference ?mc .
             {
-                {
-                  ?mc th:narrower+ ?s .
-                  #{property_triples(params, Thesaurus::ManagedConcept)}
-                  BIND ("Thesaurus::ManagedConcept" as ?e)
-                } UNION
-                {
-                  BIND (?mc as ?s)
-                  #{property_triples(params, Thesaurus::UnmanagedConcept)}
-                  BIND ("Thesaurus::UnmanagedConcept" as ?e)
-                }
+              {
+                VALUES ?th { #{uris.map{|x| x.to_ref}.join(" ")} }
+                ?th th:isTopConceptReference/bo:reference ?mc .
+                ?mc th:narrower+ ?s .
+                #{property_triples(params, Thesaurus::ManagedConcept)}
+                BIND ("Thesaurus::ManagedConcept" as ?e)
+              } UNION
+              {
+                VALUES ?th { #{uris.map{|x| x.to_ref}.join(" ")} }
+                ?th th:isTopConceptReference/bo:reference ?mc .
+                BIND (?mc as ?s)
+                #{property_triples(params, Thesaurus::UnmanagedConcept)}
+                BIND ("Thesaurus::UnmanagedConcept" as ?e)
+              }
             }
             ?s ?p ?o .
           }}

@@ -7,6 +7,9 @@ describe "Thesaurus::ManagedConcept" do
   include SparqlHelpers
   include PublicFileHelpers
   include ThesauriHelpers
+  include IsoManagedHelpers
+  include TimeHelpers
+  include NameValueHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -51,8 +54,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_2.definition = "Copenhagen"
       @tc_2.extensible = false
       @tc_2.notation = "CPH"
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_2
@@ -93,8 +96,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_4.definition = "Copenhagen"
       @tc_4.extensible = false
       @tc_4.notation = "CPH"
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_2.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_3
@@ -141,8 +144,8 @@ describe "Thesaurus::ManagedConcept" do
       @tc_6.definition = "Copenhagen"
       @tc_6.extensible = false
       @tc_6.notation = "CPH"
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_3.is_top_concept_reference << OperationalReferenceV3::TmcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     before :all  do
@@ -150,14 +153,18 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      load_cdisc_term_versions(1..5)
+      nv_destroy
+      nv_create(parent: "123", child: "456")
     end
 
+    it "returns audit type" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.audit_type).to eq("Code list")
+    end
+    
     it "allows validity of the object to be checked - error" do
       tc = Thesaurus::ManagedConcept.new
       expect(tc.valid?).to eq(false)
@@ -177,6 +184,7 @@ describe "Thesaurus::ManagedConcept" do
       tc.has_identifier.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#SI_A00001")
       tc.has_identifier.identifier = "AAA"
       tc.has_identifier.semantic_version = "0.0.1"
+      tc.has_identifier.version = 1
       valid = tc.valid?
       expect(valid).to eq(true)
     end
@@ -226,6 +234,47 @@ describe "Thesaurus::ManagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
+    it "allows a new child TC to be added, error" do
+      params =
+      {
+        definition: "The Queen's Terminal, the second terminal at Heathrow",
+        identifier: "A00014",
+        label: "Terminal 2",
+        notation: "T5"
+      }
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_object = tc.add_child(params)
+      expect(new_object.errors.count).to eq(1)
+      expect(new_object.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
+    end
+
+    it "allows a new child TC to be added, add_child_based_on, errors" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      children = tc.add_children_based_on(uc)
+      expect(children.first.errors.count).to eq(1)
+      expect(children.first.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml")
+      # tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      # check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml")
+    end
+
+    it "allows a new child TC to be added, add_child_based_on" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.cdisc.org/C66790/V4#C66790_C17998"))
+      children = tc.add_children_based_on(uc)
+      expect(children.first.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_5.yaml")
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_6.yaml")
+    end
+
     it "prevents a duplicate TC being added" do
       local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).twice.and_return(local_configuration)
@@ -242,7 +291,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(1)
-      expect(new_object.errors.full_messages[0]).to eq("An existing record exisits in the database")
+      expect(new_object.errors.full_messages[0]).to eq("http://www.acme-pharma.com/A00001/V1#A00001_A00014 already exists in the database")
     end
 
     it "prevents a TC being added with invalid identifier" do
@@ -383,39 +432,29 @@ describe "Thesaurus::ManagedConcept" do
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
-    it "allows a TC to be exported as SPARQL, II - WILL CURRENTLY FAIL (Timestamp Issue)" do
+    it "allows a TC to be exported as SPARQL, II" do
       sparql = Sparql::Update.new
       simple_thesaurus_1
       @tc_1.set_initial(@tc_1.identifier)
       sparql.default_namespace(@tc_1.uri.namespace)
       @tc_1.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt", last_change_date: true)
     end
 
     it "allows a TC to be created" do
-      object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA333")
+      object = Thesaurus::ManagedConcept.create
       tc = Thesaurus::ManagedConcept.find_full(object.uri)
-      expect(tc.scoped_identifier).to eq("A000001")
-      expect(tc.identifier).to eq("A000001")
-      expect(tc.notation).to eq("A")
+      expect(tc.scoped_identifier).to eq("AA333")
+      expect(tc.identifier).to eq("AA333")
+      expect(tc.notation).to eq("Not Set")
     end
 
-    it "allows a TC to be destroyed" do
-      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
-      tc = Thesaurus::ManagedConcept.find(object.uri)
-      result = tc.delete
-      expect(result).to eq(1)
-      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
-        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
-    end
-
-    it "does not allow a TC to be destroyed if it has children" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      result = tc.delete
-      expect(result).to eq(0)
-      expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00001 due to the concept having children")
+    it "allows a TC to be created, error not generated identifier" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+      expect{Thesaurus::ManagedConcept.create}.to raise_error(Errors::ApplicationLogicError, "Not configured to generate a code list identifier.")
     end
 
     it "returns the parent concept" do
@@ -428,13 +467,21 @@ describe "Thesaurus::ManagedConcept" do
         notation: "NEWNEW"
       }
       new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      expect(tc.parent).to eq("A00001")
+      tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      expect(tc_1.parents).to eq([tc.uri])
+    end
+
+    it "returns the parent concept" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.parents.empty?).to eq(false)
     end
 
     it "returns the parent concept, none" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00001.")
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA777")
+      object = Thesaurus::ManagedConcept.create
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      expect(tc.parents.empty?).to eq(true)
     end
 
     it "replaces with previous if no difference" do
@@ -459,23 +506,61 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
     end
 
-    it "determines if code list extended and finds the URIs" do
-      tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
-      expect(tc1.extended?).to eq(false)
-      expect(tc2.extended?).to eq(false)
-      expect(tc1.extension?).to eq(false)
-      expect(tc2.extension?).to eq(false)
-      sparql = %Q{INSERT DATA { #{tc2.uri.to_ref} th:extends #{tc1.uri.to_ref} }}
-      Sparql::Update.new.sparql_update(sparql, "", [:th])
-      expect(tc1.extended?).to eq(true)
-      expect(tc2.extended?).to eq(false)
-      expect(tc1.extension?).to eq(false)
-      expect(tc2.extension?).to eq(true)
-      expect(tc1.extended_by).to eq(tc2.uri)
-      expect(tc1.extension_of).to eq(nil)
-      expect(tc2.extension_of).to eq(tc1.uri)
-      expect(tc2.extended_by).to eq(nil)
+  end
+
+  describe "change notes" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+    end
+
+    it "change notes managed and unmanaged concepts" do
+      params =
+      {
+        offset: "0",
+        count: "10"
+      }
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      change_note = tc.add_change_note(user_reference: "xxx", reference: "ref 1", description: "description cl")
+      expect(change_note.errors.count).to eq(0)
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      change_note2 = tc2.add_change_note(user_reference: "yyy", reference: "ref 2", description: "description cli")
+      expect(change_note2.errors.count).to eq(0)
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.change_notes_paginated(params)
+      check_thesaurus_concept_actual_expected(result, sub_dir, "add_change_note_mc_expected_1.yaml")
+    end
+    
+  end
+
+  describe "extensions" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      #load_cdisc_term_versions(1..33)
+      delete_all_public_test_files
+    end
+
+    it "creates extension" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      item = tc.create_extension
+      result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001E/V1#A00001E"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(result.narrower.count).to eq(source.narrower.count)
+      expect(result.extends.to_s).to eq(source.uri.to_s)
     end
 
   end
@@ -487,10 +572,14 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_new_airports_v2.ttl",
+        "thesaurus_sponsor_import.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..60)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor4_impact.ttl")
+      load_data_file_into_triple_store("thesaurus_sponsor5_impact.ttl")
       delete_all_public_test_files
     end
 
@@ -498,7 +587,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V30#C65047"))
-      expect(tc.changes_count(40)).to eq(29)
+      expect(tc.changes_count(40)).to eq(31)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(40)).to eq(40)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
@@ -611,6 +700,100 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
     end
 
+    it "finds changes non-CDISC" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      results = tc.changes(2)
+      check_file_actual_expected(results, sub_dir, "changes_expected_7.yaml", equate_method: :hash_equal)
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_7.yaml", equate_method: :hash_equal)
+    end
+    
+    it "changes_summary_impact I" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V61#C74456"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V62#C74456"))
+      versions = ["2019-09-27","2019-12-20"]
+      results = tc.changes_summary_impact(last, versions)
+      check_file_actual_expected(results, sub_dir, "changes_summary_impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact I" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74456/V61#C74456"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Q4_2019/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact II" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSOR/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact III" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66781/V49#C66781"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact IV" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "impact V, subsetting an extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/C66767/V1#C66767"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/SPONSORTHTEST2/V1#TH"))
+      results = tc.impact(th)
+      check_file_actual_expected(results, sub_dir, "impact_expected_5.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "upgrade impact" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..10)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      delete_all_public_test_files
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    it "upgrade impact, extension" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "upgrade impact, subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "upgrade impact, extension and subset" do
+      th = Thesaurus.create({:identifier => "S TH OLD", :label => "Old Sponsor Thesaurus"})
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C67154/V4#C67154"))
+      item = th.add_extension(tc.id)
+      item = th.add_subset(tc.id)
+      results = tc.upgrade_impact(th)
+      check_file_actual_expected(results, sub_dir, "upgrade_impact_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "updates" do
@@ -620,8 +803,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
     end
 
@@ -644,8 +826,8 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("A definition")
       expect(tc.synonym.count).to eq(2)
-      expect(tc.synonym.first.label).to eq("LHR")
-      expect(tc.synonym.last.label).to eq("Heathrow")
+      expect(tc.synonym.first.label).to eq("Heathrow")
+      expect(tc.synonym.last.label).to eq("LHR")
       tc.update({definition: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("Updated")
@@ -662,8 +844,8 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("London Heathrow")
       expect(tc.synonym.count).to eq(2)
-      expect(tc.synonym.first.label).to eq("LHR")
-      expect(tc.synonym.last.label).to eq("Heathrow")
+      expect(tc.synonym.first.label).to eq("Heathrow")
+      expect(tc.synonym.last.label).to eq("LHR")
       tc.update({synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("Woah!")
@@ -705,12 +887,12 @@ describe "Thesaurus::ManagedConcept" do
       tc.add_extensions([tc_3.uri])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
-      tc.delete_extensions([tc_3.uri, tc_2.uri])
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.narrower.count).to eq(3)
-      tc.delete_extensions([tc_1.uri])
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.narrower.count).to eq(2)
+      # tc.delete_extensions([tc_3.uri, tc_2.uri])
+      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      # expect(tc.narrower.count).to eq(3)
+      # tc.delete_extensions([tc_1.uri])
+      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      # expect(tc.narrower.count).to eq(2)
     end
 
   end
@@ -722,8 +904,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
     end
@@ -759,10 +940,10 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :all do
@@ -781,6 +962,23 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml")
     end
 
+    it "children set" do
+      set = [
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51949"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51951"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61019"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V17#C65047_C61032"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61041"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61042"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C62656"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C63321"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64431"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432")
+      ]
+      results = Thesaurus::ManagedConcept.children_set(set)
+      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml")
+    end
+
     it "normal, extended" do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
@@ -794,13 +992,53 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
     end
 
+    it "normal with tags filter" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101806/V31#C101806"))
+      results = tc.children_pagination(count: 20, offset: 0, tags: ["SDTM", "QS"])
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_5.yaml")
+      results = tc.children_pagination(count: 20, offset: 0, tags: ["QS"])
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml")
+    end
+
+    it "normal, single_parent flag " do
+      thesaurus = Thesaurus.create({identifier: "AAA", label: "BBB"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml")
+      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      item.add_extensions([ext.uri])
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml")
+    end
+
+    it "normal, single_parent flag 2 " do
+      thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml")
+      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
+      ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
+      item.add_extensions([ext.uri, ext2.uri])
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml")
+    end
+
+    it "normal, CI CN Indicators" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      results = tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_11.yaml")
+    end
+
   end
 
   describe "merge" do
 
     before :all  do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
@@ -972,6 +1210,741 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_2b.tagged.count).to eq(2)
       expect(@tc_2b.tagged.map{|x| x.uri}).to match_array([@tag_1.uri, @tag_2.uri])
       check_file_actual_expected(result, sub_dir, "additional_tags_expected_1.yaml")
+    end
+
+  end
+
+  describe "child pagination" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..47)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    it "filter tags" do
+      ct = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101806/V31#C101806"))
+      results = tc.filtered_tag_labels(nil)
+      expect(results).to match_array(["QS", "SDTM"])
+      results = tc.filtered_tag_labels(ct)
+      expect(results).to match_array(["SDTM"])
+      expect(ct).to receive(:is_owned_by_cdisc?).and_return(false)
+      results = tc.filtered_tag_labels(ct)
+      expect(results).to match_array(["QS", "SDTM"])
+    end
+
+  end
+
+  describe "delete" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl",]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+      #NameValue.destroy_all
+      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+    end
+
+    it "delete extension" do
+      uri_check_set_1 =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: false}
+      ]
+      uri_check_set_2 =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: true}
+      ]
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_extension(tc.id)
+      expect(triple_store.check_uris(uri_check_set_2)).to be(true)
+      extension = Thesaurus::ManagedConcept.find(item.uri)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      expect(extension.extension?).to eq(true)
+      expect(tc.extended_by).to eq(extension.uri)
+      expect(extension.extension_of).to eq(tc.uri)
+      result = extension.delete_or_unlink(thesaurus)
+      expect(result).to eq(1)
+      expect(tc.extended?).to eq(false)
+      expect(extension.extended?).to eq(false)
+      expect(tc.extension?).to eq(false)
+      expect(extension.extension?).to eq(false)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      expect{Thesaurus::ManagedConcept.find(extension.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/C50399E/V1#C50399E in Thesaurus::ManagedConcept.")
+      Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+    end
+
+    it "delete subset with members" do
+      uri_check_set_1 =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
+      ]
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      uri_check_set_1[11][:present] = true
+      uri_check_set_1 << { uri: subset.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.uri, present: true}
+      uri_check_set_1 << { uri: subset.members_objects.member_next, present: true}
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      result = item.delete_or_unlink(thesaurus)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(72)
+      expect{Thesaurus::ManagedConcept.find(item.id)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      uri_check_set_1[11][:present] = false
+      uri_check_set_1[12][:present] = false
+      uri_check_set_1[13][:present] = false
+      uri_check_set_1[14][:present] = false
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+    end
+
+    it "delete subset" do
+      uri_check_set_1 =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
+      ]
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      subset = item.is_ordered
+      uri_check_set_1[11][:present] = true
+      uri_check_set_1 << { uri: subset.uri, present: true}
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      result = item.delete_or_unlink(thesaurus)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(72)
+      expect{Thesaurus::ManagedConcept.find(item.id)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      uri_check_set_1[11][:present] = false
+      uri_check_set_1[12][:present] = false
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+    end
+
+    it "allows a TC to be destroyed" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+    end
+
+    it "does not allow a TC to be destroyed if it has children" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(0)
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages[0]).to eq("The code list cannot be deleted as it is in use.")
+    end
+
+    it "allows a TC to be destroyed, keeps other" do
+      th = Thesaurus.create({identifier: "AAA", notation: "A"})
+      tc_1 = th.add_child
+      tc_2 = th.add_child
+      result = tc_1.delete_or_unlink(th)
+      expect(result).to eq(1)
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.uri)
+      expect{Thesaurus::ManagedConcept.find_minimum(tc_1.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      th = Thesaurus.find_minimum(th.uri)
+      th.is_top_concept_reference_objects
+      expect(th.is_top_concept_reference.count).to eq(1)
+      expect(th.is_top_concept_reference.first.reference).to eq(tc_2.uri)
+      th.is_top_concept_objects
+      expect(th.is_top_concept.count).to eq(1)
+      expect(th.is_top_concept.first.uri).to eq(tc_2.uri)
+    end
+
+    it "allows a TC to be unlinked, multiple parents" do
+      th_1 = Thesaurus.create({identifier: "AAA1", notation: "A1"})
+      th_2 = Thesaurus.create({identifier: "AAA2", notation: "A2"})
+      tc_1 = th_1.add_child
+      tc_2 = th_1.add_child
+      th_2.select_children({id_set: [tc_1.uri.to_id, tc_2.uri.to_id]})
+      th_1 = Thesaurus.find_minimum(th_1.uri)
+      expect(th_1.is_top_concept_reference_objects.count).to eq(2)
+      th_2 = Thesaurus.find_minimum(th_2.uri)
+      expect(th_2.is_top_concept_reference_objects.count).to eq(2)
+      result = tc_1.delete_or_unlink(th_1)
+      expect(result).to eq(1)
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(tc_1.uri)
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.uri)
+      th_1 = Thesaurus.find_minimum(th_1.uri)
+      expect(th_1.is_top_concept_reference_objects.count).to eq(1)
+      th_2 = Thesaurus.find_minimum(th_2.uri)
+      expect(th_2.is_top_concept_reference_objects.count).to eq(2)
+      expect(th_1.is_top_concept_reference.first.reference).to eq(tc_2.uri)
+      th_1.is_top_concept_objects
+      expect(th_1.is_top_concept.count).to eq(1)
+      expect(th_1.is_top_concept.first.uri).to eq(tc_2.uri)
+      th_2.is_top_concept_objects
+      expect(th_2.is_top_concept.count).to eq(2)
+      expect(th_2.is_top_concept.first.uri).to eq(tc_1.uri)
+      expect(th_2.is_top_concept.last.uri).to eq(tc_2.uri)
+    end
+
+  end
+
+  describe "subsets" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      #NameValue.destroy_all
+      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
+      nv_destroy
+      nv_create(parent: "123", child: "456")
+    end
+
+    it "determines if an item is subsetted" do
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      subsets = cl.subsetted_by
+      expect(subsets.count).to eq(2)
+      expect(subsets[0][:s].to_s).to eq("http://www.s-cubed.dk/S000001/V19#S000001")
+      expect(subsets[1][:s].to_s).to eq("http://www.s-cubed.dk/S000002/V19#S000002")
+    end
+
+    it "determines if an item is subsetted, none found" do
+      cl2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C87162/V19#C87162"))
+      expect(cl2.subsetted_by).to eq(nil)
+    end
+
+    it "determines if an item is a subset and finds" do
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/S000001/V19#S000001"))
+      expect(cl.subset?).to eq(true)
+      expect(cl.subset_of).to_not eq(nil)
+      expect(cl.subset_of.to_s).to eq("http://www.cdisc.org/C66726/V19#C66726")
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      expect(cl.subset?).to eq(false)
+      expect(cl.subset_of).to eq(nil)
+    end
+
+    it "creates subset" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      new_subset = tc.create_subset
+      actual = Thesaurus::ManagedConcept.find_minimum(new_subset.id)
+      expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66726/V19#C66726")
+      expect(actual.is_ordered_objects).not_to be(nil)
+      expect(actual.is_ordered_objects.members).to be(nil)
+    end
+
+  end
+
+  describe "rank" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      load_local_file_into_triple_store(sub_dir, "rank_input_1.ttl")
+    end
+
+    it "creates rank" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "creates rank, empty cl" do
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      expect(actual_rank.members).to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "get ranked children" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66741/V20#C66741"))
+      expect(actual_rank.members).not_to be(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      results = actual_tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "get_ranked_children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "rank indicator" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = tc.add_rank
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "rank_indicator_expected_1.yaml")
+    end
+
+    it "creates rank, empty cl, add first child" do
+      params =
+      {
+        definition: "The Queen's Terminal",
+        identifier: "C00001",
+        label: "Terminal T",
+        notation: "TT"
+      }
+      ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+      mc = ct.add_child({})
+      mc = Thesaurus::ManagedConcept.find(mc.id)
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      expect(actual_rank.members).to eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      new_cli = actual_tc.add_child(params)
+      uc = Thesaurus::UnmanagedConcept.find_children(new_cli.id)
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_1b.yaml", equate_method: :hash_equal)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      expect(actual_rank.members).to_not eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+    end
+
+    it "creates rank, existent cl, add child" do
+      params =
+      {
+        definition: "A definition",
+        identifier: "A00099",
+        label: "A label",
+        notation: "A99"
+      }
+      mc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      new_rank = mc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      actual_tc = Thesaurus::ManagedConcept.find(mc.id)
+      new_cli = actual_tc.add_child(params)
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      check_thesaurus_concept_actual_expected(uc.to_h, sub_dir, "set_rank_expected_2b.yaml", equate_method: :hash_equal)
+      tc = Thesaurus::ManagedConcept.find(mc.id)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      expect(actual_rank.members).to_not eq(nil)
+      expect(actual_tc.is_ranked).to eq(actual_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(second_member.rank).to eq(2)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      expect(third_member.rank).to eq(3)
+      expect(third_member.member_next).to eq(nil)
+    end
+
+    it "set rank, ranked extension, add extensions" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      new_rank = tc.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Bristol",
+          identifier: "A00003",
+          definition: "A definition",
+          notation: "BRS"
+        })
+      tc_1.set_initial("A00003")
+      tc_1.save
+      tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Exeter",
+          identifier: "A00004",
+          definition: "A definition",
+          notation: "EXT"
+        })
+      tc_2.set_initial("A00004")
+      tc_2.save
+      tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "Birmingham",
+          identifier: "A00005",
+          definition: "A definition",
+          notation: "BXM"
+        })
+      tc_3.set_initial("A00005")
+      tc_3.save
+      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      tc.add_extensions([tc_3.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(5)
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      third_member = Thesaurus::RankMember.find(second_member.member_next)
+      fourth_member = Thesaurus::RankMember.find(third_member.member_next)
+      fifth_member = Thesaurus::RankMember.find(fourth_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      expect(third_member.rank).to eq(3)
+      expect(fourth_member.rank).to eq(4)
+      expect(fifth_member.rank).to eq(5)
+      expect(fifth_member.member_next).to eq(nil)
+    end
+
+    it "set rank, ranked subset, add items" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+    end
+
+    it "remove rank member, last position, ranked subset" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(subset.members)
+      sm_2 = Thesaurus::SubsetMember.find(sm_1.member_next)
+      result = subset.remove(sm_2.uri.to_id)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(sm_1.uri)
+      expect(subset.members).to eq(sm_1.uri)
+      expect(sm_1.member_next).to eq(nil)
+      expect{Thesaurus::SubsetMember.find(sm_2.uri)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_2.uri} in Thesaurus::SubsetMember.")
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      expect(first_member.rank).to eq(1)
+      expect(first_member.member_next).to eq(nil)
+    end
+
+    it "remove rank member, first position, ranked subset" do
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      new_rank = item.add_rank
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      subset = item.is_ordered
+      sm_1 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id])
+      sm_2 = subset.add([Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id])
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      second_member = Thesaurus::RankMember.find(first_member.member_next)
+      expect(first_member.rank).to eq(1)
+      expect(second_member.rank).to eq(2)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_1 = Thesaurus::SubsetMember.find(subset.members)
+      sm_2 = Thesaurus::SubsetMember.find(sm_1.member_next)
+      result = subset.remove(sm_1.uri.to_id)
+      subset = Thesaurus::Subset.find(subset.uri)
+      sm_2 = Thesaurus::SubsetMember.find(sm_2.uri)
+      expect(subset.members).to eq(sm_2.uri)
+      expect(sm_2.member_next).to eq(nil)
+      expect{Thesaurus::SubsetMember.find(sm_1.uri)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_1.uri} in Thesaurus::SubsetMember.")
+      actual_rank = Thesaurus::Rank.find(new_rank.uri)
+      first_member = Thesaurus::RankMember.find(actual_rank.members)
+      expect(first_member.rank).to eq(2)
+      expect(first_member.member_next).to eq(nil) 
+    end
+
+    it "delete rank" do
+      rank_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri_1)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc.is_ranked = rank
+      tc.save
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      actual_rank = Thesaurus::Rank.find(rank.uri)
+      expect(tc.is_ranked).to eq(actual_rank.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+      expect{Thesaurus::Rank.find(actual_rank.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8 in Thesaurus::Rank.")
+    end
+
+
+
+    
+
+  end
+
+  describe "Clone and New Version" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone thesaurus concept I" do
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      actual = tc.clone
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
+    end
+
+    it "clone thesaurus concept II" do
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768"))
+      actual = tc.clone
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
+    end
+
+    it "create next thesaurus concept" do
+      thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      actual = thesaurus.create_next_version
+      check_dates(actual, sub_dir, "next_version_expected_1.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")
+      actual = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
+      check_dates(actual, sub_dir, "next_version_expected_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml")
+      actual = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
+      actual.preferred_term_objects
+      check_dates(actual, sub_dir, "next_version_expected_1c.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml")
+    end
+
+  end
+
+  describe "Clone Subset" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_4.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone subset" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1a.yaml")
+      actual = tc.create_next_version
+      check_dates(actual, sub_dir, "clone_subset_expected_1b.yaml", :creation_date, :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1b.yaml")
+    end
+
+  end
+
+  describe "Clone Extension" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension_2.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1a.yaml")
+      actual = tc.create_next_version
+      #check_dates(actual, sub_dir, "clone_extension_expected_1b.yaml", :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml")
+    end
+
+  end
+
+  describe "edit" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "supporting edit?" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
+      expect(tc.supporting_edit?).to eq(false)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.supporting_edit?).to eq(true)
+    end
+
+  end
+
+  describe "sets" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "set with indicators, faked CDISC" do
+      cdisc = IsoNamespace.find_by_short_name("CDISC")
+      expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(cdisc)
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "1000"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml")
+    end
+
+    it "set with indicators, normal" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_2.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_4.yaml")
+    end
+
+  end
+
+  describe "sets test database" do
+
+    before :all do
+      timer_start
+      load_files(schema_files, [])
+      load_test_file_into_triple_store("test_db_1.nq.gz")
+      timer_stop("Triple store loaded")
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    after :all do
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    it "set with indicators, normal" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml")
+    end
+
+    it "set with indicators, subsets" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "subsets", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml")
+    end
+
+    it "set with indicators, extensions" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "extensions", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_4.yaml")
+    end
+
+  end
+
+  describe "metadata tests" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "read paths" do
+      check_file_actual_expected(Thesaurus::ManagedConcept.read_paths, sub_dir, "read_paths_expected_1.yaml", equate_method: :hash_equal)
+      item = Thesaurus::ManagedConcept.new
+      check_file_actual_expected(item.class.read_paths, sub_dir, "read_paths_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "finds full based on read paths" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V18#C66767"))
+      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

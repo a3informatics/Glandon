@@ -115,10 +115,10 @@ describe ModelHelpers do
     nodes = KlassA.query_and_result(query)
   #Xwrite_text_file_2(nodes.to_s, sub_dir, "query_and_result_expected.txt")
     expected = read_text_file_2(sub_dir, "query_and_result_expected.txt")
-    expect(nodes.count).to eq(55)
+    expect(nodes.count).to eq(56)
     expect(nodes.to_s).to eq(expected)
     nodes = a.query_and_result(query)
-    expect(nodes.count).to eq(55)
+    expect(nodes.count).to eq(56)
     expect(nodes.to_s).to eq(expected)
   end
 

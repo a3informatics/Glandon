@@ -1,9 +1,0 @@
-$(document).ready(function() {
-  ep = new EditorPanel("1", children_path, update_path, parent_id);
-  np = new NewPanel(add_child_path, 'thesauri', callback);
-
-  function callback(data) {
-    ep.add(data);
-  }
-
-})

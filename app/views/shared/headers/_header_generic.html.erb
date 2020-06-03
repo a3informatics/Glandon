@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'shared/layouts/header_card', media: 'all' %>
+
+<div class="col-md-12 card">
+  <div class="card-content">
+    <div class="h-outside-wrap">
+      <div class="h-inner-wrap mid">
+        <% if !header_title.empty? %>
+          <div class="h-inner-wrap text-small header-title"><%= header_title %></div>
+        <% end %>
+        <div class="h-inner-wrap rb" style="flex-direction: row;">
+          <div class="h-inner-wrap">
+            <span class="circular-badge big bg-accent-1 text-white">
+              <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
+            </span>
+          </div>
+          <div class="h-inner-wrap mid">
+            <div class="text-large"> <%= main_text %> </div>
+            <div class="text-small font-light">
+              <% if sub_texts.is_a? Array %>
+                <% sub_texts.each_with_index do |item, index| %>
+                  <span class="font-regular"> <%= item[:title] %>: </span><%= item[:value] %>
+                  <%= "&nbsp;|&nbsp;".html_safe if (index != sub_texts.length - 1) %>
+                <% end %>
+              <% else %>
+                <span> <%= sub_texts %> </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="h-inner-wrap">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>

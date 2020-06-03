@@ -8,6 +8,8 @@ module UserAccountHelpers
   C_TERM_READER = "term_reader@example.com"
 	C_TERM_CURATOR = "term_curator@example.com"
   C_COMM_READER = "comm_reader@example.com"
+  C_SYS_CONTENT_ADMIN = "sys_content_admin@example.com"
+
 
   def ua_create
     @user_c = User.create :email => C_CURATOR, :password => C_PASSWORD
@@ -37,6 +39,11 @@ module UserAccountHelpers
     @user_cr.add_role :community_reader
     @user_cr.remove_role :reader # Get reader on the create
 		unforce_first_pass_change @user_cr
+    @user_sca = User.create :email => C_SYS_CONTENT_ADMIN, :password => C_PASSWORD
+    @user_sca.add_role :sys_admin
+    @user_sca.add_role :content_admin
+    @user_sca.remove_role :reader # Get reader on the create
+    unforce_first_pass_change @user_sca
   end
 
   def ua_destroy
@@ -53,6 +60,8 @@ module UserAccountHelpers
     user = User.where(:email => C_TERM_CURATOR).first
     user.destroy
     user = User.where(:email => C_COMM_READER).first
+    user.destroy
+    user = User.where(:email => C_SYS_CONTENT_ADMIN).first
     user.destroy
   end
 
@@ -80,13 +89,17 @@ module UserAccountHelpers
   	ua_generic_login C_TERM_CURATOR
   end
 
-  # Deprecate, use the pne below, just a better name
+  # Deprecate, use the one below, just a better name
   def ua_comm_reader_login
     ua_generic_login C_COMM_READER, C_PASSWORD
   end
 
   def ua_community_reader_login
-    ua_generic_login C_COMM_READER, C_PASSWORD
+    ua_generic_login C_COMM_READER
+  end
+
+  def ua_sys_and_content_admin_login
+    ua_generic_login C_SYS_CONTENT_ADMIN
   end
 
   def ua_logoff
@@ -105,8 +118,8 @@ module UserAccountHelpers
 	def ua_add_user(args)
 		args[:password] = C_PASSWORD if !args.key?(:password)
 		args[:role] = :reader if !args.key?(:role)
-
 		@usr = User.create :email => args[:email], :password => args[:password]
+  puts colourize("***** User create error: #{@usr.errors.full_messages.to_sentence}. Args: #{args} *****", "red") if @usr.errors.any?
 		@usr.add_role args[:role]
 		unforce_first_pass_change @usr
 		return @usr

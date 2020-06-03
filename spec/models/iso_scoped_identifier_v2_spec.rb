@@ -275,13 +275,24 @@ describe "IsoScopedIdentifierV2" do
     expect(item.to_h).to eq(result)
   end
 
-  it "does not allow a duplicate object to be created" do
+  it "does not allow a duplicate identifier for the same owner to be created" do
     org = IsoNamespace.find_by_short_name("BBB")
     si1 = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org)
     item = IsoScopedIdentifierV2.find_children(Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW-1"))
     si2 = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "4.5.6", has_scope: org)
-    expect(si2.errors.count).to eq(1)
-    expect(si2.errors.full_messages.to_sentence).to eq("The scoped identifier is already in use")
+    expect(si2.errors.count).to eq(2)
+    expect(si2.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/SI/BBB/NEW-1 already exists in the database and the scoped identifier is already in use")
+  end
+
+  it "allows a duplicate identifier for a different owner to be created" do
+    org1 = IsoNamespace.find_by_short_name("AAA")
+    si1 = IsoScopedIdentifierV2.create(identifier: "NEW 2", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org1)
+    expect(si1.errors.count).to eq(0)
+    org2 = IsoNamespace.find_by_short_name("BBB")
+    si2 = IsoScopedIdentifierV2.create(identifier: "NEW 2", version: 1, version_label: "0.1", semantic_version: "4.5.6", has_scope: org2)
+    expect(si2.errors.count).to eq(0)
+    item1 = IsoScopedIdentifierV2.find_children(Uri.new(uri: "http://www.assero.co.uk/SI/AAA/NEW-2"))
+    item2 = IsoScopedIdentifierV2.find_children(Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW-2"))
   end
 
   it "does not allow an invalid object to be created" do
@@ -397,6 +408,37 @@ describe "IsoScopedIdentifierV2" do
     si = IsoScopedIdentifierV2.new
     si.generate_uri(Uri.new(uri: "http://www.assero.co.uk/ID/1"))
     expect(si.uri.to_s).to eq("http://www.assero.co.uk/ID/1#SI")
+  end
+
+  it "updates the version label and/or semantic version" do
+    org = IsoNamespace.find_by_short_name("BBB")
+    uri = Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW-1")
+    object = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org)
+    
+    object.update_version(semantic_version: "1.2.3", version_label: "step 1")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.3")
+    expect(object.version_label).to eq("step 1")
+    
+    object.update_version(semantic_version: "1.2.4")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 1")    
+    
+    object.update_version(version_label: "step 2")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
+    
+    object.update_version(version_label: "step 3±")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
+
+    object.update_version(semantic_version: "±")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
   end
 
 end

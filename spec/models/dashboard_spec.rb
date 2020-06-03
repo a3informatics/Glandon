@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe "Dashboard" do
 
 	include DataHelpers
   include PauseHelpers

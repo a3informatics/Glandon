@@ -7,18 +7,8 @@ describe "Token" do
   include UserAccountHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_vs_baseline.ttl"]
+    load_files(schema_files, data_files)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -80,18 +70,38 @@ describe "Token" do
     expect(token.locked_at).to be_within(1.second).of Time.now
   end
 
-  it "finds token" do
+  it "find token" do
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
     expect(Token.find_token(item, @user).to_json).to eq(token.to_json)
   end
 
-  it "determines if user does not own lock, released" do
+  it "find token, released" do
     Token.set_timeout(5)
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
     sleep 6
     expect(Token.find_token(item, @user)).to eq(nil)
+  end
+
+  it "find token for item" do
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    expect(Token.find_token_for_item(item).to_json).to eq(token.to_json)
+  end
+
+  it "find token for item, released" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    sleep 6
+    expect(Token.find_token_for_item(item)).to eq(nil)
+  end
+
+  it "find token for item, no token" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(Token.find_token_for_item(item)).to eq(nil)
   end
 
   it "determines if user does not own lock, never locked" do

@@ -69,14 +69,37 @@ class UsersController < ApplicationController
     # you need to be admin to delete.
     user = User.find(params[:id])
     delete_email = user.email
-    if current_user.id != user.id
+    if current_user.id == user.id 
+      flash[:error] = "You cannot delete your own user!"
+    elsif user.logged_in?
+      flash[:error] = "You cannot delete #{delete_email}. User has logged in!"
+    else
       user.destroy
       AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
       flash[:success] = "User #{delete_email} was successfully deleted."
-    else
-      flash[:error] = "You cannot delete your own user!"
     end
     redirect_to users_path
+  end
+
+  def lock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.lock
+    flash[:success] = "User was successfully deactivated."
+    redirect_to users_path
+  end
+
+  def unlock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.unlock
+    flash[:success] = "User was successfully activated."
+    redirect_to users_path
+  end
+
+  def stats_by_domain
+    authorize User, :show?
+    render json: {data: User.all.users_by_domain}
   end
 
 private

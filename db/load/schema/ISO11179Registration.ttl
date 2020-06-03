@@ -110,3 +110,10 @@
   rdfs:label "Previous State"^^xsd:string ;
   rdfs:range xsd:string ;
   skos:definition "The previous registration state."^^xsd:string ;
+.
+:multipleEdit
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :RegistrationState ;
+  rdfs:label "Multiple Edit"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Allows for multiple edit without new copy and version."^^xsd:string ;

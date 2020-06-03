@@ -1,0 +1,17 @@
+<%  index_th_url = thesauri_index_path
+    history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
+    history_cl_url = history_thesauri_managed_concepts_path(managed_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    children_cl_url = children_thesauri_managed_concept_path(id: "miClId")
+    #index_bc_url = biomedical_concepts_path
+    #history_bc_url = history_biomedical_concepts_path(biomedical_concept: {identifier: "miHistoryId", scope_id: "miScopeId"})
+%>
+
+<%= javascript_tag "var miIndexThesauriUrl = '#{index_th_url}',
+                        miHistoryThesauriUrl = '#{history_th_url}',
+                        miIndexClUrl = '#{index_cl_url}',
+                        miHistoryClUrl = '#{history_cl_url}',
+                        miChildrenClUrl = '#{children_cl_url}';
+                        // miIndexBcUrl = ''
+                        // miHistoryBcUrl = ''; "
+                        %>

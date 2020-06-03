@@ -4,6 +4,7 @@ describe Fuseki::Resource do
   
   include DataHelpers
   include PublicFileHelpers
+  include FusekiBaseHelpers
 
   def sub_dir
     return "models/concerns/fuseki/resource"
@@ -74,13 +75,9 @@ describe Fuseki::Resource do
     it "URI generation configured, unique" do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", base_uri: "http://www.example.com/X", uri_unique: true})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
-      expect(result.to_s.length > parent.to_s.length).to eq(true)
-      expect(result.to_s).to start_with("http://www.example.com/X")
-      result = TestR1.create_uri(parent)
       expect(result.to_s.length > parent.to_s.length).to eq(true)
       expect(result.to_s).to start_with("http://www.example.com/X")
     end
@@ -89,7 +86,6 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_AAA"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "AAA"})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
@@ -101,7 +97,6 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_14"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_property: :xxx})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
@@ -112,18 +107,9 @@ describe Fuseki::Resource do
       parent = Uri.new(uri: "http://www.example.com/A#XXX")
       expected = "#{parent.to_s}_BBB14"
       TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB", uri_property: :xxx})
-      expect(TestR1.respond_to?(:create_uri)).to eq(true)
       item = TestR1.new
       expect(item.respond_to?(:create_uri)).to eq(true)
       result = item.create_uri(parent)
-      expect(result.to_s).to eq(expected)
-    end
-
-    it "URI generation configured, property & prefix" do
-      parent = Uri.new(uri: "http://www.example.com/A#XXX")
-      expected = "#{parent.to_s}_BBB"
-      TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB"})
-      result = TestR1.create_uri(parent)
       expect(result.to_s).to eq(expected)
     end
 
@@ -213,24 +199,16 @@ describe Fuseki::Resource do
       expect(item.respond_to?(:fred_objects?)).to eq(true)
     end
 
+    it "object and push method" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      TestR4.object_property(:fred, {cardinality: :many, model_class: "TestRTarget", children: true})
+      item = TestR4.new
+      expect(item.respond_to?(:fred_push)).to eq(true)
+    end
+
   end
 
   describe "read metadata" do
-
-    #
-    # This is naughty but ok-ish. Loads schema ready for the tests and the elaboration of class TestR10 which happens 
-    # before the "before :all" block. Schema is required.
-    # sparql_query = "CLEAR DEFAULT"
-    # CRUD.update(sparql_query)
-    # schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-    # schema_files.each do |f|
-    #   full_path = Rails.root.join "db/load/schema/#{f}"
-    #   response = CRUD.file(full_path)
-    #   raise if !response.success?
-    # end
-    
-    # FusekiBaseHelpers.clear
-    # FusekiBaseHelpers.read_schema # Makes sure we have the schema loaded. It is all about the timing!! :)
 
     before :all do
     end
@@ -238,22 +216,9 @@ describe Fuseki::Resource do
     after :all do
     end
 
-    class TestR10 < Fuseki::Base
+    class TestR11 < FusekiBaseHelpers::TestRegistrationAuthorities
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
-                base_uri: "http://www.assero.co.uk/RA" 
-
-      data_property :organization_identifier, default: "<Not Set>" 
-      data_property :international_code_designator, default: "XXX"
-      data_property :owner, default: false
-      object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
-      object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
-
-    end 
-
-    class TestR11 < TestR10
-
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoConceptV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake1"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
@@ -261,41 +226,41 @@ describe Fuseki::Resource do
 
     class TestR12 < TestR11
 
-      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoManagedV2"
+      configure rdf_type: "http://www.assero.co.uk/Fake2"
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
     end 
 
     it "get properties, class and instance" do
-      result = TestR10.resources
+      result = FusekiBaseHelpers::TestRegistrationAuthorities.resources
       check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
-      item = TestR10.new
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       result = item.class.resources
       check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "object relationships" do
-      check_file_actual_expected(TestR10.object_relationships, sub_dir, "relationships_expected_1.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.object_relationships, sub_dir, "relationships_expected_1.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.object_relationships, sub_dir, "relationships_expected_1.yaml")
     end
 
     it "property relationships" do
-      check_file_actual_expected(TestR10.property_relationships, sub_dir, "relationships_expected_2.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.property_relationships, sub_dir, "relationships_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.property_relationships, sub_dir, "relationships_expected_2.yaml")
     end
 
     it "read paths" do
-      check_file_actual_expected(TestR10.read_paths, sub_dir, "managed_paths_expected_1.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.read_paths, sub_dir, "managed_paths_expected_1.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.read_paths, sub_dir, "managed_paths_expected_1.yaml")
     end
 
     it "delete paths" do
-      check_file_actual_expected(TestR10.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
-      item = TestR10.new
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
     end
 
@@ -306,8 +271,8 @@ describe Fuseki::Resource do
     end
 
     it "rdf type to klass" do
-      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoConceptV2")).to eq(TestR11)
-      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoManagedV2")).to eq(TestR12)
+      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/Fake1")).to eq(TestR11)
+      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/Fake2")).to eq(TestR12)
     end
 
   end

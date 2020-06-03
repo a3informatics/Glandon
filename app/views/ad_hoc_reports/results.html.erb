@@ -1,34 +1,44 @@
-<%= stylesheet_link_tag    'spinner' %>
-<%= javascript_include_tag 'ad_hoc_report_results', 'spinner' %>
-<% second_level_breadcrumb("Ad-hoc reports", ad_hoc_reports_path, "Results") %>
-<h3>Ad-Hoc Report Results: <%= @report.label %></h3>
+<%= javascript_tag 'setPageTitle("Ad-Hoc Report Results")' %>
+<%= stylesheet_link_tag    'shared/datatables_loading' %>
+<%= javascript_include_tag 'ad_hoc_reports/results' %>
+<% breadcrumb ([id_to_type(:ad_hoc_reports), {link: "#", text: "Results"}]) %>
+
 <div class="row">
-	<div class="col-md-12">
-		<div class="btn-group" role="group" aria-label="First group">
-      <button id="running" type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-refresh"></span>
-      </button>
-      <%= link_to "Close", ad_hoc_reports_path, :class => "btn btn-primary" %>
-    </div>
-    <br/><br/>
-  </div>
-</div>  
-<div class="row">
-	<div class="col-md-12">
-		<table id="results" class="table table-striped table-bordered table-condensed">
-			<thead>
-		  	<tr>
-		  		<% @columns.each do |key, entry| %>
-		    		<th><%= entry[:label] %></th>
-		    	<% end %>
-		  	</tr>
-			</thead>
-			<tbody>
-		  </tbody>
-		</table>
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-document", header_title: "",
+		main_text: "Ad-Hoc Reports", sub_texts: "Report: <span class='font-regular'> #{@report.label} </span>".html_safe } do %>
+
+		<div class="actions-wrap" role="group" aria-label="First group">
+
+			<% if policy(AdHocReport).export_csv? %>
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_ad_hoc_report_path(@report), id: "export_csv",
+					icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
+			<% end %>
+
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+		</div>
+
+	<% end %>
+</div>
+
+<div class="row centered">
+	<div class="col-md-11 card wide">
+		<div class="card-header">Ad-Hoc Report Results</div>
+		<div class="card-content table-cardstyle all-columns">
+			<h4><span class="icon-forms text-prim-light"></span> Results of <span class="text-prim-light"><%= @report.label %></span></h4>
+			<br/>
+				<table id="results" class="table table-striped table-bordered table-condensed">
+					<thead>
+				  	<tr>
+				  		<% @columns.each do |key, entry| %>
+				    		<th><%= entry[:label] %></th>
+				    	<% end %>
+				  	</tr>
+					</thead>
+					<tbody>
+				  </tbody>
+				</table>
+			<input type="hidden" id="report_id" value="<%= @report.id %>">
+		</div>
 	</div>
 </div>
-<% if policy(AdHocReport).export_csv? %>
-	<%= link_to "Export CSV", export_csv_ad_hoc_report_path(@report), :class => "btn btn-info" %>
-<% end %>
-<input type="hidden" id="report_id" value="<%= @report.id %>">

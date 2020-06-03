@@ -1,0 +1,161 @@
+@import "shared/vars.scss";
+
+#sidebar {
+  background-color: #ffffff;
+  font-family: $font-light;
+  overflow-y: auto;
+  max-height: 100%;
+  transition: max-height .5s;
+}
+
+#sidebar.collapsed-vertical{
+  max-height: 0px;
+}
+
+// Hide all sidebar arrows on vertical screen
+#sidebar-arrow, .parent-cat-item .arrow, .category-item .arrow {
+  display: none;
+}
+
+.arrow-rotate{
+  transform: rotate(180deg);
+}
+
+// The category title wrapper
+.category-item{
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  height: 60px;
+}
+
+.category-item:hover, #sidebar ul.nav li:hover{
+  background-color: $grey-bright;
+}
+
+.category-item.selected .category-icon{
+  color: $primary-color-light;
+}
+
+// Menu category icon element
+.category-icon{
+  margin: 0px 18px;
+}
+
+// Wide-screen styling only
+@media (min-width:768px) {
+
+  // Expanded sidebar styling
+  #sidebar {
+      min-width: 270px;
+      max-width: 270px;
+      min-height: 100%;
+      position:relative;
+      padding: 0px !important;
+      padding-top: 15px;
+      transition: all .4s;
+  }
+
+  // Horizontally collapsed sidebar styling
+  #sidebar.sidebar-collapsed{
+    min-width: 0px;
+    width: 60px;
+    overflow: hidden;
+  }
+
+  #sidebar.sidebar-collapsed .category-title,
+    #sidebar.sidebar-collapsed .category-item .arrow,
+    #sidebar.sidebar-collapsed ul.nav{
+      display: none;
+  }
+
+  #sidebar.sidebar-collapsed .category-container{
+    border: 0px;
+  }
+
+  // Container holding the category item and all subitems
+  .category-container{
+    position: relative;
+  }
+
+  // Big horizontal arrow for collapsing / expanding the sidebar
+  #sidebar-arrow{
+    padding: 10px;
+    margin: 15px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  // Small vertical arrow in  menu category items
+  .category-item .arrow{
+    margin-left: auto;
+    margin-right: 20px;
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
+  // Arrow animation, applies to all arrows
+  .arrow{
+    transition: transform .3s ease-out;
+  }
+
+  // Styling of vertical collapsing/expanding each menu category
+  ul.nav{
+    max-height: 300px;
+    transition: max-height .5s;
+  }
+
+  .category-container.collapsed ul.nav{
+    max-height: 0px;
+    overflow: hidden;
+  }
+
+  .category-container.collapsed .arrow{
+    transform: rotate(0deg);
+  }
+
+  .category-item.selected::before{
+    width: 4px;
+    height: 60px;
+    background: $secondary-color-medium;
+    content: "";
+    position: absolute;
+  }
+
+  // Sidebar subitems styling
+  #sidebar ul.nav li{
+    padding-left: 20px;
+    font-size: $font-small;
+  }
+
+  #sidebar ul.nav li:hover a{
+    background: initial;
+  }
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+    .category-item.selected::before{
+      top: 0px;
+    }
+
+  }
+
+}
+
+// LOCKED ITEMS
+#sidebar .locked {
+  pointer-events: none;
+  opacity: .5;
+  position: relative;
+}
+
+#sidebar .locked::after{
+  position: absolute;
+  content: "\e943";
+  font-family: 'icomoon' !important;
+  right: 20px;
+  opacity: .5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

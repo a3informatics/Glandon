@@ -174,4 +174,13 @@ describe Uri do
     timer_stop("10000 URI calls")
   end
 
+  it "safe id" do
+    uri = Uri.new({uri: "http://www.example.com/path1/path2#1"})
+    expect(Uri.safe_id?(uri.to_id)).to eq(true)
+    expect(Uri.safe_id?("http://www.example.com/path1?sparql(?s)")).to eq(false)
+    expect(Uri.safe_id?("http://www.example")).to eq(false)
+    expect(Uri.safe_id?("https://www.example.com")).to eq(false)
+    expect(Uri.safe_id?("http://www.example.com/path1?a=b")).to eq(false)
+  end
+
 end

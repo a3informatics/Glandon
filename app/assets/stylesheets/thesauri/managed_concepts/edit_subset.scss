@@ -1,0 +1,67 @@
+@import "shared/vars.scss";
+
+.editor-wrap, .editor-wrap .row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.editor-wrap{
+  flex-direction: row;
+  width: 100%;
+  font-family: $font-light;
+}
+
+.editor-child{
+  width: calc(50% - 30px);
+  min-width: 300px;
+  margin: 15px;
+  padding-bottom: 10px;
+  border: 1px solid $grey-bright;
+  border-radius: 10px;
+}
+
+.card-header.editor-child-header{
+  margin-bottom: 10px;
+  background: $grey-bright;
+  color: $grey-medium;
+}
+
+.editor-wrap table td, .editor-wrap table th{
+  border-bottom: none !important;
+  padding-left: 15px !important;
+}
+
+.editor-wrap table th{
+  font-size: $font-tiny !important ;
+}
+
+.editor-wrap .col-sm-6, .editor-wrap .col-sm-5, .editor-wrap .col-sm-7,{
+  width: unset !important;
+}
+
+.editor-wrap .dataTables_wrapper .row:last-of-type, .editor-wrap .dataTables_wrapper .row:first-of-type{
+  font-size: $font-small;
+  padding: 5px 10px;
+}
+
+.no-sort, .no-sort::after{
+  pointer-events: none !important;
+  content: "" !important;
+}
+
+.editor-wrap table.table-disabled{
+  pointer-events: none !important;
+  opacity: .5 !important;
+}
+
+@media (max-width: 1090px){
+  .editor-child{
+    width: calc(100% - 30px);
+  }
+}
+
+.editor-wrap div.dataTables_wrapper div.dataTables_processing{
+  width: calc(100% - 30px) !important;
+  left: 15px !important;
+}

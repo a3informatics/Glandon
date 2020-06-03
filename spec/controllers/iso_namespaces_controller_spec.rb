@@ -18,18 +18,12 @@ describe IsoNamespacesController do
 
     it "index namespaces" do
       namespaces = IsoNamespace.all
+      expect(IsoNamespace).to receive(:all).and_return(namespaces)
       get :index
       expected = namespaces.map{|x| x.to_h}
       actual = assigns(:namespaces).map{|x| x.to_h}
       expect(actual).to eq(expected)
       expect(response).to render_template("index")
-    end
-
-    it "new namespace" do
-      namespace = IsoNamespace.new
-      get :new
-      expect(assigns(:namespace).to_h).to eq(namespace.to_h)
-      expect(response).to render_template("new")
     end
 
     it 'creates namespace' do
@@ -46,7 +40,7 @@ describe IsoNamespacesController do
       post :create, iso_namespace: { name: "YYY Pharma", short_name: "YYY", authority: "www.example.com"  }
       expect(IsoNamespace.all.count).to eq(3)
       expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/iso_namespaces/new")
+      expect(response).to redirect_to("/iso_namespaces")
     end
 
     it 'deletes namespace, used, not deleted' do

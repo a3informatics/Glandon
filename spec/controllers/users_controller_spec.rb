@@ -57,6 +57,17 @@ describe UsersController do
       expect(User.all.count).to eq(count - 1)
     end
 
+    it 'deletes user, user has logged in' do
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+      user = User.find_by(:email => "tst_user2@example.com")
+      count = User.all.count
+      delete :destroy, :id => user.id
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You cannot delete tst_user2@example.com. User has logged in!/)
+      expect(User.all.count).to eq(count)
+    end
+
     it "edits user" do
       user1 = ua_add_user email: "fred@example.com"
       user2 = ua_add_user email: "sid@example.com"
@@ -91,6 +102,32 @@ describe UsersController do
       user = User.find_by(:email => "fred@example.com")
       expect(user.name).to eq("Updated Name")
       expect(response).to redirect_to("/user_settings")
+    end
+
+    it "locks user" do
+      user = User.create :email => "fred@example.com", :password => "Changeme1#"
+      expect(user.is_active?).to eq(true)
+      put :lock, {id: user.id}
+      expect(flash[:success]).to be_present
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.is_active).to eq(false)
+      expect(response).to redirect_to("/users")
+    end
+
+    it "unlocks user" do
+      user = User.create :email => "fred@example.com", :password => "Changeme1#"
+      put :unlock, {id: user.id}
+      expect(flash[:success]).to be_present
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.is_active).to eq(true)
+      expect(response).to redirect_to("/users")
+    end
+
+    it "stats_by_domain" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_domain
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
     it "prevents removing last sys admin user role" do

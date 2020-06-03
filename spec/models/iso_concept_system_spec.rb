@@ -13,17 +13,8 @@ describe IsoConceptSystem do
   describe "No root" do
 
     before :each do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
-      #clear_iso_concept_object
     end
 
     it "creates the root node if not present" do
@@ -50,35 +41,26 @@ describe IsoConceptSystem do
   describe "Existing data" do
 
   	before :all do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"  
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
       load_files(schema_files, data_files)
-      #clear_iso_concept_object
     end
 
     it "allows the object to be created from params" do
-      actual = IsoConceptSystem.create({uri: IsoConceptSystem.create_uri(IsoConceptSystem.base_uri), pref_label: "Node 3", description: "Node 3"})
+      actual = IsoConceptSystem.create(pref_label: "Node 3", description: "Node 3")
       check_file_actual_expected(actual.to_h, sub_dir, "create_expected_1.yaml", equate_method: :iso_concept_system_equal)
     end
 
     it "prevents an object being created from invalid json" do
-      actual = IsoConceptSystem.create({uri: IsoConceptSystem.create_uri(IsoConceptSystem.base_uri), pref_label: "Node 3", description: "Node 3±"})
+      actual = IsoConceptSystem.create(pref_label: "Node 3", description: "Node 3±")
       expect(actual.errors.count).to eq(1)
     end
 
     it "allows a child object to be added" do
-      concept = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+      concept = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
       params = { :label => "Node 3_3", :description => "Node 3_3"}
       actual = concept.add(params)
       expect(actual.errors.count).to eq(0)
-      actual = IsoConceptSystem.find(actual.uri)
+      actual = IsoConceptSystem::Node.find(actual.uri)
       check_file_actual_expected(actual.to_h, sub_dir, "add_expected_1.yaml", equate_method: :iso_concept_system_equal)
     end
 
@@ -87,6 +69,12 @@ describe IsoConceptSystem do
       concept.delete
       expect{IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRConcepts#GSC-C2 in IsoConceptSystem.")
     end
+
+    it "tag separator" do
+      actual = IsoConceptSystem.tag_separator
+      expect(actual).to eq(";")
+    end
+
 
   end
 
@@ -113,4 +101,48 @@ describe IsoConceptSystem do
 
   end
 
+  describe "Find All" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "Find All" do
+      result = IsoConceptSystem.root.find_all
+      check_file_actual_expected(result.to_h, sub_dir, "find_all_expected_1.yaml", equate_method: :iso_concept_system_equal)
+    end
+
+  end
+
+  describe "Root" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "cannot delete root" do
+      root = IsoConceptSystem.root
+      root.delete
+      expect(root.errors.count).to eq(1)
+      expect(root.errors.full_messages.to_sentence).to eq("You are not permitted to delete the root tag")
+    end
+
+    it "root?" do
+      root = IsoConceptSystem.root
+      expect(root.root?).to eq(true)
+      result = IsoConceptSystem.path(["CDISC", "SDTM"])
+      expect(result.root?).to eq(false)
+    end
+
+  end
 end

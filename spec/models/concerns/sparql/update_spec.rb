@@ -275,6 +275,38 @@ describe Sparql::Update do
     expect(sparql.to_update_sparql(s_uri)).to eq(result)
   end
 
+  it "creates an selective update" do
+    result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+      "DELETE \n" +
+      "{\n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp1> ?o1 . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp2> ?o2 . \n" +
+      "}\n" +
+      "INSERT \n" +
+      "{\n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp1> <http://www.example.com/test#ooo> . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp2> <http://www.example.com/test#ooo> . \n" +
+      "}\n" +
+      "WHERE \n" +
+      "{\n" +
+      "OPTIONAL { <http://www.example.com/test#sss> <http://www.example.com/test#ppp1> ?o1 . }\n" +
+      "OPTIONAL { <http://www.example.com/test#sss> <http://www.example.com/test#ppp2> ?o2 . }\n" +
+      "}"
+    sparql = Sparql::Update.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    p_uri_1 = Uri.new({:uri => "http://www.example.com/test#ppp1"})
+    p_uri_2 = Uri.new({:uri => "http://www.example.com/test#ppp2"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    sparql.add({:uri => s_uri}, {:uri => p_uri_1}, {:uri => o_uri},)
+    sparql.add({:uri => s_uri}, {:uri => p_uri_2}, {:uri => o_uri},)
+    expect(sparql.to_selective_update_sparql([p_uri_1, p_uri_2], s_uri)).to eq(result)
+  end
+
   it "encodes update query and reads back" do
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
@@ -380,6 +412,16 @@ describe Sparql::Update do
     o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
     sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
     sparql.update(@s_uri)
+    check_simple_triple(@s_uri, @p_uri, o_uri_new)
+  end
+
+  it "executes an selective update" do
+    sparql = create_simple_triple
+    sparql.create
+    sparql = Sparql::Update.new()
+    o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
+    sparql.selective_update([@p_uri], @s_uri)
     check_simple_triple(@s_uri, @p_uri, o_uri_new)
   end
 

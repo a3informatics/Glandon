@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
 
   root 'dashboard#index'
-  
+
   #devise_for :users
   devise_for :users, controllers: {sessions: "users/sessions"}#, :path_names => { :sign_in => "login", :sign_out => "logout" }
   resources :users, except: :create do
     member do
       put :update_name
+      put :lock
+      put :unlock
+    end
+    collection do
+     get :stats_by_domain
+    #   get :stats_by_year
+    #   get :stats_by_current_week
+    #   get :stats_by_year_by_month
+    #   get :stats_by_year_by_week
     end
   end
   post 'create_user' => 'users#create', as: :create_user
   resources :user_settings
-  
+
   match 'api(/:id)' => 'api#options', via: [:options]
   resources :api do
     collection do
@@ -51,6 +60,7 @@ Rails.application.routes.draw do
   resources :iso_namespaces, only: [:index, :new, :create, :destroy]
   resources :iso_registration_authorities, only: [:index, :new, :create, :destroy]
   resources :iso_scoped_identifiers, only: [:update]
+  resources :iso_scoped_identifiers_v2, only: [:update]
   resources :iso_registration_states, only: [:update] do
     collection do
       get :current
@@ -67,15 +77,30 @@ Rails.application.routes.draw do
     end
     member do
       get :tags
+      put :add_tag
+      put :remove_tag
+      get :edit_tags
+      get :tags_full
+      get :change_notes
+      get :change_instructions
+      get :indicators
+      post :change_note, action: :add_change_note
+    end
+  end
+  namespace :annotations do
+    resources :change_notes, only: [:update, :destroy]
+    resources :change_instructions, only: [:create, :edit, :update, :destroy] do
+      member do
+        get :show
+        put :add_references
+        put :remove_reference
+      end
     end
   end
   resources :iso_managed do
     collection do
       get :status
-      get :edit_tags
       get :find_by_tag
-      post :add_tag
-      post :delete_tag
       get :tags
       get :graph
       get :graph_links
@@ -90,6 +115,26 @@ Rails.application.routes.draw do
       get :export
     end
   end
+  resources :iso_managed_v2, only: [] do
+    member do
+      get :status
+      get :impact
+      get :make_current
+      post :update_status
+      put :update_semantic_version
+      get :list_change_notes
+      get :list_change_notes_data
+      get :export_change_notes_csv
+    end
+    collection do
+      get :find_by_tag
+    end
+  end
+  resources :iso_registration_states_v2, only: [] do
+    member do
+      put :update
+    end
+  end
   resources :dashboard, only: [:index] do
     collection do
       get :view
@@ -97,7 +142,7 @@ Rails.application.routes.draw do
       get :admin
     end
   end
-  resources :iso_concept_systems, only: [:index, :show] do
+  resources :iso_concept_systems, only: [:index, :show, :destroy] do
     member do
       post :add
     end
@@ -113,6 +158,11 @@ Rails.application.routes.draw do
     collection do
       post :search
       get :export_csv
+      get :stats_by_domain
+      get :stats_by_year
+      get :stats_by_current_week
+      get :stats_by_year_by_month
+      get :stats_by_year_by_week
     end
   end
   resources :tokens, only: [:index] do
@@ -131,13 +181,23 @@ Rails.application.routes.draw do
       get :export_csv
     end
   end
-  
+
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
+    resources :managed_concepts, only: [:index, :show, :edit, :update, :create, :destroy] do
+      collection do
+        get :history
+        get :set_with_indicators
+      end
       member do
+        get :edit_extension
+        get :edit_subset
+        get :find_subsets
         get :children
         post :add_child
+        post :add_children_synonyms
+        post :create_extension
+        post :create_subset
         get :show_data
         get :changes
         get :changes_data
@@ -147,13 +207,22 @@ Rails.application.routes.draw do
         get :preferred_term_links
         get :change_instruction_links
         post :extensions, action: :add_extensions
-        delete :extensions, action: :destroy_extensions
+        # delete :extensions, action: :destroy_extensions
         get :is_extended
         get :is_extension
         get :export_csv
         get :changes_summary
         get :changes_summary_data
+        get :changes_summary_data_impact
+        get :impact
         get :differences_summary
+        patch :update_properties
+        get :upgrade_data
+        put :upgrade
+        post :add_rank
+        delete :remove_rank
+        put :update_rank
+        get :children_ranked
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -165,6 +234,16 @@ Rails.application.routes.draw do
         get :synonym_links
         get :preferred_term_links
         get :change_instruction_links
+        patch :update_properties
+      end
+    end
+    resources :subsets, only: [] do
+      member do
+        post :add
+        delete :remove
+        delete :remove_all
+        put :move_after
+        get :list_children
       end
     end
   end
@@ -175,18 +254,35 @@ Rails.application.routes.draw do
       get :history
       post :extension
       get :search_current
+      get :search_multiple
     end
     member do
+      post :clone
       get :children
+      get :children_with_indicators
       post :add_child
       get :changes
       get :changes_data
       get :changes_report
+      get :changes_impact
+      get :export_csv
       get :submission
       get :submission_data
       get :submission_report
       get :search
       get :export_csv
+      post :add_subset
+      get :release_select
+      put :reference, action: :set_reference
+      get :reference, action: :get_reference
+      post :select_children
+      put :deselect_children
+      put :deselect_all_children
+      put :change_child_version
+      get :compare
+      get :compare_data
+      get :compare_csv
+      get :upgrade
     end
   end
 
@@ -200,13 +296,18 @@ Rails.application.routes.draw do
   #     get :cross_reference_details
   #   end
   # end
-  
-  resources :uploads
+
+  resources :uploads, :only => [:index, :create] do
+    collection do
+      delete :destroy_multiple
+      delete :destroy_all
+    end
+  end
 
   # Imports
   namespace :imports do
-    resources :adam_models, :only => [:new, :create]
-    resources :adam_igs, :only => [:new, :create]
+    # resources :adam_models, :only => [:new, :create]
+    # resources :adam_igs, :only => [:new, :create]
     resources :cdisc_terms, :only => [:new, :create]
     resources :change_instructions, :only => [:new, :create]
     resources :crfs, :only => [:new, :create] do
@@ -214,19 +315,15 @@ Rails.application.routes.draw do
         get :items
       end
     end
-    resources :terms, :only => [:new, :create] do
-      collection do
-        get :items
-      end
-    end
+    resources :sponsor_term_format_two, :only => [:new, :create]
   end
   resources :imports, :only => [:index, :show, :destroy] do # Make sure this is after the namespace to avoid the :index/:show clash
     collection do
       get :list
       delete :destroy_multiple
     end
-  end 
-  
+  end
+
   # Exports
   resources :exports, :only => [:index] do
     collection do
@@ -244,7 +341,6 @@ Rails.application.routes.draw do
       get :history
     end
     member do
-      get :changes
     end
   end
 

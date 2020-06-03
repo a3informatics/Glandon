@@ -19,29 +19,26 @@ module Sparql
       # @return [SparqlUpdateV2::Statement] the object
       def initialize(body) 
         @results = []
+        @ask = false
         doc = Nokogiri::XML(body)
         doc.remove_namespaces!
         doc.xpath("//result").each do |result|
           next if result.element_children.empty?
           @results << Sparql::Query::Results::Result.new(result)
         end
-        # variables = doc.xpath("//head/variable/@name").map{|x| x.text.to_sym}
-        # doc.xpath("//result").map{|x| x.xpath("binding")}.each do |x|
-        #   row = {}
-        #   x.each_with_index do |y, index|
-        #     value = y.xpath("uri").empty? ? y.xpath("literal").text : Uri.new(uri: y.xpath("uri").text)
-        #     row[variables[index]] = value
-        #   end
-        #   @results << row
-        # end
-#s3 = Time.now
-#puts "S1=#{s2-s1}"
-#puts "S2=#{s3-s2}"
+        @ask = doc.xpath("//boolean/text()").first.to_s.to_bool if doc.xpath("//boolean/text()").any?
       end
 
       # Results
       #
-      # @return [Array] retruns the result array
+      # @return [Boolean] returns the ask result
+      def ask?
+        @ask
+      end
+
+      # Results
+      #
+      # @return [Array] returns the result array
       def results
         @results
       end
@@ -53,12 +50,17 @@ module Sparql
         @results.empty?
       end
 
+      # Subject Map. Extract subject mapping to another variable
+      #
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :other the other column name. Defaults to :e
+      # @result [Hash] a hash of by subject of the other variable
       def subject_map(args={})
         triples = Hash.new {|h,k| h[k] = []}
         s_var = args.key?(:subject) ? args[:subject] : :s 
         e_var = args.key?(:other) ? args[:other] : :e
         @results.map{|x| triples[x.column(s_var).value.to_s] = x.column(e_var).value}
-        #@results.map{|x| triples[x[s_var].to_s] = x[e_var]}
         return triples
       end
 
@@ -75,8 +77,34 @@ module Sparql
         p_var = args.key?(:predicate) ? args[:predicate] : :p
         o_var = args.key?(:object) ? args[:object] : :o 
         @results.map{|x| triples[x.column(s_var).value.to_s] << {subject: x.column(s_var).value, predicate: x.column(p_var).value, object: x.column(o_var).value}}
-        #@results.map{|x| triples[x[s_var].to_s] << {subject: x[s_var], predicate: x[p_var], object: x[o_var]}}
         return triples
+      end
+
+      # Single Subject. Extract results by the single subject URI from the node set
+      #
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :predicate the predicate column name. Defaults to :p
+      # @option args [String|Symbol] :object the object column name. Defaults to :o
+      # @result [Hash] a hash of [subject, predicate, object] hash records or nil if nothing found.
+      def single_subject(args={})
+        triples = by_subject(args)
+        return nil if triples.empty?
+        return triples if triples.count == 1
+        Errors.application_error(self.class.name, __method__.to_s, "Multiple entries found for single subject query.")
+      end
+
+      # Single Subject As. Extract results by the single subject URI from the node set and return as instance.
+      #
+      # @param [Class] klass the klass desired.
+      # @param [Hash] args the hash of arguments
+      # @option args [String|Symbol] :subject the subject column name. Default to :s
+      # @option args [String|Symbol] :predicate the predicate column name. Defaults to :p
+      # @option args [String|Symbol] :object the object column name. Defaults to :o
+      # @result [Object] the resulting object, nil if multiple found.
+      def single_subject_as(klass, args={})
+        triples = single_subject(args)
+        triples.nil? ? nil : klass.from_results(Uri.new(uri: triples.keys.first), triples[triples.keys.first])
       end
 
       # By Object. Extract results as single array of object

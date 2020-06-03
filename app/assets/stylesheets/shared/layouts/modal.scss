@@ -1,0 +1,57 @@
+// MODALS
+.modal-lg.small-screen {
+  width: 50%;
+}
+
+.modal-lg.medium-screen {
+  width: 60%;
+}
+
+.modal-lg.wide-screen {
+  width: 85%;
+}
+
+.modal-lg.full-screen {
+  width: 95%;
+}
+
+.modal-lg.wide-screen .modal-body, .modal-lg.full-screen .modal-body,
+  .modal-lg.small-screen .modal-body, .modal-lg.medium-screen .modal-body {
+  padding: 20px 20px;
+}
+
+.modal-open .modal-body {
+  min-width: auto !important;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px){
+  .modal-open .modal-dialog{
+    width: calc(100% - 20px) !important;
+  }
+}
+
+// MODAL IMGS
+img.modal-img{
+  width: 120px;
+  margin: 10px 0px;
+}
+
+img.modal-img.large{
+  width: 160px;
+  margin: 10px 0px;
+}
+
+// Managed Items Select Modal
+.modal-content .card {
+  min-height: 400px;
+  max-height: 80%;
+}
+
+
+@media (max-width: 1250px){
+  .modal-content .card {
+    max-width: calc(100% - 40px);
+    width: calc(100% - 40px);
+  }
+}

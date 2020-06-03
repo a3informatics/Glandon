@@ -2,12 +2,24 @@
 :versions:
 - '2018-12-21'
 :items:
+  :C88025_C4247:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y1OCNDODgwMjVfQzQyNDc=
+    :key: C88025_C4247
+    :label: Undifferentiated Pleomorphic Sarcoma
+    :notation: FIBROSARCOMA, PLEOMORPHIC, MALIGNANT
+    :identifier: C4247
+    :parent_identifier: C88025
+    :status:
+    - :status: :updated
+      :notation: FIBROSARCOMA, PLEOMORPHIC, MALIGNANT
+      :previous: HISTIOCYTOMA, FIBROUS, MALIGNANT
   :C67154_C81958:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y1OCNDNjcxNTRfQzgxOTU4
     :key: C67154_C81958
     :label: Antithrombin Activity Measurement
     :notation: Antithrombin Activity
     :identifier: C81958
+    :parent_identifier: C67154
     :status:
     - :status: :updated
       :notation: Antithrombin Activity
@@ -18,17 +30,8 @@
     :label: Antithrombin Activity Measurement
     :notation: ANTHRMA
     :identifier: C81958
+    :parent_identifier: C65047
     :status:
     - :status: :updated
       :notation: ANTHRMA
       :previous: ANTHRM
-  :C88025_C4247:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y1OCNDODgwMjVfQzQyNDc=
-    :key: C88025_C4247
-    :label: Undifferentiated Pleomorphic Sarcoma
-    :notation: FIBROSARCOMA, PLEOMORPHIC, MALIGNANT
-    :identifier: C4247
-    :status:
-    - :status: :updated
-      :notation: FIBROSARCOMA, PLEOMORPHIC, MALIGNANT
-      :previous: HISTIOCYTOMA, FIBROUS, MALIGNANT

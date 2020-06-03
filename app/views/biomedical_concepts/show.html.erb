@@ -1,5 +1,4 @@
 <%= javascript_include_tag 'standard_datatable' %>
-<% third_level_managed_item_breadcrumb(@bc, "Biomedical Concepts", biomedical_concepts_path, @close_path, "Show:") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @bc} %>
 <div class="col-md-12">
 	<h4>Details</h4>
@@ -60,12 +59,12 @@
 		</tbody>
 	</table>
 	<% if policy(BiomedicalConcept).clone? %>
-		<%= link_to "Clone", clone_biomedical_concept_path(:id => @bc.id, :biomedical_concept => { :namespace => @bc.namespace }), :class => "btn btn-primary" %>
+		<%= link_to "Clone", clone_biomedical_concept_path(:id => @bc.id, :biomedical_concept => { :namespace => @bc.namespace }), :class => "btn " %>
 	<% end %>
 	<% disabled = true %>
 	<% if policy(BiomedicalConcept).upgrade? && !disabled %>
 		<% if @bc.edit? and @bc.latest? %>
-			<%= link_to "Upgrade", upgrade_biomedical_concept_path(:id => @bc.id, :biomedical_concept => { :namespace => @bc.namespace }), :class => "btn btn-primary" %>
+			<%= link_to "Upgrade", upgrade_biomedical_concept_path(:id => @bc.id, :biomedical_concept => { :namespace => @bc.namespace }), :class => "btn " %>
 		<% end %>
 	<% end %>
 	<%= link_to "Export JSON", export_json_biomedical_concept_path(:id => @bc.id, :biomedical_concept => { :namespace => @bc.namespace }), :class => "btn btn-info" %>

@@ -3,7 +3,7 @@ module FieldValidation
   C_CLASS_NAME = "FieldValidation"
   C_ALPHA_NUMERICS = "a-zA-Z0-9"
   C_ALPHA_NUMERICS_SPACE = "#{C_ALPHA_NUMERICS} "
-  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*+@=:;&|<>"
+  C_FREE_TEXT = "#{C_ALPHA_NUMERICS} .!?,'\"_\\-\\/\\\\()\\[\\]~#*+@=:;&|<>%^"
   C_TC_PART = "[#{C_ALPHA_NUMERICS}]+"
   C_IDENTIFIER = "[#{C_ALPHA_NUMERICS_SPACE}]+"
   C_MARKDOWN = "[#{C_FREE_TEXT}\r\n]*"
@@ -11,7 +11,7 @@ module FieldValidation
   C_TERM_PROPERTY = "[#{C_FREE_TEXT}]*"
   C_QUESTION = "[#{C_FREE_TEXT}]*"
   C_LABEL = "[#{C_FREE_TEXT}]*"
-  C_SUBMISSION = "[#{C_FREE_TEXT}^]*" # Free text plus ^
+  C_SUBMISSION = "[#{C_FREE_TEXT}]*" 
   C_SDTM_LABEL = "[#{C_FREE_TEXT}]{1,40}"
   C_SDTM_NAME = "[A-Z][A-Z0-9]{0,7}"
   C_MAPPING = "[#{C_FREE_TEXT}]*"
@@ -332,6 +332,18 @@ module FieldValidation
     return false
   end
 
+  # Is A Date Time 
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.is_a_date_time?(symbol, value, object)
+    return true if !value.nil? && value.is_a?(Time)
+    object.errors.add(symbol, "contains an invalid date time")
+    return false
+  end
+
   # Valid Markdown
   #
   # @param symbol [String] The item being checked
@@ -395,7 +407,7 @@ module FieldValidation
   # Valid Files
   #
   # @param symbol [String] The item being checked
-  # @param value [String] The value being checked
+  # @param value [Array] The array being checked
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_files?(symbol, value, object)
@@ -407,23 +419,62 @@ module FieldValidation
     end
   end
 
-  # Valid URI
+  # Valid File
+  #
+  # @param symbol [String] The item being checked
+  # @param value [Array] The array being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_file?(symbol, value, object)
+    if value.blank? 
+      object.errors.add(symbol, "is empty, no file specified")
+      return false
+    elsif value.count > 1 
+      object.errors.add(symbol, "more than one file is specified")
+      return false
+    else
+      return true
+    end
+  end
+
+  # Valid Generic URI
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_generic_uri?(symbol, value, object)
+    return false if value_empty?(symbol, value, object)
+    uri = URI.parse(value)
+    return true if uri.is_a?(URI::HTTP) && !uri.host.nil?
+    add_error(symbol, "is invalid", object) 
+  rescue URI::InvalidURIError
+    add_error(symbol, "is invalid", object)
+  end
+
+  # Valid System URI. Checks against System URI format
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_system_uri?(symbol, value, object)
+  	return false if value_empty?(symbol, value, object)
+    uri = Uri.new(uri: value)
+    true
+  rescue => e
+  	add_error(symbol, "is invalid", object)
+  end
+
+  # Valid URI. Checks a URI
   #
   # @param symbol [String] The item being checked
   # @param value [String] The value being checked
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_uri?(symbol, value, object)
-  	if value.blank? 
-	  	object.errors.add(symbol, "is empty")
-  		return false
-  	else
-  		uri = UriV2.new(uri: value)
-    	return true
-    end
-  rescue => e
-  	object.errors.add(symbol, "is invalid")
-  	return false
+    return false if !valid_generic_uri?(symbol, value, object)
+    valid_system_uri?(symbol, value, object)
   end
 
   # Valid Registration State
@@ -440,13 +491,16 @@ module FieldValidation
   
 private
 
+  # Value empty?
   def self.value_empty?(symbol, value, object)
-    if value.blank?
-      object.errors.add(symbol, "is empty")
-      true
-    else
-      false
-    end
+    return false if !value.blank?
+    object.errors.add(symbol, "is empty")
+    true
   end
 
+  # Add error message
+  def self.add_error(symbol, message, object)
+    object.errors.add(symbol, message)
+    false
+  end
 end

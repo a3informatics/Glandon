@@ -27,10 +27,8 @@ class OperationalReferenceV3 < IsoConceptV2
   # @param parent [Object] the parent object, used for building the URI of the reference
   # @return [OperationalReferenceV3] the new object. May contain errros if unsuccesful
   def self.create(params, parent)
-    object = new(params)
-    object.uri = object.create_uri(parent.uri)
-    object.create_or_update(:create) if object.valid?(:create)
-    object
+    params[:parent_uri] = parent.uri
+    super(params)
   end
 
 end

@@ -5,7 +5,6 @@ module Fuseki
     def set_schema
       # Note: Set as a class instance base, won't be inherited. 
       if !Fuseki::Base.instance_variable_defined?(:@schema) || Fuseki::Base.instance_variable_get(:@schema).nil?
-puts "***** READING SCHEMA *****"
         sparql_query = "SELECT ?s ?p ?o WHERE\n" +
           "{\n" +
           "  {\n" + 
@@ -60,6 +59,18 @@ puts "***** READING SCHEMA *****"
 
       def datatype(predicate)
         @map[predicate.to_s][:datatype]
+      end
+
+      # ---------
+      # Test Only
+      # ---------
+      
+      if Rails.env.test?
+
+        def map
+          @map
+        end
+
       end
 
     end

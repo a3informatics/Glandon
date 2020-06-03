@@ -14,12 +14,16 @@ describe Excel::Engine do
     @child_object = ChildClass.new
   end
 
+  # Local Classes
+  #
+  # Care needs to be taken when doing this. DO NOT USE production rdf_types from the schemas
+  # Declare new types in the test.ttl file if necessary 
   class DefinitionClass < Fuseki::Base
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
+    configure rdf_type: "http://www.assero.co.uk/Fake" # This is OK. Not declared in schema .ttl files
     data_property :label
 
-    # Need to fake this as we are no loading any schema triples for this test
+    # Need to fake this as we are not loading any schema triples for this test
     full_path = Rails.root.join "spec/fixtures/files/models/concerns/excel/engine/schema.yaml"
     schema = YAML.load_file(full_path)
     Fuseki::Base.class_variable_set(:@@schema, Fuseki::Schema::SchemaMap.new(schema))
@@ -34,9 +38,8 @@ describe Excel::Engine do
 
   end
 
-  class EET1Class < Fuseki::Base
+  class EET1Class < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
     object_property :tagged, cardinality: :many, model_class: "DefinitionClass"
 
@@ -50,9 +53,8 @@ describe Excel::Engine do
 
   end
 
-  class EET2Class < Fuseki::Base
+  class EET2Class < IsoConceptV2
 
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
 
     def to_hash
@@ -61,15 +63,15 @@ describe Excel::Engine do
 
   end
 
-  class ChildClass < Fuseki::Base
+  class ChildClass < IsoConceptV2
     
-    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :compliance, cardinality: :one, model_class: "DefinitionClass"
     object_property :datatype, cardinality: :one, model_class: "DefinitionClass"
     attr_accessor :ct
     attr_accessor :ct_notes
     attr_accessor :label
     attr_accessor :ordinal
+    attr_accessor :tagged
 
     def initialize
       @ct = ""
@@ -77,6 +79,7 @@ describe Excel::Engine do
       @label = ""
       @ordinal = 0
       @children = []
+      @tagged = []
       super
     end
 
@@ -85,6 +88,10 @@ describe Excel::Engine do
       result[:datatype] = datatype.to_json
       result[:compliance] = compliance.to_json
       return result
+    end
+
+    def add_tag_no_save(tag)
+      @tagged << tag
     end
 
   end
@@ -184,7 +191,7 @@ describe Excel::Engine do
   end
 
   it "checks a cell for blank and not blank" do
-    full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
+    full_path = test_file_path(sub_dir, "check_values_input_4.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
@@ -199,6 +206,15 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
     result = object.column_not_blank?({row: 4, col: 2})
     expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 2, col: [2, 3]})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 3, col: [2, 3]})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 4, col: [2, 3]})
+    expect(result).to eq(true)
     expect(parent.errors.count).to eq(0)
   end
 
@@ -241,23 +257,49 @@ describe Excel::Engine do
     expect(result).to eq("2")
   end
 
-  it "checks a condition" do
+  it "checks a cell, empty, permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.process_action?({method: :column_blank?, column: 1}, 4)
-    expect(result).to eq(false)
+    result = object.check_value(4, 2, true)
+    expect(result).to eq("")
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_not_blank?, column: 1}, 4)
-    expect(result).to eq(true)
+  end
+
+  it "checks a C code" do
+    full_path = test_file_path(sub_dir, "check_values_input_5.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(object.c_code?(row: 2, col: 1)).to eq(true)
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_blank?, column: 2}, 4)
-    expect(result).to eq(true)
+    expect(object.c_code?(row: 11, col: 1)).to eq(false)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("C Code 'C12X' error detected in row 11 column 1.")
+  end
+
+  it "checks regex" do
+    full_path = test_file_path(sub_dir, "check_values_input_5.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(object.regex?(row: 2, col: 1, additional: {regex: "\\AC[0-9]{3,6}\\z"})).to eq(true)
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_not_blank?, column: 2}, 4)
-    expect(result).to eq(false)
-    expect(parent.errors.count).to eq(0)
+    expect(object.regex?(row: 11, col: 1, additional: {regex: "\\AC[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages[0]).to eq("Format of 'C12X' error detected in row 11 column 1.")
+    expect(object.regex?(row: 9, col: 1, additional: {regex: "\\AS[0-9]{6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages[1]).to eq("Format of 'S1234567' error detected in row 9 column 1.")
+    expect(object.regex?(row: 3, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(true)
+    expect(object.regex?(row: 5, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(true)
+    expect(object.regex?(row: 10, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(3)
+    expect(parent.errors.full_messages[2]).to eq("Format of 'SN123' error detected in row 10 column 1.")
+    expect(object.regex?(row: 11, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(4)
+    expect(parent.errors.full_messages[3]).to eq("Format of 'C12X' error detected in row 11 column 1.")
   end
 
   it "checks row condition" do
@@ -290,6 +332,7 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
+            additional: { path: ["CDISC"] },
             map: { ADaM: ["ADaM"], CDASH: ["CDASH", "XXX"], SDTM: ["SDTM"] }
           }
         ]
@@ -315,6 +358,7 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
+            additional: { path: ["CDISC"] },
             map: { ADaM: ["ADaM"], CDash: ["CDASH"], SDTM: ["SDTM"] }
           }
         ]
@@ -330,9 +374,9 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
-    result = object.tag_from_sheet_name({map: {cdash: ["XXX"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {cdash: ["XXX"], x: ["X"]}})
     expect(result).to eq([])
   end
 
@@ -342,7 +386,7 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS"]).and_return({tag: "QS"})
-    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
     expect(result).to eq([{:tag=>"QS"}])
   end
 
@@ -352,7 +396,7 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS-FT"]).and_return({tag: "QS-FT"})
-    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
     expect(result).to eq([{:tag=>"QS-FT"}])
   end
 
@@ -362,10 +406,43 @@ describe Excel::Engine do
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    result = object.tag_from_sheet_name({additional: { path: ["CDISC"] }, map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
     result = object.set_tags({object: parent})
     expect(parent.tagged).to eq([{:tag=>"A"}])
+  end
+
+  it "set column tag" do
+    full_path = test_file_path(sub_dir, "set_column_tag_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return(nil)
+    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
+    expect(child.tagged).to eq([{:tag=>"A"}])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
+    expect(child.tagged).to eq([])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'Yes' error detected in row 3 column 1.")
+    expect(child.tagged).to eq([])
+    parent.errors.clear
+    child = ChildClass.new
+    result = object.set_column_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(3)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1., Empty cell detected in row 4 column 1., and Mapping of '' error detected in row 4 column 1.")
+    expect(child.tagged).to eq([])
+    parent.errors.clear
+    child = ChildClass.new
+    result = object.set_column_tag({row: 4, col: 1, object: child, can_be_empty: true, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
+    expect(child.tagged).to eq([])
   end
 
   it "creates parent" do
@@ -544,6 +621,18 @@ describe Excel::Engine do
     expect(parent.collection[6]).to eq("C124456")
   end
 
+  it "property with default" do
+    full_path = test_file_path(sub_dir, "property_with_default_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    object.set_property_with_default({row: 2, col: 1, object: child, map: {}, property: "label", additional: {default: "default"}})
+    expect(child.label).to eq("A set string")
+    object.set_property_with_default({row: 3, col: 1, object: child, map: {}, property: "label", additional: {default: "default"}})
+    expect(child.label).to eq("default")
+  end
+
   it "checks valid" do
     full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
@@ -710,15 +799,31 @@ describe Excel::Engine do
     expect(@child_object.ct_notes).to eq("X1")
   end
 
-  it "returns the sheet info" do
+  it "returns the sheet info, I" do
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.sheet_info(:cdisc_adam_ig, :main)
-  #Xwrite_yaml_file(result, sub_dir, "sheet_info_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "sheet_info_expected_1.yaml")
-    expect(result).to eq(expected)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "returns the sheet info, II" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.sheet_info(:sponsor_term_format_one, :version_2)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_2.yaml", equate_method: :hash_equal)
+  end
+
+  it "returns the sheet info, III" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.sheet_info(:sponsor_term_format_one, :version_3)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_3.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, no errors" do

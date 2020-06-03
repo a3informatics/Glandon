@@ -14,7 +14,7 @@ describe "Users", :type => :feature do
 
   def edit_user(email)
   	tr = page.find(:xpath, "//tr[td='#{email}']")
-    tr.find(:xpath, "td[3]/a").click
+    tr.find(:xpath, "td[5]/a").click
   end
 
   describe "Login and Logout", :type => :feature do
@@ -96,6 +96,30 @@ describe "Users", :type => :feature do
     it "allows the login page welcome text to be checked" do
       visit '/users/sign_in'
       expect(page).to have_content 'Welcome text displayed here.'
+    end
+
+    it "allows to escape the password expired page (REQ-GENERIC-PM-050)" do
+      ua_sys_admin_login
+      # Manually create user
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      click_link 'New'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'usr3@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Display name', :with => 'Test User 3'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
+      click_button 'Create'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr3@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      click_button 'Log in'
+
+      expect(page).to have_content 'Renew your password'
+      click_on "Return to the Log in page"
+      expect(page).to have_content "Welcome"
     end
 
   end
@@ -196,7 +220,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created. Email has already been taken.'
     end
 
-    it "allows a user's role to be modified (REQ-GENERIC-UM-025, REQ-GENERIC-UM-110)" do
+    it "allows a user's role to be modified (REQ-GENERIC-UM-025, REQ-GENERIC-UM-110)", js:true do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
@@ -260,17 +284,6 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
-    it "prevents last sys admin to be deleted", js:true do
-      ua_sys_admin_login
-      click_link 'users_button'
-      expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Set user roles for:'
-      expect(page).to have_content 'Email: sys_admin@example.com'
-      click_link 'Set Curator Role'
-      expect(page).to have_content 'You cannot remove the last system administrator.'
-    end
-
     it "allows sys admin role to be deleted if another sys admin exists", js:true do
       ua_sys_admin_login
       # Manually create user
@@ -319,7 +332,7 @@ describe "Users", :type => :feature do
       ua_remove_user "usr@example.com"
     end
 
-    it "forces first-login password reset when a new user is added" do
+    it "forces first-login password reset when a new user is added, display name blank" do
       ua_sys_admin_login
       # Manually create user
       click_link 'users_button'
@@ -350,6 +363,56 @@ describe "Users", :type => :feature do
       fill_in :placeholder => 'Password', :with => 'Changeme2#'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
+    end
+
+    it "forces first-login password reset when a new user is added, using display name (GLAN-925)" do
+      ua_sys_admin_login
+      # Manually create user
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      click_link 'New'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'usr2@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Display name', :with => 'Test User 2'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
+      click_button 'Create'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr2@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      click_button 'Log in'
+
+      expect(page).to have_content 'Renew your password'
+      fill_in :placeholder => 'Current password', :with => 'Changeme1#'
+      fill_in :placeholder => 'New password', :with => 'Changeme2#'
+      fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
+      click_button 'Change password'
+      expect(page).to have_content 'Your new password is saved'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr2@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme2#'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
+    end
+
+    it "prevents last sys admin to be deleted", js:true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'sys_content_admin@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Email: sys_content_admin@example.com'
+      click_link 'Set Curator Role'
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'Email: sys_admin@example.com'
+      click_link 'Set Curator Role'
+      expect(page).to have_content 'You cannot remove the last system administrator.'
     end
 
   end

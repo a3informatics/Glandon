@@ -6,16 +6,10 @@ class DashboardController < ApplicationController
     # authenticate_user!
   	authorize Dashboard
   	access = user_access_on_role
-  	if access == :all
-    	results = IsoRegistrationState.count()
-    	@statusCounts = []
-    	results.each do |key, value|
-      	@statusCounts << {:y => key, :a => value}
-    	end
+  	if (access == :all || access == :admin)
+      # do nothing
     elsif access == :term
   		redirect_to thesauri_index_path
-  	elsif access == :admin
-  		redirect_to admin_dashboard_index_path
     elsif access == :community
       redirect_to cdisc_terms_path
   	else
@@ -34,10 +28,6 @@ class DashboardController < ApplicationController
   	authorize Dashboard
     @triples = Dashboard.find(params[:id], params[:namespace])
     render json: @triples
-  end
-
-  def admin
-  	authorize Dashboard
   end
 
 private

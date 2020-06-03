@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class Validator::Klass < ActiveModel::Validator
+class Validator::Klass < Validator::Base
   
   # Validate
   #
@@ -44,15 +44,15 @@ private
 
   # URI check
   def uri_item_valid?(item, record, property_name, level)
-    return uri_valid?(property_name, item, record) if item.is_a? Uri
-    return uri_valid?(property_name, item.uri, record) if level == :uri
+    return uri_valid?(item, record, property_name) if item.is_a? Uri
+    return uri_valid?(item.uri, record, property_name) if level == :uri
     return item.valid?
   end
 
   # URI valid. Just assume it is at the moment.
   # @todo - Think this through
   def uri_valid?(item, record, property_name)
-    true
+    FieldValidation.valid_uri?(property_name, item.to_s, record)
   end
 
 end

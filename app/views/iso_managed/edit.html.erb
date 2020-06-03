@@ -1,5 +1,4 @@
-<%= javascript_include_tag 'iso_managed_comment_edit', 'ajax_requests', 'field_validation' %>
-<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Comments:") %>
+<%= javascript_include_tag 'iso_managed/iso_managed_comment_edit', 'ajax_requests', 'field_validation' %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Comments:", :item => @managed_item} %>
 <div class="row">
 	<div class="col-md-7">
@@ -23,11 +22,11 @@
 					</div>
 					<%= f.hidden_field :namespace, :value => @managed_item.namespace %>  
 					<%= f.hidden_field :referer, :value => @referer %>  
-		      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+		      <%= f.submit "Submit", class: "btn  " %>
 				<% end %>
       </div>
     </div>
-		<%= link_to "Close", @close_path, :class => "btn btn-primary" %>  
+		<%= link_to "Close", @close_path, :class => "btn " %>  
 	</div>
 	<div class="col-md-5" >
     <div id="markdown_panel" class="panel panel-default">
@@ -36,7 +35,7 @@
       </div>
       <div class="panel-body">
 	      <div id="generic_markdown"></div>
-	      <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+	      <button type="button" id="markdown_preview" class="btn ">Preview</button>    
       </div>
     </div>
 	</div>

@@ -22,7 +22,7 @@ describe SdtmUserDomainsController do
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("business_operational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
@@ -199,17 +199,17 @@ describe SdtmUserDomainsController do
       expect(response).to redirect_to("/sdtm_user_domains")
     end
 
-    it "initiates the add operation" do
-      get :add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
-      result = assigns(:sdtm_user_domain)
-      bcs = assigns(:bcs)
-      token = assigns(:token)
-      expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
-      expect(bcs.to_json).to eq(BiomedicalConcept.list.to_json)
-      expected = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", false)
-      expect(result.to_json).to eq(expected.to_json)
-    end
+    it "initiates the add operation" # do
+    #   get :add, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+    #   result = assigns(:sdtm_user_domain)
+    #   bcs = assigns(:bcs)
+    #   token = assigns(:token)
+    #   expect(token.user_id).to eq(@user.id)
+    #   expect(token.item_uri).to eq("http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
+    #   expect(bcs.to_json).to eq(BiomedicalConcept.list.to_json)
+    #   expected = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1", false)
+    #   expect(result.to_json).to eq(expected.to_json)
+    # end
 
     it "only lists released BCs for the add operation, 1 or more tests as needed"
 

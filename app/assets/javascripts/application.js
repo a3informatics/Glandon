@@ -10,23 +10,28 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require d3
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require morris.min
-//= require raphael
 //= require dataTables.buttons
 //= require buttons.bootstrap
 //= require dataTables.select
-//= require dataTables.keyTable.min
 //= require dataTables.editor.min
+//= require dataTables.keyTable.min
+//= require dataTables.rowReorder.min
 //= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require app-js-erb-extension
+//= require sidebar_handler
+//= require spinner_helpers
+//= require jquery-dateformat.min
+//= require underscore-min
+//= require title
+//= require shared/icons_tags_helpers
+//= require shared/confirmation_dialog
+//= require shared/information_dialog
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
@@ -37,6 +42,12 @@ var C_MODEL = "http://www.assero.co.uk/BusinessDomain#Model";
 var C_BC = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance";
 var C_BCT = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptTemplate";
 var C_TH = "http://www.assero.co.uk/ISO25964#Thesaurus";
+
+var C_TH_NEW = "http://www.assero.co.uk/Thesaurus#Thesaurus";
+var C_TH_CL = "http://www.assero.co.uk/Thesaurus#ManagedConcept";
+var C_TH_SUBSET = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset";
+var C_TH_EXT = "http://www.assero.co.uk/Thesaurus#ManagedConcept#Extension";
+var C_TH_CLI = "http://www.assero.co.uk/Thesaurus#UnmanagedConcept";
 
 var C_SI = "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier";
 var C_RS = "http://www.assero.co.uk/ISO11179Registration#RegistrationState";
@@ -94,6 +105,11 @@ typeToString[C_MODEL] = "SDTM Model";
 typeToString[C_BC] = "Biomedical Concept";
 typeToString[C_BCT] = "Biomedical Concept Template";
 typeToString[C_TH] = "Terminology";
+typeToString[C_TH_NEW] = "Terminology";
+typeToString[C_TH_CL] = "Code List";
+typeToString[C_TH_SUBSET] = "Subset";
+typeToString[C_TH_EXT] = "Extension";
+typeToString[C_TH_CLI] = "Code List Item";
 typeToString[C_SI] = "Scoped Identifier";
 typeToString[C_RS] = "Registration State";
 typeToString[C_TC_REF] = "Terminology Reference";
@@ -164,13 +180,23 @@ function alertInfo(text) {
 }
 
 function displayAlerts(html) {
-    var alertsId = document.getElementById("alerts")
-  	alertsId.innerHTML = html;
+    var alerts = document.getElementById("alerts");
+  	alerts.innerHTML = html;
     window.setTimeout(function()
       {
-        alertsId.innerHTML = "";
+          dismissAlerts();
       },
       5000);
+}
+
+function displayAlertsInElement(html, el) {
+  	el.html(html);
+    window.setTimeout(function(){ el.html(""); }, 5000);
+}
+
+function dismissAlerts(){
+  var alerts = document.getElementById("alerts");
+  alerts.innerHTML = "";
 }
 
 function notImplementedYet() {
@@ -193,7 +219,12 @@ function displaySuccess(text) {
   displayAlerts(html);
 }
 
-function handleAjaxError (xhr, status, error) {
+function handleAjaxError (xhr, status, error, target) {
+  if (xhr.status == 401){
+    location.reload(true);
+    return;
+  }
+
     var json;
     var errors;
     var html;
@@ -216,7 +247,10 @@ function handleAjaxError (xhr, status, error) {
     for (var i=0; i<errors.length; i++) {
         html = html + alertError(errors[i]);
     }
-    displayAlerts(html);
+    if(target == null)
+      displayAlerts(html);
+    else
+      displayAlertsInElement(html, target);
 }
 
 /**
@@ -291,24 +325,6 @@ function pad(n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-/*
-* Path function
-*/
-function getPath(rdfType) {
-  if (rdfType == C_FORM) {
-    return "/forms/";
-  } else if (rdfType == C_BC) {
-    return "/biomedical_concepts/";
-  } else if (rdfType == C_BCT) {
-    return "/biomedical_concept_templates/";
-  } else if (rdfType == C_USERDOMAIN) {
-    return "/sdtm_user_domains/"
-  } else if (rdfType == C_TH) {
-    return "/thesauri/"
-  } else {
-    return ""
-  }
-}
 
 /*
 * Improved Path function for Strong parameters
@@ -330,44 +346,22 @@ function getPathStrong(rdfType, id, namespace) {
 }
 
 /*
-* Link to
+* Improved Path function for Strong parameters
 */
-function linkTo(path, namespace, id) {
-  window.location.href = path + "?id=" + id + "&namespace=" + namespace
-}
-
-/*
-* Expands / collapses the sidebar
-* Handles main_area's responsiveness
-*/
-function sidebarHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $('#sidebar').toggleClass('sidebar-collapsed');
-
-  // Animate main_area width
-  $('#main_area').toggleClass('col-sm-10');
-  $('#main_area').toggleClass('col-sm-11');
-  $('#sidebar').toggleClass('col-sm-2');
-  $('#sidebar').toggleClass('col-sm-1');
-
-  $('#main_area').toggleClass('ma-sb-col');
-  $('#main_area').toggleClass('ma-sb-exp');
-}
-
-/*
-* Expands / collapses a menu category
-*/
-function sidebarCategoryHandler(item){
-  if ($('#sidebar').hasClass('sidebar-collapsed'))
-    $('#sidebar').removeClass('sidebar-collapsed');
-
-  $(item).find('.arrow').toggleClass('arrow-rotate');
-  $(item).parent().toggleClass('collapsed');
-}
-
-function sidebarVerticalScreenHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $("#sidebar").toggleClass('collapsed-vertical');
+function getPathStrongV2(rdfType, id, namespace) {
+  if (rdfType == C_FORM) {
+    return "/forms/" + id;
+  } else if (rdfType == C_BC) {
+    return "/biomedical_concepts/" + id;
+  } else if (rdfType == C_BCT) {
+    return "/biomedical_concept_templates/" + id;
+  } else if (rdfType == C_USERDOMAIN) {
+    return "/sdtm_user_domains/" + id;
+  } else if (rdfType == C_TH) {
+    return "/thesauri/" + id;
+  } else {
+    return ""
+  }
 }
 
 /*
@@ -381,6 +375,23 @@ $(document).ready(function() {
 });
 
 /*
+* Positions the context menu corrently for any width display
+*/
+$(window).load(function(){
+ $("table tbody").on("focus", ".icon-context-menu", function(){
+   $(this).find(".context-menu").css("left", $(this).position().left);
+ });
+});
+
+/*
+* Prevent users from tabbing into a disabled button and pressing enter
+*/
+$(document).on("keydown", "a.disabled, button.disabled", function(e){
+  if((e.keyCode || e.which) == 13)
+    e.preventDefault();
+});
+
+/*
 * Datatables generic processing function
 * See: https://datatables.net/plug-ins/api/processing()
 */
@@ -390,6 +401,17 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
   });
 });
 
+/*
+* Toggles a string in an element with another without disturbing any other html
+* @param el [Object] jquery object - target
+* @param oTxt [String] original text
+* @param rTxt [String] replacement text
+*/
+function toggleText(el, oTxt, rTxt){
+  el.html(~el.html().indexOf(oTxt) ? el.html().replace(oTxt, rTxt) :  el.html().replace(rTxt, oTxt));
+}
+
+// Returns true if browser is IE
 function isIE() {
   ua = navigator.userAgent;
   /* MSIE used to detect old browsers and Trident used to newer ones*/
@@ -398,6 +420,52 @@ function isIE() {
   return is_ie;
 }
 
-function isSafari(){
-  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+// Returns initials of the passed string
+function getStringInitials(str) {
+  var initials = "";
+  var words = str.split(' ');
+  $.each(words, function(){
+    initials += this.substring(0,1).toUpperCase();
+  });
+  return initials;
+}
+
+/**
+ * Generates styled HTML for datetime
+ * @param date [Date] Javascript date
+ *
+ * @return [String] formatted html
+ */
+function dateTimeHTML(date) {
+  return '<span class="icon-date text-link"></span> ' +
+          $.format.date(date, 'yyyy-MM-dd') +
+          '<br/>' +
+          '<span class="icon-time text-link"></span> ' +
+          '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
+}
+
+// Disable / enable any table controls for the user
+function toggleTableActive(tableId, enable) {
+  if(enable)
+    $(tableId).removeClass("table-disabled");
+  else
+    $(tableId).addClass("table-disabled");
+}
+
+// Returns current date as e.g. Mon, January 1st, 2000
+function currentDateString(){
+  var date = new Date().getTime();
+  return $.format.date(date, "ddd, MMMM D, yyyy")
+}
+
+// Returns a Date object set to dateString values (format must be YYYY-MM-DD)
+function parseDateString(dateString){
+  var parts = dateString.split('-');
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+// Include on pages which should force reload when navigated to with the back button. Call before $(document).ready
+function refreshOnBackPressed(){
+  if (performance.navigation.type == 2)
+    location.reload();
 }

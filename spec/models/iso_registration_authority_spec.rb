@@ -11,7 +11,6 @@ describe IsoRegistrationAuthority do
   describe "Basic Tests" do
 
     before :each do
-      schema_files = ["ISO11179Identification.ttl", "ISO11179Registration.ttl"]
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
     end
@@ -121,7 +120,7 @@ describe IsoRegistrationAuthority do
       result = IsoRegistrationAuthority.create(organization_identifier: "123456789", 
         international_code_designator: "DUNS", owner: false, namespace_id: ns.id)
       expect(result.errors.count).to eq(1)
-      expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
+      expect(result.errors.full_messages.to_sentence).to eq("an existing record (organization_identifier: 123456789) exisits in the database")
     end
 
     it "destroy a authority" do
@@ -149,7 +148,6 @@ describe IsoRegistrationAuthority do
   describe "Scope Tests" do
 
     before :each do
-      schema_files = ["ISO11179Identification.ttl", "ISO11179Registration.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end

@@ -1,30 +1,31 @@
 class IsoRegistrationAuthoritiesController < ApplicationController
-  
+
   before_action :authenticate_and_authorized
-  
+
   def index
     @registrationAuthorities = IsoRegistrationAuthority.all
     @registrationAuthorities.each {|ra| ra.ra_namespace_objects}
     @owner = IsoRegistrationAuthority.owner
+    @namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
   end
-  
+
   def new
     @namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
     @registrationAuthority = IsoRegistrationAuthority.new
   end
-  
+
   def create
     @registrationAuthority = IsoRegistrationAuthority.create(the_params)
     if @registrationAuthority.errors.empty?
       redirect_to iso_registration_authorities_path
     else
       flash[:error] = @registrationAuthority.errors.full_messages.to_sentence
-      redirect_to new_registration_authority_path
+      redirect_to iso_registration_authorities_path
     end
   end
 
   def destroy
-    begin 
+    begin
       registration_authority = IsoRegistrationAuthority.find(params[:id])
       registration_authority.not_used? ? registration_authority.delete : flash[:error] = "Registration Authority is in use and cannot be deleted."
     rescue => e

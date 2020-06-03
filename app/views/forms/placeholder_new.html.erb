@@ -1,5 +1,5 @@
-<%= javascript_include_tag 'form_placeholder_new', 'ajax_requests', 'field_validation' %>
-<% second_level_breadcrumb("Forms", forms_path, "New Placeholder") %>
+<%= javascript_include_tag 'forms/placeholder_new', 'ajax_requests', 'field_validation' %>
+<% breadcrumb ([id_to_type('forms'), {link: "#", text: "New Placeholder"}]) %>
 <h3>New Placeholder Form:</h3>
 <div class="row">
 	<div class="col-md-7" >
@@ -24,7 +24,7 @@
 				  	</div>
 			  	</div>
 			</div>
-			<%= f.submit "Create", class: "btn btn-default btn-primary" %>
+			<%= f.submit "Create", class: "btn  " %>
 		<% end %>
 	</div>
 	<div class="col-md-5" >
@@ -35,7 +35,7 @@
         </div>
         <div class="panel-body">
             <div id="generic_markdown"></div>
-            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+            <button type="button" id="markdown_preview" class="btn ">Preview</button>    
         </div>
     </div>
 	</div>

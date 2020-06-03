@@ -12,9 +12,18 @@ module PublicFileHelpers
     expect(File.exists?(Rails.root.join("public","#{sub_dir}","#{filename}"))).to be(false)
   end
 
+  def read_public_yaml_file(sub_dir, filename)
+    file = Rails.root.join("public","#{sub_dir}","#{filename}")
+    return YAML.load_file(file)
+  end
+
   # Deprecated
   def delete_all_public_files
     delete_all_public_test_files
+  end
+
+  def delete_all_public_upload_files
+    delete_all_files("upload")
   end
 
   def delete_all_public_test_files
@@ -53,6 +62,12 @@ module PublicFileHelpers
     FileUtils.cp source_file, dest_file
   end
 
+  def copy_report_to_public_files(filename, dest_sub_dir)
+    source_file = Rails.root.join("db","load","reports","#{filename}")
+    dest_file = Rails.root.join("public","#{dest_sub_dir}","#{filename}")
+    FileUtils.cp source_file, dest_file
+  end
+  
 private
 
   def delete_all_files(sub_dir)

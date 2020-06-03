@@ -2,12 +2,24 @@
 :versions:
 - '2014-09-26'
 :items:
+  :C77530_C106549:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc3NTMwL1Y0MCNDNzc1MzBfQzEwNjU0OQ==
+    :key: C77530_C106549
+    :label: NIH Minipig
+    :notation: NIH SLA MINIATURE SWINE
+    :identifier: C106549
+    :parent_identifier: C77530
+    :status:
+    - :status: :updated
+      :notation: NIH SLA MINIATURE SWINE
+      :previous: NIH MINIPIG
   :C85494_C85666:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1Y0MCNDODU0OTRfQzg1NjY2
     :key: C85494_C85666
     :label: Liter per Microgram per Minute
     :notation: "(L/min)/ug"
     :identifier: C85666
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/min)/ug"
@@ -18,6 +30,7 @@
     :label: Liter per Gram per Minute
     :notation: "(L/min)/g"
     :identifier: C85659
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/min)/g"
@@ -28,6 +41,7 @@
     :label: Liter per Gram per Day
     :notation: "(L/day)/g"
     :identifier: C85657
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/day)/g"
@@ -38,6 +52,7 @@
     :label: Liter per Milligram per Minute
     :notation: "(L/min)/mg"
     :identifier: C85674
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/min)/mg"
@@ -48,6 +63,7 @@
     :label: Liter per Milligram per Hour
     :notation: "(L/h)/mg"
     :identifier: C85673
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/h)/mg"
@@ -58,6 +74,7 @@
     :label: Liter per Microgram per Hour
     :notation: "(L/h)/ug"
     :identifier: C85662
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/h)/ug"
@@ -68,6 +85,7 @@
     :label: Liter per Gram per Hour
     :notation: "(L/h)/g"
     :identifier: C85658
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/h)/g"
@@ -78,6 +96,7 @@
     :label: Liter per Microgram per Day
     :notation: "(L/day)/ug"
     :identifier: C85665
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/day)/ug"
@@ -88,6 +107,7 @@
     :label: Liter per Milligram per Day
     :notation: "(L/day)/mg"
     :identifier: C85672
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: "(L/day)/mg"
@@ -98,6 +118,7 @@
     :label: Sinclair Minipig
     :notation: SINCLAIR MINIATURE SWINE
     :identifier: C91819
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: SINCLAIR MINIATURE SWINE
@@ -108,6 +129,7 @@
     :label: OFA SD, Rat Strain
     :notation: OFA(SD)
     :identifier: C76187
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: OFA(SD)
@@ -118,6 +140,7 @@
     :label: Yucatan Micropig
     :notation: MICRO YUCATAN MINIATURE SWINE
     :identifier: C91817
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: MICRO YUCATAN MINIATURE SWINE
@@ -128,6 +151,7 @@
     :label: CF-1 Mouse
     :notation: CF1
     :identifier: C77116
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: CF1
@@ -138,6 +162,7 @@
     :label: Hartley Albino Hairless Guinea Pig
     :notation: HARTLEY HAIRLESS
     :identifier: C77089
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: HARTLEY HAIRLESS
@@ -148,6 +173,7 @@
     :label: ICR BR Mouse
     :notation: CD1(ICR)
     :identifier: C76183
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: CD1(ICR)
@@ -158,6 +184,7 @@
     :label: C3H/HeJ Mouse
     :notation: C3H/HeJ
     :identifier: C37369
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: C3H/HeJ
@@ -168,6 +195,7 @@
     :label: Yucatan Minipig
     :notation: YUCATAN MINIATURE SWINE
     :identifier: C91818
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: YUCATAN MINIATURE SWINE
@@ -178,6 +206,7 @@
     :label: California Rabbit
     :notation: CALIFORNIAN
     :identifier: C76364
+    :parent_identifier: C77530
     :status:
     - :status: :updated
       :notation: CALIFORNIAN
@@ -188,6 +217,7 @@
     :label: Anaplastic Ependymoma
     :notation: EPENDYMOMA, ANAPLASTIC, MALIGNANT
     :identifier: C4049
+    :parent_identifier: C88025
     :status:
     - :status: :updated
       :notation: EPENDYMOMA, ANAPLASTIC, MALIGNANT
@@ -198,17 +228,8 @@
     :label: Adrenal Cortex Adenoma
     :notation: ADENOMA, ADRENOCORTICAL, BENIGN
     :identifier: C9003
+    :parent_identifier: C88025
     :status:
     - :status: :updated
       :notation: ADENOMA, ADRENOCORTICAL, BENIGN
       :previous: ADENOMA, ADRENOCORTICAL , BENIGN
-  :C77530_C106549:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc3NTMwL1Y0MCNDNzc1MzBfQzEwNjU0OQ==
-    :key: C77530_C106549
-    :label: NIH Minipig
-    :notation: NIH SLA MINIATURE SWINE
-    :identifier: C106549
-    :status:
-    - :status: :updated
-      :notation: NIH SLA MINIATURE SWINE
-      :previous: NIH MINIPIG

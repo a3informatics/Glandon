@@ -9,4 +9,12 @@ module IsoManagedHelpers
     end
   end
 
+  def fix_dates(item, sub_dir, filename, *args)
+    expected = read_yaml_file(sub_dir, filename)
+    args.each do |a|
+      method = "#{a}=".to_sym
+      item.send(method, expected[a].to_time_with_default)
+    end
+  end
+
 end

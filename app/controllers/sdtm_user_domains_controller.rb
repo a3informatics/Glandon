@@ -84,27 +84,35 @@ class SdtmUserDomainsController < ApplicationController
     authorize SdtmUserDomain
     @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
     @token = get_token(@sdtm_user_domain)
-    if @sdtm_user_domain.new_version?
-      new_domain = SdtmUserDomain.create(@sdtm_user_domain.to_operation)
-      @sdtm_user_domain = SdtmUserDomain.find(new_domain.id, new_domain.namespace)
-    	@token.release
-	    @token = get_token(@sdtm_user_domain)
-  		@operation = @sdtm_user_domain.update_operation
-  	else
-  		@operation = @sdtm_user_domain.to_operation
-    end
-    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
-		if @sdtm_user_domain.children.length > 0
-      @defaults = {}
-      variable = @sdtm_user_domain.children[0]   
-      @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
-      @defaults[:datatype] = SdtmModelDatatype.default(@datatypes).to_json
-      @classifications = SdtmModelClassification.all_parent(variable.classification.namespace)
-      @defaults[:classification] = SdtmModelClassification.default_parent(@classifications).to_json
-      @compliance = SdtmModelCompliance.all(@sdtm_user_domain.id, @sdtm_user_domain.namespace)
-      @defaults[:compliance] = SdtmModelCompliance.default(@compliance).to_json 
+    if !@token.nil?
+      if @sdtm_user_domain.new_version?
+        new_domain = SdtmUserDomain.create(@sdtm_user_domain.to_operation)
+        @sdtm_user_domain = SdtmUserDomain.find(new_domain.id, new_domain.namespace)
+      	@token.release
+  	    @token = get_token(@sdtm_user_domain)
+    		if !@token.nil?
+          @operation = @sdtm_user_domain.update_operation
+        else
+          redirect_to request.referer
+        end
+    	else
+    		@operation = @sdtm_user_domain.to_operation
+      end
+      @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
+  		if @sdtm_user_domain.children.length > 0
+        @defaults = {}
+        variable = @sdtm_user_domain.children[0]   
+        @datatypes = SdtmModelDatatype.all(variable.datatype.namespace)
+        @defaults[:datatype] = SdtmModelDatatype.default(@datatypes).to_json
+        @classifications = SdtmModelClassification.all_parent(variable.classification.namespace)
+        @defaults[:classification] = SdtmModelClassification.default_parent(@classifications).to_json
+        @compliance = SdtmModelCompliance.all(@sdtm_user_domain.id, @sdtm_user_domain.namespace)
+        @defaults[:compliance] = SdtmModelCompliance.default(@compliance).to_json 
+      else
+        raise Exceptions::ApplicationLogicError.new(message: "No children in domain in #{C_CLASS_NAME} object.")
+      end
     else
-      raise Exceptions::ApplicationLogicError.new(message: "No children in domain in #{C_CLASS_NAME} object.")
+      redirect_to request.referer
     end
   end
 

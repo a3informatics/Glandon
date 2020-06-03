@@ -315,6 +315,12 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks a valid long name, ^%ALongName1234567890.!?,_ -()" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_long_name?(:test, "^%ALongName1234567890.!?,_ -()", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks an invalid long name, \"\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_long_name?(:test, "", object)).to eq(false)
@@ -395,6 +401,12 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks an valid submission value, % ^ " do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_submission_value?(:test, "^% % % ^ ", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid SDTM format value, MedDRA" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_format_value?(:test, "MedDRA", object)).to eq(true)
@@ -462,13 +474,25 @@ describe FieldValidation do
 
   it "checks a valid label, Specials" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()", object)).to eq(true)
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()%", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
-  it "checks an invalid label, @" do
+  it "checks a valid label, Specials ^" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()±", object)).to eq(false)
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()^", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid label, Specials % and ^" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()^%", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid label, ±" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_label?(:test, "A Label.!?,_ -()%^±", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
@@ -502,13 +526,13 @@ describe FieldValidation do
 
   it "checks a valid question, Specials" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>", object)).to eq(true)
+    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>%^", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
   it "checks an invalid question, Specials and £" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>£", object)).to eq(false)
+    expect(FieldValidation.valid_question?(:test, ".!?,'\"_-/\\()[]~#*=:;&|<>^%£", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
@@ -537,7 +561,7 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("")
   end
 
-  it "checks a valid question, \"\\n\"" do
+  it "checks an invalid question, \"\\n\"" do
     object = IsoConcept.new
     expect(FieldValidation.valid_question?(:test, "\n", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
@@ -575,14 +599,8 @@ describe FieldValidation do
 
   it "checks valid file, xxx" do
     object = IsoConcept.new
-    expect(FieldValidation.valid_files?(:test, "xxx", object)).to eq(true)
+    expect(FieldValidation.valid_files?(:test, ["xxx"], object)).to eq(true)
     expect(object.errors.count).to eq(0)
-  end
-
-  it "checks an invalid file, \"\"" do
-    object = IsoConcept.new
-    expect(FieldValidation.valid_files?(:test, "", object)).to eq(false)
-    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
   end
 
   it "checks an invalid file, nil" do
@@ -595,6 +613,50 @@ describe FieldValidation do
     object = IsoConcept.new
     expect(FieldValidation.valid_files?(:test, [], object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
+  end
+
+  it "checks valid file, xxx" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, ["xxx"], object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks invalid file, xxx, yyy" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, ["xxx", "yyy"], object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test more than one file is specified")
+  end
+
+  it "checks an invalid file, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, no file specified")
+  end
+
+  it "checks an invalid file, []" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_file?(:test, [], object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty, no file specified")
+  end
+
+  it "checks for a date time" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, Time.now, object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks for a date time, wrong type" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, 123, object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid date time")
+  end
+
+  it "checks for a date time, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, nil, object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid date time")
   end
 
   it "checks a valid date time" do
@@ -641,6 +703,12 @@ describe FieldValidation do
   it "checks valid markdown" do
     object = IsoConcept.new
     expect(FieldValidation.valid_markdown?(:test, "This is some\r\n * markup", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks valid markdown, contains % and ^" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_markdown?(:test, "This is some\r\n * %markup%", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
@@ -864,28 +932,77 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid positive integer value")
   end
 
-  it "checks a valid uri" do
+  it "checks a valid generic uri" do
     object = IsoConcept.new
+    expect(FieldValidation.valid_generic_uri?(:test, "http://www.assero.co.uk", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
     expect(FieldValidation.valid_uri?(:test, "http://www.assero.co.uk", object)).to eq(true)
     expect(object.errors.count).to eq(0)
   end
 
-  it "checks a invalid uri, empty" do
+  it "checks a valid generic uri, incorrect protocol" do
     object = IsoConcept.new
+    expect(FieldValidation.valid_generic_uri?(:test, "ftp://www.assero.co.uk", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+    object.errors.clear
+    expect(FieldValidation.valid_uri?(:test, "ftp://www.assero.co.uk", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
+  it "checks a valid generic uri, incomplete" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_generic_uri?(:test, "ftp://www.assero", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+    object.errors.clear
+    expect(FieldValidation.valid_uri?(:test, "ftp://www.assero", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
+  it "checks a valid generic uri, bad characters" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_generic_uri?(:test, "ftp://www.assero!@£$%", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+    object.errors.clear
+    expect(FieldValidation.valid_uri?(:test, "ftp://www.assero!@£$%", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
+  it "checks a valid system uri" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_system_uri?(:test, "http://www.assero.co.uk", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+    expect(FieldValidation.valid_uri?(:test, "http://www.assero.co.uk", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a invalid system uri, empty" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_system_uri?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    object.errors.clear
     expect(FieldValidation.valid_uri?(:test, "", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
-  it "checks a invalid uri, nil" do
+  it "checks a invalid system uri, nil" do
     object = IsoConcept.new
+    expect(FieldValidation.valid_system_uri?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    object.errors.clear
     expect(FieldValidation.valid_uri?(:test, nil, object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
   end
 
-  it "checks a invalid uri, exception" do
+  it "checks a invalid system uri, exception" do
     object = IsoConcept.new
-    expect(UriV2).to receive(:new).and_raise("boom")
-    expect(FieldValidation.valid_uri?(:test, "https://www.assero.co.uk", object)).to eq(false)
+    expect(Uri).to receive(:new).and_raise("boom")
+    expect(FieldValidation.valid_system_uri?(:test, "https://www.assero.co.uk", object)).to eq(false)
     expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
   end
 

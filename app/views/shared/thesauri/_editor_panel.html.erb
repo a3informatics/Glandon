@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'shared/thesauri/editor_panel', 'token_timer' %>
+<%= javascript_include_tag 'shared/thesauri/editor_panel' %>
 <style>
   div.DTE_Inline.DTE_Processing:after {
       background: url('<%= asset_path('ajax-loader-small.gif') %>') no-repeat top left;
@@ -10,19 +10,18 @@
   <div class="card-content">
     <table id="editor_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead>
-        <tr> 
+        <tr>
           <th>Identifer</th>
           <th>Submission Value</th>
           <th>Preferred Term</th>
           <th>Synonyms</th>
           <th>Definition</th>
-          <th></th>
-          <th></th>
+          <th class="fit"></th>
+          <th class="fit"></th>
         </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
-    <button id="token_timer_1" type="button" class="btn btn-success">00:00</button>
   </div>
 </div>

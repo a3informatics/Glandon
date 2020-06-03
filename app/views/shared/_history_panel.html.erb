@@ -1,5 +1,4 @@
 <%= javascript_include_tag 'shared/history_panel' %>
-<%= stylesheet_link_tag 'custom/context_menu', media: 'all' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
@@ -11,10 +10,13 @@
     <thead>
       <tr>
         <th class="fit">Version</th>
-        <th class="fit">Owner</th>
-        <th class="fit">Identifier</th>
+        <th class="fit">Last Change Date</th>
+        <th>Owner</th>
+        <th>Identifier</th>
         <th>Label</th>
         <th>Version Label</th>
+        <th>State</th>
+        <th class="fit ignore"></th>
         <th class="fit"></th>
       </tr>
     </thead>

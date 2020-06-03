@@ -1,0 +1,1432 @@
+---
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Analysis Purpose
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C117745
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C117745
+  :notation: ANLPURP
+  :definition: Purpose of a specific analysis result described in ADaM analysis results
+    metadata.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Exploratory Outcome Measure
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C98724
+    :notation: EXPLORATORY OUTCOME MEASURE
+    :definition: Exploratory measures that will be used to evaluate the intervention(s)
+      or, for observational studies, that are exploratory of the study.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Exploratory Outcome Measure
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: Exploratory Outcome Measure
+      :tagged: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Primary Outcome Measure
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C98772
+    :notation: PRIMARY OUTCOME MEASURE
+    :definition: The primary measurement(s) or observation(s) used to measure the
+      effect of experimental variables in a study, or for observational studies, to
+      describe patterns of diseases or traits or associations with exposures, risk
+      factors or treatment. These are the outcome measures used to assess the primary
+      objective(s).
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Primary Outcome Measure
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: Primary Outcome Measure
+      :tagged: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Secondary Outcome Measure
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C98781
+    :notation: SECONDARY OUTCOME MEASURE
+    :definition: Secondary measures that will be used to evaluate the intervention(s)
+      or, for observational studies, that are a focus of the study. These are the
+      outcome measures used to assess the secondary objective(s).
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Secondary Outcome Measure
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: Secondary Outcome Measure
+      :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Analysis Purpose Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Analysis Purpose
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Analysis Reason
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C117744
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C117744
+  :notation: ANLREAS
+  :definition: Reason for reporting a specific analysis result described in ADaM analysis
+    results metadata.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Data Driven Analysis
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C117750
+    :notation: DATA DRIVEN
+    :definition: The analysis was triggered by findings in the data.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Data Driven Analysis
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Analysis Requested by Regulatory Agency
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C117751
+    :notation: REQUESTED BY REGULATORY AGENCY
+    :definition: The analysis has been requested by a regulatory agency.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Analysis Requested by Regulatory Agency
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Analysis Specified in Protocol
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C117752
+    :notation: SPECIFIED IN PROTOCOL
+    :definition: The analysis is specified in a protocol.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Analysis Specified in Protocol
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Analysis Specified in Statistical Analysis Plan
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C117753
+    :notation: SPECIFIED IN SAP
+    :definition: The analysis is specified in a statistical analysis plan.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Analysis Specified in Statistical Analysis Plan
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Analysis Reason Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Analysis Reason
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Date Imputation Flag
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C81223
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81223
+  :notation: DATEFL
+  :definition: 'Date Imputation Flag: Indicates the level of imputation reflected
+    in a date value.'
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Day Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81212
+    :notation: D
+    :definition: 'Day Imputed: Day is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Day Imputed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Month Day Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81211
+    :notation: M
+    :definition: 'Month Imputed: Month and day are imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Month Day Imputed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Year Month Day Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81210
+    :notation: Y
+    :definition: 'Year Imputed: Entire date (year, month and day) is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Year Month Day Imputed
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Date Imputation Flag Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Date Imputation Flag
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Derivation Type
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C81224
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81224
+  :notation: DTYPE
+  :definition: 'Derivation Type: Analysis value derivation method.'
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Average of Value Derivation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81209
+    :notation: AVERAGE
+    :definition: 'Average: A data derivation technique which calculates a subject''s
+      average value over a defined set of records.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Average of Value Derivation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Best Case Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C92225
+    :notation: BC
+    :definition: 'Best Case: A data imputation technique which populates missing values
+      with the best possible outcome.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Best Case Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Baseline Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81201
+    :notation: BLOCF
+    :definition: 'Baseline Observation Carried Forward: A data imputation technique
+      which populates missing values with the subject''s nonmissing baseline observation.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Baseline Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Best Observed Case Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C132340
+    :notation: BOC
+    :definition: 'Best Observed Case: A data imputation technique which populates
+      analysis values with the best outcome recorded within a subject.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Best Observed Case Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Best Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C92226
+    :notation: BOCF
+    :definition: 'Best Observation Carried Forward: A data imputation technique which
+      populates missing values with the subject''s previous best-case nonmissing value.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Best Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Endpoint Value Derivation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C82866
+    :notation: ENDPOINT
+    :definition: 'Endpoint: A data derivation technique which populates a subject''s
+      analysis end point value.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Endpoint Value Derivation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Extrapolation Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C139176
+    :notation: EXTRAP
+    :definition: A method of imputation involving populating an analysis value that
+      is outside the range of observed values and is estimated by a function of those
+      observed values.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Extrapolation Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Interpolation Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81208
+    :notation: INTERP
+    :definition: 'Interpolation: A method of imputation involving a missing value
+      that is between known values and is estimated by a function of those known values.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Interpolation Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Last Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81198
+    :notation: LOCF
+    :definition: 'Last Observation Carried Forward: A data imputation technique which
+      populates missing values with the subject''s previous nonmissing value.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Last Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Last Observed Value Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C132341
+    :notation: LOV
+    :definition: 'Last Observed Value: A data imputation technique which populates
+      analysis values with the subject''s last recorded nonmissing observation.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Last Observed Value Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Last Value Prior to Dosing Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C132342
+    :notation: LVPD
+    :definition: 'Last Value Prior to Dosing: A data imputation technique which populates
+      missing values with the subject''s last observed value prior to the start of
+      study treatment.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Last Value Prior to Dosing Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Maximum Value Derivation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C82868
+    :notation: MAXIMUM
+    :definition: 'Maximum: A technique which populates an analysis value with a subject''s
+      maximum value over a defined set of records.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Maximum Value Derivation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Minimum Value Derivation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C82867
+    :notation: MINIMUM
+    :definition: 'Minimum: A technique which populates an analysis value with a subject''s
+      minimum value over a defined set of records.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Minimum Value Derivation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Maximum Likelihood Estimation
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C53331
+    :notation: ML
+    :definition: 'Maximum Likelihood: A data imputation technique which populates
+      missing values with estimates that maximize the probability of observing what
+      has in fact been observed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Maximum Likelihood Estimation
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Mean of Other Group Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81204
+    :notation: MOTH
+    :definition: 'Mean of Other Group: A data imputation technique which populates
+      missing values with the mean value from a comparator or reference group.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Mean of Other Group Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Mean Observed Value in a Group Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81207
+    :notation: MOV
+    :definition: 'Mean Observed Value in a Group: A data imputation technique which
+      populates missing values with the mean value observed in a group of subjects.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Mean Observed Value in a Group Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Penultimate Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81205
+    :notation: POCF
+    :definition: 'Penultimate Observation Carried Forward: A data imputation technique
+      which populates missing values with the subject''s next-to-last nonmissing value.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Penultimate Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Screening Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81200
+    :notation: SOCF
+    :definition: 'Screening Observation Carried Forward: A data imputation technique
+      which populates missing values with the subject''s nonmissing screening observation.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Screening Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Worst Case Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81203
+    :notation: WC
+    :definition: 'Worst Case: A data imputation technique which populates analysis
+      values with the worst possible outcome.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Worst Case Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Worst Observed Case Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C132343
+    :notation: WOC
+    :definition: 'Worst Observed Case: A data imputation technique which populates
+      analysis values with the worst recorded outcome within a subject.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Worst Observed Case Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Worst Observation Carried Forward Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81199
+    :notation: WOCF
+    :definition: 'Worst Observed Value Carried Forward: A data imputation technique
+      which populates missing values with the subject''s worst-case nonmissing observation.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Worst Observation Carried Forward Imputation Technique
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Worst Observed Value in a Group Imputation Technique
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81206
+    :notation: WOV
+    :definition: 'Worst Observed Value in a Group: A data imputation technique which
+      populates missing values with the worst value observed in a group of subjects.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Worst Observed Value in a Group Imputation Technique
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Derivation Type Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Derivation Type
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Geriatric Depression Scale Short Form Questionnaire Parameter Code
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C158114
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C158114
+  :notation: GDS02PC
+  :definition: A parameter code codelist for the Geriatric Depression Scale Short
+    Form questionnaire (GDS02) to support the calculation of total score in ADaM.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Geriatric Depression Scale Short Form - Total Score
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C158155
+    :notation: GDS02TS
+    :definition: Geriatric Depression Scale Short Form - Total score.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Geriatric Depression Scale Short Form - Total Score
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: GDS02-Total Score
+      :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Geriatric Depression Scale Short Form Questionnaire Parameter
+      Code Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Geriatric Depression Scale Short Form Questionnaire Parameter Code
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Geriatric Depression Scale Short Form Questionnaire Parameter Name
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C158115
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C158115
+  :notation: GDS02PN
+  :definition: A parameter name codelist for the Geriatric Depression Scale Short
+    Form questionnaire (GDS02) to support the calculation of total score in ADaM.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Geriatric Depression Scale Short Form - Total Score
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C158155
+    :notation: GDS02-Total Score
+    :definition: Geriatric Depression Scale Short Form - Total score.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Geriatric Depression Scale Short Form - Total Score
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: GDS02-Total Score
+      :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Geriatric Depression Scale Short Form Questionnaire Parameter
+      Name Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Geriatric Depression Scale Short Form Questionnaire Parameter Name
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Parameter Type
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C81225
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81225
+  :notation: PARAMTYP
+  :definition: 'Parameter Type: Indicates whether the parameter is derived as a function
+    of one or more other parameters.'
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Derived Flag
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81197
+    :notation: DERIVED
+    :definition: 'Derived: Indicates that a parameter is derived as a function of
+      one or more other parameters.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Derived Flag
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Parameter Type Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Parameter Type
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Subject Trial Status
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C124296
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C124296
+  :notation: SBJTSTAT
+  :definition: Indicates the status of the subject in the trial.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Complete
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C25250
+    :notation: COMPLETED
+    :definition: To possess every necessary or normal part or component or step; having
+      come or been brought to a conclusion. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Complete
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Discontinue
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C25484
+    :notation: DISCONTINUED
+    :definition: To stop or end, permanently or temporarily.
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Discontinue
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Continue
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C53279
+    :notation: ONGOING
+    :definition: Remain in force or carry on without letup; keep or maintain in unaltered
+      condition; exist in time or space without stop or interruption. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Continue
+      :tagged: []
+    :synonym:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+      :label: Continuous
+      :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Subject Trial Status Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Subject Trial Status
+    :tagged: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Time Imputation Flag
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+    :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: ADaM
+    :description: ADaM related information.
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C81226
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81226
+  :notation: TIMEFL
+  :definition: 'Time Imputation Flag: Indicates the level of imputation reflected
+    in a time value.'
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Hours Minutes Seconds Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81213
+    :notation: H
+    :definition: 'Hours Imputed: Entire time (hours, minutes and seconds) is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Hours Minutes Seconds Imputed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Minutes Seconds Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81214
+    :notation: M
+    :definition: 'Minutes Imputed: Minutes and seconds are imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Minutes Seconds Imputed
+      :tagged: []
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: Seconds Imputed
+    :tagged:
+    - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzM1OTY2YjJkLWYxMDYtNGEyNC1iN2E4LWYxMjFhYjFiMDM3Mg==
+      :uri: http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372
+      :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+      :pref_label: ADaM
+      :description: ADaM related information.
+      :narrower: []
+    :identifier: C81215
+    :notation: S
+    :definition: 'Seconds Imputed: Seconds are imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term:
+      :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+      :label: Seconds Imputed
+      :tagged: []
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC ADaM Time Imputation Flag Terminology
+    :tagged: []
+  :synonym:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Time Imputation Flag
+    :tagged: []
+  :is_ordered: 

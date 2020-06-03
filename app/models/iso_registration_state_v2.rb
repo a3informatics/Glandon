@@ -5,8 +5,6 @@
 class IsoRegistrationStateV2 < Fuseki::Base
 
   # Constants
-  C_CLASS_NAME = self.name
-  C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
   C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
   C_NOT_SET = "Not_Set"
 
@@ -16,11 +14,12 @@ class IsoRegistrationStateV2 < Fuseki::Base
 
   data_property :registration_status, default: C_NOT_SET
   data_property :administrative_note
-  data_property :effective_date, default: C_DEFAULT_DATETIME
-  data_property :until_date, default: C_DEFAULT_DATETIME
+  data_property :effective_date, default: String::C_DEFAULT_DATETIME.to_time_with_default
+  data_property :until_date, default: String::C_DEFAULT_DATETIME.to_time_with_default
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state, default: C_NOT_SET
+  data_property :multiple_edit, default: false
   object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", delete_exclude: true
 
   validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
@@ -29,9 +28,9 @@ class IsoRegistrationStateV2 < Fuseki::Base
   validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
   validates_with Validator::Klass, property: :by_authority, level: :uri
 
-  def initialize(attributes = {})
-    super
-  end
+  # def initialize(attributes = {})
+  #   super
+  # end
 
   # Current?
   # 
@@ -62,7 +61,6 @@ class IsoRegistrationStateV2 < Fuseki::Base
   def self.next_state(state)
     info = Rails.configuration.iso_registration_state[state.to_sym]
     nextState = info[:next_state]
-    #ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
     return nextState
   end
 
@@ -102,6 +100,13 @@ class IsoRegistrationStateV2 < Fuseki::Base
   def has_been_released_state?
     self.registration_status == :Retired.to_s || self.registration_status == :Superseded.to_s
   end
+
+  # Is or has been released
+  #
+  # @return [Boolean] true if it has been or currently is in the released state, false otherwise
+  def is_or_has_been_released?
+    released_state? || has_been_released_state?
+  end
   
   # Can the item be edited
   #
@@ -133,6 +138,14 @@ class IsoRegistrationStateV2 < Fuseki::Base
   def new_version?
     info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:edit_up_version]
+  end
+
+  # Returns true if the release can be updated
+  #
+  # @return [Boolean] true if the release can be updated
+  def update_release?
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
+    return info[:update_release]
   end
 
   # Returns true if the item can be the current item
@@ -173,7 +186,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   # Make not current
   #
   # @return [Void] no return
-  def make_not_current  
+  def make_not_current 
     Sparql::Update.new.sparql_update(make_not_current_query, self.rdf_type.namespace, [:isoR])
   end
 
@@ -187,6 +200,19 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return results
   end
   
+  # States. In order
+  #
+  # @return [Array] Array of state values
+  def self.states
+    Rails.configuration.iso_registration_state.keys
+  end
+  
+  def self.previous_states(state)
+    the_states = states
+    index = the_states.index{|x| x == state.to_sym}
+    the_states[0..index]
+  end
+
 private
 
   def self.count_query
@@ -217,15 +243,18 @@ private
   def make_not_current_query
     "DELETE \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
     "} \n" +
     "INSERT \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate \"#{Time.now.iso8601}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime . \n" +
     "} \n" +
     "WHERE \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
     "}"
   end
 

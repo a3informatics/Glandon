@@ -11,13 +11,24 @@ table.dataTable thead > tr > th > input {
 }
 
 table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
-  background: #dff0d8!important;
+  background: #dff0d8;
   color: #333333;
 }
 
 @media (min-width: 992px) {
   .modal-lg {
     width: 1100px;
-    max-width: 1100px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .modal-lg {
+    width: 1300px;
+  }
+}
+
+@media (max-width: 990px) {
+  .modal-lg {
+    width: 100%;
   }
 }

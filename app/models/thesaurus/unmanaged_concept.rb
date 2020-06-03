@@ -1,3 +1,7 @@
+# Thesaurus UNmanaged Concept. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept",
@@ -7,7 +11,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   data_property :identifier
   data_property :notation
   data_property :definition
-  data_property :extensible
+  data_property :extensible, default: false
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
@@ -15,19 +19,66 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  validates_with Validator::Uniqueness, attribute: :identifier, on: :create
+  validate :valid_parent_child?
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
+  include Thesaurus::Validation
 
+  # Valid Parent Child? Check this child in the context of the parent
+  #
+  # @return [Boolean] true if valid, false otherwise
+  def valid_parent_child?
+    return true if @parent_for_validation.nil? # Don't validate if we don't know about a parent
+    @parent_for_validation.valid_child?(self)
+  end
+
+  # Create. Create an object
+  #
+  # @param [Hash] params the parameters
+  # @param [Object] parent the parent object
+  # @return [Thesaurus::UnmanagedConcept] the resulting object
   def self.create(params, parent)
-    object = new(params)
-    object.uri = object.create_uri(parent.uri)
-    object.create_or_update(:create) if object.valid?(:create)
-    object
+    params[:parent_uri] = parent.uri
+    super(params)
   end
   
+  # Delete or Unlink. Delete or Unlink child
+  #
+  # @param [Object] parent_object the parent object
+  # @return [Void] no return
+  def delete_or_unlink(parent_object)
+    #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
+    delete_rank_member(self, parent_object) if parent_object.ranked?
+    if multiple_parents?
+      parent_object.delete_link(:narrower, self.uri)
+      1
+    else
+      self.delete_with_links
+    end
+  end
+
+  # Update With Clone. Update the object. Clone if there are multiple parents,
+  #
+  # @param [Hash] params the parameters to be updated
+  # @param [Object] parent_object the parent object
+  # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
+  def update_with_clone(params, parent_object)
+    @parent_for_validation = parent_object
+    if multiple_parents?
+      object = self.clone
+      object.uri = object.create_uri(parent_object.uri)
+      transaction_begin
+      object.update(params)
+      parent_object.replace_link(:narrower, self.uri, object.uri)
+      transaction_execute
+      object
+    else
+      self.update(params)
+    end
+  end
+
   # Changes Count
   #
   # @param [Integer] window_size the required window size for changes
@@ -173,6 +224,17 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     data
   end
 
+  # Supporting Edit? Can the item be edited for supporting information, e.g. tags, change notes etc.
+  #
+  # @return [Boolean] true if edit permitted, false otherwise
+  def supporting_edit?
+    parents.each do |uri|
+      parent = Thesaurus::ManagedConcept.find_minimum(uri)
+      return false if !parent.owned?
+    end
+    true
+  end
+
 private
 
   # Class for a difference result
@@ -193,6 +255,7 @@ private
   end
 
   def deleted_from_ct_version(last_item)
+    return {deleted: false, ct: nil} if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     item_was_deleted = used_in.first != ct_history.first
@@ -203,6 +266,7 @@ private
   end
 
   def deleted_from_ct?(last_item)
+    return false if Thesaurus::ManagedConcept.find_minimum(parents.first).owned?
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
@@ -253,11 +317,29 @@ private
 
   # Find parent query. Used by BaseConcept
   def parent_query
-    "SELECT DISTINCT ?i WHERE \n" +
+    "SELECT DISTINCT ?s WHERE \n" +
     "{ \n" +     
-    "  ?s th:narrower #{self.uri.to_ref} .  \n" +
-    "  ?s th:identifier ?i . \n" +
+    "  #{self.uri.to_ref} ^th:narrower ?s .  \n" +
     "}"
+  end
+
+  # # Given a parent and a child, retrieves its rank member node. 
+  # def rank_member_query(uc, parent_uc)
+  #   query_string = %Q{
+  #   SELECT DISTINCT ?s WHERE
+  #   {
+  #     #{uc.uri.to_ref} ^th:item ?s . 
+  #     #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
+  #   }}
+  #   results = Sparql::Query.new.query(query_string, "", [:th])
+  #   return results.by_object(:s)
+  # end
+
+  # Delete rank member.
+  def delete_rank_member(uc, parent_uc)
+    rank_uri = parent_uc.is_ranked
+    rank = Thesaurus::Rank.find(rank_uri)
+    rank.remove_member(rank.member(uc, parent_uc).first)
   end
 
 end

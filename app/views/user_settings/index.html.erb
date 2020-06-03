@@ -1,4 +1,5 @@
-<% top_level_breadcrumb ("User Settings") %>
+<%= javascript_tag 'setPageTitle("Preferences: '+current_user.email+'")' %>
+<% first_level_breadcrumb (:user_settings) %>
 <style>
 	#user_settings .btn{
 		min-width: 50px;
@@ -10,7 +11,7 @@
 	 {:title => "Current Roles", :value => current_user.role_list_stripped},
 	 {:title => "Login Count", :value => current_user.sign_in_count}]%>
 
-	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-settings", header_title: "Preferences",
+	<%= render layout: "shared/headers/header_generic", :locals => {badge: "icon-settings", header_title: "Preferences",
 		main_text: current_user.name, sub_texts: s_texts} do %>
   <% end %>
 </div>
@@ -34,23 +35,23 @@
 						    	<% if md[:type] == "enum" %>
 							    		<% md[:values].each do |option| %>
 							    			<% if option == @settings[key] %>
-							    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+							    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium light sm-margin" %>
 							    			<% end %>
 							    		<% end %>
 									  		<% md[:values].each do |option| %>
 									  			<% if option != @settings[key] %>
-									  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+									  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium grey sm-margin" %>
 									  			<% end %>
 									  		<% end %>
 						    	<% elsif md[:type] == "coded" %>
 						    		<% md[:values].each do |value_key, option| %>
 						    			<% if option.to_s == @settings[key] %>
-						    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+						    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium light sm-margin bg-prim-bright" %>
 						    			<% end %>
 						    		<% end %>
 								  		<% md[:values].each do |value_key, option| %>
 								  			<% if option.to_s != @settings[key] %>
-								  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+								  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium grey sm-margin" %>
 								  			<% end %>
 								  		<% end %>
 						    	<% end %>
@@ -63,7 +64,7 @@
 		</div>
 	<div class="col-md-4 card narrow">
 		<div class="card-header">
-			Account settings
+			Account Settings
 		</div>
 		<div class="card-content">
 			<%= form_for(current_user, url: update_name_user_path(current_user), html: { method: :put }) do |f| %>

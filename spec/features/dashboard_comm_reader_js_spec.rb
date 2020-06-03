@@ -18,8 +18,6 @@ describe "Community Dashboard JS", :type => :feature do
   end
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
-      "BusinessOperational.ttl", "BusinessForm.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
@@ -52,8 +50,9 @@ describe "Community Dashboard JS", :type => :feature do
       click_browse_every_version
       expect(page).to have_content 'Item History'
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '2019-06-28 Release'
-      expect(page).to have_content '2017-09-29 Release'
+      dates = CdiscCtHelpers.date_version_map
+      expect(page).to have_content "#{dates.last} Release"
+      expect(page).to have_content "#{dates[-10]} Release"
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -76,7 +75,8 @@ describe "Community Dashboard JS", :type => :feature do
 
     it "allows access to CDISC search (REQ-MDR-CT-060)", js: true do
       click_search_the_latest_version
-      expect(page).to have_content 'Search: Controlled Terminology CT '
+      expect(page).to have_content 'Search Terminology'
+      expect(page).to have_content 'Controlled Terminology'
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Home'
       check_on_commumity_dashboard
@@ -84,10 +84,12 @@ describe "Community Dashboard JS", :type => :feature do
 
     it "allows access to CDISC show (latest)", js: true do
       click_show_latest_version
-      wait_for_ajax
+      wait_for_ajax(20)
+      dates = CdiscCtHelpers.date_version_map
+      count = CdiscCtHelpers.cl_count_by_version(dates.count)
       expect(page).to have_content "Controlled Terminology"
-      expect(page).to have_content "61.0.0"
-      ui_check_table_info("children_table", 1, 10, 911)
+      expect(page).to have_content "#{dates.count}.0.0"
+      ui_check_table_info("children_table", 1, 10, count)
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -95,16 +97,19 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and changes between versions displayed (REQ-MDR-UD-090)", js: true do
       ui_dashboard_slider("2012-08-03", "2013-04-12")
       click_link 'Display'
-      find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
+      wait_for_ajax(10)
+      find(:xpath, "//div[@id='created_div']/a", :text => "SCTEST (C103330)")
       find(:xpath, "//div[@id='updated_div']/a", :text => "AGEU (C66781)")
       find(:xpath, "//div[@id='deleted_div']/a", :text => "AGESPAN (C66780)")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
-      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 8)
-      find(:xpath, "//div[@id='created_div']/a[15]").click
+      #find(:xpath, "//div[@id='created_div']/a[15]").click
+      find(:xpath, "//div[@id='created_div']/a", :text => "CVSLDEXT (C101850)").click
+      wait_for_ajax(10)
+      expect(page).to have_content 'C101850'
+      expect(page).to have_content 'CDISC SDTM Coronary Vessel Disease Extent Terminology'
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C102584'
-      expect(page).to have_content 'Reason For Treatment'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
@@ -113,11 +118,12 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
-      expect(page).to have_xpath("//div[@id='created_div']/a", count: 313)
-      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
-      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 19)
-      ui_dashboard_alpha_filter(:created, "Y")
-      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
+      wait_for_ajax(10)
+      expect(page).to have_xpath("//div[@id='created_div']/a", count: 309)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item V']", count: 3) 
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 3) 
+      ui_dashboard_alpha_filter(:created, "C")
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 0)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 0)
       ui_dashboard_alpha_filter(:created, "J")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item J']", count: 0)
@@ -128,7 +134,8 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and updated CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2014-06-27", "2014-09-26")
       click_link 'Display'
-      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 58)
+      wait_for_ajax(10)
+      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 61)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 3)
       ui_dashboard_alpha_filter(:updated, "Z")
@@ -136,10 +143,13 @@ describe "Community Dashboard JS", :type => :feature do
       ui_dashboard_alpha_filter(:updated, "D")
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 0)
+      find(:xpath, "//*[@id='btn_f_updated']/span[2]").click
+      find(:xpath, "//*[@id='btn_f_updated']/span[2]").click
       find(:xpath, "//div[@id='updated_div']/a[34]").click
+      wait_for_ajax(10)
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C99074'
-      expect(page).to have_content 'CDISC SDTM Directionality Terminology'
+      expect(page).to have_content 'C111335'
+      expect(page).to have_content "CDISC Questionnaire C-SSRS Children's Baseline Test Name Terminology"
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
@@ -148,16 +158,19 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2016-06-24", "2016-09-30")
       click_link 'Display'
+      wait_for_ajax(20)
       expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 11)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item C']", count: 2)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item F']", count: 2)
       ui_dashboard_alpha_filter(:deleted, "C")
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 0)
+      find(:xpath, "//*[@id='btn_f_deleted']/span[2]").click
       find(:xpath, "//div[@id='deleted_div']/a[6]").click
+      wait_for_ajax(20)
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C101854'
-      expect(page).to have_content 'Cardiac Valvular Stenosis Severity'
+      expect(page).to have_content 'C114116'
+      expect(page).to have_content 'CDISC SDTM Morphology Test Name Terminology'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
