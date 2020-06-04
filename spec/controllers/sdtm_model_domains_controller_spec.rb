@@ -32,12 +32,12 @@ describe SdtmModelDomainsController do
       params = 
       { 
         :id => "M-CDISC_SDTMMODELTRIALDESIGN", 
-        params:{sdtm_model_domain: 
+        sdtm_model_domain: 
         {
           :namespace => "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3" 
         }
-      }}
-      get :show, params
+      }
+      get :show, params:params
       expect(response).to render_template("show")
     end
 

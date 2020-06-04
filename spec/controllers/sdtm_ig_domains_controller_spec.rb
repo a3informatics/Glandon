@@ -32,12 +32,12 @@ describe SdtmIgDomainsController do
       params = 
       { 
         :id => "IG-CDISC_SDTMIGRS", 
-        params:{sdtm_ig_domain: 
+        sdtm_ig_domain: 
         {
           :namespace => "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3" 
         }
-      }}
-      get :show, params
+      }
+      get :show, params:params
       expect(response).to render_template("show")
     end
 
