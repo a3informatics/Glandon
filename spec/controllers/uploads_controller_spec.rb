@@ -27,7 +27,7 @@ describe UploadsController do
     end
 
     it 'upload, file nil' do
-      post :create, params:{:upload => nil}
+      post :create, params:{}
       expect(response).to redirect_to("/uploads")
     end
 
