@@ -532,14 +532,14 @@ describe ThesauriController do
       params = standard_params
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params[:id] = ct.uri.to_id
-      get :search, params
+      get :search, params:params
       expect(response).to render_template("search")
     end
 
     it "initiates a search of multiple terminologies" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
       params = multiple_params("",th.id)
-      get :search_multiple, params
+      get :search_multiple, params:params
       expect(response).to render_template("search_multiple")
     end
 
@@ -549,7 +549,7 @@ describe ThesauriController do
       params = standard_params
       params[:id] = ct.uri.to_id
       params[:columns]["6"][:search][:value] = "cerebral"
-      get :search, params
+      get :search, params:params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -561,7 +561,7 @@ describe ThesauriController do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
       params[:id] = ct.uri.to_id
-      get :search, params
+      get :search, params:params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -594,7 +594,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       params = multiple_params("latest", th.id)
       params[:columns]["6"][:search][:value] = "cerebral"
-      get :search_multiple, params
+      get :search_multiple, params:params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -606,7 +606,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       params = multiple_params("latest",th.id)
       params[:columns]["6"][:search][:value] = "cerebral"
-      get :search_multiple, params
+      get :search_multiple, params:params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -617,7 +617,7 @@ describe ThesauriController do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#"))
       request.env['HTTP_ACCEPT'] = "application/json"
       params = multiple_params("latest",th.id)
-      get :search_multiple, params
+      get :search_multiple, params:params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -700,6 +700,7 @@ describe ThesauriController do
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Impact_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
       expect(@controller).to receive(:render)
       get :export_csv, params:{id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}}
+      expect(response.content_type).to eq("text/csv")    
     end
 
     it "changes_report" do
