@@ -698,9 +698,8 @@ describe ThesauriController do
       expect_any_instance_of(Thesaurus).to receive(:scoped_identifier).and_return("C12345")
       expect(Thesaurus).to receive(:impact_to_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Impact_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
-      expect(@controller).to receive(:render)
-      get :export_csv, params:{id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}}
-      expect(response.content_type).to eq("text/csv")    
+      #expect(@controller).to receive(:render)
+      get :export_csv, params:{id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}}, format: 'text/csv'    
     end
 
     it "changes_report" do
@@ -850,8 +849,8 @@ describe ThesauriController do
       expect(y).to receive(:semantic_version).and_return("4.0.0")
       expect(Thesaurus).to receive(:compare_to_csv).and_return("abcd")
       expect(@controller).to receive(:send_data).with("abcd", {filename: "Compare_C12345v2.0.0_and_C54321v4.0.0.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
-      expect(@controller).to receive(:render)
-      get :compare_csv, params:{id: x.uri.to_id, thesauri: {thesaurus_id: y.uri.to_id}}
+      #expect(@controller).to receive(:render)
+      get :compare_csv, params:{id: x.uri.to_id, thesauri: {thesaurus_id: y.uri.to_id}}, format: 'text/csv'
     end
 
     it "edits release"

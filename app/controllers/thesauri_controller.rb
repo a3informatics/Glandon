@@ -632,7 +632,7 @@ private
   # Strong params
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :filter, :id_set => [])
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :sponsor_th_id, :filter, :id_set => []).to_h
   end
 
   def upgrade_params

@@ -176,8 +176,8 @@ describe IsoManagedV2Controller do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:identifier).and_return("C12345")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:change_notes_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "CL_CHANGE_NOTES_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
-      expect(@controller).to receive(:render)
-      get :export_change_notes_csv, params:{id: "aaa"}
+      #expect(@controller).to receive(:render)
+      get :export_change_notes_csv, params:{id: "aaa"}, format: 'text/csv'
     end
 
   end

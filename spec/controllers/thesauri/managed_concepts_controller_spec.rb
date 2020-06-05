@@ -289,8 +289,8 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:scoped_identifier).and_return("C12345")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:to_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "CDISC_CL_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
-      expect(@controller).to receive(:render)
-      get :export_csv, params:{id: "aaa"}
+      #expect(@controller).to receive(:render)
+      get :export_csv, params:{id: "aaa"}, format: 'text/csv'
     end
 
     it "pdf report" do
