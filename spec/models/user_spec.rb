@@ -16,10 +16,10 @@ describe "User" do
   end
 
   before :each do
+    User.destroy_all
   end
   
   after :each do
-    User.destroy_all
   end
 
   it "determines if user is only a system admin" do

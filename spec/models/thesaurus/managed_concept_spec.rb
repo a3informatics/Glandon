@@ -1772,7 +1772,7 @@ describe "Thesaurus::ManagedConcept" do
     it "clone thesaurus concept I" do
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = tc.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "clone thesaurus concept II" do
@@ -1785,14 +1785,14 @@ describe "Thesaurus::ManagedConcept" do
       thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = thesaurus.create_next_version
       check_dates(actual, sub_dir, "next_version_expected_1.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml", equate_method: :hash_equal)
       actual = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
       check_dates(actual, sub_dir, "next_version_expected_1b.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml", equate_method: :hash_equal)
       actual = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
       actual.preferred_term_objects
       check_dates(actual, sub_dir, "next_version_expected_1c.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml", equate_method: :hash_equal)
     end
 
   end
