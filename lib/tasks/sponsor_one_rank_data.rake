@@ -3,7 +3,7 @@ namespace :sponsor_one do
   desc "Update Rank Data"
 
   # Should we migrate?
-  def migrate?
+  def rank_data_migrate?
     query = %Q{
       ASK 
       {
@@ -15,7 +15,7 @@ namespace :sponsor_one do
   end
 
   # Execute migration
-  def execute
+  def rank_data_execute
     
     # Load rank extensions
     puts "Load new data ..."
@@ -87,8 +87,8 @@ namespace :sponsor_one do
 
   # Actual rake task
   task :rank_data => :environment do
-    abort("Data migration not required") unless migrate?
-    execute
+    abort("Data migration not required") unless rank_data_migrate?
+    rank_data_execute
   end
 
 end

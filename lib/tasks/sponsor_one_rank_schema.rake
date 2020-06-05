@@ -3,12 +3,12 @@ namespace :sponsor_one do
   desc "Update Rank Schema"
 
   # Should we migrate?
-  def migrate?
+  def rank_schema_migrate?
     Sparql::Query.new.query("ASK {th:SubsetMember rdfs:label \"Subset\"}", "", [:th]).ask? 
   end
 
   # Execute migation
-  def execute
+  def rank_schema_execute
     # Load thesaurus schema migration
     puts "Load new schema ..."
     step = 1
@@ -49,8 +49,8 @@ namespace :sponsor_one do
 
   # Actual rake task
   task :rank_schema => :environment do
-    abort("Schema migration not required") unless migrate?
-    execute
+    abort("Schema migration not required") unless rank_schema_migrate?
+    rank_schema_execute
   end
 
 end
