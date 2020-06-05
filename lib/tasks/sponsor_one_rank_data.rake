@@ -1,15 +1,33 @@
-class AddRankExtensions < ActiveRecord::Migration
+namespace :sponsor_one do
 
-  def change
+  desc "Update Rank Data"
 
+  # Should we migrate?
+  def migrate?
+    query = %Q{
+      ASK 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s1 .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784>
+      }
+    }
+    Sparql::Query.new.query(query, "", [:th, :bo]).ask? 
+  end
+
+  # Execute migration
+  def execute
+    
     # Load rank extensions
-    puts "Load extensions ..."
+    puts "Load new data ..."
     step = 1
-    full_path = Rails.root.join "db/load/data/sponsor_one/ct/rank_extensions_V2-6.ttl"
-    sparql = Sparql::Upload.new.send(full_path)
+    ["rank_extensions_V2-6.ttl", "ranks_V2-6.ttl", "ranks_V3-0.ttl"].each do |filename|
+      full_path = Rails.root.join "db/load/data/sponsor_one/ct/#{filename}"
+      sparql = Sparql::Upload.new.send(full_path)
+    end
+
 
     # Thesaurus extensions fix triples. Will only happen if file load raised no errors
-    puts "Load fixes ..."
+    puts "Update data ..."
     step = 2
     sparql = Sparql::Update.new
     sparql_update = %Q{
@@ -60,12 +78,17 @@ class AddRankExtensions < ActiveRecord::Migration
       }         
     }
     sparql.sparql_update(sparql_update, "", [:th, :bo])
-    puts "Migration succesful"
+    puts "Data migration succesful"
 
   rescue => e
-    msg = "Migration error, step: #{step}"
-    puts msg
-    raise Errors::UpdateError.new("#{msg}\n\n#{e}")
+    msg = "Data migration error, step: #{step}"
+    abort("#{msg}\n\n#{e.backtrace}")
+  end
+
+  # Actual rake task
+  task :rank_data => :environment do
+    abort("Data migration not required") unless migrate?
+    execute
   end
 
 end

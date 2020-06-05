@@ -1,15 +1,22 @@
-class TsAddRankSchema < ActiveRecord::Migration
+namespace :sponsor_one do
 
-  def change
+  desc "Update Rank Schema"
 
-    # Load thesaurus schema extension
-    puts "Load extension ..."
+  # Should we migrate?
+  def migrate?
+    Sparql::Query.new.query("ASK {th:SubsetMember rdfs:label \"Subset\"}", "", [:th]).ask? 
+  end
+
+  # Execute migation
+  def execute
+    # Load thesaurus schema migration
+    puts "Load new schema ..."
     step = 1
-    full_path = Rails.root.join "db/load/schema/thesaurus_extension_one.ttl"
+    full_path = Rails.root.join "db/load/schema/thesaurus_migration_20200519.ttl"
     sparql = Sparql::Upload.new.send(full_path)
 
     # Thesaurus schema fix triples. Will only happen if file load raised no errors
-    puts "Load fixes ..."
+    puts "Load schema corrections ..."
     step = 2
     sparql = Sparql::Update.new
     sparql_update = %Q{
@@ -33,12 +40,17 @@ class TsAddRankSchema < ActiveRecord::Migration
       }      
     }
     sparql.sparql_update(sparql_update, "", [:th])
-    puts "Migration succesful"
+    puts "Schema migration succesful"
 
   rescue => e
-    msg = "Migration error, step: #{step}"
-    puts msg
-    raise Errors::UpdateError.new("#{msg}\n\n#{e}")
+    msg = "Schema migration error, step: #{step}"
+    abort("#{msg}\n\n#{e.backtrace}")
+  end
+
+  # Actual rake task
+  task :rank_schema => :environment do
+    abort("Schema migration not required") unless migrate?
+    execute
   end
 
 end
