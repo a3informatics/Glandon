@@ -1949,4 +1949,45 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "additional extension uniqueness test" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
+    end
+
+    def set_extension_no_e(tc)
+      source = Thesaurus::ManagedConcept.find_full(tc.id)
+      source.narrower_links
+      object = source.clone
+      object.identifier = "#{source.scoped_identifier}"
+      object.extensible = false # Make sure we cannot extend the extension
+      object.set_initial(object.identifier)
+      object.has_state.registration_status = IsoRegistrationStateV2.released_state
+      object.has_state.previous_state = IsoRegistrationStateV2.released_state
+      object.extends = source.uri
+      object.create_or_update(:create, true)
+      object
+    end
+
+    it "new extensions and index" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
+      sparql = Sparql::Update.new
+      sparql.default_namespace(ct.uri.namespace)
+      ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
+        results = ct.find_by_identifiers([identifier])
+        tc = Thesaurus::ManagedConcept.find_minimum(results[identifier])
+        object = set_extension_no_e(tc)
+      end
+      ["C66784", "C87162", "C66768", "C66769"].each do |identifier|
+        item = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/#{identifier}/V1##{identifier}"))
+        new_item = item.create_next_version
+      end
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "2000"})
+      check_file_actual_expected(results, sub_dir, "unique_indicator_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

@@ -486,9 +486,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       {
         SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
         {
-          ?s rdf:type th:ManagedConcept .
-          ?s isoT:hasIdentifier/isoI:version ?v .
-          ?s isoT:hasIdentifier/isoI:identifier ?sci .
+          ?s isoT:hasIdentifier/isoI:identifier ?sci . 
+          ?s isoT:hasIdentifier/isoI:hasScope ?ns .  
+          ?s isoT:hasIdentifier/isoI:version ?v .  
           {
             SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE
             {
