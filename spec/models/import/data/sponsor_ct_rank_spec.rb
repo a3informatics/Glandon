@@ -444,8 +444,12 @@ describe "Import::SponsorTermFormatOne" do
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal) # Previous test results
     {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+      subject_count = {}
       triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
-      expect(triples.count).to eq(data[:count])
+      triple_by_subject = triple_store.triples_to_subject_hash(triples)
+      triple_by_subject.each{|k,v| subject_count[k] = v.count}
+      check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal, write_file: true)
+      #expect(triples.count).to eq(data[:count])
     end
   end
   
