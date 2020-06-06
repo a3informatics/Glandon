@@ -444,13 +444,26 @@ describe "Import::SponsorTermFormatOne" do
     end
     check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal) # Previous test results
     {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
-      subject_count = {}
+      # Leave commented out lines
+      #subject_count = {}
       triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
-      triple_by_subject = triple_store.triples_to_subject_hash(triples)
-      triple_by_subject.each{|k,v| subject_count[k] = v.count}
-      check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal, write_file: true)
-      #expect(triples.count).to eq(data[:count])
+      #triple_by_subject = triple_store.triples_to_subject_hash(triples)
+      #triple_by_subject.each{|k,v| subject_count[k] = v.count}
+      #check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal, write_file: false)
+      expect(triples.count).to eq(data[:count])
     end
   end
-  
+
+  # it 'extra' do
+  #   # Extra test to look at particular differences. Don't delete but can be commented out. 
+  #   # See equivalent tasks/sponsor_one_rank_upgrade_spec.rb
+  #   load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+  #   triple_store.subject_triples(Uri.new(uri: "http://www.sanofi.com/SC135012/V1#SC135012_SC113730"))
+  #   triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d"))
+  # end
+
 end

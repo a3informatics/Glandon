@@ -108,7 +108,7 @@ describe 'sponsor one rank upgrade' do
         code_lists = code_lists + config[:codelists].map{|x| x[:codelist_code]}
       end
       results = check_ranks(code_lists.uniq!)
-      check_file_actual_expected(results, import_dir, "children_ranked_expected.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "children_ranked_expected.yaml", equate_method: :hash_equal)
     end
 
     it 'check counts' do
@@ -121,15 +121,22 @@ describe 'sponsor one rank upgrade' do
         expect(code_lists.count).to eq(results[uri.to_s].count)
       end
       check_file_actual_expected(results, import_dir, "code_lists_expected.yaml", equate_method: :hash_equal)
-      {"2-6" => {uri: @ct_26.uri, count: 334811}, "3-0" => {uri: @ct_30.uri, count: 479350}}.each do |version, data|
+      {"2-6" => {uri: @ct_26.uri, count: 334824}, "3-0" => {uri: @ct_30.uri, count: 479350}}.each do |version, data|
         subject_count = {}
         triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
         triple_by_subject = triple_store.triples_to_subject_hash(triples)
         triple_by_subject.each{|k,v| subject_count[k] = v.count}
-        check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal, write_file: true)
-        #expect(triples.count).to eq(data[:count])
+        check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal)
+        expect(triples.count).to eq(data[:count])
       end
     end
+
+    # it 'extra' do
+    #   # Extra test to look at particular differences. Don't delete but can be commented out. 
+    #   # See equivalent models/import/data/sponsor_ct_rank_spec.rb
+    #   triple_store.subject_triples(Uri.new(uri: "http://www.sanofi.com/SC135012/V1#SC135012_SC113730"))
+    #   triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d"))
+    # end
 
   end
 
