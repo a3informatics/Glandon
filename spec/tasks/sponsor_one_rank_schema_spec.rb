@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
-describe 'sponsor one rank schema migration rake task' do
+describe 'sponsor one rank schema migration' do
   
   before :all do
     Rake.application.rake_require "tasks/sponsor_one_rank_schema"
@@ -9,7 +9,7 @@ describe 'sponsor one rank schema migration rake task' do
   end
 
   def sub_dir
-    return "tasks/sponsor_one_rank_schema"
+    return "tasks/sponsor_one/rank_schema"
   end
 
   describe 'sponsor one rank data' do

@@ -1,11 +1,15 @@
 require 'rails_helper'
 require 'rake'
 
-describe 'sponsor one rank data migration rake task' do
+describe 'sponsor one rank data migration' do
   
   before :all do
     Rake.application.rake_require "tasks/sponsor_one_rank_data"
     Rake::Task.define_task(:environment)
+  end
+
+  def sub_dir
+    return "tasks/sponsor_one/rank_data"
   end
 
   describe 'sponsor one rank data' do
@@ -96,7 +100,6 @@ describe 'sponsor one rank data migration rake task' do
       ]
       check_against(["C66768", "C66769"], expected, @ct_30)
     end
-
 
     let :run_rake_task do
       Rake::Task["sponsor_one:rank_data"].reenable

@@ -89,6 +89,12 @@ module TripleStoreHelpers
       results
     end
 
+    def triples_to_subject_hash(triples)
+      result = Hash.new {|h, k| h[k] = []}
+      triples.map {|triple| result[triple[:s].to_s] << triple}
+      result
+    end
+
     def check_uris(set)
       overall_result = true
       set.each do |entry|
