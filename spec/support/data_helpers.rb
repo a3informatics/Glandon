@@ -100,6 +100,10 @@ module DataHelpers
     range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
   end
 
+  def load_all_cdisc_term_versions
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
+  end
+
   def load_file_into_triple_store(full_path)
     i = 0
     begin
