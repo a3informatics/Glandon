@@ -8,6 +8,9 @@ gem 'rails', '5.2.4.3'
 # Use PG as the database for Active Record
 gem 'pg', '~> 0.21.0'
 
+# Webpack 
+gem 'webpacker', '~> 5.x'
+
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
