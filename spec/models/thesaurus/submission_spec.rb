@@ -13,7 +13,7 @@ describe "Thesaurus Submission" do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    load_versions(CdiscCtHelpers.version_range)
+    load_all_cdisc_term_versions
     @status_map = {:~ => :not_present, :- => :no_change, :C => :created, :U => :updated, :D => :deleted}
   end
 
@@ -28,14 +28,6 @@ describe "Thesaurus Submission" do
   end
 
   # ----------------------------------------
-
-  def load_version(version)
-    load_data_file_into_triple_store("cdisc/ct/CT_V#{version}.ttl")
-  end
-
-  def load_versions(range)
-    range.each {|n| load_version(n)}
-  end
 
   def check_submission(actual, expected)
     result = true
