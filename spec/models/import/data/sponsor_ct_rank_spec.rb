@@ -208,6 +208,7 @@ describe "Import::SponsorTermFormatOne" do
     object.identifier = "#{source.scoped_identifier}"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
+    object.has_identifier.semantic_version = SemanticVersion.new(major: 1).to_s
     object.has_state.registration_status = IsoRegistrationStateV2.released_state
     object.has_state.previous_state = IsoRegistrationStateV2.released_state
     return nil unless object.valid?(:create) && object.create_permitted?
@@ -319,7 +320,11 @@ describe "Import::SponsorTermFormatOne" do
       new_object.to_sparql(sparql, true)
     end
     full_path = sparql.to_file
+    filename = File.basename(full_path)
+    copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
+    check_ttl_fix_v2(filename, "rank_extensions_V2-6.ttl", {last_change_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
   it "checks new migration v2.6" do
