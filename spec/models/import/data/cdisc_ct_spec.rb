@@ -36,7 +36,7 @@ describe "Import::CdiscTerm CT Data" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    true
+    false
   end
 
   def use_api
@@ -1756,22 +1756,27 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       release_date = "2020-05-08"
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: "2020-03-27", send: release_date, protocol: "2020-03-27", define: "2020-03-27"}, set_write_file, use_api)
       expected = [
+        {cl: :C65047,  status: :updated},       # LBTESTCD
+        {cl: :C66741,  status: :updated},       # VSTESTCD
         {cl: :C66737,  status: :no_change},     # TPHASE
-        {cl: :C66738,  status: :no_change},     # TSPARMCD
+        {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
         {cl: :C67152,  status: :no_change},     # TSPARM
-        {cl: :C67153,  status: :no_change},     # VSTEST
+        {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
         {cl: :C71620,  status: :updated},       # UNIT
         {cl: :C74456,  status: :no_change},     # LOC
+        {cl: :C74559,  status: :updated},       # SCTESTCD
         {cl: :C76351,  status: :no_change},     # SKINCLAS
         {cl: :C78431,  status: :no_change},     # VSPOS
         {cl: :C78735,  status: :no_change},     # EVAL
+        {cl: :C85494,  status: :updated},       # PKUNIT
         {cl: :C99079,  status: :no_change},     # EPOCH
-        {cl: :C118971, status: :updated},       # CCCAT
-        {cl: :C128689, status: :no_change},     # RACEC
+        {cl: :C118971, status: :no_change},     # CCCAT
+        {cl: :C128689, status: :updated},        # RACEC
+        {cl: :C103330, status: :updated},       # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
@@ -1787,7 +1792,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   describe "Compare Excel and API" do
 
     it "checks files" do
-      [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 57, 59, 60, 61].each do |version|
+      [40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 57, 59, 60, 61, 62].each do |version|
         excel_file = excel_filename(version)
         api_file = api_filename(version)
         check_ttl_fix_v2(excel_file, api_file, {last_change_date: true})
@@ -1827,7 +1832,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
     it "code list items count by version" do
@@ -1843,7 +1848,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       }
       query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
       result = query_results.by_object_set([:d, :v, :count]).map{|x| {date: x[:d], version: x[:v], count: x[:count], uri: x[:s].to_s}}
-      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(result, sub_dir, "ct_query_cl_count_2.yaml", equate_method: :hash_equal, write_file: false)
     end
 
   end
