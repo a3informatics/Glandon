@@ -67,7 +67,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
   {
     SELECT ?cl ?cli (COUNT(?mid) as ?displayorder) WHERE 
     {
-      VALUES ?s {<http://www.sanofi.com/2019_R1/V1#TH>}
+      VALUES ?s {[[[parameter_1]]]}
       ?s th:isTopConceptReference/bo:reference ?cl .
       ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
       ?mid th:memberNext* ?m .

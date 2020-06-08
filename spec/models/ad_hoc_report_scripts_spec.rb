@@ -167,9 +167,12 @@ RSpec.describe AdHocReport, type: :model do
   describe "Rank Tests" do
     
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_all_cdisc_term_versions
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
@@ -183,6 +186,19 @@ RSpec.describe AdHocReport, type: :model do
       delete_all_public_files
     end
 
+    def import_dir
+      return "models/import/data/sponsor_one/ct"
+    end
+
+    def extract_ranks(rows)
+      results = Hash.new {|h,k| h[k] = []}
+      rows[:data].each do |row|
+        next if row[11].empty?
+        results[row[2]] << {item: row[5], rank: row[11]}
+      end
+      results
+    end
+
     it "executes an sponsor CT export report, 2019" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
@@ -192,7 +208,10 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_results_1.yaml", equate_method: :hash_equal)
+      expect(results[:data].count).to eq(22322)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(43)
     end
   
     it "executes an sponsor CT export report, 2020" do
@@ -204,10 +223,13 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_results_2.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
-      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_results_2.yaml", equate_method: :hash_equal)
+      expect(results[:data].count).to eq(31930)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(47)
     end
   
-    it "executes an sponsor CT export excluding subsets report" do
+    it "executes an sponsor CT export excluding subsets report, 2019" do
       copy_report_to_public_files("sponsor_ct_export_ex_subsets_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -216,10 +238,28 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_ex_subsets_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_ex_subsets_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_ex_subsets_results_1.yaml", equate_method: :hash_equal)
+      expect(results[:data].count).to eq(20348)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_ex_subsets_rank_results_1.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(41)
     end
   
-    it "executes an sponsor CT export subsets report" do
+    it "executes an sponsor CT export excluding subsets report, 2020" do
+      copy_report_to_public_files("sponsor_ct_export_ex_subsets_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_ex_subsets_sparql.yaml"
+      report.results_file = "sponsor_ct_export_ex_subsets_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_ex_subsets_results_2.yaml")
+      expect(results[:data].count).to eq(29985)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_ex_subsets_rank_results_2.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(44)
+    end
+  
+    it "executes an sponsor CT export subsets report 2019" do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
       report = AdHocReport.new
@@ -228,7 +268,25 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_subsets_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_subsets_results_1.yaml", equate_method: :hash_equal)
+      expect(results[:data].count).to eq(1974)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_1.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(2)
+    end
+  
+    it "executes an sponsor CT export subsets report, 2020" do
+      copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_subsets_sparql.yaml"
+      report.results_file = "sponsor_ct_export_subsets_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_2.yaml")
+      expect(results[:data].count).to eq(1945)
+      ranks = extract_ranks(results)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_2.yaml", equate_method: :hash_equal)
+      expect(ranks.count).to eq(3)
     end
   
   end
