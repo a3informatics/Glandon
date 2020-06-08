@@ -13,17 +13,16 @@ RSpec.describe AdHocReport, type: :model do
   describe "Simple Reports" do
 
     before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
-    load_files(schema_files, data_files)
-    load_cdisc_term_versions(CdiscCtHelpers.version_range)   
-    AdHocReport.delete_all
-    delete_all_public_files
-  end
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_airport_ad_hoc.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(CdiscCtHelpers.version_range)   
+      AdHocReport.delete_all
+      delete_all_public_files
+    end
 
-  after :all do
-    delete_all_public_files
-  end
-
+    after :all do
+      delete_all_public_files
+    end
 
     it "executes a submission impact report" do
       copy_report_to_public_files("submission_impact_sparql.yaml", "test")
@@ -106,7 +105,7 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
-    describe "Change Instructions Export Tests" do
+  describe "Change Instructions Export Tests" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
@@ -161,6 +160,75 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.cdisc.org/CT/V53#TH").to_id])}
       results = AdHocReportFiles.read("change_instructions_export_results_3.yaml")
       check_file_actual_expected(results, sub_dir, "change_instructions_export_expected_3.yaml", equate_method: :hash_equal)
+    end
+  
+  end
+
+  describe "Rank Tests" do
+    
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_all_cdisc_term_versions
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+      AdHocReport.delete_all
+      delete_all_public_files
+    end
+
+    after :all do
+      delete_all_public_files
+    end
+
+    it "executes an sponsor CT export report, 2019" do
+      copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_sparql.yaml"
+      report.results_file = "sponsor_ct_export_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_results_1.yaml", equate_method: :hash_equal)
+    end
+  
+    it "executes an sponsor CT export report, 2020" do
+      copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_sparql.yaml"
+      report.results_file = "sponsor_ct_export_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_results_2.yaml", equate_method: :hash_equal)
+    end
+  
+    it "executes an sponsor CT export excluding subsets report" do
+      copy_report_to_public_files("sponsor_ct_export_ex_subsets_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_ex_subsets_sparql.yaml"
+      report.results_file = "sponsor_ct_export_ex_subsets_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_ex_subsets_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_ex_subsets_results_1.yaml", equate_method: :hash_equal)
+    end
+  
+    it "executes an sponsor CT export subsets report" do
+      copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "sponsor_ct_export_subsets_sparql.yaml"
+      report.results_file = "sponsor_ct_export_subsets_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_subsets_results_1.yaml", equate_method: :hash_equal)
     end
   
   end
