@@ -12,8 +12,7 @@ describe AuditTrailController do
     before :all do
       clear_triple_store
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       AuditTrail.delete_all
       User.delete_all
       ar = AuditTrail.create(date_time: Time.now, user: "user1@example.com", owner: "CDISC", identifier: "I1", version: "1", event: 1, description: "description")
@@ -42,7 +41,7 @@ describe AuditTrailController do
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
-      expect(assigns(:items).count).to eq(16) # +1 for Login event from login_curator
+      expect(assigns(:items).count).to eq(15) 
       expect(response).to render_template("index")
     end
 
@@ -52,7 +51,7 @@ describe AuditTrailController do
       expect(assigns(:users).count).to eq(1)
       expect(assigns(:owners).count).to eq(3)
       expect(assigns(:events).count).to eq(5)
-      expect(assigns(:items).count).to eq(5)
+      expect(assigns(:items).count).to eq(4)
       expect(response).to render_template("index")
     end
 
