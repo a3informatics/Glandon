@@ -222,12 +222,7 @@ RSpec.describe AdHocReport, type: :model do
       report.sparql_file = "sponsor_ct_export_sparql.yaml"
       report.results_file = "sponsor_ct_export_results_2.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
-      full_path = test_file_path(sub_dir, "sponsor_ct_export_results_2.yaml")
-      (1..10).each do
-puts "Waiting ..."
-        break if File.exist?(full_path)
-        sleep 0.5
-      end
+      full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31930)
       ranks = extract_ranks(results)
