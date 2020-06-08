@@ -10,7 +10,8 @@ class Background < ApplicationRecord
   def check_for_import
     if !self.import.nil?
       errors.add(:base, "cannot delete background job while an import exists")
-      return false
+      throw(:abort)
+      #return false
     end
   end
 
