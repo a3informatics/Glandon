@@ -222,6 +222,7 @@ RSpec.describe AdHocReport, type: :model do
       report.sparql_file = "sponsor_ct_export_sparql.yaml"
       report.results_file = "sponsor_ct_export_results_2.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
+      sleep 2 # Just to ensure large file written, simple mechanim
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31930)
       ranks = extract_ranks(results)
