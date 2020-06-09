@@ -68,14 +68,14 @@ describe "User" do
 
   it "logs an audit event when a user password is changed" do
     user = User.new
-    expect(user).to receive(:encrypted_password_changed?) {true}
+    expect(user).to receive(:saved_change_to_encrypted_password?) {true}
     user.user_update
     expect(AuditTrail.count).to eq(1)
   end
 
   it "does not log an audit event when a user password is not changed" do
     user = User.new
-    expect(user).to receive(:encrypted_password_changed?) {false}
+    expect(user).to receive(:saved_change_to_encrypted_password?) {false}
     user.user_update
     expect(AuditTrail.count).to eq(0)
   end

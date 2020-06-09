@@ -62,7 +62,8 @@ class User < ApplicationRecord
   # Do any processing after user is changed
   def user_update
     # Audit if password changed
-    if encrypted_password_changed?
+    #if encrypted_password_changed?
+    if saved_change_to_encrypted_password?
       AuditTrail.user_event(self, "User changed password.")
     end
   end
