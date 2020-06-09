@@ -156,10 +156,6 @@ describe 'sponsor one rank schema migration' do
     end
 
     it 'add rank schema, success checks fail I' do
-      # Definitions, check triple store count
-      skos_def = Uri.new(uri: "http://www.w3.org/2004/02/skos/core#definition")
-      rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
-      expected = 28 # Number of extra triples
       base = triple_store.triple_count
       expect(base).to eq(1584)
 
@@ -167,15 +163,11 @@ describe 'sponsor one rank schema migration' do
       check_old
 
       # Run migration
-      Sparql::Utility.any_instance.stub(:triple_count).and_return(400, 500) # Fake wrong triple count
+      allow_any_instance_of(Sparql::Utility).to receive(:triple_count).and_return(400, 500) # Fake wrong triple count
       expect{run_rake_task}.to raise_error(SystemExit, /Schema migration not succesful, checks failed/)
     end
 
     it 'add rank schema, success checks fail II' do
-      # Definitions, check triple store count
-      skos_def = Uri.new(uri: "http://www.w3.org/2004/02/skos/core#definition")
-      rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
-      expected = 28 # Number of extra triples
       base = triple_store.triple_count
       expect(base).to eq(1584)
 
@@ -183,7 +175,7 @@ describe 'sponsor one rank schema migration' do
       check_old
 
       # Run migration
-      Sparql::Query::Results.any_instance.stub(:ask?).and_return(true, false)
+      allow_any_instance_of(Sparql::Utility).to receive(:ask?).and_return(false) # Fake wrong ask result
       expect{run_rake_task}.to raise_error(SystemExit, /Schema migration not succesful, checks failed/)
     end
 

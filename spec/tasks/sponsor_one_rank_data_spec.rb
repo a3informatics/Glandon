@@ -166,6 +166,30 @@ describe 'sponsor one rank data migration' do
       check_old
     end
 
+    it 'add rank data, success checks fail I' do
+      base = triple_store.triple_count
+      expect(base).to eq(1349794)
+
+      # Old triples check
+      check_old
+
+      # Run migration
+      allow_any_instance_of(Sparql::Utility).to receive(:triple_count).and_return(400, 500) # Fake wrong triple count
+      expect{run_rake_task}.to raise_error(SystemExit, /Data migration not succesful, checks failed/)
+    end
+
+    it 'add rank data, success checks fail II' do
+      base = triple_store.triple_count
+      expect(base).to eq(1349794)
+
+      # Old triples check
+      check_old
+
+      # Run migration
+      allow_any_instance_of(Sparql::Utility).to receive(:ask?).and_return(false) # Fake the ask
+      expect{run_rake_task}.to raise_error(SystemExit, /Data migration not succesful, checks failed/)
+    end
+
   end
 
 end

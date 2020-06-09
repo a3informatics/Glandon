@@ -2,19 +2,17 @@ namespace :sponsor_one do
 
   desc "Update Rank Schema"
 
-  # Should we migrate?
+  # Check for success?
   def rank_schema_success?(base)
+    su = Sparql::Utility.new
     sparql_ask = %Q{
-      ASK
-      {
-        th:Subset skos:definition "The head of the list by which a code list is ordered."^^xsd:string .
-        th:SubsetMember rdfs:label "Subset Member"^^xsd:string .
-        th:SubsetMember skos:definition "Ordered list member."^^xsd:string .
-        th:RankedMember skos:definition "Rank list member."^^xsd:string .
-        th:rank skos:definition "The rank value."^^xsd:string
-      }
+      th:Subset skos:definition "The head of the list by which a code list is ordered."^^xsd:string .
+      th:SubsetMember rdfs:label "Subset Member"^^xsd:string .
+      th:SubsetMember skos:definition "Ordered list member."^^xsd:string .
+      th:RankedMember skos:definition "Rank list member."^^xsd:string .
+      th:rank skos:definition "The rank value."^^xsd:string
     }
-    Sparql::Query.new.query(sparql_ask, "", [:th]) && Sparql::Utility.new.triple_count == (base + 28)
+    su.ask?(sparql_ask, [:th]) && su.triple_count == (base + 28)
   end
 
   # Should we migrate?
