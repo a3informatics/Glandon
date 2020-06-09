@@ -46,21 +46,15 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count)
     end
 
-    it "allows a user to be locked (REQ-??????)", js: true do
+    it "allows a user to be locked and unlocked (REQ-??????)", js: true do
       ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       find(:xpath, "//tr[contains(.,'lock@example.com')]/td/a", :text => 'Lock').click
-      # page.accept_alert
       expect(page).to have_content 'User was successfully deactivated.'
-    end
-
-    it "allows a user to be unlocked (REQ-??????)", js: true do
-      ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       find(:xpath, "//tr[contains(.,'lock@example.com')]/td/a", :text => 'Unlock').click
-      # page.accept_alert
       expect(page).to have_content 'User was successfully activated.'
     end
 
