@@ -18,6 +18,7 @@ describe 'sponsor one rank upgrade' do
   describe 'sponsor one rank upgrade' do
     
     before :all do
+      clear_triple_store
       load_test_file_into_triple_store("sponsor_one_1.nq.gz")
       @ct_26 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
       @ct_30 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH"))
