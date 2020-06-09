@@ -6,8 +6,6 @@ module Sparql
 
   class Utility
 
-    include Sparql::CRUD
-
     # Triple Count
     #
     # @return [Integer] count of triples
