@@ -358,10 +358,9 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(30)
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 10
-        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
-        expect(pdfdoc['src']).to include("changes_report.pdf")
-        expect(pdfdoc['src']).to include("thesauri")
+        sleep 15
+        expect(current_path).to include("changes_report.pdf")
+        expect(current_path).to include("thesauri")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'Changes across versions'
@@ -375,9 +374,8 @@ describe "CDISC Term", :type => :feature do
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
         sleep 10
-        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
-        expect(pdfdoc['src']).to include("changes_report.pdf")
-        expect(pdfdoc['src']).to include("thesauri/managed_concepts")
+        expect(current_path).to include("changes_report.pdf")
+        expect(current_path).to include("thesauri/managed_concepts")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'C100129'
@@ -390,8 +388,7 @@ describe "CDISC Term", :type => :feature do
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
         sleep 10
-        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
-        expect(pdfdoc['src']).to include("submission_report.pdf")
+        expect(current_path).to include("submission_report.pdf")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'Submission value changes'
