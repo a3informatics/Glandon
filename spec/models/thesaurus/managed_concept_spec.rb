@@ -1751,10 +1751,6 @@ describe "Thesaurus::ManagedConcept" do
         "Failed to find http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8 in Thesaurus::Rank.")
     end
 
-
-
-    
-
   end
 
   describe "Clone and New Version" do
@@ -1839,6 +1835,29 @@ describe "Thesaurus::ManagedConcept" do
       actual = tc.create_next_version
       #check_dates(actual, sub_dir, "clone_extension_expected_1b.yaml", :last_change_date)
       check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml")
+    end
+
+  end
+
+  describe "clone rank" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      load_local_file_into_triple_store(sub_dir, "rank_input_1.ttl")
+    end
+
+    it "clones rank" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66769/V17#C66769"))
+      ranked = tc.add_rank
+      new_tc = Thesaurus::ManagedConcept.find_minimum(tc.uri)
+      actual = new_tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal)
+      actual = new_tc.create_next_version
+      check_dates(actual, sub_dir, "clone_ranked_expected_1b.yaml", :creation_date, :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal)
     end
 
   end

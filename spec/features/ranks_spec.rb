@@ -216,6 +216,33 @@ describe "Rank", :type => :feature do
       context_menu_element_header_present? :enable_rank
     end
 
+    it "allows to create a new CL version with persistent ranks", js: true do
+      go_to_edit("SC105133", "1.0.0")
+      context_menu_element_header :enable_rank
+      wait_for_ajax 10
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        check_rank("SC105265", "2")
+        click_on "Close"
+      end
+      click_on "Return"
+      wait_for_ajax 10
+      context_menu_element("history", 5, "1.1.0", :document_control)
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Submit Status Change"
+      click_on "Return"
+      wait_for_ajax 10
+      context_menu_element("history", 5, "1.1.0", :edit)
+      context_menu_element_header_present? :edit_ranks
+      context_menu_element_header :edit_ranks
+      ui_in_modal do
+        check_rank("SC105265", "2")
+        click_on "Close"
+      end
+    end
+
   end
 
   describe "Rank Extension, Curator user", :type => :feature do
