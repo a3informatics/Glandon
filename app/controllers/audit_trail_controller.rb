@@ -63,9 +63,9 @@ private
 
   def users_owners_events
     @users = User.all
-    @users.to_a.unshift(User.new)
+    @users = @users.to_a.unshift(User.new)
     @owners = IsoNamespace.all
-    @owners.to_a.unshift(IsoNamespace.new)
+    @owners = @owners.to_a.unshift(IsoNamespace.new)
     @events = AuditTrail.event_types
   end
 
