@@ -1849,13 +1849,15 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "clones rank" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66769/V17#C66769"))
       ranked = tc.add_rank
       new_tc = Thesaurus::ManagedConcept.find_minimum(tc.uri)
       actual = new_tc.clone
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal, write_file: true)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal)
       actual = new_tc.create_next_version
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal, write_file: true)
+      check_dates(actual, sub_dir, "clone_ranked_expected_1b.yaml", :creation_date, :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal)
     end
 
   end
