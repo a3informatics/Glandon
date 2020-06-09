@@ -3,7 +3,7 @@ namespace :sponsor_one do
   desc "Update Rank Data"
 
   # Check for success?
-  def rank_schema_success?(base)
+  def rank_data_success?(base)
     su = Sparql::Utility.new
     sparql_ask = %Q{
       <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66784/V1#C66784> .
@@ -104,7 +104,7 @@ namespace :sponsor_one do
     sparql.sparql_update(sparql_update, "", [:th, :bo])
 
     # Checks and finish
-    abort("Data migration not succesful, checks failed") unless rank_schema_success?(base)
+    abort("Data migration not succesful, checks failed") unless rank_data_success?(base)
     puts "Data migration succesful"
 
   rescue => e
