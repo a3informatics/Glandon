@@ -70,6 +70,7 @@ describe "ISO Managed JS", :type => :feature do
       expect(div.text(:all)).to eq("I am a comment")
       ui_set_focus("iso_managed_changeDescription")
       div = page.find("#generic_markdown")
+      wait_for_ajax
       expect(div.text(:all)).to eq("Hello world. This is a change description")
       fill_in "iso_managed_origin", with: "Origin"
       click_button 'Submit'
