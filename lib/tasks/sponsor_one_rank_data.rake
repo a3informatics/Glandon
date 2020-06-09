@@ -2,6 +2,26 @@ namespace :sponsor_one do
 
   desc "Update Rank Data"
 
+  # Check for success?
+  def rank_schema_success?(base)
+    su = Sparql::Utility.new
+    sparql_ask = %Q{
+      <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66784/V1#C66784> .
+      <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C87162/V1#C87162> .
+      <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+      <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+      ?s1 bo:reference <http://www.sanofi.com/C66784/V1#C66784> .
+      ?s2 bo:reference <http://www.sanofi.com/C87162/V1#C87162> .
+      ?s3 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+      ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> .
+      <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+      <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+      ?s5 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+      ?s6 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
+    }
+    su.ask?(sparql_ask, [:th, :bo]) && su.triple_count == (base + 1130 + 778 + 153 - 2)
+  end
+
   # Should we migrate?
   def rank_data_migrate?
     query = %Q{
@@ -17,6 +37,10 @@ namespace :sponsor_one do
   # Execute migration
   def rank_data_execute
     
+    # Base triple count
+    step = 0
+    base = Sparql::Utility.new.triple_count
+
     # Load rank extensions
     puts "Load new data ..."
     step = 1
@@ -78,11 +102,14 @@ namespace :sponsor_one do
       }         
     }
     sparql.sparql_update(sparql_update, "", [:th, :bo])
+
+    # Checks and finish
+    abort("Data migration not succesful, checks failed") unless rank_schema_success?(base)
     puts "Data migration succesful"
 
   rescue => e
     msg = "Data migration error, step: #{step}"
-    abort("#{msg}\n\n#{e.backtrace}")
+    abort("#{msg}\n\n#{e}\n\n#{e.backtrace}")
   end
 
   # Actual rake task
