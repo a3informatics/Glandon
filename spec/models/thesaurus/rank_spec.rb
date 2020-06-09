@@ -5,6 +5,7 @@ describe "Thesaurus::Rank" do
   include DataHelpers
   include SparqlHelpers
   include PublicFileHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/thesaurus/rank"
@@ -97,6 +98,29 @@ describe "Thesaurus::Rank" do
       prev_member = Thesaurus::RankMember.find(Uri.new(uri:"http://www.assero.co.uk/TRM#ec2d44c9-a18f-4900-b803-9584805559d2"))
       next_member = Thesaurus::RankMember.find(Uri.new(uri:"http://www.assero.co.uk/TRM#6b3a2b03-b092-46be-bbff-de9e1d444178"))
       expect(prev_member.member_next).to eq(next_member.uri)
+    end
+
+    it "ordered list" do
+      rank_uri = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri)
+      results = rank.ordered_list
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "orderd_list_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "clone" do
+      allow(SecureRandom).to receive(:uuid).exactly(16).times.and_return(*SecureRandomHelpers.predictable)
+      rank_uri = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri)
+      clone = rank.clone
+      check_file_actual_expected(clone.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "clone, empty" do
+      allow(SecureRandom).to receive(:uuid).exactly(16).times.and_return(*SecureRandomHelpers.predictable)
+      rank_uri = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
+      rank = Thesaurus::Rank.find(rank_uri)
+      clone = rank.clone
+      check_file_actual_expected(clone.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
