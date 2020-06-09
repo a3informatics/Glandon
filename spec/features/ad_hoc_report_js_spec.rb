@@ -54,7 +54,8 @@ describe "Ad Hoc Reports", :type => :feature do
       Capybara.ignore_hidden_elements = true
     end
 
-    it "shoud allow a report to be run, parameters to be selected (REQ-MDR-AR-020)", js:true do
+    it "shoud allow a report to be run, parameters to be selected and results to be viewed(REQ-MDR-AR-020)", js:true do
+      # Run
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element("main", 5, "Terminology Code Lists", :run)
@@ -67,9 +68,7 @@ describe "Ad Hoc Reports", :type => :feature do
       sleep 1
       wait_for_ajax(10)
       expect(page).to have_content("Results of Terminology Code Lists")
-    end
-
-    it "should allow the results to be viewed (REQ-MDR-AR-050)" , js:true do
+      # Results
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element("main", 5, "Terminology Code Lists", :results)
@@ -83,18 +82,20 @@ describe "Ad Hoc Reports", :type => :feature do
 
   describe "Content Admin", :type => :feature do
 
+    def create_report(filename)
+      AdHocReport.delete_all
+      delete_all_public_files
+      copy_file_to_public_files(sub_dir, filename, "upload")
+      filename = public_path("upload", filename)
+      files = [filename]
+      @ahr = AdHocReport.create_report({files: files})
+    end
+
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..5)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      AdHocReport.delete_all
-      delete_all_public_files
-      copy_file_to_public_files(sub_dir, "terminology_code_lists_sparql.yaml", "upload")
-      filename = public_path("upload", "terminology_code_lists_sparql.yaml")
-      files = []
-      files << filename
-      @ahr = AdHocReport.create_report({files: files})
       ua_create
     end
 
@@ -109,9 +110,11 @@ describe "Ad Hoc Reports", :type => :feature do
     after :all do
       delete_all_public_files
       ua_destroy
+      AdHocReport.delete_all
     end
 
     it "allows access and the new and delete buttons (REQ-MDR-AR-010)", js:true do
+      create_report "terminology_code_lists_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       expect(page).to have_link '+ Add New'
@@ -121,6 +124,7 @@ describe "Ad Hoc Reports", :type => :feature do
     end
 
     it "allows a report to be deleted (REQ-MDR-AR-070)", js: true do
+      create_report "terminology_code_lists_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element("main", 5, "Terminology Code Lists", :delete)
@@ -129,8 +133,7 @@ describe "Ad Hoc Reports", :type => :feature do
     end
 
     it "shoud allow a report to be created (REQ-MDR-AR-010, REQ-MDR-AR-060)", js:true do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "terminology_list_sparql.yaml", "upload")
+      AdHocReport.delete_all
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       click_link '+ Add New'
@@ -141,14 +144,15 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content 'Report was successfully created.'
     end
 
-    it "shoud allow a report to be run (REQ-MDR-AR-020, REQ-MDR-AR-030)", js:true do
+    it "shoud allow a report to be run and results to be viewed (REQ-MDR-AR-020, REQ-MDR-AR-030) (REQ-MDR-AR-050)" , js:true do
+      # Run
+      create_report "terminology_list_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
+      wait_for_ajax 10
       context_menu_element("main", 5, "Terminology List", :run)
-      expect(page).to have_content("Results of Terminology List")
-    end
-
-    it "should allow the results to be viewed (REQ-MDR-AR-050)" , js:true do
+      wait_for_ajax 10
+      # Results
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       context_menu_element("main", 5, "Terminology List", :results)
@@ -159,9 +163,11 @@ describe "Ad Hoc Reports", :type => :feature do
     end
 
     it "allows a report to be exported as CSV (REQ-MDR-AR-040)", js: true do
+      create_report "terminology_list_sparql.yaml"
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
-      context_menu_element("main", 5, "Terminology List", :results)
+      context_menu_element("main", 5, "Terminology List", :run)
+      wait_for_ajax 10
       expect(page).to have_content("Results of Terminology List")
       click_link "Export CSV"
       file = download_content
@@ -172,6 +178,7 @@ describe "Ad Hoc Reports", :type => :feature do
 
     it "should handle errors in import files (REQ-MDR-AR-010)", js:true do
       copy_file_to_public_files(sub_dir, "ad_hoc_report_test_err_6_sparql.yaml", "upload")
+      AdHocReport.delete_all
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       click_link '+ Add New'
