@@ -9,12 +9,7 @@ describe "Audit Trail", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
 
-  before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-    load_files(schema_files, data_files)
-
-    ua_create
+  def prepare_audit_trail
     user1 = ua_add_user email: "audit_trail_user_1@example.com"
     user2 = ua_add_user email: "audit_trail_user_2@example.com"
     AuditTrail.delete_all
@@ -37,9 +32,14 @@ describe "Audit Trail", :type => :feature do
     ar = AuditTrail.create(date_time: Time.now - 210, user: "audit_trail_user_2@example.com", owner: "", identifier: "", version: "", event: 4, description: "Logout")
   end
 
+  before :all do
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    ua_create
+  end
+
   after :all do
-    ua_remove_user "audit_trail_user_1@example.com"
-    ua_remove_user "audit_trail_user_2@example.com"
     ua_destroy
   end
 
@@ -54,6 +54,7 @@ describe "Audit Trail", :type => :feature do
     end
 
     it "allows viewing (REQ-MDR-GENERIC-A-015)", js:true do
+      prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
       expect(page).to have_content 'Filter Audit Trail Data'
@@ -62,46 +63,51 @@ describe "Audit Trail", :type => :feature do
     end
 
     it "check ordering with latest in first row", js: true do
+      prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
       expect(page).to have_content 'Filter Audit Trail Data'
-      ui_check_table_row("main", 4, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
-      ui_check_table_row("main", 5, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
+      ui_check_table_row("main", 1, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
+      ui_check_table_row("main", 2, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
 
     it "allows searching - event", js:true do
+      prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
       expect(page).to have_content 'Filter Audit Trail Data'
       select 'User', from: "audit_trail_event"
       click_button 'Filter results'
-      expect(page.all('table#main tr').count).to eq(10) # Note, these counts are records expected + 1 for the header row. Also include logins in the tests (3)
+      ui_check_table_info("main", 1, 4, 4)
     end
 
     it "allows searching - user", js:true do
+      prepare_audit_trail
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
       expect(page).to have_content 'Filter Audit Trail Data'
       select 'audit_trail_user_2@example.com', from: "audit_trail_user"
       click_button 'Filter results'
-      expect(page.all('table#main tr').count).to eq(3)
+      ui_check_table_info("main", 1, 2, 2)
     end
 
     it "allows searching - owner", js:true do
+      prepare_audit_trail
       click_navbar_at
       select 'ACME', from: "audit_trail_owner"
       click_button 'Filter results'
-      expect(page.all('table#main tr').count).to eq(10)
+      ui_check_table_info("main", 1, 9, 9)
     end
 
     it "allows searching - identifier", js:true do
       click_navbar_at
       fill_in 'Identifier', with: 'T1'
       click_button 'Filter results'
-      expect(page.all('table#main tr').count).to eq(4)
+      ui_check_table_info("main", 1, 3, 3)
     end
 
     it "allows searching - combined", js:true do
+      prepare_audit_trail
       click_navbar_at
       select 'CDISC', from: "audit_trail_owner"
       fill_in 'Identifier', with: 'I2'
@@ -110,6 +116,7 @@ describe "Audit Trail", :type => :feature do
     end
 
     it "correctly marks the create event of a Code List", js:true do
+      prepare_audit_trail
       click_navbar_code_lists
       identifier = ui_new_code_list
       click_navbar_at
