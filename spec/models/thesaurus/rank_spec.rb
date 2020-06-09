@@ -108,7 +108,7 @@ describe "Thesaurus::Rank" do
     end
 
     it "clone" do
-      allow(SecureRandom).to receive(:uuid).exactly(16).times.and_return(*SecureRandomHelpers.predictable)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       rank_uri = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
       rank = Thesaurus::Rank.find(rank_uri)
       clone = rank.clone
@@ -116,11 +116,13 @@ describe "Thesaurus::Rank" do
     end
 
     it "clone, empty" do
-      allow(SecureRandom).to receive(:uuid).exactly(16).times.and_return(*SecureRandomHelpers.predictable)
-      rank_uri = Uri.new(uri: "http://www.assero.co.uk/TRC#e0c80ddd-2f1c-4832-885e-9283e87d6bd8")
-      rank = Thesaurus::Rank.find(rank_uri)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      list = Thesaurus::Rank.new(members: nil)
+      list.uri = list.create_uri(list.class.base_uri)  
+      list.save
+      rank = Thesaurus::Rank.find(list.uri)
       clone = rank.clone
-      check_file_actual_expected(clone.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(clone.to_h, sub_dir, "clone_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
