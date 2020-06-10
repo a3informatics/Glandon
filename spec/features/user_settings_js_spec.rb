@@ -153,10 +153,10 @@ describe "User Settings", :type => :feature do
     end
 
     it "allows a user to change their password" do
-      audit_count = AuditTrail.count
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1%", :name => "A Amend"
       unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1%"
+      audit_count = AuditTrail.count
       click_link 'settings_button'
       expect(page).to have_content "Account Settings"
       fill_in 'user_password', with: 'Changeme1@'
@@ -164,14 +164,14 @@ describe "User Settings", :type => :feature do
       fill_in 'user_current_password', with: 'Changeme1%'
       click_button 'password_update_button'
       expect(page).to have_content 'Your account has been updated successfully.'
-      expect(AuditTrail.count).to eq(audit_count + 3)
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
     it "allows a user to change their password - incorrect current password" do
-      audit_count = AuditTrail.count
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1@", :name => "A Amend"
       unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
+      audit_count = AuditTrail.count
       click_link 'settings_button'
       expect(page).to have_content "Account Settings"
       fill_in 'user_password', with: 'Changeme1^'
@@ -179,7 +179,7 @@ describe "User Settings", :type => :feature do
       fill_in 'user_current_password', with: 'Changeme1x'
       click_button 'password_update_button'
       expect(page).to have_content 'Current password is invalid'
-      expect(AuditTrail.count).to eq(audit_count + 2)
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it "allows a user to update the display name" do
