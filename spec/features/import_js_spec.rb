@@ -110,12 +110,14 @@ describe "Imports", :type => :feature do
       copy_file_to_public_files(sub_dir, "import_input_1a.xlsx", "test")
       copy_file_to_public_files(sub_dir, "import_input_2.xlsx", "test")
       ua_create
+      set_transactional_tests false
     end
 
     after :all do
       ua_destroy
       Import.delete_all
       delete_all_public_test_files
+      set_transactional_tests true
     end
 
     before :each do

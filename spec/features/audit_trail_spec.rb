@@ -10,8 +10,7 @@ describe "Audit Trail", :type => :feature do
   include NameValueHelpers
 
   def prepare_audit_trail
-    user1 = ua_add_user email: "audit_trail_user_1@example.com"
-    user2 = ua_add_user email: "audit_trail_user_2@example.com"
+
     AuditTrail.delete_all
     @now1 = Time.now - 70
     @now2 = Time.now - 80
@@ -37,6 +36,8 @@ describe "Audit Trail", :type => :feature do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     ua_create
+    user1 = ua_add_user email: "audit_trail_user_1@example.com"
+    user2 = ua_add_user email: "audit_trail_user_2@example.com"
   end
 
   after :all do
