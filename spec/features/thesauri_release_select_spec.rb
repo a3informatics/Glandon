@@ -19,6 +19,7 @@ describe "Thesauri Release Select", :type => :feature do
       Token.delete_all
       ua_create
       IsoRegistrationAuthority.clear_scopes
+      set_transactional_tests false
     end
 
     before :each do
@@ -32,6 +33,7 @@ describe "Thesauri Release Select", :type => :feature do
     after :all do
       ua_destroy
       IsoRegistrationAuthority.clear_scopes
+      set_transactional_tests true
     end
 
     def navigate_to_release_sel

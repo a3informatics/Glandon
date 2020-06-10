@@ -24,6 +24,7 @@ describe "Thesauri Extensions", :type => :feature do
       NameValue.create(name: "thesaurus_child_identifier", value: "999")
       Thesaurus.create({:identifier => "TEST", :label => "Test Label"})
       Token.delete_all
+      set_transactional_tests false
     end
 
     before :each do
@@ -38,6 +39,7 @@ describe "Thesauri Extensions", :type => :feature do
       ua_destroy
       Token.delete_all
       Token.restore_timeout
+      set_transactional_tests true
     end
 
     # Goes to the edit page of the extension - extension must exist beforehand

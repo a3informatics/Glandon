@@ -21,10 +21,12 @@ describe "Dashboard JS", :type => :feature do
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..42)
     clear_iso_concept_object
+    set_transactional_tests false
   end
 
   after :all do
     ua_destroy
+    set_transactional_tests true
   end
 
   # before :each do

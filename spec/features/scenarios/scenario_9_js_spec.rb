@@ -59,10 +59,12 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       clear_iso_registration_state_object
       Token.destroy_all
       ua_create
+      set_transactional_tests false
     end
 
     after :all do
       ua_destroy
+      set_transactional_tests true
     end
 
     it "Prepares a tag, system admin", scenario: true, js: true do

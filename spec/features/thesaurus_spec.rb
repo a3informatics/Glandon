@@ -18,10 +18,12 @@ describe "Thesaurus", :type => :feature do
       clear_iso_registration_state_object
       clear_all_edit_locks
       ua_create
+      set_transactional_tests false
     end
 
     after :all do
       ua_destroy
+      set_transactional_tests true
     end
 
     before :each do

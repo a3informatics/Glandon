@@ -24,10 +24,12 @@ describe "Thesauri Subsets", :type => :feature do
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
       ua_create
       Token.delete_all
+      set_transactional_tests false
     end
 
     after :all do
       ua_destroy
+      set_transactional_tests true
     end
 
     before :each do

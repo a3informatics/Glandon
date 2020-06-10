@@ -51,6 +51,7 @@ describe "Thesaurus", :type => :feature do
       Token.set_timeout(30)
       nv_destroy
       nv_create(parent: "10", child: "999")
+      set_transactional_tests false
     end
 
     before :each do
@@ -67,6 +68,7 @@ describe "Thesaurus", :type => :feature do
       ua_destroy
       nv_destroy
       Token.restore_timeout
+      set_transactional_tests true
     end
 
     it "allows terminology to be created (REQ-MDR-ST-015)", js: true do

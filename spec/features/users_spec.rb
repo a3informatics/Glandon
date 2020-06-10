@@ -163,8 +163,9 @@ describe "Users", :type => :feature do
     end
 
     it "allows new user to be created (REQ-GENERIC-UM-040)", js:true do
-      audit_count = AuditTrail.count
       ua_sys_admin_login
+      audit_count = AuditTrail.count
+      user_count = User.all.count
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       click_link 'New'
@@ -176,7 +177,8 @@ describe "Users", :type => :feature do
       click_button 'Create'
       expect(page).to have_content 'User was successfully created.'
       expect(page).to have_content 'new_user@example.com'
-      expect(AuditTrail.count).to eq(audit_count + 3)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(User.all.count).to eq(user_count + 1)
     end
 
     it "prevents a new user with short password being created (REQ-GENERIC-PM-NONE)" do
@@ -243,21 +245,22 @@ describe "Users", :type => :feature do
     end
 
     it "allows a user to be deleted (REQ-GENERIC-UM-090)" do
-      audit_count = AuditTrail.count
       ua_add_user email: 'delete@example.com', role: :reader
       ua_sys_admin_login
-      expect(AuditTrail.count).to eq(audit_count + 2)
+      audit_count = AuditTrail.count
+      user_count = User.all.count
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       find(:xpath, "//tr[contains(.,'delete@example.com')]/td/a", :text => 'Delete').click
-      expect(AuditTrail.count).to eq(audit_count + 3)
-      # Needs more here to confirm the deletion. Cannot do it without Javascript
+      expect(User.all.count).to eq(user_count - 1)
+      expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(AuditTrail.last(1)[0].description).to eq("User delete@example.com deleted.")
     end
 
     it "allows a user to change their password (REQ-GENERIC-PM-050)" do
-      audit_count = AuditTrail.count
       ua_add_user email: 'edit@example.com', role: :reader
       ua_generic_login 'edit@example.com'
+      audit_count = AuditTrail.count
       click_link 'settings_button'
       #click_link 'Password'
       #expect(page).to have_content 'Edit: edit@example.com'
@@ -266,13 +269,13 @@ describe "Users", :type => :feature do
       fill_in 'user_current_password', with: 'Changeme1#'
       click_button 'password_update_button'
       expect(page).to have_content 'Your account has been updated successfully.'
-      expect(AuditTrail.count).to eq(audit_count + 3)
+      expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
     it "allows a user to change their password - incorrect current password (REQ-GENERIC-PM-050)" do
+      ua_add_user email: 'edit2@example.com', role: :reader
+      ua_generic_login 'edit2@example.com'
       audit_count = AuditTrail.count
-      ua_add_user email: 'edit@example.com', role: :reader
-      ua_generic_login 'edit@example.com'
       click_link 'settings_button'
       #click_link 'Password'
       #expect(page).to have_content 'Edit: edit@example.com'
@@ -280,8 +283,8 @@ describe "Users", :type => :feature do
       fill_in 'user_password_confirmation', with: 'newpassword'
       fill_in 'user_current_password', with: 'newpassword'
       click_button 'password_update_button'
-      expect(page).to have_content 'Changing the password for edit@example.com'
-      expect(AuditTrail.count).to eq(audit_count + 2)
+      expect(page).to have_content 'Changing the password for edit2@example.com'
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it "allows sys admin role to be deleted if another sys admin exists", js:true do

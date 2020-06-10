@@ -50,6 +50,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       nv_destroy
       nv_create(parent: "10", child: "999")
       Token.destroy_all
+      set_transactional_tests false
     end
 
     before :each do
@@ -63,6 +64,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     after :all do
       nv_destroy
       ua_destroy
+      set_transactional_tests true
     end
 
     it "allows terminology synonyms to be displayed for code lists (REQ-MDR-SY-010)", js:true do

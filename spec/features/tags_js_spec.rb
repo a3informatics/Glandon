@@ -16,6 +16,7 @@ describe "Tags", :type => :feature do
 
   before :all do
     ua_create
+    set_transactional_tests false
   end
 
   after :each do
@@ -24,6 +25,7 @@ describe "Tags", :type => :feature do
 
   after :all do
     ua_destroy
+    set_transactional_tests true
   end
 
   describe "The Content Admin User can", :type => :feature do
@@ -366,7 +368,7 @@ describe "Tags", :type => :feature do
   # All tests here depend on one another
   describe "The Curator user can (Edit tags, interdependent tests) ", :type => :feature do
 
-    # These prepare functions should be fixed by having a mock sponsor terminology and tags to load in before :all instead 
+    # These prepare functions should be fixed by having a mock sponsor terminology and tags to load in before :all instead
     def prepare_tags
       click_navbar_tags
       fill_in "add_label", with: "Sponsor Tags"

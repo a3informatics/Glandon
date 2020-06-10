@@ -26,6 +26,7 @@ describe "Thesauri Compare", :type => :feature do
       Thesaurus.create({:identifier => "TST", :label => "Test Label"})
       Token.delete_all
       ua_create
+      set_transactional_tests false
     end
 
     before :each do
@@ -38,6 +39,7 @@ describe "Thesauri Compare", :type => :feature do
 
     after :all do
       ua_destroy
+      set_transactional_tests true
     end
 
     it "allows to compare two cdisc terminologies", js:true do
