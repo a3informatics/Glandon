@@ -16,8 +16,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 
 # Devise
-gem 'devise', '4.5.0'
-gem 'devise-security', '0.13.0'
+gem 'devise', '4.7.1'
+gem 'devise-security', '0.14.3'
 gem 'rails_email_validator'
 
 # REST
