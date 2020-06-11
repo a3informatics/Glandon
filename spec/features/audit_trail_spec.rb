@@ -101,6 +101,7 @@ describe "Audit Trail", :type => :feature do
     end
 
     it "allows searching - identifier", js:true do
+      prepare_audit_trail
       click_navbar_at
       fill_in 'Identifier', with: 'T1'
       click_button 'Filter results'

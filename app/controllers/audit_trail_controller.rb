@@ -58,7 +58,7 @@ class AuditTrailController < ApplicationController
 private
 
   def the_params
-    params.require(:audit_trail).permit(:user, :identifier, :owner, :event)
+    params.require(:audit_trail).permit(:user, :identifier, :owner, :event).to_h
   end
 
   def users_owners_events

@@ -44,10 +44,12 @@ describe "Change Notes", :type => :feature do
     NameValue.create(name: "thesaurus_parent_identifier", value: "10")
     NameValue.create(name: "thesaurus_child_identifier", value: "999")
     ua_create
+    set_transactional_tests false
   end
 
   after :all do
     ua_destroy
+    set_transactional_tests true
   end
 
   describe "Curator user (sponsor code list level)", :type => :feature do
