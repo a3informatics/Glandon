@@ -363,6 +363,8 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn10\n"
       expect(page).to have_content 'CodeListItem1'
+      click_link "Return"
+      wait_for_ajax 10
     end
 
     # Needs code list edit added
@@ -408,10 +410,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\t"
       editor_table_click(1,2)
       editor_table_fill_in "DTE_Field_notation", "Submission12\t"
-      click_link "Return"
-      expect(page).to have_content 'NP000015P'
-      wait_for_ajax_long
-      context_menu_element('history', 4, 'NP000015P', :edit)
+      page.driver.browser.navigate.refresh
       wait_for_ajax_long
       expect(page).to have_content 'NP000015P'
       click_button 'New'
@@ -423,7 +422,6 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", ""
       expect(page).not_to have_content 'CodeListItem1'
-      click_link "Return"
     end
 
 

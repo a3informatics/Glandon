@@ -134,6 +134,8 @@ describe "Ad Hoc Reports", :type => :feature do
 
     it "shoud allow a report to be created (REQ-MDR-AR-010, REQ-MDR-AR-060)", js:true do
       AdHocReport.delete_all
+      delete_all_public_files
+      copy_file_to_public_files(sub_dir, "terminology_list_sparql.yaml", "upload")
       click_navbar_ahr
       expect(page).to have_content 'Ad-Hoc Reports'
       click_link '+ Add New'
