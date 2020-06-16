@@ -79,7 +79,11 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V61.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V62.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V63.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V64.ttl" $FileEndPoint
 # Load Sponsor Terminology
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/CT_V2-6.ttl" $FileEndPoint
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/CT_V3-0.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/CT_V2-6_migrated.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/CT_V3-0_migrated.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/ranks_V2-6.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/ranks_V3-0.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/sponsor_one/ct/rank_extensions_V2-6.ttl" $FileEndPoint
 set +x

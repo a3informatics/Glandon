@@ -10,8 +10,7 @@ module DataHelpers
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
       "business_operational.ttl", "thesaurus.ttl", "annotations.ttl",
-      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl",
-      "thesaurus_extension_one.ttl"
+      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
     ]
   end
 
@@ -99,6 +98,10 @@ module DataHelpers
 
   def load_cdisc_term_versions(range)
     range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+  end
+
+  def load_all_cdisc_term_versions
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
   end
 
   def load_file_into_triple_store(full_path)
