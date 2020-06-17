@@ -92,6 +92,29 @@
   background: $grey-medium !important;
 }
 
+.btn.white{
+  background: white;
+  color: $primary-color-light;
+  -webkit-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+}
+
+.btn.white:hover{
+  background: $primary-color-bright;
+}
+
+.btn.white:focus{
+  background: $primary-color-bright !important;
+  color: white;
+}
+
+.btn.white:active{
+  background: $primary-color-bright !important;
+  color: $primary-color-light;
+}
+
+
 .btn:focus{
   color: white;
 }
