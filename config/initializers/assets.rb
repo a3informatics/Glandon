@@ -23,7 +23,6 @@ end
     ad_hoc_reports/index ad_hoc_reports/results
     backgrounds/index
     biomedical_concepts/bc_template_new biomedical_concepts/editor
-    cdisc_term/history
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
     forms/editor forms/form_utility forms/form_viewer forms/placeholder_new forms/show
@@ -33,9 +32,9 @@ end
     iso_managed/list_change_notes iso_managed/status
     markdown_engines/markdown_editor
     sdtm_user_domains/editor
-    thesauri/changes thesauri/edit thesauri/history thesauri/index thesauri/release_select thesauri/search_multiple thesauri/search thesauri/show thesauri/upgrade
+    thesauri/changes thesauri/edit thesauri/release_select thesauri/search_multiple thesauri/search thesauri/show thesauri/upgrade
     thesauri/managed_concepts/changes thesauri/managed_concepts/edit_extension thesauri/managed_concepts/edit_subset thesauri/managed_concepts/edit
-    thesauri/managed_concepts/history thesauri/managed_concepts/index thesauri/managed_concepts/show
+    thesauri/managed_concepts/show
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
     uploads/index
 
