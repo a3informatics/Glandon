@@ -51,10 +51,10 @@ class ThesauriController < ApplicationController
         if results.empty?
           redirect_to thesauri_index_path
         else
-          @thesauri_id = results.first.to_id
-          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @thesaurus = Thesaurus.find_minimum(results.first.to_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
+          @close_path = thesauri_index_path
         end
       end
       format.json do
