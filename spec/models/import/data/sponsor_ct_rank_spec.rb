@@ -176,8 +176,6 @@ describe "Import::SponsorTermFormatOne" do
         owned << y
       end
       owned.each do |cl|
-puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
-        #expect(cl.ranked?).to eq(true)
         ranks = cl.children_pagination({offset: "0", count: "10000"}).map{|x| {identifier: x[:identifier], notation: x[:notation], rank: x[:rank].to_i}}
         results << {
           identifier: cl.identifier, 
@@ -190,6 +188,19 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results
   end
 
+  def check_cls(code_lists, uri)
+    puts colourize("\n\nCT: #{uri}\n", "blue")
+    results = []
+    ct = Thesaurus.find_minimum(uri)
+    code_lists.each do |identifier|
+      cls = ct.find_by_identifiers([identifier])
+      cl = Thesaurus::ManagedConcept.find_minimum(cls[identifier])
+      results << cl.uri if cl.owned? 
+      puts colourize("CL: #{cl.uri}", cl.owned? ? "blue" : "red")
+    end
+    results
+  end
+
   def set_extension_no_e(tc)
     source = Thesaurus::ManagedConcept.find_full(tc.id)
     source.narrower_links
@@ -197,6 +208,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     object.identifier = "#{source.scoped_identifier}"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
+    object.has_identifier.semantic_version = SemanticVersion.new(major: 1).to_s
     object.has_state.registration_status = IsoRegistrationStateV2.released_state
     object.has_state.previous_state = IsoRegistrationStateV2.released_state
     return nil unless object.valid?(:create) && object.create_permitted?
@@ -204,7 +216,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     object
   end
 
-  def update_ct_refs
+  def update_26_ct_refs
     sparql = Sparql::Update.new
     sparql_update = %Q{
       DELETE
@@ -244,7 +256,59 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     sparql.sparql_update(sparql_update, "", [:th, :bo])
   end
 
-  it "contructs new extensions", :speed => 'slow' do
+  def update_30_ct_refs
+    sparql = Sparql::Update.new
+    sparql_update = %Q{
+      DELETE
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.cdisc.org/C66769/V17#C66769> .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769> 
+      }      
+      INSERT 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66784/V1#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C87162/V1#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s1 bo:reference <http://www.sanofi.com/C66784/V1#C66784> .
+        ?s2 bo:reference <http://www.sanofi.com/C87162/V1#C87162> .
+        ?s3 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s4 bo:reference <http://www.sanofi.com/C66769/V1#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66768/V1#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConcept <http://www.sanofi.com/C66769/V1#C66769> .
+        ?s5 bo:reference <http://www.sanofi.com/C66768/V1#C66768> .
+        ?s6 bo:reference <http://www.sanofi.com/C66769/V1#C66769> 
+      }
+      WHERE 
+      {
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s1 .
+        ?s1 bo:reference <http://www.cdisc.org/C66784/V34#C66784> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s2 .
+        ?s2 bo:reference <http://www.cdisc.org/C87162/V33#C87162> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s3 .
+        ?s3 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2019_R1/V1#TH> th:isTopConceptReference ?s4 .
+        ?s4 bo:reference <http://www.cdisc.org/C66769/V17#C66769> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s5 .
+        ?s5 bo:reference <http://www.cdisc.org/C66768/V28#C66768> .
+        <http://www.sanofi.com/2020_R1/V1#TH> th:isTopConceptReference ?s6 .
+        ?s6 bo:reference <http://www.cdisc.org/C66769/V17#C66769>
+      }      
+    }
+    sparql.sparql_update(sparql_update, "", [:th, :bo])
+  end
+
+  it "contructs new extensions" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V43#TH"))
     sparql = Sparql::Update.new
     sparql.default_namespace(ct.uri.namespace)
@@ -256,10 +320,14 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
       new_object.to_sparql(sparql, true)
     end
     full_path = sparql.to_file
+    filename = File.basename(full_path)
+    copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "rank_extensions_V2-6.ttl")
+    check_ttl_fix_v2(filename, "rank_extensions_V2-6.ttl", {last_change_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
-  it "checks new migration v2.6", :speed => 'slow' do
+  it "checks new migration v2.6" do
     write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
@@ -268,7 +336,7 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     cl_count = count_cl(ct)
     cli_count = count_cli(ct)
     cli_distinct_count = count_distinct_cli(ct)
-    update_ct_refs
+    update_26_ct_refs
     expect(triple_store.triple_count).to eq(count)
     expect(count_cl(ct)).to eq(cl_count)
     expect(count_cli(ct)).to eq(cli_count)
@@ -282,10 +350,10 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
-  it "rank extension v2.6", :speed => 'slow' do
+  it "rank extension v2.6" do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_26_ct_refs
     config = read_yaml_file(sub_dir, "rank_V2-6.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -293,11 +361,11 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     create_ranks(results, "2-6")
   end
 
-  it "rank extension v3.0", :speed => 'slow' do
+  it "rank extension v3.0" do
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_30_ct_refs
     config = read_yaml_file(sub_dir, "rank_V3-0.yaml")
     code_lists = config[:codelists]
     ignore = config[:ignore]
@@ -305,12 +373,12 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     create_ranks(results, "3-0")
   end
 
-  it "QC check I, Duplicates", :speed => 'slow' do
+  it "QC check I, Duplicates" do
     write_file = false
     check_hash = Hash.new {|h,k| h[k] = []}
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
-    update_ct_refs
+    update_30_ct_refs
     results = ranked
     results.each do |result|
       key = "#{result[:code_list]}.#{result[:item]}"
@@ -321,14 +389,14 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     check_file_actual_expected(check_hash, sub_dir, "ranked_duplicates_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
   end
 
-  it "QC check II, CLs as Expected", :speed => 'slow' do
+  it "QC check II, CLs as Expected" do
     write_file = false
     load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
     load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
     load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
     load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
-    update_ct_refs
+    update_30_ct_refs
     code_lists = []
     ["rank_V2-6.yaml", "rank_V3-0.yaml"].each_with_index do |file|
       config = read_yaml_file(sub_dir, file)
@@ -337,5 +405,70 @@ puts "CL: #{cl.identifier}, v#{cl.version}, ranked=#{cl.ranked?}"
     results = check_ranks(code_lists.uniq!)
     check_file_actual_expected(results, sub_dir, "children_ranked_expected.yaml", equate_method: :hash_equal, write_file: write_file)
   end
+
+  it "QC check III, URIs as Expected" do
+    write_file = false
+    uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
+    uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V2-6.ttl")
+    load_local_file_into_triple_store(sub_dir, "ranks_V3-0.ttl")
+    load_local_file_into_triple_store(sub_dir, "rank_extensions_V2-6.ttl")
+    update_30_ct_refs
+    code_lists = []
+    results = {}
+    {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30}.each do |file, uri|
+      config = read_yaml_file(sub_dir, file)
+      code_lists = config[:codelists].map{|x| x[:codelist_code]}
+      results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
+      expect(code_lists.count).to eq(results[uri.to_s].count)
+    end
+    check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal, write_file: write_file)
+    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+      triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
+      expect(triples.count).to eq(data[:count])
+    end
+  end
+
+  it "QC check IV, new load files" do
+    uri_26 = Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH")
+    uri_30 = Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+    load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+    code_lists = []
+    results = {}
+    {"rank_V2-6.yaml" => uri_26, "rank_V3-0.yaml" => uri_30}.each do |file, uri|
+      config = read_yaml_file(sub_dir, file)
+      code_lists = config[:codelists].map{|x| x[:codelist_code]}
+      results[uri.to_s] = check_cls(code_lists, uri).map{|x| x.to_s}
+      expect(code_lists.count).to eq(results[uri.to_s].count)
+    end
+    check_file_actual_expected(results, sub_dir, "code_lists_expected.yaml", equate_method: :hash_equal) # Previous test results
+    {"2-6" => {uri: uri_26, count: 334811}, "3-0" => {uri: uri_30, count: 479350}}.each do |version, data|
+      # Leave commented out lines
+      #subject_count = {}
+      triples = triple_store.subject_triples_tree(data[:uri]) # Reading all triples as a test.
+      #triple_by_subject = triple_store.triples_to_subject_hash(triples)
+      #triple_by_subject.each{|k,v| subject_count[k] = v.count}
+      #check_file_actual_expected(subject_count, sub_dir, "subject_count_#{version}_expected.yaml", equate_method: :hash_equal, write_file: false)
+      expect(triples.count).to eq(data[:count])
+    end
+  end
+
+  # it 'extra' do
+  #   # Extra test to look at particular differences. Don't delete but can be commented out. 
+  #   # See equivalent tasks/sponsor_one_rank_upgrade_spec.rb
+  #   load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+  #   load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+  #   triple_store.subject_triples(Uri.new(uri: "http://www.sanofi.com/SC135012/V1#SC135012_SC113730"))
+  #   triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/CSN#fba2ce83-6f35-4be0-ab80-c15510e5bb3d"))
+  # end
 
 end

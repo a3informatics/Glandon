@@ -2,6 +2,8 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.40.0
+#
+# @note Needs to be generalised further, a little too subset specific
 module SKOS::OrderedCollection
 
   # Assumes :members declared
@@ -103,15 +105,15 @@ module SKOS::OrderedCollection
     query_results.by_object_set([:uri, :ordinal])
   end
 
-  # Clone. Clone the subset
+  # Clone. Clone the collection
   #
-  # @return [Thesarus::Subset] the cloned object. Included clone of the members
+  # @return [Object] the cloned object. Includes clone of the members in the correct order
   def clone
     cloned_members = []
     object = super
     object.uri = create_uri(self.class.base_uri)
-    list_uris.each do |items| 
-      item = member_klass.new(item: items[:uri])
+    ordered_list.each do |previous_item| 
+      item = previous_item.clone
       item.uri = item.create_uri(object.uri)
       cloned_members << item
     end
@@ -122,6 +124,31 @@ module SKOS::OrderedCollection
     end
     object.members = cloned_members.first
     object
+  end
+
+  # Ordered List. An ordered list of the members of the collection
+  #
+  # @return [Array] ordered array of the members
+  def ordered_list
+    objects = []
+    query_string = %Q{
+      SELECT DISTINCT ?s ?p ?o WHERE
+      {
+        ?s ?p ?o .
+        {
+          SELECT ?s (COUNT(?mid) as ?ordinal) WHERE 
+          {
+            #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
+            ?mid th:memberNext* ?s .
+          } GROUP BY ?s ORDER BY ?ordinal
+        }
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    query_results.by_subject.each do |subject, triples|
+      objects << member_klass.from_results(Uri.new(uri: subject), triples)
+    end
+    objects
   end
 
   #----------

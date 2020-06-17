@@ -397,9 +397,11 @@ describe "CDISC Term", :type => :feature do
     it "checks for deleted changes", js: true do
       clear_downloads
       click_see_changes_all_versions
-      wait_for_ajax(10)
-      click_link 'fb_bs_button'
-      wait_for_ajax(10)
+      wait_for_ajax(15)
+      (63..CdiscCtHelpers.version_range.last).each do |index|
+        click_link 'fb_bs_button'
+        wait_for_ajax(15)
+      end
       ui_table_search("changes", 'TANN02TN')
       find(:xpath, "//tr[contains(.,'TANN02TN')]/td/a", :text => 'Changes').click
       wait_for_ajax(5)

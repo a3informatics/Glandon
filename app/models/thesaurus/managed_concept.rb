@@ -414,16 +414,24 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object
   def clone
-    self.narrower_links
-    self.preferred_term_links
-    self.synonym_links
-    if self.subset?
-      self.is_ordered_objects
-      self.is_ordered = self.is_ordered.clone
-      self.subsets_links
-    elsif self.extension?
-      self.extends_links
-    end
+    # self.narrower_links
+    # self.preferred_term_links
+    # self.synonym_links
+    # if self.subset?
+    #   self.is_ordered_objects
+    #   self.is_ordered = self.is_ordered.clone
+    #   self.subsets_links
+    # elsif self.extension?
+    #   self.extends_links
+    # end
+    # if self.ranked?
+    #   self.is_ranked_objects
+    #   self.is_ranked = self.is_ranked.clone
+    # end
+    prepare_for_clone_links
+    prepare_for_clone_subset
+    prepare_for_clone_extension
+    prepare_for_clone_ranked
     object = super
   end
 
@@ -486,9 +494,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       {
         SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
         {
-          ?s rdf:type th:ManagedConcept .
-          ?s isoT:hasIdentifier/isoI:version ?v .
-          ?s isoT:hasIdentifier/isoI:identifier ?sci .
+          ?s isoT:hasIdentifier/isoI:identifier ?sci . 
+          ?s isoT:hasIdentifier/isoI:hasScope ?ns .  
+          ?s isoT:hasIdentifier/isoI:version ?v .  
           {
             SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE
             {
@@ -759,6 +767,34 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   end
 
 private
+
+  # Make sure links are populated
+  def prepare_for_clone_links
+    self.narrower_links
+    self.preferred_term_links
+    self.synonym_links
+  end
+
+  # Make sure subset data populated if a subset
+  def prepare_for_clone_subset
+    return unless self.subset?
+    self.is_ordered_objects
+    self.is_ordered = self.is_ordered.clone # Clone here
+    self.subsets_links
+  end
+
+  # Make sure extension data populated if extension
+  def prepare_for_clone_extension
+    return unless self.extension?
+    self.extends_links
+  end
+
+  # Make sure ranked data populated if ranked
+  def prepare_for_clone_ranked
+    return unless self.ranked?
+    self.is_ranked_objects
+    self.is_ranked = self.is_ranked.clone # Clone here
+  end
 
   # Class for a difference result
   class DiffResult < Hash

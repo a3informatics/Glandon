@@ -198,3 +198,41 @@
   rdfs:range :Synonym ;
   skos:definition "Relationship to a synonym."^^xsd:string ;
 .
+:RankedCollection
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Rank"^^xsd:string ;
+  rdfs:subClassOf skos:OrderedCollection ;
+  skos:definition "The head of the collection by which a code list is ranked."^^xsd:string ;
+.
+:RankedMember
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:label "Rank Member"^^xsd:string ;
+  rdfs:subClassOf rdf:List ;
+  skos:definition "Rank list member."^^xsd:string ;
+.
+:isOrdered
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is ordered relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :Subset ;
+  skos:definition "A relationship linking a managed concept with its ordering information."^^xsd:string ;
+.
+:isRanked
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Is ranked relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :RankedCollection ;
+  skos:definition "A relationship linking a managed concept with its ranking information."^^xsd:string ;
+.
+:rank
+  rdf:type owl:DatatypeProperty  ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Rank"^^xsd:string ;
+  rdfs:domain :RankedMember ;
+  rdfs:range xsd:integer ;
+  skos:definition "The rank value."^^xsd:string ;
+.
