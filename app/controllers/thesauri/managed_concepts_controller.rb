@@ -22,15 +22,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     respond_to do |format|
       format.html do
-        # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         if results.empty?
           redirect_to thesauri_managed_concepts_path
         else
-          @thesauri_id = results.first.to_id
-          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @tc = Thesaurus::ManagedConcept.find_minimum(results.first.to_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
+          @close_path = thesauri_managed_concepts_path
         end
       end
       format.json do
@@ -53,7 +52,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
       render :json => { data: result}, :status => 200
     else
-      render :json => {:errors => tc.errors.full_messages}, :status => 422
+      render :json => {:errors => object.errors.full_messages}, :status => 422
     end
   rescue => e
       render :json => {:errors => [e.message]}, :status => 422
