@@ -5,6 +5,7 @@ $(document).ready( () => {
   let ip = new HistoryPanel({
     url: historyDataUrl,
     param: "thesauri",
+    cache: false
   });
 
   let cp = new CommentsPanel(commentsDataUrl);

@@ -23,15 +23,17 @@ export default class HistoryPanel extends TablePanel {
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request [default = 100]
    * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case. Optional.
+   * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
    */
   constructor({
     selector = "#history-panel #history",
     url,
     param,
     count = 100,
-    deferLoading = false
+    deferLoading = false,
+    cache = true
   }) {
-    super({ selector, url, param, count, deferLoading });
+    super({ selector, url, param, count, deferLoading, cache });
     this._initItemSelector()
   }
 
