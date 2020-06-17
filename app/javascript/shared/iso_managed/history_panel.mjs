@@ -118,7 +118,7 @@ export default class HistoryPanel extends TablePanel {
           menuStyle = { side: "left" },
           menuItems = [];
 
-    // Menu items common for all iso_managed types
+    // Required menu items common for all iso_managed types
     this._addMenuItems(menuItems, this._commonMenuItems(data));
 
     // Additional items (add new here)
@@ -128,17 +128,17 @@ export default class HistoryPanel extends TablePanel {
   }
 
   /**
-   * Gets common menu items for all managed types
+   * Gets required common menu items for all managed types
    * @param {Object} data Item data
    * @returns {Array} Collection of common menu items
    */
   _commonMenuItems(data) {
     return [
-      { url: data.show_path, icon: "icon-view", text: "Show", types: ["all"] },
-      { url: data.search_path, icon: "icon-search", text: "Search", types: ["all"]  },
-      { url: data.edit_path, icon: "icon-edit", text: "Edit", types: ["all"]  },
-      { url: data.status_path, icon: "icon-document", text: "Document control", types: ["all"]  },
-      { url: "#", icon: "icon-trash", text: "Delete", disabled: (data.delete_path === ""), types: ["all"] }
+      { url: data.show_path, icon: "icon-view", text: "Show", types: ["all"], required: true },
+      { url: data.search_path, icon: "icon-search", text: "Search", types: ["all"], required: true  },
+      { url: data.edit_path, icon: "icon-edit", text: "Edit", types: ["all"], required: true  },
+      { url: data.status_path, icon: "icon-document", text: "Document control", types: ["all"], required: true  },
+      { url: "#", icon: "icon-trash", text: "Delete", disabled: (data.delete_path === ""), types: ["all"], required: true }
     ];
   }
 
@@ -178,6 +178,8 @@ export default class HistoryPanel extends TablePanel {
    * @return {boolean} Determines if item should be displayed in the context menu
    */
   _isItemValid(item) {
+    if (item.required)
+      return true;
     return (item.url) && (item.types.includes(this.param) || item.types.includes("all"));
   }
 
