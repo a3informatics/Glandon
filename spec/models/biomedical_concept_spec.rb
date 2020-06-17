@@ -77,17 +77,17 @@ describe BiomedicalConcept do
   #   end
   # end
 
-  # it "finds the history of an item" do
-  #   results = []
-  #   results[0] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
-  #   params = {:identifier => "BC C25347", :scope => IsoRegistrationAuthority.owner.ra_namespace}
-  #   items = BiomedicalConcept.history(params)
-  #   expect(items.count).to eq(1)
-  #   items.each_with_index do |item, index|
-  #     expect(results[index][:id]).to eq(items[index].id)
-  #     expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
-  #   end
-  # end
+  it "finds the history of an item" do
+    results = []
+    results[0] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
+    params = {:identifier => "BC C25347", :scope => IsoRegistrationAuthority.owner.ra_namespace}
+    items = BiomedicalConcept.history(params)
+    expect(items.count).to eq(1)
+    items.each {|x| results << x.to_h}
+    check_file_actual_expected(results, sub_dir, "history_bc_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+
 
   # it "finds list of all released entries" do
   #   results = []
@@ -148,8 +148,8 @@ describe BiomedicalConcept do
   # end
 
   # it "allows the object to be exported as JSON" do
-  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #   check_file_actual_expected(item.to_json, sub_dir, "bc_to_json.yaml", equate_method: :hash_equal)
+  #   item = BiomedicalConcept.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCs/V1"))
+  #   check_file_actual_expected(item.to_json, sub_dir, "bc_to_json.yaml", equate_method: :hash_equal, write_file: true)
   # end
 
   # it "creates an object based on a template" do
@@ -244,16 +244,13 @@ describe BiomedicalConcept do
   #   check_file_actual_expected(item.to_json, sub_dir, "bc_from_json.yaml", equate_method: :hash_equal)
   # end
 
-  # it "allows an object to be exported as SPARQL" do
-  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #   result = item.to_sparql_v2
-  # #Xwrite_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
-  #   write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "bc_sparql_result_1.txt")
-  #   actual = read_sparql_file("bc_sparql_result_1.txt")
-  #   expected = read_sparql_file("bc_sparql.txt")
-  #   expect(actual).to sparql_results_equal(expected)
-  #   delete_data_file(sub_dir, "bc_sparql_result_1.txt")
-  # end
+  it "allows an object to be exported as SPARQL" do
+    item = BiomedicalConcept.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCs/V1"))
+    sparql = Sparql::Update.new
+    item.to_sparql(sparql, true)
+  #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
+  end
 
   # it "get the properties, no references" do
   #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
