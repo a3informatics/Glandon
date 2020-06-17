@@ -25,7 +25,12 @@ class ThesauriController < ApplicationController
         redirect_to root_path if current_user.is_only_community?
       end
       format.json do
-        render json: {data: @thesauri}
+        @thesauri.each do |t|
+          history_path = history_thesauri_index_path({ thesauri: { identifier: t[:identifier], scope_id: t[:scope_id] } })
+          history_path = history_cdisc_terms_path if t[:owner] == "CDISC"
+          t.reverse_merge!({ history_path: history_path })
+        end
+          render json: {data: @thesauri}
       end
     end
   end
