@@ -39,23 +39,24 @@ describe BiomedicalConcept do
   it "allows validity of the object to be checked - error" do
     result = BiomedicalConcept.new
     result.valid?
-    expect(result.errors.count).to eq(4)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
-    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
-    expect(result.errors.full_messages[2]).to eq("Registration State error: Registration authority error: Ra namespace: Empty object")
-    expect(result.errors.full_messages[3]).to eq("Scoped Identifier error: Identifier contains invalid characters")
+    expect(result.errors.count).to eq(3)
+    expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Has identifier: Empty object")
+    expect(result.errors.full_messages[2]).to eq("Has state: Empty object")
     expect(result.valid?).to eq(false)
   end
 
   it "allows validity of the object to be checked" do
     result = BiomedicalConcept.new
-    ra = IsoRegistrationAuthority.new
-    ra.uri = "na" # Bit naughty
-    ra.organization_identifier = "123456789"
-    ra.international_code_designator = "DUNS"
-    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
-    result.registrationState.registrationAuthority= ra
-    result.scopedIdentifier.identifier = "hello"
+    ra = IsoRegistrationAuthority.find(Uri.new(uri:"http://www.assero.co.uk/RA#DUNS123456789"))
+    result.has_state = IsoRegistrationStateV2.new
+    result.has_state.uri = "na"
+    result.has_state.by_authority = ra
+    result.has_identifier = IsoScopedIdentifierV2.new
+    result.has_identifier.uri = "na"
+    result.has_identifier.identifier = "HELLO WORLD"
+    result.has_identifier.semantic_version = "0.1.0"
+    result.uri = "xxx"
     valid = result.valid?
     expect(result.errors.count).to eq(0)
     expect(valid).to eq(true)
