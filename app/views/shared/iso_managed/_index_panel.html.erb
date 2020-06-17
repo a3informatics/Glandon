@@ -1,0 +1,15 @@
+<%= javascript_tag "let indexDataUrl = '#{index_url}'" %>
+
+<div class="table-cardstyle" id="index-panel">
+  <table id="index" class="table">
+    <thead>
+      <tr>
+        <th>Owner</th>
+        <th>Identifier</th>
+        <th>Label</th>
+        <%= yield  %>
+        <th class="fit"></th>
+      </tr>
+    </thead>
+  </table>
+</div>

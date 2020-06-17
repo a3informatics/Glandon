@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+
+<%= javascript_tag "let historyDataUrl = '#{history_url}',
+                        rsUpdateUrl = '#{iso_registration_states_v2_path("rsId")}'" %>
+
+<div class="table-cardstyle" id="history-panel">
+  <table id="history" class="table">
+    <thead>
+      <tr>
+        <th class="fit">Version</th>
+        <th class="fit">Last Change Date</th>
+        <th>Owner</th>
+        <th>Identifier</th>
+        <th>Label</th>
+        <th>Version Label</th>
+        <th>State</th>
+        <th class="fit ignore"></th>
+        <th class="fit"></th>
+      </tr>
+    </thead>
+  </table>
+</div>
