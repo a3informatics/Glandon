@@ -99,7 +99,7 @@ describe SdtmUserDomainsController do
 
     it "allows a domain to be created"
     
-    it "allows a domain to be updated" do
+    it "allows a domain to be updated - WILL CURRENTLY FAIL (ordinal as integer)" do
       domain = SdtmUserDomain.find("D-ACME_DSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       token = Token.obtain(domain, @user)
       data = domain.to_operation
@@ -111,7 +111,7 @@ describe SdtmUserDomainsController do
       expect(response.body).to eq(expected.to_json)
     end
     
-    it "allows a domain to be updated, error" do
+    it "allows a domain to be updated, error - WILL CURRENTLY FAIL (ordinal as integer)" do
       domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1") 
       domain.notes = "@@@£±£±"
       token = Token.obtain(domain, @user)
