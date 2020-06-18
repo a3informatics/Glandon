@@ -1,4 +1,4 @@
-class CreateNotepads < ActiveRecord::Migration
+class CreateNotepads < ActiveRecord::Migration[4.2]
   def change
     create_table :notepads do |t|
       t.string :uri

@@ -1,4 +1,4 @@
-class CreateBackgrounds < ActiveRecord::Migration
+class CreateBackgrounds < ActiveRecord::Migration[4.2]
   def change
     create_table :backgrounds do |t|
       t.string :description
