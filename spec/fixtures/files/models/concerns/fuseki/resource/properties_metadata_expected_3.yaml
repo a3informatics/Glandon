@@ -1,71 +1,57 @@
 ---
 :organization_identifier:
   :cardinality: :one
-  :model_class: 
+  :model_class: {}
   :type: :data
-  :base_type: string
+  :base_type:
+    :datatype: http://www.w3.org/2001/XMLSchema#string
+    :fragment: string
   :read_exclude: false
   :delete_exclude: false
   :default: "<Not Set>"
   :name: :organization_identifier
-  :predicate: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: Test
-    fragment: organizationIdentifier
+  :predicate: http://www.assero.co.uk/Test#organizationIdentifier
 :international_code_designator:
   :cardinality: :one
-  :model_class: 
+  :model_class: {}
   :type: :data
-  :base_type: string
+  :base_type:
+    :datatype: http://www.w3.org/2001/XMLSchema#string
+    :fragment: string
   :read_exclude: false
   :delete_exclude: false
   :default: XXX
   :name: :international_code_designator
-  :predicate: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: Test
-    fragment: internationalCodeDesignator
+  :predicate: http://www.assero.co.uk/Test#internationalCodeDesignator
 :owner:
   :cardinality: :one
-  :model_class: 
+  :model_class: {}
   :type: :data
-  :base_type: boolean
+  :base_type:
+    :datatype: http://www.w3.org/2001/XMLSchema#boolean
+    :fragment: boolean
   :read_exclude: false
   :delete_exclude: false
   :default: false
   :name: :owner
-  :predicate: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: Test
-    fragment: owner
+  :predicate: http://www.assero.co.uk/Test#owner
 :ra_namespace:
   :cardinality: :many
   :model_class: !ruby/class 'TestRTarget'
-  :default: []
+  :default: {}
   :type: :object
   :read_exclude: false
   :delete_exclude: false
   :base_type: ''
   :name: :ra_namespace
-  :predicate: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: Fake1
-    fragment: raNamespace
+  :predicate: http://www.assero.co.uk/Fake1#raNamespace
 :by_authority:
   :cardinality: :one
   :model_class: !ruby/class 'IsoRegistrationAuthority'
   :read_exclude: true
-  :default: 
+  :default: {}
   :type: :object
   :delete_exclude: false
   :base_type: ''
   :name: :by_authority
-  :predicate: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: Test
-    fragment: byAuthority
+  :predicate: http://www.assero.co.uk/Test#byAuthority

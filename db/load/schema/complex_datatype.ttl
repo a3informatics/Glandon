@@ -1,0 +1,59 @@
+@prefix : <http://www.s-cubed.dk/ComplexDatatypes#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/ComplexDatatypes#>
+  rdf:type owl:Ontology ;
+.
+:ComplexDatatype
+  rdf:type owl:Class ;
+  rdfs:label "Complex Datatype"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "A complex datatype."^^xsd:string ;
+.
+:PropertyX
+  rdf:type owl:Class ;
+  rdfs:label "Complex Datatype Property"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "A property of a complex datatype."^^xsd:string ;
+.
+:hasProperty
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Attribute"^^xsd:string ;
+  rdfs:domain :ComplexDatatype ;
+  rdfs:range :PropertyX ;
+  skos:definition "Reference to a property."^^xsd:string ;
+.
+:label
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Label"^^xsd:string ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf ( :ComplexDatatype :PropertyX)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The label."^^xsd:string ;
+.
+:simpleDatatype
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "The simple datatype."^^xsd:string ;
+  rdfs:domain :PropertyX ;
+  rdfs:range xsd:string ;
+  skos:definition "The property's simple datatype."^^xsd:string ;
+.
+:shortName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Short Name"^^xsd:string ;
+  rdfs:domain :ComplexDatatype ;
+  rdfs:range xsd:string ;
+  skos:definition "The short name for the complex datatype."^^xsd:string ;
+.
