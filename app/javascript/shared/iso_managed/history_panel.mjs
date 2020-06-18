@@ -91,23 +91,6 @@ export default class HistoryPanel extends TablePanel {
     });
   }
 
-  /**
-   * Finds DT row data in which element is present
-   * @return {Object} DT row data object
-   */
-  _getRowData(el) {
-    return this.table.row($(el).closest("tr")).data();
-  }
-
-  /**
-   * Sets click listener and handler
-   * @param {string} target JQuery selector of target element
-   * @param {function} handler Function to be executed on click
-   */
-  _clickListener( {target, handler } ) {
-    $(`${this.selector} tbody`).on("click", target, handler);
-  }
-
   /** Context Menu **/
 
   /**

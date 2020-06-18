@@ -14,7 +14,7 @@ export default class TablePanel {
    * @param {string} params.url Url of source data
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request
-   * @param {Array} params.extraColumns - Additional column definitions besides owner, identifier, or label
+   * @param {Array} params.extraColumns - Additional column definitions
    * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
    */
@@ -62,6 +62,23 @@ export default class TablePanel {
    * Sets event listeners, handlers
    */
   _setListeners() { }
+
+  /**
+   * Finds DT row data in which element is present
+   * @return {Object} DT row data object
+   */
+  _getRowData(el) {
+    return this.table.row($(el).closest("tr")).data();
+  }
+
+  /**
+   * Sets click listener and handler
+   * @param {string} target JQuery selector of target element
+   * @param {function} handler Function to be executed on click
+   */
+  _clickListener( { target, handler } ) {
+    $(`${this.selector} tbody`).on("click", target, handler);
+  }
 
   /**
    * Add data into table and draw
