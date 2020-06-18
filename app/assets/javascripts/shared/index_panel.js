@@ -1,5 +1,5 @@
 /*
-* Index Panel
+* Index Panel *** DEPRECATED ***
 *
 * Requires:
 * index [Table] the index table

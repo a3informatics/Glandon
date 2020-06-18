@@ -1,16 +1,9 @@
-<%= javascript_tag 'setPageTitle("CDISC Terminology History")' %>
-<%= javascript_include_tag 'shared/context_menu' %>
-<%= javascript_include_tag 'cdisc_term/history' %>
-<%= javascript_tag "var url_path = '#{history_cdisc_terms_path}';" %>
-<%= javascript_tag "var strict_params = 'cdisc_term';" %>
-<%= javascript_tag "var identifier = '#{@identifier}';" %>
-<%= javascript_tag "var scope_id = '#{@scope_id}';" %>
+<%= javascript_tag 'setPageTitle("History: CDISC CT")' %>
+
+<%= javascript_pack_tag 'cdisc_term/history' %>
+
 <% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
-<style>
-	.card{
-		min-width: initial !important;
-	}
-</style>
+
 <div class="row">
   <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>
     <div class="actions-wrap">
@@ -23,11 +16,10 @@
     </div>
   <% end %>
 </div>
-<div class="row centered">
-	<div class="col-md-11 card wide table-cardstyle">
-		<%= render partial: "shared/history_panel", locals: {title: "History"} %>
-	</div>
+
+<div class="row">
+	<%= render partial: "shared/iso_managed/history/history_card", locals: {
+				identifier: @identifier, url: history_cdisc_terms_path } %>
 </div>
 
-<%= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri,
-	description: "Select one Terminology version with which to compare. It is recommended to select only from other versions of the item you are comparing.", select_multiple: false} %>
+<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "1"} %>

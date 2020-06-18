@@ -16,6 +16,7 @@ export default class TablePanel {
    * @param {int} params.count Count of items fetched in one request
    * @param {Array} params.extraColumns - Additional column definitions besides owner, identifier, or label
    * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case
+   * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
    */
   constructor({
     selector,
@@ -23,9 +24,10 @@ export default class TablePanel {
     param,
     count,
     extraColumns = [],
-    deferLoading
+    deferLoading,
+    cache = true
   }) {
-    Object.assign(this, { selector, url, param, count, extraColumns });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache });
     this._initTable();
     this._setListeners();
 
@@ -45,6 +47,7 @@ export default class TablePanel {
       url: this.url,
       count: this.count,
       strictParam: this.param,
+      cache: this.cache,
       pageDone: (data) => this._renderPage(data),
       done: () => this._loading(false),
       always: () => {}

@@ -1,6 +1,6 @@
 /*
-* New Button
-* 
+* New Button *** DEPRECATED ***
+*
 * Requires:
 * tnb_new_button: the new button
 */
@@ -13,7 +13,7 @@
 function NewButton(url, callback) {
   this.url = url;
   this.callback = callback;
-  
+
   var _this = this;
 
   $('#tnb_new_button').on('click', function () {
@@ -40,5 +40,5 @@ NewButton.prototype.create = function () {
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);
     }
-  }); 
+  });
 }

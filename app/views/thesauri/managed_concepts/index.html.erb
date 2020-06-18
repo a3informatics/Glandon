@@ -1,9 +1,8 @@
 <%= javascript_tag 'setPageTitle("Code Lists")' %>
 
-<%= javascript_tag "var indexCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}'" %>
-<%= javascript_tag "var createCLUrl = '#{thesauri_managed_concepts_path}'" %>
-<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_pack_tag 'thesauri/managed_concepts/index' %>
+<%#= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
+<%= javascript_tag "let createCLUrl = '#{thesauri_managed_concepts_path}'" %>
 
 <% first_level_breadcrumb (:code_lists) %>
 
@@ -15,41 +14,28 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12 card wide">
-      <div class="card-header">Index: Code Lists</div>
-    <div class="card-content table-cardstyle">
-			<div class="half-blocks-wrap">
-				<div class="font-light half-block">
-					Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Code Lists.
-					Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'. <br/>
-					<span class="font-regular">The properties and indicators for each Code List reflect its latest version.</span>
-				</div>
-				<div class="actions-wrap half-block">
-					<% if policy(Thesaurus::ManagedConcept).new? %>
-						<a href="#" class="btn medium green ttip" id="tnb_new_button">
-							<span class="ttip-text ttip-left shadow-small text-medium text-small">An identifier will be automatically generated</span>
-							<span class="icon-plus text-tiny"></span> New Code List
-						</a>
-					<% end %>
-				</div>
-			</div>
-			<hr>
-			<div class="table-width-wrapper">
-	      <table id="index" class="table table-striped table-bordered table-condensed">
-	        <thead>
-	          <tr>
-	            <th class="th-xsmall fit">Owner</th>
-							<th class="th-xsmall fit">Identifier</th>
-							<th>Label</th>
-							<th>Submission Value</th>
-							<th class="ignore fit"></th>
-							<th class="fit"></th>
-	          </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-	      </table>
-			</div>
-		</div>
-  </div>
+
+	<% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Code Lists.
+    Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'. <br/>
+    <span class="font-regular">The properties and indicators for each Code List reflect its latest version.</span>
+	<% end %>
+
+	<% content_for :actions do %>
+    <% if policy(Thesaurus::ManagedConcept).new? %>
+      <a href="#" class="btn medium green ttip" id="tnb_new_button">
+        <span class="ttip-text ttip-left shadow-small text-medium text-small">An identifier will be automatically generated</span>
+        <span class="icon-plus text-tiny"></span> New Code List
+      </a>
+    <% end %>
+	<% end %>
+
+  <% content_for :extra_columns do %>
+    <th>Submission Value</th>
+    <th class="ignore fit"></th>
+  <% end %>
+
+	<%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Code Lists",
+        url: set_with_indicators_thesauri_managed_concepts_path({managed_concept: { type: "all" } }) } %>
+
 </div>

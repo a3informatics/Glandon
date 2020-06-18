@@ -1,7 +1,7 @@
 <div class="col-md-12 card wide">
-    <div class="card-header">
-      Index: <%= title %>
-    </div>
+  <div class="card-header">
+    Index: <%= title %>
+  </div>
   <div class="card-content">
     <div class="half-blocks-wrap">
 
@@ -17,8 +17,11 @@
 
     <hr>
 
-    <div class="table-width-wrapper narrow">
-      <%= render partial: "shared/iso_managed/index/index_panel", locals: { index_url: url } %>
+    <div class="table-width-wrapper">
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { index_url: url } do %>
+        <%= yield :extra_columns %>
+      <% end %>
     </div>
+
   </div>
 </div>

@@ -20,6 +20,7 @@ export default class IndexPanel extends TablePanel {
    * @param {int} params.count Count of items fetched in one request [default = 5000]
    * @param {Array} params.extraColumns - Additional column definitions besides owner, identifier, or label. Optional
    * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case. Optional
+   * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
    */
   constructor({
     selector = "#index-panel #index",
@@ -27,9 +28,10 @@ export default class IndexPanel extends TablePanel {
     param,
     count = 5000,
     extraColumns = [],
-    deferLoading = false
+    deferLoading = false,
+    cache = true
   }) {
-    super({ selector, url, param, count, extraColumns });
+    super({ selector, url, param, count, extraColumns, cache });
   }
 
   /** Private **/

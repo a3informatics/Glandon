@@ -1,3 +1,4 @@
+// *** DEPRECATED ***
 // A reusable html generator for context menus. Also defined in a partial: views/shared/context_menu/. If you change one, you have to change the other too !
 
 // ID: String id for the menu itself

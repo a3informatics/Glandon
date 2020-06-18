@@ -4,10 +4,7 @@ $(document).ready( () => {
 
   let ip = new HistoryPanel({
     url: historyDataUrl,
-    param: "thesauri",
-    cache: false
+    param: "cdisc_term",
   });
-
-  let cp = new CommentsPanel(commentsDataUrl);
 
 });

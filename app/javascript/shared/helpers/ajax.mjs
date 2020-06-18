@@ -78,7 +78,7 @@ function $getPaginated(offset = 0, params = {}) {
     params.pageDone(result.data);
 
     if (result.count !== null && result.count >= params.count)
-      getPaginated(result.offset + params.count, params);
+      $getPaginated(result.offset + params.count, params);
     else
       // Data loaded
       params.done();
@@ -99,14 +99,15 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {function} params.done Callback when all data is loaded
  * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
  * @param {boolean} params.cache Optional cache option
+ * @param {JQuery Element} params.errorDiv Div to display errors in, optional
  */
-function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, cache = true }) {
+function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, cache = true, errorDiv = null }) {
   $.ajax({
     url: url,
     type: type,
     dataType: "json",
     data: data,
-    cache: cache
+    cache: cache,
   })
   .done((result) => done(result.data))
   .fail((x, s, e) => handleAjaxError(x, s, e, errorDiv))
