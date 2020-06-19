@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Index: Biomedical Concept")' %>
 
-<%= javascript_pack_tag 'biomedical_concept/index' %>
+<%= javascript_pack_tag 'biomedical_concepts/index' %>
 
 <% first_level_breadcrumb (:biomedical_concepts) %>
 
@@ -14,17 +14,15 @@
 <div class="row">
 
   <% content_for :description do %>
-    Below is the list of all Biomedical Concepts.
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Biomedical Concepts.
     Use the Search bar to find the Biomedical Concept you are looking for.
     To see Biomedical Concept's respective History page, click on it.
   <% end %>
 
   <% content_for :actions do %>
-    <a href="#im-select-modal" class="btn medium white" id="search" data-toggle="modal">
-      <span class="icon-search text-small"></span>&nbsp; Search Biomedical Concepts
-    </a>
-    <% if policy(Thesaurus).new? %>
-      <a href="#newTerminologyModal" class="btn medium green" id="new_terminology" data-toggle="modal">
+    
+    <% if policy(BiomedicalConcept).new? %>
+      <a href="#" class="btn medium green" id="new_bc">
         <span class="icon-plus text-tiny"></span>&nbsp; New Biomedical Concept
       </a>
     <% end %>
