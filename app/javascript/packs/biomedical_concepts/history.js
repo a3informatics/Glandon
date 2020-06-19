@@ -8,6 +8,4 @@ $(document).ready( () => {
     cache: false
   });
 
-  let cp = new CommentsPanel(commentsDataUrl);
-
 });
