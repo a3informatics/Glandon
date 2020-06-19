@@ -12,12 +12,13 @@ describe 'sponsor one rank data migration' do
     return "tasks/sponsor_one/rank_data"
   end
 
+  C_TRIPLE_COUNT = 1349848
+
   describe 'sponsor one rank data' do
     
     before :each do
       # Set of schema files is post schema migration
       load_files(schema_files, [])
-triple_store.triple_count
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -111,7 +112,7 @@ triple_store.triple_count
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -134,7 +135,7 @@ triple_store.triple_count
     it 'add rank data, exception upload' do
       # Definitions, check triple store count
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -152,7 +153,7 @@ triple_store.triple_count
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -169,7 +170,7 @@ triple_store.triple_count
 
     it 'add rank data, success checks fail I' do
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -181,7 +182,7 @@ triple_store.triple_count
 
     it 'add rank data, success checks fail II' do
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
