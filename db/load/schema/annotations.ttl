@@ -98,3 +98,13 @@
   rdfs:domain :Annotation ;
   rdfs:range isoR:RegistrationAuthority ;
   skos:definition "Reference to the authority that created the annotation."^^xsd:string ;
+.
+:ordinal
+  rdf:type owl:DatatypeProperty ; 
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :ChangeInstruction ;
+  rdfs:label "Ordinal"^^xsd:string ;
+  rdfs:range xsd:integer ;
+  skos:definition "The ordinal within a set."^^xsd:string
+.
+
