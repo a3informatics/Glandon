@@ -17,6 +17,7 @@ describe 'sponsor one rank data migration' do
     before :each do
       # Set of schema files is post schema migration
       load_files(schema_files, [])
+triple_store.triple_count
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")

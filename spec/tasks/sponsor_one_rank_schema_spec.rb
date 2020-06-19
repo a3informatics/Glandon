@@ -12,6 +12,8 @@ describe 'sponsor one rank schema migration' do
     return "tasks/sponsor_one/rank_schema"
   end
 
+  C_TRIPLE_COUNT = 1599
+
   describe 'sponsor one rank data' do
     
     before :each do
@@ -92,7 +94,7 @@ describe 'sponsor one rank schema migration' do
       rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/Thesaurus#Subset"))
@@ -121,7 +123,7 @@ describe 'sponsor one rank schema migration' do
       rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -139,7 +141,7 @@ describe 'sponsor one rank schema migration' do
       # Definitions, check triple store count
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -157,7 +159,7 @@ describe 'sponsor one rank schema migration' do
 
     it 'add rank schema, success checks fail I' do
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
@@ -169,7 +171,7 @@ describe 'sponsor one rank schema migration' do
 
     it 'add rank schema, success checks fail II' do
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(C_TRIPLE_COUNT)
 
       # Old triples check
       check_old
