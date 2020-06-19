@@ -9,7 +9,7 @@ Rails.configuration.roles[:roles].each { |k, v| Role.create(name: k) }
 
 # Enviornment-specific Setup
 # 1. Create sys admin user.
-default_password = "Changeme1%1"
+default_password = "Changeme%1"
 User.destroy_all
 NameValue.destroy_all
 NameValue.create(name: "thesaurus_parent_identifier", value: "1")
