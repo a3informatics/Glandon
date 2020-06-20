@@ -12,8 +12,6 @@ describe 'sponsor one rank data migration' do
     return "tasks/sponsor_one/rank_data"
   end
 
-  C_TRIPLE_COUNT = 1349848
-
   describe 'sponsor one rank data' do
     
     before :each do
@@ -28,6 +26,10 @@ describe 'sponsor one rank data migration' do
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       @ct_26 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH"))
       @ct_30 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH"))
+    end
+
+    def expected_triple_count
+      1349848
     end
 
     def mark_done
@@ -112,7 +114,7 @@ describe 'sponsor one rank data migration' do
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(C_TRIPLE_COUNT)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -135,7 +137,7 @@ describe 'sponsor one rank data migration' do
     it 'add rank data, exception upload' do
       # Definitions, check triple store count
       base = triple_store.triple_count
-      expect(base).to eq(C_TRIPLE_COUNT)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -153,7 +155,7 @@ describe 'sponsor one rank data migration' do
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(C_TRIPLE_COUNT)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -170,7 +172,7 @@ describe 'sponsor one rank data migration' do
 
     it 'add rank data, success checks fail I' do
       base = triple_store.triple_count
-      expect(base).to eq(C_TRIPLE_COUNT)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -182,7 +184,7 @@ describe 'sponsor one rank data migration' do
 
     it 'add rank data, success checks fail II' do
       base = triple_store.triple_count
-      expect(base).to eq(C_TRIPLE_COUNT)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
