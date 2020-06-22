@@ -48,7 +48,7 @@ describe BiomedicalConceptTemplate do
 
   it "allows a BCT to be found" do
     item = BiomedicalConceptTemplate.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCTs/V1"))
-    check_file_actual_expected(item.to_h, sub_dir, "find_bc_template_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "find_bc_template_expected_1.yaml", equate_method: :hash_equal)
   end
 
   # it "finds all entries" do
