@@ -10,7 +10,7 @@ module DataHelpers
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
       "business_operational.ttl", "thesaurus.ttl", "annotations.ttl", "complex_datatype.ttl",
-      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
+      "BusinessForm.ttl", "framework.ttl", "biomedical_concept.ttl", "BusinessDomain.ttl", "test.ttl"
     ]
   end
 
