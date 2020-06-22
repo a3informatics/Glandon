@@ -14,10 +14,10 @@ export default class TablePanel {
    * @param {string} params.url Url of source data
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request
-   * @param {Array} params.extraColumns - Additional column definitions
-   * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case
-   * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
-   * @param {Object} args - Optional additional arguments
+   * @param {Array} params.extraColumns Additional column definitions
+   * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
+   * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
+   * @param {Object} args Optional additional arguments
    */
   constructor({
     selector,
