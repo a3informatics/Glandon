@@ -1,7 +1,7 @@
 require 'rails_helper'
-require 'biomedical_concept/property'
+require 'biomedical_concept/property_x'
 
-describe BiomedicalConcept::Property do
+describe BiomedicalConcept::PropertyX do
 
   include DataHelpers
   include SparqlHelpers
@@ -14,10 +14,13 @@ describe BiomedicalConcept::Property do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
   end
 
   it "validates a valid object I" do
-    item = BiomedicalConcept::Property.new
+    item = BiomedicalConcept::PropertyX.new
     item.question_text = "Draft 123"
     item.prompt_text = "Draft 123"
     item.uri = item.create_uri(item.class.base_uri)
@@ -27,7 +30,7 @@ describe BiomedicalConcept::Property do
   end
 
   it "validates a valid object II" do
-    result = BiomedicalConcept::Property.new
+    result = BiomedicalConcept::PropertyX.new
     result.question_text = "Draft 123"
     result.prompt_text = "Draft 123"
     result.format = "5.2"
@@ -35,28 +38,28 @@ describe BiomedicalConcept::Property do
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object - Question Text" do
-    result = BiomedicalConcept::Property.new
-    result.question_text = "Draft 123^^^"
+  it "does not validate an invalid object - Question Text - WILL CURRENTLY FAIL (validation runnig twice)" do
+    result = BiomedicalConcept::PropertyX.new
+    result.uri = result.create_uri(result.class.base_uri)
+    result.question_text = "Draft 123€"
     result.prompt_text = "Draft 123"
     result.format = "5.2"
-    result.uri = result.create_uri(result.class.base_uri)
     expect(result.valid?).to eq(false)
     expect(result.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
   end
 
-  it "does not validate an invalid object - Prompt Text" do
-    result = BiomedicalConcept::Property.new
+  it "does not validate an invalid object - Prompt Text - WILL CURRENTLY FAIL (validation runnig twice)" do
+    result = BiomedicalConcept::PropertyX.new
     result.question_text = "Draft 123"
-    result.prompt_text = "Draft 123^^^"
+    result.prompt_text = "Draft 123€"
     result.format = "5.2"
     result.uri = result.create_uri(result.class.base_uri)
     expect(result.valid?).to eq(false)
     expect(result.errors.full_messages.to_sentence).to eq("Prompt text contains invalid characters")
   end
 
-  it "does not validate an invalid object - Format" do
-    result = BiomedicalConcept::Property.new
+  it "does not validate an invalid object - Format - WILL CURRENTLY FAIL (validation runnig twice)" do
+    result = BiomedicalConcept::PropertyX.new
     result.question_text = "Draft 123"
     result.prompt_text = "Draft 123"
     result.format = "5.2s"
