@@ -10,6 +10,10 @@ describe Fuseki::Resource do
     return "models/concerns/fuseki/resource"
   end
 
+  def string_datatype_to_h
+    {datatype: "http://www.w3.org/2001/XMLSchema#string", fragment: "string"}
+  end
+
   describe "create resources" do
 
     before :each do
@@ -151,21 +155,31 @@ describe Fuseki::Resource do
     it "data property configured, no default" do
       metadata = Fuseki::Schema::SchemaMap.new({})
       expect(TestR5).to receive(:schema_metadata).and_return(metadata)
-      expect(metadata).to receive(:datatype).and_return("xxx")
+      expect(metadata).to receive(:datatype).and_return("string")
       TestR5.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred1_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"", :model_class=>nil, :read_exclude=>false, :delete_exclude=>false, :name=>:fred1, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred1")}
+      fred1_expected = 
+      {
+        :base_type=>string_datatype_to_h, 
+        :cardinality=>:one, :default=>"", :model_class=>{}, :read_exclude=>false, :delete_exclude=>false, :name=>:fred1, :type=>:data, 
+        predicate: Uri.new(uri: "http://www.example.com/C#fred1")
+      }
       TestR5.data_property(:fred1)
-      expect(TestR5.instance_variable_get(:@resources)).to hash_equal({:fred1 => fred1_expected})    
+      expect(all_metadata(TestR5.instance_variable_get(:@resources))).to hash_equal({:fred1 => fred1_expected})    
     end
 
     it "data property configured, default" do
       metadata = Fuseki::Schema::SchemaMap.new({})
       expect(TestR6).to receive(:schema_metadata).and_return(metadata)
-      expect(metadata).to receive(:datatype).and_return("xxx")
+      expect(metadata).to receive(:datatype).and_return("string")
       TestR6.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred2_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"default value", :model_class=>nil, :read_exclude=>false, :delete_exclude=>false, :name=>:fred2, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred2")}
+      fred2_expected = 
+      {
+        :base_type=>string_datatype_to_h, 
+        :cardinality=>:one, :default=>"default value", :model_class=>{}, :read_exclude=>false, :delete_exclude=>false, :name=>:fred2, :type=>:data, 
+        predicate: Uri.new(uri: "http://www.example.com/C#fred2")
+      }
       TestR6.data_property(:fred2, {default: "default value"})
-      expect(TestR6.instance_variable_get(:@resources)).to hash_equal({:fred2 => fred2_expected})    
+      expect(all_metadata(TestR6.instance_variable_get(:@resources))).to hash_equal({:fred2 => fred2_expected})    
     end
 
     it "key property" do
@@ -234,10 +248,11 @@ describe Fuseki::Resource do
 
     it "get properties, class and instance" do
       result = FusekiBaseHelpers::TestRegistrationAuthorities.resources
-      check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(all_metadata(result), sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
       item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       result = item.class.resources
-      check_file_actual_expected(result, sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
+
+      check_file_actual_expected(all_metadata(result), sub_dir, "properties_metadata_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "object relationships" do
@@ -267,7 +282,7 @@ describe Fuseki::Resource do
     it "updates property" do
       item = TestR11.new
       result = item.class.resources
-      check_file_actual_expected(result, sub_dir, "properties_metadata_expected_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(all_metadata(result), sub_dir, "properties_metadata_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "rdf type to klass" do

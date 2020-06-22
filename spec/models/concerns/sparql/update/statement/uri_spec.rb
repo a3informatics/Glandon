@@ -76,7 +76,8 @@ describe Sparql::Update::Statement::Uri do
 
   it "allows for the class to be created, type error" do
     args = {prefixX: :bd, fragment: "fragment"}
-    expect{Sparql::Update::Statement::Uri.new(args, "", @prefixes)}.to raise_error(Errors::ApplicationLogicError, "Invalid triple part detected. Args: #{args}")
+    expected = {prefixX: "bd", fragment: "fragment"}
+    expect{Sparql::Update::Statement::Uri.new(args, "", @prefixes)}.to raise_error(Errors::ApplicationLogicError, "Invalid triple part detected. Args: #{expected}")
   end
 
 end

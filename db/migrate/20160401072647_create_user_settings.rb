@@ -1,4 +1,4 @@
-class CreateUserSettings < ActiveRecord::Migration
+class CreateUserSettings < ActiveRecord::Migration[4.2]
   def change
     create_table :user_settings do |t|
       t.string :name

@@ -29,7 +29,7 @@ describe Fuseki::Resource::Property do
 
   it "allows for simple update" do
     ref_0 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: "string"})
+    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: XSDDatatype.new("string")})
     expect(item.name).to eq(:fred)
     expect(item.instance_name).to eq(:@fred)
     expect(item.klass).to eq(TestFRP)
@@ -44,7 +44,7 @@ describe Fuseki::Resource::Property do
     expect(item.get).to eq("")
     
     ref_1 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_1, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: ""})
+    item = Fuseki::Resource::Property.new(ref_1, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: nil})
     expect(item.name).to eq(:fred)
     expect(item.instance_name).to eq(:@fred)
     expect(item.klass).to eq(TestFRP)
@@ -65,7 +65,7 @@ describe Fuseki::Resource::Property do
     
     ref_2 = TestFRP.new
     ref_2.instance_variable_set(:@fred, [])
-    item = Fuseki::Resource::Property.new(ref_2, :fred, {model_class: TestFRP, cardinality: :multiple, predicate: "XXX", type: :object, default: [], base_type: ""})
+    item = Fuseki::Resource::Property.new(ref_2, :fred, {model_class: TestFRP, cardinality: :multiple, predicate: "XXX", type: :object, default: [], base_type: nil})
     uri_1 = Uri.new(uri: "http://wwww.a.com/path#1")
     uri_2 = Uri.new(uri: "http://wwww.a.com/path#2")
     uri_3 = Uri.new(uri: "http://wwww.a.com/path#3")
@@ -90,7 +90,7 @@ describe Fuseki::Resource::Property do
     expect(item.get).to eq([uri_1, ref_2a, ref_2b])
 
     ref_3 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_3, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: nil, base_type: ""})
+    item = Fuseki::Resource::Property.new(ref_3, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: nil, base_type: nil})
     item.set_uri(uri)
     expect(item.get).to eq(uri)
 
@@ -98,23 +98,23 @@ describe Fuseki::Resource::Property do
     expect(item.get).to eq(uri)
 
     ref_4 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_4, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: "dateTime"})
+    item = Fuseki::Resource::Property.new(ref_4, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: XSDDatatype.new("dateTime")})
     time = "1980-03-04"
     item.set_simple(time)
     expect(item.get.iso8601).to eq("1980-03-04T00:00:00+00:00")
 
     ref_5 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_5, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: "string"})
+    item = Fuseki::Resource::Property.new(ref_5, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: "", base_type: XSDDatatype.new("string")})
     item.set_simple("XXX")
     expect(item.get).to eq("XXX")
 
     ref_6 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_6, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: "boolean"})
+    item = Fuseki::Resource::Property.new(ref_6, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: XSDDatatype.new("boolean")})
     item.set_simple(true)
     expect(item.get).to eq(true)
 
     ref_7 = TestFRP.new
-    item = Fuseki::Resource::Property.new(ref_7, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: 0, base_type: "integer"})
+    item = Fuseki::Resource::Property.new(ref_7, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: 0, base_type: XSDDatatype.new("integer")})
     item.set_simple(1)
     expect(item.get).to eq(1)
     

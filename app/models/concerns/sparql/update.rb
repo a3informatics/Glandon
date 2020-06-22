@@ -38,7 +38,7 @@ module Sparql
     # {:uri => Uri class}
     # {:namespace => string, :id => string} - Namespace can be "" but default namepace must be set
     # {:prefix => string, :id => string} - Prefix can be "" but default namepace must be set
-    # {:literal => string, primitive_type => xsd:type as string} - Only valid for objects
+    # {:literal => string, primitive_type => XSD datatype} - Only valid for objects
     #
     # @return [Null] Nothing returned
     def add(subject, predicate, object)

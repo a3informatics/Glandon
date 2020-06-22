@@ -4,7 +4,8 @@ describe Fuseki::Resource::Properties do
   
   include DataHelpers
   include PublicFileHelpers
-
+  include FusekiBaseHelpers
+  
   def sub_dir
     return "models/concerns/fuseki/resource/properties"
   end
@@ -23,7 +24,7 @@ describe Fuseki::Resource::Properties do
     item = FusekiBaseHelpers::TestRegistrationAuthorities.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     expect(properties.parent.class).to eq(FusekiBaseHelpers::TestRegistrationAuthorities)
-    check_file_actual_expected(properties.metadata, sub_dir, "properties_new_expected_1.yaml")
+    check_file_actual_expected(all_metadata(properties.metadata), sub_dir, "properties_new_expected_1.yaml")
   end
   
   it "ignore property" do
@@ -40,7 +41,7 @@ describe Fuseki::Resource::Properties do
     item = FusekiBaseHelpers::TestRegistrationAuthorities.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     result = properties.property(:owner)
-    check_file_actual_expected(result.metadata, sub_dir, "property_expected_1.yaml")
+    check_file_actual_expected(property_metadata(result.metadata), sub_dir, "property_expected_1.yaml")
   end  
 
   it "assign" do

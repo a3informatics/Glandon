@@ -24,10 +24,10 @@ module Sparql
         #   {:uri => Uri class}
         #
         # @example namespace and fragement
-        # {:namespace => string, :fragment => string} - Namespace can be "" but default namepace must be set
+        # {:namespace => string, :fragment => XSD datatype} - Namespace can be "" but default namepace must be set
         #
         # @example namespace prefix and fragement
-        # {:prefix => string, :fragment => string} - Prefix can be "" but default namepace must be set
+        # {:prefix => string, :fragment => XSD datatype} - Prefix can be "" but default namepace must be set
         #
         # @return [SparqlUpdateV2::StatementLiteral] the object
         def initialize(args, default_namespace, prefix_set)
@@ -45,7 +45,7 @@ module Sparql
             @uri = ::Uri.new(args)      
             add_prefix(args[:prefix], prefix_set)
           else
-            raise Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid triple part detected. Args: #{args}") 
+            raise Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid triple part detected. Args: #{args_to_simple_h(args)}") 
           end
           @default = default_namespace == @uri.namespace
         end
@@ -83,6 +83,13 @@ module Sparql
         end
 
       private
+
+        # Simple representation of args hash for error reporting
+        def args_to_simple_h(args)
+          result = {}
+          args.each {|k, v| result[k] = v.to_s}
+          result
+        end
 
         # Turn namespace into prefix if possible
         def convert_to_prefix(prefix_set)

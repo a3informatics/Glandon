@@ -9,7 +9,7 @@ module DataHelpers
   def schema_files
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
-      "business_operational.ttl", "thesaurus.ttl", "annotations.ttl",
+      "business_operational.ttl", "thesaurus.ttl", "annotations.ttl", "complex_datatype.ttl",
       "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
     ]
   end

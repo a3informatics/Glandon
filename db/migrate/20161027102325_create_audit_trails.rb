@@ -1,4 +1,4 @@
-class CreateAuditTrails < ActiveRecord::Migration
+class CreateAuditTrails < ActiveRecord::Migration[4.2]
   def change
     create_table :audit_trails do |t|
       t.datetime :date_time

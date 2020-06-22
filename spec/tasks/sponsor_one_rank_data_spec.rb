@@ -28,6 +28,10 @@ describe 'sponsor one rank data migration' do
       @ct_30 = Thesaurus.find_minimum(Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH"))
     end
 
+    def expected_triple_count
+      1349848
+    end
+
     def mark_done
       sparql = Sparql::Update.new
       sparql_update = %Q{
@@ -110,7 +114,7 @@ describe 'sponsor one rank data migration' do
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -133,7 +137,7 @@ describe 'sponsor one rank data migration' do
     it 'add rank data, exception upload' do
       # Definitions, check triple store count
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -151,7 +155,7 @@ describe 'sponsor one rank data migration' do
       # Definitions, check triple store count
       expected = 1130 + 778 + 153 - 2 # Number of extra triples, minus is for overwrite triples in files
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -168,7 +172,7 @@ describe 'sponsor one rank data migration' do
 
     it 'add rank data, success checks fail I' do
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -180,7 +184,7 @@ describe 'sponsor one rank data migration' do
 
     it 'add rank data, success checks fail II' do
       base = triple_store.triple_count
-      expect(base).to eq(1349794)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
