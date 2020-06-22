@@ -17,6 +17,7 @@ export default class TablePanel {
    * @param {Array} params.extraColumns - Additional column definitions
    * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
+   * @param {Object} args - Optional additional arguments
    */
   constructor({
     selector,
@@ -26,8 +27,9 @@ export default class TablePanel {
     extraColumns = [],
     deferLoading,
     cache = true
-  }) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache });
+  }, args = {}) {
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, ...args });
+
     this._initTable();
     this._setListeners();
 

@@ -208,11 +208,15 @@ export default class HistoryPanel extends TablePanel {
    * Initialize a new ItemsSelector
    */
   _initItemSelector() {
-    this.itemSelector = new ItemsSelector({
-      id: "1",
-      types: { thesauri: true },
-      description: "Select one Terminology version with which to compare. It is recommended to select only from other versions of the item you are comparing."
-    });
+    let requiredIn = ["thesauri"];
+
+    if(requiredIn.includes(this.param))
+      this.itemSelector = new ItemsSelector({
+        id: "1",
+        types: { thesauri: true },
+        description: "Select one Terminology version with which to compare. " +
+                     "It is recommended to select only from other versions of the item you are comparing."
+      });
   }
 
 }
