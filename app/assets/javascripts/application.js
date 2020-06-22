@@ -13,15 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require dataTables.buttons
-//= require buttons.bootstrap
-//= require dataTables.select
-//= require dataTables.editor.min
-//= require dataTables.keyTable.min
-//= require dataTables.rowReorder.min
-//= require editor.bootstrap.min
+//= require dataTables 
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require sidebar_handler
