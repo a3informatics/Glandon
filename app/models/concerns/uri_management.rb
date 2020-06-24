@@ -50,7 +50,7 @@ module UriManagement
       C_ISO_25964 => "http://www.assero.co.uk/ISO25964" ,
       C_TH => "http://www.assero.co.uk/Thesaurus" ,
       C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
-      C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
+      C_CBC => "http://www.assero.co.uk/BiomedicalConcept",
       C_BO => "http://www.assero.co.uk/BusinessOperational" ,
       C_BCR => "http://www.assero.co.uk/BusinessCrossReference" ,
       C_BF => "http://www.assero.co.uk/BusinessForm" ,
