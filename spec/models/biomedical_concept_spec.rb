@@ -254,7 +254,12 @@ describe BiomedicalConcept do
 
   it "get the properties, with references" do
     instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
-    check_file_actual_expected(instance.get_properties, sub_dir, "bc_properties.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(instance.get_properties(true), sub_dir, "bc_properties_with_references.yaml", equate_method: :hash_equal)
+  end
+
+  it "get the properties, no references" do
+    instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+    check_file_actual_expected(instance.get_properties, sub_dir, "bc_properties_no_references.yaml", equate_method: :hash_equal)
   end
 
   # it "get the properties with references" do

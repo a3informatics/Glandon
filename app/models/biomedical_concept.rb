@@ -8,8 +8,21 @@ class BiomedicalConcept < IsoManagedV2
   # Get Properties
   #
   # @return [Hash] Full managed item hash including array of child properties.
-  def get_properties
-    return self.class.find_full(self.id).to_h
+  def get_properties(references=false)
+    instance = self.class.find_full(self.id).to_h
+    if references
+        instance[:has_item].each do |item|
+          item[:has_complex_datatype].each do |cdt|
+            cdt[:has_property].each do |prop|
+              prop[:has_coded_value].each do |coded_value|
+                tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri: coded_value[:reference]))
+                cv[:reference] = tc.to_h if !tc.nil?
+              end
+            end
+          end
+        end
+    end
+    return instance
   end
 
   # # Upgrade an item
