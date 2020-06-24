@@ -5,6 +5,13 @@ class BiomedicalConcept < IsoManagedV2
   object_property :has_item, cardinality: :many, model_class: "BiomedicalConcept::Item", children: true
   object_property :identified_by, cardinality: :one, model_class: "BiomedicalConcept::Item"
 
+  # Get Properties
+  #
+  # @return [Hash] Full managed item hash including array of child properties.
+  def get_properties
+    return self.class.find_full(self.id).to_h
+  end
+
   # # Upgrade an item
   # #
   # # @raise [UpdateError or CreateError] if object not updated/created.
@@ -65,13 +72,6 @@ class BiomedicalConcept < IsoManagedV2
   #     end
   #   end
   # end
-
-  # Get Properties
-  #
-  # @return [Hash] Full managed item hash including array of child properties.
-  def get_properties
-    return self.class.find_full(self.id).to_h
-  end
 
   # Get Unique References
   #
