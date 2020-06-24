@@ -9,15 +9,15 @@ describe BiomedicalConcept do
     return "models"
   end
 
-  before :all do
+  before :all  do
     IsoHelpers.clear_cache
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+  end
+
+  before :each do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "biomedical_concept_instances.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+    load_data_file_into_triple_store("mdr_identification.ttl")
   end
 
   it "allows validity of the object to be checked - error" do
@@ -252,11 +252,11 @@ describe BiomedicalConcept do
     check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
   end
 
-  # it "get the properties, no references" do
-  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #   result = item.get_properties(false)
-  #   check_file_actual_expected(result, sub_dir, "bc_properties_no_ref.yaml", equate_method: :hash_equal)
-  # end
+  it "get the properties, with references" do
+    instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+    result = instance.get_properties
+    check_file_actual_expected(result, sub_dir, "bc_properties.yaml", equate_method: :hash_equal)
+  end
 
   # it "get the properties with references" do
   #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")

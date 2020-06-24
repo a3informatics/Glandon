@@ -66,27 +66,17 @@ class BiomedicalConcept < IsoManagedV2
   #   end
   # end
 
-  # # Get Properties
-  # #
-  # # @param references [Boolean] True to fill in terminology references, ignore otherwise.
-  # # @return [Hash] Full managed item has including array of child properties.
-  # def get_properties(references=false)
-  #   managed_item = super()
-  #   if references
-  #     managed_item[:children].each do |child|
-  #       child[:children].each do |ref|
-  #         tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(namespace: ref[:subject_ref][:namespace], fragment:ref[:subject_ref][:id]))
-  #         ref[:subject_data] = tc.to_json if !tc.nil?
-  #       end
-  #     end
-  #   end
-  #   return managed_item
-  # end
+  # Get Properties
+  #
+  # @return [Hash] Full managed item hash including array of child properties.
+  def get_properties
+    return self.class.find_full(self.id).to_h
+  end
 
-  # # Get Unique References
-  # #
-  # # @param managed_item [Hash] The full propeties hash with references
-  # # @return [Array] Array of unique terminology references (each is a hash)
+  # Get Unique References
+  #
+  # @param managed_item [Hash] The full propeties hash with references
+  # @return [Array] Array of unique terminology references (each is a hash)
   # def self.get_unique_references(managed_item)
   #   map = {}
   #   results = []
