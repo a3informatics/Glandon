@@ -195,6 +195,7 @@ Rails.application.routes.draw do
         get :find_subsets
         get :children
         post :add_child
+        post :add_children
         post :add_children_synonyms
         post :create_extension
         post :create_subset

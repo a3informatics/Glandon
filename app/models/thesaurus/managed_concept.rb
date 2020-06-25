@@ -300,7 +300,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
   # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
-  def differences_summary (last, actual_versions)
+  def differences_summary(last, actual_versions)
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{
@@ -389,15 +389,18 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
-  # Delete Extensions
+  # Add Children. Add children to a code list
   #
-  # @param uris [Array] set of uris of the items to be deleted
-  # @return [Void] no return
-  # def delete_extensions(uris)
-  #   transaction = transaction_begin
-  #   uris.each {|x| delete_link(:narrower, x)}
-  #   transaction_execute
-  # end
+  # @params [Hash] params the params hash
+  # @option params [String] :set_ids the set of ids to be actioned
+  # @return [Void] no return. Errors in the error object.
+  def add_children(params)
+    return unless check_for_standard?
+    transaction = transaction_begin
+    params[:set_ids].each {|x| add_link(:narrower, Uri.new(id: x))}
+    set_ranks(uris, self) if self.ranked?
+    transaction_execute
+  end
 
   # Create. Create a managed concept
   #
@@ -767,6 +770,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   end
 
 private
+
+  # Standard code list?
+  def standard?
+    return !self.subset? && !self.extension?
+  end
+
+  # Checks for standard and sets error if not.
+  def check_for_standard?
+    return true if standard?
+    self.errors.add(:base, "Code list is an extension.") if self.extension?
+    self.errors.add(:base, "Code list is a subset.") if self.subset?
+    false
+  end
 
   # Make sure links are populated
   def prepare_for_clone_links

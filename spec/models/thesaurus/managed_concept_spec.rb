@@ -2009,4 +2009,64 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "add children tests" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+    end
+
+    it "add children, single" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_children({set_ids: [uc_1.uri.to_id]})
+      expect(mc.errors.empty?).to eq(true)
+      mc = Thesaurus::ManagedConcept.find_full(mc.uri)
+      expect(mc.narrower.count).to eq(9)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "add children, multiple" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      expect(mc.errors.empty?).to eq(true)
+      mc = Thesaurus::ManagedConcept.find_full(mc.uri)
+      expect(mc.narrower.count).to eq(10)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal)
+    end
+
+    it "add children, fails, subset" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      mc.add_link(:subsets, Uri.new(uri: "http://www.cdisc.org/FAKE/V1#FAKE"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      expect(mc.errors.empty?).to eq(false)
+      expect(mc.narrower_links.count).to eq(8)
+      expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
+    end
+
+    it "add children, fails, extension" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      mc.add_link(:extends, Uri.new(uri: "http://www.cdisc.org/FAKE/V1#FAKE"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      expect(mc.errors.empty?).to eq(false)
+      expect(mc.narrower_links.count).to eq(8)
+      expect(mc.errors.full_messages.to_sentence).to eq("Code list is an extension.")
+    end
+
+  end
+
+
 end
