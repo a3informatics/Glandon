@@ -155,6 +155,7 @@ export default class TablePanel {
       pageLength: pageLength,
       lengthMenu: pageSettings,
       processing: true,
+      autoWidth: false,
       language: {
         infoFiltered: "",
         emptyTable: "No data.",

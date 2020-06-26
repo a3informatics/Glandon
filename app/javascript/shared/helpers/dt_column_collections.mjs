@@ -1,4 +1,4 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn } from 'shared/helpers/dt_columns'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt_columns'
 import { editIconInline, removeIconInline } from 'shared/ui/buttons'
 
 /**
@@ -27,4 +27,20 @@ function dtCLEditColumns() {
   ];
 };
 
-export { dtCLEditColumns }
+/**
+ * Column definitions for Biomedical Concept Instance show
+ * @return {Array} DataTables  Biomedical Concept Instance show column definitions collection
+ */
+function dtBCShowColumns() {
+  return [
+    { data: "label" },
+    { data: "has_complex_datatype.has_property.question_text" },
+    { data: "has_complex_datatype.has_property.prompt_text" },
+    dtTrueFalseColumn("enabled"),
+    dtTrueFalseColumn("collect"),
+    { data: "has_complex_datatype.label" },
+    { data: "has_complex_datatype.has_property.format" }
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns }

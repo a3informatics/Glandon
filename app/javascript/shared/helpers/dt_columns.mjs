@@ -1,4 +1,4 @@
-import { renderHistoryBtn } from 'shared/ui/buttons';
+import { renderHistoryBtn, checkMarkIcon } from 'shared/ui/buttons'
 
 /**
  * Returns column definition for the history column
@@ -61,6 +61,19 @@ function dtContextMenuColumn(renderer) {
 };
 
 /**
+ * Returns column definition for a true/false icon column
+ * @param {string} name data property name
+ * @return {object} DataTables true/false icon column definition
+ */
+function dtTrueFalseColumn(name) {
+  return {
+    className: "text-center",
+    data: name,
+    render: (data, type, r, m) => type === "display" ? checkMarkIcon(data) : data
+  }
+};
+
+/**
  * Returns column definition for a generic inline editable column
  * @param {string} field editField name
  * @param {string} name data property name
@@ -82,5 +95,6 @@ export {
   dtTagsColumn,
   dtLastChangeDateColumn,
   dtContextMenuColumn,
-  dtInlineEditColumn
+  dtInlineEditColumn,
+  dtTrueFalseColumn
 }

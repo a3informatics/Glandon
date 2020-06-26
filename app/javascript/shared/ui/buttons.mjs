@@ -48,6 +48,24 @@ function editIconInline({ disabled = false, ttip = false, ttipText = "" } = {}) 
 }
 
 /**
+ * Returns HTML for an true/false icon
+ * @param {boolean} value type of icon to be returned
+ * @return {string} formatted icon HTML
+ */
+function checkMarkIcon(value) {
+  if (value)
+    return _renderIcon({
+      iconName: 'ok',
+      cssClasses: 'text-link'
+    });
+  else
+    return _renderIcon({
+      iconName: 'times',
+      cssClasses: 'text-accent-2'
+    });
+}
+
+/**
  * Returns HTML for a generic inline icon button based on parameters
  * @return {string} formatted button HTML
  */
@@ -67,5 +85,6 @@ function _renderIcon({
 export {
   renderHistoryBtn,
   editIconInline,
-  removeIconInline
+  removeIconInline,
+  checkMarkIcon
 }

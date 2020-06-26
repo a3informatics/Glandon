@@ -1,19 +1,41 @@
 <%= javascript_tag 'setPageTitle("Show Biomedical Concept: '+@bc.has_identifier.identifier+' ('+@bc.semantic_version+')")' %>
-<%= javascript_include_tag 'thesauri/show' %>
-<%= javascript_tag "var url_path = '#{children_with_indicators_thesauri_path(@bc)}';" %>
+
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_pack_tag 'biomedical_concepts/show' %>
+<%= javascript_tag "let showDataUrl = '#{biomedical_concept_path(@bc)}';" %>
+
 <% third_level_breadcrumb(:biomedical_concepts, @bc, @close_path) %>
+
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
     <div class="abcions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-
-
     </div>
   <% end %>
 
-
+  <div class="row">
+    <div id="show-panel" class="col-md-12 card wide">
+      <div class="card-header">
+        Show Biomedical Concept
+      </div>
+      <div class="card-content table-cardstyle">
+        <table id="show" class="table">
+          <thead>
+            <tr>
+              <th>Alias</th>
+              <th>Question Text</th>
+              <th>Prompt Text</th>
+              <th>Enabled</th>
+              <th>Collect</th>
+              <th>Datatype</th>
+              <th>Format</th>
+              <!-- <th>Terminology</th> -->
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
 
 </div>
-
-
