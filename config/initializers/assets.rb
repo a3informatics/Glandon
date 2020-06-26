@@ -32,8 +32,8 @@ end
     iso_managed/list_change_notes iso_managed/status
     markdown_engines/markdown_editor
     sdtm_user_domains/editor
-    thesauri/changes thesauri/edit thesauri/release_select thesauri/search_multiple thesauri/search thesauri/show thesauri/upgrade
-    thesauri/managed_concepts/changes thesauri/managed_concepts/edit_extension thesauri/managed_concepts/edit_subset thesauri/managed_concepts/edit
+    thesauri/changes thesauri/release_select thesauri/search_multiple thesauri/search thesauri/show thesauri/upgrade
+    thesauri/managed_concepts/changes thesauri/managed_concepts/edit_extension thesauri/managed_concepts/edit_subset
     thesauri/managed_concepts/show
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
     uploads/index
@@ -47,7 +47,7 @@ end
     shared/iso_managed/children_panel shared/iso_managed/comments_panel shared/iso_managed/managed_children_overview shared/iso_managed/managed_children_panel
     shared/iso_managed/managed_children_select shared/iso_managed/managed_item_ico_list shared/iso_managed/managed_item_version_picker shared/iso_managed/managed_item_select_modal
     shared/items_selector/items_selector_modal shared/items_selector/managed_item_selector shared/items_selector/unmanaged_item_selector
-    shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/editor_panel shared/thesauri/links_panel shared/thesauri/new_panel
+    shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/links_panel shared/thesauri/new_panel
     shared/thesauri/search_panel shared/thesauri/subsets_index shared/thesauri/term_search_modal shared/thesauri/thesauri_select shared/thesauri/upgrade_panel
     shared/thesauri/managed_concepts/edit_extension_panel shared/thesauri/managed_concepts/extension_create shared/thesauri/managed_concepts/new_button
     shared/thesauri/managed_concepts/subset_edit_children_panel shared/thesauri/managed_concepts/subset_source_children_panel
