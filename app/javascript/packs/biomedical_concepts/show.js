@@ -11,5 +11,13 @@ $(document).ready( () => {
     extraColumns: dtBCShowColumns()
   });
 
+  //   let tpr = new TablePanel({
+  //   selector: "#show-ref-panel table#show-ref",
+  //   url: showDataRefUrl,
+  //   param: "biomedical_concept",
+  //   paginated: false,
+  //   extraColumns: dtBCShowColumns()
+  // });
+
 
 });

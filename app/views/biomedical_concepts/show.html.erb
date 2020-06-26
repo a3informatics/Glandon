@@ -3,6 +3,7 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'biomedical_concepts/show' %>
 <%= javascript_tag "let showDataUrl = '#{biomedical_concept_path(@bc)}';" %>
+<%= javascript_tag "let showDataRefUrl = '#{biomedical_concept_path(@bc)}';" %>
 
 <% third_level_breadcrumb(:biomedical_concepts, @bc, @close_path) %>
 
@@ -30,12 +31,15 @@
               <th>Collect</th>
               <th>Datatype</th>
               <th>Format</th>
-              <!-- <th>Terminology</th> -->
+              <th>Terminology</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
   </div>
+
+
+  
 
 </div>

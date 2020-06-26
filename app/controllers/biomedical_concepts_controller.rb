@@ -184,17 +184,22 @@ class BiomedicalConceptsController < ApplicationController
     @bc = BiomedicalConceptInstance.find_minimum(params[:id])
     respond_to do |format|
       format.html do
-        #@items = @bc.get_properties
-        #@references = BiomedicalConcept.get_unique_references(@items)
         @show_path = path_for(:show, @bc)
         @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
       end
       format.json do
-        @items = @bc.get_properties
-        render json: {data: @items}, status: 200
+        items = @bc.get_properties(true)
+        #@references = BiomedicalConcept.get_unique_references(@items)
+        render json: {data: items}, status: 200
       end
     end
   end
+
+  # def show_references
+  #   authorize BiomedicalConcept
+  #   bc = BiomedicalConceptInstance.find_minimum(params[:id])
+  #   render json: {data: bc.get_references}, status: 200
+  # end
 
   # def show
   #   authorize BiomedicalConcept
