@@ -178,6 +178,24 @@ class BiomedicalConceptsController < ApplicationController
   #   redirect_to request.referer
   # end
 
+
+  def show
+    authorize BiomedicalConcept
+    @bc = BiomedicalConceptInstance.find_minimum(params[:id])
+    respond_to do |format|
+      format.html do
+        #@items = @bc.get_properties
+        #@references = BiomedicalConcept.get_unique_references(@items)
+        @show_path = path_for(:show, @bc)
+        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
+      end
+      format.json do
+        @items = @bc.get_properties
+        render json: {data: @items}, status: 200
+      end
+    end
+  end
+
   # def show
   #   authorize BiomedicalConcept
   #   @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
@@ -230,7 +248,7 @@ private
   def path_for(action, object)
     case action
       when :show
-        return ""
+        return biomedical_concept_path(object)
       when :edit
         return ""
       else

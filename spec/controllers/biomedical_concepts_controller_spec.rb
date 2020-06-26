@@ -180,10 +180,40 @@ describe BiomedicalConceptsController do
   #     expect(response).to redirect_to("/biomedical_concepts/history?biomedical_concept%5Bidentifier%5D=BC+C49678&biomedical_concept%5Bscope_id%5D=#{IsoHelpers.escape_id(bc.scope.id)}")
   #   end
 
-  #   it "allows the BC to be viewed" do
-  #     get :show, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
-  #     expect(response).to render_template("show")
-  #   end
+    it "show" do
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+      get :show, params: { :id => bci.id}
+      expect(response).to render_template("show")
+    end
+
+    #       request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :index
+    #   actual = check_good_json_response(response)
+    #   check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
+    # instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+
+
+    # it "show" do
+    #   th = Thesaurus.create({ :identifier => "NEW TH 2", :label => "New Thesaurus 3" })
+    #   expect(Thesaurus).to receive(:find_minimum).and_return(th)
+    #   get :show, params:{id: "aaa"}
+    #   expect(response).to render_template("show")
+    # end
+
+    # it "show results" do
+    #   th = Thesaurus.new
+    #   th.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   expect(Thesaurus).to receive(:find_minimum).and_return(th)
+    #   expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0", :tags=>["SDTM"]}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
+    #   expect_any_instance_of(Thesaurus).to receive(:is_owned_by_cdisc?).and_return(true)
+    #   get :show, params:{id: "aaa", offset: 0, count: 10}
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   x = JSON.parse(response.body).deep_symbolize_keys
+    #   expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.id)}",
+    #     :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE="}], count: 1, offset: 0})
+    # end
 
   #   it "export_ttl" do
   #     get :export_ttl, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
