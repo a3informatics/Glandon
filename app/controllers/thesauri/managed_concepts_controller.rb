@@ -178,7 +178,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         result = new_tc.simple_to_h
         edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
         delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path, single_parent: true})
         render :json => {data: result}, :status => 200
       else
         render :json => {:errors => new_tc.errors.full_messages}, :status => 422
