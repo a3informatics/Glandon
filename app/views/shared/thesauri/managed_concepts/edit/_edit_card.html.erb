@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "shared/tables_editable" %>
+<%= javascript_tag "let editorNewChildUrl = '#{add_child_thesauri_managed_concept_path(item)}',
+                        editorSrcDataUrl = '#{children_thesauri_managed_concept_path(item)}',
+                        editorUpdateDataUrl = '#{thesauri_unmanaged_concept_path(id: '_id_')}',
+                        editorAddChildrenUrl = '#{add_children_thesauri_managed_concept_path(item)}',
+                        codeListId = '#{item.id}',
+                        timerTokenId = '#{token.id}',
+                        timerWarning = '#{current_user.edit_lock_warning}';"%>
+
+<div class="col-md-12 card wide">
+
+    <div class="card-header">
+      Code List Editor
+    </div>
+
+    <div class="card-content">
+
+      <div class="btns-wrap" id="edit-cl-actions">
+        <a href="#" class="btn medium white ttip" id="add-existing-button" data-toggle="modal">
+          <span class="ttip-text shadow-small text-medium">Find and select one or more <br/> Code List Items</span>
+          <span class="icon-search"></span> Add items
+        </a>
+        <a href="#" class="btn medium green ttip" id="new-item-button">
+          <span class="ttip-text shadow-small text-medium">Create a blank Code List Item</span>
+          <span class="icon-plus text-tiny"></span>  New item
+        </a>
+
+        <span id="editor-help" class="icon-help text-small text-light clickable ttip" style="margin-left: 5px;">
+          <span class="ttip-text shadow-small font-light text-medium"> CL Editor Help </span>
+        </span>
+
+      </div>
+
+        <div id="editor-panel" class="table-cardstyle">
+          <table id="editor" class="table">
+            <thead>
+              <tr>
+                <th class="fit">Identifier</th>
+                <th>Submission Value</th>
+                <th>Preferred Term</th>
+                <th>Synonyms</th>
+                <th>Definition</th>
+                <th>Tags</th>
+                <th class="ignore fit"></th>
+                <th class="fit"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+    </div>
+
+</div>
+<%= render partial: "shared/help_dialogs/codelist_editor_help" %>
+<%= render partial: "shared/items_selector/items_selector_modal", :locals => {id: "add-children"} %>

@@ -24,6 +24,19 @@ function dtLastChangeDateColumn() {
 };
 
 /**
+ * Returns column definition for the tags column
+ * @param {string} width Column width string, optional
+ * @return {object} DataTables indicators column definition
+ */
+function dtTagsColumn(width = '') {
+  return {
+    data: "tags",
+    width: width,
+    render: (data, type, r, m) => type === "display" ? colorCodeTagsBadge(data) : data
+  }
+};
+
+/**
  * Returns column definition for the indicators column
  * @return {object} DataTables indicators column definition
  */
@@ -47,9 +60,27 @@ function dtContextMenuColumn(renderer) {
   }
 };
 
+/**
+ * Returns column definition for a generic inline editable column
+ * @param {string} field editField name
+ * @param {string} name data property name
+ * @param {string} width width of column in %
+ * @return {object} DataTables inline editable column definition
+ */
+function dtInlineEditColumn(field, name, width) {
+  return {
+    className: "editable inline",
+    data: name,
+    editField: field,
+    width: width
+  }
+};
+
 export {
   dtHistoryColumn,
   dtIndicatorsColumn,
+  dtTagsColumn,
   dtLastChangeDateColumn,
-  dtContextMenuColumn
+  dtContextMenuColumn,
+  dtInlineEditColumn
 }

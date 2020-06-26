@@ -178,10 +178,27 @@ class Thesauri::ManagedConceptsController < ApplicationController
         result = new_tc.simple_to_h
         edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
         delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path, single_parent: true})
         render :json => {data: result}, :status => 200
       else
         render :json => {:errors => new_tc.errors.full_messages}, :status => 422
+      end
+    else
+      render :json => {:errors => [token_timeout_message]}, :status => 422
+    end
+  end
+
+  def add_children
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      tc.add_children(children_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        render :json => {data: "" }, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       render :json => {:errors => [token_timeout_message]}, :status => 422
@@ -551,6 +568,10 @@ private
 
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
+  end
+
+  def children_params
+    params.require(:managed_concept).permit(:set_ids => [])
   end
 
   def rank_params

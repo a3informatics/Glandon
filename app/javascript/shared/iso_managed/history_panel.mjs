@@ -22,8 +22,8 @@ export default class HistoryPanel extends TablePanel {
    * @param {string} params.url Url of source data
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request [default = 100]
-   * @param {boolean} params.deferLoading - Set to true if data load should be deferred. Load data has to be called manually in this case. Optional.
-   * @param {boolean} params.cache - Specify if the panel data should be cached. Optional.
+   * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case. Optional.
+   * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
    */
   constructor({
     selector = "#history-panel #history",
@@ -89,23 +89,6 @@ export default class HistoryPanel extends TablePanel {
         this.itemSelector.show();
       }
     });
-  }
-
-  /**
-   * Finds DT row data in which element is present
-   * @return {Object} DT row data object
-   */
-  _getRowData(el) {
-    return this.table.row($(el).closest("tr")).data();
-  }
-
-  /**
-   * Sets click listener and handler
-   * @param {string} target JQuery selector of target element
-   * @param {function} handler Function to be executed on click
-   */
-  _clickListener( {target, handler } ) {
-    $(`${this.selector} tbody`).on("click", target, handler);
   }
 
   /** Context Menu **/
@@ -225,11 +208,15 @@ export default class HistoryPanel extends TablePanel {
    * Initialize a new ItemsSelector
    */
   _initItemSelector() {
-    this.itemSelector = new ItemsSelector({
-      id: "1",
-      types: { thesauri: true },
-      description: "Select one Terminology version with which to compare. It is recommended to select only from other versions of the item you are comparing."
-    });
+    let requiredIn = ["thesauri"];
+
+    if(requiredIn.includes(this.param))
+      this.itemSelector = new ItemsSelector({
+        id: "1",
+        types: { thesauri: true },
+        description: "Select one Terminology version with which to compare. " +
+                     "It is recommended to select only from other versions of the item you are comparing."
+      });
   }
 
 }

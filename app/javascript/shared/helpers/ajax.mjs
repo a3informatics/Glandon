@@ -101,7 +101,7 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {boolean} params.cache Optional cache option
  * @param {JQuery Element} params.errorDiv Div to display errors in, optional
  */
-function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, cache = true, errorDiv = null }) {
+function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, error = handleAjaxError, cache = true, errorDiv = null }) {
   $.ajax({
     url: url,
     type: type,
@@ -109,8 +109,8 @@ function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {},
     data: data,
     cache: cache,
   })
-  .done((result) => done(result.data))
-  .fail((x, s, e) => handleAjaxError(x, s, e, errorDiv))
+  .done((result) => done(result.data || result))
+  .fail((x, s, e) => error(x, s, e, errorDiv))
   .always(() => always());
 }
 
