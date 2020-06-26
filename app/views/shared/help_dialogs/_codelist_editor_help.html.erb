@@ -1,4 +1,5 @@
 <%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-cl-edit", title: "How to use Code List Editor", wide: true} do %>
+  Click on <button class="btn btn-xs white">Refresh</button> to reload the data in the table. <br/>
   To create a <span class="font-regular">new</span> Code List Item in this Code List, click on <button class="btn btn-xs green">New Item</button>. <br/>
   Click on <button class="btn btn-xs white">Add items</button> to find and <span class="font-regular">add existing</span> Code List Items from other Code Lists in the system.<br/>
   To remove a Code List Item from the Code List, click on <span class="icon-times text-accent-2"></span>. <br/>
@@ -14,4 +15,9 @@
   simply start writing (<i>this will clear its contents</i>). <br/>
   Press <span class="font-regular">Esc</span> to stop editing and revert any changes.<br/>
   Click away from the cell or hit <span class="font-regular">Enter</span> to <i>save</i> your changes.
+  <br/><br/>
+
+  To Edit tags of an item, click on its Tags cell (<i>keyboard navigation cannot be used</i>).
+  A new window will be opened. Use the <button class="btn white btn-xs">Refresh</button> button to see the changes you made.
+  <br/><br/>
 <% end %>

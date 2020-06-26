@@ -12,7 +12,7 @@ function dtCLEditColumns() {
     dtInlineEditColumn("preferred_term", "preferred_term", "18%"),
     dtInlineEditColumn("synonym", "synonym", "18%"),
     dtInlineEditColumn("definition", "definition", "40%"),
-    dtTagsColumn("8%"),
+    dtTagsColumn("8%", 'editable edit-tags'),
     dtIndicatorsColumn(),
     {
       className: "fit",
