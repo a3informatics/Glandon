@@ -1,0 +1,17 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-cl-edit", title: "How to use Code List Editor", wide: true} do %>
+  To create a <span class="font-regular">new</span> Code List Item in this Code List, click on <button class="btn btn-xs green">New Item</button>. <br/>
+  Click on <button class="btn btn-xs white">Add items</button> to find and <span class="font-regular">add existing</span> Code List Items from other Code Lists in the system.<br/>
+  To remove a Code List Item from the Code List, click on <span class="icon-times text-accent-2"></span>. <br/>
+  (<i>This will remove the item from the system if the Code List is its only parent. Otherwise the item will be unlinked from the Code List.</i>)
+  <hr>
+  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means this field <span class="font-regular">is editable</span>.
+  <br/><br/>
+
+  <i>The Code List Editor controls are similar to that of Excel.</i><br/>
+  Click on an editable cell once to <i>focus</i> on it. Once focused, you can move around the table with the keyboard <span class="font-regular">arrow keys</span>.<br/>
+  The <span class="font-regular">Tab</span> and <span class="font-regular">Shift + Tab</span> keys can be used to traverse the cells as well. <br/>
+  To start editing a cell, <span class="font-regular">double click</span> on it or hit <span class="font-regular">Enter</span> while focused, or
+  simply start writing (<i>this will clear its contents</i>). <br/>
+  Press <span class="font-regular">Esc</span> to stop editing and revert any changes.<br/>
+  Click away from the cell or hit <span class="font-regular">Enter</span> to <i>save</i> your changes.
+<% end %>
