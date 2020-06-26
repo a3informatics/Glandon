@@ -1,4 +1,4 @@
-import { $getPaginated } from 'shared/helpers/ajax';
+import { $getPaginated, $get } from 'shared/helpers/ajax';
 
 /**
  * Base Table Panel
@@ -17,6 +17,7 @@ export default class TablePanel {
    * @param {Array} params.extraColumns Additional column definitions
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
+   * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Object} args Optional additional arguments
    */
   constructor({
@@ -26,9 +27,10 @@ export default class TablePanel {
     count,
     extraColumns = [],
     deferLoading,
-    cache = true
+    cache = true,
+    paginated = true
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, ...args });
 
     this._initTable();
     this._setListeners();
@@ -45,17 +47,32 @@ export default class TablePanel {
     this.table.clear().draw();
     this._loading(true);
 
-    $getPaginated(0, {
-      url: this.url,
-      count: this.count,
-      strictParam: this.param,
-      cache: this.cache,
-      pageDone: (data) => this._renderPage(data),
-      done: () => this._loading(false),
-      always: () => {}
-    });
+    if (this.paginated)
+      $getPaginated(0, {
+        url: this.url,
+        count: this.count,
+        strictParam: this.param,
+        cache: this.cache,
+        pageDone: (data) => this._renderPage(data),
+        done: () => {},
+        always: () => this._loading(false)
+      });
+    else
+      $get({
+        url: this.url,
+        cache: this.cache,
+        done: (data) => this._renderPage(data),
+        always: () => this._loading(false)
+      });
 
     return this;
+  }
+
+  /**
+   * Refresh (reload) table data
+   */
+  refresh() {
+    this.loadData();
   }
 
   /** Private **/
@@ -70,7 +87,15 @@ export default class TablePanel {
    * @return {Object} DT row data object
    */
   _getRowData(el) {
-    return this.table.row($(el).closest("tr")).data();
+    return this._getRow(el).data();
+  }
+
+  /**
+   * Finds DT Row instance in which element is present
+   * @return {Object} DT Row instance
+   */
+  _getRow(el) {
+    return this.table.row($(el).closest("tr"));
   }
 
   /**
@@ -130,7 +155,7 @@ export default class TablePanel {
       pageLength: pageLength,
       lengthMenu: pageSettings,
       processing: true,
-      autoWidth: false,
+      scrollX: true,
       language: {
         infoFiltered: "",
         emptyTable: "No data.",
