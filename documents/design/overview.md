@@ -5,3 +5,4 @@ The two technologies are used such that the application can undertake the:
 1. Management of clinical research metadata via its creation, modification and use. This includes the version management of such items. These functions are implemented using the triple store
 1. Supporting functions implemented using the RDBMS database such as user management and audit functionality.
 
+<img src="diagrams/xxx.png" alt="My cool logo"/>
