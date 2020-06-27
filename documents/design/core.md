@@ -1,6 +1,6 @@
 # Core
 
-## General
+## General
 
 The core compoenents are tasked with implementing ownership and version management for those items maintained within the repository. This includes
 
@@ -40,7 +40,7 @@ Much of the implementation is based upon the ISO 11179 MDR standard
 
 Namespaces are used to scope identifiers within the repository. A managed item is identified by an identifier and the Registration Authority (RA) that owns it with the identifier being unique within the RA. The namespace belongs to the RA and is the class that scopes the identifier to a RA.
 
-## Registration Authority (RA)
+## Registration Authority (RA)
 
 The RA is the organization that owns a particular item. The RA has 1 or more namespaces to scope identifiers
 
@@ -60,11 +60,11 @@ A managed item is a concept with an attached:
 
 The combination results in item that has a unique identifier and state
 
-## Scoped Identifier
+## Scoped Identifier
 
 Contains the identifier, version and the namespace scoping the identifier thus ensuring it is unique
 
-## Registration Status
+## Registration Status
 
 Contains the registration status for an item
 
@@ -72,6 +72,6 @@ Contains the registration status for an item
 
 A Concept can be linked to one or more tags
 
-## Extensions
+## Extensions
 
 Not implemented.
