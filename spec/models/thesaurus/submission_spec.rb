@@ -24,7 +24,7 @@ describe "Thesaurus Submission" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file
-    true
+    false
   end
 
   # ----------------------------------------
