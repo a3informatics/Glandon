@@ -1790,7 +1790,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2020-06-26", :speed => 'slow' do
       release_date = "2020-06-26"
-      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
+      results = execute_import(release_date, {sdtm: release_date, cdash: "2020-05-08", adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C65047,  status: :updated},       # LBTESTCD
         {cl: :C66741,  status: :updated},       # VSTESTCD
@@ -1811,12 +1811,12 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C85494,  status: :updated},       # PKUNIT
         {cl: :C99079,  status: :no_change},     # EPOCH
         {cl: :C118971, status: :no_change},     # CCCAT
-        {cl: :C128689, status: :updated},        # RACEC
-        {cl: :C103330, status: :updated},       # SCTEST
+        {cl: :C128689, status: :no_change},     # RACEC
+        {cl: :C103330, status: :no_change},     # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
-        {cl: :C163028, status: :no_change}
+        {cl: :C163028, status: :no_change}      # D1FATS
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
