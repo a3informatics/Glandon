@@ -8,20 +8,23 @@ The two database technologies are used such that the application can undertake t
 1. Management of clinical research metadata via its creation, modification and use. This includes the version management of such items. These functions are implemented using the triple store
 1. Functions such as user management and audit functionality where relational database implementation or  the use standard industry gems makes sense.
 
-## Metadata Functions
+## Metadata Functionality
+
+This is core role of the application and is undertaken within the triple store.
 
 1. [Core metadata management functions](core.md)
-1. Management of terminologies and code lists ![](thesaurus.md)
+1. [Management of Terminologies and Code Lists](thesaurus.md)
+1. [Management of Biomedical Concepts](thesaurus.md), both instances and templates
 
 ## Support Functions
 
-1. Users
+1. [Users](users.md)
 1. Audit
 
 ## Infrasture and Utility Functions
 
-1. Utilties ![](utilities.md)
+1. [Utilties](utilities.md)
 
 ## Other Considerations
 
-1. Security ![](security.md)
+1. [Security](security.md)
