@@ -93,3 +93,7 @@ A Concept can be linked to one or more tags
 
 Not implemented.
 
+## Issues
+
+1. Need to ensure that an RA can have multiple Namespaces
+
