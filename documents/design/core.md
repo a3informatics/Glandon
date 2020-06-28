@@ -66,7 +66,24 @@ Contains the identifier, version and the namespace scoping the identifier thus e
 
 ## Registration Status
 
-Contains the registration status for an item
+### General
+
+Contains the registration status for an item and controls what actions can be performed on the managed item
+
+### Edit and Status
+
+The following table defines the permitted actions when in the specified state.
+
+| In State | Can Update State?  | New Version on Edit? | Can Update Label? | Can Make Current? | Can Delete? |
+| -| :-: | :--: | :-: | :-: | :-: |
+| Not Set       | Not applicable (NA) | NA | NA | NA | NA |
+| Incomplete    | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :heavy_check_mark: |
+| Candidate     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| Recorded      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| Qualified     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| Standard      | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| Retired       | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :x: |
+| Superseded    | :x: | :x: | :heavy_check_mark: | :x: | :x: |
 
 ## Tags
 
@@ -75,3 +92,4 @@ A Concept can be linked to one or more tags
 ## Extensions
 
 Not implemented.
+
