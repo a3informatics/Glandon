@@ -63,10 +63,13 @@ A paired code list is one where there is a TEST/TESTCD relationship between the 
 
 1. Pair the code lists
 1. Unpair the code lists
+1. Code list paired? Consider this from both ends of the pairing
+1. Code list paired as the parent?
+1. Code list paired as the child?
 1. Indicator that the code list is paired
-1. Access either coe list in a pair
+1. Access either code list in a pair from the other
 
-The existance of the pairedWith relationship denotes the pairing. The TESTCD code list should refer to the TEST code list (the TESTCD is the "master")
+The existance of the pairedWith relationship denotes the pairing. The TESTCD code list should refer to the TEST code list (i.e. the TESTCD is the "parent")
 
 ## Enhancements
 
