@@ -30,8 +30,16 @@ Three levels of information are modelled
 
 | **Relationship** | **Description** | **Cardinality** |
 | --- | --- | --- |
-| **hasConcept** | Links a thesaurus to the top-level concepts | 1:M |
-| **hasChild** | Links a thesaurus concept with the child concepts | 1:M |
+| **isTopConceptReference** | Links a thesaurus concept with the child concept references | 1:M |
+| **isTopConcept** | Links a thesaurus concept with the child concepts. Placed there for compatability with SKOS | 1:M |
+| **narrower** | Links a thesaurus concept with the child concepts | 1:M |
+| **extends** | Links a thesaurus concept with the managed concept that it is extending | 1:1 |
+| **subsets** | Links a thesaurus concept with the managed concept that it is subsetting | 1:1 |
+| **pairedWith** | Links a thesaurus concept (parent) with the managed concept (child) that it is paired with | 1:1 |
+| **isOrdered** | Links a thesaurus concept with the ordered list | 1:1 |
+| **isRanked** | Links a thesaurus concept with the ranking list | 1:1 |
+| **reference** | | 1:1 |
+| **baselineReference** | | 1:1 |
 
 ## Standard Code Lists
 
