@@ -10,7 +10,7 @@ The two database technologies are used such that the application can undertake t
 
 ## Metadata Functions
 
-1. Core metadata management functions ![](core.md)
+1. [Core metadata management functions](core.md)
 1. Management of terminologies and code lists ![](thesaurus.md)
 
 ## Support Functions
