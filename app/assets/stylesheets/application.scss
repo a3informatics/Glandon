@@ -3,11 +3,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 // DataTables
-@import "datatables/dataTables.bootstrap";
-@import "datatables/extensions/Select/select.bootstrap";
-@import "datatables/extensions/RowReorder/rowReorder.bootstrap";
-@import "datatables/extensions/KeyTable/keyTable.bootstrap";
-@import "editor.bootstrap.min";
+@import "datatables.min";
 // A3 Custom
 @import "a3-styles";
 @import "shared/globals";

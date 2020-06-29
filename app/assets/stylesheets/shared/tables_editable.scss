@@ -13,14 +13,17 @@
 }
 
 .table-cardstyle table td.editable:hover {
-  padding-left: 30px;
   background: $grey-bright !important;
 }
 
 .table-cardstyle table td.focus {
   background: $grey-bright !important;
-  padding-left: 15px;
+  padding-left: 20px;
   box-shadow: none !important;
+}
+
+.table-cardstyle table tr.editable td.editable:hover {
+  padding-left: 20px;
 }
 
 .table-cardstyle table tr.editable td.editable:hover::before {

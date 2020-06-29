@@ -26,11 +26,13 @@ function dtLastChangeDateColumn() {
 /**
  * Returns column definition for the tags column
  * @param {string} width Column width string, optional
+ * @param {string} className Custom classname, optional
  * @return {object} DataTables indicators column definition
  */
-function dtTagsColumn(width = '') {
+function dtTagsColumn(width = '', className = '') {
   return {
     data: "tags",
+    className,
     width: width,
     render: (data, type, r, m) => type === "display" ? colorCodeTagsBadge(data) : data
   }

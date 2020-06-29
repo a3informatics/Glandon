@@ -32,6 +32,9 @@ function colorCodeTagsOutline(parent, tagClass) {
 // Takes in a string of tags divided by ';' and returns
 // the tags HTML formatted with small color-coded badges for each tag
 function colorCodeTagsBadge(tags) {
+  if (tags == null)
+    return "None";
+    
   tags = tags.split('; ');
   var html = (tags.length > 0 && tags[0].length > 0) ? "" : "None";
 

@@ -52,8 +52,8 @@ gem 'sdoc', '>= 0.4.0', group: :doc
 # D3 gem
 gem "d3-rails", "3.4.11"
 
-# Datatables
-gem 'jquery-datatables'
+# Datatables ** no longer a gem, find src in datatables in vendor/assets **
+# gem 'jquery-datatables'
 
 # Delayed job
 gem 'delayed_job_active_record'
