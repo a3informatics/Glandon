@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require dataTables 
+//= require datatables.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require sidebar_handler
@@ -369,7 +369,7 @@ $(document).ready(function() {
 /*
 * Positions the context menu corrently for any width display
 */
-$(window).load(function(){
+$(window).on('load',function(){
  $("table tbody").on("focus", ".icon-context-menu", function(){
    $(this).find(".context-menu").css("left", $(this).position().left);
  });
