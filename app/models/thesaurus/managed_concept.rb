@@ -15,7 +15,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
   object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
-  object_property :refers_to, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
+  object_property :refers_to, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
