@@ -1,4 +1,4 @@
-class NameValues < ActiveRecord::Migration
+class NameValues < ActiveRecord::Migration[4.2]
   
   create_table :name_values do |t|
     t.string :name

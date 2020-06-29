@@ -20,7 +20,7 @@ describe Excel::Engine do
   # Declare new types in the test.ttl file if necessary 
   class DefinitionClass < Fuseki::Base
 
-    configure rdf_type: "http://www.assero.co.uk/Fake" # This is OK. Not declared in schema .ttl files
+    configure rdf_type: "http://www.assero.co.uk/Test#Fake" # This is OK. Not declared in schema .ttl files
     data_property :label
 
     # Need to fake this as we are not loading any schema triples for this test

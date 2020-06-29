@@ -1,4 +1,4 @@
-class CreateDeviseSecurityExtensionPasswordArchivableOldPasswordsTable < ActiveRecord::Migration
+class CreateDeviseSecurityExtensionPasswordArchivableOldPasswordsTable < ActiveRecord::Migration[4.2]
   def change
     create_table :old_passwords do |t|
       t.string :encrypted_password, :null => false

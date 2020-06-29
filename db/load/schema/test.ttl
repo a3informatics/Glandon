@@ -280,3 +280,19 @@
   rdfs:range :Namespace ;
   skos:definition "The namespce by which this identifier is scoped, i.e. is unique."^^xsd:string ;
 .
+# Fake
+#
+#
+:Fake
+  rdf:type owl:Class ;
+  rdfs:label "Fake"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "Fake."^^xsd:string ;
+.
+:label
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain :Fake ;
+  rdfs:label "Label"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "A label"^^xsd:string ;
+.

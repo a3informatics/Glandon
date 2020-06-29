@@ -1,4 +1,4 @@
-class CreateAdHocReports < ActiveRecord::Migration
+class CreateAdHocReports < ActiveRecord::Migration[4.2]
   def change
     create_table :ad_hoc_reports do |t|
       t.string :label

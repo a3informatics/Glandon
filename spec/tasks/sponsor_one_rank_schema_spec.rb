@@ -28,6 +28,10 @@ describe 'sponsor one rank schema migration' do
       @rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
     end
 
+    def expected_triple_count
+      1599
+    end
+
     def check_triple(triples, predicate, value)
       expect(triples.find{|x| x[:p] == predicate.to_s}[:o]).to eq(value)
     end
@@ -92,7 +96,7 @@ describe 'sponsor one rank schema migration' do
       rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/Thesaurus#Subset"))
@@ -121,7 +125,7 @@ describe 'sponsor one rank schema migration' do
       rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -139,7 +143,7 @@ describe 'sponsor one rank schema migration' do
       # Definitions, check triple store count
       expected = 28 # Number of extra triples
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -157,7 +161,7 @@ describe 'sponsor one rank schema migration' do
 
     it 'add rank schema, success checks fail I' do
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
@@ -169,7 +173,7 @@ describe 'sponsor one rank schema migration' do
 
     it 'add rank schema, success checks fail II' do
       base = triple_store.triple_count
-      expect(base).to eq(1584)
+      expect(base).to eq(expected_triple_count)
 
       # Old triples check
       check_old
