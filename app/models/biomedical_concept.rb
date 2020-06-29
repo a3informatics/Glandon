@@ -19,6 +19,8 @@ class BiomedicalConcept < IsoManagedV2
                 property[:has_coded_value].each do |coded_value|
                   tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
                   coded_value[:reference] = tc.reference.to_h
+                  parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
+                  coded_value[:context] = {id:parent.id, uri:parent.uri.to_s, identifier:parent.has_identifier.identifier, notation:parent.notation, semantic_version:parent.has_identifier.semantic_version}
                 end
             end
             results << {uri: item.uri.to_s, id: item.id, label: item.label, mandatory:item.mandatory, collect:item.collect, enabled:item.enabled, ordinal:item.ordinal, has_complex_datatype: {label: cdt.label, has_property: property}} 
