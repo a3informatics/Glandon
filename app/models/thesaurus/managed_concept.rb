@@ -398,9 +398,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def add_referenced_children(ids)
     return unless check_for_standard?
     transaction = transaction_begin
-    ids.each do |x| 
-      add_link(:narrower, Uri.new(id: x))
-      add_link(:refers_to, Uri.new(id: x))
+    uris = ids.map{|x| Uri.new(id: x)}
+    uris.each do |uri| 
+      add_link(:narrower, uri)
+      add_link(:refers_to, uri)
     end
     set_ranks(uris, self) if self.ranked?
     transaction_execute
@@ -828,7 +829,7 @@ private
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
-    parts << "{ #{self.uri.to_ref} th:refersTo ?s . }}"
+    parts << "{ #{self.uri.to_ref} th:refersTo ?s . }"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} .

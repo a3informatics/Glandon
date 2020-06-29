@@ -245,7 +245,26 @@
 :extends: 
 :subsets: 
 :refers_to:
-  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjU1Mjk=
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjUzMDE=
+  :uri: http://www.cdisc.org/C66781/V4#C66781_C25301
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Day
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C25301
+  :notation: DAYS
+  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
+    divided into twenty-four hours.  This also refers to a specific day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
+    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Day
+    :tagged: []
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9DMjU1Mjk=
   :uri: http://www.cdisc.org/C66781/V4#C66781_C25529
   :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
   :label: Hour
