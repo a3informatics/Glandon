@@ -7,7 +7,7 @@
   :extensible: false
   :definition: The definition.
   :delete: true
-  :single_parent: true
+  :referenced: true
   :uri: http://www.acme-pharma.com/C99079E/V1#C99079E_A00021
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk5MDc5RS9WMSNDOTkwNzlFX0EwMDAyMQ==
   :rank: ''
@@ -23,7 +23,7 @@
   :extensible: false
   :definition: The definition.
   :delete: true
-  :single_parent: true
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V31#C99079_A00021
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQTAwMDIx
   :rank: ''
@@ -39,7 +39,7 @@
   :extensible: false
   :definition: The definition2.
   :delete: true
-  :single_parent: true
+  :referenced: true
   :uri: http://www.acme-pharma.com/C99079E/V1#C99079E_A00022
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk5MDc5RS9WMSNDOTkwNzlFX0EwMDAyMg==
   :rank: ''
@@ -56,7 +56,7 @@
   :definition: A period in a clinical study during which subjects receive blinded
     therapeutic treatment.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V31#C99079_C102255
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1NQ==
   :rank: ''
@@ -73,7 +73,7 @@
   :definition: A period in a clinical study during which subjects receive open label
     therapeutic treatment.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V31#C99079_C102256
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YzMSNDOTkwNzlfQzEwMjI1Ng==
   :rank: ''
@@ -91,7 +91,7 @@
     example: virus, therapeutic serum, toxin, antitoxin, vaccine, blood, blood component
     or derivative, allergenic product, or analogous product.'
   :delete: true
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99078/V28#C99078_C307
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc4L1YyOCNDOTkwNzhfQzMwNw==
   :rank: ''
@@ -109,7 +109,7 @@
     off of a study drug or other medication in order to eliminate the effects of the
     treatment.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V28#C99079_C42872
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQyODcy
   :rank: ''
@@ -126,7 +126,7 @@
   :definition: A period in a clinical study during which subjects are evaluated for
     participation in the study.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V28#C99079_C48262
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQ4MjYy
   :rank: ''
@@ -143,7 +143,7 @@
   :definition: A period in a clinical study during which subjects receive therapeutic
     treatment.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V28#C99079_C49236
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzQ5MjM2
   :rank: ''
@@ -162,7 +162,7 @@
     for suitability in the clinical study, withdrawn from existing therapy, trained
     in study methodology or evaluated for any other protocol-specified reason.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V28#C99079_C98779
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzk4Nzc5
   :rank: ''
@@ -180,7 +180,7 @@
     status of an individual is obtained after study procedures and treatments have
     concluded.
   :delete: false
-  :single_parent: false
+  :referenced: true
   :uri: http://www.cdisc.org/C99079/V28#C99079_C99158
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzlfQzk5MTU4
   :rank: ''
