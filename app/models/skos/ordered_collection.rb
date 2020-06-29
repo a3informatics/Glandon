@@ -243,13 +243,14 @@ module SKOS::OrderedCollection
       member.uri = member.create_uri(mc.uri)
       subset_members << member
       member.to_sparql(sparql)
-      sparql.add({uri: mc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "narrower"}, {uri: member.item})
+      sparql.add({uri: mc.uri}, {prefix: :th, fragment: "narrower"}, {uri: member.item})
     end
     last_sm = self.last
     subset_members[0..-2].each_with_index do |sm, index|
-      sparql.add({uri: subset_members[index].uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members[index+1].uri})
+      sparql.add({uri: subset_members[index].uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members[index+1].uri})
+      sparql.add({uri: subset_members[index].uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members[index+1].uri})
     end
-    last_sm.nil? ? sparql.add({uri: self.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:th), fragment: "memberNext"}, {uri: subset_members.first.uri})
+    last_sm.nil? ? sparql.add({uri: self.uri}, {prefix: :th, fragment: "members"}, {uri: subset_members.first.uri}) : sparql.add({uri: last_sm.uri}, {prefix: :th, fragment: "memberNext"}, {uri: subset_members.first.uri})
     set_ranks(arr, mc) if mc.ranked?
     #filename = sparql.to_file
     sparql.create
@@ -272,7 +273,8 @@ module SKOS::OrderedCollection
         UNION
         { 
           #{self.uri.to_ref} (^th:isOrdered) ?s .
-          ?s th:narrower ?o
+          ?s th:narrower ?o .
+          ?s th:refersTo ?o .
           BIND ( th:narrower as ?p ) .
         } 
       }

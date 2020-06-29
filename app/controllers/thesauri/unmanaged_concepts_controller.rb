@@ -83,30 +83,6 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     end
   end
 
-  # Will be required for Hierarchical terminologies
-  # def children
-  #   authorize Thesaurus, :edit?
-  #   results = []
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
-  #   thesaurus_concept.children.each do |child|
-  #     results << child.to_json
-  #   end
-  #   render :json => { data: results }, :status => 200
-  # end
-
-  # Will be required for Hierarchical terminologies
-  # def add_child
-  #   authorize ThesaurusConcept, :create?
-  #   parent_thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(parent_thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept = parent_thesaurus_concept.add_child(the_params)
-  #     audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   else
-  #     render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-  #   end
-  # end
 
   def destroy
     authorize Thesaurus

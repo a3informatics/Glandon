@@ -15,6 +15,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
   object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :refers_to, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
@@ -378,26 +379,29 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     results
   end
 
-  # Add Extensions
-  #
-  # @param uris [Array] set of uris of the items to be added
-  # @return [Void] no return
-  def add_extensions(uris)
-    transaction = transaction_begin
-    uris.each {|x| add_link(:narrower, x)}
-    set_ranks(uris, self) if self.ranked?
-    transaction_execute
-  end
+  # See Add Referenced Children below. Doing the same thing.
+  # # Add Extensions
+  # #
+  # # @param uris [Array] set of uris of the items to be added
+  # # @return [Void] no return
+  # def add_extensions(uris)
+  #   transaction = transaction_begin
+  #   uris.each {|x| add_link(:narrower, x)}
+  #   set_ranks(uris, self) if self.ranked?
+  #   transaction_execute
+  # end
 
-  # Add Children. Add children to a code list
+  # Add Referenced Children. Add children to a code list that are referenced from other code lists.
   #
-  # @params [Hash] params the params hash
-  # @option params [String] :set_ids the set of ids to be actioned
+  # @params [Array] ids the set of ids to be actioned
   # @return [Void] no return. Errors in the error object.
-  def add_children(params)
+  def add_referenced_children(ids)
     return unless check_for_standard?
     transaction = transaction_begin
-    params[:set_ids].each {|x| add_link(:narrower, Uri.new(id: x))}
+    ids.each do |x| 
+      add_link(:narrower, Uri.new(id: x))
+      add_link(:refers_to, Uri.new(id: x))
+    end
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
@@ -417,20 +421,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object
   def clone
-    # self.narrower_links
-    # self.preferred_term_links
-    # self.synonym_links
-    # if self.subset?
-    #   self.is_ordered_objects
-    #   self.is_ordered = self.is_ordered.clone
-    #   self.subsets_links
-    # elsif self.extension?
-    #   self.extends_links
-    # end
-    # if self.ranked?
-    #   self.is_ranked_objects
-    #   self.is_ranked = self.is_ranked.clone
-    # end
     prepare_for_clone_links
     prepare_for_clone_subset
     prepare_for_clone_extension
@@ -566,15 +556,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
-  # def valid_collection?
-  #   notations = self.narrower.map{|x| x.notations}
-  #   notations.uniq.length == notations.length
-  # end
-
+  # Create Extension. Create an extension based on this managed concept.
+  #
+  # @return [Thesaurus::ManagedConcept] the new subset
   def create_extension
     source = Thesaurus::ManagedConcept.find_full(self.id)
     source.narrower_links
     object = source.clone
+    object.refers_to = source.narrower
     object.identifier = "#{source.scoped_identifier}E"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
@@ -583,7 +572,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object
   end
 
-  # Create Subset
+  # Create Subset. Note no children are added at this stage.
   #
   # @return [Thesaurus::ManagedConcept] the new subset
   def create_subset
@@ -787,6 +776,7 @@ private
   # Make sure links are populated
   def prepare_for_clone_links
     self.narrower_links
+    self.refers_to_links
     self.preferred_term_links
     self.synonym_links
   end
@@ -838,6 +828,7 @@ private
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
+    parts << "{ #{self.uri.to_ref} th:refersTo ?s . }}"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} .

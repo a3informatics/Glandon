@@ -854,7 +854,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.preferred_term.label).to eq("Woah!")
     end
 
-    it "add and delete extensions" do
+    it "add and delete children to an extension" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       tc_1 = Thesaurus::ManagedConcept.from_h({
@@ -881,18 +881,12 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc.add_referenced_children([tc_1.uri, tc_2.uri])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_extensions([tc_3.uri])
+      tc.add_referenced_children([tc_3.uri])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
-      # tc.delete_extensions([tc_3.uri, tc_2.uri])
-      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      # expect(tc.narrower.count).to eq(3)
-      # tc.delete_extensions([tc_1.uri])
-      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      # expect(tc.narrower.count).to eq(2)
     end
 
   end
@@ -2021,7 +2015,7 @@ describe "Thesaurus::ManagedConcept" do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_children({set_ids: [uc_1.uri.to_id]})
+      mc.add_referenced_children({set_ids: [uc_1.uri.to_id]})
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(9)
@@ -2034,7 +2028,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(10)
@@ -2048,7 +2042,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
@@ -2060,7 +2054,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is an extension.")

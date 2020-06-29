@@ -194,7 +194,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     token = Token.find_token(tc, current_user)
     if !token.nil?
-      tc.add_children(children_params)
+      tc.add_referenced_children(children_params[:set_ids])
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
         render :json => {data: "" }, :status => 200
@@ -426,15 +426,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    errors = []
-    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
     if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
       token = Token.find_token(tc, current_user)
       if !token.nil?
-        tc.add_extensions(uris)
+        tc.add_referenced_children(the_params[:extension_ids])
         AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
-        render json: {data: {}, error: errors}
+        render json: {data: {}, errors: []}
       else
         render :json => {:errors => [token_timeout_message]}, :status => 422
       end

@@ -68,6 +68,7 @@ class Thesaurus
       object = self.create_next_version
       object.extends = new_reference
       object.narrower = extension_children(new_reference)
+      object.refers_to = new_reference.narrower_links
       object.save
       object
     end

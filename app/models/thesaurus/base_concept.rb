@@ -67,7 +67,7 @@ class Thesaurus
       self.preferred_term_objects
     end
 
-    # Add a child concept
+    # Add Child. Add a single child concept. This concept will be "owned" by the parent.
     #
     # @params params [Hash] the params hash containing the concept data {:notation. :preferredTerm, :synonym, :definition, :identifier}
     # @return [Thesaurus::UnmanagedConcept] the object created. Errors set if create failed.
@@ -85,7 +85,7 @@ class Thesaurus
       child
     end
 
-    # Add a child concept based on
+    # Add Children Based On. Create "owned" child concepts based on exisiting synonyms
     #
     # @params params [Object] the object on which the children are based 
     # @return [Thesaurus::UnmanagedConcept] the children created
@@ -152,7 +152,7 @@ class Thesaurus
               OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
               OPTIONAL {?s ^(th:item) ?rank_member . #{self.uri.to_ref} th:isRanked/th:members/th:memberNext* ?rank_member . ?rank_member th:rank ?rank }
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
+              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} && NOT EXISTS {?s ^th:referencedFrom ?r} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}

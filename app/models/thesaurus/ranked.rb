@@ -1,4 +1,4 @@
-# Managed Concepts Ranked
+# Managed Concepts Ranked. Handling for a Managed Concept that is ranked.
 #
 # @author Dave Iberson-Hurst
 # @since 2.40.0
