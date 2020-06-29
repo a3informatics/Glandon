@@ -1,74 +1,15 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSQ==
-:uri: http://www.acme-pharma.com/HEIGHT/V1#BCI
-:rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
-:label: Height
-:tagged: []
-:has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9SUw==
-  :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_RS
-  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-  :registration_status: Incomplete
-  :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00+00:00'
-  :until_date: '2016-01-01T00:00:00+00:00'
-  :unresolved_issue: ''
-  :administrative_status: ''
-  :previous_state: Incomplete
-  :multiple_edit: false
-  :by_authority:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
-    :uri: http://www.assero.co.uk/RA#DUNS123456789
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: '123456789'
-    :international_code_designator: DUNS
-    :owner: true
-    :ra_namespace:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
-      :uri: http://www.assero.co.uk/NS#SCUBED
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: S-cubed
-      :name: S-cubed Aps
-      :authority: www.s-cubed.dk
-:has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9TSQ==
-  :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_SI
-  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: HEIGHT
-  :version_label: ''
-  :version: 1
-  :semantic_version: 0.1.0
-  :has_scope:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-    :uri: http://www.assero.co.uk/NS#ACME
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: ACME
-    :name: ACME Pharma
-    :authority: www.acme-pharma.com
-:origin: ''
-:change_description: ''
-:creation_date: '2016-01-01T00:00:00+00:00'
-:last_change_date: '2020-03-25T15:39:35+01:00'
-:explanatory_comment: ''
-:has_item:
-- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMA==
-  :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10
-  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+- :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMA==
   :label: Result
-  :tagged: []
   :mandatory: true
   :collect: true
   :enabled: true
   :ordinal: 10
   :has_complex_datatype:
-  - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUg==
-    :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR
-    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
     :label: PQR
-    :tagged: []
-    :based_on: http://www.assero.co.uk/CDT#PQR
     :has_property:
-    - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1B2YWx1ZQ==
+      :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1B2YWx1ZQ==
       :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: value
@@ -78,7 +19,17 @@
       :format: '5.2'
       :has_coded_value: []
       :is_a: http://www.acme-pharma.com/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue
-    - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2Rl
+- :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMA==
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
+      :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2Rl
       :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
@@ -195,43 +146,3 @@
         :context: http://www.cdisc.org/CT/V62#TH
         :local_label: ''
       :is_a: http://www.acme-pharma.com/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode
-:identified_by:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kx
-  :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI1
-  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
-  :label: Test
-  :tagged: []
-  :mandatory: true
-  :collect: true
-  :enabled: true
-  :ordinal: 1
-  :has_complex_datatype:
-  - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxX0JDQ0RUQ0Q=
-    :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI1_BCCDTCD
-    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
-    :label: CD
-    :tagged: []
-    :based_on: http://www.assero.co.uk/CDT#CD
-    :has_property:
-    - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxX0JDQ0RUQ0RfQkNQY29kZQ==
-      :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :tagged: []
-      :question_text: ''
-      :prompt_text: ''
-      :format: '8'
-      :has_coded_value:
-      - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxX0JDQ0RUQ0RfQkNQY29kZV9UVUMx
-        :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :tagged: []
-        :enabled: true
-        :optional: true
-        :ordinal: 1
-        :reference: http://www.cdisc.org/C66741/V4#C66741_C25347
-        :context: http://www.cdisc.org/CT/V62#TH
-        :local_label: ''
-      :is_a: http://www.acme-pharma.com/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode
-:based_on: http://www.acme-pharma.com/BASIC_OBS/V1#BCT
