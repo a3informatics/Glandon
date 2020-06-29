@@ -8,23 +8,6 @@ class BiomedicalConceptsController < ApplicationController
 
   before_action :authenticate_user!
 
-  # def editable
-  #   authorize BiomedicalConcept, :index?
-  #   results = {:data => []}
-  #   bcs = BiomedicalConcept.unique
-  #   bcs.each do |bc|
-  #     history = BiomedicalConcept.history({identifier: bc[:identifier], scope: IsoNamespace.find(bc[:scope_id])})
-  #     if history.length > 0
-  #       results[:data] << history[0].to_json if history[0].edit?
-  #     end
-  #   end
-  #   respond_to do |format|
-  #     format.json do
-  #       render json: results
-  #     end
-  #   end
-  # end
-
   def index
     authorize BiomedicalConcept
     @bcs = BiomedicalConceptInstance.unique
@@ -36,18 +19,6 @@ class BiomedicalConceptsController < ApplicationController
       format.html 
     end
   end
-
-  # def list
-  #   authorize BiomedicalConcept
-  #   @bcs = BiomedicalConcept.list
-  #   respond_to do |format|
-  #     format.json do
-  #       results = {:data => []}
-  #       @bcs.each { |x| results[:data] << x.to_json }
-  #       render json: results
-  #     end
-  #   end
-  # end
 
   def history
     authorize BiomedicalConcept
@@ -68,6 +39,56 @@ class BiomedicalConceptsController < ApplicationController
       end
     end
   end
+
+  def show
+    authorize BiomedicalConcept
+    @bc = BiomedicalConceptInstance.find_minimum(params[:id])
+    respond_to do |format|
+      format.html do
+        @show_path = path_for(:show, @bc)
+        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
+      end
+      format.json do
+        items = @bc.get_properties(true)
+        items = items.each do |x|
+          x[:has_complex_datatype][:has_property][:has_coded_value].each do |cv|
+            cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
+          end
+        end
+        render json: {data: items }, status: 200
+      end
+    end
+  end
+
+  # def editable
+  #   authorize BiomedicalConcept, :index?
+  #   results = {:data => []}
+  #   bcs = BiomedicalConcept.unique
+  #   bcs.each do |bc|
+  #     history = BiomedicalConcept.history({identifier: bc[:identifier], scope: IsoNamespace.find(bc[:scope_id])})
+  #     if history.length > 0
+  #       results[:data] << history[0].to_json if history[0].edit?
+  #     end
+  #   end
+  #   respond_to do |format|
+  #     format.json do
+  #       render json: results
+  #     end
+  #   end
+  # end
+
+
+  # def list
+  #   authorize BiomedicalConcept
+  #   @bcs = BiomedicalConcept.list
+  #   respond_to do |format|
+  #     format.json do
+  #       results = {:data => []}
+  #       @bcs.each { |x| results[:data] << x.to_json }
+  #       render json: results
+  #     end
+  #   end
+  # end
 
   # def new
   #   authorize BiomedicalConcept, :new?
@@ -177,22 +198,6 @@ class BiomedicalConceptsController < ApplicationController
   #   end
   #   redirect_to request.referer
   # end
-
-
-  def show
-    authorize BiomedicalConcept
-    @bc = BiomedicalConceptInstance.find_minimum(params[:id])
-    respond_to do |format|
-      format.html do
-        @show_path = path_for(:show, @bc)
-        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
-      end
-      format.json do
-        items = @bc.get_properties(true)
-        render json: {data: items }, status: 200
-      end
-    end
-  end
 
   # def show_references
   #   authorize BiomedicalConcept
