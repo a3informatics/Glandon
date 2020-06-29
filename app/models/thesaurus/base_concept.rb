@@ -152,7 +152,7 @@ class Thesaurus
               OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
               OPTIONAL {?s ^(th:item) ?rank_member . #{self.uri.to_ref} th:isRanked/th:members/th:memberNext* ?rank_member . ?rank_member th:rank ?rank }
               BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
-              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} && NOT EXISTS {?s ^th:referencedFrom ?r} as ?sp)
+              BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
               OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
               OPTIONAL {?s th:synonym/isoC:label ?sy .}
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
@@ -160,6 +160,7 @@ class Thesaurus
           } ORDER BY ?i ?sy ?t
         } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i
       }
+# BIND(NOT EXISTS {#{self.uri.to_ref} th:refersTo ?s} as ?sp)
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :ba])
       query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt, :rank]).each do |x|
         indicators = {annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}

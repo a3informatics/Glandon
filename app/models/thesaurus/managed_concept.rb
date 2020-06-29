@@ -391,12 +391,13 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #   transaction_execute
   # end
 
-  # Add Referenced Children. Add children to a code list that are referenced from other code lists.
+  # Add Referenced Children. Add children to a code list that are referenced from other code lists. 
+  #   Only allow for standard or extension codelists. Subsets use other methods?
   #
   # @params [Array] ids the set of ids to be actioned
   # @return [Void] no return. Errors in the error object.
   def add_referenced_children(ids)
-    return unless check_for_standard?
+    return unless check_for_standard_or_extension?
     transaction = transaction_begin
     uris = ids.map{|x| Uri.new(id: x)}
     uris.each do |uri| 
@@ -771,6 +772,13 @@ private
     return true if standard?
     self.errors.add(:base, "Code list is an extension.") if self.extension?
     self.errors.add(:base, "Code list is a subset.") if self.subset?
+    false
+  end
+
+  # Checks for standard and sets error if not.
+  def check_for_standard_or_extension?
+    return true unless subset?
+    self.errors.add(:base, "Code list is a subset.")
     false
   end
 
