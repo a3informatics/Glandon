@@ -19,7 +19,7 @@ function dtCLEditColumns() {
       render: (data, type, r, m) => {
         // const editingDisabled = _.isEmpty(r.edit_path);
         // editIconInline({ disabled: editingDisabled })
-        const actionIcons = removeIconInline({ ttip: true, ttipText: "Remove item" });
+        const actionIcons = removeIconInline({ ttip: true, ttipText: "Remove / unlink item" });
 
         return type === 'display' ? actionIcons : '';
       }
