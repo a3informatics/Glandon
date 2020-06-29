@@ -43,7 +43,7 @@ export default class CLEditor extends EditablePanel {
     $post({
       url: this.newChildUrl,
       data: { "managed_concept": { identifier: "SERVERIDENTIFIER" } },
-      done: (data) => this.addItems(data),
+      done: (data) => this.refresh(),
       always: () => this._loading(false)
     });
   }
@@ -120,10 +120,19 @@ export default class CLEditor extends EditablePanel {
         this._formatUpdateData(d);
     });
 
+    // Edit tags
+    $(this.selector).on('click', 'tbody td.editable.edit-tags', (e) => {
+      const editTagsUrl = this._getRowData(e.target).edit_tags_path;
+      if (editTagsUrl)
+        window.open(editTagsUrl, '_blank').focus();
+    })
+
     // Add New Child
     $('#new-item-button').on('click', () => this.newChild());
     // Add Existing Child
     $('#add-existing-button').on('click', () => this.itemSelector.show());
+    // Refresh
+    $('#refresh-button').on('click', () => this.refresh());
     // Remove item
     $(this.selector).on('click', 'tbody .remove', (e) => this.removeChild(this._getRow(e.target)));
     // Help dialog

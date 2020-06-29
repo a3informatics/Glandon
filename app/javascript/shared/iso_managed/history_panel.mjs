@@ -138,7 +138,7 @@ export default class HistoryPanel extends TablePanel {
       { url: data.list_cn_path, icon: "icon-note", text: "List Change notes", endOffset: 1, types: ["managed_concept"] },
       { url: data.current_path, icon: "icon-current", text: "Make current", disabled: (data.indicators.current), endOffset: 2, types: ["all"] },
       { url: data.clone_path, target: "#newTerminologyModal", icon: "icon-copy", text: "Clone", endOffset: 2, types: ["thesauri"], dataToggle: "modal" },
-      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri"] }
+      { url: data.compare_path, target: "#", icon: "icon-compare", text: "Compare", dataToggle: "modal", endOffset: 2, types: ["thesauri", "cdisc_term"] }
     ]
   }
 
@@ -151,7 +151,6 @@ export default class HistoryPanel extends TablePanel {
   _addMenuItems(menuItems, newItems = []) {
     for (const item of newItems) {
       const offset = item.endOffset != null ? menuItems.length - item.endOffset : menuItems.length;
-
       if(this._isItemValid(item))
         menuItems.splice(offset, 0, item);
     }
@@ -208,7 +207,7 @@ export default class HistoryPanel extends TablePanel {
    * Initialize a new ItemsSelector
    */
   _initItemSelector() {
-    let requiredIn = ["thesauri"];
+    let requiredIn = ["thesauri", "cdisc_term"];
 
     if(requiredIn.includes(this.param))
       this.itemSelector = new ItemsSelector({
