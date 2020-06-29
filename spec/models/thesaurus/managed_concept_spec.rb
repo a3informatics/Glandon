@@ -229,9 +229,9 @@ describe "Thesaurus::ManagedConcept" do
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(0)
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml", write_file: true)
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml", write_file: true)
     end
 
     it "allows a new child TC to be added, error" do
@@ -257,7 +257,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(children.first.errors.full_messages.to_sentence).to eq("Notation duplicate detected 'T5'")
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml", write_file: true)
       # tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
       # check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml")
     end
@@ -270,9 +270,9 @@ describe "Thesaurus::ManagedConcept" do
       expect(children.first.errors.count).to eq(0)
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_5.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_5.yaml", write_file: true)
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_6.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_6.yaml", write_file: true)
     end
 
     it "prevents a duplicate TC being added" do
@@ -401,13 +401,13 @@ describe "Thesaurus::ManagedConcept" do
 
     it "allows the object to be exported as Hash" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "to_hash_expected.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "to_hash_expected.yaml", write_file: true)
     end
 
     it "allows a TC to be created from Hash" do
       input = read_yaml_file(sub_dir, "from_hash_input.yaml")
       tc = Thesaurus::ManagedConcept.from_h(input)
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml", write_file: true)
     end
 
     it "allows a TC to be exported as SPARQL" do
@@ -881,10 +881,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_referenced_children([tc_1.uri, tc_2.uri])
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_referenced_children([tc_3.uri])
+      tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
     end
@@ -981,7 +981,7 @@ describe "Thesaurus::ManagedConcept" do
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml")
       ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
-      item.add_extensions([ext.uri])
+      item.add_referenced_children([ext.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
     end
@@ -1013,12 +1013,12 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml", write_file: true)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
       ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
-      item.add_extensions([ext.uri, ext2.uri])
+      item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", write_file: true)
     end
 
     it "normal, CI CN Indicators" do
@@ -1625,10 +1625,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_extensions([tc_3.uri])
+      tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
@@ -1762,27 +1762,27 @@ describe "Thesaurus::ManagedConcept" do
     it "clone thesaurus concept I" do
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = tc.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "clone thesaurus concept II" do
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768"))
       actual = tc.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", write_file: true)
     end
 
     it "create next thesaurus concept" do
       thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = thesaurus.create_next_version
       check_dates(actual, sub_dir, "next_version_expected_1.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml", equate_method: :hash_equal, write_file: true)
       actual = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
       check_dates(actual, sub_dir, "next_version_expected_1b.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
       actual = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
       actual.preferred_term_objects
       check_dates(actual, sub_dir, "next_version_expected_1c.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -1802,10 +1802,10 @@ describe "Thesaurus::ManagedConcept" do
     it "clone subset" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
       actual = tc.clone
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1a.yaml")
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1a.yaml", write_file: true)
       actual = tc.create_next_version
       check_dates(actual, sub_dir, "clone_subset_expected_1b.yaml", :creation_date, :last_change_date)
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1b.yaml")
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1b.yaml", write_file: true)
     end
 
   end
@@ -1825,10 +1825,10 @@ describe "Thesaurus::ManagedConcept" do
     it "clone extension" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = tc.clone
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1a.yaml")
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1a.yaml", write_file: true)
       actual = tc.create_next_version
       #check_dates(actual, sub_dir, "clone_extension_expected_1b.yaml", :last_change_date)
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml")
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml", write_file: true)
     end
 
   end
@@ -1848,10 +1848,10 @@ describe "Thesaurus::ManagedConcept" do
       ranked = tc.add_rank
       new_tc = Thesaurus::ManagedConcept.find_minimum(tc.uri)
       actual = new_tc.clone
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1a.yaml", equate_method: hash_equal, write_file: true)
       actual = new_tc.create_next_version
       check_dates(actual, sub_dir, "clone_ranked_expected_1b.yaml", :creation_date, :last_change_date)
-      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_ranked_expected_1b.yaml", equate_method: hash_equal, write_file: true)
     end
 
   end
@@ -1957,7 +1957,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "finds full based on read paths" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V18#C66767"))
-      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
@@ -2015,12 +2015,12 @@ describe "Thesaurus::ManagedConcept" do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children({set_ids: [uc_1.uri.to_id]})
+      mc.add_referenced_children([uc_1.uri.to_id])
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(9)
-      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add children, multiple" do
@@ -2028,12 +2028,12 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
       expect(mc.errors.empty?).to eq(true)
       mc = Thesaurus::ManagedConcept.find_full(mc.uri)
       expect(mc.narrower.count).to eq(10)
-      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "add children, fails, subset" do
@@ -2042,7 +2042,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
@@ -2054,7 +2054,7 @@ describe "Thesaurus::ManagedConcept" do
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
-      mc.add_referenced_children({set_ids: [uc_1.uri.to_id, uc_2.uri.to_id]})
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
       expect(mc.errors.empty?).to eq(false)
       expect(mc.narrower_links.count).to eq(8)
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is an extension.")
