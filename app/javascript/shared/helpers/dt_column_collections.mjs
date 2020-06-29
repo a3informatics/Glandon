@@ -33,14 +33,14 @@ function dtCLEditColumns() {
  */
 function dtBCShowColumns() {
   return [
-    { data: "label" },
-    { data: "has_property.question_text" },
-    { data: "has_property.prompt_text" },
+    { data: "has_complex_datatype.has_property.label" },
+    { data: "has_complex_datatype.has_property.question_text" },
+    { data: "has_complex_datatype.has_property.prompt_text" },
     dtTrueFalseColumn("enabled"),
     dtTrueFalseColumn("collect"),
-    { data: "has_complex_datatype" },
-    { data: "has_property.format" },
-    { data: "coded_value" }
+    { data: "has_complex_datatype.label" },
+    { data: "has_complex_datatype.has_property.format" },
+    { data: "has_complex_datatype.has_property.has_coded_value.[].reference.identifier" }
   ];
 };
 
