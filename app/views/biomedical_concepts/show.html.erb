@@ -3,7 +3,6 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'biomedical_concepts/show' %>
 <%= javascript_tag "let showDataUrl = '#{biomedical_concept_path(@bc)}';" %>
-<%= javascript_tag "let showDataRefUrl = '#{biomedical_concept_path(@bc)}';" %>
 
 <% third_level_breadcrumb(:biomedical_concepts, @bc, @close_path) %>
 
@@ -20,7 +19,7 @@
       <div class="card-header">
         Show Biomedical Concept
       </div>
-      <div class="card-content table-cardstyle">
+      <div class="card-content table-cardstyle all-columns">
         <table id="show" class="table">
           <thead>
             <tr>
@@ -37,9 +36,6 @@
         </table>
       </div>
     </div>
-  </div>
-
-
-  
+  </div> 
 
 </div>
