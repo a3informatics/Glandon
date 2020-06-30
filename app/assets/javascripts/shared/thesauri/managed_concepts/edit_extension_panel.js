@@ -391,7 +391,7 @@ EditExtensionPanel.prototype.columns = function () {
       return (data == null ? data : colorCodeTagsBadge(data));
     }},
     {"render" : function (data, type, row, meta) {
-      return (row.single_parent ? this.editBtnHTML(row) : "");
+      return (row.referenced ? "" : this.editBtnHTML(row));
     }.bind(this)},
     {"render" : function (data, type, row, meta) {
       return (row.delete ? this.excludeBtnHTML(row) : "");

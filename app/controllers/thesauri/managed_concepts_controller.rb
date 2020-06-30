@@ -162,7 +162,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
-      edit_tags_path = c[:single_parent] ? edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id}) : ""
+      edit_tags_path = c[:referenced] ? "" : edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id})
       results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
     end
     render :json => { data: results }, :status => 200
