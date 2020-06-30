@@ -793,6 +793,24 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(new_tc.notation).to eq("T5")
     end
 
+    it "update multiple parent, draft situation" do
+      parent_1 = Thesaurus::ManagedConcept.create
+      parent_2 = Thesaurus::ManagedConcept.create
+      params = Thesaurus::UnmanagedConcept.empty_concept
+      params[:identifier] = "XXX"
+      child_1 = Thesaurus::UnmanagedConcept.create(params, parent_1)
+      parent_1.add_link(:narrower, child_1.uri)
+      parent_2.add_link(:narrower, child_1.uri)
+      parent_2.add_link(:refers_to, child_1.uri)
+      child_2 = child_1.update_with_clone({label: "New Airport", definition: "A new definition"}, parent_1)
+      expect(child_2.errors.count).to eq(0)
+      child_3 = Thesaurus::UnmanagedConcept.find(child_2.uri)
+      expect(child_3.uri).to eq(child_1.uri)
+      expect(child_3.label).to eq("New Airport")
+      expect(child_3.definition).to eq("A new definition")
+      expect(child_3.notation).to eq(child_1.notation)
+    end
+
     it "delete single parent" do
       uri_check_set =
       [
