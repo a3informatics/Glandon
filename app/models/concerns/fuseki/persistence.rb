@@ -164,14 +164,15 @@ module Fuseki
         query_results.by_object(:t).first
       end
 
-      # Same Type. A set of URIs are of the same type
+      # Same Type. A set of URIs or Ids are of the same type
       # 
-      # @params [Array] uris the set of uris
+      # @params [Array] ids the set of uris or ids
       # @params [Uri] rdf_type the RDF type to be checked against
       # @raise [Errors::ApplicationLogicError] raised if no types found
       # @return [Boolean] true if all of the specified type
-      def same_type(uris, rdf_type)
-        results = []
+      def same_type(ids, rdf_type)
+        Errors.application_error(self.class.name, __method__.to_s, "Empty array of Ids or URIs supplied.") if ids.empty?
+        uris = ids.first.is_a?(Uri) ? ids : ids.map{|x| Uri.new(id: x)}
         query_string = "SELECT ?t WHERE { VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} } . ?s rdf:type ?t }"
         query_results = Sparql::Query.new.query(query_string, "", [])
         Errors.application_error(self.class.name, __method__.to_s, "Unable to find the RDF type for the set of URIs.") if query_results.empty?

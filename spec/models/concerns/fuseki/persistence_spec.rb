@@ -125,8 +125,11 @@ describe Fuseki::Persistence do
       uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       expect(Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)).to eq(true)
       expect(Fuseki::Base.same_type([uri_1, uri_2], IsoNamespace.rdf_type)).to eq(false)
+      expect(Fuseki::Base.same_type([uri_1.to_id, uri_1.to_id], IsoNamespace.rdf_type)).to eq(true)
+      expect(Fuseki::Base.same_type([uri_1.to_id, uri_2.to_id], IsoNamespace.rdf_type)).to eq(false)
       expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
       expect{Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)}.to raise_error(Errors::ApplicationLogicError, "Unable to find the RDF type for the set of URIs.")
+      expect{Fuseki::Base.same_type([], IsoNamespace.rdf_type)}.to raise_error(Errors::ApplicationLogicError, "Empty array of Ids or URIs supplied.")
     end
 
     it "generates selective update sparql" do
