@@ -53,6 +53,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     delete_rank_member(self, parent_object) if parent_object.ranked?
     if multiple_parents?
       parent_object.delete_link(:narrower, self.uri)
+      parent_object.delete_link(:refers_to, self.uri)
       1
     else
       self.delete_with_links
@@ -72,6 +73,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
       transaction_begin
       object.update(params)
       parent_object.replace_link(:narrower, self.uri, object.uri)
+      parent_object.replace_link(:refers_to, self.uri, object.uri)
       transaction_execute
       object
     else

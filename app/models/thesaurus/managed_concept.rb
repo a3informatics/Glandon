@@ -16,6 +16,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :paired_with, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :refers_to, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
@@ -302,7 +303,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
   # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
-  def differences_summary (last, actual_versions)
+  def differences_summary(last, actual_versions)
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{
@@ -380,26 +381,34 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     results
   end
 
-  # Add Extensions
+  # See Add Referenced Children below. Doing the same thing.
+  # # Add Extensions
+  # #
+  # # @param uris [Array] set of uris of the items to be added
+  # # @return [Void] no return
+  # def add_extensions(uris)
+  #   transaction = transaction_begin
+  #   uris.each {|x| add_link(:narrower, x)}
+  #   set_ranks(uris, self) if self.ranked?
+  #   transaction_execute
+  # end
+
+  # Add Referenced Children. Add children to a code list that are referenced from other code lists. 
+  #   Only allow for standard or extension codelists. Subsets use other methods?
   #
-  # @param uris [Array] set of uris of the items to be added
-  # @return [Void] no return
-  def add_extensions(uris)
+  # @params [Array] ids the set of ids to be actioned
+  # @return [Void] no return. Errors in the error object.
+  def add_referenced_children(ids)
+    return unless check_for_standard_or_extension?
     transaction = transaction_begin
-    uris.each {|x| add_link(:narrower, x)}
+    uris = ids.map{|x| Uri.new(id: x)}
+    uris.each do |uri| 
+      add_link(:narrower, uri)
+      add_link(:refers_to, uri)
+    end
     set_ranks(uris, self) if self.ranked?
     transaction_execute
   end
-
-  # Delete Extensions
-  #
-  # @param uris [Array] set of uris of the items to be deleted
-  # @return [Void] no return
-  # def delete_extensions(uris)
-  #   transaction = transaction_begin
-  #   uris.each {|x| delete_link(:narrower, x)}
-  #   transaction_execute
-  # end
 
   # Create. Create a managed concept
   #
@@ -416,20 +425,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object
   def clone
-    # self.narrower_links
-    # self.preferred_term_links
-    # self.synonym_links
-    # if self.subset?
-    #   self.is_ordered_objects
-    #   self.is_ordered = self.is_ordered.clone
-    #   self.subsets_links
-    # elsif self.extension?
-    #   self.extends_links
-    # end
-    # if self.ranked?
-    #   self.is_ranked_objects
-    #   self.is_ranked = self.is_ranked.clone
-    # end
     prepare_for_clone_links
     prepare_for_clone_subset
     prepare_for_clone_extension
@@ -565,15 +560,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
-  # def valid_collection?
-  #   notations = self.narrower.map{|x| x.notations}
-  #   notations.uniq.length == notations.length
-  # end
-
+  # Create Extension. Create an extension based on this managed concept.
+  #
+  # @return [Thesaurus::ManagedConcept] the new subset
   def create_extension
     source = Thesaurus::ManagedConcept.find_full(self.id)
     source.narrower_links
     object = source.clone
+    object.refers_to = source.narrower
     object.identifier = "#{source.scoped_identifier}E"
     object.extensible = false # Make sure we cannot extend the extension
     object.set_initial(object.identifier)
@@ -582,7 +576,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object
   end
 
-  # Create Subset
+  # Create Subset. Note no children are added at this stage.
   #
   # @return [Thesaurus::ManagedConcept] the new subset
   def create_subset
@@ -770,9 +764,30 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 
 private
 
+  # Standard code list?
+  def standard?
+    return !self.subset? && !self.extension?
+  end
+
+  # Checks for standard and sets error if not.
+  def check_for_standard?
+    return true if standard?
+    self.errors.add(:base, "Code list is an extension.") if self.extension?
+    self.errors.add(:base, "Code list is a subset.") if self.subset?
+    false
+  end
+
+  # Checks for standard and sets error if not.
+  def check_for_standard_or_extension?
+    return true unless subset?
+    self.errors.add(:base, "Code list is a subset.")
+    false
+  end
+
   # Make sure links are populated
   def prepare_for_clone_links
     self.narrower_links
+    self.refers_to_links
     self.preferred_term_links
     self.synonym_links
   end
@@ -824,6 +839,7 @@ private
     parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
+    parts << "{ #{self.uri.to_ref} th:refersTo ?s . }"
     if !parent_object.nil?
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }"
       parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} .

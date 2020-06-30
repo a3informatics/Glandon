@@ -854,7 +854,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.preferred_term.label).to eq("Woah!")
     end
 
-    it "add and delete extensions" do
+    it "add and delete children to an extension" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       tc_1 = Thesaurus::ManagedConcept.from_h({
@@ -881,18 +881,12 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_extensions([tc_3.uri])
+      tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
-      # tc.delete_extensions([tc_3.uri, tc_2.uri])
-      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      # expect(tc.narrower.count).to eq(3)
-      # tc.delete_extensions([tc_1.uri])
-      # tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      # expect(tc.narrower.count).to eq(2)
     end
 
   end
@@ -953,13 +947,13 @@ describe "Thesaurus::ManagedConcept" do
     it "normal" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "normal, count and offset" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.children_pagination(count: 10, offset: 10)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "children set" do
@@ -976,7 +970,7 @@ describe "Thesaurus::ManagedConcept" do
         Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432")
       ]
       results = Thesaurus::ManagedConcept.children_set(set)
-      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "normal, extended" do
@@ -985,52 +979,68 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
-      item.add_extensions([ext.uri])
+      item.add_referenced_children([ext.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "normal with tags filter" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101806/V31#C101806"))
       results = tc.children_pagination(count: 20, offset: 0, tags: ["SDTM", "QS"])
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_5.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_5.yaml", equate_method: :hash_equal)
       results = tc.children_pagination(count: 20, offset: 0, tags: ["QS"])
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml", equate_method: :hash_equal)
     end
 
-    it "normal, single_parent flag " do
+    it "normal, single_parent flag I" do
       thesaurus = Thesaurus.create({identifier: "AAA", label: "BBB"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml")
+      #results = tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      item.add_extensions([ext.uri])
+      item.add_referenced_children([ext.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
     end
 
-    it "normal, single_parent flag 2 " do
+    it "normal, single_parent flag II" do
       thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml", equate_method: :hash_equal)
       ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
       ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
-      item.add_extensions([ext.uri, ext2.uri])
+      item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", equate_method: :hash_equal)
+    end
+
+    it "normal, single_parent flag III" do
+      thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_12.yaml", equate_method: :hash_equal)
+      ext_1 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 1", :identifier=>"A00121", :notation=>"NOTATION 1", :definition=>"The definition 1."}, item)
+      ext_2 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 2", :identifier=>"A00122", :notation=>"NOTATION 2", :definition=>"The definition 2."}, item)
+      item.add_link(:narrower, ext_1.uri)
+      item.add_link(:narrower, ext_2.uri)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_13.yaml", equate_method: :hash_equal)
     end
 
     it "normal, CI CN Indicators" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       results = tc.children_pagination(count: 20, offset: 0)
-      check_file_actual_expected(results, sub_dir, "child_pagination_expected_11.yaml")
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_11.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -1631,10 +1641,10 @@ describe "Thesaurus::ManagedConcept" do
         })
       tc_3.set_initial("A00005")
       tc_3.save
-      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc.add_referenced_children([tc_1.uri.to_id, tc_2.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(4)
-      tc.add_extensions([tc_3.uri])
+      tc.add_referenced_children([tc_3.uri.to_id])
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(5)
       actual_rank = Thesaurus::Rank.find(new_rank.uri)
@@ -2008,5 +2018,64 @@ describe "Thesaurus::ManagedConcept" do
     end
 
   end
+
+  describe "add children tests" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+    end
+
+    it "add children, single" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_referenced_children([uc_1.uri.to_id])
+      expect(mc.errors.empty?).to eq(true)
+      mc = Thesaurus::ManagedConcept.find_full(mc.uri)
+      expect(mc.narrower.count).to eq(9)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_1a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "add children, multiple" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      expect(mc.errors.empty?).to eq(true)
+      mc = Thesaurus::ManagedConcept.find_full(mc.uri)
+      expect(mc.narrower.count).to eq(10)
+      check_file_actual_expected(mc.to_h, sub_dir, "add_children_expected_2a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(mc.narrower.map{|x| x.uri.to_s}, sub_dir, "add_children_expected_2b.yaml", equate_method: :hash_equal)
+    end
+
+    it "add children, fails, subset" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      mc.add_link(:subsets, Uri.new(uri: "http://www.cdisc.org/FAKE/V1#FAKE"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      expect(mc.errors.empty?).to eq(false)
+      expect(mc.narrower_links.count).to eq(8)
+      expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
+    end
+
+    it "add children, fails, extension, now allowed" do
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      mc.add_link(:extends, Uri.new(uri: "http://www.cdisc.org/FAKE/V1#FAKE"))
+      uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
+      expect(mc.narrower_links.count).to eq(8)
+      mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
+      expect(mc.errors.empty?).to eq(true)
+      expect(mc.narrower_links.count).to eq(10)
+    end
+
+  end
+
 
 end

@@ -22,15 +22,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     respond_to do |format|
       format.html do
-        # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         if results.empty?
           redirect_to thesauri_managed_concepts_path
         else
-          @thesauri_id = results.first.to_id
-          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @tc = Thesaurus::ManagedConcept.find_minimum(results.first.to_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
+          @close_path = thesauri_managed_concepts_path
         end
       end
       format.json do
@@ -53,7 +52,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
       render :json => { data: result}, :status => 200
     else
-      render :json => {:errors => tc.errors.full_messages}, :status => 422
+      render :json => {:errors => object.errors.full_messages}, :status => 422
     end
   rescue => e
       render :json => {:errors => [e.message]}, :status => 422
@@ -163,7 +162,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
-      results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+      edit_tags_path = c[:single_parent] ? edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id}) : ""
+      results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
     end
     render :json => { data: results }, :status => 200
   end
@@ -179,10 +179,27 @@ class Thesauri::ManagedConceptsController < ApplicationController
         result = new_tc.simple_to_h
         edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
         delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path })
         render :json => {data: result}, :status => 200
       else
         render :json => {:errors => new_tc.errors.full_messages}, :status => 422
+      end
+    else
+      render :json => {:errors => [token_timeout_message]}, :status => 422
+    end
+  end
+
+  def add_children
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      tc.add_referenced_children(children_params[:set_ids])
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        render :json => {data: "" }, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       render :json => {:errors => [token_timeout_message]}, :status => 422
@@ -409,15 +426,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    errors = []
-    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-    if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
+    if Thesaurus::ManagedConcept.same_type(the_params[:extension_ids], Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
       token = Token.find_token(tc, current_user)
       if !token.nil?
-        tc.add_extensions(uris)
+        tc.add_referenced_children(the_params[:extension_ids])
         AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
-        render json: {data: {}, error: errors}
+        render json: {data: {}, errors: []}
       else
         render :json => {:errors => [token_timeout_message]}, :status => 422
       end
@@ -552,6 +567,10 @@ private
 
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])
+  end
+
+  def children_params
+    params.require(:managed_concept).permit(:set_ids => [])
   end
 
   def rank_params

@@ -1,5 +1,5 @@
 /**
- * Timer. Runs a timer
+ * Timer. Runs a timer *** DEPRECATED ***
 */
 
 /**

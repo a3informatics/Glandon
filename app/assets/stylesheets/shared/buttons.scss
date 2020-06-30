@@ -92,6 +92,29 @@
   background: $grey-medium !important;
 }
 
+.btn.white{
+  background: white;
+  color: $primary-color-light;
+  -webkit-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 7px -3px rgba(0,0,0,0.5);
+}
+
+.btn.white:hover{
+  background: $primary-color-bright;
+}
+
+.btn.white:focus{
+  background: $primary-color-bright !important;
+  color: white;
+}
+
+.btn.white:active{
+  background: $primary-color-bright !important;
+  color: $primary-color-light;
+}
+
+
 .btn:focus{
   color: white;
 }
@@ -298,6 +321,36 @@
 }
 
 .checkbox-opt input[type=checkbox]{
+  margin-right: 8px;
+}
+
+// ico-btn-sec processing
+
+.ico-btn-sec.processing {
+  pointer-events: none;
+}
+
+.ico-btn-sec.processing .circular-badge {
+  background-color: $grey-bright !important;
+}
+
+.ico-btn-sec.processing .circular-badge span {
+  display: block;
+  background: url(image_path("loading_inline.gif")) no-repeat;
+  background-size: 60%;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ico-btn-sec.processing .circular-badge span::before {
+  content: " ";
+}
+
+// INLINE
+
+.in-line {
+  display: inline;
   margin-right: 8px;
 }
 

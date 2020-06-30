@@ -231,8 +231,20 @@
 :pairedWith
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:related ;
   rdfs:label "Paired with relationship"^^xsd:string ;
   rdfs:domain :ManagedConcept ;
   rdfs:range :ManagedConcept ;
   skos:definition "A relationship linking a managed concept with a paired managed concept."^^xsd:string ;
+.
+:refersTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:related ;
+  rdfs:label "Refers to relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range :UnmanagedConcept ;
+  skos:definition "Relationship indicating that the concept is refered to rather than created/owned."^^xsd:string ;
 .

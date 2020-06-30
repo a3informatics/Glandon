@@ -1,6 +1,5 @@
 ---
-- :rank: '15'
-  :identifier: C12472
+- :identifier: C12472
   :notation: BODYFAT
   :preferred_term: Adipose Tissue
   :synonym: Adipose Tissue
@@ -9,15 +8,15 @@
   :definition: A specialized form of connective tissue consisting primarily of adipocytes
     (fat cells), surrounded by a meshwork of collagen fibers.
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C12472
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMTI0NzI=
+  :rank: '15'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '14'
-  :identifier: C16358
+- :identifier: C16358
   :notation: BMI
   :preferred_term: Body Mass Index
   :synonym: Body Mass Index
@@ -26,15 +25,15 @@
   :definition: A general indicator of the body fat an individual is carrying based
     upon the ratio of weight to height. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C16358
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMTYzNTg=
+  :rank: '14'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '13'
-  :identifier: C25157
+- :identifier: C25157
   :notation: BSA
   :preferred_term: Body Surface Area
   :synonym: Body Surface Area
@@ -45,15 +44,15 @@
     a chart that relates height to weight. BSA is often an important factor in dosing.
     (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V16#C66741_C25157
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YxNiNDNjY3NDFfQzI1MTU3
+  :rank: '13'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '12'
-  :identifier: C25206
+- :identifier: C25206
   :notation: TEMP
   :preferred_term: Temperature
   :synonym: Temperature
@@ -67,15 +66,15 @@
     motion of atoms and molecules. Temperature is measured in one of the three standard
     temperature scales: Celsius, Kelvin, and Fahrenheit. (NCI)'
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C25206
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyMDY=
+  :rank: '12'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '11'
-  :identifier: C25208
+- :identifier: C25208
   :notation: WEIGHT
   :preferred_term: Weight
   :synonym: Weight
@@ -83,15 +82,15 @@
   :extensible: false
   :definition: The vertical force exerted by a mass as a result of gravity. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C25208
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyMDg=
+  :rank: '11'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '10'
-  :identifier: C25298
+- :identifier: C25298
   :notation: SYSBP
   :preferred_term: Systolic Blood Pressure
   :synonym: Systolic Blood
@@ -100,15 +99,15 @@
   :definition: The blood pressure during the contraction of the left ventricle of
     the heart.
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C25298
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyOTg=
+  :rank: '10'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '9'
-  :identifier: C25299
+- :identifier: C25299
   :notation: DIABP
   :preferred_term: Diastolic Blood Pressure
   :synonym: Diastolic Blood Pressure
@@ -117,15 +116,15 @@
   :definition: The blood pressure after the contraction of the heart while the chambers
     of the heart refill with blood. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C25299
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyOTk=
+  :rank: '9'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '8'
-  :identifier: C25347
+- :identifier: C25347
   :notation: HEIGHT
   :preferred_term: Height
   :synonym: Height
@@ -134,15 +133,15 @@
   :definition: The vertical measurement or distance from the base to the top of an
     object; the vertical dimension of extension. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C25347
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=
+  :rank: '8'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '7'
-  :identifier: C49676
+- :identifier: C49676
   :notation: PULSE
   :preferred_term: Pulse Rate
   :synonym: Pulse Rate
@@ -152,15 +151,15 @@
     per minute. It can be measured at several anatomical sites, including the wrist,
     neck, temple, groin, behind the knees, or on top of the foot. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C49676
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DNDk2NzY=
+  :rank: '7'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '6'
-  :identifier: C49677
+- :identifier: C49677
   :notation: HR
   :preferred_term: Heart Rate
   :synonym: Heart Rate
@@ -169,15 +168,15 @@
   :definition: The number of heartbeats per unit of time, usually expressed as beats
     per minute. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C49677
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DNDk2Nzc=
+  :rank: '6'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '5'
-  :identifier: C49678
+- :identifier: C49678
   :notation: RESP
   :preferred_term: Respiratory Rate
   :synonym: Respiratory Rate
@@ -186,15 +185,15 @@
   :definition: The rate of breathing (inhalation and exhalation) measured within in
     a unit time, usually expressed as breaths per minute. (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C49678
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DNDk2Nzg=
+  :rank: '5'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '4'
-  :identifier: C49679
+- :identifier: C49679
   :notation: MAP
   :preferred_term: Mean Arterial Pressure
   :synonym: Mean Arterial Pressure
@@ -207,15 +206,15 @@
     procedure using the following formula: diastolic pressure plus 1/3 of the pulse
     pressure, where pulse pressure is systolic pressure - diastolic pressure. (NCI)'
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C49679
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DNDk2Nzk=
+  :rank: '4'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '3'
-  :identifier: C49680
+- :identifier: C49680
   :notation: FRMSIZE
   :preferred_term: Body Frame Size
   :synonym: Body Frame Size
@@ -225,15 +224,15 @@
     large based on the measurement of wrist circumference or the breadth of the elbow.
     (NCI)
   :delete: false
-  :single_parent: false
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V4#C66741_C49680
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DNDk2ODA=
+  :rank: '3'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '2'
-  :identifier: C84372
+- :identifier: C84372
   :notation: KNEEHEEL
   :preferred_term: Knee to Heel Length Measurement
   :synonym: Lower Leg Length
@@ -243,15 +242,15 @@
     to the bottom of the heel. This measurement may be taken with a knemometer or
     calipers. (NCI)
   :delete: false
-  :single_parent: true
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V20#C66741_C84372
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyMCNDNjY3NDFfQzg0Mzcy
+  :rank: '2'
   :indicators:
     :annotations:
       :change_notes: 0
       :change_instructions: 0
-- :rank: '1'
-  :identifier: C87054
+- :identifier: C87054
   :notation: SAD
   :preferred_term: Sagittal Abdominal Diameter
   :synonym: Sagittal Abdominal Diameter
@@ -262,9 +261,10 @@
     cage and the top of the pelvic area. This measurement may be taken with the patient
     standing or in the supine position. (NCI)
   :delete: false
-  :single_parent: true
+  :referenced: false
   :uri: http://www.cdisc.org/C66741/V20#C66741_C87054
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyMCNDNjY3NDFfQzg3MDU0
+  :rank: '1'
   :indicators:
     :annotations:
       :change_notes: 0

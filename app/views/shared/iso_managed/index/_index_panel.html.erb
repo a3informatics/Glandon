@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_tag "let indexDataUrl = '#{index_url}'" %>
+
+<div class="table-cardstyle" id="index-panel">
+  <table id="index" class="table">
+    <thead>
+      <tr>
+        <th class="fit">Owner</th>
+        <th class="fit">Identifier</th>
+        <th>Label</th>
+        <%= yield  %>
+        <th class="fit"></th>
+      </tr>
+    </thead>
+  </table>
+</div>

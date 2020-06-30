@@ -1,4 +1,4 @@
-# Managed Concepts Subsets
+# Managed Concepts Subsets. Handling of a Managed Concept that is a subset.
 #
 # @author Dave Iberson-Hurst
 # @since 2.34.0
@@ -7,7 +7,7 @@ class Thesaurus
   module Subsets
 
     # Upgrade. Upgrade the Managed Concept to refer to the new reference. Adjust references accordingly
-    # This will be all the children in the current subset that exist in the new reference in the same order.
+    #   This will be all the children in the current subset that exist in the new reference in the same order.
     #
     # @param new_reference [Thesurus::ManagedConcept] the new reference
     # @return [Void] no return
@@ -18,6 +18,7 @@ class Thesaurus
       object.subsets = new_reference
       uris = subset_children(new_reference)
       object.narrower = uris
+      object.refers_to = uris
       object.save
       subset.delete
       subset.add(uris.map{|x| x.to_id}) if uris.any?

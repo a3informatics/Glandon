@@ -1,5 +1,5 @@
 /*
-* Page Unload - releases token when uses leaves a page
+* Page Unload - releases token when uses leaves a page *** DEPRECATED ***
 */
 
 /**
@@ -27,10 +27,10 @@ function UnloadV2(id, keep, callback) {
  */
 UnloadV2.prototype.handleUnload = function() {
 	var _this = this;
-  
+
   // Callback to any actions required. Do this before the release of the token.
 	_this.callback();
-  
+
   // Release the token if we don't want to keep it
 	if (!_this.keep) {
 		$.ajax({

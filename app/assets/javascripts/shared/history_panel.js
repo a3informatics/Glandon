@@ -1,5 +1,5 @@
 /*
-* History Panel
+* History Panel *** DEPRECATED ***
 *
 * Requires:
 * history [Table] the managed item table

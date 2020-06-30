@@ -336,7 +336,7 @@ describe Thesauri::ManagedConceptsController do
     it "shows the history, initial view" do
       params = {}
       get :history, params:{managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
-      expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y2MCNDNjY3ODY=")
+      expect(assigns(:tc).id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y2MCNDNjY3ODY=")
       expect(assigns(:identifier)).to eq("C66786")
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
@@ -757,7 +757,61 @@ describe Thesauri::ManagedConceptsController do
       post :add_extensions, params:{id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+    end
+
+  end
+
+  describe "add children" do
+
+    login_curator
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..4)
+      Token.delete_all
+    end
+
+    after :each do
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "add children to standard" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      token = Token.obtain(tc, @user)
+      post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
+    end
+
+    it "add children to standard, error, subset" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154"))
+      tc.add_link(:subsets, Uri.new(uri: "http://www.acme-pharma.com/FAKE/V1#FAKE"))
+      child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      token = Token.obtain(tc, @user)
+      post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Code list is a subset."])
+    end
+
+    it "add children to standard, error token" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047"))
+      child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
     end
 
   end
@@ -778,6 +832,11 @@ describe Thesauri::ManagedConceptsController do
 
     it "prevents access to a reader, destroy" do
       delete :destroy, params:{id: 10} # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/")
+    end
+
+    it "add children" do
+      post :add_children, params:{id: 10, managed_concept: {set_ids: ["15"]}}
       expect(response).to redirect_to("/")
     end
 

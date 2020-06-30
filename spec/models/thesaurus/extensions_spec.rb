@@ -83,6 +83,7 @@ describe "Thesaurus::Extensions" do
       item_1 = tc_32.create_extension
       item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
       item_1.narrower_objects
+      item_1.refers_to_objects
       expect(item_1.narrower.count).to eq(7)
       check_dates(item_1, sub_dir, "upgrade_expected_1a.yaml", :last_change_date)
       check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
@@ -109,6 +110,7 @@ describe "Thesaurus::Extensions" do
       item_1 = tc_32.create_extension
       item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
       item_1.narrower_objects
+      item_1.refers_to_objects
       expect(item_1.narrower.count).to eq(7)
       check_dates(item_1, sub_dir, "upgrade_expected_2a.yaml", :last_change_date)
       check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
