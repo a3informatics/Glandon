@@ -248,7 +248,7 @@ class BiomedicalConceptsController < ApplicationController
 private
 
   def the_params
-    params.require(:biomedical_concept).permit(:namespace, :uri, :identifier, :label, :scope_id, :bc_id, :bc_namespace, :bct_id, :bct_namespace)
+    params.require(:biomedical_concept).permit(:namespace, :uri, :identifier, :offset, :count, :label, :scope_id, :bc_id, :bc_namespace, :bct_id, :bct_namespace)
   end
 
   # Path for given action
