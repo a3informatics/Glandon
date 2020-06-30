@@ -994,7 +994,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_6.yaml", equate_method: :hash_equal)
     end
 
-    it "normal, single_parent flag " do
+    it "normal, single_parent flag I" do
       thesaurus = Thesaurus.create({identifier: "AAA", label: "BBB"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
@@ -1008,7 +1008,7 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
     end
 
-    it "normal, single_parent flag 2 " do
+    it "normal, single_parent flag II" do
       thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
@@ -1020,6 +1020,21 @@ describe "Thesaurus::ManagedConcept" do
       item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", equate_method: :hash_equal)
+    end
+
+    it "normal, single_parent flag III" do
+      thesaurus = Thesaurus.create({identifier: "CCC", label: "DDD"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_12.yaml", equate_method: :hash_equal)
+      ext_1 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 1", :identifier=>"A00121", :notation=>"NOTATION 1", :definition=>"The definition 1."}, item)
+      ext_2 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 2", :identifier=>"A00122", :notation=>"NOTATION 2", :definition=>"The definition 2."}, item)
+      item.add_link(:narrower, ext_1.uri)
+      item.add_link(:narrower, ext_2.uri)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_13.yaml", equate_method: :hash_equal)
     end
 
     it "normal, CI CN Indicators" do
@@ -2049,16 +2064,15 @@ describe "Thesaurus::ManagedConcept" do
       expect(mc.errors.full_messages.to_sentence).to eq("Code list is a subset.")
     end
 
-    it "add children, fails, extension" do
+    it "add children, fails, extension, now allowed" do
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
       mc.add_link(:extends, Uri.new(uri: "http://www.cdisc.org/FAKE/V1#FAKE"))
       uc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       uc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25529"))
       expect(mc.narrower_links.count).to eq(8)
       mc.add_referenced_children([uc_1.uri.to_id, uc_2.uri.to_id])
-      expect(mc.errors.empty?).to eq(false)
-      expect(mc.narrower_links.count).to eq(8)
-      expect(mc.errors.full_messages.to_sentence).to eq("Code list is an extension.")
+      expect(mc.errors.empty?).to eq(true)
+      expect(mc.narrower_links.count).to eq(10)
     end
 
   end
