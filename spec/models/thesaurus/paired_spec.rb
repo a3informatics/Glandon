@@ -9,11 +9,64 @@ describe "Thesaurus::Paired" do
     return "models/thesaurus/paired"
   end
 
+  def create_mc(notation)
+    result = Thesaurus::ManagedConcept.create
+    result.notation = notation
+    result.save
+    result
+  end
+
   describe "paired" do
 
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+    end
+
+    it "checks valid pairing, valid combinations" do
+      tc_1 = create_mc("AATESTCD")
+      tc_2 = create_mc("AATEST")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(true)
+      tc_1 = create_mc("AATSCD")
+      tc_2 = create_mc("AATS")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(true)
+      tc_1 = create_mc("AATC")
+      tc_2 = create_mc("AATN")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(true)
+      tc_1 = create_mc("AAPARMCD")
+      tc_2 = create_mc("AAPARM")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(true)
+    end
+
+    it "checks valid pairing, invalid combinations" do
+      tc_1 = create_mc("AXTESTCD")
+      tc_2 = create_mc("AATEST")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      tc_1 = create_mc("AATESTCD")
+      tc_2 = create_mc("AATESTX")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      tc_1 = create_mc("AATCD")
+      tc_2 = create_mc("AATS")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      tc_1 = create_mc("AATC")
+      tc_2 = create_mc("AATH")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      tc_1 = create_mc("AATC")
+      tc_2 = create_mc("AAT")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      tc_1 = create_mc("ASPARMCD")
+      tc_2 = create_mc("AAPARM")
+      expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+    end
+
+    it "validate and pairs" do
+      tc_1 = create_mc("EGTESTCD")
+      tc_2 = create_mc("EGTEST")
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(true)
+      tc_1 = create_mc("EGxTESTCD")
+      tc_2 = create_mc("EGTEST")
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, trying to pair EGxTESTCD with EGTEST.")
     end
 
     it "checks paired" do

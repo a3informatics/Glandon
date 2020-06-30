@@ -6,6 +6,32 @@ class Thesaurus
 
   module Paired
 
+    # Validate And Pair. Check if items can be paired. If so do it, otherwise report an error.
+    #
+    # @param [String] id id of the other the potential paired code list (child)
+    # @return [Boolean] returns true if pairing succesful, otherwise false. Errors in errors object.
+    def validate_and_pair(id)
+      other = self.class.find_with_properties(id)
+      valid_pairing?(other) ? pair(id) : self.errors.add(:base, "Paring not permitted, trying to pair #{self.notation} with #{other.notation}.")
+      self.errors.empty?
+    end
+
+    # Valid Pairing. Is the pairing a valid one.
+    #
+    # @param [Thesaurus::ManagedConcept] other the potential paired code list (child)
+    # @return [Boolean] returns true if pairing is permitted, false otherwise.
+    def valid_pairing?(other)
+      result = nil
+      Rails.configuration.thesauri[:permitted_pairing].each do |config|
+        next unless check_rule(config, :parent, self.notation)
+        result = config
+        break
+      end
+      return false if result.nil?
+      return false unless check_rule(result, :child, other.notation)
+      check_prefix(result, other)
+    end
+
     # Paired As Parent? Is this item paired as the parent
     #
     # @result [Boolean] return true if this instance is ranked
@@ -67,6 +93,20 @@ class Thesaurus
       results = Sparql::Query.new.query(query_string, "", [:th]).by_object
       return self.class.find_minimum(results.first) if results.count == 1
       Errors.application_error(self.class.name, __method__.to_s, "Failed to find single paired code list.")
+    end
+
+  private
+
+    # Check individual pairing rule, parent or child match the config.
+    def check_rule(config, field, value)
+      str = config[field]
+      return false if value.length < str.length
+      return value[-str.length..-1] == str
+    end
+
+    # Make sure prefixes match, e.g. nn is the same in nnTESTCD & nnTEST
+    def check_prefix(config, other)
+      return self.notation[0..-config[:parent].length] == other.notation[0..-config[:child].length]
     end
 
   end

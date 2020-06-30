@@ -11,6 +11,15 @@ defaults: &defaults
       generated: 
         pattern: "NC[identifier]C"
         width: "8"
+  permitted_pairing:
+    - parent: TESTCD
+      child: TEST
+    - parent: TSCD
+      child: TS
+    - parent: TC
+      child: TN
+    - parent: PARMCD
+      child: PARM
 
 development:
   <<: *defaults
