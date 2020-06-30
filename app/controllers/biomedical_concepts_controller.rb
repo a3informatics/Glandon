@@ -35,7 +35,7 @@ class BiomedicalConceptsController < ApplicationController
         @bc = BiomedicalConceptInstance.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
-        @close_path = request.referer
+        @close_path = biomedical_concepts_path
       end
     end
   end
