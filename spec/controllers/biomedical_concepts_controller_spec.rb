@@ -39,17 +39,14 @@ describe BiomedicalConceptsController do
     end
 
     it "show results" do
-      #th = Thesaurus.new
-      #th.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(BiomedicalConceptInstance).to receive(:find_minimum).and_return(bci)
-      #expect_any_instance_of(BiomedicalConceptInstance).to receive(:get_properties).with(true).and_return([bci.get_properties])
       get :show_data, params:{id: bci.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_results_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "history_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, page" do
@@ -60,7 +57,7 @@ describe BiomedicalConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, initial view" do
@@ -71,18 +68,6 @@ describe BiomedicalConceptsController do
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
     end
-
-    # it "shows the history, page" do
-    #   ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-    #   ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
-    #   get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
-    #   expect(response.content_type).to eq("application/json")
-    #   expect(response.code).to eq("200")
-    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-    #   check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
-    # end
 
     # it "shows the history" do
     #   ra = IsoRegistrationAuthority.find_by_short_name("ACME")
