@@ -1,4 +1,5 @@
-import { renderHistoryBtn, checkMarkIcon } from 'shared/ui/buttons'
+import { historyBtn } from 'shared/ui/buttons'
+import { checkMarkIcon } from 'shared/ui/icons'
 
 /**
  * Returns column definition for the history column
@@ -6,7 +7,7 @@ import { renderHistoryBtn, checkMarkIcon } from 'shared/ui/buttons'
  */
 function dtHistoryColumn() {
   return {
-    render: (data, type, r, m) => renderHistoryBtn(r.history_path)
+    render: (data, type, r, m) => historyBtn(r.history_path)
   }
 };
 
