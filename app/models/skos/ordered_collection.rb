@@ -274,8 +274,8 @@ module SKOS::OrderedCollection
         { 
           #{self.uri.to_ref} (^th:isOrdered) ?s .
           ?s th:narrower ?o .
-          ?s th:refersTo ?o .
-          BIND ( th:narrower as ?p ) .
+          OPTIONAL {?s th:refersTo ?o}
+          BIND ( th:narrower as ?p )
         } 
       }
     }
