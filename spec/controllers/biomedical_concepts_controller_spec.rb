@@ -18,6 +18,7 @@ describe BiomedicalConceptsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
@@ -37,16 +38,30 @@ describe BiomedicalConceptsController do
       expect(response).to render_template("show")
     end
 
-    # it "shows the history, page" do
-    #   instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   expect(BiomedicalConceptInstance).to receive(:history_pagination).with({identifier: instance.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([instance])
-    #   get :history, params:{biomedical_concept: {identifier: instance.has_identifier.identifier, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
-    #   expect(response.content_type).to eq("application/json")
-    #   expect(response.code).to eq("200")
-    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-    #   check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-    # end
+    it "show results" do
+      #th = Thesaurus.new
+      #th.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(BiomedicalConceptInstance).to receive(:find_minimum).and_return(bci)
+      #expect_any_instance_of(BiomedicalConceptInstance).to receive(:get_properties).with(true).and_return([bci.get_properties])
+      get :show_data, params:{id: bci.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_results_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "shows the history, page" do
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(BiomedicalConceptInstance).to receive(:history_pagination).with({identifier: instance.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([instance])
+      get :history, params:{biomedical_concept: {identifier: instance.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
 
     it "shows the history, initial view" do
       params = {}
