@@ -366,6 +366,7 @@ Rails.application.routes.draw do
   end
   resources :biomedical_concepts do
     member do
+      get :show_data
       get :export_json
       get :export_ttl
       get :clone
