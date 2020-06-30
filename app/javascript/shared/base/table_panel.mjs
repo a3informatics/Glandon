@@ -18,6 +18,7 @@ export default class TablePanel {
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
+   * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Object} args Optional additional arguments
    */
   constructor({
@@ -28,9 +29,10 @@ export default class TablePanel {
     extraColumns = [],
     deferLoading,
     cache = true,
-    paginated = true
+    paginated = true,
+    order = [[0, "desc"]]
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, ...args });
 
     this._initTable();
     this._setListeners();
@@ -150,7 +152,7 @@ export default class TablePanel {
    */
   get _tableOpts() {
     return {
-      order: [[0, "desc"]],
+      order: this.order,
       columns: [...this._defaultColumns, ...this.extraColumns],
       pageLength: pageLength,
       lengthMenu: pageSettings,

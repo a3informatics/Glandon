@@ -5,10 +5,11 @@ $(document).ready( () => {
 
   let tp = new TablePanel({
     selector: "#show-panel table#show",
-    url: showDataUrl,
+    url: bcShowDataUrl,
     param: "biomedical_concept",
     paginated: false,
-    extraColumns: dtBCShowColumns()
+    extraColumns: dtBCShowColumns(),
+    order: [[2, "desc"]]
   });
-
+  
 });
