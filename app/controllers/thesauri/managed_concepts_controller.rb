@@ -426,7 +426,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
+    if Thesaurus::ManagedConcept.same_type(the_params[:extension_ids], Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
       token = Token.find_token(tc, current_user)
       if !token.nil?

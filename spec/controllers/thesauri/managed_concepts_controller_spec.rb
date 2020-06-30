@@ -336,7 +336,7 @@ describe Thesauri::ManagedConceptsController do
     it "shows the history, initial view" do
       params = {}
       get :history, params:{managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
-      expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y2MCNDNjY3ODY=")
+      expect(assigns(:tc).id).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y2MCNDNjY3ODY=")
       expect(assigns(:identifier)).to eq("C66786")
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
@@ -794,15 +794,15 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
     end
 
-    it "add children to standard, error, extension" do
+    it "add children to standard, error, subset" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154"))
-      tc.add_link(:extends, Uri.new(uri: "http://www.acme-pharma.com/FAKE/V1#FAKE"))
+      tc.add_link(:subsets, Uri.new(uri: "http://www.acme-pharma.com/FAKE/V1#FAKE"))
       child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       token = Token.obtain(tc, @user)
       post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Code list is an extension."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Code list is a subset."])
     end
 
     it "add children to standard, error token" do
