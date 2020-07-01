@@ -29,7 +29,7 @@ describe 'sponsor one rank data migration' do
     end
 
     def expected_triple_count
-      1349848
+      1349861 # Updated with new schema
     end
 
     def mark_done
