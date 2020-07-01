@@ -186,8 +186,8 @@ export default class CLEditor extends EditablePanel {
     }
     // CSS Styling for editable rows
     options.createdRow = (row, data, idx) => {
-      if (!data.referenced)
-        $(row).addClass("editable");
+      let rowClass = (!data.referenced ? 'row-sponsor' : data.uri.includes('cdisc') ? 'row-cdisc' : 'row-disabled');
+      $(row).addClass(rowClass);
     }
 
     this.table = $(this.selector).DataTable(options);
