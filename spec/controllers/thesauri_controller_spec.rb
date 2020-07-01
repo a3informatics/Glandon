@@ -118,10 +118,11 @@ describe ThesauriController do
 
     it "shows the history, initial view" do
       params = {}
+      thesaurus = Thesaurus.new
       expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
-      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(thesaurus)
       get :history, params:{thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
-      expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzE=")
+      expect(assigns(:thesaurus)).to eq(thesaurus)
       expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
@@ -191,29 +192,6 @@ describe ThesauriController do
       expect(count).to eq(4)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/thesauri")
-    end
-
-    it "edits thesaurus, no next version" do
-      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
-      get :edit, params:{id: ct.id}
-      result = assigns(:thesaurus)
-      token = assigns(:token)
-      expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.acme-pharma.com/TEST/V1#TH") # Note no new version, no copy.
-      expect(result.scoped_identifier).to eq("TEST")
-      expect(response).to render_template("edit")
-    end
-
-    it "edits thesaurus, create next version" do
-      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
-      ct.update_status(registration_status: "Standard")
-      get :edit, params:{id: ct.id}
-      result = assigns(:thesaurus)
-      token = assigns(:token)
-      expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.acme-pharma.com/TEST/V2#TH") # Note we get a new version, the edit causes the copy.
-      expect(result.scoped_identifier).to eq("TEST")
-      expect(response).to render_template("edit")
     end
 
     it "edits thesaurus, already locked" do
@@ -699,7 +677,7 @@ describe ThesauriController do
       expect(Thesaurus).to receive(:impact_to_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "Impact_report_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
       #expect(@controller).to receive(:render)
-      get :export_csv, params:{id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}}, format: 'text/csv'    
+      get :export_csv, params:{id: "aaa", thesauri: {thesaurus_id: "ct_2.id", sponsor_th_id: "sponsor.id"}}, format: 'text/csv'
     end
 
     it "changes_report" do
