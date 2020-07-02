@@ -19,6 +19,8 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
+  validates_with Validator::Klass, property: :preferred_term, presence: true
+  validates_with Validator::Klass, property: :synonym
   validate :valid_parent_child?
 
   include Thesaurus::BaseConcept

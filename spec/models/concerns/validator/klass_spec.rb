@@ -13,19 +13,70 @@ describe Validator::Klass do
 	it "validates a klass" do
     x = FusekiBaseHelpers::TestScopedIdentifier.new
     x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    expect(x.valid?).to eq(false)
+    expect(x.errors.count).to eq(1)
+    expect(x.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
     x.by_authority = IsoRegistrationAuthority.new
     x.identifier = "A"
     expect(x.valid?).to eq(false)
-    expect(x.errors.count).to eq(3)
-    expect(x.errors.full_messages.to_sentence).to eq("By authority: Uri can't be blank, By authority: Organization identifier is invalid, and By authority: Ra namespace: Empty object")
+    expect(x.errors.count).to eq(2)
+    expect(x.errors.full_messages.to_sentence).to eq("By authority: Uri can't be blank and By authority: Organization identifier is invalid")
     x.by_authority.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
     expect(x.valid?).to eq(false)
-    expect(x.errors.count).to eq(2)
-    x.by_authority.organization_identifier = "123456777"
-    expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(1)
-    x.by_authority.ra_namespace = IsoNamespace.find_by_short_name("BBB")
+    expect(x.errors.full_messages.to_sentence).to eq("By authority: Organization identifier is invalid")
+    x.by_authority.organization_identifier = "123456777"
     expect(x.valid?).to eq(true)
   end
+
+  it "validates a klass, I" do
+    x = FusekiBaseHelpers::ValidateOneAdministeredItem.new
+    x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.has_state = nil
+    x.has_identifier = nil
+    x.change_description = "A"
+    expect(x.valid?).to eq(false)
+    expect(x.errors.count).to eq(1)
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Empty object")
+  end
+
+  it "validates a klass, II" do
+    x = FusekiBaseHelpers::ValidateOneAdministeredItem.new
+    x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.change_description = "A"
+    x.has_identifier = nil
+    x.has_state = IsoRegistrationStateV2.new
+    x.has_state.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.has_state.registration_status = "WRONG"
+    expect(x.valid?).to eq(false)
+    expect(x.errors.count).to eq(2)
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Empty object and Has state: Registration status is invalid")
+  end
+
+  it "validates a klass, III" do
+    x = FusekiBaseHelpers::ValidateOneAdministeredItem.new
+    x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.change_description = "A"
+    x.has_state = IsoRegistrationStateV2.new
+    x.has_state.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.has_identifier = IsoScopedIdentifierV2.new
+    x.has_identifier.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#YYY")
+    expect(x.valid?).to eq(false)
+    expect(x.errors.count).to eq(2)
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Has identifier: Semantic version is empty")
+  end
+
+  it "validates a klass, IV" do
+    x = FusekiBaseHelpers::ValidateOneAdministeredItem.new
+    x.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.has_state = IsoRegistrationStateV2.new
+    x.has_state.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    x.has_identifier = IsoScopedIdentifierV2.new
+    x.has_identifier.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#YYY")
+    x.has_identifier.identifier = "XXXXXX"
+    x.has_identifier.semantic_version = "1.2.3"
+    expect(x.valid?).to eq(true)
+  end
+
 
 end

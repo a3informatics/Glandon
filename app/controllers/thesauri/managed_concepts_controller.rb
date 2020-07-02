@@ -361,6 +361,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def upgrade
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    tc.synonyms_and_preferred_terms
     token = get_token(tc)
     if !token.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
