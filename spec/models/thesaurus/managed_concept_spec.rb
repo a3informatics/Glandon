@@ -168,8 +168,8 @@ describe "Thesaurus::ManagedConcept" do
     it "allows validity of the object to be checked - error" do
       tc = Thesaurus::ManagedConcept.new
       expect(tc.valid?).to eq(false)
-      expect(tc.errors.count).to eq(4)
-      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, Has state: Empty object, and Identifier is empty")
+      expect(tc.errors.count).to eq(5)
+      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier empty object, Has state empty object, Identifier is empty, and Preferred term empty object")
     end
 
     it "allows validity of the object to be checked" do
@@ -185,6 +185,8 @@ describe "Thesaurus::ManagedConcept" do
       tc.has_identifier.identifier = "AAA"
       tc.has_identifier.semantic_version = "0.0.1"
       tc.has_identifier.version = 1
+      tc.preferred_term = Thesaurus::PreferredTerm.new
+      tc.preferred_term.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#RS_A00001")
       valid = tc.valid?
       expect(valid).to eq(true)
     end
@@ -1002,7 +1004,8 @@ describe "Thesaurus::ManagedConcept" do
       results = item.children_pagination(count: 20, offset: 0)
       #results = tc.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_7.yaml", equate_method: :hash_equal)
-      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", 
+        :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, tc)
       item.add_referenced_children([ext.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_8.yaml", equate_method: :hash_equal)
@@ -1015,8 +1018,10 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_9.yaml", equate_method: :hash_equal)
-      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, item)
-      ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", :definition=>"The definition2."}, item)
+      ext = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", 
+        :definition=>"The definition.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
+      ext2 = Thesaurus::UnmanagedConcept.create({:label=>"A label2", :identifier=>"A00022", :notation=>"NOTATION2", 
+        :definition=>"The definition2.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
       item.add_referenced_children([ext.uri.to_id, ext2.uri.to_id])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_10.yaml", equate_method: :hash_equal)
@@ -1029,8 +1034,10 @@ describe "Thesaurus::ManagedConcept" do
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_12.yaml", equate_method: :hash_equal)
-      ext_1 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 1", :identifier=>"A00121", :notation=>"NOTATION 1", :definition=>"The definition 1."}, item)
-      ext_2 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 2", :identifier=>"A00122", :notation=>"NOTATION 2", :definition=>"The definition 2."}, item)
+      ext_1 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 1", :identifier=>"A00121", :notation=>"NOTATION 1", 
+        :definition=>"The definition 1.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
+      ext_2 = Thesaurus::UnmanagedConcept.create({:label=>"Unref Label 2", :identifier=>"A00122", :notation=>"NOTATION 2", 
+        :definition=>"The definition 2.", :preferred_term=>Thesaurus::PreferredTerm.where_only_or_create("Not Set")}, item)
       item.add_link(:narrower, ext_1.uri)
       item.add_link(:narrower, ext_2.uri)
       results = item.children_pagination(count: 20, offset: 0)
@@ -1621,7 +1628,8 @@ describe "Thesaurus::ManagedConcept" do
           label: "Bristol",
           identifier: "A00003",
           definition: "A definition",
-          notation: "BRS"
+          notation: "BRS",
+          preferred_term: Thesaurus::PreferredTerm.where_only_or_create("Not Set")
         })
       tc_1.set_initial("A00003")
       tc_1.save
@@ -1629,7 +1637,8 @@ describe "Thesaurus::ManagedConcept" do
           label: "Exeter",
           identifier: "A00004",
           definition: "A definition",
-          notation: "EXT"
+          notation: "EXT",
+          preferred_term: Thesaurus::PreferredTerm.where_only_or_create("Not Set")
         })
       tc_2.set_initial("A00004")
       tc_2.save
@@ -1637,7 +1646,8 @@ describe "Thesaurus::ManagedConcept" do
           label: "Birmingham",
           identifier: "A00005",
           definition: "A definition",
-          notation: "BXM"
+          notation: "BXM",
+          preferred_term: Thesaurus::PreferredTerm.where_only_or_create("Not Set")
         })
       tc_3.set_initial("A00005")
       tc_3.save

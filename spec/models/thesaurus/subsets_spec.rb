@@ -62,6 +62,7 @@ describe "Thesaurus::Subsets" do
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
       item_1 = tc_32.create_subset
       item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
+      item_1.synonyms_and_preferred_terms
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
       expect(item_1.is_ordered_objects).not_to be(nil)
       expect(item_1.is_ordered_objects.members).to be(nil)
@@ -71,6 +72,7 @@ describe "Thesaurus::Subsets" do
       uri_3 = Uri.new(uri: "http://www.cdisc.org/C99079/V34#C99079_C16032")
       item_1.is_ordered.add([uri_1.to_id, uri_2.to_id])
       item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.id)
+      item_1.synonyms_and_preferred_terms
       expect(item_1.subsets_links.to_s).to eq("http://www.cdisc.org/C99079/V32#C99079")
       item_1.narrower_objects
       expect(item_1.narrower.count).to eq(2)
