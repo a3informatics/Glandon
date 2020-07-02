@@ -46,7 +46,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-07-06 Release"}])
+      ui_selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-07-06 Release"}])
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v17.0.0 and CT v20.0.0"
@@ -83,7 +83,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 10
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "1"}])
+      ui_selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "1"}])
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v20.0.0 and TST v0.1.0"
@@ -157,7 +157,7 @@ describe "Thesauri Compare", :type => :feature do
       find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :compare)
-      selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "2"}])
+      ui_selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "2"}])
       wait_for_ajax 10
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between TST v0.1.0 and TST v0.2.0"
@@ -177,7 +177,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-02-18"}])
+      ui_selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-02-18"}])
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v15.0.0 and CT v20.0.0"
@@ -192,7 +192,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2010-04-08"}])
+      ui_selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2010-04-08"}])
       wait_for_ajax 10
       expect(page).to have_content "You cannot compare a Terminology with itself"
     end

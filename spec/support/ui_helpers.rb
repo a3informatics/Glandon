@@ -658,14 +658,15 @@ module UiHelpers
   end
 
 
-  def ui_create_terminology(id, label)
+  def ui_create_terminology(id, label, success = true)
     click_navbar_terminology
 		click_link 'New Terminology'
-    sleep 1
-    fill_in "thesauri_identifier", with: id
-    fill_in "thesauri_label", with: label
-    click_button 'Submit'
-    expect(page).to have_content 'Terminology was successfully created.'
+    ui_in_modal do
+	    fill_in "thesauri_identifier", with: id
+	    fill_in "thesauri_label", with: label
+	    click_button 'Submit'
+		end
+		expect(page).to have_content 'Terminology was successfully created.' if success
   end
 
   # Return
@@ -821,17 +822,7 @@ module UiHelpers
 		find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input").set(text)
 	end
 
-	# Modals
-	def ui_in_modal
-		sleep 1
-		wait_for_ajax 20
-		yield
-		sleep 1
-	end
-
-	# Items selector
-
-	def selector_pick_managed_items(type, items)
+	def ui_selector_pick_managed_items(type, items)
 		ui_in_modal do
 			ui_selector_tab_click(type)
 			wait_for_ajax 20
@@ -845,6 +836,67 @@ module UiHelpers
 			find("#selector-modal-submit").click
 			wait_for_ajax 10
 		end
+	end
+
+	def ui_selector_pick_unmanaged_items(type, items)
+		ui_in_modal do
+			ui_selector_tab_click(type)
+			wait_for_ajax 20
+			items.each do |i|
+				ui_selector_search("index", i[:parent])
+				ui_selector_item_click("index", i[:parent])
+				ui_selector_search("history", i[:version])
+				ui_selector_item_click("history", i[:version])
+				ui_selector_search("children", i[:identifier])
+				ui_selector_item_click("children", i[:identifier])
+
+				ui_selector_item_click("history", i[:version])
+				ui_selector_item_click("index", i[:parent])
+			end
+			find("#selector-modal-submit").click
+			wait_for_ajax 10
+		end
+	end
+
+	# Modals
+
+	def ui_in_modal
+		sleep 1
+		wait_for_ajax 20
+		yield
+		sleep 1
+	end
+
+	# DT Editor
+
+	def ui_editor_fill_inline(field, text)
+		sleep 0.5
+		fill_in "DTE_Field_#{field}", with: "#{text}"
+		wait_for_ajax 10
+	end
+
+	def ui_editor_select_by_location(row, col)
+		find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").double_click
+	end
+
+	def ui_editor_select_by_content(text)
+		find(:xpath, "//table[@id='editor']//tr/td[contains(.,'#{text}')]").double_click
+	end
+
+	def ui_editor_check_value(row, col, text)
+		expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to eq(text)
+	end
+
+	def ui_editor_check_error(field, error_text)
+		expect(find(".DTE_Inline_Field div[data-dte-e = 'msg-error']").text).to eq(error_text)
+	end
+
+	def ui_editor_check_disabled(field)
+		expect(find(".DTE_Field_Name_#{field}")[:class]).to include("disabled")
+	end
+
+	def ui_editor_press_key(key)
+		page.driver.browser.action.send_keys(key).perform
 	end
 
 private

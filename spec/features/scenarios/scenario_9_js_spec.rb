@@ -30,15 +30,6 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
     wait_for_ajax 20
   end
 
-  def editor_table_fill_in(id, text)
-    sleep 0.5
-    fill_in "#{id}", with: "#{text}"
-    wait_for_ajax(5)
-  end
-
-  def editor_table_click(row, col)
-    find(:xpath, "//table[@id='editor']/tbody/tr[#{row}]/td[#{col}]").double_click
-  end
 
   def in_modal
     sleep 1
@@ -201,12 +192,12 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       wait_for_ajax 10
       click_on 'New item'
       wait_for_ajax 10
-      editor_table_click(1,2)
-      editor_table_fill_in "DTE_Field_notation", "SPONSOR CL\t"
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "Some Sponsor Code List\n"
-      editor_table_click(1,5)
-      editor_table_fill_in "DTE_Field_definition", "And of course, a definition\n"
+      ui_editor_select_by_location(1,2)
+      ui_editor_fill_inline "DTE_Field_notation", "SPONSOR CL\t"
+      ui_editor_select_by_location(1,3)
+      ui_editor_fill_inline "DTE_Field_preferred_term", "Some Sponsor Code List\n"
+      ui_editor_select_by_location(1,5)
+      ui_editor_fill_inline "DTE_Field_definition", "And of course, a definition\n"
       wait_for_ajax 5
       click_link "Return"
       wait_for_ajax 10
