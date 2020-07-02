@@ -202,31 +202,34 @@ module SKOS::OrderedCollection
   # @option params [String] :count the count to be obtained
   # @return [Array] array of hashes containing the child data
   def list_pagination(params)
-    objects = []
-      query_string = %Q{
-        SELECT ?m ?s ?ordinal
+    results = []
+    query_string = %Q{
+      SELECT ?m ?s ?ordinal
+      {
+        FILTER (?ordinal > 0)
+        ?m th:item ?s
         {
-          FILTER (?ordinal > 0)
-          ?m th:item ?s
-          {
-            SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
-              #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
-              ?mid th:memberNext* ?m .
-              ?m th:item ?e
-            } 
-            GROUP BY ?m ?e
-          }
-        } ORDER BY ?ordinal OFFSET #{params[:offset]} LIMIT #{params[:count]}
-      }
-      query_results = Sparql::Query.new.query(query_string, "", [:th])
-      result_set = query_results.by_object_set([:m, :s, :ordinal])
-      objects = parent_klass.children_set(result_set.map{|x| x[:s]})
-      uri_map = result_set.map {|x| [x[:s].to_s, x] }.to_h
-      objects.each do |object| 
-        object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
-        object[:member_id] = uri_map[object[:uri]][:m].to_id
-      end
-    objects
+          SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
+            #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
+            ?mid th:memberNext* ?m .
+            ?m th:item ?e
+          } 
+          GROUP BY ?m ?e
+        }
+      } ORDER BY ?ordinal OFFSET #{params[:offset]} LIMIT #{params[:count]}
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    result_set = query_results.by_object_set([:m, :s, :ordinal])
+    objects = parent_klass.children_set(result_set.map{|x| x[:s]})
+    uri_map = objects.map {|x| [x[:uri].to_s, x] }.to_h
+    result_set.each do |result|
+      # Duplicate is here just in case we have two or more references (objects) the
+      # same. Should never happen but ...
+      results << uri_map[result[:s].to_s].dup 
+      results.last[:ordinal] = result[:ordinal].to_i
+      results.last[:member_id] = result[:m].to_id
+    end
+    results
   end
 
   # Add. Add new subset members to the Subset
@@ -317,7 +320,7 @@ module SKOS::OrderedCollection
       query_string = %Q{
         DELETE 
         {
-          #{self.uri.to_ref} th:members ?first .
+          #{self.uri.to_ref} th:members #{this.to_ref} .
           #{this.to_ref} th:memberNext ?next .
           #{after.to_ref} th:memberNext ?new_next . 
         }
