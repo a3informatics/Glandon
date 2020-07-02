@@ -94,13 +94,13 @@ ManagedItemsSelect.prototype.setListeners = function () {
     if(this.checked) {
       $(_this.modalId + ' .checkbox-opt input').not(this).prop('checked', false);
       $(_this.modalId + ' #clear-selection').click();
-      toggleTableActive('#index', false);
-      toggleTableActive('#history', false);
+      toggleTableActive(_this.modalId + ' #index', false);
+      toggleTableActive(_this.modalId + ' #history', false);
       $(_this.modalId + " #submit-im-select-button").removeClass("disabled");
     }
     else {
-      toggleTableActive('#index', true);
-      toggleTableActive('#history', true);
+      toggleTableActive(_this.modalId + ' #index', true);
+      toggleTableActive(_this.modalId + ' #history', true);
       $(_this.modalId + ' #submit-im-select-button').addClass('disabled');
     }
   });

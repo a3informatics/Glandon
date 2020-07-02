@@ -16,6 +16,7 @@ function SearchPanel(url, searchingMultiple) {
   this.searchingMultiple = (searchingMultiple == null ? true : searchingMultiple);
   this.filterPageSettings();
   this.initTable();
+  this.cleanupInit();
   this.setListeners();
 
   $("#search-help").on("click", function(){
@@ -161,12 +162,13 @@ SearchPanel.prototype.rowDblClickEvent = function () {
 * @return [void]
 */
 SearchPanel.prototype.columnFilterEvent = function () {
-  var _this = this;
+  this.tsSearchTable.columns().every(function () {
+      var that = this;
 
-  $("#searchTable_wrapper input.filter-local").each(function(i) {
-    $(this).on("keyup change", function(e) {
-      _this.tsSearchTable.column(i).search($(this).val()).draw();
-    });
+      $('input.filter-local', this.footer()).on('keyup change clear', function () {
+          if (that.search() !== this.value)
+              that.search(this.value).draw();
+      });
   });
 }
 
@@ -292,6 +294,18 @@ SearchPanel.prototype.searchData = function (start, length) {
   });
   return reqData;
 }
+
+/**
+* Cleans up duplicated elements from DT init
+*
+* @return [void]
+*/
+SearchPanel.prototype.cleanupInit = function () {
+  $("table#searchTable thead input, table#searchTable tfoot input").each(function(i) {
+    $(this).removeAttr("id");
+  });
+}
+
 
 /**
 * Column definitions
