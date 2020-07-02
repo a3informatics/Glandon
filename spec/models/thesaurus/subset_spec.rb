@@ -85,7 +85,7 @@ describe "Thesaurus Subset General" do
     expect(result).to be_nil
   end
 
-  it "allows add a new item to the list" do
+  it "allows add a new item to the list, empty" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
     subset = init_subset(Thesaurus::Subset.find(uri_1))
     tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
@@ -94,9 +94,11 @@ describe "Thesaurus Subset General" do
     tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
     result = subset.add([tc_4.uri.to_id])
     expect(subset.last.item).to eq(tc_4.uri)
+    actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_10.yaml")
   end
 
-  it "allows add a new item to the list" do
+  it "allows add a new item to the list, 3 items" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = init_subset(Thesaurus::Subset.find(uri_1))
     tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
@@ -105,16 +107,19 @@ describe "Thesaurus Subset General" do
     tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
     result = subset.add([tc_4.uri.to_id])
     expect(subset.last.item).to eq(tc_4.uri)
+    actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_11.yaml", write_file: true)
   end
 
-  it "allows add a new item/items to the list" do
-    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+  it "allows add a new item/items to the list, initial 3 items" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834")
+    subset = Thesaurus::Subset.find(uri_1)
     mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
     tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
     tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
     expect(mc.narrower.count).to eq(3)
     result = subset.add([tc_2.id, tc_4.id])
-    subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#e052799d-bd92-472d-8a39-68c582a66834"))
+    subset = Thesaurus::Subset.find(uri_1)
     mc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
     expect(mc.narrower.count).to eq(5)
     last_sm = Thesaurus::SubsetMember.find(Uri.new(uri: "http://www.assero.co.uk/TSM#d224cb14-5282-4641-9d49-2ec4e3b38087"))
@@ -125,9 +130,11 @@ describe "Thesaurus Subset General" do
     last_sm_member_next_next = Thesaurus::SubsetMember.find(last_sm_member_next.member_next)
     expect(last_sm_member_next_next.item).to eq(tc_4.uri)  
     expect(last_sm_member_next_next.member_next).to eq(nil) 
+    actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_12.yaml", write_file: true)
   end
 
-  it "allows remove an item from the list, front" do
+  it "allows remove an item from the list, front, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -142,9 +149,11 @@ describe "Thesaurus Subset General" do
     expect(ss.members).to eq(sm_uri_2)
     expect(sm_2.member_next).to eq(sm_3.uri)
     expect{Thesaurus::SubsetMember.find(sm_uri_1)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_1} in Thesaurus::SubsetMember.")
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_13.yaml", write_file: true)
   end
 
-  it "allows remove an item from the list, middle" do
+  it "allows remove an item from the list, middle, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -159,9 +168,11 @@ describe "Thesaurus Subset General" do
     expect(ss.members).to eq(sm_uri_1)
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect{Thesaurus::SubsetMember.find(sm_uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_2} in Thesaurus::SubsetMember.")
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_14.yaml", write_file: true)
   end
 
-  it "allows remove an item from the list, end" do
+  it "allows remove an item from the list, end, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -178,9 +189,11 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
     expect{Thesaurus::SubsetMember.find(sm_uri_3)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_3} in Thesaurus::SubsetMember.")
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_15.yaml", write_file: true)
   end
 
-  it "allows move an item, last to first" do
+  it "allows move an item, last to first, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -198,9 +211,11 @@ describe "Thesaurus Subset General" do
     expect(sm_3.member_next).to eq(sm_1.uri)
     expect(sm_1.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_16.yaml", write_file: true)
   end
 
-  it "allows move an item, first to last" do
+  it "allows move an item, first to last, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -218,9 +233,11 @@ describe "Thesaurus Subset General" do
     expect(sm_2.member_next).to eq(sm_3.uri)
     expect(sm_3.member_next).to eq(sm_1.uri)
     expect(sm_1.member_next).to eq(nil)
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_17.yaml", write_file: true)
   end
 
-  it "allows move an item, moving the first to middle" do
+  it "allows move an item, moving the first to middle, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -238,9 +255,11 @@ describe "Thesaurus Subset General" do
     expect(sm_2.member_next).to eq(sm_1.uri)
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect(sm_3.member_next).to eq(nil)
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_18.yaml", write_file: true)
   end
 
-  it "allows move an item, moving the last to middle" do
+  it "allows move an item, moving the last to middle, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -258,9 +277,11 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect(sm_3.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_19.yaml", write_file: true)
   end
 
-  it "allows move an item, moving the middle to last" do
+  it "allows move an item, moving the middle to last, 3 items" do
     ss_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     ss = init_subset(Thesaurus::Subset.find(ss_uri_1))
     sm_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
@@ -278,6 +299,8 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect(sm_3.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
+    actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_20.yaml", write_file: true)
   end
 
   it "return the list of items, paginated" do
