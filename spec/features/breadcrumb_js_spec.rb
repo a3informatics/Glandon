@@ -127,7 +127,7 @@ describe "Breadcrumb", :type => :feature do
     it "has Code list breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
+      find(:xpath, "//tr[contains(.,'CT')]/td/a").click
       expect(page).to have_content "Version History of 'CT'"
       ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
       # next_link_table("Controlled Terminology", "History", "History:", "Terminology", "CDISC, CT", "")
@@ -142,7 +142,7 @@ describe "Breadcrumb", :type => :feature do
     it "has Code list Item breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
+      find(:xpath, "//tr[contains(.,'CT')]/td/a").click
       expect(page).to have_content "Version History of 'CT'"
       ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
       # next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")

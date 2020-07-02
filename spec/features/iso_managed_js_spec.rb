@@ -79,24 +79,6 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Origin'
     end
 
-    it "allows the comments to be updated, cdisc term", js: true do
-      ua_curator_login
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a").click
-      wait_for_ajax(20)
-      find(:xpath, "//table[@id='comments_table']/tbody/tr[contains(.,'2015-03-27')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Comments:'
-      fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
-      fill_in "iso_managed_explanatoryComment", with: "I am a comment"
-      fill_in "iso_managed_origin", with: "I am the origin"
-      click_button 'Submit'
-      wait_for_ajax(20)
-      expect(page).to have_content 'Hello world. This is a change description.'
-      expect(page).to have_content 'I am a comment'
-      expect(page).to have_content 'I am the origin'
-    end
-
     it "allows the status to be viewed", js: true do
       ua_curator_login
       click_navbar_cdisc_terminology

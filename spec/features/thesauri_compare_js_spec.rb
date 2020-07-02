@@ -46,14 +46,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      sleep 1
-      expect(page).to have_content "Select Terminology"
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax 30
-      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'2009-07-06 Release')]").click
-      expect(page.find("#number-selected").text).to eq "CT v17.0.0"
-      click_button "Submit and proceed"
+      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-07-06 Release"}])
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v17.0.0 and CT v20.0.0"
@@ -71,7 +64,7 @@ describe "Thesauri Compare", :type => :feature do
     it "allows to compare a sponsor and a cdisc terminology", js:true do
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]/td").click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
       wait_for_ajax 10
@@ -90,15 +83,8 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 10
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      sleep 1
-      expect(page).to have_content "Select Terminology"
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'TST')]").click
+      selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "1"}])
       wait_for_ajax 30
-      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'0.1.0')]").click
-      expect(page.find("#number-selected").text).to eq "TST v0.1.0"
-      click_button "Submit and proceed"
-      wait_for_ajax 10
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v20.0.0 and TST v0.1.0"
       expect(page).to have_xpath("//div[@id='created_div']/a", count: 0)
@@ -119,7 +105,7 @@ describe "Thesauri Compare", :type => :feature do
       expect(page).to have_content "Update to current"
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]/td").click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
       wait_for_ajax 10
@@ -133,18 +119,18 @@ describe "Thesauri Compare", :type => :feature do
       wait_for_ajax 30
       ui_click_tab "Sponsor CLs"
       wait_for_ajax 10
-      find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"'+identifier+'")]').click
+      find(:xpath, "//*[@id='table-sponsor-cls']/tbody/tr[contains(.,'#{identifier}')]").click
       wait_for_ajax 10
       click_navbar_code_lists
       ui_table_search("index", identifier)
-      find(:xpath, "//tr[contains(.,'"+identifier+"')]/td/a").click
+      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
-      page.find("#tnp_new_button").click
+      page.find("#new-item-button").click
       wait_for_ajax 10
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]/td").click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :document_control)
       click_on "Submit Status Change"
@@ -162,23 +148,16 @@ describe "Thesauri Compare", :type => :feature do
       wait_for_ajax 10
       ui_click_tab "Sponsor CLs"
       wait_for_ajax 10
-      find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"'+identifier+'")]').click
+      find(:xpath, "//*[@id='table-sponsor-cls']/tbody/tr[contains(.,'#{identifier}')]").click
       wait_for_ajax 10
-      find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"'+identifier+'")]').click
+      find(:xpath, "//*[@id='table-sponsor-cls']/tbody/tr[contains(.,'#{identifier}')]").click
       wait_for_ajax 10
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]/td").click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :compare)
-      sleep 1
-      expect(page).to have_content "Select Terminology"
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'TST')]").click
-      wait_for_ajax 30
-      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'0.2.0')]").click
-      expect(page.find("#number-selected").text).to eq "TST v0.2.0"
-      click_button "Submit and proceed"
+      selector_pick_managed_items("Terminologies", [{identifier: "TST", version: "2"}])
       wait_for_ajax 10
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between TST v0.1.0 and TST v0.2.0"
@@ -198,14 +177,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      sleep 1
-      expect(page).to have_content "Select Terminology"
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax 30
-      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'2009-02-18 Release')]").click
-      expect(page.find("#number-selected").text).to eq "CT v15.0.0"
-      click_button "Submit and proceed"
+      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2009-02-18"}])
       wait_for_ajax 30
       expect(page).to have_content "Compare Terminologies"
       expect(page).to have_content "Changes between CT v15.0.0 and CT v20.0.0"
@@ -220,13 +192,7 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax 30
       context_menu_element("history", 5, "2010-04-08 Release", :compare)
-      sleep 1
-      expect(page).to have_content "Select Terminology"
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax 30
-      find(:xpath, "//*[@id='im-select-modal']//table[@id='history']/tbody/tr[contains(.,'2010-04-08 Release')]").click
-      click_button "Submit and proceed"
+      selector_pick_managed_items("Terminologies", [{identifier: "CT", version: "2010-04-08"}])
       wait_for_ajax 10
       expect(page).to have_content "You cannot compare a Terminology with itself"
     end

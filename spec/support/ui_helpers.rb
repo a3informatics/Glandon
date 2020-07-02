@@ -817,12 +817,34 @@ module UiHelpers
 		wait_for_ajax 20
 	end
 
+	def ui_selector_search(table, text)
+		find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input").set(text)
+	end
+
 	# Modals
 	def ui_in_modal
 		sleep 1
 		wait_for_ajax 20
 		yield
 		sleep 1
+	end
+
+	# Items selector
+
+	def selector_pick_managed_items(type, items)
+		ui_in_modal do
+			ui_selector_tab_click(type)
+			wait_for_ajax 20
+			items.each do |i|
+				ui_selector_search("index", i[:identifier])
+				ui_selector_item_click("index", i[:identifier])
+				ui_selector_search("history", i[:version])
+				ui_selector_item_click("history", i[:version])
+				ui_selector_item_click("index", i[:identifier])
+			end
+			find("#selector-modal-submit").click
+			wait_for_ajax 10
+		end
 	end
 
 private

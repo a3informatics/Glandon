@@ -49,27 +49,27 @@ describe "Thesauri Search", :type => :feature do
       expect(page).to have_css("table#index")
       expect(page).to have_css("table#history")
       expect(page.find("#number-selected")).to have_content("0")
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'SPONSOR TEST')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']//tr[contains(.,'SPONSOR TEST')]").click
       wait_for_ajax(10)
       ui_check_table_cell("history", 1, 1, "0.1.0")
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
       expect(page.find("#number-selected")).to have_content("1")
-      expect(find(:xpath, "//*[@id='history']/tbody/tr[1]")[:class]).to include("selected")
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      expect(find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]")[:class]).to include("selected")
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
       wait_for_ajax(30)
       ui_check_table_cell("history", 1, 2, "2010-04-08 Release")
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//*[@id='history']/tbody/tr[5]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[5]").click
       expect(page.find("#number-selected")).to have_content("3")
       expect(page.find("#submit-im-select-button")[:class]).to_not include("disabled")
       page.find("#select-all-latest").click
       expect(page.find("#number-selected")).to have_content("0")
-      expect(page.find("#index")[:class]).to include("table-disabled")
-      expect(page.find("#history")[:class]).to include("table-disabled")
+      expect(page.find("#im-select-modal #index")[:class]).to include("table-disabled")
+      expect(page.find("#im-select-modal #history")[:class]).to include("table-disabled")
       page.find("#select-all-current").click
       expect(page.find("#select-all-latest").checked?).to eq(false)
-      expect(page.find("#index")[:class]).to include("table-disabled")
-      expect(page.find("#history")[:class]).to include("table-disabled")
+      expect(page.find("#im-select-modal #index")[:class]).to include("table-disabled")
+      expect(page.find("#im-select-modal #history")[:class]).to include("table-disabled")
       expect(page.find("#submit-im-select-button")[:class]).to_not include("disabled")
       click_button "Close"
       sleep 0.6
@@ -80,9 +80,9 @@ describe "Thesauri Search", :type => :feature do
       click_link 'Search Terminologies'
       sleep 0.6
       wait_for_ajax(10)
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
       click_button "Submit and proceed"
       wait_for_ajax(10)
       expect(page).to have_content("Controlled Terminology")
@@ -95,15 +95,15 @@ describe "Thesauri Search", :type => :feature do
       click_link 'Search Terminologies'
       sleep 0.6
       wait_for_ajax(10)
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[6]").click
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Airports')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[6]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Airports')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'SPONSOR TEST')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'SPONSOR TEST')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
       expect(page.find("#number-selected")).to have_content("3")
       click_button "Submit and proceed"
       wait_for_ajax(10)
@@ -138,7 +138,7 @@ describe "Thesauri Search", :type => :feature do
     it "Search current Terminologies (REQ-MDR-ST-030)", js:true do
       click_navbar_terminology
       wait_for_ajax(10)
-      find(:xpath, "//*[@id='main']/tbody/tr[contains(.,'Airports')]").click
+      find(:xpath, "//tr[contains(.,'Airports')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 1, "0.1.0", :make_current)
       wait_for_ajax(10)
@@ -227,11 +227,11 @@ describe "Thesauri Search", :type => :feature do
       click_link 'Search Terminologies'
       sleep 0.6
       wait_for_ajax(10)
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//*[@id='history']/tbody/tr[2]").click
-      find(:xpath, "//*[@id='history']/tbody/tr[3]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[2]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[3]").click
       expect(page.find("#number-selected")).to have_content("3")
       click_button "Submit and proceed"
       wait_for_ajax(10)
@@ -333,10 +333,10 @@ describe "Thesauri Search", :type => :feature do
       click_link 'Search Terminologies'
       sleep 0.6
       wait_for_ajax(10)
-      find(:xpath, "//*[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
       wait_for_ajax(30)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//*[@id='history']/tbody/tr[5]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
+      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[5]").click
       click_button "Submit and proceed"
       wait_for_ajax(10)
 

@@ -30,14 +30,14 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
     wait_for_ajax 20
   end
 
-  def editor_table_fill_in(input, text)
-    expect(page).to have_css("##{input}", wait: 15)
-    fill_in "#{input}", with: "#{text}"
+  def editor_table_fill_in(id, text)
+    sleep 0.5
+    fill_in "#{id}", with: "#{text}"
     wait_for_ajax(5)
   end
 
   def editor_table_click(row, col)
-    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
+    find(:xpath, "//table[@id='editor']/tbody/tr[#{row}]/td[#{col}]").double_click
   end
 
   def in_modal
@@ -86,7 +86,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Thesaurus, set reference
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Test Terminology")
+      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 10
@@ -199,10 +199,11 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       cl_identifier = ui_new_code_list
       context_menu_element('history', 4, cl_identifier, :edit)
       wait_for_ajax 10
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax 10
       editor_table_click(1,2)
       editor_table_fill_in "DTE_Field_notation", "SPONSOR CL\t"
+      editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "Some Sponsor Code List\n"
       editor_table_click(1,5)
       editor_table_fill_in "DTE_Field_definition", "And of course, a definition\n"
@@ -272,7 +273,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Thesaurus, add items
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Test Terminology")
+      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 20
@@ -317,7 +318,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Change CDISC Reference
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Cloned Terminology")
+      find(:xpath, "//tr[contains(.,'Cloned Terminology')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 20
@@ -403,7 +404,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Thesaurus, set reference
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Test Terminology 2")
+      find(:xpath, "//tr[contains(.,'Test Terminology 2')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 10
@@ -456,7 +457,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       # Edit Thesaurus, add items
       click_navbar_terminology
       wait_for_ajax 10
-      click_row_contains("main", "Test Terminology 2")
+      find(:xpath, "//tr[contains(.,'Test Terminology 2')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 20

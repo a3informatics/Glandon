@@ -15,14 +15,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     wait_for_ajax(10)
   end
 
-  def editor_table_fill_in(input, text)
-    expect(page).to have_css("##{input}", wait: 15)
-    fill_in "#{input}", with: "#{text}"
+  def editor_table_fill_in(id, text)
+    sleep 0.5
+    fill_in "#{id}", with: "#{text}"
     wait_for_ajax(5)
   end
 
   def editor_table_click(row, col)
-    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
+    find(:xpath, "//table[@id='editor']/tbody/tr[#{row}]/td[#{col}]").double_click
   end
 
   def new_term_modal(identifier, label)
@@ -190,11 +190,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000010P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00000999C'
       editor_table_click(1,2)
-      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 999C\t"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 999C\n"
+      editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "The PT 999C\n"
       editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "Syn3\n"
@@ -213,11 +214,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000011P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001000C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\n"
+      editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "Syn4a; Syn4b\n"
       expect(page).to have_content 'Syn4a; Syn4b'
       click_link 'Return'
@@ -262,11 +264,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000012P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001001C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\n"
+      editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "Syn6\n"
       expect(page).to have_content 'Syn6'
       editor_table_click(1,4)
@@ -312,11 +315,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000013P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001002C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\n"
+      editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "Syn8\n"
       expect(page).to have_content 'Syn8'
       editor_table_click(1,4)
@@ -355,12 +359,13 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000014P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001003C'
       wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "Syn10\n"
       expect(page).to have_content 'CodeListItem1'
       click_link "Return"
@@ -403,24 +408,24 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       context_menu_element('history', 4, 'NP000015P', :edit)
       wait_for_ajax_long
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001004C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\n"
       editor_table_click(1,2)
-      editor_table_fill_in "DTE_Field_notation", "Submission12\t"
+      editor_table_fill_in "DTE_Field_notation", "Submission12\n"
       page.driver.browser.navigate.refresh
       wait_for_ajax_long
       expect(page).to have_content 'NP000015P'
-      click_button 'New'
+      click_on 'New item'
       wait_for_ajax_long
       expect(page).to have_content 'NC00001005C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\n"
       expect(page).to have_content 'CodeListItem1'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", ""
+      editor_table_fill_in "DTE_Field_preferred_term", "\n"
       expect(page).not_to have_content 'CodeListItem1'
     end
 
