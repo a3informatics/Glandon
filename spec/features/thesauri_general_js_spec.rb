@@ -19,7 +19,6 @@ describe "Thesaurus", :type => :feature do
     wait_for_ajax(10)
   end
 
-  def editor_table_click(row, col)
   describe "Thesaurus, Curator User", :type => :feature do
 
     before :all do
@@ -512,7 +511,6 @@ describe "Thesaurus", :type => :feature do
       cl_identifier = ui_new_code_list
       context_menu_element('history', 4, cl_identifier, :edit)
       wait_for_ajax_long
-      click_button 'New'
       expect(context_menu_element_header_present?(:edit_tags)).to eq(true)
       w = window_opened_by { context_menu_element_header(:edit_tags) }
       within_window w do
