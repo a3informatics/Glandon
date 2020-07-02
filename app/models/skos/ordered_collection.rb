@@ -320,7 +320,7 @@ module SKOS::OrderedCollection
       query_string = %Q{
         DELETE 
         {
-          #{self.uri.to_ref} th:members ?first .
+          #{self.uri.to_ref} th:members #{this.to_ref} .
           #{this.to_ref} th:memberNext ?next .
           #{after.to_ref} th:memberNext ?new_next . 
         }

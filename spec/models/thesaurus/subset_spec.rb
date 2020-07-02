@@ -108,7 +108,7 @@ describe "Thesaurus Subset General" do
     result = subset.add([tc_4.uri.to_id])
     expect(subset.last.item).to eq(tc_4.uri)
     actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_11.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_11.yaml")
   end
 
   it "allows add a new item/items to the list, initial 3 items" do
@@ -131,7 +131,7 @@ describe "Thesaurus Subset General" do
     expect(last_sm_member_next_next.item).to eq(tc_4.uri)  
     expect(last_sm_member_next_next.member_next).to eq(nil) 
     actual = subset.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_12.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_12.yaml")
   end
 
   it "allows remove an item from the list, front, 3 items" do
@@ -150,7 +150,7 @@ describe "Thesaurus Subset General" do
     expect(sm_2.member_next).to eq(sm_3.uri)
     expect{Thesaurus::SubsetMember.find(sm_uri_1)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_1} in Thesaurus::SubsetMember.")
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_13.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_13.yaml")
   end
 
   it "allows remove an item from the list, middle, 3 items" do
@@ -169,7 +169,7 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect{Thesaurus::SubsetMember.find(sm_uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_2} in Thesaurus::SubsetMember.")
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_14.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_14.yaml")
   end
 
   it "allows remove an item from the list, end, 3 items" do
@@ -190,7 +190,7 @@ describe "Thesaurus Subset General" do
     expect(sm_2.member_next).to eq(nil)
     expect{Thesaurus::SubsetMember.find(sm_uri_3)}.to raise_error(Errors::NotFoundError, "Failed to find #{sm_uri_3} in Thesaurus::SubsetMember.")
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_15.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_15.yaml")
   end
 
   it "allows move an item, last to first, 3 items" do
@@ -212,7 +212,7 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_16.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_16.yaml")
   end
 
   it "allows move an item, first to last, 3 items" do
@@ -234,7 +234,7 @@ describe "Thesaurus Subset General" do
     expect(sm_3.member_next).to eq(sm_1.uri)
     expect(sm_1.member_next).to eq(nil)
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_17.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_17.yaml")
   end
 
   it "allows move an item, moving the first to middle, 3 items" do
@@ -256,7 +256,12 @@ describe "Thesaurus Subset General" do
     expect(sm_1.member_next).to eq(sm_3.uri)
     expect(sm_3.member_next).to eq(nil)
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_18.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_18.yaml")
+    # Leave lines, useful for checing linking here and in other tests
+    #triple_store.subject_triples(ss_uri_1)
+    #triple_store.subject_triples(sm_uri_2)
+    #triple_store.subject_triples(sm_uri_1)
+    #triple_store.subject_triples(sm_uri_3)
   end
 
   it "allows move an item, moving the last to middle, 3 items" do
@@ -278,7 +283,7 @@ describe "Thesaurus Subset General" do
     expect(sm_3.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_19.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_19.yaml")
   end
 
   it "allows move an item, moving the middle to last, 3 items" do
@@ -300,7 +305,7 @@ describe "Thesaurus Subset General" do
     expect(sm_3.member_next).to eq(sm_2.uri)
     expect(sm_2.member_next).to eq(nil)
     actual = ss.list_pagination({offset: 0, count: 10}).map{|x| {ordinal: x[:ordinal], uri: x[:uri]}}
-    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_20.yaml", write_file: true)
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_20.yaml")
   end
 
   it "return the list of items, paginated" do
