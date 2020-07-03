@@ -11,13 +11,10 @@ describe BiomedicalConcept do
 
   before :all do
     IsoHelpers.clear_cache
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "biomedical_concept_instances.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+    load_data_file_into_triple_store("mdr_identification.ttl")
   end
 
   it "allows validity of the object to be checked - error" do
@@ -51,9 +48,38 @@ describe BiomedicalConcept do
     check_file_actual_expected(item.to_h, sub_dir, "find_bc_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "handles a BC not being found" do
-    expect{BiomedicalConcept.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCs/V1#X"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRBCs/V1#X in BiomedicalConcept.")
+  it "allows an object to be exported as SPARQL" do
+    item = BiomedicalConcept.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCs/V1"))
+    sparql = Sparql::Update.new
+    item.to_sparql(sparql, true)
+  #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
   end
+
+  it "get the properties, with references" do
+    instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+    check_file_actual_expected(instance.get_properties(true), sub_dir, "bc_properties_with_references.yaml", equate_method: :hash_equal)
+  end
+
+  it "get the properties, no references" do
+    instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+    check_file_actual_expected(instance.get_properties, sub_dir, "bc_properties_no_references.yaml", equate_method: :hash_equal)
+  end
+
+  # it "get unique references" do
+  #   instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/HEIGHT/V1#BCI"))
+  #   items = instance.get_properties(true)
+  #   result = BiomedicalConcept.get_unique_references(items)
+  #   check_file_actual_expected(result, sub_dir, "bc_unique_references.yaml", equate_method: :hash_equal)
+  # end
+
+  # it "get the properties with references" do
+  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+  #   result = item.get_properties(true)
+  # #Xwrite_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
+  #   expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
+  #   expect(result).to hash_equal(expected)
+  # end
 
   # it "finds all entries" do
   #   expected = []
@@ -76,18 +102,6 @@ describe BiomedicalConcept do
   #     expect(expected.include?(e.id)).to be(true)
   #   end
   # end
-
-  it "finds the history of an item" do
-    results = []
-    results[0] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
-    params = {:identifier => "BC C25347", :scope => IsoRegistrationAuthority.owner.ra_namespace}
-    items = BiomedicalConcept.history(params)
-    expect(items.count).to eq(1)
-    items.each {|x| results << x.to_h}
-    check_file_actual_expected(results, sub_dir, "history_bc_expected_1.yaml", equate_method: :hash_equal)
-  end
-
-
 
   # it "finds list of all released entries" do
   #   results = []
@@ -243,37 +257,6 @@ describe BiomedicalConcept do
   #   item = BiomedicalConcept.from_json(json)
   #   check_file_actual_expected(item.to_json, sub_dir, "bc_from_json.yaml", equate_method: :hash_equal)
   # end
-
-  it "allows an object to be exported as SPARQL" do
-    item = BiomedicalConcept.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCs/V1"))
-    sparql = Sparql::Update.new
-    item.to_sparql(sparql, true)
-  #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
-    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
-  end
-
-  # it "get the properties, no references" do
-  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #   result = item.get_properties(false)
-  #   check_file_actual_expected(result, sub_dir, "bc_properties_no_ref.yaml", equate_method: :hash_equal)
-  # end
-
-  # it "get the properties with references" do
-  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #   result = item.get_properties(true)
-  # #Xwrite_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
-  #   expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
-  #   expect(result).to hash_equal(expected)
-  # end
-
-  # it "get unique references" # do
-  # #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  # #   items = item.get_properties(true)
-  # #   result = BiomedicalConcept.get_unique_references(items)
-  # # #Xwrite_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
-  # #   expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
-  # #   expect(result).to hash_equal(expected)
-  # # end
 
   # it "returns domains linked, single" do
   #   load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")

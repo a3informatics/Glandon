@@ -1,0 +1,85 @@
+---
+- :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMA==
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
+      :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1B2YWx1ZQ==
+      :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :tagged: []
+      :question_text: Height value?
+      :prompt_text: Height
+      :format: '5.2'
+      :has_coded_value: []
+      :is_a: http://www.acme-pharma.com/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue
+- :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMA==
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
+      :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2Rl
+      :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: Result unit?
+      :prompt_text: Unit
+      :format: '20'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2RlX1RVQzQ=
+        :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC4
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 4
+        :reference: http://www.cdisc.org/C71620/V6#C71620_C71253
+        :context: http://www.cdisc.org/C71620/V6#C71620
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2RlX1RVQzI=
+        :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66770/V42#C66770_C48500
+        :context: http://www.cdisc.org/C66770/V42#C66770
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2RlX1RVQzM=
+        :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C71620/V6#C71620_C41139
+        :context: http://www.cdisc.org/C71620/V6#C71620
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9CQ0kxMF9CQ0NEVFBRUl9CQ1Bjb2RlX1RVQzE=
+        :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66770/V34#C66770_C49668
+        :context: http://www.cdisc.org/C66770/V34#C66770
+        :local_label: ''
+      :is_a: http://www.acme-pharma.com/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode

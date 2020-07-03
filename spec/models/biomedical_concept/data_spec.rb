@@ -9,14 +9,16 @@ describe BiomedicalConcept do
     return "models/biomedical_concept/data"
   end
 
-  before :each do
-    load_files(schema_files, [])
+  before :all do
+    load_files(schema_files, ["hackathon_thesaurus.ttl"])
     load_cdisc_term_versions(1..62)
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("complex_datatypes.ttl")
     @cdt_set = {}
     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    @ht = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
+
   end
 
   def create_item(params, ordinal, bc_template=nil)
@@ -49,7 +51,11 @@ describe BiomedicalConcept do
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
       property.is_a = t_property.uri
       refs.each_with_index do |term, index|
-        items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
+        if term[:cl].start_with?("C")
+          items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
+        elsif term[:cl].start_with?("H")
+          items = @ht.find_by_identifiers([term[:cl].dup, term[:cli].dup])
+        end
         uri = Uri.new(uri: items[term[:cli]].to_s)
         op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
         property.has_coded_value_push(op_ref) 
@@ -125,7 +131,7 @@ describe BiomedicalConcept do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_instances.ttl")
     expect(BiomedicalConceptTemplate.unique.count).to eq(1)
-    expect(BiomedicalConceptInstance.unique.count).to eq(1)
+    expect(BiomedicalConceptInstance.unique.count).to eq(14)
   end
 
 end

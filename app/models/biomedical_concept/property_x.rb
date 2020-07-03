@@ -7,7 +7,7 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   data_property :question_text
   data_property :prompt_text
   data_property :format
-  object_property :has_coded_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
+  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
   object_property :is_a, cardinality: :one, model_class: "CanonicalReference"
 
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?

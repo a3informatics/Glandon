@@ -15,14 +15,9 @@ describe "Biomedical Concepts", :type => :feature do
   describe "BCs", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "biomedical_concept_instances.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl","biomedical_concept_instances.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..42)
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
-      clear_cdisc_term_object
       ua_create
     end
 
@@ -52,15 +47,17 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Version History of \'HEIGHT\''
     end
 
-    # it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   #save_and_open_page
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Show').click
-    #   expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    # end
+    it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
+      click_navbar_bc
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'Version History of \'HEIGHT\''
+      context_menu_element('history', 4, 'HEIGHT', :show)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Show Biomedical Concept'
+      ui_check_table_info("show", 1, 2, 2)
+    end
 
     # it "history allows the status page to be viewed", js:true do
     #   click_navbar_bc

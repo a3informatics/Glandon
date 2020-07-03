@@ -1,5 +1,6 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn } from 'shared/helpers/dt_columns'
-import { editIconInline, removeIconInline } from 'shared/ui/buttons'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt_columns'
+import { editIconInline, removeIconInline } from 'shared/ui/icons'
+import { termReferenceBtns } from 'shared/ui/collections'
 
 /**
  * Column definitions for a Code List Editor table
@@ -27,4 +28,25 @@ function dtCLEditColumns() {
   ];
 };
 
-export { dtCLEditColumns }
+/**
+ * Column definitions for Biomedical Concept Instance show
+ * @return {Array} DataTables  Biomedical Concept Instance show column definitions collection
+ */
+function dtBCShowColumns() {
+  return [
+    dtTrueFalseColumn("enabled"),
+    dtTrueFalseColumn("collect"),
+    { data: "has_complex_datatype.has_property.label" },
+    { data: "has_complex_datatype.has_property.question_text" },
+    { data: "has_complex_datatype.has_property.prompt_text" },
+    { data: "has_complex_datatype.label" },
+    { data: "has_complex_datatype.has_property.format" },
+    {
+      data: "has_complex_datatype.has_property.has_coded_value",
+      width: "30%",
+      render: (data, type, r, m) => termReferenceBtns(data)
+    }
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns }

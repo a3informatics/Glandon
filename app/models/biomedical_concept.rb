@@ -5,6 +5,52 @@ class BiomedicalConcept < IsoManagedV2
   object_property :has_item, cardinality: :many, model_class: "BiomedicalConcept::Item", children: true
   object_property :identified_by, cardinality: :one, model_class: "BiomedicalConcept::Item"
 
+  # Get Properties
+  #
+  # @return [Array] Array of hashes, one per property.
+  def get_properties(references=false)
+    results = []
+    instance = self.class.find_full(self.id)
+      instance.has_item.each do |item|
+        item.has_complex_datatype.each do |cdt|
+          cdt.has_property.each do |property|
+            property = property.to_h
+            if references
+                property[:has_coded_value].each do |coded_value|
+                  tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
+                  coded_value[:reference] = tc.reference.to_h
+                  parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
+                  coded_value[:context] = {id:parent.id, uri:parent.uri.to_s, identifier:parent.has_identifier.identifier, notation:parent.notation, semantic_version:parent.has_identifier.semantic_version}
+                end
+            end
+            results << {uri: item.uri.to_s, id: item.id, label: item.label, mandatory:item.mandatory, collect:item.collect, enabled:item.enabled, ordinal:item.ordinal, has_complex_datatype: {label: cdt.label, has_property: property}} 
+          end
+        end
+      end
+    return results
+  end
+
+  #Get Unique References
+  
+  #@param managed_item [Hash] The full properties hash with references
+  #@return [Array] Array of unique terminology references (each is a hash)
+  # def self.get_unique_references(instance)
+  #   map = {}
+  #   instance.each do |item|
+  #     item[:has_complex_datatype][:has_property][:has_coded_value].each do |coded_value|
+  #       uri = Uri.new(uri: coded_value[:reference][:uri])
+  #         if !map.has_key?(uri.to_s)
+  #           uc = Thesaurus::UnmanagedConcept.find_children(uri)
+  #           parent_uri = uc.parents.last
+  #           parent = IsoManagedV2.find_minimum(parent_uri)
+  #           coded_value[:reference][:parent] = parent.to_h
+  #           map[uri.to_s] = true
+  #         end
+  #     end
+  #   end
+  #   return instance
+  # end
+
   # # Upgrade an item
   # #
   # # @raise [UpdateError or CreateError] if object not updated/created.
@@ -64,49 +110,6 @@ class BiomedicalConcept < IsoManagedV2
   #       BiomedicalConcept.update(operational_hash)
   #     end
   #   end
-  # end
-
-  # # Get Properties
-  # #
-  # # @param references [Boolean] True to fill in terminology references, ignore otherwise.
-  # # @return [Hash] Full managed item has including array of child properties.
-  # def get_properties(references=false)
-  #   managed_item = super()
-  #   if references
-  #     managed_item[:children].each do |child|
-  #       child[:children].each do |ref|
-  #         tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(namespace: ref[:subject_ref][:namespace], fragment:ref[:subject_ref][:id]))
-  #         ref[:subject_data] = tc.to_json if !tc.nil?
-  #       end
-  #     end
-  #   end
-  #   return managed_item
-  # end
-
-  # # Get Unique References
-  # #
-  # # @param managed_item [Hash] The full propeties hash with references
-  # # @return [Array] Array of unique terminology references (each is a hash)
-  # def self.get_unique_references(managed_item)
-  #   map = {}
-  #   results = []
-  #   managed_item[:children].each do |child|
-  #     child[:children].each do |ref|
-  #       uri = UriV2.new({id: ref[:subject_ref][:id], namespace: ref[:subject_ref][:namespace]})
-  #       if !map.has_key?(uri.to_s)
-  #         if !ref[:subject_data].blank?
-  #           parent = IsoManaged.find_managed(ref[:subject_ref][:id], ref[:subject_ref][:namespace])
-  #           if !parent[:uri].blank?
-  #             th = IsoManaged.find(parent[:uri].id, parent[:uri].namespace, false)
-  #           end
-  #           ref[:subject_data][:parent] = th.to_json
-  #           results << ref[:subject_data] 
-  #         end
-  #         map[uri.to_s] = true
-  #       end
-  #     end
-  #   end
-  #   return results
   # end
 
   # # Domains: Find all domains the BC is linked with
