@@ -13,7 +13,7 @@ class Thesaurus
     def validate_and_pair(id)
       return false if already_paired?
       other = self.class.find_with_properties(id)
-      valid_pairing?(other) ? pair(id) : self.errors.add(:base, "Paring not permitted, trying to pair #{self.notation} with #{other.notation}.")
+      valid_pairing?(other) ? pair(id) : self.errors.add(:base, "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}.")
       self.errors.empty?
     end
 
@@ -40,7 +40,7 @@ class Thesaurus
     # @return [Boolean] returns true if already paired, false otherwise.
     def already_paired?
       return false unless paired?
-      self.errors.add(:base, "Paring not permitted, already paired.")
+      self.errors.add(:base, "Pairing not permitted, already paired.")
       true
     end
 

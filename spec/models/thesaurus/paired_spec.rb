@@ -66,7 +66,7 @@ describe "Thesaurus::Paired" do
       tc_1 = create_mc("EGxTESTCD")
       tc_2 = create_mc("EGTEST")
       expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
-      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, trying to pair EGxTESTCD with EGTEST.")
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair EGxTESTCD with EGTEST.")
     end
 
     it "validate and pairs, already paired" do
@@ -74,7 +74,21 @@ describe "Thesaurus::Paired" do
       tc_2 = create_mc("EGTEST")
       expect(tc_1.validate_and_pair(tc_2.id)).to eq(true)
       expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
-      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, already paired.")
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, already paired.")
+    end
+
+    it "validate and unpair" do
+      tc_1 = create_mc("EGTESTCD")
+      tc_2 = create_mc("EGTEST")
+      expect(tc_1.validate_and_unpair).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Cannot unpair as the item is not paired.")
+      tc_1.errors.clear
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(true)
+      tc_1.errors.clear
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, already paired.")
+      tc_1.errors.clear
+      expect(tc_1.validate_and_unpair).to eq(true)
     end
 
     it "already paired" do
@@ -82,7 +96,7 @@ describe "Thesaurus::Paired" do
       tc_2 = create_mc("EGTEST")
       tc_1.validate_and_pair(tc_2.id)
       expect(tc_1.already_paired?).to eq(true)
-      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, already paired.")
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, already paired.")
     end
 
     it "checks paired" do
