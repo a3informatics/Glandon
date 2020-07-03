@@ -332,6 +332,7 @@ module UiHelpers
   def ui_show_more_tags_cl
     #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
     find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+		sleep 0.5
   end
 
   def ui_show_more_tags_cli
