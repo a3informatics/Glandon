@@ -78,6 +78,7 @@ describe "Dashboard JS", :type => :feature do
       check 'Terminologies'
       check 'Statistics'
       click_button 'Save'
+      wait_for_ajax 20
     end
 
     # it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do
