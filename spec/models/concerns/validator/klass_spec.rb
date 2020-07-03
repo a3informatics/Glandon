@@ -20,11 +20,11 @@ describe Validator::Klass do
     x.identifier = "A"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("By authority: Uri can't be blank and By authority: Organization identifier is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("By authority can't be blank and By authority is invalid")
     x.by_authority.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(1)
-    expect(x.errors.full_messages.to_sentence).to eq("By authority: Organization identifier is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("By authority is invalid")
     x.by_authority.organization_identifier = "123456777"
     expect(x.valid?).to eq(true)
   end
@@ -37,7 +37,7 @@ describe Validator::Klass do
     x.change_description = "A"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(1)
-    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Empty object")
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier empty object")
   end
 
   it "validates a klass, II" do
@@ -50,7 +50,7 @@ describe Validator::Klass do
     x.has_state.registration_status = "WRONG"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Empty object and Has state: Registration status is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier empty object and Has state is invalid")
   end
 
   it "validates a klass, III" do
@@ -63,7 +63,7 @@ describe Validator::Klass do
     x.has_identifier.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#YYY")
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Has identifier: Semantic version is empty")
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier contains invalid characters and Has identifier is empty")
   end
 
   it "validates a klass, IV" do
