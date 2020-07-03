@@ -59,7 +59,7 @@ describe "Thesaurus::UnmanagedConcept" do
       valid = tc.valid?
       expect(valid).to eq(false)
       expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages.to_sentence).to eq("Preferred term contains invalid characters")
+      expect(tc.errors.full_messages.to_sentence).to eq("Preferred term - label - contains invalid characters")
     end
 
     it "allows a TC to be found" do
@@ -453,15 +453,15 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C")
       tc.update(preferred_term: "€")
       expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages).to eq(["Preferred term contains invalid characters"])
+      expect(tc.errors.full_messages).to eq(["Preferred term - label - contains invalid characters"])
       tc = Thesaurus::UnmanagedConcept.find(tc_uri)
       tc.update(synonym: "Male; Female€")
       expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages).to eq(["Synonym 2: contains invalid characters"])
+      expect(tc.errors.full_messages).to eq(["Synonym - 2: label - contains invalid characters"])
       tc = Thesaurus::UnmanagedConcept.find(tc_uri)
       tc.update(synonym: "Male; Female€; XXX€")
       expect(tc.errors.count).to eq(2)
-      expect(tc.errors.full_messages).to eq(["Synonym 2: contains invalid characters", "Synonym 3: contains invalid characters"])
+      expect(tc.errors.full_messages).to eq(["Synonym - 2: label - contains invalid characters", "Synonym - 3: label - contains invalid characters"])
     end
 
   end
