@@ -68,7 +68,7 @@ describe Thesaurus do
       valid = result.valid?
       expect(valid).to eq(false)
       expect(result.errors.count).to eq(3)
-      expect(result.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, and Has state: Empty object")
+      expect(result.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier empty object, and Has state empty object")
     end
 
     it "allows validity of the object to be checked" do
