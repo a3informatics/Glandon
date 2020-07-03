@@ -92,6 +92,35 @@
   :reference: http://www.cdisc.org/C71620/V11#C71620
   :context: 
 :is_top_concept:
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: London Heathrow
+  :tagged: []
+  :has_state: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :has_identifier: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2019-12-15T20:50:53+01:00'
+  :explanatory_comment: ''
+  :identifier: A00001
+  :notation: LHR
+  :definition: A definition
+  :extensible: false
+  :narrower:
+  - http://www.acme-pharma.com/A00001/V1#A00001_A000012
+  - http://www.acme-pharma.com/A00001/V1#A00001_A000011
+  :extends: 
+  :subsets: 
+  :paired_with: 
+  :refers_to: []
+  :preferred_term: http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a
+  :synonym:
+  - http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
+  - http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
+  :is_ordered: 
+  :is_ranked: 
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4Mw==
   :uri: http://www.cdisc.org/C66783/V4#C66783
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
@@ -138,6 +167,7 @@
   - http://www.cdisc.org/C66783/V4#C66783_C3959
   :extends: 
   :subsets: 
+  :paired_with: 
   :refers_to: []
   :preferred_term: http://www.assero.co.uk/PT#2b19e0511fa043da5bcabadc83d7d5d1ac4b1dbe
   :synonym:
@@ -181,6 +211,7 @@
   - http://www.cdisc.org/C66737/V9#C66737_C15602
   :extends: 
   :subsets: 
+  :paired_with: 
   :refers_to: []
   :preferred_term: http://www.assero.co.uk/PT#ea316b4c8700efa4ad1f09c6a6565e2e8a8723c2
   :synonym:
@@ -511,38 +542,11 @@
   - http://www.cdisc.org/C71620/V9#C71620_C68859
   :extends: 
   :subsets: 
+  :paired_with: 
   :refers_to: []
   :preferred_term: http://www.assero.co.uk/PT#ddfbbdb7aff9f54496df56ffa24a91b57217cffe
   :synonym:
   - http://www.assero.co.uk/SYN#f6b935ab337145efdeadda28cae18aa89a845e36
-  :is_ordered: 
-  :is_ranked: 
-- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
-  :uri: http://www.acme-pharma.com/A00001/V1#A00001
-  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-  :label: London Heathrow
-  :tagged: []
-  :has_state: http://www.acme-pharma.com/A00001/V1#A00001_RS
-  :has_identifier: http://www.acme-pharma.com/A00001/V1#A00001_SI
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2016-01-01T00:00:00+00:00'
-  :last_change_date: '2019-12-15T20:50:53+01:00'
-  :explanatory_comment: ''
-  :identifier: A00001
-  :notation: LHR
-  :definition: A definition
-  :extensible: false
-  :narrower:
-  - http://www.acme-pharma.com/A00001/V1#A00001_A000012
-  - http://www.acme-pharma.com/A00001/V1#A00001_A000011
-  :extends: 
-  :subsets: 
-  :refers_to: []
-  :preferred_term: http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a
-  :synonym:
-  - http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
-  - http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
   :is_ordered: 
   :is_ranked: 
 :reference:
