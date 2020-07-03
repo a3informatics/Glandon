@@ -55,7 +55,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Version History of \'HEIGHT\''
       context_menu_element('history', 4, 'HEIGHT', :show)
       wait_for_ajax(10)
-      expect(page).to have_content 'Show Biomedical Concept'
+      expect(page).to have_content 'Show: Biomedical Concept'
       ui_check_table_info("show", 1, 2, 2)
     end
 
