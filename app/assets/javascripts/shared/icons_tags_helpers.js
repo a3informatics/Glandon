@@ -34,7 +34,7 @@ function colorCodeTagsOutline(parent, tagClass) {
 function colorCodeTagsBadge(tags) {
   if (tags == null)
     return "None";
-    
+
   tags = tags.split('; ');
   var html = (tags.length > 0 && tags[0].length > 0) ? "" : "None";
 
@@ -70,7 +70,8 @@ function indicatorMap(indicator) {
       "subset": {icon: "icon-subset", ttip: "Item is a subset"},
       "subsetted": {icon: "icon-subsetted", ttip: "Item is subsetted"},
       "annotations": {icon: "icon-note-filled", ttip: "Item has %n% change notes <br/> and %i% change instructions"},
-      "ranked": {icon: "icon-rank", ttip: "Item is ranked"}
+      "ranked": {icon: "icon-rank", ttip: "Item is ranked"},
+      "paired": {icon: "icon-pair", ttip: "Item is paired"}
     }
 
   return indMap[indicator];
