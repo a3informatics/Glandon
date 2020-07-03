@@ -22,8 +22,8 @@ describe BiomedicalConcept do
     result.valid?
     expect(result.errors.count).to eq(3)
     expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
-    expect(result.errors.full_messages[1]).to eq("Has identifier: Empty object")
-    expect(result.errors.full_messages[2]).to eq("Has state: Empty object")
+    expect(result.errors.full_messages[1]).to eq("Has identifier empty object")
+    expect(result.errors.full_messages[2]).to eq("Has state empty object")
     expect(result.valid?).to eq(false)
   end
 
