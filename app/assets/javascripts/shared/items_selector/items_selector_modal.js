@@ -276,7 +276,7 @@ ItemsSelector.prototype.selectionItemString = function(item) {
  */
 ItemsSelector.prototype.updateUI = function() {
   var selText = this.updateSelectionInfo();
-  $("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0))
+  this.modal.find("#selector-modal-submit").toggleClass("disabled", (selText == "None" || selText == 0))
 }
 
 /**
