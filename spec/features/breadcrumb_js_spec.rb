@@ -9,7 +9,7 @@ describe "Breadcrumb", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)
     ua_create
@@ -157,27 +157,27 @@ describe "Breadcrumb", :type => :feature do
 
     it "has CDISC Terminology breadcrumbs"
 
-    it "has Biomedical Concept Templates breadcrumbs", js:true  do
-      click_navbar_bct
-      ui_check_breadcrumb("Biomedical Concept Templates", "", "", "")
-      next_link_table("Obs CD", "History", "History: Obs CD", "Biomedical Concept Templates", "CDISC, Obs CD", "")
-      next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "Biomedical Concept Templates", "CDISC, Obs CD", "V1.0.0")
-      next_link_crumb(2, 'History', "Biomedical Concept Templates", "CDISC, Obs CD", "")
-    end
-
-    # it "has Biomedical Concepts breadcrumbs", js:true  do
-    #   click_navbar_bc
-    #   ui_check_breadcrumb("Biomedical Concepts", "", "", "")
-    #   next_link('New', 'New: Biomedical Concept', "Biomedical Concepts", "New", "")
-    #   next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
-    #   next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "ACME, BC C49677", "")
-    #   next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "V1.0.0")
-    #   next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
-    #   next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Status: V1.0.0")
-    #   next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
-    #   next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Comments: V1.0.0")
-    #   next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+    # it "has Biomedical Concept Templates breadcrumbs", js:true  do
+    #   click_navbar_bct
+    #   ui_check_breadcrumb("Biomedical Concept Templates", "", "", "")
+    #   next_link_table("Obs CD", "History", "History: Obs CD", "Biomedical Concept Templates", "CDISC, Obs CD", "")
+    #   next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "Biomedical Concept Templates", "CDISC, Obs CD", "V1.0.0")
+    #   next_link_crumb(2, 'History', "Biomedical Concept Templates", "CDISC, Obs CD", "")
     # end
+
+    it "has Biomedical Concepts breadcrumbs", js:true  do
+      click_navbar_bc
+      ui_check_breadcrumb("Biomedical Concepts", "", "", "")
+      #next_link('New', 'New: Biomedical Concept', "Biomedical Concepts", "New", "")
+      # next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
+      # next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "ACME, BC C49677", "")
+      # next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "V1.0.0")
+      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+      # next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Status: V1.0.0")
+      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+      # next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Comments: V1.0.0")
+      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+    end
 
     # it "has Forms breadcrumbs", js:true  do
     #   click_navbar_forms
