@@ -34,7 +34,6 @@ describe "Sidebar Locks", :type => :feature do
       ui_check_item_locked("main_nav_sig")
       ui_check_item_locked("main_nav_sm")
       ui_check_item_locked("main_nav_f")
-      ui_check_item_locked("main_nav_bc")
       ui_check_item_locked("main_nav_bct")
     end
 
