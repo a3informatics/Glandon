@@ -265,15 +265,15 @@ describe Form do
     expect(xml).to eq(expected)
   end
   
-  it "to_xml, II" do
-  	item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  	xml = item.to_xml
-  #write_text_file_2(xml, sub_dir, "to_xml_2.xml")
-    expected = read_text_file_2(sub_dir, "to_xml_2.xml")
-    odm_fix_datetimes(xml, expected)
-    odm_fix_system_version(xml, expected)
-    expect(xml).to eq(expected)
-  end
+  # it "to_xml, II" do
+  # 	item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+  # 	xml = item.to_xml
+  # #write_text_file_2(xml, sub_dir, "to_xml_2.xml")
+  #   expected = read_text_file_2(sub_dir, "to_xml_2.xml")
+  #   odm_fix_datetimes(xml, expected)
+  #   odm_fix_system_version(xml, expected)
+  #   expect(xml).to eq(expected)
+  # end
 
   it "checks if the form is valid?" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
