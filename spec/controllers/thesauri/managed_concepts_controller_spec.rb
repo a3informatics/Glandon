@@ -858,7 +858,7 @@ describe Thesauri::ManagedConceptsController do
       post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Paring not permitted, already paired."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Pairing not permitted, already paired."])
     end
 
     it "pair a code list, error token" do
