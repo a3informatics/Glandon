@@ -138,7 +138,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a thesaurus to be created, field validation (REQ-MDR-ST-015)", js: true do
       ui_create_terminology('@@@', '€€€', false)
-      expect(page).to have_content "Label contains invalid characters and Has identifier: Identifier contains invalid characters"
+      expect(page).to have_content "Label contains invalid characters and Has identifier - identifier - contains invalid characters"
       ui_create_terminology('BETTER', '€€€', false)
       expect(page).to have_content "Label contains invalid characters"
       ui_create_terminology('BETTER', 'Nice Label')
