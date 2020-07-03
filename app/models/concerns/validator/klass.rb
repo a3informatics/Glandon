@@ -27,7 +27,7 @@ private
     items.each_with_index do |item, index|
       next if item_valid?(item, record, property_name, level)
       item.errors.each do |field, msg| 
-        record.errors[property_name] << "#{index+1}: #{field}, #{msg}" 
+        record.errors[property_name] << "- #{index+1}: #{field_to_s(field)} - #{msg}" 
       end
       result = false
     end
@@ -39,7 +39,7 @@ private
     return true if item.nil? && !presence
     return false if single_nil_item?(item, record, property_name, presence)
     return true if item_valid?(item, record, property_name, level)
-    item.errors.each {|field, msg| record.errors[property_name] << ", #{field}, #{msg}"}
+    item.errors.each {|field, msg| record.errors[property_name] << "- #{field_to_s(field)} - #{msg}"}
     false
   end
 
@@ -71,4 +71,7 @@ private
     FieldValidation.valid_uri?(property_name, item.to_s, record)
   end
 
+  def field_to_s(text)
+    text.to_s.humanize.downcase
+  end
 end

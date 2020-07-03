@@ -621,7 +621,7 @@ describe "IsoManagedV2" do
     it "create, not valid, identifier" do
       object = Thesaurus.create({label: "A new item", identifier: "XXXXX$"})
       expect(object.errors.count).to eq(1)
-      expect(object.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters")
+      expect(object.errors.full_messages.to_sentence).to eq("Has identifier - identifier - contains invalid characters")
     end
 
     it "create, not permitted" do
@@ -717,7 +717,7 @@ describe "IsoManagedV2" do
       object = ct.clone
       object.reset_cloned(identifier: "CLONED @£$", label: "We have changed it")
       expect(object.errors.count).to eq(1)
-      expect(object.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters")
+      expect(object.errors.full_messages.to_sentence).to eq("Has identifier - identifier - contains invalid characters")
     end
 
     it "reset clone, not permitted" do

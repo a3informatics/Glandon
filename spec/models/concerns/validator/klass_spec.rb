@@ -20,11 +20,11 @@ describe Validator::Klass do
     x.identifier = "A"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("By authority can't be blank and By authority is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("By authority - uri - can't be blank and By authority - organization identifier - is invalid")
     x.by_authority.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(1)
-    expect(x.errors.full_messages.to_sentence).to eq("By authority is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("By authority - organization identifier - is invalid")
     x.by_authority.organization_identifier = "123456777"
     expect(x.valid?).to eq(true)
   end
@@ -50,7 +50,7 @@ describe Validator::Klass do
     x.has_state.registration_status = "WRONG"
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("Has identifier empty object and Has state is invalid")
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier empty object and Has state - registration status - is invalid")
   end
 
   it "validates a klass, III" do
@@ -63,7 +63,7 @@ describe Validator::Klass do
     x.has_identifier.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#YYY")
     expect(x.valid?).to eq(false)
     expect(x.errors.count).to eq(2)
-    expect(x.errors.full_messages.to_sentence).to eq("Has identifier contains invalid characters and Has identifier is empty")
+    expect(x.errors.full_messages.to_sentence).to eq("Has identifier - identifier - contains invalid characters and Has identifier - semantic version - is empty")
   end
 
   it "validates a klass, IV" do
