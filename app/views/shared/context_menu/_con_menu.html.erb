@@ -5,7 +5,7 @@
 <%= javascript_include_tag 'shared/context_menu' %>
 
 <span id="<%= menu_id %>"class="icon-context-menu text-medium text-normal" tabindex="1">
-  <div class="context-menu <%= local_assigns.fetch :color, "" %> <%= local_assigns.fetch :side, "" %> shadow-small collapsed">
+  <div class="context-menu scroll-styled <%= local_assigns.fetch :color, "" %> <%= local_assigns.fetch :side, "" %> shadow-small collapsed">
     <%= yield %>
   </div>
 </span>
