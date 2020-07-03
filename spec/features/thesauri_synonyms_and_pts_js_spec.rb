@@ -110,7 +110,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_xpath("//div[@id='synonyms-panel']/div/div/div/a/div/div", :text => 'XDOSFRQ (C78745)')
     end
 
-    it "allows to assign a synonyms on a code list item (REQ-MDR-SY-030)", js: true do
+    it "allows to assign synonyms on a code list item (REQ-MDR-SY-030)", js: true do
       click_navbar_code_lists
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
@@ -123,14 +123,14 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00000999C'
       ui_editor_select_by_location(1,2)
-      ui_editor_fill_inline "DTE_Field_notation", "SUBMISSION 999C\n"
+      ui_editor_fill_inline "notation", "SUBMISSION 999C\n"
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "The PT 999C\n"
+      ui_editor_fill_inline "preferred_term", "The PT 999C\n"
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "Syn3\n"
+      ui_editor_fill_inline "synonym", "Syn3\n"
       expect(page).to have_content 'Syn3'
       ui_editor_select_by_location(1,5)
-      ui_editor_fill_inline "DTE_Field_definition", "We never fill this in, too tricky 999C!\n"
+      ui_editor_fill_inline "definition", "We never fill this in, too tricky 999C!\n"
       click_link 'Return'
     end
 
@@ -147,9 +147,9 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00001000C'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeListItem1\n"
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "Syn4a; Syn4b\n"
+      ui_editor_fill_inline "synonym", "Syn4a; Syn4b\n"
       expect(page).to have_content 'Syn4a; Syn4b'
       click_link 'Return'
     end
@@ -167,15 +167,15 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00001001C'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeListItem1\n"
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "Syn6\n"
+      ui_editor_fill_inline "synonym", "Syn6\n"
       expect(page).to have_content 'Syn6'
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "NewCLSyn6\n"
+      ui_editor_fill_inline "synonym", "NewCLSyn6\n"
       expect(page).to have_content 'NewCLSyn6'
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "CLSyn6; NewCLSyn6\n"
+      ui_editor_fill_inline "synonym", "CLSyn6; NewCLSyn6\n"
       expect(page).to have_content 'CLSyn6; NewCLSyn6'
       click_link 'Return'
     end
@@ -193,12 +193,12 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00001002C'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeListItem1\n"
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "Syn8\n"
+      ui_editor_fill_inline "synonym", "Syn8\n"
       expect(page).to have_content 'Syn8'
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "\n"
+      ui_editor_fill_inline "synonym", "\n"
       expect(page).not_to have_content 'CLSyn8'
       click_link 'Return'
     end
@@ -217,9 +217,9 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       expect(page).to have_content 'NC00001003C'
       wait_for_ajax_long
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeListItem1\t"
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\t"
       ui_editor_select_by_location(1,4)
-      ui_editor_fill_inline "DTE_Field_synonym", "Syn10\n"
+      ui_editor_fill_inline "synonym", "Syn10\n"
       expect(page).to have_content 'CodeListItem1'
       click_link "Return"
       wait_for_ajax 10
@@ -239,9 +239,9 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00001004C'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeList12\n"
+      ui_editor_fill_inline "preferred_term", "CodeList12\n"
       ui_editor_select_by_location(1,2)
-      ui_editor_fill_inline "DTE_Field_notation", "Submission12\n"
+      ui_editor_fill_inline "notation", "Submission12\n"
       page.driver.browser.navigate.refresh
       wait_for_ajax_long
       expect(page).to have_content 'NP000015P'
@@ -249,10 +249,10 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'NC00001005C'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "CodeListItem1\n"
+      ui_editor_fill_inline "preferred_term", "CodeListItem1\n"
       expect(page).to have_content 'CodeListItem1'
       ui_editor_select_by_location(1,3)
-      ui_editor_fill_inline "DTE_Field_preferred_term", "\n"
+      ui_editor_fill_inline "preferred_term", "\n"
       expect(page).not_to have_content 'CodeListItem1'
     end
 
@@ -458,7 +458,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
 
   def check_tags(date, version, ct_tags, cl_tags)
     click_navbar_cdisc_terminology
-    wait_for_ajax(10)
+    wait_for_ajax(20)
     ui_table_search("history", "#{date} Release")
     context_menu_element('history', 5, "#{date} Release", :show)
     wait_for_ajax_long
@@ -469,9 +469,9 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
     wait_for_ajax_long
     expect(page).to have_content "C100170"
-  sleep 0.5
+  sleep 1
     ui_show_more_tags_cl
-  sleep 0.5
+  sleep 1
     expect(page).to have_content "Tags: #{cl_tags}"
   end
 

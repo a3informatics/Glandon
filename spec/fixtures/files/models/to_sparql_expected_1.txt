@@ -1,0 +1,17 @@
+PREFIX bc: <http://www.assero.co.uk/BiomedicalConcept#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRBCs/V1> rdf:type bc:BiomedicalConcept . 
+<http://www.assero.co.uk/MDRBCs/V1> isoC:label ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRBCs/V1> isoT:lastChangeDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRBCs/V1> isoT:explanatoryComment ""^^xsd:string . 
+}

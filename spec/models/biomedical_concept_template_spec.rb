@@ -4,91 +4,91 @@ describe BiomedicalConceptTemplate do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"
-    ]
+  def sub_dir
+    return "models"
+  end
+
+  before :all do
+    IsoHelpers.clear_cache
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
     load_files(schema_files, data_files)
+    #load_cdisc_term_versions(1..43)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
   end
 
+
   it "allows validity of the object to be checked - error" do
     result = BiomedicalConceptTemplate.new
     result.valid?
-    expect(result.errors.count).to eq(4)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
-    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
-    expect(result.errors.full_messages[2]).to eq("Registration State error: Registration authority error: Ra namespace empty object")
-    expect(result.errors.full_messages[3]).to eq("Scoped Identifier error: Identifier contains invalid characters")
+    expect(result.errors.count).to eq(3)
+    expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Has identifier empty object")
+    expect(result.errors.full_messages[2]).to eq("Has state empty object")
     expect(result.valid?).to eq(false)
   end
 
   it "allows validity of the object to be checked" do
-    result = BiomedicalConceptTemplate.new
-    ra = IsoRegistrationAuthority.new
-    ra.uri = "na" # Bit naughty
-    ra.organization_identifier = "123456789"
-    ra.international_code_designator = "DUNS"
-    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
-    result.registrationState.registrationAuthority = ra
-    result.scopedIdentifier.identifier = "HELLO WORLD"
+    result = BiomedicalConcept.new
+    ra = IsoRegistrationAuthority.find(Uri.new(uri:"http://www.assero.co.uk/RA#DUNS123456789"))
+    result.has_state = IsoRegistrationStateV2.new
+    result.has_state.uri = "na"
+    result.has_state.by_authority = ra
+    result.has_identifier = IsoScopedIdentifierV2.new
+    result.has_identifier.uri = "na"
+    result.has_identifier.identifier = "HELLO WORLD"
+    result.has_identifier.semantic_version = "0.1.0"
+    result.uri = "xxx"
     valid = result.valid?
     expect(result.errors.count).to eq(0)
     expect(valid).to eq(true)
   end 
 
   it "allows a BCT to be found" do
-    item = BiomedicalConceptTemplate.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
-    expect(item.identifier).to eq("Obs PQR")
+    item = BiomedicalConceptTemplate.find(Uri.new(uri: "http://www.assero.co.uk/MDRBCTs/V1"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_bc_template_expected_1.yaml", equate_method: :hash_equal)
   end
 
-  it "handles a BCT not being found" do
-    expect{BiomedicalConceptTemplate.find("F-ACME_T2x", "http://www.assero.co.uk/MDRForms/ACME/V1")}.to raise_error(Exceptions::NotFoundError)
-  end
+  # it "finds all entries" do
+  #   results = []
+  #   results[0] = {:id => "BCT-Obs_PQR"}
+  #   results[1] = {:id => "BCT-Obs_CD"}
+  #   items = BiomedicalConceptTemplate.all
+  #   items.each_with_index do |item, index|
+  #     expect(items[index].id).to eq(results[index][:id])
+  #   end
+  # end
 
-  it "finds all entries" do
-    results = []
-    results[0] = {:id => "BCT-Obs_PQR"}
-    results[1] = {:id => "BCT-Obs_CD"}
-    items = BiomedicalConceptTemplate.all
-    items.each_with_index do |item, index|
-      expect(items[index].id).to eq(results[index][:id])
-    end
-  end
+  # it "finds the history of an item" do
+  #   results = []
+  #   results[0] = {:id => "BCT-Obs_PQR", :scoped_identifier_version => 1}
+  #   params = {:identifier => "Obs PQR", :scope => IsoRegistrationAuthority.owner.ra_namespace}
+  #   items = BiomedicalConceptTemplate.history(params)
+  #   expect(items.count).to eq(1)
+  #   items.each {|x| results << x.to_h}
+  #   check_file_actual_expected(results, sub_dir, "history_bc_template_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+  # end
 
-  it "finds the history of an item" do
-    results = []
-    results[0] = {:id => "BCT-Obs_PQR", :scoped_identifier_version => 1}
-    params = {:identifier => "Obs PQR", :scope => IsoRegistrationAuthority.owner}
-    items = BiomedicalConceptTemplate.history(params)
-    items.each_with_index do |item, index|
-      expect(items[index].id).to eq(results[index][:id])
-      expect(items[index].scopedIdentifier.version).to eq(results[index][:scoped_identifier_version])
-    end
-  end
+  # it "finds list of all released entries" do
+  #   results = []
+  #   results[0] = {:id => "BCT-Obs_CD", :scoped_identifier_version => 1}
+  #   results[1] = {:id => "BCT-Obs_PQR", :scoped_identifier_version => 1}
+  #   items = BiomedicalConceptTemplate.list
+  #   items.each_with_index do |item, index|
+  #     expect(results[index][:id]).to eq(items[index].id)
+  #     expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
+  #   end
+  # end
 
-  it "finds list of all released entries" do
-    results = []
-    results[0] = {:id => "BCT-Obs_CD", :scoped_identifier_version => 1}
-    results[1] = {:id => "BCT-Obs_PQR", :scoped_identifier_version => 1}
-    items = BiomedicalConceptTemplate.list
-    items.each_with_index do |item, index|
-      expect(results[index][:id]).to eq(items[index].id)
-      expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
-    end
-  end
+  # it "finds all unique entries"
 
-  it "finds all unique entries"
+  # it "allows the object to be exported as JSON"
 
-  it "allows the object to be exported as JSON"
+  # it "allows the object to be created from JSON"
 
-  it "allows the object to be created from JSON"
-
-  it "allows an object to be exported as SPARQL"
+  # it "allows an object to be exported as SPARQL"
 
 =begin
     sparql = SparqlUpdateV2.new
