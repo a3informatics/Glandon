@@ -18,22 +18,18 @@
 
 .table-cardstyle table td.focus {
   background: $grey-bright !important;
-  padding-left: 20px;
+  padding-right: 20px;
   box-shadow: none !important;
 }
 
-.table-cardstyle table tr.editable td.editable:hover {
-  padding-left: 20px;
-}
-
-.table-cardstyle table tr.editable td.editable:hover::before {
+.table-cardstyle table tr.row-sponsor td.editable:hover::before {
   font-family: 'icomoon';
   position: absolute;
   content: "\e931";
   display: block;
-  left: 8px;
-  top: 5px;
-  font-size: $font-small;
+  right: 6px;
+  top: 4px;
+  font-size: $font-tiny;
   color: $primary-color-bright;
 }
 

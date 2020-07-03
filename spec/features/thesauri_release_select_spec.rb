@@ -39,7 +39,7 @@ describe "Thesauri Release Select", :type => :feature do
     def navigate_to_release_sel
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]",).click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a",).click
       wait_for_ajax 10
       context_menu_element("history", 5, "TST", :edit)
       wait_for_ajax 50
@@ -277,7 +277,7 @@ describe "Thesauri Release Select", :type => :feature do
 
     it "change the CDISC version, upgrade selection", :type => :feature do
       ui_create_terminology("TEST", "Tst th")
-      find(:xpath, '//tr[contains(.,"TEST")]').click
+      find(:xpath, '//tr[contains(.,"TEST")]/td/a').click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :edit)
       wait_for_ajax 10

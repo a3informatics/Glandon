@@ -49,7 +49,7 @@ describe "Indicators", :type => :feature do
     it "Thesaurus Show, children table", js:true do
       click_navbar_terminology
       wait_for_ajax 20
-      find(:xpath, "//tr[contains(.,'AIRPORTS')]").click
+      find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 1, "0.1.0", :show)
       wait_for_ajax 10
@@ -94,7 +94,7 @@ describe "Indicators", :type => :feature do
       # Check Indicator
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'TST')]").click
+      find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       ui_check_table_row_indicators("history", 1, 8, ["Current version"])
     end
@@ -114,7 +114,7 @@ describe "Indicators", :type => :feature do
         # Terminology Show
       click_navbar_terminology
       wait_for_ajax 10
-      find(:xpath, "//tr[contains(.,'AIRPORTS')]").click
+      find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
       wait_for_ajax 10
       context_menu_element_v2("history", "0.1.0", :show)
       wait_for_ajax 10

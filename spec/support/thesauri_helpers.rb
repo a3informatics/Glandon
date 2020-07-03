@@ -127,14 +127,14 @@ private
             uri = Uri.from_uri_or_string(synonym)
             synonyms << Thesaurus::Synonym.find(uri).to_h
           end
-          puts colourize("***** Aligning Synonym #{synonyms.last[:label]} *****", "green")
+          puts colourize("Aligning Synonym #{synonyms.last[:label]}", "blue")
         end
         item[key] = synonyms
       elsif key == :preferred_term
         if !value.is_a?(Hash)
           uri = Uri.from_uri_or_string(value)
           item[key] = Thesaurus::PreferredTerm.find(uri).to_h
-          puts colourize("***** Aligning PT #{item[key][:label]} *****", "green")
+          puts colourize("Aligning PT #{item[key][:label]}", "blue")
         end
       elsif key == :narrower
         narrower = []

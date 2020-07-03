@@ -17,8 +17,8 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Field, attribute: :origin, method: :valid_markdown?
   validates_with Validator::Field, attribute: :change_description, method: :valid_markdown?
   validates_with Validator::Field, attribute: :explanatory_comment, method: :valid_markdown?
-  validates_with Validator::Klass, property: :has_identifier
-  validates_with Validator::Klass, property: :has_state
+  validates_with Validator::Klass, property: :has_identifier, presence: true
+  validates_with Validator::Klass, property: :has_state, presence: true
 
   # Version
   #

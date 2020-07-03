@@ -616,6 +616,7 @@ describe Thesauri::ManagedConceptsController do
     it "edit subset" do
       ct = Uri.new(uri: "http://www.cdisc.org/CT/V19#TH")
       sub_mc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
+      sub_mc.synonyms_and_preferred_terms
       sub_mc.update(is_ordered: Thesaurus::Subset.create(parent_uri: sub_mc.uri))
       get :edit_subset, params:{id: sub_mc.id}
       expect(assigns(:subset_mc).id).to eq(sub_mc.id)

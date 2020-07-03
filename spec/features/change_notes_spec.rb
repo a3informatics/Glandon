@@ -299,9 +299,9 @@ describe "Change Notes", :type => :feature do
       wait_for_ajax(20)
       context_menu_element("history", 5, "NP000010P", :edit)
       wait_for_ajax(20)
-      page.find("#tnp_new_button").click
+      find("#new-item-button").click
       wait_for_ajax(20)
-      page.go_back
+      click_on "Return"
       wait_for_ajax(20)
       context_menu_element("history", 5, "NP000010P", :show)
       wait_for_ajax(20)
@@ -494,7 +494,7 @@ describe "Change Notes", :type => :feature do
       ui_create_terminology("CNTST", "CN Test Terminology")
       click_navbar_terminology
       wait_for_ajax(20)
-      find(:xpath, "//tr[contains(.,'CNTST')]",).click
+      find(:xpath, "//tr[contains(.,'CNTST')]/td/a",).click
       wait_for_ajax(20)
       context_menu_element("history", 5, "CNTST", :show)
       wait_for_ajax(20)
@@ -511,7 +511,7 @@ describe "Change Notes", :type => :feature do
     it "allows viewing change notes modal, edit page", js:true do
       click_navbar_terminology
       wait_for_ajax(20)
-      find(:xpath, "//tr[contains(.,'CNTST')]",).click
+      find(:xpath, "//tr[contains(.,'CNTST')]/td/a",).click
       wait_for_ajax(20)
       context_menu_element("history", 5, "CNTST", :edit)
       wait_for_ajax(20)
@@ -528,7 +528,7 @@ describe "Change Notes", :type => :feature do
     it "allows to create, edit and delete a change note", js:true do
       click_navbar_terminology
       wait_for_ajax(20)
-      find(:xpath, "//tr[contains(.,'CNTST')]",).click
+      find(:xpath, "//tr[contains(.,'CNTST')]/td/a",).click
       wait_for_ajax(20)
       context_menu_element("history", 5, "CNTST", :show)
       wait_for_ajax(20)

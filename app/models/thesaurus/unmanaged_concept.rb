@@ -19,6 +19,8 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
+  validates_with Validator::Klass, property: :preferred_term, presence: true
+  validates_with Validator::Klass, property: :synonym
   validate :valid_parent_child?
 
   include Thesaurus::BaseConcept
@@ -317,25 +319,17 @@ private
     end
   end
 
-  # Find parent query. Used by BaseConcept
+  # Find parent query. Used by BaseConcept. Note the query is looking for actual parents 
+  # and not references to it. Parents are different versions of the same item.
   def parent_query
-    "SELECT DISTINCT ?s WHERE \n" +
-    "{ \n" +     
-    "  #{self.uri.to_ref} ^th:narrower ?s .  \n" +
-    "}"
+    %Q{
+      SELECT DISTINCT ?s WHERE
+      {
+        #{self.uri.to_ref} ^th:narrower ?s .
+        FILTER(NOT EXISTS {?s th:refersTo #{self.uri.to_ref}})
+      }
+    }
   end
-
-  # # Given a parent and a child, retrieves its rank member node. 
-  # def rank_member_query(uc, parent_uc)
-  #   query_string = %Q{
-  #   SELECT DISTINCT ?s WHERE
-  #   {
-  #     #{uc.uri.to_ref} ^th:item ?s . 
-  #     #{parent_uc.uri.to_ref} th:isRanked/th:members/th:memberNext* ?s 
-  #   }}
-  #   results = Sparql::Query.new.query(query_string, "", [:th])
-  #   return results.by_object(:s)
-  # end
 
   # Delete rank member.
   def delete_rank_member(uc, parent_uc)

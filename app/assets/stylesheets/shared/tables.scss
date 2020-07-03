@@ -39,12 +39,16 @@
   color: $secondary-color-medium !important;
 }
 
-.table-cardstyle .row-sponsor td:first-of-type, .table-cardstyle .row-cdisc td:first-of-type{
+.table-cardstyle .row-sponsor td:first-of-type,
+  .table-cardstyle .row-cdisc td:first-of-type,
+  .table-cardstyle .row-disabled td:first-of-type{
   position: relative;
   padding-left: 16px;
 }
 
-.table-cardstyle .row-sponsor td:first-of-type::before, .table-cardstyle .row-cdisc td:first-of-type::before{
+.table-cardstyle .row-sponsor td:first-of-type::before,
+  .table-cardstyle .row-cdisc td:first-of-type::before,
+  .table-cardstyle .row-disabled td:first-of-type::before {
   position: absolute;
   display: block;
   content: " ";
@@ -61,6 +65,10 @@
 
 .table-cardstyle .row-cdisc td:first-of-type::before{
   background: $accent-color-1;
+}
+
+.table-cardstyle .row-disabled td:first-of-type::before{
+  background: $grey-light;
 }
 
 .table-cardstyle .dataTables_info, .table-cardstyle .dataTables_paginate,
@@ -191,6 +199,13 @@ table th.th-xsmall{
   @include ieandedge {
     font-family: $font-primary;
     color: $accent-color-1-dark;
+  }
+}
+
+.table-cardstyle tbody tr.row-disabled td:first-of-type {
+  @include ieandedge {
+    font-family: $font-primary;
+    color: $grey-medium;
   }
 }
 

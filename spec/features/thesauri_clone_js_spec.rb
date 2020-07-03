@@ -79,7 +79,7 @@ describe "Thesauri Clone", :type => :feature do
       fill_in 'thesauri_label', with: "Wrong Terminology !€%/{)}"
       click_button 'Submit'
       sleep 1
-      expect(page).to have_content "Label contains invalid characters and Has identifier: Identifier contains invalid characters"
+      expect(page).to have_content "Label contains invalid characters and Has identifier - identifier - contains invalid characters"
     end
 
     it "does not allow to clone a non-owned terminology", js: true do

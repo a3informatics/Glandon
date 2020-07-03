@@ -49,6 +49,20 @@ module FusekiBaseHelpers
 
   end
 
+  class ValidateOneAdministeredItem < Fuseki::Base
+
+    configure rdf_type: "http://www.assero.co.uk/Test#AdministeredItem",
+              base_uri: "http://www.assero.co.uk/RA" 
+
+    object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
+    object_property :has_identifier, cardinality: :many, model_class: "IsoScopedIdentifierV2"
+    data_property :change_description
+
+    validates_with Validator::Klass, property: :has_identifier, presence: true
+    validates_with Validator::Klass, property: :has_state
+
+  end
+
   class TestUnmanagedConcept < IsoConceptV2
 
     configure rdf_type: "http://www.assero.co.uk/Test#UnmanagedConcept",

@@ -32,8 +32,8 @@ describe "Thesaurus::UnmanagedConcept" do
     it "allows validity of the object to be checked - error" do
       tc = Thesaurus::UnmanagedConcept.new
       expect(tc.valid?).to eq(false)
-      expect(tc.errors.count).to eq(2)
-      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank and Identifier is empty")
+      expect(tc.errors.count).to eq(3)
+      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank, Identifier is empty, and Preferred term empty object")
     end
 
     it "allows validity of the object to be checked" do
@@ -41,8 +41,25 @@ describe "Thesaurus::UnmanagedConcept" do
       tc.uri = Uri.new(uri:"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00001")
       tc.identifier = "AAA"
       tc.notation = "A"
+      tc.preferred_term = Thesaurus::PreferredTerm.new
+      tc.preferred_term.label = "Draft"
+      tc.preferred_term.uri = Uri.new(uri:"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00001-PT")
       valid = tc.valid?
       expect(valid).to eq(true)
+    end
+
+    it "allows validity of the object to be checked - error PT" do
+      tc = Thesaurus::UnmanagedConcept.new
+      tc.uri = Uri.new(uri:"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00001")
+      tc.identifier = "AAA"
+      tc.notation = "A"
+      tc.preferred_term = Thesaurus::PreferredTerm.new
+      tc.preferred_term.label = "Draft 123 more tesxt €"
+      tc.preferred_term.uri = Uri.new(uri:"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00001-PT")
+      valid = tc.valid?
+      expect(valid).to eq(false)
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages.to_sentence).to eq("Preferred term - label - contains invalid characters")
     end
 
     it "allows a TC to be found" do
@@ -423,6 +440,30 @@ describe "Thesaurus::UnmanagedConcept" do
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_11.yaml")
     end
 
+    it "multiple updates, preferred term and synonyms, synonym delete" do
+      parent = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      params =
+      {
+        definition: "Other or mixed race",
+        identifier: "A00004",
+        label: "New",
+        notation: "NEWNEW"
+      }
+      tc = parent.add_child(params)
+      tc_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C")
+      tc.update(preferred_term: "€")
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages).to eq(["Preferred term - label - contains invalid characters"])
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.update(synonym: "Male; Female€")
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages).to eq(["Synonym - 2: label - contains invalid characters"])
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.update(synonym: "Male; Female€; XXX€")
+      expect(tc.errors.count).to eq(2)
+      expect(tc.errors.full_messages).to eq(["Synonym - 2: label - contains invalid characters", "Synonym - 3: label - contains invalid characters"])
+    end
+
   end
 
   describe "changes and differences" do
@@ -791,6 +832,24 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(new_tc.label).to eq("New Airport")
       expect(new_tc.definition).to eq("A new definition")
       expect(new_tc.notation).to eq("T5")
+    end
+
+    it "update multiple parent, draft situation" do
+      parent_1 = Thesaurus::ManagedConcept.create
+      parent_2 = Thesaurus::ManagedConcept.create
+      params = Thesaurus::UnmanagedConcept.empty_concept
+      params[:identifier] = "XXX"
+      child_1 = Thesaurus::UnmanagedConcept.create(params, parent_1)
+      parent_1.add_link(:narrower, child_1.uri)
+      parent_2.add_link(:narrower, child_1.uri)
+      parent_2.add_link(:refers_to, child_1.uri)
+      child_2 = child_1.update_with_clone({label: "New Airport", definition: "A new definition"}, parent_1)
+      expect(child_2.errors.count).to eq(0)
+      child_3 = Thesaurus::UnmanagedConcept.find(child_2.uri)
+      expect(child_3.uri).to eq(child_1.uri)
+      expect(child_3.label).to eq("New Airport")
+      expect(child_3.definition).to eq("A new definition")
+      expect(child_3.notation).to eq(child_1.notation)
     end
 
     it "delete single parent" do

@@ -208,7 +208,7 @@ describe "Token Locks", :type => :feature do
         wait_for_ajax(20)
         context_menu_element("history", 5, "Not Set", :edit)
         wait_for_ajax(10)
-        expect(page).to have_content 'Code List Items'
+        expect(page).to have_content 'Code List Editor'
       end
 
       in_browser(:two) do

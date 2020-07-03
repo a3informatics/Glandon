@@ -90,13 +90,13 @@ export default class CLEditor extends EditablePanel {
   /** Private **/
 
   /**
-   * Check if item editable - must have single_parent data property set to true
+   * Check if item editable - must have referenced data property set to true
    * @override super's _editable
    * @param {object} modifier Contains the reference to the cell being edited
    * @returns {boolean} true/false ~~ enable/disable editing for the cell
    */
   _editable(modifier) {
-    return this.table.row(modifier.row).data().single_parent;
+    return !this.table.row(modifier.row).data().referenced;
   }
 
   /**
@@ -186,8 +186,8 @@ export default class CLEditor extends EditablePanel {
     }
     // CSS Styling for editable rows
     options.createdRow = (row, data, idx) => {
-      if (data.single_parent)
-        $(row).addClass("editable");
+      let rowClass = (!data.referenced ? 'row-sponsor' : data.uri.includes('cdisc') ? 'row-cdisc' : 'row-disabled');
+      $(row).addClass(rowClass);
     }
 
     this.table = $(this.selector).DataTable(options);

@@ -393,7 +393,7 @@ describe "Tags", :type => :feature do
       ui_new_code_list
       context_menu_element('history', 4, 'Not Set', :edit)
       wait_for_ajax 20
-      find(:xpath, "//*[@id='tnp_new_button']").click
+      find(:xpath, "//*[@id='new-item-button']").click
       wait_for_ajax 20
     end
 

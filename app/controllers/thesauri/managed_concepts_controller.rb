@@ -162,7 +162,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
-      edit_tags_path = c[:single_parent] ? edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id}) : ""
+      edit_tags_path = c[:referenced] ? "" : edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id})
       results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
     end
     render :json => { data: results }, :status => 200
@@ -361,6 +361,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def upgrade
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    tc.synonyms_and_preferred_terms
     token = get_token(tc)
     if !token.nil?
       ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
