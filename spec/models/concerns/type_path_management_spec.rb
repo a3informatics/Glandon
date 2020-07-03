@@ -16,11 +16,6 @@ describe TypePathManagement do
       expect(TypePathManagement.history_path("XXX")).to eq("")
     end
 
-    it "returns a valid url, Biomedical Concept" do
-      result = Rails.application.routes.url_helpers.history_biomedical_concepts_path + "/?biomedical_concept[identifier]=XXX&biomedical_concept[scope_id]=YYY"
-      expect(TypePathManagement.history_url(BiomedicalConcept::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
-    end
-
     it "returns a valid url, SDTM Model" do
       result = Rails.application.routes.url_helpers.history_sdtm_models_path + "/?sdtm_model[identifier]=XXX&sdtm_model[scope_id]=YYY"
       expect(TypePathManagement.history_url(SdtmModel::C_RDF_TYPE_URI.to_s, "XXX", "YYY" )).to eq(result)
