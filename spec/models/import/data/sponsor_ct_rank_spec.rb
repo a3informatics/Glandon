@@ -347,7 +347,7 @@ describe "Import::SponsorTermFormatOne" do
       tc = Thesaurus::ManagedConcept.find_full(uri).to_h
       results << tc
     end
-    check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal, write_file: write_file)
+    check_file_actual_expected(results, sub_dir, "migration_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "rank extension v2.6" do
