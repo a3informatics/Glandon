@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.icon-pair:before {
+  content: "\e966";
+}
+.icon-unpair:before {
+  content: "\e967";
+}
 .icon-rank:before {
   content: "\e965";
 }

@@ -83,14 +83,6 @@
   rdfs:range :ManagedConcept ;
   skos:definition "Relationship linking a thesaurus to child concepts to preserve the SKOS model."^^xsd:string ;
 .
-:narrowerReference
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Narrower reference relationship"^^xsd:string ;
-  rdfs:domain :ManagedConcept ;
-  rdfs:range bo:TcReference ;
-  skos:definition "Relationship linking a managed concept to concepts that are themseleves version managed."^^xsd:string ;
-.
 :narrower
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -235,6 +227,15 @@
   rdfs:domain :RankedMember ;
   rdfs:range xsd:integer ;
   skos:definition "The rank value."^^xsd:string ;
+.
+:pairedWith
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:related ;
+  rdfs:label "Paired with relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :ManagedConcept ;
+  skos:definition "A relationship linking a managed concept with a paired managed concept."^^xsd:string ;
 .
 :refersTo
   rdf:type owl:ObjectProperty ;

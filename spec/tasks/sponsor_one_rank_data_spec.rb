@@ -12,11 +12,25 @@ describe 'sponsor one rank data migration' do
     return "tasks/sponsor_one/rank_data"
   end
 
+  def schema_dir
+    return "tasks/sponsor_one/rank_schema"
+  end
+
   describe 'sponsor one rank data' do
     
     before :each do
       # Set of schema files is post schema migration
-      load_files(schema_files, [])
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+        "business_operational.ttl", "annotations.ttl", "BusinessForm.ttl", 
+        "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl", "thesaurus.ttl",
+        "thesaurus_migration_20200519.ttl"
+      ]
+      clear_triple_store
+      schema_files.each do |x|
+        load_local_file_into_triple_store(schema_dir, x)
+      end
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -29,7 +43,7 @@ describe 'sponsor one rank data migration' do
     end
 
     def expected_triple_count
-      1349861 # Updated with new schema
+      1349809 # Updated with new schema
     end
 
     def mark_done

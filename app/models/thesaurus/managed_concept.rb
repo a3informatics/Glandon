@@ -15,6 +15,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
   object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :paired_with, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
   object_property :refers_to, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
@@ -35,6 +36,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Upgrade
   include Thesaurus::Validation
   include Thesaurus::Ranked
+  include Thesaurus::Paired
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
