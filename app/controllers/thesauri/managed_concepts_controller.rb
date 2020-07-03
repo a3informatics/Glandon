@@ -505,7 +505,39 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: { }, status: 200
   end
 
-private
+  def pair
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      tc.validate_and_pair(pairs_params[:reference_id])
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        render json: {data: {}, errors: []}
+      else
+        render :json => {:errors => tc.errors}, :status => 422
+      end
+    else
+      render :json => {:errors => [token_timeout_message]}, :status => 422
+    end
+  end
+
+  def unpair
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      tc.unpair if tc.paired?
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        render json: {data: {}, errors: []}
+      else
+        render :json => {:errors => tc.errors}, :status => 422
+      end
+    else
+      render :json => {:errors => [token_timeout_message]}, :status => 422
+    end
+  end
 
   # Read a Thesaurus Concept
   def read_concept(id)
@@ -572,6 +604,10 @@ private
 
   def children_params
     params.require(:managed_concept).permit(:set_ids => [])
+  end
+
+  def pairs_params
+    params.require(:managed_concept).permit(:reference_id)
   end
 
   def rank_params

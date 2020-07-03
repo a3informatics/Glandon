@@ -224,6 +224,8 @@ Rails.application.routes.draw do
         delete :remove_rank
         put :update_rank
         get :children_ranked
+        post :pair
+        post :unpair
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
