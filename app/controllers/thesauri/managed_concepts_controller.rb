@@ -505,34 +505,63 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: { }, status: 200
   end
 
+  # def pair
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     tc.validate_and_pair(pairs_params[:reference_id])
+  #     if tc.errors.empty?
+  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:paired))
+  #       render json: {data: {}, errors: []}
+  #     else
+  #       render :json => {:errors => tc.errors}, :status => 422
+  #     end
+  #   else
+  #     render :json => {:errors => [token_timeout_message]}, :status => 422
+  #   end
+  # end
+
+  # def unpair
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     tc.unpair if tc.paired?
+  #     if tc.errors.empty?
+  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:unpaired))
+  #       render json: {data: {}, errors: []}
+  #     else
+  #       render :json => {:errors => tc.errors}, :status => 422
+  #     end
+  #   else
+  #     render :json => {:errors => [token_timeout_message]}, :status => 422
+  #   end
+  # end
+
   def pair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-    token = Token.find_token(tc, current_user)
-    if !token.nil?
-      tc.validate_and_pair(pairs_params[:reference_id])
-      if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
-        render json: {data: {}, errors: []}
-      else
-        render :json => {:errors => tc.errors}, :status => 422
-      end
-    else
-      render :json => {:errors => [token_timeout_message]}, :status => 422
-    end
+    lock_action_error(tc, :paired) {tc.validate_and_pair(pairs_params[:reference_id])}
   end
 
   def unpair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    lock_action_error(tc, :unpaired) {tc.validate_and_unpair}
+  end
+
+private
+
+  def lock_action_error(tc, action)
     token = Token.find_token(tc, current_user)
     if !token.nil?
-      tc.unpair if tc.paired?
+      yield
       if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+        AuditTrail.update_item_event(current_user, tc, tc.audit_message(action))
         render json: {data: {}, errors: []}
       else
-        render :json => {:errors => tc.errors}, :status => 422
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       render :json => {:errors => [token_timeout_message]}, :status => 422
@@ -586,17 +615,17 @@ class Thesauri::ManagedConceptsController < ApplicationController
     return history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope.id}})
   end
 
-  # Audit and respond
-  def audit_and_respond(thesaurus, thesaurus_concept, token)
-    if thesaurus_concept.errors.empty?
-      AuditTrail.update_item_event(current_user, thesaurus, audit_message(:updated)) if token.refresh == 1
-      results = []
-      results << thesaurus_concept.to_json
-      render :json => {:data => results}, :status => 200
-    else
-      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-    end
-  end
+  # # Audit and respond
+  # def audit_and_respond(thesaurus, thesaurus_concept, token)
+  #   if thesaurus_concept.errors.empty?
+  #     AuditTrail.update_item_event(current_user, thesaurus, audit_message(:updated)) if token.refresh == 1
+  #     results = []
+  #     results << thesaurus_concept.to_json
+  #     render :json => {:data => results}, :status => 200
+  #   else
+  #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+  #   end
+  # end
 
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :reference_id, :extension_ids => [])

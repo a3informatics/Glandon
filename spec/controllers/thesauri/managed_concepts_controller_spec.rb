@@ -858,7 +858,7 @@ describe Thesauri::ManagedConceptsController do
       post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Code list is a subset."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Paring not permitted, already paired."])
     end
 
     it "pair a code list, error token" do
@@ -874,6 +874,7 @@ describe Thesauri::ManagedConceptsController do
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       token = Token.obtain(parent, @user)
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
       post :unpair, params:{id: parent.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -883,10 +884,11 @@ describe Thesauri::ManagedConceptsController do
     it "unpair a code list, error" do
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      token = Token.obtain(parent, @user)
       post :unpair, params:{id: parent.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Cannot unpair as the item is not paired."])
     end
 
     it "unpair a code list, error token" do

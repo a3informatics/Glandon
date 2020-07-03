@@ -69,6 +69,22 @@ describe "Thesaurus::Paired" do
       expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, trying to pair EGxTESTCD with EGTEST.")
     end
 
+    it "validate and pairs, already paired" do
+      tc_1 = create_mc("EGTESTCD")
+      tc_2 = create_mc("EGTEST")
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(true)
+      expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, already paired.")
+    end
+
+    it "already paired" do
+      tc_1 = create_mc("EGTESTCD")
+      tc_2 = create_mc("EGTEST")
+      tc_1.validate_and_pair(tc_2.id)
+      expect(tc_1.already_paired?).to eq(true)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Paring not permitted, already paired.")
+    end
+
     it "checks paired" do
       tc_1 = Thesaurus::ManagedConcept.create
       tc_2 = Thesaurus::ManagedConcept.create

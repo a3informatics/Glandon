@@ -11,12 +11,40 @@ class Thesaurus
     # @param [String] id id of the other the potential paired code list (child)
     # @return [Boolean] returns true if pairing succesful, otherwise false. Errors in errors object.
     def validate_and_pair(id)
+      return false if already_paired?
       other = self.class.find_with_properties(id)
       valid_pairing?(other) ? pair(id) : self.errors.add(:base, "Paring not permitted, trying to pair #{self.notation} with #{other.notation}.")
       self.errors.empty?
     end
 
-    # Valid Pairing. Is the pairing a valid one.
+    # Validate And Unpair. Check if item is paired. If so unpair, otherwise report an error.
+    #
+    # @return [Boolean] returns true if unpairing succesful, otherwise false. Errors in errors object.
+    def validate_and_unpair
+      return false if not_paired?
+      unpair
+      self.errors.empty?
+    end
+
+    # Not Paired?
+    #
+    # @return [Boolean] returns true if not paired, false otherwise.
+    def not_paired?
+      return false if paired?
+      self.errors.add(:base, "Cannot unpair as the item is not paired.")
+      true
+    end
+
+    # Already Paired?
+    #
+    # @return [Boolean] returns true if already paired, false otherwise.
+    def already_paired?
+      return false unless paired?
+      self.errors.add(:base, "Paring not permitted, already paired.")
+      true
+    end
+
+    # Valid Pairing? Is the pairing a valid one.
     #
     # @param [Thesaurus::ManagedConcept] other the potential paired code list (child)
     # @return [Boolean] returns true if pairing is permitted, false otherwise.
@@ -32,7 +60,7 @@ class Thesaurus
       check_prefix(result, other)
     end
 
-    # Paired As Parent? Is this item paired as the parent
+    # Paired? Is this item paired, either as parent or child
     #
     # @result [Boolean] return true if this instance is ranked
     def paired?
