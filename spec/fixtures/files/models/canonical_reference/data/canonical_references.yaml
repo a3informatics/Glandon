@@ -1,0 +1,65 @@
+---
+- :label: "Test Code"
+  :bridg: "DefinedObservation.nameCode"
+- :label: "Category"
+  :bridg: DefinedObservation.categoryCode
+- :label: "Sub Category"
+  :bridg: DefinedObservation.subcategoryCode
+- :label: "Method"
+  :bridg: PerformedObservation.methodCode.CD
+- :label: "Position"
+  :bridg: PerformedObservation.bodyPositionCode
+- :label: "Status"
+  :bridg: PerformedObservation.negationIndicator
+- :label: "Reason Not Done"
+  :bridg: PerformedObservation.negationReason.SC
+- :label: "Date Time of Observation"
+  :bridg: PerformedObservation.dateRange.IVL_TS_DATETIME.low
+- :label: "Location"
+  :bridg: PerformedObservation.approachAnatomicSiteCode
+- :label: "Laterality"
+  :bridg: PerformedObservation.approachAnatomicSiteLateralityCode
+- :label: "Result Value"
+  :bridg: PerformedObservationResult.value
+- :label: "Result Units"
+  :bridg: PerformedObservationResult.value
+- :label: "Baseline"
+  :bridg: PerformedClinicalResult.baselineIndicator
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult2.value.ST.value: "--RELNST"
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult3.value.CD.code: "--SCAN"
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult4.value.CD.code: "--SDTH"
+#- :label: "Test Code"
+#  :bridg: PerformedObservationResult5.value.CD.code: "--REL"
+- :label: "AE Term"
+  :bridg: AdverseEvent.value
+- :label: "Severity"
+  :bridg: AdverseEvent.severityCode
+- :label: "Seriousness"
+  :bridg: AdverseEvent.seriousnessCode
+- :label: "Pattern"
+  :bridg: AdverseEvent.occurrencepatternCode
+- :label: "hospitalization Required"
+  :bridg: AdverseEvent.hospitalizationRequiredIndicator
+- :label: "Start Date Time"
+  :bridg: AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.low
+- :label: "End Date Time"
+  :bridg: AdverseEvent.occuranceDateRange.IVL_TS_DATETIME.high
+- :label: "Action Taken"
+  :bridg: AdverseEventActionTaken.typeCode
+- :label: "Action Taken Extra"
+  :bridg: AdverseEventActionTaken2.typeCode
+- :label: "Adverse Event Outcome"
+  :bridg: AdverseEventOutcomeResult
+- :label: "Specimen"
+  :bridg: Material.formCode
+- :label: "Directionality"
+  :bridg: PerformedProcedure.targetAnatomicSiteDirectionalityCode
+- :label: "Performer"
+  :bridg: Performer.typeCode
+- :label: "Performer Alias"
+  :bridg: Performer.evaluatorAlias
+- :label: "Clinical Significance"
+  :bridg: PerformedClinicalInterpretation.clinicallySignificantIndicator

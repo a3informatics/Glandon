@@ -79,6 +79,14 @@ class IsoRegistrationAuthority < Fuseki::Base
     @@owner
   end
 
+  # Find the owner of the repository authority
+  #
+  # @return [String] the authority
+  def self.owner_authority
+    @@owner ||= get_owner
+    @@owner.ra_namespace.authority
+  end
+
   # Find the scope for the repository owner
   #
   # @return [String] the scope id

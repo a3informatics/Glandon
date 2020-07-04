@@ -1,7 +1,11 @@
+# Canonical Reference. The reference framework
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
 class CanonicalReference < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Framework#CanonicalReference",
-            base_uri: "http://#{ENV["url_authority"]}/CAR",
+            base_uri: "http://www.a3informatics.com/CAR",
             uri_unique: :label,
             cache: true
 
