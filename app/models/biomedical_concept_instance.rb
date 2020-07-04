@@ -1,3 +1,7 @@
+# Biomedical Concept Instance. 
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
 class BiomedicalConceptInstance < BiomedicalConcept
 
   configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance",
