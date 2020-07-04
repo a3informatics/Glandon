@@ -21,7 +21,7 @@ describe BiomedicalConcept do
   end
 
   def create_item(params, ordinal, bc_template=nil)
-    t_item = find_item(bc_template, params[:label]) if !bc_template.nil?
+    t_item = find_item(bc_template, params[:label]) unless bc_template.nil?
     params[:ordinal] = ordinal
     item = BiomedicalConcept::Item.new(params)
     params[:complex_datatype].each do |datatype|
@@ -33,7 +33,7 @@ describe BiomedicalConcept do
   end
 
   def find_item(bc_template, label)
-    return bc_template.identified_by if bc_template.identified_by.label == label
+#    return bc_template.identified_by if bc_template.identified_by.label == label
     bc_template.has_item.find{|x| x.label == label}
   end
 
@@ -48,7 +48,7 @@ describe BiomedicalConcept do
     else
       t_cdt.has_property_objects
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
-      property.is_a = t_property.uri
+      property.is_a = t_property.is_a
       refs.each_with_index do |term, index|
         if term[:cl].start_with?("C")
           items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
@@ -90,7 +90,9 @@ describe BiomedicalConcept do
     templates = read_yaml_file(sub_dir, "templates.yaml")
     templates.each do |template|
       object = BiomedicalConceptTemplate.new(label: template[:label])
-      object.identified_by = create_item(template[:identified_by], 1)
+      id_item = create_item(template[:identified_by], 1)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
       template[:has_items].each_with_index do |x, index| 
         object.has_item_push(create_item(x, index+2))
       end

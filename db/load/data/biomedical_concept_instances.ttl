@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:51+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI10 ;
@@ -71,7 +71,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue :BCI_BCI1_BCCDTCD_BCPcode_TUC1 ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 :BCI_BCI1_BCCDTCD_BCPcode_TUC1
 	rdf:type bo:TucReference ;
@@ -105,7 +105,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Height"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 :BCI_BCI10_BCCDTPQR_BCPcode
 	rdf:type bc:PropertyX ;
@@ -117,7 +117,7 @@
 	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC2 ;
 	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC3 ;
 	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC4 ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 :BCI_BCI10_BCCDTPQR_BCPcode_TUC1
 	rdf:type bo:TucReference ;
@@ -167,7 +167,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:51+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10> ;
@@ -216,7 +216,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -250,7 +250,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Weight"^^xsd:string ;
 	bc:format "5.1"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -260,7 +260,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -290,7 +290,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI10> ;
@@ -339,7 +339,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -373,7 +373,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "BMI"^^xsd:string ;
 	bc:format "4.1"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -382,7 +382,7 @@
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -402,7 +402,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI10> ;
@@ -451,7 +451,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -491,7 +491,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC5> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC6> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC7> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -571,7 +571,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI10> ;
@@ -620,7 +620,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SEX/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -657,7 +657,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC3> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC4> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -707,7 +707,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI10> ;
@@ -756,7 +756,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/AGE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -790,7 +790,7 @@
 	bc:questionText "Age(yrs)"^^xsd:string ;
 	bc:promptText "Age(yrs)"^^xsd:string ;
 	bc:format "3.0"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -799,7 +799,7 @@
 	bc:promptText "[]"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -819,7 +819,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10> ;
@@ -868,7 +868,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -905,7 +905,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC3> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC4> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -955,7 +955,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4> ;
@@ -1007,7 +1007,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1043,7 +1043,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI4_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1097,7 +1097,7 @@
 	bc:promptText "Location"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI5_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1133,7 +1133,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI6_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1187,7 +1187,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Result"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -1197,7 +1197,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1227,7 +1227,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4> ;
@@ -1279,7 +1279,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1315,7 +1315,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI4_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1369,7 +1369,7 @@
 	bc:promptText "Location"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI5_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1405,7 +1405,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI6_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1459,7 +1459,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Result"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -1469,7 +1469,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1499,7 +1499,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI4> ;
@@ -1551,7 +1551,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1587,7 +1587,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI4_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1641,7 +1641,7 @@
 	bc:promptText "Location"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI5_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1677,7 +1677,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI6_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1731,7 +1731,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Result"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -1741,7 +1741,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1771,7 +1771,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4> ;
@@ -1823,7 +1823,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1859,7 +1859,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI4_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1913,7 +1913,7 @@
 	bc:promptText "Location"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI5_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1949,7 +1949,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI6_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2003,7 +2003,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Result"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -2013,7 +2013,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2043,7 +2043,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10> ;
@@ -2092,7 +2092,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2126,7 +2126,7 @@
 	bc:questionText "Result"^^xsd:string ;
 	bc:promptText "Result"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -2136,7 +2136,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2166,7 +2166,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI10> ;
@@ -2215,7 +2215,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/AE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/AE/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2249,7 +2249,7 @@
 	bc:questionText "Height value?"^^xsd:string ;
 	bc:promptText "Height"^^xsd:string ;
 	bc:format "5.2"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
@@ -2261,7 +2261,7 @@
 	bc:hasCodedValue <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC3> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC4> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2311,7 +2311,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI10> ;
@@ -2360,7 +2360,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format "8"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/INTP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -2395,7 +2395,7 @@
 	bc:format "20"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR_BCPvalue_TUC1> ;
 	bc:hasCodedValue <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR_BCPvalue_TUC2> ;
-	bc:isA <http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR_BCPvalue_TUC1>
 	rdf:type bo:TucReference ;

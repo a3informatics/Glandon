@@ -48,7 +48,7 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2016-01-01T00:00:00+00:00'
-:last_change_date: '2020-07-04T17:38:15+02:00'
+:last_change_date: '2020-07-04T20:46:51+02:00'
 :explanatory_comment: ''
 :has_item:
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
@@ -121,17 +121,7 @@
         :reference: http://www.cdisc.org/C66770/V42#C66770_C48500
         :context: http://www.cdisc.org/C66770/V59#C66770
         :local_label: ''
-      :is_a:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMTFfQkNDRFRQUVJfQkNQY29kZQ==
-        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode
-        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-        :label: code
-        :tagged: []
-        :question_text: ''
-        :prompt_text: ''
-        :format: ''
-        :has_coded_value: []
-        :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
+      :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
     - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
@@ -141,17 +131,7 @@
       :prompt_text: Height
       :format: '5.2'
       :has_coded_value: []
-      :is_a:
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMTFfQkNDRFRQUVJfQkNQdmFsdWU=
-        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue
-        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-        :label: value
-        :tagged: []
-        :question_text: ''
-        :prompt_text: ''
-        :format: ''
-        :has_coded_value: []
-        :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
+      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
@@ -189,7 +169,7 @@
         :reference: http://www.cdisc.org/C66741/V4#C66741_C25347
         :context: http://www.cdisc.org/C66741/V61#C66741
         :local_label: ''
-      :is_a: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode
+      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
 :identified_by:
   :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
@@ -228,7 +208,7 @@
         :reference: http://www.cdisc.org/C66741/V4#C66741_C25347
         :context: http://www.cdisc.org/C66741/V61#C66741
         :local_label: ''
-      :is_a: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode
+      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
 :based_on:
   :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1Q=
   :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
@@ -279,7 +259,7 @@
   :origin: ''
   :change_description: ''
   :creation_date: '2016-01-01T00:00:00+00:00'
-  :last_change_date: '2020-07-04T17:38:14+02:00'
+  :last_change_date: '2020-07-04T20:46:51+02:00'
   :explanatory_comment: ''
   :has_item:
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJNA==
@@ -552,6 +532,33 @@
         :format: ''
         :has_coded_value: []
         :is_a: http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMQ==
+    :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+    :label: Test
+    :tagged: []
+    :mandatory: true
+    :collect: true
+    :enabled: true
+    :ordinal: 1
+    :has_complex_datatype:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMV9CQ0NEVENE
+      :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
+      :label: CD
+      :tagged: []
+      :based_on: http://www.s-cubed.dk/CDT#CD
+      :has_property:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode
+        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+        :label: code
+        :tagged: []
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value: []
+        :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMTA=
     :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI10
     :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
@@ -579,4 +586,31 @@
         :format: ''
         :has_coded_value: []
         :is_a: http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2
-  :identified_by: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1
+  :identified_by:
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMQ==
+    :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+    :label: Test
+    :tagged: []
+    :mandatory: true
+    :collect: true
+    :enabled: true
+    :ordinal: 1
+    :has_complex_datatype:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMV9CQ0NEVENE
+      :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
+      :label: CD
+      :tagged: []
+      :based_on: http://www.s-cubed.dk/CDT#CD
+      :has_property:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode
+        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+        :label: code
+        :tagged: []
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value: []
+        :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
