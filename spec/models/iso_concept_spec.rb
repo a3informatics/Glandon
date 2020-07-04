@@ -667,25 +667,25 @@ describe IsoConcept do
       compare_link_to_results(results, expected)
 	  end
 
-	  it "allows the links to a concept to be determined, BC Property Ref" do
-	    results = IsoConcept.links_to("BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value","http://www.assero.co.uk/MDRBCs/V1")
-	    expected = 
-	    [ 
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          label: "Date and Time (--DTC)",
-	        local: false  
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
-          label: "",
-	        local: true
-	      }
-	    ]
-      compare_link_to_results(results, expected)
-	  end
+	  # it "allows the links to a concept to be determined, BC Property Ref" do
+	  #   results = IsoConcept.links_to("BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value","http://www.assero.co.uk/MDRBCs/V1")
+	  #   expected = 
+	  #   [ 
+	  #     { 
+	  #       uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}).to_json, 
+	  #       rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+   #        label: "Date and Time (--DTC)",
+	  #       local: false  
+	  #     },
+	  #     { 
+	  #       uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}).to_json, 
+	  #       rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+   #        label: "",
+	  #       local: true
+	  #     }
+	  #   ]
+   #    compare_link_to_results(results, expected)
+	  # end
 
 	  it "allows the links from a concept to be determined, internal to managed item hierarchy" do
 	    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
