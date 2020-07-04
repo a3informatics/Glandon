@@ -7,24 +7,24 @@ class BiomedicalConcept < IsoManagedV2
 
   # Get Properties
   #
+  # @param [Boolean] references include references within the results if true. Defaults to false.
   # @return [Array] Array of hashes, one per property.
   def get_properties(references=false)
     results = []
     instance = self.class.find_full(self.id)
-byebug
     instance.has_item.each do |item|
       item.has_complex_datatype.each do |cdt|
         cdt.has_property.each do |property|
           property = property.to_h
           if references
-              property[:has_coded_value].each do |coded_value|
-                tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
-                coded_value[:reference] = tc.reference.to_h
-                parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
-                coded_value[:context] = {id:parent.id, uri:parent.uri.to_s, identifier:parent.has_identifier.identifier, notation:parent.notation, semantic_version:parent.has_identifier.semantic_version}
-              end
+            property[:has_coded_value].each do |coded_value|
+              tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
+              coded_value[:reference] = tc.reference.to_h
+              parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
+              coded_value[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+            end
           end
-          results << {uri: item.uri.to_s, id: item.id, label: item.label, mandatory:item.mandatory, collect:item.collect, enabled:item.enabled, ordinal:item.ordinal, has_complex_datatype: {label: cdt.label, has_property: property}} 
+          results << {id: item.id, uri: item.uri.to_s, label: item.label, mandatory: item.mandatory, collect: item.collect, enabled: item.enabled, ordinal: item.ordinal, has_complex_datatype: {label: cdt.label, has_property: property}} 
         end
       end
     end

@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI2 ;
 	bc:hasItem :BCT_BCI3 ;
@@ -67,7 +67,7 @@
 :BCT_BCI2_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI2_BCCDTCD_BCPcode ;
 .
 :BCT_BCI2_BCCDTCD_BCPcode
@@ -76,7 +76,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+	bc:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
 .
 :BCT_BCI3
 	rdf:type bc:Item ;
@@ -90,7 +90,7 @@
 :BCT_BCI3_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI3_BCCDTCD_BCPcode ;
 .
 :BCT_BCI3_BCCDTCD_BCPcode
@@ -99,7 +99,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+	bc:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
 .
 :BCT_BCI4
 	rdf:type bc:Item ;
@@ -113,7 +113,7 @@
 :BCT_BCI4_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI4_BCCDTCD_BCPcode ;
 .
 :BCT_BCI4_BCCDTCD_BCPcode
@@ -122,7 +122,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 :BCT_BCI5
 	rdf:type bc:Item ;
@@ -136,7 +136,7 @@
 :BCT_BCI5_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI5_BCCDTCD_BCPcode ;
 .
 :BCT_BCI5_BCCDTCD_BCPcode
@@ -145,7 +145,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
 .
 :BCT_BCI6
 	rdf:type bc:Item ;
@@ -159,7 +159,7 @@
 :BCT_BCI6_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI6_BCCDTCD_BCPcode ;
 .
 :BCT_BCI6_BCCDTCD_BCPcode
@@ -168,7 +168,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
+	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
 :BCT_BCI7
 	rdf:type bc:Item ;
@@ -182,7 +182,7 @@
 :BCT_BCI7_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI7_BCCDTCD_BCPcode ;
 .
 :BCT_BCI7_BCCDTCD_BCPcode
@@ -191,7 +191,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
+	bc:isA <http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434> ;
 .
 :BCT_BCI8
 	rdf:type bc:Item ;
@@ -205,7 +205,7 @@
 :BCT_BCI8_BCCDTDATETIME
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "DATETIME"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#DATETIME> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
 	bc:hasProperty :BCT_BCI8_BCCDTDATETIME_BCPvalue ;
 .
 :BCT_BCI8_BCCDTDATETIME_BCPvalue
@@ -214,7 +214,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
 :BCT_BCI9
 	rdf:type bc:Item ;
@@ -228,7 +228,7 @@
 :BCT_BCI9_BCCDTBL
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "BL"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#BL> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#BL> ;
 	bc:hasProperty :BCT_BCI9_BCCDTBL_BCPvalue ;
 .
 :BCT_BCI9_BCCDTBL_BCPvalue
@@ -237,7 +237,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+	bc:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
 .
 :BCT_BCI10
 	rdf:type bc:Item ;
@@ -251,7 +251,7 @@
 :BCT_BCI10_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPvalue ;
 .
 :BCT_BCI10_BCCDTCD_BCPvalue
@@ -260,7 +260,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 :BCT_BCI11
 	rdf:type bc:Item ;
@@ -275,7 +275,7 @@
 :BCT_BCI11_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI11_BCCDTCD_BCPcode ;
 .
 :BCT_BCI11_BCCDTCD_BCPcode
@@ -284,12 +284,12 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 :BCT_BCI11_BCCDTPQR
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPcode ;
 	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPvalue ;
 .
@@ -299,7 +299,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
+	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
 :BCT_BCI11_BCCDTPQR_BCPvalue
 	rdf:type bc:PropertyX ;
@@ -307,7 +307,7 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
 :BCT_BCI1
 	rdf:type bc:Item ;
@@ -321,7 +321,7 @@
 :BCT_BCI1_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI1_BCCDTCD_BCPcode ;
 .
 :BCT_BCI1_BCCDTCD_BCPcode
@@ -330,5 +330,5 @@
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
-	bc:isA <http://www.assero.co.uk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
+	bc:isA <http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413> ;
 .

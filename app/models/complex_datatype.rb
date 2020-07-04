@@ -1,11 +1,11 @@
 # Complex Datatype
 #
 # @author Dave Iberson-Hurst
-# @since Hackathon
+# @since 3.1.0
 class ComplexDatatype < Fuseki::Base
 
   configure rdf_type: "http://www.s-cubed.dk/ComplexDatatypes#ComplexDatatype",
-            base_uri: "http://#{ENV["url_authority"]}/CDT",
+            base_uri: "http://www.s-cubed.dk/CDT",
             uri_property: :short_name,
             cache: true,
             key_property: :short_name

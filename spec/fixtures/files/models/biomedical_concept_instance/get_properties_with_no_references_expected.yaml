@@ -1,0 +1,136 @@
+---
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZQ==
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: Unit
+      :prompt_text: Unit
+      :format: '20'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMz
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC3
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 3
+        :reference: http://www.cdisc.org/C71620/V6#C71620_C41139
+        :context: http://www.cdisc.org/C71620/V62#C71620
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMx
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66770/V34#C66770_C49668
+        :context: http://www.cdisc.org/C66770/V59#C66770
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUM0
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC4
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 4
+        :reference: http://www.cdisc.org/C71620/V6#C71620_C71253
+        :context: http://www.cdisc.org/C71620/V62#C71620
+        :local_label: ''
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMy
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 2
+        :reference: http://www.cdisc.org/C66770/V42#C66770_C48500
+        :context: http://www.cdisc.org/C66770/V59#C66770
+        :local_label: ''
+      :is_a:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMTFfQkNDRFRQUVJfQkNQY29kZQ==
+        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPcode
+        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+        :label: code
+        :tagged: []
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value: []
+        :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :tagged: []
+      :question_text: Result
+      :prompt_text: Height
+      :format: '5.2'
+      :has_coded_value: []
+      :is_a:
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JBU0lDX09CUy9WMSNCQ1RfQkNJMTFfQkNDRFRQUVJfQkNQdmFsdWU=
+        :uri: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI11_BCCDTPQR_BCPvalue
+        :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+        :label: value
+        :tagged: []
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value: []
+        :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+  :label: Test
+  :mandatory: true
+  :collect: false
+  :enabled: true
+  :ordinal: 1
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: ''
+      :prompt_text: ''
+      :format: '8'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66741/V4#C66741_C25347
+        :context: http://www.cdisc.org/C66741/V61#C66741
+        :local_label: ''
+      :is_a: http://www.s-cubed.dk/BASIC_OBS/V1#BCT_BCI1_BCCDTCD_BCPcode

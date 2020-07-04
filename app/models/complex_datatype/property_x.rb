@@ -1,11 +1,11 @@
 # Complex Datatype Property
 #
 # @author Dave Iberson-Hurst
-# @since Hackathon
+# @since 3.1.0
 class ComplexDatatype::PropertyX < Fuseki::Base
 
   configure rdf_type: "http://www.s-cubed.dk/ComplexDatatypes#PropertyX",
-            base_uri: "http://#{ENV["url_authority"]}/CDTP",
+            base_uri: "http://www.s-cubed.dk/CDTP",
             uri_property: :label,
             cache: true,
             key_property: :label

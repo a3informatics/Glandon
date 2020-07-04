@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI10 ;
@@ -61,7 +61,7 @@
 :BCI_BCI1_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCI_BCI1_BCCDTCD_BCPcode ;
 .
 :BCI_BCI1_BCCDTCD_BCPcode
@@ -95,7 +95,7 @@
 :BCI_BCI10_BCCDTPQR
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPvalue ;
 	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPcode ;
 .
@@ -167,7 +167,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10> ;
@@ -206,7 +206,7 @@
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -240,7 +240,7 @@
 <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -290,7 +290,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI10> ;
@@ -329,7 +329,7 @@
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -363,7 +363,7 @@
 <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -402,7 +402,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI10> ;
@@ -441,7 +441,7 @@
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -475,7 +475,7 @@
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI10_BCCDTCD_BCPcode>
@@ -571,7 +571,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI10> ;
@@ -610,7 +610,7 @@
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -644,7 +644,7 @@
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI10_BCCDTCD_BCPcode>
@@ -707,7 +707,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI10> ;
@@ -746,7 +746,7 @@
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -780,7 +780,7 @@
 <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/AGE/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -819,7 +819,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10> ;
@@ -858,7 +858,7 @@
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -892,7 +892,7 @@
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10_BCCDTCD_BCPcode>
@@ -955,7 +955,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4> ;
@@ -997,7 +997,7 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -1031,7 +1031,7 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode>
@@ -1087,7 +1087,7 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode>
@@ -1121,7 +1121,7 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode>
@@ -1177,7 +1177,7 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -1227,7 +1227,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:16+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4> ;
@@ -1269,7 +1269,7 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -1303,7 +1303,7 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode>
@@ -1359,7 +1359,7 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode>
@@ -1393,7 +1393,7 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode>
@@ -1449,7 +1449,7 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -1499,7 +1499,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:55+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI4> ;
@@ -1541,7 +1541,7 @@
 <http://www.s-cubed.dk/HR/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -1575,7 +1575,7 @@
 <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI4_BCCDTCD_BCPcode>
@@ -1631,7 +1631,7 @@
 <http://www.s-cubed.dk/HR/V1#BCI_BCI5_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI5_BCCDTCD_BCPcode>
@@ -1665,7 +1665,7 @@
 <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/HR/V1#BCI_BCI6_BCCDTCD_BCPcode>
@@ -1721,7 +1721,7 @@
 <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/HR/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -1771,7 +1771,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:55+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4> ;
@@ -1813,7 +1813,7 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -1847,7 +1847,7 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode>
@@ -1903,7 +1903,7 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode>
@@ -1937,7 +1937,7 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode>
@@ -1993,7 +1993,7 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -2043,7 +2043,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:55+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10> ;
@@ -2082,7 +2082,7 @@
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -2116,7 +2116,7 @@
 <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -2166,7 +2166,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:55+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI10> ;
@@ -2205,7 +2205,7 @@
 <http://www.s-cubed.dk/AE/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/AE/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -2239,7 +2239,7 @@
 <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 	bc:hasProperty <http://www.s-cubed.dk/AE/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
 .
@@ -2311,7 +2311,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T11:56:55+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-04T17:38:17+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI10> ;
@@ -2350,7 +2350,7 @@
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI1_BCCDTCD>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#CD> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI1_BCCDTCD_BCPcode> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI1_BCCDTCD_BCPcode>
@@ -2384,7 +2384,7 @@
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.assero.co.uk/CDT#PQR> ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI10_BCCDTPQR_BCPvalue>
