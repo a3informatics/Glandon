@@ -1,8 +1,14 @@
 # Biomedical Concepts
 
-This portion of the model details how Biomedical Concepts are stored and constructed.
+## Overview
 
+This model details the mechanism by which Biomedical Concepts are structured within the model
 
+## Model
+
+![](diagrams/biomedical_concept.png)
+
+## Nodes
 
 The nodes within the model are described in the following table:
 
@@ -25,4 +31,6 @@ The relationships are as follows:
 | **hasProperty** | Links a datatype to its properties | 1:M |
 | **hasComplexDatatype** | A recursive relationship that allows ISO 21090 datatypes to include further ISO 21090 datatypes | 1:1 |
 
-Note: BiomedicalConcept needs to be improved by being an operational item (managed item)
+## Enhancements
+
+1. BiomedicalConcept needs to be improved by being an operational item (managed item)

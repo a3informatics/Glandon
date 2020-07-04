@@ -56,8 +56,9 @@ describe BiomedicalConcept do
         elsif term[:cl].start_with?("H")
           items = @ht.find_by_identifiers([term[:cl].dup, term[:cli].dup])
         end
-        uri = Uri.new(uri: items[term[:cli]].to_s)
-        op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
+        cl_uri = items[term[:cl]]
+        cli_uri = items[term[:cli]]
+        op_ref = OperationalReferenceV3::TucReference.new(context: cl_uri, reference: cli_uri, optional: true, ordinal: index+1)
         property.has_coded_value_push(op_ref) 
       end
     end
@@ -101,7 +102,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
 	end
 
   it "create instances" do
@@ -112,7 +113,9 @@ describe BiomedicalConcept do
       template = BiomedicalConceptTemplate.find_children(Uri.new(uri: instance[:based_on]))
       object = BiomedicalConceptInstance.new(label: instance[:label])
       object.based_on = template.uri
-      object.identified_by = create_item(instance[:identified_by], 1, template)
+      id_item = create_item(instance[:identified_by], 1, template)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
       instance[:has_items].each_with_index do |item, index| 
         next if !item[:enabled]
         object.has_item_push(create_item(item, index+2, template))
@@ -124,7 +127,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
   it "check data" do
