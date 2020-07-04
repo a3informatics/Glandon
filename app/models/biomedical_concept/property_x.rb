@@ -1,3 +1,7 @@
+# Biomedical Concept, Property. 
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
 class BiomedicalConcept::PropertyX < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#PropertyX",

@@ -1,3 +1,7 @@
+# Biomedical Concept, Item. 
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
 class BiomedicalConcept::Item < IsoConceptV2
 
 configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Item",

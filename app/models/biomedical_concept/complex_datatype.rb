@@ -1,3 +1,7 @@
+# Biomedical Concept, Complex Datatype. 
+#
+# @author Dave Iberson-Hurst
+# @since 3.1.0
 class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype",
