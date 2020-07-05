@@ -36,7 +36,7 @@ describe DashboardController do
     # #write_yaml_file(hash, sub_dir, "dashboard_controller_example_1.yaml")
     #   results = read_yaml_file(sub_dir, "dashboard_controller_example_1.yaml")
     #   expect(hash).to be_eql(results)
-    end
+    #end
 
 	end
 
