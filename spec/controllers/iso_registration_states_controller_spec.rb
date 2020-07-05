@@ -9,12 +9,8 @@ describe IsoRegistrationStatesController do
     login_content_admin
 
     before :each do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
-      load_test_file_into_triple_store("iso_scoped_identifier.ttl")
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_scoped_identifier.ttl"]
+      load_files(schema_files, data_files)
     end
 
     it 'makes an item current' do
@@ -33,18 +29,8 @@ describe IsoRegistrationStatesController do
     login_curator
 
     before :each do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("business_operational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
-      load_test_file_into_triple_store("BC.ttl")
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_general.ttl"]
+      load_files(schema_files, data_files)
     end
 
     it 'updates an item' do
