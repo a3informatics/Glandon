@@ -29,7 +29,8 @@ describe IsoRegistrationStatesController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_general.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
+        "form_example_general.ttl", "form_example_vs_baseline.ttl"]
       load_files(schema_files, data_files)
     end
 
