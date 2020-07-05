@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Biomedical Concepts", :type => :feature do
+describe "Biomedical Concept Instances", :type => :feature do
 
   include DataHelpers
   include DownloadHelpers
@@ -15,9 +15,11 @@ describe "Biomedical Concepts", :type => :feature do
   describe "BCs", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl","biomedical_concept_instances.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..42)
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       ua_create
     end
 
@@ -56,7 +58,7 @@ describe "Biomedical Concepts", :type => :feature do
       context_menu_element('history', 4, 'HEIGHT', :show)
       wait_for_ajax(10)
       expect(page).to have_content 'Show: Biomedical Concept'
-      ui_check_table_info("show", 1, 2, 2)
+      ui_check_table_info("show", 1, 3, 3)
     end
 
     # it "history allows the status page to be viewed", js:true do
