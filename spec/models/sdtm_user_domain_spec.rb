@@ -23,7 +23,7 @@ describe SdtmUserDomain do
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     #load_test_file_into_triple_store("BCT.ttl")
     #load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("biomedical_concept_instances.ttl")
+    #load_test_file_into_triple_store("biomedical_concept_instances.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_ds.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")

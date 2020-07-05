@@ -12,7 +12,7 @@ describe 'forms/history.html.erb', :type => :view do
 
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_vs_baseline_new.ttl",
-    "form_example_general.ttl", "CT_ACME_V1.ttl", "BC.ttl", "BCT.ttl"]
+    "form_example_general.ttl", "CT_ACME_V1.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..43)
     clear_iso_concept_object
