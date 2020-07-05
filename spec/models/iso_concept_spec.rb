@@ -42,7 +42,7 @@ describe IsoConcept do
 
 	  before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", "iso_concept_data.ttl", "iso_concept_data_2.ttl",
-        "form_example_vs_baseline_new.ttl", "BC.ttl"]
+        "form_example_vs_baseline_new.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
      #  IsoHelpers.clear_cache

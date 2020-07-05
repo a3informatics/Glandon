@@ -15,7 +15,7 @@ describe Form do
     [
       "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
       "form_example_dm1.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl",
-      "BCT.ttl", "BC.ttl", "thesaurus_concept_new_2.ttl"
+      "thesaurus_concept_new_2.ttl"
     ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))

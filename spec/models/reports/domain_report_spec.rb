@@ -19,8 +19,6 @@ describe Reports::DomainReport do
     load_schema_file_into_triple_store("thesaurus.ttl")
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
     load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
