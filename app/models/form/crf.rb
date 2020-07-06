@@ -1,14 +1,14 @@
 class Form::Crf
 
-	C_CLASS_NAME = "Form::Crf"
+  C_CLASS_NAME = "Form::Crf"
   C_DOMAIN_CLASS_COUNT = 5
 
-	# Create CRF
-	#
-	# @param node [Hash] The root node of the JSON object
-	# @param annotations [] The form's annotations
-	# @return [Null]
-	def self.create(node, annotations, options)
+  # Create CRF
+  #
+  # @param node [Hash] The root node of the JSON object
+  # @param annotations [] The form's annotations
+  # @return [Null]
+  def self.create(node, annotations, options)
     @domain_map = {}
     @common_map = {}
     html = "<style>"
@@ -29,15 +29,15 @@ class Form::Crf
     html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
     html += "</style>"
-		build_common_map(node)
+    build_common_map(node)
     html += crf_node(node, annotations, options)
-		return html
-	end
+    return html
+  end
 
 private
 
   def self.crf_node(node, annotations, options)
-  	html = ""
+    html = ""
     #ConsoleLogger::debug(C_CLASS_NAME, "crf_node", "node=#{node}\nannotations: #{annotations}\n options: #{options}")
     if node[:type] == Form::C_RDF_TYPE_URI.to_s
       html += '<table class="table table-striped table-bordered table-condensed">'
@@ -94,9 +94,9 @@ private
       qa = question_annotations(node[:id], node[:mapping], annotations, options)
       html += mapping_cell(qa, options)
       if node[:children].length == 0
-      	html += input_field(node, annotations)
+        html += input_field(node, annotations)
       else
-      	html += terminology_cell(node, annotations, options)
+        html += terminology_cell(node, annotations, options)
       end
       html += end_row
     elsif node[:type] == Form::Item::BcProperty::C_RDF_TYPE_URI.to_s
