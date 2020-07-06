@@ -27,9 +27,7 @@ describe 'R3.1.0 data migration' do
         "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl", "thesaurus.ttl"
       ]
       clear_triple_store
-      schema_files.each do |x|
-        load_local_file_into_triple_store(schema_dir, x)
-      end
+      schema_files.each {|x| load_local_file_into_triple_store(schema_dir, x)}
       load_cdisc_term_versions(1..65)
       load_local_file_into_triple_store(sub_dir, "thesaurus_migration_3_1_0.ttl")
     end
@@ -59,7 +57,7 @@ describe 'R3.1.0 data migration' do
 
     def check_new
       expect(Sparql::Utility.new.ask?("<http://www.acme-pharma.com/E00001/V1#E00001> th:refersTo <http://www.cdisc.org/C99079/V28#C99079_C98779>", [:th])).to be(true)
-      expect(Sparql::Utility.new.ask?("<http://www.acme-pharma.com/E00001/V1#S00001> th:refersTo <http://www.cdisc.org/C99079/V47#C99079_C125938>", [:th])).to be(true)
+      expect(Sparql::Utility.new.ask?("<http://www.acme-pharma.com/S00001/V1#S00001> th:refersTo <http://www.cdisc.org/C99079/V47#C99079_C125938>", [:th])).to be(true)
     end
 
     let :run_rake_task do
@@ -90,7 +88,7 @@ describe 'R3.1.0 data migration' do
       expect{run_rake_task}.to raise_error(SystemExit, "Data migration not required")
     end
 
-    it 'add rank extensions, exception update' do
+    it 'updates R3.1.0 data, exception update' do
       # Definitions, check triple store count
       expected = 0 # Number of extra triples expected
       base = triple_store.triple_count
@@ -109,7 +107,7 @@ describe 'R3.1.0 data migration' do
       check_old
     end
 
-    it 'add rank data, success checks fail II' do
+    it 'updates R3.1.0 data, success checks fail II' do
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 

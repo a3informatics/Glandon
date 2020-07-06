@@ -20,25 +20,28 @@ describe 'R3.1.0 schema migration' do
       [
         "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
         "ISO11179Concepts.ttl", "business_operational.ttl", "annotations.ttl", "BusinessForm.ttl", 
-        "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl", "thesaurus.ttl"
+        "BusinessDomain.ttl", "test.ttl", "thesaurus.ttl"
       ]
       clear_triple_store
-      schema_files.each do |x|
-        load_local_file_into_triple_store(sub_dir, x)
-      end
+      schema_files.each {|x| load_local_file_into_triple_store(sub_dir, x)}
       @skos_def = Uri.new(uri: "http://www.w3.org/2004/02/skos/core#definition")
       @rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
     end
 
     def expected_triple_count
-      1612
+      1477
     end
 
     def check_triple(triples, predicate, value)
       expect(triples.find{|x| x[:p] == predicate.to_s}[:o]).to eq(value)
     end
 
-    def check_new
+    def check_deletion
+      # Check triples removed
+      expect(Sparql::Utility.new.ask?("th:narrowerReference ?p ?o", [:th])).to eq(false)
+    end
+
+    def check_extension
       # Check sample of new triples
       triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/Thesaurus#pairedWith"))
       check_triple(triples, @skos_def, "A relationship linking a managed concept with a paired managed concept.")
@@ -48,27 +51,35 @@ describe 'R3.1.0 schema migration' do
       check_triple(triples, @rdfs_label, "Refers to relationship")
     end
 
-    def check_old
-      # Old triples check
-      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property"))
-      check_triple(triples, @rdfs_label, "ISO21090Property")
-      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/CDISCBiomedicalConcept#hasItem"))
-      check_triple(triples, @rdfs_label, "Link to the constiuent parts of the Biomedical Concept (Instance or Template)")
+    def check_bc
+      # Check sample of new triples
+      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#hasCodeValue"))
+      check_triple(triples, @skos_def, "Reference to a coded value.")
+      check_triple(triples, @rdfs_label, "Has Coded Value Realtionship")  
     end
 
-    def mark_done
-      sparql = Sparql::Update.new
-      sparql_update = %Q{
-        DELETE 
-        {
-          <http://www.assero.co.uk/CDISCBiomedicalConcept#Node> rdfs:label ?o .
-        }      
-        WHERE 
-        {
-          <http://www.assero.co.uk/CDISCBiomedicalConcept#Node> rdfs:label ?o .
-        }  
+    def check_still_old
+      sparql_ask = %Q{
+        th:pairedWith rdfs:label "Paired with relationship"^^xsd:string .
+        bc:ComplexDatatype rdfs:label "Biomedical Concept Complex Datatype"^^xsd:string .
       }
-      sparql.sparql_update(sparql_update, "", [:th])
+      expect(Sparql::Utility.new.ask?(sparql_ask, [:th, :bc])).to be(false)
+      expect(Sparql::Utility.new.ask?("th:narrowerReference ?p ?o", [:th])).to be(true)
+    end
+
+    def mark_done_1
+      query = %Q{INSERT DATA {bc:ComplexDatatype rdfs:label \"Biomedical Concept Complex Datatype\"^^xsd:string}}
+      Sparql::Update.new.sparql_update(query, "", [:bc])
+    end
+
+    def mark_done_2
+      query = %Q{INSERT DATA {<http://www.assero.co.uk/CDISCBiomedicalConcept#A> rdfs:label \"xxx\"^^xsd:string}}
+      Sparql::Update.new.sparql_update(query, "", [:th])
+    end
+
+    def mark_done_3
+      query = %Q{DELETE {th:narrowerReference ?p ?o} WHERE {th:narrowerReference ?p ?o}}
+      Sparql::Update.new.sparql_update(query, "", [:th])
     end
 
     let :run_rake_task do
@@ -85,33 +96,45 @@ describe 'R3.1.0 schema migration' do
 
     it "add R3.1.0 schema" do
       # Definitions, check triple store count
-      expected = -9 # Number of extra triples, less in new schemas
+      expected = 126 - 6 # Number of extra triples.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
       # Old triples check
-      check_old
+      check_still_old
 
       # Run migration
       run_rake_task
 
       # Check results
       expect(triple_store.triple_count).to eq(base + expected)
-      check_new
+      check_extension
+      check_bc
+      check_deletion
     end
 
-    it "won't run second time" do
-      mark_done
+    it "won't run second time, new triple present" do
+      mark_done_1
       expect{run_rake_task}.to raise_error(SystemExit, "Schema migration not required")
     end
 
-    it 'add R3.1.0 schema, exception upload' do
+    it "won't run second time, old schema is present but not expected" do
+      mark_done_2
+      expect{run_rake_task}.to raise_error(SystemExit, "Schema migration not required")
+    end
+
+    it "won't run second time, old schema to be removed not present" do
+      mark_done_3
+      expect{run_rake_task}.to raise_error(SystemExit, "Schema migration not required")
+    end
+
+    it 'add R3.1.0 schema, exception first upload' do
       # Definitions, check triple store count
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
       # Old triples check
-      check_old
+      check_still_old
 
       # Run migration
       expect_any_instance_of(Sparql::Upload).to receive(:send).and_raise("ERROR")
@@ -119,17 +142,38 @@ describe 'R3.1.0 schema migration' do
         
       # Check triple count, no change and updated triples, should still be old version
       expect(triple_store.triple_count).to eq(base)
-      check_old
+      check_still_old
     end
 
-    it 'add R3.1.0 schema, exception update after file load' do
+    it 'add R3.1.0 schema, exception second upload' do
       # Definitions, check triple store count
-      expected = 126 # Number of extra triples, 127 from above -1 for the repeated ontology triple
+      expected = 0 
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
       # Old triples check
-      check_old
+      check_still_old
+
+      # Run migration
+      call_count = 0
+      allow_any_instance_of(Sparql::Upload).to receive(:send) do
+        call_count += 1
+        call_count == 1 ? "" : raise("ERROR")
+      end
+      expect{run_rake_task}.to raise_error(SystemExit, /Schema migration error, step: 2/)
+        
+      # Check triple count, no change and updated triples, should still be old version
+      expect(triple_store.triple_count).to eq(base + expected)
+    end
+
+    it 'add R3.1.0 schema, exception update' do
+      # Definitions, check triple store count
+      expected = 126
+      base = triple_store.triple_count
+      expect(base).to eq(expected_triple_count)
+
+      # Old triples check
+      check_still_old
 
       # Run migration
       expect_any_instance_of(Sparql::Update).to receive(:sparql_update).and_raise("ERROR")
@@ -138,16 +182,13 @@ describe 'R3.1.0 schema migration' do
       # Check triple count, no change, updated triples should still be old and new triples 
       # should be present
       expect(triple_store.triple_count).to eq(base + expected)
-      check_old
-      check_new
+      check_extension
+      check_bc
     end
 
     it 'add R3.1.0 schema, success checks fail I' do
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
-
-      # Old triples check
-      check_old
 
       # Run migration
       allow_any_instance_of(Sparql::Utility).to receive(:triple_count).and_return(400, 500) # Fake wrong triple count
@@ -158,11 +199,13 @@ describe 'R3.1.0 schema migration' do
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
-      # Old triples check
-      check_old
-
       # Run migration
-      allow_any_instance_of(Sparql::Utility).to receive(:ask?).and_return(false) # Fake wrong ask result
+      call_index = -1
+      result = [false, true, false, false] # First 3 are to run the migration, fourth is the check result.
+      allow_any_instance_of(Sparql::Utility).to receive(:ask?) do |arg|
+        call_index += 1
+        result[call_index]
+      end
       expect{run_rake_task}.to raise_error(SystemExit, /Schema migration not succesful, checks failed/)
     end
 

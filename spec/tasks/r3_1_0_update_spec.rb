@@ -24,16 +24,50 @@ describe 'R3.1.0 schema migration' do
       owner = IsoRegistrationAuthority.owner
       query_string = %Q{
         SELECT ?cl ?cli WHERE {
-          ?cl rdf:type th:ManagedConcept
-          ?cl subsets ?source
+          ?cl rdf:type th:ManagedConcept .
+          ?cl th:subsets ?source .
           {?cl th:narrower ?cli} MINUS {?cl th:refersTo ?cli}
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th])
-      query_results.each do |r|
+      query_results.by_object_set([:cl, :cli]).each do |r|
         puts colourize("CL: #{r[:cl]}, CLI:#{r[:cli]}")
       end
       query_results.empty?
+    end
+
+    def check_extensions
+      owner = IsoRegistrationAuthority.owner
+      query_string = %Q{
+        SELECT ?cl ?cli WHERE {
+          ?cl rdf:type th:ManagedConcept .
+          ?cl th:extends ?source .
+          ?cl th:refersTo ?cli .
+          ?cli ^th:narrower ?parent .
+          FILTER (EXISTS {?parent isoT:hasIdentifier/isoI:hasScope <http://www.assero.co.uk/NS#CDISC>})
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th])
+      query_results.by_object_set([:cl, :cli]).each do |r|
+        puts colourize("CL: #{r[:cl]}, CLI:#{r[:cli]}")
+      end
+      query_results.empty?
+    end
+
+    def check_references
+      owner = IsoRegistrationAuthority.owner
+      query_string = %Q{
+        SELECT ?cl ?cli WHERE {
+          ?cl rdf:type th:ManagedConcept .
+          ?cl th:refersTo ?cli .
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th])
+      results = query_results.by_object_set([:cl, :cli])
+      results.each do |r|
+        puts colourize("CL: #{r[:cl]}, CLI:#{r[:cli]}")
+      end
+      results.any?
     end
 
     it 'check subsets' do
@@ -41,6 +75,11 @@ describe 'R3.1.0 schema migration' do
     end
 
     it 'check extensions' do
+      expect(check_subsets).to be(true)
+    end
+
+    it 'check references' do
+      expect(check_references).to be(true)
     end
 
   end

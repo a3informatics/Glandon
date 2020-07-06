@@ -35,7 +35,7 @@ namespace :r3_1_0 do
           ?s th:extends ?ext .
           ?s th:narrower ?cli .
           ?cli ^th:narrower ?par . 
-          FILTER (NOT EXISTS {?par th:narrower ?cli})
+          FILTER (?par != ?s)
         } 
         UNION
         {
