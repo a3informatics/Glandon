@@ -419,4 +419,69 @@ describe Thesaurus::ManagedConcept do
 
   end
 
+  describe "migration R3.1.0 tests" do
+
+    def migration_thesaurus
+      # Extension
+      cdisc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079"))
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Extension 1",
+          identifier: "E00001",
+          definition: "def",
+          notation: "EXT1"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"Extension 1")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Local 1",
+          identifier: "E000011",
+          definition: "Extension 1, CLI 1",
+          notation: "EXT1-1"
+        })
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label:"Extension 1")
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Local 1",
+          identifier: "E000012",
+          definition: "Extension 1, CLI 2",
+          notation: "EXT1-2"
+        })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label:"Extension 1")
+      @tc_1.narrower = cdisc.narrower_links
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_1.extends = cdisc.uri
+      @tc_1.set_initial("E00001")
+
+      # Subset
+      cdisc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079"))
+      @tc_2 = Thesaurus::ManagedConcept.new
+      @tc_2.identifier = "S00001"
+      @tc_2.definition = "Subset 1"
+      @tc_2.notation = "SUB1"
+      @tc_2.subsets = cdisc.uri
+      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
+      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")  
+      @tc_2.set_initial("S00001")
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..65)
+    end
+
+    it "file" do
+      migration_thesaurus
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@tc_1.uri.namespace)
+      @tc_1.to_sparql(sparql, true)
+      @tc_2.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_migration_3_1_0.ttl")
+    end 
+
+  end
 end
