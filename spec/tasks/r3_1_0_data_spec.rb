@@ -117,7 +117,7 @@ describe 'R3.1.0 data migration' do
       check_old
 
       # Run migration
-      allow_any_instance_of(Sparql::Utility).to receive(:ask?).and_return(true, false) # Fake the ask
+      allow_any_instance_of(Sparql::Utility).to receive(:ask?).and_return(false, false) # Fake the ask results
       expect{run_rake_task}.to raise_error(SystemExit, /Data migration not succesful, checks failed/)
     end
 
