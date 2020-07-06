@@ -11,7 +11,7 @@ describe 'biomedical_concepts/history.html.erb', :type => :view do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "BCT.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..42)
     clear_iso_concept_object

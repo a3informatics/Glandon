@@ -817,6 +817,91 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "pairing" do
+
+    login_curator
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..4)
+      Token.delete_all
+    end
+
+    after :each do
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "pair a code list" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      token = Token.obtain(parent, @user)
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq([])
+    end
+
+    it "pair a code list, error" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      token = Token.obtain(parent, @user)
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Pairing not permitted, already paired."])
+    end
+
+    it "pair a code list, error token" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+    end
+
+    it "unpair a code list" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      token = Token.obtain(parent, @user)
+      post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
+      post :unpair, params:{id: parent.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq([])
+    end
+
+    it "unpair a code list, error" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      token = Token.obtain(parent, @user)
+      post :unpair, params:{id: parent.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Cannot unpair as the item is not paired."])
+    end
+
+    it "unpair a code list, error token" do
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
+      child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
+      post :unpair, params:{id: parent.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+    end
+
+  end
+
   describe "Unauthorized User" do
 
     login_reader

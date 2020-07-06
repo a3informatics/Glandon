@@ -31,7 +31,7 @@ describe "Tags", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -340,7 +340,7 @@ describe "Tags", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -421,7 +421,7 @@ describe "Tags", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")

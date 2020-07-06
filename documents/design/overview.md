@@ -14,14 +14,16 @@ This is core role of the application and is undertaken within the triple store.
 
 1. [Core metadata management functions](core.md)
 1. [Management of Terminologies and Code Lists](thesaurus.md)
-1. [Management of Biomedical Concepts](thesaurus.md), both instances and templates
+1. [Canonical Reference](canonical_reference.md)
+1. [Complex Datatypes](complex_datatypes.md)
+1. [Management of Biomedical Concepts](biomedical_concepts.md), both instances and templates
 
 ## Support Functions
 
 1. [Users](users.md)
 1. Audit
 
-## Infrasture and Utility Functions
+## Infrastucture and Utility Functions
 
 1. [Utilties](utilities.md)
 

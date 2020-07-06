@@ -20,8 +20,6 @@ describe Reports::CrfReport do
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_general.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("form_crf_test_1.ttl")
     clear_iso_concept_object

@@ -17,7 +17,8 @@ describe "Dashboard JS", :type => :feature do
 
   before :all do
     ua_create
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
+      "form_example_vs_baseline.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..42)
     clear_iso_concept_object
@@ -78,6 +79,7 @@ describe "Dashboard JS", :type => :feature do
       check 'Terminologies'
       check 'Statistics'
       click_button 'Save'
+      wait_for_ajax 20
     end
 
     # it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do

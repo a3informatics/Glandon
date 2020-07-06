@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'biomedical_concept/property_x'
 
 describe BiomedicalConcept::PropertyX do
 
@@ -38,7 +37,7 @@ describe BiomedicalConcept::PropertyX do
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object - Question Text - WILL CURRENTLY FAIL (validation runnig twice)" do
+  it "does not validate an invalid object - Question Text" do
     result = BiomedicalConcept::PropertyX.new
     result.uri = result.create_uri(result.class.base_uri)
     result.question_text = "Draft 123€"
@@ -48,7 +47,7 @@ describe BiomedicalConcept::PropertyX do
     expect(result.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
   end
 
-  it "does not validate an invalid object - Prompt Text - WILL CURRENTLY FAIL (validation runnig twice)" do
+  it "does not validate an invalid object - Prompt Text" do
     result = BiomedicalConcept::PropertyX.new
     result.question_text = "Draft 123"
     result.prompt_text = "Draft 123€"
@@ -58,7 +57,7 @@ describe BiomedicalConcept::PropertyX do
     expect(result.errors.full_messages.to_sentence).to eq("Prompt text contains invalid characters")
   end
 
-  it "does not validate an invalid object - Format - WILL CURRENTLY FAIL (validation runnig twice)" do
+  it "does not validate an invalid object - Format" do
     result = BiomedicalConcept::PropertyX.new
     result.question_text = "Draft 123"
     result.prompt_text = "Draft 123"

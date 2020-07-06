@@ -125,7 +125,7 @@ class SdtmUserDomainsController < ApplicationController
       redirect_to request.referer
     end
     @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
-    @bcs = BiomedicalConcept.list
+    @bcs = BiomedicalConceptInstance.unique
   end
 
   def update_add

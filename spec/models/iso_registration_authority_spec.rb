@@ -8,6 +8,10 @@ describe IsoRegistrationAuthority do
     IsoHelpers.clear_cache
   end
 
+  def sub_dir
+    return "models/iso_registration_authority"
+  end
+
   describe "Basic Tests" do
 
     before :each do
@@ -162,6 +166,24 @@ describe IsoRegistrationAuthority do
       result = IsoRegistrationAuthority.cdisc_scope
       expect(result.id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=")
       (1..100).each {|x| IsoRegistrationAuthority.cdisc_scope}
+    end
+
+  end
+
+  describe "Owner and Authority" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "owner" do
+      result = IsoRegistrationAuthority.owner
+      check_file_actual_expected(result.to_h, sub_dir, "owner_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "owner_authority" do
+      expect(IsoRegistrationAuthority.owner_authority).to eq("www.acme-pharma.com")
     end
 
   end

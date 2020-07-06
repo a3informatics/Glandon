@@ -18,11 +18,10 @@ describe BiomedicalConcept do
     @cdt_set = {}
     @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
     @ht = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
-
   end
 
   def create_item(params, ordinal, bc_template=nil)
-    t_item = find_item(bc_template, params[:label]) if !bc_template.nil?
+    t_item = find_item(bc_template, params[:label]) unless bc_template.nil?
     params[:ordinal] = ordinal
     item = BiomedicalConcept::Item.new(params)
     params[:complex_datatype].each do |datatype|
@@ -34,7 +33,7 @@ describe BiomedicalConcept do
   end
 
   def find_item(bc_template, label)
-    return bc_template.identified_by if bc_template.identified_by.label == label
+#    return bc_template.identified_by if bc_template.identified_by.label == label
     bc_template.has_item.find{|x| x.label == label}
   end
 
@@ -49,15 +48,16 @@ describe BiomedicalConcept do
     else
       t_cdt.has_property_objects
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
-      property.is_a = t_property.uri
+      property.is_a = t_property.is_a
       refs.each_with_index do |term, index|
         if term[:cl].start_with?("C")
           items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
         elsif term[:cl].start_with?("H")
           items = @ht.find_by_identifiers([term[:cl].dup, term[:cli].dup])
         end
-        uri = Uri.new(uri: items[term[:cli]].to_s)
-        op_ref = OperationalReferenceV3::TucReference.new(context: @ct.uri, reference: uri, optional: true, ordinal: index+1)
+        cl_uri = items[term[:cl]]
+        cli_uri = items[term[:cli]]
+        op_ref = OperationalReferenceV3::TucReference.new(context: cl_uri, reference: cli_uri, optional: true, ordinal: index+1)
         property.has_coded_value_push(op_ref) 
       end
     end
@@ -90,7 +90,9 @@ describe BiomedicalConcept do
     templates = read_yaml_file(sub_dir, "templates.yaml")
     templates.each do |template|
       object = BiomedicalConceptTemplate.new(label: template[:label])
-      object.identified_by = create_item(template[:identified_by], 1)
+      id_item = create_item(template[:identified_by], 1)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
       template[:has_items].each_with_index do |x, index| 
         object.has_item_push(create_item(x, index+2))
       end
@@ -101,7 +103,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
 	end
 
   it "create instances" do
@@ -112,7 +114,9 @@ describe BiomedicalConcept do
       template = BiomedicalConceptTemplate.find_children(Uri.new(uri: instance[:based_on]))
       object = BiomedicalConceptInstance.new(label: instance[:label])
       object.based_on = template.uri
-      object.identified_by = create_item(instance[:identified_by], 1, template)
+      id_item = create_item(instance[:identified_by], 1, template)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
       instance[:has_items].each_with_index do |item, index| 
         next if !item[:enabled]
         object.has_item_push(create_item(item, index+2, template))
@@ -124,7 +128,7 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
   it "check data" do

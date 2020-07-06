@@ -15,7 +15,7 @@ function render({
   }
 }) {
   return `<span id="${menuId}" class="icon-context-menu text-normal" tabindex="1">` +
-            `<div class="context-menu ${menuStyle.color || ""} ${menuStyle.side || ""} shadow-small collapsed scroll-styled">` +
+            `<div class="context-menu scroll-styled ${menuStyle.color || ""} ${menuStyle.side || ""} shadow-small collapsed scroll-styled">` +
               _renderItems(menuItems) +
             `</div>` +
           `</span>`;

@@ -332,6 +332,7 @@ module UiHelpers
   def ui_show_more_tags_cl
     #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
     find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+		sleep 0.5
   end
 
   def ui_show_more_tags_cli
@@ -595,7 +596,10 @@ module UiHelpers
 			results: "Results",
       upgrade: "Upgrade Code Lists",
 			enable_rank: "Enable rank",
-			edit_ranks: "Edit ranks"
+			edit_ranks: "Edit ranks",
+			pair: "Pair",
+			unpair: "Unpair",
+			show_paired: "Show Paired"
     }
 	end
 
@@ -620,13 +624,13 @@ module UiHelpers
 		page.execute_script(js_code)
 	end
 
-  def context_menu_element_header_present?(action, state="enabled")
-    class_list = state == "enabled" ? "option " : "option disabled" # Note the space, horrid but ....
-    option = context_menu_actions_map[action]
-    js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
-    js_code += "if (el != null && el.className == '#{class_list}' ) { return true; } else { return false; } "
-    page.execute_script(js_code)
-  end
+	def context_menu_element_header_present?(action, state="enabled")
+		class_list = state == "enabled" ? "option" : "disabled" # Note the space, horrid but ....
+		option = context_menu_actions_map[action]
+		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
+		js_code += "if (el != null && (el.className.indexOf('#{class_list}' !== -1) ) ) { return true; } else { return false; } "
+		page.execute_script(js_code)
+	end
 
   def ui_dashboard_slider (start_date, end_date)
     slider = "var tl_slider = $('.timeline-container').data(); "
@@ -810,16 +814,16 @@ module UiHelpers
 	end
 
 	def ui_selector_tab_click(tab_text)
-		find(:xpath, "//div[contains(concat(' ',normalize-space(@class), ' '),' tab-option') and contains(.,'#{tab_text}')]").click
+		find(:xpath, "//div[contains(concat(' ',normalize-space(@class), ' '),' tab-option') and contains(.,'#{tab_text}')]", visible: true).click
 	end
 
 	def ui_selector_item_click(table, text)
-		find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]").click
+		find(:xpath, "//div[@id='selector-type-tabs']//table[@id='#{table}']//tr[contains(.,'#{text}')]", visible: true).click
 		wait_for_ajax 20
 	end
 
 	def ui_selector_search(table, text)
-		find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input").set(text)
+		find(:xpath, "//div[@id='selector-type-tabs']//div[@id='#{table}_filter']//input", visible: true).set(text)
 	end
 
 	def ui_selector_pick_managed_items(type, items)

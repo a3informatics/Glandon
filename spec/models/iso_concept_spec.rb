@@ -41,32 +41,11 @@ describe IsoConcept do
 	context "Main Tests" do
 
 	  before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", "iso_concept_data.ttl", "iso_concept_data_2.ttl",
-        "form_example_vs_baseline_new.ttl", "BC.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
+      	"iso_concept_extension.ttl", "iso_concept_data.ttl", "iso_concept_data_2.ttl",
+        "form_example_vs_baseline_new.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
-     #  IsoHelpers.clear_cache
-	    # clear_triple_store
-	    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-	    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-	    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-	    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-	    # load_schema_file_into_triple_store("ISO25964.ttl")
-	    # load_schema_file_into_triple_store("business_operational.ttl")
-	    # load_schema_file_into_triple_store("BusinessForm.ttl")
-	    # load_schema_file_into_triple_store("business_operational_extension.ttl")
-	    # load_schema_file_into_triple_store("business_cross_reference.ttl")
-	    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-	    # load_test_file_into_triple_store("iso_concept_extension.ttl")
-	    # load_test_file_into_triple_store("iso_concept_data.ttl")
-	    # load_test_file_into_triple_store("iso_concept_data_2.ttl")
-	    # load_test_file_into_triple_store("CT_V42.ttl")
-	    # load_test_file_into_triple_store("CT_V46.ttl")
-	    # load_test_file_into_triple_store("CT_V47.ttl")
-	    # load_test_file_into_triple_store("BC.ttl")
-	    # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-     #  load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-     #  load_test_file_into_triple_store("iso_namespace_real.ttl")
 	    clear_iso_concept_object
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
@@ -653,39 +632,39 @@ describe IsoConcept do
 			expect(sparql.to_s).to eq(result)
 		end
 
-	  it "allows the links from a concept to be determined, BC Property Ref" do
-	    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-	    expected = 
-	    [ 
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      }
-	    ]
-      compare_link_to_results(results, expected)
-	  end
+	  # it "allows the links from a concept to be determined, BC Property Ref" do
+	  #   results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+	  #   expected = 
+	  #   [ 
+	  #     { 
+	  #       uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}).to_json, 
+	  #       rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+   #        label: "",
+	  #       local: false 
+	  #     }
+	  #   ]
+   #    compare_link_to_results(results, expected)
+	  # end
 
-	  it "allows the links to a concept to be determined, BC Property Ref" do
-	    results = IsoConcept.links_to("BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value","http://www.assero.co.uk/MDRBCs/V1")
-	    expected = 
-	    [ 
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          label: "Date and Time (--DTC)",
-	        local: false  
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
-          label: "",
-	        local: true
-	      }
-	    ]
-      compare_link_to_results(results, expected)
-	  end
+	  # it "allows the links to a concept to be determined, BC Property Ref" do
+	  #   results = IsoConcept.links_to("BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value","http://www.assero.co.uk/MDRBCs/V1")
+	  #   expected = 
+	  #   [ 
+	  #     { 
+	  #       uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}).to_json, 
+	  #       rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+   #        label: "Date and Time (--DTC)",
+	  #       local: false  
+	  #     },
+	  #     { 
+	  #       uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}).to_json, 
+	  #       rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+   #        label: "",
+	  #       local: true
+	  #     }
+	  #   ]
+   #    compare_link_to_results(results, expected)
+	  # end
 
 	  it "allows the links from a concept to be determined, internal to managed item hierarchy" do
 	    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -721,10 +700,10 @@ describe IsoConcept do
       compare_link_to_results(results, expected)
 	  end
 
-	  it "allows the links from a concept to be determined, TC Ref" do
-	    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G4_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
-      results.each {|x| x[:uri] = x[:uri].to_json}
-	    check_file_actual_expected(results, sub_dir, "links_from_expected_1.yaml", eq_method: :hash_equal)
+	  # it "allows the links from a concept to be determined, TC Ref" do
+	  #   results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G4_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
+   #    results.each {|x| x[:uri] = x[:uri].to_json}
+	  #   check_file_actual_expected(results, sub_dir, "links_from_expected_1.yaml", eq_method: :hash_equal)
      #  expected = 
 	    # [ 
 	    #   { 
@@ -753,7 +732,7 @@ describe IsoConcept do
 	    #   }
 	    # ]
      #  compare_link_to_results(results, expected)
-	  end
+	  # end
 
 		it "allows the links to a concept to be determined, BC Property Ref" do
 	    results = IsoConcept.links_to("CLI-C71148_C62122","http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
@@ -1474,27 +1453,9 @@ describe IsoConcept do
   
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_general.ttl",
-        "form_example_vs_baseline_new.ttl", "BC.ttl", "BCT.ttl"]
+        "form_example_vs_baseline_new.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
-      # IsoHelpers.clear_cache
-      # clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_schema_file_into_triple_store("business_operational.ttl")
-      # load_schema_file_into_triple_store("BusinessForm.ttl")
-      # load_schema_file_into_triple_store("ISO25964.ttl")
-      # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      # load_test_file_into_triple_store("iso_namespace_real.ttl")
-      # load_test_file_into_triple_store("form_example_dm1.ttl")
-      # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      # load_test_file_into_triple_store("form_example_general.ttl")
-    #load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      # load_test_file_into_triple_store("BCT.ttl")
-      # load_test_file_into_triple_store("BC.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object

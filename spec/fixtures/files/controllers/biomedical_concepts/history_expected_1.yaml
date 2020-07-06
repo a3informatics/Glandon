@@ -1,10 +1,10 @@
 ---
 - :edit_path: ''
   :tags_path: ''
-  :status_path: ''
+  :status_path: "/iso_managed_v2/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=/status?iso_managed%5Bcurrent_id%5D="
   :current_path: ''
   :delete_path: ''
-  :show_path: "/biomedical_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSQ=="
+  :show_path: "/biomedical_concepts/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k="
   :search_path: ''
   :list_cn_path: ''
   :impact_path: ''
@@ -17,14 +17,14 @@
     :subset: false
     :subsetted: false
   :compare_path: ''
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSQ==
-  :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0k=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
   :label: Height
   :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9SUw==
-    :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_RS
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfUlM=
+    :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Incomplete
     :administrative_note: ''
@@ -49,24 +49,24 @@
         :name: S-cubed Aps
         :authority: www.s-cubed.dk
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSEVJR0hUL1YxI0JDSV9TSQ==
-    :uri: http://www.acme-pharma.com/HEIGHT/V1#BCI_SI
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfU0k=
+    :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
     :identifier: HEIGHT
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
     :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-      :uri: http://www.assero.co.uk/NS#ACME
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: ACME
-      :name: ACME Pharma
-      :authority: www.acme-pharma.com
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
   :origin: ''
   :change_description: ''
   :creation_date: '2016-01-01T00:00:00+00:00'
-  :last_change_date: '2020-03-25T15:39:35+01:00'
+  :last_change_date: '2020-07-04T20:46:51+02:00'
   :explanatory_comment: ''
   :has_item: []
   :identified_by: 

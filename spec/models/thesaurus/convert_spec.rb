@@ -114,10 +114,7 @@ describe "Thesaurus Convert" do
     end
 
     it "converts ttl files" do
-      files = 
-      [
-        #"BC.ttl"
-      ]
+      files = []
       files.each do |filename|
         clear_triple_store
         full_path = Rails.root.join "db/load/test/#{filename}"

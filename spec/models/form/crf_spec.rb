@@ -26,41 +26,41 @@ describe Form::Crf do
     clear_iso_registration_state_object
   end
 
-  it "displays a CRF as HTML" do
-    form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = Form::Crf.create(form.to_json, nil, {:annotate => false})
-  #write_text_file_2(result, sub_dir, "example_crf.txt")
-    expected = read_text_file_2(sub_dir, "example_crf.txt")
-    expect(result).to eq(expected)
-  end
+  # it "displays a CRF as HTML" do
+  #   form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #   result = Form::Crf.create(form.to_json, nil, {:annotate => false})
+  # #write_text_file_2(result, sub_dir, "example_crf.txt")
+  #   expected = read_text_file_2(sub_dir, "example_crf.txt")
+  #   expect(result).to eq(expected)
+  # end
 
-  it "displays a aCRF as HTML" do
-    form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
-  #write_text_file_2(result, sub_dir, "example_acrf_1.txt")
-    expected = read_text_file_2(sub_dir, "example_acrf_1.txt")
-    expect(result).to eq(expected)
-  end
+  # it "displays a aCRF as HTML" do
+  #   form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #   result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
+  # #write_text_file_2(result, sub_dir, "example_acrf_1.txt")
+  #   expected = read_text_file_2(sub_dir, "example_acrf_1.txt")
+  #   expect(result).to eq(expected)
+  # end
 
-  it "displays a aCRF as HTML, all field types" do
-    form = Form.find("F-ACME_TEST" , "http://www.assero.co.uk/MDRForms/ACME/V1")
-    result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
-  #write_text_file_2(result, sub_dir, "example_acrf_2.txt")
-    expected = read_text_file_2(sub_dir, "example_acrf_2.txt")
-    expect(result).to eq(expected)
-  end
+  # it "displays a aCRF as HTML, all field types" do
+  #   form = Form.find("F-ACME_TEST" , "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #   result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
+  # #write_text_file_2(result, sub_dir, "example_acrf_2.txt")
+  #   expected = read_text_file_2(sub_dir, "example_acrf_2.txt")
+  #   expect(result).to eq(expected)
+  # end
 
-  it "displays as aCRF as HTML, parallel processing" do
-    ["F-ACME_ANNO", "F-ACME_ANNO2", "F-ACME_ANNO3", "F-ACME_ANNO4"].each_with_index do |f, index|
-      file_index = index + 3
-    puts "File index: #{file_index}"
-      form = Form.find(f, "http://www.assero.co.uk/MDRForms/ACME/V1")
-      result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
-    #write_text_file_2(result, sub_dir, "example_acrf_#{file_index}.txt")
-      expected = read_text_file_2(sub_dir, "example_acrf_#{file_index}.txt")
-      expect(result).to eq(expected)
-    end
-  end
+  # it "displays as aCRF as HTML, parallel processing" do
+  #   ["F-ACME_ANNO", "F-ACME_ANNO2", "F-ACME_ANNO3", "F-ACME_ANNO4"].each_with_index do |f, index|
+  #     file_index = index + 3
+  #   puts "File index: #{file_index}"
+  #     form = Form.find(f, "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #     result = Form::Crf.create(form.to_json, form.annotations, {:annotate => true})
+  #   #write_text_file_2(result, sub_dir, "example_acrf_#{file_index}.txt")
+  #     expected = read_text_file_2(sub_dir, "example_acrf_#{file_index}.txt")
+  #     expect(result).to eq(expected)
+  #   end
+  # end
 
 end
   

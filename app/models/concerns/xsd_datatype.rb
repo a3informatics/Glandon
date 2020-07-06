@@ -70,8 +70,8 @@ private
 
   # Debug for a blank fragment
   def report_blank
-    puts colourize("\n\n********** WARNING FRAGMENT BLANK TRACE **********\n\n", "red")
-    puts colourize("#{caller.join("\n")}\n\n", "red")
+    puts "\n\n********** WARNING FRAGMENT BLANK TRACE **********\n\n"
+    puts "#{caller.join("\n")}\n\n"
     ""
   end
 

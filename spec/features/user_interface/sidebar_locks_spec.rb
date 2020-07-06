@@ -8,7 +8,7 @@ describe "Sidebar Locks", :type => :feature do
   describe "Content Admin", :type => :feature do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..1)
       ua_create

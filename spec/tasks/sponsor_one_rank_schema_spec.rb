@@ -19,11 +19,13 @@ describe 'sponsor one rank schema migration' do
       schema_files = 
       [
         "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
-        "business_operational.ttl", "annotations.ttl",
-        "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl"
+        "business_operational.ttl", "annotations.ttl", "BusinessForm.ttl", 
+        "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl", "test.ttl", "thesaurus.ttl"
       ]
-      load_files(schema_files, [])
-      load_local_file_into_triple_store(sub_dir, "thesaurus.ttl")
+      clear_triple_store
+      schema_files.each do |x|
+        load_local_file_into_triple_store(sub_dir, x)
+      end
       @skos_def = Uri.new(uri: "http://www.w3.org/2004/02/skos/core#definition")
       @rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
     end
