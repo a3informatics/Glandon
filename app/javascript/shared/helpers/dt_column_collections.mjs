@@ -49,4 +49,25 @@ function dtBCShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns }
+/**
+ * Column definitions for Form show
+ * @return {Array} DataTables  Form show column definitions collection
+ */
+function dtFormShowColumns() {
+  return [
+    { data: "ordinal" },
+    { data: "label" },
+    { data: "label" },
+    { data: "label" },
+    { data: "label" },
+    { data: "label" },
+    {
+      data: "label",
+    },
+    { data: "completion" },
+    { data: "note" }
+
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns }
