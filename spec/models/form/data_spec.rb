@@ -204,7 +204,6 @@ describe Form do
                           datatype: params[:datatype],
                           has_coded_value: query_tc(params)
                           }
-                      #byebug
                           group[:has_item] << Form::Item::Question.from_h(item)
               when :Mapping
                        item = {
@@ -258,7 +257,6 @@ describe Form do
             items.each do |i|
               item = add_item(groups[index], i)
             end
-           
           if !query_sub_group(group).empty?
             sub_groups = query_sub_group(group)
             sub_groups.each_with_index do |sub_group, inde|
