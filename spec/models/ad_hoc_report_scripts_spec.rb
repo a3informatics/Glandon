@@ -269,6 +269,7 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_subsets_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_subsets_results_1.yaml", equate_method: :hash_equal)
       expect(results[:data].count).to eq(1974)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_1.yaml", equate_method: :hash_equal)
