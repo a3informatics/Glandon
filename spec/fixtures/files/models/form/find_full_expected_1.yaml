@@ -1,0 +1,114 @@
+---
+:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDE=
+:uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
+:label: Test Form No. 1
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQUNNRV9URVNUMS0x
+  :uri: http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQUNNRV9URVNUMS0x
+  :uri: http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: TEST 1
+  :version_label: ''
+  :version: 1
+  :semantic_version: ''
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2016-12-23T10:47:04+00:00'
+:last_change_date: '2016-12-23T10:53:51+00:00'
+:explanatory_comment: ''
+:note: Some form notes
+:completion: Some form completion instructions
+:has_group:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzE=
+  :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Group
+  :tagged: []
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzFfSTE=
+    :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I1
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Item
+    :label: Question 1
+    :tagged: []
+    :ordinal: 1
+    :note: Notes in here please from the XYZ team.
+    :completion: You need to fill this in!!
+    :optional: false
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzFfSTI=
+    :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I2
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Item
+    :label: Question 2
+    :tagged: []
+    :ordinal: 2
+    :note: Well, we'll have some note I think
+    :completion: You need to fill this in!!
+    :optional: false
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzFfSTM=
+    :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I3
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Item
+    :label: Mapping 3
+    :tagged: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzFfSTQ=
+    :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I4
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Item
+    :label: Label Text 4
+    :tagged: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVDFfRzFfSTU=
+    :uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I5
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Item
+    :label: Placeholder 5
+    :tagged: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+  :repeating: false
+  :has_common: []
+  :has_sub_group: []
+  :has_biomedical_concept: []

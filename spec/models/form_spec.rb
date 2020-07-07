@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Form do
 
   include DataHelpers
-  include OdmHelpers
   include SparqlHelpers
 
   def sub_dir
@@ -11,7 +10,7 @@ describe Form do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_base_core.ttl"]
     load_files(schema_files, data_files)
   end
 
@@ -29,6 +28,31 @@ describe Form do
     result.has_identifier.semantic_version = "0.0.1"
     result.has_identifier.version = 1
     expect(result.valid?).to eq(true)
+  end
+
+  it "allows validity of the object to be checked - error" do
+    result = Form.new
+    result.valid?
+    expect(result.errors.count).to eq(3)
+    expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Has identifier empty object")
+    expect(result.errors.full_messages[2]).to eq("Has state empty object")
+    expect(result.valid?).to eq(false)
+  end
+
+  it "allows a Form to be found" do
+    item = Form.find(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+  end
+
+  it "allows a Form to be found, full" do
+    item = Form.find_full(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+  end
+
+  it "allows a Form to be found, minimum" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
   
   # it "allows a form to be found" do
