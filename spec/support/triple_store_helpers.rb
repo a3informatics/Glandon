@@ -68,6 +68,17 @@ module TripleStoreHelpers
       results
     end
 
+    def subject_used_by(subject, terminal_output=false)
+      query_string = %Q{
+        SELECT ?s ?p { ?s ?p #{subject.to_ref} }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", []) 
+      results = query_results.by_object_set([:s, :p])
+      puts colourize("Subject #{subject}", "blue") if terminal_output
+      results.each{|x| puts colourize("  #{x[:s]}, #{x[:p]}", "blue")} if terminal_output
+      results
+    end
+
     def subject_triples_tree(subject)
       query_string = %Q{
         SELECT DISTINCT?s ?p ?o WHERE

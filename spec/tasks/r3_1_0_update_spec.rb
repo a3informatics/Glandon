@@ -43,8 +43,7 @@ describe 'R3.1.0 schema migration' do
           ?cl rdf:type th:ManagedConcept .
           ?cl th:extends ?source .
           ?cl th:refersTo ?cli .
-          ?cli ^th:narrower ?parent .
-          FILTER (EXISTS {?parent isoT:hasIdentifier/isoI:hasScope <http://www.assero.co.uk/NS#CDISC>})
+          FILTER (EXISTS {?cli ^th:narrower ?parent . FILTER (?cl != parent)})
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th])
@@ -64,9 +63,9 @@ describe 'R3.1.0 schema migration' do
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th])
       results = query_results.by_object_set([:cl, :cli])
-      results.each do |r|
-        puts colourize("CL: #{r[:cl]}, CLI:#{r[:cli]}")
-      end
+      mapped_results = Hash.new {|h,k| h[k] = []}
+      results.each {|x| mapped_results[x[:cl].to_s] << x[:cli].to_s}
+      check_file_actual_expected(mapped_results, sub_dir, "update_references_expected_1.yaml", equate_method: :hash_equal)
       results.any?
     end
 
@@ -80,6 +79,15 @@ describe 'R3.1.0 schema migration' do
 
     it 'check references' do
       expect(check_references).to be(true)
+    end
+
+    it 'check examples' do
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/C96784/V1#C96784_S009967"), true)
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/C74456/V1#C74456_S001153"), true)
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/SN003630E/V1#SN003630E_S100257"), true)
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/C66729/V1#C66729_S003258"), true)
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/SN000185/V1#SN000185_S000911"), true)
+      triple_store.subject_used_by(Uri.new(uri: "http://www.sanofi.com/C66729/V1#C66729_S003258"), true)
     end
 
   end

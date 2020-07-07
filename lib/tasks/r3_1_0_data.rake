@@ -34,8 +34,15 @@ namespace :r3_1_0 do
         {
           ?s th:extends ?ext .
           ?s th:narrower ?cli .
+          FILTER (STRSTARTS(STR(?cli),"http://www.sanofi.com"))
+          FILTER (STRBEFORE(STR(?cli),"V") != STRBEFORE(STR(?s),"V"))
+        } 
+        UNION
+        {
+          ?s th:extends ?ext .
+          ?s th:narrower ?cli .
           ?cli ^th:narrower ?par . 
-          FILTER (?par != ?s)
+          FILTER (EXISTS {?par isoT:hasIdentifier/isoI:hasScope <http://www.assero.co.uk/NS#CDISC>})
         } 
         UNION
         {
@@ -44,7 +51,7 @@ namespace :r3_1_0 do
         }
       }         
     }
-    sparql.sparql_update(sparql_update, "", [:th, :bo])
+    sparql.sparql_update(sparql_update, "", [:th, :bo, :isoT, :isoI])
 
     # Checks and finish
     abort("Data migration not succesful, checks failed") unless r3_1_0_data_success?(base)
