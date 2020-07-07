@@ -199,6 +199,23 @@ RSpec.describe AdHocReport, type: :model do
       results
     end
 
+    def key_data(rows)
+      results = Hash.new {|h,k| h[k] = []}
+      rows[:data].each do |row| 
+        results[row[2]] << row
+      end
+      results
+    end
+
+    def save_selected_results(results, filename, items, write_file)
+      selected_results = {}
+      full_results = key_data(results)
+      items.each do |key|
+        selected_results[key] = full_results[key]
+      end
+      check_file_actual_expected(selected_results, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+    end
+  
     it "executes an sponsor CT export report, 2019" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
@@ -259,7 +276,7 @@ RSpec.describe AdHocReport, type: :model do
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_ex_subsets_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(44)
     end
-  
+
     it "executes an sponsor CT export subsets report 2019" do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
@@ -270,6 +287,7 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_1.yaml")
       expect(results[:data].count).to eq(1974)
+      save_selected_results(results, "sponsor_ct_export_subsets_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_1.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(2)
@@ -285,6 +303,7 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_subsets_results_2.yaml")
       expect(results[:data].count).to eq(1945)
+      save_selected_results(results, "sponsor_ct_export_subsets_selected_results_2.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(3)
