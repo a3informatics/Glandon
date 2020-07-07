@@ -341,6 +341,8 @@ RSpec.describe AdHocReport, type: :model do
       @tc_22 = @tc_2.add_child(notation: "AAX2", definition: "Must match 2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A2"))
       @tc_23 = @tc_2.add_child(notation: "AAX3", definition: "Must match opps", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A3"))
       @tc_1.validate_and_pair(@tc_2.id)
+      triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type, false)
+      triple_store.rdf_type_count(Thesaurus::UnmanagedConcept.rdf_type, false)
     end
 
     it "executes an sponsor CT export paired report, 2020" do
@@ -353,10 +355,8 @@ RSpec.describe AdHocReport, type: :model do
       report.results_file = "sponsor_ct_export_paired_child_results_1.yaml"
       job.start("Rspec test", "Starting...") {report.execute([@th.uri.to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_paired_child_results_1.yaml")
-      expect(results[:data].count).to eq(2)
-      expect(results[:data][0][5]).to eq(@tc_11.identifier)
-      expect(results[:data][1][5]).to eq(@tc_12.identifier)
-      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_paired_results_1.yaml", equate_method: :hash_equal, write_file: true)
+      expect(results[:data].count).to eq(5)
+      check_file_actual_expected(results, sub_dir, "sponsor_ct_export_paired_results_1.yaml", equate_method: :hash_equal)
     end
   
   end
