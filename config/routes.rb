@@ -385,6 +385,9 @@ Rails.application.routes.draw do
     end
   end
   resources :forms do
+    member do
+      get :show_data
+    end
     collection do
       get :history
       get :view

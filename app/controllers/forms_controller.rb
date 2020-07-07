@@ -44,12 +44,31 @@ class FormsController < ApplicationController
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
-        @close_path = request.referer
+        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
-        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+        @close_path = forms_path
       end
     end
+  end
+
+  def show
+    authorize Form
+    @form = Form.find_minimum(params[:id])
+    @show_path = show_data_form_path(@form)
+    @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
+  end
+
+  def show_data
+    authorize Form, :show?
+    @form = Form.find_minimum(params[:id])
+    items = @form.get_items(true)
+    #items = items.each do |x|
+      #x[:has_complex_datatype][:has_property][:has_coded_value].each do |cv|
+        #cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
+      #end
+    #end
+    render json: { data: items }, status: 200
   end
 
   # def new
@@ -184,12 +203,6 @@ class FormsController < ApplicationController
   #   redirect_to request.referer
   # end
 
-  def show
-    authorize Form
-    @form = Form.find(params[:id], params[:namespace])
-    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
-  end
-
   # def view
   #   authorize Form
   #   @form = Form.find(params[:id], params[:namespace])
@@ -256,7 +269,7 @@ private
   def path_for(action, object)
     case action
       when :show
-        return ""
+        return form_path(object)
       when :edit
         return ""
       else
