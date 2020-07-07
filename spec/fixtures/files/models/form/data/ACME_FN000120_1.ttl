@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-07T14:26:51+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-07T14:54:59+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -115,9 +115,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG3_Q3
 	rdf:type bf:Question ;
@@ -130,9 +130,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG3_Q4
 	rdf:type bf:Question ;
@@ -145,9 +145,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG4
 	rdf:type bf:NormalGroup ;
@@ -173,9 +173,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG4_Q3
 	rdf:type bf:Question ;
@@ -188,9 +188,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -212,9 +212,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG6
 	rdf:type bf:NormalGroup ;
@@ -240,8 +240,8 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG6_MA1
 	rdf:type bf:Mapping ;
@@ -263,9 +263,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG6_Q2
 	rdf:type bf:Question ;
@@ -278,9 +278,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG5
 	rdf:type bf:NormalGroup ;
@@ -306,9 +306,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG12_NG5_Q4
 	rdf:type bf:Question ;
@@ -321,9 +321,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG12_NG5_MA1
 	rdf:type bf:Mapping ;
@@ -345,9 +345,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG2
 	rdf:type bf:NormalGroup ;
@@ -373,9 +373,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG2_Q3
 	rdf:type bf:Question ;
@@ -388,9 +388,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG2_Q4
 	rdf:type bf:Question ;
@@ -403,9 +403,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG12_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -507,9 +507,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG2_Q3
 	rdf:type bf:Question ;
@@ -522,9 +522,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG2_Q4
 	rdf:type bf:Question ;
@@ -537,9 +537,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG4
 	rdf:type bf:NormalGroup ;
@@ -565,9 +565,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG8_NG4_Q4
 	rdf:type bf:Question ;
@@ -580,9 +580,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG8_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -604,9 +604,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG3
 	rdf:type bf:NormalGroup ;
@@ -632,9 +632,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG8_NG3_Q3
 	rdf:type bf:Question ;
@@ -647,9 +647,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG8_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -671,9 +671,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG5
 	rdf:type bf:NormalGroup ;
@@ -699,9 +699,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG8_NG5_MA1
 	rdf:type bf:Mapping ;
@@ -723,9 +723,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG8_NG5_Q3
 	rdf:type bf:Question ;
@@ -738,9 +738,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3
 	rdf:type bf:NormalGroup ;
@@ -792,9 +792,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG3_NG7_MA1
 	rdf:type bf:Mapping ;
@@ -816,9 +816,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG7_Q3
 	rdf:type bf:Question ;
@@ -831,9 +831,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG2
 	rdf:type bf:NormalGroup ;
@@ -859,9 +859,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -883,9 +883,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG2_Q4
 	rdf:type bf:Question ;
@@ -898,9 +898,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG8
 	rdf:type bf:NormalGroup ;
@@ -926,9 +926,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG8_MA1
 	rdf:type bf:Mapping ;
@@ -950,9 +950,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG8_Q3
 	rdf:type bf:Question ;
@@ -965,9 +965,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG4
 	rdf:type bf:NormalGroup ;
@@ -1002,9 +1002,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG3_NG4_Q3
 	rdf:type bf:Question ;
@@ -1017,9 +1017,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG4_Q4
 	rdf:type bf:Question ;
@@ -1032,9 +1032,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG3
 	rdf:type bf:NormalGroup ;
@@ -1069,9 +1069,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG3_Q3
 	rdf:type bf:Question ;
@@ -1084,9 +1084,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG3_Q2
 	rdf:type bf:Question ;
@@ -1099,9 +1099,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG6
 	rdf:type bf:NormalGroup ;
@@ -1127,9 +1127,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG6_Q4
 	rdf:type bf:Question ;
@@ -1142,9 +1142,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG3_NG6_MA1
 	rdf:type bf:Mapping ;
@@ -1166,9 +1166,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG3_NG5
 	rdf:type bf:NormalGroup ;
@@ -1194,9 +1194,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG3_NG5_Q3
 	rdf:type bf:Question ;
@@ -1209,9 +1209,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG3_NG5_Q4
 	rdf:type bf:Question ;
@@ -1224,9 +1224,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG3_NG5_MA1
 	rdf:type bf:Mapping ;
@@ -1285,9 +1285,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG6_MA1
 	rdf:type bf:Mapping ;
@@ -1309,9 +1309,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG6_Q3
 	rdf:type bf:Question ;
@@ -1324,9 +1324,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG2
 	rdf:type bf:NormalGroup ;
@@ -1352,9 +1352,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG2_Q3
 	rdf:type bf:Question ;
@@ -1367,9 +1367,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -1391,9 +1391,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG4
 	rdf:type bf:NormalGroup ;
@@ -1419,9 +1419,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG9_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -1443,9 +1443,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG4_Q3
 	rdf:type bf:Question ;
@@ -1458,9 +1458,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG3
 	rdf:type bf:NormalGroup ;
@@ -1486,9 +1486,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG3_Q4
 	rdf:type bf:Question ;
@@ -1501,9 +1501,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG3_Q2
 	rdf:type bf:Question ;
@@ -1516,9 +1516,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -1562,9 +1562,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG9_NG5_Q3
 	rdf:type bf:Question ;
@@ -1577,9 +1577,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG9_NG5_Q4
 	rdf:type bf:Question ;
@@ -1592,9 +1592,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4
 	rdf:type bf:NormalGroup ;
@@ -1644,9 +1644,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG3_Q3
 	rdf:type bf:Question ;
@@ -1659,9 +1659,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG4_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -1683,9 +1683,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG4
 	rdf:type bf:NormalGroup ;
@@ -1711,9 +1711,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG4_NG4_Q4
 	rdf:type bf:Question ;
@@ -1726,9 +1726,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG4_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -1750,9 +1750,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG6
 	rdf:type bf:NormalGroup ;
@@ -1787,9 +1787,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG6_Q3
 	rdf:type bf:Question ;
@@ -1802,9 +1802,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG6_Q4
 	rdf:type bf:Question ;
@@ -1817,9 +1817,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG5
 	rdf:type bf:NormalGroup ;
@@ -1845,9 +1845,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG4_NG5_Q2
 	rdf:type bf:Question ;
@@ -1860,9 +1860,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG5_Q3
 	rdf:type bf:Question ;
@@ -1875,9 +1875,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG5_MA1
 	rdf:type bf:Mapping ;
@@ -1921,9 +1921,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG4_NG2_Q3
 	rdf:type bf:Question ;
@@ -1936,9 +1936,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG4_NG2_Q4
 	rdf:type bf:Question ;
@@ -1951,9 +1951,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG1
 	rdf:type bf:NormalGroup ;
@@ -2019,9 +2019,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG5_NG3_Q4
 	rdf:type bf:Question ;
@@ -2034,9 +2034,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG5_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -2058,9 +2058,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG5_NG2
 	rdf:type bf:NormalGroup ;
@@ -2086,9 +2086,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG5_NG2_Q3
 	rdf:type bf:Question ;
@@ -2101,9 +2101,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG5_NG2_Q4
 	rdf:type bf:Question ;
@@ -2116,9 +2116,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG5_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -2174,9 +2174,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG11_NG2_Q2
 	rdf:type bf:Question ;
@@ -2189,9 +2189,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG11_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -2213,9 +2213,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG11_NG3
 	rdf:type bf:NormalGroup ;
@@ -2241,9 +2241,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG11_NG3_Q2
 	rdf:type bf:Question ;
@@ -2256,9 +2256,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG11_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -2280,9 +2280,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7
 	rdf:type bf:NormalGroup ;
@@ -2339,9 +2339,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG2_Q4
 	rdf:type bf:Question ;
@@ -2354,9 +2354,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG2_Q3
 	rdf:type bf:Question ;
@@ -2369,9 +2369,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG3
 	rdf:type bf:NormalGroup ;
@@ -2406,9 +2406,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG7_NG3_Q3
 	rdf:type bf:Question ;
@@ -2421,9 +2421,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG3_Q4
 	rdf:type bf:Question ;
@@ -2436,9 +2436,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG4
 	rdf:type bf:NormalGroup ;
@@ -2464,9 +2464,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG7_NG4_Q3
 	rdf:type bf:Question ;
@@ -2479,9 +2479,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG7_NG4_Q4
 	rdf:type bf:Question ;
@@ -2494,9 +2494,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG7_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -2554,9 +2554,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG2_Q3
 	rdf:type bf:Question ;
@@ -2569,9 +2569,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG10_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -2593,9 +2593,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG10_NG3
 	rdf:type bf:NormalGroup ;
@@ -2621,9 +2621,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG3_Q4
 	rdf:type bf:Question ;
@@ -2636,9 +2636,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG10_NG3_MA1
 	rdf:type bf:Mapping ;
@@ -2660,9 +2660,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG4
 	rdf:type bf:NormalGroup ;
@@ -2688,9 +2688,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG10_NG4_MA1
 	rdf:type bf:Mapping ;
@@ -2712,9 +2712,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG4_Q3
 	rdf:type bf:Question ;
@@ -2727,9 +2727,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG5
 	rdf:type bf:NormalGroup ;
@@ -2764,9 +2764,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG10_NG5_Q3
 	rdf:type bf:Question ;
@@ -2779,9 +2779,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG10_NG5_Q4
 	rdf:type bf:Question ;
@@ -2794,9 +2794,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6
 	rdf:type bf:NormalGroup ;
@@ -2844,9 +2844,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG6_NG2_MA1
 	rdf:type bf:Mapping ;
@@ -2868,9 +2868,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6_NG2_Q3
 	rdf:type bf:Question ;
@@ -2883,9 +2883,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6_NG3
 	rdf:type bf:NormalGroup ;
@@ -2920,9 +2920,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6_NG3_Q4
 	rdf:type bf:Question ;
@@ -2935,9 +2935,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
 .
 :F_NG6_NG3_Q3
 	rdf:type bf:Question ;
@@ -2950,9 +2950,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6_NG4
 	rdf:type bf:NormalGroup ;
@@ -2987,9 +2987,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Initiation"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :F_NG6_NG4_Q3
 	rdf:type bf:Question ;
@@ -3002,9 +3002,9 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Planning & Organization"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .
 :F_NG6_NG4_Q4
 	rdf:type bf:Question ;
@@ -3017,7 +3017,7 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "QSORRES"^^xsd:string ;
 	bf:questionText "Effective Performance"^^xsd:string ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49488>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C49487>> ;
-	bf:hasCodedValue <http://<www.cdisc.org/<http://www.cdisc.org/C66742/V4#C66742_C48660>> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bf:hasCodedValue <http://www.cdisc.org/C66742/V4#C66742_C48660> ;
 .

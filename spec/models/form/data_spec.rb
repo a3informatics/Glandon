@@ -152,11 +152,7 @@ describe Form do
       query_results = Sparql::Query.new.query(query_string, "", [])
       return [] if query_results.empty?
       triples = query_results.by_object_set([:coded_value])
-      # triples.each do |x|
-      #   tc = x[:coded_value].to_ref
-      #   results << tc
-      # end
-      triples.each { |x| results << x[:coded_value].to_ref }
+      triples.each { |x| results << x[:coded_value] }
       results
     end
 
@@ -208,6 +204,7 @@ describe Form do
                           datatype: params[:datatype],
                           has_coded_value: query_tc(params)
                           }
+                      #byebug
                           group[:has_item] << Form::Item::Question.from_h(item)
               when :Mapping
                        item = {
@@ -243,8 +240,8 @@ describe Form do
     end
 
     def load_old_files
-      #files = [ "ACME_FN000150_1.ttl" ]
-      files = [ "ACME_FN000120_1.ttl" ]
+      files = [ "ACME_FN000150_1.ttl" ]
+      #files = [ "ACME_FN000120_1.ttl" ]
       files.each {|f| load_test_file_into_triple_store(f)}
     end
 
@@ -286,7 +283,7 @@ describe Form do
       end
       full_path = sparql.to_file
     #byebug
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000150_1.ttl")
     end
 
   end
