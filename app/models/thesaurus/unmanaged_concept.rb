@@ -52,12 +52,20 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   # @return [Void] no return
   def delete_or_unlink(parent_object)
     #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
-    delete_rank_member(self, parent_object) if parent_object.ranked?
+    Errors.application_error(self.class.name, __method__.to_s, "Attempting to delete from code list that is not owned.") unless parent_object.owned?
     if multiple_parents?
+      delete_rank_member(self, parent_object) if parent_object.ranked?
+      parent_object.delete_link(:narrower, self.uri)
+      #parent_object.delete_link(:refers_to, self.uri)
+      1
+    elsif referred_to?(parent_object)
+      delete_rank_member(self, parent_object) if parent_object.ranked?
       parent_object.delete_link(:narrower, self.uri)
       parent_object.delete_link(:refers_to, self.uri)
       1
     else
+      Errors.application_error(self.class.name, __method__.to_s, "Attempting to delete an code list item that is not owned.") if not_owned?
+      delete_rank_member(self, parent_object) if parent_object.ranked?
       self.delete_with_links
     end
   end
@@ -232,11 +240,23 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   #
   # @return [Boolean] true if edit permitted, false otherwise
   def supporting_edit?
-    parents.each do |uri|
-      parent = Thesaurus::ManagedConcept.find_minimum(uri)
-      return false if !parent.owned?
-    end
-    true
+    !not_owned?
+  end
+
+  # Referred To?
+  #
+  # @param [Thesaurus::ManagedConcept] parent the parent
+  # @return [Boolean] true if there is a refered to relationship froom the parent, false otherwise
+  def referred_to?(parent)
+    Sparql::Utility.new.ask?("#{parent.uri.to_ref} th:refersTo #{self.uri.to_ref}", [:th])
+  end
+
+  # Not Owned?
+  #
+  # @return [Boolean] true if not owned, false otherwise
+  def not_owned?
+    parents.each {|uri| return true unless Thesaurus::ManagedConcept.find_minimum(uri).owned?}
+    false
   end
 
 private

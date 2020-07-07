@@ -108,7 +108,8 @@ module Fuseki
   private
 
     def diff(name, self_object, other_object)
-puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if name.is_a? Symbol
+      # Here for debug purposes
+      # puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if name.is_a? Symbol
       true
     end
 
