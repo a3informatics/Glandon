@@ -748,7 +748,7 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
-  describe "update and delete tests" do
+  describe "update tests" do
 
     before :all  do
       IsoHelpers.clear_cache
@@ -852,6 +852,23 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(child_3.notation).to eq(child_1.notation)
     end
 
+  end
+
+  describe "delete tests" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+    end
+
+    after :each do
+    end
+
     it "delete single parent" do
       uri_check_set =
       [
@@ -878,7 +895,7 @@ describe "Thesaurus::UnmanagedConcept" do
         { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true}
       ]
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
       expect(new_tc.uri).to eq(old_tc.uri)
@@ -889,11 +906,40 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(triple_store.check_uris(uri_check_set)).to be(true)
     end
 
+    it "delete tc, not owned - GLAN-1372" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399")
+      uri_check_set =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_SI"), present: true},
+      ]
+      tc = Thesaurus::ManagedConcept.create
+      child = Thesaurus::UnmanagedConcept.find(uri_1)
+      cdisc = Thesaurus::ManagedConcept.find_minimum(uri_2)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(71)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      expect{result = child.delete_or_unlink(tc)}.to raise_error(Errors::ApplicationLogicError, "Attempting to delete an code list item that is not owned.")
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(71)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      expect{result = child.delete_or_unlink(cdisc)}.to raise_error(Errors::ApplicationLogicError, "Attempting to delete from code list that is not owned.")
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(71)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+    end
+
     it "delete single parent, extension" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       item = tc.create_extension
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001E/V1#A00001E"))
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001E/V1#A00001E"))
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001E/V1#A00001E"))
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
       expect(new_tc.delete_or_unlink(parent)).to eq(1)
@@ -905,7 +951,7 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       item = tc.create_extension
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001E/V1#A00001E"))
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       tc_v2 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow V2",
@@ -916,14 +962,14 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
       tc_v2.narrower = parent.narrower
       tc_v2.set_initial(tc_v2.identifier)
-      tc_v2.save
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      tc_v2.create_or_update(:create, true)
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc_v2 = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
       expect(parent.narrower.count).to eq(2)
       expect(tc_v2.narrower.count).to eq(2)
       expect(old_tc.delete_or_unlink(tc_v2)).to eq(1) # Remove the common item from the new code list
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc_v2 = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
       expect(parent.narrower.count).to eq(2)
       expect(tc_v2.narrower.count).to eq(1)
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
@@ -956,7 +1002,7 @@ describe "Thesaurus::UnmanagedConcept" do
         { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true},
         { uri: Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"), present: true}
       ]
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       tc_v2 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow V2",
@@ -967,9 +1013,9 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
       tc_v2.narrower = parent.narrower
       tc_v2.set_initial(tc_v2.identifier)
-      tc_v2.save
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      tc_v2.create_or_update(:create, true)
+      parent = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc_v2 = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
       expect(parent.narrower.count).to eq(2)
       expect(tc_v2.narrower.count).to eq(2)
       expect(old_tc.delete_or_unlink(tc_v2)).to eq(1) # Remove the common item from the new code list
@@ -1108,7 +1154,7 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
-  describe "Supporting Edit" do
+  describe "supporting edit & not owned" do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
@@ -1127,7 +1173,30 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(tc.supporting_edit?).to eq(false)
     end
 
-    it "supporting edit? multiple"
+    it "not owned?" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475")
+      tc_1 = Thesaurus::ManagedConcept.create
+      new_1 = tc_1.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
+      new_2 = tc_1.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
+      tc_1.add_referenced_children([uri_1.to_id])
+      tc_2 = Thesaurus::ManagedConcept.create
+      new_3 = tc_2.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
+      new_4 = tc_2.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
+      tc_2.add_referenced_children([uri_1.to_id])
+      cdisc_1 = Thesaurus::UnmanagedConcept.find(uri_1)
+      expect(new_1.not_owned?).to eq(false)
+      expect(new_2.not_owned?).to eq(false)
+      expect(new_3.not_owned?).to eq(false)
+      expect(new_4.not_owned?).to eq(false)
+      expect(cdisc_1.not_owned?).to eq(true)
+      tc_1.add_link(:narrower, new_3.uri)
+      tc_1.add_link(:narrower, new_4.uri)
+      expect(new_1.not_owned?).to eq(false)
+      expect(new_2.not_owned?).to eq(false)
+      expect(new_3.not_owned?).to eq(false)
+      expect(new_4.not_owned?).to eq(false)
+      expect(cdisc_1.not_owned?).to eq(true)
+    end
 
   end
 

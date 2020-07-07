@@ -441,7 +441,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     self.children_objects
     if parent_object.nil? && no_parents?
       # No parent specified and no parents linked to this item, delete
-      delete_with
+      delete_with_final_check
     elsif parent_object.nil?
       # No parent specified and parents, do nothing, as we cannot
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
@@ -456,7 +456,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       0
     else
       # Parent specified, no children, delete
-      delete_with(parent_object)
+      delete_with_final_check(parent_object)
     end
   end
 
@@ -766,6 +766,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 
 private
 
+  # Delete with a final check on ownership
+  def delete_with_final_check(parent_object=nil)
+    Errors.application_error(self.class.name, __method__.to_s, "Attempting to delete an code list that is not owned.") if !self.owned?
+    delete_with(parent_object)
+  end
+
   # Standard code list?
   def standard?
     return !self.subset? && !self.extension?
@@ -849,7 +855,6 @@ private
       parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }"
     end
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-  puts "*****\n#{query_string}\n*****"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th, :bo])
     1
   end
