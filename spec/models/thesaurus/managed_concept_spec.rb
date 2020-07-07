@@ -1264,9 +1264,6 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl",]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
-      #NameValue.destroy_all
-      #NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      #NameValue.create(name: "thesaurus_child_identifier", value: "456")
       nv_destroy
       nv_create(parent: "123", child: "456")
     end
@@ -1309,7 +1306,7 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
       item = thesaurus.add_extension(tc.id)
       expect(triple_store.check_uris(uri_check_set_2)).to be(true)
-      extension = Thesaurus::ManagedConcept.find(item.uri)
+      extension = Thesaurus::ManagedConcept.find_full(item.uri)
       expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
       expect(extension.extension?).to eq(true)
       expect(tc.extended_by).to eq(extension.uri)
@@ -1411,7 +1408,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
       object = Thesaurus::ManagedConcept.create()
-      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc = Thesaurus::ManagedConcept.find_full(object.uri)
       result = tc.delete_or_unlink(nil)
       expect(result).to eq(1)
       expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
@@ -1424,6 +1421,16 @@ describe "Thesaurus::ManagedConcept" do
       expect(result).to eq(0)
       expect(tc.errors.count).to eq(1)
       expect(tc.errors.full_messages[0]).to eq("The code list cannot be deleted as it is in use.")
+    end
+
+    it "does not allow a TC to be destroyed if it is not owned" do
+      tc = Thesaurus::ManagedConcept.create
+      tc = change_ownership(tc, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+      expect{tc.delete_or_unlink(nil)}.to raise_error(Errors::ApplicationLogicError, "Attempting to delete an code list that is not owned.")
+      th = Thesaurus.create({identifier: "AAA", notation: "A"})
+      tc = th.add_child
+      tc = change_ownership(tc, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+      expect{tc.delete_or_unlink(th)}.to raise_error(Errors::ApplicationLogicError, "Attempting to delete an code list that is not owned.")
     end
 
     it "allows a TC to be destroyed, keeps other" do
@@ -1470,6 +1477,51 @@ describe "Thesaurus::ManagedConcept" do
       expect(th_2.is_top_concept.count).to eq(2)
       expect(th_2.is_top_concept.first.uri).to eq(tc_1.uri)
       expect(th_2.is_top_concept.last.uri).to eq(tc_2.uri)
+    end
+
+    it "delete child - GLAN-1372" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475")
+      uri_check_set =
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_SI"), present: true},
+      ]
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+
+      # Add owned (2) and referenced children (1)
+      tc = Thesaurus::ManagedConcept.create
+      new_1 = tc.add_child({notation: "NEW1", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("A")})
+      new_2 = tc.add_child({notation: "NEW2", preferred_term: Thesaurus::PreferredTerm.where_only_or_create("B")})
+      tc.add_referenced_children([uri_1.to_id])
+      uri_check_set << {uri: new_1.uri, present: true}
+      uri_check_set << {uri: new_2.uri, present: true}
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      triple_store.subject_triples(tc.uri)
+
+      # Remove referenced
+      child = Thesaurus::UnmanagedConcept.find(uri_1)
+      child.delete_or_unlink(tc)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      triple_store.subject_triples(tc.uri)
+
+      # Remove owned
+      new_2.delete_or_unlink(tc)
+      uri_check_set.last[:present] = false
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+      triple_store.subject_triples(tc.uri)
+ 
     end
 
   end
@@ -1760,9 +1812,9 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(object.uri)
       tc.is_ranked = rank
       tc.save
-      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc = Thesaurus::ManagedConcept.find_full(object.uri)
       actual_rank = Thesaurus::Rank.find(rank.uri)
-      expect(tc.is_ranked).to eq(actual_rank.uri)
+      expect(tc.is_ranked.uri).to eq(actual_rank.uri)
       result = tc.delete_or_unlink(nil)
       expect(result).to eq(1)
       expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,

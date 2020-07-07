@@ -21,7 +21,7 @@ module TripleStoreHelpers
       raise if query_results.by_object(:o).first != "Namespace"
     end
 
-    def rdf_type_count(rdf_type)
+    def rdf_type_count(rdf_type, terminal_output=false)
       query_string = %Q{
         SELECT (COUNT(?s) as ?count) WHERE 
         {
@@ -30,7 +30,7 @@ module TripleStoreHelpers
       }
       query_results = Sparql::Query.new.query(query_string, "", []) 
       result = query_results.by_object(:count).first.to_i
-  puts colourize("Count #{rdf_type}=#{result}", "blue")
+      puts colourize("Count #{rdf_type}=#{result}", "blue") if terminal_output
       result
     end
 
@@ -47,24 +47,24 @@ module TripleStoreHelpers
       result
     end
 
-    def subject_present?(subject)
+    def subject_present?(subject, terminal_output=false)
       query_string = %Q{
         ASK { #{subject.to_ref} ?p ?o }
       }
       query_results = Sparql::Query.new.query(query_string, "", []) 
       result = query_results.ask?
-      puts colourize("Present #{subject}=#{result}", "blue")
+      puts colourize("Present #{subject}=#{result}", "blue") if terminal_output
       result
     end
 
-    def subject_triples(subject)
+    def subject_triples(subject, terminal_output=false)
       query_string = %Q{
         SELECT ?p ?o { #{subject.to_ref} ?p ?o }
       }
       query_results = Sparql::Query.new.query(query_string, "", []) 
       results = query_results.by_object_set([:p, :o])
-      puts colourize("Subject #{subject}", "blue")
-      results.each{|x| puts colourize("  #{x[:p]}, #{x[:o]}", "blue")}
+      puts colourize("Subject #{subject}", "blue") if terminal_output
+      results.each{|x| puts colourize("  #{x[:p]}, #{x[:o]}", "blue")} if terminal_output
       results
     end
 
@@ -95,10 +95,10 @@ module TripleStoreHelpers
       result
     end
 
-    def check_uris(set)
+    def check_uris(set, terminal_output=false)
       overall_result = true
       set.each do |entry|
-        result = triple_store.subject_present?(entry[:uri])
+        result = triple_store.subject_present?(entry[:uri], terminal_output)
         puts colourize("Present #{entry[:uri]}=#{result}, should be #{entry[:present]}", "red") if result != entry[:present]
         overall_result = overall_result && result == entry[:present]
       end

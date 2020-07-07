@@ -17,4 +17,10 @@ module IsoManagedHelpers
     end
   end
 
+  def change_ownership(item, new_ra)
+    item.has_identifier.replace_link(:has_scope, item.has_identifier.has_scope.uri, new_ra.ra_namespace.uri)
+    item.has_state.replace_link(:by_authority, item.has_state.by_authority.uri, new_ra.uri)
+    Thesaurus::ManagedConcept.find_minimum(item.uri)
+  end
+
 end

@@ -50,7 +50,7 @@
   :adam_stage:
     :label: ADAM_STAGE
     :type: literal
-:label: Sponsor CT Subsets Export
+:label: Sponsor CT (Excluding Subsets) Export
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#> 
@@ -61,30 +61,39 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
-  
-SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?synonym) ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
-{
-  {
-    SELECT ?cl ?cli (COUNT(?mid) as ?displayorder) WHERE 
-    {
-      VALUES ?s {[[[parameter_1]]]}
-      ?s th:isTopConceptReference/bo:reference ?cl .
-      ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
-      ?mid th:memberNext* ?m .
-      ?m th:item ?cli .
-    } GROUP BY ?cl ?cli ORDER BY ?cl
-  }
-  ?cl th:subsets ?clp .
-  ?clp th:identifier ?clc .  
+
+SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?synonym) ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage
+WHERE       
+{         
+  VALUES ?s {[[[parameter_1]]]}
+  ?s th:isTopConceptReference/bo:reference ?cl .
+  FILTER (NOT EXISTS {?cl th:isOrdered ?x})
+  ?cl th:identifier ?clc .  
   ?cl th:notation ?clsn .
   ?cl th:extensible ?cle .
   ?cl th:definition ?cld .
   ?cl th:preferredTerm/isoC:label ?clln .
-  ?cli th:identifier ?code .  
+  {
+    FILTER (EXISTS {?cl ^th:pairedWith ?y})
+    ?cl th:narrower ?cli .
+    ?cli th:definition ?clid .
+    ?cl ^th:pairedWith ?clp .
+    ?clp th:narrower ?clpi .
+    ?clpi th:definition ?clid .
+    ?clpi th:identifier ?code .  
+  } 
+  UNION 
+  {
+    FILTER (EXISTS {?cl th:pairedWith ?y})
+    ?cl th:narrower ?cli .
+    ?cli th:definition ?clid .
+    ?cli th:identifier ?code .  
+  }
   ?cli th:preferredTerm/isoC:label ?decode .
   ?cli th:notation ?svalue .
   OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
   ?cli isoC:label ?crfdv
+  BIND ("" AS ?displayorder)
   OPTIONAL 
   {
     ?cli ^(th:item) ?rank_member . 
@@ -94,5 +103,5 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?dc_stage)
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
   BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code'
 :type: Ad Hoc Report Definition
