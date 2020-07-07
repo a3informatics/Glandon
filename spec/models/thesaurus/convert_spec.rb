@@ -170,7 +170,7 @@ describe "Thesaurus Convert" do
       @tc_2.notation = "ETHNIC SUBGROUP"
       @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Ethnic Subgroup")
 
-      @tc_2a = Thesaurus::ManagedConcept.new
+      @tc_2a = Thesaurus::UnmanagedConcept.new
       @tc_2a.identifier = "A00011"
       @tc_2a.label = "Ethnic Subgroup 1" 
       @tc_2a.definition = "Ethnic Subgroup 1 Def"
@@ -185,7 +185,7 @@ describe "Thesaurus Convert" do
       @tc_3.extensible = false
       @tc_3.notation = "RACE OTHER"
       @tc_3.preferred_term = Thesaurus::PreferredTerm.new(label: "Race Extension")
-      @tc_3a = Thesaurus::ManagedConcept.new
+      @tc_3a = Thesaurus::UnmanagedConcept.new
       @tc_3a.identifier = "A00021"
       @tc_3a.label = "Other or mixed race" 
       @tc_3a.definition = "Other or mixed race"
@@ -222,7 +222,7 @@ describe "Thesaurus Convert" do
       @tc_2.to_sparql(sparql, true)
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
     end
 
     it "check for loading" do

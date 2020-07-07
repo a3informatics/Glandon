@@ -22,11 +22,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-22T07:56:27+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-07T20:46:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:isTopConceptReference :TH_TCR1 ;
-	th:isTopConceptReference :TH_TCR2 ;
-	th:isTopConceptReference :TH_TCR3 ;
+	th:isTopConceptReference :TH_TMC1 ;
+	th:isTopConceptReference :TH_TMC2 ;
+	th:isTopConceptReference :TH_TMC3 ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -37,6 +37,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 :TH_SI
@@ -47,32 +48,29 @@
 	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
-:TH_TCR1
-	rdf:type bo:TcReference ;
+:TH_TMC1
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.acme-pharma.com/A00001/V1#A00001> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR2
-	rdf:type bo:TcReference ;
+:TH_TMC2
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.acme-pharma.com/A00010/V1#A00010> ;
-	bo:localLabel ""^^xsd:string ;
 .
-:TH_TCR3
-	rdf:type bo:TcReference ;
+:TH_TMC3
+	rdf:type bo:TMcReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.acme-pharma.com/A00020/V1#A00020> ;
-	bo:localLabel ""^^xsd:string ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001>
 	rdf:type th:ManagedConcept ;
@@ -82,7 +80,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-22T07:56:27+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-07T20:46:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00001"^^xsd:string ;
 	th:notation "VSTEST"^^xsd:string ;
@@ -101,6 +99,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_SI>
@@ -108,7 +107,7 @@
 	isoI:identifier "A00001"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_A00002>
@@ -149,7 +148,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-22T07:56:27+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-07T20:46:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00010"^^xsd:string ;
 	th:notation "ETHNIC SUBGROUP"^^xsd:string ;
@@ -167,6 +166,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 <http://www.acme-pharma.com/A00010/V1#A00010_SI>
@@ -174,17 +174,12 @@
 	isoI:identifier "A00010"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 <http://www.acme-pharma.com/A00010/V1#A00010_A00011>
-	rdf:type th:ManagedConcept ;
+	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ethnic Subgroup 1"^^xsd:string ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00011"^^xsd:string ;
 	th:notation "ETHNIC SUBGROUP [1]"^^xsd:string ;
 	th:definition "Ethnic Subgroup 1 Def"^^xsd:string ;
@@ -207,7 +202,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-22T07:56:27+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-07T20:46:14+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00020"^^xsd:string ;
 	th:notation "RACE OTHER"^^xsd:string ;
@@ -225,6 +220,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 <http://www.acme-pharma.com/A00020/V1#A00020_SI>
@@ -232,17 +228,12 @@
 	isoI:identifier "A00020"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 <http://www.acme-pharma.com/A00020/V1#A00020_A00021>
-	rdf:type th:ManagedConcept ;
+	rdf:type th:UnmanagedConcept ;
 	isoC:label "Other or mixed race"^^xsd:string ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00021"^^xsd:string ;
 	th:notation "OTHER OR MIXED"^^xsd:string ;
 	th:definition "Other or mixed race"^^xsd:string ;
