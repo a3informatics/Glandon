@@ -222,7 +222,7 @@ describe "Thesaurus Convert" do
       @tc_2.to_sparql(sparql, true)
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
     end
 
     it "check for loading" do

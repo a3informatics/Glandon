@@ -480,7 +480,7 @@ describe Thesaurus::ManagedConcept do
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_migration_3_1_0.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_migration_3_1_0.ttl")
     end 
 
   end
