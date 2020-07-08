@@ -5,6 +5,7 @@ RSpec.describe AdHocReport, type: :model do
   include DataHelpers
   include PublicFileHelpers
   include CdiscCtHelpers
+  include NameValueHelpers
 
 	def sub_dir
     return "models/ad_hoc_report"
@@ -317,6 +318,8 @@ RSpec.describe AdHocReport, type: :model do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
       AdHocReport.delete_all
+      nv_destroy
+      nv_create(parent: "10", child: "999")
       delete_all_public_files
     end
 
