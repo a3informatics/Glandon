@@ -8,18 +8,6 @@ class FormsController < ApplicationController
 
   include ControllerHelpers
 
-  #def index
-    #authorize Form
-    #@forms = Form.unique
-    #respond_to do |format|
-      #format.html
-      #format.json do
-        #@forms = @forms.map{|x| x.reverse_merge!({history_path: history_forms_path({form:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        #render json: {data: @forms}, status: 200
-      #end
-    #end
-  #end
-
   def index
     authorize Form
     respond_to do |format|
