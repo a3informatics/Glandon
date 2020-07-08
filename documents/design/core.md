@@ -18,7 +18,7 @@ Much of the implementation is based upon the ISO 11179 MDR standard
 ## Nodes
 
 | **Node** | **Description** |
-| --- | --- |
+| :--- | :--- |
 | **AdministeredItem** | An item managed (owned) by the repository |
 | **RegisteredItem** | An item registered in the repository  |
 | **IdentifiedItem** | An item identified in the repository  |
@@ -31,7 +31,7 @@ Much of the implementation is based upon the ISO 11179 MDR standard
 ## Relationships
 
 | **Relationship** | **Description** | **Cardinality** |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | **hasState** | Links an AdministeredItem to its RegistrationState | 1:1 |
 | **hasIdentifier** | Links an AdministeredItem to its ScopedIdentifier | 1:1 |
 | **hasScope** | Links a ScopedIdentifier to its scoping Namespace | 1:1 |
