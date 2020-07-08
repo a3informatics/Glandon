@@ -227,9 +227,9 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
       expect(results[:data].count).to eq(22322)
-      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], true)
+      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(43)
     end
   
@@ -244,9 +244,9 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31930)
-      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], true)
+      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(47)
     end
   
