@@ -10,7 +10,7 @@ class Form::Item::Question < Form::Item
   data_property :question_text 
   #data_property :tc_refs
 
-  object_property :has_coded_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
+  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
   # object_property :has_variable, cardinality: :one, model_class: "bd:Variable"
 
 

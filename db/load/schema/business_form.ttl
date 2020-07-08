@@ -157,7 +157,7 @@
   rdfs:domain [ a owl:Class ;
     owl:unionOf  ( :Question :BcProperty)
     ] ;
-  rdfs:range bo:TMcReference ;
+  rdfs:range bo:TUcReference ;
   skos:definition "Reference to a coded value."^^xsd:string
 .
 :completion

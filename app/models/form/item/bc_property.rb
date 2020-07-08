@@ -5,7 +5,7 @@ class Form::Item::BcProperty < Form::Item
             uri_property: :ordinal
 
   object_property :has_property, cardinality: :many, model_class: "OperationalReferenceV3"
-  object_property :has_coded_value, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
+  object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
 
 #   # To XML
