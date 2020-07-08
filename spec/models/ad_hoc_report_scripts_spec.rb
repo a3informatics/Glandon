@@ -5,9 +5,40 @@ RSpec.describe AdHocReport, type: :model do
   include DataHelpers
   include PublicFileHelpers
   include CdiscCtHelpers
+  include NameValueHelpers
 
 	def sub_dir
     return "models/ad_hoc_report"
+  end
+
+  # def import_dir
+  #   return "models/import/data/sponsor_one/ct"
+  # end
+
+  def save_selected_results(results, filename, items, write_file)
+    selected_results = {}
+    full_results = key_data(results)
+    items.each do |key|
+      selected_results[key] = full_results[key]
+    end
+    check_file_actual_expected(selected_results, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
+  end
+  
+  def extract_ranks(rows)
+    results = Hash.new {|h,k| h[k] = []}
+    rows[:data].each do |row|
+      next if row[11].empty?
+      results[row[2]] << {item: row[5], rank: row[11]}
+    end
+    results
+  end
+
+  def key_data(rows)
+    results = Hash.new {|h,k| h[k] = []}
+    rows[:data].each do |row| 
+      results[row[2]] << row
+    end
+    results
   end
 
   describe "Simple Reports" do
@@ -164,7 +195,7 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
-  describe "Rank Tests" do
+  describe "Sponsor Export Tests" do
     
     before :all do
       load_files(schema_files, [])
@@ -186,36 +217,6 @@ RSpec.describe AdHocReport, type: :model do
       delete_all_public_files
     end
 
-    def import_dir
-      return "models/import/data/sponsor_one/ct"
-    end
-
-    def extract_ranks(rows)
-      results = Hash.new {|h,k| h[k] = []}
-      rows[:data].each do |row|
-        next if row[11].empty?
-        results[row[2]] << {item: row[5], rank: row[11]}
-      end
-      results
-    end
-
-    def key_data(rows)
-      results = Hash.new {|h,k| h[k] = []}
-      rows[:data].each do |row| 
-        results[row[2]] << row
-      end
-      results
-    end
-
-    def save_selected_results(results, filename, items, write_file)
-      selected_results = {}
-      full_results = key_data(results)
-      items.each do |key|
-        selected_results[key] = full_results[key]
-      end
-      check_file_actual_expected(selected_results, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
-    end
-  
     it "executes an sponsor CT export report, 2019" do
       copy_report_to_public_files("sponsor_ct_export_sparql.yaml", "test")
       job = Background.create
@@ -226,8 +227,9 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
       expect(results[:data].count).to eq(22322)
+      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(43)
     end
   
@@ -242,39 +244,34 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31930)
+      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
       ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal, write_file: false)
       expect(ranks.count).to eq(47)
     end
   
-    it "executes an sponsor CT export excluding subsets report, 2019" do
-      copy_report_to_public_files("sponsor_ct_export_ex_subsets_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "sponsor_ct_export_ex_subsets_sparql.yaml"
-      report.results_file = "sponsor_ct_export_ex_subsets_results_1.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_R1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("sponsor_ct_export_ex_subsets_results_1.yaml")
-      expect(results[:data].count).to eq(20348)
-      ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_ex_subsets_rank_results_1.yaml", equate_method: :hash_equal)
-      expect(ranks.count).to eq(41)
+  end
+
+  describe "Export Tests" do
+    
+    before :all do
+      load_files(schema_files, [])
+      load_all_cdisc_term_versions
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6_migrated.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0_migrated.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/ranks_V2-6.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/ranks_V3-0.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/rank_extensions_V2-6.ttl")
+      AdHocReport.delete_all
+      delete_all_public_files
     end
-  
-    it "executes an sponsor CT export excluding subsets report, 2020" do
-      copy_report_to_public_files("sponsor_ct_export_ex_subsets_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "sponsor_ct_export_ex_subsets_sparql.yaml"
-      report.results_file = "sponsor_ct_export_ex_subsets_results_2.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_R1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("sponsor_ct_export_ex_subsets_results_2.yaml")
-      expect(results[:data].count).to eq(29985)
-      ranks = extract_ranks(results)
-      check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_ex_subsets_rank_results_2.yaml", equate_method: :hash_equal)
-      expect(ranks.count).to eq(44)
+
+    after :all do
+      delete_all_public_files
     end
 
     it "executes an sponsor CT export subsets report 2019" do
@@ -311,21 +308,19 @@ RSpec.describe AdHocReport, type: :model do
   
   end
 
-  describe "Pair Tests" do
+  describe "Export Pair Tests" do
     
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
       AdHocReport.delete_all
+      nv_destroy
+      nv_create(parent: "10", child: "999")
       delete_all_public_files
     end
 
     after :all do
       delete_all_public_files
-    end
-
-    def import_dir
-      return "models/import/data/sponsor_one/ct"
     end
 
     def prep_data
