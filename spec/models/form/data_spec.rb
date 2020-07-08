@@ -19,8 +19,9 @@ describe Form do
   before :all do
     IsoHelpers.clear_cache
     load_files(schema_files, [])
-    #load_cdisc_term_versions(1..62)
+    load_cdisc_term_versions(1..65)
     load_data_file_into_triple_store("mdr_identification.ttl")
+    @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V65#TH"))
   end
 
   after :each do
@@ -152,8 +153,15 @@ describe Form do
       query_results = Sparql::Query.new.query(query_string, "", [])
       return [] if query_results.empty?
       triples = query_results.by_object_set([:coded_value])
-      triples.each { |x| results << x[:coded_value] }
+      triples.each_with_index { |x, i| results << OperationalReferenceV3::TucReference.new(context: context(x[:coded_value]), reference: x[:coded_value], ordinal: i+1) }
       results
+    end
+
+    def context(cli_uri)
+      cli = Thesaurus::UnmanagedConcept.find(cli_uri)
+      cl = Thesaurus::ManagedConcept.find(cli.parents.last)
+      context = @ct.find_by_identifiers([cl.identifier.dup, cli.identifier.dup])
+      return context[cl.identifier]
     end
 
     def add_form(params)
@@ -239,8 +247,8 @@ describe Form do
     end
 
     def load_old_files
-      files = [ "ACME_FN000150_1.ttl" ]
-      #files = [ "ACME_FN000120_1.ttl" ]
+      #files = [ "ACME_FN000150_1_old.ttl" ]
+      files = [ "ACME_FN000120_1_old.ttl" ]
       files.each {|f| load_test_file_into_triple_store(f)}
     end
 
@@ -281,7 +289,7 @@ describe Form do
       end
       full_path = sparql.to_file
     #byebug
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000150_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
     end
 
   end
