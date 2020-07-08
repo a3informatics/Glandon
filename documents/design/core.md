@@ -19,7 +19,9 @@ Much of the implementation is based upon the ISO 11179 MDR standard
 
 | **Node** | **Description** |
 | --- | --- |
-| **AdministeredItem** | The managed item |
+| **AdministeredItem** | An item managed (owned) by the repository |
+| **RegisteredItem** | An item registered in the repository  |
+| **IdentifiedItem** | An item identified in the repository  |
 | **Concept** | The core concept from which all items are built |
 | **ScopedIdentifier** | Holds the identification of a managed item |
 | **RegistrationState** | Holds the state infomration for a managed item |
@@ -51,14 +53,14 @@ The core building block of the repository with all items being built from one or
 1. A label
 1. Can be tagged
 
-## Managed Item
+## Managed
 
 A managed item is a concept with an attached:
 
 1. Scoped Identifier containing the identifier and version information for the item
 1. Registration Status containing the current state of the item
 
-The combination results in item that has a unique identifier and state
+The combination results in item that has a unique identifier and state. The Managed Item is a combination of an Administered, Registered and Identifier item. These are not distinguished currently in the implementation.
 
 ## Scoped Identifier
 
@@ -92,6 +94,14 @@ A Concept can be linked to one or more tags
 ## Extensions
 
 Not implemented.
+
+## Additional Information
+
+![](diagrams/core_examples_1.png)
+
+The pattern shown in the above diagram as every managed item within the repository follows it. The managed item has a header node (IsoManaged) that has a registration state (hasState relationship) and an identifier (hasIdentifier). The registration state is managed (byAuthority) by an Registration Authority (RA) that has a namespace (raNamespace). The Scoped Identifier holds an identifier, and version info, that is unique within the scope (hasScope) of a namespace that belongs the RA.
+
+The ownership of an item (the RA) dictaes whethr the item can be edited or just referred to. Ownership should be accessed via the RA. Identification and version info should be accessed via the Scoped Identifier
 
 ## Issues
 
