@@ -14,7 +14,14 @@ class Form::Item < IsoConceptV2
   validates_with Validator::Field, attribute: :note, method: :valid_markdown?
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
-  
+
+  Form::Item::Placeholder.new
+  Form::Item::Question.new
+  Form::Item::BcProperty.new
+  Form::Item::Mapping.new
+  Form::Item::TextLabel.new
+  Form::Item::Common.new
+
   # # Thesaurus Concepts
   # # A null method for those classes who dont need to return TCs.
   # #
