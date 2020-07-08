@@ -5,20 +5,14 @@ namespace :r3_1_0 do
   # Check for success?
   def r3_1_0_schema_success?(base)
     su = Sparql::Utility.new
-    sparql_ask = %Q{
-      th:pairedWith rdfs:label "Paired with relationship"^^xsd:string .
-      bc:ComplexDatatype rdfs:label "Biomedical Concept Complex Datatype"^^xsd:string .
-    }
+    sparql_ask = %Q{th:pairedWith rdfs:label "Paired with relationship"^^xsd:string}
     su.ask?(sparql_ask, [:th, :bc]) && su.triple_count == (base + 126 - 6)
   end
 
   # Should we migrate?
   def r3_1_0_schema_migrate?
     # New schema should not be present, th triple to be removed present and the old BC triple should not have been loaded
-    new_triple = Sparql::Utility.new.ask?("bc:ComplexDatatype rdfs:label \"Biomedical Concept Complex Datatype\"^^xsd:string", [:bc])
-    old_triple = Sparql::Utility.new.ask?("th:narrowerReference ?p ?o", [:th])
-    never_triple = Sparql::Utility.new.ask?("?s ?p ?o . FILTER( strStarts(STR(?s), \"http://www.assero.co.uk/CDISCBiomedicalConcept\"))", [])
-    !new_triple && old_triple && !never_triple
+    !Sparql::Utility.new.ask?("bc:ComplexDatatype rdfs:label \"Biomedical Concept Complex Datatype\"^^xsd:string", [:bc])
   end
 
   # Execute migation
