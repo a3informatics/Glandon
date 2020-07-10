@@ -42,20 +42,20 @@ class FormsController < ApplicationController
 
   def show
     authorize Form
-    @form = Form.find_minimum(params[:id])
+    @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
   def show_data
     authorize Form, :show?
-    @form = Form.find_minimum(params[:id])
+    @form = Form.find_minimum(protect_from_bad_id(params))
     items = @form.get_items
-    #items = items.each do |x|
-      #x[:has_complex_datatype][:has_property][:has_coded_value].each do |cv|
-        #cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-      #end
-    #end
+    # items = items.each do |x|
+    #   x[:has_coded_value].each do |cv|
+    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
+    #   end
+    # end
 
     render json: { data: items }, status: 200
   end
