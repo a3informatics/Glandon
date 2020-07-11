@@ -82,6 +82,24 @@ describe Form do
       query_results.by_object_set([:g, :t, :l, :c, :n, :r, :o, :ordinal])
     end
 
+    def query_bc(group)
+      query_string = %Q{SELECT ?g ?t ?l ?enabled ?optional ?local_label ?ordinal ?bc WHERE
+                      {
+                        #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept> ?has_bc  .
+                        ?has_bc <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?t .
+                        ?has_bc <http://www.w3.org/2000/01/rdf-schema#label> ?l .
+                        ?has_bc <http://www.assero.co.uk/BusinessOperational#enabled> ?enabled .
+                        ?has_bc <http://www.assero.co.uk/BusinessOperational#optional> ?optional .
+                        ?has_bc <http://www.assero.co.uk/BusinessOperational#local_label> ?local_label .
+                        ?has_bc <http://www.assero.co.uk/BusinessOperational#ordinal> ?ordinal .
+                        ?has_bc <http://www.assero.co.uk/BusinessOperational#hasBiomedicalConcept> ?bc
+                        BIND(?has_bc as ?g)
+                      }}
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      return [] if query_results.empty?
+      query_results.by_object_set([:g, :t, :l, :enabled, :optional, :local_label, :ordinal, :bc])
+    end
+
     def query_common(group)
       query_string = %Q{SELECT ?g ?t ?l ?c ?n ?r ?o ?ordinal WHERE
                       {
@@ -164,6 +182,20 @@ describe Form do
       return context[cl.identifier]
     end
 
+    def query_property(item)
+      results = []
+      query_string = %Q{SELECT ?property WHERE
+                      {
+                        #{item[:i].to_ref} <http://www.assero.co.uk/BusinessForm#hasProperty> ?has_property .
+                        ?has_property <http://www.assero.co.uk/BusinessOperational#hasProperty> ?property .
+                      }}
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      return [] if query_results.empty?
+      triples = query_results.by_object_set([:property])
+      triples.each_with_index { |x, i| results << OperationalReferenceV3.new(reference: x[:property], ordinal: i+1) }
+      results
+    end
+
     def add_form(params)
         {
           label: params[:l].empty? ? "Not Set" : params[:l],
@@ -181,7 +213,8 @@ describe Form do
             optional: params[:o].empty? ? "" : params[:o],
             repeating: params[:r].empty? ? "" : params[:r],
             has_item: [],
-            has_sub_group: []
+            has_sub_group: [],
+            has_biomedical_concept: []
         }
     end
 
@@ -196,6 +229,10 @@ describe Form do
           has_item: []
         }
     end
+
+    # def add_bc(group, params)
+    #   group[:has_biomedical_concept] << OperationalReferenceV3.new(reference: params[:bc], ordinal: 1) 
+    # end
 
     def add_item(group, params)
         case params[:type].to_sym
@@ -240,7 +277,8 @@ describe Form do
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
-                          has_coded_value: query_tc(params)
+                          has_coded_value: query_tc(params),
+                          has_property: query_property(params)
                           }
                       group[:has_item] << Form::Item::BcProperty.from_h(item)
         end
@@ -248,7 +286,11 @@ describe Form do
 
     def load_old_files
       #files = [ "ACME_FN000150_1_old.ttl" ]
-      files = [ "ACME_FN000120_1_old.ttl" ]
+      #files = [ "ACME_FN000120_1_old.ttl" ]
+      #files = [ "ACME_F DEMOGRAPHICS_OLD.ttl" ]
+      #files = [ "ACME_F ECG_OLD.ttl" ]
+      #files = [ "ACME_F LAB SAMPLES_OLD.ttl" ]
+      files = [ "ACME_VSTADIABETES_1_OLD.ttl" ]
       files.each {|f| load_test_file_into_triple_store(f)}
     end
 
@@ -273,9 +315,14 @@ describe Form do
               sub_items.each do |si|
                 item = add_item(sub_groups[inde], si)
               end
+              # if !query_bc(sub_group).empty?
+              #   bcs = query_bc(sub_group)
+              #   bcs.each do |bc|
+              #     bc = add_bc(sub_groups[inde], bc)
+              #   end
+              # end
             end
           end
-
         end
           results << form
       end 
@@ -289,7 +336,7 @@ describe Form do
       end
       full_path = sparql.to_file
     #byebug
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_FN000120_1.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTADIABETES_1.ttl")
     end
 
   end

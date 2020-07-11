@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -21,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-07T14:55:16+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-08T11:29:05+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -71,7 +72,17 @@
 	bf:format "1"^^xsd:string ;
 	bf:mapping "VSSTAT"^^xsd:string ;
 	bf:questionText " Compltion Status"^^xsd:string ;
-	bf:hasCodedValue <http://www.cdisc.org/C66789/V4#C66789_C49484> ;
+	bf:hasCodedValue :F_NG1_Q1_TUC1 ;
+.
+:F_NG1_Q1_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66789/V4#C66789_C49484> ;
+	bo:context <http://www.cdisc.org/C66789/V13#C66789> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_Q4
 	rdf:type bf:Question ;
@@ -84,8 +95,28 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "VSORRESU"^^xsd:string ;
 	bf:questionText "Unit"^^xsd:string ;
-	bf:hasCodedValue <http://www.cdisc.org/C66770/V2#C66770_C48500> ;
-	bf:hasCodedValue <http://www.cdisc.org/C66770/V4#C66770_C49668> ;
+	bf:hasCodedValue :F_NG1_Q4_TUC1 ;
+	bf:hasCodedValue :F_NG1_Q4_TUC2 ;
+.
+:F_NG1_Q4_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V2#C66770_C48500> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:F_NG1_Q4_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C49668> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :F_NG1_Q3
 	rdf:type bf:Question ;
