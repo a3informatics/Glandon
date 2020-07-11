@@ -9,6 +9,95 @@ class Form < IsoManagedV2
 
   object_property :has_group, cardinality: :many, model_class: "Form::Group::Normal", children: true
 
+  # Get Items
+  #
+  # @param [Boolean] references include references within the results if true. Defaults to false.
+  # @return [Array] Array of hashes, one per item.
+  def get_items
+    results = []
+    form = self.class.find_full(self.id)
+    form.has_group.each do |group|
+      results = group.get_item
+    end
+    return results
+  end
+
+  # def get_items
+  #   results = []
+  #   form = self.class.find_full(self.id)
+  #   form.has_group.each do |group|
+  #     g = group.to_h
+  #     g[:has_item].each do |item|
+  #       item[:has_coded_value].nil?
+  #       case item.rdf_type.fragment.to_sym
+  #         when :Question, :BcProperty
+  #           if !item.has_coded_value.empty?
+  #             item = item.to_h     
+  #             item[:has_coded_value].each do |cv|
+  #               tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+  #               parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+  #               tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+  #               #item[:has_coded_value].delete(cv)
+  #               item[:has_coded_value] << tc
+  #             end
+  #           end
+  #       end
+  #       results << item.to_h
+  #     end
+      # group.has_sub_group.each do |sub_group|
+      #   Form::Group::Normal.find(sub_group).has_item.each do |item|
+      #     item = Form::Item.find(item)
+      #     case item.rdf_type.fragment.to_sym
+      #       when :Question, :BcProperty
+      #         if !item.has_coded_value.empty?
+      #           item = item.to_h      
+      #           item[:has_coded_value].each do |cv|
+      #             tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+      #             parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+      #             tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+      #             item[:has_coded_value].delete(cv)
+      #             item[:has_coded_value] << tc
+      #           end
+      #         end
+      #     end
+      #   results << item.to_h
+      # end
+      #end
+    
+    #return results
+  #end
+
+    # def iterate_item(group)
+    #   group.has_item.each do |item|
+    #     case item.rdf_type.fragment.to_sym
+    #       when :Question, :BcProperty
+    #         if !item.has_coded_value.empty?
+    #           item = item.to_h      
+    #           item[:has_coded_value].each do |cv|
+    #             tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+    #             parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+    #             tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+    #             item[:has_coded_value].delete(cv)
+    #             item[:has_coded_value] << tc
+    #           end
+    #         end
+    #     end
+    #     return item.to_h
+    #   end
+    # end 
+
+
+  # property = property.to_h
+  #         if references
+  #           property[:has_coded_value].each do |coded_value|
+  #             tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
+  #             coded_value[:reference] = tc.reference.to_h
+  #             parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
+  #             coded_value[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+  #           end
+  #         end
+  #         results << {id: item.id, uri: item.uri.to_s, label: item.label, mandatory: item.mandatory, collect: item.collect, enabled: item.enabled, ordinal: item.ordinal, has_complex_datatype: {label: cdt.label, has_property: property}} 
+
   #TODO: This should be a query from the domains
   # @@domain_map = {
   #   "AD" => "Analysis Dataset",

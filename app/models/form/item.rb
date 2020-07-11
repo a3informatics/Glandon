@@ -22,6 +22,23 @@ class Form::Item < IsoConceptV2
   Form::Item::TextLabel.new
   Form::Item::Common.new
 
+  def get_item
+    item = self.to_h
+    if !item[:has_coded_value].nil?
+      if !item[:has_coded_value].empty?
+        coded_value = []
+        item[:has_coded_value].each do |cv|
+          tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+          parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+          tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+          coded_value << tc
+        end
+          item[:has_coded_value] = coded_value 
+      end 
+    end
+    return item
+  end
+
   # # Thesaurus Concepts
   # # A null method for those classes who dont need to return TCs.
   # #
