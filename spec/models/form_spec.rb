@@ -42,20 +42,20 @@ describe Form do
     expect(result.valid?).to eq(false)
   end
 
-  # it "allows a Form to be found" do
-  #   item = Form.find(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
-  #   check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-  # end
+  it "allows a Form to be found" do
+    item = Form.find(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+  end
 
-  # it "allows a Form to be found, full" do
-  #   item = Form.find_full(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
-  #   check_file_actual_expected(item.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-  # end
+  it "allows a Form to be found, full" do
+    item = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
+  end
 
-  # it "allows a Form to be found, minimum" do
-  #   item = Form.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1"))
-  #   check_file_actual_expected(item.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-  # end
+  it "allows a Form to be found, minimum" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
+  end
 
   it "get items" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
