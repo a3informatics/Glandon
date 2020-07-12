@@ -13,8 +13,29 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
+  def get_item
+    results = []
+    has_sub_group = []
+    has_item = []
+    self.has_item.each do |item|
+        has_item << item.get_item
+    end
+    self.has_sub_group.each do |sg|
+      sub_group = Form::Group::Normal.find(sg)
+      has_sub_group << sub_group.get_sub_group
+    end
+    results = {label: self.label, has_item: has_item, has_sub_group: has_sub_group }
+    return results
+  end
 
-  
+  def get_sub_group
+    has_item = []
+    self.has_item.each do |item|
+      item = Form::Item.find(item)
+      has_item << item.get_item
+    end
+    return {label: self.label, has_item: has_item } 
+  end
   # attr_accessor :repeating, :groups, :bc_ref
   
   # # Constants

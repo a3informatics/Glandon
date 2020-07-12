@@ -16,14 +16,6 @@ class Form::Group < IsoConceptV2
   validates_with Validator::Field, attribute: :completion, method: :valid_markdown?
   validates :optional, inclusion: { in: [ true, false ] }
   
-
-  def get_item
-    group = []
-    self.has_item.each do |item|
-        group << item.get_item
-    end
-    return group
-  end
   #attr_accessor :children, :ordinal, :note, :optional, :completion
   
 #   # Constants

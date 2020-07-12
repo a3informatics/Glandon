@@ -34,7 +34,16 @@ class Form::Item < IsoConceptV2
           coded_value << tc
         end
           item[:has_coded_value] = coded_value 
-      end 
+      end
+      # if !item[:has_property].empty?
+      #   property = []
+      #   item[:has_property].each do |prop|
+      #     tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:prop)).to_h
+      #     bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: tc[:reference]))
+      #     property << bc.to_h
+      #   end
+      #     item[:has_property] = property 
+      # end
     end
     return item
   end
