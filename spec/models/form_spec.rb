@@ -59,12 +59,12 @@ describe Form do
 
   it "get items" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
-    check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected.yaml", equate_method: :hash_equal)
   end
 
   it "get items II" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F"))
-    check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_2.yaml", equate_method: :hash_equal)
   end
 
   # it "get the properties, without references" do
