@@ -55,18 +55,20 @@ function dtBCShowColumns() {
  */
 function dtFormShowColumns() {
   return [
+    { data: "order_index" },
     { data: "ordinal" },
     { data: "label" },
-    { data: "label" },
-    { data: "label" },
-    { data: "label" },
-    { data: "label" },
-    {
-      data: "label",
-    },
+    { render: (data, type, r, m) => r.question_text || r.free_text },
+    { data: "datatype" },
+    { data: "format" },
+    { data: "mapping" },
     { data: "completion" },
-    { data: "note" }
-
+    { data: "note" },
+    {
+      data: "has_coded_value",
+      width: "30%",
+      render: (data, type, r, m) => termReferenceBtns(data)
+    }
   ];
 };
 
