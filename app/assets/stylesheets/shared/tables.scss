@@ -162,6 +162,20 @@ table th.th-xsmall{
   }
 }
 
+// Row titles and subtitles
+.table-cardstyle tr.row-title td {
+  font-size: $font-normal;
+  font-family: $font-primary !important;
+  background: $row-highlight-background !important;
+  // text-align: center;
+}
+
+.table-cardstyle tr.row-subtitle td {
+  font-family: $font-primary !important;
+  background: $row-highlight-background !important;
+  // text-align: center;
+}
+
 // IE and Edge Fixes
 
 @mixin ieandedge() {

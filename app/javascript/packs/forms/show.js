@@ -1,15 +1,8 @@
-import TablePanel from "shared/base/table_panel"
-import { dtFormShowColumns } from "shared/helpers/dt_column_collections"
+import ShowPanel from "shared/forms/show_panel"
 
 $(document).ready( () => {
 
-  let tp = new TablePanel({
-    selector: "#show-panel table#show",
+  let sp = new ShowPanel({
     url: formShowDataUrl,
-    param: "form",
-    paginated: false,
-    extraColumns: dtFormShowColumns(),
-    order: [[2, "desc"]]
   });
-  
 });
