@@ -39,16 +39,16 @@ describe FormsController do
       expect(response).to render_template("show")
     end
 
-    # it "show results" do
-    #   form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   expect(Form).to receive(:find_minimum).and_return(form)
-    #   get :show_data, params:{id: form.id}
-    #   expect(response.content_type).to eq("application/json")
-    #   expect(response.code).to eq("200")
-    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-    #   check_file_actual_expected(actual, sub_dir, "history_results_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-    # end
+    it "show results" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Form).to receive(:find_minimum).and_return(form)
+      get :show_data, params:{id: form.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_results_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
 
     it "shows the history, page" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))

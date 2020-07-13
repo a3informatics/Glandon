@@ -51,12 +51,11 @@ class FormsController < ApplicationController
     authorize Form, :show?
     @form = Form.find_minimum(protect_from_bad_id(params))
     items = @form.get_items
-    # items = items.each do |x|
-    #   x[:has_coded_value].each do |cv|
-    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-    #   end
-    # end
-
+    items = items.each do |item|
+      item[:has_coded_value].each do |cv|
+        cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
+      end
+    end
     render json: { data: items }, status: 200
   end
 
