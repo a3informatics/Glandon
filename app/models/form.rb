@@ -19,10 +19,8 @@ class Form < IsoManagedV2
       group.has_item.each do |item|
         results << {label: group.label, has_item: item.get_item}
       end
-      group.has_sub_group.each do |sg|
-        sub_group = Form::Group::Normal.find(sg)
-        sub_group.has_item.each do |item|
-          item = Form::Item.find(item)
+      group.has_sub_group_objects.each do |sub_group|
+        sub_group.has_item_objects.each do |item|
           results << {label: group.label, has_sub_group: {label: sub_group.label, has_item: item.get_item} }
         end 
       end
