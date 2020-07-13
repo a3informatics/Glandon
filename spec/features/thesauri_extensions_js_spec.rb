@@ -307,6 +307,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_button 'Add items'
       wait_for_ajax(20)
       sleep 1
+      wait_for_ajax(20)
       ui_check_table_info("extension-children-table", 1, 10, 19)
     end
 
