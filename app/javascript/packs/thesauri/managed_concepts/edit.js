@@ -19,7 +19,7 @@ $(document).ready( () => {
       newChild: editorNewChildUrl,
       addChildren: editorAddChildrenUrl
     },
-    extendTimer: () => {tt.extend() }
+    extendTimer: () => tt.extend()
   });
 
   // Init Rank
