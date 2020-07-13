@@ -7,6 +7,12 @@ class Form::Item::Placeholder < Form::Item
    data_property :free_text
   
    validates_with Validator::Field, attribute: :free_text, method: :valid_markdown?
+
+  def get_item
+    item = self.to_h
+    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
+            format:"", question_text:"", mapping:"", free_text:item[:free_text], label_text:"", has_coded_value: [], has_property: []}
+  end
  
   # To XML
   #

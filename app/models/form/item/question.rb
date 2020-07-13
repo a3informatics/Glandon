@@ -18,6 +18,19 @@ class Form::Item::Question < Form::Item
   validates_with Validator::Field, attribute: :format, method: :valid_format?
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
+
+  def get_item
+    item = self.to_h
+    coded_value = []
+    item[:has_coded_value].each do |cv|
+      tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+      parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+      tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+      coded_value << tc
+    end
+    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:item[:datatype], 
+            format:item[:format], question_text:item[:question_text], mapping:item[:mapping], free_text:"", label_text:"", has_coded_value: coded_value, has_property: []}
+  end
   
 #   # Thesaurus Concepts
 #   #

@@ -8,6 +8,12 @@ class Form::Item::TextLabel < Form::Item
   
   validates_with Validator::Field, attribute: :label_text, method: :valid_markdown?
 
+  def get_item
+    item = self.to_h
+    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
+            format:"", question_text:"", mapping:"", free_text:"", label_text:item[:label_text], has_coded_value: [], has_property: []}
+  end
+
   # # To XML
   # #
   # # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node

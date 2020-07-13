@@ -8,6 +8,12 @@ class Form::Item::Mapping < Form::Item
 
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
 
+  def get_item
+    item = self.to_h
+    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
+            format:"", question_text:"", mapping:item[:mapping], free_text:"", label_text:"", has_coded_value: [], has_property: []}
+  end
+
   
   # # To XML
   # #

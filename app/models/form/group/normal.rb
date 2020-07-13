@@ -33,6 +33,7 @@ class Form::Group::Normal < Form::Group
     end
     return {label: self.label, has_item: has_item } 
   end
+  
   # attr_accessor :repeating, :groups, :bc_ref
   
   # # Constants

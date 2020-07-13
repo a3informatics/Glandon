@@ -16,12 +16,14 @@ class Form < IsoManagedV2
     results = []
     form = self.class.find_full(self.id)
     form.has_group.each do |group|
+      results << {label: group.label, is_group: true, ordinal: group.ordinal, note:group.note, completion:group.completion, optional:group.optional, datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
       group.has_item.each do |item|
-        results << {label: group.label, has_item: item.get_item}
+        results << item.get_item
       end
       group.has_sub_group_objects.each do |sub_group|
+      results << {label: sub_group.label, is_sub_group: true, ordinal: sub_group.ordinal, note: sub_group.note, completion: sub_group.completion, optional: sub_group.optional, datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
         sub_group.has_item_objects.each do |item|
-          results << {label: group.label, has_sub_group: {label: sub_group.label, has_item: item.get_item} }
+          results << item.get_item
         end 
       end
     end

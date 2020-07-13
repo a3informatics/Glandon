@@ -6,6 +6,12 @@ class Form::Item::Common < Form::Item
 
   object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
 
+  def get_item
+    item = self.to_h
+    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
+            format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+  end
+
   
 #   # To XML
 #   #

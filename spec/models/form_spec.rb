@@ -10,7 +10,7 @@ describe Form do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..65)
     load_data_file_into_triple_store("mdr_identification.ttl")
@@ -65,6 +65,11 @@ describe Form do
   it "get items II" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F"))
     check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_2.yaml", equate_method: :hash_equal)
+  end
+
+  it "get items III" do
+    form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Disability_Assessment_For_Dementia__DAD___Pilot_/V1#F"))
+    check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_3.yaml", equate_method: :hash_equal)
   end
 
   # it "get the properties, without references" do
