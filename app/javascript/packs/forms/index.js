@@ -1,4 +1,5 @@
-import IndexPanel from "shared/iso_managed/index_panel";
+import IndexPanel from "shared/iso_managed/index_panel"
+import { expandColumn } from "shared/helpers/dt"
 
 $(document).ready( () => {
 
@@ -7,5 +8,7 @@ $(document).ready( () => {
     param: "form",
   });
 
- 
+  // Expand column width to fit contents better
+  expandColumn("Identifier", "#index");
+
 });
