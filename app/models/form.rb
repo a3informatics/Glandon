@@ -16,7 +16,16 @@ class Form < IsoManagedV2
     results = []
     form = self.class.find_full(self.id)
     form.has_group.each do |group|
-      results << group.get_item
+      group.has_item.each do |item|
+        results << {label: group.label, has_item: item.get_item}
+      end
+      group.has_sub_group.each do |sg|
+        sub_group = Form::Group::Normal.find(sg)
+        sub_group.has_item.each do |item|
+          item = Form::Item.find(item)
+          results << {label: group.label, has_sub_group: {label: sub_group.label, has_item: item.get_item} }
+        end 
+      end
     end
     return results
   end

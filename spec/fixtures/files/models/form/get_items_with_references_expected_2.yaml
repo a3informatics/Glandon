@@ -1,10 +1,9 @@
 ---
 - :label: Group
-  :has_item: []
   :has_sub_group:
-  - :label: BMI
+    :label: BMI
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzNfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzNfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG3_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -16,7 +15,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG3_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzNfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: BMI
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzNfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG3_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -58,9 +61,11 @@
           :notation: ''
           :semantic_version: 65.0.0
         :local_label: ''
-  - :label: Heart Rate
+- :label: Group
+  :has_sub_group:
+    :label: Heart Rate
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzRfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzRfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG4_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -72,7 +77,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG4_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzRfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Heart Rate
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzRfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG4_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -114,9 +123,11 @@
           :notation: ''
           :semantic_version: 65.0.0
         :local_label: ''
-  - :label: Waist circumference
+- :label: Group
+  :has_sub_group:
+    :label: Waist circumference
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzdfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzdfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG7_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -128,7 +139,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG7_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzdfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Waist circumference
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzdfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG7_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -234,9 +249,11 @@
           :notation: ''
           :semantic_version: 59.0.0
         :local_label: ''
-  - :label: Weight
+- :label: Group
+  :has_sub_group:
+    :label: Weight
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzJfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzJfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG2_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -248,7 +265,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG2_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzJfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Weight
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzJfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG2_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -326,9 +347,11 @@
           :notation: ''
           :semantic_version: 65.0.0
         :local_label: ''
-  - :label: Systolic Blood Pressure
+- :label: Group
+  :has_sub_group:
+    :label: Systolic Blood Pressure
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAz
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAz
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG5_BP3
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -372,7 +395,11 @@
           :notation: ''
           :semantic_version: 59.0.0
         :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAx
+- :label: Group
+  :has_sub_group:
+    :label: Systolic Blood Pressure
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG5_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Body Position (--POS)
@@ -477,7 +504,11 @@
           :notation: ''
           :semantic_version: 62.0.0
         :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Systolic Blood Pressure
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzVfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG5_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -489,9 +520,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG5_BP2_R1
       :has_coded_value: []
-  - :label: Height
+- :label: Group
+  :has_sub_group:
+    :label: Height
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzFfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzFfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG1_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -503,7 +536,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG1_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzFfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Height
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzFfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG1_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -609,9 +646,11 @@
           :notation: ''
           :semantic_version: 59.0.0
         :local_label: ''
-  - :label: Hip circumference
+- :label: Group
+  :has_sub_group:
+    :label: Hip circumference
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzhfQlAy
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzhfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG8_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
@@ -717,7 +756,11 @@
           :notation: ''
           :semantic_version: 65.0.0
         :local_label: ''
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzhfQlAx
+- :label: Group
+  :has_sub_group:
+    :label: Hip circumference
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzhfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG8_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -729,9 +772,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG8_BP1_R1
       :has_coded_value: []
-  - :label: Diastolic Blood Pressure
+- :label: Group
+  :has_sub_group:
+    :label: Diastolic Blood Pressure
     :has_item:
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzZfQlAx
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzZfQlAx
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG6_BP1
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Value (--ORRES)
@@ -743,7 +788,11 @@
       :has_property:
       - http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG6_BP1_R1
       :has_coded_value: []
-    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzZfQlAy
+- :label: Group
+  :has_sub_group:
+    :label: Diastolic Blood Pressure
+    :has_item:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL1ZpdGFsX1NpZ25zXy1fVGhlcmFwZXV0aWNfQXJlYV8tX0RpYWJldGVzXy9WMSNGX05HMV9ORzZfQlAy
       :uri: http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F_NG1_NG6_BP2
       :rdf_type: http://www.assero.co.uk/BusinessForm#BcProperty
       :label: Result Units (--ORRESU)
