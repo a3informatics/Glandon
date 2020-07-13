@@ -30,7 +30,7 @@ describe FormsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "show" do
