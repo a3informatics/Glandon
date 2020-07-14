@@ -1,6 +1,7 @@
 import TablePanel from 'shared/base/table_panel';
 
-import { dtFormShowColumns } from "shared/helpers/dt_column_collections"
+import { dtFormShowColumns } from 'shared/helpers/dt_column_collections'
+import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt'
 
 /**
  * Form Show Panel
@@ -24,7 +25,7 @@ export default class ShowPanel extends TablePanel {
     url,
     param = "form",
   }) {
-    super({ selector, url, param, paginated: false, order: [[0, "asc"]] });
+    super({ selector, url, param, paginated: false, order: [[0, "asc"]], buttons: [csvExportBtn(), excelExportBtn()] });
   }
 
   /** Private **/
