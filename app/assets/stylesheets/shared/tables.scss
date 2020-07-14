@@ -162,6 +162,13 @@ table th.th-xsmall{
   }
 }
 
+
+// Buttons
+
+.table-cardstyle .dt-buttons {
+  margin-top: 5px;
+}
+
 // IE and Edge Fixes
 
 @mixin ieandedge() {
