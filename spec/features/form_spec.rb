@@ -56,7 +56,7 @@ describe "Forms", :type => :feature do
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax(10)
       expect(page).to have_content 'Show: Form'
-      ui_check_table_info("show", 1, 4, 4)
+      ui_check_table_info("show", 1, 5, 5)
     end
 
     # it "allows access to index page (REQ-MDR-MIT-015)", js:true do
