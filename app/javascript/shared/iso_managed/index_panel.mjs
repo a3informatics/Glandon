@@ -29,9 +29,10 @@ export default class IndexPanel extends TablePanel {
     count = 5000,
     extraColumns = [],
     deferLoading = false,
-    cache = true
+    cache = true,
+    buttons = []
   }) {
-    super({ selector, url, param, count, extraColumns, cache });
+    super({ selector, url, param, count, extraColumns, cache, buttons });
   }
 
   /** Private **/
@@ -58,18 +59,19 @@ export default class IndexPanel extends TablePanel {
   }
 
   /**
-   * Initialize a new DataTable
-   * @return {DataTable instance} An initialized Index panel
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
+  get _tableOpts() {
     const options = super._tableOpts;
+
     options.columns = [...this._defaultColumns, ...this.extraColumns, dtHistoryColumn() ];
     options.language.emptyTable = "No items found.";
     options.createdRow = (row, data, idx) => {
       $(row).addClass(this._rowClassByOwner(data.owner));
     }
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
 }

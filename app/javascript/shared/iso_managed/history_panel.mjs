@@ -193,14 +193,16 @@ export default class HistoryPanel extends TablePanel {
   }
 
   /**
-   * Initialize a new DataTable
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
+  get _tableOpts() {
     const options = super._tableOpts;
+
     options.columns = [...this._defaultColumns];
     options.language.emptyTable = "No versions found.";
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
   /**
