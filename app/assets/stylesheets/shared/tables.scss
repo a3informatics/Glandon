@@ -167,11 +167,13 @@ table th.th-xsmall{
   font-size: $font-normal;
   font-family: $font-primary !important;
   background: $row-highlight-background !important;
+  color: $primary-color-medium;
 }
 
 .table-cardstyle tr.row-subtitle td {
   font-family: $font-primary !important;
   background: $row-highlight-background !important;
+  color: $primary-color-light;
 }
 
 // Buttons

@@ -25,7 +25,14 @@ export default class ShowPanel extends TablePanel {
     url,
     param = "form",
   }) {
-    super({ selector, url, param, paginated: false, order: [[0, "asc"]], buttons: [csvExportBtn(), excelExportBtn()] });
+    super({
+      selector,
+      url,
+      param,
+      paginated: false,
+      order: [[0, "asc"]],
+      buttons: [csvExportBtn(), excelExportBtn()]
+    });
   }
 
   /** Private **/
@@ -33,18 +40,18 @@ export default class ShowPanel extends TablePanel {
   /** Initializers and defaults **/
 
   /**
-   * Initialize a new DataTable
-   * @return {DataTable instance} An initialized table panel
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
-    let tableOptions = this._tableOpts;
+  get _tableOpts() {
+    const options = super._tableOpts;
 
-    tableOptions.createdRow = (r, data, idx) => {
+    options.createdRow = (r, data, idx) => {
       if (data.is_group || data.is_sub_group)
         $(r).addClass(data.is_group ? "row-title" : "row-subtitle");
     }
 
-    this.table = $(this.selector).DataTable(tableOptions);
+    return options;
   }
 
   /**
