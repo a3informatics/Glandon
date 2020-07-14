@@ -20,7 +20,7 @@ function historyBtn(url) {
  */
 function termReferenceBtn(url, item, parent) {
   const text = parent ? unmanagedConceptRef(item, parent) : managedConceptRef(item);
-  return `<a href='${url}' class='bg-label highlightable'>${text}</a>`;
+  return `<a href='${url}' class='bg-label highlightable'>${text}</a> `;
 }
 
 export {
