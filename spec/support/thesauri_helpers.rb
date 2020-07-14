@@ -9,7 +9,7 @@ module ThesauriHelpers
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
     result = query_results.by_object(:count).first.to_i
-    puts colourize("Total CL count=#{result}", "blue")
+    # puts colourize("Total CL count=#{result}", "blue")
     result
   end
 
@@ -22,7 +22,7 @@ module ThesauriHelpers
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
     result = query_results.by_object(:count).first.to_i
-    puts colourize("Total CLI count=#{result}", "blue")
+    # puts colourize("Total CLI count=#{result}", "blue")
     result
   end
   
@@ -35,7 +35,7 @@ module ThesauriHelpers
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo]) 
     result = query_results.by_object(:count).first.to_i
-    puts colourize("Total Distinct CLI count=#{result}", "blue")
+    # puts colourize("Total Distinct CLI count=#{result}", "blue")
     result
   end
   
@@ -90,7 +90,7 @@ SELECT DISTINCT ?cli WHERE
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
     result = query_results.by_object_set([:cli]).first[:cli]
-puts "Previous URI: #{uri_s} translated to Current URI: #{result}"
+    # puts "Previous URI: #{uri_s} translated to Current URI: #{result}"
     result
   end
 
@@ -127,14 +127,14 @@ private
             uri = Uri.from_uri_or_string(synonym)
             synonyms << Thesaurus::Synonym.find(uri).to_h
           end
-          puts colourize("Aligning Synonym #{synonyms.last[:label]}", "blue")
+          # puts colourize("Aligning Synonym #{synonyms.last[:label]}", "blue")
         end
         item[key] = synonyms
       elsif key == :preferred_term
         if !value.is_a?(Hash)
           uri = Uri.from_uri_or_string(value)
           item[key] = Thesaurus::PreferredTerm.find(uri).to_h
-          puts colourize("Aligning PT #{item[key][:label]}", "blue")
+          # puts colourize("Aligning PT #{item[key][:label]}", "blue")
         end
       elsif key == :narrower
         narrower = []

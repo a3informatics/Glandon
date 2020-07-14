@@ -19,6 +19,7 @@ export default class TablePanel {
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional.
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
+   * @param {Array} params.buttons DT buttons definitions objects, empty by default
    * @param {Object} args Optional additional arguments
    */
   constructor({
@@ -30,9 +31,10 @@ export default class TablePanel {
     deferLoading,
     cache = true,
     paginated = true,
-    order = [[0, "desc"]]
+    order = [[0, "desc"]],
+    buttons = []
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, ...args });
 
     this._initTable();
     this._setListeners();
@@ -144,6 +146,11 @@ export default class TablePanel {
    */
   _initTable() {
     this.table = $(this.selector).DataTable(this._tableOpts);
+
+    // Show buttons if exist
+    if (this.buttons.length)
+      this.table.buttons().container()
+        .appendTo( $('.col-sm-6:eq(0)', this.table.table().container()) );
   }
 
   /**
@@ -162,7 +169,8 @@ export default class TablePanel {
         infoFiltered: "",
         emptyTable: "No data.",
         processing: generateSpinner("small")
-      }
+      },
+      buttons: this.buttons
     }
   }
 

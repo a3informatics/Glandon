@@ -105,7 +105,7 @@ describe "Pairs", :type => :feature do
       context_menu_element_header(:unpair)
       wait_for_ajax 10
       sleep 1
-      
+
       expect(context_menu_element_header_present?(:pair)).to eq(true)
     end
 
@@ -116,6 +116,82 @@ describe "Pairs", :type => :feature do
       sleep 7
       context_menu_element_header(:pair)
       ui_selector_pick_managed_items("Code Lists", [{identifier: "NP000011P", version: "1"}])
+      expect(page).to have_content "The changes were not saved as the edit lock has timed out."
+    end
+
+  end
+
+  describe "Pair Extensions, Curator user", :type => :feature do
+
+    def prepare_data
+      cl1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67154/V2#C67154"))
+      ext1 = cl1.create_extension
+      ext1.update({notation: "TEST"})
+      cl2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V2#C65047"))
+      ext2 = cl2.create_extension
+      ext2.update({notation: "TESTCD"})
+    end
+
+    def go_to_cl(identifier, action)
+      click_navbar_code_lists
+      wait_for_ajax 20
+      ui_table_search("index", identifier)
+      find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+      wait_for_ajax 10
+      context_menu_element_v2("history", "0.1.0", action)
+      wait_for_ajax 10
+    end
+
+    it "allows to pair Extension", js: true do
+      prepare_data
+      go_to_cl("C65047E", :edit)
+
+      expect(context_menu_element_header_present?(:pair)).to eq(true)
+      context_menu_element_header(:pair)
+      ui_selector_pick_managed_items("Code Lists", [{identifier: "C67154E", version: "1"}])
+      wait_for_ajax 10
+      expect(context_menu_element_header_present?(:unpair)).to eq(true)
+
+      # TODO: Check indicators in header
+    end
+
+    it "allows to link to Show of paired Extensions from both paired items", js: true do
+      go_to_cl("C65047E", :show)
+      expect(context_menu_element_header_present?(:show_paired)).to eq(true)
+      context_menu_element_header(:show_paired)
+      expect(page).to have_content "C67154E"
+
+      go_to_cl("C67154E", :show)
+      expect(context_menu_element_header_present?(:show_paired)).to eq(true)
+      context_menu_element_header(:show_paired)
+      expect(page).to have_content "C65047E"
+    end
+
+    it "prevents pairing on an already paired item", js: true do
+      go_to_cl("C67154E", :edit)
+
+      expect(context_menu_element_header_present?(:unpair)).to eq(false)
+      expect(context_menu_element_header_present?(:pair)).to eq(false)
+    end
+
+    it "allows to unpair Extensions", js:true do
+      go_to_cl("C65047E", :edit)
+
+      expect(context_menu_element_header_present?(:unpair)).to eq(true)
+      context_menu_element_header(:unpair)
+      wait_for_ajax 10
+      sleep 1
+
+      expect(context_menu_element_header_present?(:pair)).to eq(true)
+    end
+
+    it "prevents pairing when token expired", js: true do
+      Token.set_timeout(5)
+      go_to_cl("C65047E", :edit)
+
+      sleep 7
+      context_menu_element_header(:pair)
+      ui_selector_pick_managed_items("Code Lists", [{identifier: "C67154E", version: "1"}])
       expect(page).to have_content "The changes were not saved as the edit lock has timed out."
     end
 

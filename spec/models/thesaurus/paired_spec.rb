@@ -42,21 +42,27 @@ describe "Thesaurus::Paired" do
       tc_1 = create_mc("AXTESTCD")
       tc_2 = create_mc("AATEST")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, mismatch in name AX versus AA. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
       tc_1 = create_mc("AATESTCD")
       tc_2 = create_mc("AATESTX")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair AATESTCD with AATESTX. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
       tc_1 = create_mc("AATCD")
       tc_2 = create_mc("AATS")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair AATCD with AATS. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
       tc_1 = create_mc("AATC")
       tc_2 = create_mc("AATH")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair AATC with AATH. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
       tc_1 = create_mc("AATC")
       tc_2 = create_mc("AAT")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair AATC with AAT. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
       tc_1 = create_mc("ASPARMCD")
       tc_2 = create_mc("AAPARM")
       expect(tc_1.valid_pairing?(tc_2)).to eq(false)
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, mismatch in name AS versus AA. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM).")
     end
 
     it "validate and pairs" do
@@ -66,7 +72,7 @@ describe "Thesaurus::Paired" do
       tc_1 = create_mc("EGxTESTCD")
       tc_2 = create_mc("EGTEST")
       expect(tc_1.validate_and_pair(tc_2.id)).to eq(false)
-      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, trying to pair EGxTESTCD with EGTEST.")
+      expect(tc_1.errors.full_messages.to_sentence).to eq("Pairing not permitted, mismatch in name EGx versus EG. Valid pairs are (--TESTCD, --TEST), (--TSCD, --TS), (--TC, --TN), (--PARMCD, --PARM). and Pairing not permitted, trying to pair EGxTESTCD with EGTEST.")
     end
 
     it "validate and pairs, already paired" do

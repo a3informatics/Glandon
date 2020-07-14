@@ -55,9 +55,9 @@ class Thesaurus
         result = config
         break
       end
-      return false if result.nil?
-      return false unless check_rule(result, :child, other.notation)
-      check_prefix(result, other)
+      return false unless config_found?(result, other)
+      return false unless matching_pairs?(result, other)
+      matching_prefix?(result, other)
     end
 
     # Paired? Is this item paired, either as parent or child
@@ -125,6 +125,35 @@ class Thesaurus
 
   private
 
+    # Config found?
+    def config_found?(config, other)
+      return true unless config.nil?
+      msg = "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Matching pairs?
+    def matching_pairs?(config, other)
+      return true if check_rule(config, :child, other.notation)
+      msg = "Pairing not permitted, trying to pair #{self.notation} with #{other.notation}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Check the prefix
+    def matching_prefix?(config, other)
+      return true if check_prefix(config, other)
+      msg = "Pairing not permitted, mismatch in name #{get_prefix(config, :parent, self.notation)} versus #{get_prefix(config, :child, other.notation)}. Valid pairs are #{valid_pairs}."
+      self.errors.add(:base, msg)
+      false
+    end
+
+    # Format the matching pairs for error messages
+    def valid_pairs
+      Rails.configuration.thesauri[:permitted_pairing].map{|x| "(--#{x[:parent]}, --#{x[:child]})"}.join(", ")
+    end
+ 
     # Check individual pairing rule, parent or child match the config.
     def check_rule(config, field, value)
       str = config[field]
@@ -134,7 +163,12 @@ class Thesaurus
 
     # Make sure prefixes match, e.g. nn is the same in nnTESTCD & nnTEST
     def check_prefix(config, other)
-      return self.notation[0..-config[:parent].length] == other.notation[0..-config[:child].length]
+      return get_prefix(config, :parent, self.notation) == get_prefix(config, :child, other.notation)
+    end
+
+    # Make sure prefixes match, e.g. nn is the same in nnTESTCD & nnTEST
+    def get_prefix(config, field, notation)
+      notation[0..-config[field].length-1]
     end
 
   end

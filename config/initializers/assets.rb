@@ -33,7 +33,7 @@ end
     markdown_engines/markdown_editor
     sdtm_user_domains/editor
     thesauri/changes thesauri/release_select thesauri/search_multiple thesauri/search thesauri/show thesauri/upgrade
-    thesauri/managed_concepts/changes thesauri/managed_concepts/edit_extension thesauri/managed_concepts/edit_subset
+    thesauri/managed_concepts/changes thesauri/managed_concepts/edit_subset
     thesauri/managed_concepts/show
     thesauri/unmanaged_concepts/changes thesauri/unmanaged_concepts/show
     uploads/index

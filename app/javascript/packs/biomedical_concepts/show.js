@@ -1,5 +1,6 @@
 import TablePanel from "shared/base/table_panel"
 import { dtBCShowColumns } from "shared/helpers/dt_column_collections"
+import { csvExportBtn, excelExportBtn } from "shared/helpers/dt"
 
 $(document).ready( () => {
 
@@ -9,7 +10,8 @@ $(document).ready( () => {
     param: "biomedical_concept",
     paginated: false,
     extraColumns: dtBCShowColumns(),
-    order: [[2, "desc"]]
+    order: [[2, "desc"]],
+    buttons: [csvExportBtn(), excelExportBtn()]
   });
-  
+
 });

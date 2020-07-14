@@ -7,9 +7,10 @@ describe "Biomedical Concept Instances", :type => :feature do
   include UserAccountHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include DownloadHelpers
 
   def sub_dir
-    return "features"
+    return "features/biomedical_concepts"
   end
 
   describe "BCs", :type => :feature do
@@ -55,50 +56,48 @@ describe "Biomedical Concept Instances", :type => :feature do
       find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'HEIGHT\''
-      context_menu_element('history', 4, 'HEIGHT', :show)
+      context_menu_element_v2('history', 'HEIGHT', :show)
       wait_for_ajax(10)
       expect(page).to have_content 'Show: Biomedical Concept'
       ui_check_table_info("show", 1, 3, 3)
     end
 
-    # it "history allows the status page to be viewed", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Status').click
-    #   expect(page).to have_content 'Status: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   click_link 'Close'
-    #   expect(page).to have_content 'History: BC C25206'
-    # end
+    it "allows to download show BC table as a csv file", js:true do
+      click_navbar_bc
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'DIABP')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'Version History of \'DIABP\''
+      context_menu_element_v2('history', 'DIABP', :show)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Show: Biomedical Concept'
+      ui_check_table_info("show", 1, 6, 6)
+      click_on 'CSV'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_csv_expected.csv")
+    end
+
+    it "allows to download show BC table as an excel file", js:true do
+      click_navbar_bc
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'WEIGHT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'Version History of \'WEIGHT\''
+      context_menu_element_v2('history', 'WEIGHT', :show)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Show: Biomedical Concept'
+      ui_check_table_info("show", 1, 3, 3)
+      click_on 'Excel'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_excel_expected.xlsx")
+    end
 
     # it "allows for a BC to be cloned", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Show').click
-    #   expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   click_link 'Clone'
-    #   expect(page).to have_content 'Cloning: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   fill_in "biomedical_concept[identifier]", with: 'NEW NEW BC'
-    #   fill_in "biomedical_concept[label]", with: 'A very new new BC'
-    #   #save_and_open_page
-
-    #   click_button 'Clone'
-    #   expect(page).to have_content("Biomedical Concept was successfully created.")
-    # end
 
     # it "allows for a BC to be edited (REQ-MDR-BC-010)", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Edit').click
-    #   expect(page).to have_content 'Edit: Temperature (BC C25206) BC C25206 (V1.1.0, 2, Incomplete)'
-    #   click_link 'main_nav_bc'
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    # end
+
 
   end
 

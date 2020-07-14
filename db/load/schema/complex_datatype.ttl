@@ -26,7 +26,7 @@
 :hasProperty
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Attribute"^^xsd:string ;
+  rdfs:label "Property"^^xsd:string ;
   rdfs:domain :ComplexDatatype ;
   rdfs:range :PropertyX ;
   skos:definition "Reference to a property."^^xsd:string ;
@@ -44,7 +44,7 @@
 :simpleDatatype
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
-  rdfs:label "The simple datatype."^^xsd:string ;
+  rdfs:label "Simple Datatype."^^xsd:string ;
   rdfs:domain :PropertyX ;
   rdfs:range xsd:string ;
   skos:definition "The property's simple datatype."^^xsd:string ;
