@@ -16,9 +16,7 @@ function fitColumn(name, tableId) {
   $(`${tableId} th:contains('${name}')`).addClass("fit");
 }
 
-export{ 
-  expandColumn,
-  fitColumn
+/**
  * DataTable Export CSV button definition
  * @param {Selector} columns DataTables columns selector (array of indexes / string / function ...)
  * @return {Object} Custom CSV Export button options
