@@ -1,6 +1,6 @@
 import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt_columns'
 import { editIconInline, removeIconInline } from 'shared/ui/icons'
-import { termReferenceBtns } from 'shared/ui/collections'
+import { termReferences } from 'shared/ui/collections'
 
 /**
  * Column definitions for a Code List Editor table
@@ -44,7 +44,7 @@ function dtBCShowColumns() {
     {
       data: "has_complex_datatype.has_property.has_coded_value",
       width: "30%",
-      render: (data, type, r, m) => termReferenceBtns(data)
+      render: (data, type, r, m) => termReferences(data, type)
     }
   ];
 };
@@ -67,7 +67,7 @@ function dtFormShowColumns() {
     {
       data: "has_coded_value",
       width: "30%",
-      render: (data, type, r, m) => termReferenceBtns(data)
+      render: (data, type, r, m) => termReferences(data, type)
     }
   ];
 };
