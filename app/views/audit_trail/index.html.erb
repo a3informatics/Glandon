@@ -50,7 +50,7 @@
 			<tbody>
 				<% @items.each do |item| %>
 				  	<tr>
-				    	<td><%= Timestamp.new(item.date_time).to_datetime %></td>
+				    	<td><%= Timestamp.new(item.date_time).to_audit_datetime %></td>
 					    <td><%= item.user %></td>
 					    <td><%= item.owner %></td>
 					    <td><%= item.identifier %></td>

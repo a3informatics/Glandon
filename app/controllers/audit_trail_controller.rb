@@ -3,11 +3,10 @@ class AuditTrailController < ApplicationController
   before_action :authenticate_user!
 
   C_CLASS_NAME = "AuditTrailsController"
-  C_RECORDS = 2000
-
+  
   def index
     authorize AuditTrail
-    @items = AuditTrail.last(C_RECORDS)
+    @items = AuditTrail.latest
     @defaults = {:user => "", :identifier => "", :owner => "", :event => AuditTrail.event_types[:empty_action]}
     users_owners_events
   end
