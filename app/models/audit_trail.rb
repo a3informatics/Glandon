@@ -4,7 +4,15 @@ class AuditTrail < ApplicationRecord
 
 	@@event_string_map = ["", "Create", "Update", "Delete", "User"]
 
-	# Event To String. Human readbale lable for the event
+	# Lastest. Get the N latest audit records
+  #
+  # @param [Integer] count the count of records desired. Defaults to 2000.
+  # @return [Array] array of the last N records
+  def self.latest(count=100)
+    AuditTrail.last(count)
+  end
+
+  # Event To String. Human readbale label for the event
 	#
 	# @return [string] The label
 	def event_to_s

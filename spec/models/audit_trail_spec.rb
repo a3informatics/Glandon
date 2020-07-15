@@ -3,6 +3,7 @@ require 'rails_helper'
 describe AuditTrail do
 
 	include DataHelpers
+  include AuditTrailHelpers
 
 	def sub_dir
     return "models"
@@ -358,6 +359,19 @@ describe AuditTrail do
     expect(AuditTrail).to receive(:create).and_return(response)
     expect(ConsoleLogger).to receive(:log).with("AuditTrail", "add_entry", "Errors detected creating audit entry. Failure!")
     AuditTrail.user_event(user, "User logged in.")
+  end
+
+  it "gets latest records" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    3000.times do |index|
+      AuditTrail.create_event(user, "Any old text#{index}")
+    end
+    check_audit_trail(1, sub_dir, "latest_expected_1.yaml")
+    check_audit_trail(10, sub_dir, "latest_expected_2.yaml")
+    check_audit_trail(100, sub_dir, "latest_expected_3.yaml")
+    check_audit_trail(1000, sub_dir, "latest_expected_4.yaml")
+    check_audit_trail(4000, sub_dir, "latest_expected_5.yaml")
   end
 
 end
