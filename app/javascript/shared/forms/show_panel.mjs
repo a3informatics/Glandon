@@ -30,7 +30,7 @@ export default class ShowPanel extends TablePanel {
       selector,
       url,
       param,
-      paginated: true,
+      paginated: false,
       order: [[0, "asc"]],
       buttons: [csvExportBtn(), excelExportBtn()]
     });
