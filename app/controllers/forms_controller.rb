@@ -57,7 +57,7 @@ class FormsController < ApplicationController
         cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
       end
     end
-    render json: { data: items, offset: params[:offset] , count: items.count }, status: 200
+    render json: { data: items }, status: 200
   end
 
   # def new
