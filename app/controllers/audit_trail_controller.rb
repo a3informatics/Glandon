@@ -6,7 +6,7 @@ class AuditTrailController < ApplicationController
   
   def index
     authorize AuditTrail
-    @items = AuditTrail.latest
+    @items = AuditTrail.latest(2000)
     @defaults = {:user => "", :identifier => "", :owner => "", :event => AuditTrail.event_types[:empty_action]}
     users_owners_events
   end
