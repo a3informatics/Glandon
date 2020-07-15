@@ -13,7 +13,7 @@ class Form::Item::BcProperty < Form::Item
     property = []
     item[:has_coded_value].each do |cv|
       tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
-      parent = IsoManagedV2.find_minimum(Uri.new(uri: tc[:context][:uri]))
+      parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: tc[:context][:uri]))
       tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
       coded_value << tc
     end

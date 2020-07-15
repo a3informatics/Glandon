@@ -1,10 +1,22 @@
 ---
-- :label: " "
-  :is_group: true
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hlaWdodF9fUGlsb3RfL1YxI0ZfTkcx
+  :uri: http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: " "
+  :tagged: []
   :ordinal: 1
   :note: ''
   :completion: ''
   :optional: false
+  :has_item:
+  - http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_PL2
+  - http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q3
+  - http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q4
+  - http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q1
+  :repeating: false
+  :has_common: []
+  :has_sub_group: []
+  :has_biomedical_concept: []
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -12,6 +24,49 @@
   :free_text: ''
   :label_text: ''
   :has_coded_value: []
+  :has_property: []
+- :label: Completion status
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: true
+  :datatype: string
+  :format: '1'
+  :question_text: " Compltion Status"
+  :mapping: VSSTAT
+  :free_text: ''
+  :label_text: ''
+  :has_coded_value:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hlaWdodF9fUGlsb3RfL1YxI0ZfTkcxX1ExX1RVQzE=
+    :uri: http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q1_TUC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+    :label: ''
+    :tagged: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
+      :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
+      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+      :label: Not Done
+      :tagged:
+      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+      :identifier: C49484
+      :notation: NOT DONE
+      :definition: Indicates a task, process or examination that has either not been
+        initiated or completed. (NCI)
+      :extensible: false
+      :narrower: []
+      :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
+      :synonym: []
+    :context:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
+      :uri: http://www.cdisc.org/C66789/V13#C66789
+      :identifier: C66789
+      :notation: ND
+      :semantic_version: 13.0.0
+    :local_label: ''
   :has_property: []
 - :label: Placeholder 2
   :ordinal: 2
@@ -79,7 +134,7 @@
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
       :uri: http://www.cdisc.org/C66770/V59#C66770
       :identifier: C66770
-      :notation: ''
+      :notation: VSRESU
       :semantic_version: 59.0.0
     :local_label: ''
   - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hlaWdodF9fUGlsb3RfL1YxI0ZfTkcxX1E0X1RVQzI=
@@ -110,50 +165,7 @@
       :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
       :uri: http://www.cdisc.org/C66770/V59#C66770
       :identifier: C66770
-      :notation: ''
+      :notation: VSRESU
       :semantic_version: 59.0.0
-    :local_label: ''
-  :has_property: []
-- :label: Completion status
-  :ordinal: 1
-  :note: ''
-  :completion: ''
-  :optional: true
-  :datatype: string
-  :format: '1'
-  :question_text: " Compltion Status"
-  :mapping: VSSTAT
-  :free_text: ''
-  :label_text: ''
-  :has_coded_value:
-  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hlaWdodF9fUGlsb3RfL1YxI0ZfTkcxX1ExX1RVQzE=
-    :uri: http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q1_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :tagged: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
-      :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Not Done
-      :tagged:
-      - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
-      :identifier: C49484
-      :notation: NOT DONE
-      :definition: Indicates a task, process or examination that has either not been
-        initiated or completed. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
-      :synonym: []
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
-      :uri: http://www.cdisc.org/C66789/V13#C66789
-      :identifier: C66789
-      :notation: ''
-      :semantic_version: 13.0.0
     :local_label: ''
   :has_property: []
