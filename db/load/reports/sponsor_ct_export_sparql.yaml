@@ -92,7 +92,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
     }
     UNION
     {
-      FILTER (NOT EXISTS {?cl th:pairedWith ?y} || NOT EXISTS {?cl ^th:pairedWith ?z})
+      FILTER (NOT EXISTS {?cl th:pairedWith ?y} && NOT EXISTS {?cl ^th:pairedWith ?z})
       ?cl th:narrower ?cli .
       ?cli th:identifier ?code .  
     }
