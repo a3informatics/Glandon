@@ -193,18 +193,25 @@ class AuditTrail < ApplicationRecord
 
 private
 
+  # Add audit for an item
 	def self.add_item(user, item, event, description)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
-		self.create(date_time: Time.now, user: user.email, owner: item.owner_short_name, identifier: identifier, version: item.semantic_version, event: event, description: description)
+		self.add_entry(date_time: Time.now, user: user.email, owner: item.owner_short_name, identifier: identifier, version: item.semantic_version, event: event, description: description)
 	end
 
+  # Add audit for generic event
 	def self.add_generic(user, event, description)
-		self.create(date_time: Time.now, user: user.email, owner: "", identifier: "", version: "", event: event, description: description)
+		self.add_entry(date_time: Time.now, user: user.email, owner: "", identifier: "", version: "", event: event, description: description)
 	end
+
+  # Create audit entry
+  def self.add_entry(params)
+    object = self.create(params)
+    ConsoleLogger.log(self.name, "add_entry", "Errors detected creating audit entry. #{object.errors.full_messages.to_sentence}") if object.errors.any?
+    object
+  end
 
   # Filters all users that have a current_sign_in
-  #
-  # @return [hash] Hash wit
   def self.have_logged_in
     self.all.where(description: "User logged in.")
   end

@@ -20,18 +20,6 @@ describe AuditTrail do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", "iso_managed_data_3.ttl"]
     load_files(schema_files, data_files)
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_managed_data.ttl")
-    # load_test_file_into_triple_store("iso_managed_data_2.ttl")
-    # load_test_file_into_triple_store("iso_managed_data_3.ttl")
-    # clear_iso_concept_object
     load_cdisc_term_versions(1..2)
     AuditTrail.delete_all
   end
@@ -360,6 +348,16 @@ describe AuditTrail do
       expect(results[index + 1]["details"]).to eq(item.description)
     end
 
+  end
+
+  it "logs if error writing audit record" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    response = AuditTrail.new
+    response.errors.add(:base, "Failure!")
+    expect(AuditTrail).to receive(:create).and_return(response)
+    expect(ConsoleLogger).to receive(:log).with("AuditTrail", "add_entry", "Errors detected creating audit entry. Failure!")
+    AuditTrail.user_event(user, "User logged in.")
   end
 
 end
