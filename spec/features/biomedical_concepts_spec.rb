@@ -76,7 +76,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       ui_check_table_cell("show", 1, 5, "Height")
       ui_check_table_cell("show", 1, 6, "PQR")
       ui_check_table_cell("show", 1, 7, "5.2")
-      ui_check_table_cell("show", 3, 8, "HEIGHT (Code List: C66741 v61.0.0)")
+      ui_check_table_cell("show", 3, 8, "HEIGHT C25347 (VSTESTCD C66741 v61.0.0)")
     end
 
     it "show page has terminology reference links", js:true do
@@ -87,13 +87,13 @@ describe "Biomedical Concept Instances", :type => :feature do
       expect(page).to have_content 'Version History of \'HR\''
       context_menu_element_v2('history', 'HR', :show)
       wait_for_ajax 10
-      click_on "ARM (Code List: C74456 v62.0.0)"
+      click_on "ARM C32141 (LOC C74456 v62.0.0)"
       wait_for_ajax 10
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_content 'C32141'
       expect(page).to have_content 'The portion of the upper extremity between the shoulder and the elbow.'
       page.go_back
-      click_on "HR (Code List: C66741 v61.0.0)"
+      click_on "HR C49677 (VSTESTCD C66741 v61.0.0)"
       wait_for_ajax 10
       expect(page).to have_content 'C49677'
       expect(page).to have_content 'The number of heartbeats per unit of time, usually expressed as beats per minute.'
