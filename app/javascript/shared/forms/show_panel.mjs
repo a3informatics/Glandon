@@ -2,7 +2,7 @@ import TablePanel from 'shared/base/table_panel';
 
 import { dtFormShowColumns } from 'shared/helpers/dt_column_collections'
 import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt'
-import { rdfTypeMatch } from 'shared/helpers/rdf_types'
+import { rdfTypesMatch } from 'shared/helpers/rdf_types'
 
 /**
  * Form Show Panel
@@ -48,7 +48,7 @@ export default class ShowPanel extends TablePanel {
     const options = super._tableOpts;
 
     options.createdRow = (r, data, idx) => {
-      if (rdfTypeMatch("NORMAL_GROUP", data.rdf_type))
+      if (rdfTypesMatch("NORMAL_GROUP", data.rdf_type))
         $(r).addClass("row-subtitle");
     }
 

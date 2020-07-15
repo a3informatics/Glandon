@@ -78,11 +78,11 @@ function getRdfType(name) {
  * @param {string} value RDF Type value to compare
  * @return {boolean} match result
  */
-function rdfTypeMatch(name, value) {
+function rdfTypesMatch(name, value) {
   return rdfTypesMap[name] === value;
 }
 
 export {
   getRdfType,
-  rdfTypeMatch
+  rdfTypesMatch
  }
