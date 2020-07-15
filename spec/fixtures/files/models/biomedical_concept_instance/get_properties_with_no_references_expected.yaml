@@ -9,6 +9,26 @@
   :has_complex_datatype:
     :label: PQR
     :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :tagged: []
+      :question_text: Result
+      :prompt_text: Height
+      :format: '5.2'
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
       :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZQ==
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
@@ -63,26 +83,6 @@
         :context: http://www.cdisc.org/C66770/V59#C66770
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
-  :label: Result
-  :mandatory: true
-  :collect: true
-  :enabled: true
-  :ordinal: 10
-  :has_complex_datatype:
-    :label: PQR
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: value
-      :tagged: []
-      :question_text: Result
-      :prompt_text: Height
-      :format: '5.2'
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
   :label: Test
