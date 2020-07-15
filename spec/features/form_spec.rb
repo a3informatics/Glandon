@@ -8,6 +8,10 @@ describe "Forms", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
 
+  def sub_dir
+    return "features/forms"
+  end
+
   describe "Forms", :type => :feature do
 
     before :all do
@@ -35,28 +39,90 @@ describe "Forms", :type => :feature do
 
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_forms
+      wait_for_ajax 10
       find(:xpath, "//a[@href='/forms']").click
       expect(page).to have_content 'Index: Forms'
+      ui_check_table_info("index", 1, 2, 2)
+      ui_check_table_cell("index", 2, 2, "Disability Assessment For Dementia (DAD) (Pilot)")
+      ui_check_table_cell("index", 2, 3, "Disability Assessment For Dementia (DAD) (Pilot)")
     end
 
     it "allows the history page to be viewed", js:true do
       click_navbar_forms
+      wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
-      wait_for_ajax(10)
+      wait_for_ajax 10
       expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      ui_check_table_cell("history", 1, 1, "0.1.0")
+      ui_check_table_cell("history", 1, 5, "Height (Pilot)")
+      ui_check_table_cell("history", 1, 7, "Incomplete")
     end
 
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_forms
+      wait_for_ajax 10
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
-      wait_for_ajax(10)
+      wait_for_ajax 10
       expect(page).to have_content 'Version History of \'Height (Pilot)\''
       context_menu_element('history', 4, 'Height (Pilot)', :show)
-      wait_for_ajax(10)
+      wait_for_ajax 10
+      expect(page).to have_content 'Show: Form'
+      # TODO: Fix the data below once correctly implemented
+      # ui_check_table_info("show", 1, 5, 5)
+      # ui_check_table_cell("show", 3, 3, "Unit")
+      # ui_check_table_cell("show", 3, 5, "string")
+      # ui_check_table_cell("show", 3, 6, "20")
+      # ui_check_table_cell("show", 3, 7, "VSORRESU")
+      # ui_check_table_cell("show", 5, 4, "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.")
+    end
+
+    it "show page has terminology reference links", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      context_menu_element('history', 4, 'Height (Pilot)', :show)
+      wait_for_ajax 10
+      click_on "NOT DONE (Code List: C66789 v13.0.0)"
+      wait_for_ajax 10
+      expect(page).to have_content 'Shared Preferred Terms'
+      expect(page).to have_content 'C49484'
+      expect(page).to have_content 'Indicates a task, process or examination that has either not been initiated or completed.'
+    end
+
+    it "allows to download show Form table as a csv file", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'(DAD) (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'Disability Assessment For Dementia (DAD) (Pilot)\''
+      context_menu_element_v2('history', '(DAD) (Pilot)', :show)
+      wait_for_ajax 30
+      expect(page).to have_content 'Show: Form'
+      ui_check_table_info("show", 1, 10, 225)
+      click_on 'CSV'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_csv_expected.csv")
+    end
+
+    it "allows to download show Form table as an excel file", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      context_menu_element_v2('history', 'Height (Pilot)', :show)
+      wait_for_ajax 30
       expect(page).to have_content 'Show: Form'
       ui_check_table_info("show", 1, 5, 5)
+      click_on 'Excel'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_excel_expected.xlsx")
     end
 
     # it "allows access to index page (REQ-MDR-MIT-015)", js:true do
