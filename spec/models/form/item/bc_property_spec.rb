@@ -11,82 +11,62 @@ describe Form::Item::BcProperty do
   end
 
   before :all do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
-      "form_example_vs_baseline_new.ttl"
-    ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions((1..59))
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("business_operational.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_schema_file_into_triple_store("ISO25964.ttl")
-    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    # load_test_file_into_triple_store("BC.ttl")
-    # load_test_file_into_triple_store("CT_V42.ttl")
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
   end
 
   it "validates a valid object" do
     result = Form::Item::BcProperty.new
+    result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     result.ordinal = 1
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object, ordinal" do
     item = Form::Item::BcProperty.new
+    item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+    item.ordinal = 0
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(item.errors.count).to eq(1)
     expect(result).to eq(false)
   end
 
-  it "allows object to be initialized from triples" do
-    result = 
-      {
-        :id => "F-ACME_TEST_G1_I1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
-        :completion => "",
-        :extension_properties => [],
-        :label => "Date and Time (--DTC)",
-        :note => "xxxxx",
-        :optional => false,
-        :ordinal => 1,
-        :type => "http://www.assero.co.uk/BusinessForm#BcProperty",
-        :is_common => true,
-        :children => [],
-        :property_ref => "null",
-      }
-    triples = {}
-    triples ["F-ACME_TEST_G1_I1"] = []
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#BcProperty" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Date and Time (--DTC)" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#is_common", object: "true" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasProperty", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_I1_PR0>" }
-    triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasThesaurusConcept", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_I1_TCR0>" }
-    expect(Form::Item::BcProperty.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
-  end
+  # it "allows object to be initialized from triples" do
+  #   result = 
+  #     {
+  #       :id => "F-ACME_TEST_G1_I1", 
+  #       :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+  #       :completion => "",
+  #       :extension_properties => [],
+  #       :label => "Date and Time (--DTC)",
+  #       :note => "xxxxx",
+  #       :optional => false,
+  #       :ordinal => 1,
+  #       :type => "http://www.assero.co.uk/BusinessForm#BcProperty",
+  #       :is_common => true,
+  #       :children => [],
+  #       :property_ref => "null",
+  #     }
+  #   triples = {}
+  #   triples ["F-ACME_TEST_G1_I1"] = []
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/BusinessForm#BcProperty" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.w3.org/2000/01/rdf-schema#label", object: "Date and Time (--DTC)" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#note", object: "xxxxx" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#optional", object: "false" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#is_common", object: "true" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#ordinal", object: "1" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasProperty", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_I1_PR0>" }
+  #   triples ["F-ACME_TEST_G1_I1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST_G1_I1", predicate: "http://www.assero.co.uk/BusinessForm#hasThesaurusConcept", object: "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_I1_TCR0>" }
+  #   expect(Form::Item::BcProperty.new(triples, "F-ACME_TEST_G1_I1").to_json).to eq(result)    
+  # end
 
-  it "allows the item to be found" do
-    item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
-    expect(item.to_json).to eq(expected)
-  end
+  # it "allows the item to be found" do
+  #   item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")
+  # #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
+  #   expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
+  #   expect(item.to_json).to eq(expected)
+  # end
 
   # it "allows the BC Property to be found" do
   #   item = Form::Item::BcProperty.find("F-ACME_VSBASELINE1_G1_G2_I1","http://www.assero.co.uk/MDRForms/ACME/V1")

@@ -40,6 +40,7 @@ describe Form::Item::Placeholder do
     item = Form::Item::Placeholder.new
     item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     item.free_text = "Draft 123"
+    item.ordinal = 0
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
     expect(item.errors.count).to eq(1)
