@@ -9,7 +9,7 @@ class AuditTrail < ApplicationRecord
   # @param [Integer] count the count of records desired. Defaults to 2000.
   # @return [Array] array of the last N records
   def self.latest(count=100)
-    AuditTrail.last(count)
+    AuditTrail.order({date_time: :desc}).first(count)
   end
 
   # Event To String. Human readbale label for the event

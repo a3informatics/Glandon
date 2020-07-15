@@ -7,10 +7,12 @@ class Timestamp
   # @param value [String!Time] Time string or object
   # @return [null]
   def initialize(value=nil)
-    if "#{value}".empty?
-      @time = Time.now
-    else
+    if value.is_a?(String)
       @time = "#{value}".to_time(:utc)
+    elsif value.is_a?(Time) 
+      @time = value
+    else
+      @time = Time.now
     end
   end
 
@@ -27,6 +29,13 @@ class Timestamp
   # @return [string] Time formatted as YYYY-MMM-DD, HH:MM
   def to_datetime
     return @time.strftime("%Y-%b-%d, %H:%M").to_s
+  end
+
+  # To Audit Datetime
+  #
+  # @return [string] Time formatted as YYYY-MM-DD, HH:MM:SS.DDD
+  def to_audit_datetime
+    @time.strftime("%F, %H:%M:%S.%L").to_s
   end
 
   # To Date

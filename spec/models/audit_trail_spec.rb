@@ -6,7 +6,7 @@ describe AuditTrail do
   include AuditTrailHelpers
 
 	def sub_dir
-    return "models"
+    return "models/audit_trail"
   end
 
 	def get_this_week_date(weekday)
@@ -361,17 +361,25 @@ describe AuditTrail do
     AuditTrail.user_event(user, "User logged in.")
   end
 
-  it "gets latest records" do
+  it "get latest records I" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create_event(user, "Any old text")
+    check_audit_trail(AuditTrail.latest(1), 1, sub_dir, "latest_expected_single_1.txt")
+  end
+
+  it "get latest records II" do
     user = User.new
     user.email = "UserName1@example.com"
     3000.times do |index|
       AuditTrail.create_event(user, "Any old text#{index}")
     end
-    check_audit_trail(1, sub_dir, "latest_expected_1.yaml")
-    check_audit_trail(10, sub_dir, "latest_expected_2.yaml")
-    check_audit_trail(100, sub_dir, "latest_expected_3.yaml")
-    check_audit_trail(1000, sub_dir, "latest_expected_4.yaml")
-    check_audit_trail(4000, sub_dir, "latest_expected_5.yaml")
+    check_audit_trail(AuditTrail.latest(1), 1, sub_dir, "latest_expected_1.txt")
+    check_audit_trail(AuditTrail.latest(10), 10, sub_dir, "latest_expected_2.txt")
+    check_audit_trail(AuditTrail.latest(100), 100, sub_dir, "latest_expected_3.txt")
+    check_audit_trail(AuditTrail.latest, 100, sub_dir, "latest_expected_3.txt")
+    check_audit_trail(AuditTrail.latest(1000), 1000, sub_dir, "latest_expected_4.txt")
+    check_audit_trail(AuditTrail.latest(4000), 4000, sub_dir, "latest_expected_5.txt")
   end
 
 end

@@ -1,15 +1,16 @@
 module AuditTrailHelpers
   
-  def check_audit_trail(count, sub_dir, filename, write_file=false)
-    items = AuditTrail.order(id: :desc).take(count)
+  def check_audit_trail(results, count, sub_dir, filename, write_file=false)
     if write_file
+      items = AuditTrail.order(date_time: :desc).first(count)
       puts colourize("***** WARNING: Writing Results File *****", "red")
       write_csv_file(items, sub_dir, filename)
     end
     keys = ["id", "date_time", "user", "owner", "identifier", "version", "event", "details", "created", "updated"]
     expected = CSV.read(test_file_path(sub_dir, filename)).map {|a| Hash[ keys.zip(a) ]}
-    expect(items.count).to eq(expected.count-1) # Header row in CSV file
-    items.each_with_index do |item, index|
+    expect(results.count).to eq(expected.count-1) # Header row in CSV file
+byebug
+    results.each_with_index do |item, index|
       expect(item.user).to eq(expected[index + 1]["user"])
       expect(item.owner).to eq(expected[index + 1]["owner"])
       expect(item.identifier).to eq(expected[index + 1]["identifier"])
