@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-09T11:58:57+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-15T14:52:22+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -52,8 +52,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Group"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
 	bf:hasSubGroup :F_NG1_NG5 ;
@@ -69,8 +69,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Systolic Blood Pressure"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG5_BP3 ;
 	bf:hasItem :F_NG1_NG5_BP2 ;
@@ -82,7 +82,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG5_BP3_R1 ;
 	bf:hasCodedValue :F_NG1_NG5_BP3_TUC1 ;
@@ -110,7 +110,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG5_BP2_R1 ;
 .
@@ -127,7 +127,7 @@
 	isoC:label "Body Position (--POS)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG5_BP1_R1 ;
 	bf:hasCodedValue :F_NG1_NG5_BP1_TUC1 ;
@@ -176,8 +176,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Height"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG1_BP2 ;
 	bf:hasItem :F_NG1_NG1_BP1 ;
@@ -188,7 +188,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG1_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG1_BP2_TUC1 ;
@@ -238,7 +238,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG1_BP1_R1 ;
 .
@@ -254,8 +254,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Hip circumference"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG8_BP1 ;
 	bf:hasItem :F_NG1_NG8_BP2 ;
@@ -266,7 +266,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG8_BP1_R1 ;
 .
@@ -283,7 +283,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG8_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG8_BP2_TUC1 ;
@@ -332,8 +332,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Weight"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG2_BP2 ;
 	bf:hasItem :F_NG1_NG2_BP1 ;
@@ -344,7 +344,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG2_BP2_TUC1 ;
@@ -383,7 +383,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP1_R1 ;
 .
@@ -399,8 +399,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "BMI"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG3_BP2 ;
 	bf:hasItem :F_NG1_NG3_BP1 ;
@@ -411,7 +411,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
@@ -439,7 +439,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP1_R1 ;
 .
@@ -455,8 +455,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Diastolic Blood Pressure"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG6_BP2 ;
 	bf:hasItem :F_NG1_NG6_BP1 ;
@@ -467,7 +467,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG6_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG6_BP2_TUC1 ;
@@ -495,7 +495,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG6_BP1_R1 ;
 .
@@ -511,8 +511,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Waist circumference"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG7_BP2 ;
 	bf:hasItem :F_NG1_NG7_BP1 ;
@@ -523,7 +523,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG7_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG7_BP2_TUC1 ;
@@ -573,7 +573,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG7_BP1_R1 ;
 .
@@ -589,8 +589,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "Heart Rate"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_NG4_BP1 ;
 	bf:hasItem :F_NG1_NG4_BP2 ;
@@ -601,7 +601,7 @@
 	isoC:label "Result Value (--ORRES)"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG4_BP1_R1 ;
 .
@@ -618,7 +618,7 @@
 	isoC:label "Result Units (--ORRESU)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG4_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG4_BP2_TUC1 ;

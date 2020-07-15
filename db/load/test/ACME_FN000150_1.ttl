@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-08T11:29:05+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-15T14:51:22+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -50,10 +50,10 @@
 .
 :F_NG1
 	rdf:type bf:NormalGroup ;
-	isoC:label " "^^xsd:string ;
+	isoC:label "Not Set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_Q1 ;
 	bf:hasItem :F_NG1_Q4 ;
@@ -66,7 +66,7 @@
 	isoC:label "Completion status"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "true"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
@@ -89,7 +89,7 @@
 	isoC:label "Unit"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -123,7 +123,7 @@
 	isoC:label "Height"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
 	bf:format "5.1"^^xsd:string ;
@@ -135,7 +135,7 @@
 	isoC:label "Placeholder 2"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:freeText "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter."^^xsd:string ;
 .

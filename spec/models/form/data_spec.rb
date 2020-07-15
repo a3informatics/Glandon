@@ -198,7 +198,7 @@ describe Form do
 
     def add_form(params)
         {
-          label: params[:l].empty? ? "Not Set" : params[:l],
+          label: params[:l].blank? ? "Not Set" : params[:l],
           identifier: params[:i],
           has_group: []
         }
@@ -206,12 +206,12 @@ describe Form do
 
     def add_group(form, params)
         form[:has_group] << {
-            label: params[:l].empty? ? "" : params[:l],
+            label: params[:l].blank? ? "Not Set" : params[:l],
             ordinal: params[:ordinal],
-            note: params[:n].empty? ? "" : params[:n],
-            completion: params[:c].empty? ? "" : params[:c],
-            optional: params[:o].empty? ? "" : params[:o],
-            repeating: params[:r].empty? ? "" : params[:r],
+            note: params[:n].blank? ? "Not Set" : params[:n],
+            completion: params[:c].blank? ? "Not Set" : params[:c],
+            optional: params[:o].blank? ? "Not Set" : params[:o],
+            repeating: params[:r].blank? ? "Not Set" : params[:r],
             has_item: [],
             has_sub_group: [],
             has_biomedical_concept: []
@@ -220,12 +220,12 @@ describe Form do
 
     def add_sub_group(group, params)
         group[:has_sub_group] << {
-          label: params[:l].empty? ? "" : params[:l],
-          completion: params[:c].empty? ? "" : params[:c],
-          optional: params[:o].empty? ? "" : params[:o],
-          repeating: params[:r].empty? ? "" : params[:r],
+          label: params[:l].blank? ? "Not Set" : params[:l],
+          completion: params[:c].blank? ? "Not Set" : params[:c],
+          optional: params[:o].blank? ? "Not Set" : params[:o],
+          repeating: params[:r].blank? ? "Not Set" : params[:r],
           ordinal: params[:ordinal],
-          note: params[:n].empty? ? "" : params[:n],
+          note: params[:n].blank? ? "Not Set" : params[:n],
           has_item: []
         }
     end
@@ -238,8 +238,8 @@ describe Form do
         case params[:type].to_sym
               when :Question
                          item = {
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
+                          label: params[:l].blank? ? "Not Set" : params[:l],
+                          completion: params[:c].blank? ? "Not Set" : params[:c],
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
@@ -252,8 +252,8 @@ describe Form do
                           group[:has_item] << Form::Item::Question.from_h(item)
               when :Mapping
                        item = {
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
+                          label: params[:l].blank? ? "Not Set" : params[:l],
+                          completion: params[:c].blank? ? "Not Set" : params[:c],
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
@@ -262,8 +262,8 @@ describe Form do
                         group[:has_item] << Form::Item::Mapping.from_h(item)
               when :Placeholder
                       item =  {
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
+                          label: params[:l].blank? ? "Not Set" : params[:l],
+                          completion: params[:c].blank? ? "Not Set" : params[:c],
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
@@ -272,8 +272,8 @@ describe Form do
                       group[:has_item] << Form::Item::Placeholder.from_h(item)
               when :BcProperty
                       item =  {
-                          label: params[:l].empty? ? "" : params[:l],
-                          completion: params[:c].empty? ? "" : params[:c],
+                          label: params[:l].blank? ? "Not Set" : params[:l],
+                          completion: params[:c].blank? ? "Not Set" : params[:c],
                           note: params[:n],
                           optional: params[:o],
                           ordinal: params[:ordinal],
@@ -335,7 +335,6 @@ describe Form do
         form.to_sparql(sparql, true)
       end
       full_path = sparql.to_file
-    #byebug
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTADIABETES_1.ttl")
     end
 
