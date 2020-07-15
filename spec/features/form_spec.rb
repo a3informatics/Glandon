@@ -69,13 +69,12 @@ describe "Forms", :type => :feature do
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Form'
-      # TODO: Fix the data below once correctly implemented
-      # ui_check_table_info("show", 1, 5, 5)
-      # ui_check_table_cell("show", 3, 3, "Unit")
-      # ui_check_table_cell("show", 3, 5, "string")
-      # ui_check_table_cell("show", 3, 6, "20")
-      # ui_check_table_cell("show", 3, 7, "VSORRESU")
-      # ui_check_table_cell("show", 5, 4, "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.")
+      ui_check_table_info("show", 1, 5, 5)
+      ui_check_table_cell("show", 5, 3, "Unit")
+      ui_check_table_cell("show", 5, 5, "string")
+      ui_check_table_cell("show", 5, 6, "20")
+      ui_check_table_cell("show", 5, 7, "VSORRESU")
+      ui_check_table_cell("show", 3, 4, "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.")
     end
 
     it "show page has terminology reference links", js:true do
@@ -86,7 +85,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Version History of \'Height (Pilot)\''
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax 10
-      click_on "NOT DONE (Code List: C66789 v13.0.0)"
+      click_on "NOT DONE C49484 (ND C66789 v13.0.0)"
       wait_for_ajax 10
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_content 'C49484'
