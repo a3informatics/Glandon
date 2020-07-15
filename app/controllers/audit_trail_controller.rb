@@ -7,6 +7,7 @@ class AuditTrailController < ApplicationController
   def index
     authorize AuditTrail
     @items = AuditTrail.latest(2000)
+    ConsoleLogger.log(self.class.name, "index", "#{@items.count} audit records.")
     @defaults = {:user => "", :identifier => "", :owner => "", :event => AuditTrail.event_types[:empty_action]}
     users_owners_events
   end

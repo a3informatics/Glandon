@@ -46,6 +46,12 @@ describe AuditTrailController do
       expect(response).to render_template("index")
     end
 
+    it "index, log" do
+      expect(ConsoleLogger).to receive(:log).with("AuditTrailController", "index", "15 audit records.")
+      get :index
+      expect(response).to render_template("index")
+    end
+
     it "search audit trail - event user" do
       user = User.find_by(:email => "base@example.com")
       put :search, params:{id: user.id, :audit_trail => {:user =>"", :owner =>"", :identifier => "", :event =>"4"}}
