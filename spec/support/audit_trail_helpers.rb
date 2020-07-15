@@ -9,7 +9,6 @@ module AuditTrailHelpers
     keys = ["id", "date_time", "user", "owner", "identifier", "version", "event", "details", "created", "updated"]
     expected = CSV.read(test_file_path(sub_dir, filename)).map {|a| Hash[ keys.zip(a) ]}
     expect(results.count).to eq(expected.count-1) # Header row in CSV file
-byebug
     results.each_with_index do |item, index|
       expect(item.user).to eq(expected[index + 1]["user"])
       expect(item.owner).to eq(expected[index + 1]["owner"])
