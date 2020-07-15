@@ -75,6 +75,9 @@ describe "Forms", :type => :feature do
       ui_check_table_cell("show", 5, 6, "20")
       ui_check_table_cell("show", 5, 7, "VSORRESU")
       ui_check_table_cell("show", 3, 4, "Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.")
+
+      # Check correct group styling
+      expect(find("table#show tbody tr", match: :first)[:class]).to include("row-subtitle")
     end
 
     it "show page has terminology reference links", js:true do
