@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-08T11:30:47+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-15T14:50:31+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -63,8 +63,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "LEISURE AND HOUSEWORK"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -79,7 +79,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='LEISURE AND HOUSEWORK\""^^xsd:string ;
 .
@@ -87,8 +87,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "37.Take an interest in household chores that he/she used to perform in the past"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_NG3_MA1 ;
 	bf:hasItem :F_NG12_NG3_Q2 ;
@@ -101,7 +101,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM37\""^^xsd:string ;
 .
@@ -110,7 +110,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -155,7 +155,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -200,7 +200,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -244,8 +244,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "38. Plan and organize adequately household chores that he/she used to perform in the past"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_NG4_Q2 ;
 	bf:hasItem :F_NG12_NG4_Q3 ;
@@ -258,7 +258,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -303,7 +303,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -348,7 +348,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM38\""^^xsd:string ;
 .
@@ -357,7 +357,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -401,8 +401,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "40. Stay safely at home by himself/herself when needed"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_NG6_Q4 ;
 	bf:hasItem :F_NG12_NG6_MA1 ;
@@ -415,7 +415,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -449,7 +449,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM40\""^^xsd:string ;
 .
@@ -458,7 +458,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -503,7 +503,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -547,8 +547,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "39. Complete household chores adequately as he/she used to perform in the past"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_NG5_Q3 ;
 	bf:hasItem :F_NG12_NG5_Q4 ;
@@ -561,7 +561,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -606,7 +606,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -651,7 +651,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM39\""^^xsd:string ;
 .
@@ -660,7 +660,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -704,8 +704,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "36. Show an interest in leisure activity(ies)"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG12_NG2_Q2 ;
 	bf:hasItem :F_NG12_NG2_Q3 ;
@@ -718,7 +718,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -763,7 +763,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -808,7 +808,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -853,16 +853,16 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM36\""^^xsd:string ;
 .
 :F_NG2
 	rdf:type bf:NormalGroup ;
-	isoC:label " "^^xsd:string ;
+	isoC:label "Not Set"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG2_Q1 ;
 	bf:hasItem :F_NG2_Q2 ;
@@ -873,7 +873,7 @@
 	isoC:label "INFORMATION NOT OBTAINED "^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "boolean"^^xsd:string ;
 	bf:format ""^^xsd:string ;
@@ -896,8 +896,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "TELEPHONING"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG8_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -911,7 +911,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='TELEPHONING\""^^xsd:string ;
 .
@@ -919,8 +919,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "21. Attempt to telephone someone at a suitable time"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG8_NG2_MA1 ;
 	bf:hasItem :F_NG8_NG2_Q2 ;
@@ -933,7 +933,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM21\""^^xsd:string ;
 .
@@ -942,7 +942,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -987,7 +987,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1032,7 +1032,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1076,8 +1076,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "23. Carry out an appropriate telephone conversation"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG8_NG4_Q3 ;
 	bf:hasItem :F_NG8_NG4_Q4 ;
@@ -1090,7 +1090,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1135,7 +1135,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1180,7 +1180,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM23\""^^xsd:string ;
 .
@@ -1189,7 +1189,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1233,8 +1233,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "22. Find and dial a telephone number correctly"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG8_NG3_Q2 ;
 	bf:hasItem :F_NG8_NG3_Q3 ;
@@ -1247,7 +1247,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1292,7 +1292,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1337,7 +1337,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM22\""^^xsd:string ;
 .
@@ -1346,7 +1346,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1390,8 +1390,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "24. Write and convey a telephone message adequately"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG8_NG5_Q4 ;
 	bf:hasItem :F_NG8_NG5_MA1 ;
@@ -1404,7 +1404,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1449,7 +1449,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM24\""^^xsd:string ;
 .
@@ -1458,7 +1458,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1503,7 +1503,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1547,8 +1547,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "HYGIENE"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -1565,7 +1565,7 @@
 	isoC:label "Mapping 2"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='HYGIENE\""^^xsd:string ;
 .
@@ -1573,8 +1573,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "6. Brush his/her teeth or care for his/her dentures appropriately"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG7_Q4 ;
 	bf:hasItem :F_NG3_NG7_MA1 ;
@@ -1587,7 +1587,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1632,7 +1632,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM06\""^^xsd:string ;
 .
@@ -1641,7 +1641,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1686,7 +1686,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1730,8 +1730,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "1. Undertake to wash himself/herself or to take a bath or a shower"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG2_Q2 ;
 	bf:hasItem :F_NG3_NG2_MA1 ;
@@ -1744,7 +1744,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1789,7 +1789,7 @@
 	isoC:label "Mapping 2"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM01\""^^xsd:string ;
 .
@@ -1798,7 +1798,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1843,7 +1843,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1887,8 +1887,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "7. Care for his/her hair (wash and comb)"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG8_Q4 ;
 	bf:hasItem :F_NG3_NG8_MA1 ;
@@ -1901,7 +1901,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -1946,7 +1946,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM07\""^^xsd:string ;
 .
@@ -1955,7 +1955,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2000,7 +2000,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2044,8 +2044,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "3. Decide to care for his/her hair (wash and comb)"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG4_MA1 ;
 	bf:hasItem :F_NG3_NG4_Q2 ;
@@ -2058,7 +2058,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM03\""^^xsd:string ;
 .
@@ -2067,7 +2067,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2112,7 +2112,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2157,7 +2157,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2201,8 +2201,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "2. Undertake to brush his/her teeth or care for his/her dentures"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG3_MA1 ;
 	bf:hasItem :F_NG3_NG3_Q4 ;
@@ -2215,7 +2215,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM02\""^^xsd:string ;
 .
@@ -2224,7 +2224,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2269,7 +2269,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2314,7 +2314,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2358,8 +2358,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "5.Wash and dry completely all parts of his/her body safely"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG6_Q3 ;
 	bf:hasItem :F_NG3_NG6_Q4 ;
@@ -2372,7 +2372,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2417,7 +2417,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2462,7 +2462,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM05\""^^xsd:string ;
 .
@@ -2471,7 +2471,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2515,8 +2515,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "4. Prepare the water, towels, and soap for washing, taking a bath, or a shower"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_NG5_Q2 ;
 	bf:hasItem :F_NG3_NG5_Q3 ;
@@ -2529,7 +2529,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2574,7 +2574,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2619,7 +2619,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2664,7 +2664,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM04\""^^xsd:string ;
 .
@@ -2672,8 +2672,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "GOING ON AN OUTING"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -2688,7 +2688,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='GOING ON AN OUTING\""^^xsd:string ;
 .
@@ -2696,8 +2696,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "29. Return from the store with the appropriate items"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_NG6_Q4 ;
 	bf:hasItem :F_NG9_NG6_MA1 ;
@@ -2710,7 +2710,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2755,7 +2755,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM29\""^^xsd:string ;
 .
@@ -2764,7 +2764,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2809,7 +2809,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2853,8 +2853,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "25. Undertake to go out (walk, visit, shop) at an appropriate time"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_NG2_Q2 ;
 	bf:hasItem :F_NG9_NG2_Q3 ;
@@ -2867,7 +2867,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2912,7 +2912,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -2957,7 +2957,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM25\""^^xsd:string ;
 .
@@ -2966,7 +2966,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3010,8 +3010,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "27. Go out and reach a familiar destination without getting lost"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_NG4_Q4 ;
 	bf:hasItem :F_NG9_NG4_MA1 ;
@@ -3024,7 +3024,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3069,7 +3069,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM27\""^^xsd:string ;
 .
@@ -3078,7 +3078,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3123,7 +3123,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3167,8 +3167,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "26. Adequately organize an outing with respect to transportation, keys, destination, weather, necessary money, shopping list"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_NG3_Q3 ;
 	bf:hasItem :F_NG9_NG3_Q4 ;
@@ -3181,7 +3181,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3226,7 +3226,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3271,7 +3271,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3316,7 +3316,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM26\""^^xsd:string ;
 .
@@ -3324,8 +3324,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "28. Safely take the adequate mode of transportation (car, bus, taxi)"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG9_NG5_MA1 ;
 	bf:hasItem :F_NG9_NG5_Q2 ;
@@ -3338,7 +3338,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM28\""^^xsd:string ;
 .
@@ -3347,7 +3347,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3392,7 +3392,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3437,7 +3437,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3481,8 +3481,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "DRESSING"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -3497,7 +3497,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='DRESSING\""^^xsd:string ;
 .
@@ -3505,8 +3505,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "9. Choose appropriate clothing (with regard to the occasion, neatness, the weather, and color combination)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_NG3_Q2 ;
 	bf:hasItem :F_NG4_NG3_Q3 ;
@@ -3519,7 +3519,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3564,7 +3564,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3609,7 +3609,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM09\""^^xsd:string ;
 .
@@ -3618,7 +3618,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3662,8 +3662,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "10. Dress himself/herself in the appropriate order (undergarments, pant/dress, shoes)"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_NG4_Q3 ;
 	bf:hasItem :F_NG4_NG4_Q4 ;
@@ -3676,7 +3676,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3721,7 +3721,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3766,7 +3766,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM10\""^^xsd:string ;
 .
@@ -3775,7 +3775,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3819,8 +3819,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "12. Undress himself/herself completely"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_NG6_MA1 ;
 	bf:hasItem :F_NG4_NG6_Q2 ;
@@ -3833,7 +3833,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM12\""^^xsd:string ;
 .
@@ -3842,7 +3842,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3887,7 +3887,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3932,7 +3932,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -3976,8 +3976,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "11. Dress himself/herself completely"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_NG5_Q4 ;
 	bf:hasItem :F_NG4_NG5_Q2 ;
@@ -3990,7 +3990,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4035,7 +4035,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4080,7 +4080,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4125,7 +4125,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM11\""^^xsd:string ;
 .
@@ -4133,8 +4133,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "8.Undertake to dress himself/herself"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG4_NG2_MA1 ;
 	bf:hasItem :F_NG4_NG2_Q2 ;
@@ -4147,7 +4147,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM08\""^^xsd:string ;
 .
@@ -4156,7 +4156,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4201,7 +4201,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4246,7 +4246,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4288,10 +4288,10 @@
 .
 :F_NG1
 	rdf:type bf:NormalGroup ;
-	isoC:label " "^^xsd:string ;
+	isoC:label "Not Set"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG1_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -4301,7 +4301,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSCAT=\"DISABILITY ASSESSMENT FOR DEMENTIA (DAD)\""^^xsd:string ;
 .
@@ -4309,8 +4309,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "CONTINENCE"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG5_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -4322,7 +4322,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='CONTINENCE\""^^xsd:string ;
 .
@@ -4330,8 +4330,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "14. Use the toilet without \"accidents\""^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG5_NG3_Q3 ;
 	bf:hasItem :F_NG5_NG3_Q4 ;
@@ -4344,7 +4344,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4389,7 +4389,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4434,7 +4434,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM14\""^^xsd:string ;
 .
@@ -4443,7 +4443,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4487,8 +4487,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "13. Decide to use the toilet at appropriate times"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG5_NG2_Q2 ;
 	bf:hasItem :F_NG5_NG2_Q3 ;
@@ -4501,7 +4501,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4546,7 +4546,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4591,7 +4591,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4636,7 +4636,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM13\""^^xsd:string ;
 .
@@ -4644,8 +4644,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "MEDICATIONS"^^xsd:string ;
 	bf:ordinal "11"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG11_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -4657,7 +4657,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='MEDICATIONS\""^^xsd:string ;
 .
@@ -4665,8 +4665,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "34. Decide to take his/her medications at the correct time"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG11_NG2_Q4 ;
 	bf:hasItem :F_NG11_NG2_Q2 ;
@@ -4679,7 +4679,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4724,7 +4724,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4769,7 +4769,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM34\""^^xsd:string ;
 .
@@ -4778,7 +4778,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4822,8 +4822,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "35. Take his/her medications as prescribed (according to the right dosage)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG11_NG3_Q3 ;
 	bf:hasItem :F_NG11_NG3_Q2 ;
@@ -4836,7 +4836,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4881,7 +4881,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4926,7 +4926,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM35\""^^xsd:string ;
 .
@@ -4935,7 +4935,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -4979,8 +4979,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "MEAL PREPARATION"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG7_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -4993,7 +4993,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='MEAL PREPARATION\""^^xsd:string ;
 .
@@ -5001,8 +5001,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "18. Undertake to prepare a light meal or snack for himself/herself"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG7_NG2_MA1 ;
 	bf:hasItem :F_NG7_NG2_Q2 ;
@@ -5015,7 +5015,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM18\""^^xsd:string ;
 .
@@ -5024,7 +5024,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5069,7 +5069,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5114,7 +5114,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5158,8 +5158,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "19. Adequately plan a light meal or snack (ingredients, cookware)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG7_NG3_MA1 ;
 	bf:hasItem :F_NG7_NG3_Q2 ;
@@ -5172,7 +5172,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM19\""^^xsd:string ;
 .
@@ -5181,7 +5181,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5226,7 +5226,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5271,7 +5271,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5315,8 +5315,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "20. Prepare or cook a light meal or a snack safely"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG7_NG4_Q2 ;
 	bf:hasItem :F_NG7_NG4_Q3 ;
@@ -5329,7 +5329,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5374,7 +5374,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5419,7 +5419,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5464,7 +5464,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM20\""^^xsd:string ;
 .
@@ -5472,8 +5472,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "FINANCE AND CORRESPONDENCE"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG10_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -5487,7 +5487,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='FINANCE AND CORRESPONDENCE\""^^xsd:string ;
 .
@@ -5495,8 +5495,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "30. Show an interest in his/her personal affairs such as his/her finances and written correspondence"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG10_NG2_Q2 ;
 	bf:hasItem :F_NG10_NG2_Q3 ;
@@ -5509,7 +5509,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5554,7 +5554,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5599,7 +5599,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM30\""^^xsd:string ;
 .
@@ -5608,7 +5608,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5652,8 +5652,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "31. Organize his/her finances to pay his/her bills (cheques, bankbook, bills)"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG10_NG3_Q3 ;
 	bf:hasItem :F_NG10_NG3_Q4 ;
@@ -5666,7 +5666,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5711,7 +5711,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5756,7 +5756,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM31\""^^xsd:string ;
 .
@@ -5765,7 +5765,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5809,8 +5809,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "32. Adequately organize his/her correspondence with respect to stationery, address, stamps"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG10_NG4_Q4 ;
 	bf:hasItem :F_NG10_NG4_MA1 ;
@@ -5823,7 +5823,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5868,7 +5868,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM32\""^^xsd:string ;
 .
@@ -5877,7 +5877,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5922,7 +5922,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -5966,8 +5966,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "33. Handle adequately his/her money (make change)"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG10_NG5_MA1 ;
 	bf:hasItem :F_NG10_NG5_Q2 ;
@@ -5980,7 +5980,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM33\""^^xsd:string ;
 .
@@ -5989,7 +5989,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6034,7 +6034,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6079,7 +6079,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6123,8 +6123,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "EATING"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG6_MA1 ;
 	bf:repeating "false"^^xsd:boolean ;
@@ -6137,7 +6137,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSSCAT='EATING\""^^xsd:string ;
 .
@@ -6145,8 +6145,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "15. Decide that he/she needs to eat"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG6_NG2_Q4 ;
 	bf:hasItem :F_NG6_NG2_MA1 ;
@@ -6159,7 +6159,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6204,7 +6204,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM15\""^^xsd:string ;
 .
@@ -6213,7 +6213,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6258,7 +6258,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6302,8 +6302,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "16. Choose appropriate utensils and seasonings when eating"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG6_NG3_MA1 ;
 	bf:hasItem :F_NG6_NG3_Q2 ;
@@ -6316,7 +6316,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM16\""^^xsd:string ;
 .
@@ -6325,7 +6325,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6370,7 +6370,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6415,7 +6415,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6459,8 +6459,8 @@
 	rdf:type bf:NormalGroup ;
 	isoC:label "17. Eat his/her meals at a normal pace and with appropriate manners"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG6_NG4_MA1 ;
 	bf:hasItem :F_NG6_NG4_Q2 ;
@@ -6473,7 +6473,7 @@
 	isoC:label "Mapping 1"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:mapping "QSTESTCD=\"DAITM17\""^^xsd:string ;
 .
@@ -6482,7 +6482,7 @@
 	isoC:label "Initiation"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6527,7 +6527,7 @@
 	isoC:label "Planning & Organization"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
@@ -6572,7 +6572,7 @@
 	isoC:label "Effective Performance"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
-	bf:completion ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
