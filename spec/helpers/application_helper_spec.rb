@@ -29,11 +29,17 @@ describe ApplicationHelper do
 
     it "build an instance title for a managed item" do
   		item = Form.new
-  		item.scopedIdentifier.version = 10
-  		item.scopedIdentifier.semantic_version = "2.3.1"
-  		item.registrationState.registrationStatus = "Standard"
+      item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+      item.has_state = IsoRegistrationStateV2.new
+      item.has_state.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#RS_A00001")
+      item.has_state.by_authority = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      item.has_state.registration_status = "Standard"
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#SI_A00001")
+      item.has_identifier.identifier = "IDENT"
+      item.has_identifier.semantic_version = "2.3.1"
+      item.has_identifier.version = 10
   		item.label = "Blah"
-  		item.scopedIdentifier.identifier = "IDENT"
 	  	expect(instance_title("Title", item)).to eq("Title Blah <span class='text-tiny'>IDENT (V2.3.1, 10, Standard)</span>")
 	  end
 
