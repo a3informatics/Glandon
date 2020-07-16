@@ -3,20 +3,10 @@ require 'rails_helper'
 describe OperationalReferenceV2 do
 
 	include DataHelpers
-    
-	before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("business_operational.ttl")
-    load_schema_file_into_triple_store("business_operational_extension.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_dm1.ttl")
-    clear_iso_concept_object
+
+  before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
+    load_files(schema_files, data_files)
   end
  
   it "validates a valid object" do
