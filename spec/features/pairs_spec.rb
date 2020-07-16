@@ -30,6 +30,7 @@ describe "Pairs", :type => :feature do
   after :all do
     ua_destroy
     nv_destroy
+    Token.restore_timeout
     set_transactional_tests true
   end
 
