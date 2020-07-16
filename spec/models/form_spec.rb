@@ -72,16 +72,6 @@ describe Form do
     check_file_actual_expected(form.get_items, sub_dir, "get_items_with_references_expected_3.yaml", equate_method: :hash_equal)
   end
 
-  # it "get the properties, without references" do
-  #   instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-  #   check_file_actual_expected(instance.get_properties, sub_dir, "get_properties_with_no_references_expected.yaml", equate_method: :hash_equal)
-  # end
-  
-  # it "allows a form to be found" do
-  #   item = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #   expect(item.identifier).to eq("T2")
-  # end
-
   # it "allows a form to be found, BC based" do
   #   result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
   #   check_file_actual_expected(result.to_json, sub_dir, "example_vs_baseline_new.yaml", equate_method: :hash_equal)
