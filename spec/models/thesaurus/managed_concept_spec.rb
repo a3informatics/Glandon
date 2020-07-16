@@ -912,7 +912,7 @@ describe "Thesaurus::ManagedConcept" do
     it "to csv data" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
       results = tc.to_csv_data
-      check_file_actual_expected(results, sub_dir, "csv_data_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "csv_data_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "to csv" do
@@ -1846,7 +1846,7 @@ describe "Thesaurus::ManagedConcept" do
     it "clone thesaurus concept II" do
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768"))
       actual = tc.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "create next thesaurus concept" do

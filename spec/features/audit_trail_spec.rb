@@ -41,6 +41,8 @@ describe "Audit Trail", :type => :feature do
 
   after :all do
     ua_destroy
+    ua_remove_user("audit_trail_user_1@example.com")
+    ua_remove_user("audit_trail_user_2@example.com")
   end
 
   describe "curator allowed access to audit", :type => :feature do
@@ -67,8 +69,8 @@ describe "Audit Trail", :type => :feature do
       click_navbar_at
       expect(page).to have_content 'Audit Trail'
       expect(page).to have_content 'Filter Audit Trail Data'
-      ui_check_table_row("main", 1, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
-      ui_check_table_row("main", 2, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
+      ui_check_table_row("main", 1, ["#{@now1.utc.strftime("%F, %H:%M:%S.%L")}", "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
+      ui_check_table_row("main", 2, ["#{@now2.utc.strftime("%F, %H:%M:%S.%L")}", "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
 
     it "allows searching - event", js:true do

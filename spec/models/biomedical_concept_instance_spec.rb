@@ -62,7 +62,7 @@ describe BiomedicalConceptInstance do
     item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
     sparql = Sparql::Update.new
     item.to_sparql(sparql, true)
-  write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
   end
 
