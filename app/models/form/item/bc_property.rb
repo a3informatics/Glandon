@@ -7,8 +7,12 @@ class Form::Item::BcProperty < Form::Item
   object_property :has_property, cardinality: :many, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
 
+  # Get Item
+  #
+  # @return [Hash] A hash of Bc Property Item with CLI and CL references.
   def get_item
-    item = self.to_h
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
+    item = self.to_h.merge!(blank_fields)
     coded_value = []
     property = []
     item[:has_coded_value].each do |cv|
@@ -17,17 +21,14 @@ class Form::Item::BcProperty < Form::Item
       tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
       coded_value << tc
     end
-    # if !item[:has_property].empty?
-    #   property = []
     #   item[:has_property].each do |prop|
     #     tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:prop)).to_h
     #     bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: tc[:reference]))
     #     property << bc.to_h
     #   end
-    #     item[:has_property] = property 
-    # end
-    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
-            format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: coded_value, has_property: property}
+    item[:has_coded_value] = coded_value
+    item[:has_property] = property
+    return item
   end
 
 

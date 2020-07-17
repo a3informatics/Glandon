@@ -8,10 +8,12 @@ class Form::Item::TextLabel < Form::Item
   
   validates_with Validator::Field, attribute: :label_text, method: :valid_markdown?
 
+  # Get Item
+  #
+  # @return [Hash] A hash of Text Label Item
   def get_item
-    item = self.to_h
-    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
-            format:"", question_text:"", mapping:"", free_text:"", label_text:item[:label_text], has_coded_value: [], has_property: []}
+    blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", has_coded_value: [], has_property: []}
+    return self.to_h.merge!(blank_fields)
   end
 
   # # To XML

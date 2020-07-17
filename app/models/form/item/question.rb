@@ -19,8 +19,12 @@ class Form::Item::Question < Form::Item
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
 
+  # Get Item
+  #
+  # @return [Hash] A hash of Question Item with CLI and CL references.
   def get_item
-    item = self.to_h
+    blank_fields = {free_text:"", label_text:"", has_property: []}
+    item = self.to_h.merge!(blank_fields)
     coded_value = []
     item[:has_coded_value].each do |cv|
       tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
@@ -28,8 +32,8 @@ class Form::Item::Question < Form::Item
       tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
       coded_value << tc
     end
-    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:item[:datatype], 
-            format:item[:format], question_text:item[:question_text], mapping:item[:mapping], free_text:"", label_text:"", has_coded_value: coded_value, has_property: []}
+    item[:has_coded_value] = coded_value
+    return item
   end
   
 #   # Thesaurus Concepts

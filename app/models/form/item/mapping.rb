@@ -8,10 +8,12 @@ class Form::Item::Mapping < Form::Item
 
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
 
+  # Get Item
+  #
+  # @return [Hash] A hash of Mapping Item
   def get_item
-    item = self.to_h
-    return {label: item[:label], ordinal: item[:ordinal], note:item[:note], completion:item[:completion], optional:item[:optional], datatype:"", 
-            format:"", question_text:"", mapping:item[:mapping], free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    blank_fields = {datatype:"", format:"", question_text:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
+    return self.to_h.merge!(blank_fields)
   end
 
   

@@ -13,6 +13,7 @@ describe Form::Item::Question do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
     load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..15)
   end
 
   it "validates a valid object" do
@@ -27,7 +28,7 @@ describe Form::Item::Question do
     expect(result).to eq(true)
   end
 
-  it "does not validate an invalid object, question label" do
+  it "does not validate an invalid object, question text" do
     result = Form::Item::Question.new
     result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     result.datatype = "S"
@@ -47,6 +48,11 @@ describe Form::Item::Question do
     result.ordinal = 1
     expect(result.valid?).to eq(false)
     expect(result.errors.full_messages.to_sentence).to eq("Format contains invalid characters")
+  end
+
+  it "get items" do
+    question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q1"))
+    check_file_actual_expected(question.get_item, sub_dir, "get_item_expected.yaml", equate_method: :hash_equal)
   end
 
   # it "allows object to be initialized from triples" do
