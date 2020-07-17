@@ -14,12 +14,17 @@ The nodes within the model are implemented:
 
 | **Node** | **Description** |
 | --- | --- |
-| **BiomedicalConcept** | Core BC classs |
-| **BiomedicalConceptInstance** | A BC instance |
-| **BiomedicalConceptTemplate** | A BC Template |
-| **Item** | An item within a BC, a logical until of information |
-| **ComplexDatatype** | The complex datatype of an item. An ISO 21090 healthcare datatype |
-| **Property** | A property of a datatype, th value, the units etc |
+| **Form** | Core Form Class |
+| **Group** | Generic group |
+| **NormalGroup** | Normal group |
+| **CommonGroup** | A common group |
+| **Item** | An item within a Form |
+| **Placeholder** | Placeholder item |
+| **TextLabel** | A passive text label item |
+| **Mapping** | A passive mapping item |
+| **BcProperty** | A form question based upon a Biomedical Concept property |
+| **Question** | A form question |
+| **CommonItem** | A common item |
 
 Nodes not noted in the above table have not been implemented as yet.
 
@@ -29,13 +34,19 @@ The following relationships are implemented:
 
 | **Relationship** | **Description** | **Cardinality** |
 | --- | --- | --- |
-| **hasItem** | Links a BC to it child items | 1:M |
-| **hasComplexDatatype** | Links an item to its datatype. Note this is 1:M to allow for selection from templates but also flexibility in the future for BC instances and selecting a data type. | 1:M |
-| **hasProperty** | Links a datatype to its properties | 1:M |
-| **hasCodeValue** | A relationship to coded responses | 1:M |
+| **hasGroup** | Links a Form to its groups | 1:M |
+| **hasItem** | Links a group toits items | 1:M |
+| **hasCommon** | Has a common group relationship | 1:M |
+| **hasCommonItem** | Has a common item relationship | 1:M |
+| **hasSubGroup** | Has a sub group relationship | 1:M |
+| **hasBiomedicalConcept** | Reference to a Biomedical Concept | 1:M |
+| **hasProperty** | Reference to a Biomedical Concept property | 1:M |
+| **hasThesaurusConcept** | Reference to a Thesaurus Concept | 1:M |
+| **hasCodedValue** | Reference to a coded value | 1:M |
+
 
 Relationships not noted in the above table have not been implemented as yet.
 
 ## Enhancements
 
-1. BiomedicalConcept needs to be improved by being an operational item (managed item)
+1. Form needs to be improved by being an operational item (managed item)
