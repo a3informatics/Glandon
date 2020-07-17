@@ -98,7 +98,7 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
-  rdfs:label "Has group relationship"^^xsd:string ;
+  rdfs:label "Has item relationship"^^xsd:string ;
   rdfs:range :Item ;
   skos:definition "Has an item relationship"^^xsd:string
 .
