@@ -9,9 +9,9 @@ class Form < IsoManagedV2
 
   object_property :has_group, cardinality: :many, model_class: "Form::Group::Normal", children: true
 
-  # Get Items
+  # Get Items. 
   #
-  # @return [Array] Array of hashes, one per item.
+  # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.
   def get_items
     results = []
     form = self.class.find_minimum(self.id)

@@ -13,9 +13,9 @@ class Form::Group::Normal < Form::Group
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
 
-  # Get Items
+  # Get Item
   #
-  # @return [Array] Array of.
+  # @return [Array] Array of hashes, one per group, sub group and item.
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
     groups = []
