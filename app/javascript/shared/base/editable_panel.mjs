@@ -190,15 +190,22 @@ export default class EditablePanel extends TablePanel {
   }
 
   /**
-   * Initialize a new DataTable with options
-   * Override for custom changes
-   * @return {DataTable instance} An initialized table panel
+   * Initialize Editor and DataTable
    */
   _initTable() {
     // Initialize Editor first
     this._initEditor();
+    // Initialize DataTable after
+    this.table = $(this.selector).DataTable(this._tableOpts);
+  }
 
-    let options = this._tableOpts;
+  /**
+   * Extend default DataTable init options
+   * @return {Object} DataTable options object
+   */
+  get _tableOpts() {
+    const options = super._tableOpts;
+
     options.columns = [...this.extraColumns];
     // Excel-like Keys navigation functionality
     options.keys = {
@@ -206,7 +213,7 @@ export default class EditablePanel extends TablePanel {
       editor: this.editor
     }
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
 }

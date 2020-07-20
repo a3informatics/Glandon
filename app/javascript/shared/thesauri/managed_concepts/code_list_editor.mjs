@@ -167,30 +167,20 @@ export default class CLEditor extends EditablePanel {
     });
   }
 
-
   /**
-   * Initialize a new DataTable
-   * @override super's _initTable with additional options
-   * @return {DataTable instance} An initialized table panel
+   * Extend default Editable Panel options
+   * @return {Object} DataTable options object
    */
-  _initTable() {
-    // Initialize Editor first
-    this._initEditor();
+  get _tableOpts() {
+    let options = super._tableOpts;
 
-    let options = this._tableOpts;
-    options.columns = [...this.extraColumns];
-    // Excel-like Keys navigation functionality
-    options.keys = {
-      columns: '.editable.inline',
-      editor: this.editor,
-    }
     // CSS Styling for editable rows
     options.createdRow = (row, data, idx) => {
       let rowClass = (!data.referenced ? 'row-sponsor' : data.uri.includes('cdisc') ? 'row-cdisc' : 'row-disabled');
       $(row).addClass(rowClass);
     }
 
-    this.table = $(this.selector).DataTable(options);
+    return options;
   }
 
 }

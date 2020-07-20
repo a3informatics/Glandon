@@ -9,6 +9,26 @@
   :has_complex_datatype:
     :label: PQR
     :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :tagged: []
+      :question_text: Result
+      :prompt_text: Height
+      :format: '5.2'
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
+  :label: Result
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+    :label: PQR
+    :has_property:
       :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZQ==
       :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
@@ -48,7 +68,7 @@
           :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA=
           :uri: http://www.cdisc.org/C71620/V62#C71620
           :identifier: C71620
-          :notation: ''
+          :notation: UNIT
           :semantic_version: 62.0.0
         :local_label: ''
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
@@ -81,7 +101,7 @@
           :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
           :uri: http://www.cdisc.org/C66770/V59#C66770
           :identifier: C66770
-          :notation: ''
+          :notation: VSRESU
           :semantic_version: 59.0.0
         :local_label: ''
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA%3D"
@@ -114,7 +134,7 @@
           :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA=
           :uri: http://www.cdisc.org/C71620/V62#C71620
           :identifier: C71620
-          :notation: ''
+          :notation: UNIT
           :semantic_version: 62.0.0
         :local_label: ''
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
@@ -146,30 +166,10 @@
           :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
           :uri: http://www.cdisc.org/C66770/V59#C66770
           :identifier: C66770
-          :notation: ''
+          :notation: VSRESU
           :semantic_version: 59.0.0
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
-  :label: Result
-  :mandatory: true
-  :collect: true
-  :enabled: true
-  :ordinal: 10
-  :has_complex_datatype:
-    :label: PQR
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: value
-      :tagged: []
-      :question_text: Result
-      :prompt_text: Height
-      :format: '5.2'
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
   :label: Test
@@ -218,7 +218,7 @@
           :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2MSNDNjY3NDE=
           :uri: http://www.cdisc.org/C66741/V61#C66741
           :identifier: C66741
-          :notation: ''
+          :notation: VSTESTCD
           :semantic_version: 61.0.0
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413

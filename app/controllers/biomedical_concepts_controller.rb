@@ -42,14 +42,14 @@ class BiomedicalConceptsController < ApplicationController
 
   def show
     authorize BiomedicalConcept
-    @bc = BiomedicalConceptInstance.find_minimum(params[:id])
+    @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_biomedical_concept_path(@bc)
     @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
   def show_data
     authorize BiomedicalConcept, :show?
-    @bc = BiomedicalConceptInstance.find_minimum(params[:id])
+    @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     items = @bc.get_properties(true)
     items = items.each do |x|
       x[:has_complex_datatype][:has_property][:has_coded_value].each do |cv|

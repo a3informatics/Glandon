@@ -7,9 +7,10 @@ describe "Biomedical Concept Instances", :type => :feature do
   include UserAccountHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include DownloadHelpers
 
   def sub_dir
-    return "features"
+    return "features/biomedical_concepts"
   end
 
   describe "BCs", :type => :feature do
@@ -37,68 +38,105 @@ describe "Biomedical Concept Instances", :type => :feature do
 
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_bc
-      find(:xpath, "//a[@href='/biomedical_concepts']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      wait_for_ajax 10
+      find(:xpath, "//a[@href='/biomedical_concepts']").click
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_check_table_info("index", 1, 10, 14)
+      ui_check_table_cell("index", 3, 2, "SYSBP")
+      ui_check_table_cell("index", 3, 3, "Systolic Blood Pressure")
     end
 
     it "allows the history page to be viewed", js:true do
       click_navbar_bc
+      wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
-      wait_for_ajax(10)
+      wait_for_ajax 10
       expect(page).to have_content 'Version History of \'HEIGHT\''
+      ui_check_table_cell("history", 1, 1, "0.1.0")
+      ui_check_table_cell("history", 1, 4, "HEIGHT")
+      ui_check_table_cell("history", 1, 5, "Height")
+      ui_check_table_cell("history", 1, 7, "Incomplete")
     end
 
     it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
       click_navbar_bc
+      wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
-      wait_for_ajax(10)
+      wait_for_ajax 10
       expect(page).to have_content 'Version History of \'HEIGHT\''
-      context_menu_element('history', 4, 'HEIGHT', :show)
-      wait_for_ajax(10)
+      context_menu_element_v2('history', 'HEIGHT', :show)
+      wait_for_ajax 10
       expect(page).to have_content 'Show: Biomedical Concept'
+      expect(page).to have_content 'Incomplete'
       ui_check_table_info("show", 1, 3, 3)
+      ui_check_table_cell("show", 1, 3, "value")
+      ui_check_table_cell("show", 1, 4, "Result")
+      ui_check_table_cell("show", 1, 5, "Height")
+      ui_check_table_cell("show", 1, 6, "PQR")
+      ui_check_table_cell("show", 1, 7, "5.2")
+      ui_check_table_cell("show", 3, 8, "HEIGHT C25347 (VSTESTCD C66741 v61.0.0)")
     end
 
-    # it "history allows the status page to be viewed", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Status').click
-    #   expect(page).to have_content 'Status: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   click_link 'Close'
-    #   expect(page).to have_content 'History: BC C25206'
-    # end
+    it "show page has terminology reference links", js:true do
+      click_navbar_bc
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'Heart Rate')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'HR\''
+      context_menu_element_v2('history', 'HR', :show)
+      wait_for_ajax 10
+      click_on "ARM C32141 (LOC C74456 v62.0.0)"
+      wait_for_ajax 10
+      expect(page).to have_content 'Shared Preferred Terms'
+      expect(page).to have_content 'C32141'
+      expect(page).to have_content 'The portion of the upper extremity between the shoulder and the elbow.'
+      page.go_back
+      click_on "HR C49677 (VSTESTCD C66741 v61.0.0)"
+      wait_for_ajax 10
+      expect(page).to have_content 'C49677'
+      expect(page).to have_content 'The number of heartbeats per unit of time, usually expressed as beats per minute.'
+    end
+
+    it "allows to download show BC table as a csv file", js:true do
+      click_navbar_bc
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'DIABP')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'DIABP\''
+      context_menu_element_v2('history', 'DIABP', :show)
+      wait_for_ajax 10
+      expect(page).to have_content 'Show: Biomedical Concept'
+      ui_check_table_info("show", 1, 6, 6)
+      click_on 'CSV'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_csv_expected.csv")
+    end
+
+    it "allows to download show BC table as an excel file", js:true do
+      click_navbar_bc
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      find(:xpath, "//tr[contains(.,'WEIGHT')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'WEIGHT\''
+      context_menu_element_v2('history', 'WEIGHT', :show)
+      wait_for_ajax 10
+      expect(page).to have_content 'Show: Biomedical Concept'
+      ui_check_table_info("show", 1, 3, 3)
+      click_on 'Excel'
+
+      file = download_content
+      expected = read_text_file_2(sub_dir, "show_excel_expected.xlsx")
+    end
 
     # it "allows for a BC to be cloned", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Show').click
-    #   expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   click_link 'Clone'
-    #   expect(page).to have_content 'Cloning: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
-    #   fill_in "biomedical_concept[identifier]", with: 'NEW NEW BC'
-    #   fill_in "biomedical_concept[label]", with: 'A very new new BC'
-    #   #save_and_open_page
-
-    #   click_button 'Clone'
-    #   expect(page).to have_content("Biomedical Concept was successfully created.")
-    # end
 
     # it "allows for a BC to be edited (REQ-MDR-BC-010)", js:true do
-    #   click_navbar_bc
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    #   find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: BC C25206'
-    #   find(:xpath, "//tr[contains(.,'Temperature (BC C25206)')]/td/a", :text => 'Edit').click
-    #   expect(page).to have_content 'Edit: Temperature (BC C25206) BC C25206 (V1.1.0, 2, Incomplete)'
-    #   click_link 'main_nav_bc'
-    #   expect(page).to have_content 'Index: Biomedical Concepts'
-    # end
+
 
   end
 
