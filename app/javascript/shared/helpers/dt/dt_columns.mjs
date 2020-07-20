@@ -1,6 +1,7 @@
 import { historyBtn } from 'shared/ui/buttons'
 import { checkMarkIcon } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
+import { renderTagsInline } from 'shared/ui/tags'
 
 /**
  * Returns column definition for the history column
@@ -36,7 +37,7 @@ function dtTagsColumn(width = '', className = '') {
     data: "tags",
     className,
     width: width,
-    render: (data, type, r, m) => type === "display" ? colorCodeTagsBadge(data) : data
+    render: (data, type, r, m) => type === "display" ? renderTagsInline(data) : data
   }
 };
 
