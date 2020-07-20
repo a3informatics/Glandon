@@ -171,6 +171,9 @@ Rails.application.routes.draw do
       get :status
       get :extend_token
     end
+    collection do
+      post :release_multiple
+    end
   end
   resources :ad_hoc_reports, only: [:index, :show, :new, :create, :destroy] do
     member do

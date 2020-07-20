@@ -21,14 +21,14 @@ class BiomedicalConceptInstancesController < ApplicationController
   end
 
   def history
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptInstance
     respond_to do |format|
       format.json do
         results = []
         history_results = BiomedicalConceptInstance.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = BiomedicalConceptInstance.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         latest = BiomedicalConceptInstance.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(BiomedicalConcept, history_results, current, latest)
+        results = add_history_paths(BiomedicalConceptInstance, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
@@ -41,14 +41,14 @@ class BiomedicalConceptInstancesController < ApplicationController
   end
 
   def show
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptInstance
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_biomedical_concept_instance_path(@bc)
     @close_path = history_biomedical_concept_instances_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
   def show_data
-    authorize BiomedicalConcept, :show?
+    authorize BiomedicalConceptInstance, :show?
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     items = @bc.get_properties(true)
     items = items.each do |x|
@@ -88,14 +88,14 @@ class BiomedicalConceptInstancesController < ApplicationController
   #   end
   # end
 
-  def new
-    authorize BiomedicalConcept, :new?
-    @bcts = BiomedicalConceptTemplate.all
-  end
+  # def new
+  #   authorize BiomedicalConceptInstance, :new?
+  #   @bcts = BiomedicalConceptTemplate.all
+  # end
 
-  def update
+  # def update
 
-  end
+  # end
 
   # def create
   #   authorize BiomedicalConcept

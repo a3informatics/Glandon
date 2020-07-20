@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BiomedicalConceptsController do
+describe BiomedicalConceptInstancesController do
 
   include DataHelpers
   include PauseHelpers
@@ -12,7 +12,7 @@ describe BiomedicalConceptsController do
     login_curator
 
     def sub_dir
-      return "controllers/biomedical_concepts"
+      return "controllers/biomedical_concept_instances"
     end
 
     before :all do
