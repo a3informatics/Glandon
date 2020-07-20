@@ -278,14 +278,14 @@
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConcept]) %>
+              <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConceptInstance]) %>
               <div id="main_nav_biocon" class="category-container <%= if c_biocon != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-biocon", category_title: c_biocon} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptTemplate, link_id: "main_nav_bct",
            					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates", current_link: controller_name.to_s} %>
-           				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConcept, link_id: "main_nav_bc",
-           					link_path: biomedical_concepts_path, link_text: "Biomedical Concepts", current_link: controller_name.to_s} %>
+           				<%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => BiomedicalConceptInstance, link_id: "main_nav_bc",
+           					link_path: biomedical_concept_instances_path, link_text: "Biomedical Concept Instances", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>
