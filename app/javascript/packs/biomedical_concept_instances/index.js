@@ -4,7 +4,7 @@ $(document).ready( () => {
 
   let ip = new IndexPanel({
     url: indexDataUrl,
-    param: "biomedical_concept",
+    param: "biomedical_concept_instance",
   });
 
 
