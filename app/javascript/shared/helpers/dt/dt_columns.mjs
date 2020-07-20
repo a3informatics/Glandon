@@ -1,5 +1,6 @@
 import { historyBtn } from 'shared/ui/buttons'
 import { checkMarkIcon } from 'shared/ui/icons'
+import { renderIndicators } from 'shared/ui/indicators'
 
 /**
  * Returns column definition for the history column
@@ -47,7 +48,7 @@ function dtIndicatorsColumn() {
   return {
     data: "indicators",
     width: "90px",
-    render: (data, type, r, m) => type === "display" ? formatIndicators(data) : formatIndicatorsString(data)
+    render: (data, type, r, m) => renderIndicators(data, type)
   }
 };
 
