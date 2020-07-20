@@ -1,6 +1,6 @@
-import TablePanel from 'shared/base/table_panel';
+import TablePanel from 'shared/base/table_panel'
 
-import { dtHistoryColumn } from 'shared/helpers/dt_columns';
+import { dtHistoryColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * Index Panel

@@ -1,4 +1,4 @@
-import HistoryPanel from "shared/iso_managed/history_panel";
+import HistoryPanel from 'shared/iso_managed/history_panel'
 
 $(document).ready( () => {
 

@@ -1,7 +1,7 @@
-/*** Renderers for verious Collections ***/
-
 import { termReferenceBtn } from 'shared/ui/buttons'
 import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+
+/*** Renderers for verious Collections ***/
 
 /**
  * Returns formatted collection of terminology references based on type
@@ -10,7 +10,7 @@ import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
  * @return {string} formatted HTML / text
  */
 function termReferences(data = [], type) {
-  return (type === 'display' ? _termReferenceBtns(data) : _termReferenceStrings(data));
+  return type === 'display' ? _termReferenceBtns(data) : _termReferenceStrings(data);
 }
 
 /** Private **/
@@ -26,7 +26,7 @@ function _termReferenceBtns(data = []) {
   for (const d of data) {
     html += termReferenceBtn(d.show_path, d.reference, d.context);
   }
-  
+
   html += '</div>'
 
   return html;

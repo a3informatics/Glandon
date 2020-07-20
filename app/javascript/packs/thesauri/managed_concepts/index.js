@@ -1,6 +1,6 @@
-import IndexPanel from "shared/iso_managed/index_panel";
-import { dtIndicatorsColumn } from "shared/helpers/dt_columns";
-import { $post } from "shared/helpers/ajax";
+import IndexPanel from 'shared/iso_managed/index_panel'
+import { dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
+import { $post } from 'shared/helpers/ajax'
 
 $(document).ready( () => {
 

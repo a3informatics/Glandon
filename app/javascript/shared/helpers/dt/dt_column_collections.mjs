@@ -1,4 +1,4 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt_columns'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
 import { editIconInline, removeIconInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 

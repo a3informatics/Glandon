@@ -1,5 +1,5 @@
-import IndexPanel from "shared/iso_managed/index_panel";
-import { thSearchUrlFromMIS } from "shared/helpers/urls";
+import IndexPanel from 'shared/iso_managed/index_panel'
+import { thSearchUrlFromMIS } from 'shared/helpers/urls'
 
 $(document).ready( () => {
 

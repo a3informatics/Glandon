@@ -1,10 +1,10 @@
-import TablePanel from 'shared/base/table_panel';
+import TablePanel from 'shared/base/table_panel'
 
-import rsHelper from 'shared/iso_registration_state/rs_history';
-import { render as renderMenu } from 'shared/ui/context_menu';
-import { $delete } from 'shared/helpers/ajax';
-import { $confirm } from 'shared/helpers/confirmable';
-import { dtLastChangeDateColumn, dtIndicatorsColumn, dtContextMenuColumn } from 'shared/helpers/dt_columns';
+import rsHelper from 'shared/iso_registration_state/rs_history'
+import { render as renderMenu } from 'shared/ui/context_menu'
+import { $delete } from 'shared/helpers/ajax'
+import { $confirm } from 'shared/helpers/confirmable'
+import { dtLastChangeDateColumn, dtIndicatorsColumn, dtContextMenuColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * History Panel

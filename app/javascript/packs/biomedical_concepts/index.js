@@ -1,4 +1,4 @@
-import IndexPanel from "shared/iso_managed/index_panel";
+import IndexPanel from 'shared/iso_managed/index_panel'
 
 $(document).ready( () => {
 
@@ -7,5 +7,5 @@ $(document).ready( () => {
     param: "biomedical_concept",
   });
 
- 
+
 });

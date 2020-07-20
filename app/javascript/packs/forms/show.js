@@ -1,4 +1,4 @@
-import ShowPanel from "shared/forms/show_panel"
+import ShowPanel from 'shared/forms/show_panel'
 
 $(document).ready( () => {
 
