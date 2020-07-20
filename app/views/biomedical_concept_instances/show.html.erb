@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Show Biomedical Concept: '+@bc.has_identifier.identifier+' ('+@bc.semantic_version+')")' %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_pack_tag 'biomedical_concepts/show' %>
+<%= javascript_pack_tag 'biomedical_concept_instances/show' %>
 
 <% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
 
@@ -20,7 +20,7 @@
       Show: Biomedical Concept
     </div>
     <div class="card-content">
-      <%= render partial: "shared/biomedical_concepts/show_panel", locals: { show_url: @show_path } %>
+      <%= render partial: "shared/biomedical_concept_instances/show_panel", locals: { show_url: @show_path } %>
     </div>
   </div>
 </div>

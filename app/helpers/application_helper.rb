@@ -241,7 +241,7 @@ module ApplicationHelper
 			uploads: @category_impexp, imports: @category_impexp, exports: @category_impexp, backgrounds: @category_impexp,
 			ad_hoc_reports: @category_util, iso_concept_systems: @category_util, markdown_engines: @category_util,
 			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
-			biomedical_concept_templates: @category_biocon, biomedical_concepts: @category_biocon,
+			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
 			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_user_domains: @category_sdtm,
 			adam_igs: @category_adam
