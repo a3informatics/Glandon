@@ -3,7 +3,7 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= javascript_pack_tag 'biomedical_concepts/show' %>
 
-<% third_level_breadcrumb(:biomedical_concepts, @bc, @close_path) %>
+<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
