@@ -38,10 +38,11 @@ describe "Biomedical Concept Instances", :type => :feature do
 
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_bc
-      wait_for_ajax 10
-      find(:xpath, "//a[@href='/biomedical_concepts']").click
+      wait_for_ajax 20
+      find(:xpath, "//a[@href='/biomedical_concept_instances']").click 
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_check_table_info("index", 1, 10, 14)
+    pause
       ui_check_table_cell("index", 3, 2, "SYSBP")
       ui_check_table_cell("index", 3, 3, "Systolic Blood Pressure")
     end
