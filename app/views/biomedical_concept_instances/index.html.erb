@@ -2,7 +2,7 @@
 
 <%= javascript_pack_tag 'biomedical_concepts/index' %>
 
-<% first_level_breadcrumb (:biomedical_concepts) %>
+<% first_level_breadcrumb (:biomedical_concept_instances) %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-biocon",
@@ -21,14 +21,14 @@
 
   <% content_for :actions do %>
     
-    <% if policy(BiomedicalConcept).new? %>
+    <% if policy(BiomedicalConceptInstance).new? %>
       <a href="#" class="btn medium green" id="new_bc">
         <span class="icon-plus text-tiny"></span>&nbsp; New Biomedical Concept
       </a>
     <% end %>
   <% end %>
 
-  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Biomedical Concepts", url: biomedical_concepts_path } %>
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Biomedical Concepts", url: biomedical_concept_instances_path } %>
 
 </div>
 
