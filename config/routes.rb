@@ -350,40 +350,42 @@ Rails.application.routes.draw do
   # BCs
   resources :biomedical_concept_templates do
     collection do
-      get :history
-      get :list
-      get :all
+      get :index_data
+      get :history_data
     end
   end
-  namespace :biomedical_concepts do
-    resources :items
-    resources :datatypes
-    resources :properties do
-      member do
-        post 'term', to: 'properties#add', as: :add
-        delete 'term', to: 'properties#remove', as: :remove
-      end
-    end
-    resources :property_values
-  end
-  resources :biomedical_concepts do
+  # namespace :biomedical_concepts do
+  #   resources :items
+  #   resources :datatypes
+  #   resources :properties do
+  #     member do
+  #       post 'term', to: 'properties#add', as: :add
+  #       delete 'term', to: 'properties#remove', as: :remove
+  #     end
+  #   end
+  #   resources :property_values
+  # end
+  resources :biomedical_concept_instances do
     member do
       get :show_data
-      get :export_json
-      get :export_ttl
-      get :clone
-      get :upgrade
-      get :show_full
-      get :edit_lock
+      post :add_to_edit
+      # get :export_json
+      # get :export_ttl
+      # get :clone
+      # get :upgrade
+      # get :show_full
+      # get :edit_lock
     end
     collection do
-      get :editable
+      # get :editable
       get :history
-      post :clone_create
-      get :list
-      get :edit_multiple
+      # post :clone_create
+      # get :list
+      # get :edit_multiple
     end
   end
+
+  #Forms
   resources :forms do
     member do
       get :show_data
