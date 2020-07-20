@@ -9,22 +9,27 @@ describe Form::Crf do
   end
 
   before :all do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", 
-      "form_crf_test_1.ttl", "ACME_ANNO 2_1.ttl", "ACME_ANNO 3_1.ttl", "ACME_ANNO 4_1.ttl", "ACME_ANNO_1.ttl", "form_example_fields.ttl",
-      "ACME_BC C25298_1.ttl", "ACME_BC C25299_1.ttl", "ACME_BC C25206_1.ttl", "ACME_BC C25206_4.ttl",
-      "ACME_BC C25208_1.ttl", "ACME_BC C25208_2.ttl", "ACME_BC C25347_1.ttl", "ACME_BC C17634_2.ttl",
-      "ACME_BC C49677_1.ttl", "ACME_BC C81255_1.ttl",
-      "ACME_VS Domain.ttl", "ACME_LB Domain.ttl", "ACME_Topic.ttl"
-    ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions((1..59))
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
   end
+
+  # before :all do
+  #   data_files = 
+  #   [
+  #     "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", 
+  #     "form_crf_test_1.ttl", "ACME_ANNO 2_1.ttl", "ACME_ANNO 3_1.ttl", "ACME_ANNO 4_1.ttl", "ACME_ANNO_1.ttl", "form_example_fields.ttl",
+  #     "ACME_BC C25298_1.ttl", "ACME_BC C25299_1.ttl", "ACME_BC C25206_1.ttl", "ACME_BC C25206_4.ttl",
+  #     "ACME_BC C25208_1.ttl", "ACME_BC C25208_2.ttl", "ACME_BC C25347_1.ttl", "ACME_BC C17634_2.ttl",
+  #     "ACME_BC C49677_1.ttl", "ACME_BC C81255_1.ttl",
+  #     "ACME_VS Domain.ttl", "ACME_LB Domain.ttl", "ACME_Topic.ttl"
+  #   ]
+  #   load_files(schema_files, data_files)
+  #   load_cdisc_term_versions((1..59))
+  #   clear_iso_concept_object
+  #   clear_iso_namespace_object
+  #   clear_iso_registration_authority_object
+  #   clear_iso_registration_state_object
+  # end
 
   # it "displays a CRF as HTML" do
   #   form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")

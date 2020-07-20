@@ -20,7 +20,7 @@ class BiomedicalConcept < IsoManagedV2
             property[:has_coded_value].each do |coded_value|
               tc = OperationalReferenceV3::TucReference.find_children(coded_value[:id])
               coded_value[:reference] = tc.reference.to_h
-              parent = IsoManagedV2.find_minimum(Uri.new(uri: coded_value[:context]))
+              parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: coded_value[:context]))
               coded_value[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
             end
           end
