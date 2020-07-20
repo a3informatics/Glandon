@@ -13,7 +13,7 @@ class BiomedicalConceptInstancesController < ApplicationController
     respond_to do |format|
       format.json do
         @bcs = BiomedicalConceptInstance.unique
-        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
         render json: {data: @bcs}, status: 200
       end
       format.html
@@ -44,7 +44,7 @@ class BiomedicalConceptInstancesController < ApplicationController
     authorize BiomedicalConceptInstance
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_biomedical_concept_instance_path(@bc)
-    @close_path = history_biomedical_concept_instances_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
+    @close_path = history_biomedical_concept_instances_path(biomedical_concept_instance: { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
   def show_data
@@ -56,7 +56,7 @@ class BiomedicalConceptInstancesController < ApplicationController
         cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
       end
     end
-    render json: { data: items }, status: 200
+    render json: {data: items}, status: 200
   end
   # def editable
   #   authorize BiomedicalConcept, :index?
@@ -252,7 +252,7 @@ class BiomedicalConceptInstancesController < ApplicationController
 private
 
   def the_params
-    params.require(:biomedical_concept).permit(:identifier, :offset, :count, :scope_id)
+    params.require(:biomedical_concept_instance).permit(:identifier, :offset, :count, :scope_id)
   end
 
   # Path for given action
