@@ -1,4 +1,10 @@
+require 'controller_helpers.rb'
+
 class BiomedicalConceptTemplatesController < ApplicationController
+
+  C_CLASS_NAME = "BiomedicalConceptTemplatesController"
+
+  include ControllerHelpers
   
   before_action :authenticate_user!
 
@@ -26,7 +32,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
-        @bc = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        @bct = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
         @close_path = biomedical_concept_templates_path
@@ -83,7 +89,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
 private
 
   def the_params
-    params.require(:biomedical_concept_template).permit(:identifier, :scope_id)
+    params.require(:biomedical_concept_template).permit(:identifier, :scope_id, :offset, :count)
   end  
 
 end
