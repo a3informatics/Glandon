@@ -1,14 +1,34 @@
-# Migrations
+# Database
 
-## General
+## Schema Files
+
+### RDBMS
+
+Standard rails DB schema is used
+
+### Triple Store
+
+The following should be used for triple store schema files
+
+1. Schema should be based on http://www.a3informatics.com/mdr/schema/<name>
+1. Each schema section should contain version/release info using a **owl:versionInfo** triple containing the system version in which the schema section was updated. This should take the form **<subject> owl:versionInfo "v1.2.3"^^string**
+1. Only schema sections should use the RDF type **owl:Ontology**, no data should do so
+
+When migrating a schema th following apporach should be used:
+
+1. New triples should be contained within a file suffixed with the data in the form <existing_filename>\_YYYYMMDD.ttl
+1. Develop a migration as above to modify or delete existing triples
+1. Update the **owl:versionInfo** triple
+
+## Migrations
 
 This section details database migrations and the mechanism used to implement migrations.
 
-## RDBMS
+### RDBMS
 
 Standard rails DB migrations are used.
 
-## Triple Store
+### Triple Store
 
 Fuseki migration use rake tasks (rather then migrations) so that more control can be exercised as whethr they should be run or not.
 
@@ -26,16 +46,3 @@ Note:
 1. A migration should be written for the schema and one for the data
 1. Migrations should be named after the version to which they associated. The migration required when Release M.N.P is installed should be named vM_N_P_[schema|data]
 
-## Schema Files
-
-The following should be used for triple store schema files
-
-1. Schema should be based on http://www.a3informatics.com/mdr/schema/<name>
-1. Each schema section should contain version/release info using a **owl:versionInfo** triple containing the system version in which the schema section was updated. This should take the form **<subject> owl:versionInfo "v1.2.3"^^string**
-1. Only schema sections should use the RDF type **owl:Ontology**, no data should do so
-
-When migrating a schema
-
-1. New triples should be contained within a file suffixed with the data in the form <existing_filename>\_YYYYMMDD.ttl
-1. Develop a migration as above to modify or delete existing triples
-1. Update the **owl:versionInfo** triple
