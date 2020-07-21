@@ -1,7 +1,7 @@
 @prefix : <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
-@prefix cbc: <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -10,10 +10,9 @@
 
 <http://www.assero.co.uk/BusinessForm>
   rdf:type owl:Ontology ;
-  owl:versionInfo "v3.2.0"^^xsd:string ;
-  rdfs:label "Form Schema"^^xsd:string ;
   owl:imports <http://www.assero.co.uk/BusinessOperational> ;
-  owl:imports <http://www.assero.co.uk/BiomedicalConcept#> ;
+  owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
 :Form
   rdf:type owl:Class ;
@@ -69,6 +68,12 @@
   rdfs:subClassOf :Item ;
   skos:definition "A passive mapping item."^^xsd:string
 .
+:TextLabel
+  rdf:type owl:Class ;
+  rdfs:label "Text label"^^xsd:string ;
+  rdfs:subClassOf :Item ;
+  skos:definition "A passive text label item."^^xsd:string
+.
 :BcProperty
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept based Item"^^xsd:string ;
@@ -99,14 +104,14 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :Group ;
-  rdfs:label "Has item relationship"^^xsd:string ;
+  rdfs:label "Has group relationship"^^xsd:string ;
   rdfs:range :Item ;
   skos:definition "Has an item relationship"^^xsd:string
 .
 :hasCommon
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:domain :NormalGroup ;
+  rdfs:domain :Group ;
   rdfs:label "Has common group relationship"^^xsd:string ;
   rdfs:range :CommonGroup ;
   skos:definition "Has a common group relationship"^^xsd:string
@@ -151,16 +156,6 @@
   rdfs:range bo:TcReference ;
   skos:definition "Reference to a Thesaurus Concept"^^xsd:string
 .
-:hasCodedValue
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Has Coded Value Relationship"^^xsd:string ;
-  rdfs:domain [ a owl:Class ;
-    owl:unionOf  ( :Question :BcProperty)
-    ] ;
-  rdfs:range bo:TUcReference ;
-  skos:definition "Reference to a coded value."^^xsd:string
-.
 :completion
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
@@ -197,7 +192,7 @@
   rdfs:range xsd:boolean ;
   skos:definition "Item optional flag."^^xsd:string
 .
-:freeText
+:free_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Placeholder ;
@@ -205,7 +200,7 @@
   rdfs:range xsd:string ;
   skos:definition "Placeholder free text."^^xsd:string
 .
-:labelText
+:label_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :TextLabel ;
@@ -219,7 +214,7 @@
   rdfs:domain :Node ;
   rdfs:label "Node ordinal"^^xsd:string ;
   rdfs:range xsd:integer ;
-  skos:definition "The ordinal within the set."^^xsd:string
+  skos:definition "The rodinal within the set."^^xsd:string
 .
 :datatype
   rdf:type owl:DatatypeProperty ;
@@ -247,7 +242,7 @@
   rdfs:range xsd:string ;
   skos:definition "The annotation/mapping."^^xsd:string
 .
-:questionText
+:question_text
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Question ;
@@ -255,3 +250,12 @@
   rdfs:range xsd:string ;
   skos:definition "The question text."^^xsd:string
 .
+:is_common
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :CommonItem ;
+  rdfs:label "Is common"^^xsd:string ;
+  rdfs:range xsd:boolean ;
+  skos:definition "The item is marked as being a common item."^^xsd:string
+.
+
