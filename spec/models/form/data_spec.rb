@@ -335,7 +335,7 @@ describe Form do
         form.to_sparql(sparql, true)
       end
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTADIABETES_1.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ACME_VSTADIABETES_1.ttl")
     end
 
   end

@@ -145,5 +145,5 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
     BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
     BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
   }
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clisyn ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition
