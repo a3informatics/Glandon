@@ -353,8 +353,7 @@ Rails.application.routes.draw do
   # BCs
   resources :biomedical_concept_templates do
     collection do
-      get :index_data
-      get :history_data
+      get :history
     end
   end
   # namespace :biomedical_concepts do

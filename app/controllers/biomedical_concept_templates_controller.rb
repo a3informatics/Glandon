@@ -2,54 +2,37 @@ class BiomedicalConceptTemplatesController < ApplicationController
   
   before_action :authenticate_user!
 
-  def index_data
-    authorize BiomedicalConceptTemplate, :index?
-    bcs = BiomedicalConceptInstance.unique
-    bcs = bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-    render json: {data: bcs}, status: 200
-  end
-
-  def history_data
+  def index
     authorize BiomedicalConceptTemplate
-    results = []
-    history_results = BiomedicalConceptTemplate.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-    current = BiomedicalConceptTemplate.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    latest = BiomedicalConceptTemplate.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    results = add_history_paths(BiomedicalConceptTemplate, history_results, current, latest)
-    render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+    respond_to do |format|
+      format.json do
+        @bct = BiomedicalConceptTemplate.unique
+        @bct = @bct.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_templates_path({biomedical_concept_template: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        render json: {data: @bct}, status: 200
+      end
+      format.html
+    end
   end
 
-  # def index
-  #   authorize BiomedicalConceptInstance
-  #   respond_to do |format|
-  #     format.json do
-  #       @bcs = BiomedicalConceptInstance.unique
-  #       @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-  #       render json: {data: @bcs}, status: 200
-  #     end
-  #     format.html
-  #   end
-  # end
-
-  # def history
-  #   authorize BiomedicalConceptInstance
-  #   respond_to do |format|
-  #     format.json do
-  #       results = []
-  #       history_results = BiomedicalConceptInstance.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-  #       current = BiomedicalConceptInstance.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-  #       latest = BiomedicalConceptInstance.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-  #       results = add_history_paths(BiomedicalConceptInstance, history_results, current, latest)
-  #       render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-  #     end
-  #     format.html do
-  #       @bc = BiomedicalConceptInstance.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-  #       @identifier = the_params[:identifier]
-  #       @scope_id = the_params[:scope_id]
-  #       @close_path = biomedical_concept_instances_path
-  #     end
-  #   end
-  # end
+  def history
+    authorize BiomedicalConceptTemplate
+    respond_to do |format|
+      format.json do
+        results = []
+        history_results = BiomedicalConceptTemplate.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = BiomedicalConceptTemplate.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = BiomedicalConceptTemplate.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(BiomedicalConceptTemplate, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+      format.html do
+        @bc = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+        @close_path = biomedical_concept_templates_path
+      end
+    end
+  end
   
   # def list
   #   authorize BiomedicalConceptTemplate
