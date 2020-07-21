@@ -20,7 +20,7 @@ export default class TablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
-   * @param {Object} args Optional additional arguments
+   * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
     selector,
