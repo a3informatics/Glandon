@@ -23,9 +23,6 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
-    after :all do
-    end
-    
     it "index, JSON" do  
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
