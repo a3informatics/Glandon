@@ -30,7 +30,7 @@ namespace :schema do
         ?s rdf:type owl:Ontology .
         ?s rdfs:label ?l .
         ?s owl:versionInfo ?v
-      }      
+      } ORDER BY ?l
     }
     query_results = Sparql::Query.new.query(query_string, "", [:owl])
     query_results.by_object_set([:s, :l, :v]).each do |x|
