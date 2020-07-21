@@ -10,10 +10,8 @@
 
 <http://www.assero.co.uk/Test>
   rdf:type owl:Ontology ;
-  owl:imports <http://purl.org/dc/elements/1.1/> ;
-  owl:imports <http://purl.org/dc/terms/> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
-  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Test Schema"^^xsd:string ;
 .
 
 # Terminology Copy
