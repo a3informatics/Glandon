@@ -1,5 +1,5 @@
 import { historyBtn } from 'shared/ui/buttons'
-import { checkMarkIcon } from 'shared/ui/icons'
+import { icons } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 
@@ -74,7 +74,7 @@ function dtTrueFalseColumn(name) {
   return {
     className: "text-center",
     data: name,
-    render: (data, type, r, m) => type === "display" ? checkMarkIcon(data) : data
+    render: (data, type, r, m) => type === "display" ? icons.checkMarkIcon(data) : data
   }
 };
 
