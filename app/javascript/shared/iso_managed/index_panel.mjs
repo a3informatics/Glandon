@@ -1,6 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
 import { dtHistoryColumn } from 'shared/helpers/dt/dt_columns'
+import { isCDISC } from 'shared/helpers/utils'
 
 /**
  * Index Panel
@@ -38,15 +39,6 @@ export default class IndexPanel extends TablePanel {
   /** Private **/
 
   /**
-   * Get CSS class for the table row based on item owner
-   * @param {string} owner owner of the item
-   * @return {string} CSS class name for CDISC / sponsor row style
-   */
-  _rowClassByOwner(owner){
-    return owner.toLowerCase() === 'cdisc' ? 'row-cdisc' : 'row-sponsor';
-  }
-
-  /**
    * Get default column definitions for IsoManaged items
    * @return {Array} Array of DataTable column definitions
    */
@@ -68,7 +60,7 @@ export default class IndexPanel extends TablePanel {
     options.columns = [...this._defaultColumns, ...this.extraColumns, dtHistoryColumn() ];
     options.language.emptyTable = "No items found.";
     options.createdRow = (row, data, idx) => {
-      $(row).addClass(this._rowClassByOwner(data.owner));
+      $(row).addClass( isCDISC(data) ? 'row-cdisc' : 'row-sponsor' );
     }
 
     return options;
