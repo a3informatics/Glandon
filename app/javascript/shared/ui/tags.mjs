@@ -23,7 +23,7 @@ const tagColorsMap = {
  * @return {string} HEX color for a CDISC Tag / default color for any other tag
  */
 function getColorByTag(tag) {
-  return tag in tagColorMap ? tagColorsMap[tag] : tagColorsMap.default;
+  return tag in tagColorsMap ? tagColorsMap[tag] : tagColorsMap.default;
 }
 
 /**
