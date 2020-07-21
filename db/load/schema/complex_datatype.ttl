@@ -8,9 +8,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/ComplexDatatypes#>
+<http://www.s-cubed.dk/ComplexDatatypes>
   rdf:type owl:Ontology ;
-  rdf:versionInfo "v3.2.0"^^xsd:string ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
   rdfs:label "Complex Datatype Schema"^^xsd:string ;
 .
 :ComplexDatatype
