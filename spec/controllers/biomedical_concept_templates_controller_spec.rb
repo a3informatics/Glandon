@@ -4,6 +4,8 @@ describe BiomedicalConceptTemplatesController do
 
   include DataHelpers
   include PauseHelpers
+  include IsoHelpers
+  include ControllerHelpers
   
   describe "Reader User" do
   	
@@ -14,11 +16,17 @@ describe BiomedicalConceptTemplatesController do
     end
 
     before :all do
-      load_files(schema_files, ["iso_registration_authority_real.ttl","iso_namespace_real.ttl","BCT.ttl" ])
-      load_cdisc_term_versions(1..62)
+      load_files(schema_files, ["iso_registration_authority_real.ttl","iso_namespace_real.ttl"])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    it "index, JSON" do  
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :index_data
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     # it "lists all unique templates, HTML" do
@@ -59,11 +67,11 @@ describe BiomedicalConceptTemplatesController do
     #   expect(result).to hash_equal(expected)
     # end
 
-    it "shows the history" do
-      ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.ra_namespace.id }}
-      expect(response).to render_template("history")
-    end
+    # it "shows the history" do
+    #   ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    #   get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.ra_namespace.id }}
+    #   expect(response).to render_template("history")
+    # end
 
     # it "shows the history, redirects when empty" do
     #   ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
