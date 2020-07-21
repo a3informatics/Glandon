@@ -135,7 +135,7 @@ function _getPaginationParams(offset, params) {
 }
 
 /**
- * Appends .json into a url (chrome caching bug)
+ * Inserts .json into a url (chrome caching bug)
  * @param {string} url Url to process
  * @return {string} Url with .json prepended to '?' or appended to the end of url
  */
