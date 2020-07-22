@@ -1,6 +1,6 @@
 defaults: &defaults
-  policies:
-    ApplicationPolicy:
+  ApplicationPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -169,7 +169,10 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    AdHocReportPolicy:
+    alias:
+      show_data: show
+  AdHocReportPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -242,7 +245,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    AnnotationPolicy:
+    alias: {}
+  AnnotationPolicy:
+    policies:
       show:
         sys_admin: false
         community_reader: true
@@ -275,7 +280,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    AuditTrailPolicy:
+    alias: {}
+  AuditTrailPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: false
@@ -300,7 +307,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    BackgroundPolicy:
+    alias: {}
+  BackgroundPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: false
@@ -325,7 +334,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    CdiscTermPolicy:
+    alias: {}
+  CdiscTermPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: true
@@ -350,7 +361,9 @@ defaults: &defaults
         reader: true
         curator: true
         content_admin: true
-    DashboardPolicy:
+    alias: {}
+  DashboardPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: true
@@ -375,7 +388,9 @@ defaults: &defaults
         reader: true
         curator: true
         content_admin: true
-    IsoConceptPolicy:
+    alias: {}
+  IsoConceptPolicy:
+    policies:
       show:
         sys_admin: false
         community_reader: true
@@ -392,7 +407,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    IsoManagedPolicy:
+    alias: {}
+  IsoManagedPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -417,7 +434,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    IsoNamesapcePolicy:
+    alias: {}
+  IsoNamesapcePolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -474,7 +493,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    IsoRegistrationAuthorityPolicy:
+    alias: {}
+  IsoRegistrationAuthorityPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -531,7 +552,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    IsoRegistrationStatePolicy:
+    alias: {}
+  IsoRegistrationStatePolicy:
+    policies:
       current:
         sys_admin: false
         community_reader: false
@@ -548,7 +571,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    IsoScopedIdentifierPolicy:
+    alias: {}
+  IsoScopedIdentifierPolicy:
+    policies:
       update:
         sys_admin: false
         community_reader: false
@@ -557,7 +582,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    ThesaurusPolicy:
+    alias: {}
+  ThesaurusPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: true
@@ -638,7 +665,9 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    TokenPolicy:
+    alias: {}
+  TokenPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: false
@@ -671,7 +700,8 @@ defaults: &defaults
         reader: false
         curator: true
         content_admin: true
-    UploadPolicy:
+  UploadPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -696,7 +726,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    ImportPolicy:
+    alias: {}
+  ImportPolicy:
+    policies:
       new:
         sys_admin: false
         community_reader: false
@@ -761,7 +793,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    ExportPolicy:
+    alias: {}
+  ExportPolicy:
+    policies:
       index:
         sys_admin: false
         community_reader: false
@@ -810,7 +844,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: true
-    UserPolicy:
+    alias: {}
+  UserPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: false
@@ -875,7 +911,9 @@ defaults: &defaults
         reader: false
         curator: false
         content_admin: false
-    UserSettingPolicy:
+    alias: {}
+  UserSettingPolicy:
+    policies:
       index:
         sys_admin: true
         community_reader: true
@@ -892,7 +930,7 @@ defaults: &defaults
         reader: true
         curator: true
         content_admin: true
-  alias: {}
+    alias: {}
 
 development:
   <<: *defaults

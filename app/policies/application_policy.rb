@@ -77,13 +77,13 @@ private
 
   # Read the policy definitions
   def read_policy_definitions(klass)
-    config = Rails.configuration.policy[:policies][klass.to_sym]
+    config = Rails.configuration.policy[klass.to_sym][:policies]
     config.nil? ? {} : config
   end
 
   # Read the alias definitions
   def read_alias_definitions(klass)
-    config = Rails.configuration.policy[:alias][klass.to_sym]
+    config = Rails.configuration.policy[klass.to_sym][:alias]
     config.nil? ? {} : config
   end
 
