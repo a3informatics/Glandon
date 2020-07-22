@@ -132,14 +132,14 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
    * @param {string} target Table id to show
    */
   _togglePanels(target) {
-    $(`${this.selector} table#${target}`).closest(".card").hide();
+    $(`${this.selector} table#${target}`).closest(".card").show();
 
     switch (target) {
       case "children":
-        $(`${this.selector} table#children`).closest(".card").show();
+        $(`${this.selector} table#index`).closest(".card").hide();
         break;
       case "index":
-        $(`${this.selector} table#index`).closest(".card").show();
+        $(`${this.selector} table#children`).closest(".card").hide();
         break;
     }
   }
