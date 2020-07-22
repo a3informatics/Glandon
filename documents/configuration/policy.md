@@ -6,14 +6,16 @@ File containing the access policies to be used. The file should not be modified.
 ## Structure
 The file is a single YAML file. The structure of the file is as follows
 
-| Structure | | |
-|---|---|---|
-|[policy_class]: |||
-|  policies:|||
-|    [action]:|||
-|      [user role]: | [true|false] | Set to true enables the action for the user role. There should be an entry for each role defined in the roles.yml file.|
-|  alias: |||
-|    [action]: | [alias_action] | The alias action name to be used for the action name. Should be a name found in the policies section. No need for the ? at the end |
+```
+[policy_class]:
+  policies:
+    [action]:
+      [user role]: [true|false] # Set to true enables the action for the user role. 
+                                # There should be an entry for each role defined in the roles.yml file.
+  alias:
+    [alias]: [action] # The alias name to be used for the specified action name. 
+                      # The action should exist in the policies section. No need for the ? at the end.
+```
 
 # Example
 ```
