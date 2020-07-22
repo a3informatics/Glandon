@@ -37,6 +37,7 @@ export default class ManagedItemSelector extends Cacheable {
 
     Object.assign(this, { selector, urls: urls[param], param, multiple, onSelect, onDeselect })
     this._initialize();
+    this._loadIndexData();
   }
 
   /**
@@ -83,8 +84,6 @@ export default class ManagedItemSelector extends Cacheable {
       }
     });
 
-    // Load Index
-    this._loadIndexData();
   }
 
   /**

@@ -31,7 +31,18 @@ function makeHistoryUrl(url, itemData) {
   return url.replace('miHistoryId', itemData.identifier).replace('miScopeId', itemData.scope_id);
 }
 
+/**
+ * Builds a children data URL of a Managed Concept
+ * @param {string} url Base url with placeholders
+ * @param {Object} itemData Item data object containing the managed concept's id
+ * @return {string} Encoded url children url pointing to the managed concept
+ */
+function makeMCChildrenUrl(url, itemData) {
+  return url.replace('miClId', itemData.id);
+}
+
 export {
   thSearchUrlFromMIS,
-  makeHistoryUrl
+  makeHistoryUrl,
+  makeMCChildrenUrl
 }
