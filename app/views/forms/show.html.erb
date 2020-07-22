@@ -6,7 +6,7 @@
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 
 <div class="row">
-  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @form, :badge => "icon-biocon"} do %>
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @form, :badge => "icon-forms"} do %>
     <div class="abcions-wrap">
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
