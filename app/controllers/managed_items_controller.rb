@@ -6,7 +6,7 @@ class ManagedItemsController < ApplicationController
     respond_to do |format|
       format.json do
         item = model_klass.unique
-        item = @item.map{|x| x.reverse_merge!(history_path_for(x[:identifier], x[:scope_id]))}
+        item = item.map{|x| x.reverse_merge!(history_path_for(x[:identifier], x[:scope_id]))}
         render json: {data: item}, status: 200
       end
       format.html
