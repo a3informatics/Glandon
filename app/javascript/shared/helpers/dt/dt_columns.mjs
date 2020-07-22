@@ -27,6 +27,16 @@ function dtLastChangeDateColumn() {
 };
 
 /**
+ * Returns column definition for item version / semantic version column
+ * @return {object} DataTables item version column definition
+ */
+function dtVersionColumn() {
+  return {
+    render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
+  }
+};
+
+/**
  * Returns column definition for the tags column
  * @param {string} width Column width string, optional
  * @param {string} className Custom classname, optional
@@ -99,6 +109,7 @@ export {
   dtIndicatorsColumn,
   dtTagsColumn,
   dtLastChangeDateColumn,
+  dtVersionColumn,
   dtContextMenuColumn,
   dtInlineEditColumn,
   dtTrueFalseColumn

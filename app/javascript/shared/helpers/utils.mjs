@@ -14,6 +14,24 @@ function isCDISC(data) {
   }
 }
 
+const tableInteraction = {
+  /**
+   * Enable table interactivity
+   * @param {string} selector Table selector
+   */
+  enable(selector) {
+    $(selector).removeClass("table-disabled");
+  },
+  /**
+   * Disable table interactivity
+   * @param {string} selector Table selector
+   */
+  disable(selector) {
+    $(selector).addClass("table-disabled");
+  }
+}
+
 export {
-  isCDISC
+  isCDISC,
+  tableInteraction
 }

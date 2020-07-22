@@ -1,6 +1,31 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn, dtVersionColumn } from 'shared/helpers/dt/dt_columns'
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
+
+/**
+ * Column definitions for an Index panel
+ * @return {Array} DataTables Index panel column definitions collection
+ */
+function dtIndexColumns() {
+  return [
+    {data : "owner"},
+    {data : "identifier"},
+    {data : "label"}
+  ];
+};
+
+/**
+ * Column definitions for a simplified History panel with indicators
+ * @return {Array} DataTables simplified History panel column definitions collection
+ */
+function dtSimpleHistoryColumns() {
+  return [
+    dtVersionColumn(),
+    { data: "has_identifier.version_label" },
+    { data: "has_state.registration_status" },
+    dtIndicatorsColumn()
+  ];
+};
 
 /**
  * Column definitions for a Code List Editor table
@@ -72,4 +97,10 @@ function dtFormShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns }
+export {
+  dtIndexColumns,
+  dtSimpleHistoryColumns,
+  dtCLEditColumns,
+  dtBCShowColumns,
+  dtFormShowColumns
+}
