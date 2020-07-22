@@ -18,7 +18,7 @@ module ApplicationHelper
     cdisc_terms: {link: "/cdisc_terms/history", text: "CDISC Terminology", icon: "icon-terminology"},
     code_lists: {link: "/thesauri/managed_concepts", text: "Code Lists", icon: "icon-codelist"},
     biomedical_concept_templates: {link: "/biomedical_concept_templates", text: "Biomedical Concept Templates"},
-    biomedical_concepts: {link: "/biomedical_concepts", text: "Biomedical Concepts", icon: "icon-biocon"},
+    biomedical_concept_instances: {link: "/biomedical_concept_instances", text: "Biomedical Concept Instances", icon: "icon-biocon"},
     forms: {link: "/forms", text: "Forms", icon: "icon-forms"},
     sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model", icon: "icon-sdtm"},
     sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs", icon: "icon-sdtm"},
@@ -241,7 +241,7 @@ module ApplicationHelper
 			uploads: @category_impexp, imports: @category_impexp, exports: @category_impexp, backgrounds: @category_impexp,
 			ad_hoc_reports: @category_util, iso_concept_systems: @category_util, markdown_engines: @category_util,
 			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
-			biomedical_concept_templates: @category_biocon, biomedical_concepts: @category_biocon,
+			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
 			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_user_domains: @category_sdtm,
 			adam_igs: @category_adam

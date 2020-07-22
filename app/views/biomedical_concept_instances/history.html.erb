@@ -1,8 +1,8 @@
 <%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
 
-<%= javascript_pack_tag 'biomedical_concepts/history' %>
+<%= javascript_pack_tag 'biomedical_concept_instances/history' %>
 
-<% second_level_breadcrumb(:biomedical_concepts, @scope_id, @identifier) %>
+<% second_level_breadcrumb(:biomedical_concept_instances, @scope_id, @identifier) %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_item_simple", :locals => {badge: "icon-biocon", item: @bc, header_title: "Item History"} do %>
@@ -15,5 +15,5 @@
 
 <div class="row">
   <%= render partial: "shared/iso_managed/history/history_card", locals: {
-        identifier: @identifier, url: history_biomedical_concepts_path({biomedical_concept: {identifier: @identifier, scope_id: @scope_id}}) } %>
+        identifier: @identifier, url: history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: @identifier, scope_id: @scope_id}}) } %>
 </div>

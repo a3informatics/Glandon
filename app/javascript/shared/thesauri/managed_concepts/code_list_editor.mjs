@@ -3,8 +3,8 @@ import EditablePanel from 'shared/base/editable_panel'
 import { $post, $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 
-import { dtCLEditColumns } from 'shared/helpers/dt_column_collections'
-import { dtCLEditFields } from 'shared/helpers/dt_fields'
+import { dtCLEditColumns } from 'shared/helpers/dt/dt_column_collections'
+import { dtCLEditFields } from 'shared/helpers/dt/dt_fields'
 
 /**
  * Code List Editor

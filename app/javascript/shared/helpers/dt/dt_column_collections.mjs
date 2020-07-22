@@ -1,5 +1,5 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt_columns'
-import { editIconInline, removeIconInline } from 'shared/ui/icons'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
+import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
 
 /**
@@ -19,8 +19,8 @@ function dtCLEditColumns() {
       className: "fit",
       render: (data, type, r, m) => {
         // const editingDisabled = _.isEmpty(r.edit_path);
-        // editIconInline({ disabled: editingDisabled })
-        const actionIcons = removeIconInline({ ttip: true, ttipText: "Remove / unlink item" });
+        // iconsInline.editIcon({ disabled: editingDisabled })
+        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: "Remove / unlink item" });
 
         return type === 'display' ? actionIcons : '';
       }

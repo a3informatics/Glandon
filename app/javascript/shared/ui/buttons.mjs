@@ -1,6 +1,6 @@
-/*** Renderers for Buttons ***/
-
 import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+
+/*** Renderers for Buttons ***/
 
 /**
  * Returns HTML for a button linking to item's history

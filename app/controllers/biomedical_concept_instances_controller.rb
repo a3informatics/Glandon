@@ -1,19 +1,19 @@
 require 'controller_helpers.rb'
 
-class BiomedicalConceptsController < ApplicationController
+class BiomedicalConceptInstancesController < ApplicationController
 
-  C_CLASS_NAME = "BiomedicalConceptsController"
+  C_CLASS_NAME = "BiomedicalConceptInstancesController"
 
   include ControllerHelpers
 
   before_action :authenticate_user!
 
   def index
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptInstance
     respond_to do |format|
       format.json do
         @bcs = BiomedicalConceptInstance.unique
-        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concepts_path({biomedical_concept:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
+        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
         render json: {data: @bcs}, status: 200
       end
       format.html
@@ -21,34 +21,34 @@ class BiomedicalConceptsController < ApplicationController
   end
 
   def history
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptInstance
     respond_to do |format|
       format.json do
         results = []
         history_results = BiomedicalConceptInstance.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = BiomedicalConceptInstance.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         latest = BiomedicalConceptInstance.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(BiomedicalConcept, history_results, current, latest)
+        results = add_history_paths(BiomedicalConceptInstance, history_results, current, latest)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
         @bc = BiomedicalConceptInstance.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
-        @close_path = biomedical_concepts_path
+        @close_path = biomedical_concept_instances_path
       end
     end
   end
 
   def show
-    authorize BiomedicalConcept
+    authorize BiomedicalConceptInstance
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
-    @show_path = show_data_biomedical_concept_path(@bc)
-    @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
+    @show_path = show_data_biomedical_concept_instance_path(@bc)
+    @close_path = history_biomedical_concept_instances_path(biomedical_concept_instance: { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
   def show_data
-    authorize BiomedicalConcept, :show?
+    authorize BiomedicalConceptInstance, :show?
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     items = @bc.get_properties(true)
     items = items.each do |x|
@@ -56,7 +56,7 @@ class BiomedicalConceptsController < ApplicationController
         cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
       end
     end
-    render json: { data: items }, status: 200
+    render json: {data: items}, status: 200
   end
   # def editable
   #   authorize BiomedicalConcept, :index?
@@ -89,8 +89,12 @@ class BiomedicalConceptsController < ApplicationController
   # end
 
   # def new
-  #   authorize BiomedicalConcept, :new?
+  #   authorize BiomedicalConceptInstance, :new?
   #   @bcts = BiomedicalConceptTemplate.all
+  # end
+
+  # def update
+
   # end
 
   # def create
@@ -248,14 +252,14 @@ class BiomedicalConceptsController < ApplicationController
 private
 
   def the_params
-    params.require(:biomedical_concept).permit(:namespace, :uri, :identifier, :offset, :count, :label, :scope_id, :bc_id, :bc_namespace, :bct_id, :bct_namespace)
+    params.require(:biomedical_concept_instance).permit(:identifier, :offset, :count, :scope_id)
   end
 
   # Path for given action
   def path_for(action, object)
     case action
       when :show
-        return biomedical_concept_path(object)
+        return biomedical_concept_instance_path(object)
       when :edit
         return ""
       else

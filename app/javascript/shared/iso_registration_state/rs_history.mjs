@@ -1,8 +1,9 @@
+import { $put } from 'shared/helpers/ajax'
+
 /**
  * Registration State functions in History Panel helpers
  */
- import { $put } from 'shared/helpers/ajax';
-
+ 
  const registrationStateHelper = {
 
    /**
