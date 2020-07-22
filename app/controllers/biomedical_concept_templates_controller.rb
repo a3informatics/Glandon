@@ -32,7 +32,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
       format.html do
-        @bct = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        @bt = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
         @close_path = biomedical_concept_templates_path
@@ -90,6 +90,18 @@ private
 
   def the_params
     params.require(:biomedical_concept_template).permit(:identifier, :scope_id, :offset, :count)
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return ""
+      when :edit
+        return ""
+      else
+        return ""
+    end
   end  
 
 end
