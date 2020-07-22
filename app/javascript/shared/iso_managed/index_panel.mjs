@@ -1,6 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
 import { dtHistoryColumn } from 'shared/helpers/dt/dt_columns'
+import { dtIndexColumns } from 'shared/helpers/dt/dt_column_collections'
 import { isCDISC } from 'shared/helpers/utils'
 
 /**
@@ -43,11 +44,7 @@ export default class IndexPanel extends TablePanel {
    * @return {Array} Array of DataTable column definitions
    */
   get _defaultColumns() {
-    return [
-      {data : "owner"},
-      {data : "identifier"},
-      {data : "label"}
-    ];
+    return dtIndexColumns()
   }
 
   /**

@@ -4,7 +4,7 @@ import rsHelper from 'shared/iso_registration_state/rs_history'
 import { render as renderMenu } from 'shared/ui/context_menu'
 import { $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
-import { dtLastChangeDateColumn, dtIndicatorsColumn, dtContextMenuColumn } from 'shared/helpers/dt/dt_columns'
+import { dtLastChangeDateColumn, dtIndicatorsColumn, dtContextMenuColumn, dtVersionColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * History Panel
@@ -175,9 +175,7 @@ export default class HistoryPanel extends TablePanel {
    */
   get _defaultColumns() {
     return [
-      {
-        render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
-      },
+      dtVersionColumn(),
       dtLastChangeDateColumn(),
       { data: "has_identifier.has_scope.short_name" },
       { data: "has_identifier.identifier" },
