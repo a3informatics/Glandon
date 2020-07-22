@@ -492,8 +492,5 @@ Rails.application.routes.draw do
       get :export_ttl
     end
   end
-
-  resources :managed_items do
-  end
-
+  
 end
