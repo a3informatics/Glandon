@@ -14,23 +14,7 @@ class FormsController < ManagedItemsController
   end
 
   def history
-    #authorize Form
-    respond_to do |format|
-      format.json do
-        results = []
-        history_results = Form.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = Form.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        latest = Form.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(Form, history_results, current, latest)
-        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-      end
-      format.html do
-        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
-        @close_path = forms_path
-      end
-    end
+    super
   end
 
   def show

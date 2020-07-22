@@ -13,24 +13,24 @@ class ManagedItemsController < ApplicationController
     end
   end
 
-  # def history
-  #   respond_to do |format|
-  #     format.json do
-  #       results = []
-  #       history_results = model_klass.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-  #       current = model_klass.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-  #       latest = model_klass.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-  #       results = add_history_paths(model_klass, history_results, current, latest)
-  #       render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-  #     end
-  #     format.html do
-  #       @item = model_klass.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-  #       @identifier = the_params[:identifier]
-  #       @scope_id = the_params[:scope_id]
-  #       @close_path = forms_path
-  #     end
-  #   end
-  # end
+  def history
+    respond_to do |format|
+      format.json do
+        results = []
+        history_results = model_klass.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        current = model_klass.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        latest = model_klass.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(model_klass, history_results, current, latest)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+      format.html do
+        @item = model_klass.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+        @close_path = forms_path
+      end
+    end
+  end
 
 end
   
