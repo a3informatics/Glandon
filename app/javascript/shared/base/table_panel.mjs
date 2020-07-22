@@ -20,6 +20,7 @@ export default class TablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
+   * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
@@ -32,9 +33,10 @@ export default class TablePanel {
     cache = true,
     paginated = true,
     order = [[0, "desc"]],
-    buttons = []
+    buttons = [],
+    loadCallback = () => {}
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, ...args });
 
     this._initTable();
     this._setListeners();
@@ -45,10 +47,15 @@ export default class TablePanel {
 
   /**
    * Clears table, loads and draws data
+   * @param {string} url optional, specify data source url
    * @return {self} this instance
    */
-  loadData() {
-    this.table.clear().draw();
+  loadData(url) {
+    // Set new instance data url if specified
+    if (url)
+      this.url = url;
+
+    this.clear();
     this._loading(true);
 
     if (this.paginated)
@@ -57,15 +64,18 @@ export default class TablePanel {
         count: this.count,
         strictParam: this.param,
         cache: this.cache,
-        pageDone: (data) => this._renderPage(data),
-        done: () => {},
+        pageDone: (data) => this._render(data),
+        done: (data) => this.loadCallback(this.table),
         always: () => this._loading(false)
       });
     else
       $get({
         url: this.url,
         cache: this.cache,
-        done: (data) => this._renderPage(data),
+        done: (data) => {
+          this._render(data)
+          this.loadCallback(this.table)
+        },
         always: () => this._loading(false)
       });
 
@@ -73,10 +83,18 @@ export default class TablePanel {
   }
 
   /**
-   * Refresh (reload) table data
+   * Clears table data
    */
-  refresh() {
-    this.loadData();
+  clear() {
+    this.table.clear().draw();
+  }
+
+  /**
+   * Refresh (reload) table data
+   * @param {string} url optional, specify data source url
+   */
+  refresh(url) {
+    this.loadData(url);
   }
 
   /** Private **/
@@ -114,8 +132,13 @@ export default class TablePanel {
   /**
    * Add data into table and draw
    * @param {Array} data Sequence of items containing data to be added to the table
+   * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
    */
-  _renderPage(data) {
+  _render(data, clear = false) {
+    // Clear data first if argument set to true
+    if (clear)
+      this.clear();
+
     for(let item of data) {
       this.table.row.add(item);
     }

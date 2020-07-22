@@ -1,5 +1,7 @@
 import TablePanel from 'shared/base/table_panel'
 
+import { isCDISC } from 'shared/helpers/utils'
+
 /**
  * Base Selectable Panel (Table)
  * @description Extensible Selectable DataTable panel
@@ -21,8 +23,12 @@ export default class SelectablePanel extends TablePanel {
    * @param {boolean} params.paginated Specify if the loadData call should be paginated. Optional, default = true
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
+   * @param {function} params.loadCallback Callback to data fully loaded, optional
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {boolean} params.showSelectionInfo Enable / disable selection info on the table
+   * @param {boolean} params.ownershipColorBadge Enable / disable showing a color-coded ownership badge
+   * @param {function} params.onSelect Callback on row(s) selected, optional
+   * @param {function} params.onDeselect Callback on row(s) deselected, optional
    * @param {Object} args Optional additional arguments
    */
   constructor({
@@ -36,11 +42,15 @@ export default class SelectablePanel extends TablePanel {
     paginated = true,
     order = [[0, "desc"]],
     buttons = [],
+    loadCallback = () => {},
     multiple = false,
-    showSelectionInfo = true
+    showSelectionInfo = true,
+    ownershipColorBadge = false,
+    onSelect = () => { },
+    onDeselect = () => { }
   }) {
-    super({ selector, url, param, count, extraColumns, cache, paginated, order, buttons },
-          { multiple, showSelectionInfo });
+    super({ selector, url, param, count, extraColumns, deferLoading, cache, paginated, order, buttons, loadCallback },
+          { multiple, showSelectionInfo, ownershipColorBadge, onSelect, onDeselect });
   }
 
   /**
@@ -87,28 +97,28 @@ export default class SelectablePanel extends TablePanel {
     super._setListeners();
 
     // Row(s) selected
-    this.table.on('select', (e, dt, t, indexes) => this.onSelect(indexes));
+    this.table.on('select', (e, dt, t, indexes) => this._onSelect(indexes));
 
     // Row(s) deselected
-    this.table.on('deselect', (e, dt, t, indexes) => this.onDeselect(indexes));
+    this.table.on('deselect', (e, dt, t, indexes) => this._onDeselect(indexes));
   }
 
   /**
-   * Called when one or more rows are selected
+   * Called when one or more rows are selected. Calls instance's onSelect by default
    * Override for custom behavior
    * @param {Array} indexes collection of zero-based indexes of the selected rows
    */
   _onSelect(indexes) { 
-
+    this.onSelect(indexes);
   }
 
   /**
-   * Called when one or more rows are deselected
+   * Called when one or more rows are deselected. Calls instance's onDeselect by default
    * Override for custom behavior
    * @param {Array} indexes collection of zero-based indexes of the deselected rows
    */
   _onDeselect(indexes) {
-
+    this.onDeselect(indexes);
   }
 
   /**
@@ -119,11 +129,18 @@ export default class SelectablePanel extends TablePanel {
     const options = super._tableOpts;
 
     options.columns = [...this.extraColumns];
-    // Selection
+    options.language.emptyTable = "No items found.";
+    // Selection settings
     options.select = {
       style: this.multiple ? 'multi' : 'single',
       info: this.showSelectionInfo
     }
+
+    // Row owner styling
+    if (this.ownershipColorBadge)
+      options.createdRow = (row, data, idx) => {
+        $(row).addClass( isCDISC(data) ? 'row-cdisc y' : 'row-sponsor b' );
+      }
 
     return options;
   }
