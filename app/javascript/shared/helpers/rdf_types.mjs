@@ -223,7 +223,7 @@ function getRdfType(shortcut) {
  * @return {boolean} match result
  */
 function rdfTypesMatch(name, value) {
-  return rdfTypesMap[name] === value;
+  return rdfTypesMap[name].rdfType === value;
 }
 
 export {
