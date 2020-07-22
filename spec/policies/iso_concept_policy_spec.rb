@@ -93,15 +93,11 @@ describe IsoConceptPolicy do
     let (:user) { @user_sa }
 
     it "allows access" do
-      @user_sa.remove_role :reader # Just for this test
       allow_list []
-      @user_sa.add_role :reader
     end
 
     it "denies access" do
-      @user_sa.remove_role :reader # Just for this test
       deny_list [:show, :edit]
-      @user_sa.add_role :reader
     end
 
   end
