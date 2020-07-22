@@ -1,0 +1,21 @@
+<div class="col-md-6 card wide">
+  <div class="card-content">
+    <div class="text-xnormal text-link ci-card-title">
+      Browse
+    </div>
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible" } do %>
+        <%= yield :index_extra_columns %>
+      <% end %>
+  </div>
+</div>
+
+<div class="col-md-6 card wide">
+  <div class="card-content">
+    <div class="text-xnormal text-link ci-card-title">
+      Select
+    </div>
+      <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
+        <%= yield :history_extra_columns %>
+      <% end %>
+  </div>
+</div>

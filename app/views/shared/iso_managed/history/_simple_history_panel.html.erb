@@ -1,22 +1,17 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 
 <% if !local_assigns[:history_url].nil? %>
-  <%= javascript_tag "let historyDataUrl = '#{history_url}',
-                        rsUpdateUrl = '#{iso_registration_states_v2_path("rsId")}'" %>
+  <%= javascript_tag "let historyDataUrl = '#{history_url}';" %>
 <% end %>
 
-<div class="table-cardstyle" id="history-panel">
+<div class="table-cardstyle" id="simple-history-panel">
   <table id="history" class="table <%= local_assigns.fetch :table_classes, '' %>">
     <thead>
       <tr>
         <th class="fit">Version</th>
-        <th class="fit">Last Change Date</th>
-        <th>Owner</th>
-        <th>Identifier</th>
-        <th>Label</th>
         <th>Version Label</th>
         <th>State</th>
-        <th class="fit ignore"></th>
+        <%= yield %>
         <th class="fit"></th>
       </tr>
     </thead>
