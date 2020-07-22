@@ -482,11 +482,14 @@ Rails.application.routes.draw do
       get :export_ttl
     end
   end
-    resources :adam_ig_datasets, :only => [:show] do
+  resources :adam_ig_datasets, :only => [:show] do
     member do
       get :export_json
       get :export_ttl
     end
+  end
+
+  resources :managed_items do
   end
 
 end
