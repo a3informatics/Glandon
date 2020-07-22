@@ -1,14 +1,16 @@
-# Purpose
+# Local Environment Settings File
+
+## General
 The file provides the single configuration file that is NOT configured in github. This file is unique for each installation of the system. Since it is not configured it also holds any system passwords etc that need to be configured.
 
-# Structure
+## Structure
 The file is a single YAML file. The file is a set of name value pairs. No other structures are currently permitted.
 
-# Updates
-## Release 2.37.0
+## Updates
+### Release 2.37.0
 Add in ability to have specific configuration files for a customer installation. To allow for this an additional field ```installation: <name>``` has been added to set the name of the installation directory to be used, see below.
 
-# Fields
+## Fields
 | Group | Field  | Description |
 |---|---|---|
 | Email | EMAIL_DOMAIN  | Email domain |
@@ -46,7 +48,7 @@ Add in ability to have specific configuration files for a customer installation.
 | Installation | installation | The directory name of sponsor specific configuration.|
 
 
-# Example
+## Example
 ```
 defaults: &defaults
   # Email options
