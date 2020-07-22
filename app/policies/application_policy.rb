@@ -49,7 +49,7 @@ class ApplicationPolicy
       #
       # @return [Boolean] returns True if permitted, false otherwise
       define_singleton_method :"#{action}?" do 
-        self.class.send("#{method}?")
+        self.send("#{method}?")
       end
     end
   end
