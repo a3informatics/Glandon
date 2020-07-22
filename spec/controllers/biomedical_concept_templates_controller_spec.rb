@@ -43,7 +43,7 @@ describe BiomedicalConceptTemplatesController do
       bct.uri = Uri.new(uri: "http://www.example.com/bct#bct")
       expect(BiomedicalConceptTemplate).to receive(:latest).with({identifier: "identifier", scope: an_instance_of(IsoNamespace)}).and_return(bct)
       get :history, params:{biomedical_concept_template: {identifier: "identifier", scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
-      expect(assigns(:bt).id).to eq(bct.id)
+      expect(assigns(:item).id).to eq(bct.id)
       expect(assigns(:identifier)).to eq("identifier")
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
