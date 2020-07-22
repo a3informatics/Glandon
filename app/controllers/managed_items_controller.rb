@@ -27,7 +27,7 @@ class ManagedItemsController < ApplicationController
         @item = model_klass.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
         @identifier = the_params[:identifier]
         @scope_id = the_params[:scope_id]
-        @close_path = forms_path
+        @close_path = close_path_for
       end
     end
   end

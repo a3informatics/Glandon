@@ -2,7 +2,6 @@ require 'controller_helpers.rb'
 
 class FormsController < ManagedItemsController
 
-  #before_action :authenticate_user!
   before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "FormsController"
@@ -18,14 +17,12 @@ class FormsController < ManagedItemsController
   end
 
   def show
-    #authorize Form
     @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
   def show_data
-    #authorize Form, :show?
     @form = Form.find_minimum(protect_from_bad_id(params))
     items = @form.get_items
     items = items.each_with_index do |item, index|
@@ -249,6 +246,10 @@ private
 
   def history_path_for(identifier, scope_id)
     return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})} 
-  end  
+  end
+
+  def close_path_for
+    forms_path
+  end   
 
 end

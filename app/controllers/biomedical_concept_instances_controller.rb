@@ -1,54 +1,28 @@
 require 'controller_helpers.rb'
 
-class BiomedicalConceptInstancesController < ApplicationController
+class BiomedicalConceptInstancesController < ManagedItemsController
 
   C_CLASS_NAME = "BiomedicalConceptInstancesController"
 
   include ControllerHelpers
 
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
 
   def index
-    authorize BiomedicalConceptInstance
-    respond_to do |format|
-      format.json do
-        @bcs = BiomedicalConceptInstance.unique
-        @bcs = @bcs.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        render json: {data: @bcs}, status: 200
-      end
-      format.html
-    end
+    super
   end
 
   def history
-    authorize BiomedicalConceptInstance
-    respond_to do |format|
-      format.json do
-        results = []
-        history_results = BiomedicalConceptInstance.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = BiomedicalConceptInstance.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        latest = BiomedicalConceptInstance.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(BiomedicalConceptInstance, history_results, current, latest)
-        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-      end
-      format.html do
-        @bc = BiomedicalConceptInstance.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
-        @close_path = biomedical_concept_instances_path
-      end
-    end
+    super
   end
 
   def show
-    authorize BiomedicalConceptInstance
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_biomedical_concept_instance_path(@bc)
     @close_path = history_biomedical_concept_instances_path(biomedical_concept_instance: { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope })
   end
 
   def show_data
-    authorize BiomedicalConceptInstance, :show?
     @bc = BiomedicalConceptInstance.find_minimum(protect_from_bad_id(params))
     items = @bc.get_properties(true)
     items = items.each do |x|
@@ -266,5 +240,17 @@ private
         return ""
     end
   end
+
+  def model_klass
+    BiomedicalConceptInstance
+  end
+
+  def history_path_for(identifier, scope_id)
+    return {history_path: history_biomedical_concept_instances_path({biomedical_concept_instance:{identifier: identifier, scope_id: scope_id}})} 
+  end
+
+  def close_path_for
+    biomedical_concept_instances_path
+  end 
 
 end
