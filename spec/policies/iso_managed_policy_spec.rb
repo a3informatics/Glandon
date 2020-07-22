@@ -9,6 +9,8 @@ describe IsoManagedPolicy do
   let (:iso_managed) { IsoManaged.new }
 
   before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
     ua_create
   end
 
