@@ -1,27 +1,20 @@
 require 'controller_helpers.rb'
 
-class FormsController < ApplicationController
+class FormsController < ManagedItemsController
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
+  before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "FormsController"
 
   include ControllerHelpers
 
   def index
-    authorize Form
-    respond_to do |format|
-      format.json do
-        @forms = Form.unique
-        @forms = @forms.map{|x| x.reverse_merge!({history_path: history_forms_path({form:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        render json: {data: @forms}, status: 200
-      end
-      format.html
-    end
+    super
   end
 
   def history
-    authorize Form
+    #authorize Form
     respond_to do |format|
       format.json do
         results = []
@@ -41,14 +34,14 @@ class FormsController < ApplicationController
   end
 
   def show
-    authorize Form
+    #authorize Form
     @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
   def show_data
-    authorize Form, :show?
+    #authorize Form, :show?
     @form = Form.find_minimum(protect_from_bad_id(params))
     items = @form.get_items
     items = items.each_with_index do |item, index|
@@ -265,5 +258,13 @@ private
         return ""
     end
   end
+
+  def model_klass
+    Form
+  end
+
+  def history_path_for(identifier, scope_id)
+    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})} 
+  end  
 
 end
