@@ -4,7 +4,7 @@
       Browse
     </div>
       <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible" } do %>
-        <%= yield :index_extra_columns %>
+        <%= yield :m_index_extra_columns %>
       <% end %>
   </div>
 </div>
@@ -15,7 +15,7 @@
       Select
     </div>
       <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
-        <%= yield :history_extra_columns %>
+        <%= yield :m_history_extra_columns %>
       <% end %>
   </div>
 </div>

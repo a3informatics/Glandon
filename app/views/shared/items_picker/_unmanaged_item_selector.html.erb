@@ -1,0 +1,36 @@
+<div class="col-md-6 card wide">
+  <div class="card-content">
+    <div class="text-xnormal text-link ci-card-title">
+      Browse
+    </div>
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible" } do %>
+        <%= yield :um_index_extra_columns %>
+      <% end %>
+  </div>
+</div>
+
+<div class="col-md-6 card wide">
+  <div class="card-content">
+    <div class="text-xnormal text-link ci-card-title">
+      Pick Version
+      <span class="icon-info-circle text-small ttip">
+        <span class="ttip-text shadow-small text-medium">
+          Click on a version to show Code List Items.<br/> Click again (deselect) to return to Browsing Code Lists.
+        </span>
+      </span>
+    </div>
+      <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
+        <%= yield :um_history_extra_columns %>
+      <% end %>
+  </div>
+</div>
+
+<div class="col-md-6 card wide" hidden>
+  <div class="card-content">
+    <div class="text-xnormal text-link ci-card-title">
+      Select Item
+    </div>
+      <%= render partial: "shared/thesauri/managed_concepts/children/simple_children_panel",
+            locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } %>
+  </div>
+</div>
