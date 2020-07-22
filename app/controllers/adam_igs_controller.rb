@@ -29,10 +29,9 @@ class AdamIgsController < ApplicationController
   end
 
 private
-  
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize AdamIg
+
+  def model_klass
+    AdamIg
   end
 
 end

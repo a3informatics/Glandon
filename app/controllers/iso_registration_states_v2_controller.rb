@@ -31,9 +31,8 @@ private
       :previousState, :referer, :mi_id, :mi_namespace, :multiple_edit)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoRegistrationState
+  def model_klass
+    IsoRegistrationState
   end
 
 end

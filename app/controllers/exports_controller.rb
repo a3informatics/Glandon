@@ -31,9 +31,8 @@ private
     params.require(:export).permit(:export_list_path, :file_path)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize Export
+  def model_klass
+    Export
   end
 
 end

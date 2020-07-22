@@ -38,9 +38,8 @@ private
     params.require(:iso_namespace).permit(:name, :short_name, :authority)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoNamespace
+  def model_klass
+    IsoNamespace
   end
 
 end
