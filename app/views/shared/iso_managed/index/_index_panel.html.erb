@@ -11,8 +11,17 @@
         <th class="fit">Owner</th>
         <th class="fit">Identifier</th>
         <th>Label</th>
+
+        <%# Extra Columns %>
         <%= yield  %>
-        <th class="fit"></th>
+
+        <%# Indicators %>
+        <th class="ignore fit"></th>
+
+        <%# History Button %>
+        <% if local_assigns.fetch :has_history_btn?, false %>
+          <th class="fit"></th>
+        <% end %>
       </tr>
     </thead>
   </table>

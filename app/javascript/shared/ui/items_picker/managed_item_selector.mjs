@@ -3,8 +3,7 @@ import Cacheable from 'shared/base/cacheable'
 import IPPanel from 'shared/ui/items_picker/ip_panel'
 import { makeHistoryUrl } from 'shared/helpers/urls'
 import { tableInteraction } from 'shared/helpers/utils'
-import { dtIndexColumns, dtSimpleHistoryColumns } from 'shared/helpers/dt/dt_column_collections'
-import { dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
+import { dtIndexColumns, dtCLIndexColumns, dtSimpleHistoryColumns } from 'shared/helpers/dt/dt_column_collections'
 
 /**
  * Managed Item Selector
@@ -56,6 +55,10 @@ export default class ManagedItemSelector extends Cacheable {
    * Initializes the required panels for Selector type
    */
   _initialize() {
+
+    // Throws error when param name not present in the url object
+    if (!this.urls)
+      throw new Error(`Wrong param name '${this.param}' specified.`)
 
     // Initializes Selectable Index Panel
     this.indexPanel = new IPPanel({
@@ -155,7 +158,7 @@ export default class ManagedItemSelector extends Cacheable {
   get _indexColumns() {
     switch (this.param) {
       case "managed_concept":
-        return [...dtIndexColumns(), { data: "notation" }, dtIndicatorsColumn()];
+        return dtCLIndexColumns();
         break;
       default:
         return dtIndexColumns();

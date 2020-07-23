@@ -8,10 +8,22 @@ import { termReferences } from 'shared/ui/collections'
  */
 function dtIndexColumns() {
   return [
-    {data : "owner"},
-    {data : "identifier"},
-    {data : "label"}
+    { data : "owner" },
+    { data : "identifier" },
+    { data : "label" },
+    dtIndicatorsColumn()
   ];
+};
+
+/**
+ * Column definitions for a Code List Index panel
+ * @return {Array} DataTables Code List Index panel column definitions collection
+ */
+function dtCLIndexColumns() {
+  const indexColumns = [...dtIndexColumns()];
+  indexColumns.splice( 3, 0, { data: "notation" } );
+
+  return indexColumns;
 };
 
 /**
@@ -99,6 +111,7 @@ function dtFormShowColumns() {
 
 export {
   dtIndexColumns,
+  dtCLIndexColumns,
   dtSimpleHistoryColumns,
   dtCLEditColumns,
   dtBCShowColumns,

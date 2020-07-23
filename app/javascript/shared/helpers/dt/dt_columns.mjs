@@ -58,7 +58,7 @@ function dtTagsColumn(width = '', className = '') {
 function dtIndicatorsColumn() {
   return {
     data: "indicators",
-    width: "90px",
+    // width: "90px",
     render: (data, type, r, m) => renderIndicators(data, type)
   }
 };

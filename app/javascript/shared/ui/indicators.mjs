@@ -24,7 +24,12 @@ const indicatorDefinitions = {
  * @return {string} formatted HTML / text
  */
 function renderIndicators(data, type) {
-  let output = '';
+  // Return empty if no indicator data
+  if ( _.isEmpty(data) || _.isNull(data) )
+    return ''
+
+  // Otherwise render indicator HTML / text
+  let output = type === 'display' ? '<div class="indicators-wrap">' : '';
 
   for ( const [name, value] of Object.entries(data) ) {
 
@@ -74,6 +79,8 @@ function renderIndicators(data, type) {
       output += `${text}. ` // Renders as a string
   }
 
+  output += type === 'display' ? '</div>' : '';
+
   return output;
 }
 
@@ -88,7 +95,7 @@ function fetchItemIndicators(url, target) {
   $get({
     url: url,
     cache: false,
-    done: (r) => $(target).html( indicatorIcons(r.data.indicators) ),
+    done: (r) => $(target).html( renderIndicators(r.data.indicators) ),
     always: () => indicatorsProcessing(false)
   });
 
