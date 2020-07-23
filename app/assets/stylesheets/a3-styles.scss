@@ -98,6 +98,10 @@
   display: inline-block;
 }
 
+.bg-label.bordered{
+  border: 2px solid $primary-color-bright;
+}
+
 a.bg-label {
   text-decoration: none;
   color: $grey-medium;
