@@ -1,24 +1,23 @@
 require 'rails_helper'
 require 'rake'
 
-describe 'schema list' do
+describe 'triple store schema list' do
   
   before :all do
-    Rake.application.rake_require "tasks/schema_list"
+    Rake.application.rake_require "tasks/triple_store_schema_list"
     Rake::Task.define_task(:environment)
   end
 
   def sub_dir
-    return "tasks/schema_list"
+    return "tasks/triple_store/schema_list"
   end
 
   def run_and_capture_output  
     stdout = StringIO.new
     $stdout = stdout
-    #Rake::Task["schema:list"].reenable
-    Rake.application.invoke_task "schema:list"
+    Rake.application.invoke_task "triple_store:schema_list"
     $stdout = STDOUT
-    Rake::Task["schema:list"].reenable
+    Rake::Task["triple_store:schema_list"].reenable
     return stdout.string
   end
 

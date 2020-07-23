@@ -1,9 +1,9 @@
-namespace :schema do
+namespace :triple_store do
 
-  desc "Schema Listing"
+  desc "Triple Store Schema Listing"
 
   # Format results as a simple table
-  def schema_list_results(xs)
+  def triple_store_schema_list_results(xs)
     puts "\n\n"
     max_lengths = Array.new(xs[0].length, 0)
     xs.each do |x|
@@ -20,7 +20,7 @@ namespace :schema do
   end
 
   # Triples present?
-  def schema_list_query
+  def triple_store_schema_list_query
     results = []
     results << ["Uri", "Label", "Version"]
     results << ["-------------", "--------", "-------"]
@@ -36,20 +36,20 @@ namespace :schema do
     query_results.by_object_set([:s, :l, :v]).each do |x|
       results << ["#{x[:s]}", "#{x[:l]}", "#{x[:v]}"]
     end
-    schema_list_results(results)
+    triple_store_schema_list_results(results)
   end
 
   # Execute task
-  def schema_list_execute
-    schema_list_query
+  def triple_store_schema_list_execute
+    triple_store_schema_list_query
   rescue => e
-    msg = "Schema list error."
+    msg = "Triple store schema list error."
     abort("#{msg}\n\n#{e}\n\n#{e.backtrace}")
   end
 
   # Actual rake task
-  task :list => :environment do
-    schema_list_execute
+  task :schema_list => :environment do
+    triple_store_schema_list_execute
   end
 
 end
