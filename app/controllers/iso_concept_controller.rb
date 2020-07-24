@@ -187,7 +187,7 @@ private
   end
 
   def get_klass(item)
-    IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
+    IsoConceptV2.rdf_type_to_klass(item.find_rdf_type.to_s)
   end
 
   def this_params

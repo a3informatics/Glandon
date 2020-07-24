@@ -111,6 +111,7 @@ describe Fuseki::Persistence do
     it "returns the true type" do
       uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
       item = IsoNamespace.find(uri)
+      expect(item.find_rdf_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(item.my_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
       expect(Fuseki::Base.the_type(uri).to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")

@@ -9,7 +9,13 @@ class Form::Group < IsoConceptV2
   data_property :completion
   data_property :optional, default: false
 
-  object_property :has_item, cardinality: :many, model_class: "Form::Item", children: true
+  object_property :has_item, cardinality: :many, model_class: Form::Item, 
+    model_classes: 
+    [ 
+      Form::Item::BcProperty, Form::Item::Common, Form::Item::Mapping,
+      Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
+    ],
+    children: true
 
   validates_with Validator::Field, attribute: :ordinal, method: :valid_positive_integer?
   validates_with Validator::Field, attribute: :note, method: :valid_markdown?

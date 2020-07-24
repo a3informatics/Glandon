@@ -21,16 +21,10 @@ class Form::Item::BcProperty < Form::Item
       tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
       coded_value << tc
     end
-    #   item[:has_property].each do |prop|
-    #     tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:prop)).to_h
-    #     bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: tc[:reference]))
-    #     property << bc.to_h
-    #   end
     item[:has_coded_value] = coded_value
     item[:has_property] = property
     return item
   end
-
 
 #   # To XML
 #   #

@@ -1,7 +1,7 @@
 ---
 :organization_identifier:
   :cardinality: :one
-  :model_class: {}
+  :model_classes: []
   :type: :data
   :base_type:
     :datatype: http://www.w3.org/2001/XMLSchema#string
@@ -13,7 +13,7 @@
   :predicate: http://www.assero.co.uk/Test#organizationIdentifier
 :international_code_designator:
   :cardinality: :one
-  :model_class: {}
+  :model_classes: []
   :type: :data
   :base_type:
     :datatype: http://www.w3.org/2001/XMLSchema#string
@@ -25,7 +25,7 @@
   :predicate: http://www.assero.co.uk/Test#internationalCodeDesignator
 :owner:
   :cardinality: :one
-  :model_class: {}
+  :model_classes: []
   :type: :data
   :base_type:
     :datatype: http://www.w3.org/2001/XMLSchema#boolean
@@ -37,8 +37,9 @@
   :predicate: http://www.assero.co.uk/Test#owner
 :ra_namespace:
   :cardinality: :many
-  :model_class: !ruby/class 'TestRTarget'
-  :default: {}
+  :model_classes:
+  - TestRTarget
+  :default: []
   :type: :object
   :read_exclude: false
   :delete_exclude: false
@@ -47,9 +48,10 @@
   :predicate: http://www.assero.co.uk/Fake1#raNamespace
 :by_authority:
   :cardinality: :one
-  :model_class: !ruby/class 'IsoRegistrationAuthority'
   :read_exclude: true
-  :default: {}
+  :model_classes:
+  - IsoRegistrationAuthority
+  :default: 
   :type: :object
   :delete_exclude: false
   :base_type: ''

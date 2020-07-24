@@ -8,13 +8,10 @@ class Form::Item::Question < Form::Item
   data_property :format 
   data_property :mapping
   data_property :question_text 
-  #data_property :tc_refs
 
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
-  # object_property :has_variable, cardinality: :one, model_class: "bd:Variable"
 
 
-  #validates_with Validator::Field, attribute: :datatype, method: :valid_datatype?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
@@ -35,17 +32,6 @@ class Form::Item::Question < Form::Item
     item[:has_coded_value] = coded_value
     return item
   end
-  
-#   # Thesaurus Concepts
-#   #
-#   # @return [object] An array of Thesaurus Concepts
-#   def thesaurus_concepts
-#     results = Array.new
-#     self.tc_refs.each do |ref|
-#       results << ThesaurusConcept.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
-#     end
-#     return results
-#   end
   
 #   # To XML
 #   #
@@ -72,15 +58,6 @@ class Form::Item::Question < Form::Item
 #         decode.add_translated_text(tc.label)
 #       end
 #     end
-#   end
-
-# private
-
-#   def self.children_from_triples(object, triples, id)
-#     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
-#     links.each do |link|
-#       object.tc_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
-#     end      
 #   end
 
 end

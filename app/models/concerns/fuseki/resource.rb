@@ -35,16 +35,16 @@ module Fuseki
 
     # Object Relationships
     # 
-    # @return [Array] array of hash each containing the predicate and class for the class' relationships
+    # @return [Array] array of hash each containing the predicate and class for the object relationships
     def object_relationships
-      resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+      resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes]}}
     end
 
     # Property Relationships
     # 
-    # @return [Array] array of hash each containing the predicate and class for the class' relationships
+    # @return [Array] array of hash each containing the predicate and class for the property relationships
     def property_relationships
-      resources.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+      resources.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes]}}
     end
 
     # Excluded Read Relationships
@@ -158,7 +158,14 @@ module Fuseki
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
       Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
-      opts[:model_class] = opts[:model_class].constantize
+      if opts.key?(:model_classes)
+        opts[:model_classes].unshift(opts[:model_class]) if opts.key?(:model_class)
+        opts[:model_classes] = opts[:model_classes].map{|x| "#{x}".constantize}
+      else
+        opts[:model_classes] = [] 
+        opts[:model_classes] << "#{opts[:model_class]}".constantize
+      end
+      opts.except!(:model_class) # Remove the model_class key, use model_classes for all processing
       opts[:default] = opts[:cardinality] == :one ? nil : []
       opts[:type] = :object 
       opts[:read_exclude] = opts.key?(:read_exclude)
@@ -208,7 +215,7 @@ module Fuseki
         # Define a class method to get the children class
         define_singleton_method "children_klass" do
           #opts[:model_class]
-          @resources["#{name}".to_sym][:model_class]
+          @resources["#{name}".to_sym][:model_classes].first
         end
 
         # Define a class method to get the child predicate
@@ -231,7 +238,7 @@ module Fuseki
       options = 
       { 
         cardinality: :one, 
-        model_class: nil, 
+        model_classes: [], 
         type: :data, 
         base_type: simple_datatype, 
         read_exclude: false, 
@@ -249,19 +256,30 @@ module Fuseki
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
     def managed_paths(type, stack=[], parent_predicate="")
       top = true if stack.empty?
-      result = []
-      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[type]}}
+      paths = []
+      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes], exclude: y[type]}}
       predicates.each do |predicate| 
         stack = [] if top
         next if predicate[:exclude]
-        klass = predicate[:model_class]
-        next if stack.include?(klass)
-        stack.push(klass)
-        predicate_ref = "#{predicate[:predicate].to_ref}"
-        top ? result << "#{predicate_ref}" : result << "#{parent_predicate}/#{predicate_ref}"
-        result += klass.managed_paths(type, stack, top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}")
+        klasses = predicate[:model_classes]
+        klasses.each do |klass|
+          is_recursive = false
+          if klass == self
+            is_recursive = true
+            name = "#{klass}.#{predicate[:predicate].fragment}"
+          else
+            name = "#{klass}.#{predicate[:predicate].fragment}"
+          end
+          next if stack.include?(name)
+          stack.push(name)
+          predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
+          path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
+          paths << path
+          paths += klass.managed_paths(type, stack, path)
+          x = stack.pop
+        end
       end
-      result
+      paths
     end
 
     # Excluded Relationships

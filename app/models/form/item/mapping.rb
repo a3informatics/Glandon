@@ -16,7 +16,6 @@ class Form::Item::Mapping < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
-  
   # # To XML
   # #
   # # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node

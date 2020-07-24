@@ -124,7 +124,6 @@ module Fuseki
       end
 
       def from_results_recurse(uri, triples)
-        #object = new
         object = rdf_type_klass(triples[uri.to_s])
         object.instance_variable_set("@uri", uri)
         triples[uri.to_s].each do |triple|
@@ -188,6 +187,18 @@ module Fuseki
         query_string = "SELECT ?p WHERE { #{the_uri.to_ref} ?p ?o }"
         query_results = Sparql::Query.new.query(query_string, "", [])
         query_results.empty?
+      end
+
+      # Klass For. Get the class (klass) for an id or URI
+      #
+      # @param [Uri|id] the identifier, either a URI or the id
+      # @raise [Errors::ApplicationLogicError] raised if no class (klass) found.
+      # @return [Class] The class
+      def klass_for(id)
+        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+        query_results = Sparql::Query.new.query("SELECT ?t WHERE { #{uri.to_ref} rdf:type ?t }", "", [])
+        Errors.application_error(self.class.name, __method__.to_s, "Unable to find class (klass) for #{uri}.") if query_results.empty?
+        rdf_type_to_klass(query_results.by_object(:t).first.to_s)
       end
 
       # -----------------
@@ -277,11 +288,11 @@ module Fuseki
     # @return [Stirng] the id string
     alias uuid id
 
-    # My Type. Get the type for the insance
+    # Find RDF Type. Get the type for the insance
     # 
     # @raise [Errors::ApplicationLogicError] raised if no type found.
     # @return [Uri] the RDF type
-    def true_type
+    def find_rdf_type
       results = []
       query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
       query_results = Sparql::Query.new.query(query_string, "", [])
@@ -289,8 +300,9 @@ module Fuseki
       query_results.by_object(:t).first
     end
 
-    # Deprecate true_type
-    alias :my_type :true_type
+    # Deprecate true_type and my_type. Should no longer be used.
+    alias :my_type :find_rdf_type
+    alias :true_type :find_rdf_type
 
     # Transaction Begin. Begin a transaction. if one already is in progress it will be used
     #
@@ -342,25 +354,6 @@ module Fuseki
       self.properties.saved
       nil
     end
-
-    # def where_child(params)
-    #   where_clauses = ""
-    #   params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
-    #   properties = properties_instance
-    #   unions = []
-    #   properties.object_relationships.map.each do |relationship|
-    #     unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
-    #   end
-    #   query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
-    #   results = Sparql::Query.new.query(query_string, self.rdf_type.namespace, [])
-    #   objects = []
-    #   map = results.subject_map
-    #   results.by_subject.each do |subject, triples|
-    #     klass = map[subject.to_s].constantize
-    #     objects << klass.from_results(Uri.new(uri: subject), triples)
-    #   end
-    #   objects
-    # end
 
     # Update. Update the object with the specified properties if valud
     #
@@ -546,11 +539,22 @@ module Fuseki
     end
     
     def to_sparql(sparql, recurse=false)
+      serialize(sparql, recurse, false)
+    end      
+
+    def to_ttl
+      sparql = Sparql::Update.new
+      sparql.default_namespace(@uri.namespace)
+      serialize(sparql, true, true)
+      sparql.to_file
+    end
+
+    def serialize(sparql, recurse=false, ignore_persistence=false)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|
         next if object_empty?(property)
         property.to_triples(sparql, @uri)
-        object_to_triple(sparql, property) if recurse
+        serialize_object(sparql, property, ignore_persistence) if recurse
       end
     end      
 
@@ -568,6 +572,10 @@ module Fuseki
       results
     end      
 
+    # Generate URI. Generate URIs for the object and properties
+    #
+    # @param [URI] parent the parent object's uri.
+    # @return [Void] no return
     def generate_uri(parent)
       self.uri = create_uri(parent) # Dynamic method 
       properties.each do |property|
@@ -617,48 +625,39 @@ module Fuseki
       if property.array?
         return :empty if value.empty?
         return :uri if value.first.is_a?(Uri)
-        return :object if value.first.is_a?(property.klass)
+        return :object if value.first.class.ancestors.include?(Fuseki::Base)
       else
         return :empty if value.nil?
         return :uri if value.is_a?(Uri)
-        return :object if value.is_a?(property.klass)        
+        return :object if value.class.ancestors.include?(Fuseki::Base)
       end
     end
 
-    # # Set a simple typed value
-    # def self.to_typed(base_type, value)
-    #   if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-    #     "#{value}"
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-    #     value.to_bool
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-    #     value.to_time_with_default
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-    #     value.to_i
-    #   elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-    #     value.to_i
-    #   else
-    #     "#{value}"
-    #   end
-    # rescue => e
-    # end
-
+    # Clear the cache
     def clear_cache
       return if !self.class.cache?
       Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
-    def object_to_triple(sparql, property)
+    # Serialize an object
+    def serialize_object(sparql, property, ignore_persistence)
       return if !property.object?
       objects = property.get
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        next if object.respond_to?(:persisted?) ? object.persisted? : true
-        object.to_sparql(sparql, true)
+        next if object_persisted?(object) unless ignore_persistence
+        next if object.is_a? Uri
+        object.serialize(sparql, true, ignore_persistence)
       end
     end
 
+    # Determine if object persisted
+    def object_persisted?(object)
+      object.respond_to?(:persisted?) ? object.persisted? : true
+    end
+
+    # Create URI
     def object_create_uri(property)
       return if !property.object?
       objects = property.get
@@ -669,6 +668,7 @@ module Fuseki
       end
     end
 
+    # Object Empty
     def object_empty?(property)
       return false if !property.object? 
       value = property.get
