@@ -37,7 +37,7 @@ class ManagedItemsController
     def release_and_get(item)
       @item = item
       @token.release
-      @token = token_get
+      token_get
     end
 
 
