@@ -297,6 +297,7 @@ module Fuseki
           stack.push(name)
           predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
           path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
+          next if paths.include?(path)
           paths << path
           paths += klass.managed_paths(type, stay_in_namespace, stack, path)
           x = stack.pop
