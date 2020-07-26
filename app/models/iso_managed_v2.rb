@@ -288,11 +288,22 @@ class IsoManagedV2 < IsoConceptV2
   end
 
   # Read Paths
-
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
   def self.read_paths
     result = super
-    result += predicate_paths(:read_exclude, resources[:has_identifier], true)
-    result += predicate_paths(:read_exclude, resources[:has_state], true)
+    result += read_property_paths(:has_identifier)
+    result += read_property_paths(:has_state)
+    result
+  end
+
+  # Delete Paths
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
+  def self.delete_paths
+    result = super
+    result += delete_property_paths(:has_identifier)
+    result += delete_property_paths(:has_state)
     result
   end
 
