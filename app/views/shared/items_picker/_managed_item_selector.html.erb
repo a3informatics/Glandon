@@ -3,8 +3,12 @@
     <div class="text-xnormal text-link ci-card-title">
       Browse
     </div>
-      <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible" } do %>
-        <%= yield :m_index_extra_columns %>
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-invisible" } do %>
+
+         <% (local_assigns.fetch :extra_index_columns, []).each do |column| %>
+          <th class="<%= column[:css_class] %>"><%= column[:name] %></th>
+         <% end %>
+
       <% end %>
   </div>
 </div>
@@ -14,8 +18,12 @@
     <div class="text-xnormal text-link ci-card-title">
       Select
     </div>
-      <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
-        <%= yield :m_history_extra_columns %>
+      <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-invisible no-mark" } do %>
+
+        <% (local_assigns.fetch :extra_history_columns, []).each do |column| %>
+         <th class="<%= column[:css_class] %>"><%= column[:name] %></th>
+        <% end %>
+
       <% end %>
   </div>
 </div>

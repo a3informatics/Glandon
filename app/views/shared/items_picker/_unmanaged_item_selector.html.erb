@@ -4,7 +4,11 @@
       Browse
     </div>
       <%= render layout: "shared/iso_managed/index/index_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible" } do %>
-        <%= yield :um_index_extra_columns %>
+
+        <% (local_assigns.fetch :extra_index_columns, []).each do |column| %>
+          <th class="<%= column[:css_class] %>"><%= column[:name] %></th>
+        <% end %>
+
       <% end %>
   </div>
 </div>
@@ -20,7 +24,9 @@
       </span>
     </div>
       <%= render layout: "shared/iso_managed/history/simple_history_panel", locals: { table_classes: "table-row-clickable table-minimal table-invisible no-mark" } do %>
-        <%= yield :um_history_extra_columns %>
+      <% (local_assigns.fetch :extra_history_columns, []).each do |column| %>
+        <th class="<%= column[:css_class] %>"><%= column[:name] %></th>
+      <% end %>
       <% end %>
   </div>
 </div>
