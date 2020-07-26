@@ -287,6 +287,15 @@ class IsoManagedV2 < IsoConceptV2
     true
   end
 
+  # Read Paths
+
+  def self.read_paths
+    result = super
+    result += predicate_paths(:read_exclude, resources[:has_identifier], true)
+    result += predicate_paths(:read_exclude, resources[:has_state], true)
+    result
+  end
+
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
   # @param [Uri|id] the identifier, either a URI or the id
@@ -674,12 +683,12 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
-      parts = []
-      parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-      self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-      query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-      results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
-      1
+    parts = []
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    1
   end
 
   # Delete minimum. Delete the managed item (Scope identifier, Registration State)

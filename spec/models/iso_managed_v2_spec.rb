@@ -1438,7 +1438,7 @@ describe "IsoManagedV2" do
 
     before :each do
       IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_VSTADIABETES_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/VSTADIABETES.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..10)
       Form.new # Make sure form class loaded
@@ -1451,7 +1451,7 @@ describe "IsoManagedV2" do
     end
 
     it "serialize as TTL, Form" do
-      uri = Uri.new(uri: "http://www.s-cubed.dk/Vital_Signs_-_Therapeutic_Area_-_Diabetes_/V1#F")
+      uri = Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F")
       item = IsoManagedV2.klass_for(uri).find_full(uri)
       item.to_ttl
     end

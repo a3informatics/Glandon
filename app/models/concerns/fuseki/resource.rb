@@ -248,15 +248,18 @@ module Fuseki
       add_to_resources(name, options)
     end
 
-    # Managed Paths. Form a managed path
+    # Managed Paths. Form the managed paths for the item. This is a set of paths for SPARQL operations
     # 
-    # @param type [Symbol] the path type
-    # @param stack [Array] the stack of klasses processed. Used to prevent circular paths
-    # @param parent_predicate [String] the set of predicates from the parent. Will be prepended to this predicate
+    # @param [Symbol] type the path type to be excluded
+    # @param [Array] stack the stack of klasses processed. Used to prevent circular paths
+    # @param [String] parent_predicate the set of predicates from the parent. Will be prepended to this predicate
+    # @param [String] ignore_namespace will ignore the namespace in path found if set true, otherwise paths will
+    #   all be in the same namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def managed_paths(type, stack=[], parent_predicate="")
-      top = true if stack.empty?
+    def managed_paths(type, stack=[], parent_predicate="", ignore_namespace=false)
       paths = []
+      namespace = self.rdf_type.namespace
+      top = true if stack.empty?
       predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes], exclude: y[type]}}
       predicates.each do |predicate| 
         stack = [] if top
@@ -271,13 +274,44 @@ module Fuseki
             name = "#{klass}.#{predicate[:predicate].fragment}"
           end
           next if stack.include?(name)
+          next if klass.rdf_type.namespace != namespace && !ignore_namespace
           stack.push(name)
           predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
           path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
           paths << path
-          paths += klass.managed_paths(type, stack, path)
+          paths += klass.managed_paths(type, stack, path, ignore_namespace)
           x = stack.pop
         end
+      end
+      paths
+    end
+
+    # Predicate Paths. Form the managed paths for the item. This is a set of paths for SPARQL operations
+    # 
+    # @param [Symbol] type the path type to be excluded
+    # @param [Hash] property the property hash
+    # @param [String] ignore_namespace will ignore the namespace in path found if set true, otherwise paths will
+    #   all be in the same namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def predicate_paths(type, property, ignore_namespace=false)
+      paths = []
+      stack = []
+      klasses = property[:model_classes]
+      klasses.each do |klass|
+        is_recursive = false
+        if klass == self
+          is_recursive = true
+          name = "#{klass}.#{property[:predicate].fragment}"
+        else
+          name = "#{klass}.#{property[:predicate].fragment}"
+        end
+        next if stack.include?(name)
+        stack.push(name)
+        predicate_ref = "#{property[:predicate].to_ref}#{is_recursive ? "*" : ""}"
+        path = "#{predicate_ref}"
+        paths << path
+        paths += klass.managed_paths(type, stack, path, ignore_namespace)
+        x = stack.pop
       end
       paths
     end
