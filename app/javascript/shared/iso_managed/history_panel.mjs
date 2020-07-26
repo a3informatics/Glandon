@@ -47,7 +47,7 @@ export default class HistoryPanel extends TablePanel {
     // Update RS
     this._clickListener({
       target: ".registration-state",
-      handler: (e) => rsHelper.updateRS(this._getRowData(e.target))
+      handler: (e) => rsHelper.updateRS(this._getRowDataFrom$(e.target))
     });
 
     // Delete
@@ -56,7 +56,7 @@ export default class HistoryPanel extends TablePanel {
       handler: (e) => $confirm({
         dangerous: true,
         callback: () => $delete({
-          url: this._getRowData(e.target).delete_path,
+          url: this._getRowDataFrom$(e.target).delete_path,
           done: () => location.reload()
         })
       })
@@ -66,7 +66,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Impact Analysis')",
       handler: (e) => {
-        let url = this._getRowData(e.target).impact_path;
+        let url = this._getRowDataFrom$(e.target).impact_path;
         new CdiscVersionSelect((date, id) => location.href = url.replace('thId', id), 'impact').open();
       }
     });
@@ -75,7 +75,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Clone')",
       handler: (e) => {
-        let url = this._getRowData(e.target).clone_path;
+        let url = this._getRowDataFrom$(e.target).clone_path;
         $("#newTerminologyModal form#new_thesaurus").attr("action", url);
       }
     });
@@ -84,7 +84,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Compare')",
       handler: (e) => {
-        let url = this._getRowData(e.target).compare_path;
+        let url = this._getRowDataFrom$(e.target).compare_path;
         this.itemSelector.setCallback((s) => location.href = `${url}?${$.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } )}`) // TODO: Fix
         this.itemSelector.show();
       }

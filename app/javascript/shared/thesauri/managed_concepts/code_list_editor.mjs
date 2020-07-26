@@ -122,7 +122,7 @@ export default class CLEditor extends EditablePanel {
 
     // Edit tags
     $(this.selector).on('click', 'tbody td.editable.edit-tags', (e) => {
-      const editTagsUrl = this._getRowData(e.target).edit_tags_path;
+      const editTagsUrl = this._getRowDataFrom$(e.target).edit_tags_path;
       if (editTagsUrl)
         window.open(editTagsUrl, '_blank').focus();
     })
@@ -134,7 +134,7 @@ export default class CLEditor extends EditablePanel {
     // Refresh
     $('#refresh-button').on('click', () => this.refresh());
     // Remove item
-    $(this.selector).on('click', 'tbody .remove', (e) => this.removeChild(this._getRow(e.target)));
+    $(this.selector).on('click', 'tbody .remove', (e) => this.removeChild(this._getRowFrom$(e.target)));
     // Help dialog
     $('#editor-help').on('click', () => new InformationDialog({div: $("#information-dialog-cl-edit")}).show() )
   }
