@@ -63,35 +63,36 @@ module Fuseki
 
     # Read Paths
     # 
-    # @param [Boolean] stay_in_namespace keep paths within top of tree namespace. Default is true.
+    # @param [Array] namespaces keep paths within the set of namespaces
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_paths(stay_in_namespace=true)
-      managed_paths(:read_exclude, stay_in_namespace)
+    def read_paths(namespaces)
+      managed_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
     end
 
     # Read Property Paths
     # 
     # @param [Symbol] property the name of the property
-    # @param [Boolean] stay_in_namespace keep paths within top of tree namespace. Default is false.
+    # @param [Array] namespaces keep paths within the set of namespaces
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_property_paths(property, stay_in_namespace=false)
-      property_paths(:read_exclude, resources[property], stay_in_namespace)
+    def read_property_paths(property, namespaces)
+      property_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
     end
 
     # Delete Paths
     # 
-    # @param [Boolean] stay_in_namespace keep paths within top of tree namespace. Default is true.
-    # @return [Array] array of strings each being the path (SPARQL) from the class to delete a managed item
-    def delete_paths(stay_in_namespace=true)
-      managed_paths(:delete_exclude, stay_in_namespace)
+    # @param [Array] namespaces keep paths within the set of namespaces
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def delete_paths(namespaces)
+      managed_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
     end
 
     # Delete Property Paths
     # 
-    # @param [Boolean] stay_in_namespace keep paths within top of tree namespace. Default is false.
+    # @param [Symbol] property the name of the property
+    # @param [Array] namespaces keep paths within the set of namespaces
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_property_paths(property, stay_in_namespace=false)
-      property_paths(:delete_exclude, resources[property], stay_in_namespace)
+    def delete_property_paths(property, namespaces)
+      property_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
     end
 
     # RDF Type To Klass
@@ -269,17 +270,17 @@ module Fuseki
 
     # Managed Paths. Form the managed paths for the item. This is a set of paths for SPARQL operations
     # 
-    # @param [Symbol] type the path type to be excluded
+    # @param [Hash] options the options hash
+    # @option options [Symbol] :type the path type to be excluded
+    # @option options [Array] :namespaces array of permitted namespaces if :any_namespace = false
+    # @option options [Boolean] :retrict_namespace stay in the permitted namespaces if set true, otherwise allow any namespace in paths. 
     # @param [Array] stack the stack of klasses processed. Used to prevent circular paths
     # @param [String] parent_predicate the set of predicates from the parent. Will be prepended to this predicate
-    # @param [String] stay_in_namespace stay in the namespace if set true, otherwise allow any namespace in paths. 
-    #   Defaults to true.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def managed_paths(type, stay_in_namespace=true, stack=[], parent_predicate="")
+    def managed_paths(options, stack=[], parent_predicate="")
       paths = []
-      namespace = self.rdf_type.namespace
       top = true if stack.empty?
-      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes], exclude: y[type]}}
+      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_classes: y[:model_classes], exclude: y[options[:type]]}}
       predicates.each do |predicate| 
         stack = [] if top
         next if predicate[:exclude]
@@ -293,27 +294,29 @@ module Fuseki
             name = "#{klass}.#{predicate[:predicate].fragment}"
           end
           next if stack.include?(name)
-          next if klass.rdf_type.namespace != namespace && stay_in_namespace
+          next if options[:namespaces].exclude?(klass.rdf_type.namespace) && options[:restrict_namespace]
           stack.push(name)
           predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
           path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
-          next if paths.include?(path)
+#          next if paths.include?(path)
           paths << path
-          paths += klass.managed_paths(type, stay_in_namespace, stack, path)
+          paths += klass.managed_paths(options, stack, path)
           x = stack.pop
         end
       end
+      paths = paths.uniq if top
       paths
     end
 
-    # Property Paths. Form the managed paths for the item. This is a set of paths for SPARQL operations
+    # Property Paths. Form the managed paths for the property. This is a set of paths for SPARQL operations
     # 
-    # @param [Symbol] type the path type to be excluded
+    # @param [Hash] options the options hash
+    # @option options [Symbol] :type the path type to be excluded
+    # @option options [Array] :namespaces array of permitted namespaces if :any_namespace = false
+    # @option options [Boolean] :retrict_namespace stay in the permitted namespaces if set true, otherwise allow any namespace in paths. 
     # @param [Hash] property the property hash
-    # @param [String] stay_in_namespace stay in the namespace if set true, otherwise allow any namespace in paths. 
-    #   Defaults to false.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def property_paths(type, property, stay_in_namespace=false)
+    def property_paths(options, property)
       paths = []
       stack = []
       klasses = property[:model_classes]
@@ -330,7 +333,7 @@ module Fuseki
         predicate_ref = "#{property[:predicate].to_ref}#{is_recursive ? "*" : ""}"
         path = "#{predicate_ref}"
         paths << path
-        paths += klass.managed_paths(type, stay_in_namespace, stack, path)
+        paths += klass.managed_paths(options, stack, path)
         x = stack.pop
       end
       paths

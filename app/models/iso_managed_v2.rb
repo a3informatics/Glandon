@@ -291,9 +291,9 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.read_paths
-    result = super
-    result += read_property_paths(:has_identifier)
-    result += read_property_paths(:has_state)
+    result = super([self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+    result += read_property_paths(:has_identifier, [])
+    result += read_property_paths(:has_state, [])
     result
   end
 
@@ -301,9 +301,9 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.delete_paths
-    result = super
-    result += delete_property_paths(:has_identifier)
-    result += delete_property_paths(:has_state)
+    result = super([self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+    result += delete_property_paths(:has_identifier, [])
+    result += delete_property_paths(:has_state, [])
     result
   end
 
