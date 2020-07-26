@@ -1,7 +1,6 @@
 <%= javascript_tag 'setPageTitle("Code Lists")' %>
 
 <%= javascript_pack_tag 'thesauri/managed_concepts/index' %>
-<%#= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
 <%= javascript_tag "let createCLUrl = '#{thesauri_managed_concepts_path}'" %>
 
 <% first_level_breadcrumb (:code_lists) %>
@@ -32,7 +31,6 @@
 
   <% content_for :extra_columns do %>
     <th>Submission Value</th>
-    <th class="ignore fit"></th>
   <% end %>
 
 	<%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Code Lists",
