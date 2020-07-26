@@ -24,11 +24,12 @@ export default class SelectablePanel extends TablePanel {
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
    * @param {function} params.loadCallback Callback to data fully loaded, optional
+   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
    * @param {boolean} params.showSelectionInfo Enable / disable selection info on the table
    * @param {boolean} params.ownershipColorBadge Enable / disable showing a color-coded ownership badge
-   * @param {function} params.onSelect Callback on row(s) selected, optional
-   * @param {function} params.onDeselect Callback on row(s) deselected, optional
+   * @param {function} params.onSelect Callback on row(s) selected, passes selected row instances as argument, optional
+   * @param {function} params.onDeselect Callback on row(s) deselected, passes deselected row instances as argument, optional
    * @param {Object} args Optional additional arguments
    */
   constructor({
@@ -43,14 +44,17 @@ export default class SelectablePanel extends TablePanel {
     order = [[0, "desc"]],
     buttons = [],
     loadCallback = () => {},
+    errorDiv,
     multiple = false,
     showSelectionInfo = true,
     ownershipColorBadge = false,
     onSelect = () => { },
     onDeselect = () => { }
   }) {
-    super({ selector, url, param, count, extraColumns, deferLoading, cache, paginated, order, buttons, loadCallback },
+    super({ selector, url, param, count, extraColumns, deferLoading, cache, paginated, order, buttons, loadCallback, errorDiv },
           { multiple, showSelectionInfo, ownershipColorBadge, onSelect, onDeselect });
+
+    Object.assign(this, { skipSelectCallback: false })
   }
 
   /**
@@ -68,6 +72,26 @@ export default class SelectablePanel extends TablePanel {
    */
   disableSelect() { 
     this.table.select.style('api');
+  }
+
+  /**
+   * Select one or more rows without trigerring the onSelect callback
+   * @param {?} rows DT rows selector
+   */
+  selectWithoutCallback(rows) {
+    this.skipSelectCallback = true;
+    this.table.rows(rows).select();
+    this.skipSelectCallback = false;
+  }
+
+  /**
+   * Deselect one or more rows without trigerring the onSelect callback
+   * @param {?} rows DT rows selector
+   */
+  deselectWithoutCallback(rows) {
+    this.skipSelectCallback = true;
+    this.table.rows(rows).deselect();
+    this.skipSelectCallback = false;
   }
 
   /**
@@ -109,7 +133,8 @@ export default class SelectablePanel extends TablePanel {
    * @param {Array} indexes collection of zero-based indexes of the selected rows
    */
   _onSelect(indexes) { 
-    this.onSelect(indexes);
+    if (!this.skipSelectCallback)
+      this.onSelect(this.table.rows(indexes));
   }
 
   /**
@@ -118,7 +143,8 @@ export default class SelectablePanel extends TablePanel {
    * @param {Array} indexes collection of zero-based indexes of the deselected rows
    */
   _onDeselect(indexes) {
-    this.onDeselect(indexes);
+    if (!this.skipSelectCallback)
+      this.onDeselect(this.table.rows(indexes));
   }
 
   /**

@@ -21,6 +21,7 @@ export default class TablePanel {
    * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {Object} args Optional additional arguments for extending classes
    */
   constructor({
@@ -34,9 +35,10 @@ export default class TablePanel {
     paginated = true,
     order = [[0, "desc"]],
     buttons = [],
-    loadCallback = () => {}
+    loadCallback = () => {},
+    errorDiv
   }, args = {}) {
-    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, ...args });
+    Object.assign(this, { selector, url, param, count, extraColumns, cache, paginated, order, buttons, loadCallback, errorDiv, ...args });
 
     this._initTable();
     this._setListeners();
@@ -64,6 +66,7 @@ export default class TablePanel {
         count: this.count,
         strictParam: this.param,
         cache: this.cache,
+        errorDiv: this.errorDiv,
         pageDone: (data) => this._render(data),
         done: (data) => this.loadCallback(this.table),
         always: () => this._loading(false)
@@ -72,6 +75,7 @@ export default class TablePanel {
       $get({
         url: this.url,
         cache: this.cache,
+        errorDiv: this.errorDiv,
         done: (data) => {
           this._render(data)
           this.loadCallback(this.table)
@@ -106,18 +110,30 @@ export default class TablePanel {
 
   /**
    * Finds DT row data in which element is present
+   * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT row data object
    */
-  _getRowData(el) {
-    return this._getRow(el).data();
+  _getRowDataFrom$(el) {
+    return this._getRowFrom$(el).data();
   }
 
   /**
    * Finds DT Row instance in which element is present
+   * @param {HTML Element} el html element that is contained in the table row
    * @return {Object} DT Row instance
    */
-  _getRow(el) {
+  _getRowFrom$(el) {
     return this.table.row($(el).closest("tr"));
+  }
+
+  /**
+   * Finds DT Row instance in which data property equals to the provided value
+   * @param {string} propertyName name of the property in row's data object to serach by (e.g. 'id')
+   * @param {?} value value to compare the data property by 
+   * @return {Object} DT Row instance
+   */
+  _getRowFromData(propertyName, value) {
+    return this.table.row( (i, data) => data[propertyName] === value ? true : false );
   }
 
   /**
