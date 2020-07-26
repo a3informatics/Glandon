@@ -314,20 +314,20 @@ class IsoManagedV2 < IsoConceptV2
     item
   end
 
-  # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
-  #
-  # @param [Uri|id] the identifier, either a URI or the id
-  # @return [IsoManagedV2] The managed item object.
-  def self.find_full(id)
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-    parts = []
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-    query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
-    results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
-    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
-    from_results_recurse(uri, results.by_subject)
-  end
+  # # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
+  # #
+  # # @param [Uri|id] the identifier, either a URI or the id
+  # # @return [IsoManagedV2] The managed item object.
+  # def self.find_full(id)
+  #   uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+  #   parts = []
+  #   parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+  #   read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+  #   query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
+  #   results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
+  #   raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
+  #   from_results_recurse(uri, results.by_subject)
+  # end
 
   # Find Minimum. Finds the minimun amount of info for an Managed Item. Use this for quick finds.
   #

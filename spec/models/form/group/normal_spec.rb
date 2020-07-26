@@ -17,7 +17,7 @@ describe Form::Group::Normal do
   end
 
   it "get items" do
-    group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1"))
+    group = Form::Group::Normal.find_full(Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F_NG1"))
     check_file_actual_expected(group.get_item, sub_dir, "get_items_expected.yaml", equate_method: :hash_equal)
   end
 

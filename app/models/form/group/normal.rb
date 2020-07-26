@@ -17,18 +17,17 @@ class Form::Group::Normal < Form::Group
   # @return [Array] Array of hashes, one per group, sub group and item.
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:"", has_coded_value: [], has_property: []}
-    groups = []
-    items = []
-    results = [self.to_h.merge!(blank_fields)]
-    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
-      items << item.get_item
+    group = self.to_h.merge!(blank_fields)
+    group.delete(:has_sub_group)
+    group.delete(:has_item)
+    results = [group]
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      results << item.get_item
     end
-    results += items
-    self.has_sub_group_objects.sort_by {|x| x.ordinal}.each do |sg|
-      groups += sg.get_item
+    self.has_sub_group.sort_by {|x| x.ordinal}.each do |sg|
+      results += sg.get_item
     end
-    results += groups
-    return results
+    results
   end
 
 end
