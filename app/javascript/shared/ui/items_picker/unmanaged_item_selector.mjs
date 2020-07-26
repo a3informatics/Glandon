@@ -16,32 +16,34 @@ import { tableInteraction } from 'shared/helpers/utils'
 export default class UnmanagedItemSelector extends ManagedItemSelector {
 
   /**
-   * Create a Managed Item Selector
+   * Create an Unmanaged Item Selector instance
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the target table
-   * @param {Object} params.urls Object containing the history and index data url bases
+   * @param {Object} params.urls Object containing the all item types' history and index data url bases
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
-   * @param {function} params.onSelect Callback on row(s) selected, optional
-   * @param {function} params.onDeselect Callback on row(s) deselected, optional
+   * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
+   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
     urls,
     param,
     multiple = false,
-    onSelect = () => { },
-    onDeselect = () => { }
+    selectionView,
+    errorDiv,
   }) {
-    super({ selector, urls, param, multiple, onSelect, onDeselect });
+    super({ selector, urls, param, multiple, selectionView });
   }
 
   /**
-   * Refreshes the selector to its initial state
+   * Resets all panels and clears instance's cache, UI toggle to index panel
    */
-  refresh() {
-    super.refresh();
+  clear() {
+    super.clear();
     this.childrenPanel.clear();
+
+    this._togglePanels('index');
   }
 
 
@@ -49,13 +51,15 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
 
   /**
-   * Calls super's initialize, modified History panel and adds the Children panel
+   * Calls super's initialize, alters History panel instance and adds the Children panel
    */
   _initialize() {
     super._initialize();
 
     // Modify selection type of history panel to is
     this.historyPanel.table.select.style('single');
+    // Reset history panel's draw callback
+    this.historyPanel.drawCallback = () => { }
     // Override historyPanel's onSelect function to load childrenPanel data
     this.historyPanel.onSelect = () => {
       this._togglePanels('children');
@@ -70,11 +74,14 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     // Initializes Selectable Children Panel
     this.childrenPanel = new IPPanel({
       selector: `${this.selector} table#children`,
-      param: this.param,
+      param: this._realParam,
       count: 10000,
       extraColumns: this._childrenColumns,
       showSelectionInfo: false,
       multiple: this.multiple,
+      errorDiv: this.errorDiv,
+      onSelect: (dtRows) => this._onItemSelect(dtRows),
+      onDeselect: (dtRows) => this._onItemDeselect(dtRows),
       loadCallback: (t) => {
         this._cacheItemChildren( t.rows().data().toArray() );
         this._toggleInteractivity(true);
@@ -82,6 +89,35 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
     });
 
   }
+
+  /**
+   * Set Selector event listeners and handlers
+   */
+  _setListeners() {
+    // Children Panel draw event, auto-update row selection
+    this.childrenPanel.table.on('draw', () => this._updateRowSelection(this.childrenPanel));
+
+    // Selection change event, auto-update row selection
+    this.selectionView.div.on('selection-change', (e, type) => this._updateRowSelection(this.childrenPanel, type));
+  }
+
+  /**
+   * Called when one or more items get selected by user, adds them to selectionView
+   * @param {DataTable Rows} dtRows references to the selected row object(s)
+   */
+  _onItemSelect(dtRows) {
+    const data = dtRows.data().toArray();
+
+    // Find parent data and add to the selected child data object (required to create item reference string)
+    const parentData = this.historyPanel.selectedData[0]
+    data.forEach( (d) => Object.assign(d, {parent: parentData}) );
+
+    this.selectionView.add(this.param, data);
+  }
+
+
+  /** Cache **/
+
 
   /**
    * Generates a cache key and saves the Children data into the local cache
@@ -113,6 +149,10 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
       this.childrenPanel.loadData( makeMCChildrenUrl (this.urls.children, selectedItem) );
     }
   }
+
+
+  /** Helpers and getters **/
+
 
   /**
    * Toggles interactivity on instance's panels
@@ -149,8 +189,8 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
    * @return {Array} DT History panel column definitions
    */
   get _childrenColumns() {
-    switch (this.param) {
-      case "managed_concept":
+    switch (this._realParam) {
+      case 'managed_concept':
         return [
           {"data" : "identifier"},
           {"data" : "notation"},
@@ -161,6 +201,14 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
         return []
         break;
     }
+  }
+
+  /**
+   * Get the real controller param name, modify / override for different behaviours
+   * @return {string} real controller param name
+   */
+  get _realParam() {
+    return 'managed_concept';
   }
 
 }

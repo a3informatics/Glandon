@@ -15,36 +15,53 @@ import { dtIndexColumns, dtCLIndexColumns, dtSimpleHistoryColumns } from 'share
 export default class ManagedItemSelector extends Cacheable {
 
   /**
-   * Create a Managed Item Selector
+   * Create a Managed Item Selector instance
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the target table
-   * @param {Object} params.urls Object containing the history and index data url bases
+   * @param {Object} params.urls Object containing the all item types' history and index data url bases
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {boolean} params.multiple Enable / disable selection of multiple rows [default = false]
-   * @param {function} params.onSelect Callback on row(s) selected, optional
-   * @param {function} params.onDeselect Callback on row(s) deselected, optional
+   * @param {SelectionView} params.selectionView Selection View instance reference of the Item Picker
+   * @param {element} params.errorDiv Custom element to display flash errors in, optional
    */
   constructor({
     selector,
     urls,
     param,
     multiple = false,
-    onSelect = () => { },
-    onDeselect = () => { }
+    selectionView,
+    errorDiv
   }) {
     super();
 
-    Object.assign(this, { selector, urls: urls[param], param, multiple, onSelect, onDeselect })
+    Object.assign(this, { selector, param, multiple, selectionView, errorDiv });
+    this.urls = urls[this._realParam];
+
     this._initialize();
-    this._loadIndexData();
+    this._setListeners();
   }
 
   /**
-   * Refreshes the selector to its initial state
+   * Resets all panels and clears instance's cache
    */
-  refresh() {
-    this.indexPanel.refresh();
+  clear() {
+    this.dataLoaded = false;
+
+    this.indexPanel.clear();
     this.historyPanel.clear();
+    this._clearCache();
+  }
+
+  /**
+   * Loads and renders Index panel data
+   */
+  load() {
+    if (this.dataLoaded)
+      return;
+
+    this._toggleInteractivity(false);
+    this.indexPanel.loadData();
+    this.dataLoaded = true;
   }
 
 
@@ -64,11 +81,12 @@ export default class ManagedItemSelector extends Cacheable {
     this.indexPanel = new IPPanel({
       url: this.urls.index,
       selector: `${this.selector} table#index`,
-      param: this.param,
+      param: this._realParam,
       count: 500,
       extraColumns: this._indexColumns,
       showSelectionInfo: false,
       ownershipColorBadge: true,
+      errorDiv: this.errorDiv,
       onSelect: () => this._loadHistoryData(),
       onDeselect: () => this.historyPanel.clear(),
       loadCallback: () => this._toggleInteractivity(true)
@@ -77,17 +95,71 @@ export default class ManagedItemSelector extends Cacheable {
     // Initializes Selectable History Panel
     this.historyPanel = new IPPanel({
       selector: `${this.selector} table#history`,
-      param: this.param,
+      param: this._realParam,
       count: 100,
       extraColumns: this._historyColumns,
       multiple: this.multiple,
+      errorDiv: this.errorDiv,
+      onSelect: (dtRows) => this._onItemSelect(dtRows),
+      onDeselect: (dtRows) => this._onItemDeselect(dtRows),
       loadCallback: (t) => {
         this._cacheItemHistory( t.rows().data().toArray() );
         this._toggleInteractivity(true);
-      }
+      },
     });
-
   }
+
+  /**
+   * Set Selector event listeners and handlers
+   */
+  _setListeners() {
+    // History Panel draw event, auto-update row selection
+    this.historyPanel.table.on('draw', () => this._updateRowSelection(this.historyPanel));
+
+    // Selection change event, auto-update row selection
+    this.selectionView.div.on('selection-change', (e, type) => this._updateRowSelection(this.historyPanel, type));
+  }
+
+  /**
+   * Automatically selects/deselect panel rows to match the items in contained in selectionView without invoking onSelect / onDeselect callbacks
+   * @param {IPPanel} panel the panel to update row selection in
+   * @param {string} type value representing the type of update, can be 'removed' or 'added', optional
+   */
+  _updateRowSelection(panel, type = '') {
+    // Deselect all rows if removed
+    if (type === 'removed')
+      panel.deselectWithoutCallback('');
+
+    // Match selected rows with selection
+    for (const selectedItem of this.selectionView.selection[this.param]) {
+      const row = panel._getRowFromData('id', selectedItem.id);
+      panel.selectWithoutCallback(row);
+    }
+  }
+
+  /**
+   * Called when one or more items get selected by user, adds them to selectionView
+   * @param {DataTable Rows} dtRows references to the selected row object(s)
+   */
+  _onItemSelect(dtRows) {
+    const data = dtRows.data().toArray();
+
+    this.selectionView.add(this.param, data);
+  }
+
+  /**
+   * Called when one or more items get deselected by user, removes them from selectionView
+   * @param {DataTable Rows} dtRows references to the deselected row object(s)
+   */
+  _onItemDeselect(dtRows) {
+    const ids = dtRows.data().toArray().map((d) => d.id);
+
+    this.selectionView.removeById(ids);
+  }
+
+
+  /** Cache **/
+
 
   /**
    * Generates a cache key and saves the History data into the local cache
@@ -99,14 +171,6 @@ export default class ManagedItemSelector extends Cacheable {
 
     // Store current state of History panel in the cache
     this._saveToCache( cacheKey , data )
-  }
-
-  /**
-   * Loads and renders Index data
-   */
-  _loadIndexData() {
-    this._toggleInteractivity(false);
-    this.indexPanel.loadData();
   }
 
   /**
@@ -137,6 +201,10 @@ export default class ManagedItemSelector extends Cacheable {
     return `${data.identifier}:${data.scope_id}`;
   }
 
+
+  /** Helpers and getters **/
+
+
   /**
    * Toggles interactivity on instance's panels
    * @param {boolean} enable Set to true to enable interactivity, false to disable it
@@ -156,8 +224,8 @@ export default class ManagedItemSelector extends Cacheable {
    * @return {Array} DT Index panel column definitions
    */
   get _indexColumns() {
-    switch (this.param) {
-      case "managed_concept":
+    switch (this._realParam) {
+      case 'managed_concept':
         return dtCLIndexColumns();
         break;
       default:
@@ -171,11 +239,19 @@ export default class ManagedItemSelector extends Cacheable {
    * @return {Array} DT History panel column definitions
    */
   get _historyColumns() {
-    switch (this.param) {
+    switch (this._realParam) {
       default:
         return dtSimpleHistoryColumns();
         break;
     }
+  }
+
+  /**
+   * Get the real controller param name, modify / override for different behaviours
+   * @return {string} real controller param name
+   */
+  get _realParam() {
+    return this.param;
   }
 
 }
