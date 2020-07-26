@@ -11,7 +11,7 @@ describe Form::Item::Question do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..15)
   end
@@ -51,7 +51,7 @@ describe Form::Item::Question do
   end
 
   it "get items" do
-    question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F_NG1_Q1"))
+    question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
     check_file_actual_expected(question.get_item, sub_dir, "get_item_expected.yaml", equate_method: :hash_equal)
   end
 

@@ -10,7 +10,7 @@ describe Form::Item do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
   end
 
