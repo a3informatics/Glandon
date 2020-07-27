@@ -94,7 +94,7 @@ class IsoManagedV2Controller < ApplicationController
   def export_ttl
     authorize IsoManaged
     uri = Uri.new(id: protect_from_bad_id(params))
-    IsoManagedV2.to_klass(uri).find_full(uri, :export_paths)
+    IsoManagedV2.klass_for(uri).find_full(uri, :export_paths)
     filename = "#{item.owner_short_name}_#{item.identifier}_#{item.version}.ttl"
     send_data item.to_ttl, filename: filename, type: 'application/x-turtle', disposition: 'inline'
   end
@@ -104,7 +104,7 @@ private
   # Find item.
   def find_item(params, method=:find_minimum)
     uri = Uri.new(id: protect_from_bad_id(params))
-    IsoManagedV2.to_klass(uri).send(method, uri)
+    IsoManagedV2.klass_for(uri).send(method, uri)
   end
 
   # Strong parameters.
