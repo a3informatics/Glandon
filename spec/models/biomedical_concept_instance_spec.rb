@@ -95,6 +95,10 @@ describe BiomedicalConceptInstance do
       check_file_actual_expected(BiomedicalConceptInstance.read_paths, sub_dir, "read_paths_expected.yaml", equate_method: :hash_equal)
     end
 
+    it "returns export path" do
+      check_file_actual_expected(BiomedicalConceptInstance.export_paths, sub_dir, "export_paths_expected.yaml", equate_method: :hash_equal)
+    end
+
     it "returns delete path" do
       check_file_actual_expected(BiomedicalConceptInstance.delete_paths, sub_dir, "delete_paths_expected.yaml", equate_method: :hash_equal)
     end

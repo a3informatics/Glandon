@@ -287,26 +287,22 @@ class IsoManagedV2 < IsoConceptV2
     true
   end
 
+  def self.export_paths
+    super(namespaces: [self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+  end
+
   # Read Paths
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.read_paths
-    # Set the rdf types to stop at tags and operational references.
-    result = super([IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
-#    result += read_property_paths(:has_identifier)
-#    result += read_property_paths(:has_state)
-    result
+    super(rdf_types: [IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
   end
 
   # Delete Paths
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.delete_paths
-    # Set the rdf types to stop at tags and operational references.
-    result = super([IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
-#    result += delete_property_paths(:has_identifier)
-#    result += delete_property_paths(:has_state)
-    result
+    super(rdf_types: [IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
   end
 
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.

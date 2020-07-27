@@ -63,36 +63,49 @@ module Fuseki
 
     # Read Paths
     # 
-    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_paths(rdf_types=[])
-      managed_paths({type: :read_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?})
+    def read_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces})
     end
 
     # Read Property Paths
     # 
     # @param [Symbol] property the name of the property
-    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_property_paths(property, rdf_types=[])
-      property_paths({type: :read_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?}, resources[property])
+    def read_property_paths(property:, rdf_types: [], namespaces: [])
+      property_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces}, resources[property])
+    end
+
+    # Export Paths
+    # 
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def export_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :read_exclude, rdf_types: rdf_types, namespaces: namespaces})
     end
 
     # Delete Paths
     # 
-    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_paths(rdf_types=[])
-      managed_paths({type: :delete_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?})
+    def delete_paths(rdf_types: [], namespaces: [])
+      managed_paths({type: :delete_exclude, rdf_types: rdf_types, namespaces: namespaces})
     end
 
     # Delete Property Paths
     # 
     # @param [Symbol] property the name of the property
-    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
+    # @param [Array] rdf_types set of leaf rdf_types. Defaults to empty array which does not restrict.
+    # @param [Array] namespaces set of valid namespaces. Defaults to empty array which permits any namespace.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_property_paths(property, rdf_types=[])
-      property_paths({type: :delete_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?}, resources[property])
+    def delete_property_paths(property:, rdf_types: [], namespaces: [])
+      property_paths({type: :delete_exclude, rdf_types: rdf_types, namespaces: namespaces}, resources[property])
     end
 
     # RDF Type To Klass
@@ -272,8 +285,8 @@ module Fuseki
     # 
     # @param [Hash] options the options hash
     # @option options [Symbol] :type the path type to be excluded
-    # @option options [Array] :namespaces array of permitted namespaces if :any_namespace = false
-    # @option options [Boolean] :retrict_namespace stay in the permitted namespaces if set true, otherwise allow any namespace in paths. 
+    # @option options [Array] :rdf_types array of rdf_types at which path processing is to stop
+    # @option options [Array] :namespaces array of permitted namespaces 
     # @param [Array] stack the stack of klasses processed. Used to prevent circular paths
     # @param [String] parent_predicate the set of predicates from the parent. Will be prepended to this predicate
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
@@ -297,8 +310,8 @@ module Fuseki
           stack.push(name)
           predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
           path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
-          paths << path
-          paths += klass.managed_paths(options, stack, path) unless options[:rdf_types].include?(klass.rdf_type) && options[:stop_at_rdf_type]
+          paths << path unless ignore_namespaces?(options, klass)
+          paths += klass.managed_paths(options, stack, path) unless ignore_types?(options, klass)
           x = stack.pop
         end
       end
@@ -310,8 +323,8 @@ module Fuseki
     # 
     # @param [Hash] options the options hash
     # @option options [Symbol] :type the path type to be excluded
-    # @option options [Array] :namespaces array of permitted namespaces if :any_namespace = false
-    # @option options [Boolean] :retrict_namespace stay in the permitted namespaces if set true, otherwise allow any namespace in paths. 
+    # @option options [Array] :rdf_types array of rdf_types at which path processing is to stop
+    # @option options [Array] :namespaces array of permitted namespaces 
     # @param [Hash] property the property hash
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
     def property_paths(options, property)
@@ -347,6 +360,16 @@ module Fuseki
 
   private
   
+    # Ignore rdf types? Used to check rdf type.
+    def ignore_types?(options, klass)
+      options[:rdf_types].any? && options[:rdf_types].include?(klass.rdf_type)
+    end
+
+    # Ignore Namespaces? Used to check permitted namespaces.
+    def ignore_namespaces?(options, klass)
+      options[:namespaces].any? && options[:namespaces].exclude?(klass.rdf_type.namespace)
+    end
+
     # Create the instance variable. Set the info for the instance variable.
     def add_to_resources(name, opts)
 

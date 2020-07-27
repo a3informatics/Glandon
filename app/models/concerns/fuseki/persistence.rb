@@ -48,13 +48,14 @@ module Fuseki
 
       # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|id] id the identifier, either a URI or the id
+      # @param [Symbol] path_method the method to be used for the read paths. Defaults to read_paths
       # @return [IsoManagedV2] The managed item object.
-      def find_full(id)
+      def find_full(id, path_method=:read_paths)
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
         parts = []
         parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-        read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+        self.send(path_method).each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
         query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
         results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
