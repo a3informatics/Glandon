@@ -300,10 +300,22 @@ describe Fuseki::Resource do
       check_file_actual_expected(item.class.read_paths([]), sub_dir, "managed_paths_expected_5.yaml")
     end
 
+    it "read paths, empty array, default" do
+      check_file_actual_expected(TestR15.read_paths, sub_dir, "managed_paths_expected_5.yaml")
+      item = TestR15.new
+      check_file_actual_expected(item.class.read_paths, sub_dir, "managed_paths_expected_5.yaml")
+    end
+
     it "read property paths" do
       check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.read_property_paths(:ra_namespace, []), sub_dir, "property_paths_expected_1.yaml")
       item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.read_property_paths(:ra_namespace, []), sub_dir, "managed_paths_expected_1.yaml")
+    end
+
+    it "read property paths, empty array, default" do
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.read_property_paths(:ra_namespace), sub_dir, "property_paths_expected_1.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
+      check_file_actual_expected(item.class.read_property_paths(:ra_namespace), sub_dir, "managed_paths_expected_1.yaml")
     end
 
     it "delete paths" do
@@ -312,10 +324,22 @@ describe Fuseki::Resource do
       check_file_actual_expected(item.class.delete_paths([]), sub_dir, "managed_paths_expected_2.yaml")
     end
 
+    it "delete paths, empty array, default" do
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
+      check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+    end
+
     it "delete property paths" do
       check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.delete_property_paths(:ra_namespace, []), sub_dir, "property_paths_expected_2.yaml")
       item = FusekiBaseHelpers::TestRegistrationAuthorities.new
       check_file_actual_expected(item.class.delete_property_paths(:ra_namespace, []), sub_dir, "property_paths_expected_2.yaml")
+    end
+
+    it "delete property paths, empty array, default" do
+      check_file_actual_expected(FusekiBaseHelpers::TestRegistrationAuthorities.delete_property_paths(:ra_namespace), sub_dir, "property_paths_expected_2.yaml")
+      item = FusekiBaseHelpers::TestRegistrationAuthorities.new
+      check_file_actual_expected(item.class.delete_property_paths(:ra_namespace), sub_dir, "property_paths_expected_2.yaml")
     end
 
     it "updates property" do

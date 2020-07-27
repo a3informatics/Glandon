@@ -63,35 +63,35 @@ module Fuseki
 
     # Read Paths
     # 
-    # @param [Array] namespaces keep paths within the set of namespaces
+    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_paths(namespaces)
+    def read_paths(namespaces=[])
       managed_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
     end
 
     # Read Property Paths
     # 
     # @param [Symbol] property the name of the property
-    # @param [Array] namespaces keep paths within the set of namespaces
+    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_property_paths(property, namespaces)
+    def read_property_paths(property, namespaces=[])
       property_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
     end
 
     # Delete Paths
     # 
-    # @param [Array] namespaces keep paths within the set of namespaces
+    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_paths(namespaces)
+    def delete_paths(namespaces=[])
       managed_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
     end
 
     # Delete Property Paths
     # 
     # @param [Symbol] property the name of the property
-    # @param [Array] namespaces keep paths within the set of namespaces
+    # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_property_paths(property, namespaces)
+    def delete_property_paths(property, namespaces=[])
       property_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
     end
 

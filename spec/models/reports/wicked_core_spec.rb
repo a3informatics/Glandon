@@ -10,7 +10,7 @@ describe Reports::WickedCore do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl", "ACME_VSTADIABETES_1.ttl","ACME_FN000120_1.ttl" ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("mdr_identification.ttl")
   end
@@ -33,7 +33,7 @@ describe Reports::WickedCore do
 
   it "Initiates a full report" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
-    mi = Form.find(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    mi = Form.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     history =
     [
       {
