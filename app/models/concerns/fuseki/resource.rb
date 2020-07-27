@@ -65,8 +65,8 @@ module Fuseki
     # 
     # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_paths(namespaces=[])
-      managed_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
+    def read_paths(rdf_types=[])
+      managed_paths({type: :read_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?})
     end
 
     # Read Property Paths
@@ -74,16 +74,16 @@ module Fuseki
     # @param [Symbol] property the name of the property
     # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def read_property_paths(property, namespaces=[])
-      property_paths({type: :read_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
+    def read_property_paths(property, rdf_types=[])
+      property_paths({type: :read_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?}, resources[property])
     end
 
     # Delete Paths
     # 
     # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_paths(namespaces=[])
-      managed_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?})
+    def delete_paths(rdf_types=[])
+      managed_paths({type: :delete_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?})
     end
 
     # Delete Property Paths
@@ -91,8 +91,8 @@ module Fuseki
     # @param [Symbol] property the name of the property
     # @param [Array] namespaces keep paths within the set of namespaces. Defaults to empty array.
     # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
-    def delete_property_paths(property, namespaces=[])
-      property_paths({type: :delete_exclude, namespaces: namespaces, restrict_namespace: namespaces.any?}, resources[property])
+    def delete_property_paths(property, rdf_types=[])
+      property_paths({type: :delete_exclude, rdf_types: rdf_types, stop_at_rdf_type: rdf_types.any?}, resources[property])
     end
 
     # RDF Type To Klass
@@ -294,13 +294,11 @@ module Fuseki
             name = "#{klass}.#{predicate[:predicate].fragment}"
           end
           next if stack.include?(name)
-          next if options[:namespaces].exclude?(klass.rdf_type.namespace) && options[:restrict_namespace]
           stack.push(name)
           predicate_ref = "#{predicate[:predicate].to_ref}#{is_recursive ? "*" : ""}"
           path = top ? "#{predicate_ref}" : "#{parent_predicate}/#{predicate_ref}"
-#          next if paths.include?(path)
           paths << path
-          paths += klass.managed_paths(options, stack, path)
+          paths += klass.managed_paths(options, stack, path) unless options[:rdf_types].include?(klass.rdf_type) && options[:stop_at_rdf_type]
           x = stack.pop
         end
       end
