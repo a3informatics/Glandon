@@ -381,6 +381,7 @@ Rails.application.routes.draw do
     collection do
       # get :editable
       get :history
+      post :create_from_template
       # post :clone_create
       # get :list
       # get :edit_multiple

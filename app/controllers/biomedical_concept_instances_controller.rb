@@ -58,6 +58,7 @@ class BiomedicalConceptInstancesController < ApplicationController
     end
     render json: {data: items}, status: 200
   end
+
   # def editable
   #   authorize BiomedicalConcept, :index?
   #   results = {:data => []}
@@ -97,37 +98,18 @@ class BiomedicalConceptInstancesController < ApplicationController
 
   # end
 
-  # def create
-  #   authorize BiomedicalConcept
-  #   # New passes URI rather than id, namespace pair. Adjust for the simple create.
-  #   # @todo may be adjust this.
-  #   uri = UriV2.new({uri: the_params[:uri]})
-  #   params[:biomedical_concept][:bct_id] = uri.id
-  #   params[:biomedical_concept][:bct_namespace] = uri.namespace
-  #   @bc = BiomedicalConcept.create_simple(the_params)
-  #   if @bc.errors.empty?
-  #     AuditTrail.create_item_event(current_user, @bc, "Biomedical Concept created.")
-  #     respond_to do |format|
-  #       format.html do
-  #         flash[:success] = 'Biomedical Concept was successfully created.'
-  #         redirect_to biomedical_concepts_path
-  #       end
-  #       format.json do
-  #         render :json => { data: @bc.to_json }, :status => 200
-  #       end
-  #     end
-  #   else
-  #     respond_to do |format|
-  #       format.html do
-  #         flash[:error] = @bc.errors.full_messages.to_sentence
-  #         redirect_to new_biomedical_concept_path
-  #       end
-  #       format.json do
-  #         render :json => { errors: @bc.errors.full_messages }, :status => 422
-  #       end
-  #     end
-  #   end
-  # end
+  def create_from_template
+    authorize BiomedicalConceptInstance, :create?
+    template = BiomedicalConceptTemplate.find_full(protect_from_bad_id(template_id))
+    instance = BiomedicalConceptInstance.create_from_template(the_params, template)
+    if instance.errors.empty?
+      AuditTrail.create_item_event(current_user, instance, "Biomedical Concept created.")
+      path = history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: instance.scoped_identifier, scope_id: instance.scope.id}})
+      render :json => {data: path}, :status => 200
+    else
+      render :json => {errors: instance.errors.full_messages}, :status => 422
+    end
+  end
 
   # def edit
   #   authorize BiomedicalConcept
@@ -207,32 +189,10 @@ class BiomedicalConceptInstancesController < ApplicationController
   #   render json: {data: bc.get_references}, status: 200
   # end
 
-  # def show
-  #   authorize BiomedicalConcept
-  #   @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
-  #   respond_to do |format|
-  #     format.html do
-  #       @items = @bc.get_properties(true)
-  #       @references = BiomedicalConcept.get_unique_references(@items)
-  #       @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.scope.id })
-  #     end
-  #     format.json do
-  #       @items = @bc.get_properties(true)
-  #       render json: @items
-  #     end
-  #   end
-  # end
-
   # def show_full
   #   authorize BiomedicalConcept, :show?
   #   @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
   #   render json: @bc.to_json
-  # end
-
-  # def export_ttl
-  #   authorize BiomedicalConcept
-  #   @bc = IsoManaged.find(params[:id], the_params[:namespace])
-  #   send_data to_turtle(@bc.triples), filename: "#{@bc.owner_short_name}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   # end
 
   # def export_json
@@ -252,7 +212,11 @@ class BiomedicalConceptInstancesController < ApplicationController
 private
 
   def the_params
-    params.require(:biomedical_concept_instance).permit(:identifier, :offset, :count, :scope_id)
+    params.require(:biomedical_concept_instance).permit(:identifier, :label, :offset, :count, :scope_id, :template_id)
+  end
+
+  def template_id
+    {id: the_params[:template_id]}
   end
 
   # Path for given action
