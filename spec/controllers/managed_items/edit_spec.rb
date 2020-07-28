@@ -7,7 +7,7 @@ describe "ManagedItemsController::Edit" do
   include UserAccountHelpers
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..2)
     load_data_file_into_triple_store("mdr_identification.ttl")
@@ -28,7 +28,7 @@ describe "ManagedItemsController::Edit" do
   end
 
 	it "edit item, cannot lock" do
-    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash = ActionDispatch::Flash::FlashHash.new
     token = Token.obtain(item, @user)
     edit = ManagedItemsController::Edit.new(item, @user2, flash)

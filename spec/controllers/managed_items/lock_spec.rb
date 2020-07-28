@@ -7,7 +7,7 @@ describe "ManagedItemsController::Lock" do
   include UserAccountHelpers
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("mdr_identification.ttl")
     clear_token_object
@@ -27,17 +27,17 @@ describe "ManagedItemsController::Lock" do
   end
 
 	it "get token" do
-    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash =  ActionDispatch::Flash::FlashHash.new
   	lock = ManagedItemsController::Lock.new(:get, item, @user, flash)
-    expect(lock.item.uri.to_s).to eq("http://www.s-cubed.dk/Height__Pilot_/V1#F")
+    expect(lock.item.uri.to_s).to eq("http://www.s-cubed.dk/FN000150/V1#F")
     expect(lock.user).to eq(@user)
     expect(lock.error).to eq ("")
     expect(lock.error?).to eq (false)
   end
 
   it "prevents another user obtaining a token when already allocated" do
-    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash = ActionDispatch::Flash::FlashHash.new
     lock1 = ManagedItemsController::Lock.new(:get, item, @user, flash)
     lock2 = ManagedItemsController::Lock.new(:get, item, @user2, flash)
@@ -47,18 +47,18 @@ describe "ManagedItemsController::Lock" do
   end
 
   it "allows a token to be kept" do
-    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash = ActionDispatch::Flash::FlashHash.new
     lock1 = ManagedItemsController::Lock.new(:get, item, @user, flash)
-    expect(lock1.item.uri.to_s).to eq("http://www.s-cubed.dk/Height__Pilot_/V1#F")
+    expect(lock1.item.uri.to_s).to eq("http://www.s-cubed.dk/FN000150/V1#F")
     expect(lock1.user).to eq(@user)
     lock2 = ManagedItemsController::Lock.new(:keep, item, @user, flash)
-    expect(lock2.item.uri.to_s).to eq("http://www.s-cubed.dk/Height__Pilot_/V1#F")
+    expect(lock2.item.uri.to_s).to eq("http://www.s-cubed.dk/FN000150/V1#F")
     expect(lock2.user).to eq(@user)
   end
 
   it "allows a token to be kept, error" do
-    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash = ActionDispatch::Flash::FlashHash.new
     token = Token.obtain(item, @user)
     lock = ManagedItemsController::Lock.new(:keep, item, @user2, flash)
