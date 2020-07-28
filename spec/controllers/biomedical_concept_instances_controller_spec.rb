@@ -67,6 +67,22 @@ describe BiomedicalConceptInstancesController do
       expect(response).to render_template("history")
     end
     
+    it "creates from a template" do
+      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+      post :create_from_template, params:{biomedical_concept_instance: {identifier: "NEW1", label: "something", template_id: template.id}}
+      body = check_good_json_response(response)
+      expect(body[:data]).to eq("/biomedical_concept_instances/history?biomedical_concept_instance%5Bidentifier%5D=NEW1&biomedical_concept_instance%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+    end
+    
+    it "creates from a template, error" do
+      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
+      post :create_from_template, params:{biomedical_concept_instance: {identifier: "HEIGHT", label: "something", template_id: template.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual).to eq(["http://www.s-cubed.dk/HEIGHT/V1#BCI already exists in the database"])
+    end
+
   end
 
 end
