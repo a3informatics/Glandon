@@ -23,7 +23,7 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
-    it "index, JSON" do  
+    it "index" do  
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       actual = check_good_json_response(response)
@@ -59,7 +59,6 @@ describe BiomedicalConceptInstancesController do
     end
 
     it "shows the history, initial view" do
-      params = {}
       expect(BiomedicalConceptInstance).to receive(:latest).and_return(BiomedicalConceptInstance.new)
       get :history, params:{biomedical_concept_instance: {identifier: "HEIGHT", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
       expect(assigns(:identifier)).to eq("HEIGHT")

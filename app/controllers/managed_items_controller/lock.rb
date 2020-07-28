@@ -76,10 +76,8 @@ class ManagedItemsController
       @token = Token.obtain(@item, @user)
       return true unless @token.nil?
       token_error
-    rescue ActiveRecord::RecordNotFound => e
-      @flash[:error] = "The item is locked for editing by user: <unknown>."
-      @error = "The item is locked for editing by user: <unknown>."
-      return false
+    rescue => e
+      error_not_found(e)
     end
 
     # Token Keep. Keep the token, if exists, for a Managed Item.
@@ -89,10 +87,8 @@ class ManagedItemsController
       @token = Token.find_token(@item, @user)
       return true unless @token.nil?
       token_error
-    rescue ActiveRecord::RecordNotFound => e
-      @flash[:error] = "The item is locked for editing by user: <unknown>."
-      @error = "The item is locked for editing by user: <unknown>."
-      return false
+    rescue => e
+      error_not_found(e)
     end
 
     # Token Error
@@ -100,10 +96,28 @@ class ManagedItemsController
     # @return [Boolean] always false
     def token_error
       token = Token.find_token_for_item(@item)
-      user = token.nil? ? "<unknown>" : User.find(token.user_id).email
-      @flash[:error] = "The item is locked for editing by user: #{user}."
-      @error = "The item is locked for editing by user: #{user}."
+      token.nil? ? error_lock_timeout : error_already_locked(token)
+      @flash[:error] = @error
       return false
+    end
+
+    # Already locked error message
+    def error_already_locked(token)
+      user = User.find(token.user_id).email
+      @error = "The item is locked for editing by user: #{user}."
+    end
+
+    # Lock timeout error message
+    def error_lock_timeout
+      @error = "The edit lock has timed out."
+    end
+
+    # Not found error message
+    def error_not_found(e)
+      @error = "Something has gone wrong reading the lock status."
+      @flash[:error] = @error
+      ConsoleLogger.info(self.class.name, "error_not_found", "#{@error}\n#{e.message}\n\n#{e.backtrace.join("\n")}")
+      false
     end
 
   end

@@ -57,13 +57,49 @@ describe "ManagedItemsController::Lock" do
     expect(lock2.user).to eq(@user)
   end
 
-  it "allows a token to be kept, error" do
+  it "allows a token to be kept, error locked by another user" do
     item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     flash = ActionDispatch::Flash::FlashHash.new
     token = Token.obtain(item, @user)
     lock = ManagedItemsController::Lock.new(:keep, item, @user2, flash)
     expect(flash[:error]).to match(/The item is locked for editing by user: token_user_1@example.com.*/)
     expect(lock.error).to eq ("The item is locked for editing by user: token_user_1@example.com.")
+    expect(lock.error?).to eq (true)
+  end
+
+  it "allows a token to be kept, error timeout" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    flash = ActionDispatch::Flash::FlashHash.new
+    Token.set_timeout(1)
+    token = Token.obtain(item, @user)
+    sleep 2
+    lock = ManagedItemsController::Lock.new(:keep, item, @user2, flash)
+    Token.restore_timeout
+    expect(flash[:error]).to match(/The edit lock has timed out.*/)
+    expect(lock.error).to eq ("The edit lock has timed out.")
+    expect(lock.error?).to eq (true)
+  end
+
+  it "allows a token to be obtained, exception" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    flash = ActionDispatch::Flash::FlashHash.new
+    expect(Token).to receive(:obtain).and_raise(StandardError.new("ERR"))
+    expect(ConsoleLogger).to receive(:info)
+    lock = ManagedItemsController::Lock.new(:get, item, @user, flash)
+    expect(flash[:error]).to match(/Something has gone wrong reading the lock status.*/)
+    expect(lock.error).to eq ("Something has gone wrong reading the lock status.")
+    expect(lock.error?).to eq (true)
+  end
+
+  it "allows a token to be kept, exception" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    flash = ActionDispatch::Flash::FlashHash.new
+    token = Token.obtain(item, @user)
+    expect(Token).to receive(:find_token).and_raise(StandardError.new("ERR"))
+    expect(ConsoleLogger).to receive(:info)
+    lock = ManagedItemsController::Lock.new(:keep, item, @user, flash)
+    expect(flash[:error]).to match(/Something has gone wrong reading the lock status.*/)
+    expect(lock.error).to eq ("Something has gone wrong reading the lock status.")
     expect(lock.error?).to eq (true)
   end
 

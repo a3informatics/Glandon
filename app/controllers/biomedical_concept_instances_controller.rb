@@ -32,6 +32,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     end
     render json: {data: items}, status: 200
   end
+
   # def editable
   #   authorize BiomedicalConcept, :index?
   #   results = {:data => []}

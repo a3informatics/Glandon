@@ -1,5 +1,7 @@
-# Managed Items Controller.
+# Managed Items Controller
 #
+# @author Clarisa Romero
+# @since 3.2.0
 class ManagedItemsController < ApplicationController
 
   def index
@@ -32,7 +34,26 @@ class ManagedItemsController < ApplicationController
     end
   end
 
+private
+
+  def get_lock_for_item(item)
+    @lock = ManagedItemsController::Lock.new(:get, item, current_user, flash)
+    return true unless @lock.error?
+    render :json => {:errors => [@lock.error]}, :status => 422
+    false
+  end
+
+  def check_lock_for_item(item)
+    @lock = ManagedItemsController::Lock.new(:keep, item, current_user, flash)
+    return true unless @lock.error?
+    render :json => {:errors => [@lock.error]}, :status => 422
+    false
+  end
+
+  def item_errors
+    return false if @lock.item.errors.empty?
+    render :json => {:errors => @lock.item.errors.full_messages}, :status => 422
+    true
+  end
+
 end
-  
-
-

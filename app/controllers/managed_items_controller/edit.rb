@@ -1,3 +1,7 @@
+# Managed Items Controller Edit
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class ManagedItemsController
 
   class Edit
