@@ -94,9 +94,9 @@ class IsoManagedV2Controller < ApplicationController
   def export_ttl
     authorize IsoManaged
     uri = Uri.new(id: protect_from_bad_id(params))
-    IsoManagedV2.klass_for(uri).find_full(uri, :export_paths)
-    filename = "#{item.owner_short_name}_#{item.identifier}_#{item.version}.ttl"
-    send_data item.to_ttl, filename: filename, type: 'application/x-turtle', disposition: 'inline'
+    item = IsoManagedV2.klass_for(uri).find_full(uri, :export_paths)
+    filename = "#{item.owner_short_name}_#{item.scoped_identifier}_#{item.version}.ttl"
+    send_data PublicFile.read(item.to_ttl), filename: filename, type: 'application/x-turtle', disposition: 'inline'
   end
 
 private

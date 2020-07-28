@@ -287,18 +287,24 @@ class IsoManagedV2 < IsoConceptV2
     true
   end
 
+  # Export Paths. Paths for an export of the managed item
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
   def self.export_paths
-    super(namespaces: [self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+    result = super(namespaces: [self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+    result += read_property_paths(property: :has_identifier)
+    result += read_property_paths(property: :has_state)
+    result
   end
 
-  # Read Paths
+  # Read Paths. Paths for the full read of an item
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.read_paths
     super(rdf_types: [IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
   end
 
-  # Delete Paths
+  # Delete Paths. Paths for the deletion of an item
   #
   # @return [Array] an array of paths suitable for SPARQL queries
   def self.delete_paths

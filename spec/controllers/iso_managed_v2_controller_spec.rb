@@ -172,12 +172,35 @@ describe IsoManagedV2Controller do
     end
 
     it 'change notes export csv' do
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(controller).to receive(:protect_from_bad_id).and_return("anything")
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).with("anything").and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:identifier).and_return("C12345")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:change_notes_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "CL_CHANGE_NOTES_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
-      #expect(@controller).to receive(:render)
       get :export_change_notes_csv, params:{id: "aaa"}, format: 'text/csv'
+    end
+
+  end
+
+  describe "Content Admin User" do
+
+    login_content_admin
+
+    def sub_dir
+      return "controllers"
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    it 'exports a managed item as ttl' do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      get :export_ttl, params:{id: uri.to_id}
+      expect(response.content_type).to eq("application/x-turtle")
+      expect(response.code).to eq("200")
     end
 
   end
@@ -204,6 +227,10 @@ describe IsoManagedV2Controller do
       expect(response).to redirect_to("/users/sign_in")
     end
 
+    it "export ttl" do
+      get :export_ttl, params:{ id: "F-ACME_TEST"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
   end
 
 end

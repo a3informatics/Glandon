@@ -277,10 +277,10 @@ describe IsoManagedController do
       expect(response).to redirect_to("/users/sign_in")
     end
 
-    it "export" do
-      get :export, params:{id: "XXXXXXX"} # Used new ID, can be anything
-      expect(response).to redirect_to("/users/sign_in")
-    end
+    # it "export" do
+    #   get :export, params:{id: "XXXXXXX"} # Used new ID, can be anything
+    #   expect(response).to redirect_to("/users/sign_in")
+    # end
 
   end
 
