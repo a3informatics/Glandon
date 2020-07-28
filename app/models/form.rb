@@ -14,169 +14,12 @@ class Form < IsoManagedV2
   # @return [Array] Array of hashes, one per group, sub group and item. Ordered by ordinal.
   def get_items
     results = []
-    form = self.class.find_minimum(self.id)
-    form.has_group_objects.sort_by {|x| x.ordinal}.each do |group|
+    form = self.class.find_full(self.uri)
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
       results += group.get_item
     end
     return results
   end
-
-  #TODO: This should be a query from the domains
-  # @@domain_map = {
-  #   "AD" => "Analysis Dataset",
-  #   "AE" => "Adverse Events",
-  #   "AG" => "Procedure Agents",
-  #   "AU" => "Autopsy",
-  #   "AX" => "Non-Compliant ADaM Datasets",
-  #   "BE" => "Biospecimen Events",
-  #   "BM" => "Bone Measurements",
-  #   "BR" => "Biopsy",
-  #   "BS" => "Biospecimen",
-  #   "CE" => "Clinical Events",
-  #   "CM" => "Concomitant Meds",
-  #   "CO" => "Comments",
-  #   "CV" => "Cardiovascular System Findings",
-  #   "DA" => "Drug Accountability",
-  #   "DD" => "Death Diagnosis",
-  #   "DE" => "Device Events",
-  #   "DI" => "Device Identifiers",
-  #   "DM" => "Demographics",
-  #   "DO" => "Device Properties",
-  #   "DP" => "Developmental Milestone",
-  #   "DR" => "Device to Subject Relationship",
-  #   "DS" => "Disposition",
-  #   "DT" => "Device Tracking and Disposition",
-  #   "DU" => "Device-In-Use",
-  #   "DV" => "Protocol Deviations",
-  #   "DX" => "Device Exposure",
-  #   "ED" => "Endocrine System Findings",
-  #   "EG" => "Electrocardiogram",
-  #   "EX" => "Exposure",
-  #   "FA" => "Findings About Events or Interventions",
-  #   "FH" => "Family History",
-  #   "FT" => "Functional Tests",
-  #   "GI" => "Gastrointestinal System Findings",
-  #   "HM" => "Hematopoietic System Findings",
-  #   "HO" => "Healthcare Encounters",
-  #   "HU" => "Healthcare Resource Utilization",
-  #   "IE" => "Inclusion/Exclusion",
-  #   "IG" => "Integumentary System Findings",
-  #   "IM" => "Immune System Findings",
-  #   "IS" => "Immunogenicity Specimen Assessments",
-  #   "LB" => "Laboratory Data",
-  #   "MB" => "Microbiology",
-  #   "MH" => "Medical History",
-  #   "MI" => "Microscopic Findings",
-  #   "MK" => "Musculoskeletal Findings, Connective and Soft Tissue Findings",
-  #   "ML" => "Meal Data",
-  #   "MO" => "Morphology Findings",
-  #   "MS" => "Microbiology Susceptibility",
-  #   "NV" => "Nervous System Findings",
-  #   "PB" => "Pharmacogenomics Biomarker",
-  #   "PC" => "Pharmacokinetic Concentration",
-  #   "PE" => "Physical Exam",
-  #   "PF" => "Pharmacogenomics Findings",
-  #   "PG" => "Pharmacogenomics/Genetics Methods and Supporting Information",
-  #   "PP" => "Pharmacokinetic Parameters",
-  #   "PR" => "Procedure",
-  #   "PS" => "Protocol Summary for PGx",
-  #   "PT" => "Pharmacogenomics Trial Characteristics",
-  #   "QS" => "Questionnaires",
-  #   "RE" => "Respiratory System Findings",
-  #   "RP" => "Reproductive System Findings",
-  #   "RS" => "Disease Response",
-  #   "SB" => "Subject Biomarker",
-  #   "SC" => "Subject Characteristics",
-  #   "SE" => "Subject Element",
-  #   "SG" => "Surgery",
-  #   "SK" => "Skin Test",
-  #   "SL" => "Sleep Polysomnography Data",
-  #   "SR" => "Skin Response",
-  #   "SU" => "Substance Use",
-  #   "SV" => "Subject Visits",
-  #   "TA" => "Trial Arms",
-  #   "TE" => "Trial Elements",
-  #   "TF" => "Tumor Findings",
-  #   "TI" => "Trial Inclusion/Exclusion Criteria",
-  #   "TP" => "Trial Paths",
-  #   "TR" => "Tumor Results",
-  #   "TS" => "Trial Summary",
-  #   "TU" => "Tumor Identifier",
-  #   "TV" => "Trial Visits",
-  #   "TX" => "Trial Sets",
-  #   "UR" => "Urinary System Findings",
-  #   "VR" => "Viral Resistance Findings",
-  #   "VS" => "Vital Signs" }
-
-  # Initialize the object
-  #
-  # @param triples [hash] The raw triples keyed by id
-  # @param id [string] The id of the form
-  # @return [object] The form object
-  # def initialize(triples=nil, id=nil)
-  #   self.children = Array.new
-  #   self.label = "New Form"
-  #   self.completion = ""
-  #   self.note = ""
-  #   if triples.nil?
-  #     super
-  #     self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-  #   else
-  #     super(triples, id)
-  #   end
-  # end
-
-  # # Owner
-  # #
-  # # @return [IsoRegistrationAuthority] the owner
-  # def self.owner
-  #   IsoRegistrationAuthority.owner
-  # end
-
-  # # Find a given form
-  # #
-  # # @param id [string] The id of the form.
-  # # @param namespace [hash] The raw triples keyed by id.
-  # # @param children [boolean] Find all child objects. Defaults to true.
-  # # @return [object] The form object.
-  # def self.find(id, namespace, children=true)
-  #   object = super(id, namespace)
-  #   if children
-  #     object.children = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
-  #   end
-  #   object.triples = ""
-  #   return object
-  # end
-
-  # # Find all managed items based on their type.
-  # #
-  # # @return [array] Array of objects found.
-  # def self.all
-  #   return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-  # end
-
-  # # Find list of managed items of a given type.
-  # #
-  # # @return [array] Array of objects found.
-  # def self.unique
-  #   return super(C_RDF_TYPE, C_SCHEMA_NS)
-  # end
-
-  # # Find all released item for all identifiers of a given type.
-  # #
-  # # @return [array] An array of objects.
-  # def self.list
-  #   return super(C_RDF_TYPE, C_SCHEMA_NS)
-  # end
-
-  # # Find history for a given identifier
-  # # Return the object as JSON
-  # #
-  # # @params [hash] {:identifier, :scope_id}
-  # # @return [array] An array of objects.
-  # def self.history(params)
-  #   return super(C_RDF_TYPE, C_SCHEMA_NS, params)
-  # end
 
   # Create a placeholder form
   #
@@ -212,8 +55,6 @@ class Form < IsoManagedV2
   #   return object
   # end
 
- 
-
   # To XML (ODM)
   #
   # @return [object] The ODM XML object created.
@@ -237,8 +78,6 @@ class Form < IsoManagedV2
   #   end
   #   return odm_document.to_xml
   # end
-
-  
 
   # Get annotations for the form
   #

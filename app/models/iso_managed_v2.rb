@@ -287,6 +287,30 @@ class IsoManagedV2 < IsoConceptV2
     true
   end
 
+  # Export Paths. Paths for an export of the managed item
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
+  def self.export_paths
+    result = super(namespaces: [self.rdf_type.namespace, OperationalReferenceV3.rdf_type.namespace])
+    result += read_property_paths(property: :has_identifier)
+    result += read_property_paths(property: :has_state)
+    result
+  end
+
+  # Read Paths. Paths for the full read of an item
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
+  def self.read_paths
+    super(rdf_types: [IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
+  end
+
+  # Delete Paths. Paths for the deletion of an item
+  #
+  # @return [Array] an array of paths suitable for SPARQL queries
+  def self.delete_paths
+    super(rdf_types: [IsoConceptSystem::Node.rdf_type, OperationalReferenceV3.rdf_type])
+  end
+
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
   # @param [Uri|id] the identifier, either a URI or the id
@@ -314,20 +338,20 @@ class IsoManagedV2 < IsoConceptV2
     item
   end
 
-  # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
-  #
-  # @param [Uri|id] the identifier, either a URI or the id
-  # @return [IsoManagedV2] The managed item object.
-  def self.find_full(id)
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-    parts = []
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-    query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
-    results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
-    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
-    from_results_recurse(uri, results.by_subject)
-  end
+  # # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
+  # #
+  # # @param [Uri|id] the identifier, either a URI or the id
+  # # @return [IsoManagedV2] The managed item object.
+  # def self.find_full(id)
+  #   uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+  #   parts = []
+  #   parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+  #   read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+  #   query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
+  #   results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
+  #   raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
+  #   from_results_recurse(uri, results.by_subject)
+  # end
 
   # Find Minimum. Finds the minimun amount of info for an Managed Item. Use this for quick finds.
   #
@@ -674,12 +698,12 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
-      parts = []
-      parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-      self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-      query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-      results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
-      1
+    parts = []
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    1
   end
 
   # Delete minimum. Delete the managed item (Scope identifier, Registration State)

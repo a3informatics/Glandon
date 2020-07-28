@@ -9,7 +9,7 @@ class IsoConceptV2 < Fuseki::Base
             uri_unique: :label
 
   data_property :label
-  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node"
+  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node", delete_exclude: true
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?
 

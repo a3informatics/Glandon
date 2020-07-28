@@ -8,13 +8,10 @@ class Form::Item::Question < Form::Item
   data_property :format 
   data_property :mapping
   data_property :question_text 
-  #data_property :tc_refs
 
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
-  # object_property :has_variable, cardinality: :one, model_class: "bd:Variable"
 
 
-  #validates_with Validator::Field, attribute: :datatype, method: :valid_datatype?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
   validates_with Validator::Field, attribute: :mapping, method: :valid_mapping?
   validates_with Validator::Field, attribute: :question_text, method: :valid_question?
@@ -23,29 +20,20 @@ class Form::Item::Question < Form::Item
   #
   # @return [Hash] A hash of Question Item with CLI and CL references.
   def get_item
+    coded_value = []
     blank_fields = {free_text:"", label_text:"", has_property: []}
     item = self.to_h.merge!(blank_fields)
-    coded_value = []
-    item[:has_coded_value].each do |cv|
-      tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
-      parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: tc[:context][:uri]))
-      tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
-      coded_value << tc
-    end
-    item[:has_coded_value] = coded_value
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
+    # self.has_coded_value.each do |cv|
+    #   ref = cv.to_h
+    #   ref[:reference] = Thesaurus::ManagedConcept.find(cv.reference).to_h
+    #   parent = Thesaurus::ManagedConcept.find_with_properties(cv.context)
+    #   ref[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+    #   coded_value << ref
+    # end
+    # item[:has_coded_value] = coded_value
     return item
   end
-  
-#   # Thesaurus Concepts
-#   #
-#   # @return [object] An array of Thesaurus Concepts
-#   def thesaurus_concepts
-#     results = Array.new
-#     self.tc_refs.each do |ref|
-#       results << ThesaurusConcept.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
-#     end
-#     return results
-#   end
   
 #   # To XML
 #   #
@@ -72,15 +60,6 @@ class Form::Item::Question < Form::Item
 #         decode.add_translated_text(tc.label)
 #       end
 #     end
-#   end
-
-# private
-
-#   def self.children_from_triples(object, triples, id)
-#     links = object.get_links_v2(C_SCHEMA_PREFIX, "hasThesaurusConcept")
-#     links.each do |link|
-#       object.tc_refs << OperationalReferenceV2.find_from_triples(triples, link.id)
-#     end      
 #   end
 
 end

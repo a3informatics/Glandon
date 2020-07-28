@@ -112,10 +112,12 @@ Rails.application.routes.draw do
     end
     member do
       get :branches
-      get :export
     end
   end
   resources :iso_managed_v2, only: [] do
+    collection do
+      get :find_by_tag
+    end
     member do
       get :status
       get :impact
@@ -125,9 +127,7 @@ Rails.application.routes.draw do
       get :list_change_notes
       get :list_change_notes_data
       get :export_change_notes_csv
-    end
-    collection do
-      get :find_by_tag
+      get :export_ttl
     end
   end
   resources :iso_registration_states_v2, only: [] do

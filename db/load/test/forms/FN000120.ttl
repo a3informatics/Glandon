@@ -1,4 +1,4 @@
-@prefix : <http://www.s-cubed.dk/Disability_Assessment_For_Dementia__DAD___Pilot_/V1#> .
+@prefix : <http://www.s-cubed.dk/FN000120/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/Disability_Assessment_For_Dementia__DAD___Pilot_/V1>
+<http://www.s-cubed.dk/FN000120/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-15T14:50:31+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-07-26T10:11:28+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -53,7 +53,7 @@
 .
 :F_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "Disability Assessment For Dementia (DAD) (Pilot)"^^xsd:string ;
+	isoI:identifier "FN000120"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;

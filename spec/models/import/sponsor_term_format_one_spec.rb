@@ -206,7 +206,7 @@ describe "Import::SponsorTermFormatOne" do
 
   it "paths test" do
     tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66767/V35#C66767"))
-    check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(tc.to_h, sub_dir, "find_full_paths_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
   it "import, no errors, full version 3.0 with base, bug issue I" do
