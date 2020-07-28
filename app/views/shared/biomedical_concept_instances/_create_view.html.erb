@@ -1,3 +1,5 @@
+<%= javascript_tag "let createBCUrl = '#{create_from_template_biomedical_concept_instances_path}'" %>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-bc-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
 
@@ -15,7 +17,7 @@
 
       <div class="modal-body centered font-light">
 
-        <div id="new-bc-error"></div>
+        <div id="new-bc-error" style="width: 100%"></div>
 
         <img src="<%= image_path 'icons/new_bc' %>" class="modal-img"/>
         <div class="font-light"> Fill out the fields for the new Biomedical Concept: </div> <br/>

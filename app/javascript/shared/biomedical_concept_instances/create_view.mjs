@@ -1,8 +1,9 @@
 import ModalView from 'shared/base/modal_view'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { managedConceptRef } from 'shared/ui/strings'
 import Validator from 'shared/ui/validator'
+import { managedConceptRef } from 'shared/ui/strings'
+import { $post } from 'shared/helpers/ajax'
 
 /**
  * Create Biomedical Concept Modal View
@@ -17,17 +18,17 @@ export default class CreateBCView extends ModalView {
    * Create a Modal View
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the modal element
-   * @param {function} params.onCreate Callback executed when BC gets created, result passed as function argument
+   * @param {function} params.onCreated Callback executed when BC gets created, result passed as function argument
    */
    constructor({
      selector = '#new-bc-modal',
-     onCreate
+     onCreated
    } = {}) {
     super({ selector });
 
     Object.assign(this, {
       templatePicker: this._initPicker(),
-      onCreate: onCreate || this._defaultOnCreate
+      onCreated: onCreated || this._defaultOnCreated
     });
 
     this._setListeners();
@@ -55,11 +56,27 @@ export default class CreateBCView extends ModalView {
   /** Private **/
 
 
-  _defaultOnCreate(data) {
-    if (data.history_path)
-      location.href = data.history_path;
-    else
-      location.reload();
+  /**
+   * Validate inputs and execute a server request to create a new BC
+   */
+  _createBC() {
+    // Perform validation
+    if ( Validator.validate(this.form, this._validationRules) ) {
+      // Disable submit button
+      this._loading(true);
+
+      // POST request to create new BC, handle result
+      $post({
+        url: createBCUrl,
+        data: { biomedical_concept_instance: this._formData },
+        errorDiv: this.modal.find('#new-bc-error'),
+        done: (result) => {
+          this.onCreated(result);
+          this.dismiss();
+        },
+        always: () => this._loading(false)
+      })
+    }
   }
 
   /**
@@ -74,15 +91,6 @@ export default class CreateBCView extends ModalView {
 
     // On Template selector click event
     this.form.find('#new-bc-template').on('click', () => this.templatePicker.show() );
-  }
-
-  /**
-   * Validate inputs and execute a server request to create a new BC
-   */
-  _createBC() {
-    // Perform validation
-    if( Validator.validate({ form: this.form, rules: this._validationRules }) )
-      console.log("passed");
   }
 
   /**
@@ -103,6 +111,27 @@ export default class CreateBCView extends ModalView {
   }
 
   /**
+   * Toggle loading state on the modal (disables buttons)
+   * @param {boolean} enable value representing the desired loading state
+   */
+  _loading(enable) {
+    this.modal.find('.btn').toggleClass('disabled', enable)
+    this.modal.find('#new-bc-submit').toggleClass('el-loading', enable)
+  }
+
+  /**
+   * Get the user-specified values for a new BC from the form
+   * @return {Object} key-vaue pairs of parameters and values
+   */
+  get _formData() {
+    return {
+      identifier: this.form.find('#new-bc-identifier').val(),
+      label: this.form.find('#new-bc-label').val(),
+      template_id: this.form.find('#new-bc-template').attr('data-id'),
+    }
+  }
+
+  /**
    * Initialize an ItemsPicker instance for BC Template selection
    * Call only once
    * @return {ItemsPicker} new instance of ItemsPicker
@@ -113,6 +142,16 @@ export default class CreateBCView extends ModalView {
       types: ['biomedical_concept_template'],
       onSubmit: (selection) => this._onSelectTemplate( selection.asObjectsArray()[0] )
     })
+  }
+
+  /**
+   * Default onCreated callback, redirects to the history path
+   */
+  _defaultOnCreated(result) {
+    if (result)
+      location.href = result;
+    else
+      location.reload();
   }
 
   /**

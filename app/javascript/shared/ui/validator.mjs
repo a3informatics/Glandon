@@ -18,21 +18,20 @@ export default class Validator {
 
   /**
    * Validate a form by a collection of rules
-   * @param {object} params
-   * @param {(JQuery Element | string )} params.form reference to the form element to validate
-   * @param {Object} params.rules object containing rules for all of the form fields to validate
+   * @param {(JQuery Element | string )} form reference to the form element to validate
+   * @param {Object} rules object containing rules for all of the form fields to validate
    * @return {boolean} value representing validation success, only returns true if all checks pass
    * @static
    */
-  static validate({ form, rules }) {
+  static validate(form, rules) {
     // Clear all errors in form
     Validator._clear(form);
 
     let success = true;
 
-    return Validator._eachField(form, rules, (field, fieldRules) => {
+    Validator._eachField(form, rules, (field, fieldRules) => {
       // Field did not pass all validation checks
-      if ( !Validator.validateField(field, fieldRules, success) )
+      if ( !Validator.validateField(field, fieldRules) )
         success = false;
     });
 
