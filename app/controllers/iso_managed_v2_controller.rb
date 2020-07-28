@@ -99,6 +99,14 @@ class IsoManagedV2Controller < ApplicationController
     send_data PublicFile.read(item.to_ttl), filename: filename, type: 'application/x-turtle', disposition: 'inline'
   end
 
+  def export_json
+    authorize IsoManaged
+    uri = Uri.new(id: protect_from_bad_id(params))
+    item = IsoManagedV2.klass_for(uri).find_full(uri, :export_paths)
+    filename = "#{item.owner_short_name}_#{item.scoped_identifier}_#{item.version}.json"
+    send_data item.to_h, filename: filename, type: 'application/json', disposition: 'inline'
+  end
+
 private
 
   # Find item.

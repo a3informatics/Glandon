@@ -182,7 +182,7 @@ describe IsoManagedV2Controller do
 
   end
 
-  describe "Content Admin User" do
+  describe "Exports" do
 
     login_content_admin
 
@@ -196,10 +196,17 @@ describe IsoManagedV2Controller do
       load_cdisc_term_versions(1..2)
     end
 
-    it 'exports a managed item as ttl' do
+    it 'ttl' do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       get :export_ttl, params:{id: uri.to_id}
       expect(response.content_type).to eq("application/x-turtle")
+      expect(response.code).to eq("200")
+    end
+
+    it 'json' do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      get :export_json, params:{id: uri.to_id}
+      expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
 

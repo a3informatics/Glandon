@@ -128,6 +128,7 @@ Rails.application.routes.draw do
       get :list_change_notes_data
       get :export_change_notes_csv
       get :export_ttl
+      get :export_json
     end
   end
   resources :iso_registration_states_v2, only: [] do
