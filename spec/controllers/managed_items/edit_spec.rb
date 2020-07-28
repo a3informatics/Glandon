@@ -44,7 +44,7 @@ describe "ManagedItemsController::Edit" do
     edit = ManagedItemsController::Edit.new(item, @user, flash)
     expect(edit.lock.token).to_not eq(nil)
     expect(edit.lock.error).to eq ("")
-    expect(edit.item.uri).to eq (item.uri)
+    expect(edit.lock.item.uri).to eq (item.uri)
   end
 
   it "edit item, success, new version" do
@@ -55,7 +55,7 @@ describe "ManagedItemsController::Edit" do
     edit = ManagedItemsController::Edit.new(ct_1, @user, flash)
     expect(edit.lock.token).to_not eq(nil)
     expect(edit.lock.error).to eq ("")
-    expect(edit.item.uri).to eq (ct_2.uri)
+    expect(edit.lock.item.uri).to eq (ct_2.uri)
   end
 
 end
