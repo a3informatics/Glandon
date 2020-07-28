@@ -18,10 +18,8 @@ describe "Forms", :type => :feature do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      #load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
-      load_test_file_into_triple_store("ACME_FN000150_1.ttl")
-      load_test_file_into_triple_store("ACME_FN000120_1.ttl")
+      load_test_file_into_triple_store("forms/FN000150.ttl")
+      load_test_file_into_triple_store("forms/FN000120.ttl")
       ua_create
     end
 
@@ -43,7 +41,7 @@ describe "Forms", :type => :feature do
       find(:xpath, "//a[@href='/forms']").click
       expect(page).to have_content 'Index: Forms'
       ui_check_table_info("index", 1, 2, 2)
-      ui_check_table_cell("index", 2, 2, "Disability Assessment For Dementia (DAD) (Pilot)")
+      ui_check_table_cell("index", 2, 2, "FN000120")
       ui_check_table_cell("index", 2, 3, "Disability Assessment For Dementia (DAD) (Pilot)")
     end
 
@@ -53,7 +51,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      expect(page).to have_content 'Version History of \'FN000150\''
       ui_check_table_cell("history", 1, 1, "0.1.0")
       ui_check_table_cell("history", 1, 5, "Height (Pilot)")
       ui_check_table_cell("history", 1, 7, "Incomplete")
@@ -65,7 +63,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      expect(page).to have_content 'Version History of \'FN000150\''
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: Form'
@@ -85,7 +83,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      expect(page).to have_content 'Version History of \'FN000150\''
       context_menu_element('history', 4, 'Height (Pilot)', :show)
       wait_for_ajax 10
       click_on "NOT DONE C49484 (ND C66789 v13.0.0)"
@@ -100,7 +98,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'(DAD) (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'Disability Assessment For Dementia (DAD) (Pilot)\''
+      expect(page).to have_content 'Version History of \'FN000120\''
       context_menu_element_v2('history', '(DAD) (Pilot)', :show)
       wait_for_ajax 30
       expect(page).to have_content 'Show: Form'
@@ -116,7 +114,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
       wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'Height (Pilot)\''
+      expect(page).to have_content 'Version History of \'FN000150\''
       context_menu_element_v2('history', 'Height (Pilot)', :show)
       wait_for_ajax 30
       expect(page).to have_content 'Show: Form'
@@ -126,30 +124,6 @@ describe "Forms", :type => :feature do
       file = download_content
       expected = read_text_file_2(sub_dir, "show_excel_expected.xlsx")
     end
-
-    # it "allows access to index page (REQ-MDR-MIT-015)", js:true do
-    #   click_navbar_forms
-    #   expect(page).to have_content 'Index: Forms'
-    # end
-
-    # it "allows the history page to be viewed", js:true do
-    #   click_navbar_forms
-    #   expect(page).to have_content 'Index: Forms'
-    #   #save_and_open_page
-    #   find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
-    #   #save_and_open_page
-    #   expect(page).to have_content 'History: T2'
-    # end
-
-    # it "history allows the show page to be viewed (REQ-MDR-CRF-010)", js:true do
-    #   click_navbar_forms
-    #   expect(page).to have_content 'Index: Forms'
-    #   find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
-    #   expect(page).to have_content 'History: T2'
-    #   find(:xpath, "//tr[contains(.,'Test 2')]/td/a", :text => 'Show').click
-    #   #save_and_open_page
-    #   expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
-    # end
 
     # it "history allows the view page to be viewed (REQ-MDR-CRF-010)", js:true do
     #   click_navbar_forms
