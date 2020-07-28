@@ -9,6 +9,8 @@ describe SdtmModelPolicy do
   let (:sdtm_model) { SdtmModel.new }
 
   before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
     ua_create
   	@role_to_user = construct_roles_to_user
   	@list = contruct_default_list  

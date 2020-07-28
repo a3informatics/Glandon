@@ -18,9 +18,8 @@ private
     params.require(:iso_scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :scope_id)
   end
   
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoScopedIdentifier
+  def model_klass
+    IsoScopedIdentifier
   end
 
 end

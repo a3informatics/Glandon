@@ -33,9 +33,8 @@ private
     params.require(:backgrounds).permit(:items)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize Import
+  def model_klass
+    Import
   end
 
 end

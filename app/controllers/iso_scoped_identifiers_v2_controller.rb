@@ -17,10 +17,9 @@ private
   def this_params
     params.require(:iso_scoped_identifier).permit(:version_label)
   end
-  
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoScopedIdentifier
+
+  def model_klass
+    IsoScopedIdentifier
   end
 
 end

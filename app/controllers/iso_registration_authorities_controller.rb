@@ -40,9 +40,8 @@ private
     params.require(:iso_registration_authority).permit(:namespace_id, :organization_identifier)
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoRegistrationAuthority
+  def model_klass
+    IsoRegistrationAuthority
   end
 
 end

@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
   # Pundit exception for not authorized
   rescue_from Pundit::NotAuthorizedError, :with => :not_authorized_method
 
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize model_klass
+  end
+
   # Rescue frm not authorized method
   def not_authorized_method
     flash[:error] = 'You do not have the access rights to that operation.'

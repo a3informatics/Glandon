@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe BiomedicalConceptPolicy do
+describe BiomedicalConceptInstancePolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
   subject { described_class.new(user, biomedical_concept) }
-  let (:biomedical_concept) { BiomedicalConcept.new }
+  let (:biomedical_concept) { BiomedicalConceptInstance.new }
 
   before :all do
     ua_create

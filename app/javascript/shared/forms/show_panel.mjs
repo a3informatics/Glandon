@@ -1,7 +1,7 @@
-import TablePanel from 'shared/base/table_panel';
+import TablePanel from 'shared/base/table_panel'
 
-import { dtFormShowColumns } from 'shared/helpers/dt_column_collections'
-import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt'
+import { dtFormShowColumns } from 'shared/helpers/dt/dt_column_collections'
+import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt/utils'
 import { rdfTypesMatch } from 'shared/helpers/rdf_types'
 
 /**

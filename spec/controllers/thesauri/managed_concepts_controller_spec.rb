@@ -443,6 +443,17 @@ describe Thesauri::ManagedConceptsController do
       expect(AuditTrail.count).to eq(audit_count)
     end
 
+    it "update properties, failed to lock" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      token = Token.obtain(mc, @lock_user)
+      put :update_properties, params:{id: mc.id, edit: {definition: "ok def"}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
     it 'adds a child thesaurus concept' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
