@@ -1,4 +1,11 @@
 // MODALS
+
+.modal-body.centered{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .modal-lg.small-screen {
   width: 50%;
 }
