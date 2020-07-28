@@ -1,3 +1,7 @@
+# Managed Items Controller Lock
+#
+# @author Clarisa Romero
+# @since 3.2.0
 class ManagedItemsController
 
   class Lock
@@ -18,64 +22,90 @@ class ManagedItemsController
       operation == :get ? token_get : token_keep 
     end
 
+    # Token
+    #
+    # @return [Token] the token object
     def token
       @token
     end
 
+    # Item
+    #
+    # @return [Object] the managed item 
     def item
       @item
     end
 
+    # Error?
+    #
+    # @return [Boolean] true if error, otherwise false
+    def error?
+      !@error.blank?
+    end
+
+    # Error
+    #
+    # @return [String] any error message
     def error
       @error
     end
 
+    # User
+    #
+    # @return [User] the user that locked
     def user
       @user
     end
 
-    def release_and_get(item)
-      @item = item
+    # Release And Lock. Release the lock and lock the new item
+    #
+    # @param object [Object] The managed item object
+    #
+    def release_and_get(new_item)
+      @item = new_item
       @token.release
       token_get
     end
 
-
   private
     
-    # Token get. Get the token for a Managed Item.
+    # Token Get. Get the token for a Managed Item.
     #
-    # @return [Token] the token or nil if not found. Flash error set to standard error in not found.
+    # @return [Boolean] true if successful, false otherwise
     def token_get
       @token = Token.obtain(@item, @user)
-      return unless @token.nil?
+      return true unless @token.nil?
       token_error
-      rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound => e
       @flash[:error] = "The item is locked for editing by user: <unknown>."
       @error = "The item is locked for editing by user: <unknown>."
-      return nil
+      return false
     end
 
-    # Token keep. Keep the token, if exists, for a Managed Item.
+    # Token Keep. Keep the token, if exists, for a Managed Item.
     #
-    # @return [Token] the token or nil if not found. Flash error set to standard error in not found.
+    # @return [Boolean] true if successful, false otherwise
     def token_keep
       @token = Token.find_token(@item, @user)
-      return unless @token.nil?
+      return true unless @token.nil?
       token_error
-      rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound => e
       @flash[:error] = "The item is locked for editing by user: <unknown>."
       @error = "The item is locked for editing by user: <unknown>."
-      return nil
+      return false
     end
 
+    # Token Error
+    #
+    # @return [Boolean] always false
     def token_error
       token = Token.find_token_for_item(@item)
       user = token.nil? ? "<unknown>" : User.find(token.user_id).email
       @flash[:error] = "The item is locked for editing by user: #{user}."
       @error = "The item is locked for editing by user: #{user}."
-      return nil
+      return false
     end
 
   end
+
 end

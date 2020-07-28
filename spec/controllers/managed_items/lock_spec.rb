@@ -33,6 +33,7 @@ describe "ManagedItemsController::Lock" do
     expect(lock.item.uri.to_s).to eq("http://www.s-cubed.dk/Height__Pilot_/V1#F")
     expect(lock.user).to eq(@user)
     expect(lock.error).to eq ("")
+    expect(lock.error?).to eq (false)
   end
 
   it "prevents another user obtaining a token when already allocated" do
@@ -41,6 +42,8 @@ describe "ManagedItemsController::Lock" do
     lock1 = ManagedItemsController::Lock.new(:get, item, @user, flash)
     lock2 = ManagedItemsController::Lock.new(:get, item, @user2, flash)
     expect(lock2.token).to eq(nil)
+    expect(lock2.error).to eq ("The item is locked for editing by user: token_user_1@example.com.")
+    expect(lock2.error?).to eq (true)
   end
 
   it "allows a token to be kept" do
@@ -61,6 +64,7 @@ describe "ManagedItemsController::Lock" do
     lock = ManagedItemsController::Lock.new(:keep, item, @user2, flash)
     expect(flash[:error]).to match(/The item is locked for editing by user: token_user_1@example.com.*/)
     expect(lock.error).to eq ("The item is locked for editing by user: token_user_1@example.com.")
+    expect(lock.error?).to eq (true)
   end
 
 end
