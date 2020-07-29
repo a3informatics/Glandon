@@ -91,6 +91,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     # Lock item and get token
     respond_to do |format|
       format.html do
+        @data_path = show_data_biomedical_concept_instance_path(@bc)
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope } })
       end
@@ -208,11 +209,11 @@ private
   end
 
   def history_path_for(identifier, scope_id)
-    return {history_path: history_biomedical_concept_instances_path({biomedical_concept_instance:{identifier: identifier, scope_id: scope_id}})} 
+    return {history_path: history_biomedical_concept_instances_path({biomedical_concept_instance:{identifier: identifier, scope_id: scope_id}})}
   end
 
   def close_path_for
     biomedical_concept_instances_path
-  end 
+  end
 
 end
