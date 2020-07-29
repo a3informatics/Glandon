@@ -115,13 +115,13 @@
   width: auto;
 }
 
-.h-inner-wrap.indicators-wrap{
+#header-indicators.h-inner-wrap {
   justify-content: space-between;
   align-items: flex-end;
 }
 
 @media (max-width: 1300px){
-  .h-inner-wrap.indicators-wrap {
+  #header-indicators.h-inner-wrap {
     width: 100%;
     flex-direction: row;
   }
