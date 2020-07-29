@@ -1,25 +1,41 @@
-<%= stylesheet_link_tag    'shared/d3/d3_tree', 'biomedical_concepts/editor', 'panel_collapse', 'spinner' %>
-<%= javascript_include_tag 'd3', 'shared/d3/d3_tree', 'shared/d3/d3_editor_new', 'biomedical_concepts/editor', 'unload', 'field_validation', 'token_timer' %>
-<%= javascript_include_tag 'panel_collapse', 'thesauri_field_editor', 'spinner', 'ajax_requests' %>
-<% if Rails.env == "test" || Rails.env == "development" %>
-	<%= javascript_include_tag 'rspec_helper' %>
-<% end %>
+<%= javascript_tag "setPageTitle('Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})')"%>
+<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
+
+<%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
+
 <div class="row">
-  <div class="col-md-12">
-    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @bc} %>
-  </div>
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
 </div>
-<%= render partial: "shared/biomedical_concepts/editor" %>
-<% empty_string = "" %>
-<input type="hidden" id="token_1" value="<%= @token.id %>">
-<input type="hidden" id="token_2" value="<%= empty_string %>">
-<input type="hidden" id="token_3" value="<%= empty_string %>">
-<input type="hidden" id="token_4" value="<%= empty_string %>">
-<input type="hidden" id="token_5" value="<%= empty_string %>">
-<input type="hidden" id="token_6" value="<%= empty_string %>">
-<input type="hidden" id="token_7" value="<%= empty_string %>">
-<input type="hidden" id="token_8" value="<%= empty_string %>">
-<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
-<input type="hidden" id="close_path" value="<%= @close_path %>">
-<input type="hidden" id="bc_id" value="<%= @bc.id %>">
-<input type="hidden" id="bc_namespace" value="<%= @bc.namespace %>">
+
+<div class="row">
+
+	<div class="col-md-12 card">
+		<div class="card-content">
+
+			<div class="btns-wrap" id="edit-bc-actions">
+        <a href="#" class="btn medium white ttip" id="add-bc-edit-button" data-toggle="modal">
+          <span class="ttip-text shadow-small text-medium">Start editing another Biomedical Concept</span>
+          <span class="icon-edit"></span> Add a BC to Editor
+        </a>
+				<a href="#new-bc-modal" class="btn medium green ttip" id="new-bc-button" data-toggle="modal">
+					<span class="ttip-text shadow-small text-medium">Create a new Biomedical Concept instance</span>
+					<span class="icon-plus text-tiny"></span> Create a new BC
+				</a>
+        <span id="editor-help" class="icon-help text-small text-light clickable ttip" style="margin-left: 5px;">
+          <span class="ttip-text shadow-small font-light text-medium"> Editor Help </span>
+        </span>
+      </div>
+
+			<br>
+
+		</div>
+	</div>
+
+</div>
+
+<%= render partial: "shared/biomedical_concept_instances/create_view" %>

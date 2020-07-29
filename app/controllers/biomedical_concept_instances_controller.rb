@@ -111,22 +111,20 @@ class BiomedicalConceptInstancesController < ApplicationController
     end
   end
 
-  # def edit
-  #   authorize BiomedicalConcept
-  #   @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
-  #   @bcts = BiomedicalConceptTemplate.all
-  #   if @bc.new_version?
-  #     json = @bc.to_operation
-  #     new_bc = BiomedicalConcept.create(json)
-  #     @bc = BiomedicalConcept.find(new_bc.id, new_bc.namespace)
-  #   end
-  #   @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.scope.id })
-  #   @token = Token.obtain(@bc, current_user)
-  #   if @token.nil?
-  #     flash[:error] = "The item is locked for editing by another user."
-  #     redirect_to request.referer
-  #   end
-  # end
+  def edit
+    authorize BiomedicalConceptInstance
+    @bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
+    # Lock item and get token
+    respond_to do |format|
+      format.html do
+        @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
+            { identifier: @bc.has_identifier.identifier, scope_id: @bc.scope } })
+      end
+      format.json do
+        # Return item data for the table
+      end
+    end
+  end
 
   # def edit_lock
   #   authorize BiomedicalConcept, :edit?
@@ -225,7 +223,7 @@ private
       when :show
         return biomedical_concept_instance_path(object)
       when :edit
-        return ""
+        return edit_biomedical_concept_instance_path(id: object.id)
       else
         return ""
     end
