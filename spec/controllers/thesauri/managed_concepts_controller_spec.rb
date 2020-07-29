@@ -783,6 +783,19 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("200")
     end
 
+    it "add child to extension, failed to lock" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
+      child_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      token = Token.obtain(tc, @lock_user)
+       post :add_extensions, params:{id: tc.id, managed_concept: {extension_ids: [child_1.id]}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
   end
 
   describe "add children" do
@@ -902,7 +915,7 @@ describe Thesauri::ManagedConceptsController do
       post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The edit lock has timed out."])
     end
 
     it "unpair a code list" do
@@ -932,7 +945,7 @@ describe Thesauri::ManagedConceptsController do
       post :unpair, params:{id: parent.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The edit lock has timed out."])
     end
 
   end
