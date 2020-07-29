@@ -67,6 +67,12 @@ describe Fuseki::Persistence do
       expect(result.name).to eq("BBB Pharma")
     end
 
+    it "find full" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      result = FusekiBaseHelpers::TestAdministeredItem.find_full(uri)
+      check_file_actual_expected(result.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "find children" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       result = FusekiBaseHelpers::TestAdministeredItem.find_children(uri)
@@ -377,5 +383,29 @@ describe Fuseki::Persistence do
     end
 
   end
+
+  describe "simple tests" do
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_6.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "normalizes id or uri as uri" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      id = uri.to_id
+      expect(Fuseki::Base.as_uri(uri)).to eq(uri)
+      expect(Fuseki::Base.as_uri(id)).to eq(uri)
+    end
+
+    it "find the klass for a uri" do
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TESTxxxx")
+      expect(Fuseki::Base.klass_for(uri_1)).to eq(FusekiBaseHelpers::ValidateOneAdministeredItem)
+      expect{Fuseki::Base.klass_for(uri_2)}.to raise_error(Errors::ApplicationLogicError, "Unable to find class (klass) for http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TESTxxxx.")
+    end
+
+  end
+
 
 end
