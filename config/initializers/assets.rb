@@ -53,7 +53,7 @@ end
     shared/thesauri/managed_concepts/subset_edit_children_panel shared/thesauri/managed_concepts/subset_source_children_panel
     shared/thesauri/managed_concepts/rank/edit_ranks shared/thesauri/managed_concepts/rank/enable_rank
 
-    shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/history_panel shared/icons_tags_helpers shared/index_panel shared/information_dialog
+    shared/alphabetical_filter shared/confirmation_dialog shared/context_menu shared/icons_tags_helpers shared/information_dialog
     shared/list_change_notes_panel shared/show_more shared/tabs_layout shared/timer
 
     ajax_requests colour field_validation
