@@ -38,6 +38,13 @@ class ManagedItemsController
       @lock.token
     end
 
+    # Error
+    #
+    # @return [String] any error message
+    def error?
+      !@lock.error.blank?
+    end
+
   private
 
     # Edit Item. Edit a managed item
