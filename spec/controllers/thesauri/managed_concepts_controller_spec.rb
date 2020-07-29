@@ -823,7 +823,19 @@ describe Thesauri::ManagedConceptsController do
       post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The changes were not saved as the edit lock has timed out."])
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The edit lock has timed out."])
+    end
+
+    it "add children, failed to lock" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047"))
+      child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
+      token = Token.obtain(tc, @lock_user)
+      post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
   end

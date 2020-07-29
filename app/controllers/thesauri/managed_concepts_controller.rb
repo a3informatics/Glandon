@@ -200,19 +200,29 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def add_children
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    token = Token.find_token(tc, current_user)
-    if !token.nil?
-      tc.add_referenced_children(children_params[:set_ids])
-      if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
-        render :json => {data: "" }, :status => 200
-      else
-        render :json => {:errors => tc.errors.full_messages}, :status => 422
-      end
-    else
-      render :json => {:errors => [token_timeout_message]}, :status => 422
-    end
+    return true unless check_lock_for_item(tc) 
+    tc.add_referenced_children(children_params[:set_ids])
+    return true if item_errors 
+    AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {data: "" }, :status => 200
   end
+
+  # def add_children
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     tc.add_referenced_children(children_params[:set_ids])
+  #     if tc.errors.empty?
+  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+  #       render :json => {data: "" }, :status => 200
+  #     else
+  #       render :json => {:errors => tc.errors.full_messages}, :status => 422
+  #     end
+  #   else
+  #     render :json => {:errors => [token_timeout_message]}, :status => 422
+  #   end
+  # end
 
   def add_children_synonyms
     authorize Thesaurus, :create?
