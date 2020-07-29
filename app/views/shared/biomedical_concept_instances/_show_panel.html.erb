@@ -1,4 +1,6 @@
-<%= javascript_tag "let bcShowDataUrl = '#{show_url}';" %>
+<% if !local_assigns[:show_url].nil? %>
+  <%= javascript_tag "let bcShowDataUrl = '#{show_url}';" %>
+<% end %>
 
 <div class="table-cardstyle all-columns loading-with-btns">
   <table id="show" class="table">

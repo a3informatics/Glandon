@@ -1,0 +1,115 @@
+// Mini card
+.card.mini {
+  height: 100px;
+  font-family: $font-light;
+  border: 2px solid $grey-bright;
+  margin: 0;
+  display: block;
+  white-space: nowrap;
+  transition: border-color .2s;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.card.mini .card-content {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card.mini.clickable:hover {
+  border-color: $primary-color-brightest;
+}
+
+.card.mini.selected {
+  border-color: $primary-color-bright;
+}
+
+.card.mini .mc-section {
+  display: flex;
+}
+
+.card.mini .mc-section.primary {
+  flex-direction: column;
+}
+
+.card.mini .mc-section.secondary {
+  margin-left: 16px;
+}
+
+.card.mini .mc-section.secondary > :last-child {
+  margin-right: 0;
+}
+
+// LIST CARDS
+.list-card{
+  background: $grey-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 8px;
+  padding: 8px 8px;
+  position: relative;
+  min-height: 50px;
+}
+
+.list-card .card-badge{
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  display: block;
+  left: 0;
+}
+
+.list-card .text{
+  color: $grey-medium;
+  font-size: $font-small;
+  font-family: $font-normal;
+  margin-left: 15px;
+  white-space: normal;
+  transition: transform .3s;
+}
+
+.list-card .sub-text{
+  font-size: $font-small;
+  font-family: $font-light;
+}
+
+// ICON LIST CARD
+
+.list-card.i-lc{
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list-card.i-lc .text-wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-card.i-lc .icon{
+  margin: -5px 10px 0 20px;
+}
+
+.list-card.i-lc .icon:hover{
+  color: $grey-light;
+}
+
+.list-card.i-lc .text{
+  margin-left: 0 !important;
+}
+
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .list-card .card-badge{
+    margin-top: -8px;
+  }
+
+  .list-card.i-lc .card-badge{
+    margin-top: -26px;
+  }
+}

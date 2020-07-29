@@ -1,4 +1,4 @@
-<%= link_to link_path, class: "ico-btn-sec " + (disabled ? "disabled" : ""), id: id, "data-toggle" => dt_toggle do %>
+<%= link_to link_path, class: "ico-btn-sec #{ "disabled" if disabled } #{ "token-timeout" if id.eql?("timeout") }", id: id, "data-toggle" => dt_toggle do %>
   <% if local_assigns.fetch :no_badge, false %>
     <span class="<%= icon %> text-accent-2 text-xlarge"></span> <span class="ico-btn-sec-text"><%= btn_text %></span>
   <% else %>
