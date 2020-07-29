@@ -45,7 +45,7 @@ class IsoConceptV2 < Fuseki::Base
   # @param uri_or_id [String|URI] The id or URI of the tag
   # @return [Void] no return
   def add_tag(uri_or_id)
-    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    uri = self.class.as_uri(uri_or_id)
     update_string = %Q{
       INSERT DATA
       {
@@ -60,7 +60,7 @@ class IsoConceptV2 < Fuseki::Base
   # @param uri_or_id [String|URI] The id or URI of the tag
   # @return [Void] no return
   def remove_tag(uri_or_id)
-    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    uri = self.class.as_uri(uri_or_id)
     update_string = %Q{
       DELETE
       {
