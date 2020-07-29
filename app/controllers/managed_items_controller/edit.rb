@@ -24,6 +24,20 @@ class ManagedItemsController
       @lock
     end
 
+    # Item
+    #
+    # @return [Object] the managed item 
+    def item
+      @lock.item
+    end
+
+    # Token
+    #
+    # @return [Token] the token object
+    def token
+      @lock.token
+    end
+
   private
 
     # Edit Item. Edit a managed item
