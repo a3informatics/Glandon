@@ -62,45 +62,48 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
   end
 
+  # def edit
+  #   authorize Thesaurus
+  #   @thesaurus_concept = read_concept(protect_from_bad_id(params))
+  #   if !@thesaurus_concept.nil?
+  #     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
+  #     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+  #     @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
+  #   else
+  #     redirect_to request.referrer
+  #   end
+  # end
+
   def edit
     authorize Thesaurus
-    @thesaurus_concept = read_concept(protect_from_bad_id(params))
-    if !@thesaurus_concept.nil?
-      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
-      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-      @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
-    else
-      redirect_to request.referrer
-    end
+    return true unless read_concept(protect_from_bad_id(params))
+    @thesaurus_concept = @edit.item
+    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
+    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
   end
 
   def edit_extension
     authorize Thesaurus, :edit?
-    @tc = read_concept(protect_from_bad_id(params))
-    if !@tc.nil?
-      extension_of_uri = @tc.extension_of
-      @is_extending = !extension_of_uri.nil?
-      @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
-      @edit_tags_path = path_for(:edit_tags, @tc)
-    else
-      redirect_to request.referrer
-    end
+    return true unless read_concept(protect_from_bad_id(params))
+    @tc = @edit.item
+    extension_of_uri = @tc.extension_of
+    @is_extending = !extension_of_uri.nil?
+    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+    @edit_tags_path = path_for(:edit_tags, @tc)
   end
 
   def edit_subset
     authorize Thesaurus, :edit?
-    @subset_mc = read_concept(protect_from_bad_id(params))
-    if !@subset_mc.nil?
-      @subset_mc.subsets_links
-      @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
-      @subset_mc.synonyms_and_preferred_terms
-      @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
-      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope}})
-      @edit_tags_path = path_for(:edit_tags, @subset_mc)
-    else
-      redirect_to request.referrer
-    end
+    return true unless read_concept(protect_from_bad_id(params))
+    @subset_mc = @edit.item
+    @subset_mc.subsets_links
+    @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
+    @subset_mc.synonyms_and_preferred_terms
+    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
+    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope}})
+    @edit_tags_path = path_for(:edit_tags, @subset_mc)
   end
 
   def update
@@ -634,19 +637,15 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
 private
 
-  # def lock_action_error(tc, action)
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     yield
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(action))
-  #       render json: {data: {}, errors: []}
-  #     else
-  #       render :json => {:errors => tc.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
+  # Read a Thesaurus Concept
+  # def read_concept(id)
+  #   tc = Thesaurus::ManagedConcept.find_with_properties(id)
+  #   latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
+  #   tc = Thesaurus::ManagedConcept.find_with_properties(latest_uri)
+  #   tc = edit_item(tc)
+  #   return nil if tc.nil?
+  #   tc.synonyms_and_preferred_terms
+  #   tc
   # end
 
   # Read a Thesaurus Concept
@@ -654,10 +653,18 @@ private
     tc = Thesaurus::ManagedConcept.find_with_properties(id)
     latest_uri = Thesaurus::ManagedConcept.latest_uri(identifier: tc.has_identifier.identifier, scope: tc.scope)
     tc = Thesaurus::ManagedConcept.find_with_properties(latest_uri)
-    tc = edit_item(tc)
-    return nil if tc.nil?
+    return false unless edit_lock(tc)
+    @token = @edit.token # such that view can have access
     tc.synonyms_and_preferred_terms
     tc
+    true
+  end
+ 
+  def edit_lock(tc)
+    @edit = ManagedItemsController::Edit.new(tc, current_user, flash)
+    return true unless @edit.error?
+    redirect_to request.referrer
+    false
   end
 
   def path_for(action, object)
