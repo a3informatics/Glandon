@@ -5,17 +5,14 @@
 
 require 'controller_helpers.rb'
 
-class Thesauri::ManagedConceptsController < ApplicationController
+class Thesauri::ManagedConceptsController < ManagedItemsController
 
   include ControllerHelpers
 
   before_action :authenticate_user!
 
-  C_CLASS_NAME = "ThesaurusConceptsController"
-
   def index
     authorize Thesaurus
-    # @tcs = Thesaurus::ManagedConcept.unique
   end
 
   def history
@@ -137,22 +134,33 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def update_properties
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc) 
     tc.synonyms_and_preferred_terms
-    token = Token.find_token(tc, current_user)
-    if !token.nil?
-      tc = tc.update(edit_params)
-      if tc.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
-        result = tc.simple_to_h
-        render :json => {:data => [result]}, :status => 200
-      else
-        render :json => {:errors => tc.errors.full_messages}, :status => 422
-      end
-    else
-      render :json => {:errors => [token_timeout_message]}, :status => 422
-    end
+    tc = tc.update(edit_params)
+    return true if item_errors 
+    AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
+    render :json => {:data => [tc.simple_to_h]}, :status => 200
   end
+
+  # def update_properties
+  #   authorize Thesaurus, :edit?
+  #   tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+  #   tc.synonyms_and_preferred_terms
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     tc = tc.update(edit_params)
+  #     if tc.errors.empty?
+  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
+  #       result = tc.simple_to_h
+  #       render :json => {:data => [result]}, :status => 200
+  #     else
+  #       render :json => {:errors => tc.errors.full_messages}, :status => 422
+  #     end
+  #   else
+  #     render :json => {:errors => [token_timeout_message]}, :status => 422
+  #   end
+  # end
 
   def children
     authorize Thesaurus, :edit?

@@ -10,9 +10,10 @@
 
 <http://www.assero.co.uk/BusinessForm>
   rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Form Schema"^^xsd:string ;
   owl:imports <http://www.assero.co.uk/BusinessOperational> ;
   owl:imports <http://www.assero.co.uk/BiomedicalConcept#> ;
-  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
 :Form
   rdf:type owl:Class ;

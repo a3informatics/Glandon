@@ -45,7 +45,7 @@ module Glandon
     config.bridg_sdtm = config_for(:bridg_sdtm)
     config.iso_registration_state = config_for(:iso_registration_state)
     config.roles = config_for(:roles)
-    config.policy = config_for(:policy)
+    config.policy = config_for(:policy).deep_symbolize_keys
     config.imports = config_for(:imports).deep_symbolize_keys
     config.namespaces = config_for(:namespaces).deep_symbolize_keys
     config.datatypes = config_for(:datatypes).deep_symbolize_keys

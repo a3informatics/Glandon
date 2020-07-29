@@ -179,14 +179,14 @@ class IsoManagedController < ApplicationController
     redirect_to request.referer
   end
 
-  def export
-    authorize IsoManaged
-    uri = UriV3.new(id: params[:id]) # Uses new mechanism
-    item = IsoManaged::find(uri.fragment, uri.namespace)
-    filename = "#{item.owner_short_name}_#{item.identifier}_#{item.version}.ttl"
-    file_path = ExportFileHelpers.save(to_turtle(item.triples), filename)
-    render json: {file_path: file_path}, status: 200
-  end
+  # def export
+  #   authorize IsoManaged
+  #   uri = UriV3.new(id: params[:id]) # Uses new mechanism
+  #   item = IsoManaged::find(uri.fragment, uri.namespace)
+  #   filename = "#{item.owner_short_name}_#{item.identifier}_#{item.version}.ttl"
+  #   file_path = ExportFileHelpers.save(to_turtle(item.triples), filename)
+  #   render json: {file_path: file_path}, status: 200
+  # end
 
 private
 

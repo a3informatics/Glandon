@@ -9,6 +9,8 @@ describe IsoManagedPolicy do
   let (:iso_managed) { IsoManaged.new }
 
   before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
     ua_create
   end
 
@@ -91,15 +93,11 @@ describe IsoManagedPolicy do
     let (:user) { @user_sa }
 
     it "allows access" do
-      @user_sa.remove_role :reader # Just for this test
       allow_list []
-      @user_sa.add_role :reader
     end
 
     it "denies access" do
-      @user_sa.remove_role :reader # Just for this test
       deny_list [:index, :show, :view, :list, :history, :create, :new, :update, :edit, :clone, :upgrade, :destroy, :export_json, :export_ttl, :import, :status]
-      @user_sa.add_role :reader
     end
 
   end

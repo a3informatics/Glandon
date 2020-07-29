@@ -1,43 +1,19 @@
 require 'controller_helpers.rb'
 
-class BiomedicalConceptTemplatesController < ApplicationController
+class BiomedicalConceptTemplatesController < ManagedItemsController
 
   C_CLASS_NAME = "BiomedicalConceptTemplatesController"
 
   include ControllerHelpers
   
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
 
   def index
-    authorize BiomedicalConceptTemplate
-    respond_to do |format|
-      format.json do
-        @bct = BiomedicalConceptTemplate.unique
-        @bct = @bct.map{|x| x.reverse_merge!({history_path: history_biomedical_concept_templates_path({biomedical_concept_template: {identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        render json: {data: @bct}, status: 200
-      end
-      format.html
-    end
+    super
   end
 
   def history
-    authorize BiomedicalConceptTemplate
-    respond_to do |format|
-      format.json do
-        results = []
-        history_results = BiomedicalConceptTemplate.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = BiomedicalConceptTemplate.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        latest = BiomedicalConceptTemplate.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(BiomedicalConceptTemplate, history_results, current, latest)
-        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-      end
-      format.html do
-        @bt = BiomedicalConceptTemplate.latest(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
-        @close_path = biomedical_concept_templates_path
-      end
-    end
+    super
   end
   
   # def list
@@ -102,6 +78,18 @@ private
       else
         return ""
     end
-  end  
+  end
+
+  def model_klass
+    BiomedicalConceptTemplate
+  end
+
+  def history_path_for(identifier, scope_id)
+    return {history_path: history_biomedical_concept_templates_path({biomedical_concept_template:{identifier: identifier, scope_id: scope_id}})} 
+  end
+
+  def close_path_for
+    biomedical_concept_templates_path
+  end    
 
 end

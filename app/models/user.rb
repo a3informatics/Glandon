@@ -125,6 +125,13 @@ class User < ApplicationRecord
     return result.gsub(/[^A-Za-z, ]/, '')
   end
 
+  # Allocated Roles. Roles allocated to the user as array of symbols.
+  #
+  # @return [Array] array of symbols for the allocated roles.
+  def allocated_roles
+    self.roles.map{|x| x.name.to_sym}
+  end
+
   # Validates removal of sys admin role allowed before executing it
   #
   # @return [Boolean] returns true if removing last admin

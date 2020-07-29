@@ -35,11 +35,11 @@ module Fuseki
         @instance_variable_name
       end
 
-      # Klass
+      # Klass. Returns the preferred class.
       # 
-      # @return [Class] the class for a given property
+      # @return [Class] the class for a given object. Returns nil if none declared.
       def klass
-        @metadata[:model_class]
+        @metadata[:model_classes].empty? ? nil : @metadata[:model_classes].first
       end
 
       alias :target :klass

@@ -10,7 +10,7 @@ describe BiomedicalConceptInstance do
   end
 
   describe "Validity Tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -45,7 +45,7 @@ describe BiomedicalConceptInstance do
   end
 
   describe "Find Tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
@@ -82,7 +82,7 @@ describe BiomedicalConceptInstance do
   end
 
   describe "Create Tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -112,7 +112,7 @@ describe BiomedicalConceptInstance do
   end
 
   describe "Other Tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
@@ -127,8 +127,64 @@ describe BiomedicalConceptInstance do
       item.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
+  describe "Main Tests" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    it "allows a BC to be found" do
+      item = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a BC to be found, full" do
+      item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(item.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a BC to be found, minimum" do
+      item = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(item.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows an object to be exported as SPARQL" do
+      item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      sparql = Sparql::Update.new
+      item.to_sparql(sparql, true)
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
+    end
+
+    it "get the properties, with references" do
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(instance.get_properties(true), sub_dir, "get_properties_with_references_expected.yaml", equate_method: :hash_equal)
+    end
+
+    it "get the properties, without references" do
+      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(instance.get_properties, sub_dir, "get_properties_with_no_references_expected.yaml", equate_method: :hash_equal)
     end
 
   end
 
+  describe "Path Tests" do
+
+    it "returns read path" do
+      check_file_actual_expected(BiomedicalConceptInstance.read_paths, sub_dir, "read_paths_expected.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns export path" do
+      check_file_actual_expected(BiomedicalConceptInstance.export_paths, sub_dir, "export_paths_expected.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns delete path" do
+      check_file_actual_expected(BiomedicalConceptInstance.delete_paths, sub_dir, "delete_paths_expected.yaml", equate_method: :hash_equal)
+    end
+
+  end
 end

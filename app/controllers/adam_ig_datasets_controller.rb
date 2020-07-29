@@ -18,10 +18,9 @@ class AdamIgDatasetsController < ApplicationController
   end
   
 private
-  
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize AdamIgDataset
+
+  def model_klass
+    AdamIgDataset
   end
 
 end

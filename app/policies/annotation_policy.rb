@@ -7,7 +7,7 @@ class AnnotationPolicy < ApplicationPolicy
   # @return [void] no return
   def initialize(user, record)
     super
-    create_methods(Rails.configuration.policy[self.class.name])
+    create_methods(self.class.name)
   end
 
 end

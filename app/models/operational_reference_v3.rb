@@ -18,7 +18,7 @@ class OperationalReferenceV3 < IsoConceptV2
   #
   # @return [Class] the reference class
   def self.referenced_klass
-    resources[:reference][:model_class]
+    resources[:reference][:model_classes].first
   end
 
   # Create

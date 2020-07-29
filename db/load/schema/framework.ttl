@@ -10,6 +10,8 @@
 
 <http://www.s-cubed.dk/Framework>
   rdf:type owl:Ontology ;
+  owl:versionInfo "v3.2.0"^^xsd:string ;
+  rdfs:label "Framework Schema"^^xsd:string ;
 .
 :CanonicalReference
   rdf:type owl:Class ;

@@ -17,7 +17,7 @@ describe FormsController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ACME_FN000150_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..65)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -34,13 +34,13 @@ describe FormsController do
     end
 
     it "show" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       get :show, params: { :id => form.id}
       expect(response).to render_template("show")
     end
 
     it "show results" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: form.id}
       expect(response.content_type).to eq("application/json")
@@ -50,7 +50,7 @@ describe FormsController do
     end
 
     it "shows the history, page" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/Height__Pilot_/V1#F"))
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Form).to receive(:history_pagination).with({identifier: form.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([form])
       get :history, params:{form: {identifier: form.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}

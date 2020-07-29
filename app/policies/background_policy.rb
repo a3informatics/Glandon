@@ -9,7 +9,7 @@ class BackgroundPolicy < ApplicationPolicy
 	# @return [void] no return
   def initialize(user, record)
     super
-    create_methods(Rails.configuration.policy[C_CLASS_NAME])
+    create_methods(self.class.name)
   end
 
 end

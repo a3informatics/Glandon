@@ -42,9 +42,9 @@ describe "Biomedical Concept Instances", :type => :feature do
       find(:xpath, "//a[@href='/biomedical_concept_instances']").click 
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_check_table_info("index", 1, 10, 14)
-    pause
-      ui_check_table_cell("index", 3, 2, "SYSBP")
-      ui_check_table_cell("index", 3, 3, "Systolic Blood Pressure")
+      find(:xpath, "//*[@id='index']/thead/tr/th[2]").click #Order data
+      ui_check_table_cell("index", 3, 2, "BMI")
+      ui_check_table_cell("index", 3, 3, "BMI")
     end
 
     it "allows the history page to be viewed", js:true do
@@ -104,6 +104,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_navbar_bc
       wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_table_search("index", "DIABP")
       find(:xpath, "//tr[contains(.,'DIABP')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'DIABP\''
@@ -121,6 +122,7 @@ describe "Biomedical Concept Instances", :type => :feature do
       click_navbar_bc
       wait_for_ajax 10
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_table_search("index", "WEIGHT")
       find(:xpath, "//tr[contains(.,'WEIGHT')]/td/a", :text => 'History').click
       wait_for_ajax 10
       expect(page).to have_content 'Version History of \'WEIGHT\''

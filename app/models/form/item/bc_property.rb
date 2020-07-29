@@ -13,24 +13,19 @@ class Form::Item::BcProperty < Form::Item
   def get_item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", free_text:"", label_text:""}
     item = self.to_h.merge!(blank_fields)
-    coded_value = []
-    property = []
-    item[:has_coded_value].each do |cv|
-      tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
-      parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: tc[:context][:uri]))
-      tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
-      coded_value << tc
-    end
-    #   item[:has_property].each do |prop|
-    #     tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:prop)).to_h
-    #     bc = BiomedicalConceptInstance.find_minimum(Uri.new(uri: tc[:reference]))
-    #     property << bc.to_h
-    #   end
-    item[:has_coded_value] = coded_value
-    item[:has_property] = property
+    # coded_value = []
+    # property = []
+    item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
+    # item[:has_coded_value].each do |cv|
+    #   tc = OperationalReferenceV3::TucReference.find_children(Uri.new(uri:cv)).to_h
+    #   parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: tc[:context][:uri]))
+    #   tc[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+    #   coded_value << tc
+    # end
+    # item[:has_coded_value] = coded_value
+    item[:has_property] = []
     return item
   end
-
 
 #   # To XML
 #   #

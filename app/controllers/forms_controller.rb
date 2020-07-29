@@ -1,54 +1,28 @@
 require 'controller_helpers.rb'
 
-class FormsController < ApplicationController
+class FormsController < ManagedItemsController
 
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
 
   C_CLASS_NAME = "FormsController"
 
   include ControllerHelpers
 
   def index
-    authorize Form
-    respond_to do |format|
-      format.json do
-        @forms = Form.unique
-        @forms = @forms.map{|x| x.reverse_merge!({history_path: history_forms_path({form:{identifier: x[:identifier], scope_id: x[:scope_id]}})})}
-        render json: {data: @forms}, status: 200
-      end
-      format.html
-    end
+    super
   end
 
   def history
-    authorize Form
-    respond_to do |format|
-      format.json do
-        results = []
-        history_results = Form.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        current = Form.current_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        latest = Form.latest_uri(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(Form, history_results, current, latest)
-        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
-      end
-      format.html do
-        @form = Form.latest({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
-        @close_path = forms_path
-      end
-    end
+    super
   end
 
   def show
-    authorize Form
     @form = Form.find_minimum(protect_from_bad_id(params))
     @show_path = show_data_form_path(@form)
     @close_path = history_forms_path(:form => { identifier: @form.has_identifier.identifier, scope_id: @form.scope })
   end
 
   def show_data
-    authorize Form, :show?
     @form = Form.find_minimum(protect_from_bad_id(params))
     items = @form.get_items
     items = items.each_with_index do |item, index|
@@ -265,5 +239,17 @@ private
         return ""
     end
   end
+
+  def model_klass
+    Form
+  end
+
+  def history_path_for(identifier, scope_id)
+    return {history_path: history_forms_path({form:{identifier: identifier, scope_id: scope_id}})} 
+  end
+
+  def close_path_for
+    forms_path
+  end   
 
 end
