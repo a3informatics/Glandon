@@ -226,21 +226,35 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def add_children_synonyms
     authorize Thesaurus, :create?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    token = Token.find_token(tc, current_user)
-    if !token.nil?
-      uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
-      children = tc.add_children_based_on(uc)
-      if children.first.errors.empty?
-        AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
-        render :json => {data: "" }, :status => 200
-      else
-        render :json => {:errors => children.first.errors.full_messages}, :status => 422
-      end
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc) 
+    uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
+    children = tc.add_children_based_on(uc)
+    if children.first.errors.empty?
+      AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+      render :json => {data: "" }, :status => 200
     else
-      render :json => {:errors => [token_timeout_message]}, :status => 422
+      render :json => {:errors => children.first.errors.full_messages}, :status => 422
     end
   end
+
+  # def add_children_synonyms
+  #   authorize Thesaurus, :create?
+  #   tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+  #   token = Token.find_token(tc, current_user)
+  #   if !token.nil?
+  #     uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
+  #     children = tc.add_children_based_on(uc)
+  #     if children.first.errors.empty?
+  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
+  #       render :json => {data: "" }, :status => 200
+  #     else
+  #       render :json => {:errors => children.first.errors.full_messages}, :status => 422
+  #     end
+  #   else
+  #     render :json => {:errors => [token_timeout_message]}, :status => 422
+  #   end
+  # end
 
   def destroy
     authorize Thesaurus

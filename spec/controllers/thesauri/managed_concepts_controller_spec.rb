@@ -553,6 +553,18 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "adds childrens synonyms to managed concept, failed to lock" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      token = Token.obtain(mc, @lock_user)
+      post :add_children_synonyms, params:{id: mc.id, managed_concept: {reference_id: uc.id}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
     it "edit" do
       uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
