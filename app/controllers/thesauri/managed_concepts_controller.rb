@@ -3,7 +3,7 @@
 # @author Dave Iberson-Hurst
 # @since 0.0.0
 
-require 'controller_helpers.rb'
+require 'controller_helpers'
 
 class Thesauri::ManagedConceptsController < ManagedItemsController
 
@@ -49,7 +49,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
     render :json => { data: result}, :status => 200
   rescue => e
-      render :json => {:errors => [e.message]}, :status => 422
+      render :json => {errors: [e.message]}, :status => 422
   end
 
   def set_with_indicators
@@ -59,7 +59,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
       x.reverse_merge!({history_path: history_thesauri_managed_concepts_path({id: x[:id],
         managed_concept: {identifier: x[:scoped_identifier], scope_id: x[:scope_id]}})})
     end
-    render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
+    render :json => {data: results, offset: set_params[:offset].to_i, count: results.count}, :status => 200
   end
 
   # def edit
@@ -108,7 +108,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def update
     authorize Thesaurus
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(edit_params[:parent_id])
     token = Token.find_token(ct, current_user)
@@ -118,17 +118,17 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
         AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
         result = tc.simple_to_h
         result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
-        render :json => {:data => [result]}, :status => 200
+        render :json => {data: [result]}, :status => 200
       else
         errors = []
         tc.errors.each do |name, msg|
           errors << {name: name, status: msg}
         end
-        render :json => {:fieldErrors => errors}, :status => 200
+        render :json => {fieldErrors: errors}, :status => 200
       end
     else
       flash[:error] = token_timeout_message
-      render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
+      render :json => {data: {}, link: edit_lock_lost_link(th)}, :status => 422
     end
   end
 
@@ -140,7 +140,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     tc = tc.update(edit_params)
     return true if lock_item_errors 
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
-    render :json => {:data => [tc.simple_to_h]}, :status => 200
+    render :json => {data: [tc.simple_to_h]}, :status => 200
   end
 
   # def update_properties
@@ -165,7 +165,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def children
     authorize Thesaurus, :edit?
     results = []
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     children = tc.children_pagination({offset: "0", count: "10000"})
     children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
@@ -173,7 +173,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
       edit_tags_path = c[:referenced] ? "" : edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id})
       results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
     end
-    render :json => { data: results }, :status => 200
+    render :json => {data: results}, :status => 200
   end
 
   def add_child
@@ -278,22 +278,22 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
         AuditTrail.delete_item_event(current_user, tc, tc.audit_message(:deleted))
         render :json => {}, :status => 200
       else
-        render :json => {:errors => tc.errors.full_messages}, :status => 422
+        render :json => {errors: tc.errors.full_messages}, :status => 422
       end
     else
-      render :json => {:errors => [token_destroy_message(tc)]}, :status => 422
+      render :json => {errors: [token_destroy_message(tc)]}, :status => 422
     end
   end
 
   def export_csv
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_full(params[:id])
+    tc = Thesaurus::ManagedConcept.find_full(protect_from_bad_id(params))
     send_data tc.to_csv, filename: "CDISC_CL_#{tc.scoped_identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
   end
 
   def show
     authorize Thesaurus
-    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     @tc.synonym_objects
     @tc.preferred_term_objects
     @can_extend_unextensible = Thesaurus::ManagedConcept.can_extend_unextensible?
@@ -317,7 +317,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def show_data
     authorize Thesaurus, :show?
     context_id = the_params[:context_id]
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     if !context_id.blank?
       ct = Thesaurus.find_minimum(context_id)
       params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
@@ -333,7 +333,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes
     authorize Thesaurus, :show?
-    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     @tc.synonym_objects
     @tc.preferred_term_objects
     @version_count = @tc.changes_count(current_user.max_term_display.to_i)
@@ -345,7 +345,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     clis = tc.changes(current_user.max_term_display.to_i)
     clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
     render json: {data: clis}
@@ -353,7 +353,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes_report
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     clis = tc.changes(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
@@ -365,7 +365,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes_summary
     authorize Thesaurus, :show?
-    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     @last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
     @version_span = params[:ver_span]
     @tc.synonym_objects
@@ -377,7 +377,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes_summary_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
     versions = params[:ver_span]
     clis = tc.changes_summary(last, versions)
@@ -387,7 +387,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def changes_summary_data_impact
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
     versions = params[:ver_span]
     clis = tc.changes_summary_impact(last, versions)
@@ -397,17 +397,16 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def impact
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     ct = Thesaurus.find_minimum(impact_params[:sponsor_th_id])
-    results = tc.impact(ct)
-    render json: {data: results}
+    render json: {data: tc.impact(ct)}
   end
 
   def upgrade
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-    tc.synonyms_and_preferred_terms
-    return true unless get_lock_for_item(tc) 
+    return true unless get_lock_for_item(tc)
+    tc.synonyms_and_preferred_terms 
     ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
     item = tc.upgrade(ct)
     return true if item_errors(item)
@@ -449,13 +448,13 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def differences
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     render json: {data: tc.differences}
   end
 
   def differences_summary
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
     versions = params[:ver_span]
     render json: {data: tc.differences_summary(last, versions)}
@@ -463,25 +462,25 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def is_extended
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     render json: {data: tc.extended?}
   end
 
   def is_extension
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     render json: {data: tc.extension?}
   end
 
   def create_extension
     authorize Thesaurus, :create?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     new_object = tc.create_extension
     return true if item_errors(new_object)
     AuditTrail.create_item_event(current_user, new_object, new_object.audit_message(:created, "extension"))
     show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: ""}})
     edit_path = edit_extension_thesauri_managed_concept_path(new_object)
-    render json: {show_path: show_path, edit_path: edit_path}, :status => 200
+    render json: {show_path: show_path, edit_path: edit_path}, status: 200
   end
 
   def add_extensions
@@ -494,7 +493,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
       AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
       render json: {data: {}, errors: []}
     else
-      render :json => {:errors => ["Not all of the items were code list items."]}, :status => 422
+      render :json => {errors: ["Not all of the items were code list items."]}, :status => 422
     end
   end
 
@@ -517,17 +516,17 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def create_subset
     authorize Thesaurus, :create?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     new_mc = tc.create_subset
     return true if item_errors(new_mc)
     AuditTrail.create_item_event(current_user, new_mc, new_mc.audit_message(:created, "subset"))
     path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: "" )
-    render json: { edit_path: path, }, :status => 200
+    render json: {edit_path: path}, status: 200
   end
 
   def find_subsets
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     subsets = tc.subsetted_by
     subset_tcs = []
     if !subsets.nil?
@@ -545,7 +544,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def add_rank
     authorize Thesaurus, :create?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     rank = tc.add_rank
     actual_rank = Thesaurus::Rank.find(rank.uri)
     if actual_rank.errors.empty?
@@ -557,7 +556,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def update_rank
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     rank = Thesaurus::Rank.find(tc.is_ranked_links)
     rank.update(rank_params[:children_ranks])
     render json: { }, status: 200
@@ -565,15 +564,14 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
 
   def children_ranked
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    results = []
-    results = tc.children_pagination({offset: "0", count: "10000"})
-    render json: {data: results, offset: params[:offset] , count: results.count }, status: 200
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    results = [tc.children_pagination({offset: "0", count: "10000"})]
+    render json: {data: results, offset: params[:offset], count: results.count}, status: 200
   end
 
   def remove_rank
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
     rank = Thesaurus::Rank.find(tc.is_ranked_links)
     rank.remove_all
     render json: { }, status: 200

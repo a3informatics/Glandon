@@ -41,7 +41,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_count).and_return(5)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:forward_backward).and_return({start: nil, end: Uri.new(uri: "http://www.xxx.com/aaa#1")})
-      get :changes, params:{id: "aaa"}
+      get :changes, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(assigns(:links)).to eq({start: "", end: "/thesauri/managed_concepts/aHR0cDovL3d3dy54eHguY29tL2FhYSMx/changes"})
       expect(response).to render_template("changes")
     end
@@ -52,7 +52,7 @@ describe Thesauri::ManagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
-      get :changes_data, params:{id: "aaa"}
+      get :changes_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -63,7 +63,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:preferred_term_objects).and_return([])
-      get :changes_summary, params:{id: "aaa", last_id: "bbb", ver_span: "x"}
+      get :changes_summary, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
       expect(assigns(:links)).to eq({})
       expect(assigns(:version_span)).to eq("x")
       expect(assigns(:version_count)).to eq(2)
@@ -77,7 +77,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
-      get :changes_summary_data, params:{id: "aaa", last_id: "bbb", ver_span: "x"}
+      get :changes_summary_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -89,7 +89,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary_impact).and_return({items: {:"1" => {id: "1", status: "a"}, :"2" => {id: "2", status: "a"}}})
-      get :changes_summary_data_impact, params:{id: "aaa", last_id: "bbb", ver_span: "x"}
+      get :changes_summary_data_impact, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -101,7 +101,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:impact).and_return(expected)
-      get :impact, params:{id: "tc_1.id", impact: {sponsor_th_id: "sponsor.id"}}
+      get :impact, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, impact: {sponsor_th_id: "sponsor.id"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -149,7 +149,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:differences_summary).and_return(expected)
-      get :differences_summary, params:{id: "aaa", last_id: "bbb", ver_span: "x"}
+      get :differences_summary, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -158,7 +158,7 @@ describe Thesauri::ManagedConceptsController do
     it "is_extended" do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
-      get :is_extended, params:{id: "aaa"}
+      get :is_extended, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -168,7 +168,7 @@ describe Thesauri::ManagedConceptsController do
     it "is_extension" do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extension?).and_return(false)
-      get :is_extension, params:{id: "aaa"}
+      get :is_extension, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
@@ -268,7 +268,7 @@ describe Thesauri::ManagedConceptsController do
       expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)
       expect(ct).to receive(:tag_labels).and_return([])
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false, single_parent: false}, {id: "2", delete: true, single_parent: true}])
-      get :show_data, params:{id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
+      get :show_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -290,7 +290,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:to_csv).and_return(["XXX", "YYY"])
       expect(@controller).to receive(:send_data).with(["XXX", "YYY"], {filename: "CDISC_CL_C12345.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
       #expect(@controller).to receive(:render)
-      get :export_csv, params:{id: "aaa"}, format: 'text/csv'
+      get :export_csv, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}, format: 'text/csv'
     end
 
     it "pdf report" do
@@ -300,7 +300,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Reports::CdiscChangesReport).to receive(:new).and_return(Reports::CdiscChangesReport.new)
       expect_any_instance_of(Reports::CdiscChangesReport).to receive(:create).and_return("abcd")
       request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :changes_report, params:{id: "aaa"}
+      get :changes_report, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/pdf")
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CDISC_CL_C12345.pdf\"")
     end
