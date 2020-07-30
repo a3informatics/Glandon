@@ -1,7 +1,9 @@
 # Biomedical Concept Migration
 #
-# Adds in version info and label
+# Adds in version info and label. Also fixes sub class def.
 
+@prefix : <http://www.assero.co.uk/BiomedicalConcept#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,3 +13,5 @@
   owl:versionInfo "v3.2.0"^^xsd:string ;
   rdfs:label "Biomedical Concept Schema"^^xsd:string ;
 .
+:BiomedicalConcept
+  rdfs:subClassOf bo:Collection ;

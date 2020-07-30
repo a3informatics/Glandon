@@ -22,7 +22,7 @@
 :BiomedicalConcept
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept"^^xsd:string ;
-  rdfs:subClassOf isoC:Concept ;
+  rdfs:subClassOf bo:Collection ;
   skos:definition "A Biomedical Concept. An observation."^^xsd:string ;
 .
 :BiomedicalConceptInstance
