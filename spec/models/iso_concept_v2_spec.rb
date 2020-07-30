@@ -139,16 +139,16 @@ describe "IsoConceptV2" do
       check_uri(ct, [])
     end
 
-    it "other parents" do
-      uri_path_1 = Uri.new(uri: "http://www.assero.co.uk/Thesaurus#isTopConceptReference")
-      uri_path_2 = Uri.new(uri: "http://www.assero.co.uk/BusinessOperational#reference")
-      uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
-      uri_mc = Uri.new(uri: "http://www.cdisc.org/C66726/V4#C66726")
-      th = IsoConceptV2.find(uri_th)
-      mc = IsoConceptV2.find(uri_mc)
-      results = mc.other_parents(th, [uri_path_1, uri_path_2])
-      expect(results.map{|x| x.to_s}).to match_array(["http://www.cdisc.org/CT/V4#TH"])
-    end
+    # it "other parents" do
+    #   uri_path_1 = Uri.new(uri: "http://www.assero.co.uk/Thesaurus#isTopConceptReference")
+    #   uri_path_2 = Uri.new(uri: "http://www.assero.co.uk/BusinessOperational#reference")
+    #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+    #   uri_mc = Uri.new(uri: "http://www.cdisc.org/C66726/V4#C66726")
+    #   th = IsoConceptV2.find(uri_th)
+    #   mc = IsoConceptV2.find(uri_mc)
+    #   results = mc.other_parents(th, [uri_path_1, uri_path_2])
+    #   expect(results.map{|x| x.to_s}).to match_array(["http://www.cdisc.org/CT/V4#TH"])
+    # end
 
   end
 
@@ -349,7 +349,6 @@ describe "IsoConceptV2" do
 
   end
 
-
   describe "Change Instructions" do
 
     before :all  do
@@ -397,7 +396,6 @@ describe "IsoConceptV2" do
     end
 
   end
-
 
   describe "Clone" do
 

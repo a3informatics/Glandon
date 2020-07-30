@@ -16,13 +16,13 @@
 :Assessment
   rdf:type owl:Class ;
   rdfs:label "Assessment"^^xsd:string ;
-  rdfs:subClassOf bo:Collection ;
+  rdfs:subClassOf bo:Component ;
   skos:definition "A set of Biomedical Concepts forming a logical assessment."^^xsd:string ;
 .
 :BiomedicalConcept
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept"^^xsd:string ;
-  rdfs:subClassOf bo:Collection ;
+  rdfs:subClassOf bo:Component ;
   skos:definition "A Biomedical Concept. An observation."^^xsd:string ;
 .
 :BiomedicalConceptInstance

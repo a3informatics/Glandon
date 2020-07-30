@@ -11,4 +11,9 @@ class BiomedicalConcept::ComplexDatatype  < IsoConceptV2
   object_property :based_on, cardinality: :one, model_class: "ComplexDatatype", read_exclude: true, delete_exclude: true
   object_property :has_property, cardinality: :many, model_class: "BiomedicalConcept::PropertyX", children: true
 
+  def self.managed_ancestors_path
+    "<http://www.assero.co.uk/BiomedicalConcept#hasItem>" + 
+    "/<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>"
+  end
+
 end

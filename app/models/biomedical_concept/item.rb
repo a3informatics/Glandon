@@ -14,4 +14,8 @@ configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Item",
   data_property :ordinal, default: 1
   object_property :has_complex_datatype, cardinality: :many, model_class: "BiomedicalConcept::ComplexDatatype", children: true
 
+  def self.managed_ancestors_path
+    "<http://www.assero.co.uk/BiomedicalConcept#hasItem>"
+  end
+
 end

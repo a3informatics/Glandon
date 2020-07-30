@@ -18,4 +18,10 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
 
+  def self.managed_ancestors_path
+    "<http://www.assero.co.uk/BiomedicalConcept#hasItem>" + 
+    "/<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>" +
+    "/<http://www.assero.co.uk/BiomedicalConcept#hasProperty>"
+  end
+
 end

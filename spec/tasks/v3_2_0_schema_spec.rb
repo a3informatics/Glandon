@@ -110,7 +110,9 @@ describe 'V3.1.0 schema migration' do
       end
       # Check for the change in sub class for BCs
       triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept"), true)
-      check_triple(triples, @rdfs_sub_class_of, "http://www.assero.co.uk/BusinessOperational#Collection")
+      check_triple(triples, @rdfs_sub_class_of, "http://www.assero.co.uk/BusinessOperational#Component")
+      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#Assessment"), true)
+      check_triple(triples, @rdfs_sub_class_of, "http://www.assero.co.uk/BusinessOperational#Component")
     end
 
     def check_still_old
@@ -170,7 +172,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception first upload' do
       # Definitions, check triple store count
-      expected = -6 # Number of extra triples, only deleted.
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -188,7 +190,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception second upload' do
       # Definitions, check triple store count
-      expected = -6 # Number of extra triples, only deleted.
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -210,7 +212,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception last upload' do
       # Definitions, check triple store count
-      expected = -6 # Number of extra triples, only deleted.
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -232,7 +234,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception seventh upload' do
       # Definitions, check triple store count
-      expected = -6 # Number of extra triples, only deleted.
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -291,8 +293,11 @@ describe 'V3.1.0 schema migration' do
 
       # Run migration
       call_index = -1
-      # First 5 are present check, next 5 are deleted checks
-      result = [true, true, true, true, true, false, false, true, false, false] 
+      result = 
+      [
+        true,  true,  true, true,  true,  true, # Triples present check
+        false, false, true, false, false, false # Triples deleted check
+      ] 
       allow_any_instance_of(Sparql::Utility).to receive(:ask?) do |arg|
         call_index += 1
         result[call_index]
