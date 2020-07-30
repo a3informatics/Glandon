@@ -422,4 +422,25 @@ describe "IsoConceptV2" do
 
   end
 
+  describe "managed ancestors" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "raises exception unless path method overloaded" do
+      expect{IsoConceptV2.managed_ancestors_path}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+    end
+
+    it "raises exception unless predicate method overloaded" do
+      expect{IsoConceptV2.managed_ancestors_predicate}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class.")
+    end
+
+  end
+
 end

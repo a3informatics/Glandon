@@ -18,10 +18,22 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
 
+  # Managed Ancestors Path. Returns the path from the managed ancestor to this class
+  #
+  # @return [String] the path as an expanded set of predicates
   def self.managed_ancestors_path
-    "<http://www.assero.co.uk/BiomedicalConcept#hasItem>" + 
-    "/<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>" +
-    "/<http://www.assero.co.uk/BiomedicalConcept#hasProperty>"
+    [
+      "<http://www.assero.co.uk/BiomedicalConcept#hasItem>",
+      "<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>",
+      "<http://www.assero.co.uk/BiomedicalConcept#hasProperty>"
+    ]
+  end
+
+  # Managed Ancestors Predicate. Returns the predicate from the higher class in the managed ancestor path to this class
+  #
+  # @return [Symbol] the predicate property as a symbol
+  def self.managed_ancestors_predicate
+    :has_property
   end
 
 end

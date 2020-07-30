@@ -1,0 +1,179 @@
+---
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0k=
+:uri: http://www.s-cubed.dk/BMI/V1#BCI
+:rdf_type: http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance
+:label: BMI
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfUlM=
+  :uri: http://www.s-cubed.dk/BMI/V1#BCI_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+:has_identifier:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfU0k=
+  :uri: http://www.s-cubed.dk/BMI/V1#BCI_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: BMI
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-07-04T20:46:52+02:00'
+:explanatory_comment: ''
+:has_item:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMQ==
+  :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+  :label: Test
+  :tagged: []
+  :mandatory: true
+  :collect: false
+  :enabled: true
+  :ordinal: 1
+  :has_complex_datatype:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENE
+    :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
+    :label: CD
+    :tagged: []
+    :based_on: http://www.s-cubed.dk/CDT#CD
+    :has_property:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: ''
+      :prompt_text: ''
+      :format: '8'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
+        :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66741/V4#C66741_C16358
+        :context: http://www.cdisc.org/C66741/V61#C66741
+        :local_label: ''
+      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTA=
+  :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+  :label: Result
+  :tagged: []
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 10
+  :has_complex_datatype:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVI=
+    :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
+    :label: PQR
+    :tagged: []
+    :based_on: http://www.s-cubed.dk/CDT#PQR
+    :has_property:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZQ==
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: Unit
+      :prompt_text: Unit
+      :format: '20'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQY29kZV9UVUMx
+        :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66770/V38#C66770_C49671
+        :context: http://www.cdisc.org/C66770/V59#C66770
+        :local_label: ''
+      :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMTBfQkNDRFRQUVJfQkNQdmFsdWU=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI10_BCCDTPQR_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :tagged: []
+      :question_text: Result
+      :prompt_text: BMI
+      :format: '4.1'
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80
+:identified_by:
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMQ==
+  :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1
+  :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Item
+  :label: Test
+  :tagged: []
+  :mandatory: true
+  :collect: false
+  :enabled: true
+  :ordinal: 1
+  :has_complex_datatype:
+  - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENE
+    :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD
+    :rdf_type: http://www.assero.co.uk/BiomedicalConcept#ComplexDatatype
+    :label: CD
+    :tagged: []
+    :based_on: http://www.s-cubed.dk/CDT#CD
+    :has_property:
+    - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :tagged: []
+      :question_text: ''
+      :prompt_text: ''
+      :format: '8'
+      :has_coded_value:
+      - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0JNSS9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
+        :uri: http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :tagged: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference: http://www.cdisc.org/C66741/V4#C66741_C16358
+        :context: http://www.cdisc.org/C66741/V61#C66741
+        :local_label: ''
+      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
+:based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT

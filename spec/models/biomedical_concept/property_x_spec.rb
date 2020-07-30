@@ -70,143 +70,63 @@ describe BiomedicalConcept::PropertyX do
 
   describe "Ancestors" do
 
-    before :all do
+    before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      @property = BiomedicalConcept::PropertyX.find(@uri_p)
     end
 
     it "finds managed ancestors, single" do
-      uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
-      property = BiomedicalConcept::PropertyX.find(uri_p)
-      results = property.managed_ancestor_uris
+      results = @property.managed_ancestor_uris
       check_file_actual_expected(map_ancestors(results), sub_dir, "managed_ancestor_uris_expected_1.yaml", equate_method: :hash_equal)
-      expect(property.multiple_managed_ancestors?).to eq(false)
-      expect(property.no_managed_ancestors?).to eq(false)
-      expect(property.managed_ancestors?).to eq(true)
+      expect(@property.multiple_managed_ancestors?).to eq(false)
+      expect(@property.no_managed_ancestors?).to eq(false)
+      expect(@property.managed_ancestors?).to eq(true)
     end
 
     it "finds managed ancestors, multiple" do
-      uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
       bc = BiomedicalConceptInstance.create(label: "this is XXX", identifier: "XXX")
       bc.has_item_push(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1"))
       bc.save
-      property = BiomedicalConcept::PropertyX.find(uri_p)
-      results = property.managed_ancestor_uris
+      results = @property.managed_ancestor_uris
       check_file_actual_expected(map_ancestors(results), sub_dir, "managed_ancestor_uris_expected_2.yaml", equate_method: :hash_equal)
-      expect(property.multiple_managed_ancestors?).to eq(true)
-      expect(property.no_managed_ancestors?).to eq(false)
-      expect(property.managed_ancestors?).to eq(true)
+      expect(@property.multiple_managed_ancestors?).to eq(true)
+      expect(@property.no_managed_ancestors?).to eq(false)
+      expect(@property.managed_ancestors?).to eq(true)
+    end
+
+    it "finds path objcts" do
+      ma = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      results = @property.managed_ancestor_path_uris(ma)
+      check_file_actual_expected(results.map{|x| x.to_s}, sub_dir, "managed_ancestor_path_objects_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "updates and clones if needed, single" do
+      ma = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      results = @property.update_with_clone({label: "new_label"}, ma)
+      check_file_actual_expected(BiomedicalConceptInstance.find_full(ma.uri).to_h, sub_dir, "update_with_clone_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "updates and clones if needed, multiple" do
+      bc = BiomedicalConceptInstance.create(label: "this is XXX", identifier: "XXX")
+      bc.has_item_push(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1"))
+      bc.save
+      ma = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      results = @property.update_with_clone({label: "all nodes should change"}, bc)
+      bc = BiomedicalConceptInstance.find_full(bc.uri)
+      ma = BiomedicalConceptInstance.find_full(ma.uri)
+      triple_store.subject_triples(ma.uri, true)
+      triple_store.subject_triples(bc.uri, true)
+      triple_store.subject_triples(bc.has_item.first.uri, true)
+      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.uri, true)
+      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.has_property.first.uri, true)
+      check_file_actual_expected(ma.to_h, sub_dir, "update_with_clone_2b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(bc.to_h, sub_dir, "update_with_clone_2a.yaml", equate_method: :hash_equal)
     end
 
   end
-
-  # it "allows coded to be set" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   property.set_coded
-  #   expect(property.coded?).to eq (true)
-  # end
-
-  # it "prevents coded being set on complex property" do
-  #   property = BiomedicalConcept::Property.find("BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", "http://www.assero.co.uk/MDRBCTs/V1")
-  #   property.set_coded
-  #   expect(property.coded?).to eq (false)
-  # end
-
-  # it "allows coded to be determined" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   property.set_coded
-  #   expect(property.coded?).to eq (true)
-  # end
-
-  # it "allows the object to be found - TC Refs" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   check_file_actual_expected(property.to_json, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
-  # end
-
-  # it "allows the property to be updated" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
-  #   params = {}
-  #   params[:question_text] = "New Q"
-  #   params[:prompt_text] = "New P"
-  #   params[:enabled] = "true"
-  #   params[:collect]= "true"
-  #   params[:format] = "10.1"
-  #   property.update(params)
-  #   expect(property.errors.count).to eq(0)
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   check_file_actual_expected(property.to_json, sub_dir, "update.yaml", equate_method: :hash_equal)
-  # end
-
-  # it "prevents a property being updated with invalid data" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
-  #   params = {}
-  #   params[:question_text] = "£££££££"
-  #   params[:prompt_text] = "New P"
-  #   params[:enabled] = "true"
-  #   params[:collect]= "true"
-  #   params[:format] = "10.1"
-  #   property.update(params)
-  #   expect(property.errors.full_messages.to_sentence).to eq("Question text contains invalid characters")
-  #   expect(property.errors.count).to eq(1)
-  # end
-
-  # it "handles errors during an update" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator_BL_value", "http://www.assero.co.uk/MDRBCs/V1")
-  #   params = {}
-  #   params[:question_text] = "New Q"
-  #   params[:prompt_text] = "New P"
-  #   params[:enabled] = "true"
-  #   params[:collect]= "true"
-  #   params[:format] = "10.1"
-  #   response = Typhoeus::Response.new(code: 200, body: "")
-  #   expect(Rest).to receive(:sendRequest).and_return(response)
-  #   expect(response).to receive(:success?).and_return(false)
-  #   expect(ConsoleLogger).to receive(:info)
-  #   expect{property.update(params)}.to raise_error(Exceptions::UpdateError)
-  # end
-
-  # it "allows term references to be added" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   refs = []
-  #   refs << { :subject_ref => {id: "new_1", namespace: "http://example.com/term" }, ordinal: 5}
-  #   refs << { :subject_ref => {id: "new_2", namespace: "http://example.com/term" }, ordinal: 6}
-  #   property.add({ tc_refs: refs })
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  # #Xwrite_yaml_file(property.to_json, sub_dir, "add_term.yaml")
-  #   check_file_actual_expected(property.to_json, sub_dir, "add_term.yaml", equate_method: :hash_equal)
-  #   expect(property.tc_refs.count).to eq(6)
-  # end
-
-  # it "handles error adding term references" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   refs = []
-  #   refs << { :subject_ref => {id: "new_3", namespace: "http://example.com/term" }, ordinal: 7}
-  #   response = Typhoeus::Response.new(code: 200, body: "")
-  #   expect(Rest).to receive(:sendRequest).and_return(response)
-  #   expect(response).to receive(:success?).and_return(false)
-  #   expect(ConsoleLogger).to receive(:info)
-  #   expect{property.add({ tc_refs: refs })}.to raise_error(Exceptions::UpdateError)
-  # end
-
-  # it "allows term refs to be removed" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   property.remove
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  # #Xwrite_yaml_file(property.to_json, sub_dir, "remove_term.yaml")
-  #   expected = read_yaml_file(sub_dir, "remove_term.yaml")
-  #   expect(property.tc_refs.count).to eq(0)
-  #   expect(property.to_json).to eq(expected)
-  # end
-
-  # it "handles error removing term references" do
-  #   property = BiomedicalConcept::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #   response = Typhoeus::Response.new(code: 200, body: "")
-  #   expect(Rest).to receive(:sendRequest).and_return(response)
-  #   expect(response).to receive(:success?).and_return(false)
-  #   expect(ConsoleLogger).to receive(:info)
-  #   expect{property.remove}.to raise_error(Exceptions::UpdateError)
-  # end
 
 end
