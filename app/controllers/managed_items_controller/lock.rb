@@ -57,7 +57,7 @@ class ManagedItemsController
       @user
     end
 
-    # Release And Lock. Release the lock and lock the new item
+    # Release And Get. Release the lock and lock the new item
     #
     # @param object [Object] The managed item object
     #
@@ -65,6 +65,12 @@ class ManagedItemsController
       @item = new_item
       @token.release
       token_get
+    end
+
+    # Release. Release the lock
+    #
+    def release
+      @token.release
     end
 
   private
