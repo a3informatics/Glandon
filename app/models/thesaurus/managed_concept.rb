@@ -101,7 +101,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
           ?e isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
           ?e ?p ?o .
-          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179") || strstarts(str(?p), "http://www.assero.co.uk/Thesaurus#notation"))
           BIND (?e as ?s)
         }
         UNION

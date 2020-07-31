@@ -1074,12 +1074,12 @@ describe "Thesaurus::ManagedConcept" do
       actual = Thesaurus::ManagedConcept.history_pagination(identifier: "C76351", scope: IsoRegistrationAuthority.cdisc_scope, count: 1, offset: 0)
       expect(actual.count).to eq(1)
       actual.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal, write_file: true)
-      # results = []
-      # actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 20)
-      # expect(actual.count).to eq(10)
-      # actual.each {|x| results << x.to_h}
-      # check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+      results = []
+      actual = Thesaurus::ManagedConcept.history_pagination(identifier: "C76351", scope: IsoRegistrationAuthority.cdisc_scope, count: 4, offset: 1)
+      expect(actual.count).to eq(2)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
