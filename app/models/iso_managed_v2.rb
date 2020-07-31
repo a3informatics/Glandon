@@ -521,7 +521,19 @@ class IsoManagedV2 < IsoConceptV2
     offset = params[:offset].to_i
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
-    query_string = %Q{
+    query_string = history_pagination_query(reqd_uris)
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    by_subject = query_results.by_subject
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
+      item = from_results_recurse(uri, by_subject)
+      set_cached_scopes(item, params[:scope])
+      results << item
+    end
+    results
+  end
+
+  def self.history_pagination_query(reqd_uris)
+   %Q{
       SELECT ?s ?p ?o ?e ?v WHERE
       {
         {
@@ -550,14 +562,6 @@ class IsoManagedV2 < IsoConceptV2
         }
       } ORDER BY DESC (?v)
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
-    by_subject = query_results.by_subject
-    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
-      item = from_results_recurse(uri, by_subject)
-      set_cached_scopes(item, params[:scope])
-      results << item
-    end
-    results
   end
 
   # Comments. Return comments for all items with given identifier and scope
