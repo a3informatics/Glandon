@@ -143,25 +143,6 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render :json => {data: [tc.simple_to_h]}, :status => 200
   end
 
-  # def update_properties
-  #   authorize Thesaurus, :edit?
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-  #   tc.synonyms_and_preferred_terms
-  #   token = Token.find_token(tc, current_user)
-  #   if !token.nil?
-  #     tc = tc.update(edit_params)
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if token.refresh == 1
-  #       result = tc.simple_to_h
-  #       render :json => {:data => [result]}, :status => 200
-  #     else
-  #       render :json => {:errors => tc.errors.full_messages}, :status => 422
-  #     end
-  #   else
-  #     render :json => {:errors => [token_timeout_message]}, :status => 422
-  #   end
-  # end
-
   def children
     authorize Thesaurus, :edit?
     results = []
@@ -659,12 +640,12 @@ private
     true
   end
  
-  def edit_lock(tc)
-    @edit = ManagedItemsController::Edit.new(tc, current_user, flash)
-    return true unless @edit.error?
-    redirect_to request.referrer
-    false
-  end
+  # def edit_lock(tc)
+  #   @edit = ManagedItemsController::Edit.new(tc, current_user, flash)
+  #   return true unless @edit.error?
+  #   redirect_to request.referrer
+  #   false
+  # end
 
   def path_for(action, object)
     case action
