@@ -62,7 +62,6 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   #     end
   #   end
   # end
-
   # def new
   #   authorize BiomedicalConceptInstance, :new?
   #   @bcts = BiomedicalConceptTemplate.all
