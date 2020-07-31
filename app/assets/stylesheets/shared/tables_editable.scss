@@ -12,27 +12,42 @@
   position: relative;
 }
 
-.table-cardstyle table td.editable:hover {
-  background: $grey-bright !important;
-  padding-right: 20px;
-}
-
-.table-cardstyle table td.focus {
+.table-cardstyle table td.editable:hover,
+  .table-cardstyle table td.focus {
   background: $grey-bright !important;
   box-shadow: none !important;
-  padding-right: 20px;
 }
 
-.table-cardstyle table td.editable:hover::before,
-  .table-cardstyle table td.editable.focus::before {
+.table-cardstyle table td.editable:hover::before {
   font-family: 'icomoon';
   position: absolute;
-  content: "\e931";
   display: block;
-  right: 6px;
-  top: 4px;
+  right: 2px;
+  top: 1px;
   font-size: $font-tiny;
   color: $primary-color-bright;
+}
+
+.table-cardstyle table tr.row-disabled td.editable::before,
+  .table-cardstyle table tr.row-cdisc td.editable::before {
+    color: $grey-light;
+}
+
+// Editable inline
+
+.table-cardstyle table td.editable.inline:hover::before {
+  content: "\e931";
+}
+
+// Editable external
+.table-cardstyle table td.editable.external:hover::before {
+  content: "\e929";
+  transform: rotate(45deg);
+}
+
+// Editable pickable
+.table-cardstyle table td.editable.pickable:hover::before {
+  content: "\e95a";
 }
 
 // Fade
@@ -56,6 +71,13 @@
   outline: none;
   box-shadow: none;
   border-width: 2px;
+}
+
+// Handle labels styling on hover
+
+.table-cardstyle table td.editable:hover a.bg-label,
+  .table-cardstyle table td.editable.focus a.bg-label {
+  background: white;
 }
 
 // Processing styling

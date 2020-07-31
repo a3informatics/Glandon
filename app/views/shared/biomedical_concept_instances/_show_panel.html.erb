@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="table-cardstyle all-columns loading-with-btns">
-  <table id="show" class="table">
+  <table id="<%= local_assigns.fetch :id, 'show' %>" class="table">
     <thead>
       <tr>
         <th class="fit">Enabled</th>

@@ -110,9 +110,9 @@ export default class UnmanagedItemSelector extends ManagedItemSelector {
 
     // Find parent data and add to the selected child data object (required to create item reference string)
     const parentData = this.historyPanel.selectedData[0]
-    data.forEach( (d) => Object.assign(d, {parent: parentData}) );
+    data.forEach( (d) => Object.assign(d, {context: parentData}) );
 
-    this.selectionView.add(this.param, data);
+    this.selectionView.add(data);
   }
 
 

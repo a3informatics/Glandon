@@ -18,13 +18,14 @@ export default class InformationDialog {
    */
   constructor({
     title = 'Information',
+    target = 'body',
     subtitle = '',
     dangerous = false,
     wide = false,
     onShow = () => {},
     div
   }) {
-    Object.assign(this, { title, subtitle, dangerous, wide, onShow, div } );
+    Object.assign(this, { title, target, subtitle, dangerous, wide, onShow, div } );
 
     this.id = this._makeId();
   }
@@ -36,7 +37,7 @@ export default class InformationDialog {
     if (this.div)
       this._adjustDisplay();
     else
-      $('body').prepend( this._renderDialog() );
+      $(this.target).prepend( this._renderDialog() );
 
     this._setListeners();
 

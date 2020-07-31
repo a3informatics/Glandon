@@ -15,7 +15,7 @@ export default class SelectionView {
    * @param {Object} params Instance parameters
    * @param {string} params.selector Unique jQuery selector of the selection view element
    * @param {boolean} params.multiple Enable / disable dislpaying multiple items [default = false]
-   * @param {Object} params.itemTypes Map of all supported item types and their standard names @see ItemsPicker.itemTypes
+   * @param {Object} params.itemTypes Map of all supported item types and their rdf types @see ItemsPicker.itemTypes
    */
   constructor({
     selector,
@@ -39,15 +39,10 @@ export default class SelectionView {
   }
 
   /**
-   * Add data item to a subselection type and render selection view
-   * @param {string} type item type, @see ItemsPicker.itemTypes
+   * Add data item to the selection render selection view
    * @param {Object} data item data object to add to the selection
    */
-  add(type, data) {
-    // Check type exists
-    if ( !this.selection[type] )
-      throw new Error(`Selection type ${type} does not exist`)
-
+  add(data) {
     // Check for item count when multiple selection disabled
     if (!this.multiple && Array.isArray(data) && data.length > 1)
       throw new Error(`Cannot add multiple items while multiple selection disabled.`)
@@ -57,25 +52,23 @@ export default class SelectionView {
       this._resetSelection();
 
     // Add data to selection
-    this._addToSelection(type, data)
+    this._addToSelection(data);
 
     this._render();
   }
 
   /**
    * Remove item(s) from selection and render selection view
-   * @param {(Array | string)} ids a single id / collection of item ids to remove from the selection
+   * @param {(Array | string)} id a single id / collection of item ids to remove from the selection
    */
-  removeById(ids) {
+  removeById(id) {
     // Find and remove array of item ids
-    if ( Array.isArray(ids) ) {
-      for (const id of ids) {
-        this._removeFromSelection( this._findById(id) );
-      }
-    }
+    if ( Array.isArray(id) )
+      id.forEach( (itemId) => this._removeFromSelection(itemId) )
+
     // Find and remove one item id
     else
-      this._removeFromSelection( this._findById(ids) );
+      this._removeFromSelection(id);
 
     this._render();
   }
@@ -107,15 +100,12 @@ export default class SelectionView {
 
   /**
    * Get object that with functions that return the selection in different formats
-   * @return {Object} contains functions that return selection in following formats: asTypesObject, asObjectsArray, asIDsArray
+   * @return {Object} contains functions that return selection in following formats: asObjectsArray, asIDsArray
    */
   getSelection() {
     return {
-      asTypesObject: () => {
-        return this.selection;
-      },
       asObjectsArray: () => {
-        return Object.values(this.selection).flat(1);
+        return this.selection
       },
       asIDsArray: () => {
         return this.getSelection().asObjectsArray().map((d) => d.id);
@@ -158,39 +148,31 @@ export default class SelectionView {
   /**
    * Find item data in the selection by an id
    * @param {string} id item id to find
-   * @return {(Object | null)} Object containing item data, index and type, or null if such id is not in selection
+   * @return {(Object | null)} Object containing item data and index, or null if such id is not in selection
    */
   _findById(id) {
     let item = null;
 
-    this._eachType( (type) => {
-      this.selection[type].forEach( (data, index) => {
-        if (data.id == id) {
-          item = { data, index, type }
-        }
-      });
-
+    this.selection.forEach( (data, index) => {
+      if (data.id == id)
+        item = { data, index }
     });
 
     return item;
   }
 
   /**
-   * Private add to selection function, adds data to selection type, prevents duplicates
-   * @param {string} type data's item type, @see ItemsPicker.itemTypes
+   * Private add to selection function, adds data to selection, prevents duplicates
    * @param {object} data item's data object
    */
-  _addToSelection(type, data) {
+  _addToSelection(data) {
     // Add array of item data object
-    if ( Array.isArray(data) ) {
-      for (const d of data) {
-        this._addToSelection(type, d);
-      }
-    }
+    if ( Array.isArray(data) )
+      data.forEach( (d) => this._addToSelection(d));
 
     // Add single item data object if already not present
     else if ( !this.selectionContains(data.id) ) {
-      this.selection[type].push(data);
+      this.selection.push(data);
 
       // Notify selection data changed
       this._selectionChanged('added');
@@ -199,14 +181,18 @@ export default class SelectionView {
 
 
   /**
-   * Private remove from selection function, removes item from selection
-   * @param {Object} item Item to remove, must contain the type and index fields
+   * Private remove from selection function, find and remove item from selection
+   * @param {string} id Item to remove, must contain the index field
    */
-  _removeFromSelection(item) {
+  _removeFromSelection(id) {
+    // Find item
+    let item = this._findById(id);
+
     if (!item)
       return;
 
-    this.selection[item.type].splice(item.index, 1);
+    // Remove item from the selection
+    this.selection.splice(item.index, 1);
 
     // Notify selection data changed
     this._selectionChanged('removed');
@@ -216,11 +202,7 @@ export default class SelectionView {
    * Reset selection object to its initial state
    */
   _resetSelection() {
-    // Clear selection
-    this.selection = {}
-
-    // Init selection item types with empty arrays
-    this._eachType( (type) => this.selection[type] = [] );
+    this.selection = []
   }
 
   /**
@@ -241,6 +223,7 @@ export default class SelectionView {
   _showSelectionDialog() {
     let dialogInstance = new InformationDialog({
       title: "Current selection",
+      target: $(this.selector).closest('.modal'),
       subtitle: this._renderSelectionDialog(),
       wide: true
     }).show();
@@ -260,7 +243,8 @@ export default class SelectionView {
 
       // Remove item and re-render dialog to reflect changes
       this.removeById(itemId);
-      dialogInstance.setText(this._renderSelectionDialog());
+      // Hide as to not mess with the focus. On the next selection open it won't be rendered.
+      $(e.currentTarget).hide();
     });
   }
 
@@ -288,15 +272,17 @@ export default class SelectionView {
     let output = `<i>Click on an item to remove it from the selection.</i><br/>`
 
     this._eachType( (type) => {
-      // Skip empty types
-      if ( this.selection[type].length ) {
-        // Render Type title
-        output += `<span class='label-styled label-w-margin'> ${this.itemTypes[type]} </span> <br>`;
+      let selectedItemsByType = this.selection.filter((d) => d.rdf_type === this.itemTypes[type].rdfType );
 
-        this.selection[type].forEach( (item) => {
+      // Skip empty types
+      if ( ! _.isEmpty(selectedItemsByType) ) {
+        // Render Type title
+        output += `<span class='label-styled label-w-margin'> ${this.itemTypes[type].name} </span> <br>`;
+
+        selectedItemsByType.forEach( (item) => {
           // Render Item label
           output += `<span class='bg-label label-w-margin removable' data-id='${item.id}'>` +
-                      this._getItemReference(type, item) +
+                      this._getItemReference(item) +
                     `</span>`
         });
 
@@ -313,23 +299,21 @@ export default class SelectionView {
 
   /**
    * Get the standard text of a reference to a managed/unmanaged item
-   * @param {string} type Item type
-   * @param {Object} item Data of the managed/unamnaged item
+   * @param {Object} item Data of the managed/unmanaged item
    * @return {string} standard managed / unmanaged item reference text
    */
-  _getItemReference(type, item) { 
-    return type === 'unmanaged_concept' ?
-              unmanagedConceptRef(item, item.parent) :
+  _getItemReference(item) { 
+    return item.rdf_type === this.itemTypes.unmanaged_concept.rdfType ?
+              unmanagedConceptRef(item, item.context) :
               managedConceptRef(item);
   }
 
   /**
    * Get the length of the selection
-   * @return {int} length of entire selection
+   * @return {int} length of the current selection
    */
   get _selectionLength() {
-    return Object.values(this.selection)
-                 .reduce( (total, subSelection) => total + subSelection.length, 0 )
+    return this.selection.length;
   }
 
   /**
@@ -344,13 +328,8 @@ export default class SelectionView {
     // Return managed/unamanged item reference string otherwise
     else {
       const item = this._selectedItem;
-
-      // Generate string if item selected
-      if (item)
-        return this._getItemReference(item.type, item.data)
-
-      // No item selected
-      return 'None'
+      // Generate string if item selected, 'None' if no item selected
+      return item ? this._getItemReference(item) : 'None'
     }
   }
 
@@ -363,15 +342,10 @@ export default class SelectionView {
     if (this.multiple)
       return;
 
-    let item = null;
+    if (this.selection[0])
+      return this.selection[0]
 
-    // Find selected item data object and type 
-    this._eachType( (type) => {
-      if ( this.selection[type][0] )
-        item = { data: this.selection[type][0], type: type }
-    });
-
-    return item;
+    return null;
   }
 
   /**
