@@ -5,6 +5,7 @@ describe BiomedicalConcept::PropertyX do
   include DataHelpers
   include SparqlHelpers
   include IsoConceptsHelpers
+  include IsoManagedHelpers    
 
   def sub_dir
     return "models/biomedical_concept/property_x"
@@ -124,6 +125,7 @@ describe BiomedicalConcept::PropertyX do
       triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.uri, true)
       triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.has_property.first.uri, true)
       check_file_actual_expected(ma.to_h, sub_dir, "update_with_clone_2b.yaml", equate_method: :hash_equal)
+      check_dates(bc, sub_dir, "update_with_clone_2a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(bc.to_h, sub_dir, "update_with_clone_2a.yaml", equate_method: :hash_equal)
     end
 
