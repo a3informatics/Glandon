@@ -36,7 +36,8 @@ module Sparql
     #
     # @return [Void] no return
     def execute
-      response = send_update(@parts.join(";\n"))
+      sparql = @parts.join(";\n")
+      response = send_update(sparql)
       if !response.success?
         base = "Failed to execute a SPARQL transaction."
         message = "#{base}\nSPARQL: #{sparql}"

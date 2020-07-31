@@ -16,10 +16,10 @@ module Fuseki
 
       # Find. Simple find for the subject. Will cache if indicated in class definition.
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|String] uri_or_id the URI or the id
       # @return [Object] a class object.
-      def find(id)
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+      def find(uri_or_id)
+        uri = as_uri(uri_or_id)
         results = subject_cache(uri)
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results(uri, results.by_subject[uri.to_s])
@@ -27,11 +27,11 @@ module Fuseki
 
       # Find Children. Find object and one-level of child
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|String] uri_or_id the URI or the id
       # @return [Object] a class object.
-      def find_children(id)
+      def find_children(uri_or_id)
         parts = [0]
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+        uri = as_uri(uri_or_id)
         properties = resources
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
@@ -48,12 +48,12 @@ module Fuseki
 
       # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
       #
-      # @param [Uri|id] id the identifier, either a URI or the id
+      # @param [Uri|String] uri_or_id the URI or the id
       # @param [Symbol] path_method the method to be used for the read paths. Defaults to read_paths
       # @return [IsoManagedV2] The managed item object.
-      def find_full(id, path_method=:read_paths)
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+      def find_full(uri_or_id, path_method=:read_paths)
         parts = []
+        uri = as_uri(uri_or_id)
         parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
         self.send(path_method).each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
         query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
@@ -131,7 +131,6 @@ module Fuseki
       end
 
       def from_results(uri, triples)
-        #object = new
         object = rdf_type_klass(triples)
         object.instance_variable_set("@uri", uri)
         triples.each {|triple| property = object.properties.property_from_triple(triple)}
@@ -207,14 +206,22 @@ module Fuseki
 
       # Klass For. Get the class (klass) for an id or URI
       #
-      # @param [Uri|id] the identifier, either a URI or the id
+      # @param [Uri|id] uri_or_id the identifier, either a URI or the id
       # @raise [Errors::ApplicationLogicError] raised if no class (klass) found.
       # @return [Class] The class
-      def klass_for(id)
-        uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+      def klass_for(uri_or_id)
+        uri = as_uri(uri_or_id)
         query_results = Sparql::Query.new.query("SELECT ?t WHERE { #{uri.to_ref} rdf:type ?t }", "", [])
         Errors.application_error(self.class.name, __method__.to_s, "Unable to find class (klass) for #{uri}.") if query_results.empty?
         rdf_type_to_klass(query_results.by_object(:t).first.to_s)
+      end
+
+      # As URI. Returns the parameter as a URI if it is one, otherwise attempts conversion to a URI.
+      #
+      # @param [Uri|String] uri_or_id the uri or id
+      # @return [Uri] the URI
+      def as_uri(uri_or_id)
+        uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
       end
 
       # -----------------

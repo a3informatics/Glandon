@@ -18,7 +18,8 @@ describe 'V3.1.0 schema migration' do
       <http://www.assero.co.uk/ISO11179Concepts> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string .
       <http://www.assero.co.uk/ISO11179Registration> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string .
       <http://www.assero.co.uk/BusinessForm> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string .
-      <http://www.s-cubed.dk/ComplexDatatypes#> rdf:type owl:Ontology ;
+      <http://www.s-cubed.dk/ComplexDatatypes#> rdf:type owl:Ontology .
+      <http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept> rdfs:subClassOf <http://www.assero.co.uk/ISO11179Concepts#Concept> ;
     }
   end
 
@@ -39,6 +40,7 @@ describe 'V3.1.0 schema migration' do
       @owl_version_info = Uri.new(uri: "http://www.w3.org/2002/07/owl#versionInfo")
       @skos_def = Uri.new(uri: "http://www.w3.org/2004/02/skos/core#definition")
       @rdfs_label = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#label")
+      @rdfs_sub_class_of = Uri.new(uri: "http://www.w3.org/2000/01/rdf-schema#subClassOf")
     end
 
     def expected_triple_count
@@ -50,11 +52,10 @@ describe 'V3.1.0 schema migration' do
     end
 
     def check_deletion
-      # Check triples removed
-      expect(Sparql::Utility.new.ask?("th:narrowerReference ?p ?o", [:th])).to eq(false)
+      expect(Sparql::Utility.new.ask?(old_version_triples, [:owl])).to be(false)
     end
 
-    def check_extensions
+    def check_migrations  
       # Check sample of new triples
       [
         { 
@@ -107,6 +108,11 @@ describe 'V3.1.0 schema migration' do
         check_triple(triples, @owl_version_info, "v3.2.0")
         check_triple(triples, @rdfs_label, x[:label])  
       end
+      # Check for the change in sub class for BCs
+      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept"), true)
+      check_triple(triples, @rdfs_sub_class_of, "http://www.assero.co.uk/BusinessOperational#Component")
+      triples = triple_store.subject_triples(Uri.new(uri: "http://www.assero.co.uk/BiomedicalConcept#Assessment"), true)
+      check_triple(triples, @rdfs_sub_class_of, "http://www.assero.co.uk/BusinessOperational#Component")
     end
 
     def check_still_old
@@ -156,7 +162,7 @@ describe 'V3.1.0 schema migration' do
       # Check results
       expect(triple_store.triple_count).to eq(base + expected)
       check_deletion
-      check_extensions
+      check_migrations  
     end
 
     it "won't run second time" do
@@ -166,7 +172,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception first upload' do
       # Definitions, check triple store count
-      expected = -5 # Number of extra triples, 5 deleted. 
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -184,7 +190,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception second upload' do
       # Definitions, check triple store count
-      expected = -5 # Number of extra triples, 5 deleted. 
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -206,7 +212,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception last upload' do
       # Definitions, check triple store count
-      expected = -5 # Number of extra triples, 5 deleted. 
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -228,7 +234,7 @@ describe 'V3.1.0 schema migration' do
 
     it 'add V3.2.0 schema, exception seventh upload' do
       # Definitions, check triple store count
-      expected = -5 # Number of extra triples, 5 deleted. 
+      expected = -7 # Number of extra triples, only deleted.
       base = triple_store.triple_count
       expect(base).to eq(expected_triple_count)
 
@@ -287,8 +293,11 @@ describe 'V3.1.0 schema migration' do
 
       # Run migration
       call_index = -1
-      # First 4 are present check, next 4 are deleted checks
-      result = [true, true, true, true, false, false, true, false] 
+      result = 
+      [
+        true,  true,  true, true,  true,  true, # Triples present check
+        false, false, true, false, false, false # Triples deleted check
+      ] 
       allow_any_instance_of(Sparql::Utility).to receive(:ask?) do |arg|
         call_index += 1
         result[call_index]
