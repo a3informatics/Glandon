@@ -35,7 +35,7 @@ export default class EditablePanel extends TablePanel {
     cache = true
   }) {
     super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache },
-          {updateUrl, fields, idSrc});
+          { updateUrl, fields, idSrc });
   }
 
   /**
@@ -160,8 +160,10 @@ export default class EditablePanel extends TablePanel {
    * Resizes textarea to to fit its contents
    */
   _resizeTA() {
-    let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
-    $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    if ( $(`${this.selector} td.editable textarea`).length ) {
+      let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
+      $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    }
   }
 
   /**
@@ -182,6 +184,14 @@ export default class EditablePanel extends TablePanel {
   }
 
   /**
+   * Initializes Items Pickers to use in an Editable Panel (if any)
+   * Override to add custom pickers
+   */
+  _initPickers() {
+    this.editor.pickers = { }
+  }
+
+  /**
    * Change processing state of a focused cell
    * @param {boolean} enable True/false ~~ enable/disable processing state
    */
@@ -197,6 +207,8 @@ export default class EditablePanel extends TablePanel {
     this._initEditor();
     // Initialize DataTable after
     this.table = $(this.selector).DataTable(this._tableOpts);
+    // Initialize Pickers last
+    this._initPickers();
   }
 
   /**
