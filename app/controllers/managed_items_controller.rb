@@ -36,6 +36,14 @@ class ManagedItemsController < ApplicationController
 
 private
 
+  def edit_lock(item, response_format=:html)
+    @edit = ManagedItemsController::Edit.new(item, current_user, flash)
+    return true unless @edit.error?
+    redirect_to request.referrer if response_format == :html
+    render :json => {:errors => [@lock.error]}, :status => 422 if response_format == :json
+    false
+  end
+
   def get_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:get, item, current_user, flash)
     return true unless @lock.error?
