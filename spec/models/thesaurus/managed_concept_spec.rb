@@ -1052,6 +1052,38 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "history pagination" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "change_instructions_test.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..31)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "history, pagination" do
+      results = []
+      actual = Thesaurus::ManagedConcept.history_pagination(identifier: "C76351", scope: IsoRegistrationAuthority.cdisc_scope, count: 1, offset: 0)
+      expect(actual.count).to eq(1)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      # results = []
+      # actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 20)
+      # expect(actual.count).to eq(10)
+      # actual.each {|x| results << x.to_h}
+      # check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "merge" do
 
     before :all  do
