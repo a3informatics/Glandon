@@ -92,38 +92,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     self.errors.empty?
   end
 
-  def self.history_pagination_query(reqd_uris)
-    %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE
-      {
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e ?p ?o .
-          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179") || strstarts(str(?p), "http://www.assero.co.uk/Thesaurus#notation"))
-          BIND (?e as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?si ?p ?o .
-          BIND (?si as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e isoT:hasState ?s .
-          ?s ?p ?o
-        }
-      } ORDER BY DESC (?v)
-    }
-  end
-
   # Changes Count
   #
   # @param [Integer] window_size the required window size for changes
@@ -998,6 +966,38 @@ private
       child = Thesaurus::UnmanagedConcept.find(item)
       set_rank(mc, child)
     end
+  end
+
+  def self.history_pagination_query(reqd_uris)
+    %Q{
+      SELECT ?s ?p ?o ?e ?v WHERE
+      {
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e ?p ?o .
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179") || strstarts(str(?p), "http://www.assero.co.uk/Thesaurus#notation"))
+          BIND (?e as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?si ?p ?o .
+          BIND (?si as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e isoT:hasState ?s .
+          ?s ?p ?o
+        }
+      } ORDER BY DESC (?v)
+    }
   end
 
 end
