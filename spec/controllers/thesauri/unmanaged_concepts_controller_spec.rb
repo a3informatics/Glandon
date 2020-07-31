@@ -30,7 +30,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:supporting_edit?).and_return(false)
-      get :show, params:{id: "aaa", unmanaged_concept: {context_id: "bbb", parent_id: "ppp"}}
+      get :show, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, unmanaged_concept: {context_id: "bbb", parent_id: "ppp"}}
       expect(assigns(:context_id)).to eq("bbb")
       expect(assigns(:has_children)).to eq(false)
       expect(response).to render_template("show")
@@ -49,7 +49,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(ct).to receive(:tag_labels).and_return([])
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children_pagination).and_return([{id: "1"}, {id: "2"}])
-      get :show_data, params:{id: "aaa", offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
+      get :show_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
@@ -61,7 +61,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes_count).and_return(5)
-      get :changes, params:{id: "aaa"}
+      get :changes, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response).to render_template("changes")
     end
 
@@ -70,7 +70,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes).and_return({a: "1", b: "2"})
-      get :changes_data, params:{id: "aaa"}
+      get :changes_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
@@ -81,7 +81,7 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:differences).and_return({a: "1", b: "2"})
-      get :differences, params:{id: "aaa"}
+      get :differences, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
@@ -175,8 +175,8 @@ describe Thesauri::UnmanagedConceptsController do
       mtc = Thesaurus::ManagedConcept.create
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
-      put :destroy, params:{id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
-      expected = ["The changes were not saved as the edit lock timed out."]
+      put :destroy, params:{id: umtc.id, unmanaged_concept: {parent_id: mtc.id}}
+      expected = ["The edit lock has timed out."]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(expected)

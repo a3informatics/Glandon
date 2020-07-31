@@ -98,7 +98,7 @@ describe Thesauri::SubsetsController do
       expect(subset.members.to_id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2EyMzBlZWNiLTE1ODAtNGNjOS1hMWFmLTVlMThhNmViMWVlZQ==")
     end
 
-    it "rejects without token" do
+    it "move after, rejects without token" do
       request.env['HTTP_ACCEPT'] = "application/json"
       subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
       member_uri = Uri.new(uri:"http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")

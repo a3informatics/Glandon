@@ -50,9 +50,15 @@ private
     false
   end
 
-  def item_errors
+  def lock_item_errors
     return false if @lock.item.errors.empty?
     render :json => {:errors => @lock.item.errors.full_messages}, :status => 422
+    true
+  end
+
+  def item_errors(item)
+    return false if item.errors.empty?
+    render :json => {:errors => item.errors.full_messages}, :status => 422
     true
   end
 
