@@ -135,10 +135,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def update_properties
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     tc.synonyms_and_preferred_terms
     tc = tc.update(edit_params)
-    return true if item_errors 
+    return true if item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {:data => [tc.simple_to_h]}, :status => 200
   end
@@ -168,10 +168,11 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     children = tc.children_pagination({offset: "0", count: "10000"})
     children.each do |c|
+      show_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       edit_tags_path = c[:referenced] ? "" : edit_tags_iso_concept_path(id: c[:id], iso_concept: {parent_id: tc.id})
-      results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
+      results << c.reverse_merge!({show_path: show_path, edit_path: edit_path, delete_path: delete_path, edit_tags_path: edit_tags_path})
     end
     render :json => { data: results }, :status => 200
   end
@@ -187,7 +188,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
         result = new_tc.simple_to_h
         edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
         delete_path = thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
-        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path })
+        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
         render :json => {data: result}, :status => 200
       else
         render :json => {:errors => new_tc.errors.full_messages}, :status => 422
