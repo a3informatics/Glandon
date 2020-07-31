@@ -506,35 +506,7 @@ class IsoManagedV2 < IsoConceptV2
     offset = params[:offset].to_i
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
-    query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE
-      {
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e ?p ?o .
-          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
-          BIND (?e as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?si ?p ?o .
-          BIND (?si as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e isoT:hasState ?s .
-          ?s ?p ?o
-        }
-      } ORDER BY DESC (?v)
-    }
+    query_string = history_pagination_query(reqd_uris)
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
@@ -1203,6 +1175,38 @@ private
       " #{self.uri.to_ref} isoT:origin ?c . \n" +
       " #{self.uri.to_ref} isoT:lastChangeDate ?d . \n" +
       "}"
+  end
+
+  def self.history_pagination_query(reqd_uris)
+   %Q{
+      SELECT ?s ?p ?o ?e ?v WHERE
+      {
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e ?p ?o .
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+          BIND (?e as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?si ?p ?o .
+          BIND (?si as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e isoT:hasState ?s .
+          ?s ?p ?o
+        }
+      } ORDER BY DESC (?v)
+    }
   end
 
 end
