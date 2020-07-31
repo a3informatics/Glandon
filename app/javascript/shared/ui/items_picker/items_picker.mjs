@@ -5,6 +5,8 @@ import TabsLayout from 'shared/ui/tabs_layout'
 import UnmanagedItemSelector from 'shared/ui/items_picker/unmanaged_item_selector'
 import ManagedItemSelector from 'shared/ui/items_picker/managed_item_selector'
 
+import { rdfTypesMap } from 'shared/helpers/rdf_types'
+
 /**
  * Items Picker
  * @description System-wide, Item Picker for version-based managed/unmanaged item types
@@ -20,18 +22,22 @@ export default class ItemsPicker extends ModalView {
    * @param {array} params.types array of param names of allowed types, @see itemTypes map for supported types
    * @param {string} params.description custom text to be rendered in the Items Picker description, optional
    * @param {boolean} params.multiple value representing whether multiple selection is enabled or disabled [defaul=false]
+   * @param {boolean} params.emptyEnabled value representing whether submission where no items are selected is allowed, [default=false]
    * @param {function} params.onSubmit callback to when user submits their selection, passes getSelection object as the argument, @see SelectionView.getSelection
+   * @param {function} params.onClose callback to when items picker closes. Executed also after onSubmit
    */
   constructor({
     id,
     types = [],
     description,
     multiple = false,
-    onSubmit = () => { }
+    emptyEnabled = false,
+    onSubmit = () => { },
+    onClose = () => { }
   }) {
     super( { selector: `#items-picker-${id}` } );
 
-    Object.assign(this, { multiple, description, types: [...new Set(types)], onSubmit });
+    Object.assign(this, { multiple, description, emptyEnabled, types: [...new Set(types)], onSubmit, onClose });
 
     this._initialize();
     this._setListeners();
@@ -59,16 +65,9 @@ export default class ItemsPicker extends ModalView {
       this.modal.find('#items-picker-description').html(description);
   }
 
-  /**
-   * Set a custom submit callback for when user submits their selection
-   * @param {function} params.onSubmit callback to when user submits their selection, passes getSelection object as the argument, @see SelectionView.getSelection
-   */
-  setOnSubmit(onSubmit) {
-    this.onSubmit = callback;
-  }
-
 
   /** Private **/
+
 
   /**
    * Initialize the Tabs layout, Selection view and specified selector instances
@@ -89,20 +88,41 @@ export default class ItemsPicker extends ModalView {
 
     // Set custom description if specified
     this.setDescription(this.description)
+
+    // Enable Submit button if emptyEnabled setting set to true
+    if ( this.emptyEnabled )
+      this.modal.find('#items-picker-submit').removeClass('disabled');
   }
 
   /**
-   * Called when on modal show, open the first available Tab
+   * Execute user-specified onSubmit callback and pass selectionView's getSelection object as the argument and hide the Items Picker
+   */
+  _submitSelection() {
+    // Do not submit an empty selection
+    if (!this.emptyEnabled && this.selectionView.selectionEmpty)
+      return;
+
+    if (this.onSubmit)
+      this.onSubmit(this.selectionView.getSelection());
+    this.hide();
+  }
+
+  /**
+   * Called when on modal show, open the first available Tab, render selectionView
    */
   _onShow() {
     $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
+    this.selectionView._render();
   }
 
   /**
-   * Called when on modal hide, reset Items Picker to initial state
+   * Called when on modal hide, reset Items Picker to initial state, call onClose callback
    */
   _onHide() {
     this.reset();
+
+    if (this.onClose)
+      this.onClose();
   }
 
   /**
@@ -120,23 +140,12 @@ export default class ItemsPicker extends ModalView {
 
     // Selection change event, toggle Submit button's disabled state
     this.selectionView.div.on('selection-change', (e, type) => {
-      this.modal.find('#items-picker-submit').toggleClass('disabled', this.selectionView.selectionEmpty);
+      if ( !this.emptyEnabled )
+        this.modal.find('#items-picker-submit').toggleClass('disabled', this.selectionView.selectionEmpty);
     });
 
     // Items Picker submit button click event, call _submitSelection
     this.modal.find('#items-picker-submit').on('click', () => this._submitSelection() );
-  }
-
-  /**
-   * Execute user-specified onSubmit callback and pass selectionView's getSelection object as the argument and hide the Items Picker
-   */
-  _submitSelection() {
-    // Do not submit an empty selection
-    if (this.selectionView.selectionEmpty)
-      return;
-
-    this.onSubmit(this.selectionView.getSelection());
-    this.hide();
   }
 
   /**
@@ -193,8 +202,8 @@ export default class ItemsPicker extends ModalView {
   _removeSelector(type) {
     type = type.replace(/_/g, '-');
 
-    $(`#tab-${type}`).detach();
-    $(`#selector-${type}`).detach();
+    this.modal.find(`#tab-${type}`).detach();
+    this.modal.find(`#selector-${type}`).detach();
   }
 
   /**
@@ -216,23 +225,24 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
-   * Map of all item types and their standard names, add more here
-   * @return {Object} all item types - names map
+   * Map of item types (param names) and their rdf type map references supported available in Items Picker
+   * Add more when needed
+   * @return {Object} item types (param names) - rdf types map
    */
   get itemTypes() {
     return {
-      thesauri: "Terminologies",
-      managed_concept: "Code Lists",
-      unmanaged_concept: "Code List Items",
-      biomedical_concept_instance: "Biomedical Concepts",
-      biomedical_concept_template: "Biomedical Concept Templates",
-      form: "Forms"
+      thesauri: rdfTypesMap.TH,
+      managed_concept: rdfTypesMap.TH_CL,
+      unmanaged_concept: rdfTypesMap.TH_CLI,
+      biomedical_concept_instance: rdfTypesMap.BC,
+      biomedical_concept_template: rdfTypesMap.BCT,
+      form: rdfTypesMap.FORM
     }
   }
 
   /**
    * Get the error div of the Items Picker modal
-   * @return {JQuery Element} Items Picker's unique error div 
+   * @return {JQuery Element} Items Picker's unique error div
    */
   get _errorDiv() {
     return $(`${this.selector} #items-picker-error`)

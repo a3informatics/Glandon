@@ -131,9 +131,11 @@ export default class ManagedItemSelector extends Cacheable {
       panel.deselectWithoutCallback('');
 
     // Match selected rows with selection
-    for (const selectedItem of this.selectionView.selection[this.param]) {
+    for (const selectedItem of this.selectionView.selection) {
       const row = panel._getRowFromData('id', selectedItem.id);
-      panel.selectWithoutCallback(row);
+
+      if (row.length)
+        panel.selectWithoutCallback(row);
     }
   }
 
@@ -144,7 +146,7 @@ export default class ManagedItemSelector extends Cacheable {
   _onItemSelect(dtRows) {
     const data = dtRows.data().toArray();
 
-    this.selectionView.add(this.param, data);
+    this.selectionView.add(data);
   }
 
   /**
