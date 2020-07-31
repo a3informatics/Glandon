@@ -88,6 +88,7 @@ describe Thesauri::UnmanagedConceptsController do
     end
 
     it "updates concept, token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       umtc = Thesaurus::UnmanagedConcept.new
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
@@ -107,6 +108,7 @@ describe Thesauri::UnmanagedConceptsController do
     end
 
     it "updates concept, token but errors" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       umtc = Thesaurus::UnmanagedConcept.new
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
@@ -130,7 +132,7 @@ describe Thesauri::UnmanagedConceptsController do
     end
 
     it "updates, error II" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       umc = mc.add_child({managed_concept: {notation: "T4"}})
@@ -146,6 +148,7 @@ describe Thesauri::UnmanagedConceptsController do
     it "updates concept, no token"
 
     it "deletes concept, token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       umtc = Thesaurus::UnmanagedConcept.new
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
@@ -165,6 +168,7 @@ describe Thesauri::UnmanagedConceptsController do
     end
 
     it "deletes concept, no token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       umtc = Thesaurus::UnmanagedConcept.new
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")

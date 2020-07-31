@@ -339,6 +339,7 @@ defaults: &defaults
     policies: {}
     alias:
       create_from_template: create
+      edit_data: edit
   CdiscTermPolicy:
     policies:
       index:

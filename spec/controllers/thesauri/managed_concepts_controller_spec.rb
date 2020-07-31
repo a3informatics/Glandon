@@ -281,7 +281,7 @@ describe Thesauri::ManagedConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       results = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(results, sub_dir, "children_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "export csv" do
@@ -422,7 +422,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "update properties" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @user)
@@ -433,7 +433,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "update properties, error" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @user)
@@ -444,7 +444,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "update properties, failed to lock" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @lock_user)
@@ -554,7 +554,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "adds childrens synonyms to managed concept, failed to lock" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
@@ -784,7 +784,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "add child to extension, failed to lock" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
@@ -843,6 +843,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "add children to standard, error token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047"))
       child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
       post :add_children, params:{id: tc.id, managed_concept: {set_ids: [child.id]}}
@@ -852,7 +853,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "add children, failed to lock" do
-      request.env["HTTP_REFERER"] = "path"
+      request.env['HTTP_ACCEPT'] = "application/json"
       audit_count = AuditTrail.count
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047"))
       child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V4#C66781_C25301"))
@@ -889,6 +890,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "pair a code list" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       token = Token.obtain(parent, @user)
@@ -899,6 +901,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "pair a code list, error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       token = Token.obtain(parent, @user)
@@ -910,6 +913,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "pair a code list, error token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       post :pair, params:{id: parent.id, managed_concept: {reference_id: child.id}}
@@ -919,6 +923,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "unpair a code list" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       token = Token.obtain(parent, @user)
@@ -930,6 +935,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "unpair a code list, error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       token = Token.obtain(parent, @user)
@@ -940,6 +946,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "unpair a code list, error token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66741/V4#C66741"))
       child = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C67153/V4#C67153"))
       post :unpair, params:{id: parent.id}

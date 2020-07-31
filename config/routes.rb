@@ -357,35 +357,14 @@ Rails.application.routes.draw do
       get :history
     end
   end
-  # namespace :biomedical_concepts do
-  #   resources :items
-  #   resources :datatypes
-  #   resources :properties do
-  #     member do
-  #       post 'term', to: 'properties#add', as: :add
-  #       delete 'term', to: 'properties#remove', as: :remove
-  #     end
-  #   end
-  #   resources :property_values
-  # end
   resources :biomedical_concept_instances do
     member do
       get :show_data
-      post :add_to_edit
-      # get :export_json
-      # get :export_ttl
-      # get :clone
-      # get :upgrade
-      # get :show_full
-      # get :edit_lock
+      get :edit_data
     end
     collection do
-      # get :editable
       get :history
       post :create_from_template
-      # post :clone_create
-      # get :list
-      # get :edit_multiple
     end
   end
 
