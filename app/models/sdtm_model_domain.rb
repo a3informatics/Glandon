@@ -1,9 +1,5 @@
 class SdtmModelDomain < Tabular
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   attr_accessor :children
 
   # Constants
@@ -54,15 +50,15 @@ class SdtmModelDomain < Tabular
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmModelDomain] the domain object.
-  def self.find(id, ns, children=true)
-    uri = UriV3.new(fragment: id, namespace: ns)
-    super(uri.to_id)
-    #object = super(id, ns)
-    #if children
-    #  children_from_triples(object, object.triples, id)
-    #end
-    #return object
-  end
+  # def self.find(id, ns, children=true)
+  #   uri = UriV3.new(fragment: id, namespace: ns)
+  #   super(uri.to_id)
+  #   #object = super(id, ns)
+  #   #if children
+  #   #  children_from_triples(object, object.triples, id)
+  #   #end
+  #   #return object
+  # end
 
   # Find all model domains.
   #
@@ -104,38 +100,38 @@ class SdtmModelDomain < Tabular
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
 	# @return [UriV2] The URI
-  def to_sparql_v2(sparql)
-    super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => self.uri}
-    self.children.each do |child|
-    	ref_uri = child.to_sparql_v2(self.uri, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
-    end
-    return self.uri
-  end
+  # def to_sparql_v2(sparql)
+  #   super(sparql, C_SCHEMA_PREFIX)
+  #   subject = {:uri => self.uri}
+  #   self.children.each do |child|
+  #   	ref_uri = child.to_sparql_v2(self.uri, sparql)
+  #   	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
+  #   end
+  #   return self.uri
+  # end
 
 	# From JSON
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModelDomain] the object created
-  def self.from_json(json)
-    object = super(json)
-    json[:children].each { |c| object.children << SdtmModelDomain::Variable.from_json(c) } if !json[:children].blank?
-    return object
-  end
+  # def self.from_json(json)
+  #   object = super(json)
+  #   json[:children].each { |c| object.children << SdtmModelDomain::Variable.from_json(c) } if !json[:children].blank?
+  #   return object
+  # end
 
   # To JSON
   #
   # @return [Hash] the object hash 
-  def to_json
-    json = super
-    json[:children] = []
-    self.children.sort_by! {|u| u.ordinal}
-    self.children.each do |child|
-      json[:children] << child.to_json
-    end
-    return json
-  end
+  # def to_json
+  #   json = super
+  #   json[:children] = []
+  #   self.children.sort_by! {|u| u.ordinal}
+  #   self.children.each do |child|
+  #     json[:children] << child.to_json
+  #   end
+  #   return json
+  # end
 
   def children_from_triples
     self.children = SdtmModelDomain::Variable.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))

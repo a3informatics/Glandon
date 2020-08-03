@@ -1,9 +1,5 @@
 class SdtmIg < Tabular
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   # Attributes
   attr_accessor :domain_refs, :compliance
   
@@ -43,16 +39,16 @@ class SdtmIg < Tabular
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmIgDomain] the domain object.
-  def self.find(id, ns, children=true)
-    uri = UriV3.new(fragment: id, namespace: ns)
-    super(uri.to_id)
-    #object = super(id, ns)
-    #if children
-    #  children_from_triples(object, object.triples, id)
-    #end
-    #object.triples = ""
-    #return object
-  end
+  # def self.find(id, ns, children=true)
+  #   uri = UriV3.new(fragment: id, namespace: ns)
+  #   super(uri.to_id)
+  #   #object = super(id, ns)
+  #   #if children
+  #   #  children_from_triples(object, object.triples, id)
+  #   #end
+  #   #object.triples = ""
+  #   #return object
+  # end
 
   # Find all the IGs.
   #

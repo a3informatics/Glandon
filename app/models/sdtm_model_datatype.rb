@@ -42,30 +42,30 @@ class SdtmModelDatatype < EnumeratedLabel
   # To JSON
   #
   # @return [Hash] The object hash 
-  def to_json
-    json = super
-    return json
-  end
+  # def to_json
+  #   json = super
+  #   return json
+  # end
 
   # From JSON
   #
   # @param json [Hash] The hash of values for the object 
   # @return [SdtmModelDatatype] The object
-  def self.from_json(json)
-    object = super(json)
-    return object
-  end
+  # def self.from_json(json)
+  #   object = super(json)
+  #   return object
+  # end
 
   # To SPARQL
   #
   # @param [UriV2] parent_uri the parent URI
 	# @param [SparqlUpdateV2] sparql the SPARQL object
   # @return [UriV2] The URI
- 	def to_sparql_v2(parent_uri, sparql)
- 		self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{UriV2::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
-    self.namespace = parent_uri.namespace
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    return uri
-  end
+ 	# def to_sparql_v2(parent_uri, sparql)
+ 	# 	self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{UriV2::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
+  #   self.namespace = parent_uri.namespace
+  #   uri = super(sparql, C_SCHEMA_PREFIX)
+  #   return uri
+  # end
 
 end

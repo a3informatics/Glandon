@@ -1,9 +1,5 @@
 class SdtmModel::Variable < Tabular::Column
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   # Attributes
   attr_accessor :name, :prefixed, :description, :datatype, :classification, :sub_classification
   
@@ -79,67 +75,67 @@ class SdtmModel::Variable < Tabular::Column
   # @params namespace [String] the namespace of the item to be found.
   # @raise [NotFoundError] if the object is not found.
   # @return [SdtmModel::Variable] the object found.
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    return object
-  end
+  # def self.find(id, ns, children=true)
+  #   object = super(id, ns)
+  #   if children
+  #     children_from_triples(object, object.triples, id)
+  #   end
+  #   return object
+  # end
   
   # To SPARQL
   #
   # @param [UriV2] parent_uri the parent URI
 	# @param [SparqlUpdateV2] sparql the SPARQL object
 	# @return [UriV2] The URI
-  def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
-    self.namespace = parent_uri.namespace
-    super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => self.uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => "#{self.prefixed}", :primitive_type => "boolean"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
-		sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:uri => self.datatype.uri})
-		if self.sub_classification.nil? 
-			sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.classification.uri})
-		else
-			sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.sub_classification.uri})
-		end
-		return self.uri
-  end
+  # def to_sparql_v2(parent_uri, sparql)
+  #   self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
+  #   self.namespace = parent_uri.namespace
+  #   super(sparql, C_SCHEMA_PREFIX)
+  #   subject = {:uri => self.uri}
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefixed"}, {:literal => "#{self.prefixed}", :primitive_type => "boolean"})
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
+		# sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:uri => self.datatype.uri})
+		# if self.sub_classification.nil? 
+		# 	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.classification.uri})
+		# else
+		# 	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "classifiedAs"}, {:uri => self.sub_classification.uri})
+		# end
+		# return self.uri
+  # end
 
   # To JSON
   #
   # @return [Hash] the object hash.
-  def to_json
-    json = super
-    json[:name] = self.name
-    json[:prefixed] = self.prefixed 
-    json[:description] = self.description
-    json[:datatype] = self.datatype.to_json
-    json[:classification] = self.classification.to_json
-    if !self.sub_classification.nil? 
-      json[:sub_classification] = self.sub_classification.to_json
-    end
-    return json
-  end
+  # def to_json
+  #   json = super
+  #   json[:name] = self.name
+  #   json[:prefixed] = self.prefixed 
+  #   json[:description] = self.description
+  #   json[:datatype] = self.datatype.to_json
+  #   json[:classification] = self.classification.to_json
+  #   if !self.sub_classification.nil? 
+  #     json[:sub_classification] = self.sub_classification.to_json
+  #   end
+  #   return json
+  # end
 
   # From JSON
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModel::Variable] the object created
-  def self.from_json(json)
-    object = super(json)
-    object.name = json[:name]
-    object.prefixed = json[:prefixed]
-    object.description = json[:description]
-    object.datatype = SdtmModelDatatype.from_json(json[:datatype])
-    object.classification = SdtmModelClassification.from_json(json[:classification])
-    object.sub_classification = nil
-    object.sub_classification = SdtmModelClassification.from_json(json[:sub_classification]) if !json[:sub_classification].blank? 
-    return object
-  end
+  # def self.from_json(json)
+  #   object = super(json)
+  #   object.name = json[:name]
+  #   object.prefixed = json[:prefixed]
+  #   object.description = json[:description]
+  #   object.datatype = SdtmModelDatatype.from_json(json[:datatype])
+  #   object.classification = SdtmModelClassification.from_json(json[:classification])
+  #   object.sub_classification = nil
+  #   object.sub_classification = SdtmModelClassification.from_json(json[:sub_classification]) if !json[:sub_classification].blank? 
+  #   return object
+  # end
 
   # Update Datatype. Amend the reference. Done so references are made common
   #

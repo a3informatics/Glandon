@@ -2,10 +2,6 @@ require 'xpt'
 
 class SdtmUserDomain < Tabular
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   attr_accessor :children, :prefix, :structure, :notes, :bc_refs, :model_ref, :ig_ref
 
   # Constants
@@ -51,13 +47,13 @@ class SdtmUserDomain < Tabular
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmUserDomain] the domain object.
-  def self.find(id, ns, children=true)
-    uri = UriV3.new(fragment: id, namespace: ns)
-    super(uri.to_id)
-    #children_from_triples(object, object.triples, id) if children
-    #object.triples = ""
-    #return object
-  end
+  # def self.find(id, ns, children=true)
+  #   uri = UriV3.new(fragment: id, namespace: ns)
+  #   super(uri.to_id)
+  #   #children_from_triples(object, object.triples, id) if children
+  #   #object.triples = ""
+  #   #return object
+  # end
 
   # Find all managed items based on their type.
   #

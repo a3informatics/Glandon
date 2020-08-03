@@ -1,9 +1,5 @@
 class SdtmModel < Tabular
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   # Attributes
   attr_accessor :children, :class_refs, :datatypes, :classifications
   
@@ -46,16 +42,16 @@ class SdtmModel < Tabular
   # @param namespace [String] the namespace of the domain
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmModelDomain] the domain object.
-  def self.find(id, ns, children=true)
-    uri = UriV3.new(fragment: id, namespace: ns)
-    super(uri.to_id)
-    #object = super(id, ns)
-    #if children
-    #  children_from_triples(object, object.triples, id)
-    #end
-    #object.triples = ""
-    #return object
-  end
+  # def self.find(id, ns, children=true)
+  #   uri = UriV3.new(fragment: id, namespace: ns)
+  #   super(uri.to_id)
+  #   #object = super(id, ns)
+  #   #if children
+  #   #  children_from_triples(object, object.triples, id)
+  #   #end
+  #   #object.triples = ""
+  #   #return object
+  # end
 
   # Find all the models
   #
@@ -76,10 +72,10 @@ class SdtmModel < Tabular
   # Find the Model history
   #
   # @return [Array] An array of SdtmModel objects.
-  def self.history
-    @@cdiscNamespace ||= IsoNamespace.find_by_short_name("CDISC")
-    return super({:identifier => C_IDENTIFIER, :scope => @@cdiscNamespace})
-  end
+  # def self.history
+  #   @@cdiscNamespace ||= IsoNamespace.find_by_short_name("CDISC")
+  #   return super({:identifier => C_IDENTIFIER, :scope => @@cdiscNamespace})
+  # end
 
   # Create a new version. This is an import and runs in the background.
   #
@@ -126,18 +122,18 @@ class SdtmModel < Tabular
   # @param [SparqlUpdateV2] sparql the SPARQL object
   # @param [Boolean] refs output the domain references if true, defaults to true
   # @return [UriV2] The URI
-  def to_sparql_v2(sparql, refs=true)
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => uri}
-    self.datatypes.each { |k, dt| dt.to_sparql_v2(uri, sparql) }
-    self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) if c.parent } # Note the if statement. Important only process the parents!
-    self.children.each do |child|
-    	ref_uri = child.to_sparql_v2(uri, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})
-    end
-    domain_refs_to_sparql(sparql) if refs
-    return self.uri
-  end
+  # def to_sparql_v2(sparql, refs=true)
+  #   uri = super(sparql, C_SCHEMA_PREFIX)
+  #   subject = {:uri => uri}
+  #   self.datatypes.each { |k, dt| dt.to_sparql_v2(uri, sparql) }
+  #   self.classifications.each { |k, c| c.to_sparql_v2(uri, sparql) if c.parent } # Note the if statement. Important only process the parents!
+  #   self.children.each do |child|
+  #   	ref_uri = child.to_sparql_v2(uri, sparql)
+  #   	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesVariable"}, {:uri => ref_uri})
+  #   end
+  #   domain_refs_to_sparql(sparql) if refs
+  #   return self.uri
+  # end
 
 	# Refs To SPARQL
   #
@@ -155,32 +151,32 @@ class SdtmModel < Tabular
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModel] the object created
-  def self.from_json(json)
-  	variable_map = {}
-    object = super(json)
-    json[:children].each do |child|
-    	if !json[:children].blank? 
-    		object.children << SdtmModel::Variable.from_json(child) if !variable_map.has_key?(child[:name])
-    		variable_map[child[:name]] = true
-    	end
-    end
-    json[:class_refs].each { |ref| object.class_refs << OperationalReferenceV2.from_json(ref) } if !json[:class_refs].blank?
-    return object
-  end
+  # def self.from_json(json)
+  # 	variable_map = {}
+  #   object = super(json)
+  #   json[:children].each do |child|
+  #   	if !json[:children].blank? 
+  #   		object.children << SdtmModel::Variable.from_json(child) if !variable_map.has_key?(child[:name])
+  #   		variable_map[child[:name]] = true
+  #   	end
+  #   end
+  #   json[:class_refs].each { |ref| object.class_refs << OperationalReferenceV2.from_json(ref) } if !json[:class_refs].blank?
+  #   return object
+  # end
 
-  # To JSON
-  #
-  # @return [Hash] the object hash 
-  def to_json
-    json = super
-    json[:children] = []
-    json[:class_refs] = []
-    self.children.sort_by! {|u| u.ordinal}
-    self.class_refs.sort_by! {|u| u.ordinal}
-    self.children.each { |c| json[:children] << c.to_json }
-    self.class_refs.each { |ref| json[:class_refs] << ref.to_json }
-    return json
-  end
+  # # To JSON
+  # #
+  # # @return [Hash] the object hash 
+  # def to_json
+  #   json = super
+  #   json[:children] = []
+  #   json[:class_refs] = []
+  #   self.children.sort_by! {|u| u.ordinal}
+  #   self.class_refs.sort_by! {|u| u.ordinal}
+  #   self.children.each { |c| json[:children] << c.to_json }
+  #   self.class_refs.each { |ref| json[:class_refs] << ref.to_json }
+  #   return json
+  # end
 
   # Add Domain
   #

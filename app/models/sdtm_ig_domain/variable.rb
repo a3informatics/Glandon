@@ -1,9 +1,5 @@
 class SdtmIgDomain::Variable < Tabular::Column
   
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  
   # Attributes
   attr_accessor :name, :notes, :controlled_term_or_format, :compliance, :variable_ref
 
@@ -79,69 +75,69 @@ class SdtmIgDomain::Variable < Tabular::Column
   # @params namespace [String] the namespace of the item to be found.
   # @raise [NotFoundError] if the object is not found.
   # @return [SdtmIgDomain::Variable] the object found.
-  def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    return object
-  end
+  # def self.find(id, ns, children=true)
+  #   object = super(id, ns)
+  #   if children
+  #     children_from_triples(object, object.triples, id)
+  #   end
+  #   return object
+  # end
 
   # To SPARQL
   #
   # @param [UriV2] parent_uri the parent URI
 	# @param [SparqlUpdateV2] sparql the SPARQL object
 	# @return [UriV2] The URI
-  def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
-    self.namespace = parent_uri.namespace
-    super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => self.uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "controlled_term_or_format"}, {:literal => "#{self.controlled_term_or_format}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
-		sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => self.compliance.uri})
-		ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_VC, 'VR', 1, sparql)
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_VC}, {:uri => ref_uri})
-    return self.uri
-  end
+  # def to_sparql_v2(parent_uri, sparql)
+  #   self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
+  #   self.namespace = parent_uri.namespace
+  #   super(sparql, C_SCHEMA_PREFIX)
+  #   subject = {:uri => self.uri}
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "controlled_term_or_format"}, {:literal => "#{self.controlled_term_or_format}", :primitive_type => "string"})
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
+		# sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => self.compliance.uri})
+		# ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_VC, 'VR', 1, sparql)
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_VC}, {:uri => ref_uri})
+  #   return self.uri
+  # end
 
   # To JSON
   #
   # @return [Hash] the object hash.
-  def to_json
-    json = super
-    json[:name] = self.name
-    #json[:ordinal] = self.ordinal
-    json[:notes] = self.notes
-    json[:controlled_term_or_format] = self.controlled_term_or_format
-    json[:compliance] = self.compliance.to_json
-    if !self.variable_ref.nil? 
-      json[:variable_ref] = self.variable_ref.to_json
-    end
-    return json
-  end
+  # def to_json
+  #   json = super
+  #   json[:name] = self.name
+  #   #json[:ordinal] = self.ordinal
+  #   json[:notes] = self.notes
+  #   json[:controlled_term_or_format] = self.controlled_term_or_format
+  #   json[:compliance] = self.compliance.to_json
+  #   if !self.variable_ref.nil? 
+  #     json[:variable_ref] = self.variable_ref.to_json
+  #   end
+  #   return json
+  # end
 
   # From JSON
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmModel::Variable] the object created
-  def self.from_json(json)
-    object = super(json)
-    object.name = json[:name]
-    object.notes = json[:notes]
-    object.controlled_term_or_format = json[:controlled_term_or_format]
-    object.compliance = SdtmModelCompliance.from_json(json[:compliance])
-    if !json[:variable_ref].blank?
-    	object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
-    else
-    	ConsoleLogger.info(C_CLASS_NAME, "from_json", "Missing variable ref for: #{object.name}.")
-    end
-    return object
-  rescue => e
-  	#byebug
-  	return object
-  end
+  # def self.from_json(json)
+  #   object = super(json)
+  #   object.name = json[:name]
+  #   object.notes = json[:notes]
+  #   object.controlled_term_or_format = json[:controlled_term_or_format]
+  #   object.compliance = SdtmModelCompliance.from_json(json[:compliance])
+  #   if !json[:variable_ref].blank?
+  #   	object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
+  #   else
+  #   	ConsoleLogger.info(C_CLASS_NAME, "from_json", "Missing variable ref for: #{object.name}.")
+  #   end
+  #   return object
+  # rescue => e
+  # 	#byebug
+  # 	return object
+  # end
 
   # Update Compliance. Amend the reference. Done so references are made common
   #

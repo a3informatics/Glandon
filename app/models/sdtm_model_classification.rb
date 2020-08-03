@@ -142,17 +142,17 @@ class SdtmModelClassification < EnumeratedLabel
   # To JSON
   #
   # @return [Hash] The object hash 
-  def to_json
-    return super
-  end
+  # def to_json
+  #   return super
+  # end
 
   # From JSON
   #
   # @param json [Hash] The hash of values for the object 
   # @return [SdtmModelClassification] The object
-  def self.from_json(json)
-    return super(json)
-  end
+  # def self.from_json(json)
+  #   return super(json)
+  # end
 
   # Add Child
   #
@@ -174,18 +174,18 @@ class SdtmModelClassification < EnumeratedLabel
   # @param [UriV2] parent_uri the parent URI
 	# @param [SparqlUpdateV2] sparql the SPARQL object
   # @return [UriV2] The URI
- 	def to_sparql_v2(parent_uri, sparql)
- 		suffix = self.parent ? C_CID_SUFFIX_PARENT : C_CID_PARENT_CHILD 
- 		self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{suffix}#{UriV2::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
-    self.namespace = parent_uri.namespace
-    uri = super(sparql, C_SCHEMA_PREFIX)
-  	subject = {uri: uri}
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "parentClassification "}, {:uri => parent_uri}) if !self.parent
-    self.children.each do |child| 
-    	ref_uri = child.to_sparql_v2(uri, sparql)
-    	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "childClassification "}, {:uri => ref_uri}) 
-    end
-    return uri
-  end
+ 	# def to_sparql_v2(parent_uri, sparql)
+ 	# 	suffix = self.parent ? C_CID_SUFFIX_PARENT : C_CID_PARENT_CHILD 
+ 	# 	self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{suffix}#{UriV2::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
+  #   self.namespace = parent_uri.namespace
+  #   uri = super(sparql, C_SCHEMA_PREFIX)
+  # 	subject = {uri: uri}
+  #   sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "parentClassification "}, {:uri => parent_uri}) if !self.parent
+  #   self.children.each do |child| 
+  #   	ref_uri = child.to_sparql_v2(uri, sparql)
+  #   	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "childClassification "}, {:uri => ref_uri}) 
+  #   end
+  #   return uri
+  # end
 
 end

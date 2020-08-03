@@ -1,8 +1,4 @@
-class EnumeratedLabel < IsoConcept
-  
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
+class EnumeratedLabel < IsoConceptV2
   
   C_CLASS_NAME = "EnumeratedLabel"
 
@@ -14,21 +10,21 @@ class EnumeratedLabel < IsoConcept
   # @param namespace [String] the namespace of the item to be retrieved
   # @raise NotFoundError if the item is not found
   # @result [EnumeratedLabel] the object if found
-  def self.find(id, namespace)
-    object = nil
-    uri = UriV2.new({id: id, namespace: namespace})
-    #ConsoleLogger.debug(C_CLASS_NAME, "find", "URI=#{uri}")
-    uri_s = uri.to_s
-    if @@uri_cache.has_key?(uri_s)
-      object = @@uri_cache[uri_s]
-      #ConsoleLogger.debug(C_CLASS_NAME, "find", "Cached")
-    else
-      object = super(id, namespace)
-      @@uri_cache[object.uri.to_s] = object
-      #ConsoleLogger.debug(C_CLASS_NAME, "find", "Found")
-    end    
-    return object
-  end
+  # def self.find(id, namespace)
+  #   object = nil
+  #   uri = UriV2.new({id: id, namespace: namespace})
+  #   #ConsoleLogger.debug(C_CLASS_NAME, "find", "URI=#{uri}")
+  #   uri_s = uri.to_s
+  #   if @@uri_cache.has_key?(uri_s)
+  #     object = @@uri_cache[uri_s]
+  #     #ConsoleLogger.debug(C_CLASS_NAME, "find", "Cached")
+  #   else
+  #     object = super(id, namespace)
+  #     @@uri_cache[object.uri.to_s] = object
+  #     #ConsoleLogger.debug(C_CLASS_NAME, "find", "Found")
+  #   end    
+  #   return object
+  # end
 
   # Find All entries for a given type within a given schema within a given instance namespace
   #
