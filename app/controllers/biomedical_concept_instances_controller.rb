@@ -31,7 +31,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     if instance.errors.empty?
       AuditTrail.create_item_event(current_user, instance, instance.audit_message(:created))
       path = history_biomedical_concept_instances_path({biomedical_concept_instance: {identifier: instance.scoped_identifier, scope_id: instance.scope.id}})
-      render :json => {data: path}, :status => 200
+      render :json => {data: {history_path: path, id: instance.id}}, :status => 200
     else
       render :json => {errors: instance.errors.full_messages}, :status => 422
     end
@@ -62,7 +62,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   end
 
   def update_property
-    bc = BiomedicalConcept.find_minimum(protect_from_bad_id(params))
+    bc = BiomedicalConcept.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(bc)
     property = bc.update_property(property_params)
     return true if item_errors(property)

@@ -18,6 +18,19 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   validates_with Validator::Field, attribute: :prompt_text, method: :valid_question?
   validates_with Validator::Field, attribute: :format, method: :valid_format?
 
+  # Clone. Clone the property taking care over the reference objects
+  #
+  # @return [BiomedicalConcept::PropertyX] a clone of the object
+  def clone
+    self.has_coded_value_objects
+    object = super
+    object.has_coded_value = []
+    self.has_coded_value.each do |ref|
+      object.has_coded_value << ref.clone
+    end
+    object
+  end
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates

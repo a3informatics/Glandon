@@ -161,7 +161,7 @@ class IsoConceptV2
     def clone_update_and_save(child, params, parent, tx)
       object = child.clone
       object.transaction_set(tx)
-      object.uri = object.create_uri(parent.uri)
+      object.generate_uri(parent.uri) # Generate URI for this object and any children.
       object.update(params) if self.uri == child.uri
       object.save
       object

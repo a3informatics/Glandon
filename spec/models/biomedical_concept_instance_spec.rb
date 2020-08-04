@@ -123,7 +123,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update, no clone, no errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       expect(property.prompt_text).to eq("")
@@ -133,19 +133,23 @@ describe BiomedicalConceptInstance do
       check_file_actual_expected(property.to_h, sub_dir, "update_property_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "update, no clone, no errors, text keys" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+    it "update, clone, no errors" do
+      bc = BiomedicalConceptInstance.create(label: "this is XXX", identifier: "XXX")
+      bc.has_item_push(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1"))
+      bc.save
+      bc = BiomedicalConceptInstance.find_full(bc.uri)
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       expect(property.prompt_text).to eq("")
-      property = instance.update_property({"property_id" => property.id, "prompt_text" => "XXX"})
-      expect(property.errors.count).to eq(0)
-      property = BiomedicalConcept::PropertyX.find(uri)
-      check_file_actual_expected(property.to_h, sub_dir, "update_property_expected_1.yaml", equate_method: :hash_equal)
+      property = bc.update_property({property_id: property.id, prompt_text: "New object and updated text"})
+      expect(bc.errors.count).to eq(0)
+      property = BiomedicalConcept::PropertyX.find(property.uri)
+      check_file_actual_expected(property.to_h, sub_dir, "update_property_expected_5.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "update multiple fields, no clone, no errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       property = instance.update_property({property_id: property.id, prompt_text: "XXX", question_text: "YYY", format: "12"})
@@ -155,14 +159,14 @@ describe BiomedicalConceptInstance do
     end
 
     it "update, errors, field disallowed" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       expect{instance.update_property({property_id: property.id, label: "ZZZ"})}.to raise_error(Errors::ApplicationLogicError, "No matching property for 'label' found.")
     end
 
     it "update multiple fields, item, no clone, no errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri_p = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       uri_i = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1")
       property = BiomedicalConcept::PropertyX.find(uri_p)
@@ -172,7 +176,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update multiple fields, item, no clone, no errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri_p = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       uri_i = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1")
       property = BiomedicalConcept::PropertyX.find(uri_p)
@@ -182,7 +186,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update property, validation errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
       property = instance.update_property({property_id: property.id, question_text: "ZZZ±"})
@@ -191,7 +195,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update item, validation errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       uri_i = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1")
       property = BiomedicalConcept::PropertyX.find(uri)
@@ -201,7 +205,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update multiple, errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri_p = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       uri_i = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1")
       property = BiomedicalConcept::PropertyX.find(uri_p)
@@ -209,7 +213,7 @@ describe BiomedicalConceptInstance do
     end
 
     it "update, empty parameters, errors" do
-      instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri_p = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       uri_i = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1")
       property = BiomedicalConcept::PropertyX.find(uri_p)
