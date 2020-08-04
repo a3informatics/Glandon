@@ -129,7 +129,7 @@ describe BiomedicalConceptInstancesController do
       template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
       post :create_from_template, params:{biomedical_concept_instance: {identifier: "NEW1", label: "something", template_id: template.id}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "create_from_template_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "create_from_template_expected_1.yaml", equate_method: :hash_equal)
     end
     
     it "creates from a template, error" do
