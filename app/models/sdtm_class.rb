@@ -1,6 +1,6 @@
 class SdtmClass < Tabular
 
-  configure rdf_type: "http://www.assero.co.uk/BusinessDomain#ClassDomain",
+  configure rdf_type: "http://www.assero.co.uk/BusinessDomain#ClassDomain"
   
   #attr_accessor :children
 
