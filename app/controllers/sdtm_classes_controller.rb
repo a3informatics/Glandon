@@ -1,10 +1,10 @@
 require 'controller_helpers.rb'
 
-class SdtmModelDomainsController < ManagedItemsController
+class SdtmClassesController < ManagedItemsController
   
   before_action :authenticate_and_authorized
   
-  C_CLASS_NAME = "SdtmModelDomainsController"
+  C_CLASS_NAME = "SdtmClassesController"
 
   include ControllerHelpers
 
@@ -17,14 +17,14 @@ class SdtmModelDomainsController < ManagedItemsController
   end
 
   def show
-    @sdtm_model_domain = SdtmModelDomain.find_minimum(protect_from_bad_id(params))
-    @show_path = show_data_sdtm_model_domain_path(@sdtm_model_domain)
-    @close_path = history_sdtm_model_domains_path(:sdtm_model_domain => {identifier: @sdtm_model_domain.has_identifier.identifier, scope_id: @sdtm_model_domain.scope})
+    @sdtm_class = SdtmClass.find_minimum(protect_from_bad_id(params))
+    @show_path = show_data_sdtm_class_path(@sdtm_class)
+    @close_path = history_sdtm_classes_path(:sdtm_class => {identifier: @sdtm_class.has_identifier.identifier, scope_id: @sdtm_class.scope})
   end
 
   def show_data
-    @sdtm_model_domain = SdtmModelDomain.find_minimum(protect_from_bad_id(params))
-    items = @sdtm_model_domain.get_items
+    @sdtm_class = SdtmClass.find_minimum(protect_from_bad_id(params))
+    items = @sdtm_class.get_items
     # items = items.each_with_index do |item, index|
     #   item[:order_index] = index + 1
     #   item[:has_coded_value].each do |cv|
@@ -62,14 +62,14 @@ class SdtmModelDomainsController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_model_domain).permit(:identifier, :scope_id)
+    params.require(:sdtm_class).permit(:identifier, :scope_id)
   end
 
   # Path for given action
   def path_for(action, object)
     case action
       when :show
-        return sdtm_model_domain_path(object)
+        return sdtm_class_path(object)
       when :edit
         return ""
       else
@@ -78,15 +78,15 @@ private
   end
 
   def model_klass
-    SdtmModelDomain
+    SdtmClass
   end
 
   def history_path_for(identifier, scope_id)
-    return {history_path: history_sdtm_model_domains_path({sdtm_model_domain:{identifier: identifier, scope_id: scope_id}})} 
+    return {history_path: history_sdtm_classes_path({sdtm_class:{identifier: identifier, scope_id: scope_id}})} 
   end
 
   def close_path_for
-    sdtm_model_domains_path
+    sdtm_classes_path
   end         
   
 end
