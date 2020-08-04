@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SdtmModelDomainsController do
+describe SdtmClassesController do
 
   include DataHelpers
   include PauseHelpers
@@ -26,15 +26,15 @@ describe SdtmModelDomainsController do
     end
 
     # it "show" do
-    #   sdtm_model_domain = SdtmModelDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
-    #   get :show, params: { :id => sdtm_model_domain.id}
+    #   sdtm_class = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
+    #   get :show, params: { :id => sdtm_class.id}
     #   expect(response).to render_template("show")
     # end
 
     # it "show results" do
-    #   sdtm_model_domain = SdtmModelDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
+    #   sdtm_class = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
     #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   get :show_data, params:{id: sdtm_model_domain.id}
+    #   get :show_data, params:{id: sdtm_class.id}
     #   expect(response.content_type).to eq("application/json")
     #   expect(response.code).to eq("200")
     #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -42,10 +42,10 @@ describe SdtmModelDomainsController do
     # end
 
     # it "shows the history, page" do
-    #   sdtm_model_domain = SdtmModelDomain.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
+    #   sdtm_class = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN"))
     #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   expect(SdtmModelDomain).to receive(:history_pagination).with({identifier: sdtm_model_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([sdtm_model_domain])
-    #   get :history, params:{sdtm_model_domain: {identifier: form.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
+    #   expect(SdtmClass).to receive(:history_pagination).with({identifier: sdtm_class.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([sdtm_class])
+    #   get :history, params:{sdtm_class: {identifier: sdtm_class.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
     #   expect(response.content_type).to eq("application/json")
     #   expect(response.code).to eq("200")
     #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -54,8 +54,8 @@ describe SdtmModelDomainsController do
 
     # it "shows the history, initial view" do
     #   params = {}
-    #   expect(SdtmModelDomain).to receive(:latest).and_return(SdtmModelDomain.new)
-    #   get :history, params:{sdtm_model_domain: {identifier: "SDTMMODEL TRIAL DESIGN", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
+    #   expect(SdtmClass).to receive(:latest).and_return(SdtmClass.new)
+    #   get :history, params:{sdtm_class: {identifier: "SDTMMODEL TRIAL DESIGN", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
     #   expect(assigns(:identifier)).to eq("SDTMMODEL TRIAL DESIGN")
     #   expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
     #   expect(response).to render_template("history")
