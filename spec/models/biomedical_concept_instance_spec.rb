@@ -145,7 +145,7 @@ describe BiomedicalConceptInstance do
       property = bc.update_property({property_id: property.id, prompt_text: "New object and updated text"})
       expect(bc.errors.count).to eq(0)
       property = BiomedicalConcept::PropertyX.find(property.uri)
-      check_file_actual_expected(property.to_h, sub_dir, "update_property_expected_5.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(property.to_h, sub_dir, "update_property_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "update multiple fields, no clone, no errors" do
