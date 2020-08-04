@@ -69,6 +69,24 @@ describe BiomedicalConcept::PropertyX do
 
   end
 
+  describe "Clones" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      @property = BiomedicalConcept::PropertyX.find(@uri_p)
+    end
+
+    it "clones object including reference" do
+      result = @property.clone
+      check_file_actual_expected(result.to_h, sub_dir, "clone_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Ancestors" do
 
     before :each do
@@ -119,11 +137,13 @@ describe BiomedicalConcept::PropertyX do
       results = @property.update_with_clone({label: "all nodes should change"}, bc)
       bc = BiomedicalConceptInstance.find_full(bc.uri)
       ma = BiomedicalConceptInstance.find_full(ma.uri)
-      triple_store.subject_triples(ma.uri, true)
-      triple_store.subject_triples(bc.uri, true)
-      triple_store.subject_triples(bc.has_item.first.uri, true)
-      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.uri, true)
-      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.has_property.first.uri, true)
+      # Useful debugging, set the flag to true for output to console.
+      triple_store.subject_triples(ma.uri, false)
+      triple_store.subject_triples(bc.uri, false)
+      triple_store.subject_triples(bc.has_item.first.uri, false)
+      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.uri, false)
+      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.has_property.first.uri, false)
+      triple_store.subject_triples(bc.has_item.first.has_complex_datatype.first.has_property.first.has_coded_value.first.uri, false)
       check_file_actual_expected(ma.to_h, sub_dir, "update_with_clone_2b.yaml", equate_method: :hash_equal)
       check_dates(bc, sub_dir, "update_with_clone_2a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(bc.to_h, sub_dir, "update_with_clone_2a.yaml", equate_method: :hash_equal)
