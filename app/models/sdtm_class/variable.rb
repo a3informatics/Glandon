@@ -1,16 +1,16 @@
-class SdtmModelDomain::Variable < Tabular::Column
+class SdtmClass::Variable < Tabular::Column
   
   # Attributes
-  attr_accessor :name, :variable_ref
+  #attr_accessor :name, :variable_ref
 
   # Constants
-  C_SCHEMA_PREFIX = SdtmModelDomain::C_SCHEMA_PREFIX
-  C_INSTANCE_PREFIX = SdtmModelDomain::C_INSTANCE_PREFIX
-  C_CLASS_NAME = "SDTMModelDomain::Variable"
-  C_CID_PREFIX = SdtmModel::C_CID_PREFIX
-  C_RDF_TYPE = "ClassVariable"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  # C_SCHEMA_PREFIX = SdtmModelDomain::C_SCHEMA_PREFIX
+  # C_INSTANCE_PREFIX = SdtmModelDomain::C_INSTANCE_PREFIX
+  # C_CLASS_NAME = "SDTMModelDomain::Variable"
+  # C_CID_PREFIX = SdtmModel::C_CID_PREFIX
+  # C_RDF_TYPE = "ClassVariable"
+  # C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  # C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   
   # Initialize
   #
