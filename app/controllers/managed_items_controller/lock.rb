@@ -57,6 +57,13 @@ class ManagedItemsController
       @user
     end
 
+    # First Update. First time the item is being updated this lock?
+    #
+    # @return [Boolean] true if the first update, false otherwise
+    def first_update?
+      @token.refresh == 1  
+    end
+
     # Release And Get. Release the lock and lock the new item
     #
     # @param object [Object] The managed item object

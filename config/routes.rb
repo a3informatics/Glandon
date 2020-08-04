@@ -361,6 +361,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :edit_data
+      post :update_property
     end
     collection do
       get :history

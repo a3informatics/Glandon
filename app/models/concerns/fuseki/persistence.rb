@@ -327,11 +327,15 @@ module Fuseki
     alias :my_type :find_rdf_type
     alias :true_type :find_rdf_type
 
-    # Transaction Begin. Begin a transaction. if one already is in progress it will be used
+    # Transaction Begin. Begin a transaction. If one already is in progress it will be used or can be set
+    #   via the params parameter.
     #
+    # @params [Hash] params a hash of parameters
+    # @option transaction [Sparql::Transaction] a transaction object if already created. Need not be present.
     # @return [Sparql::Transaction] the transaction instance
-    def transaction_begin
-      @transaction ||= Sparql::Transaction.new
+    def transaction_begin(params={})
+      @transaction = Sparql::Transaction.new if !params.key?(:transaction) && @transaction.nil?
+      @transaction = params[:transaction] if params.key?(:transaction) && @transaction.nil?
       @transaction.register(self)
       @transaction
     end

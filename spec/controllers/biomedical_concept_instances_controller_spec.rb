@@ -185,6 +185,8 @@ describe BiomedicalConceptInstancesController do
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       get :edit, params:{id: instance.id}
       actual = check_good_json_response(response)
+      expect(actual[:token_id]).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                            # So, fix for file compare
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -242,7 +244,75 @@ describe BiomedicalConceptInstancesController do
 
   end
 
-  describe "Unauthorized User" do
+  describe "update property actions" do
+    
+    login_curator
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..62) # A bit naughty but quicker. Some references will be unresolved.
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      @property = BiomedicalConcept::PropertyX.find(uri)
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it 'update property' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      audit_count = AuditTrail.count
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {question_text: "something", property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_property_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'update property, second update so no audit' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      audit_count = AuditTrail.count
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {question_text: "something", property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {question_text: "something else", property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_property_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it 'update property, locked by another user' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @lock_user)
+      audit_count = AuditTrail.count
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {question_text: "something", property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count)
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_property_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it 'update property, errors' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      audit_count = AuditTrail.count
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {question_text: "something±±±", property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count)
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_property_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Reader User Access" do
 
     login_reader
 
@@ -258,6 +328,34 @@ describe BiomedicalConceptInstancesController do
     it "prevents access to a reader, destroy" do
       delete :destroy, params:{id: 10} # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, update property" do
+      post :update_property, params:{id: 10} # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/")
+    end
+
+  end
+
+  describe "Unauthorised User" do
+
+    before :all do
+      load_files(schema_files, [])
+    end
+
+    it "prevents access, edit" do
+      get :edit, params:{id: 1} # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "prevents access, destroy" do
+      delete :destroy, params:{id: 10} # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "prevents access, update property" do
+      post :update_property, params:{id: 10} # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/users/sign_in")
     end
 
   end
