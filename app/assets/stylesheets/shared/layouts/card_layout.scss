@@ -57,19 +57,19 @@
 
 // Card Colored Borders
 
-div.warning {
+div.warning:not(.no-border) {
   border: 2px solid $accent-color-1 !important;
 }
 
-div.danger{
+div.danger:not(.no-border) {
   border: 2px solid $accent-color-2 !important;
 }
 
-div.info{
+div.info:not(.no-border) {
   border: 2px solid $primary-color-bright !important;
 }
 
-.card.danger, .card.warning, .card.info {
+.card.danger:not(.no-border), .card.warning:not(.no-border), .card.info:not(.no-border) {
   border-width: 5px;
 }
 

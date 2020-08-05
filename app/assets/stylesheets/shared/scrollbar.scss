@@ -3,14 +3,22 @@
 .horizontal-scrollview {
   display: inline-flex;
   overflow-x: auto;
+  overflow-y: hidden;
   margin: 0px 10px;
-  padding: 10px 0px;
+  padding: 10px 6px;
   flex-wrap: nowrap;
-  max-width: calc(100% - 20px);
+  width: calc(100% - 20px);
+  min-height: 80px;
+  position: relative;
 }
 
 .horizontal-scrollview > :nth-child(n):not(:last-child) {
   margin-right: 20px;
+}
+
+.horizontal-scrollview .spinner-container {
+  position: absolute;
+  max-width: calc(100% - 12px);
 }
 
 // Scrollbar style

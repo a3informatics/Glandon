@@ -13,13 +13,18 @@
 }
 
 .card.mini .card-content {
-  padding: 16px 24px;
+  padding: 16px 24px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.card.mini.clickable:hover {
+.card.mini.disabled {
+  opacity: .7;
+  pointer-events: none;
+}
+
+.card.mini:focus-within{
   border-color: $primary-color-brightest;
 }
 
@@ -27,19 +32,19 @@
   border-color: $primary-color-bright;
 }
 
-.card.mini .mc-section {
+.card.mini .section {
   display: flex;
 }
 
-.card.mini .mc-section.primary {
+.card.mini .section.primary {
   flex-direction: column;
 }
 
-.card.mini .mc-section.secondary {
+.card.mini .section.secondary {
   margin-left: 16px;
 }
 
-.card.mini .mc-section.secondary > :last-child {
+.card.mini .section.secondary > :last-child {
   margin-right: 0;
 }
 

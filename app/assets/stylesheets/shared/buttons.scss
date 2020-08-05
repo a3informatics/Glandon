@@ -294,6 +294,10 @@
   margin-left: 6px;
 }
 
+.ico-btn-sec .ico-btn-sec-text:empty{
+  display: none;
+}
+
 .ico-btn-sec .circular-badge{
   background: $accent-color-2;
   color: $grey-white;
@@ -334,9 +338,9 @@
   background: $secondary-color-bright;
 }
 
-.ico-btn-sec.token-timeout:active .circular-badge {
-  background: $secondary-color-medium !important;
-}
+// .ico-btn-sec.token-timeout:active .circular-badge {
+//   background: $secondary-color-medium !important;
+// }
 
 .ico-btn-sec.token-timeout.disabled .circular-badge {
   background: $grey-light;
