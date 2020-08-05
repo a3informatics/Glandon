@@ -1,7 +1,5 @@
 class Tabular::Column < IsoConceptV2
-  
-  # Attributes
-  #attr_accessor :rule, :ordinal
+
   data_property :rule
   data_property :ordinal, default: 1
   

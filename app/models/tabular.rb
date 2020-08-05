@@ -1,18 +1,11 @@
-# Handles a tabular structure as a managed item. Note that the class should never
-#  be used directly, it needs to be configured with several constants from the sub-class
+# Tabular
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-# @!attribute rule
-#   @return [String] any rule for the tabular structure.
-# @!attribute identifier
-#   @return [String] the identifier for the managed item
-# @!attribute cid_prefix
-#   @return [String] the CID prefix used in constructing instance URIs
 class Tabular < IsoManagedV2
-  
-  # Attributes
-  #attr_accessor :rule, :ordinal
+
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#Tabulation",
+            uri_suffix: "T"
 
   data_property :rule
   data_property :ordinal, default: 1
