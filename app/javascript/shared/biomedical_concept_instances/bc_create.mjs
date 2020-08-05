@@ -72,7 +72,7 @@ export default class CreateBCView extends ModalView {
         errorDiv: this.modal.find('#new-bc-error'),
         done: (result) => {
           this.onCreated(result);
-          this.dismiss();
+          this.hide();
         },
         always: () => this._loading(false)
       })
@@ -149,7 +149,7 @@ export default class CreateBCView extends ModalView {
    */
   _defaultOnCreated(result) {
     if (result)
-      location.href = result;
+      location.href = result.history_path;
     else
       location.reload();
   }

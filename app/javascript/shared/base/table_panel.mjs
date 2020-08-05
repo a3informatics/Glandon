@@ -1,4 +1,5 @@
 import { $getPaginated, $get } from 'shared/helpers/ajax';
+import { renderSpinner } from 'shared/ui/spinners'
 
 /**
  * Base Table Panel
@@ -129,7 +130,7 @@ export default class TablePanel {
   /**
    * Finds DT Row instance in which data property equals to the provided value
    * @param {string} propertyName name of the property in row's data object to serach by (e.g. 'id')
-   * @param {?} value value to compare the data property by 
+   * @param {?} value value to compare the data property by
    * @return {Object} DT Row instance
    */
   _getRowFromData(propertyName, value) {
@@ -207,7 +208,7 @@ export default class TablePanel {
       language: {
         infoFiltered: "",
         emptyTable: "No data.",
-        processing: generateSpinner("small")
+        processing: renderSpinner('small')
       },
       buttons: this.buttons
     }

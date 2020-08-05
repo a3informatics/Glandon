@@ -21,6 +21,7 @@ export default class EditablePanel extends TablePanel {
    * @param {string} params.idSrc Data ID source for the editor, default = "id"
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
+   * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    */
   constructor({
     selector,
@@ -32,9 +33,10 @@ export default class EditablePanel extends TablePanel {
     fields = [],
     idSrc = "id",
     deferLoading = false,
-    cache = true
+    cache = true,
+    loadCallback = () => {}
   }) {
-    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache },
+    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback },
           { updateUrl, fields, idSrc });
   }
 
@@ -74,7 +76,28 @@ export default class EditablePanel extends TablePanel {
     this._onEdited();
   }
 
+  /**
+   * Set a new data url to the instance
+   * @param {string} newUrl new data url
+   */
+  setDataUrl(newUrl) {
+    this.url = newUrl;
+  }
+
+  /**
+   * Set a new update url to the instance, updates editor's ajax config
+   * @param {string} newUrl new update data url
+   */
+  setUpdateUrl(newUrl) {
+    this.updateUrl = newUrl;
+    this.editor.ajax({
+      edit: { type: 'PUT', url: this.updateUrl }
+    });
+  }
+
+
   /** Private **/
+  
 
   /**
    * Sets event listeners, handlers
