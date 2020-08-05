@@ -361,7 +361,7 @@ Rails.application.routes.draw do
     member do
       get :show_data
       get :edit_data
-      post :update_property
+      put :update_property
     end
     collection do
       get :history
@@ -474,5 +474,5 @@ Rails.application.routes.draw do
       get :export_ttl
     end
   end
-  
+
 end
