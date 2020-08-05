@@ -1,6 +1,7 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn, dtVersionColumn } from 'shared/helpers/dt/dt_columns'
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
+import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
+         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * Column definitions for an Index panel
@@ -45,22 +46,45 @@ function dtSimpleHistoryColumns() {
  */
 function dtCLEditColumns() {
   return [
-    { data: "identifier" },
-    dtInlineEditColumn("notation", "notation", "16%"),
-    dtInlineEditColumn("preferred_term", "preferred_term", "18%"),
-    dtInlineEditColumn("synonym", "synonym", "18%"),
-    dtInlineEditColumn("definition", "definition", "40%"),
-    dtTagsColumn("8%", 'editable edit-tags'),
+    { data: 'identifier' },
+    dtInlineEditColumn('notation', '', '16%'),
+    dtInlineEditColumn('preferred_term', '', '18%'),
+    dtInlineEditColumn('synonym', '', '18%'),
+    dtInlineEditColumn('definition', '', '40%'),
+    dtTagsColumn('8%', 'editable external edit-tags'),
     dtIndicatorsColumn(),
     {
-      className: "fit",
+      className: 'fit',
       render: (data, type, r, m) => {
         // const editingDisabled = _.isEmpty(r.edit_path);
         // iconsInline.editIcon({ disabled: editingDisabled })
-        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: "Remove / unlink item" });
+        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: 'Remove / unlink item' });
 
         return type === 'display' ? actionIcons : '';
       }
+    }
+  ];
+};
+
+/**
+ * Column definitions for Biomedical Concept Instance show
+ * @return {Array} DataTables Biomedical Concept Instance show column definitions collection
+ */
+function dtBCEditColumns() {
+  return [
+    dtTrueFalseEditColumn('enabled'),
+    dtTrueFalseEditColumn('collect'),
+    { data: 'has_complex_datatype.has_property.label' },
+    dtInlineEditColumn('has_complex_datatype.has_property.question_text', '', '25%'),
+    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', '', '25%'),
+    { data: "has_complex_datatype.label" },
+    dtInlineEditColumn('has_complex_datatype.has_property.format', ''),
+    {
+      className: 'editable inline pickable termPicker',
+      data: 'has_complex_datatype.has_property.has_coded_value',
+      width: '30%',
+      editField: 'has_complex_datatype.has_property.has_coded_value',
+      render: (data, type, r, m) => termReferences(data, type)
     }
   ];
 };
@@ -115,5 +139,6 @@ export {
   dtSimpleHistoryColumns,
   dtCLEditColumns,
   dtBCShowColumns,
+  dtBCEditColumns,
   dtFormShowColumns
 }
