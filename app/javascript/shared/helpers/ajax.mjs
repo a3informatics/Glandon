@@ -76,7 +76,7 @@ function $getPaginated(offset = 0, params = {}) {
   .done((result) => {
     // One 'page' of data loaded
     params.pageDone(result.data);
-    
+
     if (_.isNumber(result.count) && _.isNumber(result.offset) && result.count >= params.count)
       $getPaginated(result.offset + params.count, params);
     else
@@ -100,8 +100,9 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
  * @param {boolean} params.cache Optional cache option
  * @param {JQuery Element} params.errorDiv Div to display errors in, optional
+ * @param {boolean} params.rawResult Set to true to return the raw result to the done callback. Otherwise result.data will be returned. Optional [default=false]
  */
-function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, error = handleAjaxError, cache = true, errorDiv = null }) {
+function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {}, error = handleAjaxError, cache = true, errorDiv = null, rawResult = false }) {
   $.ajax({
     url: _jsonizeUrl(url),
     type: type,
@@ -109,7 +110,7 @@ function _simpleAjax({ url, type, data = {}, done = () => {}, always = () => {},
     data: data,
     cache: cache,
   })
-  .done((result) => done(result.data || result))
+  .done((result) => done( rawResult ? result : (result.data || result) ))
   .fail((x, s, e) => error(x, s, e, errorDiv))
   .always(() => always());
 }
