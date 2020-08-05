@@ -1,3 +1,5 @@
+import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
+
 /**
  * Tabs Layout
  * @description Allows swapping tabs in mulitple tab layouts
@@ -38,9 +40,9 @@ export default class TabsLayout {
     tab.toggleClass('processing', enable);
 
     if (enable)
-      spinnerInElement(tab, 'small');
+      renderSpinnerIn$(tab, 'small');
     else
-      removeSpinnerInElement(tab);
+      removeSpinnerFrom$(tab);
   }
 
   /**

@@ -7,18 +7,22 @@ const icons = {
   /**
    * Returns HTML for an true/false icon
    * @param {boolean} value type of icon to be returned
+   * @param {string} cssClasses custom css classes, optional
+   * @param {boolean} focusable set to true to include tabindex in icon  
    * @return {string} formatted icon HTML
    */
-  checkMarkIcon(value) {
+  checkMarkIcon(value, cssClasses = '', focusable = false ) {
     if (value)
       return _renderIcon({
         iconName: 'sel-filled text-normal',
-        cssClasses: 'text-link'
+        cssClasses: cssClasses || 'text-link',
+        focusable
       });
     else
       return _renderIcon({
         iconName: 'times-circle text-normal',
-        cssClasses: 'text-accent-2'
+        cssClasses: cssClasses || 'text-accent-2',
+       focusable
       });
   }
 }
@@ -187,9 +191,10 @@ function _renderIcon({
   ttip = false,
   ttipText,
   ttipClasses = "",
-  style = ""
+  style = "",
+  focusable = false
 }) {
-  return `<span class='icon-${iconName} ${cssClasses} ${ttip ? 'ttip' : ''}' style='${style}'>` +
+  return `<span class='icon-${iconName} ${cssClasses} ${ttip ? 'ttip' : ''}' style='${style}' ${focusable ? "tabindex='1'" : ""}>` +
             (ttip ? `<span class='ttip-text shadow-small text-medium ${ttipClasses}'> ${ttipText} </span>` : '') +
          `</span>`;
 }
