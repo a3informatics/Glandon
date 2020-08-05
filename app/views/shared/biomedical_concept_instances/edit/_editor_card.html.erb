@@ -1,0 +1,19 @@
+<div class="col-md-12 card">
+  <div class="card-header">
+    Biomedical Concept Editor
+  </div>
+  <div class="card-content">
+
+    <div class="btns-wrap">
+      <a href="#" class="btn medium white ttip" id="refresh-bc-editor">
+        <span class="ttip-text shadow-small text-medium">Refresh BC data in the Editor</span>
+        <span class="icon-history"></span> Reload data
+      </a>
+    </div>
+
+    <%= render partial: "shared/biomedical_concept_instances/show_panel", locals: { id: "editor" } %>
+
+  </div>
+</div>
+
+<%= render partial: "shared/items_picker/items_picker", locals: { id: "bc-term-ref" } %>

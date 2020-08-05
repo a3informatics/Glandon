@@ -1,41 +1,32 @@
 <%= javascript_tag "setPageTitle('Edit: #{@bc.has_identifier.identifier} (#{@bc.semantic_version})')"%>
-<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
 
 <%= javascript_pack_tag 'biomedical_concept_instances/edit' %>
 
+<%= javascript_tag "let bcEditDataUrl = '#{edit_data_biomedical_concept_instance_path(id: "bcID")}',
+                        bcUpdateUrl = '#{update_property_biomedical_concept_instance_path(id: "bcID")}',
+                        bcEditUrl = '#{edit_biomedical_concept_instance_path(id: "bcID")}',
+                        baseBCId = '#{@bc.id}',
+                        tokenWarningTime = #{current_user.edit_lock_warning};" %>
+
+<%= stylesheet_link_tag "shared/tables_editable" %>
+
+<% third_level_breadcrumb(:biomedical_concept_instances, @bc, @close_path) %>
+
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @bc, :badge => "icon-biocon"} do %>
+
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
+    
   <% end %>
 </div>
 
 <div class="row">
-
-	<div class="col-md-12 card">
-		<div class="card-content">
-
-			<div class="btns-wrap" id="edit-bc-actions">
-        <a href="#" class="btn medium white ttip" id="add-bc-edit-button" data-toggle="modal">
-          <span class="ttip-text shadow-small text-medium">Start editing another Biomedical Concept</span>
-          <span class="icon-edit"></span> Add a BC to Editor
-        </a>
-				<a href="#new-bc-modal" class="btn medium green ttip" id="new-bc-button" data-toggle="modal">
-					<span class="ttip-text shadow-small text-medium">Create a new Biomedical Concept instance</span>
-					<span class="icon-plus text-tiny"></span> Create a new BC
-				</a>
-        <span id="editor-help" class="icon-help text-small text-light clickable ttip" style="margin-left: 5px;">
-          <span class="ttip-text shadow-small font-light text-medium"> Editor Help </span>
-        </span>
-      </div>
-
-			<br>
-
-		</div>
-	</div>
-
+  <%= render partial: "shared/biomedical_concept_instances/edit/manager_card" %>
 </div>
 
-<%= render partial: "shared/biomedical_concept_instances/create_view" %>
+<div class="row">
+	<%= render partial: "shared/biomedical_concept_instances/edit/editor_card" %>
+</div>
