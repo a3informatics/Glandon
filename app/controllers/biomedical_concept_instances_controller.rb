@@ -43,14 +43,13 @@ class BiomedicalConceptInstancesController < ManagedItemsController
       format.html do
         return true unless edit_lock(@bc)
         @bc = @edit.item
-        @data_path = show_data_biomedical_concept_instance_path(@bc)
         @close_path = history_biomedical_concept_instances_path({ biomedical_concept_instance:
             { identifier: @bc.scoped_identifier, scope_id: @bc.scope } })
       end
       format.json do
         return true unless edit_lock(@bc)
         @bc = @edit.item
-        render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200 
+        render :json => {data: @bc.to_h, token_id: @edit.token.id}, :status => 200
       end
     end
   end
@@ -58,7 +57,7 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   def edit_data
     bc = BiomedicalConcept.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(bc)
-    render :json => {data: bc_properties_with_paths(bc)}, :status => 200 
+    render :json => {data: bc_properties_with_paths(bc)}, :status => 200
   end
 
   def update_property
@@ -66,8 +65,8 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     return true unless check_lock_for_item(bc)
     property = bc.update_property(property_params)
     return true if item_errors(property)
-    AuditTrail.update_item_event(current_user, bc, bc.audit_message(:updated)) if @lock.first_update? 
-    render :json => {data: bc_properties_with_paths(bc)}, :status => 200 
+    AuditTrail.update_item_event(current_user, bc, bc.audit_message(:updated)) if @lock.first_update?
+    render :json => {data: bc_properties_with_paths(bc)}, :status => 200
   end
 
   def destroy
@@ -104,7 +103,7 @@ private
   # Strong parameters, property update
   def property_params
     params.require(:biomedical_concept_instance).permit(:property_id, :collect, :enabled, :question_text, :prompt_text, :format, :has_coded_value => [])
-  end    
+  end
 
   # Get the template id from the params
   def template_id
@@ -123,7 +122,7 @@ private
     end
   end
 
-  # Model class 
+  # Model class
   def model_klass
     BiomedicalConceptInstance
   end
