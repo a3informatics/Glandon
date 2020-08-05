@@ -4,7 +4,7 @@ import { $post, $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 
 import { dtCLEditColumns } from 'shared/helpers/dt/dt_column_collections'
-import { dtCLEditFields } from 'shared/helpers/dt/dt_fields'
+import { dtCLEditFields } from 'shared/helpers/dt/dt_field_collections'
 
 /**
  * Code List Editor
