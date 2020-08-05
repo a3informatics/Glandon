@@ -1,0 +1,26 @@
+<%= javascript_tag 'setPageTitle("Show SDTM Class: '+@sdtm_class.has_identifier.identifier+' ('+@sdtm_class.semantic_version+')")' %>
+
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_pack_tag 'sdtm_classes/show' %>
+
+<% third_level_breadcrumb(:sdtm_classes, @sdtm_class, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @sdtm_class, :badge => "icon-sdtm"} do %>
+    <div class="abcions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: SDTM Class
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/sdtm_classes/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>
