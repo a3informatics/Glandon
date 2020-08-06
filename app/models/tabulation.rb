@@ -1,14 +1,17 @@
-# Tabular
+# Tabulation
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Tabular < IsoManagedV2
+class Tabulation < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Tabulation#Tabulation",
             uri_suffix: "T"
 
   data_property :rule
   data_property :ordinal, default: 1
+
+  object_property :includesColumn, cardinality: :many, model_class: "Tabulation::Column"
+
   
   # Constants
   # C_CLASS_NAME = self.name

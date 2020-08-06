@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Tabular do
+describe Tabulation do
 
   include DataHelpers
   include SparqlHelpers
 
   def sub_dir
-    return "models/tabular"
+    return "models/tabulation"
   end
 
   class TabularSubClass < Tabular
