@@ -8,6 +8,7 @@ require 'controller_helpers'
 class Thesauri::ManagedConceptsController < ManagedItemsController
 
   include ControllerHelpers
+  include DatatablesHelpers
 
   before_action :authenticate_user!
 
@@ -120,11 +121,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
         result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
         render :json => {data: [result]}, :status => 200
       else
-        errors = []
-        tc.errors.each do |name, msg|
-          errors << {name: name, status: msg}
-        end
-        render :json => {fieldErrors: errors}, :status => 200
+        render :json => {fieldErrors: format_editor_errors(tc.errors)}, :status => 200
       end
     else
       flash[:error] = token_timeout_message

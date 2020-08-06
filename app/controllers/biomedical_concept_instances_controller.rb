@@ -3,6 +3,7 @@ require 'controller_helpers.rb'
 class BiomedicalConceptInstancesController < ManagedItemsController
 
   include ControllerHelpers
+  include DatatablesHelpers
 
   before_action :authenticate_and_authorized
 
@@ -64,9 +65,13 @@ class BiomedicalConceptInstancesController < ManagedItemsController
     bc = BiomedicalConcept.find_full(protect_from_bad_id(params))
     return true unless check_lock_for_item(bc)
     property = bc.update_property(property_params)
-    return true if item_errors(property)
-    AuditTrail.update_item_event(current_user, bc, bc.audit_message(:updated)) if @lock.first_update?
-    render :json => {data: bc_properties_with_paths(bc)}, :status => 200
+    if property.errors.empty?
+      AuditTrail.update_item_event(current_user, bc, bc.audit_message(:updated)) if @lock.first_update?
+      render :json => {data: bc_properties_with_paths(bc)}, :status => 200
+    else
+      prefix_property_errors(property, "has_complex_datatype.has_property")
+      render :json => {:fieldErrors => format_editor_errors(property.errors)}, :status => 200
+    end
   end
 
   def destroy
@@ -79,6 +84,16 @@ class BiomedicalConceptInstancesController < ManagedItemsController
   end
 
 private
+
+  # Prefix Property Errors
+  def prefix_property_errors(property, prefix)
+    return if property.errors.empty?
+    return if property.class unless BiomedicalConceptTemplate::PropertyX
+    temp = {}
+    property.errors.each {|key, msg| temp["#{prefix}.#{key}".to_sym] = msg}
+    property.errors.clear
+    temp.each {|key, msg| property.errors.add(key, msg)}
+  end
 
   # Get BC properties with paths
   def bc_properties_with_paths(bc)

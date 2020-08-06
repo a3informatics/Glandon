@@ -1,3 +1,4 @@
 ---
-:errors:
-- Question text contains invalid characters
+:fieldErrors:
+- :name: has_complex_datatype.has_property.question_text
+  :status: contains invalid characters

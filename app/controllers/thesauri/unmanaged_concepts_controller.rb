@@ -2,6 +2,8 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
   
   before_action :authenticate_user!
 
+  include DatatablesHelpers
+
   def changes
     authorize Thesaurus, :show?
     @tc = Thesaurus::UnmanagedConcept.find(protect_from_bad_id(params))
@@ -52,11 +54,7 @@ class Thesauri::UnmanagedConceptsController < ManagedItemsController
       result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
       render :json => {:data => [result]}, :status => 200
     else
-      errors = []
-      tc.errors.each do |name, msg|
-        errors << {name: name, status: msg}
-      end
-      render :json => {:fieldErrors => errors}, :status => 200
+      render :json => {:fieldErrors => format_editor_errors(tc.errors)}, :status => 200
     end
   end
 
