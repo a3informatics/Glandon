@@ -1,9 +1,13 @@
-import ShowPanel from 'shared/forms/show_panel'
+import TablePanel from 'shared/base/table_panel'
+import { dtSDTMModelShowColumns } from 'shared/helpers/dt/dt_column_collections'
 
 $(document).ready( () => {
 
-  let sp = new ShowPanel({
-    url: formShowDataUrl
+  let tp = new TablePanel({
+    selector: "#show-panel table#show",
+    url: sdtmModelShowDataUrl,
+    param: "sdtm_model",
+    extraColumns: dtSDTMModelShowColumns()
   });
 
 });
