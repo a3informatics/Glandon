@@ -1,4 +1,4 @@
-class SdtmIg < Tabular
+class SdtmIg < Tabulation
   
   # Attributes
   attr_accessor :domain_refs, :compliance

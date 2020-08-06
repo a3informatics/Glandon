@@ -1,4 +1,4 @@
-class SdtmIgDomain::Variable < Tabular::Column
+class SdtmIgDomain::Variable < Tabulation::Column
   
   # Attributes
   attr_accessor :name, :notes, :controlled_term_or_format, :compliance, :variable_ref

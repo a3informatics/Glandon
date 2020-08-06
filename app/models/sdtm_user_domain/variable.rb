@@ -1,4 +1,4 @@
-class SdtmUserDomain::Variable < Tabular::Column
+class SdtmUserDomain::Variable < Tabulation::Column
   
   # Attributes
   attr_accessor :name, :notes, :ct, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 

@@ -1,6 +1,6 @@
 require 'xpt'
 
-class SdtmUserDomain < Tabular
+class SdtmUserDomain < Tabulation
   
   attr_accessor :children, :prefix, :structure, :notes, :bc_refs, :model_ref, :ig_ref
 

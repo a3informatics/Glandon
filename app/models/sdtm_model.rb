@@ -1,7 +1,10 @@
-class SdtmModel < Tabular
+class SdtmModel < ManagedCollection
 
   configure rdf_type: "http://www.assero.co.uk/BusinessDomain#Model",
             uri_suffix: "M"
+  
+  object_property :includesVariable, cardinality: :many, model_class: "SdtmModel::Variable"
+
   
   # Attributes
   # attr_accessor :children, :class_refs, :datatypes, :classifications
