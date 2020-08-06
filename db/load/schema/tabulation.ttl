@@ -178,7 +178,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:ModelVariable :ClassVariable :UserVariable :IGVariable)
+    owl:unionOf (:SdtmModelVariable :ClassVariable :UserVariable :IGVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
@@ -188,7 +188,7 @@
   rdfs:label "Variable prefixed."^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :ModelVariable ;
+  rdfs:domain :SdtmModelVariable ;
   rdfs:range xsd:boolean ;
   skos:definition "Boolean indicating if the variable is prefixed with the domain code."^^xsd:string ;
 .
@@ -198,7 +198,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf  ( :UserVariable :ModelVariable)
+    owl:unionOf  ( :UserVariable :SdtmModelVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "Description of the variable."^^xsd:string ;
