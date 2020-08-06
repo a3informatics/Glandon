@@ -62,7 +62,7 @@ class SdtmClassesController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_class).permit(:identifier, :scope_id)
+    params.require(:sdtm_class).permit(:identifier, :scope_id, :offset, :count)
   end
 
   # Path for given action
