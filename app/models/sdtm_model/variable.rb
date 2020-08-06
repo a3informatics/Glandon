@@ -1,7 +1,7 @@
 class SdtmModel::Variable < Tabulation::Column
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#ModelVariable",
-            uri_suffix: "F"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmModelVariable",
+            uri_suffix: "MV"
 
   data_property :name
   data_property :prefixed
