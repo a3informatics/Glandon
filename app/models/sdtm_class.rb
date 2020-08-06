@@ -1,7 +1,9 @@
 class SdtmClass < Tabulation
 
-  configure rdf_type: "http://www.assero.co.uk/BusinessDomain#ClassDomain"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmClass"
   
+  #data_property :domain_class
+
   #attr_accessor :children
 
   # Constants

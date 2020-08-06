@@ -10,7 +10,7 @@ class Tabulation < IsoManagedV2
   data_property :rule
   data_property :ordinal, default: 1
 
-  object_property :includesColumn, cardinality: :many, model_class: "Tabulation::Column"
+  object_property :includes_column, cardinality: :many, model_class: "Tabulation::Column"
 
   
   # Constants
