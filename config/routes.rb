@@ -490,6 +490,14 @@ Rails.application.routes.draw do
       # get :export_xpt_metadata
     end
   end
+  resources :sdtm_classes, :only => [:show, :index] do
+    collection do
+      get :history
+    end
+    member do
+      get :show_data
+    end
+  end
 
   #ADAM
   resources :adam_igs do
