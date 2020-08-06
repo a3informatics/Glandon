@@ -19,11 +19,10 @@ class Import::SdtmModel < Import
   def import(params)
     @tags = []
     @parent_set = {}
-    #params[:identifier] = ::SdtmModel.identifier
-    #check_date_and_sources(params)
-    #results = read_and_process(params) if self.errors.empty?
-    #objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
-    #object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
+    params[:identifier] = ::SdtmModel.identifier
+    results = read_and_process(params) if self.errors.empty?
+    objects = self.errors.empty? ? process_results(results) : {parent: self, managed_children: []}
+    object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     # @todo we need to unlock the import.
     params[:job].end("Complete")   
   rescue => e
@@ -36,15 +35,15 @@ class Import::SdtmModel < Import
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
-  def self.configuration
+  def configuration
     {
-      description: "Import of SDTM Model",
+      description: "Import of CDISC SDTM Model",
       parent_klass: ::SdtmModel,
       reader_klass: Excel,
       import_type: :cdisc_sdtm_model,
       format: :format,
       version_label: :semantic_version,
-      label: "SDTM Model"
+      label: "CDISC SDTM Model"
     }
   end
 
@@ -60,6 +59,30 @@ private
   # Read and process the sources
   def read_and_process(params)
     readers = read_all_sources(params)
+    results = add_parent(params)
+    add_managed_children(results)
+    results[:tags] = []
+    results
+  end
+
+  # Process Results. Process the results structure to convert to objects
+  def process_results(results)
+    # klass = configuration[:parent_klass]
+    # child_klass = klass.child_klass
+    # return results if !managed?(child_klass)
+    # parent = results[:parent]
+    # scope = klass.owner.ra_namespace
+    # results[:managed_children].each_with_index do |child, index| 
+    #   previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
+    #   previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
+    #   actual = child.replace_if_no_change(previous)
+    #   parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
+    #   next if actual.uri != child.uri # No changes if actual = previous, so skip next
+    #   child.add_additional_tags(previous, tag_set) 
+    #   filtered << child 
+    # end
+    # return {parent: parent, managed_children: filtered, tags: tag_set}
+    results
   end
 
 end

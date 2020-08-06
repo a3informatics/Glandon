@@ -212,20 +212,20 @@ defaults: &defaults
       sheets:
         main:
           selection:
-            label: 
+            label: SDTM
           sheet:
             actions: []
             header_row:
               - "Seq. For Order"  
               - "Observation Class" 
               - "Domain Prefix" 
-              - "Variable Name (minus domain prefix)"  
+              - "Variable Name\n(minus domain prefix)"  
               - "Variable Name"
               - "Variable Label"
               - "Type"
               - "Controlled Terms, Codelist or Format"  
               - "Role"
-              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "CDISC Notes (for domains)\nDescription (for General Classes)"  
               - "Core"
           row:
             condition:
@@ -241,7 +241,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: SdtmModelClass
+                klass: SdtmClass
                 map:
                   All Classes: SDTMMODEL ALL
                   Events: SDTMMODEL EVENTS
@@ -283,7 +283,7 @@ defaults: &defaults
             label: "Domain Prefix" 
             actions: []
           -
-            label: "Variable Name (minus domain prefix)"  
+            label: "Variable Name\n(minus domain prefix)"  
             actions: []
           -
             label: "Variable Name"
@@ -301,7 +301,7 @@ defaults: &defaults
             label: "Role"
             actions: []
           -
-            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            label: "CDISC Notes (for domains)\nDescription (for General Classes)"  
             actions: []
           -
             label: "Core"

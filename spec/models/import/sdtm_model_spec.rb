@@ -36,15 +36,15 @@ describe Import::SdtmModel do
   it "returns the configuation" do
     expected =
     {
-      description: "Import of SDTM Model",
+      description: "Import of CDISC SDTM Model",
       parent_klass: ::SdtmModel,
       reader_klass: Excel,
       import_type: :cdisc_sdtm_model,
       format: :format,
       version_label: :semantic_version,
-      label: "SDTM Model"
+      label: "CDISC SDTM Model"
     }
-    expect(Import::SdtmModel.configuration).to eq(expected)
+    expect(Import::SdtmModel.new.configuration).to eq(expected)
   end
 
   it "import, no errors" do
@@ -52,7 +52,8 @@ describe Import::SdtmModel do
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
     result = @object.import(params)
     filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+byebug
+    public_file_does_not_exist?("test", filename)
     filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
