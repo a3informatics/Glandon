@@ -6,6 +6,12 @@ defaults: &defaults
     #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
     #   link_text: "Import CDISC ADaM IG"
     #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_sdtm_model:
+      title: CDISC SDTM Model Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Model to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM Model"
+      link_path: "/imports/sdtm_model/new?imports[file_type]=0"
     cdisc_term:
       title: CDISC Terminology Import - Excel
       background: true
@@ -202,6 +208,197 @@ defaults: &defaults
                 method: check_valid
                 object: parent
                 map: {}
+    cdisc_sdtm_model:
+      sheets:
+        main:
+          selection:
+            label: 
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            condition:
+              method: column_blank?
+              column: 3
+          columns:
+          -
+            label: "Seq. For Order"
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmModelClass
+                map:
+                  All Classes: SDTMMODEL ALL
+                  Events: SDTMMODEL EVENTS
+                  Events-General: SDTMMODEL EVENTS
+                  Interventions: SDTMMODEL INTERVENTIONS
+                  Interventions-General: SDTMMODEL INTERVENTIONS
+                  Special Purpose: SDTMMODEL SPECIAL PURPOSE 
+                  Special-Purpose: SDTMMODEL SPECIAL PURPOSE
+                  Findings: SDTMMODEL FINDINGS
+                  Findings-General: SDTMMODEL FINDINGS
+                  Findings About: SDTMMODEL FINDINGS ABOUT
+                  Findings About-General: SDTMMODEL FINDINGS ABOUT
+                  Relationship: SDTMMODEL RELATIONSHIP 
+                  Trial Design: SDTMMODEL TRIAL DESIGN 
+                  Associated Persons: SDTMMODEL ASSOCIATED PERSONS
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  All Classes: SDTMMODEL ALL
+                  Events: SDTMMODEL EVENTS
+                  Events-General: SDTMMODEL EVENTS
+                  Interventions: SDTMMODEL INTERVENTIONS
+                  Interventions-General: SDTMMODEL INTERVENTIONS
+                  Special Purpose: SDTMMODEL SPECIAL PURPOSE 
+                  Special-Purpose: SDTMMODEL SPECIAL PURPOSE
+                  Findings: SDTMMODEL FINDINGS
+                  Findings-General: SDTMMODEL FINDINGS
+                  Findings About: SDTMMODEL FINDINGS ABOUT
+                  Findings About-General: SDTMMODEL FINDINGS ABOUT
+                  Relationship: SDTMMODEL RELATIONSHIP 
+                  Trial Design: SDTMMODEL TRIAL DESIGN 
+                  Associated Persons: SDTMMODEL ASSOCIATED PERSONS
+                condition:
+                  method: column_not_blank?
+                  column: 3
+          -
+            label: "Domain Prefix" 
+            actions: []
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions: []
+          -
+            label: "Variable Label"
+            actions: []
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions: []
+          -
+            label: "Core"
+            actions: []
+
+          #   label: "Data Structure Name"
+          #   actions:
+          #     -
+          #       method: create_parent
+          #       object: parent
+          #       klass: AdamIgDataset
+          #       map:
+          #         SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
+          #         BASIC DATA STRUCTURE: ADAMIG BDS
+          #     -
+          #       method: set_property
+          #       object: parent
+          #       property: label
+          #       map:
+          #         SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
+          #         BASIC DATA STRUCTURE: Basic Data Structure
+          # -
+          #   label: "Dataset Name"
+          #   actions: []
+          # -
+          #   label: "Variable Group"
+          #   actions: []
+          # -
+          #   label: "Variable Name"
+          #   actions:
+          #     -
+          #       method: create_child
+          #       object: child
+          #       klass: AdamIgDataset::Variable
+          #       map: {}
+          #     -
+          #       method: ordinal
+          #       object: child
+          #       property: ordinal
+          #       map: {}
+          #     -
+          #       method: set_property
+          #       object: child
+          #       property: name
+          #       map: {}
+          # -
+          #   label: "Variable Label"
+          #   actions:
+          #     -
+          #       method: set_property
+          #       object: child
+          #       property: label
+          #       map: {}
+          # -
+          #   label: "Type"
+          #   actions:
+          #     -
+          #       method: create_classification
+          #       object: child
+          #       property: datatype
+          #       map:
+          #         Char: Character
+          #         Num: Numeric
+          # -
+          #   label: "Codelist/Controlled Terms"
+          #   actions:
+          #     -
+          #       method: ct_reference
+          #       object: child
+          #       property: ct
+          #       map: {}
+          #     -
+          #       method: ct_other
+          #       object: child
+          #       property: ct_notes
+          #       map: {}
+          # -
+          #   label: "Core"
+          #   actions:
+          #     -
+          #       method: create_classification
+          #       object: child
+          #       property: compliance
+          #       map:
+          #         Req: Required
+          #         Perm: Permissible
+          #         Cond: Conditional
+          # -
+          #   label: "CDISC Notes"
+          #   actions:
+          #     -
+          #       method: set_property
+          #       object: child
+          #       property: notes
+          #       map: {}
+
+
     cdisc_adam_ig:
       sheets:
         main:

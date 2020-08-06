@@ -125,7 +125,7 @@ describe IsoConceptSystem do
         end
       end
       file = sparql.to_file
-    copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
     end
 
   end
