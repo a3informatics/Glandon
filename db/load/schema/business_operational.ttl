@@ -24,6 +24,12 @@
   rdfs:subClassOf isoT::AdministeredItem ;
   skos:definition "Generic reference type."^^xsd:string ;
 .
+:Collection
+  rdf:type owl:Class ;
+  rdfs:label "Collection"^^xsd:string ;
+  rdfs:subClassOf :Component ;
+  skos:definition "Generic collection type."^^xsd:string ;
+.
 :Reference
   rdf:type owl:Class ;
   rdfs:label "Reference"^^xsd:string ;
@@ -154,6 +160,14 @@
   rdfs:label "Tabulation Column relationship."^^xsd:string ;
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Tabulation Column relationship."^^xsd:string ;
+.
+:hasManaged
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Managed"^^xsd:string ;
+  rdfs:domain :Collection ;
+  rdfs:range :Reference ;
+  skos:definition "Relationship to a reference."^^xsd:string ;
 .
 :reference
   rdf:type owl:ObjectProperty ;
