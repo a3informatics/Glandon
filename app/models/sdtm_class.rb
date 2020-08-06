@@ -1,4 +1,4 @@
-class SdtmClass < Tabular
+class SdtmClass < Tabulation
 
   configure rdf_type: "http://www.assero.co.uk/BusinessDomain#ClassDomain"
   
