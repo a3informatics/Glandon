@@ -101,11 +101,11 @@ function dtSDTMClassShowColumns() {
  */
 function dtSDTMModelShowColumns() {
   return [
-    { data: "version" },
-    { data: "owner" },
-    { data: "identifier" },
+    { data: "has_identifier.identifier" },
     { data: "label" },
-    { data: "version_label" }
+    { data: "has_identifier.has_scope.short_name" },
+    { data: "has_identifier.version" },
+    { data: "has_identifier.version_label" }
   ];
 };
 
