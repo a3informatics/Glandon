@@ -47,9 +47,11 @@ describe SdtmModel do
   end
 
   it "allows a model to get children (classes)" do
+    actual = []
     item = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
     children = item.managed_children_pagination({offset: 0, count: 10})
-    check_file_actual_expected(children.to_h, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
   # it "allows a model to be found" do
