@@ -23,6 +23,7 @@ module ApplicationHelper
     sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model", icon: "icon-sdtm"},
     sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs", icon: "icon-sdtm"},
     sdtm_user_domains: {link: "/sdtm_user_domains", text: "Domains", icon: "icon-sdtm"},
+    sdtm_classes: {link: "/sdtm_classes", text: "Classes", icon: "icon-sdtm"},
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
