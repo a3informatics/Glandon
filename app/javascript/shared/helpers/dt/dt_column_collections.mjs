@@ -72,4 +72,41 @@ function dtFormShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns }
+/**
+ * Column definitions for SDTM Class show
+ * @return {Array} DataTables  SDTM Class show column definitions collection
+ */
+function dtSDTMClassShowColumns() {
+  return [
+    { data: "order_index" },
+    { data: "ordinal" },
+    { data: "label" },
+    { render: (data, type, r, m) => r.question_text || r.free_text },
+    { data: "datatype" },
+    { data: "format" },
+    { data: "mapping" },
+    { data: "completion" },
+    { data: "note" },
+    {
+      data: "has_coded_value",
+      width: "30%",
+      render: (data, type, r, m) => termReferences(data, type)
+    }
+  ];
+};
+
+/**
+ * Column definitions for SDTM Model show
+ * @return {Array} DataTables  SDTM Model show column definitions collection
+ */
+function dtSDTMModelShowColumns() {
+  return [
+    { data: "version" },
+    { data: "owner" },
+    { data: "identifier" },
+    { data: "label" },
+    { data: "version_label" }
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns, dtSDTMClassShowColumns, dtSDTMModelShowColumns  }
