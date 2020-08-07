@@ -7,7 +7,9 @@ $(document).ready( () => {
     selector: "#show-panel table#show",
     url: sdtmModelShowDataUrl,
     param: "sdtm_model",
-    extraColumns: dtSDTMModelShowColumns()
+    extraColumns: dtSDTMModelShowColumns(),
+    count: 10,
+    paginated: true
   });
 
 });
