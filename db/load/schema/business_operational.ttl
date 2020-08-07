@@ -21,7 +21,7 @@
   rdf:type owl:Class ;
   rdfs:label "Component"^^xsd:string ;
   rdfs:subClassOf isoC:Concept ; # Deprecated, to be removed.
-  rdfs:subClassOf isoT::AdministeredItem ;
+  rdfs:subClassOf isoT:AdministeredItem ;
   skos:definition "Generic reference type."^^xsd:string ;
 .
 :Collection
