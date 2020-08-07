@@ -23,16 +23,24 @@ class SdtmModelsController < ManagedItemsController
   end
 
   def show_data
+    results = []
     sdtm_model = SdtmModel.find_minimum(protect_from_bad_id(params))
     items = sdtm_model.managed_children_pagination(the_params)
-    # items = items.each_with_index do |item, index|
-    #   item[:order_index] = index + 1
-    #   item[:has_coded_value].each do |cv|
-    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-    #   end
-    # end
-    render json: {data: items}, status: 200
+    items.each do |item| 
+      sdtm_class = IsoManagedV2.find_minimum(item.uri).to_h
+      results << sdtm_class.reverse_merge!({show_path: sdtm_class_path({id: sdtm_class[:id]})})
+    end
+    render json: {data: results}, status: 200
   end
+
+  # def show
+  #   authorize SdtmModel
+  #   @sdtm_model_classes = Array.new
+  #   @sdtm_model = SdtmModel.find(params[:id], the_params[:namespace])
+  #   @sdtm_model.class_refs.each do |class_ref|
+  #     @sdtm_model_classes << IsoManaged.find(class_ref.subject_ref.id, class_ref.subject_ref.namespace, false)
+  #   end
+  # end
   
   # def history
   #   authorize SdtmModel
@@ -56,15 +64,6 @@ class SdtmModelsController < ManagedItemsController
   #   else
   #     flash[:error] = @sdtm_model.errors.full_messages.to_sentence
   #     redirect_to history_sdtm_models_path
-  #   end
-  # end
-  
-  # def show
-  #   authorize SdtmModel
-  #   @sdtm_model_classes = Array.new
-  #   @sdtm_model = SdtmModel.find(params[:id], the_params[:namespace])
-  #   @sdtm_model.class_refs.each do |class_ref|
-  #     @sdtm_model_classes << IsoManaged.find(class_ref.subject_ref.id, class_ref.subject_ref.namespace, false)
   #   end
   # end
 
