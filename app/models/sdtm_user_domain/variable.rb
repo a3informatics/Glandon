@@ -1,62 +1,62 @@
 class SdtmUserDomain::Variable < Tabulation::Column
   
   # Attributes
-  attr_accessor :name, :notes, :ct, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 
-    :classification, :sub_classification, :variable_ref, :property_refs
+  # attr_accessor :name, :notes, :ct, :format, :non_standard, :comment, :length, :used, :key_ordinal, :datatype, :compliance, 
+  #   :classification, :sub_classification, :variable_ref, :property_refs
 
-  # Constants
-  C_SCHEMA_PREFIX = SdtmUserDomain::C_SCHEMA_PREFIX
-  C_INSTANCE_PREFIX = SdtmUserDomain::C_INSTANCE_PREFIX
-  C_CLASS_NAME = "SdtmUserDomain::Variable"
-  C_CID_PREFIX = SdtmUserDomain::C_CID_PREFIX
-  C_RDF_TYPE = "UserVariable"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
+  # # Constants
+  # C_SCHEMA_PREFIX = SdtmUserDomain::C_SCHEMA_PREFIX
+  # C_INSTANCE_PREFIX = SdtmUserDomain::C_INSTANCE_PREFIX
+  # C_CLASS_NAME = "SdtmUserDomain::Variable"
+  # C_CID_PREFIX = SdtmUserDomain::C_CID_PREFIX
+  # C_RDF_TYPE = "UserVariable"
+  # C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
+  # C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  # C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
-  C_IGV_REF_PREFIX = "IGV"
-  C_VARIABLE_PREFIX = "V"
-  C_BCP_REF_PREFIX = "PR"
+  # C_IGV_REF_PREFIX = "IGV"
+  # C_VARIABLE_PREFIX = "V"
+  # C_BCP_REF_PREFIX = "PR"
   
-  def initialize(triples=nil, id=nil)
-    self.name = ""
-    self.notes = ""
-    self.format = "" 
-    self.ct = "" 
-    self.non_standard = false
-    self.comment = ""
-    self.length = 0
-    self.used = true
-    self.key_ordinal = 0
-    self.datatype = nil
-    self.compliance = nil
-    self.classification = nil 
-    self.sub_classification = nil 
-    self.variable_ref = nil
-    self.property_refs = []
-    if triples.nil?
-      super
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-    else
-      super(triples, id)
-    end
-  end
+  # def initialize(triples=nil, id=nil)
+  #   self.name = ""
+  #   self.notes = ""
+  #   self.format = "" 
+  #   self.ct = "" 
+  #   self.non_standard = false
+  #   self.comment = ""
+  #   self.length = 0
+  #   self.used = true
+  #   self.key_ordinal = 0
+  #   self.datatype = nil
+  #   self.compliance = nil
+  #   self.classification = nil 
+  #   self.sub_classification = nil 
+  #   self.variable_ref = nil
+  #   self.property_refs = []
+  #   if triples.nil?
+  #     super
+  #     self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
+  #   else
+  #     super(triples, id)
+  #   end
+  # end
 
-  def classification_label
-    return classification.nil? ? "" : classification.label
-  end
+  # def classification_label
+  #   return classification.nil? ? "" : classification.label
+  # end
 
-  def sub_classification_label
-    return sub_classification.nil? ? "" : sub_classification.label 
-  end
+  # def sub_classification_label
+  #   return sub_classification.nil? ? "" : sub_classification.label 
+  # end
   
-  def datatype_label
-    return datatype.nil? ? "" : datatype.label 
-  end
+  # def datatype_label
+  #   return datatype.nil? ? "" : datatype.label 
+  # end
 
-  def compliance_label
-    return compliance.nil? ? "" : compliance.label
-  end
+  # def compliance_label
+  #   return compliance.nil? ? "" : compliance.label
+  # end
 
   # Find a given variable
   #
@@ -179,21 +179,21 @@ class SdtmUserDomain::Variable < Tabulation::Column
   # Check Valid
   #
   # @return [Boolean] returns true if valid, false otherwise.
-  def valid?
-    #result = super 
-    result = true
-    result = result &&
-      FieldValidation::valid_sdtm_variable_name?(:name, self.name, self) && 
-      FieldValidation::valid_submission_value?(:ct, self.ct, self) && 
-      FieldValidation::valid_sdtm_format_value?(:format, self.format, self) && 
-      FieldValidation::valid_boolean?(:non_standard, self.non_standard, self) &&
-      FieldValidation::valid_boolean?(:used, self.used, self) &&
-      FieldValidation::valid_integer?(:key_ordinal, self.key_ordinal, self) &&
-      FieldValidation::valid_integer?(:length, self.length, self) &&
-      FieldValidation::valid_label?(:notes, self.notes, self) &&
-      FieldValidation::valid_label?(:comment, self.comment, self)
-    return result
-  end
+  # def valid?
+  #   #result = super 
+  #   result = true
+  #   result = result &&
+  #     FieldValidation::valid_sdtm_variable_name?(:name, self.name, self) && 
+  #     FieldValidation::valid_submission_value?(:ct, self.ct, self) && 
+  #     FieldValidation::valid_sdtm_format_value?(:format, self.format, self) && 
+  #     FieldValidation::valid_boolean?(:non_standard, self.non_standard, self) &&
+  #     FieldValidation::valid_boolean?(:used, self.used, self) &&
+  #     FieldValidation::valid_integer?(:key_ordinal, self.key_ordinal, self) &&
+  #     FieldValidation::valid_integer?(:length, self.length, self) &&
+  #     FieldValidation::valid_label?(:notes, self.notes, self) &&
+  #     FieldValidation::valid_label?(:comment, self.comment, self)
+  #   return result
+  # end
 
 private
 

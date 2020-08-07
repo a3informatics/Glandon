@@ -12,29 +12,29 @@
 class TabularStandard < IsoManagedV2
   
   # Attributes
-  attr_accessor :references, :collections
+  # attr_accessor :references, :collections
   
-  # Constants
-  # C_CLASS_NAME = self.name
+  # # Constants
+  # # C_CLASS_NAME = self.name
 
-  # Initialize
-  #
-  # @params [Hash] triples the triples indexed by id (fragment)
-  # @params [String] the id of the object to be initialized
-  # @return [Void] no return
-  def initialize(triples=nil, id=nil)
-    self.references = []
-    self.collections = []
-    super(triples, id)
-    self.rdf_type = self.class::C_RDF_TYPE_URI.to_s if triples.nil?
-  end
+  # # Initialize
+  # #
+  # # @params [Hash] triples the triples indexed by id (fragment)
+  # # @params [String] the id of the object to be initialized
+  # # @return [Void] no return
+  # def initialize(triples=nil, id=nil)
+  #   self.references = []
+  #   self.collections = []
+  #   super(triples, id)
+  #   self.rdf_type = self.class::C_RDF_TYPE_URI.to_s if triples.nil?
+  # end
 
-  def add_child(child)
-    ref = OperationalReferenceV2.new
-    ref.subject_ref = child.uri
-    self.references << ref
-    ref.ordinal = self.references.count 
-  end
+  # def add_child(child)
+  #   ref = OperationalReferenceV2.new
+  #   ref.subject_ref = child.uri
+  #   self.references << ref
+  #   ref.ordinal = self.references.count 
+  # end
 
   # Find the given object.
   #

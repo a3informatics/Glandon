@@ -1,4 +1,4 @@
-class AdamIgDataset::Variable < Tabular::Column
+class AdamIgDataset::Variable < Tabulation::Column
   
   # Attributes
   attr_accessor :name, :notes, :ct, :ct_notes, :compliance, :datatype

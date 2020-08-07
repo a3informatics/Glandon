@@ -1,6 +1,7 @@
 class SdtmClass < Tabulation
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmClass"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmClass",
+            uri_suffix: "CL"
   
   #data_property :domain_class
 
