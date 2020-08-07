@@ -23,8 +23,8 @@ class SdtmModelsController < ManagedItemsController
   end
 
   def show_data
-    @sdtm_model = SdtmModel.find_minimum(protect_from_bad_id(params))
-    items = @sdtm_model.get_items
+    sdtm_model = SdtmModel.find_minimum(protect_from_bad_id(params))
+    items = sdtm_model.managed_children_pagination(the_params)
     # items = items.each_with_index do |item, index|
     #   item[:order_index] = index + 1
     #   item[:has_coded_value].each do |cv|
