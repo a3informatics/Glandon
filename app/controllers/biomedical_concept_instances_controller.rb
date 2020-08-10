@@ -117,7 +117,8 @@ private
 
   # Strong parameters, property update
   def property_params
-    params.require(:biomedical_concept_instance).permit(:property_id, :collect, :enabled, :question_text, :prompt_text, :format, :has_coded_value => [])
+    params.require(:biomedical_concept_instance).permit(:property_id, :collect, :enabled, :question_text, :prompt_text, 
+      :format, :has_coded_value => [:id, :context_id])
   end
 
   # Get the template id from the params

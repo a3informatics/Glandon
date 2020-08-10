@@ -310,6 +310,18 @@ describe BiomedicalConceptInstancesController do
       check_file_actual_expected(actual, sub_dir, "update_property_expected_4.yaml", equate_method: :hash_equal)
     end
 
+    it 'update property, coded' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      audit_count = AuditTrail.count
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457"))
+      cli = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41259"))
+      post :update_property, params:{id: @instance.id, biomedical_concept_instance: {has_coded_value: [{id: cli.id, context_id: cl.id}], property_id: @property.id}}
+      expect(AuditTrail.count).to eq(audit_count+1)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_property_expected_5.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Reader User Access" do

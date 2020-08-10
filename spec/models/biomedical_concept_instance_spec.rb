@@ -233,18 +233,28 @@ describe BiomedicalConceptInstance do
       load_cdisc_term_versions(1..10)
     end
 
-    it "update, no clone, no errors" do
+    it "update, no clone, no errors, 3 updates" do
       cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457"))
-      cli = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41259"))
+      cli_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41259"))
+      cli_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41260"))
+      cli_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41219"))
       instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       property = BiomedicalConcept::PropertyX.find(uri)
-      #expect(property.has_coded_value).to eq([])
-      property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli.id, context_id: cl.id}]})
+      property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}]})
       expect(property.errors.count).to eq(0)
-      property = BiomedicalConcept::PropertyX.find(uri)
       instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       check_file_actual_expected(instance.to_h, sub_dir, "update_property_coded_expected_1.yaml", equate_method: :hash_equal)
+      property = BiomedicalConcept::PropertyX.find(uri)
+      property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli_1.id, context_id: cl.id}, {id: cli_2.id, context_id: cl.id}]})
+      expect(property.errors.count).to eq(0)
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(instance.to_h, sub_dir, "update_property_coded_expected_2.yaml", equate_method: :hash_equal)
+      property = BiomedicalConcept::PropertyX.find(uri)
+      property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli_3.id, context_id: cl.id}, {id: cli_2.id, context_id: cl.id}, {id: cli_1.id, context_id: cl.id}]})
+      expect(property.errors.count).to eq(0)
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(instance.to_h, sub_dir, "update_property_coded_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
