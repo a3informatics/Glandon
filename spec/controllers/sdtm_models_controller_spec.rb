@@ -35,15 +35,15 @@ describe SdtmModelsController do
       expect(response).to render_template("show")
     end
 
-    # it "show results" do
-    #   sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
-    #   request.env['HTTP_ACCEPT'] = "application/json"
-    #   get :show_data, params:{id: sdtm_model.id}
-    #   expect(response.content_type).to eq("application/json")
-    #   expect(response.code).to eq("200")
-    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-    #   check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
-    # end
+    it "show results" do
+      sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show_data, params:{id: sdtm_model.id, sdtm_model:{count: 10, offset: 0}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
+    end
 
     it "shows the history, page" do
       sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
