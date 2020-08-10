@@ -26,8 +26,8 @@ class SdtmModelsController < ManagedItemsController
     results = []
     sdtm_model = SdtmModel.find_minimum(protect_from_bad_id(params))
     items = sdtm_model.managed_children_pagination(the_params)
-    items.each do |item| 
-      sdtm_class = IsoManagedV2.find_minimum(item.uri).to_h
+    items.each do |item|
+      sdtm_class = SdtmClass.find_minimum(item.id).to_h
       results << sdtm_class.reverse_merge!({show_path: sdtm_class_path({id: sdtm_class[:id]})})
     end
     render json: {data: results}, status: 200
