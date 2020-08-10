@@ -23,13 +23,21 @@ describe SdtmClass do
   #   expect(item.to_json).to eq(expected)  	
   # end
 
-	it "allows a domain to be found" do
+	it "allows a class to be found" do
     item = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS"))
-    check_file_actual_expected(item.to_json, sub_dir, "find_expected.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
   end
 
-  it "allows a domain to be found, not found error" do
-    expect{SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS"))}.to raise_error(Exceptions::NotFoundError)
+  # it "allows a domain to be found, not found error" do
+  #   expect{SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS"))}.to raise_error(Exceptions::NotFoundError)
+  # end
+
+  it "allows a class to get children (variables)" do
+    actual = []
+    item = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS"))
+    children = item.children_pagination({offset: 0, count: 10})
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
   end
 
   # it "allows all domains to be found" do
