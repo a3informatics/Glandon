@@ -1,6 +1,8 @@
 import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
+import { showBtn } from 'shared/ui/buttons'
+
 
 /**
  * Column definitions for a Code List Editor table
@@ -105,7 +107,11 @@ function dtSDTMModelShowColumns() {
     { data: "label" },
     { data: "has_identifier.has_scope.short_name" },
     { data: "has_identifier.version" },
-    { data: "has_identifier.version_label" }
+    { data: "has_identifier.version_label" },
+    {
+      data: "show_path",
+      render: (data, type, r, m) => showBtn(data)
+    }
   ];
 };
 
