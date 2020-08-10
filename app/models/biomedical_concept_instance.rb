@@ -64,8 +64,8 @@ private
       enabled: :item, 
       question_text: :property, 
       prompt_text: :property, 
-      format: :property#,
-      #has_coded_value: :property
+      format: :property,
+      has_coded_value: :property
     }
     Errors::application_error(self.class.name, "property_to_child", "No matching property for '#{property}' found.") unless map.key?(property)
     map[property]

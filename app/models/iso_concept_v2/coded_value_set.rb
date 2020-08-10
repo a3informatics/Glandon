@@ -6,13 +6,17 @@ class IsoConceptV2
 
   class CodedValueSet
 
-    def initialize(collection)
+    def initialize(collection, parent)
+      @parent = parent
       @items = []
+      @map = Hash.new {|h,k| h[k] = []}
       return if collection.empty?
       return if expanded?(collection)
       collection.each do |uri_or_id|
         uri = Fuseki::Base.as_uri(uri_or_id)
-        @items << OperationalReferenceV3::TucReference.find(uri)
+        item = OperationalReferenceV3::TucReference.find(uri)
+        @items << item
+        @map[item.reference.to_id] = item
       end
     end
 
@@ -29,7 +33,9 @@ class IsoConceptV2
     end
 
     def add(params, tx=nil)
-      @items << OperationalReferenceV3::TucReference.new(context: Fuseki::Base.as_uri(params[:context_id]), reference: Fuseki::Base.as_uri(params[:id]), optional: true, ordinal: @items.count+1, transaction: tx)
+      ref = OperationalReferenceV3::TucReference.new(context: Fuseki::Base.as_uri(params[:context_id]), reference: Fuseki::Base.as_uri(params[:id]), optional: true, ordinal: @items.count+1, transaction: tx)
+      ref.uri = ref.create_uri(@parent.uri)
+      @items << ref
     end
 
     def sort!(ids)
@@ -37,16 +43,8 @@ class IsoConceptV2
       @items.each_with_index{|x,i| x.ordinal = i+1}
     end
 
-    #----------
-    # Test Only
-    #----------
-
-    if Rails.env.test?
-
-      def items
-        @items
-      end
-
+    def items
+      @items
     end
 
   private
@@ -54,20 +52,21 @@ class IsoConceptV2
     def update_items(tx)
       @items.each do |x|
         #x.set_transaction(tx)
-        x.update
+        x.save
       end
     end
 
-    def delete_items(set, tx)
-      set.each do |item|
+    def delete_items(items, tx)
+      items.each do |item|
         #item.set_transaction(tx)
-        item.delete
+        item.delete(@map[item[:id]])
       end
     end
 
     def expanded?(collection)
       return false unless collection.first.is_a?(OperationalReferenceV3::TucReference)
       @items = collection
+      collection.each {|x| @map[x.reference.to_id] = x}
       true
     end
         

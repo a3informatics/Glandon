@@ -31,6 +31,17 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
     object
   end
 
+  def update(params)
+    if params.key?(:has_coded_value) 
+      self.has_coded_value_objects
+      set = IsoConceptV2::CodedValueSet.new(self.has_coded_value, self)
+      set.update(params)
+      self.has_coded_value = set.items
+      params.delete(:has_coded_value)
+    end
+    super
+  end
+
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #
   # @return [String] the path as an expanded set of predicates

@@ -223,6 +223,32 @@ describe BiomedicalConceptInstance do
 
   end
 
+  describe "update tests, coded values" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_cdisc_term_versions(1..10)
+    end
+
+    it "update, no clone, no errors" do
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457"))
+      cli = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41259"))
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
+      property = BiomedicalConcept::PropertyX.find(uri)
+      #expect(property.has_coded_value).to eq([])
+      property = instance.update_property({property_id: property.id, has_coded_value: [{id: cli.id, context_id: cl.id}]})
+      expect(property.errors.count).to eq(0)
+      property = BiomedicalConcept::PropertyX.find(uri)
+      instance = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      check_file_actual_expected(instance.to_h, sub_dir, "update_property_coded_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Other Tests" do
 
     before :all do
