@@ -1106,15 +1106,9 @@ private
   #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r .
   ?r bo:reference ?e .
   ?r bo:ordinal ?v .
-  ?e isoT:hasIdentifier ?si .
-  ?si isoI:hasScope ?ra .
-  ?e isoT:hasState ?rs .
-  {
-    { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) } UNION
-    { ?si ?p ?o . BIND (?si as ?s) } UNION
-    { ?ra ?p ?o . BIND (?ra as ?s) } UNION
-    { ?rs ?p ?o . BIND (?rs as ?s) }
-  }
+  { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) }
+  UNION   { ?e isoT:hasIdentifier ?s . ?s ?p ?o }
+  UNION   { ?e isoT:hasState ?s . ?s ?p ?o }    
 } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
 }
   end
