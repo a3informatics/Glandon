@@ -86,9 +86,9 @@ class SdtmClass::Variable < Tabulation::Column
  #    return json
  #  end
 
-  def reference
-    return SdtmModel::Variable.find(self.variable_ref.subject_ref.id, self.variable_ref.subject_ref.namespace)
-  end
+  # def reference
+  #   return SdtmModel::Variable.find(self.variable_ref.subject_ref.id, self.variable_ref.subject_ref.namespace)
+  # end
 
 private
 
