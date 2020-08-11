@@ -23,8 +23,8 @@ describe SdtmClass do
     actual = []
     item = SdtmClass.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS"))
     children = item.get_children
-    #children.each {|x| actual << x.to_h}
-    check_file_actual_expected(children, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
   end
 
   # it "allows all domains to be found" do
