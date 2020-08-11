@@ -82,7 +82,7 @@ class SdtmIgsController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_ig).permit(:identifier, :scope_id, :version, :version_label, :date, :model_uri, :files => [] )
+    params.require(:sdtm_ig).permit(:identifier, :scope_id, :count, :offset)
   end
 
     # Path for given action
