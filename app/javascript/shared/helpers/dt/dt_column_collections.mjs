@@ -80,20 +80,13 @@ function dtFormShowColumns() {
  */
 function dtSDTMClassShowColumns() {
   return [
-    { data: "order_index" },
     { data: "ordinal" },
+    { data: "name" },
     { data: "label" },
-    { render: (data, type, r, m) => r.question_text || r.free_text },
-    { data: "datatype" },
-    { data: "format" },
-    { data: "mapping" },
-    { data: "completion" },
-    { data: "note" },
-    {
-      data: "has_coded_value",
-      width: "30%",
-      render: (data, type, r, m) => termReferences(data, type)
-    }
+    { data: "typed_as" },
+    { data: "description" },
+    { data: "classified_as" },
+    { data: "classified_as" }
   ];
 };
 

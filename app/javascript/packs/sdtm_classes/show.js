@@ -8,7 +8,9 @@ $(document).ready( () => {
     selector: "#show-panel table#show",
     url: sdtmClassShowDataUrl,
     param: "sdtm_class",
-    extraColumns: dtSDTMClassShowColumns()
+    extraColumns: dtSDTMClassShowColumns(),
+    count: 1000,
+    order: [[0, "asc"]]
   });
 
 });
