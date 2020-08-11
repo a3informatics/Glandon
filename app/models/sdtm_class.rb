@@ -12,18 +12,22 @@ class SdtmClass < Tabulation
   # @return [Array] array of objects
   def get_children
     results = []
-    query_string = %Q{SELECT DISTINCT ?s ?p ?o ?v WHERE
+    query_string = %Q{SELECT DISTINCT ?var ?ordinal ?type ?label ?typedAs ?name ?desc ?classifiedAs WHERE
 {
   #{self.uri.to_ref} bd:includesColumn ?c .
-  ?c bd:ordinal ?v .
-  ?c bd:basedOnVariable ?s .     
-  ?s ?p ?o   
-} ORDER BY (?v)
+  ?c bd:ordinal ?ordinal .
+  ?c bd:basedOnVariable ?var .     
+  ?var rdf:type ?type.
+  ?var isoC:label ?label. 
+  ?var bd:name ?name .
+  ?var bd:description ?desc .
+
+} ORDER BY ?ordinal
 }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :bd])
-    query_results.by_subject.each do |subject, triples|
-        item = SdtmClass::Variable.from_results(Uri.new(uri: subject), triples)
-        results << item
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
+    query_results.by_object_set([:var, :ordinal, :type, :label, :typedAs, :name, :desc, :classifiedAs]).each do |x|
+      results << {uri: x[:var], ordinal: x[:ordinal], rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
+                  description: x[:desc], typedAs: x[:typedAs], classifiedAs: x[:classifiedAs]}
     end
     results
   end
