@@ -23,14 +23,13 @@ class SdtmClassesController < ManagedItemsController
   end
 
   def show_data
-    @sdtm_class = SdtmClass.find_minimum(protect_from_bad_id(params))
-    items = @sdtm_class.get_items
-    # items = items.each_with_index do |item, index|
-    #   item[:order_index] = index + 1
-    #   item[:has_coded_value].each do |cv|
-    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-    #   end
-    # end
+    results = []
+    sdtm_class = SdtmClass.find_minimum(protect_from_bad_id(params))
+    items = sdtm_class.get_children
+    #items.each do |item| 
+      # sdtm_class_variable = SdtmModel::Variable.find_minimum(item.uri).to_h
+      # results << sdtm_class_variable.reverse_merge!({show_path: sdtm_class_path({id: sdtm_class[:id]})})
+    #end
     render json: {data: items}, status: 200
   end
   
