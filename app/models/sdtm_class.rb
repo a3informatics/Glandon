@@ -7,6 +7,27 @@ class SdtmClass < Tabulation
 
   #attr_accessor :children
 
+  # Get Children.
+  #
+  # @return [Array] array of objects
+  def get_children
+    results = []
+    query_string = %Q{SELECT DISTINCT ?s ?p ?o ?v WHERE
+{
+  #{self.uri.to_ref} bd:includesColumn ?c .
+  ?c bd:ordinal ?v .
+  ?c bd:basedOnVariable ?s .     
+  ?s ?p ?o   
+} ORDER BY (?v)
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :bd])
+    query_results.by_subject.each do |subject, triples|
+        item = SdtmClass::Variable.from_results(Uri.new(uri: subject), triples)
+        results << item
+    end
+    results
+  end
+
   # Constants
   # C_SCHEMA_PREFIX = UriManagement::C_BD
   # C_INSTANCE_PREFIX = UriManagement::C_MDR_MD
