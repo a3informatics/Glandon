@@ -23,13 +23,8 @@ class SdtmClassesController < ManagedItemsController
   end
 
   def show_data
-    results = []
     sdtm_class = SdtmClass.find_minimum(protect_from_bad_id(params))
     items = sdtm_class.get_children
-    #items.each do |item| 
-      # sdtm_class_variable = SdtmModel::Variable.find_minimum(item.uri).to_h
-      # results << sdtm_class_variable.reverse_merge!({show_path: sdtm_class_path({id: sdtm_class[:id]})})
-    #end
     render json: {data: items}, status: 200
   end
   
