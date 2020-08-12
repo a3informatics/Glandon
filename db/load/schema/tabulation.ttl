@@ -101,7 +101,7 @@
   rdfs:range :Column ;
   skos:definition "Relates columns to tabulations."^^xsd:string ;
 .
-:basedOnDomain
+:basedOnClass
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Based on domain relationship"^^xsd:string ;
