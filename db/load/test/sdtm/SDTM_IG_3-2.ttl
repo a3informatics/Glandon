@@ -77,7 +77,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -980,7 +980,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -1475,7 +1475,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -2140,7 +2140,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -2363,7 +2363,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -2790,7 +2790,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -3030,7 +3030,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -3542,7 +3542,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -3833,7 +3833,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -4090,7 +4090,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -4738,7 +4738,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -5386,7 +5386,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -5881,7 +5881,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -6359,7 +6359,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -6667,7 +6667,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -7179,7 +7179,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -7980,7 +7980,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -8645,7 +8645,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -9089,7 +9089,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -9703,7 +9703,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -10436,7 +10436,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -11033,7 +11033,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -11715,7 +11715,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -12176,7 +12176,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -12569,7 +12569,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -13336,7 +13336,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -13899,7 +13899,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -14360,7 +14360,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -14838,7 +14838,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -15197,7 +15197,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -15420,7 +15420,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -16051,7 +16051,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -16682,7 +16682,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -16905,7 +16905,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -17111,7 +17111,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -17266,7 +17266,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -17438,7 +17438,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -17967,7 +17967,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -18190,7 +18190,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -18685,7 +18685,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
@@ -18874,7 +18874,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> bd:basedOnDomain <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> bd:basedOnClass <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_STUDYID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_STUDYID> isoC:label "Study Identifier"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_STUDYID> bd:ordinal "1"^^xsd:positiveInteger . 
