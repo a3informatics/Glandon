@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe SdtmModelDomainPolicy do
+describe SdtmClassPolicy do
 
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, sdtm_domain_model) }
-  let (:sdtm_domain_model) { SdtmModelDomain.new }
+  subject { described_class.new(user, sdtm_class) }
+  let (:sdtm_class) { SdtmClass.new }
 
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
