@@ -436,14 +436,12 @@ Rails.application.routes.draw do
   namespace :sdtm_models do
     resources :variables
   end
-  resources :sdtm_model_domains, :only => [:show, :index] do
+  resources :sdtm_classes, :only => [:show, :index] do
     collection do
       get :history
     end
     member do
       get :show_data
-      # get :export_json
-      # get :export_ttl
     end
   end
   resources :sdtm_igs, :only => [:show, :index] do
@@ -468,34 +466,6 @@ Rails.application.routes.draw do
       get :show_data
       # get :export_json
       # get :export_ttl
-    end
-  end
-  resources :sdtm_user_domains, :only => [:show, :index] do
-    collection do
-      get :history
-      # get :clone_ig
-      # post :clone_ig_create
-      # get :list
-      # get :add
-      # get :remove
-      # post :update_add
-      # post :update_remove
-      # get :sub_classifications
-    end
-    member do
-      get :show_data
-      # get :export_json
-      # get :export_ttl
-      # get :full_report
-      # get :export_xpt_metadata
-    end
-  end
-  resources :sdtm_classes, :only => [:show, :index] do
-    collection do
-      get :history
-    end
-    member do
-      get :show_data
     end
   end
 
