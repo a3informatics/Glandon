@@ -91,10 +91,10 @@ function dtSDTMClassShowColumns() {
 };
 
 /**
- * Column definitions for SDTM Model show
- * @return {Array} DataTables  SDTM Model show column definitions collection
+ * Column definitions for SDTM Model and IG show
+ * @return {Array} DataTables  SDTM Model and IG show column definitions collection
  */
-function dtSDTMModelShowColumns() {
+function dtSDTMShowColumns() {
   return [
     { data: "has_identifier.identifier" },
     { data: "label" },
@@ -108,4 +108,22 @@ function dtSDTMModelShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns, dtSDTMClassShowColumns, dtSDTMModelShowColumns  }
+/**
+ * Column definitions for SDTM IG Domain show
+ * @return {Array} DataTables  SDTM IG Domain show column definitions collection
+ */
+function dtSDTMIGDomainShowColumns() {
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "datatype_label" },
+    { data: "format" },
+    { data: "classification_label" },
+    { data: "sub_classification_label" }
+    { data: "notes" }
+    { data: "compliance_label" }
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns, dtSDTMClassShowColumns, dtSDTMShowColumns, dtSDTMIGDomainShowColumns  }
