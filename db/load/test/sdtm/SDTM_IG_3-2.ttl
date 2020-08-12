@@ -79,14 +79,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:notes "Unique identifier for a study."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_STUDYID> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_STUDYID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> isoC:label "Domain Abbreviation"^^xsd:string . 
@@ -96,14 +89,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> bd:controlled_term_or_format "(DOMAIN)"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> bd:notes "Two-character abbreviation for the domain."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_DOMAIN> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_DOMAIN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> isoC:label "Unique Subject Identifier"^^xsd:string . 
@@ -112,15 +98,8 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:name "USUBJID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:notes "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_USUBJID> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> .  
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_USUBJID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> isoC:label "Sequence Number"^^xsd:string . 
@@ -130,14 +109,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> bd:notes "Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSEQ> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSEQ> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> isoC:label "Group ID"^^xsd:string . 
@@ -147,14 +119,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> bd:notes "Used to tie together a block of related records in a single domain for a subject."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxGRPID> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxGRPID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> isoC:label "Reference ID"^^xsd:string . 
@@ -163,15 +128,8 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:name "AEREFID"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:notes "Internal or external identifier such as a serial number on an SAE reporting form."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxREFID> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> .  
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxREFID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> isoC:label "Sponsor-Defined Identifier"^^xsd:string . 
@@ -181,14 +139,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> bd:notes "Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit line identifier or defined in the sponsor’s operational database. Example: Line number on an Adverse Events page."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSPID> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSPID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> isoC:label "Reported Term for the Adverse Event"^^xsd:string . 
@@ -198,14 +149,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> bd:notes "Verbatim name of the event."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxTERM> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxTERM> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> isoC:label "Modified Reported Term"^^xsd:string . 
@@ -215,14 +159,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> bd:controlled_term_or_format ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> bd:notes "If AETERM is modified to facilitate coding, then AEMODIFY will contain the modified text."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_PERMISSIBLE> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxMODIFY> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxMODIFY> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> isoC:label "Lowest Level Term"^^xsd:string . 
@@ -232,14 +169,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> bd:controlled_term_or_format "MedDRA"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> bd:notes "Dictionary-derived text description of the Lowest Level Term."^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxLLT> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxLLT> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> isoC:label "Lowest Level Term Code"^^xsd:string . 
@@ -248,15 +178,8 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:name "AELLTCD"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:controlled_term_or_format "MedDRA"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:notes "Dictionary-derived code for the Lowest Level Term."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxLLTCD> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_EXPECTED> .  
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxLLTCD> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> isoC:label "Dictionary-Derived Term"^^xsd:string . 
@@ -265,15 +188,8 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:name "AEDECOD"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:controlled_term_or_format "MedDRA"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:notes "Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes."^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> rdf:type <http://www.assero.co.uk/BusinessOperational#CReference> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> isoC:label "Based on Variable Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> bo:hasColumn <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxDECOD> . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> bo:enabled "true"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> bo:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD_VR1> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:compliance <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_C_REQUIRED> .  
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> bd:basedOnVariable <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxDECOD> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> rdf:type <http://www.assero.co.uk/Tabulation#SdtmDomainVariable> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD> isoC:label "Preferred Term Code"^^xsd:string . 
