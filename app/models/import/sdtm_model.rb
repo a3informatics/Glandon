@@ -61,7 +61,6 @@ private
     readers = read_all_sources(params)
     @parent_set = readers.first.engine.parent_set
     results = add_parent(params)
-byebug
     add_managed_children(results)
     results[:tags] = []
     results
@@ -69,21 +68,25 @@ byebug
 
   # Process Results. Process the results structure to convert to objects
   def process_results(results)
-    # klass = configuration[:parent_klass]
-    # child_klass = klass.child_klass
-    # return results if !managed?(child_klass)
-    # parent = results[:parent]
-    # scope = klass.owner.ra_namespace
-    # results[:managed_children].each_with_index do |child, index| 
-    #   previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
-    #   previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
-    #   actual = child.replace_if_no_change(previous)
-    #   parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
-    #   next if actual.uri != child.uri # No changes if actual = previous, so skip next
-    #   child.add_additional_tags(previous, tag_set) 
-    #   filtered << child 
-    # end
-    # return {parent: parent, managed_children: filtered, tags: tag_set}
+    model_vars = {}
+    results[:managed_children].each_with_index do |child, index| 
+      child.children.each do |var|
+        next if model_vars.key?(var.name)
+        model_vars[var.name] = var
+      end
+    end
+    results[:parent].includes_variable = model_vars.map{|k,v| v}
+    all = results[:managed_children].delete_at(results[:managed_children].find_index {|x| x.scoped_identifier == "SDTMMODEL ALL"})
+    results[:managed_children].each_with_index do |child, index| 
+      class_vars = []
+      model_vars = all.includes_column + child.includes_column
+      model_vars.each_with_index do |model_var, index|
+        variable = SdtmClass::Variable.new(label: model_var.label, based_on_variable: model_var.uri, ordinal: index+1)
+        variable.uri = variable.create_uri(child.uri)
+        class_vars << variable
+      end
+      child.includes_column = class_vars
+    end
     results
   end
 

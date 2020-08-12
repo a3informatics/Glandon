@@ -633,6 +633,27 @@ describe Excel::Engine do
     expect(child.label).to eq("default")
   end
 
+  it "property with regex" do
+    full_path = test_file_path(sub_dir, "property_with_regex_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    object.set_property_with_regex({row: 2, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq(true)
+    object.set_property_with_regex({row: 3, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq(false)
+    object.set_property_with_regex({row: 4, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq(false)
+    object.set_property_with_regex({row: 5, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
+    expect(parent.errors.any?).to eq(true)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 5 column 1.")
+  end
+
   it "checks valid" do
     full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 

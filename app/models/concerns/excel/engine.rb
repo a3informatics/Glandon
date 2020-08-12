@@ -286,6 +286,26 @@ byebug
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
+  # Set Property regex
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank
+  # @option params [Hash] :additional a hash containing additional parameters, in this case the regex
+  # @return [Void] no return
+  def set_property_with_regex(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty, :additional])
+    regex = Regexp.new(params[:additional][:regex])
+    x = check_value(params[:row], params[:col], false)
+    return if x.empty?
+    x = regex.match(x).nil? ? false : true
+    params[:object].instance_variable_set("@#{params[:property]}", x)
+  end
+
   # Tokenize And Set Property
   #
   # @param [Hash] params the parameters hash

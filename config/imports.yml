@@ -233,9 +233,6 @@ defaults: &defaults
               column: 3
           columns:
           -
-            label: "Seq. For Order"
-            actions: []
-          -
             label: "Observation Class" 
             actions:
               -
@@ -288,7 +285,24 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: SdtmClass::Variable
+                klass: SdtmModel::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
           -
             label: "Variable Label"
             actions:
@@ -307,7 +321,11 @@ defaults: &defaults
             actions: []
           -
             label: "CDISC Notes (for domains)\nDescription (for General Classes)"  
-            actions: []
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
           -
             label: "Core"
             actions: []
