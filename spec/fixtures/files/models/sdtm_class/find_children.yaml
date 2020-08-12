@@ -1,22 +1,14 @@
 ---
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_STUDYID
-  :ordinal: '1'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_STUDYID
+  :ordinal: 1
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Study Identifier
   :name: STUDYID
   :description: Unique identifier for a study.
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_DOMAIN
-  :ordinal: '2'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DOMAIN
+  :ordinal: 2
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Domain Abbreviation
   :name: DOMAIN
@@ -25,12 +17,8 @@
     when datasets are merged.
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_USUBJID
-  :ordinal: '3'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_USUBJID
+  :ordinal: 3
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Unique Subject Identifier
   :name: USUBJID
@@ -38,12 +26,8 @@
     for all applications or submissions involving the product.
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_POOLID
-  :ordinal: '4'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_POOLID
+  :ordinal: 4
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Pool Identifier
   :name: POOLID
@@ -51,24 +35,16 @@
     is not assignable to a specific subject.
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_SPDEVID
-  :ordinal: '5'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SPDEVID
+  :ordinal: 5
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Sponsor Device Identifier
   :name: SPDEVID
   :description: Sponsor-defined identifier for a device
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSEQ
-  :ordinal: '6'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSEQ
+  :ordinal: 6
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Sequence Number
   :name: "--SEQ"
@@ -77,12 +53,8 @@
     be any valid number (including decimals) and does not have to start at 1.
   :typed_as: Num
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxGRPID
-  :ordinal: '7'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxGRPID
+  :ordinal: 7
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Group ID
   :name: "--GRPID"
@@ -91,12 +63,8 @@
     records in the Trial Summary dataset (Section 3.4).
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxREFID
-  :ordinal: '8'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREFID
+  :ordinal: 8
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Reference ID
   :name: "--REFID"
@@ -104,12 +72,8 @@
     or UUID for an ECG waveform or a medical image.
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSPID
-  :ordinal: '9'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSPID
+  :ordinal: 9
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Sponsor-Defined Identifier
   :name: "--SPID"
@@ -117,12 +81,8 @@
     on a Concomitant Medications page.'
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLNKID
-  :ordinal: '10'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKID
+  :ordinal: 10
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Link ID
   :name: "--LNKID"
@@ -131,12 +91,8 @@
     have multiple measurements/assessments performed at each study visit.'
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLNKGRP
-  :ordinal: '11'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKGRP
+  :ordinal: 11
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Link Group ID
   :name: "--LNKGRP"
@@ -145,12 +101,8 @@
     will contribute to a single response to therapy determination record.'
   :typed_as: Char
   :classified_as: Identifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTERM
-  :ordinal: '12'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTERM
+  :ordinal: 12
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Reported Term
   :name: "--TERM"
@@ -158,12 +110,8 @@
     pre-specified name of the event.
   :typed_as: Char
   :classified_as: Topic
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxMODIFY
-  :ordinal: '13'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxMODIFY
+  :ordinal: 13
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Modified Reported Term
   :name: "--MODIFY"
@@ -171,36 +119,24 @@
     modified text is placed here.
   :typed_as: Char
   :classified_as: Synonym Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLLT
-  :ordinal: '14'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLLT
+  :ordinal: 14
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Lowest Level Term
   :name: "--LLT"
   :description: MedDRA Lowest Level Term.
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLLTCD
-  :ordinal: '15'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLLTCD
+  :ordinal: 15
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Lowest Level Term Code
   :name: "--LLTCD"
   :description: MedDRA Lowest Level Term code.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDECOD
-  :ordinal: '16'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDECOD
+  :ordinal: 16
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Dictionary-Derived Term
   :name: "--DECOD"
@@ -209,96 +145,64 @@
     to the Preferred Term (PT in MedDRA).
   :typed_as: Char
   :classified_as: Synonym Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPTCD
-  :ordinal: '17'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPTCD
+  :ordinal: 17
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Preferred Term Code
   :name: "--PTCD"
   :description: MedDRA Preferred Term code.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxHLT
-  :ordinal: '18'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLT
+  :ordinal: 18
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: High Level Term
   :name: "--HLT"
   :description: MedDRA High Level Term from the primary path.
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxHLTCD
-  :ordinal: '19'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLTCD
+  :ordinal: 19
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: High Level Term Code
   :name: "--HLTCD"
   :description: MedDRA High Level Term code from the primary path.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxHLGT
-  :ordinal: '20'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLGT
+  :ordinal: 20
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: High Level Group Term
   :name: "--HLGT"
   :description: MedDRA High Level Group Term from the primary path.
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxHLGTCD
-  :ordinal: '21'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLGTCD
+  :ordinal: 21
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: High Level Group Term Code
   :name: "--HLGTCD"
   :description: MedDRA High Level Group Term code from the primary path.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxCAT
-  :ordinal: '22'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCAT
+  :ordinal: 22
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Category
   :name: "--CAT"
   :description: Used to define a category of topic-variable values.
   :typed_as: Char
   :classified_as: Grouping Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSCAT
-  :ordinal: '23'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT
+  :ordinal: 23
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Subcategory
   :name: "--SCAT"
   :description: Used to define a further categorization of --CAT values.
   :typed_as: Char
   :classified_as: Grouping Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPRESP
-  :ordinal: '24'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPRESP
+  :ordinal: 24
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Pre-specified
   :name: "--PRESP"
@@ -307,12 +211,8 @@
     events.
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxOCCUR
-  :ordinal: '25'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxOCCUR
+  :ordinal: 25
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Occurrence
   :name: "--OCCUR"
@@ -320,12 +220,8 @@
     about the occurrence of a specific event is solicited.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTAT
-  :ordinal: '26'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTAT
+  :ordinal: 26
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Completion Status
   :name: "--STAT"
@@ -333,12 +229,8 @@
     event was not answered. Should be null or have a value of NOT DONE.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxREASND
-  :ordinal: '27'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREASND
+  :ordinal: 27
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Reason Not Done
   :name: "--REASND"
@@ -346,12 +238,8 @@
     NOT DONE.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxBODSYS
-  :ordinal: '28'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxBODSYS
+  :ordinal: 28
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Body System or Organ Class
   :name: "--BODSYS"
@@ -359,12 +247,8 @@
     hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL DISORDERS.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxBDSYCD
-  :ordinal: '29'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxBDSYCD
+  :ordinal: 29
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Body System or Organ Class Code
   :name: "--BDSYCD"
@@ -372,36 +256,24 @@
     for analysis.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSOC
-  :ordinal: '30'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOC
+  :ordinal: 30
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Primary System Organ Class
   :name: "--SOC"
   :description: MedDRA primary System Organ Class associated with the event.
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSOCCD
-  :ordinal: '31'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOCCD
+  :ordinal: 31
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Primary System Organ Class Code
   :name: "--SOCCD"
   :description: MedDRA primary System Organ Class code.
   :typed_as: Num
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLOC
-  :ordinal: '32'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLOC
+  :ordinal: 32
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Location of Event
   :name: "--LOC"
@@ -409,12 +281,8 @@
     for skin rash.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxLAT
-  :ordinal: '33'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLAT
+  :ordinal: 33
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Laterality
   :name: "--LAT"
@@ -422,12 +290,8 @@
     RIGHT, LEFT, BILATERAL'
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDIR
-  :ordinal: '34'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDIR
+  :ordinal: 34
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Directionality
   :name: "--DIR"
@@ -435,12 +299,8 @@
     Examples: ANTERIOR, LOWER, PROXIMAL'
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPORTOT
-  :ordinal: '35'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPORTOT
+  :ordinal: 35
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Portion or Totality
   :name: "--PORTOT"
@@ -449,12 +309,8 @@
     MANY.'
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPARTY
-  :ordinal: '36'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPARTY
+  :ordinal: 36
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Accountable Party
   :name: "--PARTY"
@@ -465,12 +321,8 @@
     usually a somewhat general term that is further identified in the --PRTYID variable.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPRTYID
-  :ordinal: '37'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPRTYID
+  :ordinal: 37
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Identification of Accountable Party
   :name: "--PRTYID"
@@ -479,12 +331,8 @@
     with --PARTY.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSEV
-  :ordinal: '38'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSEV
+  :ordinal: 38
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Severity/Intensity
   :name: "--SEV"
@@ -492,24 +340,16 @@
     SEVERE.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSER
-  :ordinal: '39'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSER
+  :ordinal: 39
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Serious Event
   :name: "--SER"
   :description: Is this is a serious event? Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxACN
-  :ordinal: '40'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACN
+  :ordinal: 40
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Action Taken with Study Treatment
   :name: "--ACN"
@@ -517,12 +357,8 @@
     event. Examples: DOSE INCREASED, DOSE NOT CHANGED.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxACNOTH
-  :ordinal: '41'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACNOTH
+  :ordinal: 41
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Other Action Taken
   :name: "--ACNOTH"
@@ -530,12 +366,8 @@
     to dose adjustments of study treatment.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxACNDEV
-  :ordinal: '42'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACNDEV
+  :ordinal: 42
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Action Taken with Device
   :name: "--ACNDEV"
@@ -543,12 +375,8 @@
     not be the device under study
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxREL
-  :ordinal: '43'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREL
+  :ordinal: 43
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Causality
   :name: "--REL"
@@ -557,12 +385,8 @@
     POSSIBLY RELATED, RELATED.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxRELNST
-  :ordinal: '44'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxRELNST
+  :ordinal: 44
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Relationship to Non-Study Treatment
   :name: "--RELNST"
@@ -570,12 +394,8 @@
     other than study drug. Example: "MORE LIKELY RELATED TO ASPIRIN USE."'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxPATT
-  :ordinal: '45'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPATT
+  :ordinal: 45
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Pattern of Event
   :name: "--PATT"
@@ -583,12 +403,8 @@
     CONTINUOUS, SINGLE EVENT.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxOUT
-  :ordinal: '46'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxOUT
+  :ordinal: 46
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Outcome of Event
   :name: "--OUT"
@@ -596,12 +412,8 @@
     FATAL.'
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSCAN
-  :ordinal: '47'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAN
+  :ordinal: 47
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Involves Cancer
   :name: "--SCAN"
@@ -609,12 +421,8 @@
     are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSCONG
-  :ordinal: '48'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCONG
+  :ordinal: 48
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Congenital Anomaly or Birth Defect
   :name: "--SCONG"
@@ -622,12 +430,8 @@
     Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSDISAB
-  :ordinal: '49'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSDISAB
+  :ordinal: 49
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Persist or Signif Disability/Incapacity
   :name: "--SDISAB"
@@ -635,24 +439,16 @@
     Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSDTH
-  :ordinal: '50'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSDTH
+  :ordinal: 50
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Results in Death
   :name: "--SDTH"
   :description: Did the event result in death? Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSHOSP
-  :ordinal: '51'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSHOSP
+  :ordinal: 51
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Requires or Prolongs Hospitalization
   :name: "--SHOSP"
@@ -660,36 +456,24 @@
     “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSLIFE
-  :ordinal: '52'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSLIFE
+  :ordinal: 52
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Is Life Threatening
   :name: "--SLIFE"
   :description: Was the event life threatening? Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSOD
-  :ordinal: '53'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOD
+  :ordinal: 53
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Occurred with Overdose
   :name: "--SOD"
   :description: Did the event occur with an overdose? Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSMIE
-  :ordinal: '54'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSMIE
+  :ordinal: 54
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Other Medically Important Serious Event
   :name: "--SMIE"
@@ -697,12 +481,8 @@
     and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxCONTRT
-  :ordinal: '55'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCONTRT
+  :ordinal: 55
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Concomitant or Additional Trtmnt Given
   :name: "--CONTRT"
@@ -710,12 +490,8 @@
     Valid values are “Y” and “N”.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTOX
-  :ordinal: '56'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTOX
+  :ordinal: 56
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Toxicity
   :name: "--TOX"
@@ -724,12 +500,8 @@
     and version is used in the Sponsor Comments column of the Define-XML document.'
   :typed_as: Char
   :classified_as: Variable Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTOXGR
-  :ordinal: '57'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTOXGR
+  :ordinal: 57
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Toxicity Grade
   :name: "--TOXGR"
@@ -738,48 +510,32 @@
     Comments column of the Define-XML document.
   :typed_as: Char
   :classified_as: Record Qualifier
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_VISITNUM
-  :ordinal: '58'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITNUM
+  :ordinal: 58
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Visit Number
   :name: VISITNUM
   :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_VISIT
-  :ordinal: '59'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISIT
+  :ordinal: 59
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Visit Name
   :name: VISIT
   :description: Protocol-defined description of a clinical encounter.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_VISITDY
-  :ordinal: '60'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITDY
+  :ordinal: 60
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Study Day of Visit
   :name: VISITDY
   :description: Planned study day of VISIT. Should be an integer.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_TAETORD
-  :ordinal: '61'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TAETORD
+  :ordinal: 61
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Order of Element within Arm
   :name: TAETORD
@@ -787,12 +543,8 @@
     (see Trial Arms, Section 3.2.2 ).
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_EPOCH
-  :ordinal: '62'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EPOCH
+  :ordinal: 62
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Epoch
   :name: EPOCH
@@ -800,12 +552,8 @@
     date/time of collection if start date/time is not collected. (See Section 3.2.2).
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDTC
-  :ordinal: '63'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDTC
+  :ordinal: 63
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Date/Time of Collection
   :name: "--DTC"
@@ -813,12 +561,8 @@
     character format.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTDTC
-  :ordinal: '64'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDTC
+  :ordinal: 64
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Start Date/Time of Observation
   :name: "--STDTC"
@@ -826,12 +570,8 @@
     format.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENDTC
-  :ordinal: '65'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDTC
+  :ordinal: 65
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: End Date/Time of Observation
   :name: "--ENDTC"
@@ -839,12 +579,8 @@
     format.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDY
-  :ordinal: '66'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDY
+  :ordinal: 66
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Study Day of Visit/Collection/Exam
   :name: "--DY"
@@ -852,12 +588,8 @@
     relative to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTDY
-  :ordinal: '67'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDY
+  :ordinal: 67
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Study Day of Start of Observation
   :name: "--STDY"
@@ -865,12 +597,8 @@
     relative to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENDY
-  :ordinal: '68'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDY
+  :ordinal: 68
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Study Day of End of Observation
   :name: "--ENDY"
@@ -878,12 +606,8 @@
     to the sponsor-defined RFSTDTC in Demographics.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDUR
-  :ordinal: '69'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDUR
+  :ordinal: 69
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Duration
   :name: "--DUR"
@@ -891,12 +615,8 @@
     in ISO 8601 character format. Used only if collected on the CRF and not derived.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTPT
-  :ordinal: '70'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPT
+  :ordinal: 70
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Time Point Name
   :name: "--TPT"
@@ -906,24 +626,16 @@
     --TPTREF.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTPTNUM
-  :ordinal: '71'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTNUM
+  :ordinal: 71
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Time Point Number
   :name: "--TPTNUM"
   :description: Numeric version of planned time point used in sorting.
   :typed_as: Num
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxELTM
-  :ordinal: '72'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxELTM
+  :ordinal: 72
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Elapsed Time from Time Point Ref
   :name: "--ELTM"
@@ -933,12 +645,8 @@
     variable, but an interval, represented as ISO duration.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxTPTREF
-  :ordinal: '73'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :ordinal: 73
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Time Point Reference
   :name: "--TPTREF"
@@ -946,12 +654,8 @@
     and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxRFTDTC
-  :ordinal: '74'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxRFTDTC
+  :ordinal: 74
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Date/Time of Reference Time Point
   :name: "--RFTDTC"
@@ -959,36 +663,24 @@
     ISO 8601 character format.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTRF
-  :ordinal: '75'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRF
+  :ordinal: 75
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Start Relative to Reference Period
   :name: "--STRF"
   :description: ''
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENRF
-  :ordinal: '76'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRF
+  :ordinal: 76
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: End Relative to Reference Period
   :name: "--ENRF"
   :description: ''
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxEVLINT
-  :ordinal: '77'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVLINT
+  :ordinal: 77
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Evaluation Interval
   :name: "--EVLINT"
@@ -998,12 +690,8 @@
     questionnaire such as SF-36.'
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxEVINTX
-  :ordinal: '78'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVINTX
+  :ordinal: 78
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Evaluation Interval Text
   :name: "--EVINTX"
@@ -1012,12 +700,8 @@
     RECENTLY, OVER THE LAST FEW WEEKS.'
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTRTPT
-  :ordinal: '79'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRTPT
+  :ordinal: 79
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Start Relative to Reference Time Point
   :name: "--STRTPT"
@@ -1025,12 +709,8 @@
     sponsor-defined reference time point defined by variable --STTPT.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTTPT
-  :ordinal: '80'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTTPT
+  :ordinal: 80
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Start Reference Time Point
   :name: "--STTPT"
@@ -1039,12 +719,8 @@
     or "VISIT 1".'
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENRTPT
-  :ordinal: '81'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRTPT
+  :ordinal: 81
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: End Relative to Reference Time Point
   :name: "--ENRTPT"
@@ -1052,12 +728,8 @@
     sponsor-defined reference time point defined by variable --ENTPT.
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENTPT
-  :ordinal: '82'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENTPT
+  :ordinal: 82
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: End Reference Time Point
   :name: "--ENTPT"
@@ -1066,12 +738,8 @@
     or "VISIT 2".'
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxSTINT
-  :ordinal: '83'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTINT
+  :ordinal: 83
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned Start of Assessment Interval
   :name: "--STINT"
@@ -1079,12 +747,8 @@
     character format relative to the Time Point Reference (--TPTREF).
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxENINT
-  :ordinal: '84'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENINT
+  :ordinal: 84
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Planned End of Assessment Interval
   :name: "--ENINT"
@@ -1092,12 +756,8 @@
     character format relative to the Time Point Reference (--TPTREF).
   :typed_as: Char
   :classified_as: Timing
-- :uri: !ruby/object:Uri
-    scheme: http
-    authority: www.assero.co.uk
-    path: MDRSdtmM/CDISC/V3
-    fragment: M-CDISC_SDTMMODEL_xxDETECT
-  :ordinal: '85'
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDETECT
+  :ordinal: 85
   :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
   :label: Time in Days to Detection
   :name: "--DETECT"

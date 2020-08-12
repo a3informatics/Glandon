@@ -1,0 +1,456 @@
+---
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_STUDYID
+  :ordinal: 1
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Study Identifier
+  :name: STUDYID
+  :format: ''
+  :notes: Unique identifier for a study.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_DOMAIN
+  :ordinal: 2
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Domain Abbreviation
+  :name: DOMAIN
+  :format: "(DOMAIN)"
+  :notes: Two-character abbreviation for the domain.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_USUBJID
+  :ordinal: 3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Unique Subject Identifier
+  :name: USUBJID
+  :format: ''
+  :notes: Identifier used to uniquely identify a subject across all studies for all
+    applications or submissions involving the product.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEQ
+  :ordinal: 4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Sequence Number
+  :name: AESEQ
+  :format: ''
+  :notes: Sequence Number given to ensure uniqueness of subject records within a domain.
+    May be any valid number.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEGRPID
+  :ordinal: 5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Group ID
+  :name: AEGRPID
+  :format: ''
+  :notes: Used to tie together a block of related records in a single domain for a
+    subject.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREFID
+  :ordinal: 6
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Reference ID
+  :name: AEREFID
+  :format: ''
+  :notes: Internal or external identifier such as a serial number on an SAE reporting
+    form.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESPID
+  :ordinal: 7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Sponsor-Defined Identifier
+  :name: AESPID
+  :format: ''
+  :notes: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit
+    line identifier or defined in the sponsor’s operational database. Example: Line
+    number on an Adverse Events page.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETERM
+  :ordinal: 8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Reported Term for the Adverse Event
+  :name: AETERM
+  :format: ''
+  :notes: Verbatim name of the event.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEMODIFY
+  :ordinal: 9
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Modified Reported Term
+  :name: AEMODIFY
+  :format: ''
+  :notes: If AETERM is modified to facilitate coding, then AEMODIFY will contain the
+    modified text.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLT
+  :ordinal: 10
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Lowest Level Term
+  :name: AELLT
+  :format: MedDRA
+  :notes: Dictionary-derived text description of the Lowest Level Term.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELLTCD
+  :ordinal: 11
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Lowest Level Term Code
+  :name: AELLTCD
+  :format: MedDRA
+  :notes: Dictionary-derived code for the Lowest Level Term.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDECOD
+  :ordinal: 12
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Dictionary-Derived Term
+  :name: AEDECOD
+  :format: MedDRA
+  :notes: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to
+    the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
+    name and version used to map the terms utilizing the define.xml external codelist
+    attributes.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPTCD
+  :ordinal: 13
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Preferred Term Code
+  :name: AEPTCD
+  :format: MedDRA
+  :notes: Dictionary-derived code for the Preferred Term.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLT
+  :ordinal: 14
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: High Level Term
+  :name: AEHLT
+  :format: MedDRA
+  :notes: Dictionary-derived text description of the High Level Term for the primary
+    System Organ Class.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLTCD
+  :ordinal: 15
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: High Level Term Code
+  :name: AEHLTCD
+  :format: MedDRA
+  :notes: Dictionary-derived code for the High Level Term for the primary System Organ
+    Class.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGT
+  :ordinal: 16
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: High Level Group Term
+  :name: AEHLGT
+  :format: MedDRA
+  :notes: Dictionary-derived text description of the High Level Group Term for the
+    primary System Organ Class.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEHLGTCD
+  :ordinal: 17
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: High Level Group Term Code
+  :name: AEHLGTCD
+  :format: MedDRA
+  :notes: Dictionary-derived code for the High Level Group Term for the primary System
+    Organ Class.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECAT
+  :ordinal: 18
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Category for Adverse Event
+  :name: AECAT
+  :format: ''
+  :notes: 'Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAT
+  :ordinal: 19
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Subcategory for Adverse Event
+  :name: AESCAT
+  :format: ''
+  :notes: 'A further categorization of adverse event. Example: NEUROLOGIC.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPRESP
+  :ordinal: 20
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Pre-Specified Adverse Event
+  :name: AEPRESP
+  :format: "(NY)"
+  :notes: A value of “Y” indicates that this adverse event was pre-specified on the
+    CRF. Values are null for spontaneously reported events (i.e., those collected
+    as free-text verbatim terms)
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBODSYS
+  :ordinal: 21
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Body System or Organ Class
+  :name: AEBODSYS
+  :format: ''
+  :notes: Dictionary derived. Body system or organ class used by the sponsor from
+    the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such
+    as MedDRA, this should contain the SOC used for the sponsor’s analyses and summary
+    tables which may not necessarily be the primary SOC.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEBDSYCD
+  :ordinal: 22
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Body System or Organ Class Code
+  :name: AEBDSYCD
+  :format: MedDRA
+  :notes: Dictionary derived. Code for the body system or organ class used by the
+    sponsor. When using a multi-axial dictionary such as MedDRA, this should contain
+    the SOC used for the sponsor’s analyses and summary tables, which may not necessarily
+    be the primary SOC.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOC
+  :ordinal: 23
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Primary System Organ Class
+  :name: AESOC
+  :format: MedDRA
+  :notes: Dictionary-derived text description of the primary System Organ Class. Will
+    be the same as AEBODSYS if the primary SOC was used for analysis.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOCCD
+  :ordinal: 24
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Primary System Organ Class Code
+  :name: AESOCCD
+  :format: MedDRA
+  :notes: Dictionary-derived code for the primary System Organ Class. Will be the
+    same as AEBDSYCD if the primary SOC was used for analysis.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AELOC
+  :ordinal: 25
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Location of Event
+  :name: AELOC
+  :format: "(LOC)"
+  :notes: Describes anatomical location relevant for the event (e.g., ARM for skin
+    rash).
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESEV
+  :ordinal: 26
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Severity/Intensity
+  :name: AESEV
+  :format: "(AESEV)"
+  :notes: 'The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESER
+  :ordinal: 27
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Serious Event
+  :name: AESER
+  :format: "(NY)"
+  :notes: Is this a serious event?
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACN
+  :ordinal: 28
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Action Taken with Study Treatment
+  :name: AEACN
+  :format: "(ACN)"
+  :notes: 'Describes changes to the study treatment as a result of the event. AEACN
+    is specifically for the relationship to study treatment. AEACNOTH is for actions
+    unrelated to dose adjustments of study treatment. Examples of AEACN values include
+    ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED,
+    UNKNOWN or NOT APPLICABLE.'
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEACNOTH
+  :ordinal: 29
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Other Action Taken
+  :name: AEACNOTH
+  :format: ''
+  :notes: 'Describes other actions taken as a result of the event that are unrelated
+    to dose adjustments of study treatment. Usually reported as free text. Example:
+    “TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.”'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEREL
+  :ordinal: 30
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Causality
+  :name: AEREL
+  :format: ''
+  :notes: Records the investigator's opinion as to the causality of the event to the
+    treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY
+    RELATED, RELATED. Controlled Terminology may be defined in the future. Check with
+    regulatory authority for population of this variable.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AERELNST
+  :ordinal: 31
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Relationship to Non-Study Treatment
+  :name: AERELNST
+  :format: ''
+  :notes: 'Records the investigator''s opinion as to whether the event may have been
+    due to a treatment other than study drug. May be reported as free text. Example:
+    "MORE LIKELY RELATED TO ASPIRIN USE.”.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEPATT
+  :ordinal: 32
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Pattern of Adverse Event
+  :name: AEPATT
+  :format: ''
+  :notes: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
+    CONTINUOUS, SINGLE EVENT.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEOUT
+  :ordinal: 33
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Outcome of Adverse Event
+  :name: AEOUT
+  :format: "(OUT)"
+  :notes: Description of the outcome of an event.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCAN
+  :ordinal: 34
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Involves Cancer
+  :name: AESCAN
+  :format: "(NY)"
+  :notes: Was the serious event associated with the development of cancer?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESCONG
+  :ordinal: 35
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Congenital Anomaly or Birth Defect
+  :name: AESCONG
+  :format: "(NY)"
+  :notes: Was the serious event associated with congenital anomaly or birth defect?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDISAB
+  :ordinal: 36
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Persist or Signif Disability/Incapacity
+  :name: AESDISAB
+  :format: "(NY)"
+  :notes: Did the serious event result in persistent or significant disability/incapacity?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESDTH
+  :ordinal: 37
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Results in Death
+  :name: AESDTH
+  :format: "(NY)"
+  :notes: Did the serious event result in death?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESHOSP
+  :ordinal: 38
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Requires or Prolongs Hospitalization
+  :name: AESHOSP
+  :format: "(NY)"
+  :notes: Did the serious event require or prolong hospitalization?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESLIFE
+  :ordinal: 39
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Is Life Threatening
+  :name: AESLIFE
+  :format: "(NY)"
+  :notes: Was the serious event life threatening?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESOD
+  :ordinal: 40
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Occurred with Overdose
+  :name: AESOD
+  :format: "(NY)"
+  :notes: Did the serious event occur with an overdose?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESMIE
+  :ordinal: 41
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Other Medically Important Serious Event
+  :name: AESMIE
+  :format: "(NY)"
+  :notes: Do additional categories for seriousness apply?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AECONTRT
+  :ordinal: 42
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Concomitant or Additional Trtmnt Given
+  :name: AECONTRT
+  :format: "(NY)"
+  :notes: Was another treatment given because of the occurrence of the event?
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AETOXGR
+  :ordinal: 43
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Standard Toxicity Grade
+  :name: AETOXGR
+  :format: ''
+  :notes: Toxicity grade according to a standard toxicity scale such as Common Terminology
+    Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale
+    and version used in the metadata (see Assumption 6d). If value is from a numeric
+    scale, represent only the number (e.g., “2” and not “Grade 2”).
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDTC
+  :ordinal: 44
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Start Date/Time of Adverse Event
+  :name: AESTDTC
+  :format: ISO 8601
+  :notes: ''
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDTC
+  :ordinal: 45
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: End Date/Time of Adverse Event
+  :name: AEENDTC
+  :format: ISO 8601
+  :notes: ''
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AESTDY
+  :ordinal: 46
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Study Day of Start of Adverse Event
+  :name: AESTDY
+  :format: ''
+  :notes: Study day of start of adverse event relative to the sponsor-defined RFSTDTC.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENDY
+  :ordinal: 47
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Study Day of End of Adverse Event
+  :name: AEENDY
+  :format: ''
+  :notes: Study day of end of event relative to the sponsor-defined RFSTDTC.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEDUR
+  :ordinal: 48
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Duration of Adverse Event
+  :name: AEDUR
+  :format: ISO 8601
+  :notes: 'Collected duration and unit of an adverse event. Used only if collected
+    on the CRF and not derived from start and end date/times. Example: P1DT2H (for
+    1 day, 2 hours).'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRF
+  :ordinal: 49
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: End Relative to Reference Period
+  :name: AEENRF
+  :format: "(STENRF)"
+  :notes: Describes the end of the event relative to the sponsor-defined reference
+    period. The sponsor-defined reference period is a continuous period of time defined
+    by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of
+    the trial.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENRTPT
+  :ordinal: 50
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: End Relative to Reference Time Point
+  :name: AEENRTPT
+  :format: "(STENRF)"
+  :notes: Identifies the end of the event as being before or after the reference time
+    point defined by variable AEENTPT.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_AEENTPT
+  :ordinal: 51
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: End Reference Time Point
+  :name: AEENTPT
+  :format: ''
+  :notes: 'Description of date/time in ISO 8601 character format of the reference
+    point referred to by AEENRTPT. Examples: "2003-12-25" or "VISIT 2".'
+  :compliance: Permissible
