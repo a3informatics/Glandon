@@ -139,7 +139,7 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Compliance relationship"^^xsd:string ;
-  rdfs:domain :SdtmVariable ;
+  rdfs:domain :SdtmDomainVariable ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable compliance."^^xsd:string ;
 .
@@ -178,7 +178,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmModelVariable :SdtmClassVariable)
+    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
@@ -291,7 +291,7 @@
   rdfs:range xsd:string ;
   skos:definition "The structure of the domain."^^xsd:string ;
 .
-:domainClass
+:domain_class
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Domain class"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
