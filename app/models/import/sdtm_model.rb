@@ -59,7 +59,9 @@ private
   # Read and process the sources
   def read_and_process(params)
     readers = read_all_sources(params)
+    @parent_set = readers.first.engine.parent_set
     results = add_parent(params)
+byebug
     add_managed_children(results)
     results[:tags] = []
     results

@@ -68,6 +68,7 @@ class Excel::Engine
         end
       end
     end
+byebug
   end
 
   # Process Sheet
@@ -262,7 +263,7 @@ class Excel::Engine
   # @return [Void] no return
   def set_property(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty])
-    x = params[:map].empty? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
+    x = params[:map].blank? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
@@ -280,7 +281,7 @@ class Excel::Engine
   def set_property_with_default(params)
     params[:can_be_empty] = true
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty, :additional])
-    x = params[:map].empty? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
+    x = params[:map].blank? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
     x = x.blank? ? params[:additional][:default] : x
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end

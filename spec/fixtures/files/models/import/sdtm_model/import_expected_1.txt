@@ -1,5 +1,4 @@
 @prefix : <http://www.cdisc.org/SDTM_MODEL/V1#> .
-@prefix bd: <http://www.assero.co.uk/BusinessDomain#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
@@ -14,7 +13,7 @@
 	rdf:type owl:Ontology ;
 .
 :M
-	rdf:type bd:Model ;
+	rdf:type <http://www.assero.co.uk/Tabulation#Model> ;
 	isoC:label "SDTM Model"^^xsd:string ;
 	isoT:hasState :M_RS ;
 	isoT:hasIdentifier :M_SI ;
@@ -43,4 +42,612 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ALL/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL ALL"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL ALL"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	isoC:label "Pool Identifier"^^xsd:string ;
+	isoC:label "Sponsor Device Identifier"^^xsd:string ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	isoC:label "Group ID"^^xsd:string ;
+	isoC:label "Reference ID"^^xsd:string ;
+	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
+	isoC:label "Link ID"^^xsd:string ;
+	isoC:label "Link Group ID"^^xsd:string ;
+	isoC:label "Visit Number"^^xsd:string ;
+	isoC:label "Visit Name"^^xsd:string ;
+	isoC:label "Planned Study Day of Visit"^^xsd:string ;
+	isoC:label "Planned Order of Element within Arm"^^xsd:string ;
+	isoC:label "Epoch"^^xsd:string ;
+	isoC:label "Date/Time of Collection"^^xsd:string ;
+	isoC:label "Start Date/Time of Observation"^^xsd:string ;
+	isoC:label "End Date/Time of Observation"^^xsd:string ;
+	isoC:label "Study Day of Visit/Collection/Exam"^^xsd:string ;
+	isoC:label "Study Day of Start of Observation"^^xsd:string ;
+	isoC:label "Study Day of End of Observation"^^xsd:string ;
+	isoC:label "Duration"^^xsd:string ;
+	isoC:label "Planned Time Point Name"^^xsd:string ;
+	isoC:label "Planned Time Point Number"^^xsd:string ;
+	isoC:label "Planned Elapsed Time from Time Point Ref"^^xsd:string ;
+	isoC:label "Time Point Reference"^^xsd:string ;
+	isoC:label "Date/Time of Reference Time Point"^^xsd:string ;
+	isoC:label "Start Relative to Reference Period"^^xsd:string ;
+	isoC:label "End Relative to Reference Period"^^xsd:string ;
+	isoC:label "Evaluation Interval"^^xsd:string ;
+	isoC:label "Evaluation Interval Text"^^xsd:string ;
+	isoC:label "Start Relative to Reference Time Point"^^xsd:string ;
+	isoC:label "Start Reference Time Point"^^xsd:string ;
+	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
+	isoC:label "End Reference Time Point"^^xsd:string ;
+	isoC:label "Planned Start of Assessment Interval"^^xsd:string ;
+	isoC:label "Planned End of Assessment Interval"^^xsd:string ;
+	isoC:label "Time in Days to Detection"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL ASSOCIATED PERSONS"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL ASSOCIATED PERSONS"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Associated Persons Identifier"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Related Subject"^^xsd:string ;
+	isoC:label "Related Device"^^xsd:string ;
+	isoC:label "Subject, Device, or Study Relationship"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL EVENTS"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL EVENTS"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Reported Term"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Modified Reported Term"^^xsd:string ;
+	isoC:label "Lowest Level Term"^^xsd:string ;
+	isoC:label "Lowest Level Term Code"^^xsd:string ;
+	isoC:label "Dictionary-Derived Term"^^xsd:string ;
+	isoC:label "Preferred Term Code"^^xsd:string ;
+	isoC:label "High Level Term"^^xsd:string ;
+	isoC:label "High Level Term Code"^^xsd:string ;
+	isoC:label "High Level Group Term"^^xsd:string ;
+	isoC:label "High Level Group Term Code"^^xsd:string ;
+	isoC:label "Category"^^xsd:string ;
+	isoC:label "Subcategory"^^xsd:string ;
+	isoC:label "Pre-specified"^^xsd:string ;
+	isoC:label "Occurrence"^^xsd:string ;
+	isoC:label "Completion Status"^^xsd:string ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	isoC:label "Body System or Organ Class Code"^^xsd:string ;
+	isoC:label "Primary System Organ Class"^^xsd:string ;
+	isoC:label "Primary System Organ Class Code"^^xsd:string ;
+	isoC:label "Location of Event"^^xsd:string ;
+	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Directionality"^^xsd:string ;
+	isoC:label "Portion or Totality"^^xsd:string ;
+	isoC:label "Accountable Party"^^xsd:string ;
+	isoC:label "Identification of Accountable Party"^^xsd:string ;
+	isoC:label "Severity/Intensity"^^xsd:string ;
+	isoC:label "Serious Event"^^xsd:string ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	isoC:label "Other Action Taken"^^xsd:string ;
+	isoC:label "Action Taken with Device"^^xsd:string ;
+	isoC:label "Causality"^^xsd:string ;
+	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	isoC:label "Pattern of Event"^^xsd:string ;
+	isoC:label "Outcome of Event"^^xsd:string ;
+	isoC:label "Involves Cancer"^^xsd:string ;
+	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	isoC:label "Results in Death"^^xsd:string ;
+	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	isoC:label "Is Life Threatening"^^xsd:string ;
+	isoC:label "Occurred with Overdose"^^xsd:string ;
+	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
+	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	isoC:label "Toxicity"^^xsd:string ;
+	isoC:label "Toxicity Grade"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL FINDINGS ABOUT"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL FINDINGS ABOUT"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Object of the Observation"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL FINDINGS"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL FINDINGS"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Short Name of Measurement, Test or Examination"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Name of Measurement, Test or Examination"^^xsd:string ;
+	isoC:label "Modified Term"^^xsd:string ;
+	isoC:label "Measurement, Test or Examination Detail"^^xsd:string ;
+	isoC:label "Category"^^xsd:string ;
+	isoC:label "Subcategory"^^xsd:string ;
+	isoC:label "Position of Subject During Observation"^^xsd:string ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	isoC:label "Result or Finding in Original Units"^^xsd:string ;
+	isoC:label "Original Units"^^xsd:string ;
+	isoC:label "Normal Range Lower Limit-Original Units"^^xsd:string ;
+	isoC:label "Normal Range Upper Limit-Original Units"^^xsd:string ;
+	isoC:label "Result or Finding in Standard Format"^^xsd:string ;
+	isoC:label "Numeric Result/Finding in Standard Units"^^xsd:string ;
+	isoC:label "Standard Units"^^xsd:string ;
+	isoC:label "Normal Range Lower Limit-Standard Units"^^xsd:string ;
+	isoC:label "Normal Range Upper Limit-Standard Units"^^xsd:string ;
+	isoC:label "Normal Range for Character Results"^^xsd:string ;
+	isoC:label "Normal/Reference Range Indicator"^^xsd:string ;
+	isoC:label "Result Category"^^xsd:string ;
+	isoC:label "Completion Status"^^xsd:string ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	isoC:label "External File Path"^^xsd:string ;
+	isoC:label "Laboratory/Vendor Name"^^xsd:string ;
+	isoC:label "LOINC Code"^^xsd:string ;
+	isoC:label "Specimen Material Type"^^xsd:string ;
+	isoC:label "Anatomical Region"^^xsd:string ;
+	isoC:label "Specimen Condition"^^xsd:string ;
+	isoC:label "Specimen Usability for the Test"^^xsd:string ;
+	isoC:label "Location Used for the Measurement"^^xsd:string ;
+	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Directionality"^^xsd:string ;
+	isoC:label "Portion or Totality"^^xsd:string ;
+	isoC:label "Method of Test or Examination"^^xsd:string ;
+	isoC:label "Run ID"^^xsd:string ;
+	isoC:label "Analysis Method"^^xsd:string ;
+	isoC:label "Lead Identified to Collect Measurements"^^xsd:string ;
+	isoC:label "Consciousness State"^^xsd:string ;
+	isoC:label "Baseline Flag"^^xsd:string ;
+	isoC:label "Fasting Status"^^xsd:string ;
+	isoC:label "Derived Flag"^^xsd:string ;
+	isoC:label "Evaluator"^^xsd:string ;
+	isoC:label "Evaluator Identifier"^^xsd:string ;
+	isoC:label "Accepted Record Flag"^^xsd:string ;
+	isoC:label "Toxicity"^^xsd:string ;
+	isoC:label "Toxicity Grade"^^xsd:string ;
+	isoC:label "Severity"^^xsd:string ;
+	isoC:label "Relationship to Death"^^xsd:string ;
+	isoC:label "Lower Limit of Quantitation"^^xsd:string ;
+	isoC:label "Upper Limit of Quantitation"^^xsd:string ;
+	isoC:label "Exclude from Statistics"^^xsd:string ;
+	isoC:label "Reason for Exclusion from Statistics"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL INTERVENTIONS"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL INTERVENTIONS"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Name of Treatment"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Modified Treatment Name"^^xsd:string ;
+	isoC:label "Standardized Treatment Name"^^xsd:string ;
+	isoC:label "Mood"^^xsd:string ;
+	isoC:label "Category"^^xsd:string ;
+	isoC:label "Subcategory"^^xsd:string ;
+	isoC:label "Pre-specified"^^xsd:string ;
+	isoC:label "Occurrence"^^xsd:string ;
+	isoC:label "Completion Status"^^xsd:string ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	isoC:label "Indication"^^xsd:string ;
+	isoC:label "Class"^^xsd:string ;
+	isoC:label "Class Code"^^xsd:string ;
+	isoC:label "Dose"^^xsd:string ;
+	isoC:label "Dose Description"^^xsd:string ;
+	isoC:label "Dose Units"^^xsd:string ;
+	isoC:label "Dose Form"^^xsd:string ;
+	isoC:label "Dosing Frequency per Interval"^^xsd:string ;
+	isoC:label "Total Daily Dose"^^xsd:string ;
+	isoC:label "Intended Dose Regimen"^^xsd:string ;
+	isoC:label "Route of Administration"^^xsd:string ;
+	isoC:label "Lot Number"^^xsd:string ;
+	isoC:label "Location of Dose Administration"^^xsd:string ;
+	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Directionality"^^xsd:string ;
+	isoC:label "Portion or Totality"^^xsd:string ;
+	isoC:label "Fasting Status"^^xsd:string ;
+	isoC:label "Pharmaceutical Strength"^^xsd:string ;
+	isoC:label "Pharmaceutical Strength Units"^^xsd:string ;
+	isoC:label "Treatment Vehicle"^^xsd:string ;
+	isoC:label "Treatment Vehicle Amount"^^xsd:string ;
+	isoC:label "Treatment Vehicle Amount Units"^^xsd:string ;
+	isoC:label "Reason for Dose Adjustment"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL SPECIAL PURPOSE"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL SPECIAL PURPOSE"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Subject Identifier for the Study"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Subject Reference Start Date/Time"^^xsd:string ;
+	isoC:label "Subject Reference End Date/Time"^^xsd:string ;
+	isoC:label "Date/Time of First Study Treatment"^^xsd:string ;
+	isoC:label "Date/Time of Last Study Treatment"^^xsd:string ;
+	isoC:label "Date/Time of Informed Consent"^^xsd:string ;
+	isoC:label "Date/Time of End of Participation"^^xsd:string ;
+	isoC:label "Date/Time of Death"^^xsd:string ;
+	isoC:label "Subject Death Flag"^^xsd:string ;
+	isoC:label "Study Site Identifier"^^xsd:string ;
+	isoC:label "Investigator Identifier"^^xsd:string ;
+	isoC:label "Investigator Name"^^xsd:string ;
+	isoC:label "Date/Time of Birth"^^xsd:string ;
+	isoC:label "Age"^^xsd:string ;
+	isoC:label "Age Units"^^xsd:string ;
+	isoC:label "Sex"^^xsd:string ;
+	isoC:label "Race"^^xsd:string ;
+	isoC:label "Ethnicity"^^xsd:string ;
+	isoC:label "Species"^^xsd:string ;
+	isoC:label "Strain/Substrain"^^xsd:string ;
+	isoC:label "Planned Arm Code"^^xsd:string ;
+	isoC:label "Description of Planned Arm"^^xsd:string ;
+	isoC:label "Actual Arm Code"^^xsd:string ;
+	isoC:label "Description of Actual Arm"^^xsd:string ;
+	isoC:label "Set Code"^^xsd:string ;
+	isoC:label "Country"^^xsd:string ;
+	isoC:label "Related Domain Abbreviation"^^xsd:string ;
+	isoC:label "Associated Persons Identifier"^^xsd:string ;
+	isoC:label "Pool Identifier"^^xsd:string ;
+	isoC:label "Identifying Variable"^^xsd:string ;
+	isoC:label "Identifying Variable Value"^^xsd:string ;
+	isoC:label "Comment Reference"^^xsd:string ;
+	isoC:label "Comment"^^xsd:string ;
+	isoC:label "Evaluator"^^xsd:string ;
+	isoC:label "Subject Element Code"^^xsd:string ;
+	isoC:label "Description of Subject Element"^^xsd:string ;
+	isoC:label "Description of Unplanned Element"^^xsd:string ;
+	isoC:label "Description of Unplanned Visit"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL TRIAL DESIGN"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL TRIAL DESIGN"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Element Code"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Description of Element"^^xsd:string ;
+	isoC:label "Rule for Start of Element"^^xsd:string ;
+	isoC:label "Rule for End of Element"^^xsd:string ;
+	isoC:label "Planned Arm Code"^^xsd:string ;
+	isoC:label "Description of Planned Arm"^^xsd:string ;
+	isoC:label "Branch"^^xsd:string ;
+	isoC:label "Transition Rule"^^xsd:string ;
+	isoC:label "Visit Start Rule"^^xsd:string ;
+	isoC:label "Visit End Rule"^^xsd:string ;
+	isoC:label "Set Code"^^xsd:string ;
+	isoC:label "Set Description"^^xsd:string ;
+	isoC:label "Inclusion/Exclusion Criterion Short Name"^^xsd:string ;
+	isoC:label "Inclusion/Exclusion Criterion"^^xsd:string ;
+	isoC:label "Inclusion/Exclusion Category"^^xsd:string ;
+	isoC:label "Inclusion/Exclusion Subcategory"^^xsd:string ;
+	isoC:label "Inclusion/Exclusion Criterion Rule"^^xsd:string ;
+	isoC:label "Protocol Criteria Versions"^^xsd:string ;
+	isoC:label "Trial Summary Parameter Short Name"^^xsd:string ;
+	isoC:label "Trial Summary Parameter"^^xsd:string ;
+	isoC:label "Parameter Value"^^xsd:string ;
+	isoC:label "Parameter Null Flavor"^^xsd:string ;
+	isoC:label "Parameter Value Code"^^xsd:string ;
+	isoC:label "Name of the Reference Terminology"^^xsd:string ;
+	isoC:label "Version of the Reference Terminology"^^xsd:string ;
+	isoC:label "Sequence of Planned Assessment Schedule"^^xsd:string ;
+	isoC:label "Anchor Variable Name"^^xsd:string ;
+	isoC:label "Offset from the Anchor"^^xsd:string ;
+	isoC:label "Planned Assessment Interval"^^xsd:string ;
+	isoC:label "Planned Assessment Interval Minimum"^^xsd:string ;
+	isoC:label "Planned Assessment Interval Maximum"^^xsd:string ;
+	isoC:label "Maximum Number of Actual Assessments"^^xsd:string ;
+.
+<http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
+	isoC:label "SDTMMODEL RELATIONSHIP"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	<http://www.assero.co.uk/Tabulation#includesColumn> <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_CV> ;
+.
+<http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTMMODEL RELATIONSHIP"^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_CV>
+	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClassVariable> ;
+	isoC:label "Related Domain Abbreviation"^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#rule> ""^^xsd:string ;
+	<http://www.assero.co.uk/Tabulation#ordinal> "1"^^xsd:positiveInteger ;
+	isoC:label "Associated Persons Identifier"^^xsd:string ;
+	isoC:label "Pool Identifier"^^xsd:string ;
+	isoC:label "Identifying Variable"^^xsd:string ;
+	isoC:label "Identifying Variable Value"^^xsd:string ;
+	isoC:label "Relationship Type"^^xsd:string ;
+	isoC:label "Relationship Identifier"^^xsd:string ;
+	isoC:label "Qualifier Variable Name"^^xsd:string ;
+	isoC:label "Qualifier Variable Label"^^xsd:string ;
+	isoC:label "Data Value"^^xsd:string ;
+	isoC:label "Origin"^^xsd:string ;
+	isoC:label "Evaluator"^^xsd:string ;
 .

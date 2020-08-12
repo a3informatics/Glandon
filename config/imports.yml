@@ -276,9 +276,6 @@ defaults: &defaults
                   Relationship: SDTMMODEL RELATIONSHIP 
                   Trial Design: SDTMMODEL TRIAL DESIGN 
                   Associated Persons: SDTMMODEL ASSOCIATED PERSONS
-                condition:
-                  method: column_not_blank?
-                  column: 3
           -
             label: "Domain Prefix" 
             actions: []
@@ -287,10 +284,18 @@ defaults: &defaults
             actions: []
           -
             label: "Variable Name"
-            actions: []
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
           -
             label: "Variable Label"
-            actions: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
           -
             label: "Type"
             actions: []
