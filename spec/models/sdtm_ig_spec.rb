@@ -16,7 +16,7 @@ describe SdtmIg do
 
   it "allows an IG to be found" do
     item = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
-    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows an IG to get children (domains)" do
@@ -24,7 +24,7 @@ describe SdtmIg do
     item = SdtmIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG"))
     children = item.managed_children_pagination({offset: 0, count: 10})
     children.each {|x| actual << x.to_h}
-    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
   end
 
  #  it "allows a IG to be found" do
