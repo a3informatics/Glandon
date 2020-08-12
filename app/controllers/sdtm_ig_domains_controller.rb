@@ -64,7 +64,7 @@ class SdtmIgDomainsController < ManagedItemsController
 private
   
   def the_params
-    params.require(:sdtm_ig_domain).permit(:identifier, :scope_id)
+    params.require(:sdtm_ig_domain).permit(:identifier, :scope_id, :count, :offset)
   end
 
   # Path for given action
