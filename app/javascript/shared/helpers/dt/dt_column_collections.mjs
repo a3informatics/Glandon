@@ -120,9 +120,9 @@ function dtSDTMIGDomainShowColumns() {
     { data: "datatype_label" },
     { data: "format" },
     { data: "classification_label" },
-    { data: "sub_classification_label" }
-    { data: "notes" }
-    { data: "compliance_label" }
+    { data: "sub_classification_label" },
+    { data: "notes" },
+    { data: "compliance" }
   ];
 };
 
