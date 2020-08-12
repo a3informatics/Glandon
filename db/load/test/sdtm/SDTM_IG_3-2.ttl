@@ -72,7 +72,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> bd:structure "One record per adverse event per subject"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -975,7 +975,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE> bd:structure "One record per event per subject"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -1470,7 +1470,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -2135,7 +2135,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -2358,7 +2358,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -2785,7 +2785,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -3025,7 +3025,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM> bd:structure "One record per subject"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -3537,7 +3537,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS> bd:structure "One record per disposition status or protocol milestone per subject"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -3828,7 +3828,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -4085,7 +4085,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -4733,7 +4733,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -5381,7 +5381,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -5876,7 +5876,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -6354,7 +6354,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -6662,7 +6662,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -7174,7 +7174,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -7975,7 +7975,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -8640,7 +8640,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -9084,7 +9084,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -9698,7 +9698,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -10431,7 +10431,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -11028,7 +11028,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -11710,7 +11710,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -12171,7 +12171,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -12564,7 +12564,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -13331,7 +13331,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -13894,7 +13894,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -14355,7 +14355,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -14833,7 +14833,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -15192,7 +15192,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -15415,7 +15415,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -16046,7 +16046,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -16677,7 +16677,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -16900,7 +16900,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -17106,7 +17106,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -17261,7 +17261,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -17433,7 +17433,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -17962,7 +17962,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -18185,7 +18185,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -18680,7 +18680,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -18869,7 +18869,7 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> bd:structure ""^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> isoC:label "Based on Domain Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
+<http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:reference <http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS> . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_CLR1> bo:ordinal "1"^^xsd:positiveInteger . 
@@ -19421,329 +19421,329 @@
 <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> bd:includesColumn <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS_VSRFTDTC> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGAE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:ordinal "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR1> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:ordinal "2"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR2> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCM> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:ordinal "3"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR3> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGCO> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:ordinal "4"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR4> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDA> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:ordinal "5"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR5> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDD> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:ordinal "6"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR6> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDM> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:ordinal "7"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR7> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:ordinal "8"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR8> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGDV> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:ordinal "9"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR9> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEG> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:ordinal "10"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR10> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGEX> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:ordinal "11"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR11> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGFA> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:ordinal "12"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR12> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGHO> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:ordinal "13"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR13> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:ordinal "14"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR14> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGIS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:ordinal "15"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR15> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGLB> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:ordinal "16"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR16> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMB> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:ordinal "17"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR17> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMH> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:ordinal "18"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR18> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMI> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:ordinal "19"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR19> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMO> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:ordinal "20"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR20> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGMS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:ordinal "21"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR21> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPC> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:ordinal "22"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR22> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:ordinal "23"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR23> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPP> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:ordinal "24"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR24> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGPR> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:ordinal "25"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR25> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGQS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:ordinal "26"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR26> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRP> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:ordinal "27"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR27> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:ordinal "28"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR28> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSC> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:ordinal "29"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR29> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:ordinal "30"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR30> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSR> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:ordinal "31"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR31> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSU> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:ordinal "32"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR32> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGSV> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:ordinal "33"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR33> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTA> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:ordinal "34"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR34> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTE> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:ordinal "35"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR35> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTI> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:ordinal "36"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR36> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTR> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:ordinal "37"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR37> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:ordinal "38"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR38> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTU> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:ordinal "39"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR39> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGTV> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:ordinal "40"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR40> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> isoC:label "Tabulation Reference"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:hasTabulation <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:reference <http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGVS> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:enabled "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:optional "false"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:ordinal "41"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> bo:local_label ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> bd:includesTabulation <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> <http://www.assero.co.uk/Tabulation#hasManaged> <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG_TR41> . 
