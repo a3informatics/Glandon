@@ -14,7 +14,7 @@ describe SdtmModelsController do
     login_reader
 
     def sub_dir
-      return "controllers/sdtm"
+      return "controllers/sdtm_models"
     end
 
     before :all do
