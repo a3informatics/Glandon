@@ -21,15 +21,14 @@ class SdtmIgsController < ManagedItemsController
   end
 
   def show_data
-    @sdtm_ig = SdtmIg.find_minimum(protect_from_bad_id(params))
-    items = @sdtm_ig.get_items
-    # items = items.each_with_index do |item, index|
-    #   item[:order_index] = index + 1
-    #   item[:has_coded_value].each do |cv|
-    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-    #   end
-    # end
-    render json: {data: items}, status: 200
+    results = []
+    sdtm_ig = SdtmIg.find_minimum(protect_from_bad_id(params))
+    items = sdtm_ig.managed_children_pagination(the_params)
+    items.each do |item|
+      sdtm_ig = SdtmIg.find_minimum(item.id).to_h
+      results << sdtm_ig.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig[:id]})})
+    end
+    render json: {data: results}, status: 200
   end
   
   # def history
