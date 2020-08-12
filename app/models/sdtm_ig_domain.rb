@@ -12,7 +12,7 @@ class SdtmIgDomain < Tabulation
   # @return [Array] array of objects
   def get_children
     results = []
-    query_string = %Q{SELECT DISTINCT ?ordinal ?var ?type ?label ?name ?format ?notes ?compliance WHERE
+    query_string = %Q{SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?format ?notes ?compliance WHERE
 {
   #{self.uri.to_ref} bd:includesColumn ?c .
   ?c bd:ordinal ?ordinal .
@@ -27,7 +27,7 @@ class SdtmIgDomain < Tabulation
 }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
     query_results.by_object_set([:ordinal, :var, :type, :label, :name, :format, :notes, :compliance]).each do |x|
-      results << {uri: x[:var], ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
+      results << {uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
                   format: x[:format], notes: x[:notes], compliance: x[:compliance]}
     end
     results

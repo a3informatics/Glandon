@@ -29,7 +29,7 @@ class SdtmClass < Tabulation
 }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
     query_results.by_object_set([:var, :ordinal, :type, :label, :typedas, :name, :desc, :classifiedas]).each do |x|
-      results << {uri: x[:var], ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
+      results << {uri: x[:var].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, label: x[:label], name: x[:name],
                   description: x[:desc], typed_as: x[:typedas], classified_as: x[:classifiedas]}
     end
     results
