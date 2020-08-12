@@ -23,14 +23,8 @@ class SdtmIgDomainsController < ManagedItemsController
   end
 
   def show_data
-    @sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
-    items = @sdtm_ig_domain.get_items
-    # items = items.each_with_index do |item, index|
-    #   item[:order_index] = index + 1
-    #   item[:has_coded_value].each do |cv|
-    #     cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
-    #   end
-    # end
+    sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
+    items = sdtm_ig_domain.get_children
     render json: {data: items}, status: 200
   end
   
@@ -71,6 +65,18 @@ private
   
   def the_params
     params.require(:sdtm_ig_domain).permit(:identifier, :scope_id)
+  end
+
+  # Path for given action
+  def path_for(action, object)
+    case action
+      when :show
+        return sdtm_ig_domain_path(object)
+      when :edit
+        return ""
+      else
+        return ""
+    end
   end
 
   def model_klass
