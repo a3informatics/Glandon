@@ -6,7 +6,7 @@ describe SdtmClass do
   include SparqlHelpers
   
   def sub_dir
-    return "models/sdtm_model_domain"
+    return "models/sdtm_class"
   end
 
   before :all do

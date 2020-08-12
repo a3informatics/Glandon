@@ -14,6 +14,19 @@ describe SdtmModel do
     load_files(schema_files, data_files)
   end
 
+  it "allows a model to be found" do
+    item = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
+  end
+
+  it "allows a model to get children (classes)" do
+    actual = []
+    item = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
+    children = item.managed_children_pagination({offset: 0, count: 10})
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
+  end
+
   # def check_model(result, expected)
   #   expect(result[:children].count).to eq(expected[:children].count)
   #   result[:children].each do |r|
@@ -40,19 +53,6 @@ describe SdtmModel do
   #   expect(item.errors.full_messages.to_sentence).to eq("")
   #   expect(result).to eq(true)
   # end
-
-  it "allows a model to be found" do
-    item = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
-    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
-  end
-
-  it "allows a model to get children (classes)" do
-    actual = []
-    item = SdtmModel.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL"))
-    children = item.managed_children_pagination({offset: 0, count: 10})
-    children.each {|x| actual << x.to_h}
-    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
-  end
 
   # it "allows a model to be found" do
   #   item = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
