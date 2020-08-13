@@ -265,8 +265,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "STUDYID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Unique identifier for a study."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVDOMAIN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -276,8 +276,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "DOMAIN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Two-character abbreviation for the domain most relevant to the observation. The Domain abbreviation is also used as a prefix for variables to ensure uniqueness when datasets are merged."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVUSUBJID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -287,8 +287,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "USUBJID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVPOOLID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -298,8 +298,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "POOLID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "An identifier used to identify a result from a group of subjects that is not assignable to a specific subject."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVSPDEVID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -309,8 +309,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SPDEVID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Sponsor-defined identifier for a device"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--SEQ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -320,8 +320,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SEQ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Sequence number to ensure uniqueness of records within a dataset for a subject (or within a parameter, in the case of the Trial Summary domain). May be any valid number (including decimals) and does not have to start at 1."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--GRPID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -331,8 +331,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--GRPID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Optional group identifier, used to link together a block of related records within a subject in a domain. Also used to link together a block of related records in the Trial Summary dataset (Section 3.4)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--REFID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -342,8 +342,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--REFID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Optional internal or external identifier such as lab specimen ID, or UUID for an ECG waveform or a medical image."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--SPID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -353,8 +353,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SPID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Sponsor-defined identifier. Example: pre-printed line identifier on a Concomitant Medications page."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--LNKID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -364,8 +364,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LNKID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier used to link related records across domains. This may be a one-to-one or a one-to-many relationship. For Example: A single tumor may have multiple measurements/assessments performed at each study visit."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--LNKGRP>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -375,8 +375,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LNKGRP"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier used to link related records across domains. This will usually be a many-to-one relationship. For example: Multiple tumor measurements/assessments will contribute to a single response to therapy determination record."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVVISITNUM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -386,8 +386,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "VISITNUM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Clinical encounter number. Numeric version of VISIT, used for sorting."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVVISIT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -397,8 +397,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "VISIT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Protocol-defined description of a clinical encounter."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVVISITDY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -408,8 +408,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "VISITDY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Planned study day of VISIT. Should be an integer."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVTAETORD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -419,8 +419,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "TAETORD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Number that gives the planned order of the Element within the Arm (see Trial Arms, Section 3.2.2 )."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MVEPOCH>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -430,8 +430,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "EPOCH"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Epoch associated with the start date/time of the observation, or the date/time of collection if start date/time is not collected. (See Section 3.2.2)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--DTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -441,8 +441,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Collection date and time of an observation represented in IS0 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -452,8 +452,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Start date/time of an observation represented in IS0 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -463,8 +463,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "End date/time of the observation represented in IS0 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--DY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -474,8 +474,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Actual study day of visit/collection/exam expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STDY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -485,8 +485,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STDY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Actual study day of start of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENDY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -496,8 +496,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENDY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Actual study day of end of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--DUR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -507,8 +507,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DUR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Collected duration of an event, intervention, or finding represented in ISO 8601 character format. Used only if collected on the CRF and not derived."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--TPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -518,8 +518,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Text description of time when a measurement or observation should be taken as defined in the protocol. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See --TPTNUM and --TPTREF."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--TPTNUM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -529,8 +529,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TPTNUM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Numeric version of planned time point used in sorting."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ELTM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -540,8 +540,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ELTM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Planned Elapsed time in ISO 8601 character format relative to a planned fixed reference (--TPTREF) such as \"Previous Dose\" or \"Previous Meal\". This variable is useful where there are repetitive measures. Not a clock time or a date/time variable, but an interval, represented as ISO duration."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--TPTREF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -551,8 +551,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TPTREF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description of the fixed reference point referred to by --ELTM, --TPTNUM, and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--RFTDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -562,8 +562,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--RFTDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Date/time for a fixed reference time point defined by --TPTREF in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STRF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -573,8 +573,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifies the start of the observation as being before, during, or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics. \nNote: This variable will be deprecated (phased out) in a future (post SDTM v1.4) release. The functionality of this variable can be replaced by the use of --STRTPT with --STTPT = RFSTDTC."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENRF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -584,8 +584,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENRF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifies the end of the observation as being before, during or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics. \nNote: This variable will be deprecated (phased out) in a future (post SDTM v1.4) release. The functionality of this variable can be replaced by the use of --ENRTPT with --ENTPT = RFENDTC."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--EVLINT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -595,8 +595,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--EVLINT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Duration of interval associated with an observation such as a finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to represent a period of the past 2 months as the evaluation interval for a question from a questionnaire such as SF-36."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--EVINTX>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -606,8 +606,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--EVINTX"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Evaluation interval associated with an observation, where the interval is not able to be represented in ISO 8601 format. Examples: LIFETIME, LAST NIGHT, RECENTLY, OVER THE LAST FEW WEEKS."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STRTPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -617,8 +617,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRTPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifies the start of the observation as being before or after the sponsor-defined reference time point defined by variable --STTPT."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STTPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -628,8 +628,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STTPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description or date/time in ISO 8601 or other character format of the sponsor-defined reference point referred to by --STRTPT. Examples: \"2003-12-15\" or \"VISIT 1\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENRTPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -639,8 +639,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENRTPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifies the end of the observation as being before or after the sponsor-defined reference time point defined by variable --ENTPT."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENTPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -650,8 +650,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENTPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description or date/time in ISO 8601 or other character format of the sponsor-defined reference point referred to by --ENRTPT. Examples: \"2003-12-25\" or \"VISIT 2\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--STINT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -661,8 +661,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STINT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The start of a planned evaluation or assessment interval in ISO 8601 character format relative to the Time Point Reference (--TPTREF)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--ENINT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -672,8 +672,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENINT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The end of a planned evaluation or assessment interval in ISO 8601 character format relative to the Time Point Reference (--TPTREF)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ALL/V1#CL_MV--DETECT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -683,8 +683,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DETECT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The number of days from the start of dosing to the earliest detection of a condition or pathogen."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_MVAPID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -694,8 +694,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "APID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier for a single associated person, a group of associated persons, or a pool of associated persons. If APID identifies a pool, POOLDEF records must exist for each associated person."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_MVRSUBJID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -705,8 +705,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RSUBJID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier for a related study subject or pool of study subjects. The subject(s) may be human or animal. RSUBJID will be populated with the USUBJID of the related subject or the POOLID of the related pool.\nRSUBJID will be null for data about associated persons who are related to the study but not to any of the study subjects."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_MVRDEVID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -716,8 +716,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RDEVID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifier for a related device. RDEVID will be populated with the SPDEVID of the related device"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#b6c5a1da-4f85-4056-91e8-cab4ccf5a591> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#458c1199-0f76-4221-b225-c950dab00cd8> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL_MVSREL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -727,8 +727,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SREL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "If RSUBJID is populated, describes the relationship of the associated person(s) identified in APID to the subject or pool identified in RSUBJID.\nIf RDEVID is populated, describes the relationship of the associated person(s) identified in APID to the device identified in RDEVID. \nIf RSUBJID and RDEVID are null, SREL describes the relationship of the associated person(s) identified in APID to the study identified in STUDYID."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--TERM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -738,8 +738,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TERM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Topic variable for an event observation, which is the verbatim or pre-specified name of the event."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--MODIFY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -749,8 +749,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--MODIFY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "If the value for --TERM is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--LLT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -760,7 +760,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LLT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA Lowest Level Term."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--LLTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -770,7 +770,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LLTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA Lowest Level Term code."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--DECOD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -780,8 +780,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DECOD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Dictionary or sponsor-defined derived text description of the topic variable, --TERM, or the modified topic variable (--MODIFY), if applicable. Equivalent to the Preferred Term (PT in MedDRA)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -791,7 +791,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA Preferred Term code."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--HLT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -801,7 +801,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--HLT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA High Level Term from the primary path."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--HLTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -811,7 +811,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--HLTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA High Level Term code from the primary path."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--HLGT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -821,7 +821,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--HLGT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA High Level Group Term from the primary path."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--HLGTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -831,7 +831,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--HLGTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA High Level Group Term code from the primary path."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--CAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -841,8 +841,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--CAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to define a category of topic-variable values."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#618b4fdd-86e2-4caa-b8eb-fea3f8067da5> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SCAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -852,8 +852,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SCAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to define a further categorization of --CAT values."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#618b4fdd-86e2-4caa-b8eb-fea3f8067da5> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PRESP>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -863,7 +863,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PRESP"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to indicate whether the event described by --TERM was pre-specified on a CRF. Value is Y for pre-specified events, null for spontaneously reported events."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--OCCUR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -873,8 +873,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--OCCUR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--STAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -884,8 +884,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--REASND>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -895,8 +895,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--REASND"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Reason not done. Used in conjunction with --STAT when its value is NOT DONE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--BODSYS>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -906,8 +906,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--BODSYS"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Body system or system organ class assigned for analysis from a standard hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL DISORDERS."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--BDSYCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -917,7 +917,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--BDSYCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA System Organ Class code corresponding to --BODSYS assigned for analysis."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SOC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -927,7 +927,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SOC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA primary System Organ Class associated with the event."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SOCCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -937,7 +937,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SOCCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "MedDRA primary System Organ Class code."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--LOC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -947,8 +947,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LOC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes anatomical location relevant for the event. Example: ARM for skin rash."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--LAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -958,7 +958,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Qualifier for anatomical location further detailing laterality. Examples: RIGHT, LEFT, BILATERAL"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--DIR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -968,7 +968,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DIR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Qualifier for anatomical location further detailing directionality. Examples: ANTERIOR, LOWER, PROXIMAL"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PORTOT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -978,7 +978,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PORTOT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Qualifier for anatomical location further detailing the distribution, which means arrangement of, apportioning of. Examples: ENTIRE, SINGLE, SEGMENT, MANY."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PARTY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -988,8 +988,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PARTY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Party accountable for the transferable object (e.g. device, specimen) as a result of the activity performed in the associated --TERM variable. The party could be an individual (e.g., subject), an organization (e.g., sponsor), or a location that is a proxy for an individual or organization (e.g., site). It is usually a somewhat general term that is further identified in the --PRTYID variable."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PRTYID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -999,8 +999,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PRTYID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identification of the specific party accountable for the transferable object (e.g. device, specimen) after the action in --TERM is taken. Used in conjunction with --PARTY."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SEV>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1010,8 +1010,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SEV"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SER>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1021,8 +1021,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SER"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Is this is a serious event? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--ACN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1032,8 +1032,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ACN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes changes made to the study treatment as a result of the event. Examples: DOSE INCREASED, DOSE NOT CHANGED."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--ACNOTH>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1043,8 +1043,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ACNOTH"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--ACNDEV>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1054,8 +1054,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ACNDEV"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Action taken with respect to a device in a study, which may or may not be the device under study"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--REL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1065,8 +1065,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--REL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--RELNST>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1076,8 +1076,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--RELNST"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "An opinion as to whether the event may have been due to a treatment other than study drug. Example: \"MORE LIKELY RELATED TO ASPIRIN USE.\""^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--PATT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1087,8 +1087,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PATT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--OUT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1098,8 +1098,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--OUT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description of the outcome of an event. Examples: RECOVERED/RESOLVED, FATAL."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SCAN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1109,8 +1109,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SCAN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Was the event associated with the development of cancer? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SCONG>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1120,8 +1120,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SCONG"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Was the event associated with congenital anomaly or birth defect? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SDISAB>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1131,8 +1131,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SDISAB"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Did the event result in persistent or significant disability/incapacity? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SDTH>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1142,8 +1142,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SDTH"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Did the event result in death? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SHOSP>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1153,8 +1153,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SHOSP"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Did the event require or prolong hospitalization? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SLIFE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1164,8 +1164,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SLIFE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Was the event life threatening? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SOD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1175,8 +1175,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SOD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Did the event occur with an overdose? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--SMIE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1186,8 +1186,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SMIE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Do additional categories for seriousness apply? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--CONTRT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1197,8 +1197,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--CONTRT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Was another treatment given because of the occurrence of the event? Valid values are \"Y\" and \"N\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--TOX>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1208,7 +1208,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TOX"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define-XML document."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_EVENTS/V1#CL_MV--TOXGR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1218,8 +1218,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TOXGR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define-XML document."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS_ABOUT/V1#CL_MV--OBJ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1229,8 +1229,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--OBJ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used in domains modeled as Findings About Events or Findings About Interventions. Describes the event or intervention whose property is being measured in --TESTCD/--TEST. Example: an event of vomiting which has findings, where --OBJ = \"VOMIT\" and the volume of VOMIT is being measured where --TESTCD = \"VOLUME\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--TESTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1240,8 +1240,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TESTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Short character value for --TEST used as a column name when converting a dataset from a vertical format to a horizontal format. The short value can be up to 8 characters. Examples: PLAT, SYSBP, RRMIN, EYEEXAM."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--TEST>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1251,8 +1251,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TEST"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Long name For --TESTCD. Examples: Platelet, Systolic Blood Pressure, Summary (Min) RR Duration, Eye Examination."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--TSTDTL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1262,7 +1262,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TSTDTL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Further description of --TESTCD and --TEST. Example: \"The percentage of cells with +1 intensity of staining\" when MITESTCD = TTF1."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--POS>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1272,8 +1272,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--POS"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ORRES>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1283,8 +1283,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ORRES"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Result of the measurement or finding as originally received or collected. Examples: 120, <1, POS."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ORRESU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1294,7 +1294,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ORRESU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Unit for --ORRES. Examples: IN, LB, kg/L."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ORNRLO>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1304,7 +1304,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ORNRLO"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Lower end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ORNRHI>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1314,7 +1314,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ORNRHI"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Upper end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STRESC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1324,8 +1324,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRESC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Contains the result value for all findings, copied or derived from --ORRES in a standard format or in standard units. --STRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in --STRESN. For example, if various tests have results \"NONE\", \"NEG\", and \"NEGATIVE\" in --ORRES and these results effectively have the same meaning, they could be represented in standard format in --STRESC as \"NEGATIVE\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STRESN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1335,8 +1335,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRESN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used for continuous or numeric results or findings in standard format; copied in numeric format from --STRESC. --STRESN should store all numeric test results or findings."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STRESU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1346,7 +1346,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRESU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Standardized units used for --STRESC and --STRESN. Example: mol/L."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STNRLO>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1356,7 +1356,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STNRLO"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Lower end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STNRHI>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1366,7 +1366,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STNRHI"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Upper end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--STNRC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1376,7 +1376,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STNRC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Normal range or reference range for results stored in --STRESC that are character in ordinal or categorical scale. Example: Negative to Trace."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--NRIND>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1386,7 +1386,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--NRIND"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to indicate the value is outside the normal range or reference range. May be defined by --ORNRLO and --ORNRHI or other objective criteria. Examples: Y, N; HIGH, LOW; NORMAL; ABNORMAL."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--RESCAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1396,7 +1396,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--RESCAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to categorize the result of a finding. Example: MALIGNANT or BENIGN for tumor findings. RESISTANCE VARIANT for genetic variation."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--XFN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1406,8 +1406,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--XFN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Filename for an external file, such as one for an ECG waveform or a medical image."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--NAM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1417,8 +1417,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--NAM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Name or identifier of the vendor (e.g., laboratory) that provided the test results."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--LOINC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1428,8 +1428,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LOINC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Logical Observation Identifiers Names and Codes (LOINC) code for the topic variable such as a lab test."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--SPEC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1439,8 +1439,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SPEC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Defines the type of specimen used for a measurement. Examples: SERUM, PLASMA, URINE, DNA, RNA."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ANTREG>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1450,7 +1450,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ANTREG"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Defines the specific anatomical or biological region of a tissue, organ specimen or the region from which the specimen is obtained, as defined in the protocol, such as a section or part of what is described in the --SPEC variable. Examples: CORTEX, MEDULLA, MUCOSA"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--SPCCND>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1460,8 +1460,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SPCCND"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Defines the condition of the specimen. Example: CLOUDY."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--SPCUFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1471,8 +1471,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--SPCUFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes the usability of the specimen for the test. The value will be N if the specimen is not usable, and null if the specimen is usable."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--METHOD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1482,8 +1482,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--METHOD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Method of the test or examination. Examples: EIA (Enzyme Immunoassay), ELECTROPHORESIS, DIPSTICK"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--RUNID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1493,8 +1493,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--RUNID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A unique identifier for a particular run of a test on a particular batch of samples."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ANMETH>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1504,8 +1504,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ANMETH"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Analysis method applied to obtain a summarized result. Analysis method describes the method of secondary processing applied to a complex observation result (e.g. an image or a genetic sequence)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--LEAD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1515,8 +1515,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LEAD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Lead or leads identified to capture the measurement for a test from an instrument. Examples: LEAD I, LEAD V2, LEAD CM5."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--CSTATE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1526,8 +1526,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--CSTATE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The consciousness state of the subject at the time of measurement. Examples: CONSCIOUS, SEMI-CONSCIOUS, UNCONSCIOUS"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--BLFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1537,8 +1537,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--BLFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Indicator used to identify a baseline value. Should be Y or null."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--FAST>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1548,8 +1548,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--FAST"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Indicator used to identify fasting status. Valid values include Y, N, U or null if not relevant."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--DRVFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1559,8 +1559,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DRVFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to indicate a derived record (e.g., a record that represents the average of other records such as a computed baseline). Should be Y or null."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--EVAL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1570,8 +1570,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--EVAL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Role of the person who provided the evaluation. Used only for results that are subjective (e.g., assigned by a person or a group). Examples: ADJUDICATION COMMITTEE, INDEPENDENT ASSESSOR, RADIOLOGIST."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--EVALID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1581,7 +1581,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--EVALID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to distinguish multiple evaluators with the same role recorded in --EVAL. Examples: RADIOLOGIST1 or RADIOLOGIST2"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ACPTFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1591,8 +1591,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ACPTFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "In cases where more than one assessor provides an evaluation of a result or response, this flag identifies the record that is considered, by an independent assessor, to be the accepted evaluation. Expected to be Y or null."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--DTHREL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1602,8 +1602,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DTHREL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes the relationship of a particular finding to the death of a subject. Examples: Y, N or U."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--LLOQ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1613,7 +1613,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LLOQ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Indicates the lower limit of quantitation for an assay. Units will be those used for --STRESU."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--ULOQ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1623,7 +1623,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ULOQ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Indicates the upper limit of quantitation for an assay. Units will be those used for --STRESU."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--EXCLFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1633,8 +1633,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--EXCLFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Indicates whether the values in the result variables for this record should be excluded from summary statistical calculations such as Mean, Standard Deviation, and Count (and others). Expected to be Y or null. --EXCLFL should not be used when --STAT is NOT DONE. Not to be used with human clinical trials."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_FINDINGS/V1#CL_MV--REASEX>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1644,8 +1644,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--REASEX"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Reason excluded from statistics. Used in conjunction with --EXCLFL when its value is Y. Not to be used with human clinical trials"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--TRT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1655,8 +1655,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TRT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The topic for the intervention observation, usually the verbatim name of the treatment, drug, medicine, or therapy given during the dosing interval for the observation."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--MOOD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1666,8 +1666,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--MOOD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Mode or condition of the record (e.g., SCHEDULED, PERFORMED)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--INDC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1677,8 +1677,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--INDC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Denotes the indication for the intervention (e.g., why the therapy was taken or administered)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--CLAS>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1688,7 +1688,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--CLAS"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Class for a medication or treatment, often obtained from a coding dictionary."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--CLASCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1698,7 +1698,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--CLASCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to represent code for --CLAS."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1708,8 +1708,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Amount of --TRT given. Not populated when --DOSTXT is populated."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSTXT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1719,8 +1719,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSTXT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Dosing information collected in text form. Examples: <1 per day, 200-400. Not populated when --DOSE is populated."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1730,7 +1730,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Units for --DOSE, --DOSTOT, or --DOSTXT (Examples: ng, mg, mg/kg)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSFRM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1740,7 +1740,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSFRM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Dose form for the treatment. Examples: TABLET, CAPSULE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSFRQ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1750,7 +1750,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSFRQ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Usually expressed as the number of doses given per a specific interval. Examples: Q2H, QD, PRN."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSTOT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1760,8 +1760,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSTOT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Total daily dose of --TRT using the units in --DOSU. Used when dosing is collected as Total Daily Dose."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--DOSRGM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1771,7 +1771,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--DOSRGM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Text description of the (intended) schedule or regimen for the Intervention. Example: TWO WEEKS ON, TWO WEEKS OFF."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--ROUTE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1781,7 +1781,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ROUTE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Route of administration for the intervention. Examples: ORAL, INTRAVENOUS."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--LOT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1791,8 +1791,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--LOT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Lot number for the intervention described in --TRT."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--PSTRG>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1802,7 +1802,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PSTRG"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Amount of an active ingredient expressed quantitatively per dosage unit, per unit of volume, or per unit of weight, according to the pharmaceutical dose form. Example: 50 mg/TABLET, 300 mg/L"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--PSTRGU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1812,7 +1812,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PSTRGU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Unit for --PSTRG. Example: mg/TABLET, mg/mL"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--TRTV>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1822,8 +1822,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TRTV"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Vehicle for administration of treatment, such as a liquid in which the treatment drug is dissolved. Example: SALINE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--VAMT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1833,8 +1833,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VAMT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Amount of the prepared product (treatment + vehicle) administered or given. Note: should not be diluent amount alone."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--VAMTU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1844,7 +1844,7 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VAMTU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Units for the prepared product (treatment + vehicle). Examples: mL, mg."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
 .
 <http://www.cdisc.org/SDTMMODEL_INTERVENTIONS/V1#CL_MV--ADJ>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1854,8 +1854,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ADJ"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Describes reason or explanation of why a dose is adjusted. Examples ADVERSE EVENT, INSUFFICIENT RESPONSE, NON-MEDICAL REASON."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSUBJID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1865,8 +1865,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SUBJID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Subject identifier, which must be unique within the study. Often the ID of the subject as recorded on a CRF."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFSTDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1876,8 +1876,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFSTDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. Required for all randomized subjects; will be null for all subjects who did not meet the milestone the date requires, such as screen failures or unassigned subjects."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFENDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1887,8 +1887,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFENDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Reference End Date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. Required for all randomized subjects; null for screen failures or unassigned subjects."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFXSTDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1898,8 +1898,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFXSTDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "First date/time of exposure to any protocol-specified treatment or therapy for the subject in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFXENDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1909,8 +1909,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFXENDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Last date/time of exposure to any protocol-specified treatment or therapy for the subject in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFICDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1920,8 +1920,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFICDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Date/time of informed consent in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRFPENDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1931,8 +1931,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RFPENDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Date/time when subject ended participation or follow-up in a trial, in ISO 8601 character format. Should correspond to the last known date of contact."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVDTHDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1942,8 +1942,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "DTHDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Date/time of death for any subject who died, in ISO 8601 format. Should represent the date/time that is captured in the clinical-trial database."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVDTHFL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1953,8 +1953,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "DTHFL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A value of 'Y' indicates the subject died. Should be Y or null. Should be populated even when the death date is unknown."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSITEID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1964,8 +1964,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SITEID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Unique identifier for a site within a study."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVINVID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1975,8 +1975,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "INVID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "An identifier to describe the Investigator for the study. May be used in addition to the SITEID. Not needed if SITEID is equivalent to INVID."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVINVNAM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1986,8 +1986,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "INVNAM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Name of the investigator for a site."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVBRTHDTC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -1997,8 +1997,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "BRTHDTC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Date/time of birth of the subject in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVAGE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2008,8 +2008,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "AGE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Age expressed in AGEU"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVAGEU>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2019,8 +2019,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "AGEU"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Units associated with AGE."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSEX>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2030,8 +2030,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SEX"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Sex of the subject."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRACE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2041,8 +2041,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RACE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Race of the subject. Sponsors should refer to \"Collection of Race and Ethnicity Data in Clinical Trials\" (FDA, September 2005) for guidance regarding the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm)"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVETHNIC>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2052,8 +2052,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ETHNIC"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The ethnicity of the subject. Sponsors should refer to \"Collection of Race and Ethnicity Data in Clinical Trials\" (FDA, September 2005) for guidance regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSPECIES>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2063,8 +2063,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SPECIES"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to identify the common species name of the subject (i.e., test system) under study (e.g., MOUSE, RAT, DOG, MONKEY)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSTRAIN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2074,8 +2074,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "STRAIN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used to identify the vendor-supplied strain/substrain designation for the subject (i.e., test system) under study. When applicable, it combines the root strain, substrain, and associated genetic modifications, as supplied by the vendor (e.g., C57BL/6, A/J, B6.129-Pparg<tm2Rev>/J, FISCHER 344, SPRAGUE DAWLEY IGS, WISTAR Kyoto, BEAGLE, CYNOMOLGUS, CHIMPANZEE)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVARMCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2085,8 +2085,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ARMCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "ARMCD is limited to 20 characters and does not have special character restrictions."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVARM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2096,8 +2096,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ARM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Name of the Arm to which the subject was assigned."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVACTARMCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2107,8 +2107,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ACTARMCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Short name for the actual Arm in which the subject participated during the trial, limited to 20 characters."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVACTARM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2118,8 +2118,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ACTARM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description of the actual Arm in which the subject participated during the trial."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVSETCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2129,8 +2129,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SETCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Short name of a specific Trial Set (see Table 3.2.4), as defined by the sponsor. Maximum of 8 characters. This represents the code for the Trial Set for which parameters are being submitted."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVCOUNTRY>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2140,8 +2140,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "COUNTRY"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Country of the investigational site at which the subject participated in the trial in ISO 3166 three-character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVRDOMAIN>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2151,8 +2151,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RDOMAIN"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Domain Abbreviation of the parent record(s). Null for records collected on general comments or additional information CRF page."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVIDVAR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2162,8 +2162,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IDVAR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifying variable in the parent dataset that identifies the record(s) to which the comment applies. Examples AESEQ or CMGRPID. Used only when individual comments are related to domain records. Null for comments collected on separate CRFs."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVIDVARVAL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2173,8 +2173,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IDVARVAL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Value of identifying variable of the parent record(s). Null for comments collected on separate CRFs."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MV--REF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2184,8 +2184,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--REF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Sponsor-defined reference associated with the comment. May be the CRF page number (e.g. 650), or a module name (e.g. DEMOG), or a combination of information that identifies the reference (e.g. 650-VITALS-VISIT 2)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MV--VAL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2195,8 +2195,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VAL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The text of the comment. Text over 200 characters can be added to additional columns COVAL1-COVALn."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVETCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2206,8 +2206,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ETCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "ETCD (the companion to ELEMENT) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that ETCD will need to serve as a variable name."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MVELEMENT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2217,8 +2217,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "ELEMENT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The name of the Element. If ETCD has a value of \"UNPLAN\" then ELEMENT should be Null."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_SPECIAL_PURPOSE/V1#CL_MV--UPDES>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2228,8 +2228,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--UPDES"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Description of what happened to the subject during an unplanned Element. Used only if ETCD has the value of \"UNPLAN\"."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--STRL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2239,8 +2239,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STRL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Expresses rule for beginning the Element."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c9ce6fe5-a938-486a-9be2-ce32fff2d7be> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#93d81003-0828-40fd-a65f-7210b469fe88> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--ENRL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2250,8 +2250,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ENRL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Expresses rule for ending the Element. Either TEENRL or TEDUR must be present for each Element."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c9ce6fe5-a938-486a-9be2-ce32fff2d7be> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#93d81003-0828-40fd-a65f-7210b469fe88> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--BRANCH>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2261,8 +2261,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--BRANCH"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Condition subjects meet, at a \"branch\" in the Trial Design at the end of this Element, to be included in this Arm. Example: Randomization to DRUG X."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c9ce6fe5-a938-486a-9be2-ce32fff2d7be> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#93d81003-0828-40fd-a65f-7210b469fe88> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--TRANS>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2272,8 +2272,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TRANS"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "If the trial design allows a subject to transition to an Element other than the next Element in sequence, then the conditions for transitioning to those other Elements, and the alternative Element sequences, are specified in this rule (e.g., Responders go to washout)."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c9ce6fe5-a938-486a-9be2-ce32fff2d7be> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#93d81003-0828-40fd-a65f-7210b469fe88> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MVSET>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2283,8 +2283,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "SET"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Long description of a specific Trial Set, as defined by the sponsor."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MVIETESTCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2294,8 +2294,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IETESTCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Short name IETEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in IETESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). IETESTCD cannot contain characters other than letters, numbers, or underscores. The name \"IE\" prefix is used to ensure consistency with the IE domain"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MVIETEST>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2305,8 +2305,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IETEST"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Full text of the inclusion or exclusion criterion. The prefix \"IE\" is used to ensure consistency with the IE domain."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MVIECAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2316,8 +2316,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IECAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used for categorization of the Inclusion/Exclusion Criterion: INCLUSION, EXCLUSION."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#618b4fdd-86e2-4caa-b8eb-fea3f8067da5> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MVIESCAT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2327,8 +2327,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "IESCAT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A further categorization of the exception criterion. Can be used to distinguish criteria for a sub-study or for to categorize as a major or minor exceptions. Examples: MAJOR, MINOR."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#618b4fdd-86e2-4caa-b8eb-fea3f8067da5> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--RL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2338,8 +2338,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--RL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Rule that expresses the inclusion/exclusion criterion."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c9ce6fe5-a938-486a-9be2-ce32fff2d7be> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#93d81003-0828-40fd-a65f-7210b469fe88> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--VERS>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2349,8 +2349,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VERS"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The number of this version of the Inclusion/Exclusion criteria. May be omitted if there is only one version."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--PARMCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2360,8 +2360,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PARMCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "TSPARMCD (the companion to TSPARM) is limited to 8 characters and does not have special character restrictions. These values should be short for ease of use in programming, but it is not expected that TSPARMCD will need to serve as variable names. Examples: AGEMIN, AGEMAX"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#65dee8b7-0bf9-4860-a7d0-f40fba6f29cd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#afe0d026-263a-42ad-b538-d50eaf8bc93d> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--PARM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2371,8 +2371,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--PARM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Term for the Trial Summary Parameter. The value in TSPARM cannot be longer than 40 characters. Examples Planned Minimum Age of Subjects, Planned Maximum Age of Subjects"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#4a4954db-310f-4c9d-91c8-f7300c756573> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#9a5be74f-df82-4d83-93d9-1c4ab59f6cc1> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--VALNF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2382,8 +2382,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VALNF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Null flavor for the value of TSVAL describing the reason the value is null, to be populated if and only if TSVAL is null."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--VALCD>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2393,8 +2393,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VALCD"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Code of the term in TSVAL from Reference Terminology cited in TSVCDREF."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--VCDREF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2404,8 +2404,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VCDREF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The name of the Reference Terminology from which TSVALCD is taken. For example; CDISC, SNOMED, ISO 8601."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--VCDVER>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2415,8 +2415,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--VCDVER"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The version number of the Reference Terminology cited in TSVCDREF, if applicable."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#45bb2a2c-c86a-4420-b401-097d0bba6edd> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#ac5e5c1f-24f4-4a3d-bdb6-bff1afdd1985> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--ORDER>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2426,8 +2426,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ORDER"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A number given to ensure ordinal sequencing of the planned assessment schedules within a trial."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--ANCVAR>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2437,8 +2437,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--ANCVAR"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A reference to the date variable name that provides the start point from which the planned disease assessment schedule is measured. This must be referenced from the ADaM ADSL dataset e.g. ANCH1DT. Note: TDANCVAR is to contain the name of a reference date variable name."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--STOFF>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2448,8 +2448,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--STOFF"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "A fixed offset from the date provided by the variable referenced in TDANCVAR. This is used when the timing of planned cycles does not start on the exact day referenced in the variable indicated in TDANCVAR. The value of this variable will be either zero or a positive value and will be represented in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--TGTPAI>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2459,8 +2459,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--TGTPAI"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--MINPAI>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2470,8 +2470,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--MINPAI"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The lower limit of the allowed range for the planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--MAXPAI>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2481,8 +2481,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--MAXPAI"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The upper limit of the allowed range for the planned interval between disease assessments represented in ISO 8601 character format."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#66ff773d-9a9e-47c0-a6ca-d462bd1aea79> ;
 .
 <http://www.cdisc.org/SDTMMODEL_TRIAL_DESIGN/V1#CL_MV--NUMRPT>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2492,8 +2492,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "--NUMRPT"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "true"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "This variable must represent the maximum number of actual assessments for the analysis that this disease assessment schedule describes. In a trial where the maximum number of assessments is not defined explicitly in the protocol (e.g. assessments occur until death) TDNUMRPT should represent the maximum number of disease assessments that support the efficacy analysis, encountered by any subject across the trial at that point in time."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#45f938c2-7177-4b03-8307-3ef2ecd33ad3> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#4261b4e8-fbdf-4236-97e4-93f09b376547> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVRELTYPE>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2503,8 +2503,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RELTYPE"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. However, values are only necessary when identifying a relationship between datasets."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVRELID>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2514,8 +2514,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "RELID"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Unique value within USUBJID that identifies the relationship. All records for the same USUBJID that have the same RELID are considered \"related/associated.\" RELID can be any value the sponsor chooses, and is only meaningful within the RELREC dataset to identify the related/associated Domain records."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVQNAM>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2525,8 +2525,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "QNAM"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "The short name of the Qualifier variable, which is used as a column name in a domain view with data from the parent domain. The value in QNAM cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). QNAM cannot contain characters other than letters, numbers, or underscores. This will often be the column name in the sponsor's operational dataset."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVQLABEL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2536,8 +2536,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "QLABEL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "This is the long name or label associated with QNAM. The value in QLABEL cannot be longer than 40 characters. This will often be the column label in the sponsor's original dataset."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVQVAL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2547,8 +2547,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "QVAL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Result of, response to, or value associated with QNAM. A value for this column is required; no records can be in SUPP-- with a null value for QVAL"^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVQORIG>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2558,8 +2558,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "QORIG"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Since QVAL can represent a mixture of collected (on a CRF), derived, or assigned items, QORIG is used to indicate the origin of this data. Examples include CRF, ASSIGNED, or DERIVED."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_RELATIONSHIP/V1#CL_MVQEVAL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmModelVariable> ;
@@ -2569,8 +2569,8 @@
 	<http://www.assero.co.uk/Tabulation#name> "QEVAL"^^xsd:string ;
 	<http://www.assero.co.uk/Tabulation#prefixed> "false"^^xsd:boolean ;
 	<http://www.assero.co.uk/Tabulation#description> "Used only for results that are subjective (e.g., assigned by a person or a group). Should be null for records that contain objectively collected or derived data. Some examples include ADJUDICATION COMMITTEE, STATISTICIAN, DATABASE ADMINISTRATOR, CLINICAL COORDINATOR, etc."^^xsd:string ;
-	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#af90d180-a154-40ec-859f-0f523048f10b> ;
-	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#c2111706-879c-42e8-820f-d26962217ad4> ;
+	<http://www.assero.co.uk/Tabulation#typedAs> <http://www.assero.co.uk/CSN#c2ce7061-4855-450e-ba00-aa827986d372> ;
+	<http://www.assero.co.uk/Tabulation#classifiedAs> <http://www.assero.co.uk/CSN#19f5fd25-36ea-44e7-aa2b-d8e62217c7d0> ;
 .
 <http://www.cdisc.org/SDTMMODEL_ASSOCIATED_PERSONS/V1#CL>
 	rdf:type <http://www.assero.co.uk/Tabulation#SdtmClass> ;
