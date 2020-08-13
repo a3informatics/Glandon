@@ -6,7 +6,6 @@ import { $post } from 'shared/helpers/ajax'
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
 import { dtBCEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtBCEditFields } from 'shared/helpers/dt/dt_field_collections'
-import { getDeepestValue } from 'shared/helpers/utils'
 
 /**
  * Biomedical Concept Editor
@@ -22,21 +21,55 @@ export default class BCEditor extends EditablePanel {
    * @param {object} params.urls Must contain urls for 'data', 'update',
    * @param {string} params.selector JQuery selector of the target table
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
-   * @param {function} params.extendTimer Callback for Timer extend called on any Edit action
+   * @param {function} params.loadingCallback Callback when Editor's _loading function is called, receives identical argument, optional
+   * @param {function} params.onEdited Callback executed on any edit action
    */
   constructor({
     urls,
     selector = "table#editor",
     loadCallback = () => {},
-    extendTimer = () => {}
+    loadingCallback = () => {},
+    onEdited = () => {}
   }) {
+
     // Initialize custom DataTable Editor fields
-    dtFieldsInit(['truefalse', 'picker']);
+    dtFieldsInit( ['truefalse', 'picker'] );
 
+    // Initialize super with custom options
     super({ selector, dataUrl: urls.data, updateUrl: urls.update, param: 'biomedical_concept_instance',
-            columns: dtBCEditColumns(), fields: dtBCEditFields(), deferLoading: true, loadCallback });
+            columns: dtBCEditColumns(), fields: dtBCEditFields(), idSrc: 'has_complex_datatype.has_property.id',
+            deferLoading: true, loadCallback, order: [[2, "desc"]] });
 
-    Object.assign(this, { extendTimer });
+    Object.assign( this, { onEdited, loadingCallback } );
+
+  }
+
+  /**
+   * Set new bcInstance to the Editor
+   * @param {Object} bcInstance new bcInstance object
+   */
+  setBCInstance(bcInstance) {
+
+    this.bcInstance = bcInstance;
+
+    // Update Editor instance's data and update urls
+    this.setDataUrl( this.bcInstance.dataUrl );
+    this.setUpdateUrl( this.bcInstance.updateUrl );
+
+  }
+
+  /**
+   * Enable the Editor Key & Click interaction
+   */
+  kEnable() {
+    this.table.keys.enable();
+  }
+
+  /**
+   * Disable the Editor Key & Click interaction
+   */
+  kDisable() {
+    this.table.keys.disable();
   }
 
 
@@ -44,48 +77,68 @@ export default class BCEditor extends EditablePanel {
 
 
   /**
-   * Sets event listeners, handlers
+   * Set event listeners, handlers
    */
   _setListeners() {
+
     // Call super's _setListeners
     super._setListeners();
 
     // Format the updated data before sending to the server
     this.editor.on('preSubmit', (e, d, type) => {
-      if (type === 'edit')
-        this._formatUpdateData(d);
+
+      if ( type === 'edit' )
+        this._formatUpdateData( d );
+
+    });
+
+    // Reset pickable cell data to empty state before repopulating with data
+    this.editor.on('postSubmit', (e, json, data) => {
+
+      let cell = this.table.cell( ".editable.inline.pickable", { focused: true } );
+      cell.data( [] );
+
     });
 
     // Reload data button click event
-    $('#refresh-bc-editor').on('click', () => this.refresh())
+    $('#refresh-bc-editor').on('click', () => this.refresh() );
+
   }
 
   /**
-   * Format the update data to be compatible with server
+   * Format the update data structure for server compatibility
    * @param {object} d DataTables Editor data object
    */
   _formatUpdateData(d) {
-    const propertyId = Object.keys(d.data)[0];
-    const edited = getDeepestValue(d.data);
+
+    let id = Object.keys(d.data)[0],
+        data = Object.values(d.data)[0],
+        fieldName = this.editor.displayed()[0];
 
     // Map item references to an array of ids
-    if ( Array.isArray(edited.value) && edited.value.length )
-      edited.value = edited.value.map((d) => d.reference.id)
+    if ( fieldName === 'has_coded_value' && Array.isArray( data.has_coded_value ) )
+      data.has_coded_value = data.has_coded_value.map( (i) =>
+        Object.assign( {}, { id: i.reference.id, context_id: i.context.id } )
+      )
 
-    d[this.param] = {
-      property_id: propertyId
-    }
-    d[this.param][edited.property] = edited.value;
+    // Format update data
+    d[this.param] = {}
+    Object.assign(d[this.param], { property_id: id }, data )
 
+    // Clear unused structures
     delete d.data;
+
   }
 
   /**
-   * Extends the Token Timer on any edit action
+   * Calls the onEdited callback function
    * @override super's _onEdited
    */
   _onEdited(e, json) {
-    this.extendTimer();
+
+    if ( this.onEdited )
+      this.onEdited();
+
   }
 
   /**
@@ -93,15 +146,48 @@ export default class BCEditor extends EditablePanel {
    * @override super's _initPickers
    */
   _initPickers() {
+
     super._initPickers();
 
     // Initializes Terminology Reference Picker
     this.editor.pickers["termPicker"] = new ItemsPicker({
-        id: 'bc-term-ref',
-        types: ['unmanaged_concept'],
-        multiple: true,
-        emptyEnabled: true
-      });
+      id: 'bc-term-ref',
+      types: ['unmanaged_concept'],
+      multiple: true,
+      emptyEnabled: true,
+      onShow: () => this.kDisable(),
+      onHide: () => {
+        this.editor.close();
+        this.kEnable();
+      }
+    });
+
+  }
+
+  /**
+   * Extends super's _loading, trigger instance's loadingCallback function
+   * @param {boolean} enable value corresponding to the desired loading state on/off
+   */
+  _loading(enable) {
+    super._loading(enable);
+    this.loadingCallback(enable);
+  }
+
+  /**
+   * Extend default Editable Panel options
+   * @return {Object} DataTable options object
+   */
+  get _tableOpts() {
+
+    let options = super._tableOpts;
+
+    options.rowId = (d) => {
+      return d.has_complex_datatype.has_property.id
+    }
+    options.keys.blurable = false;
+
+    return options;
+
   }
 
 }

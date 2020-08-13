@@ -19,16 +19,22 @@ export default class CreateBCView extends ModalView {
    * @param {Object} params Instance parameters
    * @param {string} params.selector JQuery selector of the modal element
    * @param {function} params.onCreated Callback executed when BC gets created, result passed as function argument
+   * @param {function} params.onShow Callback executed when modal shown
+   * @param {function} params.onHide Callback executed when modal hidden
    */
    constructor({
      selector = '#new-bc-modal',
-     onCreated
+     onCreated,
+     onShow = () => { },
+     onHide = () => { }
    } = {}) {
     super({ selector });
 
     Object.assign(this, {
       templatePicker: this._initPicker(),
-      onCreated: onCreated || this._defaultOnCreated
+      onCreated: onCreated || this._defaultOnCreated,
+      onShow,
+      onHide
     });
 
     this._setListeners();
@@ -91,6 +97,22 @@ export default class CreateBCView extends ModalView {
 
     // On Template selector click event
     this.form.find('#new-bc-template').on('click', () => this.templatePicker.show() );
+  }
+
+  /**
+   * Calls the onShow callback when modal shows
+   * @override _onShow in ModalView for custom behavior
+   */
+  _onShow() {
+    this.onShow();
+  }
+
+  /**
+   * Calls the onHide callback when modal hides
+   * @override _onHide in ModalView for custom behavior
+   */
+  _onHide() {
+    this.onHide();
   }
 
   /**

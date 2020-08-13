@@ -31,6 +31,7 @@ export default class BCManager extends Cacheable {
     tokenWarningTime,
     selector = "#bc-manager-panel",
   }) {
+
     super();
 
     Object.assign(this, { baseBCId, urls, tokenWarningTime, selector });
@@ -41,6 +42,7 @@ export default class BCManager extends Cacheable {
 
     // Fetch data for base BC
     this.editBC(this.baseBCId, true);
+
   }
 
   /**
@@ -49,6 +51,7 @@ export default class BCManager extends Cacheable {
    * @param {boolean} isBase value representing whether the BC is the base BC instance, optional, [default = false]
    */
   editBC(id, isBase = false) {
+
     this._loading(true)
 
     // Edit BC request
@@ -61,6 +64,7 @@ export default class BCManager extends Cacheable {
       always: () => this._loading(false),
       rawResult: true
     });
+
   }
 
 
@@ -71,48 +75,70 @@ export default class BCManager extends Cacheable {
    * Initialize the Biomedical Concept Manager
    */
   _initialize() {
+
     // Create the active BCs object
     this.activeBCs = {}
+
+    // Initialize the BC Editor
+    this.bcEditor = new BCEditor({
+     urls: this.urls,
+     loadCallback: (t) => this._cacheEditorData(),
+     loadingCallback: (e) => this._loading(e),
+     onEdited: () => {
+       this._cacheEditorData();
+       this.bcEditor.bcInstance.token.extend();
+     }
+    });
 
     // Initialize the Create BC View
     this.createBCView = new CreateBCView({
       onCreated: (data) => {
         displaySuccess('BC created successfully.');
         this.editBC(data.id);
-      }
-    });
-
-    // Initialize the BC Editor
-    this.bcEditor = new BCEditor({
-     urls: this.urls,
+      },
+      onShow: () => this.bcEditor.kDisable(),
+      onHide: () => this.bcEditor.kEnable()
     });
 
     // Initialize an Items Picker instance for BCs to add to the Editor with
     this.editBCPicker = new ItemsPicker({
       id: 'add-bc-edit',
       types: ['biomedical_concept_instance'],
-      onSubmit: (s) => this.editBC( s.asIDsArray()[0] )
-    })
+      onSubmit: (s) => this.editBC( s.asIDsArray()[0] ),
+      onShow: () => this.bcEditor.kDisable(),
+      onHide: () => this.bcEditor.kEnable()
+    });
+
   }
 
   /**
    * Set Event listeners and handlers
    */
   _setListeners() {
+
     // BC card Edit click event
-    this._bcListView.on( 'click', '.edit-bc', (e) => this._onBCSelected( $(e.currentTarget).closest('.card.mini') ) );
+    this._bcListView.on( 'click', '.edit-bc', (e) =>
+      this._onBCSelected( $(e.currentTarget).closest('.card.mini') )
+    );
 
     // BC Card Remove click event
-    this._bcListView.on('click', '.remove-bc', (e) => this._removeBCFromManager( $(e.currentTarget).closest('.card.mini') ));
+    this._bcListView.on('click', '.remove-bc', (e) =>
+      this._removeBCFromManager( $(e.currentTarget).closest('.card.mini') )
+    );
 
     // Add a BC to Edit button click event
-    this._view.find('#add-bc-edit-button').on('click', () => this.editBCPicker.show() )
+    this._view.find('#add-bc-edit-button').on('click', () =>
+      this.editBCPicker.show()
+    )
 
     // Release all edit locks on window unload
     window.onbeforeunload = () => {
-      let tokenIds = Object.values(this.activeBCs).map( (bc) => bc.token.tokenId );
+
+      let tokenIds = Object.values( this.activeBCs ).map( (bc) => bc.token.tokenId );
       TokenTimer.releaseMultiple(tokenIds);
+
     }
+
   }
 
   /**
@@ -122,6 +148,7 @@ export default class BCManager extends Cacheable {
    * @param {boolean} isBase value representing whether the BC is the base BC instance, optional, [default = false]
    */
   _addBCToManager(bcData, tokenId, isBase = false) {
+
       // Check if BC instance already added
       if ( this.activeBCs[bcData.id] ) {
         displayError('This BC has already been added.');
@@ -139,6 +166,7 @@ export default class BCManager extends Cacheable {
           warningTime: this.tokenWarningTime,
           parentEl: `.card.mini[data-id='${bcData.id}']`,
           timerEl: '.token-timeout',
+          reqInterval: 20000,
           handleUnload: false
         }),
         dataUrl: this._buildUrl('data', bcData.id),
@@ -149,6 +177,7 @@ export default class BCManager extends Cacheable {
       // Select and open default BC if isBase
       if (isBase)
         this._selectFirstBC()
+
   }
 
   /**
@@ -156,6 +185,7 @@ export default class BCManager extends Cacheable {
    * @param {JQuery Element} bcCard Element representing the card element of the BC instance
    */
   _removeBCFromManager(bcCard) {
+
     let bc = this._getBCByElement(bcCard);
 
     // Disallow removing base BC from Manager
@@ -171,6 +201,7 @@ export default class BCManager extends Cacheable {
 
     // Select default BC card
     this._selectFirstBC()
+
   }
 
   /**
@@ -178,33 +209,39 @@ export default class BCManager extends Cacheable {
    * @param {JQuery Element} bcCard Element representing the card element of the BC instance
    */
   _onBCSelected(bcCard) {
+
     // Disallow selection when card disabled
     if ( this.loadingActive )
       return;
 
+    let bcInstance = this._getBCByElement(bcCard);
+
     // Handle UI update
     this._updateCardsUI(bcCard);
 
-    let bcInstance = this._getBCByElement(bcCard);
-
-    // Set Editor's urls
-    this.bcEditor.setDataUrl(bcInstance.dataUrl)
-    this.bcEditor.setUpdateUrl(bcInstance.updateUrl);
-    // Set Editor's extendTimer callback
-    this.bcEditor.extendTimer = () => bcInstance.token.extend();
-    // Set Editor's loadCallback to save data to cache
-    this.bcEditor.loadCallback = (t) => {
-      this._saveToCache( bcInstance.id, t.rows().data().toArray(), true );
-      this._loading(false);
-    }
+    // Set Editor's new bcInstance
+    this.bcEditor.setBCInstance(bcInstance);
 
     // Load bcInstance Editor data from cache / server
-    if ( this._hasCacheEntry(bcInstance.id) )
+    if ( this._hasCacheEntry( bcInstance.id ) )
       this.bcEditor._render( this._getFromCache(bcInstance.id), true );
     else {
       this._loading(true);
       this.bcEditor.loadData();
     }
+
+  }
+
+  /**
+   * Save the current data in the BC Editor to the local cache
+   */
+  _cacheEditorData() {
+
+    let cacheKey = this.bcEditor.bcInstance.id,
+        cacheData = this.bcEditor.table.rows().data().toArray();
+
+    this._saveToCache( cacheKey, cacheData, true );
+
   }
 
   /**
@@ -213,9 +250,11 @@ export default class BCManager extends Cacheable {
    * @return {Object} Manager's BC instance object referring to the given id, null if not found
    */
   _getBCByElement(e) {
+
     let id = $(e).closest('.card.mini').attr('data-id');
 
     return this.activeBCs[id]
+
   }
 
   /**
@@ -223,6 +262,7 @@ export default class BCManager extends Cacheable {
    * @param {boolean} enable value representing the desired loading state enabled / disabled
    */
   _loading(enable) {
+
     this.loadingActive = enable;
 
     // Enable / disable BC Manager buttons
@@ -238,6 +278,7 @@ export default class BCManager extends Cacheable {
       removeSpinnerFrom$(this._bcListView);
       tableInteraction.enable(this.bcEditor.selector);
     }
+
   }
 
   /**
@@ -280,12 +321,14 @@ export default class BCManager extends Cacheable {
    * @param {JQuery element} bcCard .card element of the newly selected BC
    */
   _updateCardsUI(bcCard) {
+
     // Unselect card
     this._bcListView.find('.card.selected')
                     .removeClass('selected');
 
     // Select clicked card
     bcCard.closest('.card.mini').addClass('selected');
+
   }
 
   /**
@@ -294,6 +337,7 @@ export default class BCManager extends Cacheable {
    * @param {boolean} isBase value representing whether the BC is the base BC instance
    */
   _renderBCCard(data, isBase) {
+
     let bcCardHTML = `<div class="card mini no-border" data-id="${data.id}">` +
                         `<div class="card-content">` +
                           `<div class="section primary">` +
@@ -319,6 +363,7 @@ export default class BCManager extends Cacheable {
                       `</div>`
 
     this._bcListView.append(bcCardHTML);
+
   }
 
 }
