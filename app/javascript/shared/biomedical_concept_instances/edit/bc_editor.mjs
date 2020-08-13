@@ -96,7 +96,9 @@ export default class BCEditor extends EditablePanel {
     this.editor.on('postSubmit', (e, json, data) => {
 
       let cell = this.table.cell( ".editable.inline.pickable", { focused: true } );
-      cell.data( [] );
+
+      if (cell.length)
+        cell.data( [] );
 
     });
 
