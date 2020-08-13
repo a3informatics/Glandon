@@ -1,16 +1,11 @@
 /**
- * Get the deepest *property* - (first non-object) *value* pair of a nested object recursively
- * @param {object} object Nested object to search through
- * @param {string} property Property name (for recursion, leave empty when calling)
- * @return {object} Contains property name under the 'property' key and the first non-object value found under the 'value' key
+ * Compare if two item reference collections match through their children ids, in any order
+ * @param {Array} a First collection of item objects to compare
+ * @param {Array} b Second collection of item objects to compare
+ * @return {boolean} Value representing whether the collections match no matter their children's order
  */
-function getDeepestValue(object, property) {
-  if (typeof object !== 'object' || Array.isArray(object)){
-    return { property, value: object }
-  }
-  for ( let prop in object ) {
-    return getDeepestValue(object[prop], prop)
-  }
+function compareRefItems(a, b) {
+  return _.isEqual( _.sortBy(a.map((d) => d.reference.id)), _.sortBy(b.map((d) => d.reference.id)) );
 }
 
 /**
@@ -47,7 +42,7 @@ const tableInteraction = {
 }
 
 export {
-  getDeepestValue,
+  compareRefItems,
   isCDISC,
   tableInteraction
 }

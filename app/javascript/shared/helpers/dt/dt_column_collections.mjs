@@ -75,16 +75,18 @@ function dtBCEditColumns() {
     dtTrueFalseEditColumn('enabled'),
     dtTrueFalseEditColumn('collect'),
     { data: 'has_complex_datatype.has_property.label' },
-    dtInlineEditColumn('has_complex_datatype.has_property.question_text', '', '25%'),
-    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', '', '25%'),
+    dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
+    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
     { data: "has_complex_datatype.label" },
-    dtInlineEditColumn('has_complex_datatype.has_property.format', ''),
+    dtInlineEditColumn('has_complex_datatype.has_property.format', 'format'),
+    
+    // Items Picker column
     {
       className: 'editable inline pickable termPicker',
       data: 'has_complex_datatype.has_property.has_coded_value',
       width: '30%',
-      editField: 'has_complex_datatype.has_property.has_coded_value',
-      render: (data, type, r, m) => termReferences(data, type)
+      editField: 'has_coded_value',
+      render: (data, type, r, m) => type === 'display' ? termReferences(data, type) : data
     }
   ];
 };
