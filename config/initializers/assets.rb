@@ -22,7 +22,7 @@ end
 %w(
     ad_hoc_reports/index ad_hoc_reports/results
     backgrounds/index
-    biomedical_concepts/bc_template_new biomedical_concepts/editor
+    biomedical_concepts/bc_template_new
     dashboard/dashboard_editor dashboard/dashboard_panel dashboard/dashboard dashboard/statistics_panel
     export/start_panel
     forms/editor forms/form_utility forms/form_viewer forms/placeholder_new forms/show
