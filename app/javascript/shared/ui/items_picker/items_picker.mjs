@@ -23,8 +23,10 @@ export default class ItemsPicker extends ModalView {
    * @param {string} params.description custom text to be rendered in the Items Picker description, optional
    * @param {boolean} params.multiple value representing whether multiple selection is enabled or disabled [defaul=false]
    * @param {boolean} params.emptyEnabled value representing whether submission where no items are selected is allowed, [default=false]
+   * @param {boolean} params.hideOnSubmit value representing whether the modal will be hidden on submit [default=true]
+   * @param {function} params.onShow callback executed when Items Picker modal is shown
    * @param {function} params.onSubmit callback to when user submits their selection, passes getSelection object as the argument, @see SelectionView.getSelection
-   * @param {function} params.onClose callback to when items picker closes. Executed also after onSubmit
+   * @param {function} params.onHide callback executed when Items Picker modal is hidden. Executes also after onSubmit
    */
   constructor({
     id,
@@ -32,15 +34,21 @@ export default class ItemsPicker extends ModalView {
     description,
     multiple = false,
     emptyEnabled = false,
+    hideOnSubmit = true,
+    onShow = () => { },
     onSubmit = () => { },
-    onClose = () => { }
+    onHide = () => { }
   }) {
+
     super( { selector: `#items-picker-${id}` } );
 
-    Object.assign(this, { multiple, description, emptyEnabled, types: [...new Set(types)], onSubmit, onClose });
+    Object.assign(this, { multiple, description, emptyEnabled, types: [...new Set(types)],
+      onShow, onSubmit, onHide, hideOnSubmit });
 
+    // Initialization
     this._initialize();
     this._setListeners();
+
   }
 
   /**
@@ -104,25 +112,32 @@ export default class ItemsPicker extends ModalView {
 
     if (this.onSubmit)
       this.onSubmit(this.selectionView.getSelection());
-    this.hide();
+
+    if (this.hideOnSubmit)
+      this.hide();
   }
 
   /**
-   * Called when on modal show, open the first available Tab, render selectionView
+   * Called on modal show, open the first available Tab, render selectionView
    */
   _onShow() {
+    // Execute onShow callback
+    if ( this.onShow )
+      this.onShow();
+
     $(`${this.selector} #items-picker-tabs .tab-option`)[0].click();
     this.selectionView._render();
   }
 
   /**
-   * Called when on modal hide, reset Items Picker to initial state, call onClose callback
+   * Called on modal hide, reset Items Picker to initial state, call onHide callback
    */
   _onHide() {
     this.reset();
 
-    if (this.onClose)
-      this.onClose();
+    // Execute onHide callback
+    if (this.onHide)
+      this.onHide();
   }
 
   /**

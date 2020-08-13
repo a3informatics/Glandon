@@ -20,6 +20,7 @@ export default class EditablePanel extends TablePanel {
    * @param {Array} params.fields Editor fields definitions
    * @param {string} params.idSrc Data ID source for the editor, default = "id"
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
+   * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    */
@@ -33,10 +34,11 @@ export default class EditablePanel extends TablePanel {
     fields = [],
     idSrc = "id",
     deferLoading = false,
+    order = [[0, "desc"]],
     cache = true,
     loadCallback = () => {}
   }) {
-    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback },
+    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback, order },
           { updateUrl, fields, idSrc });
   }
 
@@ -90,14 +92,16 @@ export default class EditablePanel extends TablePanel {
    */
   setUpdateUrl(newUrl) {
     this.updateUrl = newUrl;
-    this.editor.ajax({
-      edit: { type: 'PUT', url: this.updateUrl }
-    });
+
+    let newOpts = this._editorAjaxOpts;
+    newOpts.url = this.updateUrl;
+
+    this.editor.ajax(newOpts);
   }
 
 
   /** Private **/
-  
+
 
   /**
    * Sets event listeners, handlers
@@ -127,10 +131,11 @@ export default class EditablePanel extends TablePanel {
       this._onEdited();
     });
 
-    // Update UI on keypress in TA. Submit on pressing Enter.
+    // Update UI on keypress in TA. Handle Submit.
     $(this.selector).on('keydown', 'textarea', (e, dt, c) => {
       this._updateUI('input');
-      // Enter press
+
+      // Submit on Enter key press
       if(e.which == 13 && !e.shiftKey) {
         this.editor.submit();
         e.preventDefault();
@@ -194,12 +199,7 @@ export default class EditablePanel extends TablePanel {
    */
   _initEditor() {
     this.editor = new $.fn.dataTable.Editor({
-      ajax: {
-        edit: {
-          type: 'PUT',
-          url: this.updateUrl
-        }
-      },
+      ajax: this._editorAjaxOpts,
       table: this.selector,
       fields: this.fields,
       idSrc: this.idSrc
@@ -249,6 +249,21 @@ export default class EditablePanel extends TablePanel {
     }
 
     return options;
+  }
+
+  /**
+   * Default Editor AJAX options
+   * @return {Object} DataTable Editor AJAX options object
+   */
+  get _editorAjaxOpts() {
+    return {
+      edit: {
+        type: 'PUT',
+        url: this.updateUrl,
+        contentType: 'application/json',
+        data: (d) => JSON.stringify(d)
+      }
+    }
   }
 
 }
