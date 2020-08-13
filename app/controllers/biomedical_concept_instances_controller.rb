@@ -69,7 +69,6 @@ class BiomedicalConceptInstancesController < ManagedItemsController
       AuditTrail.update_item_event(current_user, bc, bc.audit_message(:updated)) if @lock.first_update?
       render :json => {data: bc_properties_with_paths(bc)}, :status => 200
     else
-      prefix_property_errors(property, "has_complex_datatype.has_property")
       render :json => {:fieldErrors => format_editor_errors(property.errors)}, :status => 200
     end
   end
@@ -117,7 +116,7 @@ private
 
   # Strong parameters, property update
   def property_params
-    params.require(:biomedical_concept_instance).permit(:property_id, :collect, :enabled, :question_text, :prompt_text, 
+    params.require(:biomedical_concept_instance).permit(:property_id, :collect, :enabled, :question_text, :prompt_text,
       :format, :has_coded_value => [:id, :context_id])
   end
 
