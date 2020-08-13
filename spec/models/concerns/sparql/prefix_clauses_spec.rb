@@ -6,7 +6,7 @@ describe Sparql::PrefixClauses do
 
 	it "no default" do
   expected = 
-    %Q{PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+    %Q{PREFIX bd: <http://www.assero.co.uk/Tabulation#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -19,7 +19,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   it "default symbol" do
   expected = 
     %Q{PREFIX : <http://www.assero.co.uk/ISO11179Concepts#>
-PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX bd: <http://www.assero.co.uk/Tabulation#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -32,7 +32,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   it "default namespace" do
   expected = 
     %Q{PREFIX : <http://www.example/com#>
-PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
+PREFIX bd: <http://www.assero.co.uk/Tabulation#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -55,7 +55,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
   it "empty array, symbol" do
   expected = 
-    %Q{PREFIX : <http://www.assero.co.uk/BusinessDomain#>
+    %Q{PREFIX : <http://www.assero.co.uk/Tabulation#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>

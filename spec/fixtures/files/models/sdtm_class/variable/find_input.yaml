@@ -1,22 +1,9 @@
 ---
-:type: http://www.assero.co.uk/BusinessDomain#ClassVariable
-:id: M-CDISC_SDTMMODELEVENTS_xxSCAT
-:namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRVZFTlRTX3h4U0NBVA==
+:uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSCAT
+:rdf_type: http://www.assero.co.uk/Tabulation#SdtmClassVariable
 :label: Subcategory
-:extension_properties: []
-:ordinal: 23
+:tagged: []
 :rule: ''
-:name: "--SCAT"
-:variable_ref:
-  :type: http://www.assero.co.uk/BusinessOperational#CReference
-  :id: M-CDISC_SDTMMODELEVENTS_xxSCAT_CR1
-  :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-  :label: Based on Variable Reference
-  :extension_properties: []
-  :enabled: true
-  :optional: false
-  :ordinal: 1
-  :local_label: ''
-  :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRSdtmM/CDISC/V3
-    :id: M-CDISC_SDTMMODEL_xxSCAT
+:ordinal: 23
+:based_on_variable: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT

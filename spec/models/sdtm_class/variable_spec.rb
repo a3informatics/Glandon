@@ -6,7 +6,7 @@ describe SdtmClass::Variable do
   include SparqlHelpers
 
   def sub_dir
-    return "models/sdtm_model_domain/variable"
+    return "models/sdtm_class/variable"
   end
 
   before :all do
@@ -14,21 +14,21 @@ describe SdtmClass::Variable do
     load_files(schema_files, data_files)
   end
 
-  it "validates a valid object" do
-    item = SdtmClass::Variable.new
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.rdf_type).to eq("http://www.assero.co.uk/BusinessDomain#ClassVariable")
-    expect(item.errors.full_messages.to_sentence).to eq("")
-    expect(result).to eq(true)
-  end
+  # it "validates a valid object" do
+  #   item = SdtmClass::Variable.new
+  #   item.ordinal = 1
+  #   result = item.valid?
+  #   expect(item.rdf_type).to eq("http://www.assero.co.uk/Tabulation#ClassVariable")
+  #   expect(item.errors.full_messages.to_sentence).to eq("")
+  #   expect(result).to eq(true)
+  # end
 
-  it "does not validate an invalid object, ordinal" do
-    item = SdtmClass::Variable.new
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
-    expect(result).to eq(false)
-  end
+  # it "does not validate an invalid object, ordinal" do
+  #   item = SdtmClass::Variable.new
+  #   result = item.valid?
+  #   expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+  #   expect(result).to eq(false)
+  # end
 
   # it "allows object to be initialized from triples" do
   #   result = 
@@ -47,10 +47,8 @@ describe SdtmClass::Variable do
   # end 
 
   it "allows an object to be found" do
-    variable = SdtmClass::Variable.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSCAT"))
-  #write_yaml_file(variable.to_json, sub_dir, "find_input.yaml")
-    expected = read_yaml_file(sub_dir, "find_input.yaml")
-    expect(variable.to_json).to eq(expected)
+    item = SdtmClass::Variable.find(Uri.new(uri: "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS_xxSCAT"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_input.yaml", equate_method: :hash_equal)
   end
 
  #  it "allows an object to be exported as JSON" do

@@ -15,7 +15,7 @@ describe Uri::Namespace do
   end
 
   it "allows the prefix to be obtained for a namespace" do
-    expect(@namespaces.prefix_from_namespace("http://www.assero.co.uk/BusinessDomain")).to eq(:bd)
+    expect(@namespaces.prefix_from_namespace("http://www.assero.co.uk/Tabulation")).to eq(:bd)
     expect(@namespaces.prefix_from_namespace("http://www.assero.co.uk/Annotations")).to eq(:ba)
   end
 
