@@ -117,10 +117,10 @@ function dtSDTMIGDomainShowColumns() {
     { data: "ordinal" },
     { data: "name" },
     { data: "label" },
-    { data: "datatype_label" },
+    { data: "label" }, //datatype_label
     { data: "format" },
-    { data: "classification_label" },
-    { data: "sub_classification_label" },
+    { data: "label" }, //classification_label
+    { data: "label" }, //sub_classification_label
     { data: "notes" },
     { data: "compliance" }
   ];
