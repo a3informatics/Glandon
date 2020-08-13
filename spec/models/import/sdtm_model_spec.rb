@@ -21,8 +21,12 @@ describe Import::SdtmModel do
   end
 
 	before :each do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = []
     load_files(schema_files, data_files)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     Import.destroy_all
     delete_all_public_test_files
     setup

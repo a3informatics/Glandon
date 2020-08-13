@@ -7,5 +7,6 @@ class SdtmModel::Variable < Tabulation::Column
   data_property :name
   data_property :prefixed
   data_property :description
+  object_property :typed_as, cardinality: :one, model_class: "IsoConceptSystem::Node"
   
 end

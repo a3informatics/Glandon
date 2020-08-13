@@ -654,6 +654,31 @@ describe Excel::Engine do
     expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 5 column 1.")
   end
 
+  it "property with tag" do
+    full_path = test_file_path(sub_dir, "property_with_tag_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return({tag: "B"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_4"]).and_return(nil)
+    object.set_property_with_tag({row: 2, col: 1, object: child, map: {Y: "tag_1"}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq({:tag=>"A"})
+    object.set_property_with_tag({row: 3, col: 1, object: child, map: {Y: "tag_1", Z: "tag_2"}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq({:tag=>"B"})
+    #child.label = nil
+    object.set_property_with_tag({row: 3, col: 1, object: child, map: {Y: "tag_3", Z: "tag_4"}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq(nil)
+    object.set_property_with_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, property: "label", additional: {path: ["X", "Y"]}})
+    expect(parent.errors.any?).to eq(true)
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Mapping of '' error detected in row 4 column 1.")
+  end
+
   it "checks valid" do
     full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 

@@ -312,7 +312,20 @@ defaults: &defaults
                 property: label
           -
             label: "Type"
-            actions: []
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                map:
+                  Char: Character
+                  Num: Numeric
           -
             label: "Controlled Terms, Codelist or Format"  
             actions: []

@@ -286,7 +286,7 @@ byebug
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
-  # Set Property regex
+  # Set Property With Regex. Set a property based on a regrx evaluation of the cell content
   #
   # @param [Hash] params the parameters hash
   # @option params [Integer] :row the cell row
@@ -304,6 +304,26 @@ byebug
     return if x.empty?
     x = regex.match(x).nil? ? false : true
     params[:object].instance_variable_set("@#{params[:property]}", x)
+  end
+
+  # Set Property With Tag. Set a property to a tag
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Hash] :additonal hash containing the tag path
+  # @return [Void] no return
+  def set_property_with_tag(params)
+byebug
+    check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty, :additional])
+    value = params[:map].blank? ? check_value(params[:row], params[:col], false) : check_mapped(params[:row], params[:col], params[:map])
+    return if value.blank?
+    tag = find_tag(params[:additional][:path], value)
+    return if tag.nil?
+    params[:object].instance_variable_set("@#{params[:property]}", tag)
   end
 
   # Tokenize And Set Property
