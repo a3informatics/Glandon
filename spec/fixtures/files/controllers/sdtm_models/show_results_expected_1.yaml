@@ -1,60 +1,8 @@
 ---
-- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA=="
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA==
-  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
-  :label: Findings About
-  :tagged: []
-  :has_state:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
-    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELFINDINGSABOUT-3
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-    :registration_status: Standard
-    :administrative_note: ''
-    :effective_date: '2016-01-01T00:00:00+00:00'
-    :until_date: '2016-01-01T00:00:00+00:00'
-    :unresolved_issue: ''
-    :administrative_status: ''
-    :previous_state: Incomplete
-    :multiple_edit: false
-    :by_authority:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
-      :uri: http://www.assero.co.uk/RA#DUNS084433759
-      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-      :organization_identifier: '084433759'
-      :international_code_designator: DUNS
-      :owner: false
-      :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-        :uri: http://www.assero.co.uk/NS#CDISC
-        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: CDISC
-        :name: Clinical Data Interchange Standards Consortium
-        :authority: www.cdisc.org
-  :has_identifier:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
-    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELFINDINGSABOUT-3
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SDTMMODEL FINDINGS ABOUT
-    :version_label: '1.4'
-    :version: 3
-    :semantic_version: 1.4.0
-    :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2013-11-26T00:00:00+00:00'
-  :last_change_date: '2013-11-26T00:00:00+00:00'
-  :explanatory_comment: ''
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRVZFTlRT"
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRVZFTlRT
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELEVENTS
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Events
   :tagged: []
   :has_state:
@@ -103,10 +51,13 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUw=="
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMSU5URVJWRU5USU9OUw==
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Interventions
   :tagged: []
   :has_state:
@@ -155,10 +106,13 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1M="
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1M=
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGS
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Findings
   :tagged: []
   :has_state:
@@ -207,10 +161,13 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0U="
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMU1BFQ0lBTFBVUlBPU0U=
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELSPECIALPURPOSE
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Special Purpose
   :tagged: []
   :has_state:
@@ -259,10 +216,13 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04="
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMVFJJQUxERVNJR04=
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELTRIALDESIGN
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Trial Design
   :tagged: []
   :has_state:
@@ -311,10 +271,13 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
 - :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQ"
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMUkVMQVRJT05TSElQ
   :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELRELATIONSHIP
-  :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
   :label: Relationship
   :tagged: []
   :has_state:
@@ -363,3 +326,61 @@
   :creation_date: '2013-11-26T00:00:00+00:00'
   :last_change_date: '2013-11-26T00:00:00+00:00'
   :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []
+- :show_path: "/sdtm_classes/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA=="
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSU2R0bU1kL0NESVNDL1YzI00tQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVA==
+  :uri: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELFINDINGSABOUT
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmClass
+  :label: Findings About
+  :tagged: []
+  :has_state:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
+    :uri: http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODELFINDINGSABOUT-3
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Incomplete
+    :multiple_edit: false
+    :by_authority:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: CDISC
+        :name: Clinical Data Interchange Standards Consortium
+        :authority: www.cdisc.org
+  :has_identifier:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQ0RJU0NfU0RUTU1PREVMRklORElOR1NBQk9VVC0z
+    :uri: http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODELFINDINGSABOUT-3
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SDTMMODEL FINDINGS ABOUT
+    :version_label: '1.4'
+    :version: 3
+    :semantic_version: 1.4.0
+    :has_scope:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2013-11-26T00:00:00+00:00'
+  :last_change_date: '2013-11-26T00:00:00+00:00'
+  :explanatory_comment: ''
+  :rule: ''
+  :ordinal: 1
+  :includes_column: []

@@ -167,7 +167,7 @@ describe "Breadcrumb", :type => :feature do
 
     it "has Biomedical Concepts breadcrumbs", js:true  do
       click_navbar_bc
-      ui_check_breadcrumb("Biomedical Concepts Instances", "", "", "")
+      ui_check_breadcrumb("Biomedical Concept Instances", "", "", "")
       #next_link('New', 'New: Biomedical Concept', "Biomedical Concepts", "New", "")
       # next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
       # next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "ACME, BC C49677", "")
