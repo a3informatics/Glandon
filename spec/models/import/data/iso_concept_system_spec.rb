@@ -10,10 +10,21 @@ describe IsoConceptSystem do
     return "models/import/data/base/cs"
   end
 
-  def add_node(params, parent)
+  def new_node(params, parent)
     params[:pref_label] = params.delete(:label) # rename lable to pref_label, legacy reasons.
     child = IsoConceptSystem::Node.new(params)
     child.uri = child.create_uri(parent.uri)
+    child
+  end
+
+  def add_top_node(params, parent)
+    child = new_node(params, parent)
+    parent.is_top_concept << child
+    child
+  end
+
+  def add_node(params, parent)
+    child = new_node(params, parent)
     parent.narrower << child
     child
   end
@@ -32,25 +43,25 @@ describe IsoConceptSystem do
 
     it "Baseline Tags" do
       cs = IsoConceptSystem.root
-      cdisc = cs.add_node({label: "CDISC", description: "CDISC related tags"})
-      sdtm = cdisc.add_node({label: "SDTM", description: "SDTM related information."})
-      cdash = cdisc.add_node({label: "CDASH", description: "CDASH related information."})
-      adam = cdisc.add_node({label: "ADaM", description: "ADaM related information."})
-      send = cdisc.add_node({label: "SEND", description: "SEND related information."})
-      protocol = cdisc.add_node({label: "Protocol", description: "Protocol related information."})
-      qs = cdisc.add_node({label: "QS", description: "Questionnaire related information."})
-      qs_ft = cdisc.add_node({label: "QS-FT", description: "Questionnaire and Functional Test related information."})
-      coa = cdisc.add_node({label: "COA", description: "Clinical Outcome Assessent related information."})
-      qrs = cdisc.add_node({label: "QRS", description: "Questionnaire and Rating Scale related information."})
+      cdisc = add_top_node({label: "CDISC", description: "CDISC related tags"}, cs)
+      sdtm = add_node({label: "SDTM", description: "SDTM related information."}, cdisc)
+      cdash = add_node({label: "CDASH", description: "CDASH related information."}, cdisc)
+      adam = add_node({label: "ADaM", description: "ADaM related information."}, cdisc)
+      send = add_node({label: "SEND", description: "SEND related information."}, cdisc)
+      protocol = add_node({label: "Protocol", description: "Protocol related information."}, cdisc)
+      qs = add_node({label: "QS", description: "Questionnaire related information."}, cdisc)
+      qs_ft = add_node({label: "QS-FT", description: "Questionnaire and Functional Test related information."}, cdisc)
+      coa = add_node({label: "COA", description: "Clinical Outcome Assessent related information."}, cdisc)
+      qrs = add_node({label: "QRS", description: "Questionnaire and Rating Scale related information."}, cdisc)
 
-      cs.is_top_concept_objects
-      cdisc.narrower_objects
+      # cs.is_top_concept_objects
+      # cdisc.narrower_objects
 
       sparql = Sparql::Update.new
       sparql.default_namespace(cs.uri.namespace)
       cs.to_sparql(sparql, true)
       cdisc.to_sparql(sparql, true)
-      cdisc.narrower.each {|x| x.to_sparql(sparql, true)}
+      #cdisc.narrower.each {|x| x.to_sparql(sparql, true)}
       file = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems.ttl")
     end
@@ -73,12 +84,12 @@ describe IsoConceptSystem do
     it "migration 1, add define.xml" do
       cs = IsoConceptSystem.root
       cdisc = IsoConceptSystem.path(["CDISC"])
-      define = cdisc.add_node({label: "Define-XML", description: "Define.xml related information."})
+      define = add_node({label: "Define-XML", description: "Define.xml related information."}, cdisc)
       
       sparql = Sparql::Update.new
       sparql.default_namespace(cs.uri.namespace)
       define.to_sparql(sparql, true)
-      sparql.add_node({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: define.uri})
+      sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: define.uri})
       file = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_1.ttl")
     end
@@ -127,11 +138,6 @@ describe IsoConceptSystem do
       sparql.default_namespace(cs.uri.namespace)
       sdtm_std.to_sparql(sparql, true)
       sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: sdtm_std.uri})
-      [sdtm_std, sdtm_std_var, sdtm_std_var_dt, sdtm_std_var_compliance, sdtm_std_var_classified, sdtm_std_var_classified_qualifier].each do |var|
-        var.narrower_objects.each do |x| 
-          x.to_sparql(sparql, true)
-        end
-      end
       file = sparql.to_file
     copy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
     end
