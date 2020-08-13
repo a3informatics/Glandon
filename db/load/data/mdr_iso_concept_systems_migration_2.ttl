@@ -9,130 +9,131 @@
 <http://www.assero.co.uk/CSN>
 	rdf:type owl:Ontology ;
 .
-:0232d2d3-2e9f-44ac-a353-f6dd2da1920d
+:bb2a4556-49a2-474f-9a7b-bad14dff68d8
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "SDTM-STD"^^xsd:string ;
 	isoC:description "Information relating to the internal structure of the SDTM standard."^^xsd:string ;
+	isoC:narrower :4998a8e2-7361-4192-995c-4399e7155883 ;
 .
-:22f1319e-37a9-49ce-9fea-47b1471283a5
-	isoC:narrower :0232d2d3-2e9f-44ac-a353-f6dd2da1920d ;
-.
-:0e7de532-b0aa-482a-a192-b2d7064609a8
+:4998a8e2-7361-4192-995c-4399e7155883
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Variable"^^xsd:string ;
 	isoC:description "Information relating to the variables within SDTM."^^xsd:string ;
-	isoC:narrower :b532ceab-114f-4778-85c5-e24f65a144de ;
-	isoC:narrower :742f28a3-93a1-4361-b7b0-61a9f46f676a ;
-	isoC:narrower :63c47d31-ac68-4df2-840f-6ac1810713bd ;
+	isoC:narrower :0028d942-3f21-40b9-93fe-b1fdea4ca4ee ;
+	isoC:narrower :9d7f01d1-f60d-49ce-80b8-c7c9eeb0e055 ;
+	isoC:narrower :4a40066d-a1df-4c8f-b2b8-64f6fabb59d5 ;
 .
-:b532ceab-114f-4778-85c5-e24f65a144de
+:0028d942-3f21-40b9-93fe-b1fdea4ca4ee
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Datatype"^^xsd:string ;
 	isoC:description "SDTM variable datatypes."^^xsd:string ;
-	isoC:narrower :0edb088d-c842-490f-9392-a33442391fb7 ;
-	isoC:narrower :70600663-323a-4afb-a12a-36d252dbcacf ;
+	isoC:narrower :af90d180-a154-40ec-859f-0f523048f10b ;
+	isoC:narrower :45f938c2-7177-4b03-8307-3ef2ecd33ad3 ;
 .
-:742f28a3-93a1-4361-b7b0-61a9f46f676a
-	rdf:type isoC:ConceptSystemNode ;
-	isoC:prefLabel "Compliance"^^xsd:string ;
-	isoC:description "SDTM variable compliance."^^xsd:string ;
-	isoC:narrower :acb44ac7-e395-4e02-ae4c-0e29d5265ddc ;
-	isoC:narrower :3bc22c6e-cc2c-405a-9686-40503ced4de5 ;
-	isoC:narrower :d9031cdb-4e81-4020-afc5-179ca1a3359a ;
-.
-:63c47d31-ac68-4df2-840f-6ac1810713bd
-	rdf:type isoC:ConceptSystemNode ;
-	isoC:prefLabel "Classification"^^xsd:string ;
-	isoC:description "SDTM variable classifcation."^^xsd:string ;
-	isoC:narrower :6a7bdcfc-f94a-46a6-b514-0688f7ee40fd ;
-	isoC:narrower :7af01dbf-b6fa-4061-9e27-3079eeb8f8e1 ;
-	isoC:narrower :82f1e519-776d-462a-b399-c4c84c0ad59b ;
-	isoC:narrower :0dbc25be-b681-46ed-a8f4-17e401f27e0c ;
-	isoC:narrower :77a6d756-6cab-4197-9c3a-3e2fde9631d1 ;
-	isoC:narrower :012e8894-8b5e-4e5b-b7e4-ed734a500b87 ;
-.
-:0edb088d-c842-490f-9392-a33442391fb7
+:af90d180-a154-40ec-859f-0f523048f10b
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Character"^^xsd:string ;
 	isoC:description "Character datatype"^^xsd:string ;
 .
-:70600663-323a-4afb-a12a-36d252dbcacf
+:45f938c2-7177-4b03-8307-3ef2ecd33ad3
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Numeric"^^xsd:string ;
 	isoC:description "Numeric datatype"^^xsd:string ;
 .
-:acb44ac7-e395-4e02-ae4c-0e29d5265ddc
+:9d7f01d1-f60d-49ce-80b8-c7c9eeb0e055
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Compliance"^^xsd:string ;
+	isoC:description "SDTM variable compliance."^^xsd:string ;
+	isoC:narrower :3f5af275-180f-4b81-a783-0b735e7b6a0a ;
+	isoC:narrower :c33cb594-d558-4efe-a6c6-fe015b18f1b5 ;
+	isoC:narrower :d58bc0fd-e428-4e89-a769-dff13b081d0a ;
+.
+:3f5af275-180f-4b81-a783-0b735e7b6a0a
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Required"^^xsd:string ;
 	isoC:description "Any variable that is basic to the identification of a data record (i.e., essential key variables and a topic variable) or is necessary to make the record meaningful. Required variables must always be included in the dataset and cannot be null for any record"^^xsd:string ;
 .
-:3bc22c6e-cc2c-405a-9686-40503ced4de5
+:c33cb594-d558-4efe-a6c6-fe015b18f1b5
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Expected"^^xsd:string ;
 	isoC:description "Any variable necessary to make a record useful in the context of a specific domain. Expected variables may contain some null values, but in most cases will not contain null values for every record. When no data has been collected for an expected variable, however, a null column must still be included in the dataset, and a comment must be included in the define.xml to state that data was not collected."^^xsd:string ;
 .
-:d9031cdb-4e81-4020-afc5-179ca1a3359a
+:d58bc0fd-e428-4e89-a769-dff13b081d0a
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Permissible"^^xsd:string ;
 	isoC:description "A variable that should be used in a domain as appropriate when collected or derived. Except where restricted by specific domain assumptions, any SDTM Timing and Identifier variables, and any Qualifier variables from the same general observation class are permissible for use in a domain based on that general observation class. The Sponsor can decide whether a Permissible variable should be included as a column when all values for that variable "^^xsd:string ;
 .
-:6a7bdcfc-f94a-46a6-b514-0688f7ee40fd
+:4a40066d-a1df-4c8f-b2b8-64f6fabb59d5
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Classification"^^xsd:string ;
+	isoC:description "SDTM variable classifcation."^^xsd:string ;
+	isoC:narrower :8cb2d454-6fa9-4ba1-927c-f5f3dd6481ca ;
+	isoC:narrower :b6c5a1da-4f85-4056-91e8-cab4ccf5a591 ;
+	isoC:narrower :65dee8b7-0bf9-4860-a7d0-f40fba6f29cd ;
+	isoC:narrower :1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b ;
+	isoC:narrower :139c6675-11a8-4c0a-9770-b57a5486c2fd ;
+	isoC:narrower :c9ce6fe5-a938-486a-9be2-ce32fff2d7be ;
+.
+:8cb2d454-6fa9-4ba1-927c-f5f3dd6481ca
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Grouping Qualifier"^^xsd:string ;
 	isoC:description "A grouping qualifier"^^xsd:string ;
 .
-:7af01dbf-b6fa-4061-9e27-3079eeb8f8e1
+:b6c5a1da-4f85-4056-91e8-cab4ccf5a591
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Identifier"^^xsd:string ;
 	isoC:description "Variables, such as those that identify the study, the subject (individual human or animal or group of individuals) involved in the study, the domain, and the sequence number of the record."^^xsd:string ;
 .
-:82f1e519-776d-462a-b399-c4c84c0ad59b
+:65dee8b7-0bf9-4860-a7d0-f40fba6f29cd
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Topic"^^xsd:string ;
 	isoC:description "Variables which specify the focus of the observation (such as the name of a lab test)."^^xsd:string ;
 .
-:0dbc25be-b681-46ed-a8f4-17e401f27e0c
+:1bebb5a3-0b1b-4f97-9a54-86b8d62c8b2b
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Timing"^^xsd:string ;
 	isoC:description "Variables which describe the timing of an observation (such as start date and end date)."^^xsd:string ;
 .
-:77a6d756-6cab-4197-9c3a-3e2fde9631d1
+:139c6675-11a8-4c0a-9770-b57a5486c2fd
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Qualifier"^^xsd:string ;
 	isoC:description "Variables which include additional illustrative text, or numeric values that describe the results or additional traits of the observation (such as units or descriptive adjectives)."^^xsd:string ;
-	isoC:narrower :dbada0a5-9361-4531-9ca1-181874a66d48 ;
-	isoC:narrower :4fdd18f9-f807-47f3-b5ae-e53642e16068 ;
-	isoC:narrower :7ccc7851-9164-4b4e-afb3-cc7b488e0b98 ;
-	isoC:narrower :fac16ad2-3bed-4f90-a1d1-ac448083b711 ;
-	isoC:narrower :07c8870a-5e34-46d1-8086-e124660c2e9a ;
+	isoC:narrower :737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91 ;
+	isoC:narrower :45bb2a2c-c86a-4420-b401-097d0bba6edd ;
+	isoC:narrower :4a4954db-310f-4c9d-91c8-f7300c756573 ;
+	isoC:narrower :c2111706-879c-42e8-820f-d26962217ad4 ;
+	isoC:narrower :91f6604c-a4f9-47fa-a6d4-82ea569facf7 ;
 .
-:012e8894-8b5e-4e5b-b7e4-ed734a500b87
-	rdf:type isoC:ConceptSystemNode ;
-	isoC:prefLabel "Rule"^^xsd:string ;
-	isoC:description "Variables which express an algorithm or executable method to define start, end, or looping conditions in the Trial Design model."^^xsd:string ;
-.
-:dbada0a5-9361-4531-9ca1-181874a66d48
+:737b6dbd-d88d-4cb7-bbb0-ba8c46c05f91
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Grouping"^^xsd:string ;
 	isoC:description "Qualifiers used to group together a collection of observations within the same domain. Examples include --CAT and --SCAT."^^xsd:string ;
 .
-:4fdd18f9-f807-47f3-b5ae-e53642e16068
+:45bb2a2c-c86a-4420-b401-097d0bba6edd
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Result"^^xsd:string ;
 	isoC:description "Qualifiers used to describe the specific results associated with the topic variable in a Findings dataset. They answer the question raised by the topic variable. Result Qualifiers are --ORRES, --STRESC, and --STRESN."^^xsd:string ;
 .
-:7ccc7851-9164-4b4e-afb3-cc7b488e0b98
+:4a4954db-310f-4c9d-91c8-f7300c756573
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Synonym"^^xsd:string ;
 	isoC:description "Qualifiers used to specify an alternative name for a particular variable in an observation. Examples include --MODIFY and --DECOD, which are equivalent terms for a --TRT or --TERM Topic variable, and --TEST for --TESTCD."^^xsd:string ;
 .
-:fac16ad2-3bed-4f90-a1d1-ac448083b711
+:c2111706-879c-42e8-820f-d26962217ad4
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Record"^^xsd:string ;
 	isoC:description "Qualifiers used to define additional attributes of the observation record as a whole (rather than describing a particular variable within a record). Examples include --REASND, AESLIFE, and all other SAE flag variables in the AE domain; AGE, SEX, and RACE in the DM domain; and --BLFL, --POS, --LOC, --SPEC, and --NAM in a Findings domain."^^xsd:string ;
 .
-:07c8870a-5e34-46d1-8086-e124660c2e9a
+:91f6604c-a4f9-47fa-a6d4-82ea569facf7
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Variable"^^xsd:string ;
 	isoC:description "Qualifiers used to further modify or describe a specific variable within an observation and are only meaningful in the context of the variable they qualify. Examples include --ORRESU, --ORNRHI, and --ORNRLO, all of which are Variable Qualifiers of --ORRES; and --DOSU, which is a Variable Qualifier of --DOSE."^^xsd:string ;
+.
+:c9ce6fe5-a938-486a-9be2-ce32fff2d7be
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Rule"^^xsd:string ;
+	isoC:description "Variables which express an algorithm or executable method to define start, end, or looping conditions in the Trial Design model."^^xsd:string ;
+.
+:22f1319e-37a9-49ce-9fea-47b1471283a5
+	isoC:narrower :bb2a4556-49a2-474f-9a7b-bad14dff68d8 ;
 .
