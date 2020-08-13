@@ -906,4 +906,22 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
   end
 
+  it "checked mapped" do
+    full_path = test_file_path(sub_dir, "check_mapped_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    result = object.check_mapped_test(2, 1, {aaa: "rrr"})
+    expect(result).to eq("rrr")
+    result = object.check_mapped_test(3, 1, {bbb: "rrr"})
+    expect(result).to eq(nil)
+    result = object.check_mapped_test(4, 1, {"cc has": "rrr"})
+    expect(result).to eq("rrr")
+    result = object.check_mapped_test(5, 1, {"cc and": "rrr"})
+    expect(result).to eq("rrr")
+    result = object.check_mapped_test(5, 1, {"cc and": "rrr"})
+    expect(result).to eq("rrr")
+  end
+
 end

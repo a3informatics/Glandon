@@ -255,7 +255,7 @@ class Excel::Engine
   # @param [Hash] params the parameters hash
   # @option params [Integer] :row the cell row
   # @option params [Integer] :col the cell column
-  # @option params [Object] o"bject the object in which the property is being set
+  # @option params [Object] object the object in which the property is being set
   # @option params [Hash] :map the mapping from spreadsheet values to internal values
   # @option params [String] :property the name of the property
   # @option params [Boolean] :can_be_empty if true property can be blank.
@@ -520,6 +520,18 @@ class Excel::Engine
     {selection: info[:selection], columns: info[:sheet][:header_row]}
   end
  
+  #----------
+  # Test Only
+  #----------
+  
+  if Rails.env.test?
+  
+    def check_mapped_test(row, col, map)
+      check_mapped(row, col, map)
+    end
+
+  end
+
 private
 
   # Find Tag From Path
@@ -580,11 +592,13 @@ private
     return ""
   end
 
-  # Check mapped cell
+  # Check mapped cell. Will match key exactly or value starts with the key
   def check_mapped(row, col, map)
     value = check_value(row, col)
     mapped = map[value.to_sym]
     return mapped if !mapped.nil?
+    mapped = map.select{|k,v| value.start_with? k.to_s}
+    return mapped.values.first if !mapped.empty?
     @errors.add(:base, "Mapping of '#{value}' error detected in row #{row} column #{col}.")
     return nil
   end

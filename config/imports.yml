@@ -335,16 +335,44 @@ defaults: &defaults
               -
                 method: set_property_with_tag
                 object: child
-                property: typed_as
+                property: classified_as
                 additional:
                   path:
                     - "CDISC"
                     - "SDTM-STD"
                     - "Variable"
-                    - "Datatype"
+                    - "Classification"
                 map:
-                  Char: Character
-                  Num: Numeric
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                map:
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
           -
             label: "CDISC Notes (for domains)\nDescription (for General Classes)"  
             actions:   
