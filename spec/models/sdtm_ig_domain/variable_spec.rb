@@ -15,30 +15,28 @@ describe SdtmIgDomain::Variable do
   end
 
   it "validates a valid object" do
-    item = SdtmIgDomain::Variable.new
-    item.ordinal = 1
-    result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("")
-    expect(result).to eq(true)
+    result = SdtmIgDomain::Variable.new
+    result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+    expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object, name" do
+  it "does not validate an invalid object" do
     item = SdtmIgDomain::Variable.new
     result = item.valid?
-    expect(item.errors.full_messages.to_sentence).to eq("Ordinal contains an invalid positive integer value")
+    expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank")
     expect(result).to eq(false)
   end
 
-  it "returns the compliance label" do
-    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    expect(variable.compliance_label).to eq("Required")
-  end
+  # it "returns the compliance label" do
+  #   variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+  #   expect(variable.compliance_label).to eq("Required")
+  # end
 
-  it "returns blank compliance label if none present" do
-    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-    variable.compliance = nil
-    expect(variable.compliance_label).to eq("")
-  end
+  # it "returns blank compliance label if none present" do
+  #   variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+  #   variable.compliance = nil
+  #   expect(variable.compliance_label).to eq("")
+  # end
 
   # it "allows object to be initialized from triples" do
   #   result = 
@@ -61,12 +59,12 @@ describe SdtmIgDomain::Variable do
   #   expect(SdtmIgDomain::Variable.new(triples, "IG-CDISC_SDTMIGRP_RPTEST").to_json).to eq(result) 
   # end 
 
-  it "allows an object to be found" do
-    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  write_yaml_file(variable.to_json, sub_dir, "find_expected.yaml")
-    expected = read_yaml_file(sub_dir, "find_expected.yaml")
-    expect(variable.to_json).to eq(expected)
-  end
+  # it "allows an object to be found" do
+  #   variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
+  # write_yaml_file(variable.to_json, sub_dir, "find_expected.yaml")
+  #   expected = read_yaml_file(sub_dir, "find_expected.yaml")
+  #   expect(variable.to_json).to eq(expected)
+  # end
 
  #  it "allows an object to be exported as JSON" do
  #    variable = SdtmIgDomain::Variable.find("IG-CDISC_SDTMIGRP_RPTEST", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")

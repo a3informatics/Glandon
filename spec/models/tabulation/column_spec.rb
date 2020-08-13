@@ -9,22 +9,24 @@ describe Tabulation::Column do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm_user_domain_vs.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
   end
 
-  # it "validates a valid object" do
-  #   result = Tabulation::Column.new
-  #   result.ordinal = 1
-  #   expect(result.valid?).to eq(true)
-  # end
+  it "validates a valid object" do
+    result = Tabulation::Column.new
+    result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
+    expect(result.valid?).to eq(true)
+  end
 
-  # it "does not validate an invalid object, ordinal" do
-  #   result = Tabulation::Column.new
-  #   expect(result.valid?).to eq(false)
-  # end
+  it "does not validate an invalid object" do
+    item = Tabulation::Column.new
+    result = item.valid?
+    expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank")
+    expect(result).to eq(false)
+  end
 
-  it "does not validate an invalid object, rule"
+  # it "does not validate an invalid object, rule"
 
   # it "allows object to be initialized from triples" do
   #   result = 
