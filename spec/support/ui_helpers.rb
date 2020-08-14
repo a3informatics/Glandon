@@ -406,7 +406,7 @@ module UiHelpers
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
 			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam"
+			main_nav_aig: "main_nav_adam", main_nav_aigd: "main_nav_adam"
 		}
 	end
 
@@ -543,8 +543,12 @@ module UiHelpers
   end
 
 	#ADaM
-	def click_navbar_adam_ig_domain
+	def click_navbar_adam_ig
     ui_navbar_click('main_nav_aig')
+  end
+
+  def click_navbar_adam_ig_dataset
+    ui_navbar_click('main_nav_aigd')
   end
 
   #Community Version
