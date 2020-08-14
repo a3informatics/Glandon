@@ -228,6 +228,7 @@ module Fuseki
         generic_objects?(name)
       end
 
+      # Children properties
       if opts.key?(:children)
         
         # Define a class method to return if children predicate exists
