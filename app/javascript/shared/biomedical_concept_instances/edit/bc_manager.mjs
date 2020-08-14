@@ -132,12 +132,15 @@ export default class BCManager extends Cacheable {
       this.editBCPicker.show()
     )
 
+    // BC Edit help button click event, show InformationDialog 
+    this._view.find('#editor-help').on('click', () => new InformationDialog({
+      div: '#information-dialog-bc-edit'
+    }).show())
+
     // Release all edit locks on window unload
     window.onbeforeunload = () => {
-
       let tokenIds = Object.values( this.activeBCs ).map( (bc) => bc.token.tokenId );
       TokenTimer.releaseMultiple(tokenIds);
-
     }
 
   }
