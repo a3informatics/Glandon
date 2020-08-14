@@ -25,6 +25,7 @@ module ApplicationHelper
     sdtm_ig_domains: {link: "/sdtm_ig_domains", text: "SDTM IG Domains", icon: "icon-sdtm"},
     sdtm_classes: {link: "/sdtm_classes", text: "Classes", icon: "icon-sdtm"},
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
+    adam_ig_datasets: {link: "/adam_ig_datasets/history", text: "CDISC ADaM IG Datasets", icon: "icon-sdtm"},
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
     items_generic: {link: "#", text: "Items", icon: "icon-multi"}
