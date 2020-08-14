@@ -3,7 +3,7 @@ class SdtmClass::Variable < Tabulation::Column
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmClassVariable",
             uri_suffix: "CV"
 
-  object_property :based_on_variable, cardinality: :one, model_class: "SdtmModel::Variable"
+  object_property :based_on_model_variable, cardinality: :one, model_class: "SdtmModel::Variable"
 
   
   # Attributes

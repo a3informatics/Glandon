@@ -5,6 +5,9 @@ class SdtmIgDomain < Tabulation
   data_property :prefix
   data_property :structure
 
+  object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
+  object_property :based_on_class, cardinality: :one, model_class: "SdtmClass"
+
 #   attr_accessor :children, :prefix, :structure, :model_ref
 
 # Get Children.

@@ -1,6 +1,6 @@
-class SdtmIg < ImplementationGuide
+class ImplementationGuide < ManagedCollection
 
-  configure rdf_type: "http://www.assero.co.uk/Tabulation#SDTMImplementationGuide"
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#ImplementationGuide"
   
   # Attributes
 #   attr_accessor :domain_refs, :compliance

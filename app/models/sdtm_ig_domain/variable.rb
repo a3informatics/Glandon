@@ -1,4 +1,9 @@
 class SdtmIgDomain::Variable < Tabulation::Column
+
+  configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmDomainVariable",
+            uri_suffix: "CV"
+
+  object_property :based_on_class_variable, cardinality: :one, model_class: "SdtmClass::Variable"
   
   # Attributes
  #  attr_accessor :name, :notes, :controlled_term_or_format, :compliance, :variable_ref
