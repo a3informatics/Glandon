@@ -12,6 +12,15 @@ function historyBtn(url) {
 }
 
 /**
+ * Returns HTML for a button linking to item's show
+ * @param {string} url path to the item's show
+ * @return {string} formatted button HTML
+ */
+function showBtn(url) {
+  return `<a href='${url}' class='btn blue btn-xs'><span></span> Show </a>`;
+}
+
+/**
  * Returns HTML for a button linking to an managed/unamanaged item
  * @param {string} url path to the item's history
  * @param {Object} item Unmanaged / Managed Concept data object
@@ -25,5 +34,6 @@ function termReferenceBtn(url, item, parent) {
 
 export {
   historyBtn,
-  termReferenceBtn
+  termReferenceBtn,
+  showBtn
 }

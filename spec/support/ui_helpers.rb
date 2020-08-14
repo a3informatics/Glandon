@@ -405,7 +405,7 @@ module UiHelpers
 			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_cl: "main_nav_term",
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
-			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm", main_nav_c: "main_nav_sdtm",
 			main_nav_aig: "main_nav_adam"
 		}
 	end
@@ -527,15 +527,19 @@ module UiHelpers
 
   #SDTM
   def click_navbar_ig_domain
-    ui_navbar_click('main_nav_sig')
+    ui_navbar_click('main_nav_sd')
   end
 
 	def click_navbar_sdtm_model
     ui_navbar_click('main_nav_sm')
   end
 
-  def click_navbar_sponsor_domain
-    ui_navbar_click('main_nav_sd')
+  def click_navbar_ig
+    ui_navbar_click('main_nav_sig')
+  end
+
+  def click_navbar_sdtm_class
+    ui_navbar_click('main_nav_c')
   end
 
 	#ADaM

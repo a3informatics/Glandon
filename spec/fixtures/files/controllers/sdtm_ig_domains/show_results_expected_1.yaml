@@ -1,0 +1,239 @@
+---
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_STUDYID
+  :ordinal: 1
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Study Identifier
+  :name: STUDYID
+  :format: ''
+  :notes: Unique identifier for a study.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_DOMAIN
+  :ordinal: 2
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Domain Abbreviation
+  :name: DOMAIN
+  :format: "(DOMAIN)"
+  :notes: Two-character abbreviation for the domain.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_USUBJID
+  :ordinal: 3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Unique Subject Identifier
+  :name: USUBJID
+  :format: ''
+  :notes: Identifier used to uniquely identify a subject across all studies for all
+    applications or submissions involving the product.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSSEQ
+  :ordinal: 4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Sequence Number
+  :name: RSSEQ
+  :format: ''
+  :notes: Sequence number given to ensure uniqueness within a dataset for a subject.
+    May be any valid number.
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSGRPID
+  :ordinal: 5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Group ID
+  :name: RSGRPID
+  :format: ''
+  :notes: Used to link together a block of related records within a subject in a domain.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSREFID
+  :ordinal: 6
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Reference ID
+  :name: RSREFID
+  :format: ''
+  :notes: Internal or external identifier.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSSPID
+  :ordinal: 7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Sponsor-Defined Identifier
+  :name: RSSPID
+  :format: ''
+  :notes: Sponsor-defined identifier.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSLNKID
+  :ordinal: 8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Link ID
+  :name: RSLNKID
+  :format: ''
+  :notes: Used to link the response assessment to the appropriate measurement records
+    (in TR) for same tumor that was used to determine the response result.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSLNKGRP
+  :ordinal: 9
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Link Group
+  :name: RSLNKGRP
+  :format: ''
+  :notes: Used to link the response assessment to the all of the measurement/assessment
+    records in the TR domain which were used in the assessment of the response.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSTESTCD
+  :ordinal: 10
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Response Assessment Short Name
+  :name: RSTESTCD
+  :format: "(RSTESTCD)"
+  :notes: 'Short name of the TEST in RSTEST. RSTESTCD cannot contain characters other
+    than letters, numbers, or underscores. Examples: TRGRESP, NTRGRESP, OVRRESP, BESTRESP,
+    NRADPROG'
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSTEST
+  :ordinal: 11
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Response Assessment Name
+  :name: RSTEST
+  :format: "(RSTEST)"
+  :notes: 'Verbatim name of the response assessment. The value in RSTEST cannot be
+    longer than 40 characters. Examples: Target Response, Non-target Response, Overall
+    Response, Best Overall Response, Non-radiological progression (i.e. Symptomatic
+    deterioration)'
+  :compliance: Required
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSCAT
+  :ordinal: 12
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Category for Response Assessment
+  :name: RSCAT
+  :format: ''
+  :notes: RSCAT is used to identify the criteria used in the assessment of response
+    and a version number if appropriate
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSORRES
+  :ordinal: 13
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Response Assessment Original Result
+  :name: RSORRES
+  :format: ''
+  :notes: Result of the Response assessment as originally received, collected, or
+    calculated.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSSTRESC
+  :ordinal: 14
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Response Assessment Result in Std Format
+  :name: RSSTRESC
+  :format: ''
+  :notes: Contains the result value for the response assessment, copied or derived
+    from RSORRES in a standard format or standard units. RSSTRESC should store all
+    results or findings in character format;
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSSTAT
+  :ordinal: 15
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Completion Status
+  :name: RSSTAT
+  :format: "(ND)"
+  :notes: Used to indicate the response assessment was not performed. Should be Null
+    if a result exists in RSORRES.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSREASND
+  :ordinal: 16
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Reason Response Assessment Not Performed
+  :name: RSREASND
+  :format: ''
+  :notes: 'Describes why a response assessment was not performed. Examples: All target
+    tumors not evaluated, Subject does not have non-target tumors. Used in conjunction
+    with TRSTAT when value is NOT DONE.'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSNAM
+  :ordinal: 17
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Vendor Name
+  :name: RSNAM
+  :format: ''
+  :notes: The name or identifier of the vendor that performed the response assessment.
+    This column can be left Null when the Investigator provides the complete set of
+    data in the domain.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSEVAL
+  :ordinal: 18
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Evaluator
+  :name: RSEVAL
+  :format: "(EVAL)"
+  :notes: ''
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSEVALID
+  :ordinal: 19
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Evaluator Identifier
+  :name: RSEVALID
+  :format: "(MEDEVAL)"
+  :notes: 'The Evaluator Specified variable is used in conjunction with RSEVAL to
+    provide an additional level of detail. When multiple assessors play the role identified
+    in RSEVAL, values of RSEVALID will attribute a row of data to a particular assessor.
+    RSEVALID should not contain the names of the assessors, or a code identifier for
+    a specific assessor. The RSEVALID variable is subject to CDISC Controlled Terminology.
+    Examples: RADIOLOGIST, RADIOLOGIST 1 or RADIOLOGIST 2. See Assumption 4'
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSACPTFL
+  :ordinal: 20
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Accepted Record Flag
+  :name: RSACPTFL
+  :format: "(NY)"
+  :notes: In cases where more than one independent assessor (e.g. RADIOLOGIST 1, RADIOLOGIST
+    2, ADJUDICATOR) provides an evaluation of response this flag identifies the record
+    that is considered to be the accepted evaluation.
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_VISITNUM
+  :ordinal: 21
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Visit Number
+  :name: VISITNUM
+  :format: ''
+  :notes: ''
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_VISIT
+  :ordinal: 22
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Visit Name
+  :name: VISIT
+  :format: ''
+  :notes: ''
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_VISITDY
+  :ordinal: 23
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Planned Study Day of Visit
+  :name: VISITDY
+  :format: ''
+  :notes: ''
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_EPOCH
+  :ordinal: 24
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Epoch
+  :name: EPOCH
+  :format: ''
+  :notes: Epoch associated with the Element in the planned sequence of Elements for
+    the ARM to which the subject was assigned
+  :compliance: Permissible
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSDTC
+  :ordinal: 25
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Date/Time of Response Assessment
+  :name: RSDTC
+  :format: ISO 8601
+  :notes: RSDTC may be derived from the dates of scans/images/physical exams which
+    may be performed on different dates. However, if all assessments are performed
+    on the same date, RSDTC may be consistent with the TUDTC and TRDTC. Note the physical
+    exam date may correspond to the visit date.
+  :compliance: Expected
+- :uri: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3#IG-CDISC_SDTMIGRS_RSDY
+  :ordinal: 26
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :label: Study Day of Response Assessment
+  :name: RSDY
+  :format: ''
+  :notes: 1. Study day of the response assessment, measured as integer days. 2. Algorithm
+    for calculations must be relative to the sponsor-defined RFSTDTC variable in Demographics.
+  :compliance: Permissible

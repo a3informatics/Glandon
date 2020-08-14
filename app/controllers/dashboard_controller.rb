@@ -40,7 +40,7 @@ private
     return :community if current_user.is_only_community?
     return :admin if current_user.is_only_sys_admin
 		result = true
-		klasses = [Thesaurus, BiomedicalConceptTemplate, BiomedicalConceptInstance, Form, SdtmUserDomain]
+		klasses = [Thesaurus, BiomedicalConceptTemplate, BiomedicalConceptInstance, Form, SdtmModel, SdtmClass]
 		klasses.each do |klass|
 			result = result && policy(klass).index?
 		end

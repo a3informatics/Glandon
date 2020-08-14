@@ -8,14 +8,14 @@ describe TabularStandard::Datatype do
     return "models/tabular_standard/datatype"
   end
 
-  before :all do
-    clear_triple_store
-  end
+  # before :all do
+  #   clear_triple_store
+  # end
 
-  it "initializes" do
-    collection = TabularStandard::Datatype.new
-    expect(collection.set).to eq({})
-  end
+  # it "initializes" do
+  #   collection = TabularStandard::Datatype.new
+  #   expect(collection.set).to eq({})
+  # end
 
 end
   

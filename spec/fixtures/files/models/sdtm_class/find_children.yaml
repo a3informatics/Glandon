@@ -1,0 +1,767 @@
+---
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_STUDYID
+  :ordinal: 1
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Study Identifier
+  :name: STUDYID
+  :description: Unique identifier for a study.
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DOMAIN
+  :ordinal: 2
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Domain Abbreviation
+  :name: DOMAIN
+  :description: Two-character abbreviation for the domain most relevant to the observation.
+    The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
+    when datasets are merged.
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_USUBJID
+  :ordinal: 3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Unique Subject Identifier
+  :name: USUBJID
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_POOLID
+  :ordinal: 4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Pool Identifier
+  :name: POOLID
+  :description: An identifier used to identify a result from a group of subjects that
+    is not assignable to a specific subject.
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_SPDEVID
+  :ordinal: 5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Sponsor Device Identifier
+  :name: SPDEVID
+  :description: Sponsor-defined identifier for a device
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSEQ
+  :ordinal: 6
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Sequence Number
+  :name: "--SEQ"
+  :description: Sequence number to ensure uniqueness of records within a dataset for
+    a subject (or within a parameter, in the case of the Trial Summary domain). May
+    be any valid number (including decimals) and does not have to start at 1.
+  :typed_as: Num
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxGRPID
+  :ordinal: 7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Group ID
+  :name: "--GRPID"
+  :description: Optional group identifier, used to link together a block of related
+    records within a subject in a domain. Also used to link together a block of related
+    records in the Trial Summary dataset (Section 3.4).
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREFID
+  :ordinal: 8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Reference ID
+  :name: "--REFID"
+  :description: Optional internal or external identifier such as lab specimen ID,
+    or UUID for an ECG waveform or a medical image.
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSPID
+  :ordinal: 9
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Sponsor-Defined Identifier
+  :name: "--SPID"
+  :description: 'Sponsor-defined identifier. Example: pre-printed line identifier
+    on a Concomitant Medications page.'
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKID
+  :ordinal: 10
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Link ID
+  :name: "--LNKID"
+  :description: 'Identifier used to link related records across domains. This may
+    be a one-to-one or a one-to-many relationship. For Example: A single tumor may
+    have multiple measurements/assessments performed at each study visit.'
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLNKGRP
+  :ordinal: 11
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Link Group ID
+  :name: "--LNKGRP"
+  :description: 'Identifier used to link related records across domains. This will
+    usually be a many-to-one relationship. For example: Multiple tumor measurements/assessments
+    will contribute to a single response to therapy determination record.'
+  :typed_as: Char
+  :classified_as: Identifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTERM
+  :ordinal: 12
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Reported Term
+  :name: "--TERM"
+  :description: Topic variable for an event observation, which is the verbatim or
+    pre-specified name of the event.
+  :typed_as: Char
+  :classified_as: Topic
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxMODIFY
+  :ordinal: 13
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Modified Reported Term
+  :name: "--MODIFY"
+  :description: If the value for --TERM is modified for coding purposes, then the
+    modified text is placed here.
+  :typed_as: Char
+  :classified_as: Synonym Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLLT
+  :ordinal: 14
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Lowest Level Term
+  :name: "--LLT"
+  :description: MedDRA Lowest Level Term.
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLLTCD
+  :ordinal: 15
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Lowest Level Term Code
+  :name: "--LLTCD"
+  :description: MedDRA Lowest Level Term code.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDECOD
+  :ordinal: 16
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Dictionary-Derived Term
+  :name: "--DECOD"
+  :description: Dictionary or sponsor-defined derived text description of the topic
+    variable, --TERM, or the modified topic variable (--MODIFY), if applicable. Equivalent
+    to the Preferred Term (PT in MedDRA).
+  :typed_as: Char
+  :classified_as: Synonym Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPTCD
+  :ordinal: 17
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Preferred Term Code
+  :name: "--PTCD"
+  :description: MedDRA Preferred Term code.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLT
+  :ordinal: 18
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: High Level Term
+  :name: "--HLT"
+  :description: MedDRA High Level Term from the primary path.
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLTCD
+  :ordinal: 19
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: High Level Term Code
+  :name: "--HLTCD"
+  :description: MedDRA High Level Term code from the primary path.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLGT
+  :ordinal: 20
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: High Level Group Term
+  :name: "--HLGT"
+  :description: MedDRA High Level Group Term from the primary path.
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxHLGTCD
+  :ordinal: 21
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: High Level Group Term Code
+  :name: "--HLGTCD"
+  :description: MedDRA High Level Group Term code from the primary path.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCAT
+  :ordinal: 22
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Category
+  :name: "--CAT"
+  :description: Used to define a category of topic-variable values.
+  :typed_as: Char
+  :classified_as: Grouping Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAT
+  :ordinal: 23
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Subcategory
+  :name: "--SCAT"
+  :description: Used to define a further categorization of --CAT values.
+  :typed_as: Char
+  :classified_as: Grouping Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPRESP
+  :ordinal: 24
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Pre-specified
+  :name: "--PRESP"
+  :description: Used to indicate whether the event described by --TERM was pre-specified
+    on a CRF. Value is Y for pre-specified events, null for spontaneously reported
+    events.
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxOCCUR
+  :ordinal: 25
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Occurrence
+  :name: "--OCCUR"
+  :description: Used to record whether a pre-specified event occurred when information
+    about the occurrence of a specific event is solicited.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTAT
+  :ordinal: 26
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Completion Status
+  :name: "--STAT"
+  :description: Used to indicate when a question about the occurrence of a pre-specified
+    event was not answered. Should be null or have a value of NOT DONE.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREASND
+  :ordinal: 27
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Reason Not Done
+  :name: "--REASND"
+  :description: Reason not done. Used in conjunction with --STAT when its value is
+    NOT DONE.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxBODSYS
+  :ordinal: 28
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Body System or Organ Class
+  :name: "--BODSYS"
+  :description: 'Body system or system organ class assigned for analysis from a standard
+    hierarchy (e.g. MedDRA) associated with an event. Example: GASTROINTESTINAL DISORDERS.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxBDSYCD
+  :ordinal: 29
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Body System or Organ Class Code
+  :name: "--BDSYCD"
+  :description: MedDRA System Organ Class code corresponding to --BODSYS assigned
+    for analysis.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOC
+  :ordinal: 30
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Primary System Organ Class
+  :name: "--SOC"
+  :description: MedDRA primary System Organ Class associated with the event.
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOCCD
+  :ordinal: 31
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Primary System Organ Class Code
+  :name: "--SOCCD"
+  :description: MedDRA primary System Organ Class code.
+  :typed_as: Num
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLOC
+  :ordinal: 32
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Location of Event
+  :name: "--LOC"
+  :description: 'Describes anatomical location relevant for the event. Example: ARM
+    for skin rash.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxLAT
+  :ordinal: 33
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Laterality
+  :name: "--LAT"
+  :description: 'Qualifier for anatomical location further detailing laterality. Examples:
+    RIGHT, LEFT, BILATERAL'
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDIR
+  :ordinal: 34
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Directionality
+  :name: "--DIR"
+  :description: 'Qualifier for anatomical location further detailing directionality.
+    Examples: ANTERIOR, LOWER, PROXIMAL'
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPORTOT
+  :ordinal: 35
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Portion or Totality
+  :name: "--PORTOT"
+  :description: 'Qualifier for anatomical location further detailing the distribution,
+    which means arrangement of, apportioning of. Examples: ENTIRE, SINGLE, SEGMENT,
+    MANY.'
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPARTY
+  :ordinal: 36
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Accountable Party
+  :name: "--PARTY"
+  :description: Party accountable for the transferable object (e.g. device, specimen)
+    as a result of the activity performed in the associated --TERM variable. The party
+    could be an individual (e.g., subject), an organization (e.g., sponsor), or a
+    location that is a proxy for an individual or organization (e.g., site). It is
+    usually a somewhat general term that is further identified in the --PRTYID variable.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPRTYID
+  :ordinal: 37
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Identification of Accountable Party
+  :name: "--PRTYID"
+  :description: Identification of the specific party accountable for the transferable
+    object (e.g. device, specimen) after the action in --TERM is taken. Used in conjunction
+    with --PARTY.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSEV
+  :ordinal: 38
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Severity/Intensity
+  :name: "--SEV"
+  :description: 'The severity or intensity of the event. Examples: MILD, MODERATE,
+    SEVERE.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSER
+  :ordinal: 39
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Serious Event
+  :name: "--SER"
+  :description: Is this is a serious event? Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACN
+  :ordinal: 40
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Action Taken with Study Treatment
+  :name: "--ACN"
+  :description: 'Describes changes made to the study treatment as a result of the
+    event. Examples: DOSE INCREASED, DOSE NOT CHANGED.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACNOTH
+  :ordinal: 41
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Other Action Taken
+  :name: "--ACNOTH"
+  :description: Describes other actions taken as a result of the event that are unrelated
+    to dose adjustments of study treatment.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxACNDEV
+  :ordinal: 42
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Action Taken with Device
+  :name: "--ACNDEV"
+  :description: Action taken with respect to a device in a study, which may or may
+    not be the device under study
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxREL
+  :ordinal: 43
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Causality
+  :name: "--REL"
+  :description: Records the investigator's opinion as to the causality of the event
+    to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
+    POSSIBLY RELATED, RELATED.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxRELNST
+  :ordinal: 44
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Relationship to Non-Study Treatment
+  :name: "--RELNST"
+  :description: 'An opinion as to whether the event may have been due to a treatment
+    other than study drug. Example: "MORE LIKELY RELATED TO ASPIRIN USE."'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxPATT
+  :ordinal: 45
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Pattern of Event
+  :name: "--PATT"
+  :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
+    CONTINUOUS, SINGLE EVENT.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxOUT
+  :ordinal: 46
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Outcome of Event
+  :name: "--OUT"
+  :description: 'Description of the outcome of an event. Examples: RECOVERED/RESOLVED,
+    FATAL.'
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCAN
+  :ordinal: 47
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Involves Cancer
+  :name: "--SCAN"
+  :description: Was the event associated with the development of cancer? Valid values
+    are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSCONG
+  :ordinal: 48
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Congenital Anomaly or Birth Defect
+  :name: "--SCONG"
+  :description: Was the event associated with congenital anomaly or birth defect?
+    Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSDISAB
+  :ordinal: 49
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Persist or Signif Disability/Incapacity
+  :name: "--SDISAB"
+  :description: Did the event result in persistent or significant disability/incapacity?
+    Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSDTH
+  :ordinal: 50
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Results in Death
+  :name: "--SDTH"
+  :description: Did the event result in death? Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSHOSP
+  :ordinal: 51
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Requires or Prolongs Hospitalization
+  :name: "--SHOSP"
+  :description: Did the event require or prolong hospitalization? Valid values are
+    “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSLIFE
+  :ordinal: 52
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Is Life Threatening
+  :name: "--SLIFE"
+  :description: Was the event life threatening? Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSOD
+  :ordinal: 53
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Occurred with Overdose
+  :name: "--SOD"
+  :description: Did the event occur with an overdose? Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSMIE
+  :ordinal: 54
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Other Medically Important Serious Event
+  :name: "--SMIE"
+  :description: Do additional categories for seriousness apply? Valid values are “Y”
+    and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxCONTRT
+  :ordinal: 55
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Concomitant or Additional Trtmnt Given
+  :name: "--CONTRT"
+  :description: Was another treatment given because of the occurrence of the event?
+    Valid values are “Y” and “N”.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTOX
+  :ordinal: 56
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Toxicity
+  :name: "--TOX"
+  :description: 'Description of toxicity quantified by --TOXGR such as NCI CTCAE Short
+    Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale
+    and version is used in the Sponsor Comments column of the Define-XML document.'
+  :typed_as: Char
+  :classified_as: Variable Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTOXGR
+  :ordinal: 57
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Toxicity Grade
+  :name: "--TOXGR"
+  :description: Records toxicity grade using a standard toxicity scale (such as the
+    NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor
+    Comments column of the Define-XML document.
+  :typed_as: Char
+  :classified_as: Record Qualifier
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITNUM
+  :ordinal: 58
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Visit Number
+  :name: VISITNUM
+  :description: Clinical encounter number. Numeric version of VISIT, used for sorting.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISIT
+  :ordinal: 59
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Visit Name
+  :name: VISIT
+  :description: Protocol-defined description of a clinical encounter.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_VISITDY
+  :ordinal: 60
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Study Day of Visit
+  :name: VISITDY
+  :description: Planned study day of VISIT. Should be an integer.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_TAETORD
+  :ordinal: 61
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Order of Element within Arm
+  :name: TAETORD
+  :description: Number that gives the planned order of the Element within the Arm
+    (see Trial Arms, Section 3.2.2 ).
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_EPOCH
+  :ordinal: 62
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Epoch
+  :name: EPOCH
+  :description: Epoch associated with the start date/time of the observation, or the
+    date/time of collection if start date/time is not collected. (See Section 3.2.2).
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDTC
+  :ordinal: 63
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Date/Time of Collection
+  :name: "--DTC"
+  :description: Collection date and time of an observation represented in IS0 8601
+    character format.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDTC
+  :ordinal: 64
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Start Date/Time of Observation
+  :name: "--STDTC"
+  :description: Start date/time of an observation represented in IS0 8601 character
+    format.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDTC
+  :ordinal: 65
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: End Date/Time of Observation
+  :name: "--ENDTC"
+  :description: End date/time of the observation represented in IS0 8601 character
+    format.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDY
+  :ordinal: 66
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Study Day of Visit/Collection/Exam
+  :name: "--DY"
+  :description: Actual study day of visit/collection/exam expressed in integer days
+    relative to the sponsor-defined RFSTDTC in Demographics.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTDY
+  :ordinal: 67
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Study Day of Start of Observation
+  :name: "--STDY"
+  :description: Actual study day of start of observation expressed in integer days
+    relative to the sponsor-defined RFSTDTC in Demographics.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENDY
+  :ordinal: 68
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Study Day of End of Observation
+  :name: "--ENDY"
+  :description: Actual study day of end of observation expressed in integer days relative
+    to the sponsor-defined RFSTDTC in Demographics.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDUR
+  :ordinal: 69
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Duration
+  :name: "--DUR"
+  :description: Collected duration of an event, intervention, or finding represented
+    in ISO 8601 character format. Used only if collected on the CRF and not derived.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPT
+  :ordinal: 70
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Time Point Name
+  :name: "--TPT"
+  :description: Text description of time when a measurement or observation should
+    be taken as defined in the protocol. This may be represented as an elapsed time
+    relative to a fixed reference point, such as time of last dose. See --TPTNUM and
+    --TPTREF.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTNUM
+  :ordinal: 71
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Time Point Number
+  :name: "--TPTNUM"
+  :description: Numeric version of planned time point used in sorting.
+  :typed_as: Num
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxELTM
+  :ordinal: 72
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Elapsed Time from Time Point Ref
+  :name: "--ELTM"
+  :description: Planned Elapsed time in ISO 8601 character format relative to a planned
+    fixed reference (--TPTREF) such as “Previous Dose” or “Previous Meal”. This variable
+    is useful where there are repetitive measures. Not a clock time or a date/time
+    variable, but an interval, represented as ISO duration.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxTPTREF
+  :ordinal: 73
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Time Point Reference
+  :name: "--TPTREF"
+  :description: 'Description of the fixed reference point referred to by --ELTM, --TPTNUM,
+    and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL.'
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxRFTDTC
+  :ordinal: 74
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Date/Time of Reference Time Point
+  :name: "--RFTDTC"
+  :description: Date/time for a fixed reference time point defined by --TPTREF in
+    ISO 8601 character format.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRF
+  :ordinal: 75
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Start Relative to Reference Period
+  :name: "--STRF"
+  :description: ''
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRF
+  :ordinal: 76
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: End Relative to Reference Period
+  :name: "--ENRF"
+  :description: ''
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVLINT
+  :ordinal: 77
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Evaluation Interval
+  :name: "--EVLINT"
+  :description: 'Duration of interval associated with an observation such as a finding
+    --TESTCD, represented in ISO 8601 character format. Example: -P2M to represent
+    a period of the past 2 months as the evaluation interval for a question from a
+    questionnaire such as SF-36.'
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxEVINTX
+  :ordinal: 78
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Evaluation Interval Text
+  :name: "--EVINTX"
+  :description: 'Evaluation interval associated with an observation, where the interval
+    is not able to be represented in ISO 8601 format. Examples: LIFETIME, LAST NIGHT,
+    RECENTLY, OVER THE LAST FEW WEEKS.'
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTRTPT
+  :ordinal: 79
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Start Relative to Reference Time Point
+  :name: "--STRTPT"
+  :description: Identifies the start of the observation as being before or after the
+    sponsor-defined reference time point defined by variable --STTPT.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTTPT
+  :ordinal: 80
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Start Reference Time Point
+  :name: "--STTPT"
+  :description: 'Description or date/time in ISO 8601 or other character format of
+    the sponsor-defined reference point referred to by --STRTPT. Examples: "2003-12-15"
+    or "VISIT 1".'
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENRTPT
+  :ordinal: 81
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: End Relative to Reference Time Point
+  :name: "--ENRTPT"
+  :description: Identifies the end of the observation as being before or after the
+    sponsor-defined reference time point defined by variable --ENTPT.
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENTPT
+  :ordinal: 82
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: End Reference Time Point
+  :name: "--ENTPT"
+  :description: 'Description or date/time in ISO 8601 or other character format of
+    the sponsor-defined reference point referred to by --ENRTPT. Examples: "2003-12-25"
+    or "VISIT 2".'
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxSTINT
+  :ordinal: 83
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned Start of Assessment Interval
+  :name: "--STINT"
+  :description: The start of a planned evaluation or assessment interval in ISO 8601
+    character format relative to the Time Point Reference (--TPTREF).
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxENINT
+  :ordinal: 84
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Planned End of Assessment Interval
+  :name: "--ENINT"
+  :description: The end of a planned evaluation or assessment interval in ISO 8601
+    character format relative to the Time Point Reference (--TPTREF).
+  :typed_as: Char
+  :classified_as: Timing
+- :uri: http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_xxDETECT
+  :ordinal: 85
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmModelVariable
+  :label: Time in Days to Detection
+  :name: "--DETECT"
+  :description: The number of days from the start of dosing to the earliest detection
+    of a condition or pathogen.
+  :typed_as: Num
+  :classified_as: Timing

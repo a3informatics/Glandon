@@ -8,7 +8,7 @@
 #   @return [String] @todo not sure needed
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class AdamIgDataset < Tabular
+class AdamIgDataset < Tabulation
   
   attr_accessor :children, :prefix, :structure
 

@@ -1,0 +1,33 @@
+<%= javascript_tag 'setPageTitle("Index: SDTM Class")' %>
+
+<%= javascript_pack_tag 'sdtm_classes/index' %>
+
+<% first_level_breadcrumb (:sdtm_classes) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-sdtm",
+    main_text: "SDTM Classes", sub_text: "Browse all SDTM Classes in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> SDTM Classes.
+    Use the Search bar to find the SDTM Class you are looking for.
+    To see SDTM Class's respective History page, click on it.
+  <% end %>
+
+  <% content_for :actions do %>
+    
+    <% if policy(SdtmClass).new? %>
+      <a href="#" class="btn medium green" id="new_form">
+        <span class="icon-plus text-tiny"></span>&nbsp; New SDTM Class
+      </a>
+    <% end %>
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "SDTM Classes", url: sdtm_classes_path } %>
+
+</div>

@@ -1,6 +1,8 @@
 import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
+import { showBtn } from 'shared/ui/buttons'
+
 
 /**
  * Column definitions for a Code List Editor table
@@ -72,4 +74,56 @@ function dtFormShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns }
+/**
+ * Column definitions for SDTM Class show
+ * @return {Array} DataTables  SDTM Class show column definitions collection
+ */
+function dtSDTMClassShowColumns() {
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as" },
+    { data: "description" },
+    { data: "classified_as" },
+    { data: "classified_as" }
+  ];
+};
+
+/**
+ * Column definitions for SDTM Model and IG show
+ * @return {Array} DataTables  SDTM Model and IG show column definitions collection
+ */
+function dtSDTMShowColumns() {
+  return [
+    { data: "has_identifier.identifier" },
+    { data: "label" },
+    { data: "has_identifier.has_scope.short_name" },
+    { data: "has_identifier.version" },
+    { data: "has_identifier.version_label" },
+    {
+      data: "show_path",
+      render: (data, type, r, m) => showBtn(data)
+    }
+  ];
+};
+
+/**
+ * Column definitions for SDTM IG Domain show
+ * @return {Array} DataTables  SDTM IG Domain show column definitions collection
+ */
+function dtSDTMIGDomainShowColumns() {
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "label" }, //datatype_label
+    { data: "format" },
+    { data: "label" }, //classification_label
+    { data: "label" }, //sub_classification_label
+    { data: "notes" },
+    { data: "compliance" }
+  ];
+};
+
+export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns, dtSDTMClassShowColumns, dtSDTMShowColumns, dtSDTMIGDomainShowColumns  }

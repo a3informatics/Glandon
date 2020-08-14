@@ -395,19 +395,19 @@ Rails.application.routes.draw do
     end
     collection do
       get :history
-      get :view
-      get :placeholder_new
-      post :placeholder_create
-      get :acrf
-      get :crf
-      get :markdown
-      get :clone
-      post :clone_create
-      get :branch
-      post :branch_create
-      get :export_json
-      get :export_ttl
-      get :export_odm
+      # get :view
+      # get :placeholder_new
+      # post :placeholder_create
+      # get :acrf
+      # get :crf
+      # get :markdown
+      # get :clone
+      # post :clone_create
+      # get :branch
+      # post :branch_create
+      # get :export_json
+      # get :export_ttl
+      # get :export_odm
     end
   end
   namespace :forms do
@@ -419,65 +419,57 @@ Rails.application.routes.draw do
       delete :destroy_multiple
     end
   end
-  resources :sdtm_models do
+
+  #SDTM
+  resources :sdtm_models, :only => [:show, :index] do
     collection do
       get :history
-      get :import
-      post :create
+      # get :import
+      # post :create
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
   namespace :sdtm_models do
     resources :variables
   end
-  resources :sdtm_model_domains, :only => [:show] do
-    collection do
-      #get :history
-    end
-    member do
-      get :export_json
-      get :export_ttl
-    end
-  end
-  resources :sdtm_igs do
+  resources :sdtm_classes, :only => [:show, :index] do
     collection do
       get :history
-      get :import
-      post :create
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
     end
   end
-  resources :sdtm_ig_domains, :only => [:show] do
-    member do
-      get :export_json
-      get :export_ttl
-    end
-  end
-  resources :sdtm_user_domains do
-    member do
-      get :export_json
-      get :export_ttl
-      get :full_report
-      get :export_xpt_metadata
-    end
+  resources :sdtm_igs, :only => [:show, :index] do
     collection do
       get :history
-      get :clone_ig
-      post :clone_ig_create
-      get :list
-      get :add
-      get :remove
-      post :update_add
-      post :update_remove
-      get :sub_classifications
+      # get :import
+      # post :create
+    end
+    member do
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
+  resources :sdtm_ig_domains, :only => [:show, :index] do
+    collection do
+      get :history
+      # get :import
+      # post :create
+    end
+    member do
+      get :show_data
+      # get :export_json
+      # get :export_ttl
+    end
+  end
+
+  #ADAM
   resources :adam_igs do
     collection do
       get :history

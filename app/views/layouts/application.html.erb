@@ -298,16 +298,18 @@
                 </ul>
               </div>
               <% end %>
-              <% if link_group_on_role([SdtmModel, SdtmIg, SdtmUserDomain]) %>
+              <% if link_group_on_role([SdtmModel, SdtmIg, SdtmIgDomain, SdtmClass]) %>
               <div id="main_nav_sdtm" class="category-container <%= if c_sdtm != menu_category_title then "collapsed" end %>">
                 <%= render partial: "shared/sidebar/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sdtm", category_title: c_sdtm} %>
                 <ul class="nav">
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm",
-           					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
+           					link_path: sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_sig",
-           					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
-                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmUserDomain, link_id: "main_nav_sd",
-           					link_path: sdtm_user_domains_path, link_text: "Domains", current_link: controller_name.to_s} %>
+           					link_path: sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmIgDomain, link_id: "main_nav_sd",
+           					link_path: sdtm_ig_domains_path, link_text: "SDTM IG Domains", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => SdtmClass, link_id: "main_nav_c",
+                    link_path: sdtm_classes_path, link_text: "SDTM Classes", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>

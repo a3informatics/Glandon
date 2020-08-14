@@ -8,14 +8,14 @@ describe TabularStandard::Compliance do
     return "models/tabular_standard/compliance"
   end
 
-  before :all do
-    clear_triple_store
-  end
+  # before :all do
+  #   clear_triple_store
+  # end
 
-  it "initializes" do
-    collection = TabularStandard::Compliance.new
-    expect(collection.set).to eq({})
-  end
+  # it "initializes" do
+  #   collection = TabularStandard::Compliance.new
+  #   expect(collection.set).to eq({})
+  # end
 
 end
   

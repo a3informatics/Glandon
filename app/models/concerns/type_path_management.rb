@@ -16,8 +16,8 @@ module TypePathManagement
     Form::Item::Placeholder.rdf_type.to_s => { klass: Form::Item::Placeholder },
     Form::Item::Question.rdf_type.to_s => { klass: Form::Item::Question },
     Form::Item::TextLabel.rdf_type.to_s => { klass: Form::Item::TextLabel },
-    SdtmUserDomain::C_RDF_TYPE_URI.to_s => { klass: SdtmUserDomain },
-    SdtmUserDomain::Variable::C_RDF_TYPE_URI.to_s => { klass: SdtmUserDomain::Variable }
+    SdtmModel.rdf_type.to_s => { klass: SdtmModel },
+    SdtmModel::Variable.rdf_type.to_s => { klass: SdtmModel::Variable }
   }
 
   @@mi_history_path = 
@@ -26,10 +26,11 @@ module TypePathManagement
       BiomedicalConceptTemplate.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
       BiomedicalConceptInstance.rdf_type.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concept_instances_path, strong: "biomedical_concept" },
       Form.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
-      SdtmModel::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
-      SdtmIg::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
-      AdamIg::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_adam_igs_path, strong: "adam_ig" },
-      SdtmUserDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_user_domains_path, strong: "sdtm_user_domain" }
+      SdtmModel.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
+      SdtmIg.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
+      SdtmIgDomain.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "sdtm_ig_domain" },
+      SdtmClass.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_classes_path, strong: "sdtm_class" },
+      AdamIg::rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_adam_igs_path, strong: "adam_ig" },
     }
 
   # Method returns class for a given rdf type
