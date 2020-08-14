@@ -55,6 +55,18 @@
   rdfs:subClassOf :Column ;
   skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
 .
+:ADaMDataset
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
+.
+:ADaMDatasetVariable
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Domain Variable"^^xsd:string ;
+  rdfs:subClassOf :Column ;
+  skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
+.
 :Model
   rdf:type owl:Class ;
   rdfs:label "Model"^^xsd:string ;
@@ -137,7 +149,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Type as relationship"^^xsd:string ;
-  rdfs:domain  :SdtmModelVariable ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable datatype."^^xsd:string ;
 .
@@ -145,7 +159,9 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Compliance relationship"^^xsd:string ;
-  rdfs:domain :SdtmDomainVariable ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable compliance."^^xsd:string ;
 .
@@ -184,7 +200,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable)
+    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable :ADaMDatasetVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
@@ -212,7 +228,9 @@
   rdfs:label "Notes"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain  :SdtmDomainVariable ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
   rdfs:range xsd:string ;
   skos:definition "Notes on the variable."^^xsd:string ;
 .
@@ -230,7 +248,9 @@
   rdfs:label "ct"^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :SdtmDomainVariable ;
+  rdfs:domain [ a owl:Class ;
+    owl:unionOf (:SdtmDomainVariable :ADaMDatasetVariable)
+    ] ;
   rdfs:range xsd:string ;
   skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
 .
