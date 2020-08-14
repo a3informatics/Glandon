@@ -6,22 +6,25 @@ describe "Tests validation server", :type => :feature, :remote=> true do
   include UserAccountHelpers
   include WaitForAjaxHelper
   include RemoteServerHelpers
+  include PauseHelpers
+  include QualificationUserHelpers
 
-  #RemoteServerHelpers.switch_to_remote
+  # RemoteServerHelpers.switch_to_remote
+
+  RemoteServerHelpers.switch_to_local
+
 
   describe "Login", :type => :feature do
 
-    it "Login test", js: true do
-      visit "/users/sign_in"
-      fill_in :placeholder => "Email", :with => 'car@s-cubed.dk'
-      fill_in :placeholder => "Password", :with => 'Changeme1%'
-      click_button "Log in"
-      expect(page).to have_content "Signed in successfully"
+    it "Admin user login", js: true do
+     quh_sys_and_content_admin_login
+     quh_logoff
     end
-
-    it "Login test - REQ12345", js: true do
+    
+    it "Community Reader Login", js: true do
+      quh_community_reader_login
+      quh_logoff
     end
-
   end
 
   describe "Login", :type => :feature do

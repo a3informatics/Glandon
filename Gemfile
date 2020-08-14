@@ -107,12 +107,20 @@ end
 group :test do
   gem 'faker'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'selenium-webdriver'
+  # stuff for use of cucumber testing
+  gem 'cucumber-rails' #, require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  # Allure support - for nice testing reports
+  gem 'allure-rspec'
 end
 
 group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   gem 'daemons'
 end
+
