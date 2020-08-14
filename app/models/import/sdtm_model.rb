@@ -68,6 +68,8 @@ private
 
   # Process Results. Process the results structure to convert to objects
   def process_results(results)
+
+    # Build the model variables. Make sure no duplicates
     model_vars = {}
     results[:managed_children].each_with_index do |child, index| 
       child.children.each do |var|
@@ -76,6 +78,8 @@ private
       end
     end
     results[:parent].includes_variable = model_vars.map{|k,v| v}
+
+    # Build the class variables based on the model variables
     all = results[:managed_children].delete_at(results[:managed_children].find_index {|x| x.scoped_identifier == "SDTMMODEL ALL"})
     results[:managed_children].each_with_index do |child, index| 
       class_vars = []
@@ -87,7 +91,19 @@ private
       end
       child.includes_column = class_vars
     end
-    results
+
+    # Check for differences. If no change then use previous version.
+    filtered = []
+    parent = results[:parent]
+    results[:managed_children].each_with_index do |child, index| 
+      previous_info = SdtmClass.latest({scope: child.scope, identifier: child.scoped_identifier})
+      previous = previous_info.nil? ? nil : SdtmClass.find_full(previous_info.id) 
+      actual = child.replace_if_no_change(previous)
+      parent.add_no_save(actual, index + 1) # Parent needs ref to child whatever new or previous
+      next if actual.uri != child.uri # No changes if actual = previous, so skip next
+      filtered << child 
+    end
+    {parent: parent, managed_children: filtered, tags: []}
   end
 
 end
