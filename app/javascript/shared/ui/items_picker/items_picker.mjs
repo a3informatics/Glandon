@@ -21,6 +21,7 @@ export default class ItemsPicker extends ModalView {
    * @param {string} params.id unique element id of the Items Picker modal
    * @param {array} params.types array of param names of allowed types, @see itemTypes map for supported types
    * @param {string} params.description custom text to be rendered in the Items Picker description, optional
+   * @param {string} params.submitText custom Submit button text to be rendered in the Items Picker, optional
    * @param {boolean} params.multiple value representing whether multiple selection is enabled or disabled [defaul=false]
    * @param {boolean} params.emptyEnabled value representing whether submission where no items are selected is allowed, [default=false]
    * @param {boolean} params.hideOnSubmit value representing whether the modal will be hidden on submit [default=true]
@@ -32,6 +33,7 @@ export default class ItemsPicker extends ModalView {
     id,
     types = [],
     description,
+    submitText,
     multiple = false,
     emptyEnabled = false,
     hideOnSubmit = true,
@@ -42,8 +44,8 @@ export default class ItemsPicker extends ModalView {
 
     super( { selector: `#items-picker-${id}` } );
 
-    Object.assign(this, { multiple, description, emptyEnabled, types: [...new Set(types)],
-      onShow, onSubmit, onHide, hideOnSubmit });
+    Object.assign(this, { multiple, description, submitText, emptyEnabled,
+      types: [...new Set(types)], onShow, onSubmit, onHide, hideOnSubmit });
 
     // Initialization
     this._initialize();
@@ -73,6 +75,16 @@ export default class ItemsPicker extends ModalView {
       this.modal.find('#items-picker-description').html(description);
   }
 
+  /**
+   * Set a custom text for the Items Picker Submit button and reneder
+   * @param {string} subtmiText the new Submit text, cannot be a falsey value
+   */
+  setSubmitText(submitText) {
+    if (submitText)
+      this.modal.find('#items-picker-submit').html(submitText);
+  }
+
+
 
   /** Private **/
 
@@ -94,8 +106,9 @@ export default class ItemsPicker extends ModalView {
     // Initialize Selectors
     this.selectors = this._initSelectors();
 
-    // Set custom description if specified
+    // Set custom description and submit button text if specified
     this.setDescription(this.description)
+    this.setSubmitText(this.submitText);
 
     // Enable Submit button if emptyEnabled setting set to true
     if ( this.emptyEnabled )

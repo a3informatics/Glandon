@@ -155,6 +155,7 @@ export default class BCEditor extends EditablePanel {
     this.editor.pickers["termPicker"] = new ItemsPicker({
       id: 'bc-term-ref',
       types: ['unmanaged_concept'],
+      submitText: 'Submit selection',
       multiple: true,
       emptyEnabled: true,
       onShow: () => this.kDisable(),

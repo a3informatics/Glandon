@@ -104,6 +104,7 @@ export default class BCManager extends Cacheable {
     this.editBCPicker = new ItemsPicker({
       id: 'add-bc-edit',
       types: ['biomedical_concept_instance'],
+      submitText: 'Add to Editor',
       onSubmit: (s) => this.editBC( s.asIDsArray()[0] ),
       onShow: () => this.bcEditor.kDisable(),
       onHide: () => this.bcEditor.kEnable()
