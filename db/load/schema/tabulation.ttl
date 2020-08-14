@@ -33,9 +33,9 @@
 .
 :SdtmClass
   rdf:type owl:Class ;
-  rdfs:label "Class Domain"^^xsd:string ;
+  rdfs:label "SDTM Class"^^xsd:string ;
   rdfs:subClassOf :Tabulation ;
-  skos:definition "A CDISC domain class. Building block for a SDTM IG domain."^^xsd:string ;
+  skos:definition "A CDISC class. Building block for a SDTM IG domain."^^xsd:string ;
 .
 :SdtmClassVariable
   rdf:type owl:Class ;
@@ -45,13 +45,13 @@
 .
 :SdtmDomain
   rdf:type owl:Class ;
-  rdfs:label "Implementation Guide Domain"^^xsd:string ;
+  rdfs:label "SDTM Domain"^^xsd:string ;
   rdfs:subClassOf :Tabulation ;
   skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
 .
 :SdtmDomainVariable
   rdf:type owl:Class ;
-  rdfs:label "Implementation Guide Variable"^^xsd:string ;
+  rdfs:label "SDTM Domain Variable"^^xsd:string ;
   rdfs:subClassOf :Column ;
   skos:definition "A variable as defined within an implementation guide."^^xsd:string ;
 .
@@ -71,13 +71,13 @@
   rdf:type owl:Class ;
   rdfs:label "ADaM Implementation Guide"^^xsd:string ;
   rdfs:subClassOf :ImplementationGuide ;
-  skos:definition "A document published as a SDTM implementation guide."^^xsd:string ;
+  skos:definition "A document published as a ADaM implementation guide."^^xsd:string ;
 .
 :SDTMImplementationGuide
   rdf:type owl:Class ;
   rdfs:label "SDTM Implementation Guide"^^xsd:string ;
   rdfs:subClassOf :ImplementationGuide ;
-  skos:definition "A document published as a implementation guide."^^xsd:string ;
+  skos:definition "A document published as a SDTM implementation guide."^^xsd:string ;
 .
 :TAGuide
   rdf:type owl:Class ;
@@ -104,19 +104,25 @@
 :basedOnClass
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Based on domain relationship"^^xsd:string ;
+  rdfs:label "Based on class relationship"^^xsd:string ;
   rdfs:domain :SdtmDomain ;
   rdfs:range :SdtmClass ;
   skos:definition "Notes which domain class a domain is based on."^^xsd:string ;
 .
-:basedOnVariable
+:basedOnModelVariable
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Based on variable relationship"^^xsd:string ;
-  rdfs:domain  [ a owl:Class ;
-    owl:unionOf  ( :SdtmDomainVariable :SdtmClassVariable )
-    ] ;
-  rdfs:range :ClassVariable ;
+  rdfs:label "Based on model variable relationship"^^xsd:string ;
+  rdfs:domain :SdtmClassVariable ;
+  rdfs:range :SdtmModelVariable ;
+  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+.
+:basedOnClassVariable
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Based on class variable relationship"^^xsd:string ;
+  rdfs:domain :SdtmDomainVariable ;
+  rdfs:range :SdtmClassVariable ;
   skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
 .
 :classifiedAs
@@ -146,10 +152,10 @@
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Implementation of variable relationship"^^xsd:string ;
+  rdfs:label "Has Biomedical Concept relationship"^^xsd:string ;
   rdfs:domain :SdtmDomain ;
   rdfs:range bo:BcReference ;
-  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
+  skos:definition "Reference to a Biomedical Concept."^^xsd:string ;
 .
 :rule
   rdf:type owl:DatatypeProperty ;
