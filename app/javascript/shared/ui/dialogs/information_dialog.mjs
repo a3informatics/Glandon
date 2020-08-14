@@ -14,7 +14,7 @@ export default class InformationDialog {
    * @param {boolean} params.dangerous Style the dialog with red border [default = false]
    * @param {boolean} params.wide Increase dialog width [default = false]
    * @param {function} params.onShow Optional callback to when dialog gets shown
-   * @param {string} params.div DIV selector of dialog element if already appended in DOM, optional
+   * @param {(string | JQuery Element)} params.div DIV selector of dialog element if already appended in DOM, optional
    */
   constructor({
     title = 'Information',
@@ -135,7 +135,7 @@ export default class InformationDialog {
    */
   _makeId() {
     if (this.div)
-      return `#${this.div.attr('id')}`
+      return `#${$(this.div).attr('id')}`
     else
       return `#information-dialog-${ $(".cd-wrap").length+ 1 }`
   }
