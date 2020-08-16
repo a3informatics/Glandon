@@ -52,7 +52,13 @@ export default class BCManager extends Cacheable {
    */
   editBC(id, isBase = false) {
 
-    this._loading(true)
+    // Check if BC instance already added
+    if ( this.activeBCs[id] ) {
+      displayError('This BC has already been added.');
+      return;
+    }
+
+    this._loading(true);
 
     // Edit BC request
     $get({
@@ -132,7 +138,7 @@ export default class BCManager extends Cacheable {
       this.editBCPicker.show()
     )
 
-    // BC Edit help button click event, show InformationDialog 
+    // BC Edit help button click event, show InformationDialog
     this._view.find('#editor-help').on('click', () => new InformationDialog({
       div: '#information-dialog-bc-edit'
     }).show())
@@ -152,12 +158,6 @@ export default class BCManager extends Cacheable {
    * @param {boolean} isBase value representing whether the BC is the base BC instance, optional, [default = false]
    */
   _addBCToManager(bcData, tokenId, isBase = false) {
-
-      // Check if BC instance already added
-      if ( this.activeBCs[bcData.id] ) {
-        displayError('This BC has already been added.');
-        return;
-      }
 
       // Render BC card in the scrollView
       this._renderBCCard(bcData, isBase);

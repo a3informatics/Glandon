@@ -62,3 +62,8 @@ img.modal-img.large{
     width: calc(100% - 40px);
   }
 }
+
+// Overflow fix
+.modal.fade.bd-example-modal-lg {
+  overflow-y: auto;
+}

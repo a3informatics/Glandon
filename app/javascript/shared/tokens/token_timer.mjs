@@ -201,17 +201,19 @@ export default class TokenTimer {
    */
   _render() {
     // Update parent element CSS class
-    $(this.parentEl)
-      .removeClass(this._states.warning + " " + this._states.danger)
-      .addClass(this.state);
+    $(this.parentEl).removeClass(this._states.warning + " " + this._states.danger)
+
+    if (!this.isExpired)
+      $(this.parentEl).addClass(this.state); // Add state class to parent unless expired
+    else
+      $(`${this.parentEl} ${this.timerEl}`).addClass(this.state); // Disable timer button
+
 
     // Show the remaining time
     if (this.timeRemaining <= this.warningTime)
       this._renderTime(this._formattedTime);
 
-    // Show expired UI
-    if (this.isExpired)
-      $(`${this.parentEl} ${this.timerEl}`).addClass(this.state);
+
   }
 
   /**
