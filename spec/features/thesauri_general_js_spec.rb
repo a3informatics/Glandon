@@ -10,6 +10,7 @@ describe "Thesaurus", :type => :feature do
   include DownloadHelpers
   include SparqlHelpers
   include NameValueHelpers
+  include EditorHelpers
 
   def sub_dir
     return "features"
