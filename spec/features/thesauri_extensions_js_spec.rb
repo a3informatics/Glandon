@@ -48,7 +48,7 @@ describe "Thesauri Extensions", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax(120)
       ui_table_search("index", identifier)
-      ui_check_table_row_indicators("index", 1, 5, ["extension"])
+      ui_check_table_row_indicators("index", 1, 5, ["extension"], new_style: true)
       find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
       wait_for_ajax(10)
       context_menu_element("history", 8, identifier, :edit)
@@ -431,11 +431,11 @@ describe "Thesauri Extensions", :type => :feature do
       sleep 13
       find("#new-item-button").click
       wait_for_ajax(10)
-      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
+      expect(page).to have_content("The edit lock has timed out")
       find(:xpath, "//*[@id='extension-children-table']/tbody/tr[1]/td[8]/span").click
       ui_confirmation_dialog true
       wait_for_ajax(10)
-      expect(page).to have_content("The changes were not saved as the edit lock timed out")
+      expect(page).to have_content("The edit lock timed out")
     end
 
     it "search table with 'All' set as default", js:true do

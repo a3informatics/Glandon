@@ -41,9 +41,9 @@ describe "Indicators", :type => :feature do
     it "Code Lists Index", js:true do
       click_navbar_code_lists
       wait_for_ajax 20
-      ui_check_table_row_indicators("index", 1, 5, ["extension"])
-      ui_check_table_row_indicators("index", 2, 5, ["a subset"])
-      ui_check_table_row_indicators("index", 3, 5, ["27 versions"])
+      ui_check_table_row_indicators("index", 1, 5, ["extension"], new_style: true)
+      ui_check_table_row_indicators("index", 2, 5, ["a subset"], new_style: true)
+      ui_check_table_row_indicators("index", 3, 5, ["27 versions"], new_style: true)
     end
 
     it "Thesaurus Show, children table", js:true do
@@ -67,7 +67,7 @@ describe "Indicators", :type => :feature do
       context_menu_element("history", 1, "52.0.0", :show)
       wait_for_ajax 10
       ui_check_table_row_indicators("children_table", 1, 7, ["1 change instruction"])
-      ui_check_indicators(".indicators", ["subsetted", "extended"])
+      ui_check_indicators(".indicators-wrap", ["subsetted", "extended"])
       ci.delete
     end
 
@@ -82,7 +82,7 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'C99158')]/td/a").click
       wait_for_ajax 10
-      ui_check_indicators(".indicators", ["1 change instruction"])
+      ui_check_indicators(".indicators-wrap", ["1 change instruction"])
       ci.delete
     end
 
@@ -96,7 +96,7 @@ describe "Indicators", :type => :feature do
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
-      ui_check_table_row_indicators("history", 1, 8, ["Current version"])
+      ui_check_table_row_indicators("history", 1, 8, ["Current version"], new_style: true)
     end
 
     it "Rank", js:true do
@@ -124,7 +124,7 @@ describe "Indicators", :type => :feature do
       click_navbar_code_lists
       wait_for_ajax 20
       ui_table_search("index", "A00001")
-      ui_check_table_row_indicators("index", 1, 5, ["3 change instructions", "ranked"])
+      ui_check_table_row_indicators("index", 1, 5, ["3 change instructions", "ranked"], new_style: true)
 
     end
 

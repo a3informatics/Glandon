@@ -79,6 +79,8 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     authorize Thesaurus
     return true unless read_concept(protect_from_bad_id(params))
     @thesaurus_concept = @edit.item
+    # @thesaurus_concept.synonym_objects
+    # @thesaurus_concept.preferred_term_objects
     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     @edit_tags_path = path_for(:edit_tags, @thesaurus_concept)
@@ -135,7 +137,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     return true unless check_lock_for_item(tc)
     tc.synonyms_and_preferred_terms
     tc = tc.update(edit_params)
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: [tc.simple_to_h]}, :status => 200
   end
@@ -158,10 +160,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def add_child
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     new_tc = tc.add_child(the_params)
     return true if item_errors(new_tc)
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
     result = new_tc.simple_to_h
     edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})
@@ -194,9 +196,9 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def add_children
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     tc.add_referenced_children(children_params[:set_ids])
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated)) if @lock.token.refresh == 1
     render :json => {data: "" }, :status => 200
   end
@@ -221,11 +223,11 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def add_children_synonyms
     authorize Thesaurus, :create?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     uc = Thesaurus::UnmanagedConcept.find(the_params[:reference_id])
     children = tc.add_children_based_on(uc)
     return true if item_errors(children.first)
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:updated))
     render :json => {data: "" }, :status => 200
   end
@@ -385,7 +387,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
     return true unless get_lock_for_item(tc)
-    tc.synonyms_and_preferred_terms 
+    tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(upgrade_params[:sponsor_th_id])
     item = tc.upgrade(ct)
     return true if item_errors(item)
@@ -466,9 +468,9 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     authorize Thesaurus, :edit?
     if Thesaurus::ManagedConcept.same_type(the_params[:extension_ids], Thesaurus::UnmanagedConcept.rdf_type)
       tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-      return true unless check_lock_for_item(tc) 
+      return true unless check_lock_for_item(tc)
       tc.add_referenced_children(the_params[:extension_ids])
-      return true if lock_item_errors 
+      return true if lock_item_errors
       AuditTrail.create_item_event(current_user, tc, tc.audit_message(:updated))
       render json: {data: {}, errors: []}
     else
@@ -593,10 +595,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def pair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     tc.validate_and_pair(pairs_params[:reference_id])
     return true if item_errors(tc)
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:paired))
     render :json => {data: {}, errors: []}, :status => 200
   end
@@ -604,10 +606,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
   def unpair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
-    return true unless check_lock_for_item(tc) 
+    return true unless check_lock_for_item(tc)
     tc.validate_and_unpair
     return true if item_errors(tc)
-    return true if lock_item_errors 
+    return true if lock_item_errors
     AuditTrail.update_item_event(current_user, tc, tc.audit_message(:unpaired))
     render :json => {data: {}, errors: []}, :status => 200
   end
@@ -636,7 +638,7 @@ private
     tc
     true
   end
- 
+
   # def edit_lock(tc)
   #   @edit = ManagedItemsController::Edit.new(tc, current_user, flash)
   #   return true unless @edit.error?
