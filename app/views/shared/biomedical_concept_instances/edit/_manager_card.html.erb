@@ -1,0 +1,32 @@
+<div class="col-md-12 card">
+  <div class="card-content">
+
+    <div id="bc-manager-panel">
+
+      <div class="btns-wrap" id="edit-bc-actions">
+        <a href="#" class="btn medium white ttip" id="add-bc-edit-button">
+          <span class="ttip-text shadow-small text-medium">Start editing another Biomedical Concept</span>
+          <span class="icon-edit"></span> Add a BC to Editor
+        </a>
+        <a href="#new-bc-modal" class="btn medium green ttip" id="new-bc-button" data-toggle="modal">
+          <span class="ttip-text shadow-small text-medium">Create a new Biomedical Concept instance</span>
+          <span class="icon-plus text-tiny"></span> Create a new BC
+        </a>
+        <span id="editor-help" class="icon-help text-small text-light clickable ttip" style="margin-left: 5px;">
+          <span class="ttip-text shadow-small font-light text-medium"> Editor Help </span>
+        </span>
+      </div>
+
+      <br>
+
+      <div class="horizontal-scrollview scroll-styled" id="bc-list">
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<%= render partial: "shared/biomedical_concept_instances/create_modal" %>
+<%= render partial: "shared/help_dialogs/bc_edit_help" %>
+<%= render partial: "shared/items_picker/items_picker", locals: { id: "add-bc-edit", description: "Select a Biomedical Concept to edit:" } %>

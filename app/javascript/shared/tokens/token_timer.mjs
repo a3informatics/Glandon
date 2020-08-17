@@ -14,16 +14,20 @@ export default class TokenTimer {
    * @param {Object} params Instance parameters
    * @param {string} params.tokenId ID of the Token (edit lock)
    * @param {int} params.warningTime User-defined time (in seconds) to be warned about the lock expiry
-   * @param {string} params.parentId ID of the parent card in which the Lock button is present
+   * @param {string} params.parentEl Unique selector of a parent in which the Lock button is present, optional [default='#imh_header']
+   * @param {string} params.timerEl Selector of the Lock button, optional [default='#timeout']
    * @param {int} params.reqInterval Check Token status interval in ms [default = 10sec]
+   * @param {boolean} params.handleUnload Specify whether this instance should handle the token release on page unload, optional [default = true]
    */
   constructor({
     tokenId,
     warningTime,
-    parentId = "#imh_header",
+    parentEl = "#imh_header",
+    timerEl = "#timeout",
     reqInterval = 10000,
+    handleUnload = true
   }) {
-    Object.assign(this, { tokenId, warningTime, parentId, reqInterval });
+    Object.assign(this, { tokenId, warningTime, parentEl, timerEl, reqInterval, handleUnload });
 
     this._initTokenTimer(this.reqInterval);
     this._setListeners();
@@ -80,6 +84,22 @@ export default class TokenTimer {
     return this.state === this._states.expired;
   }
 
+  /**
+   * Release multiple tokens at once
+   * @param {Array} ids Collection of token ids to release
+   * @static
+   */
+  static releaseMultiple(ids) {
+    $post({
+      url: `/tokens/release_multiple`,
+      data: {
+        token: {
+          id_set: ids 
+        }
+      }
+    })
+  }
+
   /** Private **/
 
   /**
@@ -87,9 +107,11 @@ export default class TokenTimer {
    */
   _setListeners() {
     // Release token on window unload
-    window.onbeforeunload = () => this.release();
+    if (this.handleUnload)
+      window.onbeforeunload = () => this.release();
+
     // Extend Token with click
-    $(`${this.parentId} #timeout`).on('click', () => this.extend());
+    $(`${this.parentEl} ${this.timerEl}`).on('click', () => this.extend());
   }
 
   /**
@@ -147,7 +169,11 @@ export default class TokenTimer {
   _checkToken() {
     $get({
       url: `/tokens/${this.tokenId}/status`,
-      error: () => displayError("An error has occurred obtaining the edit lock timeout information."),
+      error: () => {
+        displayError("An error has occurred obtaining the edit lock timeout information.")
+        this.expire()
+        this._render()
+      },
       done: (r) => {
         // Align instance's timeRemaining with server's
         this.timeRemaining = r.remaining;
@@ -155,7 +181,7 @@ export default class TokenTimer {
         if (r.running)
           this._initCountdown(r.remaining);
         else
-          this._expire();
+          this.expire();
       }
     });
   }
@@ -165,7 +191,7 @@ export default class TokenTimer {
    * @param {string} timeString Time to be displayed, optional, defaults to empty string
    */
   _renderTime(timeString = '') {
-    $(`${this.parentId} #timeout`)
+    $(`${this.parentEl} ${this.timerEl}`)
       .find(".ico-btn-sec-text")
       .html(timeString);
   }
@@ -175,17 +201,19 @@ export default class TokenTimer {
    */
   _render() {
     // Update parent element CSS class
-    $(this.parentId)
-      .removeClass(this._states.warning + " " + this._states.danger)
-      .addClass(this.state);
+    $(this.parentEl).removeClass(this._states.warning + " " + this._states.danger)
+
+    if (!this.isExpired)
+      $(this.parentEl).addClass(this.state); // Add state class to parent unless expired
+    else
+      $(`${this.parentEl} ${this.timerEl}`).addClass(this.state); // Disable timer button
+
 
     // Show the remaining time
     if (this.timeRemaining <= this.warningTime)
       this._renderTime(this._formattedTime);
 
-    // Show expired UI
-    if (this.isExpired)
-      $(`${this.parentId} #timeout`).addClass(this.state);
+
   }
 
   /**
@@ -205,7 +233,7 @@ export default class TokenTimer {
    * @return {string} seconds in MM:SS format
    */
   _loading(enable) {
-    $(`${this.parentId} #timeout`).toggleClass("processing", enable);
+    $(`${this.parentEl} ${this.timerEl}`).toggleClass("processing", enable);
   }
 
   /**

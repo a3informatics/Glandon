@@ -138,9 +138,9 @@ class Thesaurus
       # Get the final result
       tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?rank (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?type ?del ?sp ?rank (count(distinct ?ci) AS ?countci) (count(distinct ?cn) AS ?countcn) (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
         {
-          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?sp ?s ?sy ?t ?ci ?cn ?rank WHERE
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?type ?del ?sp ?s ?sy ?t ?ci ?cn ?rank WHERE
           {
             VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
             {
@@ -148,6 +148,7 @@ class Thesaurus
               ?s th:notation ?n .
               ?s th:definition ?d .
               ?s th:extensible ?e .
+              ?s rdf:type ?type .
               OPTIONAL {?ci (ba:current/bo:reference)|(ba:previous/bo:reference) ?s .?ci rdf:type ba:ChangeInstruction .}
               OPTIONAL {?s ^(ba:current/bo:reference) ?cn . ?cn rdf:type ba:ChangeNote }
               OPTIONAL {?s ^(th:item) ?rank_member . #{self.uri.to_ref} th:isRanked/th:members/th:memberNext* ?rank_member . ?rank_member th:rank ?rank }
@@ -158,13 +159,13 @@ class Thesaurus
               OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
             }
           } ORDER BY ?i ?sy ?t
-        } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i
+        } GROUP BY ?i ?n ?d ?pt ?e ?type ?s ?del ?sp ?countci ?countcn ?rank ORDER BY ?i
       }
 # BIND(NOT EXISTS {?s ^th:narrower ?r . FILTER (?r != #{self.uri.to_ref})} as ?sp)
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :ba])
       query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :sp, :gt, :rank]).each do |x|
         indicators = {annotations: {change_notes: x[:countcn].to_i, change_instructions: x[:countci].to_i}}
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, referenced: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id,rank: x[:rank], indicators: indicators}
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, referenced: x[:sp].to_bool, uri: x[:s].to_s, id: x[:s].to_id,rank: x[:rank], rdf_type: x[:type].to_s, indicators: indicators}
       end
       results
     end

@@ -335,6 +335,12 @@ defaults: &defaults
         curator: false
         content_admin: true
     alias: {}
+  BiomedicalConceptInstancePolicy:
+    policies: {}
+    alias:
+      create_from_template: create
+      edit_data: edit
+      update_property: update
   CdiscTermPolicy:
     policies:
       index:

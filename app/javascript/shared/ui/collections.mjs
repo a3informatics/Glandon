@@ -7,10 +7,11 @@ import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
  * Returns formatted collection of terminology references based on type
  * @param {Array} data Array of items containing the show_path, reference and context parameters
  * @param {string} type Format type - 'display' for HTML, anything else for raw strings
+ * @param {boolean} newTab Set true to open link in a new tab, optional [default = false]
  * @return {string} formatted HTML / text
  */
-function termReferences(data = [], type) {
-  return type === 'display' ? _termReferenceBtns(data) : _termReferenceStrings(data);
+function termReferences(data = [], type, newTab = false) {
+  return type === 'display' ? _termReferenceBtns(data, newTab) : _termReferenceStrings(data);
 }
 
 /** Private **/
@@ -18,13 +19,14 @@ function termReferences(data = [], type) {
 /**
  * Returns HTMl for a collection of wrapped termReference buttons
  * @param {Array} data Array of items containing the show_path, reference and context parameters
+ * @param {boolean} newTab Set true to open link in a new tab, optional [default = false]
  * @return {string} formatted HTML
  */
-function _termReferenceBtns(data = []) {
+function _termReferenceBtns(data = [], newTab = false) {
   let html = '<div class="bg-labels-wrap">';
 
   for (const d of data) {
-    html += termReferenceBtn(d.show_path, d.reference, d.context);
+    html += termReferenceBtn(d.show_path, d.reference, d.context, newTab);
   }
 
   html += '</div>'

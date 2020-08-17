@@ -36,23 +36,39 @@ class ManagedItemsController < ApplicationController
 
 private
 
+  def edit_lock(item)
+    @edit = ManagedItemsController::Edit.new(item, current_user, flash)
+    return true unless @edit.error?
+    redirect_to request.referrer if request.format.html?
+    render :json => {:errors => [@edit.lock.error]}, :status => 422 if request.format.json?
+    false
+  end
+
   def get_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:get, item, current_user, flash)
     return true unless @lock.error?
-    render :json => {:errors => [@lock.error]}, :status => 422
+    redirect_to request.referrer if request.format.html?
+    render :json => {:errors => [@lock.error]}, :status => 422 if request.format.json?
     false
   end
 
   def check_lock_for_item(item)
     @lock = ManagedItemsController::Lock.new(:keep, item, current_user, flash)
     return true unless @lock.error?
-    render :json => {:errors => [@lock.error]}, :status => 422
+    redirect_to request.referrer if request.format.html?
+    render :json => {:errors => [@lock.error]}, :status => 422 if request.format.json?
     false
   end
 
-  def item_errors
+  def lock_item_errors
     return false if @lock.item.errors.empty?
     render :json => {:errors => @lock.item.errors.full_messages}, :status => 422
+    true
+  end
+
+  def item_errors(item)
+    return false if item.errors.empty?
+    render :json => {:errors => item.errors.full_messages}, :status => 422
     true
   end
 
