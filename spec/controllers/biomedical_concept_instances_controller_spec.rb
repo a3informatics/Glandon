@@ -8,13 +8,13 @@ describe BiomedicalConceptInstancesController do
   include ControllerHelpers
   include UserAccountHelpers
   include AuditTrailHelpers
-  
+
   def sub_dir
     return "controllers/biomedical_concept_instances"
   end
 
   describe "simple actions" do
-    
+
     login_curator
 
     before :all do
@@ -24,7 +24,7 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
-    it "index" do  
+    it "index" do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       actual = check_good_json_response(response)
@@ -57,7 +57,7 @@ describe BiomedicalConceptInstancesController do
   end
 
   describe "data actions" do
-    
+
     login_curator
 
     before :all do
@@ -115,7 +115,7 @@ describe BiomedicalConceptInstancesController do
   end
 
   describe "create actions" do
-    
+
     login_curator
 
     before :all do
@@ -124,14 +124,14 @@ describe BiomedicalConceptInstancesController do
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
       load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
-    
+
     it "creates from a template" do
       template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
       post :create_from_template, params:{biomedical_concept_instance: {identifier: "NEW1", label: "something", template_id: template.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_from_template_expected_1.yaml", equate_method: :hash_equal)
     end
-    
+
     it "creates from a template, error" do
       template = BiomedicalConceptTemplate.find_full(Uri.new(uri: "http://www.s-cubed.dk/BASIC_OBS/V1#BCT"))
       post :create_from_template, params:{biomedical_concept_instance: {identifier: "HEIGHT", label: "something", template_id: template.id}}
@@ -142,7 +142,7 @@ describe BiomedicalConceptInstancesController do
   end
 
   describe "edit actions" do
-    
+
     login_curator
 
     before :all do
@@ -179,7 +179,7 @@ describe BiomedicalConceptInstancesController do
       expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
       expect(response).to redirect_to("/path")
     end
-   
+
     it "edit, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
@@ -198,11 +198,11 @@ describe BiomedicalConceptInstancesController do
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
     end
-   
+
   end
 
   describe "delete actions" do
-    
+
     login_curator
 
     before :all do
@@ -245,7 +245,7 @@ describe BiomedicalConceptInstancesController do
   end
 
   describe "update property actions" do
-    
+
     login_curator
 
     before :all do
