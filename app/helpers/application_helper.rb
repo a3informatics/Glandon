@@ -244,7 +244,7 @@ module ApplicationHelper
 			thesauri: @category_term, cdisc_terms: @category_term, managed_concepts: @category_term,
 			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
-			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_user_domains: @category_sdtm,
+			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_classes: @category_sdtm,
 			adam_igs: @category_adam
 		}
 
