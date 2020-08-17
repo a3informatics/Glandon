@@ -1,15 +1,27 @@
-import { historyBtn } from 'shared/ui/buttons'
+import { historyBtn, showBtn } from 'shared/ui/buttons'
 import { icons } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 
 /**
  * Returns column definition for the history column
+ * @param {string} name name of the button (options: history, show)
  * @return {object} DataTables history column definition
  */
-function dtHistoryColumn() {
+function dtButtonColumn(name) {
   return {
-    render: (data, type, r, m) => historyBtn(r.history_path)
+    orderable: false,
+    className: 'text-right',
+    render: (data, type, r, m) => {
+      switch (name) {
+        case 'show':
+          return showBtn(r.show_path);
+          break;
+        case 'history':
+          return historyBtn(r.history_path);
+          break;
+      }
+    }
   }
 };
 
@@ -134,7 +146,7 @@ function dtExternalEditColumn(name, field, width) {
 };
 
 export {
-  dtHistoryColumn,
+  dtButtonColumn,
   dtIndicatorsColumn,
   dtTagsColumn,
   dtLastChangeDateColumn,

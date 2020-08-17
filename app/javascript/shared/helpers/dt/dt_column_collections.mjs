@@ -1,8 +1,7 @@
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
-import { showBtn } from 'shared/ui/buttons'
 
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
+import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
          dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
@@ -164,10 +163,7 @@ function dtSDTMShowColumns() {
     { data: "has_identifier.has_scope.short_name" },
     { data: "has_identifier.version" },
     { data: "has_identifier.version_label" },
-    {
-      data: "show_path",
-      render: (data, type, r, m) => showBtn(data)
-    }
+    dtButtonColumn('show')
   ];
 };
 
