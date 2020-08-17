@@ -267,7 +267,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Truefalse field
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
 
-      ui_editor_select_by_location 1, 1, true
+      ui_editor_select_by_location 1, 1
       ui_editor_press_key :arrow_right
       ui_editor_press_key :enter
       wait_for_ajax 10
