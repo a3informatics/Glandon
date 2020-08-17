@@ -4,29 +4,37 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'capybara/RSpec'
 require 'cucumber/rails'
 require 'capybara/cucumber'
 require 'capybara-screenshot'
 require 'capybara-screenshot/cucumber'
+require 'allure-cucumber'
 
 Capybara.register_driver :selenium do |app|
  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
 Capybara::Screenshot.autosave_on_failure = true
+Capybara::Screenshot.append_timestamp = false
 
 Capybara.asset_host = 'http://localhost:3000'
 
 # Keep only the screenshots generated from the last failing test suite
-Capybara::Screenshot.prune_strategy = :keep_last_run
+#Capybara::Screenshot.prune_strategy = :keep_last_run
 
 # Keep up to the number of screenshots specified in the hash
 #Capybara::Screenshot.prune_strategy = { keep: 2}
 
 Capybara::save_path = "./features/screenshots"
-#Capybara::Screenshot.register_filename_prefix_formatter(:cucumber) do |example|
-# "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
-# end
+
+module Capybara
+  module DSL
+    def my_screenshot_and_save_page(screenshot_name)
+      Capybara::Screenshot.my_screenshot_and_save_page(screenshot_name)
+    end
+  end
+end
 
 module Capybara
   module Screenshot
@@ -42,14 +50,24 @@ end
 #Run after each scenario
 
 After do |scenario|
-  # time_now = Time.now
-  # timestamp = "#{time_now.strftime('%Y-%m-%d-%H-%M-%S.')}#{'%03d' % (time_now.usec/1000).to_i}"
-  screenshot_file_name="screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')
-     #my_screenshot_and_save_page(screenshot_file_name)
-     log("Snapshot is taken")
-     log(screenshot_file_name)
+    screenshot_file_name = "screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')
+    screenshot=Capybara::save_path+"/"+screenshot_file_name
+    #screenshot="/Users/Kirsten/Documents/rails/Glandon/features/screenshots/Screenshot.png"
+    #my_screenshot_and_save_page(screenshot_file_name)
+    my_screenshot_and_save_page('Screenshot')
+     #attach("screenshot.html","image/html")
+     #attach(scenario.name+".html", "image/html")
+    log(screenshot)
 end
 
+AllureCucumber.configure do |config|
+# config.results_directory = "/cucumber-report"
+  config.clean_results_directory = true
+  config.logging_level = Logger::INFO
+  # these are used for creating links to bugs or test cases where {} is replaced with keys of relevant items
+  config.link_tms_pattern = "http://www.jira.com/browse/{}"
+  config.link_issue_pattern = "http://www.jira.com/browse/{}"
+end
 
 # frozen_string_literal: true
 

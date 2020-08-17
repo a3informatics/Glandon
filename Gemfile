@@ -116,7 +116,10 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   # Allure support - for nice testing reports
+  gem "allure-ruby-commons"
   gem 'allure-rspec'
+  gem "allure-cucumber"
+  gem 'protobuf-cucumber'
 end
 
 group :production do
