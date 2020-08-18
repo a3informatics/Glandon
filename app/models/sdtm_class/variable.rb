@@ -6,4 +6,8 @@ class SdtmClass::Variable < Tabulation::Column
 
   object_property :based_on_model_variable, cardinality: :one, model_class: "SdtmModel::Variable"
 
+  def key_property_value
+    based_on_model_variable.name
+  end
+
 end

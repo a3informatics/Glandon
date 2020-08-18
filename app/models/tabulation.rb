@@ -10,6 +10,11 @@ class Tabulation < IsoManagedV2
   data_property :rule
   data_property :ordinal, default: 1
 
-  object_property :includes_column, cardinality: :many, model_class: "Tabulation::Column", children: true
+  object_property :includes_column, cardinality: :many, model_class: "Tabulation::Column", 
+    model_classes: 
+      [ 
+        "SdtmClass::Variable"
+      ],
+    children: true
 
 end

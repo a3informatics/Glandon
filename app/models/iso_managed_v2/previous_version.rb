@@ -23,9 +23,9 @@ class IsoManagedV2
     # Replace children if no change
     def replace_children_if_no_change(previous)
       self.children.each_with_index do |child, index|
-        previous_child = previous.children.select {|x| x.identifier == child.identifier}
+        previous_child = previous.children.select {|x| x.key_property_value == child.key_property_value}
         next if previous_child.empty?
-        self.narrower[index] = child.replace_if_no_change(previous_child.first)
+        self.children[index] = child.replace_if_no_change(previous_child.first)
       end
     end
     

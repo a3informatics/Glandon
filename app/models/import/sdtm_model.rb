@@ -6,6 +6,15 @@ class Import::SdtmModel < Import
 
   include Import::Utility
   
+  C_V1 = "01/01/1900".to_datetime 
+  C_V2 = "01/01/2017".to_datetime 
+  C_V3 = "01/01/2019".to_datetime 
+  C_FORMAT_MAP = [
+    {range: (C_V1...C_V2), sheet: :version_1}, 
+    {range: (C_V2...C_V3), sheet: :version_2}, 
+    {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
+  C_DEFAULT = :version_3
+
   # Import. Import the rectangular structure
   #
   # @param [Hash] params a parameter hash
@@ -51,7 +60,9 @@ class Import::SdtmModel < Import
   # 
   # @return [Symbol] the key
   def format(params)
-    return :main
+    result = C_FORMAT_MAP.select{|x| x[:range].cover?(params[:date].to_datetime)}
+    return C_DEFAULT if result.empty?
+    return result.first[:sheet]
   end
 
 private 
@@ -86,7 +97,7 @@ private
       class_vars = []
       model_vars = classes.include?(child.scoped_identifier) ? all.includes_column + child.includes_column : child.includes_column
       model_vars.each_with_index do |model_var, index|
-        variable = SdtmClass::Variable.new(label: model_var.label, based_on_variable: model_var.uri, ordinal: index+1)
+        variable = SdtmClass::Variable.new(label: model_var.label, based_on_model_variable: model_var, ordinal: index+1)
         variable.uri = variable.create_uri(child.uri)
         class_vars << variable
       end
