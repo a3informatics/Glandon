@@ -29,8 +29,8 @@ class AdamIgsController < ManagedItemsController
     adam_ig = AdamIg.find_minimum(protect_from_bad_id(params))
     items = adam_ig.managed_children_pagination(the_params)
     items.each do |item|
-      adam_ig = AdamIg.find_minimum(item.id).to_h
-      results << adam_ig.reverse_merge!({show_path: adam_ig_path({id: adam_ig[:id]})})
+      adam_ig_dataset = AdamIgDataset.find_minimum(item.id).to_h
+      results << adam_ig_dataset.reverse_merge!({show_path: adam_ig_dataset_path({id: adam_ig_dataset[:id]})})
     end
     render json: {data: results}, status: 200
   end
