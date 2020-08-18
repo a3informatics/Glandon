@@ -16,7 +16,7 @@ class SdtmClass < Tabulation
 {
   #{self.uri.to_ref} bd:includesColumn ?c .
   ?c bd:ordinal ?ordinal .
-  ?c bd:basedOnVariable ?var .     
+  ?c bd:basedOnModelVariable ?var .     
   ?var rdf:type ?type.
   ?var isoC:label ?label. 
   ?var bd:name ?name .
