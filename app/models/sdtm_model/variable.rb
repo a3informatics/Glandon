@@ -10,4 +10,8 @@ class SdtmModel::Variable < Tabulation::Column
   object_property :typed_as, cardinality: :one, model_class: "IsoConceptSystem::Node"
   object_property :classified_as, cardinality: :one, model_class: "IsoConceptSystem::Node"
   
+  def key_property_value
+    self.name
+  end
+
 end

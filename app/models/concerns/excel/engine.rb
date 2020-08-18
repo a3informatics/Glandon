@@ -278,7 +278,7 @@ class Excel::Engine
   def set_property(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty])
     x = params[:map].blank? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
-    params[:object].instance_variable_set("@#{params[:property]}", x)
+    property_set_value(params[:object], params[:property], x)
   end
 
   # Set Property With Default
@@ -297,7 +297,7 @@ class Excel::Engine
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty, :additional])
     x = params[:map].blank? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
     x = x.blank? ? params[:additional][:default] : x
-    params[:object].instance_variable_set("@#{params[:property]}", x)
+    property_set_value(params[:object], params[:property], x)
   end
 
   # Set Property With Regex. Set a property based on a regrx evaluation of the cell content
@@ -317,7 +317,7 @@ class Excel::Engine
     x = check_value(params[:row], params[:col], false)
     return if x.empty?
     x = regex.match(x).nil? ? false : true
-    params[:object].instance_variable_set("@#{params[:property]}", x)
+    property_set_value(params[:object], params[:property], x)
   end
 
   # Set Property With Tag. Set a property to a tag
@@ -336,7 +336,7 @@ class Excel::Engine
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
     return if tag.nil?
-    params[:object].instance_variable_set("@#{params[:property]}", tag)
+    property_set_value(params[:object], params[:property], tag)
   end
 
   # Tokenize And Set Property
@@ -454,7 +454,7 @@ class Excel::Engine
   # @return [Void] no return
   def ct_reference(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])
-    params[:object].instance_variable_set("@#{params[:property]}", check_ct(params[:row], params[:col]))
+    property_set_value(params[:object], params[:property], check_ct(params[:row], params[:col]))
   end
 
   # CT Other. Return text that is not a CT reference
@@ -469,7 +469,7 @@ class Excel::Engine
   def ct_other(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])
     value = check_ct(params[:row], params[:col]).empty? ? check_value(params[:row], params[:col], true) : ""
-    params[:object].instance_variable_set("@#{params[:property]}", value)
+    property_set_value(params[:object], params[:property], value)
   end
 
   # C Code? Valid C Code?
@@ -638,5 +638,10 @@ private
     @parent_set[identifier] = item
     return item
   end
+
+  def property_set_value(object, name, value)
+    object.properties.property(name.to_sym).set_value(value)
+  end
+
 
 end    

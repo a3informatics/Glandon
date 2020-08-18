@@ -80,15 +80,16 @@ private
   # Process Results. Process the results structure to convert to objects
   def process_results(results)
 
-    # Build the model variables. Make sure no duplicates
-    model_vars = {}
-    results[:managed_children].each_with_index do |child, index| 
-      child.children.each do |var|
-        next if model_vars.key?(var.name)
-        model_vars[var.name] = var
-      end
-    end
-    results[:parent].includes_variable = model_vars.map{|k,v| v}
+    parent = results[:parent]
+    # # Build the model variables. Make sure no duplicates
+    # model_vars = {}
+    # results[:managed_children].each_with_index do |child, index| 
+    #   child.children.each do |var|
+    #     next if model_vars.key?(var.name)
+    #     model_vars[var.name] = var
+    #   end
+    # end
+    # results[:parent].includes_variable = model_vars.map{|k,v| v}
 
     # Build the class variables based on the model variables. For the required classes include the basic set.
     classes  =["SDTM MODEL EVENTS", "SDTM MODEL FINDINGS", "SDTM MODEL INTERVENTIONS"]
@@ -96,17 +97,16 @@ private
     results[:managed_children].each_with_index do |child, index| 
       class_vars = []
       model_vars = classes.include?(child.scoped_identifier) ? all.includes_column + child.includes_column : child.includes_column
-      model_vars.each_with_index do |model_var, index|
-        variable = SdtmClass::Variable.new(label: model_var.label, based_on_model_variable: model_var, ordinal: index+1)
-        variable.uri = variable.create_uri(child.uri)
-        class_vars << variable
-      end
-      child.includes_column = class_vars
+      # model_vars.each_with_index do |model_var, index|
+      #   variable = SdtmClass::Variable.new(label: model_var.label, based_on_model_variable: model_var, ordinal: index+1)
+      #   variable.uri = variable.create_uri(child.uri)
+      #   class_vars << variable
+      # end
+      child.includes_column = model_vars
     end
 
     # Check for differences. If no change then use previous version.
     filtered = []
-    parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
       previous_info = SdtmClass.latest({scope: child.scope, identifier: child.scoped_identifier})
       previous = previous_info.nil? ? nil : SdtmClass.find_full(previous_info.id) 
