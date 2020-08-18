@@ -10,7 +10,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> rdf:type <http://www.assero.co.uk/Tabulation#ImplementationGuide> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> rdf:type <http://www.assero.co.uk/Tabulation#SDTMImplementationGuide> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> isoC:label "SDTM Implementation Guide 2013-11-26"^^xsd:string .
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-3> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V3#IG-CDISC_SDTMIG> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-3> . 
