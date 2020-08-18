@@ -79,11 +79,12 @@ private
     end
     results[:parent].includes_variable = model_vars.map{|k,v| v}
 
-    # Build the class variables based on the model variables
-    all = results[:managed_children].delete_at(results[:managed_children].find_index {|x| x.scoped_identifier == "SDTMMODEL ALL"})
+    # Build the class variables based on the model variables. For the required classes include the basic set.
+    classes  =["SDTM MODEL EVENTS", "SDTM MODEL FINDINGS", "SDTM MODEL INTERVENTIONS"]
+    all = results[:managed_children].delete_at(results[:managed_children].find_index {|x| x.scoped_identifier == "SDTM MODEL ALL"})
     results[:managed_children].each_with_index do |child, index| 
       class_vars = []
-      model_vars = all.includes_column + child.includes_column
+      model_vars = classes.include?(child.scoped_identifier) ? all.includes_column + child.includes_column : child.includes_column
       model_vars.each_with_index do |model_var, index|
         variable = SdtmClass::Variable.new(label: model_var.label, based_on_variable: model_var.uri, ordinal: index+1)
         variable.uri = variable.create_uri(child.uri)

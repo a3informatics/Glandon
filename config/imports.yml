@@ -265,13 +265,13 @@ defaults: &defaults
                 object: parent
                 klass: SdtmClass
                 map:
-                  All Classes: SDTMMODEL ALL
-                  Events: SDTMMODEL EVENTS
-                  Events-General: SDTMMODEL EVENTS
-                  Interventions: SDTMMODEL INTERVENTIONS
-                  Interventions-General: SDTMMODEL INTERVENTIONS
-                  Findings: SDTMMODEL FINDINGS
-                  Findings-General: SDTMMODEL FINDINGS
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
                 condition:
                   column: 3
                   method: column_blank?
@@ -280,13 +280,13 @@ defaults: &defaults
                 object: parent
                 property: label
                 map:
-                  All Classes: SDTMMODEL ALL
-                  Events: SDTMMODEL EVENTS
-                  Events-General: SDTMMODEL EVENTS
-                  Interventions: SDTMMODEL INTERVENTIONS
-                  Interventions-General: SDTMMODEL INTERVENTIONS
-                  Findings: SDTMMODEL FINDINGS
-                  Findings-General: SDTMMODEL FINDINGS
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
                 condition:
                   column: 3
                   method: column_blank?
