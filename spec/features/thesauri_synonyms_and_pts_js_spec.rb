@@ -10,6 +10,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
   include PauseHelpers
   include WaitForAjaxHelper
   include NameValueHelpers
+  include EditorHelpers
 
   def wait_for_ajax_long
     wait_for_ajax(10)

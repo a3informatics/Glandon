@@ -17,8 +17,8 @@
 
     <hr>
 
-    <div class="table-width-wrapper">
-      <%= render layout: "shared/iso_managed/index/index_panel", locals: { index_url: url } do %>
+    <div class="table-width-wrapper" id="index-panel">
+      <%= render layout: "shared/iso_managed/index/index_panel", locals: { index_url: url, has_history_btn?: true } do %>
         <%= yield :extra_columns %>
       <% end %>
     </div>

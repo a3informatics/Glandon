@@ -14,8 +14,10 @@ describe "Token Locks", :type => :feature do
     ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl", "thesaurus_subsets_2.ttl",
       "thesaurus_extension.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions((1..59))
+    load_cdisc_term_versions((1..62))
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     Token.delete_all
     ua_add_user email: "token_user_1@example.com", role: :curator
     ua_add_user email: "token_user_2@example.com", role: :curator
@@ -83,7 +85,34 @@ describe "Token Locks", :type => :feature do
 
     end
 
-    it "locks a biomedical concept"
+    it "locks a biomedical concept", js:true do
+
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_bc
+        wait_for_ajax 20
+        find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
+        expect(page).to have_content 'Version History of \'HEIGHT\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'Biomedical Concept Editor'
+      end
+
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_terminology
+        click_navbar_bc
+        wait_for_ajax 20
+        find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a").click
+        expect(page).to have_content 'Version History of \'HEIGHT\''
+        wait_for_ajax 10
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax 10
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
+
+    end
 
     it "locks a form (REQ-MDR-EL-010)"#, js:true do
 

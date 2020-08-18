@@ -103,4 +103,14 @@ describe "ManagedItemsController::Lock" do
     expect(lock.error?).to eq (true)
   end
 
+  it "checks for first lock" do
+    item = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+    flash = ActionDispatch::Flash::FlashHash.new
+    token = Token.obtain(item, @user)
+    lock = ManagedItemsController::Lock.new(:keep, item, @user, flash)
+    expect(lock.first_update?).to be(true)
+    token.refresh
+    expect(lock.first_update?).to be(false)
+  end
+
 end

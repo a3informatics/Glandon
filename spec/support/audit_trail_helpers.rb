@@ -19,6 +19,11 @@ module AuditTrailHelpers
     end
   end
 
+  def last_audit_event
+    item = AuditTrail.all.last
+    item.attributes.deep_symbolize_keys.slice(:user, :owner, :identifier, :version, :event, :description)
+  end
+
 private
 
   def write_csv_file(data, sub_dir, filename)

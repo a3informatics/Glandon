@@ -146,6 +146,11 @@ module UiHelpers
     expect(td.find('div span.icon-edit-circle', visible: :all)).to_not eq(nil)
   end
 
+	def ui_check_table_cell_icon(table_id, row, col, icon)
+		td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+		expect(td.find("div .icon-#{icon}", visible: :all)).to_not eq(nil)
+	end
+
   def ui_check_table_cell_delete(table_id, row, col)
     td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
     expect(td.find('div span.icon-times-circle', visible: :all)).to_not eq(nil)
@@ -228,23 +233,23 @@ module UiHelpers
 
 
 	# Indicators
-  def ui_check_table_row_indicators(table_id, row, col, indicators)
+  def ui_check_table_row_indicators(table_id, row, col, indicators, new_style: false)
 		within("##{table_id}") do
 			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", count: indicators.length())
-				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", count: indicators.length)
+				expect(page).to have_xpath(".//tr[#{row}]/td[#{col}]/#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
 			end
 			Capybara.ignore_hidden_elements = true
 		end
   end
 
-	def ui_check_indicators(parent, indicators)
+	def ui_check_indicators(parent, indicators, new_style: false)
 		within(parent) do
 			Capybara.ignore_hidden_elements = false
 			indicators.each do |i|
-				expect(page).to have_xpath("./span", count: indicators.length())
-				expect(page).to have_xpath("./span", text: "#{i}", count: 1)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", count: indicators.length)
+				expect(page).to have_xpath("./#{ new_style ? 'div/' : '' }span", text: "#{i}", count: 1)
 			end
 			Capybara.ignore_hidden_elements = true
 		end
@@ -804,7 +809,7 @@ module UiHelpers
   end
 
 
-	# Items Selector
+	# Items Selector ### DEPRECATED
 	def ui_selector_check_tabs(tab_names)
 		tab_names.each do |name|
 			expect(find ".tabs-layout").to have_content(name)
@@ -875,37 +880,6 @@ module UiHelpers
 		sleep 1
 	end
 
-	# DT Editor
-
-	def ui_editor_fill_inline(field, text)
-		sleep 0.5
-		fill_in "DTE_Field_#{field}", with: "#{text}"
-		wait_for_ajax 10
-	end
-
-	def ui_editor_select_by_location(row, col)
-		find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").double_click
-	end
-
-	def ui_editor_select_by_content(text)
-		find(:xpath, "//table[@id='editor']//tr/td[contains(.,'#{text}')]").double_click
-	end
-
-	def ui_editor_check_value(row, col, text)
-		expect(find(:xpath, "//table[@id='editor']//tr[#{row}]/td[#{col}]").text).to eq(text)
-	end
-
-	def ui_editor_check_error(field, error_text)
-		expect(find(".DTE_Inline_Field div[data-dte-e = 'msg-error']").text).to eq(error_text)
-	end
-
-	def ui_editor_check_disabled(field)
-		expect(find(".DTE_Field_Name_#{field}")[:class]).to include("disabled")
-	end
-
-	def ui_editor_press_key(key)
-		page.driver.browser.action.send_keys(key).perform
-	end
 
 private
 

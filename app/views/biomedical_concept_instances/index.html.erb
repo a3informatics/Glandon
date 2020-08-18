@@ -20,9 +20,9 @@
   <% end %>
 
   <% content_for :actions do %>
-    
+
     <% if policy(BiomedicalConceptInstance).new? %>
-      <a href="#" class="btn medium green" id="new_bc">
+      <a href="#new-bc-modal" class="btn medium green" id="new-bc-button" data-toggle="modal">
         <span class="icon-plus text-tiny"></span>&nbsp; New Biomedical Concept
       </a>
     <% end %>
@@ -32,5 +32,4 @@
 
 </div>
 
-
-
+<%= render partial: "shared/biomedical_concept_instances/create_modal" %>

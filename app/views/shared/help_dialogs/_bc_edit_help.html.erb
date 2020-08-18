@@ -1,0 +1,45 @@
+<%= render layout: "shared/information_dialog", :locals => {id: "information-dialog-bc-edit", title: "How to use Biomedical Concept Editor", wide: true} do %>
+  The Biomedical Concept Edit page consists of two panels: <br>
+  The upper panel is called <span class="font-regular">BC Manager</span>. The bottom panel is called <span class="font-regular">BC Editor</span>.
+
+  <hr>
+
+  <span class="font-regular text-link"> BC Manager </span> <br>
+
+  This panel allows to manage one or more Biomedical Concepts that are being currently edited. <br>
+  To add an existing BC to the Manager, click on <button class="btn btn-xs white">Add a BC to Editor</button> and select the BC you wish to edit.
+  This will lock the selected BC for editing and a new card will appear in the Manager. <br>
+  To create a new BC, click on <button class="btn btn-xs green">Create a new BC</button> and fill out the required fields.
+  The newly created BC will be automatically added to the BC Manager.<br><br>
+
+  <a href="#" class="ico-btn-sec small token-timeout" style="margin-left: 5px;"> <span class="circular-badge"> <span class="icon-lock"></span></span> </a>
+  Each BC in the Manager has its own Lock.
+  The Lock is acquired for a certain amount of time.
+  When the timeout is approached, the lock will turn yellow and then red along with a countdown being displayed.
+  Clicking the Lock button or performing an edit action on the specific BC will reset the Lock's timeout. <br>
+
+  <a href="#" class="ico-btn-sec small" style="margin-left: 5px;"><span class="circular-badge blue"> <span class="icon-edit"></span> </span> </a>
+  To edit a specific Biomedical Concept added to the Manager panel, click this button.
+  It will load its contents into the BC Editor panel below. <br>
+
+  <a href="#" class="ico-btn-sec small" style="margin-left: 5px;"><span class="circular-badge red"> <span class="icon-times"></span> </span> </a>
+  To dismiss a BC from the Manager panel, click this button. Dismissing a BC will also release its edit Lock.
+  It is not possible to remove the initial BC from the Manager panel.
+
+  <hr>
+
+  <span class="font-regular text-link"> BC Editor </span> <br>
+  To freshly reload the BC data from the server, click on <button class="btn btn-xs white">Reload data</button>. <br>
+  When hovering mouse over a cell and the <span class="icon-edit text-prim-light"></span> icon appears, that means the field is <span class="font-regular">inline editable</span>.
+  <br><br>
+
+  <%= render "shared/help_dialogs/shared/text_edit_help" %>
+
+
+  Columns with pickable Terminology References are marked with <span class="icon-selection text-prim-light"></span> when hovered over. <br>
+  <i>The keyboard navigation and editing initiating is identical to text fields described above.</i> <br>
+  Editing will open an Items Picker dialog, where the Terminology Reference Selection can be added to, modified, or cleared. <br>
+  When done, click on <button class="btn btn-xs green">Submit selection</button>.
+  To discard the selection changes (only before submitting), close the dialog using the <button class="btn btn-xs light">Close</button> button or by pressing the Escape key.
+  Shortcuts like <span class="font-regular">Cmd + Z</span> cannot be used with this field.
+<% end %>

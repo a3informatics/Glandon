@@ -3,9 +3,10 @@ require 'rails_helper'
 describe "Biomedical Concept Instances", :type => :feature do
 
   include DataHelpers
-  include DownloadHelpers
   include UserAccountHelpers
   include UiHelpers
+  include ItemsPickerHelpers
+  include EditorHelpers
   include WaitForAjaxHelper
   include DownloadHelpers
 
@@ -17,6 +18,7 @@ describe "Biomedical Concept Instances", :type => :feature do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("biomedical_concept_templates.ttl")
@@ -39,10 +41,10 @@ describe "Biomedical Concept Instances", :type => :feature do
     it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_bc
       wait_for_ajax 20
-      find(:xpath, "//a[@href='/biomedical_concept_instances']").click 
+      find(:xpath, "//a[@href='/biomedical_concept_instances']").click
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_check_table_info("index", 1, 10, 14)
-      find(:xpath, "//*[@id='index']/thead/tr/th[2]").click #Order data
+      find(:xpath, "//table[@id='index']/thead/tr/th[contains(.,'Label')]").click #Order data
       ui_check_table_cell("index", 3, 2, "BMI")
       ui_check_table_cell("index", 3, 3, "BMI")
     end
@@ -142,5 +144,89 @@ describe "Biomedical Concept Instances", :type => :feature do
 
 
   end
+
+
+    describe "Create a BC", :type => :feature do
+
+      before :all do
+        data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+        load_cdisc_term_versions(1..62)
+        load_data_file_into_triple_store("mdr_identification.ttl")
+        load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+        ua_create
+      end
+
+      after :all do
+        ua_destroy
+      end
+
+      before :each do
+        ua_curator_login
+      end
+
+      after :each do
+        ua_logoff
+      end
+
+      it "allows to create a new BC", js:true do
+        click_navbar_bc
+        wait_for_ajax 20
+        expect(page).to have_content 'Index: Biomedical Concepts'
+        click_on 'New Biomedical Concept'
+
+        ui_in_modal do
+          fill_in 'identifier', with: 'BC Test'
+          fill_in 'label', with: 'Test Label'
+          find('#new-bc-template').click
+          ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
+
+          click_on 'Submit'
+        end
+
+        wait_for_ajax 10
+        expect(page).to have_content 'Version History of \'BC Test\''
+      end
+
+      # Depends on previous test
+      it "create BC, clear fields, field validation", js:true do
+        click_navbar_bc
+        wait_for_ajax 20
+        expect(page).to have_content 'Index: Biomedical Concepts'
+        click_on 'New Biomedical Concept'
+
+        ui_in_modal do
+          click_on 'Submit'
+
+          expect(page).to have_content('Field cannot be empty', count: 3)
+          expect(page).to have_selector('.form-group.has-error', count: 3)
+
+          fill_in 'identifier', with: 'BC Test'
+          fill_in 'label', with: 'Test Label'
+
+          click_on 'Submit'
+
+          expect(page).to have_content('Field cannot be empty', count: 1)
+          expect(page).to have_selector('.form-group.has-error', count: 1)
+
+          click_on 'Clear fields'
+
+          expect(find_field('identifier').value).to eq('')
+          expect(find_field('label').value).to eq('')
+
+          fill_in 'identifier', with: 'BC Test'
+          fill_in 'label', with: 'Test Label'
+          find('#new-bc-template').click
+          ip_pick_managed_items(:bct, [ { identifier: 'BASIC OBS', version: '1' } ], 'new-bc')
+
+          click_on 'Submit'
+          wait_for_ajax 10
+
+          expect(page).to have_content 'already exists in the database'
+          click_on 'Close'
+        end
+
+      end
+
+    end
 
 end

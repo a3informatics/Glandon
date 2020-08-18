@@ -2,9 +2,9 @@ module TypePathManagement
 
   # Constants
   C_CLASS_NAME = "TypePathManagement"
-  
-  @@type_to_class = 
-  { 
+
+  @@type_to_class =
+  {
     #Thesaurus::C_RDF_TYPE_URI.to_s => { klass: Thesaurus },
     #ThesaurusConcept::C_RDF_TYPE_URI.to_s => { klass: ThesaurusConcept },
     Form.rdf_type.to_s => { klass: Form },
@@ -20,11 +20,11 @@ module TypePathManagement
     SdtmModel::Variable.rdf_type.to_s => { klass: SdtmModel::Variable }
   }
 
-  @@mi_history_path = 
+  @@mi_history_path =
     { Thesaurus.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_index_path, strong: "thesauri" },
       Thesaurus::ManagedConcept.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_managed_concepts_path, strong: "managed_concept" },
       BiomedicalConceptTemplate.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
-      BiomedicalConceptInstance.rdf_type.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concept_instances_path, strong: "biomedical_concept" },
+      BiomedicalConceptInstance.rdf_type.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concept_instances_path, strong: "biomedical_concept_instance" },
       Form.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
       SdtmModel.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
       SdtmIg.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
@@ -47,7 +47,7 @@ module TypePathManagement
   # @param rdf_type [String] the RDF type
   # @return [String] the path
   def self.history_path(rdf_type)
-    if @@mi_history_path.has_key?(rdf_type) 
+    if @@mi_history_path.has_key?(rdf_type)
       return @@mi_history_path[rdf_type][:path]
     else
       return ""
@@ -61,7 +61,7 @@ module TypePathManagement
   # @param scope_id [String] the scope id
   # @return [String] The url
   def self.history_url(rdf_type, identifier, scope_id)
-    if @@mi_history_path.has_key?(rdf_type) 
+    if @@mi_history_path.has_key?(rdf_type)
       path = @@mi_history_path[rdf_type][:path]
       strong = @@mi_history_path[rdf_type][:strong]
       if strong.empty?
@@ -82,7 +82,7 @@ module TypePathManagement
   def self.history_url_v2(object, check_type=false)
     # Note type query just to make sure we get the real type, not inherited class.
     rdf_type_s = check_type ? object.find_rdf_type.to_s : object.rdf_type.to_s
-    Errors.application_error(self.name, __method__.to_s, "Unknown object type #{rdf_type_s} detected.") if !@@mi_history_path.has_key?(rdf_type_s) 
+    Errors.application_error(self.name, __method__.to_s, "Unknown object type #{rdf_type_s} detected.") if !@@mi_history_path.has_key?(rdf_type_s)
     path = @@mi_history_path[rdf_type_s][:path]
     strong = @@mi_history_path[rdf_type_s][:strong]
     return "#{path}/?#{strong}[identifier]=#{object.scoped_identifier}&#{strong}[scope_id]=#{object.owner.ra_namespace.id}"

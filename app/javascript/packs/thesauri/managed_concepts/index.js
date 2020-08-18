@@ -1,5 +1,4 @@
 import IndexPanel from 'shared/iso_managed/index_panel'
-import { dtIndicatorsColumn } from 'shared/helpers/dt/dt_columns'
 import { $post } from 'shared/helpers/ajax'
 
 $(document).ready( () => {
@@ -7,7 +6,6 @@ $(document).ready( () => {
   let ip = new IndexPanel({
     url: indexDataUrl,
     param: "managed_concept",
-    extraColumns: [ { data: "notation" }, dtIndicatorsColumn()]
   });
 
   // Create a new Code List

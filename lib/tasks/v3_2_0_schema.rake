@@ -6,7 +6,9 @@ namespace :v3_2_0 do
     "<http://www.assero.co.uk/ISO11179Types> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string",
     "<http://www.assero.co.uk/ISO11179Concepts> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string",
     "<http://www.assero.co.uk/ISO11179Registration> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string",
-    "<http://www.assero.co.uk/BusinessForm> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string"
+    "<http://www.assero.co.uk/BusinessForm> owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string",
+    "<http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept> rdfs:subClassOf <http://www.assero.co.uk/ISO11179Concepts#Concept>",
+    "<http://www.assero.co.uk/BiomedicalConcept#Assessment> rdfs:subClassOf <http://www.assero.co.uk/BusinessOperational#Collection>"
   ]
 
   # Triples present?
@@ -65,7 +67,9 @@ namespace :v3_2_0 do
         <http://www.assero.co.uk/ISO11179Concepts> owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
         <http://www.assero.co.uk/ISO11179Registration> owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
         <http://www.assero.co.uk/BusinessForm> owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
-        <http://www.s-cubed.dk/ComplexDatatypes#> rdf:type owl:Ontology ;
+        <http://www.s-cubed.dk/ComplexDatatypes#> rdf:type owl:Ontology .
+        <http://www.assero.co.uk/BiomedicalConcept#BiomedicalConcept> rdfs:subClassOf <http://www.assero.co.uk/ISO11179Concepts#Concept> .
+        <http://www.assero.co.uk/BiomedicalConcept#Assessment> rdfs:subClassOf <http://www.assero.co.uk/BusinessOperational#Collection> ;
       }      
     }
     sparql.sparql_update(sparql_update, "", [:owl])

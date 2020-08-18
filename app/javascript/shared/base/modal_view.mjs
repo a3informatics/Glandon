@@ -14,6 +14,8 @@ export default class ModalView {
    */
   constructor({ selector }, args = {} ) {
     Object.assign(this, { selector, ...args });
+
+    this._setModalListeners();
   }
 
   /**
@@ -45,7 +47,7 @@ export default class ModalView {
    * Sets event listeners, handlers
    * Override and extend to add custom listeners
    */
-  _setListeners() {
+  _setModalListeners() {
     // Called immediately, before fade-in animation
     this.modal.on('show.bs.modal', () => this._onShow());
 
@@ -78,7 +80,7 @@ export default class ModalView {
   _onHide() { }
 
   /**
-   * Executed after modal hidden 
+   * Executed after modal hidden
    * Override for custom behavior
    */
   _onHideComplete() { }

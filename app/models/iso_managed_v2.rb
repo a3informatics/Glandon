@@ -313,11 +313,11 @@ class IsoManagedV2 < IsoConceptV2
 
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
-  # @param [Uri|id] the identifier, either a URI or the id
+  # @param [Uri|String] uri_or_id the URI or the id
   # @return [object] The object.
-  def self.find_with_properties(id)
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+  def self.find_with_properties(uri_or_id)
     parts = []
+    uri = as_uri(uri_or_id)
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} isoT:hasState ?o . BIND (<isoT:hasState> as ?p) . BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
@@ -338,28 +338,13 @@ class IsoManagedV2 < IsoConceptV2
     item
   end
 
-  # # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
-  # #
-  # # @param [Uri|id] the identifier, either a URI or the id
-  # # @return [IsoManagedV2] The managed item object.
-  # def self.find_full(id)
-  #   uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-  #   parts = []
-  #   parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-  #   read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p}) ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-  #   query_string = "SELECT DISTINCT ?s ?p ?o WHERE {{ #{parts.join(" UNION\n")} }}"
-  #   results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
-  #   raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
-  #   from_results_recurse(uri, results.by_subject)
-  # end
-
   # Find Minimum. Finds the minimun amount of info for an Managed Item. Use this for quick finds.
   #
-  # @param [Uri|id] the identifier, either a URI or the id
+  # @param [Uri|String] uri_or_id the URI or the id
   # @return [object] The object.
-  def self.find_minimum(id)
+  def self.find_minimum(uri_or_id)
     parts = []
-    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    uri = as_uri(uri_or_id)
     parts << "  { #{uri.to_ref} rdf:type ?o . BIND (#{C_RDF_TYPE.to_ref} as ?p) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }"
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"
@@ -521,35 +506,7 @@ class IsoManagedV2 < IsoConceptV2
     offset = params[:offset].to_i
     uris = history_uris(params)
     reqd_uris = uris[offset .. (offset + count - 1)]
-    query_string = %Q{
-      SELECT ?s ?p ?o ?e ?v WHERE
-      {
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e ?p ?o .
-          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
-          BIND (?e as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?si ?p ?o .
-          BIND (?si as ?s)
-        }
-        UNION
-        {
-          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
-          ?e isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          ?e isoT:hasState ?s .
-          ?s ?p ?o
-        }
-      } ORDER BY DESC (?v)
-    }
+    query_string = history_pagination_query(reqd_uris)
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri|
@@ -1212,6 +1169,38 @@ private
       " #{self.uri.to_ref} isoT:origin ?c . \n" +
       " #{self.uri.to_ref} isoT:lastChangeDate ?d . \n" +
       "}"
+  end
+
+  def self.history_pagination_query(reqd_uris)
+   %Q{
+      SELECT ?s ?p ?o ?e ?v WHERE
+      {
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e ?p ?o .
+          FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179"))
+          BIND (?e as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?si ?p ?o .
+          BIND (?si as ?s)
+        }
+        UNION
+        {
+          VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} }
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          ?e isoT:hasState ?s .
+          ?s ?p ?o
+        }
+      } ORDER BY DESC (?v)
+    }
   end
 
 end

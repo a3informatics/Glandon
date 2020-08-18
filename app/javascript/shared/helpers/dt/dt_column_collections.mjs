@@ -1,8 +1,45 @@
-import { dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
 import { iconsInline } from 'shared/ui/icons'
 import { termReferences } from 'shared/ui/collections'
-import { showBtn } from 'shared/ui/buttons'
 
+import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
+         dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn } from 'shared/helpers/dt/dt_columns'
+
+/**
+ * Column definitions for an Index panel
+ * @return {Array} DataTables Index panel column definitions collection
+ */
+function dtIndexColumns() {
+  return [
+    { data : "owner" },
+    { data : "identifier" },
+    { data : "label" },
+    dtIndicatorsColumn()
+  ];
+};
+
+/**
+ * Column definitions for a Code List Index panel
+ * @return {Array} DataTables Code List Index panel column definitions collection
+ */
+function dtCLIndexColumns() {
+  const indexColumns = [...dtIndexColumns()];
+  indexColumns.splice( 3, 0, { data: "notation" } );
+
+  return indexColumns;
+};
+
+/**
+ * Column definitions for a simplified History panel with indicators
+ * @return {Array} DataTables simplified History panel column definitions collection
+ */
+function dtSimpleHistoryColumns() {
+  return [
+    dtVersionColumn(),
+    { data: "has_identifier.version_label" },
+    { data: "has_state.registration_status" },
+    dtIndicatorsColumn()
+  ];
+};
 
 /**
  * Column definitions for a Code List Editor table
@@ -10,22 +47,47 @@ import { showBtn } from 'shared/ui/buttons'
  */
 function dtCLEditColumns() {
   return [
-    { data: "identifier" },
-    dtInlineEditColumn("notation", "notation", "16%"),
-    dtInlineEditColumn("preferred_term", "preferred_term", "18%"),
-    dtInlineEditColumn("synonym", "synonym", "18%"),
-    dtInlineEditColumn("definition", "definition", "40%"),
-    dtTagsColumn("8%", 'editable edit-tags'),
+    { data: 'identifier' },
+    dtInlineEditColumn('notation', '', '16%'),
+    dtInlineEditColumn('preferred_term', '', '18%'),
+    dtInlineEditColumn('synonym', '', '18%'),
+    dtInlineEditColumn('definition', '', '40%'),
+    dtTagsColumn('8%', 'editable external edit-tags'),
     dtIndicatorsColumn(),
     {
-      className: "fit",
+      className: 'fit',
       render: (data, type, r, m) => {
         // const editingDisabled = _.isEmpty(r.edit_path);
         // iconsInline.editIcon({ disabled: editingDisabled })
-        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: "Remove / unlink item" });
+        const actionIcons = iconsInline.removeIcon({ ttip: true, ttipText: 'Remove / unlink item' });
 
         return type === 'display' ? actionIcons : '';
       }
+    }
+  ];
+};
+
+/**
+ * Column definitions for Biomedical Concept Instance show
+ * @return {Array} DataTables Biomedical Concept Instance show column definitions collection
+ */
+function dtBCEditColumns() {
+  return [
+    dtTrueFalseEditColumn('enabled'),
+    dtTrueFalseEditColumn('collect'),
+    { data: 'has_complex_datatype.has_property.label' },
+    dtInlineEditColumn('has_complex_datatype.has_property.question_text', 'question_text', '25%'),
+    dtInlineEditColumn('has_complex_datatype.has_property.prompt_text', 'prompt_text', '25%'),
+    { data: "has_complex_datatype.label" },
+    dtInlineEditColumn('has_complex_datatype.has_property.format', 'format'),
+
+    // Items Picker column
+    {
+      className: 'editable inline pickable termPicker',
+      data: 'has_complex_datatype.has_property.has_coded_value',
+      width: '30%',
+      editField: 'has_coded_value',
+      render: (data, type, r, m) => termReferences(data, type, true)
     }
   ];
 };
@@ -101,10 +163,7 @@ function dtSDTMShowColumns() {
     { data: "has_identifier.has_scope.short_name" },
     { data: "has_identifier.version" },
     { data: "has_identifier.version_label" },
-    {
-      data: "show_path",
-      render: (data, type, r, m) => showBtn(data)
-    }
+    dtButtonColumn('show')
   ];
 };
 
@@ -126,4 +185,15 @@ function dtSDTMIGDomainShowColumns() {
   ];
 };
 
-export { dtCLEditColumns, dtBCShowColumns, dtFormShowColumns, dtSDTMClassShowColumns, dtSDTMShowColumns, dtSDTMIGDomainShowColumns  }
+export {
+  dtIndexColumns,
+  dtSimpleHistoryColumns,
+  dtCLIndexColumns,
+  dtCLEditColumns,
+  dtBCShowColumns,
+  dtBCEditColumns,
+  dtFormShowColumns,
+  dtSDTMClassShowColumns,
+  dtSDTMShowColumns,
+  dtSDTMIGDomainShowColumns
+}

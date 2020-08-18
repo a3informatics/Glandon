@@ -9,9 +9,12 @@ describe "Breadcrumb", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "biomedical_concept_instances.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..43)
+    load_cdisc_term_versions(1..62)
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     ua_create
   end
 
@@ -20,7 +23,7 @@ describe "Breadcrumb", :type => :feature do
   end
 
   before :each do
-    ua_content_admin_login
+    ua_sys_and_content_admin_login
   end
 
   after :each do
@@ -72,26 +75,26 @@ describe "Breadcrumb", :type => :feature do
       ui_check_breadcrumb("Upload", "", "", "")
     end
 
-    # it "has Background Jobs breadcrumbs", js:true  do
-    #   click_navbar_background_jobs
-    #   ui_check_breadcrumb("Background", "", "", "")
-    # end
+    it "has Background Jobs breadcrumbs", js:true  do
+      click_navbar_background_jobs
+      ui_check_breadcrumb("Background Jobs", "", "", "")
+    end
 
     it "has Audit Trail breadcrumbs", js:true  do
       click_navbar_at
       ui_check_breadcrumb("Audit trail", "", "", "")
     end
 
-    # it "has Ad Hoc Reports breadcrumbs", js:true  do
-    #   click_navbar_ahr
-    #   ui_check_breadcrumb("Ad Hoc Reports", "", "", "")
-    #   next_link('New', 'New Ad-Hoc Report:', "Ad-hoc Reports", "New", "")
-    #   next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
-    # end
+    it "has Ad Hoc Reports breadcrumbs", js:true  do
+      click_navbar_ahr
+      ui_check_breadcrumb("Ad Hoc Reports", "", "", "")
+      next_link('Add New', 'New Ad-Hoc Report', "Ad Hoc Reports", "New", "")
+      next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad Hoc Reports", "", "")
+    end
 
     it "has Tags breadcrumbs", js:true  do
       click_navbar_tags
-      ui_check_breadcrumb("", "", "", "")
+      ui_check_breadcrumb("Tags", "", "", "")
     end
 
     #it "has Notepad breadcrumbs" do
@@ -103,26 +106,36 @@ describe "Breadcrumb", :type => :feature do
       ui_check_breadcrumb("Markdown", "", "", "")
     end
 
-    # it "has Terminology breadcrumbs", js:true  do
-    #   click_navbar_terminology
-    #   ui_check_breadcrumb("Terminology", "", "", "")
-    #   next_link('Search across all current versions', 'Search: All Current Terminology', "Terminology", "Search Current", "")
-    #   next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
-    #   find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
-    #   expect(page).to have_content "Version History of 'CT'"
-    #   ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
-    #   # next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
-    #   wait_for_ajax(120)
-    #   context_menu_element('history', 5, '2015-03-27 Release', :show)
-    #   wait_for_ajax
-    #   ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-    #   next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
-    #   wait_for_ajax(120)
-    #   context_menu_element('history', 5, '2015-03-27 Release', :search)
-    #   wait_for_ajax(120)
-    #   ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-    #   next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
-    # end
+    it "has Terminology breadcrumbs", js:true  do
+      click_navbar_terminology
+      ui_check_breadcrumb("Terminology", "", "", "")
+
+      # Search Terms
+      click_on 'Search Terminologies'
+      ui_in_modal do
+        find('#select-all-latest').click
+        click_on 'Submit and proceed'
+      end
+      expect(page).to have_content "Search Latest"
+      ui_check_breadcrumb("Terminology", "Search", "", "")
+      next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
+
+      find(:xpath, "//tr[1]/td/a").click
+      expect(page).to have_content "Version History of 'CT'"
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
+      wait_for_ajax 20
+      ui_table_search('history', '2015-03-27')
+      context_menu_element_v2('history', '2015-03-27 Release', :show)
+      wait_for_ajax 20
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
+      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
+      wait_for_ajax 20
+      ui_table_search('history', '2015-03-27')
+      context_menu_element_v2('history', '2015-03-27 Release', :search)
+      wait_for_ajax 20
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
+      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
+    end
 
     it "has Code list breadcrumbs", js:true  do
       click_navbar_terminology
@@ -130,9 +143,9 @@ describe "Breadcrumb", :type => :feature do
       find(:xpath, "//tr[contains(.,'CT')]/td/a").click
       expect(page).to have_content "Version History of 'CT'"
       ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
-      # next_link_table("Controlled Terminology", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
-      context_menu_element('history', 5, '2015-03-27 Release', :show)
+      ui_table_search('history', '2015-03-27')
+      context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
       next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
@@ -145,9 +158,9 @@ describe "Breadcrumb", :type => :feature do
       find(:xpath, "//tr[contains(.,'CT')]/td/a").click
       expect(page).to have_content "Version History of 'CT'"
       ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
-      # next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
-      context_menu_element('history', 5, '2015-03-27 Release', :show)
+      ui_table_search('history', '2015-03-27')
+      context_menu_element_v2('history', '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
       next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
@@ -167,16 +180,14 @@ describe "Breadcrumb", :type => :feature do
 
     it "has Biomedical Concepts breadcrumbs", js:true  do
       click_navbar_bc
-      ui_check_breadcrumb("Biomedical Concept Instances", "", "", "")
-      #next_link('New', 'New: Biomedical Concept', "Biomedical Concepts", "New", "")
-      # next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
-      # next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "ACME, BC C49677", "")
-      # next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "V1.0.0")
-      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
-      # next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Status: V1.0.0")
-      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
-      # next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Comments: V1.0.0")
-      # next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+      wait_for_ajax 20
+      ui_check_breadcrumb("Biomedical Concepts", "", "", "")
+      find(:xpath, "//tr[contains(.,'HR')]/td/a").click
+      wait_for_ajax 20
+      ui_check_breadcrumb("Biomedical Concepts", "S-cubed, HR", "", "")
+      context_menu_element_v2('history', 'HR', :show)
+      wait_for_ajax 20
+      ui_check_breadcrumb("Biomedical Concepts", "S-cubed, HR", "V0.1.0", "")
     end
 
     # it "has Forms breadcrumbs", js:true  do
@@ -223,12 +234,12 @@ describe "Breadcrumb", :type => :feature do
       next_link('settings_button', 'User Settings', "User Settings", "", "")
     end
 
-    # it "has users breadcrumbs", js:true  do
-    #   next_link('users_button', 'Users', "Users", "", "")
-    #   next_link('New', 'New user account', "Users", "New", "")
-    #   next_link_crumb(1, 'Users', "Users", "", "")
-    #   next_link_table("content_admin@example.com", "Edit", "Set user roles for", "Users", "", "")
-    # end
+    it "has users breadcrumbs", js:true  do
+      next_link("users_button", "Users", "", "", "")
+      next_link('New', 'New user account', "Users", "New", "")
+      next_link_crumb(1, 'Users', "Users", "", "")
+      next_link_table("sys_admin@example.com", "Edit", "Set user roles for", "Users", "Edit", "")
+    end
 
   end
 

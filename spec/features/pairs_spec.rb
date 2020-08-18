@@ -117,7 +117,7 @@ describe "Pairs", :type => :feature do
       sleep 7
       context_menu_element_header(:pair)
       ui_selector_pick_managed_items("Code Lists", [{identifier: "NP000011P", version: "1"}])
-      expect(page).to have_content "The changes were not saved as the edit lock has timed out."
+      expect(page).to have_content "The edit lock has timed out."
     end
 
   end
@@ -193,7 +193,7 @@ describe "Pairs", :type => :feature do
       sleep 7
       context_menu_element_header(:pair)
       ui_selector_pick_managed_items("Code Lists", [{identifier: "C67154E", version: "1"}])
-      expect(page).to have_content "The changes were not saved as the edit lock has timed out."
+      expect(page).to have_content "The edit lock has timed out."
     end
 
   end

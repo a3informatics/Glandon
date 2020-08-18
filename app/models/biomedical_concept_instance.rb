@@ -9,4 +9,66 @@ class BiomedicalConceptInstance < BiomedicalConcept
 
   object_property :based_on, cardinality: :one, model_class: BiomedicalConceptTemplate, delete_exclude: true, read_exclude: true
 
+  # Create From Template. Creates a new instance from the specified template
+  #
+  # @params [Hash] params a set of initial vaues for any attributes
+  # @option params [String] :identifier the identifier
+  # @option params [String] :label the label
+  # @return [BiomedicalConceptInstance] the created object. May contain errors if unsuccesful.
+  def self.create_from_template(params, template)
+  	new_params = template.to_h
+  	new_params[:label] = params[:label] 
+  	new_params[:identifier] = params[:identifier] 
+  	object = self.from_h(new_params)
+    object.based_on = template.uri
+    object.set_initial(params[:identifier])
+    object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object
+  end
+
+  def update_property(params)
+    new_params = split_params(params)
+    property = BiomedicalConceptInstance::PropertyX.find(params[:property_id])
+    if new_params[:property].any?
+      property.update_with_clone(new_params[:property], self)
+    elsif new_params[:item].any?
+      uris = property.managed_ancestor_path_uris(self)
+      item = BiomedicalConceptInstance::Item.find(uris.first)
+      item.update_with_clone(new_params[:item].dup, self) if new_params[:item].keys.any?
+    else
+      # Nothing to be done, empty parameters submitted
+      ConsoleLogger.info(self.class.name, "update_property", "Attempt to update property with empty parameters.")
+      self
+    end
+  end
+
+private
+
+  # Split the params into the two parts, property and item
+  def split_params(params)
+    new_params = {item: {}, property: {}}
+    params.each do |k,v|
+      next if k.to_sym == :property_id
+      child = property_to_child(k.to_sym)
+      new_params[child][k.to_sym] = v
+    end
+    Errors::application_error(self.class.name, "split_params", "Attempting to update multiple children '#{new_params}'.") if new_params[:item].any? && new_params[:property].any?
+    new_params
+  end
+
+  # Map the property to the correct child.
+  def property_to_child(property)
+    map = {
+      collect: :item, 
+      enabled: :item, 
+      question_text: :property, 
+      prompt_text: :property, 
+      format: :property,
+      has_coded_value: :property
+    }
+    Errors::application_error(self.class.name, "property_to_child", "No matching property for '#{property}' found.") unless map.key?(property)
+    map[property]
+  end
+
 end

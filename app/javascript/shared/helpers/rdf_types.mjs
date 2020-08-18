@@ -21,11 +21,11 @@ const rdfTypesMap = {
     name: "SDTM Model"
   },
   BC: {
-    rdfType: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance",
+    rdfType: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance",
     name: "Biomedical Concept"
   },
   BCT: {
-    rdfType: "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptTemplate",
+    rdfType: "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptTemplate",
     name: "Biomedical Concept Template"
   },
 
@@ -226,8 +226,24 @@ function rdfTypesMatch(name, value) {
   return rdfTypesMap[name].rdfType === value;
 }
 
+/**
+ * Gets the RDF type string of an item const name in argument
+ * @param {string} shortcut Shortcut key to item in the map
+ * @return {string} Item type as string name
+ */
+function getRdfNameByType(rdfType) {
+  const filtered = Object.values(rdfTypesMap).filter((d) => d.rdfType === rdfType)
+
+  if ( filtered.length )
+    return filtered[0].name;
+
+  throw new Error(`Rdf type '${rdfType}' not found.`);
+}
+
 export {
+  rdfTypesMap,
   getRdfType,
   getRdfName,
-  rdfTypesMatch
+  rdfTypesMatch,
+  getRdfNameByType
  }

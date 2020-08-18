@@ -20,7 +20,9 @@ export default class EditablePanel extends TablePanel {
    * @param {Array} params.fields Editor fields definitions
    * @param {string} params.idSrc Data ID source for the editor, default = "id"
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case
+   * @param {Array} params.order DataTables deafult ordering specification, optional. Defaults to first column, descending
    * @param {boolean} params.cache Specify if the panel data should be cached. Optional
+   * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
    */
   constructor({
     selector,
@@ -32,10 +34,12 @@ export default class EditablePanel extends TablePanel {
     fields = [],
     idSrc = "id",
     deferLoading = false,
-    cache = true
+    order = [[0, "desc"]],
+    cache = true,
+    loadCallback = () => {}
   }) {
-    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache },
-          {updateUrl, fields, idSrc});
+    super({ selector, url: dataUrl, param, count, extraColumns: columns, deferLoading, cache, loadCallback, order },
+          { updateUrl, fields, idSrc });
   }
 
   /**
@@ -74,7 +78,30 @@ export default class EditablePanel extends TablePanel {
     this._onEdited();
   }
 
+  /**
+   * Set a new data url to the instance
+   * @param {string} newUrl new data url
+   */
+  setDataUrl(newUrl) {
+    this.url = newUrl;
+  }
+
+  /**
+   * Set a new update url to the instance, updates editor's ajax config
+   * @param {string} newUrl new update data url
+   */
+  setUpdateUrl(newUrl) {
+    this.updateUrl = newUrl;
+
+    let newOpts = this._editorAjaxOpts;
+    newOpts.url = this.updateUrl;
+
+    this.editor.ajax(newOpts);
+  }
+
+
   /** Private **/
+
 
   /**
    * Sets event listeners, handlers
@@ -104,10 +131,11 @@ export default class EditablePanel extends TablePanel {
       this._onEdited();
     });
 
-    // Update UI on keypress in TA. Submit on pressing Enter.
+    // Update UI on keypress in TA. Handle Submit.
     $(this.selector).on('keydown', 'textarea', (e, dt, c) => {
       this._updateUI('input');
-      // Enter press
+
+      // Submit on Enter key press
       if(e.which == 13 && !e.shiftKey) {
         this.editor.submit();
         e.preventDefault();
@@ -160,8 +188,10 @@ export default class EditablePanel extends TablePanel {
    * Resizes textarea to to fit its contents
    */
   _resizeTA() {
-    let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
-    $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    if ( $(`${this.selector} td.editable textarea`).length ) {
+      let newHeight = $(`${this.selector} td.editable textarea`)[0].scrollHeight + 4;
+      $(`${this.selector} td.editable textarea`).css('height', newHeight);
+    }
   }
 
   /**
@@ -169,16 +199,19 @@ export default class EditablePanel extends TablePanel {
    */
   _initEditor() {
     this.editor = new $.fn.dataTable.Editor({
-      ajax: {
-        edit: {
-          type: 'PUT',
-          url: this.updateUrl
-        }
-      },
+      ajax: this._editorAjaxOpts,
       table: this.selector,
       fields: this.fields,
       idSrc: this.idSrc
     });
+  }
+
+  /**
+   * Initializes Items Pickers to use in an Editable Panel (if any)
+   * Override to add custom pickers
+   */
+  _initPickers() {
+    this.editor.pickers = { }
   }
 
   /**
@@ -197,6 +230,8 @@ export default class EditablePanel extends TablePanel {
     this._initEditor();
     // Initialize DataTable after
     this.table = $(this.selector).DataTable(this._tableOpts);
+    // Initialize Pickers last
+    this._initPickers();
   }
 
   /**
@@ -214,6 +249,21 @@ export default class EditablePanel extends TablePanel {
     }
 
     return options;
+  }
+
+  /**
+   * Default Editor AJAX options
+   * @return {Object} DataTable Editor AJAX options object
+   */
+  get _editorAjaxOpts() {
+    return {
+      edit: {
+        type: 'PUT',
+        url: this.updateUrl,
+        contentType: 'application/json',
+        data: (d) => JSON.stringify(d)
+      }
+    }
   }
 
 }
