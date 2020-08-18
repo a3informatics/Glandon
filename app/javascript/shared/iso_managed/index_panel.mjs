@@ -1,6 +1,6 @@
 import TablePanel from 'shared/base/table_panel'
 
-import { dtHistoryColumn } from 'shared/helpers/dt/dt_columns'
+import { dtButtonColumn } from 'shared/helpers/dt/dt_columns'
 import { dtIndexColumns, dtCLIndexColumns } from 'shared/helpers/dt/dt_column_collections'
 import { isCDISC } from 'shared/helpers/utils'
 
@@ -61,7 +61,7 @@ export default class IndexPanel extends TablePanel {
   get _tableOpts() {
     const options = super._tableOpts;
 
-    options.columns = [...this._defaultColumns, ...this.extraColumns, dtHistoryColumn() ];
+    options.columns = [...this._defaultColumns, ...this.extraColumns, dtButtonColumn('history') ];
     options.language.emptyTable = "No items found.";
     options.createdRow = (row, data, idx) => {
       $(row).addClass( isCDISC(data) ? 'row-cdisc' : 'row-sponsor' );

@@ -1,18 +1,16 @@
-import ModalView from 'shared/base/modal_view'
+import CreateItemView from 'shared/base/create_item_view'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import Validator from 'shared/ui/validator'
 import { managedConceptRef } from 'shared/ui/strings'
-import { $post } from 'shared/helpers/ajax'
 
 /**
  * Create Biomedical Concept Modal View
  * @description Allows to create a new Biomedical Concept from parameters with custom callback
  * @requires _new_biomedical_concept.html.erb partial
- * @extends ModalView base Modal View class
+ * @extends CreateItemView base Create Item View class
  * @author Samuel Banas <sab@s-cubed.dk>
  */
-export default class CreateBCView extends ModalView {
+export default class CreateBCView extends CreateItemView {
 
   /**
    * Create a Modal View
@@ -28,34 +26,22 @@ export default class CreateBCView extends ModalView {
      onShow = () => { },
      onHide = () => { }
    } = {}) {
-    super({ selector });
+    super({ selector, onCreated, param: 'biomedical_concept_instance', createItemUrl: createBCUrl });
 
     Object.assign(this, {
       templatePicker: this._initPicker(),
-      onCreated: onCreated || this._defaultOnCreated,
       onShow,
       onHide
     });
-
-    this._setListeners();
   }
 
   /**
    * Clears the Modal
    */
   clear() {
-    // Clear form validation results
-    Validator._clear(this.form);
-    // Clear form values
-    this.form.find('input').val('').removeAttr('data-id');
-  }
-
-  /**
-   * Get form element from the Create BC Modal View
-   * @return {JQuery Element} wrapping form element
-   */
-  get form() {
-    return this.modal.find('#new-bc-form');
+    super.clear();
+    // Clear extra form fields
+    this.form.find('input').removeAttr('data-id');
   }
 
 
@@ -63,40 +49,13 @@ export default class CreateBCView extends ModalView {
 
 
   /**
-   * Validate inputs and execute a server request to create a new BC
-   */
-  _createBC() {
-    // Perform validation
-    if ( Validator.validate(this.form, this._validationRules) ) {
-      // Disable submit button
-      this._loading(true);
-
-      // POST request to create new BC, handle result
-      $post({
-        url: createBCUrl,
-        data: { biomedical_concept_instance: this._formData },
-        errorDiv: this.modal.find('#new-bc-error'),
-        done: (result) => {
-          this.onCreated(result);
-          this.hide();
-        },
-        always: () => this._loading(false)
-      })
-    }
-  }
-
-  /**
    * Set event listeners and handlers
    */
   _setListeners() {
-    // On Submit button click event
-    this.modal.find('#new-bc-submit').on('click', () => this._createBC());
-
-    // On Clear button click event
-    this.modal.find('#new-bc-clear').on('click', () => this.clear());
+    super._setListeners();
 
     // On Template selector click event
-    this.form.find('#new-bc-template').on('click', () => this.templatePicker.show() );
+    this.form.find('#new-item-template').on('click', () => this.templatePicker.show() );
   }
 
   /**
@@ -116,29 +75,12 @@ export default class CreateBCView extends ModalView {
   }
 
   /**
-   * Resets Modal to its initial state when hidden
-   * @override _onHideComplete in ModalView for custom behavior
-   */
-  _onHideComplete() {
-    this.clear();
-  }
-
-  /**
    * Adds template into the Modal
    * @param {Object} template selected template data object
    */
   _onSelectTemplate(template) {
-    this.form.find('#new-bc-template').val( managedConceptRef(template) )
+    this.form.find('#new-item-template').val( managedConceptRef(template) )
                                       .attr('data-id', template.id);
-  }
-
-  /**
-   * Toggle loading state on the modal (disables buttons)
-   * @param {boolean} enable value representing the desired loading state
-   */
-  _loading(enable) {
-    this.modal.find('.btn').toggleClass('disabled', enable)
-    this.modal.find('#new-bc-submit').toggleClass('el-loading', enable)
   }
 
   /**
@@ -146,11 +88,11 @@ export default class CreateBCView extends ModalView {
    * @return {Object} key-vaue pairs of parameters and values
    */
   get _formData() {
-    return {
-      identifier: this.form.find('#new-bc-identifier').val(),
-      label: this.form.find('#new-bc-label').val(),
-      template_id: this.form.find('#new-bc-template').attr('data-id'),
-    }
+    let formData = super._formData;
+
+    return Object.assign( formData, {
+      template_id: this.form.find('#new-item-template').attr('data-id'),
+    } );
   }
 
   /**
@@ -167,28 +109,18 @@ export default class CreateBCView extends ModalView {
   }
 
   /**
-   * Default onCreated callback, redirects to the history path
-   */
-  _defaultOnCreated(result) {
-    if (result)
-      location.href = result.history_path;
-    else
-      location.reload();
-  }
-
-  /**
    * Get validation rules for all fields in the Create BC form
    * @return {Object} validation rules compatible with Validator
    */
   get _validationRules() {
-    return {
-      identifier: { 'value': 'not-empty' },
-      label: { 'value': 'not-empty' },
+    let validationRules = super._validationRules;
+
+    return Object.assign( validationRules, {
       template: {
         'value': 'not-empty',
         'data-id': 'not-empty'
       }
-    }
+    } );
   }
 
 }
