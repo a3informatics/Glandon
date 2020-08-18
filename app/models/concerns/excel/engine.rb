@@ -87,9 +87,24 @@ class Excel::Engine
   # @param row [Integer] the cell row on which the condition is being tested
   # @return [Boolean] true if the condition is met, false otherwise
   def process_row?(sheet_logic, row)
-    condition = sheet_logic.dig(:row, :condition) 
-    return true if condition.nil? # No condition present
-    return self.send(condition[:method], {row: row, col: condition[:column]})
+    conditions = sheet_logic.dig(:row, :conditions) 
+    return true if conditions.empty? # No conditions present
+    conditions.each do |condition|
+      result = true
+      condition.each do |element|
+        if element.key?(:method)
+          result = result && self.send(element[:method], {row: row, col: element[:column]})
+        elsif element.key?(:value_in_set)
+          result = result && element[:value_in_set].include?(check_value(row, element[:column]))
+        elsif element.key?(:value)
+          result = result && check_value(row, element[:column]) == element[:value]
+        else
+          raise Errors::ApplicationLogicError.new("Unexpected condition element #{element} in process row definition.")
+        end
+      end
+      return true if result
+    end
+    false
   end
 
   # Process Action?
@@ -594,7 +609,7 @@ private
 
   # Check mapped cell. Will match key exactly or value starts with the key
   def check_mapped(row, col, map)
-    value = check_value(row, col)
+    value = check_value(row, col, true)
     mapped = map[value.to_sym]
     return mapped if !mapped.nil?
     mapped = map.select{|k,v| value.start_with? k.to_s}

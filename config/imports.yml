@@ -81,9 +81,11 @@ defaults: &defaults
               - "New Terms"
               - "Comment"
           row:
-            condition:
-              method: column_affirmative?
-              column: 12
+            conditions:
+              -
+                -
+                  method: column_affirmative?
+                  column: 12
           columns:
           -
             label: "Release Date"
@@ -228,9 +230,32 @@ defaults: &defaults
               - "CDISC Notes (for domains)\nDescription (for General Classes)"  
               - "Core"
           row:
-            condition:
-              method: column_blank?
-              column: 3
+            conditions:
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 3
+                  method: column_not_blank?
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 3
+                  method: column_blank?
           columns:
           -
             label: "Observation Class" 
@@ -245,15 +270,11 @@ defaults: &defaults
                   Events-General: SDTMMODEL EVENTS
                   Interventions: SDTMMODEL INTERVENTIONS
                   Interventions-General: SDTMMODEL INTERVENTIONS
-                  Special Purpose: SDTMMODEL SPECIAL PURPOSE 
-                  Special-Purpose: SDTMMODEL SPECIAL PURPOSE
                   Findings: SDTMMODEL FINDINGS
                   Findings-General: SDTMMODEL FINDINGS
-                  Findings About: SDTMMODEL FINDINGS ABOUT
-                  Findings About-General: SDTMMODEL FINDINGS ABOUT
-                  Relationship: SDTMMODEL RELATIONSHIP 
-                  Trial Design: SDTMMODEL TRIAL DESIGN 
-                  Associated Persons: SDTMMODEL ASSOCIATED PERSONS
+                condition:
+                  column: 3
+                  method: column_blank?
               -
                 method: set_property
                 object: parent
@@ -264,18 +285,30 @@ defaults: &defaults
                   Events-General: SDTMMODEL EVENTS
                   Interventions: SDTMMODEL INTERVENTIONS
                   Interventions-General: SDTMMODEL INTERVENTIONS
-                  Special Purpose: SDTMMODEL SPECIAL PURPOSE 
-                  Special-Purpose: SDTMMODEL SPECIAL PURPOSE
                   Findings: SDTMMODEL FINDINGS
                   Findings-General: SDTMMODEL FINDINGS
-                  Findings About: SDTMMODEL FINDINGS ABOUT
-                  Findings About-General: SDTMMODEL FINDINGS ABOUT
-                  Relationship: SDTMMODEL RELATIONSHIP 
-                  Trial Design: SDTMMODEL TRIAL DESIGN 
-                  Associated Persons: SDTMMODEL ASSOCIATED PERSONS
+                condition:
+                  column: 3
+                  method: column_blank?
           -
             label: "Domain Prefix" 
-            actions: []
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map: {}
+                condition:
+                  column: 3
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition:
+                  column: 3
+                  method: column_not_blank?
           -
             label: "Variable Name\n(minus domain prefix)"  
             actions: []
@@ -336,6 +369,7 @@ defaults: &defaults
                 method: set_property_with_tag
                 object: child
                 property: classified_as
+                can_be_empty: true
                 additional:
                   path:
                     - "CDISC"
@@ -343,6 +377,7 @@ defaults: &defaults
                     - "Variable"
                     - "Classification"
                 map:
+                  "": None
                   Identifier: Identifier
                   Topic: Topic
                   Timing: Timing
@@ -356,6 +391,7 @@ defaults: &defaults
                 method: set_property_with_tag
                 object: child
                 property: classified_as
+                can_be_empty: true
                 additional:
                   path:
                     - "CDISC"
@@ -364,6 +400,7 @@ defaults: &defaults
                     - "Classification"
                     - "Qualifier"
                 map:
+                  "": None
                   Identifier: Identifier
                   Topic: Topic
                   Timing: Timing
@@ -2878,9 +2915,11 @@ test:
           selection:
             label: Sheet1
           row:
-            condition:
-              method: column_affirmative?
-              column: 3
+            conditions:
+              -
+                - 
+                  method: column_affirmative?
+                  column: 3
           sheet:
             header_row: []
           columns: []
