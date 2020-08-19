@@ -11,10 +11,13 @@ class CanonicalReference < IsoConceptV2
 
   data_property :definition
   data_property :bridg
+  data_property :sdtm
  
   validates_with Validator::Field, attribute: :definition, method: :valid_label?
   validates_with Validator::Field, attribute: :bridg, method: :valid_label?
+  validates_with Validator::Field, attribute: :sdtm, method: :valid_sdtm_variable_name_no_prefix?
   validates :definition, presence: true
   validates :bridg, presence: true
+  validates :sdtm, presence: true
   
 end

@@ -318,7 +318,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: SdtmModel::Variable
+                klass: SdtmClass::Variable
               -
                 method: set_property
                 object: child
@@ -329,6 +329,13 @@ defaults: &defaults
                 property: prefixed
                 additional:
                   regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
           -
             label: "Seq. For Order"
             actions:
@@ -420,97 +427,6 @@ defaults: &defaults
           -
             label: "Core"
             actions: []
-
-          #   label: "Data Structure Name"
-          #   actions:
-          #     -
-          #       method: create_parent
-          #       object: parent
-          #       klass: AdamIgDataset
-          #       map:
-          #         SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
-          #         BASIC DATA STRUCTURE: ADAMIG BDS
-          #     -
-          #       method: set_property
-          #       object: parent
-          #       property: label
-          #       map:
-          #         SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
-          #         BASIC DATA STRUCTURE: Basic Data Structure
-          # -
-          #   label: "Dataset Name"
-          #   actions: []
-          # -
-          #   label: "Variable Group"
-          #   actions: []
-          # -
-          #   label: "Variable Name"
-          #   actions:
-          #     -
-          #       method: create_child
-          #       object: child
-          #       klass: AdamIgDataset::Variable
-          #       map: {}
-          #     -
-          #       method: ordinal
-          #       object: child
-          #       property: ordinal
-          #       map: {}
-          #     -
-          #       method: set_property
-          #       object: child
-          #       property: name
-          #       map: {}
-          # -
-          #   label: "Variable Label"
-          #   actions:
-          #     -
-          #       method: set_property
-          #       object: child
-          #       property: label
-          #       map: {}
-          # -
-          #   label: "Type"
-          #   actions:
-          #     -
-          #       method: create_classification
-          #       object: child
-          #       property: datatype
-          #       map:
-          #         Char: Character
-          #         Num: Numeric
-          # -
-          #   label: "Codelist/Controlled Terms"
-          #   actions:
-          #     -
-          #       method: ct_reference
-          #       object: child
-          #       property: ct
-          #       map: {}
-          #     -
-          #       method: ct_other
-          #       object: child
-          #       property: ct_notes
-          #       map: {}
-          # -
-          #   label: "Core"
-          #   actions:
-          #     -
-          #       method: create_classification
-          #       object: child
-          #       property: compliance
-          #       map:
-          #         Req: Required
-          #         Perm: Permissible
-          #         Cond: Conditional
-          # -
-          #   label: "CDISC Notes"
-          #   actions:
-          #     -
-          #       method: set_property
-          #       object: child
-          #       property: notes
-          #       map: {}
         version_2:
           selection:
             label: SDTM
@@ -621,7 +537,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: SdtmModel::Variable
+                klass: SdtmClass::Variable
               -
                 method: set_property
                 object: child
@@ -632,6 +548,13 @@ defaults: &defaults
                 property: prefixed
                 additional:
                   regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
           -
             label: "Seq. For Order"
             actions:
@@ -832,7 +755,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: SdtmModel::Variable
+                klass: SdtmClass::Variable
               -
                 method: set_property
                 object: child
@@ -843,6 +766,13 @@ defaults: &defaults
                 property: prefixed
                 additional:
                   regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
           -
             label: "Variable Order"
             actions:

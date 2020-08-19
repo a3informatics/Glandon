@@ -6,8 +6,6 @@
 # @attr_reader [Pathname] classification the classifications found
 class Excel::Engine
 
-  C_CLASS_NAME = self.name
-
   extend ActiveModel::Naming
 
   attr_reader :parent_set, :classifications, :tags
@@ -62,7 +60,7 @@ class Excel::Engine
             end
           rescue => e
             msg = "Exception raised when processing action '#{action}' on row #{row} column #{col}."
-            ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
+            ConsoleLogger::log(self.class.name, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
             @errors.add(:base, msg)
           end
         end
@@ -88,7 +86,7 @@ class Excel::Engine
   # @return [Boolean] true if the condition is met, false otherwise
   def process_row?(sheet_logic, row)
     conditions = sheet_logic.dig(:row, :conditions) 
-    return true if conditions.empty? # No conditions present
+    return true if conditions.blank? # No conditions present
     conditions.each do |condition|
       result = true
       condition.each do |element|
@@ -252,7 +250,7 @@ class Excel::Engine
   # @option params [Integer] :col the cell column
   # @option params [Object] :object the object in which the property is being set
   # @option params [Hash] :map the mapping from spreadsheet values to internal values
-  # @option params [Hash] :additonal hash containing the tag path
+  # @option params [Hash] :additional hash containing the tag path
   # @return [Void] no return
   def set_column_tag(params)
     check_params(__method__.to_s, params, [:row, :col, :map, :object, :can_be_empty, :additional])
@@ -335,8 +333,27 @@ class Excel::Engine
     value = params[:map].blank? ? check_value(params[:row], params[:col], false) : check_mapped(params[:row], params[:col], params[:map])
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
-    return if tag.nil?
+    return if tag.blank?
     property_set_value(params[:object], params[:property], tag)
+  end
+
+  # Set Property With Reference. Set a property to a canonical reference
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Hash] :additonal hash containing the reference field to search on 
+  # @return [Void] no return
+  def set_property_with_reference(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :additional])
+    value = params[:map].blank? ? check_value(params[:row], params[:col], false) : check_mapped(params[:row], params[:col], params[:map])
+    return if value.blank?
+    ref = CanonicalReference.where({params[:additional][:search] => value})
+    return if ref.blank?
+    property_set_value(params[:object], params[:property], ref.first)
   end
 
   # Tokenize And Set Property

@@ -25,12 +25,6 @@
   rdfs:subClassOf bo:Component ;
   skos:definition "A tabulation. A set of columns."^^xsd:string ;
 .
-:SdtmModelVariable
-  rdf:type owl:Class ;
-  rdfs:label "SDTM Model variable"^^xsd:string ;
-  rdfs:subClassOf :Column ;
-  skos:definition "A SDTM CDISC model variable. Building block for a class variable (shared across classes)."^^xsd:string ;
-.
 :SdtmClass
   rdf:type owl:Class ;
   rdfs:label "SDTM Class"^^xsd:string ;
@@ -85,14 +79,6 @@
   rdfs:subClassOf bo:Collection ;
   skos:definition "A document published as a therapuetic area user guide."^^xsd:string ;
 .
-:includesVariable
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Includes variable relationship"^^xsd:string ;
-  rdfs:domain :Model ;
-  rdfs:range :SdtmModelVariable ;
-  skos:definition "Relationship to relate tabulations with the containing document/standard."^^xsd:string ;
-.
 :includesColumn
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -109,14 +95,6 @@
   rdfs:range :SdtmClass ;
   skos:definition "Notes which domain class a domain is based on."^^xsd:string ;
 .
-:basedOnModelVariable
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:label "Based on model variable relationship"^^xsd:string ;
-  rdfs:domain :SdtmClassVariable ;
-  rdfs:range :SdtmModelVariable ;
-  skos:definition "Notes which domain class variable a variable is based on."^^xsd:string ;
-.
 :basedOnClassVariable
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -129,7 +107,7 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Classified as relationship"^^xsd:string ;
-  rdfs:domain  :SdtmModelVariable ;
+  rdfs:domain  :SdtmClassVariable ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable classification."^^xsd:string ;
 .
@@ -137,7 +115,7 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Type as relationship"^^xsd:string ;
-  rdfs:domain  :SdtmModelVariable ;
+  rdfs:domain  :SdtmClassVariable ;
   rdfs:range isoC:Concept ;
   skos:definition "The variable datatype."^^xsd:string ;
 .
@@ -184,7 +162,7 @@
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
   rdfs:domain  [ a owl:Class ;
-    owl:unionOf (:SdtmModelVariable :SdtmDomainVariable)
+    owl:unionOf (:SdtmClassVariable :SdtmDomainVariable)
     ] ;
   rdfs:range xsd:string ;
   skos:definition "The variable name."^^xsd:string ;
@@ -194,7 +172,7 @@
   rdfs:label "Variable prefixed."^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :SdtmModelVariable ;
+  rdfs:domain :SdtmClassVariable ;
   rdfs:range xsd:boolean ;
   skos:definition "Boolean indicating if the variable is prefixed with the domain code."^^xsd:string ;
 .
@@ -203,7 +181,7 @@
   rdfs:label "Variable description."^^xsd:string ;
   rdfs:subPropertyOf isoC:property ;
   rdf:type owl:FunctionalProperty ;
-  rdfs:domain :SdtmModelVariable ;
+  rdfs:domain :SdtmClassVariable ;
   rdfs:range xsd:string ;
   skos:definition "Description of the variable."^^xsd:string ;
 .

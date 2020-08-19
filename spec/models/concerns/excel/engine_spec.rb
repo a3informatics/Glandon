@@ -428,15 +428,15 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
     expect(child.tagged).to eq([])
     child = ChildClass.new
-    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Z: "tag_1"}, additional: {path: ["X", "Y"]}})
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'Yes' error detected in row 3 column 1.")
     expect(child.tagged).to eq([])
     parent.errors.clear
     child = ChildClass.new
     result = object.set_column_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
-    expect(parent.errors.count).to eq(3)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1., Empty cell detected in row 4 column 1., and Mapping of '' error detected in row 4 column 1.")
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Mapping of '' error detected in row 4 column 1.")
     expect(child.tagged).to eq([])
     parent.errors.clear
     child = ChildClass.new
@@ -496,8 +496,8 @@ describe Excel::Engine do
   #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "process_parent_expected_3.yaml")
     expect(result).to eq(expected)
-    expect(parent.errors.count).to eq(2)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 6 column 1. and Mapping of '' error detected in row 6 column 1.")
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Mapping of '' error detected in row 6 column 1.")
   end
 
   it "creates child" do
@@ -641,13 +641,13 @@ describe Excel::Engine do
     child = ChildClass.new
     object.set_property_with_regex({row: 2, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq(true)
+    expect(child.label).to eq("true") # Label results look odd but mapped to string not boolean
     object.set_property_with_regex({row: 3, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq(false)
+    expect(child.label).to eq("false")
     object.set_property_with_regex({row: 4, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq(false)
+    expect(child.label).to eq("false")
     object.set_property_with_regex({row: 5, col: 1, object: child, map: {}, property: "label", additional: {regex: "^--"}})
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
@@ -660,23 +660,40 @@ describe Excel::Engine do
     parent = EET2Class.new
     object = Excel::Engine.new(parent, workbook) 
     child = ChildClass.new
-    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
-    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return({tag: "B"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return("A")
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return("B")
     expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_4"]).and_return(nil)
     object.set_property_with_tag({row: 2, col: 1, object: child, map: {Y: "tag_1"}, property: "label", additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq({:tag=>"A"})
+    expect(child.label).to eq("A")
     object.set_property_with_tag({row: 3, col: 1, object: child, map: {Y: "tag_1", Z: "tag_2"}, property: "label", additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
-    expect(child.label).to eq({:tag=>"B"})
-    #child.label = nil
+    expect(child.label).to eq("B")
+    child.label = nil
     object.set_property_with_tag({row: 3, col: 1, object: child, map: {Y: "tag_3", Z: "tag_4"}, property: "label", additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(false)
     expect(child.label).to eq(nil)
     object.set_property_with_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, property: "label", additional: {path: ["X", "Y"]}})
     expect(parent.errors.any?).to eq(true)
-    expect(parent.errors.count).to eq(2)
-    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1. and Mapping of '' error detected in row 4 column 1.")
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Mapping of '' error detected in row 4 column 1.")
+  end
+
+  it "property with reference" do
+    full_path = test_file_path(sub_dir, "property_with_reference_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    expect(CanonicalReference).to receive(:where).with({"sdtm" => "Y"}).and_return(["result"])
+    expect(CanonicalReference).to receive(:where).with({"sdtm" => "Z"}).and_return([])
+    object.set_property_with_reference({row: 2, col: 1, object: child, map: {}, property: "label", additional: {search: "sdtm"}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq("result")
+    child.label = nil
+    object.set_property_with_reference({row: 3, col: 1, object: child, map: {}, property: "label", additional: {search: "sdtm"}})
+    expect(parent.errors.any?).to eq(false)
+    expect(child.label).to eq(nil)
   end
 
   it "checks valid" do
@@ -818,16 +835,16 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    object.ct_reference({row: 2, col: 3, object: @child_object, map: {}, property: "ct"})
-    expect(@child_object.ct).to eq("X1X")
-    object.ct_reference({row: 3, col: 3, object: @child_object, map: {}, property: "ct"})
-    expect(@child_object.ct).to eq("")
-    object.ct_reference({row: 4, col: 3, object: @child_object, map: {}, property: "ct"})
-    expect(@child_object.ct).to eq("")
-    object.ct_reference({row: 5, col: 3, object: @child_object, map: {}, property: "ct"})
-    expect(@child_object.ct).to eq("")
-    object.ct_reference({row: 6, col: 3, object: @child_object, map: {}, property: "ct"})
-    expect(@child_object.ct).to eq("")
+    object.ct_reference({row: 2, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("X1X")
+    object.ct_reference({row: 3, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("")
+    object.ct_reference({row: 4, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("")
+    object.ct_reference({row: 5, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("")
+    object.ct_reference({row: 6, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("")
   end
 
   it "returns the CT Other information" do
@@ -835,14 +852,14 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    object.ct_other({row: 2, col: 3, object: @child_object, map: {}, property: "ct_notes"})
-    expect(@child_object.ct_notes).to eq("")
-    object.ct_other({row: 3, col: 3, object: @child_object, map: {}, property: "ct_notes"})
-    expect(@child_object.ct_notes).to eq("(X1")
-    object.ct_other({row: 4, col: 3, object: @child_object, map: {}, property: "ct_notes"})
-    expect(@child_object.ct_notes).to eq("X1)")
-    object.ct_other({row: 5, col: 3, object: @child_object, map: {}, property: "ct_notes"})
-    expect(@child_object.ct_notes).to eq("X1")
+    object.ct_other({row: 2, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("")
+    object.ct_other({row: 3, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("(X1")
+    object.ct_other({row: 4, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("X1)")
+    object.ct_other({row: 5, col: 3, object: @child_object, map: {}, property: "label"})
+    expect(@child_object.label).to eq("X1")
   end
 
   it "returns the sheet info, I" do

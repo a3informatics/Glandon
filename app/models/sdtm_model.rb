@@ -3,8 +3,6 @@ class SdtmModel < ManagedCollection
   configure rdf_type: "http://www.assero.co.uk/Tabulation#Model",
             uri_suffix: "M"
   
-  object_property :includes_variable, cardinality: :many, model_class: "SdtmModel::Variable"
-
   C_IDENTIFIER = "SDTM MODEL"
 
   @@cdisc_ra = nil

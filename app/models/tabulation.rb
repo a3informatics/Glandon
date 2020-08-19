@@ -13,7 +13,7 @@ class Tabulation < IsoManagedV2
   object_property :includes_column, cardinality: :many, model_class: "Tabulation::Column", 
     model_classes: 
       [ 
-        "SdtmClass::Variable", "SdtmModel::Variable"
+        "SdtmClass::Variable"
       ],
     children: true
 
