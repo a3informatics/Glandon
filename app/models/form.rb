@@ -21,39 +21,38 @@ class Form < IsoManagedV2
     return results
   end
 
-  # Create a placeholder form
-  #
-  # @param params [hash] {identifier:, :label, :freeText} The operational hash
-  # @return [oject] The form object. Valid if no errors set.
-  # def self.create_placeholder(params)
-  #   object = self.new
-  #   #object.scopedIdentifier.identifier = params[:identifier]
-  #   object.initial_scope_and_state(params)
-  #   object.label = params[:label]
-  #   group = Form::Group::Normal.new
-  #   group.label = "Placeholder Group"
-  #   group.ordinal = 1
-  #   item = Form::Item::Placeholder.new
-  #   item.label = "Placeholder"
-  #   item.free_text = params[:freeText]
-  #   item.ordinal = 1
-  #   object.children << group
-  #   group.children << item
-  #   object = Form.create(object.to_operation)
-  #   return object
-  # end
+  def to_crf
+    form = self.class.find_full(self.uri)
+    html = ""
+    html += '<table class="table table-striped table-bordered table-condensed">'
+    html += '<tr>'
+    html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
+    # if options[:annotate]
+    #   html += '<td>' 
+    #   domains = annotations.uniq {|entry| entry[:domain_prefix] }
+    #   domains.each_with_index do |domain, index|
+    #     domain_annotation = domain[:domain_prefix]
+    #     if !domain[:domain_long_name].empty?
+    #       domain_annotation += "=" + domain[:domain_long_name]
+    #     end
+    #     class_suffix = index < C_DOMAIN_CLASS_COUNT ? "#{index + 1}" : "other"
+    #     class_name = "domain-#{class_suffix}"
+    #     html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
+    #     domain[:class] = class_name
+    #     @domain_map[domain[:domain_prefix]] = domain
+    #   end
+    #   html += '</td>'
+    # else
+    #   html += empty_cell
+    # end
+    html += '</tr>'
+    form.has_group.sort_by {|x| x.ordinal}.each do |group|
+      html += group.to_crf
+    end
+    html += '</table>'
+    return html
+  end
 
-  # # Create Simple
-  # #
-  # # @param params
-  # def self.create_simple(params)
-  #   object = self.new
-  #   # object.scopedIdentifier.identifier = params[:identifier]
-  #   object.initial_scope_and_state(params)
-  #   object.label = params[:label]
-  #   object = Form.create(object.to_operation)
-  #   return object
-  # end
 
   # To XML (ODM)
   #
@@ -90,7 +89,16 @@ class Form < IsoManagedV2
 #     return annotations
 #   end
 
-# private
+private
+  
+  def start_row(optional)
+    return '<tr class="warning">' if optional
+    return '<tr>'
+  end
+
+  def end_row
+    return "</tr>"
+  end
 
 #   def bc_annotations()
 #     results = Array.new

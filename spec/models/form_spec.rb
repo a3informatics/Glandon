@@ -86,6 +86,22 @@ describe Form do
 
   end
 
+  describe "CRF Tests" do
+    
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "to crf" do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      check_file_actual_expected(form.to_crf, sub_dir, "to_crf_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+  end
+
   describe "Path Tests" do
 
     it "returns read path" do
