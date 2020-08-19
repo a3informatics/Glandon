@@ -37,4 +37,10 @@ class Form::Group < IsoConceptV2
 #     end
 #   end
 
+private
+  
+  def text_row(text)
+    return "<tr><td colspan=\"3\"><h5>#{text}</h5></td></tr>"
+  end
+
 end

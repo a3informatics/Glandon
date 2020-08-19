@@ -16,14 +16,16 @@ class Form::Item::Mapping < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
-  # # To XML
-  # #
-  # # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-  # # @param [Nokogiri::Node] form_def the ODM FormDef node
-  # # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-  # # @return [void]
-  # def to_xml(metadata_version, form_def, item_group_def)
-  #   # Do nothing currently
-  # end
+  def to_crf
+    html = ""
+    html += mapping_row(self.mapping) #if options[:annotate]
+    return html
+  end
 
- end
+private
+  
+  def mapping_row(mapping)
+    return "<tr><td>#{mapping}</td><td colspan=\"2\"></td></tr>"
+  end
+
+end

@@ -27,6 +27,25 @@ class Form::Item::BcProperty < Form::Item
     return item
   end
 
+  def to_crf
+    if !self.is_common
+        property_ref = node[:property_ref][:subject_ref]
+        property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
+        node = property.to_json.merge(node)
+        node[:datatype] = node[:simple_datatype]
+        html += start_row(node[:optional])
+        html += question_cell(node[:question_text])
+        pa = property_annotations(node[:id], annotations, options)
+        html += mapping_cell(pa, options)
+        if node[:children].length == 0
+          html += input_field(node, annotations)
+        else
+          html += terminology_cell(node, annotations, options)
+        end
+        html += end_row
+    end
+  end
+
 #   # To XML
 #   #
 #   # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node

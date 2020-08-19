@@ -15,6 +15,10 @@ class Form::Item::Placeholder < Form::Item
     blank_fields = {datatype:"", format:"", question_text:"", mapping:"", label_text:"", has_coded_value: [], has_property: []}
     return self.to_h.merge!(blank_fields)
   end
+
+  def to_crf
+    html += markdown_row(self.free_text)
+  end
  
   # To XML
   #

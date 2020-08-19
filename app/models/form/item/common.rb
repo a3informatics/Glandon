@@ -14,6 +14,34 @@ class Form::Item::Common < Form::Item
     return self.to_h.merge!(blank_fields)
   end
 
+  def to_crf
+    pa = ""
+    uris = []
+    node[:item_refs].each { |ref| uris << UriV2.new({:id => ref[:id], :namespace => ref[:namespace]}).to_s } # order to make test result predictable
+    uris.sort!
+    uris.each do |uri| 
+      if @common_map.has_key?(uri)
+        other_node = @common_map[uri]
+        pa += property_annotations(other_node[:id], annotations, options)
+        node[:datatype] = other_node[:simple_datatype]
+        node[:question_text] = other_node[:question_text]
+        node[:format] = other_node[:format]
+        node[:children] = other_node[:children]
+      else
+        node[:children] = []
+      end
+    end
+    html += start_row(node[:optional])
+    html += question_cell(node[:question_text])
+    html += mapping_cell(pa, options)
+    if node[:children].length == 0
+      html += input_field(node, annotations)
+    else
+      html += terminology_cell(node, annotations, options)
+    end
+    html += end_row
+  end
+
 #   # To XML
 #   #
 #   # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
