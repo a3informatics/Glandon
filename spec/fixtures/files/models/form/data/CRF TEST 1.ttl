@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-08-20T12:55:07+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-20T13:19:43+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -177,6 +177,7 @@
 	bf:hasItem :F_NG2_NG3_BP2 ;
 	bf:hasItem :F_NG2_NG3_BP1 ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG3_R1 ;
 .
 :F_NG2_NG3_BP3
 	rdf:type bf:BcProperty ;
@@ -276,6 +277,14 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
 .
+:F_NG2_NG3_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347> ;
+.
 :F_NG2_NG2
 	rdf:type bf:NormalGroup ;
 	isoC:label "Weight (BC C25208)"^^xsd:string ;
@@ -287,6 +296,7 @@
 	bf:hasItem :F_NG2_NG2_BP2 ;
 	bf:hasItem :F_NG2_NG2_BP1 ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG2_R1 ;
 .
 :F_NG2_NG2_BP3
 	rdf:type bf:BcProperty ;
@@ -386,6 +396,14 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
 .
+:F_NG2_NG2_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25208> ;
+.
 :F_NG2_NG1
 	rdf:type bf:NormalGroup ;
 	isoC:label "Temperature (BC C25206)"^^xsd:string ;
@@ -397,6 +415,7 @@
 	bf:hasItem :F_NG2_NG1_BP3 ;
 	bf:hasItem :F_NG2_NG1_BP2 ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG2_NG1_R1 ;
 .
 :F_NG2_NG1_BP1
 	rdf:type bf:BcProperty ;
@@ -463,6 +482,14 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value> ;
 .
+:F_NG2_NG1_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> ;
+.
 :F_NG1
 	rdf:type bf:NormalGroup ;
 	isoC:label "BC Group"^^xsd:string ;
@@ -517,6 +544,7 @@
 	bf:hasItem :F_NG1_NG3_BP1 ;
 	bf:hasItem :F_NG1_NG3_BP4 ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG1_NG3_R1 ;
 .
 :F_NG1_NG3_BP3
 	rdf:type bf:BcProperty ;
@@ -634,6 +662,14 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
+:F_NG1_NG3_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299> ;
+.
 :F_NG1_NG2
 	rdf:type bf:NormalGroup ;
 	isoC:label "Systolic Blood Pressure (BC C25298)"^^xsd:string ;
@@ -646,6 +682,7 @@
 	bf:hasItem :F_NG1_NG2_BP2 ;
 	bf:hasItem :F_NG1_NG2_BP1 ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasBiomedicalConcept :F_NG1_NG2_R1 ;
 .
 :F_NG1_NG2_BP4
 	rdf:type bf:BcProperty ;
@@ -762,4 +799,12 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+.
+:F_NG1_NG2_R1
+	rdf:type bo:Reference ;
+	isoC:label "BC Reference"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298> ;
 .
