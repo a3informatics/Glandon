@@ -24,14 +24,6 @@ class Form::Item::Question < Form::Item
     blank_fields = {free_text:"", label_text:"", has_property: []}
     item = self.to_h.merge!(blank_fields)
     item[:has_coded_value] = coded_values_to_hash(self.has_coded_value)
-    # self.has_coded_value.each do |cv|
-    #   ref = cv.to_h
-    #   ref[:reference] = Thesaurus::ManagedConcept.find(cv.reference).to_h
-    #   parent = Thesaurus::ManagedConcept.find_with_properties(cv.context)
-    #   ref[:context] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
-    #   coded_value << ref
-    # end
-    # item[:has_coded_value] = coded_value
     return item
   end
 
@@ -51,10 +43,12 @@ class Form::Item::Question < Form::Item
     html += end_row
   end
 
-private
-  
   def question_cell(text)
     return "<td>#{text}</td>"
   end
+
+private
+  
+
 
 end

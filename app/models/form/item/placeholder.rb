@@ -17,7 +17,9 @@ class Form::Item::Placeholder < Form::Item
   end
 
   def to_crf
+    html = ""
     html += markdown_row(self.free_text)
+    return html
   end
  
   # To XML

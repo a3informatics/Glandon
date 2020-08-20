@@ -13,14 +13,10 @@ class Form::Group::Common < Form::Group
     return html
   end
 
-#   # To XML
-#   #
-#   # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
-#   # @param [Nokogiri::Node] form_def the ODM FormDef node
-#   # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
-#   # @return [void]
-#   def to_xml(metadata_version, form_def)
-#     super(metadata_version, form_def)
-#   end
+  def build_common_map
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
+      item.build_common_map
+    end
+  end
 
 end
