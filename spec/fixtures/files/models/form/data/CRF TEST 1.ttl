@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-08-19T11:55:49+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-20T12:55:07+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -185,6 +185,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG3_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_NG3_BP3_TUC1 ;
 	bf:hasCodedValue :F_NG2_NG3_BP3_TUC2 ;
@@ -246,6 +247,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG3_BP2_R1 ;
 .
 :F_NG2_NG3_BP2_R1
@@ -263,6 +265,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG3_BP1_R1 ;
 .
 :F_NG2_NG3_BP1_R1
@@ -292,6 +295,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG2_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_NG2_BP3_TUC1 ;
 	bf:hasCodedValue :F_NG2_NG2_BP3_TUC2 ;
@@ -353,6 +357,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG2_BP2_R1 ;
 .
 :F_NG2_NG2_BP2_R1
@@ -370,6 +375,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG2_BP1_R1 ;
 .
 :F_NG2_NG2_BP1_R1
@@ -399,6 +405,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG1_BP1_R1 ;
 .
 :F_NG2_NG1_BP1_R1
@@ -416,6 +423,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG1_BP3_R1 ;
 	bf:hasCodedValue :F_NG2_NG1_BP3_TUC1 ;
 .
@@ -444,6 +452,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG2_NG1_BP2_R1 ;
 .
 :F_NG2_NG1_BP2_R1
@@ -462,8 +471,39 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:repeating "false"^^xsd:boolean ;
+	bf:hasCommon :F_NG1_CG ;
 	bf:hasSubGroup :F_NG1_NG3 ;
 	bf:hasSubGroup :F_NG1_NG2 ;
+.
+:F_NG1_CG
+	rdf:type bf:CommonGroup ;
+	isoC:label "Common Group"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "Not Set"^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :F_NG1_CG_CI2 ;
+	bf:hasItem :F_NG1_CG_CI1 ;
+.
+:F_NG1_CG_CI2
+	rdf:type bf:CommonItem ;
+	isoC:label "Body Position (--POS)"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code> ;
+	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code> ;
+.
+:F_NG1_CG_CI1
+	rdf:type bf:CommonItem ;
+	isoC:label "Date and Time (--DTC)"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
+	bf:hasCommonItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value> ;
 .
 :F_NG1_NG3
 	rdf:type bf:NormalGroup ;
@@ -485,6 +525,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP3_R1 ;
 .
 :F_NG1_NG3_BP3_R1
@@ -502,6 +543,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG3_BP2_TUC1 ;
 	bf:hasCodedValue :F_NG1_NG3_BP2_TUC2 ;
@@ -552,6 +594,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP1_R1 ;
 .
 :F_NG1_NG3_BP1_R1
@@ -569,6 +612,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG3_BP4_R1 ;
 	bf:hasCodedValue :F_NG1_NG3_BP4_TUC1 ;
 .
@@ -610,6 +654,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP4_R1 ;
 	bf:hasCodedValue :F_NG1_NG2_BP4_TUC1 ;
 .
@@ -638,6 +683,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "false"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP3_R1 ;
 .
 :F_NG1_NG2_BP3_R1
@@ -655,6 +701,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP2_R1 ;
 	bf:hasCodedValue :F_NG1_NG2_BP2_TUC1 ;
 	bf:hasCodedValue :F_NG1_NG2_BP2_TUC2 ;
@@ -705,6 +752,7 @@
 	bf:note ""^^xsd:string ;
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
+	bf:isCommon "true"^^xsd:boolean ;
 	bf:hasProperty :F_NG1_NG2_BP1_R1 ;
 .
 :F_NG1_NG2_BP1_R1
