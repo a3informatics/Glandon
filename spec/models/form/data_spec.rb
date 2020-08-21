@@ -130,7 +130,7 @@ describe Form do
 
     def query_items(group)
       query_string = %Q{
-        SELECT ?i ?l ?c ?n ?o ?ordinal ?format ?mapping ?question_text ?free_text ?is_common ?datatype ?common_item ?type WHERE
+        SELECT ?i ?l ?c ?n ?o ?ordinal ?format ?mapping ?question_text ?free_text ?label_text ?is_common ?datatype ?common_item ?type WHERE
         {
           #{group[:g].to_ref} <http://www.assero.co.uk/BusinessForm#hasItem> ?i .
           ?i <http://www.w3.org/2000/01/rdf-schema#label> ?l .
@@ -174,12 +174,13 @@ describe Form do
           OPTIONAL 
           {
             ?i <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#TextLabel> .
+            ?i <http://www.assero.co.uk/BusinessForm#label_text> ?label_text .
             BIND ("TextLabel" as ?type)
           }  
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [])
-      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :format, :mapping, :question_text, :free_text, :is_common, :datatype, :common_item, :type ])
+      query_results.by_object_set([:i, :l, :c, :n, :o, :ordinal, :format, :mapping, :question_text, :free_text, :label_text, :is_common, :datatype, :common_item, :type ])
     end
 
     def query_tc(item)
@@ -329,6 +330,16 @@ describe Form do
               has_common_item: params[:common_item]
             }
           group[:has_item] << Form::Item::Common.from_h(item)
+        when :TextLabel
+          item =  {
+              label: params[:l].blank? ? "Not Set" : params[:l],
+              completion: params[:c].blank? ? "Not Set" : params[:c],
+              note: params[:n],
+              optional: params[:o],
+              ordinal: params[:ordinal],
+              label_text: params[:label_text]
+            }
+          group[:has_item] << Form::Item::TextLabel.from_h(item)
       end
     end
 

@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-08-20T13:19:43+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-21T10:35:29+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -107,6 +107,7 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:hasItem :F_NG3_PL5 ;
+	bf:hasItem :F_NG3_TL4 ;
 	bf:hasItem :F_NG3_MA3 ;
 	bf:hasItem :F_NG3_Q1 ;
 	bf:hasItem :F_NG3_Q2 ;
@@ -120,6 +121,15 @@
 	bf:completion "Not Set"^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:freeText "This is *placeholder* text"^^xsd:string ;
+.
+:F_NG3_TL4
+	rdf:type bf:TextLabel ;
+	isoC:label "Label Text 4"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion "Not Set"^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:labelText "This is **free** label text"^^xsd:string ;
 .
 :F_NG3_MA3
 	rdf:type bf:Mapping ;
