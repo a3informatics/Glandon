@@ -18,7 +18,7 @@ class Form::Item::Mapping < Form::Item
 
   def to_crf
     html = ""
-    html += mapping_row(self.mapping) #if options[:annotate]
+    #html += mapping_row(self.mapping) #if options[:annotate]
     return html
   end
 

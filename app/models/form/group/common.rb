@@ -7,7 +7,7 @@ class Form::Group::Common < Form::Group
   def to_crf
     html = ""
     html += text_row(self.label)
-    self.has_item.each do |item|
+    self.has_item.sort_by {|x| x.ordinal}.each do |item|
       html += item.to_crf
     end
     return html
