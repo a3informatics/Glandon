@@ -1,11 +1,11 @@
 defaults: &defaults
   imports: &default_imports
-    # cdisc_adam_ig:
-    #   title: CDISC ADaM Implementation Guide Import - Excel
-    #   background: true
-    #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
-    #   link_text: "Import CDISC ADaM IG"
-    #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_adam_ig:
+      title: CDISC ADaM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
     cdisc_sdtm_model:
       title: CDISC SDTM Model Import - Excel
       background: true
@@ -1209,9 +1209,15 @@ defaults: &defaults
             label: "Type"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
-                property: datatype
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
                 map:
                   Char: Character
                   Num: Numeric
@@ -1232,13 +1238,20 @@ defaults: &defaults
             label: "Core"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
                 property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
                 map:
                   Req: Required
-                  Perm: Permissible
                   Cond: Conditional
+                  Perm: Permissible
           -
             label: "CDISC Notes"
             actions:

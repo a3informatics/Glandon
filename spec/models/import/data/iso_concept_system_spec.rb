@@ -109,7 +109,7 @@ describe IsoConceptSystem do
       delete_all_public_test_files
     end
 
-    it "migration 2, add SDTM tags" do
+    it "migration 2, add SDTM / ADaM tags" do
       cs = IsoConceptSystem.root
       cdisc = IsoConceptSystem.path(["CDISC"])
       sdtm_std = add_node({label: "SDTM-STD", description: "Information relating to the internal structure of the SDTM standard."}, cdisc)
@@ -134,6 +134,13 @@ describe IsoConceptSystem do
       sdtm_std_var_classified_qualifier_synonym = add_node({label: "Synonym", description: "Qualifiers used to specify an alternative name for a particular variable in an observation. Examples include --MODIFY and --DECOD, which are equivalent terms for a --TRT or --TERM Topic variable, and --TEST for --TESTCD."}, sdtm_std_var_classified_qualifier)
       sdtm_std_var_classified_qualifier_record = add_node({label: "Record", description: "Qualifiers used to define additional attributes of the observation record as a whole (rather than describing a particular variable within a record). Examples include --REASND, AESLIFE, and all other SAE flag variables in the AE domain; AGE, SEX, and RACE in the DM domain; and --BLFL, --POS, --LOC, --SPEC, and --NAM in a Findings domain."}, sdtm_std_var_classified_qualifier)
       sdtm_std_var_classified_qualifier_variable = add_node({label: "Variable", description: "Qualifiers used to further modify or describe a specific variable within an observation and are only meaningful in the context of the variable they qualify. Examples include --ORRESU, --ORNRHI, and --ORNRLO, all of which are Variable Qualifiers of --ORRES; and --DOSU, which is a Variable Qualifier of --DOSE."}, sdtm_std_var_classified_qualifier)
+
+      adam_std = add_node({label: "ADAM-STD", description: "Information relating to the internal structure of the ADaM standard."}, cdisc)
+      adam_std_var = add_node({label: "Variable", description: "Information relating to the variables within ADaM."}, adam_std)
+      adam_std_var_compliance = add_node({label: "Compliance", description: "SDTM variable compliance."}, adam_std_var)
+      adam_std_var_compliance_reqd = add_node({label: "Required", description: "The variable must be included in the dataset."}, adam_std_var_compliance)
+      adam_std_var_compliance_cond = add_node({label: "Conditional", description: "The variable must be included in the dataset in certain circumstances."}, adam_std_var_compliance)
+      adam_std_var_compliance_perm = add_node({label: "Permissible", description: " The variable may be included in the dataset, but is not required."}, adam_std_var_compliance)
       
       sparql = Sparql::Update.new
       sparql.default_namespace(cs.uri.namespace)
@@ -141,6 +148,41 @@ describe IsoConceptSystem do
       sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: sdtm_std.uri})
       file = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_2.ttl")
+    end
+
+  end
+
+  describe "Migration Three" do
+
+    before :all do
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "migration 3, add ADaM tags" do
+      cs = IsoConceptSystem.root
+      cdisc = IsoConceptSystem.path(["CDISC"])
+      adam_std = add_node({label: "ADAM-STD", description: "Information relating to the internal structure of the ADaM standard."}, cdisc)
+      adam_std_var = add_node({label: "Variable", description: "Information relating to the variables within ADaM."}, adam_std)
+      adam_std_var_compliance = add_node({label: "Compliance", description: "SDTM variable compliance."}, adam_std_var)
+      adam_std_var_compliance_reqd = add_node({label: "Required", description: "The variable must be included in the dataset."}, adam_std_var_compliance)
+      adam_std_var_compliance_cond = add_node({label: "Conditional", description: "The variable must be included in the dataset in certain circumstances."}, adam_std_var_compliance)
+      adam_std_var_compliance_perm = add_node({label: "Permissible", description: " The variable may be included in the dataset, but is not required."}, adam_std_var_compliance)
+      
+      sparql = Sparql::Update.new
+      sparql.default_namespace(cs.uri.namespace)
+      adam_std.to_sparql(sparql, true)
+      sparql.add({uri: cdisc.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "narrower"}, {uri: adam_std.uri})
+      file = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_3.ttl")
     end
 
   end

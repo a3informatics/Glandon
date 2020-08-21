@@ -48,23 +48,24 @@ describe Import::AdamIg do
       version_label: :semantic_version,
       label: "ADaM Implementation Guide"
     }
-    expect(Import::AdamIg.configuration).to eq(expected)
+    expect(Import::AdamIg.new.configuration).to eq(expected)
   end
 
-  it "import, no errors" # do
- #    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
- #    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "ADaM IG", semantic_version: "1.1.1", job: @job}
- #    result = @object.import(params)
- #    filename = "cdisc_adam_ig_#{@object.id}_errors.yml"
- #    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
- #    filename = "cdisc_adam_ig_#{@object.id}_load.ttl"
- #    expect(public_file_exists?("test", filename)).to eq(true)
- #    copy_file_from_public_files("test", filename, sub_dir)
- #  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
- #    check_ttl(filename, "import_expected_1.txt")
- #    expect(@job.status).to eq("Complete")
- #    delete_data_file(sub_dir, filename)
-	# end
+  it "import, no errors" do
+    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "ADaM IG", semantic_version: "1.1.1", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_adam_ig_#{@object.id}_errors.yml"
+byebug
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    filename = "cdisc_adam_ig_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
+    check_ttl(filename, "import_expected_1.txt")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+	end
 
   it "import, errors" # do
   #   full_path = test_file_path(sub_dir, "import_input_2.xlsx")

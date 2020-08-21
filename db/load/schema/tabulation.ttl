@@ -234,6 +234,15 @@
   rdfs:range xsd:string ;
   skos:definition "Controlled terminology reference for the variable."^^xsd:string ;
 .
+:ctNotes
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "CT Notes"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :ADaMDatasetVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Controlled terminology notes."^^xsd:string ;
+.
 :ctAndFormat
   rdf:type owl:DatatypeProperty ;
   rdfs:label "format"^^xsd:string ;
