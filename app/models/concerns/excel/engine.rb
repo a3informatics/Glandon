@@ -59,6 +59,7 @@ class Excel::Engine
               self.send(action[:method], params)
             end
           rescue => e
+byebug
             msg = "Exception raised when processing action '#{action}' on row #{row} column #{col}."
             ConsoleLogger::log(self.class.name, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
             @errors.add(:base, msg)
@@ -356,6 +357,28 @@ class Excel::Engine
     property_set_value(params[:object], params[:property], ref.first)
   end
 
+  # Set Property With Lookup. Set a property to a lookup from another sheet
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Hash] :additonal hash containing the reference field to search on 
+  # @return [Void] no return
+  def set_property_with_lookup(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :property, :additional])
+    value = check_value(params[:row], params[:col], false)
+    return if value.blank?
+    sheet_index = find_sheet_index(params[:additional][:sheet_name])
+    key_col = find_sheet_column_index(sheet_index, params[:additional][:key_column])
+    value_col = find_sheet_column_index(sheet_index, params[:additional][:value_column])
+    row = sheet_column(sheet_index, key_col).index(value)
+    return if row.nil?
+    property_set_value(params[:object], params[:property], sheet_cell(sheet_index, row + 1, value_col))
+  end
+
   # Tokenize And Set Property
   #
   # @param [Hash] params the parameters hash
@@ -585,6 +608,44 @@ private
     raise Errors::ApplicationLogicError.new("Failed to find column #{column[:label]} in header row definition.")
   end
  
+  # Find Sheet Index
+  def find_sheet_index(name)
+    index = @workbook.sheets.index {|sheet| sheet.include?(name)}
+    return index unless index.nil?
+    Errors::ApplicationLogicError.new("Failed to find sheet name that includes #{name} in workbook.")
+  end
+
+  # Find Sheet Column Index
+  def find_sheet_column_index(sheet_index, name)
+    index = sheet_row(sheet_index, 1).index(name.to_s)
+    return index + 1 unless index.nil?
+    raise Errors::ApplicationLogicError.new("Failed to find column #{name} in header row.")
+  end
+
+  # Sheet Row
+  def sheet_row(sheet_index, row)
+    preserve = @workbook.default_sheet 
+    result = @workbook.sheet(sheet_index).row(row)
+    @workbook.default_sheet = preserve
+    result
+  end
+  
+  # Sheet Column
+  def sheet_column(sheet_index, col)
+    preserve = @workbook.default_sheet 
+    result = @workbook.sheet(sheet_index).column(col)
+    @workbook.default_sheet = preserve
+    result
+  end
+  
+  # Sheet Cell
+  def sheet_cell(sheet_index, row, col)
+    preserve = @workbook.default_sheet 
+    result = @workbook.sheet(sheet_index).cell(row, col)
+    @workbook.default_sheet = preserve
+    result
+  end
+  
   # Remove smart quotes
   def remove_unicode_chars(text)
     text = text.gsub(/[\u2013]/, "-")
