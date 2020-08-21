@@ -6,6 +6,13 @@ class Import::AdamIg < Import
 
   include Import::Utility
   
+  C_V1 = "01/01/1900".to_datetime 
+  C_V2 = "01/01/2019".to_datetime 
+  C_FORMAT_MAP = [
+    {range: (C_V1...C_V2), sheet: :version_1}, 
+    {range: (C_V2...DateTime.now.to_date+1), sheet: :version_2}]
+  C_DEFAULT = :version_2
+
   # Configuration. Sets the parameters for the import
   # 
   # @return [Hash] the configuration hash
@@ -51,9 +58,11 @@ class Import::AdamIg < Import
   # 
   # @return [Symbol] the key
   def format(params)
-    return :main
+    result = C_FORMAT_MAP.select{|x| x[:range].cover?(params[:date].to_datetime)}
+    return C_DEFAULT if result.empty?
+    return result.first[:sheet]
   end
-  
+
 private 
 
   # Read and process the sources
