@@ -20,6 +20,8 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Klass, property: :has_identifier, presence: true
   validates_with Validator::Klass, property: :has_state, presence: true
 
+  include PreviousVersion
+  
   # Version
   #
   # @return [string] The version

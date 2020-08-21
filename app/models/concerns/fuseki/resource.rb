@@ -228,8 +228,14 @@ module Fuseki
         generic_objects?(name)
       end
 
+      # Children properties
       if opts.key?(:children)
         
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          true
+        end
+
         # Define an instance method to return the children
         define_method "children" do
           instance_variable_get("@#{name}")
@@ -254,6 +260,13 @@ module Fuseki
         # Define a class method to get the child predicate
         define_singleton_method "children_predicate" do
           predicate_uri(name)
+        end
+
+      else
+
+        # Define a class method to return if children predicate exists
+        define_singleton_method "children_predicate?" do
+          false
         end
 
       end

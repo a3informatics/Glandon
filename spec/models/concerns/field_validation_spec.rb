@@ -213,6 +213,48 @@ describe FieldValidation do
     expect(object.errors.count).to eq(0)
   end
 
+  it "checks a valid SDTM variable with no prefix, --ORRES" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name_no_prefix?(:test, "--ORRES", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid SDTM variable with no prefix, --ORRES1" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name_no_prefix?(:test, "--ORRES1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks an invalid SDTM variable with no prefix, --XXXXXXX" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "--XXXXXXX", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable with no prefix, -XXXXXXX" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "-XXXXXXX", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable with no prefix, --1XXXXX" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "--1XXXXX", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
+  it "checks an invalid SDTM variable with no prefix, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, nil, object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+  end
+
+  it "checks an invalid SDTM variable with no prefix, \"\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_sdtm_variable_name?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters, is empty or is too long")
+  end
+
   it "checks a valid SDTM variable label, This is a label/text" do
     object = IsoConcept.new
     expect(FieldValidation.valid_sdtm_variable_label?(:test, "This is a label/text", object)).to eq(true)

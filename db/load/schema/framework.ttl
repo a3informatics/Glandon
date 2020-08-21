@@ -43,3 +43,11 @@
   rdfs:range xsd:string ;
   skos:definition "The BRIDG reference."^^xsd:string ;
 .
+:sdtm
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "SDTM"^^xsd:string ;
+  rdfs:domain :CanonicalReference ;
+  rdfs:range xsd:string ;
+  skos:definition "The SDTM reference. An unprefixed variable name."^^xsd:string ;
+.

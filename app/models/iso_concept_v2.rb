@@ -132,28 +132,26 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   #
   # @return [Array] set of Annotation::ChangeInstructions items
   def change_instructions
-      results = []
-      query_string = %Q{SELECT DISTINCT ?ci WHERE {         
-          OPTIONAL{               
-            {             
-              ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
-              ?ci rdf:type ba:ChangeInstruction .                 
-            } UNION           
-            {             
-              ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
-              ?ci rdf:type ba:ChangeInstruction .                   
-            }       
-          }       
-        }}
-      query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
-      triples = query_results.by_object(:ci)
-        triples.each do |x|
-          results << Annotation::ChangeInstruction.find(x).get_data
-        end
-      results
-    end
-
-
+    results = []
+    query_string = %Q{SELECT DISTINCT ?ci WHERE {         
+      OPTIONAL{               
+        {             
+          ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+          ?ci rdf:type ba:ChangeInstruction .                 
+        } UNION           
+        {             
+          ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+          ?ci rdf:type ba:ChangeInstruction .                   
+        }       
+      }       
+    }}
+    query_results = Sparql::Query.new.query(query_string, "", [:ba, :bo])
+    triples = query_results.by_object(:ci)
+      triples.each do |x|
+        results << Annotation::ChangeInstruction.find(x).get_data
+      end
+    results
+  end
 
   # Indicators. Get the indicators for the item.
   #
@@ -232,9 +230,36 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     query_results.by_object(:s)
   end
 
+  # Clone. Clone (copy) the complete item
+  #
+  # @return [Object] a copy of the object
   def clone
     self.tagged_links
     super
   end
   
+  # Replace If No Change. Replace the current item with the previous one if there are no differences.
+  #
+  # @param [Object] previous the previous item
+  # @param [Array] ignore_properties array of symbols of properties to be ignored in comparison
+  # @return [Object] the new object if changes, otherwise the previous object
+  def replace_if_no_change(previous, ignore_properties=[])
+    return self if previous.nil?
+    return previous unless self.diff?(previous, {ignore: [:tagged] + ignore_properties})
+    replace_children_if_no_change(previous) if self.class.children_predicate?
+    return self
+  end
+
+private
+
+  # Replace children if no change. Replaces current child with the previous one if there are no difference.
+  def replace_children_if_no_change(previous)
+    self.children.each_with_index do |child, index|
+      previous_child = previous.children.select {|x| x.identifier == child.identifier}
+      next if previous_child.empty?
+      self.narrower[index] = child.replace_with_no_change(previous_child)
+    end
+  end
+
+
 end
