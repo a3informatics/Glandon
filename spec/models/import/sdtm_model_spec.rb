@@ -61,7 +61,7 @@ describe Import::SdtmModel do
     filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
     check_ttl(filename, "import_expected_1.txt")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
