@@ -25,8 +25,8 @@ class SdtmIgsController < ManagedItemsController
     sdtm_ig = SdtmIg.find_minimum(protect_from_bad_id(params))
     items = sdtm_ig.managed_children_pagination(the_params)
     items.each do |item|
-      sdtm_ig = SdtmIg.find_minimum(item.id).to_h
-      results << sdtm_ig.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig[:id]})})
+      sdtm_ig_domain = SdtmIgDomain.find_minimum(item.id).to_h
+      results << sdtm_ig_domain.reverse_merge!({show_path: sdtm_ig_domain_path({id: sdtm_ig_domain[:id]})})
     end
     render json: {data: results}, status: 200
   end

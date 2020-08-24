@@ -1,11 +1,23 @@
 defaults: &defaults
   imports: &default_imports
-    # cdisc_adam_ig:
-    #   title: CDISC ADaM IG Import - Excel
-    #   background: true
-    #   description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
-    #   link_text: "Import CDISC ADaM IG"
-    #   link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_adam_ig:
+      title: CDISC ADaM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    cdisc_sdtm_model:
+      title: CDISC SDTM Model Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Model to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM Model"
+      link_path: "/imports/sdtm_model/new?imports[file_type]=0"
+    cdisc_sdtm_ig:
+      title: CDISC SDTM Implementation Guide Import - Excel
+      background: true
+      description: This facilty allows for the SDTM Implementation Guide to be imported from an MS Excel file.
+      link_text: "Import CDISC SDTM IG"
+      link_path: "/imports/sdtm_ig/new?imports[file_type]=0"
     cdisc_term:
       title: CDISC Terminology Import - Excel
       background: true
@@ -75,9 +87,11 @@ defaults: &defaults
               - "New Terms"
               - "Comment"
           row:
-            condition:
-              method: column_affirmative?
-              column: 12
+            conditions:
+              -
+                -
+                  method: column_affirmative?
+                  column: 12
           columns:
           -
             label: "Release Date"
@@ -202,11 +216,933 @@ defaults: &defaults
                 method: check_valid
                 object: parent
                 map: {}
+    cdisc_sdtm_model:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 3
+                  method: column_not_blank?
+              -
+                -
+                  column: 2
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 3
+                  method: column_blank?
+          columns:
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map: {}
+                condition:
+                  column: 3
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition:
+                  column: 3
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                map:
+                  Char: Character
+                  Num: Numeric
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map: {}
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                map:
+                  Char: Character
+                  Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions: []
+        version_3:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Variable Order"  
+              - "Class" 
+              - "Dataset Name" 
+              - "Variable Name"  
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "Role Description"
+              - "Description"  
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - Special Purpose
+                    - Special-Purpose
+                    - Relationship
+                    - Trial Design
+                -
+                  column: 4
+                  method: column_not_blank?
+              -
+                -
+                  column: 3
+                  value_in_set: 
+                    - All Classes
+                    - General Observations
+                    - Events
+                    - Events-General
+                    - Interventions
+                    - Interventions-General
+                    - Findings
+                    - Findings-General
+                -
+                  column: 4
+                  method: column_blank?
+          columns:
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Class" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map:
+                  All Classes: SDTM MODEL ALL
+                  General Observations: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  All Classes: SDTM MODEL ALL
+                  General Observations: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Dataset Name" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmClass
+                map: {}
+                condition:
+                  column: 4
+                  method: column_not_blank?
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition:
+                  column: 4
+                  method: column_not_blank?
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmClass::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_regex
+                object: child
+                property: prefixed
+                additional:
+                  regex: '^--'
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
+          -
+            label: "Variable Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: 
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                map:
+                  Char: Character
+                  Num: Numeric
+          -
+            label: "Controlled Terms or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+              -
+                method: set_property_with_tag
+                object: child
+                property: classified_as
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                    - "Qualifier"
+                map:
+                  "": None
+                  Identifier: Identifier
+                  Topic: Topic
+                  Timing: Timing
+                  Rule: Rule
+                  Grouping Qualifier: Grouping
+                  Result Qualifier: Result
+                  Synonym Qualifier: Synonym
+                  Record Qualifier: Record
+                  Variable Qualifier: Variable
+          -
+            label: "Role Description"
+            actions: []
+          -
+            label: "Description"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+    cdisc_sdtm_ig:
+      sheets:
+        version_1:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms, Codelist or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 3
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                map: {}
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                map: {}
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: based_on_class
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 3
+                  method: column_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms, Codelist or Format"  
+            actions: []
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  Req: Required
+                  Exp: Expected
+                  Perm: Permissible
+        version_2:
+          selection:
+            label: SDTM
+          sheet:
+            actions: []
+            header_row:
+              - "Version"  
+              - "Seq. For Order"  
+              - "Observation Class" 
+              - "Domain Prefix" 
+              - "Variable Name (minus domain prefix)"  
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Controlled Terms or Format"  
+              - "Role"
+              - "CDISC Notes (for domains) Description (for General Classes)"  
+              - "Core"
+          row:
+            conditions:
+              -
+                -
+                  column: 4
+                  method: column_not_blank?
+          columns:
+          -
+            label: "Domain Prefix" 
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: SdtmIgDomain
+                map: {}
+              -
+                method: set_property_with_lookup
+                object: parent
+                property: label
+                map: {}
+                additional:
+                  sheet_name: Extra
+                  key_column: Domain Name
+                  value_column: Domain Label
+          -
+            label: "Version" 
+            actions: []
+          -
+            label: "Observation Class" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  All Classes: SDTM MODEL ALL
+                  Events: SDTM MODEL EVENTS
+                  Events-General: SDTM MODEL EVENTS
+                  Interventions: SDTM MODEL INTERVENTIONS
+                  Interventions-General: SDTM MODEL INTERVENTIONS
+                  Findings: SDTM MODEL FINDINGS
+                  Findings-General: SDTM MODEL FINDINGS
+                condition:
+                  column: 4
+                  method: column_blank?
+          -
+            label: "Variable Name (minus domain prefix)"  
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: SdtmIgDomain::Variable
+              -
+                method: set_property
+                object: child
+                property: name
+              -
+                method: set_property_with_reference
+                object: child
+                property: is_a
+                map: {}
+                additional:
+                  search: sdtm
+          -
+            label: "Seq. For Order"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: ordinal
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+          -
+            label: "Type"
+            actions: []
+          -
+            label: "Controlled Terms or Format"  
+            actions:
+              -
+                method: set_property
+                object: child
+                can_be_empty: true
+                property: ct_and_format
+          -
+            label: "Role"
+            actions: []
+          -
+            label: "CDISC Notes (for domains) Description (for General Classes)"  
+            actions:   
+              -
+                method: set_property
+                object: child
+                property: description
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  Req: Required
+                  Exp: Expected
+                  Perm: Permissible        
     cdisc_adam_ig:
       sheets:
-        main:
+        version_1:
           selection:
-            label: ADaM-IG
+            label: ADaM IG
           sheet:
             actions: []
             header_row:
@@ -222,20 +1158,20 @@ defaults: &defaults
           columns:
           -
             label: "Data Structure Name"
-            actions:
+            actions: 
               -
                 method: create_parent
                 object: parent
                 klass: AdamIgDataset
                 map:
-                  SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
-                  BASIC DATA STRUCTURE: ADAMIG BDS
+                  SUBJECT LEVEL ANALYSIS DATASET: ADSL
+                  BASIC DATA STRUCTURE: Basic Data Structure
               -
                 method: set_property
                 object: parent
                 property: label
                 map:
-                  SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
+                  SUBJECT LEVEL ANALYSIS DATASET: Subject-Level Analysis Dataset
                   BASIC DATA STRUCTURE: Basic Data Structure
           -
             label: "Dataset Name"
@@ -273,9 +1209,15 @@ defaults: &defaults
             label: "Type"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
-                property: datatype
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
                 map:
                   Char: Character
                   Num: Numeric
@@ -296,13 +1238,140 @@ defaults: &defaults
             label: "Core"
             actions:
               -
-                method: create_classification
+                method: set_property_with_tag
                 object: child
                 property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
                 map:
                   Req: Required
-                  Perm: Permissible
                   Cond: Conditional
+                  Perm: Permissible
+          -
+            label: "CDISC Notes"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notes
+                map: {}
+        version_2:
+          selection:
+            label: ADaM IG
+          sheet:
+            actions: []
+            header_row:
+              - "Version"
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name"
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
+          columns:
+          -
+            label: "Dataset Name"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: AdamIgDataset
+                map: {}
+          -
+            label: "Data Structure Name"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+          -
+            label: "Version"
+            actions: []
+          -
+            label: "Variable Group"
+            actions: []
+          -
+            label: "Variable Name"
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: AdamIgDataset::Variable
+                map: {}
+              -
+                method: ordinal
+                object: child
+                property: ordinal
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: name
+                map: {}
+          -
+            label: "Variable Label"
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+                map: {}
+          -
+            label: "Type"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: typed_as
+                additional:
+                  path:
+                    - "CDISC"
+                    - "SDTM-STD"
+                    - "Variable"
+                    - "Datatype"
+                map:
+                  Char: Character
+                  Num: Numeric
+          -
+            label: "Codelist/Controlled Terms"
+            actions:
+              -
+                method: ct_reference
+                object: child
+                property: ct
+                map: {}
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+                map: {}
+          -
+            label: "Core"
+            actions:
+              -
+                method: set_property_with_tag
+                object: child
+                property: compliance
+                can_be_empty: true
+                additional:
+                  path:
+                    - "CDISC"
+                    - "ADAM-STD"
+                    - "Variable"
+                    - "Classification"
+                map:
+                  Req: Required
+                  Cond: Conditional
+                  Perm: Permissible
           -
             label: "CDISC Notes"
             actions:
@@ -2604,9 +3673,11 @@ test:
           selection:
             label: Sheet1
           row:
-            condition:
-              method: column_affirmative?
-              column: 3
+            conditions:
+              -
+                - 
+                  method: column_affirmative?
+                  column: 3
           sheet:
             header_row: []
           columns: []

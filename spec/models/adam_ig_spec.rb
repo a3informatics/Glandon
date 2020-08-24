@@ -3,29 +3,29 @@ require 'rails_helper'
 describe AdamIg do
 
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/adam_ig"
   end
 
- #  before :all do
- #    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "adam_ig.ttl"]
- #    load_files(schema_files, data_files)
- #    # clear_triple_store
- #    # load_schema_file_into_triple_store("ISO11179Types.ttl")
- #    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
- #    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
- #    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
- #    # load_schema_file_into_triple_store("business_operational.ttl")
- #    # load_schema_file_into_triple_store("BusinessDomain.ttl")
- #    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
- #    # load_test_file_into_triple_store("iso_namespace_real.ttl")
- #    # load_test_file_into_triple_store("adam_ig.ttl")
- #    clear_iso_concept_object
- #    clear_iso_namespace_object
- #    clear_iso_registration_authority_object
- #    clear_iso_registration_state_object
- #  end
+ before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "ADAM_IG_1-0-0 Draft.ttl"]
+    load_files(schema_files, data_files)
+  end
+
+  it "allows an ADaM IG to be found" do
+    item = AdamIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG"))
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
+  end
+
+  it "allows an ADaM IG to get children (domains)" do
+    actual = []
+    item = AdamIg.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG"))
+    children = item.managed_children_pagination({offset: 0, count: 10})
+    children.each {|x| actual << x.to_h}
+    check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
+  end
 
  #  it "validates a valid object" do
  #    item = AdamIg.new

@@ -451,19 +451,24 @@ Rails.application.routes.draw do
   end
 
   #ADAM
-  resources :adam_igs do
+  resources :adam_igs, :only => [:show, :index] do
     collection do
       get :history
     end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
-  resources :adam_ig_datasets, :only => [:show] do
+  resources :adam_ig_datasets, :only => [:show, :index] do
+    collection do
+      get :history
+    end
     member do
-      get :export_json
-      get :export_ttl
+      get :show_data
+      # get :export_json
+      # get :export_ttl
     end
   end
 

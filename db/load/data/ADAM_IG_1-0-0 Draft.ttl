@@ -2,11 +2,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
-@prefix bd: <http://www.assero.co.uk/BusinessDomain#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -15,28 +15,28 @@
 	rdf:type owl:Ontology ;
 .
 <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER>
-	rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> ;
-	rdfs:label "Character"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#VariableType> ;
+	isoC:label "Character"^^xsd:string ;
 .
 <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC>
-	rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> ;
-	rdfs:label "Numeric"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#VariableType> ;
+	isoC:label "Numeric"^^xsd:string ;
 .
 <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_C_REQUIRED>
-	rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> ;
-	rdfs:label "Required"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#VariableCompliance> ;
+	isoC:label "Required"^^xsd:string ;
 .
 <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_C_PERMISSIBLE>
-	rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> ;
-	rdfs:label "Permissible"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#VariableCompliance> ;
+	isoC:label "Permissible"^^xsd:string ;
 .
 <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_C_CONDITIONAL>
-	rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> ;
-	rdfs:label "Conditional"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#VariableCompliance> ;
+	isoC:label "Conditional"^^xsd:string ;
 .
 :AIG-CDISC_ADAMIG
-	rdf:type <http://www.assero.co.uk/BusinessDomain#ADaMImplementationGuide> ;
-	rdfs:label "ADaM Implementation Guide"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMImplementationGuide> ;
+	isoC:label "ADaM Implementation Guide"^^xsd:string ;
 	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> ;
 	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> ;
 	isoT:creationDate "2019-01-23T00:00:00+00:00"^^xsd:dateTime ;
@@ -44,12 +44,12 @@
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	isoT:origin ""^^xsd:string ;
-	bd:includesTabulation :AIG-CDISC_ADAMIG_TR1 ;
-	bd:includesTabulation :AIG-CDISC_ADAMIG_TR2 ;
+	bd:hasManaged :AIG-CDISC_ADAMIG_TR1 ;
+	bd:hasManaged :AIG-CDISC_ADAMIG_TR2 ;
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -64,12 +64,12 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.0.0"^^xsd:string ;
 	isoI:semantic_version "1.0.0"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIG_TR1
 	rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> ;
-	rdfs:label "Tabulation Reference"^^xsd:string ;
-	bo:hasTabulation <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGADSL> ;
+	isoC:label "Tabulation Reference"^^xsd:string ;
+	bo:reference <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGADSL> ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
@@ -77,16 +77,16 @@
 .
 :AIG-CDISC_ADAMIG_TR2
 	rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> ;
-	rdfs:label "Tabulation Reference"^^xsd:string ;
-	bo:hasTabulation <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS> ;
+	isoC:label "Tabulation Reference"^^xsd:string ;
+	bo:reference <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGBDS> ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:local_label ""^^xsd:string ;
 .
 :AIG-CDISC_ADAMIGADSL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgDataset> ;
-	rdfs:label "Subject Level Analysis Dataset"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDataset> ;
+	isoC:label "Subject Level Analysis Dataset"^^xsd:string ;
 	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGADSL-1> ;
 	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGADSL-1> ;
 	isoT:creationDate "2019-01-23T00:00:00+00:00"^^xsd:dateTime ;
@@ -164,7 +164,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGADSL-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -179,11 +179,11 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.0.0"^^xsd:string ;
 	isoI:semantic_version "1.0.0"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIGADSL_STUDYID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Study Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Study Identifier"^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "STUDYID"^^xsd:string ;
@@ -194,8 +194,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_USUBJID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Unique Subject Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:ordinal "2"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "USUBJID"^^xsd:string ;
@@ -206,8 +206,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SUBJID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Subject Identifier for the Study"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Subject Identifier for the Study"^^xsd:string ;
 	bd:ordinal "3"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SUBJID"^^xsd:string ;
@@ -218,8 +218,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SITEID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Study Site Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Study Site Identifier"^^xsd:string ;
 	bd:ordinal "4"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SITEID"^^xsd:string ;
@@ -230,8 +230,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SITEGRy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Pooled Site Group y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Pooled Site Group y"^^xsd:string ;
 	bd:ordinal "5"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SITEGRy"^^xsd:string ;
@@ -242,8 +242,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SITEGRyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Pooled Site Group y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Pooled Site Group y (N)"^^xsd:string ;
 	bd:ordinal "6"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SITEGRyN"^^xsd:string ;
@@ -254,8 +254,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_AGE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Age"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Age"^^xsd:string ;
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AGE"^^xsd:string ;
@@ -266,8 +266,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_AGEU
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Age Units"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Age Units"^^xsd:string ;
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AGEU"^^xsd:string ;
@@ -278,8 +278,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SEX
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Sex"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Sex"^^xsd:string ;
 	bd:ordinal "9"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SEX"^^xsd:string ;
@@ -290,8 +290,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_RACE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Race"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Race"^^xsd:string ;
 	bd:ordinal "10"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "RACE"^^xsd:string ;
@@ -302,8 +302,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_RACEGRy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Pooled Race Group y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Pooled Race Group y"^^xsd:string ;
 	bd:ordinal "11"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "RACEGRy"^^xsd:string ;
@@ -314,8 +314,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_RACEGRyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Pooled Race Group y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Pooled Race Group y (N)"^^xsd:string ;
 	bd:ordinal "12"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "RACEGRyN"^^xsd:string ;
@@ -326,8 +326,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_FASFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Full Analysis Set Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Full Analysis Set Population Flag"^^xsd:string ;
 	bd:ordinal "13"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "FASFL"^^xsd:string ;
@@ -338,8 +338,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_SAFFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Safety Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Safety Population Flag"^^xsd:string ;
 	bd:ordinal "14"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SAFFL"^^xsd:string ;
@@ -350,8 +350,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_ITTFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Intent-To-Treat Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Intent-To-Treat Population Flag"^^xsd:string ;
 	bd:ordinal "15"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ITTFL"^^xsd:string ;
@@ -362,8 +362,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_PPROTFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Per-Protocol Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Per-Protocol Population Flag"^^xsd:string ;
 	bd:ordinal "16"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PPROTFL"^^xsd:string ;
@@ -374,8 +374,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_COMPLFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Completers Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Completers Population Flag"^^xsd:string ;
 	bd:ordinal "17"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "COMPLFL"^^xsd:string ;
@@ -386,8 +386,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_RANDFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Randomized Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Randomized Population Flag"^^xsd:string ;
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "RANDFL"^^xsd:string ;
@@ -398,8 +398,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_ENRLFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Enrolled Population Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Enrolled Population Flag"^^xsd:string ;
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ENRLFL"^^xsd:string ;
@@ -410,8 +410,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_ARM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Description of Planned Arm"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Description of Planned Arm"^^xsd:string ;
 	bd:ordinal "20"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ARM"^^xsd:string ;
@@ -422,8 +422,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTxxP
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Treatment for Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Treatment for Period xx"^^xsd:string ;
 	bd:ordinal "21"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTxxP"^^xsd:string ;
@@ -434,8 +434,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTxxPN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Treatment for Period xx (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Treatment for Period xx (N)"^^xsd:string ;
 	bd:ordinal "22"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTxxPN"^^xsd:string ;
@@ -446,8 +446,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTxxA
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Treatment for Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Treatment for Period xx"^^xsd:string ;
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTxxA"^^xsd:string ;
@@ -458,8 +458,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTxxAN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Treatment for Period xx (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Treatment for Period xx (N)"^^xsd:string ;
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTxxAN"^^xsd:string ;
@@ -470,8 +470,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSEQP
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Sequence of Treatments"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Sequence of Treatments"^^xsd:string ;
 	bd:ordinal "25"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSEQP"^^xsd:string ;
@@ -482,8 +482,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSEQPN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Sequence of Treatments (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Sequence of Treatments (N)"^^xsd:string ;
 	bd:ordinal "26"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSEQPN"^^xsd:string ;
@@ -494,8 +494,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSEQA
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Sequence of Treatments"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Sequence of Treatments"^^xsd:string ;
 	bd:ordinal "27"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSEQA"^^xsd:string ;
@@ -506,8 +506,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSEQAN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Sequence of Treatments (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Sequence of Treatments (N)"^^xsd:string ;
 	bd:ordinal "28"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSEQAN"^^xsd:string ;
@@ -518,8 +518,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxPGy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Pooled Treatment y for Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Pooled Treatment y for Period xx"^^xsd:string ;
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxPGy"^^xsd:string ;
@@ -530,8 +530,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxPGyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Pooled Trt y for Period xx (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Pooled Trt y for Period xx (N)"^^xsd:string ;
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxPGyN"^^xsd:string ;
@@ -542,8 +542,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxAGy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Pooled Treatment y for Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Pooled Treatment y for Period xx"^^xsd:string ;
 	bd:ordinal "31"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxAGy"^^xsd:string ;
@@ -554,8 +554,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxAGyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Pooled Trt y for Period xx (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Pooled Trt y for Period xx (N)"^^xsd:string ;
 	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxAGyN"^^xsd:string ;
@@ -566,8 +566,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_RANDDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of Randomization"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of Randomization"^^xsd:string ;
 	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "RANDDT"^^xsd:string ;
@@ -578,8 +578,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of First Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of First Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSDT"^^xsd:string ;
@@ -590,8 +590,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of First Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of First Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSTM"^^xsd:string ;
@@ -602,8 +602,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Datetime of First Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Datetime of First Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSDTM"^^xsd:string ;
@@ -614,8 +614,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of First Exposure Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of First Exposure Imput. Flag"^^xsd:string ;
 	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSDTF"^^xsd:string ;
@@ -626,8 +626,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTSTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of First Exposure Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of First Exposure Imput. Flag"^^xsd:string ;
 	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTSTMF"^^xsd:string ;
@@ -638,8 +638,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTEDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of Last Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of Last Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTEDT"^^xsd:string ;
@@ -650,8 +650,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTETM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of Last Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of Last Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTETM"^^xsd:string ;
@@ -662,8 +662,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTEDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Datetime of Last Exposure to Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Datetime of Last Exposure to Treatment"^^xsd:string ;
 	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTEDTM"^^xsd:string ;
@@ -674,8 +674,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTEDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of Last Exposure Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of Last Exposure Imput. Flag"^^xsd:string ;
 	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTEDTF"^^xsd:string ;
@@ -686,8 +686,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRTETMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of Last Exposure Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of Last Exposure Imput. Flag"^^xsd:string ;
 	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTETMF"^^xsd:string ;
@@ -698,8 +698,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxSDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of First Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of First Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxSDT"^^xsd:string ;
@@ -710,8 +710,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxSTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of First Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of First Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxSTM"^^xsd:string ;
@@ -722,8 +722,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxSDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Datetime of First Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Datetime of First Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxSDTM"^^xsd:string ;
@@ -734,8 +734,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxSDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date 1st Exposure Period xx Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date 1st Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxSDTF"^^xsd:string ;
@@ -746,8 +746,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxSTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time 1st Exposure Period xx Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time 1st Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxSTMF"^^xsd:string ;
@@ -758,8 +758,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxEDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of Last Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of Last Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxEDT"^^xsd:string ;
@@ -770,8 +770,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxETM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of Last Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of Last Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxETM"^^xsd:string ;
@@ -782,8 +782,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxEDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Datetime of Last Exposure in Period xx"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Datetime of Last Exposure in Period xx"^^xsd:string ;
 	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxEDTM"^^xsd:string ;
@@ -794,8 +794,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxEDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date Last Exposure Period xx Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date Last Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxEDTF"^^xsd:string ;
@@ -806,8 +806,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_TRxxETMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time Last Exposure Period xx Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time Last Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRxxETMF"^^xsd:string ;
@@ -818,8 +818,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxSDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx Start Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx Start Date"^^xsd:string ;
 	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxSDT"^^xsd:string ;
@@ -830,8 +830,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxSTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx Start Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx Start Time"^^xsd:string ;
 	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxSTM"^^xsd:string ;
@@ -842,8 +842,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxSDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx Start Datetime"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx Start Datetime"^^xsd:string ;
 	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxSDTM"^^xsd:string ;
@@ -854,8 +854,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxSDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx Start Date Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx Start Date Imput. Flag"^^xsd:string ;
 	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxSDTF"^^xsd:string ;
@@ -866,8 +866,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxSTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx Start Time Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx Start Time Imput. Flag"^^xsd:string ;
 	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxSTMF"^^xsd:string ;
@@ -878,8 +878,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxEDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx End Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx End Date"^^xsd:string ;
 	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxEDT"^^xsd:string ;
@@ -890,8 +890,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxETM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx End Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx End Time"^^xsd:string ;
 	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxETM"^^xsd:string ;
@@ -902,8 +902,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxEDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx End Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx End Date/Time"^^xsd:string ;
 	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxEDTM"^^xsd:string ;
@@ -914,8 +914,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxEDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period xx End Date Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period xx End Date Imput. Flag"^^xsd:string ;
 	bd:ordinal "62"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxEDTF"^^xsd:string ;
@@ -926,8 +926,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGADSL_APxxETMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Time Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Time Imput. Flag"^^xsd:string ;
 	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APxxETMF"^^xsd:string ;
@@ -938,8 +938,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgDataset> ;
-	rdfs:label "Basic Data Structure"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDataset> ;
+	isoC:label "Basic Data Structure"^^xsd:string ;
 	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGBDS-1> ;
 	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGBDS-1> ;
 	isoT:creationDate "2019-01-23T00:00:00+00:00"^^xsd:dateTime ;
@@ -1096,7 +1096,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGBDS-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -1111,11 +1111,11 @@
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.0.0"^^xsd:string ;
 	isoI:semantic_version "1.0.0"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIGBDS_STUDYID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Study Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Study Identifier"^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "STUDYID"^^xsd:string ;
@@ -1126,8 +1126,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_USUBJID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Unique Subject Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:ordinal "2"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "USUBJID"^^xsd:string ;
@@ -1138,8 +1138,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SUBJID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Subject Identifier for the Study"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Subject Identifier for the Study"^^xsd:string ;
 	bd:ordinal "3"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SUBJID"^^xsd:string ;
@@ -1150,8 +1150,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SITEID
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Study Site Identifier"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Study Site Identifier"^^xsd:string ;
 	bd:ordinal "4"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SITEID"^^xsd:string ;
@@ -1162,8 +1162,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTP
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Treatment"^^xsd:string ;
 	bd:ordinal "5"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTP"^^xsd:string ;
@@ -1174,8 +1174,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTPN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Treatment (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Treatment (N)"^^xsd:string ;
 	bd:ordinal "6"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTPN"^^xsd:string ;
@@ -1186,8 +1186,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTA
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Treatment"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Treatment"^^xsd:string ;
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTA"^^xsd:string ;
@@ -1198,8 +1198,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTAN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Treatment (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Treatment (N)"^^xsd:string ;
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTAN"^^xsd:string ;
@@ -1210,8 +1210,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTPGy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Pooled Treatment y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Pooled Treatment y"^^xsd:string ;
 	bd:ordinal "9"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTPGy"^^xsd:string ;
@@ -1222,8 +1222,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTPGyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Planned Pooled Treatment y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Planned Pooled Treatment y (N)"^^xsd:string ;
 	bd:ordinal "10"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTPGyN"^^xsd:string ;
@@ -1234,8 +1234,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTAGy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Pooled Treatment y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Pooled Treatment y"^^xsd:string ;
 	bd:ordinal "11"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTAGy"^^xsd:string ;
@@ -1246,8 +1246,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_TRTAGyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Actual Pooled Treatment y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Actual Pooled Treatment y (N)"^^xsd:string ;
 	bd:ordinal "12"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "TRTAGyN"^^xsd:string ;
@@ -1258,8 +1258,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ADT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Date"^^xsd:string ;
 	bd:ordinal "13"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ADT"^^xsd:string ;
@@ -1270,8 +1270,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Time"^^xsd:string ;
 	bd:ordinal "14"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATM"^^xsd:string ;
@@ -1282,8 +1282,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ADTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Date/Time"^^xsd:string ;
 	bd:ordinal "15"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ADTM"^^xsd:string ;
@@ -1294,8 +1294,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ADY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Relative Day"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Relative Day"^^xsd:string ;
 	bd:ordinal "16"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ADY"^^xsd:string ;
@@ -1306,8 +1306,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ADTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Date Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Date Imputation Flag"^^xsd:string ;
 	bd:ordinal "17"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ADTF"^^xsd:string ;
@@ -1318,8 +1318,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Time Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Time Imputation Flag"^^xsd:string ;
 	bd:ordinal "18"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATMF"^^xsd:string ;
@@ -1330,8 +1330,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Date"^^xsd:string ;
 	bd:ordinal "19"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTDT"^^xsd:string ;
@@ -1342,8 +1342,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Time"^^xsd:string ;
 	bd:ordinal "20"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTTM"^^xsd:string ;
@@ -1354,8 +1354,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Date/Time"^^xsd:string ;
 	bd:ordinal "21"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTDTM"^^xsd:string ;
@@ -1366,8 +1366,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTDY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Relative Day"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Relative Day"^^xsd:string ;
 	bd:ordinal "22"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTDY"^^xsd:string ;
@@ -1378,8 +1378,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Date Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Date Imputation Flag"^^xsd:string ;
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTDTF"^^xsd:string ;
@@ -1390,8 +1390,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ASTTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Start Time Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Start Time Imputation Flag"^^xsd:string ;
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ASTTMF"^^xsd:string ;
@@ -1402,8 +1402,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Date"^^xsd:string ;
 	bd:ordinal "25"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENDT"^^xsd:string ;
@@ -1414,8 +1414,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Time"^^xsd:string ;
 	bd:ordinal "26"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENTM"^^xsd:string ;
@@ -1426,8 +1426,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Date/Time"^^xsd:string ;
 	bd:ordinal "27"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENDTM"^^xsd:string ;
@@ -1438,8 +1438,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENDY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Relative Day"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Relative Day"^^xsd:string ;
 	bd:ordinal "28"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENDY"^^xsd:string ;
@@ -1450,8 +1450,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Date Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Date Imputation Flag"^^xsd:string ;
 	bd:ordinal "29"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENDTF"^^xsd:string ;
@@ -1462,8 +1462,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AENTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis End Time Imputation Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis End Time Imputation Flag"^^xsd:string ;
 	bd:ordinal "30"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AENTMF"^^xsd:string ;
@@ -1474,8 +1474,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AVISIT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Visit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Visit"^^xsd:string ;
 	bd:ordinal "31"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AVISIT"^^xsd:string ;
@@ -1486,8 +1486,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AVISITN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Visit (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Visit (N)"^^xsd:string ;
 	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AVISITN"^^xsd:string ;
@@ -1498,8 +1498,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATPT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Timepoint"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Timepoint"^^xsd:string ;
 	bd:ordinal "33"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATPT"^^xsd:string ;
@@ -1510,8 +1510,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATPTN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Timepoint (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Timepoint (N)"^^xsd:string ;
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATPTN"^^xsd:string ;
@@ -1522,8 +1522,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATPTREF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Timepoint Reference"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Timepoint Reference"^^xsd:string ;
 	bd:ordinal "35"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATPTREF"^^xsd:string ;
@@ -1534,8 +1534,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERIOD
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period"^^xsd:string ;
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERIOD"^^xsd:string ;
@@ -1546,8 +1546,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERIODC
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period (C)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period (C)"^^xsd:string ;
 	bd:ordinal "37"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERIODC"^^xsd:string ;
@@ -1558,8 +1558,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APHASE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Phase"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Phase"^^xsd:string ;
 	bd:ordinal "38"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APHASE"^^xsd:string ;
@@ -1570,8 +1570,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ARELTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Relative Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Relative Time"^^xsd:string ;
 	bd:ordinal "39"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ARELTM"^^xsd:string ;
@@ -1582,8 +1582,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_ARELTMU
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Relative Time Unit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Relative Time Unit"^^xsd:string ;
 	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ARELTMU"^^xsd:string ;
@@ -1594,8 +1594,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERSDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period Start Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period Start Date"^^xsd:string ;
 	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERSDT"^^xsd:string ;
@@ -1606,8 +1606,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERSTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period Start Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period Start Time"^^xsd:string ;
 	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERSTM"^^xsd:string ;
@@ -1618,8 +1618,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERSDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period Start Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period Start Date/Time"^^xsd:string ;
 	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERSDTM"^^xsd:string ;
@@ -1630,8 +1630,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERSDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period Start Date Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period Start Date Imput. Flag"^^xsd:string ;
 	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERSDTF"^^xsd:string ;
@@ -1642,8 +1642,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERSTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period Start Time Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period Start Time Imput. Flag"^^xsd:string ;
 	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERSTMF"^^xsd:string ;
@@ -1654,8 +1654,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APEREDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Date"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Date"^^xsd:string ;
 	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APEREDT"^^xsd:string ;
@@ -1666,8 +1666,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERETM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Time"^^xsd:string ;
 	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERETM"^^xsd:string ;
@@ -1678,8 +1678,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APEREDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Date/Time"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Date/Time"^^xsd:string ;
 	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APEREDTM"^^xsd:string ;
@@ -1690,8 +1690,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_APEREDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Date Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Date Imput. Flag"^^xsd:string ;
 	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APEREDTF"^^xsd:string ;
@@ -1702,8 +1702,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_APERETMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Period End Time Imput. Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Period End Time Imput. Flag"^^xsd:string ;
 	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "APERETMF"^^xsd:string ;
@@ -1714,8 +1714,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date of"^^xsd:string ;
 	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sDT"^^xsd:string ;
@@ -1726,8 +1726,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time of"^^xsd:string ;
 	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sTM"^^xsd:string ;
@@ -1738,8 +1738,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date/Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date/Time of"^^xsd:string ;
 	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sDTM"^^xsd:string ;
@@ -1750,8 +1750,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sADY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Relative Day of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Relative Day of"^^xsd:string ;
 	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sADY"^^xsd:string ;
@@ -1762,8 +1762,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Date Imputation Qual of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Date Imputation Qual of"^^xsd:string ;
 	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sDTF"^^xsd:string ;
@@ -1774,8 +1774,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time Imputation Flag of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time Imputation Flag of"^^xsd:string ;
 	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sTMF"^^xsd:string ;
@@ -1786,8 +1786,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Start Date of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Start Date of"^^xsd:string ;
 	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSDT"^^xsd:string ;
@@ -1798,8 +1798,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Start Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Start Time of"^^xsd:string ;
 	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSTM"^^xsd:string ;
@@ -1810,8 +1810,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Start Date/Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Start Date/Time of"^^xsd:string ;
 	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSDTM"^^xsd:string ;
@@ -1822,8 +1822,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSDY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Relative Start Day of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Relative Start Day of"^^xsd:string ;
 	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSDY"^^xsd:string ;
@@ -1834,8 +1834,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Start Date Imputation Flag of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Start Date Imputation Flag of"^^xsd:string ;
 	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSDTF"^^xsd:string ;
@@ -1846,8 +1846,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sSTMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Start Time Imputation Qual of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Start Time Imputation Qual of"^^xsd:string ;
 	bd:ordinal "62"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sSTMF"^^xsd:string ;
@@ -1858,8 +1858,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sEDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "End Date of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "End Date of"^^xsd:string ;
 	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sEDT"^^xsd:string ;
@@ -1870,8 +1870,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sETM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "End Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "End Time of"^^xsd:string ;
 	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sETM"^^xsd:string ;
@@ -1882,8 +1882,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sEDTM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "End Date/Time of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "End Date/Time of"^^xsd:string ;
 	bd:ordinal "65"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sEDTM"^^xsd:string ;
@@ -1894,8 +1894,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sEDY
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Relative End Day of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Relative End Day of"^^xsd:string ;
 	bd:ordinal "66"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sEDY"^^xsd:string ;
@@ -1906,8 +1906,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_sEDTF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "End Date Imputation Flag of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "End Date Imputation Flag of"^^xsd:string ;
 	bd:ordinal "67"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sEDTF"^^xsd:string ;
@@ -1918,8 +1918,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_sETMF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "End Time Imputation Flag of"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "End Time Imputation Flag of"^^xsd:string ;
 	bd:ordinal "68"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "sETMF"^^xsd:string ;
@@ -1930,8 +1930,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARAM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter"^^xsd:string ;
 	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARAM"^^xsd:string ;
@@ -1942,8 +1942,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARAMCD
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter Code"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter Code"^^xsd:string ;
 	bd:ordinal "70"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARAMCD"^^xsd:string ;
@@ -1954,8 +1954,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARAMN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter (N)"^^xsd:string ;
 	bd:ordinal "71"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARAMN"^^xsd:string ;
@@ -1966,8 +1966,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARAMTYP
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter Type"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter Type"^^xsd:string ;
 	bd:ordinal "72"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARAMTYP"^^xsd:string ;
@@ -1978,8 +1978,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARCATy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter Category y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter Category y"^^xsd:string ;
 	bd:ordinal "73"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARCATy"^^xsd:string ;
@@ -1990,8 +1990,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PARCATyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Parameter Category y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Parameter Category y (N)"^^xsd:string ;
 	bd:ordinal "74"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PARCATyN"^^xsd:string ;
@@ -2002,8 +2002,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AVAL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Value"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Value"^^xsd:string ;
 	bd:ordinal "75"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AVAL"^^xsd:string ;
@@ -2014,8 +2014,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AVALC
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Value (C)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Value (C)"^^xsd:string ;
 	bd:ordinal "76"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AVALC"^^xsd:string ;
@@ -2026,8 +2026,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AVALCATy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Category y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Category y"^^xsd:string ;
 	bd:ordinal "77"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AVALCATy"^^xsd:string ;
@@ -2038,8 +2038,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_BASE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Value"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Value"^^xsd:string ;
 	bd:ordinal "78"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BASE"^^xsd:string ;
@@ -2050,8 +2050,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_BASEC
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Value (C)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Value (C)"^^xsd:string ;
 	bd:ordinal "79"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BASEC"^^xsd:string ;
@@ -2062,8 +2062,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_BASECATy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Category y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Category y"^^xsd:string ;
 	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BASECATy"^^xsd:string ;
@@ -2074,8 +2074,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_BASETYPE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Type"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Type"^^xsd:string ;
 	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BASETYPE"^^xsd:string ;
@@ -2086,8 +2086,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_CHG
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Change from Baseline"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Change from Baseline"^^xsd:string ;
 	bd:ordinal "82"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CHG"^^xsd:string ;
@@ -2098,8 +2098,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_CHGCATy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Change from Baseline Category y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Change from Baseline Category y"^^xsd:string ;
 	bd:ordinal "83"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CHGCATy"^^xsd:string ;
@@ -2110,8 +2110,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PCHG
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Percent Change from Baseline"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Percent Change from Baseline"^^xsd:string ;
 	bd:ordinal "84"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PCHG"^^xsd:string ;
@@ -2122,8 +2122,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_PCHGCATy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Percent Change from Baseline y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Percent Change from Baseline y"^^xsd:string ;
 	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PCHGCATy"^^xsd:string ;
@@ -2134,8 +2134,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_R2BASE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Ratio to Baseline"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Ratio to Baseline"^^xsd:string ;
 	bd:ordinal "86"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "R2BASE"^^xsd:string ;
@@ -2146,8 +2146,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_R2AyLO
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Ratio to Analysis Range y Lower Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Ratio to Analysis Range y Lower Limit"^^xsd:string ;
 	bd:ordinal "87"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "R2AyLO"^^xsd:string ;
@@ -2158,8 +2158,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_R2AyHI
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Ratio to Analysis Range y Upper Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Ratio to Analysis Range y Upper Limit"^^xsd:string ;
 	bd:ordinal "88"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "R2AyHI"^^xsd:string ;
@@ -2170,8 +2170,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_SHIFTy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Shift y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Shift y"^^xsd:string ;
 	bd:ordinal "89"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SHIFTy"^^xsd:string ;
@@ -2182,8 +2182,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SHIFTyN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Shift y (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Shift y (N)"^^xsd:string ;
 	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SHIFTyN"^^xsd:string ;
@@ -2194,8 +2194,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_CRITy
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Criterion y"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Criterion y"^^xsd:string ;
 	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CRITy"^^xsd:string ;
@@ -2206,8 +2206,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_DTYPE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Derivation Type"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Derivation Type"^^xsd:string ;
 	bd:ordinal "92"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "DTYPE"^^xsd:string ;
@@ -2218,8 +2218,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWRANGE
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Valid Relative Range"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Valid Relative Range"^^xsd:string ;
 	bd:ordinal "93"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWRANGE"^^xsd:string ;
@@ -2230,8 +2230,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWTARGET
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Target"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Target"^^xsd:string ;
 	bd:ordinal "94"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWTARGET"^^xsd:string ;
@@ -2242,8 +2242,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWTDIFF
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Diff from Target"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Diff from Target"^^xsd:string ;
 	bd:ordinal "95"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWTDIFF"^^xsd:string ;
@@ -2254,8 +2254,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWLO
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Beginning Timepoint"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Beginning Timepoint"^^xsd:string ;
 	bd:ordinal "96"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWLO"^^xsd:string ;
@@ -2266,8 +2266,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWHI
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Ending Timepoint"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Ending Timepoint"^^xsd:string ;
 	bd:ordinal "97"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWHI"^^xsd:string ;
@@ -2278,8 +2278,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_AWU
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Window Unit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Window Unit"^^xsd:string ;
 	bd:ordinal "98"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AWU"^^xsd:string ;
@@ -2290,8 +2290,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_STARTDT
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Time to Event Origin Date for Subject"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Time to Event Origin Date for Subject"^^xsd:string ;
 	bd:ordinal "99"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "STARTDT"^^xsd:string ;
@@ -2302,8 +2302,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_CNSR
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Censor"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Censor"^^xsd:string ;
 	bd:ordinal "100"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CNSR"^^xsd:string ;
@@ -2314,8 +2314,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_NUMERIC> ;
 .
 :AIG-CDISC_ADAMIGBDS_EVNTDESC
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Event or Censoring Description"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Event or Censoring Description"^^xsd:string ;
 	bd:ordinal "101"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "EVNTDESC"^^xsd:string ;
@@ -2326,8 +2326,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ATOXGR
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Toxicity Grade"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Toxicity Grade"^^xsd:string ;
 	bd:ordinal "102"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ATOXGR"^^xsd:string ;
@@ -2338,8 +2338,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_BTOXGR
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Toxicity Grade"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Toxicity Grade"^^xsd:string ;
 	bd:ordinal "103"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BTOXGR"^^xsd:string ;
@@ -2350,8 +2350,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ANRIND
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Reference Range Indicator"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Reference Range Indicator"^^xsd:string ;
 	bd:ordinal "104"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ANRIND"^^xsd:string ;
@@ -2362,8 +2362,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_BNRIND
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Reference Range Indicator"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Reference Range Indicator"^^xsd:string ;
 	bd:ordinal "105"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "BNRIND"^^xsd:string ;
@@ -2374,8 +2374,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ANRLO
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Normal Range Lower Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Normal Range Lower Limit"^^xsd:string ;
 	bd:ordinal "106"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ANRLO"^^xsd:string ;
@@ -2386,8 +2386,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ANRHI
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Normal Range Upper Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Normal Range Upper Limit"^^xsd:string ;
 	bd:ordinal "107"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ANRHI"^^xsd:string ;
@@ -2398,8 +2398,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AyLO
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Range y Lower Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Range y Lower Limit"^^xsd:string ;
 	bd:ordinal "108"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AyLO"^^xsd:string ;
@@ -2410,8 +2410,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_AyHI
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Range y Upper Limit"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Range y Upper Limit"^^xsd:string ;
 	bd:ordinal "109"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "AyHI"^^xsd:string ;
@@ -2422,8 +2422,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ABLFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Record Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Record Flag"^^xsd:string ;
 	bd:ordinal "110"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ABLFL"^^xsd:string ;
@@ -2434,8 +2434,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ABLFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Baseline Record Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Baseline Record Flag (N)"^^xsd:string ;
 	bd:ordinal "111"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ABLFN"^^xsd:string ;
@@ -2446,8 +2446,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ANLzzFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analysis Record Flag zz"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analysis Record Flag zz"^^xsd:string ;
 	bd:ordinal "112"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ANLzzFL"^^xsd:string ;
@@ -2458,8 +2458,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ANLzzFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Analyzed Record Flag zz (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Analyzed Record Flag zz (N)"^^xsd:string ;
 	bd:ordinal "113"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ANLzzFN"^^xsd:string ;
@@ -2470,8 +2470,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ONTRTFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "On Treatment Record Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "On Treatment Record Flag"^^xsd:string ;
 	bd:ordinal "114"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ONTRTFL"^^xsd:string ;
@@ -2482,8 +2482,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ONTRTFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "On Treatment Record Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "On Treatment Record Flag (N)"^^xsd:string ;
 	bd:ordinal "115"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ONTRTFN"^^xsd:string ;
@@ -2494,8 +2494,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_LVOTFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Last Value On Treatment Record Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Last Value On Treatment Record Flag"^^xsd:string ;
 	bd:ordinal "116"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "LVOTFL"^^xsd:string ;
@@ -2506,8 +2506,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_LVOTFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Last Value On Treatment Record Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Last Value On Treatment Record Flag (N)"^^xsd:string ;
 	bd:ordinal "117"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "LVOTFN"^^xsd:string ;
@@ -2518,8 +2518,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ITTRFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Intent-To-Treat Record-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Intent-To-Treat Record-Level Flag"^^xsd:string ;
 	bd:ordinal "118"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ITTRFL"^^xsd:string ;
@@ -2530,8 +2530,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ITTRFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Intent-To-Treat Record-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Intent-To-Treat Record-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "119"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ITTRFN"^^xsd:string ;
@@ -2542,8 +2542,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ITTPFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Intent-To-Treat Parameter-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Intent-To-Treat Parameter-Level Flag"^^xsd:string ;
 	bd:ordinal "120"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ITTPFL"^^xsd:string ;
@@ -2554,8 +2554,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_ITTPFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Intent-To-Treat Param-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Intent-To-Treat Param-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "121"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "ITTPFN"^^xsd:string ;
@@ -2566,8 +2566,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SAFRFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Safety Analysis Record-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Safety Analysis Record-Level Flag"^^xsd:string ;
 	bd:ordinal "122"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SAFRFL"^^xsd:string ;
@@ -2578,8 +2578,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SAFRFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Safety Analysis Record-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Safety Analysis Record-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "123"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SAFRFN"^^xsd:string ;
@@ -2590,8 +2590,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SAFPFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Safety Analysis Parameter-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Safety Analysis Parameter-Level Flag"^^xsd:string ;
 	bd:ordinal "124"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SAFPFL"^^xsd:string ;
@@ -2602,8 +2602,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SAFPFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Safety Analysis Param-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Safety Analysis Param-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "125"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SAFPFN"^^xsd:string ;
@@ -2614,8 +2614,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_FASRFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Full Analysis Set Record-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Full Analysis Set Record-Level Flag"^^xsd:string ;
 	bd:ordinal "126"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "FASRFL"^^xsd:string ;
@@ -2626,8 +2626,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_FASRFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Full Analysis Set Record-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Full Analysis Set Record-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "127"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "FASRFN"^^xsd:string ;
@@ -2638,8 +2638,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_FASPFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Full Analysis Set Parameter-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Full Analysis Set Parameter-Level Flag"^^xsd:string ;
 	bd:ordinal "128"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "FASPFL"^^xsd:string ;
@@ -2650,8 +2650,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_FASPFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Full Analysis Set Param-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Full Analysis Set Param-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "129"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "FASPFN"^^xsd:string ;
@@ -2662,8 +2662,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PPROTRFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Per-Protocol Record-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Per-Protocol Record-Level Flag"^^xsd:string ;
 	bd:ordinal "130"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PPROTRFL"^^xsd:string ;
@@ -2674,8 +2674,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PPROTRFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Per-Protocol Record-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Per-Protocol Record-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "131"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PPROTRFN"^^xsd:string ;
@@ -2686,8 +2686,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PPROTPFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Per-Protocol Parameter-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Per-Protocol Parameter-Level Flag"^^xsd:string ;
 	bd:ordinal "132"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PPROTPFL"^^xsd:string ;
@@ -2698,8 +2698,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_PPROTPFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Per-Protocol Parameter-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Per-Protocol Parameter-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "133"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "PPROTPFN"^^xsd:string ;
@@ -2710,8 +2710,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_COMPRFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Completers Record-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Completers Record-Level Flag"^^xsd:string ;
 	bd:ordinal "134"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "COMPRFL"^^xsd:string ;
@@ -2722,8 +2722,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_COMPRFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Completers Record-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Completers Record-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "135"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "COMPRFN"^^xsd:string ;
@@ -2734,8 +2734,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_COMPPFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Completers Parameter-Level Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Completers Parameter-Level Flag"^^xsd:string ;
 	bd:ordinal "136"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "COMPPFL"^^xsd:string ;
@@ -2746,8 +2746,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_COMPPFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Completers Parameter-Level Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Completers Parameter-Level Flag (N)"^^xsd:string ;
 	bd:ordinal "137"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "COMPPFN"^^xsd:string ;
@@ -2758,8 +2758,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_CRITyFL
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Criterion y Evaluation Result Flag"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Criterion y Evaluation Result Flag"^^xsd:string ;
 	bd:ordinal "138"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CRITyFL"^^xsd:string ;
@@ -2770,8 +2770,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_CRITyFN
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Criterion y Evaluation Result Flag (N)"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Criterion y Evaluation Result Flag (N)"^^xsd:string ;
 	bd:ordinal "139"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "CRITyFN"^^xsd:string ;
@@ -2782,8 +2782,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SRCDOM
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Source Domain"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Source Domain"^^xsd:string ;
 	bd:ordinal "140"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SRCDOM"^^xsd:string ;
@@ -2794,8 +2794,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SRCVAR
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Source Variable"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Source Variable"^^xsd:string ;
 	bd:ordinal "141"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SRCVAR"^^xsd:string ;
@@ -2806,8 +2806,8 @@
 	bd:typedAs <http://www.assero.co.uk/MDRAdamIg/CDISC/V1#AIG-CDISC_ADAMIG_DT_CHARACTER> ;
 .
 :AIG-CDISC_ADAMIGBDS_SRCSEQ
-	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
-	rdfs:label "Source Sequence Number"^^xsd:string ;
+	rdf:type <http://www.assero.co.uk/Tabulation#ADaMDatasetVariable> ;
+	isoC:label "Source Sequence Number"^^xsd:string ;
 	bd:ordinal "142"^^xsd:positiveInteger ;
 	bd:rule ""^^xsd:string ;
 	bd:name "SRCSEQ"^^xsd:string ;
