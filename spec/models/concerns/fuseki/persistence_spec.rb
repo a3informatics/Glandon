@@ -407,5 +407,26 @@ describe Fuseki::Persistence do
 
   end
 
+  describe "find single tests" do
+
+    before :each do
+      load_files(schema_files, [])
+    end
+
+    it "find single" do
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#1")
+      uri_2 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#2")
+      uri_3 = Uri.new(uri: "http://www.assero.co.uk/TAI/V1#3")
+      item_1 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_1, change_description: "find 1")
+      item_2 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_2, change_description: "find")
+      item_3 = FusekiBaseHelpers::TestAdministeredItem.create(uri: uri_3, change_description: "find")
+      result = FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find 1\"}")
+      expect(result).to eq(uri_1)
+      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find\"}")}.to raise_error(Errors::ApplicationLogicError, "Multiple items found when single required.")
+      expect(FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}")).to be_nil
+      expect{FusekiBaseHelpers::TestAdministeredItem.find_single("SELECT ?s WHERE {?s <http://www.assero.co.uk/Test#changeDescription> \"find X\"}", false)}.to raise_error(Errors::ApplicationLogicError, "Failed to find single item.")
+    end
+
+  end
 
 end

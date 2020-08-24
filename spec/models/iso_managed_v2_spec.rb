@@ -1458,4 +1458,31 @@ describe "IsoManagedV2" do
 
   end
 
+  describe "Versions" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "previous" do
+      object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
+      item = IsoManagedV2.klass_for(uri).find_full(uri)
+      item.to_ttl
+    end
+
+    it "serialize as TTL, Form" do
+      uri = Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F")
+      item = IsoManagedV2.klass_for(uri).find_full(uri)
+      item.to_ttl
+    end
+
+  end
+
 end

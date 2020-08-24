@@ -8,6 +8,7 @@ class IsoManagedV2 < IsoConceptV2
 
   object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
   object_property :has_identifier, cardinality: :one, model_class: "IsoScopedIdentifierV2"
+  object_property :previous_version, cardinality: :one, model_class: "IsoManagedV2"
   data_property :origin
   data_property :change_description
   data_property :creation_date
@@ -20,6 +21,8 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Klass, property: :has_identifier, presence: true
   validates_with Validator::Klass, property: :has_state, presence: true
 
+  include IsoManagedV2::Versions
+  
   # Version
   #
   # @return [string] The version

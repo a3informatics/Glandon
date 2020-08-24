@@ -104,6 +104,15 @@ module Fuseki
         where({})
       end
 
+      def find_single(query_string, permit_empty=true)
+        query_results = Sparql::Query.new.query(query_string, "", [:isoT])
+        results = query_results.by_object(:s)
+        return nil if results.empty? && permit_empty
+        Errors.application_error(self.name, "previous_version", "Failed to find single item.") if results.empty?
+        Errors.application_error(self.name, "previous_version", "Multiple items found when single required.") if results.count > 1
+        results.first
+      end
+
       # Create. Create an object setting attributes. 
       #
       # @param [Hash] params the parameters hash containing attribute values. Keys are determined by the object 
