@@ -118,3 +118,11 @@
   rdfs:range :RegistrationState ;
   skos:definition "Identifies the state of the registered item."^^xsd:string ;
 .
+:hasPreviousVersion
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain :IdentifiedItem ;
+  rdfs:label "Previous Version Relationship"^^xsd:string ;
+  rdfs:range :IdentifiedItem ;
+  skos:definition "Identifies the previous version of the item."^^xsd:string ;
+.

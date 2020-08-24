@@ -81,7 +81,7 @@ describe "IsoScopedIdentifierV2" do
 
   it "allows the next version to be retrieved" do
     result = IsoScopedIdentifierV2.find(Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_1-1"))
-    expect(result.next_version).to eq(2)
+    expect(result.next_integer_version).to eq(2)
   end
 
   it "allows the next semantic version to be retrieved" do
@@ -390,17 +390,17 @@ describe "IsoScopedIdentifierV2" do
 
   it "obtains the next version, does not exist" do
   	org = IsoNamespace.find_by_short_name("BBB")
-  	version = IsoScopedIdentifierV2.next_version("XXXXXTEST1", org)
+  	version = IsoScopedIdentifierV2.next_integer_version("XXXXXTEST1", org)
   	expect(version).to eq(1)
   end
 
   it "obtains the next version, exists" do
   	org = IsoNamespace.find_by_short_name("BBB")
-  	version = IsoScopedIdentifierV2.next_version("TEST1", org)
+  	version = IsoScopedIdentifierV2.next_integer_version("TEST1", org)
   	expect(version).to eq(2)
-  	version = IsoScopedIdentifierV2.next_version("TEST2", org)
+  	version = IsoScopedIdentifierV2.next_integer_version("TEST2", org)
   	expect(version).to eq(3)
-  	version = IsoScopedIdentifierV2.next_version("TEST3", org)
+  	version = IsoScopedIdentifierV2.next_integer_version("TEST3", org)
   	expect(version).to eq(6)
   end
 

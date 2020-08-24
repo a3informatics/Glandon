@@ -23,28 +23,28 @@ class IsoManagedV2
     # Instance Methods
     # ----------------
 
-    def previous_version?
-      !previous_versions.nil?
-    end
-
     def previous_version
-      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} isoT:previousVersion ?s}")
+      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} isoT:hasPreviousVersion ?s}")
     end
 
-    def next_version?
-      !next_versions.nil?
+    def has_previous_version?
+      !previous_version.nil?
     end
 
     def next_version
-      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} ^isoT:previousVersion ?s}")
+      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} ^isoT:hasPreviousVersion ?s}")
+    end
+
+    def has_next_version?
+      !next_version.nil?
     end
 
     def earliest_version
-      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} isoT:previousVersion* ?s}")
+      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} isoT:hasPreviousVersion* ?s . FILTER NOT EXISTS { ?s isoT:hasPreviousVersion [] }}")
     end
 
     def latest_version
-      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} ^isoT:previousVersion* ?s}")
+      single_minimum("SELECT ?s WHERE { #{self.uri.to_ref} ^isoT:hasPreviousVersion* ?s . FILTER NOT EXISTS { ?s ^isoT:hasPreviousVersion [] }}")
     end
 
   private

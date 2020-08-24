@@ -172,17 +172,17 @@ describe "IsoManagedV2" do
       uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       expect(item.new_version?).to eq(false)
-      expect(item.next_version).to eq(2)
+      expect(item.next_integer_version).to eq(2)
       expect(item.next_semantic_version.to_s).to eq("0.2.0")
       expect(item.first_version).to eq(1)
     end
 
     it "allows next version for an identifier to be determned" do
-      next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.owner.ra_namespace)
+      next_version = IsoManagedV2.next_integer_version("AIRPORTS", IsoRegistrationAuthority.owner.ra_namespace)
       expect(next_version).to eq(2)
-      next_version = IsoManagedV2.next_version("AIRPORTS", IsoRegistrationAuthority.find_by_short_name("ACME"))
+      next_version = IsoManagedV2.next_integer_version("AIRPORTS", IsoRegistrationAuthority.find_by_short_name("ACME"))
       expect(next_version).to eq(1)
-      next_version = IsoManagedV2.next_version("AIRPORTSxxxxx", IsoRegistrationAuthority.owner)
+      next_version = IsoManagedV2.next_integer_version("AIRPORTSxxxxx", IsoRegistrationAuthority.owner)
       expect(next_version).to eq(1)
     end
 
@@ -1470,17 +1470,40 @@ describe "IsoManagedV2" do
       load_files(schema_files, data_files)
     end
 
-    it "previous" do
-      object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
-      uri = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
-      item = IsoManagedV2.klass_for(uri).find_full(uri)
-      item.to_ttl
+    it "previous version" do
+      object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      object_1.update_status(registration_status: "Standard")
+      object_2 = object_1.create_next_version
+      expect(object_2.previous_version.uri).to eq(object_1.uri)
+      expect(object_2.has_previous_version?).to eq(true)
+      expect(object_1.has_previous_version?).to eq(false)
     end
 
-    it "serialize as TTL, Form" do
-      uri = Uri.new(uri: "http://www.s-cubed.dk/VSTADIABETES/V1#F")
-      item = IsoManagedV2.klass_for(uri).find_full(uri)
-      item.to_ttl
+    it "next version" do
+      object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      object_1.update_status(registration_status: "Standard")
+      object_2 = object_1.create_next_version
+      expect(object_1.next_version.uri).to eq(object_2.uri)
+      expect(object_1.has_next_version?).to eq(true)
+      expect(object_2.has_next_version?).to eq(false)
+    end
+
+    it "first and last versions" do
+      object_1 = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      object_1.update_status(registration_status: "Standard")
+      object_2 = object_1.create_next_version
+      object_2.update_status(registration_status: "Standard")
+      object_3 = object_2.create_next_version
+      object_3.update_status(registration_status: "Standard")
+      object_4 = object_3.create_next_version
+      expect(object_1.latest_version.uri).to eq(object_4.uri)
+      expect(object_2.latest_version.uri).to eq(object_4.uri)
+      expect(object_3.latest_version.uri).to eq(object_4.uri)
+      expect(object_4.latest_version.uri).to eq(object_4.uri)
+      expect(object_1.earliest_version.uri).to eq(object_1.uri)
+      expect(object_2.earliest_version.uri).to eq(object_1.uri)
+      expect(object_3.earliest_version.uri).to eq(object_1.uri)
+      expect(object_4.earliest_version.uri).to eq(object_1.uri)
     end
 
   end
