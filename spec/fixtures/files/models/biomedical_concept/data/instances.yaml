@@ -22,6 +22,16 @@
           :cli: C25347
       
   :has_items:
+  - :label: "Date Time"
+    :enabled: true  
+    :complex_datatype: 
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Date and time"
+        :prompt_text: "Date Time"
+        :format: "" 
   - :label: "Category Code"
     :enabled: false
   - :label: "Subcategory Code"
@@ -91,6 +101,16 @@
           :cli: C25208
       
   :has_items:
+  - :label: "Date Time"
+    :enabled: true  
+    :complex_datatype: 
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Date and time"
+        :prompt_text: "Date Time"
+        :format: ""  
   - :label: "Category Code"
     :enabled: false
   - :label: "Subcategory Code"
@@ -470,6 +490,17 @@
           :cli: C25298
       
   :has_items:
+  - :label: "Date Time"
+    :enabled: true  
+    :complex_datatype: 
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Date and time"
+        :prompt_text: "Date Time"
+        :format: ""
+
   - :label: "Category Code"
     :enabled: false
   - :label: "Subcategory Code"
@@ -587,6 +618,16 @@
           :cli: C25299
       
   :has_items:
+  - :label: "Date Time"
+    :enabled: true  
+    :complex_datatype: 
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Date and time"
+        :prompt_text: "Date Time"
+        :format: ""
   - :label: "Category Code"
     :enabled: false
   - :label: "Subcategory Code"
@@ -821,6 +862,16 @@
           :cli: C25206
       
   :has_items:
+  - :label: "Date Time"
+    :enabled: true  
+    :complex_datatype: 
+    - :short_name: DATETIME
+      :has_property: 
+      - 
+        :label: "value"
+        :question_text: "Date and time"
+        :prompt_text: "Date Time"
+        :format: ""
   - :label: "Category Code"
     :enabled: false
   - :label: "Subcategory Code"

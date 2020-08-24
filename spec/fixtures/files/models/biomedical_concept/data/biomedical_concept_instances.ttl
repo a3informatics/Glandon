@@ -22,10 +22,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:51+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
-	bc:hasItem :BCI_BCI10 ;
+	bc:hasItem :BCI_BCI2 ;
+	bc:hasItem :BCI_BCI11 ;
 	bc:identifiedBy :BCI_BCI1 ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
 .
@@ -83,23 +84,46 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:BCI_BCI10
+:BCI_BCI2
+	rdf:type bc:Item ;
+	isoC:label "Date Time"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI2_BCCDTDATETIME ;
+.
+:BCI_BCI2_BCCDTDATETIME
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:hasProperty :BCI_BCI2_BCCDTDATETIME_BCPvalue ;
+.
+:BCI_BCI2_BCCDTDATETIME_BCPvalue
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Date and time"^^xsd:string ;
+	bc:promptText "Date Time"^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
+.
+:BCI_BCI11
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "10"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype :BCI_BCI10_BCCDTPQR ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype :BCI_BCI11_BCCDTPQR ;
 .
-:BCI_BCI10_BCCDTPQR
+:BCI_BCI11_BCCDTPQR
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
 	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
-	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPvalue ;
-	bc:hasProperty :BCI_BCI10_BCCDTPQR_BCPcode ;
+	bc:hasProperty :BCI_BCI11_BCCDTPQR_BCPvalue ;
+	bc:hasProperty :BCI_BCI11_BCCDTPQR_BCPcode ;
 .
-:BCI_BCI10_BCCDTPQR_BCPvalue
+:BCI_BCI11_BCCDTPQR_BCPvalue
 	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText "Result"^^xsd:string ;
@@ -107,19 +131,19 @@
 	bc:format "5.2"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-:BCI_BCI10_BCCDTPQR_BCPcode
+:BCI_BCI11_BCCDTPQR_BCPcode
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText "Unit"^^xsd:string ;
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
-	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC1 ;
-	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC2 ;
-	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC3 ;
-	bc:hasCodedValue :BCI_BCI10_BCCDTPQR_BCPcode_TUC4 ;
+	bc:hasCodedValue :BCI_BCI11_BCCDTPQR_BCPcode_TUC1 ;
+	bc:hasCodedValue :BCI_BCI11_BCCDTPQR_BCPcode_TUC2 ;
+	bc:hasCodedValue :BCI_BCI11_BCCDTPQR_BCPcode_TUC3 ;
+	bc:hasCodedValue :BCI_BCI11_BCCDTPQR_BCPcode_TUC4 ;
 	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
-:BCI_BCI10_BCCDTPQR_BCPcode_TUC1
+:BCI_BCI11_BCCDTPQR_BCPcode_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -129,7 +153,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:BCI_BCI10_BCCDTPQR_BCPcode_TUC2
+:BCI_BCI11_BCCDTPQR_BCPcode_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -139,7 +163,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:BCI_BCI10_BCCDTPQR_BCPcode_TUC3
+:BCI_BCI11_BCCDTPQR_BCPcode_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -149,7 +173,7 @@
 	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
-:BCI_BCI10_BCCDTPQR_BCPcode_TUC4
+:BCI_BCI11_BCCDTPQR_BCPcode_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -167,10 +191,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:51+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
-	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2> ;
+	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
 .
@@ -228,23 +253,46 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2>
+	rdf:type bc:Item ;
+	isoC:label "Date Time"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue>
+	rdf:type bc:PropertyX ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Date and time"^^xsd:string ;
+	bc:promptText "Date Time"^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
+.
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "10"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR> ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR> ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
 	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
-	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
-	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPvalue>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPvalue>
 	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText "Result"^^xsd:string ;
@@ -252,17 +300,17 @@
 	bc:format "5.1"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText "Unit"^^xsd:string ;
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2> ;
 	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -272,7 +320,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2>
+<http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -290,7 +338,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI10> ;
@@ -402,7 +450,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI10> ;
@@ -571,7 +619,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI10> ;
@@ -707,7 +755,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI10> ;
@@ -819,7 +867,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:39+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10> ;
@@ -955,13 +1003,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:52+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
-	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6> ;
-	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
 .
@@ -1019,65 +1068,32 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2>
 	rdf:type bc:Item ;
-	isoC:label "Position"^^xsd:string ;
+	isoC:label "Date Time"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "4"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD> ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME>
 	rdf:type bc:ComplexDatatype ;
-	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue>
 	rdf:type bc:PropertyX ;
-	isoC:label "code"^^xsd:string ;
-	bc:questionText "Body Position"^^xsd:string ;
-	bc:promptText "Position"^^xsd:string ;
-	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
-.
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Date and time"^^xsd:string ;
+	bc:promptText "Date Time"^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
-	isoC:label "Site of Administration"^^xsd:string ;
+	isoC:label "Position"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1093,11 +1109,13 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
-	bc:questionText "Location of Measurement"^^xsd:string ;
-	bc:promptText "Location"^^xsd:string ;
+	bc:questionText "Body Position"^^xsd:string ;
+	bc:promptText "Position"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1105,13 +1123,33 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
-	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6>
 	rdf:type bc:Item ;
-	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Site of Administration"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1127,15 +1165,49 @@
 <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
+	bc:questionText "Location of Measurement"^^xsd:string ;
+	bc:promptText "Location"^^xsd:string ;
+	bc:format "40"^^xsd:string ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
+	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText "Laterality"^^xsd:string ;
 	bc:promptText "Laterality"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3> ;
 	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1145,7 +1217,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1155,7 +1227,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1165,23 +1237,23 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "10"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR> ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
 	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
-	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
-	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPvalue>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPvalue>
 	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText "Result"^^xsd:string ;
@@ -1189,17 +1261,17 @@
 	bc:format "5.2"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText "Unit"^^xsd:string ;
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2> ;
 	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1209,7 +1281,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2>
+<http://www.s-cubed.dk/SYSBP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1227,13 +1299,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
-	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6> ;
-	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
 .
@@ -1291,65 +1364,32 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI2>
 	rdf:type bc:Item ;
-	isoC:label "Position"^^xsd:string ;
+	isoC:label "Date Time"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "4"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD> ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME>
 	rdf:type bc:ComplexDatatype ;
-	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue>
 	rdf:type bc:PropertyX ;
-	isoC:label "code"^^xsd:string ;
-	bc:questionText "Body Position"^^xsd:string ;
-	bc:promptText "Position"^^xsd:string ;
-	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
-.
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Date and time"^^xsd:string ;
+	bc:promptText "Date Time"^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
-	isoC:label "Site of Administration"^^xsd:string ;
+	isoC:label "Position"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1365,11 +1405,13 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
-	bc:questionText "Location of Measurement"^^xsd:string ;
-	bc:promptText "Location"^^xsd:string ;
+	bc:questionText "Body Position"^^xsd:string ;
+	bc:promptText "Position"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1377,13 +1419,33 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
-	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6>
 	rdf:type bc:Item ;
-	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Site of Administration"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1399,15 +1461,49 @@
 <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
+	bc:questionText "Location of Measurement"^^xsd:string ;
+	bc:promptText "Location"^^xsd:string ;
+	bc:format "40"^^xsd:string ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
+	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText "Laterality"^^xsd:string ;
 	bc:promptText "Laterality"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3> ;
 	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1417,7 +1513,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1427,7 +1523,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1437,23 +1533,23 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "10"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR> ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
 	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
-	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
-	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPvalue>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPvalue>
 	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText "Result"^^xsd:string ;
@@ -1461,17 +1557,17 @@
 	bc:format "5.2"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText "Unit"^^xsd:string ;
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2> ;
 	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1481,7 +1577,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/DIABP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2>
+<http://www.s-cubed.dk/DIABP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1499,7 +1595,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI4> ;
@@ -1771,13 +1867,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:53+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:40+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
-	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6> ;
-	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7> ;
+	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11> ;
 	bc:identifiedBy <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:basedOn <http://www.s-cubed.dk/BASIC_OBS/V1#BCT> ;
 .
@@ -1835,65 +1932,32 @@
 	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI2>
 	rdf:type bc:Item ;
-	isoC:label "Position"^^xsd:string ;
+	isoC:label "Date Time"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "4"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD> ;
+	bc:ordinal "2"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME>
 	rdf:type bc:ComplexDatatype ;
-	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode> ;
+	isoC:label "DATETIME"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue>
 	rdf:type bc:PropertyX ;
-	isoC:label "code"^^xsd:string ;
-	bc:questionText "Body Position"^^xsd:string ;
-	bc:promptText "Position"^^xsd:string ;
-	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3> ;
-	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
-.
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC1>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC2>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
-.
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI4_BCCDTCD_BCPcode_TUC3>
-	rdf:type bo:TucReference ;
-	isoC:label ""^^xsd:string ;
-	bo:enabled "true"^^xsd:boolean ;
-	bo:optional "true"^^xsd:boolean ;
-	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
-	bo:localLabel ""^^xsd:string ;
+	isoC:label "value"^^xsd:string ;
+	bc:questionText "Date and time"^^xsd:string ;
+	bc:promptText "Date Time"^^xsd:string ;
+	bc:format ""^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5>
 	rdf:type bc:Item ;
-	isoC:label "Site of Administration"^^xsd:string ;
+	isoC:label "Position"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1909,11 +1973,13 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
-	bc:questionText "Location of Measurement"^^xsd:string ;
-	bc:promptText "Location"^^xsd:string ;
+	bc:questionText "Body Position"^^xsd:string ;
+	bc:promptText "Position"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
 	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1> ;
-	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3> ;
+	bc:isA <http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de> ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
@@ -1921,13 +1987,33 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
-	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC2>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI5_BCCDTCD_BCPcode_TUC3>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6>
 	rdf:type bc:Item ;
-	isoC:label "Laterality"^^xsd:string ;
+	isoC:label "Site of Administration"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
@@ -1943,15 +2029,49 @@
 <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
+	bc:questionText "Location of Measurement"^^xsd:string ;
+	bc:promptText "Location"^^xsd:string ;
+	bc:format "40"^^xsd:string ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
+	bc:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "true"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
+	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7>
+	rdf:type bc:Item ;
+	isoC:label "Laterality"^^xsd:string ;
+	bc:mandatory "true"^^xsd:boolean ;
+	bc:collect "true"^^xsd:boolean ;
+	bc:enabled "true"^^xsd:boolean ;
+	bc:ordinal "7"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD>
+	rdf:type bc:ComplexDatatype ;
+	isoC:label "CD"^^xsd:string ;
+	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode> ;
+.
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode>
+	rdf:type bc:PropertyX ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText "Laterality"^^xsd:string ;
 	bc:promptText "Laterality"^^xsd:string ;
 	bc:format "40"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3> ;
 	bc:isA <http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC1>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1961,7 +2081,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC2>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1971,7 +2091,7 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI6_BCCDTCD_BCPcode_TUC3>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI7_BCCDTCD_BCPcode_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -1981,23 +2101,23 @@
 	bo:context <http://www.cdisc.org/C99073/V57#C99073> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11>
 	rdf:type bc:Item ;
 	isoC:label "Result"^^xsd:string ;
 	bc:mandatory "true"^^xsd:boolean ;
 	bc:collect "true"^^xsd:boolean ;
 	bc:enabled "true"^^xsd:boolean ;
-	bc:ordinal "10"^^xsd:positiveInteger ;
-	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR> ;
+	bc:ordinal "11"^^xsd:positiveInteger ;
+	bc:hasComplexDatatype <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR>
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
 	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
-	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPvalue> ;
-	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPvalue>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPvalue>
 	rdf:type bc:PropertyX ;
 	isoC:label "value"^^xsd:string ;
 	bc:questionText "Result"^^xsd:string ;
@@ -2005,17 +2125,17 @@
 	bc:format "5.2"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode>
 	rdf:type bc:PropertyX ;
 	isoC:label "code"^^xsd:string ;
 	bc:questionText "Unit"^^xsd:string ;
 	bc:promptText "Unit"^^xsd:string ;
 	bc:format "20"^^xsd:string ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1> ;
-	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1> ;
+	bc:hasCodedValue <http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2> ;
 	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC1>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2025,7 +2145,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/TEMP/V1#BCI_BCI10_BCCDTPQR_BCPcode_TUC2>
+<http://www.s-cubed.dk/TEMP/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -2043,7 +2163,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:41+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI10> ;
@@ -2166,7 +2286,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:41+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI10> ;
@@ -2311,7 +2431,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:54+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-24T11:25:41+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI10> ;

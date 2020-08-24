@@ -39,7 +39,7 @@ describe BiomedicalConcept do
 
   def create_property(params, t_cdt)
     params = params.merge(format: "", question_test: "", prompt_text: "") if t_cdt.nil?
-    refs = params[:has_coded_value].dup
+    refs = params[:has_coded_value].blank? ? [] : params[:has_coded_value].dup
     params[:has_coded_value] = []
     property = BiomedicalConcept::PropertyX.new(params)
     if t_cdt.nil?
