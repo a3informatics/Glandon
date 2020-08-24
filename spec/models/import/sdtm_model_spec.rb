@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'tabulation/column'
 
 describe Import::SdtmModel do
 	
@@ -53,42 +54,42 @@ describe Import::SdtmModel do
 
   it "import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
+    params = {version: "1", date: "2016-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
     result = @object.import(params)
     filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
     public_file_does_not_exist?("test", filename)
     filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
     check_ttl(filename, "import_expected_1.txt")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
 	end
 
-  it "import, errors" # do
-  #   full_path = test_file_path(sub_dir, "import_input_2.xlsx")
-  #   params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
-  #   result = @object.import(params)
-  #   filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
-  #   expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
-  #   filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
-  #   expect(public_file_exists?("test", filename)).to eq(true)
-  #   copy_file_from_public_files("test", filename, sub_dir)
-  #   actual = read_yaml_file(sub_dir, filename)
-  # #Xwrite_yaml_file(actual, sub_dir, "import_expected_2.yaml")
-  #   expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
-  #   expect(actual).to eq(expected)
-  #   expect(@job.status).to eq("Complete")
-  #   delete_data_file(sub_dir, filename)
-  # end
+  it "import, errors"  do
+    full_path = test_file_path(sub_dir, "import_input_2.xlsx")
+    params = {version: "1", date: "2016-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+    actual = read_yaml_file(sub_dir, filename)
+  #Xwrite_yaml_file(actual, sub_dir, "import_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
+    expect(actual).to eq(expected)
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
 
-  it "import, exception" # do
-  #   expect_any_instance_of(Excel::SdtmModelReader).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
-  #   full_path = test_file_path(sub_dir, "import_input_2.xlsx")
-  #   params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
-  #   @object.import(params)
-  #   expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
-  # end
+  it "import, exception" do
+    expect_any_instance_of(Excel).to receive(:execute).and_raise(StandardError.new("error"))
+    full_path = test_file_path(sub_dir, "import_input_2.xlsx")
+    params = {version: "1", date: "2016-11-22", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.2.3", job: @job}
+    @object.import(params)
+    expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
+  end
 
 end
