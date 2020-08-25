@@ -1005,8 +1005,8 @@
 	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:name "AEENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/AE/V1#DVAEENTPT>
@@ -1603,8 +1603,8 @@
 	bd:ordinal "23"^^xsd:positiveInteger ;
 	bd:name "MHENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable MHENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/MH/V1#DVMHENTPT>
@@ -2181,8 +2181,8 @@
 	bd:ordinal "24"^^xsd:positiveInteger ;
 	bd:name "CESTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the observation as being before or after the reference time point defined by variable CESTTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCESTTPT>
@@ -2203,8 +2203,8 @@
 	bd:ordinal "26"^^xsd:positiveInteger ;
 	bd:name "CEENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable CEENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V1#DVCEENTPT>
@@ -4635,7 +4635,7 @@
 	bd:name "SCTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in SCTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in SCTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.'1TEST'). SCTESTCD cannot contain characters other than letters, numbers, or underscores. Example: SUBJINIT, EYECD."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(SCTEST)"^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/SC/V1#DVSCTEST>
@@ -8409,8 +8409,8 @@
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "CMSTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the medication as being before or after the reference time point defined by variable CMSTTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
+	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMSTTPT>
@@ -8431,8 +8431,8 @@
 	bd:ordinal "36"^^xsd:positiveInteger ;
 	bd:name "CMENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the medication as being before or after the reference time point defined by variable CMENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V1#DVCMENTPT>
@@ -9447,8 +9447,8 @@
 	bd:ordinal "32"^^xsd:positiveInteger ;
 	bd:name "SUSTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the medication as being before or after the reference time point defined by variable SUSTTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
+	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUSTTPT>
@@ -9469,8 +9469,8 @@
 	bd:ordinal "34"^^xsd:positiveInteger ;
 	bd:name "SUENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the medication as being before or after the reference time point defined by variable SUENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/SU/V1#DVSUENTPT>
@@ -9598,8 +9598,8 @@
 	bd:ordinal "6"^^xsd:positiveInteger ;
 	bd:name "RELTYPE"^^xsd:string ;
 	bd:description "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. Used only when identifying a relationship between datasets (as described in Section 8.3)."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(RELTYPE)"^^xsd:string ;
+	bd:format "ONE, MANY"^^xsd:string ;
+	bd:ctAndFormat "ONE, MANY"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/RELREC/V1#DVRELID>

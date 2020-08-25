@@ -1119,7 +1119,7 @@
 	bd:includesColumn <http://www.cdisc.org/CM/V1#DVCMDUR> ;
 	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMSTRF> ;
 	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMENRF> ;
-	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMSTRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/CM/V1#DVCMSTRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMSTTPT> ;
 	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMENRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/CM/V2#DVCMENTPT> ;
@@ -1355,17 +1355,6 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66728/V27#C66728> ;
 	bo:context <http://www.cdisc.org/CT/V31#TH> ;
-.
-<http://www.cdisc.org/CM/V2#DVCMSTRTPT>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "Start Relative to Reference Time Point"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "34"^^xsd:positiveInteger ;
-	bd:name "CMSTRTPT"^^xsd:string ;
-	bd:description "Identifies the start of the medication as being before or after the reference time point defined by variable CMSTTPT."^^xsd:string ;
-	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
-	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CM/V2#DVCMSTTPT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2877,7 +2866,7 @@
 	bd:includesColumn <http://www.cdisc.org/MH/V1#DVMHENDTC> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V2#DVMHDY> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V2#DVMHENRF> ;
-	bd:includesColumn <http://www.cdisc.org/MH/V2#DVMHENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/MH/V1#DVMHENRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V2#DVMHENTPT> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
@@ -3018,17 +3007,6 @@
 	bo:reference <http://www.cdisc.org/C66728/V27#C66728> ;
 	bo:context <http://www.cdisc.org/CT/V31#TH> ;
 .
-<http://www.cdisc.org/MH/V2#DVMHENRTPT>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
-	bd:name "MHENRTPT"^^xsd:string ;
-	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable MHENTPT."^^xsd:string ;
-	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
-	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
-.
 <http://www.cdisc.org/MH/V2#DVMHENTPT>
 	rdf:type bd:SdtmDomainVariable ;
 	isoC:label "End Reference Time Point"^^xsd:string ;
@@ -3157,9 +3135,9 @@
 	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCEDY> ;
 	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCESTRF> ;
 	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCEENRF> ;
-	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCESTRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/CE/V1#DVCESTRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCESTTPT> ;
-	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCEENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/CE/V1#DVCEENRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/CE/V2#DVCEENTPT> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
@@ -3321,17 +3299,6 @@
 	bo:reference <http://www.cdisc.org/C66728/V27#C66728> ;
 	bo:context <http://www.cdisc.org/CT/V31#TH> ;
 .
-<http://www.cdisc.org/CE/V2#DVCESTRTPT>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "Start Relative to Reference Time Point"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "24"^^xsd:positiveInteger ;
-	bd:name "CESTRTPT"^^xsd:string ;
-	bd:description "Identifies the start of the observation as being before or after the reference time point defined by variable CESTTPT."^^xsd:string ;
-	bd:format "BEFORE, AFTER, COINCIDENT, U"^^xsd:string ;
-	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, U"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
-.
 <http://www.cdisc.org/CE/V2#DVCESTTPT>
 	rdf:type bd:SdtmDomainVariable ;
 	isoC:label "Start Reference Time Point"^^xsd:string ;
@@ -3341,17 +3308,6 @@
 	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --STRTPT. Examples: \"2003-12-15\" or \"VISIT 1\"."^^xsd:string ;
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
-.
-<http://www.cdisc.org/CE/V2#DVCEENRTPT>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "26"^^xsd:positiveInteger ;
-	bd:name "CEENRTPT"^^xsd:string ;
-	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable CEENTPT."^^xsd:string ;
-	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
-	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/CE/V2#DVCEENTPT>
@@ -8768,7 +8724,7 @@
 	bd:includesColumn <http://www.cdisc.org/RELREC/V1#DVUSUBJID> ;
 	bd:includesColumn <http://www.cdisc.org/RELREC/V1#DVIDVAR> ;
 	bd:includesColumn <http://www.cdisc.org/RELREC/V1#DVIDVARVAL> ;
-	bd:includesColumn <http://www.cdisc.org/RELREC/V2#DVRELTYPE> ;
+	bd:includesColumn <http://www.cdisc.org/RELREC/V1#DVRELTYPE> ;
 	bd:includesColumn <http://www.cdisc.org/RELREC/V2#DVRELID> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
@@ -8814,17 +8770,6 @@
 	bd:format "DOMAIN"^^xsd:string ;
 	bd:ctAndFormat "DOMAIN"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
-.
-<http://www.cdisc.org/RELREC/V2#DVRELTYPE>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "Relationship Type"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "6"^^xsd:positiveInteger ;
-	bd:name "RELTYPE"^^xsd:string ;
-	bd:description "Identifies the hierarchical level of the records in the relationship. Values should be either ONE or MANY. Used only when identifying a relationship between datasets (as described in Section 8.3)."^^xsd:string ;
-	bd:format "ONE, MANY"^^xsd:string ;
-	bd:ctAndFormat "ONE, MANY"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/RELREC/V2#DVRELID>
 	rdf:type bd:SdtmDomainVariable ;

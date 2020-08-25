@@ -1512,7 +1512,7 @@
 	bd:includesColumn <http://www.cdisc.org/MH/V1#DVMHENDTC> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V3#DVMHDY> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V3#DVMHENRF> ;
-	bd:includesColumn <http://www.cdisc.org/MH/V3#DVMHENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/MH/V1#DVMHENRTPT> ;
 	bd:includesColumn <http://www.cdisc.org/MH/V2#DVMHENTPT> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
@@ -1674,17 +1674,6 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66728/V27#C66728> ;
 	bo:context <http://www.cdisc.org/CT/V36#TH> ;
-.
-<http://www.cdisc.org/MH/V3#DVMHENRTPT>
-	rdf:type bd:SdtmDomainVariable ;
-	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
-	bd:rule ""^^xsd:string ;
-	bd:ordinal "23"^^xsd:positiveInteger ;
-	bd:name "MHENRTPT"^^xsd:string ;
-	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable MHENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
-	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/DA/V3>
 	rdf:type bd:SdtmDomain ;
@@ -4583,8 +4572,8 @@
 	bd:ordinal "9"^^xsd:positiveInteger ;
 	bd:name "MOTESTCD"^^xsd:string ;
 	bd:description "Short name of the measurement, test, or examination described in MOTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in MOTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). MOTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: VOLUME, INTP"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(MOTESTCD)"^^xsd:string ;
+	bd:format "MOTESTCD"^^xsd:string ;
+	bd:ctAndFormat "MOTESTCD"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/MO/V3#DVMOTEST>
@@ -4594,8 +4583,8 @@
 	bd:ordinal "10"^^xsd:positiveInteger ;
 	bd:name "MOTEST"^^xsd:string ;
 	bd:description "Verbatim name of the test or examination used to obtain the measurement or finding. The value in MOTEST cannot be longer than 40 characters. Examples: Volume, Interpretation"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(MOTEST)"^^xsd:string ;
+	bd:format "MOTEST"^^xsd:string ;
+	bd:ctAndFormat "MOTEST"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/MO/V3#DVMOCAT>
@@ -6331,8 +6320,8 @@
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:name "QSTESTCD"^^xsd:string ;
 	bd:description "Topic variable for QS. Short name for the value in QSTEST, which can be used as a column name when converting the dataset from a vertical format to a horizontal format. The value in QSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g.\"1TEST\"). QSTESTCD cannot contain characters other than letters, numbers, or underscores. See QS Terminology Spreadsheet for specific text for QSTESTCD. Examples: ADCCMD01, BPR0103"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(QSTESTCD)"^^xsd:string ;
+	bd:format "QSTESTCD"^^xsd:string ;
+	bd:ctAndFormat "QSTESTCD"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/QS/V3#DVQSTEST>
@@ -6342,8 +6331,8 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "QSTEST"^^xsd:string ;
 	bd:description "Verbatim name of the question or group of questions used to obtain the measurement or finding. The value in QSTEST cannot be longer than 40 characters. See QS Terminology Spreadsheet for specific text for QSTEST. Example: Fist, BPR01 - Emotional Withdrawal"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(QSTEST)"^^xsd:string ;
+	bd:format "QSTEST"^^xsd:string ;
+	bd:ctAndFormat "QSTEST"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/QS/V3#DVQSCAT>
@@ -7601,8 +7590,8 @@
 	bd:ordinal "7"^^xsd:positiveInteger ;
 	bd:name "SSTESTCD"^^xsd:string ;
 	bd:description "Short name of the status assessment described in SSTEST. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in SSTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., \"1TEST\"). SSTESTCD cannot contain characters other than letters, numbers, or underscores. Example: SURVSTAT"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(SSTESTCD)"^^xsd:string ;
+	bd:format "SSTESTCD"^^xsd:string ;
+	bd:ctAndFormat "SSTESTCD"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/SS/V3#DVSSTEST>
@@ -7612,8 +7601,8 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "SSTEST"^^xsd:string ;
 	bd:description "Verbatim name of the status assessment used to obtain the finding. The value in SSTEST cannot be longer than 40 characters. Example: Survival Status"^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(SSTEST)"^^xsd:string ;
+	bd:format "SSTEST"^^xsd:string ;
+	bd:ctAndFormat "SSTEST"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#8f112ba7-caa3-4f34-a9fc-8bc808b13955> ;
 .
 <http://www.cdisc.org/SS/V3#DVSSCAT>
@@ -7656,8 +7645,8 @@
 	bd:ordinal "12"^^xsd:positiveInteger ;
 	bd:name "SSSTRESC"^^xsd:string ;
 	bd:description "Contains the result value for all findings, copied or derived from SSORRES in a standard format."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(SSSTRESC)"^^xsd:string ;
+	bd:format "SSSTRESC"^^xsd:string ;
+	bd:ctAndFormat "SSSTRESC"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#fc544083-2437-4ec0-97f4-767598bee682> ;
 .
 <http://www.cdisc.org/SS/V3#DVSSSTAT>
@@ -12109,8 +12098,18 @@
 	bd:name "PRDOSFRQ"^^xsd:string ;
 	bd:description "Usually expressed as the number of doses given per a specific interval."^^xsd:string ;
 	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(FRQ)"^^xsd:string ;
+	bd:ctAndFormat "(FREQ)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
+	bd:ctReference <http://www.cdisc.org/PR/V3#DVPRDOSFRQ_TMC1> ;
+.
+<http://www.cdisc.org/PR/V3#DVPRDOSFRQ_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "FREQ"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71113/V34#C71113> ;
+	bo:context <http://www.cdisc.org/CT/V36#TH> ;
 .
 <http://www.cdisc.org/PR/V3#DVPRDOSRGM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -12378,8 +12377,8 @@
 	bd:ordinal "40"^^xsd:positiveInteger ;
 	bd:name "PRSTRTPT"^^xsd:string ;
 	bd:description "Identifies the start of the observation as being before or after the sponsor-defined reference time point defined by variable PRSTTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(STRTPT)"^^xsd:string ;
+	bd:format "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, COINCIDENT, AFTER, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PR/V3#DVPRSTTPT>
@@ -12400,8 +12399,8 @@
 	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:name "PRENRTPT"^^xsd:string ;
 	bd:description "Identifies the end of the observation as being before or after the sponsor-defined reference time point defined by variable PRENTPT."^^xsd:string ;
-	bd:format ""^^xsd:string ;
-	bd:ctAndFormat "(ENRTPT)"^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#da9f1092-7a20-4c97-9144-8bac2e72d1ea> ;
 .
 <http://www.cdisc.org/PR/V3#DVPRENTPT>
