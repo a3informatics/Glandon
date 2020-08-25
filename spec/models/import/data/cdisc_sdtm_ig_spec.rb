@@ -110,7 +110,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     version_index = @date_to_version_map.index(issue_date)
     current_version = version_index + 1
     puts colourize("Version: #{current_version}, Date: #{issue_date}", "green")
-    #load_versions(1..(current_version-1))
+    load_versions(1..(current_version-1))
     files = [@date_to_filename_map[version_index]]
     @object.file_type = 0
     puts colourize("Loading from Excel", "green")
