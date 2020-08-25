@@ -49,6 +49,9 @@ describe BiomedicalConcept do
       t_cdt.has_property_objects
       t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
       property.is_a = t_property.is_a
+      cdt_properties = ComplexDatatype.find_children(t_cdt.is_complex_datatype)
+      cdt_property = cdt_properties.has_property.find{|x| x.label == params[:label]} 
+      property.is_complex_datatype_property = cdt_property
       refs.each_with_index do |term, index|
         if term[:cl].start_with?("C")
           items = @ct.find_by_identifiers([term[:cl].dup, term[:cli].dup])
@@ -66,7 +69,7 @@ describe BiomedicalConcept do
 
   def create_complex_datatype(params, cdt_template, t_item)
     cdt = BiomedicalConcept::ComplexDatatype.new(label: cdt_template.short_name)
-    cdt.based_on = cdt_template
+    cdt.is_complex_datatype = cdt_template
     if !t_item.nil?
       t_item.has_complex_datatype_objects
       t_cdt = t_item.has_complex_datatype.find{|x| x.label == cdt_template.short_name} 
