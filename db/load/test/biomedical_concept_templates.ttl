@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-07-04T20:46:51+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-08-25T10:40:15+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI1 ;
 	bc:hasItem :BCT_BCI2 ;
@@ -68,7 +68,7 @@
 :BCT_BCI1_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI1_BCCDTCD_BCPcode ;
 .
 :BCT_BCI1_BCCDTCD_BCPcode
@@ -91,7 +91,7 @@
 :BCT_BCI2_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI2_BCCDTCD_BCPcode ;
 .
 :BCT_BCI2_BCCDTCD_BCPcode
@@ -114,7 +114,7 @@
 :BCT_BCI3_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI3_BCCDTCD_BCPcode ;
 .
 :BCT_BCI3_BCCDTCD_BCPcode
@@ -137,7 +137,7 @@
 :BCT_BCI4_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI4_BCCDTCD_BCPcode ;
 .
 :BCT_BCI4_BCCDTCD_BCPcode
@@ -160,7 +160,7 @@
 :BCT_BCI5_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI5_BCCDTCD_BCPcode ;
 .
 :BCT_BCI5_BCCDTCD_BCPcode
@@ -183,7 +183,7 @@
 :BCT_BCI6_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI6_BCCDTCD_BCPcode ;
 .
 :BCT_BCI6_BCCDTCD_BCPcode
@@ -206,7 +206,7 @@
 :BCT_BCI7_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI7_BCCDTCD_BCPcode ;
 .
 :BCT_BCI7_BCCDTCD_BCPcode
@@ -229,7 +229,7 @@
 :BCT_BCI8_BCCDTDATETIME
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "DATETIME"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#DATETIME> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#DATETIME> ;
 	bc:hasProperty :BCT_BCI8_BCCDTDATETIME_BCPvalue ;
 .
 :BCT_BCI8_BCCDTDATETIME_BCPvalue
@@ -252,7 +252,7 @@
 :BCT_BCI9_BCCDTBL
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "BL"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#BL> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#BL> ;
 	bc:hasProperty :BCT_BCI9_BCCDTBL_BCPvalue ;
 .
 :BCT_BCI9_BCCDTBL_BCPvalue
@@ -275,7 +275,7 @@
 :BCT_BCI10_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI10_BCCDTCD_BCPvalue ;
 .
 :BCT_BCI10_BCCDTCD_BCPvalue
@@ -299,7 +299,7 @@
 :BCT_BCI11_BCCDTCD
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#CD> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
 	bc:hasProperty :BCT_BCI11_BCCDTCD_BCPcode ;
 .
 :BCT_BCI11_BCCDTCD_BCPcode
@@ -313,7 +313,7 @@
 :BCT_BCI11_BCCDTPQR
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "PQR"^^xsd:string ;
-	bc:basedOn <http://www.s-cubed.dk/CDT#PQR> ;
+	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#PQR> ;
 	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPcode ;
 	bc:hasProperty :BCT_BCI11_BCCDTPQR_BCPvalue ;
 .
