@@ -19,6 +19,7 @@
 	isoC:label "Controlled Terminology"^^xsd:string ;
 	isoT:hasState :M_RS ;
 	isoT:hasIdentifier :M_SI ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL/V1#M> ;
 	isoT:origin "Created from files: 'sdtm_1-3.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -176,6 +177,7 @@
 	isoC:label "SDTM MODEL INTERVENTIONS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -694,6 +696,7 @@
 	isoC:label "SDTM MODEL EVENTS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_EVENTS/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -1242,6 +1245,7 @@
 	isoC:label "SDTM MODEL FINDINGS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -1663,6 +1667,7 @@
 	isoC:label "DM"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/DM/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/DM/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/DM/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -1976,6 +1981,7 @@
 	isoC:label "CO"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/CO/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/CO/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/CO/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2053,6 +2059,7 @@
 	isoC:label "SE"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SE/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SE/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SE/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2141,6 +2148,7 @@
 	isoC:label "SV"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SV/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SV/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SV/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2218,6 +2226,7 @@
 	isoC:label "TA"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/TA/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/TA/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/TA/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2316,6 +2325,7 @@
 	isoC:label "TE"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/TE/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/TE/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/TE/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2367,6 +2377,7 @@
 	isoC:label "TV"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/TV/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/TV/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/TV/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2475,6 +2486,7 @@
 	isoC:label "TI"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/TI/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/TI/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/TI/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2549,6 +2561,7 @@
 	isoC:label "TS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/TS/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/TS/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/TS/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2670,6 +2683,7 @@
 	isoC:label "RELREC"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/RELREC/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/RELREC/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/RELREC/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -2743,6 +2757,7 @@
 	isoC:label "SUPPQUAL"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SUPPQUAL/V2#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SUPPQUAL/V2#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SUPPQUAL/V1#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2012-07-16T00:00:00+00:00"^^xsd:dateTime ;

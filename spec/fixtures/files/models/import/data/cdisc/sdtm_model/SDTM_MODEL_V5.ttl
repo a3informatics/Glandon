@@ -19,6 +19,7 @@
 	isoC:label "Controlled Terminology"^^xsd:string ;
 	isoT:hasState :M_RS ;
 	isoT:hasIdentifier :M_SI ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL/V4#M> ;
 	isoT:origin "Created from files: 'sdtm_1-6.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2017-11-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -77,6 +78,7 @@
 	isoC:label "SDTM MODEL EVENTS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_EVENTS/V4#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2017-11-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -777,6 +779,7 @@
 	isoC:label "SDTM MODEL FINDINGS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2017-11-16T00:00:00+00:00"^^xsd:dateTime ;
@@ -1365,6 +1368,7 @@
 	isoC:label "SDTM MODEL INTERVENTIONS"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_SI> ;
+	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V4#CL> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2017-11-16T00:00:00+00:00"^^xsd:dateTime ;

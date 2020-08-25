@@ -79,7 +79,7 @@
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVUSUBJID> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSUBJID> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSITEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSITEGRy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSITEGRyN> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVREGIONy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVREGIONyN> ;
@@ -270,6 +270,17 @@
 	bd:ordinal "4"^^xsd:positiveInteger ;
 	bd:name "SITEID"^^xsd:string ;
 	bd:notes "DM.SITEID. SITEID is required in ADSL, but permissible in other datasets."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V2#AVSITEGRy>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Pooled Site Group y"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "SITEGRy"^^xsd:string ;
+	bd:notes "Character description of a grouping or pooling of clinical sites for analysis purposes. For example, SITEGR3 is the name of a variable containing site group (pooled site) names, where the grouping has been done according to the third site grouping algorithm, defined in variable metadata; SITEGR3 does not mean the third group of sites."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;

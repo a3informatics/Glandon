@@ -14,6 +14,13 @@ describe "Import CDISC ADaM Implementation Guide Data" do
 
   before :all do
     create_maps
+  end
+
+  after :all do
+    #
+  end
+
+  before :each do
     IsoHelpers.clear_cache
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_identification.ttl")
@@ -23,13 +30,6 @@ describe "Import CDISC ADaM Implementation Guide Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("canonical_references_migration_1.ttl")
-  end
-
-  after :all do
-    #
-  end
-
-  before :each do
     setup
   end
 
@@ -62,6 +62,10 @@ describe "Import CDISC ADaM Implementation Guide Data" do
     load_local_file_into_triple_store(sub_dir, "ADAM_IG_V#{version}.ttl")
   end
 
+  def load_versions(range)
+    range.each {|n| load_version(n)}
+  end
+
   def set_params(version, date, files)
     file_type = !files.empty? ? "0" : "3"
     { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "Controlled Terminology", 
@@ -80,7 +84,6 @@ describe "Import CDISC ADaM Implementation Guide Data" do
     params = set_params(version, date, files)
     result = @object.import(params)
     filename = "cdisc_adam_ig_#{@object.id}_errors.yml"
-byebug
     dump_errors_if_present(filename, version, date)
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_adam_ig_#{@object.id}_load.ttl"
@@ -101,7 +104,6 @@ byebug
     filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ADAM_IG", filenames[index])}
     puts colourize("File count: #{files.count}", "green")
     process_model(version, date, files, create_file)
-    load_version(version)
   end
 
   def execute_import(issue_date, create_file=false)

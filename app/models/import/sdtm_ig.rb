@@ -78,6 +78,8 @@ private
   # Process Results. Process the results structure to convert to objects
   def process_results(results)
     parent = results[:parent]
+    latest = ::SdtmIg.latest({scope: parent.scope, identifier: parent.scoped_identifier})
+    parent.has_previous_version = latest.nil? ? nil : latest.uri
 
     # Check for differences. If no change then use previous version.
     filtered = []
@@ -88,6 +90,7 @@ private
       parent.add_no_save(actual, index + 1) # Parent needs ref to child whatever new or previous
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
       filtered << child 
+      child.has_previous_version = previous.nil? ? nil : previous.uri
     end
     {parent: parent, managed_children: filtered, tags: []}
   end

@@ -75,22 +75,22 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSITEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSTUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVUSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSITEID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSITEGRy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSITEGRyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVREGIONy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVREGIONy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVREGIONyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVAGE> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVAGE> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVAGEU> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVAGEGRy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVAGEGRyN> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVAAGE> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVSEX> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVRACE> ;
-	bd:includesColumn <http://www.cdisc.org/ADSL/V2#AVRACEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVRACEGRy> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVRACEGRyN> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVARM> ;
 	bd:includesColumn <http://www.cdisc.org/ADSL/V3#AVACTARM> ;
@@ -239,6 +239,61 @@
 	isoI:semanticVersion "3.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
+<http://www.cdisc.org/ADSL/V3#AVSTUDYID>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:notes "DM.STUDYID"^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVUSUBJID>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:notes "DM.USUBJID"^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVSUBJID>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Subject Identifier for the Study"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "SUBJID"^^xsd:string ;
+	bd:notes "DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVSITEID>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Study Site Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "SITEID"^^xsd:string ;
+	bd:notes "DM.SITEID. SITEID is required in ADSL, but permissible in other datasets."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVSITEGRy>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Pooled Site Group y"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "SITEGRy"^^xsd:string ;
+	bd:notes "Character description of a grouping or pooling of clinical sites for analysis purposes. For example, SITEGR3 is the name of a variable containing site group (pooled site) names, where the grouping has been done according to the third site grouping algorithm, defined in variable metadata; SITEGR3 does not mean the third group of sites."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
 <http://www.cdisc.org/ADSL/V3#AVSITEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Site Group y (N)"^^xsd:string ;
@@ -250,6 +305,17 @@
 	bd:ctNotes ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
 .
+<http://www.cdisc.org/ADSL/V3#AVREGIONy>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Geographic Region y"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "REGIONy"^^xsd:string ;
+	bd:notes "Character description of geographical region. For example, REGION1 might have values of 'Asia', 'Europe', 'North America', 'Rest of World'; REGION2 might have values of 'United States', 'Rest of World'."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
 <http://www.cdisc.org/ADSL/V3#AVREGIONyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Geographic Region y (N)"^^xsd:string ;
@@ -257,6 +323,17 @@
 	bd:ordinal "8"^^xsd:positiveInteger ;
 	bd:name "REGIONyN"^^xsd:string ;
 	bd:notes "Numeric representation of REGIONy. Orders REGIONy for analysis and reporting.There must be a one-to-one relationship between REGIONyN and REGIONy within a study. \n REGIONyN cannot be present unless REGIONy is also present. When REGIONy and REGIONyN are present, then on a given record, either both must be populated or both must be null."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVAGE>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Age"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "AGE"^^xsd:string ;
+	bd:notes "DM.AGE. If analysis needs require a derived age that does not match DM.AGE, then AAGE must be added"^^xsd:string ;
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#8b16536d-2667-4282-86b4-8724a00b8f9f> ;
@@ -325,6 +402,17 @@
 	bd:notes "DM.RACE."^^xsd:string ;
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "RACE"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
+.
+<http://www.cdisc.org/ADSL/V3#AVRACEGRy>
+	rdf:type bd:ADaMDatasetVariable ;
+	isoC:label "Pooled Race Group y"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "RACEGRy"^^xsd:string ;
+	bd:notes "Character description of a grouping or pooling of the subject's race for analysis purposes."^^xsd:string ;
+	bd:ct ""^^xsd:string ;
+	bd:ctNotes ""^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#f9caeead-091c-442a-acdf-6f56a64c4dff> ;
 .
 <http://www.cdisc.org/ADSL/V3#AVRACEGRyN>

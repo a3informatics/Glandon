@@ -53,7 +53,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/ADAMIG_ADSL/V1> ;
+	bo:reference <http://www.cdisc.org/ADSL/V1> ;
 .
 :AIG_R2
 	rdf:type bo:Reference ;
@@ -61,13 +61,13 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/ADAMIG_BDS/V1> ;
+	bo:reference <http://www.cdisc.org/Basic_Data_Structure/V1> ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1>
+<http://www.cdisc.org/ADSL/V1>
 	rdf:type bd:ADaMDataset ;
-	isoC:label "Subject Level Analysis Dataset"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/ADAMIG_ADSL/V1#RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/ADAMIG_ADSL/V1#SI> ;
+	isoC:label "Subject-Level Analysis Dataset"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/ADSL/V1#RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/ADSL/V1#SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -75,142 +75,142 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEGRy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEGRyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVREGIONy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVREGIONyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEU> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEGRy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEGRyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAAGE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSEX> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACEGRy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACEGRyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVFASFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVSAFFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVITTFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPPROTFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVCOMPLFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVARM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVACTARM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxPN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxAN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQPN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQAN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxPGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxPGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxAGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxAGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQPGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQPGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQAGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQAGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxU> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSw> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwETF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPHASEw> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOSSTT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCSREAS> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCSREASP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOTSTT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTREAS> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTREASP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOTxxSTT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTxxRS> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTxxRSP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOPxxSTT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCPxxRS> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCPxxRSP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRFICDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRFICyDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLyDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDyDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVLSTALVDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMPGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMPGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURD> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURD> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCAUS> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCAUSN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCGRy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCGRyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSTUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVUSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSITEID> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSITEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSITEGRyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVREGIONy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVREGIONyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAGE> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAGEU> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAGEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAGEGRyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAAGE> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSEX> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRACE> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRACEGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRACEGRyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVFASFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVSAFFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVITTFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPPROTFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVCOMPLFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRANDFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVENRLFL> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVARM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVACTARM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTxxP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTxxPN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTxxA> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTxxAN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSEQP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSEQPN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSEQA> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSEQAN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxPGy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxPGyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxAGy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxAGyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTSEQPGy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTSEQPGyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTSEQAGy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTSEQAGyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDOSExxP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDOSExxA> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDOSExxU> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTEDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTETM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTETMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxSTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxEDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxETM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxETMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxSTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxEDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxETM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPxxETMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSw> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwSTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwSDM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwSDF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwSTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwEDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwETM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwEDM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwEDF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPxxSwETF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVAPHASEw> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwSTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwEDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwETM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVPHwETMF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVEOSSTT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVEOSDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCSREAS> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCSREASP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVEOTSTT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCTREAS> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCTREASP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVEOTxxSTT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCTxxRS> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCTxxRSP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVEOPxxSTT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCPxxRS> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDCPxxRSP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRFICDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVENRLDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRANDDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRFICyDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVENRLyDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVRANDyDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVLSTALVDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRCMP> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRCMPGy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRCMPGyN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxDURD> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxDURM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRxxDURY> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTDURD> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTDURM> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVTRTDURY> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHDT> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHDTF> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHCAUS> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHCAUSN> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHCGRy> ;
+	bd:includesColumn <http://www.cdisc.org/ADSL/V1#AVDTHCGRyN> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#RS>
+<http://www.cdisc.org/ADSL/V1#RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -222,15 +222,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#SI>
+<http://www.cdisc.org/ADSL/V1#SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "ADAMIG ADSL"^^xsd:string ;
+	isoI:identifier "ADSL"^^xsd:string ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSTUDYID>
+<http://www.cdisc.org/ADSL/V1#AVSTUDYID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -240,7 +240,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVUSUBJID>
+<http://www.cdisc.org/ADSL/V1#AVUSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -250,7 +250,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSUBJID>
+<http://www.cdisc.org/ADSL/V1#AVSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subject Identifier for the Study"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -260,7 +260,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEID>
+<http://www.cdisc.org/ADSL/V1#AVSITEID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Site Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -270,7 +270,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEGRy>
+<http://www.cdisc.org/ADSL/V1#AVSITEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Site Group y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -280,7 +280,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSITEGRyN>
+<http://www.cdisc.org/ADSL/V1#AVSITEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Site Group y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -290,7 +290,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVREGIONy>
+<http://www.cdisc.org/ADSL/V1#AVREGIONy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Geographic Region y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -300,7 +300,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVREGIONyN>
+<http://www.cdisc.org/ADSL/V1#AVREGIONyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Geographic Region y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -310,7 +310,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGE>
+<http://www.cdisc.org/ADSL/V1#AVAGE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Age"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -320,7 +320,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEU>
+<http://www.cdisc.org/ADSL/V1#AVAGEU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Age Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -330,7 +330,7 @@
 	bd:ct "AGEU"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEGRy>
+<http://www.cdisc.org/ADSL/V1#AVAGEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Age Group y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -340,7 +340,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAGEGRyN>
+<http://www.cdisc.org/ADSL/V1#AVAGEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Age Group y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -350,7 +350,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAAGE>
+<http://www.cdisc.org/ADSL/V1#AVAAGE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Age"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -360,7 +360,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSEX>
+<http://www.cdisc.org/ADSL/V1#AVSEX>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Sex"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -370,7 +370,7 @@
 	bd:ct "SEX"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACE>
+<http://www.cdisc.org/ADSL/V1#AVRACE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Race"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -380,7 +380,7 @@
 	bd:ct "RACE"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACEGRy>
+<http://www.cdisc.org/ADSL/V1#AVRACEGRy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Race Group y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -390,7 +390,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRACEGRyN>
+<http://www.cdisc.org/ADSL/V1#AVRACEGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Pooled Race Group y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -400,7 +400,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVFASFL>
+<http://www.cdisc.org/ADSL/V1#AVFASFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Full Analysis Set Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -410,7 +410,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVSAFFL>
+<http://www.cdisc.org/ADSL/V1#AVSAFFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Safety Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -420,7 +420,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVITTFL>
+<http://www.cdisc.org/ADSL/V1#AVITTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Intent-To-Treat Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -430,7 +430,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPPROTFL>
+<http://www.cdisc.org/ADSL/V1#AVPPROTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Per-Protocol Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -440,7 +440,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVCOMPLFL>
+<http://www.cdisc.org/ADSL/V1#AVCOMPLFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Completers Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -450,7 +450,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDFL>
+<http://www.cdisc.org/ADSL/V1#AVRANDFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Randomized Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -460,7 +460,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLFL>
+<http://www.cdisc.org/ADSL/V1#AVENRLFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Enrolled Population Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -470,7 +470,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVARM>
+<http://www.cdisc.org/ADSL/V1#AVARM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Description of Planned Arm"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -480,7 +480,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVACTARM>
+<http://www.cdisc.org/ADSL/V1#AVACTARM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Description of Actual Arm"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -490,7 +490,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxP>
+<http://www.cdisc.org/ADSL/V1#AVTRTxxP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -500,7 +500,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxPN>
+<http://www.cdisc.org/ADSL/V1#AVTRTxxPN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment for Period xx (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -510,7 +510,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxA>
+<http://www.cdisc.org/ADSL/V1#AVTRTxxA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -520,7 +520,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTxxAN>
+<http://www.cdisc.org/ADSL/V1#AVTRTxxAN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment for Period xx (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -530,7 +530,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQP>
+<http://www.cdisc.org/ADSL/V1#AVTRTSEQP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Sequence of Treatments"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -540,7 +540,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQPN>
+<http://www.cdisc.org/ADSL/V1#AVTRTSEQPN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Sequence of Treatments (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -550,7 +550,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQA>
+<http://www.cdisc.org/ADSL/V1#AVTRTSEQA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Sequence of Treatments"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -560,7 +560,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSEQAN>
+<http://www.cdisc.org/ADSL/V1#AVTRTSEQAN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Sequence of Treatments (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -570,7 +570,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxPGy>
+<http://www.cdisc.org/ADSL/V1#AVTRxxPGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment y for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -580,7 +580,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxPGyN>
+<http://www.cdisc.org/ADSL/V1#AVTRxxPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Trt y for Period xx (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -590,7 +590,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxAGy>
+<http://www.cdisc.org/ADSL/V1#AVTRxxAGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment y for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -600,7 +600,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxAGyN>
+<http://www.cdisc.org/ADSL/V1#AVTRxxAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Trt y for Period xx (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -610,7 +610,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQPGy>
+<http://www.cdisc.org/ADSL/V1#AVTSEQPGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment Sequence y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -620,7 +620,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQPGyN>
+<http://www.cdisc.org/ADSL/V1#AVTSEQPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment Sequence y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -630,7 +630,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQAGy>
+<http://www.cdisc.org/ADSL/V1#AVTSEQAGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment Sequence y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -640,7 +640,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTSEQAGyN>
+<http://www.cdisc.org/ADSL/V1#AVTSEQAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment Sequence y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -650,7 +650,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxP>
+<http://www.cdisc.org/ADSL/V1#AVDOSExxP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment Dose for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -660,7 +660,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxA>
+<http://www.cdisc.org/ADSL/V1#AVDOSExxA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment Dose for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -670,7 +670,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDOSExxU>
+<http://www.cdisc.org/ADSL/V1#AVDOSExxU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Units for Dose for Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -680,7 +680,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDT>
+<http://www.cdisc.org/ADSL/V1#AVTRTSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of First Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -690,7 +690,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSTM>
+<http://www.cdisc.org/ADSL/V1#AVTRTSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of First Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -700,7 +700,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDTM>
+<http://www.cdisc.org/ADSL/V1#AVTRTSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Datetime of First Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -710,7 +710,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSDTF>
+<http://www.cdisc.org/ADSL/V1#AVTRTSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of First Exposure Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -720,7 +720,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTSTMF>
+<http://www.cdisc.org/ADSL/V1#AVTRTSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of First Exposure Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -730,7 +730,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDT>
+<http://www.cdisc.org/ADSL/V1#AVTRTEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Last Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -740,7 +740,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTETM>
+<http://www.cdisc.org/ADSL/V1#AVTRTETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of Last Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -750,7 +750,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDTM>
+<http://www.cdisc.org/ADSL/V1#AVTRTEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Datetime of Last Exposure to Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -760,7 +760,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTEDTF>
+<http://www.cdisc.org/ADSL/V1#AVTRTEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Last Exposure Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -770,7 +770,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTETMF>
+<http://www.cdisc.org/ADSL/V1#AVTRTETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of Last Exposure Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -780,7 +780,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDT>
+<http://www.cdisc.org/ADSL/V1#AVTRxxSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of First Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -790,7 +790,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSTM>
+<http://www.cdisc.org/ADSL/V1#AVTRxxSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of First Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -800,7 +800,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDTM>
+<http://www.cdisc.org/ADSL/V1#AVTRxxSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Datetime of First Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -810,7 +810,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSDTF>
+<http://www.cdisc.org/ADSL/V1#AVTRxxSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date 1st Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -820,7 +820,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxSTMF>
+<http://www.cdisc.org/ADSL/V1#AVTRxxSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time 1st Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -830,7 +830,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDT>
+<http://www.cdisc.org/ADSL/V1#AVTRxxEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Last Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -840,7 +840,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxETM>
+<http://www.cdisc.org/ADSL/V1#AVTRxxETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time of Last Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -850,7 +850,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDTM>
+<http://www.cdisc.org/ADSL/V1#AVTRxxEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Datetime of Last Exposure in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -860,7 +860,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxEDTF>
+<http://www.cdisc.org/ADSL/V1#AVTRxxEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date Last Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -870,7 +870,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxETMF>
+<http://www.cdisc.org/ADSL/V1#AVTRxxETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time Last Exposure Period xx Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -880,7 +880,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDT>
+<http://www.cdisc.org/ADSL/V1#AVAPxxSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -890,7 +890,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSTM>
+<http://www.cdisc.org/ADSL/V1#AVAPxxSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -900,7 +900,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDTM>
+<http://www.cdisc.org/ADSL/V1#AVAPxxSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -910,7 +910,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSDTF>
+<http://www.cdisc.org/ADSL/V1#AVAPxxSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -920,7 +920,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxSTMF>
+<http://www.cdisc.org/ADSL/V1#AVAPxxSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -930,7 +930,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDT>
+<http://www.cdisc.org/ADSL/V1#AVAPxxEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -940,7 +940,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxETM>
+<http://www.cdisc.org/ADSL/V1#AVAPxxETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -950,7 +950,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDTM>
+<http://www.cdisc.org/ADSL/V1#AVAPxxEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -960,7 +960,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxEDTF>
+<http://www.cdisc.org/ADSL/V1#AVAPxxEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -970,7 +970,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPxxETMF>
+<http://www.cdisc.org/ADSL/V1#AVAPxxETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -980,7 +980,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSw>
+<http://www.cdisc.org/ADSL/V1#AVPxxSw>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Description of  Period xx Subperiod w"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -990,7 +990,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDT>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1000,7 +1000,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSTM>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1010,7 +1010,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDM>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSDM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1020,7 +1020,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSDF>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSDF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subper w Start Date Imput Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1030,7 +1030,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwSTF>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwSTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subper w Start Time Imput Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1040,7 +1040,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDT>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1050,7 +1050,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwETM>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1060,7 +1060,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDM>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwEDM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subperiod w End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1070,7 +1070,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwEDF>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwEDF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subper w End Date Imput Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1080,7 +1080,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPxxSwETF>
+<http://www.cdisc.org/ADSL/V1#AVPxxSwETF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period xx Subper w End Time Imput Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1090,7 +1090,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVAPHASEw>
+<http://www.cdisc.org/ADSL/V1#AVAPHASEw>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Description of Phase w"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1100,7 +1100,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDT>
+<http://www.cdisc.org/ADSL/V1#AVPHwSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1110,7 +1110,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSTM>
+<http://www.cdisc.org/ADSL/V1#AVPHwSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1120,7 +1120,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDTM>
+<http://www.cdisc.org/ADSL/V1#AVPHwSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1130,7 +1130,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSDTF>
+<http://www.cdisc.org/ADSL/V1#AVPHwSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w Start Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1140,7 +1140,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwSTMF>
+<http://www.cdisc.org/ADSL/V1#AVPHwSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w Start Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1150,7 +1150,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDT>
+<http://www.cdisc.org/ADSL/V1#AVPHwEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1160,7 +1160,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwETM>
+<http://www.cdisc.org/ADSL/V1#AVPHwETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1170,7 +1170,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDTM>
+<http://www.cdisc.org/ADSL/V1#AVPHwEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1180,7 +1180,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwEDTF>
+<http://www.cdisc.org/ADSL/V1#AVPHwEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w End Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1190,7 +1190,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVPHwETMF>
+<http://www.cdisc.org/ADSL/V1#AVPHwETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase w End Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1200,7 +1200,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOSSTT>
+<http://www.cdisc.org/ADSL/V1#AVEOSSTT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "End of Study Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1210,7 +1210,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOSDT>
+<http://www.cdisc.org/ADSL/V1#AVEOSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "End of Study Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1220,7 +1220,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCSREAS>
+<http://www.cdisc.org/ADSL/V1#AVDCSREAS>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason for Discontinuation from Study"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1230,7 +1230,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCSREASP>
+<http://www.cdisc.org/ADSL/V1#AVDCSREASP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason Spec for Discont from Study"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1240,7 +1240,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOTSTT>
+<http://www.cdisc.org/ADSL/V1#AVEOTSTT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "End of Treatment Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1250,7 +1250,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTREAS>
+<http://www.cdisc.org/ADSL/V1#AVDCTREAS>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason for Discontinuation of Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1260,7 +1260,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTREASP>
+<http://www.cdisc.org/ADSL/V1#AVDCTREASP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason Specify for Discont of Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1270,7 +1270,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOTxxSTT>
+<http://www.cdisc.org/ADSL/V1#AVEOTxxSTT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "End of Treatment Status in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1280,7 +1280,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTxxRS>
+<http://www.cdisc.org/ADSL/V1#AVDCTxxRS>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason for Discont of Treat in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1290,7 +1290,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCTxxRSP>
+<http://www.cdisc.org/ADSL/V1#AVDCTxxRSP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason Spec for Disc of Trt in Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1300,7 +1300,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVEOPxxSTT>
+<http://www.cdisc.org/ADSL/V1#AVEOPxxSTT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "End of Period xx Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1310,7 +1310,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCPxxRS>
+<http://www.cdisc.org/ADSL/V1#AVDCPxxRS>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason for Discont from Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1320,7 +1320,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDCPxxRSP>
+<http://www.cdisc.org/ADSL/V1#AVDCPxxRSP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Reason Spec for Discont from Period xx"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1330,7 +1330,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRFICDT>
+<http://www.cdisc.org/ADSL/V1#AVRFICDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Informed Consent"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1340,7 +1340,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLDT>
+<http://www.cdisc.org/ADSL/V1#AVENRLDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Enrollment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1350,7 +1350,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDDT>
+<http://www.cdisc.org/ADSL/V1#AVRANDDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Randomization"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1360,7 +1360,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRFICyDT>
+<http://www.cdisc.org/ADSL/V1#AVRFICyDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Informed Consent y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1370,7 +1370,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVENRLyDT>
+<http://www.cdisc.org/ADSL/V1#AVENRLyDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Enrollment y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1380,7 +1380,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVRANDyDT>
+<http://www.cdisc.org/ADSL/V1#AVRANDyDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Randomization y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1390,7 +1390,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVLSTALVDT>
+<http://www.cdisc.org/ADSL/V1#AVLSTALVDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date Last Known Alive"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1400,7 +1400,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMP>
+<http://www.cdisc.org/ADSL/V1#AVTRCMP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Compliance (%)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1410,7 +1410,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMPGy>
+<http://www.cdisc.org/ADSL/V1#AVTRCMPGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Compliance (%) Group y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1420,7 +1420,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRCMPGyN>
+<http://www.cdisc.org/ADSL/V1#AVTRCMPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Compliance (%) Group y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1430,7 +1430,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURD>
+<http://www.cdisc.org/ADSL/V1#AVTRxxDURD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Duration in Period xx (Days)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1440,7 +1440,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURM>
+<http://www.cdisc.org/ADSL/V1#AVTRxxDURM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Duration in Period xx (Months)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1450,7 +1450,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRxxDURY>
+<http://www.cdisc.org/ADSL/V1#AVTRxxDURY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Duration in Period xx (Years)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1460,7 +1460,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURD>
+<http://www.cdisc.org/ADSL/V1#AVTRTDURD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Total Treatment Duration (Days)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1470,7 +1470,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURM>
+<http://www.cdisc.org/ADSL/V1#AVTRTDURM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Total Treatment Duration (Months)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1480,7 +1480,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVTRTDURY>
+<http://www.cdisc.org/ADSL/V1#AVTRTDURY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Total Treatment Duration (Years)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1490,7 +1490,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHDT>
+<http://www.cdisc.org/ADSL/V1#AVDTHDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1500,7 +1500,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHDTF>
+<http://www.cdisc.org/ADSL/V1#AVDTHDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Date of Death Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1510,7 +1510,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCAUS>
+<http://www.cdisc.org/ADSL/V1#AVDTHCAUS>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cause of Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1520,7 +1520,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCAUSN>
+<http://www.cdisc.org/ADSL/V1#AVDTHCAUSN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cause of Death (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1530,7 +1530,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCGRy>
+<http://www.cdisc.org/ADSL/V1#AVDTHCGRy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cause of Death Group y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1540,7 +1540,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_ADSL/V1#AVDTHCGRyN>
+<http://www.cdisc.org/ADSL/V1#AVDTHCGRyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cause of Death Group y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1550,11 +1550,11 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1>
+<http://www.cdisc.org/Basic_Data_Structure/V1>
 	rdf:type bd:ADaMDataset ;
 	isoC:label "Basic Data Structure"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/ADAMIG_BDS/V1#RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/ADAMIG_BDS/V1#SI> ;
+	isoT:hasState <http://www.cdisc.org/Basic_Data_Structure/V1#RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/Basic_Data_Structure/V1#SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -1562,188 +1562,188 @@
 	isoT:explanatoryComment ""^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSTUDYID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVUSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSUBJID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSITEID> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASEQ> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAGy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAGyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSCUMP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSCUMA> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEU> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVADT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVADTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVADY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVADTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASTTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAENTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVISIT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVISITN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATPT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATPTN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATPTREF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPHASE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPHASEN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERIOD> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERIODC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPER> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPERC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVARELTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVARELTMU> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPHETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*DT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*TM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*DTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*ADY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*DTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*TMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*STM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*STMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*ETM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDY> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AV*ETMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMCD> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMTYP> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARCATy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPARCATyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVAL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALCATy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALCAyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBASE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBASEC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBASECATy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBASECAyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBASETYPE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCHG> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCHGCATy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCHGCATyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHG> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHGCATy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHGCAyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVR2BASE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVR2AyLO> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVR2AyHI> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSHIFTy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSHIFTyN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITyFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITyFN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITy> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITyML> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITyMN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVDTYPE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWRANGE> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWTARGET> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWTDIFF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWLO> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWHI> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAWU> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDT> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDTM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDTF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTTMF> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCNSR> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVEVNTDESC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCNSDTDSC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVATOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBTOXGR> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANRIND> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVBNRIND> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANRLO> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANRLOC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANRHI> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANRHIC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAyLO> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAyLOC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAyHI> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAyHIC> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVAyIND> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVByIND> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVABLFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVABLFN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANLzzFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVANLzzFN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVONTRTFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVONTRTFN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVLVOTFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVLVOTFN> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVITTRFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSAFRFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVFASRFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPPROTRFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCOMPLRFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVITTPFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSAFPFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVFASPFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVPPROTPFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVCOMPLPFL> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCDOM> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCVAR> ;
-	bd:includesColumn <http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCSEQ> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVUSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSITEID> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASEQ> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTP> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTA> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEP> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMP> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEA> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMA> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEU> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVADT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVADTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVADY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVADTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISIT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISITN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASEN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIOD> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIODC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPER> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPERC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTMU> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*TM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ADY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*TMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*STM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*STMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDY> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMCD> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMTYP> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVAL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCATy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCAyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASEC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECATy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECAyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBASETYPE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHG> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHG> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCATy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCAyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2BASE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyLO> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyHI> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTyN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITy> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyML> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyMN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVDTYPE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWRANGE> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTARGET> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTDIFF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWLO> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWHI> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAWU> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDT> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTTMF> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSR> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVEVNTDESC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSDTDSC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVATOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBTOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRIND> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVBNRIND> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLO> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLOC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHI> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHIC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLO> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLOC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHI> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHIC> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVAyIND> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVByIND> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFN> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVITTRFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFRFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVFASRFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTRFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLRFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVITTPFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFPFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVFASPFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTPFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLPFL> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCDOM> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCVAR> ;
+	bd:includesColumn <http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCSEQ> ;
 	bd:prefix ""^^xsd:string ;
 	bd:structure ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#RS>
+<http://www.cdisc.org/Basic_Data_Structure/V1#RS>
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -1755,15 +1755,15 @@
 	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#SI>
+<http://www.cdisc.org/Basic_Data_Structure/V1#SI>
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "ADAMIG BDS"^^xsd:string ;
+	isoI:identifier "Basic Data Structure"^^xsd:string ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "1.1.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSTUDYID>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTUDYID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1773,7 +1773,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVUSUBJID>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVUSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1783,7 +1783,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSUBJID>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSUBJID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subject Identifier for the Study"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1793,7 +1793,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSITEID>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSITEID>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Study Site Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1803,7 +1803,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASEQ>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASEQ>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1813,7 +1813,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTP>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1823,7 +1823,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1833,7 +1833,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTA>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1843,7 +1843,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1853,7 +1853,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPGy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1863,7 +1863,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTPGyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTPGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Pooled Treatment y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1873,7 +1873,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAGy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1883,7 +1883,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVTRTAGyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVTRTAGyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Pooled Treatment y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1893,7 +1893,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEP>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Planned Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1903,7 +1903,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSCUMP>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cumulative Planned Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1913,7 +1913,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEA>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Actual Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1923,7 +1923,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSCUMA>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSCUMA>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Cumulative Actual Treatment Dose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1933,7 +1933,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDOSEU>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDOSEU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Treatment Dose Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1943,7 +1943,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVADT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVADT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1953,7 +1953,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1963,7 +1963,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVADTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVADTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1973,7 +1973,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVADY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVADY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1983,7 +1983,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVADTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVADTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -1993,7 +1993,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2003,7 +2003,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2013,7 +2013,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2023,7 +2023,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2033,7 +2033,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2043,7 +2043,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2053,7 +2053,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASTTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Start Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2063,7 +2063,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2073,7 +2073,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2083,7 +2083,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2093,7 +2093,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Relative Day"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2103,7 +2103,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2113,7 +2113,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAENTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAENTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis End Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2123,7 +2123,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVISIT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISIT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Visit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2133,7 +2133,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVISITN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVISITN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Visit (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2143,7 +2143,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATPT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATPT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2153,7 +2153,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATPTN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2163,7 +2163,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATPTREF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATPTREF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Timepoint Reference"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2173,7 +2173,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPHASE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2183,7 +2183,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPHASEN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPHASEN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2193,7 +2193,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERIOD>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIOD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2203,7 +2203,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERIODC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERIODC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2213,7 +2213,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPER>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPER>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod within Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2223,7 +2223,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPERC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPERC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod within Period (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2233,7 +2233,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVARELTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2243,7 +2243,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVARELTMU>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVARELTMU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Relative Time Unit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2253,7 +2253,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2263,7 +2263,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2273,7 +2273,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2283,7 +2283,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2293,7 +2293,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERSTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2303,7 +2303,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2313,7 +2313,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERETM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2323,7 +2323,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2333,7 +2333,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPEREDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPEREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2343,7 +2343,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAPERETMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAPERETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Period End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2353,7 +2353,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2363,7 +2363,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2373,7 +2373,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2383,7 +2383,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2393,7 +2393,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRSTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2403,7 +2403,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2413,7 +2413,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRETM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2423,7 +2423,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2433,7 +2433,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPREDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPREDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2443,7 +2443,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVASPRETMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVASPRETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Subperiod End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2453,7 +2453,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2463,7 +2463,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2473,7 +2473,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2483,7 +2483,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2493,7 +2493,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHSTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHSTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase Start Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2503,7 +2503,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Date"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2513,7 +2513,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHETM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Time"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2523,7 +2523,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2533,7 +2533,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHEDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHEDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Date Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2543,7 +2543,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPHETMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPHETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Phase End Time Imput. Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2553,7 +2553,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*DT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*DT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2563,7 +2563,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*TM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*TM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2573,7 +2573,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*DTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2583,7 +2583,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*ADY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*ADY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2593,7 +2593,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*DTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*DTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2603,7 +2603,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*TMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*TMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2613,7 +2613,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2623,7 +2623,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*STM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*STM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2633,7 +2633,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2643,7 +2643,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative Start Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2653,7 +2653,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*SDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*SDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2663,7 +2663,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*STMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*STMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Start Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2673,7 +2673,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Date}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2683,7 +2683,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*ETM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Time}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2693,7 +2693,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Datetime}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2703,7 +2703,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDY>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDY>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{Relative End Day}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2713,7 +2713,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*EDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*EDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Date Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2723,7 +2723,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AV*ETMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AV*ETMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "{End Time Imputation Flag}"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2733,7 +2733,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2743,7 +2743,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMCD>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMCD>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2753,7 +2753,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2763,7 +2763,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARAMTYP>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARAMTYP>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2773,7 +2773,7 @@
 	bd:ct "PARAMTYP"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARCATy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2783,7 +2783,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPARCATyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPARCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Parameter Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2793,7 +2793,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVAL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVAL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2803,7 +2803,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2813,7 +2813,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALCATy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2823,7 +2823,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAVALCAyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAVALCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Value Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2833,7 +2833,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBASE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Value"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2843,7 +2843,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBASEC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBASEC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Value (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2853,7 +2853,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBASECATy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2863,7 +2863,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBASECAyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBASECAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2873,7 +2873,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBASETYPE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBASETYPE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2883,7 +2883,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCHG>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCHG>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2893,7 +2893,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCHGCATy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2903,7 +2903,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCHGCATyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCHGCATyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Change from Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2913,7 +2913,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHG>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHG>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Change from Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2923,7 +2923,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHGCATy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCATy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Chg from Baseline Category y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2933,7 +2933,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPCHGCAyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPCHGCAyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Percent Chg from Baseline Category y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2943,7 +2943,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVR2BASE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVR2BASE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Baseline"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2953,7 +2953,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVR2AyLO>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Analysis Range y Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2963,7 +2963,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVR2AyHI>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVR2AyHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Ratio to Analysis Range y Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2973,7 +2973,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSHIFTy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Shift y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2983,7 +2983,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSHIFTyN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSHIFTyN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Shift y (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -2993,7 +2993,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Criterion y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3003,7 +3003,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITyFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Criterion y Evaluation Result Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3013,7 +3013,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y \nor\nY, N"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCRITyFN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCRITyFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Criterion y Evaluation Result Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3023,7 +3023,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "1\nor\n1, 0"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITy>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITy>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Multi-Response Criterion y"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3033,7 +3033,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITyML>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyML>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Multi-Response Criterion y Evaluation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3043,7 +3043,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVMCRITyMN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVMCRITyMN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Multi-Response Criterion y Eval (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3053,7 +3053,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVDTYPE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVDTYPE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Derivation Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3063,7 +3063,7 @@
 	bd:ct "DTYPE"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWRANGE>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWRANGE>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Valid Relative Range"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3073,7 +3073,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWTARGET>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTARGET>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Target"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3083,7 +3083,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWTDIFF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWTDIFF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Diff from Target"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3093,7 +3093,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWLO>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Beginning Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3103,7 +3103,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWHI>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Ending Timepoint"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3113,7 +3113,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAWU>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAWU>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Window Unit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3123,7 +3123,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDT>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDT>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time-to-Event Origin Date for Subject"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3133,7 +3133,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDTM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Time-to-Event Origin Datetime"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3143,7 +3143,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTDTF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTDTF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Origin Date Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3153,7 +3153,7 @@
 	bd:ct "DATEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSTARTTMF>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSTARTTMF>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Origin Time Imputation Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3163,7 +3163,7 @@
 	bd:ct "TIMEFL"^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCNSR>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Censor"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3173,7 +3173,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVEVNTDESC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVEVNTDESC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Event or Censoring Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3183,7 +3183,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCNSDTDSC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCNSDTDSC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Censor Date Description"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3193,7 +3193,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVATOXGR>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVATOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3203,7 +3203,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBTOXGR>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBTOXGR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3213,7 +3213,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANRIND>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANRIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3223,7 +3223,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVBNRIND>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVBNRIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3233,7 +3233,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANRLO>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3243,7 +3243,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANRLOC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANRLOC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Lower Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3253,7 +3253,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANRHI>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3263,7 +3263,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANRHIC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANRHIC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Normal Range Upper Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3273,7 +3273,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAyLO>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLO>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Lower Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3283,7 +3283,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAyLOC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAyLOC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Lower Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3293,7 +3293,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAyHI>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHI>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Upper Limit"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3303,7 +3303,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAyHIC>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAyHIC>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Upper Limit (C)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3313,7 +3313,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVAyIND>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVAyIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Range y Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3323,7 +3323,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVByIND>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVByIND>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Analysis Range y Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3333,7 +3333,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVABLFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3343,7 +3343,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVABLFN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVABLFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Baseline Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3353,7 +3353,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "1"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANLzzFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Flag zz"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3363,7 +3363,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVANLzzFN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVANLzzFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Analysis Flag zz (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3373,7 +3373,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "1"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVONTRTFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "On Treatment Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3383,7 +3383,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVONTRTFN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVONTRTFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "On Treatment Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3393,7 +3393,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "1"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVLVOTFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Last Value On Treatment Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3403,7 +3403,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVLVOTFN>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVLVOTFN>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Last Value On Treatment Record Flag (N)"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3413,7 +3413,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "1"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVITTRFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVITTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Intent-To-Treat Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3423,7 +3423,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSAFRFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Safety Analysis Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3433,7 +3433,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVFASRFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVFASRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Full Analysis Set Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3443,7 +3443,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPPROTRFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Per-Protocol Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3453,7 +3453,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCOMPLRFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLRFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Completers Record-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3463,7 +3463,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVITTPFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVITTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Intent-To-Treat Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3473,7 +3473,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSAFPFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSAFPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Safety Analysis Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3483,7 +3483,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVFASPFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVFASPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Full Analysis Set Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3493,7 +3493,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVPPROTPFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVPPROTPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Per-Protocol Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3503,7 +3503,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVCOMPLPFL>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVCOMPLPFL>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Completers Parameter-Level Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3513,7 +3513,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes "Y"^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCDOM>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCDOM>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Data"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3523,7 +3523,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCVAR>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCVAR>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Variable"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
@@ -3533,7 +3533,7 @@
 	bd:ct ""^^xsd:string ;
 	bd:ctNotes ""^^xsd:string ;
 .
-<http://www.cdisc.org/ADAMIG_BDS/V1#AVSRCSEQ>
+<http://www.cdisc.org/Basic_Data_Structure/V1#AVSRCSEQ>
 	rdf:type bd:ADaMDatasetVariable ;
 	isoC:label "Source Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
