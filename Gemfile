@@ -118,9 +118,14 @@ group :test do
   # Allure support - for nice testing reports
   gem "allure-ruby-commons"
   gem 'allure-rspec'
+  gem 'rspec'
   gem "allure-cucumber"
+  gem 'google-protobuf'
   gem 'protobuf-cucumber'
+  gem 'watir'
+  gem 'magic_encoding'
 end
+
 
 group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"

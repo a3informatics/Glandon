@@ -10,15 +10,13 @@ require 'capybara/cucumber'
 require 'capybara-screenshot'
 require 'capybara-screenshot/cucumber'
 require 'allure-cucumber'
+require 'rspec/expectations'
+require 'rspec'
+require 'base64'
 
-Capybara.register_driver :selenium do |app|
- Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara::Screenshot.autosave_on_failure = true
+Capybara::Screenshot.autosave_on_failure = false
 Capybara::Screenshot.append_timestamp = false
-
-Capybara.asset_host = 'http://localhost:3000'
+Capybara.default_driver = :selenium_chrome
 
 # Keep only the screenshots generated from the last failing test suite
 #Capybara::Screenshot.prune_strategy = :keep_last_run
@@ -26,7 +24,9 @@ Capybara.asset_host = 'http://localhost:3000'
 # Keep up to the number of screenshots specified in the hash
 #Capybara::Screenshot.prune_strategy = { keep: 2}
 
-Capybara::save_path = "./features/screenshots"
+#root='/Users/Kirsten/Documents/rails/Glandon'
+
+Capybara::save_path = "./cucumber-report/screenshots/"
 
 module Capybara
   module DSL
@@ -49,16 +49,29 @@ end
 
 #Run after each scenario
 
+# After do |scenario|
+#   screenshot_file_name = "screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
+#   save_screenshot(screenshot_file_name,:full => true)
+#   screenshot_path = 'cucumber-report/screenshots/'+screenshot_file_name
+#   #screenshot = Base64.encode64(screenshot_path)
+#   image = open(screenshot_path, 'rb', &:read)
+#   encoded_image = Base64.encode64(image)
+#   attach(encoded_image, "image/png;base64")
+#     log(screenshot_path)
+# end
+
+
 After do |scenario|
-    screenshot_file_name = "screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')
-    screenshot=Capybara::save_path+"/"+screenshot_file_name
-    #screenshot="/Users/Kirsten/Documents/rails/Glandon/features/screenshots/Screenshot.png"
-    #my_screenshot_and_save_page(screenshot_file_name)
-    my_screenshot_and_save_page('Screenshot')
-     #attach("screenshot.html","image/html")
-     #attach(scenario.name+".html", "image/html")
-    log(screenshot)
+   add_screenshot(scenario)
 end
+
+def add_screenshot(scenario)
+ file_path = Capybara::save_path+"screenshot_"+scenario.name.gsub(' ', '-').gsub(/^.*\/spec\//,'')+'.png'
+ page.driver.browser.save_screenshot(file_path)
+ image = open(file_path, 'rb', &:read)
+ attach(image, 'image/png;base64')
+end
+
 
 AllureCucumber.configure do |config|
 # config.results_directory = "/cucumber-report"

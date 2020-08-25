@@ -1,0 +1,174 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "test-that-a-user-can-access-the-login-page;verify-that-user-can-see-welcome-page-before-login",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Verify that user can see welcome page before login",
+        "before": [
+          {
+            "result": {
+              "duration": 23000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/hooks/active_record.rb:17"
+            }
+          },
+          {
+            "result": {
+              "duration": 1085000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/hooks/database_cleaner.rb:6"
+            }
+          },
+          {
+            "result": {
+              "duration": 205527000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/hooks/mail.rb:3"
+            }
+          },
+          {
+            "result": {
+              "duration": 23000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "capybara-3.33.0/lib/capybara/cucumber.rb:14"
+            }
+          },
+          {
+            "result": {
+              "duration": 26000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "capybara-3.33.0/lib/capybara/cucumber.rb:22"
+            }
+          },
+          {
+            "result": {
+              "duration": 14000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/capybara/javascript_emulation.rb:109"
+            }
+          },
+          {
+            "result": {
+              "duration": 10000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "capybara-screenshot-1.0.24/lib/capybara-screenshot/cucumber.rb:3"
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am on login page",
+            "result": {
+              "duration": 3200094000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "features/step_definitions/login.rb:1"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I should see \"Welcome\"",
+            "result": {
+              "duration": 57995000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "features/step_definitions/login.rb:5"
+            }
+          }
+        ],
+        "after": [
+          {
+            "result": {
+              "duration": 346309000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "features/support/env.rb:66"
+            }
+          },
+          {
+            "result": {
+              "duration": 20000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "capybara-screenshot-1.0.24/lib/capybara-screenshot/cucumber.rb:7"
+            }
+          },
+          {
+            "result": {
+              "duration": 77512000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "capybara-3.33.0/lib/capybara/cucumber.rb:10"
+            }
+          },
+          {
+            "result": {
+              "duration": 829000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/hooks/database_cleaner.rb:10"
+            }
+          },
+          {
+            "result": {
+              "duration": 22000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "cucumber-rails-2.1.0/lib/cucumber/rails/hooks/active_record.rb:21"
+            }
+          }
+        ],
+        "type": "scenario",
+        "tags": [
+          {
+            "line": 1,
+            "name": "@VL-19"
+          },
+          {
+            "line": 5,
+            "name": "@TEST_VL-18"
+          }
+        ]
+      }
+    ],
+    "id": "test-that-a-user-can-access-the-login-page",
+    "keyword": "Feature",
+    "line": 2,
+    "name": "Test that a user can access the login page",
+    "uri": "./features/VL-19.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@VL-19"
+      }
+    ]
+  }
+]

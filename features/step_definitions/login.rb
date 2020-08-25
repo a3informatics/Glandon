@@ -3,6 +3,6 @@ Given('I am on login page') do
 end
 
 Then('I should see {string}') do |string|
- expect(page).to have_text string
+ expect(page).to have_text text
 end
 
